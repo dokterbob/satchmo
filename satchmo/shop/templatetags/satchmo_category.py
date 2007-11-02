@@ -40,9 +40,8 @@ def category_tree():
     </ul>
     """
     root = Element("ul")
-    for cats in Category.objects.all():
-        if not cats.parent:
-            recurse_for_children(cats, root)
+    for cats in Category.objects.filter(parent__isnull=True):
+        recurse_for_children(cats, root)
     return tostring(root, 'utf-8')
 
 register.simple_tag(category_tree)
