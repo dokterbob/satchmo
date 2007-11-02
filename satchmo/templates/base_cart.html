@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_currency %}
+{% load satchmo_util %}
+
+{% block navbar %}
+<a href="{{shop_base}}/">{% trans "Home" %}</a>
+{% endblock %}
+
+{% block content %}
+
+{% if error_message %}
+<div class="error">{{ error_message }}</div>
+{% endif %}
+{% if not cart %}
+    <h4>{% trans "Your cart is empty." %}</h4>
+{% else %}
+    <h4>{% trans "Your Cart" %}</h4>
+    <table><tr><th></th>
+    <th>{% trans "Quantity" %}</th>
+    <th>{% trans "Item" %}</th>
+    <th align="center">{% trans "Total" %}</th>
+    </tr>
+
+    {% for cartitem in cart %}
+        <tr><td>
+            <form action="{% url satchmo_cart_remove %}" method="post">
+                <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
+                <input type="submit" value="{% trans 'Remove' %}" />
+            </form>
+            </td>
+            <td align="center">
+                <form class="qtyform" id="form-{{ cartitem.id }}" action="{% url satchmo_cart_set_qty %}" method="post">
+                    <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
+                    <select name="quantity">
+                        {% for q in 10|template_range %}
+                        <option {% ifequal q cartitem.quantity %}selected="yes"{% endifequal %} value="{{ q }}">{{ q }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="{% trans 'update amount' %}" />
+                </form>
+            </td>
+            <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>
+            <td align="center">{{ cartitem.line_total|currency }}</td>
+        </tr>
+        {% if cartitem.product.customproduct %}{% with cartitem.product.customproduct as custom %}
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">
+                {% ifnotequal custom.discount 100 %}
+                    {% trans 'Full Price: ' %}{{ custom.full_price|currency }}<br/>
+                    <i>{% trans 'price at right is your deposit, you will receive a bill for the remainder when your item is ready.' %}</i><br/>
+                {% endifnotequal %}
+                {% for detail in cartitem.details.all %}
+                    {% if not forloop.first %}<br />{% endif %}
+                    {{ detail.customfield.name }}: 
+                    {{ detail.detail }}
+                {% endfor %}
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        {% endwith %}{% endif %}
+    {% endfor %}
+    <tr><td colspan="3" align="right">{% trans "Cart Total" %}:</td>
+        <td>{{cart.total|currency}}</td></tr>
+    </table>
+    
+    <a href="{% url satchmo_checkout-step1 %}">{% trans "Check out" %}</a>
+{% endif %}
+{% endblock %}

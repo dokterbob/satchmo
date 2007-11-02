@@ -1,0 +1,41 @@
+{% load i18n satchmo_currency %}
+<fieldset class="module">
+    <h2>{% trans 'Order Payments' %}</h2>
+    <div class="form-row">
+    {% if payments %}
+    <table>
+        <tr>
+            <th>{% trans 'Payment' %}</th>
+            <th>{% trans 'Amount' %}</th>
+            <th>{% trans 'Method' %}</th>
+            <th>{% trans 'Timestamp' %}</th>
+        </tr>
+    {% for payment in order.payments.all %}
+        <tr>
+            <td>
+                <a href="/admin/contact/orderpayment/{{ payment.id}}">{{ payment.id }}</a>
+            </td>
+            <td>
+                {{ payment.amount|currency }}
+            </td>
+            <td>
+                {{ payment.payment }}
+            </td>
+            <td>
+                {{ payment.timestamp }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    {% trans 'No payments.' %}
+    {% endif %}
+    </div>
+    <div class="form-row">
+    {% if order.paid_in_full %}
+    <i>{% trans 'Paid in full' %}</i>
+    {% else %}
+    <b>{% trans 'Balance on order:' %} </b>{{ order.balance|currency }}
+    {% endif %}
+    </div>
+</fieldset>

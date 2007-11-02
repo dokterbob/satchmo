@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+<!DOCTYPE document SYSTEM "rml_1_0.dtd">
+<document filename="{{ filename }}">
+<template pageSize="(10.2cm, 15.4cm)"
+          leftMargin="1cm"
+          rightMargin="1cm"
+          topMargin="2.5cm"
+          bottomMargin="2.5cm"
+          allowSplitting="20"
+          >
+          <!-- Avery multi-use label Item#5444                              -->
+          <!-- showBoundary means that we will be able to see the            -->
+          <!-- limits of frames                                              -->
+    <pageTemplate>
+          <pageGraphics>
+          </pageGraphics>
+          <frame id="returnto" x1=".7cm" y1="10.5cm" width="4cm"
+              height="3cm"/>
+          <frame id="sendto" x1="5cm" y1="7.5cm" width="5cm"
+              height="4cm"/>
+    </pageTemplate>
+</template>
+<stylesheet>
+    <paraStyle name="returnto"
+    fontName="Helvetica"
+    fontSize="10"
+    spaceBefore="0.1 cm"
+     />
+     <paraStyle name="sendto"
+     fontName="Helvetica"
+     fontSize="12"
+     spaceBefore="0.1 cm"
+     />
+</stylesheet>
+<story>
+     <para style="returnto">
+        {{shopDetails.storeName}}
+     </para>
+     <para style="returnto">
+        {{shopDetails.street1}}
+     </para>
+     <para style="returnto">
+        {{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postalCode}}
+     </para>
+     <nextFrame/>
+
+    <para style="sendto"><b>{{order.contact.full_name}}</b></para>
+    <para style="sendto">{{order.full_ship_street}}</para>
+    <para style="sendto">{{order.ship_city}}, {{order.ship_state}} {{order.ship_postal_code}}</para>
+
+</story>
+</document>

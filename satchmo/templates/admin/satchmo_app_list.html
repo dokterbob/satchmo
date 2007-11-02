@@ -1,0 +1,96 @@
+{% load i18n %}
+
+        <div class="module satchmo-app">
+        <table summary="{% trans "Store Configuration" %}">
+        <caption>{% trans "Store Configuration" %}</caption>
+            <tr>
+                <th scope="row"><a href="/admin/shop/config">{% trans "Store Details" %}</a></th>
+                <td><a href="/admin/shop/config/add/" class="addlink">{% trans "Add" %}</a></td>
+                <td><a href="/admin/shop/config/" class="changelink">{% trans "Change" %}</a></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="/admin/sites/site">{% trans "Store Web Site" %}</a></th>
+                <td><a href="/admin/sites/site/add/" class="addlink">{% trans "Add" %}</a></td>
+                <td><a href="/admin/sites/site" class="changelink">{% trans "Change" %}</a></td>
+            </tr>
+        </table>
+        </div>
+
+       <div class="module satchmo-app">
+            <table summary="{% trans "Product Configuration" %}">
+            <caption>{% trans "Product Configuration" %}</caption>
+                <tr>
+                    <th scope="row"><a href="/admin/product/category">{% trans "Product Categories" %}</a></th>
+                    <td><a href="/admin/product/category/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/product/category" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="/admin/product/optiongroup">{% trans "Product Options" %}</a></th>
+                    <td><a href="/admin/product/optiongroup/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/product/optiongroup" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="/admin/product/product">{% trans "Individual Products" %}</a></th>
+                    <td><a href="/admin/product/product/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/product/product" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+            </table>
+            </div>
+
+        <div class="module satchmo-app">
+            <table summary="{% trans "Contacts" %}">
+            <caption>{% trans "Contacts" %}</caption>
+                <tr>
+                    <th scope="row"><a href="/admin/contact/contact">{% trans "Contact" %}</a></th>
+                    <td><a href="/admin/contact/contact/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/contact/contact" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="/admin/contact/interaction">{% trans "Contact Interactions" %}</a></th>
+                    <td><a href="/admin/contact/interaction/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/contact/interaction" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="/admin/contact/organization">{% trans "Organizations" %}</a></th>
+                    <td><a href="/admin/contact/organization/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/contact/organization" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="module satchmo-app">
+            <table summary="{% trans "Discounts" %}">
+            <caption>{% trans "Discounts" %}</caption>
+                <tr>
+                    <th scope="row"><a href="/admin/discount/discount">{% trans "Discount" %}</a></th>
+                    <td><a href="/admin/discount/discount/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/discount/discount" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="module satchmo-app">
+            <table summary="{% trans "International Information" %}">
+            <caption>{% trans "International Information" %}</caption>
+                <tr>
+                    <th scope="row"><a href="/admin/l10n/country">{% trans "Countries" %}</a></th>
+                    <td><a href="/admin/l10n/country/add" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/l10n/country" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="module satchmo-app">
+            <table summary="{% trans "Taxes" %}">
+            <caption>{% trans "Tax Information" %}</caption>
+                <tr>
+                    <th scope="row"><a href="/admin/tax/taxclass">{% trans "Tax Classes" %}</a></th>
+                    <td><a href="/admin/tax/taxclass/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin//tax/taxclass" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="/admin/tax/taxrate">{% trans "Tax Rates" %}</a></th>
+                    <td><a href="/admin/tax/taxrate/add" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/tax/taxrate" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+            </table>
+        </div>

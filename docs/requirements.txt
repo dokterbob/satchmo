@@ -1,0 +1,50 @@
+Requirements
+============
+
+Satchmo is based on the Django framework, therefore you do need a fully functioning 
+Django instance to use Satchmo.  The `Django installation guide`_ will step you 
+through the process. 
+
+As of now, it is recommended that you use a Django version from the current trunk.
+Some of the most recent features in Satchmo require a recent (0.97 pre) checkout 
+from svn.  A known good version of Django can be found in the `snapshot`_ directory.
+
+Satchmo requires Python 2.4 or later and a database supported by Django.
+
+There are a number of other Python packages that are required for usage of all the 
+features in Satchmo.
+
+- `Python Imaging Library`_
+- `Elementtree`_ (included in Python 2.5+)
+- `Python cryptography toolkit`_ (`Windows binary`_)
+- `ReportLab`_
+- `Tiny RML2PDF`_ (`download link`_)
+
+For product comment functionality, you will need:
+
+- `django-comment-utils`_ which must on your PYTHONPATH
+
+For more complex email verification process, you will need:
+
+- `Django Registration`_
+
+A valid Django cache backend (file, memcached or DB) is required for the config settings.
+
+The following packages are optional but encouraged:
+
+- `PyYaml`_ (For unit tests)
+
+.. _Django installation guide: http://www.djangoproject.com/documentation/install/
+.. _Python Imaging Library: http://www.pythonware.com/products/pil/
+.. _Elementtree: http://effbot.org/zone/element-index.htm
+.. _Python cryptography toolkit: http://www.amk.ca/python/code/crypto
+.. _Windows binary: http://www.voidspace.org.uk/python/modules.shtml#pycrypto
+.. _ReportLab: http://www.reportlab.org/
+.. _DocUtils: http://docutils.sourceforge.net/
+.. _PyYaml: http://pyyaml.org/
+.. _Authorize.net: http://www.authorize.net/
+.. _Tiny RML2PDF: http://www.openreport.org/index.py/static/page/trml2pdf
+.. _download link: http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
+.. _Django Registration: http://code.google.com/p/django-registration/
+.. _django-comment-utils: http://code.google.com/p/django-comment-utils/
+.. _snapshot: http://www.satchmoproject.com/snapshots/

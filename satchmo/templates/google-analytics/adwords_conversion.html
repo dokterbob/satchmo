@@ -1,0 +1,15 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+var google_conversion_id = "{{ GOOGLE_ADWORDS_ID }}";
+var google_conversion_language = "{{ language_code }}";
+var google_conversion_format = "1";
+var google_conversion_color = "FFFFFF";
+var google_conversion_value = "{{ value }}";
+var google_conversion_label = "{{ label }}";
+//-->
+</script>
+<script language="JavaScript" src="{% if secure %}https{% else %}http{% endif %}://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<img height='1' width='1' border='0' src="{% if secure %}https{% else %}http{% endif %}://www.googleadservices.com/pagead/conversion/{{ GOOGLE_ADWORDS_ID }}/imp.gif?value={{ value }}&label={{ label }}&script=0">
+</noscript>

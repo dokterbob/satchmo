@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_currency %}
+{% block extra-head %}
+{% if product.meta %}
+    <meta name="description" content="{{product.meta}}">
+{% endif %}
+
+<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
+<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+<script type="text/javascript">
+var satchmo = {
+    getPrice : function(url) {	
+        satchmo.setName("{{product.slug}}");
+        satchmo.setPrice("");
+    	var options = {
+    		url : url,
+    		type: 'POST',
+    		success : function(json) {
+    			var name = json[0];
+    			var price = json[1];
+    		    if (name) {
+    		        satchmo.setName(name);
+    		    }
+    		    satchmo.setPrice(price);
+    		},
+    		dataType : 'json'
+    	};
+
+    	$('form#options').ajaxSubmit(options);
+    },
+    
+    setName : function(name) {
+        $("#productname").attr('value', name);
+    },
+
+    setPrice : function(price){
+        $("#price").text(price);
+    }
+}
+
+var localProductPrice = function() { satchmo.getPrice('{% url satchmo_product_prices product_slug=product.slug %}'); };
+
+$(function() {
+    localProductPrice();
+    $('.priced').change(function() { localProductPrice(); });    
+});
+</script>
+{% endblock %}
+
+{% block navbar %}
+
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> 
+{% for name, url in product.category.all.0.get_url_name %}
+    :: <a href="{{ url }}">{{ name }}</a>
+{% endfor %}
+
+{% endblock %}
+
+{% block content %}
+<h4>{{ product.name }}</h4>
+<p>{{ product.description }}</p>
+{% trans "Price" %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_cart_add %}" method="post">
+{% if options %}
+<p>{% trans "Please choose your options" %}:</p>
+{% endif %}
+
+{% for option_group in options %}
+ {{ option_group.name }}
+    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+    {% for choice in option_group.items %}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
+        {% if choice.price_change %}
+            {% option_price choice %}
+        {% endif %}
+     </option>
+    {% endfor %}
+      </select> 
+{% endfor %} 
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" /> 
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="submit" value="{% trans "Add to cart" %}" /> 
+</form>
+{% if shop.options.SHOP.RATINGS %}{% include '_product_ratings.html' %}{% endif %}
+{% endblock %} 

@@ -1,0 +1,5 @@
+<script src="{% if secure %}https://ssl{% else %}http://www{% endif %}.google-analytics.com/urchin.js" type="text/javascript"> </script>
+<script type="text/javascript">
+_uacct="{{GOOGLE_CODE}}";
+urchinTracker();
+</script>

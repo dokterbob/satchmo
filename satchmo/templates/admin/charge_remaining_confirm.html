@@ -1,0 +1,21 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans 'Custom Charge' %}</h1>
+{% if form.errors %}
+    <p class="errornote">
+    {% blocktrans count form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    </p>
+{% endif %}
+<form name="chargeform" id="chargeform" method="POST" action="{% url satchmo_charge_remaining_post %}">
+{{ form.orderitem }}
+<p><label for="id_amount">{% trans 'New amount' %}</label> {{ form.amount }}</p>
+{% if form.amount.errors %}<p class="error">{{ form.amount.errors|join:", "}}</p>{% endif %}
+<p><label for="id_shipping">{% trans 'Extra Shipping' %}</label> {{ form.shipping }}</p>
+{% if form.shipping.errors %}<p class="error">{{ form.shipping.errors|join:", "}}</p>{% endif %}
+<p><label for="id_notes">{% trans 'Notes' %}</label> {{ form.notes }}</p>
+{% if form.notes.errors %}<p class="error">{{ form.notes.errors|join:", "}}</p>{% endif %}
+<p><input type="submit" value="Charge" /></p>
+</form>
+
+{% endblock %}

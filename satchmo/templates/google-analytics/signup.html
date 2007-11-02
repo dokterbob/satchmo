@@ -1,0 +1,11 @@
+{% if contact %}
+<form style="display:none;" name="utmform">
+<textarea id="utmtrans">{% with contact.billing_address as address %}
+{% if address %}UTM:T|{{contact.email}}|Signup|1|0|0|{{ address.city }}|{{ address.state }}|{{ address.country }}
+{% else %}UTM:T|{{contact.email}}|Signup|1|0|0|unknown|unknown|unknown
+{% endif %}{% endwith %}</textarea>
+</form>
+<script type="text/javascript">__utmSetTrans();</script>
+{% else %}
+<!-- cannot display utm signup form, bad contact -->
+{% endif %}

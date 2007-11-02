@@ -1,0 +1,265 @@
+- fields: {active: true, admin_area: !!python/unicode 'st', continent: !!python/unicode 'NA',
+    iso2_code: !!python/unicode 'US', iso3_code: !!python/unicode 'USA', name: !!python/unicode 'UNITED
+      STATES', numcode: 840, printable_name: !!python/unicode 'United States of America'}
+  model: !!python/unicode 'l10n.country'
+  pk: !!python/long '231'
+- fields: {abbrev: !!python/unicode 'AL', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Alabama'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '1'
+- fields: {abbrev: !!python/unicode 'AK', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Alaska'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '2'
+- fields: {abbrev: !!python/unicode 'AS', active: true, country: !!python/long '231',
+    name: !!python/unicode 'American Samoa'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '3'
+- fields: {abbrev: !!python/unicode 'AZ', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Arizona'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '4'
+- fields: {abbrev: !!python/unicode 'AR', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Arkansas'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '5'
+- fields: {abbrev: !!python/unicode 'AE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Africa'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '6'
+- fields: {abbrev: !!python/unicode 'AA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Americas (except Canada)'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '7'
+- fields: {abbrev: !!python/unicode 'AE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Canada'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '8'
+- fields: {abbrev: !!python/unicode 'AE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Europe'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '9'
+- fields: {abbrev: !!python/unicode 'AE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Middle East'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '10'
+- fields: {abbrev: !!python/unicode 'AP', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Armed Forces Pacific'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '11'
+- fields: {abbrev: !!python/unicode 'CA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'California'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '12'
+- fields: {abbrev: !!python/unicode 'CO', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Colorado'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '13'
+- fields: {abbrev: !!python/unicode 'CT', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Connecticut'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '14'
+- fields: {abbrev: !!python/unicode 'DE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Delaware'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '15'
+- fields: {abbrev: !!python/unicode 'DC', active: true, country: !!python/long '231',
+    name: !!python/unicode 'District of Columbia'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '16'
+- fields: {abbrev: !!python/unicode 'FM', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Federated States of Micronesia'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '17'
+- fields: {abbrev: !!python/unicode 'FL', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Florida'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '18'
+- fields: {abbrev: !!python/unicode 'GA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Georgia'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '19'
+- fields: {abbrev: !!python/unicode 'GU', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Guam'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '20'
+- fields: {abbrev: !!python/unicode 'HI', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Hawaii'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '21'
+- fields: {abbrev: !!python/unicode 'ID', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Idaho'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '22'
+- fields: {abbrev: !!python/unicode 'IL', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Illinois'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '23'
+- fields: {abbrev: !!python/unicode 'IN', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Indiana'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '24'
+- fields: {abbrev: !!python/unicode 'IA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Iowa'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '25'
+- fields: {abbrev: !!python/unicode 'KS', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Kansas'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '26'
+- fields: {abbrev: !!python/unicode 'KY', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Kentucky'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '27'
+- fields: {abbrev: !!python/unicode 'LA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Louisiana'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '28'
+- fields: {abbrev: !!python/unicode 'ME', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Maine'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '29'
+- fields: {abbrev: !!python/unicode 'MH', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Marshall Islands'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '30'
+- fields: {abbrev: !!python/unicode 'MD', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Maryland'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '31'
+- fields: {abbrev: !!python/unicode 'MA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Massachusetts'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '32'
+- fields: {abbrev: !!python/unicode 'MI', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Michigan'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '33'
+- fields: {abbrev: !!python/unicode 'MN', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Minnesota'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '34'
+- fields: {abbrev: !!python/unicode 'MS', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Mississippi'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '35'
+- fields: {abbrev: !!python/unicode 'MO', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Missouri'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '36'
+- fields: {abbrev: !!python/unicode 'MT', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Montana'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '37'
+- fields: {abbrev: !!python/unicode 'NE', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Nebraska'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '38'
+- fields: {abbrev: !!python/unicode 'NV', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Nevada'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '39'
+- fields: {abbrev: !!python/unicode 'NH', active: true, country: !!python/long '231',
+    name: !!python/unicode 'New Hampshire'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '40'
+- fields: {abbrev: !!python/unicode 'NJ', active: true, country: !!python/long '231',
+    name: !!python/unicode 'New Jersey'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '41'
+- fields: {abbrev: !!python/unicode 'NM', active: true, country: !!python/long '231',
+    name: !!python/unicode 'New Mexico'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '42'
+- fields: {abbrev: !!python/unicode 'NY', active: true, country: !!python/long '231',
+    name: !!python/unicode 'New York'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '43'
+- fields: {abbrev: !!python/unicode 'NC', active: true, country: !!python/long '231',
+    name: !!python/unicode 'North Carolina'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '44'
+- fields: {abbrev: !!python/unicode 'ND', active: true, country: !!python/long '231',
+    name: !!python/unicode 'North Dakota'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '45'
+- fields: {abbrev: !!python/unicode 'MP', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Northern Mariana Islands'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '46'
+- fields: {abbrev: !!python/unicode 'OH', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Ohio'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '47'
+- fields: {abbrev: !!python/unicode 'OK', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Oklahoma'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '48'
+- fields: {abbrev: !!python/unicode 'OR', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Oregon'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '49'
+- fields: {abbrev: !!python/unicode 'PW', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Palau'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '50'
+- fields: {abbrev: !!python/unicode 'PA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Pennsylvania'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '51'
+- fields: {abbrev: !!python/unicode 'PR', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Puerto Rico'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '52'
+- fields: {abbrev: !!python/unicode 'RI', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Rhode Island'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '53'
+- fields: {abbrev: !!python/unicode 'SC', active: true, country: !!python/long '231',
+    name: !!python/unicode 'South Carolina'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '54'
+- fields: {abbrev: !!python/unicode 'SD', active: true, country: !!python/long '231',
+    name: !!python/unicode 'South Dakota'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '55'
+- fields: {abbrev: !!python/unicode 'TN', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Tennessee'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '56'
+- fields: {abbrev: !!python/unicode 'TX', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Texas'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '57'
+- fields: {abbrev: !!python/unicode 'UT', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Utah'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '58'
+- fields: {abbrev: !!python/unicode 'VT', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Vermont'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '59'
+- fields: {abbrev: !!python/unicode 'VI', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Virgin Islands'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '60'
+- fields: {abbrev: !!python/unicode 'VA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Virginia'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '61'
+- fields: {abbrev: !!python/unicode 'WA', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Washington'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '62'
+- fields: {abbrev: !!python/unicode 'WV', active: true, country: !!python/long '231',
+    name: !!python/unicode 'West Virginia'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '63'
+- fields: {abbrev: !!python/unicode 'WI', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Wisconsin'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '64'
+- fields: {abbrev: !!python/unicode 'WY', active: true, country: !!python/long '231',
+    name: !!python/unicode 'Wyoming'}
+  model: !!python/unicode 'l10n.adminarea'
+  pk: !!python/long '65'

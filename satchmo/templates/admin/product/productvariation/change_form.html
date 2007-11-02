@@ -1,0 +1,55 @@
+{% extends "admin/product/change_form.html" %}
+
+{% block extrahead %}
+{{block.super}}
+{% comment %}
+jquery script should've already been added in admin/product/change_form.html, so don't add it again here
+{% endcomment %}
+<script type="text/javascript">
+function setOptions(data){
+    options_tag = $("select#id_options");
+    options_tag.html(data);
+    // at this point all the options end-up being selected,
+
+    //So, unselect them all
+    for (opt_tag in options_tag.children()){
+        opt_tag = options_tag.children()[opt_tag];
+        opt_tag.selected = false;
+    }
+    //Then if any were specified as selected, reselect them
+    selected_options = new Array({{form.data.options|join:","}});
+    for (sel_opt in selected_options){
+        sel_opt = selected_options[sel_opt];
+        for (opt_tag in options_tag.children()){
+            opt_tag = options_tag.children()[opt_tag];
+            if (opt_tag.value == sel_opt){
+                opt_tag.selected = true;
+            }
+        }
+    }
+}
+function getOptions(){
+    parent_tag = $("*#id_parent");
+    parent_id = parent_tag.attr("value");
+    $.get("../../configurableproduct/" + parent_id + "/getoptions/", setOptions );
+}
+
+$(document).ready(function(){
+    parent_tag = $("*#id_parent");
+    parent_tag.change(getOptions);
+
+    parent_value = parent_tag.attr("value");
+    if (parent_value){
+        getOptions();
+    }
+
+{% if original %}
+    //letting the user change the parent on an existing ProductVariation
+    //will just confuse things, and probably never makes sense.
+    $("*#id_parent").attr("disabled", "true");
+{% endif %}
+
+});
+
+</script>
+{% endblock %}

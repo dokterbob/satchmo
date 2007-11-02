@@ -1,0 +1,5 @@
+{% load satchmo_thumbnail %}
+{% load admin_modify i18n %}{% if bound_field.original_value %}
+{% trans "Currently" %}: <a href ="{{media_url}}{{ bound_field.original_url}}"> <img src="{{ bound_field.original_url|thumbnail:"width=85" }}" width="85" /></a><br />
+{% trans "Change" %}:{% output_all bound_field.form_fields %}
+{% else %} {% output_all bound_field.form_fields %} {% endif %}

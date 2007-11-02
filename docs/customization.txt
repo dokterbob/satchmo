@@ -1,0 +1,96 @@
+Store Customization
+===================
+
+The real power of Satchmo is not in what it does out of the box but what
+the framework allows you to do with minimal modification.  As you start
+to develop your online presence you will have a whole range of different
+ideas on how you would like to make your store look and feel.  Satchmo 
+provides a simple store layout that you can modify as much or as little 
+as you wish.  There are several ways to tweak Satchmo to your needs.  The
+following list is in the relative ease of customization:
+
+1.  CSS customization
+2.  Template customization
+3.  URL customization
+4.  Checkout process customization
+5.  Shipping module customization
+6.  Payment module customization
+
+CSS Customization
+-----------------
+
+The simplest way to modify Satchmo is to change the attributes in the css
+file used by the default shop.  The current style.css file is located in
+/satchmo/static/css.  You can modify this file directly (not recommended) or
+create a new CSS file and modify the base.html template file to point to
+your new and improved css file.
+
+The benefits of this approach is that it is simple to implement and makes it
+easy to update Satchmo as changes are made.  The downside is that there is 
+only so much you can do with css changes.
+
+Template Customization
+----------------------
+
+Template customization allows you to completely alter the look and feel of 
+your site without having to resort to coding.  The majority of the display 
+elements are accessible via css or template changes. Before making any template 
+changes, it would be useful to understand Django templates in general.  
+The `Django Template Author Guide`_ is the best place to start.
+
+Once you are ready to make template changes, the best option is to copy the 
+entire templates directory (and its contents) to a new location::
+
+    cp -rp /path/to/satchmo/templates /my/new/templates
+
+
+Next, modify settings.py to point to your new templates directory::
+
+    TEMPLATE_DIRS = (
+        # Put strings here, like "/home/html/django_templates".
+        # Always use forward slashes, even on Windows.
+        "/my/new/templates",)
+
+
+Now, go ahead and make all the changes to your templates.  Don't forget, this is
+also the place where you can change the email messages sent to users as well as
+the pdf documents created by the admin interface.  The amount of power and flexibility
+here is much higher than just about any "shopping cart" application out there!
+
+
+URL Customization
+-----------------
+
+Another nifty feature of Django is the flexibility in configuring the URLs of an 
+application.  Because a web store frequently requires good search engine ranking, 
+you will most likely want to do everything in your power to help your store rise
+in the rankings.  Using good, clean descriptive URLs is a huge plus.  Another benefit
+of flexible URLs is that allows you to easily integrate Satchmo with an existing
+site or differentiate your site with a creative scheme (or language).
+
+For convenience, urls can be modified by changing the SHOP_URLS variable in the
+local_settings.py file.  Any url assigned to this variable will override the existing
+url naming scheme.
+
+Checkout Process Customization
+------------------------------
+
+The checkout process is also designed to be easily configured for your needs.  More details
+of this process are forthcoming.  In the meantime, take a look at the source and see how
+easy it is to modify.
+
+Shipping Module Customization
+-----------------------------
+
+The comments in the dummy.py shipping module walk through how to configure shipping for your
+unique needs.
+
+Payment Module Customization
+----------------------------
+
+Payment modules are probably the most difficult to provide a cookie cutter approach.  Take a
+look at the payment documentation to see which modules are already configured.  If you
+have a new payment module you would like to add, then contact us on the mailing list for
+hints on how to approach the process.
+
+.. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/

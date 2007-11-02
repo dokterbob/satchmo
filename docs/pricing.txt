@@ -1,0 +1,33 @@
+Pricing
+=======
+
+Satchmo has flexible pricing that allows you to price at multiple levels.
+
+Pricing at the Item Level
+-------------------------
+
+You can create top-level Products, which are the things your customers see on the website. (Ex: Python Rocks shirt in demo store)
+Additionally, these products can have options (Ex: sizes, colors, etc).  The product has a variation for each combination of options. 
+This can be used to track inventory of particular product variations. (Ex: The Large, Blue, Python Rocks Shirt)
+
+Effectively it works like:
+Product + Option = Variation
+
+Pricing fits into the picture this way:
+ * You can set a default price on your Product.
+ * You can set a price adjustment for an option.
+ * You can set a price over-ride for a variation.
+
+The price code looks through these backwards. If the variation has a price then that is used
+Otherwise the Product price is used +/- the adjustment for the chosen options (IE: XL shirts are +$1.00)
+
+With this capability, you can quickly price a simple store by just using the product prices, and possibly adding price adjustments for specific options, 
+but you have the option of very fine-grained price control by setting prices for each variation.
+
+Product Variation Prices
+------------------------
+
+On the product variations, the price can have an expiration date and/or a quantity. 
+If either of these fields are set then that price is only effective for orders placed before that date, or >= that quantity. 
+The most specific of these gets highest priority (IE: the soonest expiration date, and the highest applicable quantity). 
+This useful for running temporary promotions that automatically expire.

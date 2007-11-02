@@ -1,0 +1,59 @@
+Discounts
+=========
+
+Satchmo allows you to setup multiple types of discount codes:
+
+ * Straight dollar amounts
+ * Percentage off
+ * Free shipping
+ 
+Each of these types can be qualified or limited by:
+
+ * Number of uses
+ * Minimum order
+ * Specific dates
+ * Specific products
+ 
+Creating Discounts
+------------------
+
+A discount code is easy to setup in Satchmo using the following fields:
+
+Description
+    A simple characterization of the discount.  For example, "New User Discount" or "Repeat Customer Promotion."
+    
+Code
+    The unique identifier a user would enter to activate this discount.
+    
+Amount
+    A straight dollar discount off a product.  You can only have a dollar OR percentage.
+    
+Percentage
+    A percent discount off the price.
+    
+Allowed Uses
+    The number of times this discount can be applied.
+    
+Num Uses
+    The number of times this discount has been used.
+
+Minimum Order
+    The minimum amount that must be purchased before this can apply.
+   
+Start Date
+    The date when this discount becomes effective.
+    
+End Date
+    The date when this discount is no longer valid.
+    
+Active
+    A flag you can set to make it active.  If you want to create a discount in advance but hold off on making it available, you can use this flag.
+    
+Free Shipping
+    Whether or not this discount allows the user to not have to pay shipping charges.
+    
+Include Shipping
+    A flag to determine if shipping costs should be affected by the discount.
+    
+Valid Products
+    A list of all the products this discount is valid for.

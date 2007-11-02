@@ -1,0 +1,5 @@
+Please see docs/configuration.txt for a discussion of newsletter configuration.
+
+Noting the SQL change to add the newsletter column to Contact:
+
+alter table contact_contact add column newsletter tinyint default '0';

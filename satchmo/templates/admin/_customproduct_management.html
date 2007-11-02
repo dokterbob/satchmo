@@ -1,0 +1,14 @@
+{% load i18n %}
+<fieldset class="module">
+    <h2>Custom Order Management</h2>
+    <ul>
+    {% for custom in customitems %}
+        <li>{{ custom.product }}
+            {% ifequal custom.unit_price custom.product.customproduct.full_price %}
+                [{% trans 'Fully charged' %}]
+            {% else %}
+                [<a href="{% url satchmo_charge_remaining custom.id %}">{% trans 'Charge remaining amount' %}</a>]
+            {% endifequal %}
+        </li>
+    {% endfor %}
+</fieldset>

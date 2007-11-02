@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a>
+{% endblock %}
+
+{% block content %}
+
+    <h3>{% trans "Error" %}</h3>
+    <h4>{% trans "Could not find the page you were looking for." %}</h4>
+
+{% endblock %}

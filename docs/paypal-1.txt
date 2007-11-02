@@ -1,0 +1,31 @@
+1. Get a PayPal account and set it up
+
+    Elaborate
+    Set IPN URL.
+    You'll want a developer account too for testing.
+
+2. Edit local_settings.py:
+        
+        Find "#### For PayPal Web Payments Standard ####", and uncomment all the
+        lines after it EXCEPT the first one (labeled production). Fill all of
+        values in.
+        
+3. Edit shop/urls.py:
+
+        Add "paypal." to the last two checkout steps:
+             (r'^checkout/pay/$', '>>paypal.<<checkout-step2.pay_ship_info', {'SSL': False}, 'checkout-step2'),
+             (r'^checkout/confirm/$', '>>paypal.<<checkout-step3.confirm_info', {'SSL': False}, 'checkout-step3'),
+
+4. Test it:
+
+        You should have set PayPal to use the sandbox/testing server, so it
+        won't make any real money transfers yet. Add some products to your cart,
+        check out, and make sure PayPal shows the right items and prices.
+        
+        The PayPal sandbox doesn't send real emails either. You can check the
+        emails from https://developer.paypal.com/cgi-bin/devscr?cmd=_email-session
+   
+5. If everything worked right, switch to the real PayPal server:
+
+        In local_settings.py, uncomment the production server's URL and comment
+        out the testing server.

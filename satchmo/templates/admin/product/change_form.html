@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+
+{% load satchmo_product_admin %}
+
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript">
+{% comment %}
+if the product_id has been assigned externally (usually by a link from said product), then we want it to not be user changeable so it doesn't get changed by mistake.
+{% endcomment %}
+$(document).ready(function(){
+    {%js_make_select_readonly '$("select#id_product")'%}
+    $("a#add_id_product").remove();
+    
+});
+    </script>
+{% endblock %}

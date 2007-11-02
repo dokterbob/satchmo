@@ -1,0 +1,14 @@
+Shipping
+========
+
+Shipping Module Activation
+--------------------------
+
+Satchmo provides you the flexibility to enable and disable as many shipping modules
+as you would like.  Since everyone has different needs for shipping, there's a simple
+but powerful way to define your own shipping modules.
+
+Activate and configure your shipping modules from your site settings page.  Usually this is at
+SHOP_BASE/settings/
+ 
+ 

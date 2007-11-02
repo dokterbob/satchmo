@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify %}
+
+{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+{% block bodyclass %}dashboard{% endblock %}
+{% block userlinks %}<a href="/admin/doc/">{% trans 'Documentation' %}</a> / <a href="/admin/password_change/">{% trans 'Change password' %}</a> / <a href="/admin/logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block breadcrumbs %}{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
+     <a href="{% url satchmo_admin_product_export %}">{% trans "Product import/export" %}</a> &rsaquo;
+     {% trans "Results" %}
+</div>
+{% endif %}{% endblock %}
+{% block content %}
+<div id="content-main">
+<h1>{% trans 'Import Results' %}</h1>
+{% if errors %}
+<h2>{% trans 'Errors' %}</h2>
+{% for error in errors %}
+<p class='errornote'>{{ error }}</p>
+</div>
+{% endfor %}
+{% endif %}
+{% if results %}
+<h2>{% trans 'results' %}</h2>
+{% for error in results %}
+<p>{{ error }}</p>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+==========
+Analytics
+==========
+
+One very important capability that's needed in order to run any kind
+of eCommerce solution effectively is quality analytic capabilities.  Satchmo
+does not have a set of its own analytical capabilities, but it does have
+support for using `Google Analytics`_.
+
+In order to use Google analytics, you must have an analytics id, which you can get
+for free for registering with Google.  Once you get this tracking code, you must 
+enable it in the store.
+
+*Note:* After [758], you use the ShopOptions page to enter your Google information.
+Ignore the part below about your local_settings.py file.
+
+make 2 changes to your local_settings.py file::
+
+    GOOGLE_ANALYTICS = True
+    # If google is enabled, enter the full google code here - Example "UA-abcd-1"
+    GOOGLE_ANALYTICS_CODE = "UA-xxxx-x"
+
+Now, all of your pages will be tracked via google analytics.  Satchmo also includes
+the additional ecommerce tracking codes so that purchases from your store can be
+tracked via analytics.
+
+The google analytics code is implemented using 2 template tags.  By default, they are
+included in the base.html and checkout/success.html pages.  If you wish to alter your
+templates, use {% show_tracker is_secure %} to implement the tracking code and {% show_receipt %} 
+to implement the purchase tracking capabilities.  The show_tracker code must be within
+the <body> tags and must be before the show_receipt tags.
+
+One final note on the google analytics capability.  The actual code that is inserted
+in your web page is controlled by the two templates in the google-analytics templates
+directory.  If you would like to host the google analytics javascript file on your
+own server (make sure you know what this means for keeping it updated), you can
+just modify these templates.
+
+.. _Google Analytics: http://www.google.com/analytics/

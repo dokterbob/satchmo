@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% load i18n satchmo_category satchmo_google %}
+<head>
+    {% block extra-head %}{% endblock %}
+    <link rel="stylesheet" href="{{ media_url }}css/style.css" />
+    <title>{% block title %}{{ shop_name }}{% endblock %}</title>
+</head>
+<body>
+    <div id="container">
+
+    <div id="top">
+        <h1>{{ shop_name }}</h1>
+    </div>
+
+    <div id="navbar">
+    {% block navbar %}
+    Breadcrumbs here
+    {% endblock %}
+    </div>
+
+    <div id="leftnav">
+        {% trans "Search" %}<br/>
+        <form id="search" action="{% url satchmo_search %}" method="get">
+            <input type="text" size="20" name="keywords" id="search_keywords" /><br/>
+            <input type="submit" value="{% trans "Search" %}" />
+         </form>
+            {% block sidebar %}
+            {% trans "Shop Categories" %}<br/>
+            <div id="menu_container">
+                {% category_tree %}
+            </div>
+            {% endblock %}
+        </div>
+
+        <div id="rightnav">
+            {% trans "Account Information" %}<br/>
+            {% if user.is_authenticated %}
+                <a href="{% url satchmo_account_info %}">{% trans "Account Details" %}</a><br/>
+                <a href="{% url auth_logout %}">{% trans "Log out" %}</a><br/>
+            {% else %}
+                <a href="{% url auth_login %}">{% trans "Log in" %}</a><br/>
+            {% endif %}
+
+            {% load satchmo_currency %}
+            <a href="{% url satchmo_cart %}">{% trans "Cart" %}</a>
+
+            {% if cart_count %}
+                ({{ cart_count }} - {{ cart.total|currency }})<br/>
+                <a href="{% url satchmo_checkout-step1 %}">{% trans "Check out" %}</a>
+            {% endif %}
+
+            <p><a href="{% url satchmo_contact %}">{% trans "Contact Us" %}</a></p>
+
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            {% blocktrans %}Powered by <a href="http://www.satchmoproject.com">Satchmo</a>.{% endblocktrans %}
+        </div>
+
+    </div>
+    {% block google-tracker %}
+    {% if shop.options.GOOGLE.ANALYTICS %}
+        {% show_tracker is_secure %}
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+Payment Modules
+===============
+
+Satchmo currently has support for several different payment modules.  This
+document will discuss some of the particular configuration items to keep in
+mind for each module.
+
+Authorize.net
+-------------
+The authorize.net module requires that you have a valid authorize.net account.
+In order to get your transaction key and transaction login, go to the
+`site <http://www.authorize.net/>`_ and complete the account registration process.
+When you have completed it, you can fill in the appropriate fields in the
+admin settings to enable this payment processor.
+
+There is one thing to keep in mind when setting up the test processing.
+If you are posting to https://test.authorize.net/gateway/transact.dll,
+and you are not using an account whose API login ID starts with
+"cpdev" or "cnpdev", you will get an Error 13 message. Make sure you are
+posting to https://certification.authorize.net/gateway/transact.dll for
+test transactions if you do not have a cpdev or cnpdev.
+
+TrustCommerce
+-------------
+TrustCommerce configuration is very similar to authorize.net.  You will need
+to go to `TrustCommerce <http://www.trustcommerce.com/>`_ and get your account
+setup.
+
+One special note with TrustCommerce - you must have the tclink libraries installed.
+You can get these from TrustCommerce or via this url
+`Tc Link <http://www.trustcommerce.com/tclink.html>`_
+
+Once the library is installed, you can fill in your login and password information
+in the admin config.
+
+PayPal
+------
+More details needed here.
+
+Google
+------
+More details needed here.

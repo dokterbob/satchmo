@@ -1,0 +1,4 @@
+{% load i18n %}{% blocktrans %}Here's a {{ request_type }} from {{ name }} ( {{ email }} ) sent via the web contact form.{% endblocktrans %}
+=========================================================================
+
+{{ request_text }}

@@ -1,0 +1,6 @@
+- fields:
+      sort: !!python/long '1'
+      picture: 'images/productimage-picture-default.jpg'
+      caption: 'Photo Not Available'
+  model: product.productimage
+  pk: '1'

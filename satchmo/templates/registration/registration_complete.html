@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load satchmo_google %}
+{% load i18n %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
+{% trans "Account Creation" %}
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Account Creation" %}</h3>
+<p>{% trans "Thank you for signing up." %}
+{% if verify %}
+{% trans "An activation link has been sent to the email address you supplied, along with instructions for activating your account." %}
+{% endif %}
+</p>
+
+{% endblock %}
+
+{% block google-tracker %}
+{% if shop.options.GOOGLE.ANALYTICS %}
+    {% show_tracker is_secure %}
+    {% google_track_signup %}
+{% endif %}
+{% if shop.options.GOOGLE.ADWORDS %}
+    {% google_adwords_signup %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+==================
+Satchmo Change Log
+==================
+
+Version 0.6, October 30, 2007
+----------------
+ * Removed dependency on Webda and added new l10n models
+ * Added capability to rate and review products
+ * Improved capabilities for users to manage their account information
+ * Creation of a simple inventory management interface
+ * Multiple bug fixes and code cleanups
+ * New configuration option to allow user to set image upload directory name
+ * Improved error handling for loading data
+ * Allow manual product ordering in a category
+ * Remove most custom settings from local_settings.py, instead using the satchmo.configuration app
+ * Added a cache manager
+ * Added TrustCommerce as a processing module
+ * New downloadable product type
+ * New custom product type
+ * Added Swedish translation
+
+Version 0.5, August 22, 2007
+----------------------------
+ * First official package launch

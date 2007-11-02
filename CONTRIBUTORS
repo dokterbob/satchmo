@@ -1,0 +1,17 @@
+The Satchmo team thanks the following individuals for their help during
+the development of this project.
+
+We will attempt to identify what you helped with (but no guarantees)!
+
+=======================================================================
+
+Sean Reifschneider - Basis for Credit Card verification code
+Jonas Meli - Webda models (http://webda.python-hosting.com/)
+Nebojša Ðordevic (Nesh) - Thumbnail module
+temnoregg - Category model changes for unicode
+Antonio Cavedoni - Graphviz code for model documentation
+Brian Johnson - Price change code
+John Shaffer
+Bruce Kroeze
+Jim Alanoly - django-registration integration
+Itai Tavor

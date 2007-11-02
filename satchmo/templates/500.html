@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a>
+{% endblock %}
+
+{% block content %}
+
+    <h3>{% trans "Error" %}</h3>
+    <h4>{% trans "There was an error with the store.  The admin has been notified." %}</h4>
+
+{% endblock %}

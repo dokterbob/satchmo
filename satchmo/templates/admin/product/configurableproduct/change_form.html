@@ -1,0 +1,21 @@
+{% extends "admin/product/change_form.html" %}
+{% load i18n %}
+{% load satchmo_product_admin %}
+
+{% block extrahead %}
+{{ block.super }}
+{% comment %}
+jquery script should've already been added in admin/product/change_form.html, so don't add it again here
+{% endcomment %}
+{% endblock %}
+
+{% block after_related_objects %}
+{{ block.super }}
+{% if original %}
+{% comment %} Edit form {% endcomment %}
+<fieldset class="module">
+<h2>{% trans "Variations" %}</h2>
+{% list_variations original %}
+</fieldset>
+{% endif %}
+{% endblock %}

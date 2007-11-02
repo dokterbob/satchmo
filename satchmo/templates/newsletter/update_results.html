@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
+{% trans "Newsletter Subscription" %}
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Newsletter Subscription" %}</h3>
+
+<p>{{ result }}</p>
+
+{% endblock %}
