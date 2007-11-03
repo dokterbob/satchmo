@@ -1,0 +1,2347 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-06 11:19-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: i18n/models.py:9
+msgid "Africa"
+msgstr "Afrika"
+
+#: i18n/models.py:10
+msgid "America"
+msgstr "Amerika"
+
+#: i18n/models.py:11
+msgid "Europe"
+msgstr "Europa"
+
+#: i18n/models.py:12
+msgid "Asia"
+msgstr "Asien"
+
+#: i18n/models.py:13
+msgid "Oceania"
+msgstr "Oceanien"
+
+#: i18n/models.py:17
+msgid "Eastern Africa"
+msgstr "Ostafrika"
+
+#: i18n/models.py:18
+msgid "Middle Africa"
+msgstr "Mittelafrika"
+
+#: i18n/models.py:19
+msgid "Northern Africa"
+msgstr "Nordafrika"
+
+#: i18n/models.py:20
+msgid "Southern Africa"
+msgstr "Südafrika"
+
+#: i18n/models.py:21
+msgid "Western Africa"
+msgstr "Westafrika"
+
+#: i18n/models.py:22
+msgid "Caribbean"
+msgstr "Karibik"
+
+#: i18n/models.py:23
+msgid "Central America"
+msgstr "Zentralamerika"
+
+#: i18n/models.py:24
+msgid "South America"
+msgstr "Südamerika"
+
+#: i18n/models.py:25
+msgid "Northern America"
+msgstr "Nordamerika"
+
+#: i18n/models.py:26
+msgid "Central Asia"
+msgstr "Zentralasien"
+
+#: i18n/models.py:27
+msgid "Eastern Asia"
+msgstr "Ostasien"
+
+#: i18n/models.py:28
+msgid "Southern Asia"
+msgstr "Südasien"
+
+#: i18n/models.py:29
+msgid "South-Eastern Asia"
+msgstr "Südostasien"
+
+#: i18n/models.py:30
+msgid "Western Asia"
+msgstr "Westasien"
+
+#: i18n/models.py:31
+msgid "Eastern Europe"
+msgstr "Osteuropa"
+
+#: i18n/models.py:32
+msgid "Northern Europe"
+msgstr "Nordeuropa"
+
+#: i18n/models.py:33
+msgid "Southern Europe"
+msgstr "Südeuropa"
+
+#: i18n/models.py:34
+msgid "Western Europe"
+msgstr "Westeuropa"
+
+#: i18n/models.py:35
+msgid "Australia and New Zealand"
+msgstr "Australien und Neuseeland"
+
+#: i18n/models.py:36
+msgid "Melanesia"
+msgstr "Melanesien"
+
+#: i18n/models.py:37
+msgid "Micronesia"
+msgstr "Mikronesien"
+
+#: i18n/models.py:38
+msgid "Polynesia"
+msgstr "Polynesien"
+
+#: i18n/models.py:42
+msgid "Another"
+msgstr "Andere"
+
+#: i18n/models.py:43
+msgid "Island"
+msgstr "Island"
+
+#: i18n/models.py:44
+msgid "Arrondissement"
+msgstr ""
+
+#: i18n/models.py:45
+msgid "Atoll"
+msgstr ""
+
+#: i18n/models.py:46
+msgid "Autonomous island"
+msgstr "Autonome Insel"
+
+#: i18n/models.py:47
+msgid "Canton"
+msgstr "Kanton"
+
+#: i18n/models.py:48
+msgid "Commune"
+msgstr "Kommune"
+
+#: i18n/models.py:49
+msgid "County"
+msgstr "Kreis"
+
+#: i18n/models.py:50
+msgid "Department"
+msgstr "Gebiet"
+
+#: i18n/models.py:51
+msgid "Dependency"
+msgstr "Kolonie"
+
+#: i18n/models.py:52
+msgid "District"
+msgstr "Bezirk"
+
+#: i18n/models.py:53
+msgid "Division"
+msgstr "Bereich"
+
+#: i18n/models.py:54
+msgid "Emirate"
+msgstr "Emirat"
+
+#: i18n/models.py:55
+msgid "Governorate"
+msgstr "Gouvernement"
+
+#: i18n/models.py:56
+msgid "Island council"
+msgstr "Inselrat"
+
+#: i18n/models.py:57
+msgid "Island group"
+msgstr "Inselgruppe"
+
+#: i18n/models.py:58
+msgid "Island region"
+msgstr "Inselregion"
+
+#: i18n/models.py:59
+msgid "Kingdom"
+msgstr "Königreich"
+
+#: i18n/models.py:60
+msgid "Municipality"
+msgstr "Bezirk"
+
+#: i18n/models.py:61
+msgid "Parish"
+msgstr "Gemeinde"
+
+#: i18n/models.py:62
+msgid "Prefecture"
+msgstr "Präfektur"
+
+#: i18n/models.py:63
+msgid "Province"
+msgstr "Provinz"
+
+#: i18n/models.py:64
+msgid "Region"
+msgstr "Region"
+
+#: i18n/models.py:65
+msgid "Republic"
+msgstr "Republik"
+
+#: i18n/models.py:66
+msgid "Sheading"
+msgstr ""
+
+#: i18n/models.py:67 shop/models.py:30 contact/models.py:218
+#: contact/models.py:285 contact/models.py:291
+msgid "State"
+msgstr "Nation"
+
+#: i18n/models.py:68
+msgid "Subdivision"
+msgstr "Gebietskörperschaft"
+
+#: i18n/models.py:69
+msgid "Subject"
+msgstr "Subjekt"
+
+#: i18n/models.py:70
+msgid "Territory"
+msgstr "Territorium"
+
+#: i18n/models.py:74
+msgid "official"
+msgstr "offiziel"
+
+#: i18n/models.py:75
+msgid "national"
+msgstr "national"
+
+#: i18n/models.py:76
+msgid "regional"
+msgstr "regional"
+
+#: i18n/models.py:77
+msgid "de facto"
+msgstr "de fakto"
+
+#: i18n/models.py:78
+msgid "de jure"
+msgstr " de jure"
+
+#: i18n/models.py:79
+msgid "legislative"
+msgstr "legistlativ"
+
+#: i18n/models.py:80
+msgid "business"
+msgstr "geschäftlich"
+
+#: i18n/models.py:90
+msgid "language name"
+msgstr "Sprachenname"
+
+#: i18n/models.py:92 i18n/models.py:121
+msgid "alpha-3 ISO code"
+msgstr "Alpha-3 ISO Code"
+
+#: i18n/models.py:94 i18n/models.py:123
+msgid "alpha-2 ISO code"
+msgstr "Alpha-2 ISO Code"
+
+#: i18n/models.py:95
+msgid "language synonym"
+msgstr "Sprachsynonym"
+
+#: i18n/models.py:96 i18n/models.py:130
+msgid "display"
+msgstr "anzeigen"
+
+#: i18n/models.py:97
+msgid "Designates whether the language is shown."
+msgstr ""
+
+#: i18n/models.py:100
+msgid "language"
+msgstr "Sprache"
+
+#: i18n/models.py:101
+msgid "languages"
+msgstr "Sprachen"
+
+#: i18n/models.py:119
+msgid "country name"
+msgstr "Landesname"
+
+#: i18n/models.py:125
+msgid "geographical region"
+msgstr "geographische Region"
+
+#: i18n/models.py:127
+msgid "territory of"
+msgstr "Territorium von"
+
+#: i18n/models.py:128
+msgid "administrative area"
+msgstr "administratives Gebiet"
+
+#: i18n/models.py:131
+msgid "Designates whether the country is shown."
+msgstr ""
+
+#: i18n/models.py:134
+msgid "country"
+msgstr "Land"
+
+#: i18n/models.py:135
+msgid "countries"
+msgstr "Länder"
+
+#: i18n/models.py:164
+msgid "language type"
+msgstr "Sprarchtyp"
+
+#: i18n/models.py:166
+msgid "identifier"
+msgstr "Bezeichner"
+
+#: i18n/models.py:170
+msgid "country & language"
+msgstr "Land & Sprache"
+
+#: i18n/models.py:171
+msgid "countries & languages"
+msgstr "Länder & Sprachen"
+
+#: i18n/models.py:191
+msgid "name identifier"
+msgstr "Namensbezeichner"
+
+#: i18n/models.py:193
+msgid "area name"
+msgstr "Gebietsname"
+
+#: i18n/models.py:194
+msgid "area alternate name"
+msgstr "alternativer Gebietsname"
+
+#: i18n/models.py:195
+msgid "postal abbreviation"
+msgstr "postalische Abkürzung"
+
+#: i18n/models.py:196
+msgid "regional administrative area"
+msgstr "regional-administratives Gebiet"
+
+#: i18n/models.py:200
+msgid "area"
+msgstr "Gebiet"
+
+#: i18n/models.py:201
+msgid "areas"
+msgstr "Gebiete"
+
+#: i18n/models.py:219 i18n/models.py:223
+msgid "time zone"
+msgstr "Zeitzone"
+
+#: i18n/models.py:220
+msgid "comment"
+msgstr "Kommentar"
+
+#: i18n/models.py:224
+msgid "time zones"
+msgstr "Zeitzonen"
+
+#: i18n/models.py:239
+msgid "country code"
+msgstr "Landescode"
+
+#: i18n/models.py:240
+msgid "length of area code"
+msgstr "Länge des Gebietscodes"
+
+#: i18n/models.py:241
+msgid "length of subscriber number (SN)"
+msgstr "Länge der Anschlußnummer (SN)"
+
+#: i18n/models.py:243
+msgid "length of area code and SN"
+msgstr "Länge von Vorwahl und SN"
+
+#: i18n/models.py:245
+msgid "national prefix"
+msgstr "nationale Vorwahl"
+
+#: i18n/models.py:246
+msgid "international prefix"
+msgstr "internationale Vorwahl"
+
+#: i18n/models.py:249
+msgid "phone"
+msgstr "Telefon"
+
+#: i18n/models.py:250
+msgid "phones"
+msgstr "Telefone"
+
+#: accounts/views.py:20
+msgid "Yes"
+msgstr "Ja"
+
+#: accounts/views.py:21
+msgid "No"
+msgstr "Nein"
+
+#: accounts/views.py:26 newsletter/views.py:13 shop/views/contact.py:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+#: templates/newsletter/subscribe_form.html:20 templates/checkout/form.html:51
+#: templates/registration/login.html:16
+msgid "Email address"
+msgstr "eMailadresse"
+
+#: accounts/views.py:27
+msgid "Password (again)"
+msgstr "Passwort (nochmal)"
+
+#: accounts/views.py:28 templates/checkout/form.html:34
+#: templates/registration/login.html:17
+msgid "Password"
+msgstr "Passwort"
+
+#: accounts/views.py:29 templates/checkout/form.html:54 contact/models.py:77
+msgid "First name"
+msgstr "Vorname"
+
+#: accounts/views.py:30 templates/checkout/form.html:57 contact/models.py:78
+msgid "Last name"
+msgstr "Nachname"
+
+#: accounts/views.py:31 contact/models.py:89
+msgid "Newsletter"
+msgstr ""
+
+#: accounts/views.py:38
+msgid "The two passwords do not match."
+msgstr "Die beiden Passwörter stimmen nicht überein."
+
+#: accounts/views.py:47
+msgid "That email address is already in use."
+msgstr "Diese eMailadresse wird bereits benutzt."
+
+#: accounts/views.py:55
+#, python-format
+msgid "Welcome to %s"
+msgstr "Willkommen zum %s"
+
+#: accounts/views.py:166
+msgid ""
+"The person you are logged in as does not have an account. Please create one."
+msgstr "Unter dieser Anmeldung gibt es keinen Account. Bitte erstellen Sie einen."
+
+#: newsletter/views.py:12 product/models.py:209
+msgid "Full Name"
+msgstr "Name"
+
+#: newsletter/views.py:14 templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+#: templates/newsletter/subscribe_form.html:23
+msgid "Subscribe"
+msgstr "Anmelden"
+
+#: newsletter/views.py:59
+msgid "Error, not valid."
+msgstr "Fehler, nicht gültig."
+
+#: newsletter/models.py:26
+msgid "Subscribed"
+msgstr "angemeldet"
+
+#: newsletter/models.py:27 shop/models.py:26 templates/pdf/packing-slip.rml:99
+#: templates/pdf/invoice.rml:99 contact/models.py:86 contact/models.py:147
+msgid "Email"
+msgstr "eMail"
+
+#: newsletter/models.py:28 shop/models.py:53 contact/models.py:52
+msgid "Creation Date"
+msgstr "erstellt am"
+
+#: newsletter/models.py:29
+msgid "Update Date"
+msgstr "geändert am"
+
+#: newsletter/mailman.py:31 newsletter/simple.py:22
+msgid "Already subscribed."
+msgstr "bereits angemeldet"
+
+#: newsletter/mailman.py:33 newsletter/simple.py:24
+msgid "Already removed."
+msgstr "bereits entfernt"
+
+#: newsletter/mailman.py:37 newsletter/mailman.py:72 newsletter/simple.py:16
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "Angemeldet: %(email)s"
+
+#: newsletter/mailman.py:40 newsletter/simple.py:18
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "Abgemeldet: %(email)s"
+
+#: newsletter/mailman.py:65
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "bereits angemeldet: %s"
+
+#: newsletter/mailman.py:75
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "bereits ein Mitglied: %(email)s"
+
+#: newsletter/mailman.py:79
+msgid "Bad/Invalid email address: blank line"
+msgstr "falsche/ungültige eMailadresse: Leerzeile"
+
+#: newsletter/mailman.py:81
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "falsche/ungültige eMailadresse: %(email)s"
+
+#: newsletter/mailman.py:84
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "fehlerhafte Adresse (ungültige Zeichen): %(email)s"
+
+#: shop/models.py:24
+msgid "Store Name"
+msgstr "WebShop Name"
+
+#: shop/models.py:25 shop/models.py:52 payment/models.py:22 tax/models.py:19
+#: templates/pdf/packing-slip.rml:114 templates/pdf/invoice.rml:114
+#: product/models.py:29 supplier/models.py:18 discount/models.py:21
+#: contact/models.py:160 contact/models.py:178 contact/models.py:213
+msgid "Description"
+msgstr "Beschreibung"
+
+#: shop/models.py:27 shop/models.py:28 templates/checkout/form.html:65
+#: templates/checkout/form.html.py:68 templates/checkout/form.html:89
+#: templates/checkout/form.html.py:92 contact/models.py:215
+#: contact/models.py:216 contact/models.py:282 contact/models.py:283
+#: contact/models.py:288 contact/models.py:289
+msgid "Street"
+msgstr ""
+
+#: shop/models.py:29 templates/checkout/form.html:71
+#: templates/checkout/form.html.py:95 contact/models.py:217
+#: contact/models.py:284 contact/models.py:290
+msgid "City"
+msgstr ""
+
+#: shop/models.py:31 contact/models.py:219 contact/models.py:286
+#: contact/models.py:292
+msgid "Zip Code"
+msgstr "Postleitzahl"
+
+#: shop/models.py:33 contact/models.py:180 contact/models.py:204
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+#: shop/models.py:34
+msgid "Purchase item not in stock?"
+msgstr "Artikel verkaufen, die nicht auf Lager sind?"
+
+#: shop/models.py:43 templates/admin/satchmo_app_list.html:4
+#: templates/admin/satchmo_app_list.html:5
+msgid "Store Configuration"
+msgstr "WebShop Konfiguration"
+
+#: shop/models.py:44
+msgid "Store Configurations"
+msgstr "WebShop Konfigurationen"
+
+#: shop/models.py:117
+msgid "Shopping Cart"
+msgstr "Warenkorb"
+
+#: shop/models.py:118
+msgid "Shopping Carts"
+msgstr "Warenbörbe"
+
+#: shop/models.py:126 templates/base_product.html:78
+#: templates/base_cart.html:20 templates/pdf/packing-slip.rml:115
+#: templates/pdf/invoice.rml:115 contact/models.py:451
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: shop/context_processors.py:53
+msgid "Test Store (No Site id)"
+msgstr "Test WebShop (Ohne Site Id)"
+
+#: shop/context_processors.py:55
+msgid "Test Store"
+msgstr "Test WebShop"
+
+#: shop/utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Bitte füllen Sie eines und nur eines dieser Felder aus."
+
+#: shop/views/contact.py:14
+msgid "General question"
+msgstr "Allgemeine Frage"
+
+#: shop/views/contact.py:15
+msgid "Order problem"
+msgstr "Bestellproblem"
+
+#: shop/views/category.py:13 shop/views/category.py:25
+#: shop/views/category.py:29
+msgid "The category you have requested does not exist."
+msgstr "Die ausgewählte Kategorie existiert nicht."
+
+#: shop/views/cart.py:31
+msgid "No cart to update."
+msgstr "Kein Warenkorb zur Aktualisierung."
+
+#: shop/views/cart.py:39
+msgid "Bad quantity."
+msgstr "Falsche Anzahl."
+
+#: shop/views/cart.py:46
+msgid "Bad item number."
+msgstr "Falsche Artikelnummer."
+
+#: shop/views/cart.py:51
+msgid "No such item in your cart."
+msgstr "Ein solche Artikel ist nicht in Ihrem Warenborb"
+
+#: shop/views/cart.py:85 shop/views/cart.py:132 product/views.py:56
+msgid "The product you have requested does not exist."
+msgstr "Das ausgewählte Produkt existiert nicht."
+
+#: shop/views/cart.py:91
+msgid "Please enter a whole number."
+msgstr "Bitte geben Sie die komplette Zahl ein."
+
+#: shop/views/cart.py:96
+msgid "Please enter a positive number."
+msgstr "Bitte geben Sie eine positive Zahl ein."
+
+#: shop/views/cart.py:126
+msgid "Choose a quantity."
+msgstr "Wählen Sie eine Anzahl"
+
+#: shop/views/cart.py:129
+msgid "Choose a whole number."
+msgstr "Wählen Sie eine komplette Nummer"
+
+#: shop/views/cart.py:143 payment/modules/dummy/processor.py:35
+msgid "Success"
+msgstr "Erfolg"
+
+#: shop/views/cart.py:145 templates/shop_404.html:10 templates/404.html:10
+msgid "Error"
+msgstr "Fehler"
+
+#: shop/views/cart.py:165 shop/views/cart.py:199
+msgid "Internal error: please submit as a POST"
+msgstr ""
+
+#: shop/views/admin-portal.py:10
+msgid "Site Administration"
+msgstr ""
+
+#: shop/views/common.py:10 payment/common/views/payship.py:24
+msgid "Please Select"
+msgstr "Bitte wählen"
+
+#: shop/views/common.py:39 shop/views/common.py:49 payment/common/forms.py:89
+#: payment/common/forms.py:131
+msgid "This field is required."
+msgstr "Dieses Feld ist erforderlich."
+
+#: shop/views/utils.py:73
+msgid "Card type does not match card number."
+msgstr "Kartentyp stimmt nicht mit Kartennummer überein."
+
+#: shop/views/utils.py:75
+msgid "Invalid credit card number."
+msgstr "Ungültige Kreditkartennummer."
+
+#: payment/models.py:23 discount/models.py:39
+msgid "Active"
+msgstr "aktiv"
+
+#: payment/models.py:24
+msgid "Should this be displayed as an option for the user?"
+msgstr "Soll dies als Option für den Benutzer angezeigt werden?"
+
+#: payment/models.py:25
+msgid "Option Name"
+msgstr "Optionsname"
+
+#: payment/models.py:27
+msgid "The class name as defined in payment.py"
+msgstr "Der Klassenname is in payment.py definiert"
+
+#: payment/models.py:28 product/models.py:145 product/models.py:673
+msgid "Sort Order"
+msgstr "Sortierreihenfolge"
+
+#: payment/models.py:45
+msgid "Credit Card Type"
+msgstr "Kreditkartentyp"
+
+#: payment/models.py:47
+msgid "CC Number (Last 4 digits)"
+msgstr "KK Nummer (letzten 4 Ziffern)"
+
+#: payment/models.py:49
+msgid "Encrypted Credit Card"
+msgstr "Verschlüsselte Kreditkarte"
+
+#: payment/models.py:51
+msgid "Expiration Month"
+msgstr "Ablaufmonat"
+
+#: payment/models.py:52
+msgid "Expiration Year"
+msgstr "Ablaufjahr"
+
+#: payment/models.py:53 templates/checkout/pay_ship.html:38
+msgid "CCV"
+msgstr ""
+
+#: payment/models.py:80 contact/models.py:272
+msgid "Credit Card"
+msgstr "Kreditkarte"
+
+#: payment/models.py:81
+#: payment/modules/authorizenet/authorizenet_settings-customize.py:48
+msgid "Credit Cards"
+msgstr "Kreditkarten"
+
+#: payment/common/forms.py:23 templates/checkout/form.html:47
+#: contact/models.py:303
+msgid "Payment method"
+msgstr "Zahlungsmethode"
+
+#: payment/common/forms.py:83
+msgid "Your card has expired."
+msgstr "Ihre Karte ist abgelaufen."
+
+#: payment/common/forms.py:98 payment/common/forms.py:141
+msgid "Invalid discount."
+msgstr "Unzureichender Kredit."
+
+#: payment/common/views/confirm.py:37 payment/modules/paypal/views.py:35
+#: payment/modules/google/views.py:74
+msgid "Your order is no longer valid."
+msgstr "Ihre Bestellung ist nicht länger gültig."
+
+#: payment/common/views/confirm.py:51 contact/models.py:265
+msgid "Pending"
+msgstr "In Bearbeitung"
+
+#: payment/common/views/confirm.py:52
+msgid "Order successfully submitted"
+msgstr "Bestellung erfolgreich übermittelt"
+
+#: payment/modules/paypal/paypal_settings-customize.py:31
+msgid "PayPal"
+msgstr ""
+
+#: payment/modules/dummy/dummy_settings.py:16
+msgid "Dummy processor"
+msgstr ""
+
+#: payment/modules/dummy/dummy_settings.py:29
+msgid "Dummy CreditCard"
+msgstr ""
+
+#: payment/modules/google/google_settings-customize.py:21
+msgid "Google Checkout"
+msgstr ""
+
+#: tax/models.py:17
+msgid "Title"
+msgstr "Titel"
+
+#: tax/models.py:18
+msgid "Displayed title of this tax."
+msgstr "Titel dieser Steuer anzeigen."
+
+#: tax/models.py:20
+msgid "Description of products that would be taxed."
+msgstr "Beschreibung der zu versteuernden Produkte."
+
+#: tax/models.py:26
+msgid "Tax Class"
+msgstr "Steuerklasse"
+
+#: tax/models.py:27 templates/admin/satchmo_app_list.html:91
+msgid "Tax Classes"
+msgstr "Steuerklassen"
+
+#: tax/models.py:45
+msgid "Percentage"
+msgstr "Prozentsatz"
+
+#: tax/models.py:46
+msgid "% tax for this area and type"
+msgstr "% Steuer für dieses Gebiet und Typ"
+
+#: tax/models.py:68
+msgid "You must choose a zone or a country."
+msgstr "Sie müssen eine Zone oder ein Land wählen."
+
+#: tax/models.py:74
+msgid "Tax Rate"
+msgstr "Steuersatz"
+
+#: tax/models.py:75 templates/admin/satchmo_app_list.html:96
+msgid "Tax Rates"
+msgstr "Steuersätze"
+
+#: templates/base.html:24 templates/base.html.py:27
+msgid "Search"
+msgstr "Suche"
+
+#: templates/base.html:30
+msgid "Shop Categories"
+msgstr "WebShop Kategorien"
+
+#: templates/base.html:38
+msgid "Account Information"
+msgstr ""
+
+#: templates/base.html:40
+msgid "Account Details"
+msgstr ""
+
+#: templates/base.html:41
+msgid "Log out"
+msgstr "Abmelden"
+
+#: templates/base.html:43
+msgid "Log in"
+msgstr "Anmelden"
+
+#: templates/base.html:47
+msgid "Cart"
+msgstr "Warenkorb"
+
+#: templates/base.html:51 templates/base_cart.html:51
+msgid "Check out"
+msgstr "Bestellen"
+
+#: templates/base.html:54 templates/contact_form.html:6
+#: templates/thanks.html:6
+msgid "Contact Us"
+msgstr "Kontakt"
+
+#: templates/base.html:63
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr ""
+
+#: templates/contact_form.html:5 templates/base_product.html:45
+#: templates/shop_404.html:5 templates/thanks.html:5 templates/404.html:5
+#: templates/base_category.html:13 templates/base_index.html:7
+#: templates/base_cart.html:7 templates/search.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_results.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/subscribe_form.html:5
+#: templates/checkout/confirm.html:6 templates/checkout/empty_cart.html:5
+#: templates/checkout/form.html:5 templates/checkout/pay_ship.html:5
+#: templates/checkout/success.html:6 templates/checkout/paypal/confirm.html:6
+#: templates/checkout/paypal/pay_ship.html:5
+#: templates/checkout/google/confirm.html:7
+#: templates/checkout/google/pay_ship.html:5
+#: templates/registration/repeat_activation.html:5
+#: templates/registration/account_info.html:5
+#: templates/registration/registration_complete.html:5
+#: templates/registration/login.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_form.html:5
+#: templates/registration/activate.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_change_form.html:5 contact/models.py:141
+msgid "Home"
+msgstr "Start"
+
+#: templates/contact_form.html:10 templates/thanks.html:10
+#: templates/checkout/confirm.html:31
+#: templates/checkout/paypal/confirm.html:26
+#: templates/checkout/google/confirm.html:27
+#: templates/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "Kontaktinformation"
+
+#: templates/contact_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+#: templates/newsletter/subscribe_form.html:13 templates/checkout/form.html:20
+#: templates/checkout/pay_ship.html:21
+#: templates/checkout/paypal/pay_ship.html:21
+#: templates/checkout/google/pay_ship.html:21
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/contact_form.html:19
+msgid "Send Email"
+msgstr "eMail senden"
+
+#: templates/base_product.html:55 product/models.py:636 product/models.py:658
+msgid "Price"
+msgstr "Preis"
+
+#: templates/base_product.html:63
+msgid "Please choose your options"
+msgstr ""
+
+#: templates/base_product.html:80
+msgid "Add to cart"
+msgstr "Zum Warenkorb hinzufügen"
+
+#: templates/thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "Danke für Ihre eMail."
+
+#: templates/thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "Wir werden Ihnen innerhalb 48 Stunden antworten."
+
+#: templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "Kann die von Ihnen gesuchte Seite nicht finden."
+
+#: templates/shipping_options.html:5
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr ""
+
+#: templates/base_index.html:11
+msgid "Welcome to the shop."
+msgstr "Willkommen im WebShop."
+
+#: templates/base_index.html:14
+msgid "Featured Items"
+msgstr ""
+
+#: templates/base_index.html:31 templates/base_index.html.py:33
+msgid "Previous"
+msgstr "Zurück"
+
+#: templates/base_index.html:43 templates/base_index.html.py:45
+msgid "Next"
+msgstr "Weiter"
+
+#: templates/base_cart.html:16
+msgid "Your cart is empty."
+msgstr "Ihr Warenkorb ist leer."
+
+#: templates/base_cart.html:18
+msgid "Your Cart"
+msgstr "Ihr Warenkorb"
+
+#: templates/base_cart.html:21
+msgid "Item"
+msgstr "Artikel"
+
+#: templates/base_cart.html:22 templates/checkout/confirm.html:55
+#: templates/checkout/confirm.html.py:63
+#: templates/checkout/paypal/confirm.html:50
+#: templates/checkout/paypal/confirm.html:58
+#: templates/checkout/google/confirm.html:51
+#: templates/checkout/google/confirm.html:59
+#: templates/email/order_complete.txt:41 templates/email/order_complete.txt:50
+#: templates/pdf/packing-slip.rml:117 templates/pdf/packing-slip.rml.py:147
+#: templates/pdf/invoice.rml:117 templates/pdf/invoice.rml.py:147
+#: supplier/models.py:43 contact/models.py:297
+msgid "Total"
+msgstr "Gesamt"
+
+#: templates/base_cart.html:29
+msgid "Remove"
+msgstr "Entfernen"
+
+#: templates/base_cart.html:40
+msgid "update amount"
+msgstr "Preis aktualisieren"
+
+#: templates/base_cart.html:47
+msgid "Cart Total"
+msgstr "Gesamt Warenkorb"
+
+#: templates/search.html:11
+msgid "Nothing found"
+msgstr "Nichts gefunden"
+
+#: templates/widget/file.html:3
+msgid "Currently"
+msgstr "Aktuell"
+
+#: templates/widget/file.html:4 templates/admin/satchmo_app_list.html:9
+#: templates/admin/satchmo_app_list.html:14
+#: templates/admin/satchmo_app_list.html:25
+#: templates/admin/satchmo_app_list.html:30
+#: templates/admin/satchmo_app_list.html:35
+#: templates/admin/satchmo_app_list.html:46
+#: templates/admin/satchmo_app_list.html:51
+#: templates/admin/satchmo_app_list.html:56
+#: templates/admin/satchmo_app_list.html:66
+#: templates/admin/satchmo_app_list.html:77
+#: templates/admin/satchmo_app_list.html:82
+#: templates/admin/satchmo_app_list.html:93
+#: templates/admin/satchmo_app_list.html:98 templates/admin/portal.html:45
+msgid "Change"
+msgstr "Ändern"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+msgid "Newsletter Unsubscribe"
+msgstr "Newsletter abmelden"
+
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+#: templates/newsletter/subscribe_form.html:18
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: templates/newsletter/unsubscribe_form.html:22
+msgid "Remove Me"
+msgstr "Entferne Mich"
+
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+msgid "Newsletter Subscription"
+msgstr "Newsletter anmelden"
+
+#: templates/checkout/confirm.html:7 templates/checkout/confirm.html.py:11
+#: templates/checkout/empty_cart.html:6 templates/checkout/empty_cart.html:10
+#: templates/checkout/form.html:6 templates/checkout/form.html.py:10
+#: templates/checkout/pay_ship.html:6 templates/checkout/pay_ship.html:10
+#: templates/checkout/success.html:7 templates/checkout/paypal/confirm.html:7
+#: templates/checkout/paypal/pay_ship.html:6
+#: templates/checkout/paypal/pay_ship.html:10
+#: templates/checkout/google/confirm.html:8
+#: templates/checkout/google/confirm.html:12
+#: templates/checkout/google/pay_ship.html:6
+#: templates/checkout/google/pay_ship.html:10
+msgid "Checkout"
+msgstr "Bestellen"
+
+#: templates/checkout/confirm.html:14 templates/checkout/form.html:13
+#: templates/checkout/pay_ship.html:13
+#: templates/checkout/paypal/confirm.html:14
+#: templates/checkout/google/confirm.html:15
+msgid "Ship/Bill"
+msgstr "Lieferung/Rechnung"
+
+#: templates/checkout/confirm.html:15 templates/checkout/confirm.html.py:65
+#: templates/checkout/form.html:14 templates/checkout/pay_ship.html:14
+#: templates/checkout/paypal/confirm.html:15
+#: templates/checkout/paypal/confirm.html:60
+#: templates/checkout/paypal/pay_ship.html:14
+#: templates/checkout/google/confirm.html:16
+#: templates/checkout/google/confirm.html:61
+#: templates/checkout/google/pay_ship.html:14
+#: templates/email/order_complete.txt:52 contact/models.py:301
+msgid "Payment"
+msgstr "Bezahlung"
+
+#: templates/checkout/confirm.html:16 templates/checkout/form.html:15
+#: templates/checkout/pay_ship.html:15
+#: templates/checkout/paypal/confirm.html:16
+#: templates/checkout/paypal/pay_ship.html:15
+#: templates/checkout/google/confirm.html:17
+#: templates/checkout/google/pay_ship.html:15
+msgid "Confirmation"
+msgstr "Bestätigung"
+
+#: templates/checkout/confirm.html:20
+msgid ""
+"The following error was returned while trying to process your card. Please "
+"correct and resubmit."
+msgstr "Der folgende Fehler ist aufgetreten während Ihre Kreditkarte verarbeitet wurde. Bitte "
+"korregieren Sie ihn und wiederholen den Vorgang."
+
+#: templates/checkout/confirm.html:23
+#: templates/checkout/paypal/confirm.html:19
+#: templates/checkout/google/confirm.html:20
+msgid "Please validate the following information, then submit your order."
+msgstr "Bitte überprüfen Sie die folgenden Informationen und schicken dann Ihre Bestellung ab."
+
+#: templates/checkout/confirm.html:26
+#: templates/checkout/paypal/confirm.html:21
+#: templates/checkout/google/confirm.html:22
+#: templates/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "bestellte Artikel"
+
+#: templates/checkout/confirm.html:36 templates/checkout/form.html:63
+#: templates/checkout/paypal/confirm.html:31
+#: templates/checkout/google/confirm.html:32
+#: templates/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "Rechnungsinformation"
+
+#: templates/checkout/confirm.html:43
+#: templates/checkout/paypal/confirm.html:38
+#: templates/checkout/google/confirm.html:39
+#: templates/email/order_complete.txt:27 templates/pdf/packing-slip.rml:25
+#: templates/pdf/invoice.rml:25 contact/models.py:427
+msgid "Shipping Address"
+msgstr "Lieferadresse"
+
+#: templates/checkout/confirm.html:50
+#: templates/checkout/paypal/confirm.html:45
+#: templates/checkout/google/confirm.html:46
+#: templates/email/order_complete.txt:35 contact/models.py:307
+#: contact/models.py:425
+msgid "Shipping Method"
+msgstr "Liefermethode"
+
+#: templates/checkout/confirm.html:57
+#: templates/checkout/paypal/confirm.html:52
+#: templates/checkout/google/confirm.html:53
+#: templates/email/order_complete.txt:44
+#: templates/admin/satchmo_app_list.html:64 discount/models.py:96
+#: contact/models.py:299
+msgid "Discount"
+msgstr "Rabatt"
+
+#: templates/checkout/confirm.html:59
+#: templates/checkout/paypal/confirm.html:54
+#: templates/checkout/google/confirm.html:55
+#: templates/email/order_complete.txt:46 supplier/models.py:40
+msgid "Shipping"
+msgstr "Lieferung"
+
+#: templates/checkout/confirm.html:61
+#: templates/checkout/paypal/confirm.html:56
+#: templates/checkout/google/confirm.html:57
+#: templates/email/order_complete.txt:48 templates/pdf/packing-slip.rml:144
+#: templates/pdf/invoice.rml:144 supplier/models.py:41 contact/models.py:313
+msgid "Tax"
+msgstr "Mehrwertsteuer"
+
+#: templates/checkout/confirm.html:69 templates/email/order_complete.txt:57
+#, python-format
+msgid ""
+"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+"charged %(order_total)s."
+msgstr "Ihrer %(credit_card_type)s Kreditkarte, die auf %(credit_card_number)s endet, wird "
+"mit %(order_total)s belastet."
+
+#: templates/checkout/confirm.html:76
+#: templates/checkout/paypal/confirm.html:77
+msgid "Purchase Items"
+msgstr "Artikel kaufen"
+
+#: templates/checkout/empty_cart.html:12
+msgid ""
+"Your cart is empty. Please add some items to your cart, then complete the "
+"checkout process."
+msgstr "Ihr Warenborb ist leer. Bitte fügen Sie ein paar Artikel zu Ihrem Warenkorb hinzu und beenden "
+"dann den Bestellvorgang."
+
+#: templates/checkout/form.html:18 templates/checkout/pay_ship.html:18
+#: templates/checkout/paypal/pay_ship.html:18
+#: templates/checkout/google/pay_ship.html:18
+msgid ""
+"Please complete the following information in order to submit your order."
+msgstr "Bitte ergänzen Sie die nachfolgenden Informationnen um Ihre Bestellung abzuschliessen."
+
+#: templates/checkout/form.html:29
+msgid ""
+"If you already have an account, you can login now to fill in most of the "
+"information below."
+msgstr "Falls Sie bereits eine Anmeldung haben, können Sie sich nun anmelden um die "
+"Informationen automatisch zuermitteln."
+
+#: templates/checkout/form.html:30
+msgid "This is just a convenience, no account is required!"
+msgstr "Dies ist nur zur Bequemlichkeit, eine Anmeldung ist nicht erforderlich!"
+
+#: templates/checkout/form.html:33 product/models.py:22 contact/models.py:47
+msgid "Name"
+msgstr ""
+
+#: templates/checkout/form.html:35 templates/registration/login.html:20
+msgid "Login"
+msgstr "Anmeldung"
+
+#: templates/checkout/form.html:42
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "Sie müssen mindestens die Felder mit * ausfüllen"
+
+#: templates/checkout/form.html:46
+msgid "How do you want to pay?"
+msgstr "Wie wollen Sie bezahlen?"
+
+#: templates/checkout/form.html:50
+msgid "Basic Information"
+msgstr "Basis Informationen"
+
+#: templates/checkout/form.html:60
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: templates/checkout/form.html:77
+msgid "Zipcode/Postcode"
+msgstr "Postleitzahl"
+
+#: templates/checkout/form.html:80 contact/models.py:220 contact/models.py:287
+#: contact/models.py:293
+msgid "Country"
+msgstr "Land"
+
+#: templates/checkout/form.html:84 templates/checkout/pay_ship.html:46
+#: templates/checkout/paypal/pay_ship.html:32
+#: templates/checkout/google/pay_ship.html:32
+msgid "Shipping Information"
+msgstr "Lieferinformationen"
+
+#: templates/checkout/form.html:86
+msgid "Shipping same as billing?"
+msgstr "Lieferanschrift wie Rechnungsanschrift?"
+
+#: templates/checkout/form.html:101
+msgid "Zip code"
+msgstr "Postleitzahl"
+
+#: templates/checkout/form.html:105
+msgid "Continue Checkout"
+msgstr "Bestellung abschliessen"
+
+#: templates/checkout/pay_ship.html:27
+msgid "Payment Information"
+msgstr "Zahlungsinformation"
+
+#: templates/checkout/pay_ship.html:29
+msgid "Type of credit card"
+msgstr "Typ der Kreditkarte"
+
+#: templates/checkout/pay_ship.html:32
+msgid "Credit card number"
+msgstr "Kreditkartennummer"
+
+#: templates/checkout/pay_ship.html:35
+msgid "Expiration date"
+msgstr "abgelaufen am"
+
+#: templates/checkout/pay_ship.html:41
+#: templates/checkout/paypal/pay_ship.html:27
+#: templates/checkout/google/pay_ship.html:27
+#: templates/admin/satchmo_app_list.html:61
+#: templates/admin/satchmo_app_list.html:62 discount/models.py:97
+msgid "Discounts"
+msgstr "Rabatte"
+
+#: templates/checkout/pay_ship.html:42
+#: templates/checkout/paypal/pay_ship.html:28
+#: templates/checkout/google/pay_ship.html:28
+msgid "Discount code"
+msgstr "Rabatt Code"
+
+#: templates/checkout/pay_ship.html:49
+#: templates/checkout/paypal/pay_ship.html:35
+#: templates/checkout/google/pay_ship.html:35
+msgid "Please choose your preferred shipping method"
+msgstr "Bitte wählen Sie Ihre gewünschte Liefermethode"
+
+#: templates/checkout/pay_ship.html:56
+#: templates/checkout/paypal/pay_ship.html:42
+#: templates/checkout/google/pay_ship.html:42
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: templates/checkout/success.html:11
+msgid "Success!"
+msgstr "Erfolg!"
+
+#: templates/checkout/paypal/confirm.html:61
+msgid "Your payment will be processed through PayPal."
+msgstr "Ihre Bezahlung erfolgt durch PayPal."
+
+#: templates/checkout/google/confirm.html:62
+msgid "Your payment will be processed through Google Checkout."
+msgstr "Ihre Bezahlung erfolgt durch Google Checkout."
+
+#: templates/checkout/google/confirm.html:67
+msgid "Fast checkout through Google"
+msgstr "Schneller bestellen mit Google"
+
+#: templates/email/order_complete.txt:1 templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Sehr geehrte(r) %(first_name)s %(last_name)s."
+
+#: templates/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "Vielen Dank für die Bestellung bei %(shop_name)s."
+
+#: templates/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "Ihre Bestellung:"
+
+#: templates/email/order_complete.txt:62 templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "Mit freundlichen Grüßen"
+
+#: templates/email/order_complete.txt:64 templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "WebShop Leitung"
+
+#: templates/email/contact_us.txt:1
+#, python-format
+msgid ""
+"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
+"contact form."
+msgstr "Hier ist eine %(request_type)s von %(name)s ( %(email)s ), gesendet über das "
+"Web-Kontakt Formular."
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr ""
+
+#: templates/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "Neue Bestellungen"
+
+#: templates/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "Bestellungen in Bearbeitung"
+
+#: templates/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "Alle Bestellungen anzeigen"
+
+#: templates/admin/satchmo_app_list.html:7
+msgid "Store Details"
+msgstr "WebShop Details"
+
+#: templates/admin/satchmo_app_list.html:8
+#: templates/admin/satchmo_app_list.html:13
+#: templates/admin/satchmo_app_list.html:24
+#: templates/admin/satchmo_app_list.html:29
+#: templates/admin/satchmo_app_list.html:34
+#: templates/admin/satchmo_app_list.html:45
+#: templates/admin/satchmo_app_list.html:50
+#: templates/admin/satchmo_app_list.html:55
+#: templates/admin/satchmo_app_list.html:65
+#: templates/admin/satchmo_app_list.html:76
+#: templates/admin/satchmo_app_list.html:81
+#: templates/admin/satchmo_app_list.html:92
+#: templates/admin/satchmo_app_list.html:97 templates/admin/portal.html:39
+msgid "Add"
+msgstr ""
+
+#: templates/admin/satchmo_app_list.html:12
+msgid "Store Web Site"
+msgstr "WebShop Seite"
+
+#: templates/admin/satchmo_app_list.html:20
+#: templates/admin/satchmo_app_list.html:21
+msgid "Product Configuration"
+msgstr "Produktkonfiguration"
+
+#: templates/admin/satchmo_app_list.html:23
+msgid "Product Categories"
+msgstr "Produktkategorien"
+
+#: templates/admin/satchmo_app_list.html:28
+msgid "Product Options"
+msgstr "Produktoptionen"
+
+#: templates/admin/satchmo_app_list.html:33
+msgid "Individual Products"
+msgstr "Individuelle Produkte"
+
+#: templates/admin/satchmo_app_list.html:41
+#: templates/admin/satchmo_app_list.html:42 contact/models.py:137
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: templates/admin/satchmo_app_list.html:44 contact/models.py:136
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/admin/satchmo_app_list.html:49
+msgid "Contact Interactions"
+msgstr "Kontaktinteraktionen"
+
+#: templates/admin/satchmo_app_list.html:54 contact/models.py:70
+msgid "Organizations"
+msgstr "Organisationen"
+
+#: templates/admin/satchmo_app_list.html:72
+#: templates/admin/satchmo_app_list.html:73
+msgid "International Information"
+msgstr "internationale Informationen"
+
+#: templates/admin/satchmo_app_list.html:75
+msgid "Areas"
+msgstr "Gebiete"
+
+#: templates/admin/satchmo_app_list.html:80
+msgid "Countries"
+msgstr "Länder"
+
+#: templates/admin/satchmo_app_list.html:88
+msgid "Taxes"
+msgstr "Steuern"
+
+#: templates/admin/satchmo_app_list.html:89
+msgid "Tax Information"
+msgstr "Steuerinformationen"
+
+#: templates/admin/portal.html:28
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "verfügbare Modell in der %(name)s Anwendung."
+
+#: templates/admin/portal.html:29
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/admin/portal.html:62
+msgid "Switch to Legacy View"
+msgstr ""
+
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Produktsubtypen"
+
+#: templates/admin/product/configurableproduct/change_form.html:17
+msgid "Variations"
+msgstr "Variationen"
+
+#: templates/pdf/packing-slip.rml:14 templates/pdf/packing-slip.rml.py:50
+#: templates/pdf/invoice.rml:14 templates/pdf/invoice.rml.py:50
+msgid "Invoice #"
+msgstr "Bestellung #"
+
+#: templates/pdf/packing-slip.rml:15 templates/pdf/packing-slip.rml.py:51
+#: templates/pdf/invoice.rml:15 templates/pdf/invoice.rml.py:51
+msgid "Date"
+msgstr "Datum"
+
+#: templates/pdf/packing-slip.rml:21 templates/pdf/packing-slip.rml.py:57
+msgid "PACKING SLIP"
+msgstr "Packschein"
+
+#: templates/pdf/packing-slip.rml:24 templates/pdf/invoice.rml:24
+#: contact/models.py:430
+msgid "Billing Address"
+msgstr "Rechnungsadresse"
+
+#: templates/pdf/packing-slip.rml:57 templates/pdf/invoice.rml:57
+msgid "Page"
+msgstr "Seite"
+
+#: templates/pdf/packing-slip.rml:98 templates/pdf/invoice.rml:98
+#: contact/models.py:148
+msgid "Phone"
+msgstr "Telefon"
+
+#: templates/pdf/packing-slip.rml:116 templates/pdf/invoice.rml:116
+msgid "Unit Price"
+msgstr "Preiseinheit"
+
+#: templates/pdf/packing-slip.rml:136 templates/pdf/invoice.rml:136
+#: supplier/models.py:39 contact/models.py:295
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#: templates/pdf/packing-slip.rml:156
+#, python-format
+msgid ""
+"%(order_total)s was charged to your %(credit_card_type)s card (x%"
+"(credit_card_number)s) on %(order_date)s."
+msgstr "%(order_total)s wurden Ihrer %(credit_card_type)s Kreditkarte (x%"
+"(credit_card_number)s) am %(order_date)s belastet."
+
+#: templates/pdf/packing-slip.rml:162
+msgid "Thank you for your business!"
+msgstr "Danke für Ihre Bestellung!"
+
+#: templates/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "WebShop Bestellung"
+
+#: templates/pdf/invoice.rml:21 templates/pdf/invoice.rml.py:57
+msgid "INVOICE"
+msgstr "Rechnung"
+
+#: templates/pdf/invoice.rml:153
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "Zahlbar gesamt %(order_total)s bis zum:"
+
+#: templates/pdf/invoice.rml:158
+msgid "Accounts Receivable"
+msgstr "ausstehende Accounts"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "Aktivierung wiederholen"
+
+#: templates/registration/repeat_activation.html:11
+#: templates/registration/activate.html:11
+msgid "Account Activation"
+msgstr "Account aktivieren"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "Dieser Account wurde bereits aktiviert. Bitte melden Sie sich an."
+
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "Ihre Account Informationen"
+
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "Willkommen, %(full_name)s."
+
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "Account Optionen"
+
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:9
+msgid "Change your password"
+msgstr "Ändern Sie Ihr Passwort"
+
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_complete.html:10
+msgid "Account Creation"
+msgstr "Account erstellt"
+
+#: templates/registration/registration_complete.html:11
+msgid "Thank you for signing up."
+msgstr "Danke für Ihre Anmeldedaten."
+
+#: templates/registration/registration_complete.html:13
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr "Ein Aktivierungslink wurde an die angegeben eMailadresse gesendet. Sie "
+"entählt auch Anweisungen zur Aktivierung Ihres Accounts."
+
+#: templates/registration/login.html:11
+msgid "Your email address and password didn't match. Please try again."
+msgstr "Ihre eMailadresse und Ihr Passwort passen nicht. Bitte probieren Sie es nochmal."
+
+#: templates/registration/login.html:29
+msgid "If you do not have an account, please"
+msgstr "Falls Sie noch keinen Account haben, bitte"
+
+#: templates/registration/login.html:29
+msgid "click here"
+msgstr "klicken Sie hier"
+
+#: templates/registration/login.html:30
+msgid "If you do not remember your password, please"
+msgstr "Falls Sie Ihre Passwort vergessen haben, bitte"
+
+#: templates/registration/login.html:30
+msgid "click here</a> to have it reset."
+msgstr "klicken Sie hier</a> um es zurückzusetzen."
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(company_name)s."
+msgstr "Danke das Sie sich mit %(company_name)s angemeldet haben."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr "Ihre neuer Benutzername ist Ihre eMailadresse und Sie können sich anmelden"
+
+#: templates/registration/password_change_done.html:10
+msgid "Password change successful"
+msgstr "Passwortänderung erfolgreich"
+
+#: templates/registration/password_change_done.html:12
+msgid "Your password change has been completed."
+msgstr "Ihre Passwortänderung wurde durchgeführt."
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "Ihre Passwort zurücksetzen"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr "Passwort vergessen? Geben Sie Ihre eMailadresse ein und wir werden Ihnen "
+"ein neues Passwort zusenden."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "eMailadresse"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr "Bitte stellen Sie sicher, das Sie die eMailadresse Ihrer Registrierung verwenden."
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/registration/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s"
+msgstr "Sie erhalten diese eMail, weil Sie ein neues Passwort für Ihren "
+"Benutzeraccount bei %(site_name)s angefordert haben"
+
+#: templates/registration/password_reset.txt:3
+msgid "Your new password is"
+msgstr "Ihr neues Passwort lautet"
+
+#: templates/registration/password_reset.txt:5
+msgid "Feel free to change this password by going to this page"
+msgstr "Sie können Ihre Passwort auf dieser Seite ändern"
+
+#: templates/registration/password_reset.txt:7
+#, python-format
+msgid ""
+"You can log in using your email address (%(email)s) or your username (%"
+"(username)s)."
+msgstr "Sie können zum Anmelden Ihre eMailadresse (%(email)s) oder Ihren Benuternamen (%"
+"(username)s) verwenden."
+
+#: templates/registration/password_reset.txt:9
+msgid "Thanks for using our site!"
+msgstr "Danke für Ihr Interesse an unserem WebShop!"
+
+#: templates/registration/password_reset.txt:11
+#, python-format
+msgid "The %(site_name)s team "
+msgstr "Ihr %(site_name)s Team "
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "Registrierung"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "Bitte geben Sie Ihre Accountinformationen ein"
+
+#: templates/registration/registration_form.html:33
+msgid "Create Account"
+msgstr "Account erstellen"
+
+#: templates/registration/activate.html:6
+msgid "Registration Complete"
+msgstr "Registrierung komplett"
+
+#: templates/registration/activate.html:15
+msgid "Thanks for signing up! You are now logged in."
+msgstr "Danke für Ihre Anmeldedaten! Sie sind nun angemeldet."
+
+#: templates/registration/activate.html:16
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr "In Zukunft können Sie sich mit Ihrer eMailadresse (%(email)s) anmelden."
+
+#: templates/registration/activate.html:19
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr "Entweder war Ihr Aktivierungslink falsch, oder der Aktivierungsschlüssel für Ihren "
+"Account ist abgelaufen. Aktivierungsschlüssel sind nur für %(expiration_days)s "
+"Tage nach Registrierung gültig."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site_url)s using "
+"this email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr "Jemand, hoffentlich Sie, hat sich mit Ihrer eMailadresse bei %(site_url)s registriert. "
+"Falls Sie den den Account nun aktivieren möchten klicken Sie bitte auf den Link unten oder "
+"kopieren ihn in die Zwischenablage und fügen ihn anschliessend in Ihrem Web Browser in die "
+"Adresszeile ein."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr "Falls Sie diese Anfrage nicht gestellt haben müssen Sie nichts weiter tun; Sie werden von "
+"uns keine weiteren eMails erhalten, und der Account verfällt automatisch in %"
+"(expiration_days)s Tagen."
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "Passwort erfolgreich zurückgesetzt"
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr "Wir haben Ihnen ein neues Passwort an Ihre eMailadresse gesandt. Sie "
+"werden diese in Kürze erhalten."
+
+#: templates/registration/password_change_form.html:10
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr "Zur Sicherheit geben Sie bitte Ihr altes Passwort und anschliessen 2x mal "
+"Ihr neues Passwort ein."
+
+#: templates/registration/password_change_form.html:17
+msgid "Old password"
+msgstr "altes Passwort"
+
+#: templates/registration/password_change_form.html:24
+msgid "New password"
+msgstr "neues Passwort"
+
+#: templates/registration/password_change_form.html:31
+msgid "Confirm new password"
+msgstr "neues Passwort (nochmal)"
+
+#: templates/registration/password_change_form.html:34
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: product/views.py:86 product/views.py:99 product/views.py:106
+msgid "not available"
+msgstr ""
+
+#: product/views.py:123 product/models.py:132
+msgid "Category"
+msgstr "Kategorie"
+
+#: product/views.py:125 product/models.py:338
+msgid "Product"
+msgstr "Produkt"
+
+#: product/models.py:24
+msgid "Used for URLs"
+msgstr "für URLs"
+
+#: product/models.py:27 product/models.py:217
+msgid "Meta Description"
+msgstr "Metabeschreibung"
+
+#: product/models.py:28
+msgid "Meta description for this category"
+msgstr "Metabeschreibung für diese Kategorie"
+
+#: product/models.py:100
+msgid "You must not save a category in itself!"
+msgstr "Sie können keine Kategorie in sich selbst speichern!"
+
+#: product/models.py:133
+msgid "Categories"
+msgstr "Kategorien"
+
+#: product/models.py:140
+msgid "Name of Option Group"
+msgstr "Name der Optionsgruppe"
+
+#: product/models.py:141
+msgid "This will be the text displayed on the product page."
+msgstr "Dies ist der Text für die Produktseite."
+
+#: product/models.py:142
+msgid "Detailed Description"
+msgstr "ausführliche Beschreibung"
+
+#: product/models.py:144
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "weitere Beschreibung dieser Gruppe (z.B. T-Shirtgröße oder Schuhgröße)."
+
+#: product/models.py:146
+msgid "The order they will be displayed on the screen."
+msgstr "Die Bestellung die am Bildschirm angezeigt wurde."
+
+#: product/models.py:159
+msgid "Option Group"
+msgstr "Optionsgruppe"
+
+#: product/models.py:160
+msgid "Option Groups"
+msgstr "Optionsgruppen"
+
+#: product/models.py:176
+msgid "Display value"
+msgstr "angezeigter Wert"
+
+#: product/models.py:177
+msgid "Stored value"
+msgstr "gespeicherter Wert"
+
+#: product/models.py:179
+msgid "Price Change"
+msgstr "Preisänderung"
+
+#: product/models.py:181
+msgid "This is the price differential for this option."
+msgstr "Dies ist ein Preisdelta für diese Option."
+
+#: product/models.py:182
+msgid "Display Order"
+msgstr "Anzeigereihenfolge"
+
+#: product/models.py:187
+msgid "Option Item"
+msgstr "Optionsartikel"
+
+#: product/models.py:188
+msgid "Option Items"
+msgstr "Optionsartikel"
+
+#: product/models.py:210
+msgid "Slug Name"
+msgstr ""
+
+#: product/models.py:211
+msgid "Short description of product"
+msgstr "kurze Beschreibung des Produkts"
+
+#: product/models.py:211
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr "Ein oder zwei-zeilige Beschreibung bei der Anzeige des Produktes"
+
+#: product/models.py:212
+msgid "Description of product"
+msgstr "Beschreibung des Produkts"
+
+#: product/models.py:212
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr "Dieses Feld kann HTML enthalten und sollte in wenigen Absätzen den "
+"Hintergrund des Produktes erläutern."
+
+#: product/models.py:214
+msgid "Number in stock"
+msgstr "Anzahl auf Lager"
+
+#: product/models.py:217
+msgid "Meta description for this product"
+msgstr "Metabeschreibung für dieses Produkt"
+
+#: product/models.py:219
+msgid "Is product active?"
+msgstr "Ist dieses Produkt aktiv?"
+
+#: product/models.py:219
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Dies entscheidet ob ein Produkt auf der Seite sichtbar ist oder nicht"
+
+#: product/models.py:220
+msgid "Featured Item"
+msgstr "Sonderartikel"
+
+#: product/models.py:220
+msgid "Featured items will show on the front page"
+msgstr "Sonderartikel erscheinen auf der Titelseite"
+
+#: product/models.py:221
+msgid "Weight"
+msgstr "Gewicht"
+
+#: product/models.py:222
+msgid "Length"
+msgstr "Länge"
+
+#: product/models.py:223
+msgid "Width"
+msgstr "Breite"
+
+#: product/models.py:224
+msgid "Height"
+msgstr "Höhe"
+
+#: product/models.py:228
+msgid "If it is taxable, what kind of tax?"
+msgstr "Wenn es versteuert wird, mit welcher Art von Steuer?"
+
+#: product/models.py:339
+msgid "Products"
+msgstr "Produkte"
+
+#: product/models.py:385
+msgid "Create Variations"
+msgstr "Erzeuge Variationen"
+
+#: product/models.py:385
+msgid "Create ProductVariations for all this product's options"
+msgstr "Erzeuge Produktvariationen für alle Optionen dieses Produkts"
+
+#: product/models.py:588
+msgid "Two options from the same option group can not be applied to an item."
+msgstr "Zwei Optionen von der gleichen Optionsgruppe können nicht mit einem Artikel verbunden werden."
+
+#: product/models.py:624
+msgid "Attribute Name"
+msgstr "Attributename"
+
+#: product/models.py:625
+msgid "Value"
+msgstr "Wert"
+
+#: product/models.py:637
+msgid "Discount Quantity"
+msgstr ""
+
+#: product/models.py:637
+msgid "Use this price only for this quantity or higher"
+msgstr "Dieser Preis gilt nur für diese Anzahl oder mehr"
+
+#: product/models.py:659
+msgid "Prices"
+msgstr "Preise"
+
+#: product/models.py:671
+msgid "Optional caption"
+msgstr "optionale Beschriftung"
+
+#: product/models.py:693
+msgid "Product Image"
+msgstr "Produktbild"
+
+#: product/models.py:694
+msgid "Product Images"
+msgstr "Produktbilder"
+
+#: shipping/modules/flat.py:26
+msgid "Flat Rate Shipping"
+msgstr "pauschale Versandkosten"
+
+#: shipping/modules/flat.py:41 shipping/modules/per.py:42
+#: shipping/modules/dummy.py:47
+msgid "US Mail"
+msgstr ""
+
+#: shipping/modules/flat.py:47 shipping/modules/per.py:48
+#: shipping/modules/dummy.py:53
+msgid "3 - 4 business days"
+msgstr "3 - 4 Werktage"
+
+#: shipping/modules/per.py:26
+msgid "Per Item shipping"
+msgstr "pro Versandartikel"
+
+#: shipping/modules/dummy.py:35
+msgid "Dummy Flat Rate Shipping"
+msgstr ""
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "Lieferant ID"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "Stückpreis"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "Bestand"
+
+#: supplier/models.py:30
+msgid "Raw Item"
+msgstr "Orginalartikel"
+
+#: supplier/models.py:31
+msgid "Raw Items"
+msgstr "Orginalartikel"
+
+#: supplier/models.py:38
+msgid "Date Created"
+msgstr "angelegt am"
+
+#: supplier/models.py:42 supplier/models.py:93 contact/models.py:53
+#: contact/models.py:87 contact/models.py:294 contact/models.py:475
+msgid "Notes"
+msgstr "Notizen"
+
+#: supplier/models.py:65
+msgid "Supplier Order"
+msgstr "Lieferantenbestellung"
+
+#: supplier/models.py:66
+msgid "Supplier Orders"
+msgstr "Lieferantenbestellungen"
+
+#: supplier/models.py:74
+msgid "Line Item Quantity"
+msgstr "Einzelposten Anzahl"
+
+#: supplier/models.py:75
+msgid "Line Item Total"
+msgstr "Einzelposten Summe"
+
+#: supplier/models.py:81
+msgid "Sent in"
+msgstr "verschickt"
+
+#: supplier/models.py:82 contact/models.py:267
+msgid "Shipped"
+msgstr "geliefert"
+
+#: supplier/models.py:83
+msgid "Received"
+msgstr "empfangen"
+
+#: supplier/models.py:92 contact/models.py:316 contact/models.py:473
+msgid "Status"
+msgstr "Status"
+
+#: supplier/models.py:100
+msgid "Supplier Order Status"
+msgstr ""
+
+#: supplier/models.py:101
+msgid "Supplier Order Statuses"
+msgstr ""
+
+#: discount/models.py:22
+msgid "Discount Code"
+msgstr "Rabattcode"
+
+#: discount/models.py:23
+msgid "Coupon Code"
+msgstr "Gutscheincode"
+
+#: discount/models.py:24
+msgid "Discount Amount"
+msgstr "Rabattbetrag"
+
+#: discount/models.py:26
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Geben Sie den absoluten Rabattbetrag ODER Prozentsatz ein."
+
+#: discount/models.py:27
+msgid "Discount Percentage"
+msgstr "Rabatt Prozentsatz"
+
+#: discount/models.py:30
+msgid ""
+"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr "Geben Sie den absoluten Rabattbetrag ODER Prozentsatz ein.  Prozentsatzbespiel: \"0.10\"."
+
+#: discount/models.py:31
+msgid "Number of allowed uses"
+msgstr "Anzahl erlaubter Anwendung"
+
+#: discount/models.py:32 discount/models.py:34
+msgid "Not implemented."
+msgstr "Nicht implementiert."
+
+#: discount/models.py:33
+msgid "Number of times already used"
+msgstr "Anzahl bereits angewendet"
+
+#: discount/models.py:35
+msgid "Minimum order value"
+msgstr "Mindestbestellmenge"
+
+#: discount/models.py:37
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: discount/models.py:38
+msgid "End Date"
+msgstr "Endedatum"
+
+#: discount/models.py:40
+msgid "Free shipping"
+msgstr "versandkostenfrei"
+
+#: discount/models.py:41
+msgid "Should this discount remove all shipping costs?"
+msgstr "Soll dieser Rabatt alle Versandkosten einschliessen?"
+
+#: discount/models.py:42
+msgid "Include shipping"
+msgstr "inklusive Versand"
+
+#: discount/models.py:43
+msgid "Should shipping be included in the discount calculation?"
+msgstr "Sollen die Versandkosten in die Rabattberechnung einfliessen?"
+
+#: discount/models.py:55
+msgid "This coupon is disabled."
+msgstr "Dieser Gutschein is deaktiviert."
+
+#: discount/models.py:57
+msgid "This coupon is not active yet."
+msgstr "Dieser Gutschein ist bisher nicht aktiviert."
+
+#: discount/models.py:59
+msgid "This coupon has expired."
+msgstr "Dieser Gutschein ist abgelaufen."
+
+#: discount/models.py:61
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Dieser Rabatt überschreitet die erlaubte Anzahl."
+
+#: discount/models.py:63 discount/models.py:79
+msgid "Valid."
+msgstr "Gültig."
+
+#: discount/models.py:67
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Dieser Rabatt gilt nur bei Bestellungen von Mindestens %s."
+
+#: discount/models.py:81
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "Dieser Rabatt kann nicht auf die Artikel in Ihrem Warenkorb angewendet werden."
+
+#: contact/models.py:26
+msgid "Customer"
+msgstr "Kunde"
+
+#: contact/models.py:27 contact/models.py:38
+msgid "Supplier"
+msgstr "Lieferant"
+
+#: contact/models.py:28 contact/models.py:39
+msgid "Distributor"
+msgstr "Großhändler"
+
+#: contact/models.py:32
+msgid "Company"
+msgstr "Firma"
+
+#: contact/models.py:33
+msgid "Government"
+msgstr "Regierung"
+
+#: contact/models.py:34
+msgid "Non-profit"
+msgstr "gemeinnützig"
+
+#: contact/models.py:40
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: contact/models.py:48 contact/models.py:158
+msgid "Type"
+msgstr "Typ"
+
+#: contact/models.py:50 contact/models.py:82
+msgid "Role"
+msgstr "Rolle"
+
+#: contact/models.py:69
+msgid "Organization"
+msgstr "Organisation"
+
+#: contact/models.py:85
+msgid "Date of birth"
+msgstr "Geburtsdatum"
+
+#: contact/models.py:88
+msgid "Creation date"
+msgstr "angelegt am"
+
+#: contact/models.py:140
+msgid "Work"
+msgstr "dienstl."
+
+#: contact/models.py:142
+msgid "Fax"
+msgstr ""
+
+#: contact/models.py:143
+msgid "Mobile"
+msgstr "mobil"
+
+#: contact/models.py:149 contact/models.py:259
+msgid "In Person"
+msgstr "persönlich"
+
+#: contact/models.py:159
+msgid "Date and Time"
+msgstr "Datum und Uhrzeit"
+
+#: contact/models.py:169
+msgid "Interaction"
+msgstr "Interaktion"
+
+#: contact/models.py:170
+msgid "Interactions"
+msgstr "Interaktionen"
+
+#: contact/models.py:182
+msgid "Primary"
+msgstr "primär"
+
+#: contact/models.py:205
+msgid "Phone Numbers"
+msgstr "Telefonnummern"
+
+#: contact/models.py:214
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "Beschreibung der Adresse - privat, geschäftl., postlagernd, usw."
+
+#: contact/models.py:221
+msgid "Default Shipping Address"
+msgstr "Standardlieferadresse"
+
+#: contact/models.py:223
+msgid "Default Billing Address"
+msgstr "Standardrechnungsadresse"
+
+#: contact/models.py:254
+msgid "Address Book"
+msgstr "Adressbuch"
+
+#: contact/models.py:255
+msgid "Address Books"
+msgstr "Adressbücher"
+
+#: contact/models.py:258
+msgid "Online"
+msgstr ""
+
+#: contact/models.py:260
+msgid "Show"
+msgstr "zeige"
+
+#: contact/models.py:264
+msgid "Temp"
+msgstr "temporär"
+
+#: contact/models.py:266
+msgid "In Process"
+msgstr "In Bearbeitung"
+
+#: contact/models.py:271
+msgid "Cash"
+msgstr "bar"
+
+#: contact/models.py:273
+msgid "Check"
+msgstr "Scheck"
+
+#: contact/models.py:305
+msgid "Shipping Description"
+msgstr "Versandbeschreibung"
+
+#: contact/models.py:309
+msgid "Shipping Models"
+msgstr "Versandmodelle"
+
+#: contact/models.py:311
+msgid "Shipping Cost"
+msgstr "Versandkosten"
+
+#: contact/models.py:315 contact/models.py:476
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: contact/models.py:317
+msgid "This is set automatically."
+msgstr "Dies wird automatisch gesetzt."
+
+#: contact/models.py:433
+msgid "Totals"
+msgstr "Gesamtsummen"
+
+#: contact/models.py:442
+msgid "Product Order"
+msgstr "Produktbestellung"
+
+#: contact/models.py:443
+msgid "Product Orders"
+msgstr "Produktbestellungen"
+
+#: contact/models.py:452
+msgid "Unit price"
+msgstr "Stückpreis"
+
+#: contact/models.py:454
+msgid "Line item price"
+msgstr "Einzelpostenpreis"
+
+#: contact/models.py:465
+msgid "Order Line Item"
+msgstr "besteller Einzelposten"
+
+#: contact/models.py:466
+msgid "Order Line Items"
+msgstr "bestellte Einzelposten"
+
+#: contact/models.py:487
+msgid "Order Status"
+msgstr "Bestellstatus"
+
+#: contact/models.py:488
+msgid "Order Statuses"
+msgstr "Bestellstati"
