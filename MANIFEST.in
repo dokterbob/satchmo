@@ -1,0 +1,4 @@
+global-includes *.po *.mo
+include docs/*
+include AUTHORS CONTRIBUTORS LICENSE CHANGELOG
+include setup.cfg

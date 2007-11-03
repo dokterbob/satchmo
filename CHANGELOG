@@ -2,6 +2,10 @@
 Satchmo Change Log
 ==================
 
+Trunk
+-----
+ * Added config files to make rpm creation easier
+
 Version 0.6, October 30, 2007
 ----------------
  * Removed dependency on Webda and added new l10n models
