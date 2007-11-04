@@ -59,7 +59,7 @@ def one_step(request):
         subject = "Thank you for your order from %s" % shop_name
              
         try:
-            email = orderToProcess.contact.email
+            email = newOrder.contact.email
             body = t.render(c)
             send_mail(subject, body, shop_email,
                       [email], fail_silently=False)
