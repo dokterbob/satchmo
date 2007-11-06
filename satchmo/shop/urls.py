@@ -25,6 +25,8 @@ urlpatterns += patterns('satchmo.shop.views',
     # The following url is used for downloadable products
     (r'^download/process/(?P<download_key>\w+)/$', 'download.process', {}, 'satchmo_download_process'),
     (r'^download/send/(?P<download_key>\w+)/$', 'download.send_file', {}, 'satchmo_download_send'),
+    #Used to set the default language
+    (r'^i18n/', include('django.conf.urls.i18n')),
 )
 #Note with the last category url - this allows category depth to be as deep as we want but the downside
 #is that we ignore all but the child and parent category.  In practice this should be ok

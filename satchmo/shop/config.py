@@ -49,3 +49,25 @@ GOOGLE_ADWORDS_ID = config_register(
         ordering=15,
         requires = GOOGLE_ADWORDS))
 
+LANGUAGE_GROUP = ConfigurationGroup('LANGUAGE','Language Settings')
+
+LANGUAGE_ALLOW_TRANSLATIONS = config_register(
+    BooleanValue(LANGUAGE_GROUP,
+    'ALLOW_TRANSLATION',
+    description=_("Allow user to choose from available translations"),
+    default=False,
+    ordering=1))
+
+LANGUAGES_AVAILABLE = config_register(
+    MultipleStringValue(LANGUAGE_GROUP,
+    'LANGUAGES_AVAILABLE',
+    requires = LANGUAGE_ALLOW_TRANSLATIONS,
+    description = _("Available languages"),
+    help_text=_("Languages that have valid translations"),
+    choices=[('en', _("English")),
+            ('fr', _("French")),
+            ('de',_("German")),
+            ('es', _("Spanish")),
+            ('sv', _("Swedish"))]
+    ))
+    
