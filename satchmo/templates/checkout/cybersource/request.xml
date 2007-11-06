@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="urn:schemas-cybersource-com:transaction-data-1.26">
+  <SOAP-ENV:Header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+    <wsse:Security SOAP-ENV:mustUnderstand="1">
+      <wsse:UsernameToken>
+        <wsse:Username>{{ config.merchantID }}</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">{{ config.password }}</wsse:Password>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </SOAP-ENV:Header>
+  <SOAP-ENV:Body>
+    <ns1:requestMessage>
+      <ns1:merchantID>{{ config.merchantID }}</ns1:merchantID>
+      <ns1:merchantReferenceCode>{{ merchantReferenceCode }}</ns1:merchantReferenceCode>
+      <ns1:billTo>
+        <ns1:firstName>{{ billTo.firstName }}</ns1:firstName>
+        <ns1:lastName>{{ billTo.lastName }}</ns1:lastName>
+        <ns1:street1>{{ billTo.street1 }}</ns1:street1>
+        <ns1:city>{{ billTo.city }}</ns1:city>
+        <ns1:state>{{ billTo.state }}</ns1:state>
+        <ns1:postalCode>{{ billTo.postalCode }}</ns1:postalCode>
+        <ns1:country>{{ billTo.country }}</ns1:country>
+        <ns1:email>{{ billTo.email }}</ns1:email>
+      </ns1:billTo>
+      <ns1:purchaseTotals>
+        <ns1:currency>{{ purchaseTotals.currency }}</ns1:currency>
+        <ns1:grandTotalAmount>{{ purchaseTotals.grandTotalAmount }}</ns1:grandTotalAmount>
+      </ns1:purchaseTotals>
+      <ns1:card>
+        <ns1:accountNumber>{{ card.accountNumber }}</ns1:accountNumber>
+        <ns1:expirationMonth>{{ card.expirationMonth }}</ns1:expirationMonth>
+        <ns1:expirationYear>{{ card.expirationYear }}</ns1:expirationYear>
+      </ns1:card>
+      <ns1:ccAuthService run="true"/>
+    </ns1:requestMessage>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
