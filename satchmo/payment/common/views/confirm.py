@@ -2,19 +2,15 @@
 # Last step in the order process - confirm the info and process it
 #####################################################################
 
-from django.conf import settings
 from django.core import urlresolvers
-from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import loader, RequestContext, Context
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from satchmo.contact.models import Order, OrderStatus
+from satchmo.contact.models import Order
+from satchmo.payment.common.pay_ship import send_order_confirmation
 from satchmo.payment.urls import lookup_url, lookup_template
-from satchmo.shop.models import Cart, Config
-from satchmo.shop.utils import load_module
-from socket import error as SocketError
-import datetime
+from satchmo.shop.models import Cart
 import logging
 
 log = logging.getLogger('satchmo.payment.common.views')
@@ -61,27 +57,7 @@ Reason=%s""", payment_module.key, orderToProcess.id, results, reason_code, msg)
             
             orderToProcess.add_status(status='Pending', notes = "Order successfully submitted")
 
-            #Now, send a confirmation email
-            shop_config = Config.get_shop_config()
-            shop_email = shop_config.store_email
-            shop_name = shop_config.store_name
-            t = loader.get_template('email/order_complete.txt')
-            c = Context({'order': orderToProcess,
-                          'shop_name': shop_name})
-            subject = "Thank you for your order from %s" % shop_name
-                     
-            try:
-                email = orderToProcess.contact.email
-                body = t.render(c)
-                send_mail(subject, body, shop_email,
-                          [email], fail_silently=False)
-            except SocketError, e:
-                if settings.DEBUG:
-                    log.error('Error sending mail: %s' % e)
-                    log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', email, subject, body)
-                else:
-                    log.fatal('Error sending mail: %s' % e)
-                    raise IOError('Could not send email, please check to make sure your email settings are correct, and that you are not being blocked by your ISP.')    
+            send_order_confirmation(orderToProcess)
             
             #Redirect to the success page
             url = lookup_url(payment_module, 'satchmo_checkout-success')
@@ -98,5 +74,3 @@ Reason=%s""", payment_module.key, orderToProcess.id, results, reason_code, msg)
         'errors': errors,
         'checkout_step2': lookup_url(payment_module, 'satchmo_checkout-step2')})
     return render_to_response(template, context)
-
-
