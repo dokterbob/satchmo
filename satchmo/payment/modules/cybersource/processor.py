@@ -12,10 +12,10 @@ class PaymentProcessor(object):
         self.settings = settings
         self.contents = ''
         if settings.LIVE.value:
-            testflag = 'FALSE'
+            self.testflag = 'FALSE'
             self.connection = settings.CONNECTION.value
         else:
-            testflag = 'TRUE'
+            self.testflag = 'TRUE'
             self.connection = settings.CONNECTION_TEST.value
             
         self.configuration = {
@@ -44,7 +44,7 @@ class PaymentProcessor(object):
             'cvNumber' : data.credit_card.ccv
             }
         self.purchase_totals = {
-            'currency' : settings.CURRENCY_CODE.value,
+            'currency' : self.settings.CURRENCY_CODE.value,
             'grandTotalAmount' : data.total,
         }
 
