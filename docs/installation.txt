@@ -57,7 +57,7 @@ dependencies mentioned in the requirements section.
     
         cp local_settings-customize.py local_settings.py
 
-   Note that if you are installing as an app, you need to copy the local_settings file into your app somewhere.  It doesn't **have** to be named local_settings.  I often call it "settings_satchmo", but keep in mind that we'll be calling it "local_settings" throughout the instructions.
+   Note that if you are installing as part of another app, you need to copy the local_settings file into that app somewhere.  It doesn't **have** to be named local_settings.  I often call it "settings_satchmo", but keep in mind that we'll be calling it "local_settings" throughout the instructions.
 
 7.  Edit this local_settings.py file for your setup. The following values need to be changed::
 		
@@ -66,7 +66,7 @@ dependencies mentioned in the requirements section.
         DATABASE_USER = 'Your DB User Here'
         SECRET_KEY = 'Your secret key here'
 
-   Note that if you are running as an app, you probably already have database settings in your settings file.  But you will need to go through the local_settings file and make sure that everything in there is commented or uncommented appropriately.
+   Note that if you are running as part of another app, you probably already have database settings in your master settings file.  But you will need to go through the local_settings file and make sure that everything in there is commented or uncommented appropriately.
         
    Commonly, this will include entries such as::
 	
@@ -81,9 +81,9 @@ dependencies mentioned in the requirements section.
 		the logging items
 		SITE_DOMAIN
 		
-   Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have SHOP_BASE=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
+   Lastly, note the SHOP_BASE entry.  Unless you are running as a standalone app, you **always** want to have SHOP_BASE=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
 	
-8.  If you are running as an app, you will need to merge a few settings from the satchmo settings.py files into your master settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
+8.  Unless you are running as a standalone app, you will need to merge a few settings from the satchmo settings.py files into your master app settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
 	
 		TEMPLATE_CONTEXT_PROCESSOR
 		TEMPLATE_DIRS
@@ -91,7 +91,7 @@ dependencies mentioned in the requirements section.
 		AUTHENTICATION_BACKENDS
 		MIDDLEWARE_CLASSES
 		
-   Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line::
+   Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line to your urlpatterns::
 	
 	    (r'^shop/', include('satchmo.urls')),
 	
@@ -104,7 +104,7 @@ dependencies mentioned in the requirements section.
 
         python load_data.py
     
-10.  When prompted, enter Yes to all the questions.  This script will also install the i18n data.
+10.  When prompted, enter Yes to all the questions if you want to erase everything.  This script will also install the i18n data.
 
 11.  Start up the sample webserver to see your store::
 
