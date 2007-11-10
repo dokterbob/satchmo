@@ -32,13 +32,11 @@ dependencies mentioned in the requirements section.
 	>>> import satchmo
 	>>>
 
-   Do not attempt to progress any further on the install until the above imports
-work.
+   Do not attempt to progress any further on the install until the above imports work.
 
-   The next two steps depend on whether or not Satchmo is a standalone project or
-just an app that is part of another Django project.
+   The next two steps depend on whether or not Satchmo is a standalone project or just an app that is part of another Django project.
 
-If Satchmo is a standalone app (follow steps 3 and 4):
+**If Satchmo is a standalone app (follow steps 3 and 4):**
 
 3.  Modify Satchmo's default settings-customize.py file::
 
@@ -46,7 +44,7 @@ If Satchmo is a standalone app (follow steps 3 and 4):
     
 4.  Modify settings.py to reflect your setup.
 
-If Satchmo is part of another Django app (follow step 5):
+**If Satchmo is part of another Django app (follow step 5):**
 
 5. Modify you project settings.py file so that it has the following line at the end::
 
