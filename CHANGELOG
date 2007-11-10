@@ -6,7 +6,7 @@ Trunk
 -----
  * Added config files to make rpm creation easier
  * German translation
- * New capability to choose the language to translate to
+ * New capability to choose the translation language
  * COD payment module
 
 Version 0.6, October 30, 2007
