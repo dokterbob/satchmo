@@ -15,7 +15,7 @@ import logging
 
 log = logging.getLogger('satchmo.payment.common.views')
 
-def credit_confirm_info(request, payment_module):
+def credit_confirm_info(request, payment_module, custom_confirm_template='checkout/confirm.html'):
     """A view which shows and requires credit card selection"""
     if not request.session.get('orderID'):
         url = urlresolvers.reverse('satchmo_checkout-step1')
@@ -68,7 +68,7 @@ Reason=%s""", payment_module.key, orderToProcess.id, results, reason_code, msg)
     else:
         errors = ''
 
-    template = lookup_template(payment_module, 'checkout/confirm.html')
+    template = lookup_template(payment_module, custom_confirm_template)
     context = RequestContext(request, {
         'order': orderToProcess,
         'errors': errors,
