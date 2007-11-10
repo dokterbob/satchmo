@@ -22,7 +22,7 @@ dependencies mentioned in the requirements section.
 	- Create a .pth file in your site-packages directory. pth_.
 	- Install Satchmo in the site-packages directory
 
-Either way, once it's done, you should be able to do this successfully::
+   Either way, once it's done, you should be able to do this successfully::
 
 	$ python
 	Python 2.4.2 (#1, Feb  9 2006, 05:29:30)
@@ -32,10 +32,10 @@ Either way, once it's done, you should be able to do this successfully::
 	>>> import satchmo
 	>>>
 
-Do not attempt to progress any further on the install until the above imports
+   Do not attempt to progress any further on the install until the above imports
 work.
 
-The next two steps depend on whether or not Satchmo is a standalone project or
+   The next two steps depend on whether or not Satchmo is a standalone project or
 just an app that is part of another Django project.
 
 If Satchmo is a standalone app (follow steps 3 and 4):
@@ -68,14 +68,14 @@ If Satchmo is part of another Django app (follow step 5):
         DATABASE_USER = 'Your DB User Here'
         SECRET_KEY = 'Your secret key here'
 
-	Note that if you are running as an app, you probably already have database settings in your settings file.  But you will need to go through the local_settings file and make sure that everything in there is commented or uncommented appropriately.
+   Note that if you are running as an app, you probably already have database settings in your settings file.  But you will need to go through the local_settings file and make sure that everything in there is commented or uncommented appropriately.
         
-	Commonly, this will include entries such as::
+   Commonly, this will include entries such as::
 	
 		DJANGO_PROJECT="Name of your app"
 		DJANGO_SETTINGS_MODULE="yourapp.settings"
 		
-	You may not need these, they are probably set in your master app::
+   You may not need these, they are probably set in your master app::
 	
 		SITE_NAME
 		CACHE_BACKEND
@@ -83,7 +83,7 @@ If Satchmo is part of another Django app (follow step 5):
 		the logging items
 		SITE_DOMAIN
 		
-	Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have shop_base=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
+   Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have shop_base=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
 	
 8.  If you are running as an app, you will need to merge a few settings from the satchmo settings.py files into your master settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
 	
@@ -93,11 +93,11 @@ If Satchmo is part of another Django app (follow step 5):
 		AUTHENTICATION_BACKENDS
 		MIDDLEWARE_CLASSES
 		
-	Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line::
+   Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line::
 	
 	    (r'^shop/', include('satchmo.urls')),
 	
-	Copy (for windows) or symlink satchmo/tax and satchmo/load_data.py into the root of your app.
+   Copy (for windows) or symlink satchmo/tax and satchmo/load_data.py into the root of your app.
 		
 .. warning::
     The next step can erase data in the satchmo database. Be sure to have a backup of any critical data.
