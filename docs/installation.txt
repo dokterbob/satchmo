@@ -81,7 +81,7 @@ dependencies mentioned in the requirements section.
 		the logging items
 		SITE_DOMAIN
 		
-   Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have shop_base=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
+   Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have SHOP_BASE=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
 	
 8.  If you are running as an app, you will need to merge a few settings from the satchmo settings.py files into your master settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
 	
