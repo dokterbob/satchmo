@@ -13,7 +13,7 @@ dependencies mentioned in the requirements section.
 
 
 .. Note::
-    If you would like the latest bleading edge release, get it via svn-
+    If you would like the latest bleeding edge release, get it via svn-
 	    svn co svn://satchmoproject.com/satchmo/trunk/
         
 2. Ensure that satchmo is on your pythonpath.  There are several options for adding Satchmo to the path:
@@ -52,40 +52,71 @@ If Satchmo is part of another Django app (follow step 5):
 
         from local_settings import *
 
-Now that the basic application settings are complete, you will need to
-configure the satchmo specific items stored in local_settings.py.
+   Now that the basic application settings are complete, you will need to
+   configure the satchmo specific items stored in local_settings.py.
 
-6.  Create your customized local_settings.py file::
+6. Create your customized local_settings.py file::
     
         cp local_settings-customize.py local_settings.py
 
-7.  Edit this local_settings.py file for your setup. The following values need to be changed::
+   Note that if you are installing as an app, you need to copy the local_settings file into your app somewhere.  It doesn't **have** to be named local_settings.  I often call it "settings_satchmo", but keep in mind that we'll be calling it "local_settings" throughout the instructions.
 
+7.  Edit this local_settings.py file for your setup. The following values need to be changed::
+		
         DATABASE_NAME = 'Your DB Name Here'
         DATABASE_PASSWORD = 'Your DB Password Here'
         DATABASE_USER = 'Your DB User Here'
         SECRET_KEY = 'Your secret key here'
-        
-        Any other values that are applicable to your setup
 
+	Note that if you are running as an app, you probably already have database settings in your settings file.  But you will need to go through the local_settings file and make sure that everything in there is commented or uncommented appropriately.
+        
+	Commonly, this will include entries such as::
+	
+		DJANGO_PROJECT="Name of your app"
+		DJANGO_SETTINGS_MODULE="yourapp.settings"
+		
+	You may not need these, they are probably set in your master app::
+	
+		SITE_NAME
+		CACHE_BACKEND
+		CACHE_TIMEOUT
+		the logging items
+		SITE_DOMAIN
+		
+	Lastly, note the SHOP_BASE entry.  If you are running Satchmo as an app, you **always** want to have shop_base=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
+	
+8.  If you are running as an app, you will need to merge a few settings from the satchmo settings.py files into your master settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
+	
+		TEMPLATE_CONTEXT_PROCESSOR
+		TEMPLATE_DIRS
+		INSTALLED_APPS
+		AUTHENTICATION_BACKENDS
+		MIDDLEWARE_CLASSES
+		
+	Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line::
+	
+	    (r'^shop/', include('satchmo.urls')),
+	
+	Copy (for windows) or symlink satchmo/tax and satchmo/load_data.py into the root of your app.
+		
 .. warning::
     The next step can erase data in the satchmo database. Be sure to have a backup of any critical data.
 
-8.  Load the sample data::
+9.  Load the sample data::
 
         python load_data.py
     
-9.  When prompted, enter Yes to all the questions.  This script will also install the i18n data.
+10.  When prompted, enter Yes to all the questions.  This script will also install the i18n data.
 
-10.  Start up the sample webserver to see your store::
+11.  Start up the sample webserver to see your store::
 
         python manage.py runserver
         
-11.  In order to see your sample store, point your browser to::
+12.  In order to see your sample store, point your browser to::
     
         http://localhost/shop to see your store
 
-12.  If you want to see the admin interface, point your browser to::
+13.  If you want to see the admin interface, point your browser to::
 
         http://localhost/admin
 
