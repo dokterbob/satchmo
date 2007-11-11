@@ -4,8 +4,8 @@ from django.utils.translation import ugettext as _
 from satchmo.product.models import Category
 from satchmo.shop.views.utils import bad_or_missing
 
-def root(request, slug):
-    #Display the category page if we're not dealing with a child category
+def display(request, slug, parent_slugs=''):
+    # Display the category, its child categories, and its products.
     try:
         category = Category.objects.get(slug=slug)
     except Category.DoesNotExist:
@@ -15,17 +15,3 @@ def root(request, slug):
     return render_to_response('base_category.html',
         {'category': category, 'child_categories': child_categories},
         RequestContext(request))
-
-def children(request, slug_parent, slug):
-    #Display the category if it is a child
-    try:
-        parent = Category.objects.get(slug=slug_parent)
-        category = parent.child.get(slug=slug)
-    except Category.DoesNotExist:
-        return bad_or_missing(request, _('The category you have requested does not exist.'))
-
-    child_categories = category.get_all_children()
-    return render_to_response('base_category.html',
-        {'category': category, 'child_categories': child_categories},
-        RequestContext(request))
-
