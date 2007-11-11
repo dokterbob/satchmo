@@ -572,7 +572,7 @@ class OrderItem(models.Model):
         return self.product.name
 
     def _get_category(self):
-        return(self.product.get_category)
+        return(self.product.get_category.name)
     category = property(_get_category)
 
     class Meta:

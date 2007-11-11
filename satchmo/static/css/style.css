@@ -210,6 +210,10 @@ border-bottom: 1px solid #fff;
 font-weight: normal;
 }
 
+#menu_container a.current:before {
+content: "\0020 \0020 \0020 \00BB \0020";
+}
+
 .addressblock {
 padding-top: .5em;
 padding-bottom: .5em;

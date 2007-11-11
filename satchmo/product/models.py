@@ -370,7 +370,7 @@ class Product(models.Model):
         if subtype:
             return subtype.get_category
         
-        return self.category.all()[0].name
+        return self.category.all()[0]
     get_category = property(_get_category)
     
     def _get_downloadable(self):
@@ -709,7 +709,7 @@ class ProductVariation(models.Model):
         """
         Return the primary category associated with this product
         """
-        return self.parent.product.category.all()[0].name
+        return self.parent.product.category.all()[0]
     get_category = property(_get_category)
 
     def _check_optionParents(self):

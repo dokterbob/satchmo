@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load satchmo_thumbnail satchmo_category%}
 
 {% block extra-head %}
 {% if category.meta %}
@@ -17,6 +17,12 @@
 
 {% endblock %}
 
+{% block sidebar %}
+    {% trans "Shop Categories" %}<br/>
+    <div id="menu_container">
+    {% category_tree category.id %}
+    </div>
+{% endblock %}
 
 {% block content %}
 <div id="product_category">
