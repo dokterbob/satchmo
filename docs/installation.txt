@@ -81,7 +81,8 @@ dependencies mentioned in the requirements section.
 		the logging items
 		SITE_DOMAIN
 		
-   Lastly, note the SHOP_BASE entry.  Unless you are running as a standalone app, you **always** want to have SHOP_BASE=''.  That's because you will be loading the satchmo urls from your app master urls.py file.
+   Lastly, note the SHOP_BASE entry.  You want to set it to the base of the shop relative to the root of the app.  Satchmo does some magic in its base urls.py module, so you need to set this appropriately.
+
 	
 8.  Unless you are running as a standalone app, you will need to merge a few settings from the satchmo settings.py files into your master app settings file.  By "merge", we mean that you should intelligently add them to the settings, without duplicating things.  Merge these settings::
 	
@@ -91,9 +92,10 @@ dependencies mentioned in the requirements section.
 		AUTHENTICATION_BACKENDS
 		MIDDLEWARE_CLASSES
 		
-   Now, add the satchmo urls to your app.  Edit your root urls.py file, and add this line to your urlpatterns::
-	
-	    (r'^shop/', include('satchmo.urls')),
+   Now, add the satchmo urls to your app.  Edit your root urls.py file, and after your urlpatterns are defined, add the satchmo urls.  Remember they will automatically appear with SHOP_BASE prepended::
+
+	from satchmo.urls import urlpatterns as shoppatterns
+	urlpatterns += shoppatterns 
 	
    Copy (for windows) or symlink satchmo/tax and satchmo/load_data.py into the root of your app.
 		
