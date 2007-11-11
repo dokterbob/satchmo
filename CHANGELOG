@@ -8,6 +8,9 @@ Trunk
  * German translation
  * New capability to choose the translation language
  * COD payment module
+ * Category code cleanup
+ * Highlight active category in the menu
+ * Install documentation cleanup
 
 Version 0.6, October 30, 2007
 ----------------
