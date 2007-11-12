@@ -291,7 +291,7 @@ class Product(models.Model):
         qty_discounts = self.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty)
         if qty_discounts.count() > 0:
             # Get the price with the quantity closest to the one specified without going over
-            return qty_discounts.order_by('-quantity')[0].price
+            return Decimal(qty_discounts.order_by('-quantity')[0].price)
         else:
             return None
 
