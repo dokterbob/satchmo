@@ -1,7 +1,7 @@
 {% extends "checkout/base_confirm.html" %}
 {% load i18n %}
 {% load satchmo_googlecheckout %}
-{# this is the Paypal confirm template #}
+{# this is the Google confirm template #}
 
 {% block payment_step %}<a href="{% url GOOGLE_satchmo_checkout-step2 %}">{% trans "Payment" %}</a>{% endblock %}
 
