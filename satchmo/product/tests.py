@@ -78,8 +78,10 @@ ValidationError: [u'You must not save a category in itself!']
 u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 >>> womens_jewelry.get_all_children()
 [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>]
+
+# was [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 >>> Category.objects.all().order_by('name')
-[<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
+[<Category: Books>, <Category: Books :: Fiction>, <Category: Books :: Non Fiction>, <Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Books :: Fiction :: Science Fiction>, <Category: Shirts>, <Category: Shirts :: Short Sleeve>, <Category: Software>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 """
 
 if __name__ == "__main__":
