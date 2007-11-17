@@ -4,7 +4,11 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 from satchmo.configuration import config_value
 from satchmo.shop.templatetags import get_filter_args
-
+try:
+    from django.utils.safestring import mark_safe
+except ImportError:
+    mark_safe = lambda s:s
+    
 #The moneyfmt script was taken from the Python decimal recipes.
 #See it here - http://docs.python.org/lib/decimal-recipes.html
 
@@ -39,7 +43,7 @@ def currency(value, args=""):
 
     value = Decimal(str(value))
         
-    return moneyfmt(value, **kwargs)
+    return mark_safe(moneyfmt(value, **kwargs))
 
 def moneyfmt(value, places=2, curr=None, sep=',', dp='.',
              pos='', neg='-', trailneg='', wrapcents=''):
@@ -110,3 +114,4 @@ def moneyfmt(value, places=2, curr=None, sep=',', dp='.',
     return u''.join(result)
 
 register.filter('currency', currency)
+currency.is_safe = True

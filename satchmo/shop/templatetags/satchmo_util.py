@@ -32,6 +32,7 @@ def break_at(value,  chars=40):
     """Force spaces into long lines which don't have spaces"""
     
     chars = int(chars)
+    value = unicode(value)
     if len(value) < chars:
         return value
     else:
