@@ -24,6 +24,11 @@ from django.db.models import permalink
 from django.core import urlresolvers
 from django.contrib.sites.models import Site
 
+try:
+    from django.utils.safestring import mark_safe
+except ImportError:
+    mark_safe = lambda s:s
+
 log = logging.getLogger('contact.views')
 
 CONTACT_CHOICES = (
@@ -440,11 +445,11 @@ class Order(models.Model):
         super(Order, self).save() # Call the "real" save() method.
 
     def invoice(self):
-        return('<a href="/admin/print/invoice/%s/">View</a>' % self.id)
+        return mark_safe('<a href="/admin/print/invoice/%s/">View</a>' % self.id)
     invoice.allow_tags = True
 
     def packingslip(self):
-        return('<a href="/admin/print/packingslip/%s/">View</a>' % self.id)
+        return mark_safe('<a href="/admin/print/packingslip/%s/">View</a>' % self.id)
     packingslip.allow_tags = True
     
     def recalculate_total(self, save=True):
@@ -484,7 +489,7 @@ class Order(models.Model):
             self.save()
 
     def shippinglabel(self):
-        return('<a href="/admin/print/shippinglabel/%s/">View</a>' % self.id)
+        return mark_safe('<a href="/admin/print/shippinglabel/%s/">View</a>' % self.id)
     shippinglabel.allow_tags = True
 
     def _order_total(self):
@@ -579,6 +584,25 @@ class OrderItem(models.Model):
         verbose_name = _("Order Line Item")
         verbose_name_plural = _("Order Line Items")
 
+class OrderItemDetail(models.Model):
+    """
+    Name, value pair and price delta associated with a specific item in an order
+    """
+    item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), edit_inline=models.TABULAR, core=True, num_in_admin=3)
+    name = models.CharField(_('Name'), max_length=100)
+    value = models.CharField(_('Value'), max_length=255)
+    price_change = models.DecimalField(_("Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
+    sort_order = models.IntegerField(_("Sort Order"),
+        help_text=_("The display order for this group."))
+    
+    def __unicode__(self):
+        return u"%s - %s,%s" % (self.item, self.name, self.value)
+        
+    class Meta:
+        verbose_name = _("Order Item Detail")
+        verbose_name_plural = _("Order Item Details")
+        ordering = ('sort_order',)
+    
 class DownloadLink(models.Model):
     downloadable_product = models.OneToOneField(DownloadableProduct)
     order = models.ForeignKey(Order)
