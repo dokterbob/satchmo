@@ -399,6 +399,34 @@ class Product(models.Model):
         return True
     is_shippable = property(_get_shippable)
 
+def _cross_list(sequences):
+    """
+    Code taken from the Python cookbook v.2 (19.9 - Looping through the cross-product of multiple iterators)
+    This is used to create all the variations associated with an product
+    """
+    result =[[]]
+    for seq in sequences:
+        result = [sublist+[item] for sublist in result for item in seq]
+    return result
+    
+def get_all_options(obj):
+    """
+    Returns all possible combinations of options for this products OptionGroups as a List of Lists.
+    Ex:
+    For OptionGroups Color and Size with Options (Blue, Green) and (Large, Small) you'll get
+    [['Blue', 'Small'], ['Blue', 'Large'], ['Green', 'Small'], ['Green', 'Large']]
+    Note: the actual values will be instances of Option instead of strings
+    """
+    sublist = []
+    masterlist = []
+    #Create a list of all the options & create all combos of the options
+    for opt in obj.option_group.all():
+        for value in opt.option_set.all():
+            sublist.append(value)
+        masterlist.append(sublist)
+        sublist = []
+    return _cross_list(masterlist)
+
 class CustomProduct(models.Model):
     """
     Product which must be custom-made or ordered.
@@ -408,7 +436,8 @@ class CustomProduct(models.Model):
     deferred_shipping = models.BooleanField(_('Deferred Shipping'), 
         help_text=_('Do not charge shipping at checkout for this item.'), 
         default=False)
-        
+    option_group = models.ManyToManyField(OptionGroup, blank=True,)
+    
     def _is_shippable(self):
         return not self.deferred_shipping
     is_shippable = property(fget=_is_shippable)
@@ -447,6 +476,12 @@ class CustomProduct(models.Model):
     
     def __unicode__(self):
         return u"CustomProduct: %s" % self.product.name
+        
+    def get_valid_options(self):
+        """
+        Returns all of the valid options
+        """
+        return get_all_options(self)
     
     class Admin:
         pass
@@ -460,6 +495,13 @@ class CustomTextField(models.Model):
     slug = models.SlugField()
     products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'),
         edit_inline=models.TABULAR, num_in_admin=3, related_name='custom_text_fields')
+    sort_order = models.IntegerField(_("Sort Order"),
+        help_text=_("The display order for this group."))
+    price_change = models.DecimalField(_("Price Change"), max_digits=10, decimal_places=2, blank=True, null=True)
+        
+    class Meta:
+        ordering = ('sort_order',)
+
 
 class ConfigurableProduct(models.Model):
     """
@@ -497,14 +539,14 @@ class ConfigurableProduct(models.Model):
                 sublist.append(value)
             masterlist.append(sublist)
             sublist = []
-        return self._cross_list(masterlist)
+        return _cross_list(masterlist)
 
     def get_valid_options(self):
         """
         Returns the same output as get_all_options(), but filters out Options that this
         ConfigurableProduct doesn't have a ProductVariation for.
         """
-        opts = self.get_all_options()
+        opts = get_all_options(self)
         newopts = []
         for a in opts:
             if self.get_product_count(a):

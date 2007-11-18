@@ -53,8 +53,8 @@
                 {% endifnotequal %}
                 {% for detail in cartitem.details.all %}
                     {% if not forloop.first %}<br />{% endif %}
-                    {{ detail.customfield.name }}: 
-                    {{ detail.detail }}
+                    {{ detail.name }}: 
+                    {{ detail.value }}
                 {% endfor %}
             </td>
             <td>&nbsp;</td>

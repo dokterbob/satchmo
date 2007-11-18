@@ -4,10 +4,11 @@ from decimal import Decimal
 from django.conf import settings
 from django.core.mail import send_mail
 from satchmo.configuration import config_value
-from satchmo.contact.models import OrderItem
+from satchmo.contact.models import OrderItem, OrderItemDetail
 from satchmo.shop.models import Config
 from satchmo.shop.utils import load_module
 from socket import error as SocketError
+from satchmo.product.models import CustomTextField
 import logging
 
 log = logging.getLogger('pay_ship')
@@ -44,7 +45,14 @@ def pay_ship_save(new_order, cart, contact, shipping, discount):
         new_order_item = OrderItem(order=new_order, product=item.product, quantity=item.quantity,
         unit_price=item.unit_price, line_item_price=item.line_total)
         new_order_item.save()
-    
+        if item.has_details:
+            # Check to see if cartitem has CartItemDetails
+            # If so, add here.
+            #obj = CustomTextField.objects.get(id=item.details.values()[0]['customfield_id'])
+            #val = item.details.values()[0]['detail']
+            for detail in item.details.all():
+                new_details = OrderItemDetail(item=new_order_item, value=detail.value, name=detail.name, price_change=detail.price_change, sort_order=detail.sort_order)
+                new_details.save()
     new_order.recalculate_total()
 
 def send_order_confirmation(newOrder, template='email/order_complete.txt'):

@@ -5,9 +5,9 @@ from django.template import RequestContext
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from django.utils.datastructures import MultiValueDictKeyError
-from satchmo.product.models import Product
+from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
-from satchmo.shop.models import Cart, CartItem
+from satchmo.shop.models import Cart, CartItem, CartItemDetails
 from satchmo.shop.views.utils import bad_or_missing
 import logging
 
@@ -87,8 +87,25 @@ def add(request, id=0):
                 
         if 'CustomProduct' in p_types:
             for customfield in product.customproduct.custom_text_fields.all():
-                details.append((customfield, request.POST["custom_%s" % customfield.slug]))
-            
+                data = { 'name' : customfield.name,
+                         'value' : request.POST["custom_%s" % customfield.slug],
+                         'sort_order': customfield.sort_order,
+                         'price_change': customfield.price_change }         
+                details.append(data)
+                data = {}
+            chosenOptions = optionset_from_post(product.customproduct, request.POST)
+            manager = OptionManager()
+            for choice in chosenOptions:
+                result = manager.from_unique_id(choice)
+                print result
+                data = { 'name': result.optionGroup,
+                          'value': result.name,
+                          'sort_order': result.displayOrder,
+                          'price_change': result.price_change
+                }
+                details.append(data)
+                data = {}
+                
         template = find_product_template(product)
     except (Product.DoesNotExist, MultiValueDictKeyError):
         return bad_or_missing(request, _('The product you have requested does not exist.'))

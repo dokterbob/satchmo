@@ -9,6 +9,13 @@
             {% else %}
                 [<a href="{% url satchmo_charge_remaining custom.id %}">{% trans 'Charge remaining amount' %}</a>]
             {% endifequal %}
+       
+            <li>{% trans 'Product Details' %}</li>
+            <ul>
+            {% for detail in custom.orderitemdetail_set.all %}
+                <li> {{detail.name}} - {{detail.value}} </li>
+            {% endfor %}
+            </ul>
         </li>
     {% endfor %}
 </fieldset>

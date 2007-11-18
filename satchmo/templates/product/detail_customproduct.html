@@ -35,6 +35,20 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_cart_add %}" method="post">
+
+{% for option_group in options %}
+ {{ option_group.name }}
+    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+    {% for choice in option_group.items %}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
+        {% if choice.price_change %}
+            {% option_price choice %}
+        {% endif %}
+     </option>
+    {% endfor %}
+      </select> 
+{% endfor %} 
+
 {% for custom in product.customproduct.custom_text_fields.all %}
 <div>
 {{ custom.name }}<br/>

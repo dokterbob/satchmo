@@ -79,6 +79,9 @@ def get_product(request, product_slug, selected_options=Set()):
 
     if 'ConfigurableProduct' in p_types:
         options = serialize_options(product.configurableproduct, selected_options)
+    
+    if 'CustomProduct' in p_types:
+        options = serialize_options(product.customproduct, selected_options)
 
     template = find_product_template(product, producttypes=p_types)
     ctx = RequestContext(request, {'product': product, 'options': options})

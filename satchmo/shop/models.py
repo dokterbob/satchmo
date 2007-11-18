@@ -173,8 +173,8 @@ class Cart(models.Model):
             itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
         itemToModify.quantity += number_added            
         itemToModify.save()
-        for field, val in details:
-            itemToModify.add_detail(field, val)
+        for data in details:
+            itemToModify.add_detail(data)
         
 
     def remove_item(self, chosen_item_id, number_removed):
@@ -231,11 +231,19 @@ class CartItem(models.Model):
         return self.product.name
     description = property(_get_description)
 
-    def add_detail(self, customfield, val):
-        detl = CartItemDetails(cartitem=self, customfield=customfield, detail=val)
+    def add_detail(self, data):
+        detl = CartItemDetails(cartitem=self, name=data['name'], value=data['value'], sort_order=data['sort_order'], price_change=data['price_change'])
         detl.save()
         #self.details.add(detl)
 
+    def _has_details(self):
+        """
+        Determine if this specific item has more detail
+        """
+        return (self.details.count() > 0)
+        
+    has_details = property(_has_details)
+    
     def __unicode__(self):
         currency = config_value('SHOP', 'CURRENCY')
         return u'%s - %s %s%s' % (self.quantity, self.product.name,
@@ -248,6 +256,12 @@ class CartItemDetails(models.Model):
     """
     An arbitrary detail about a cart item.
     """
-    customfield = models.ForeignKey(CustomTextField, core=True)
     cartitem = models.ForeignKey(CartItem, related_name='details', edit_inline=True, core=True)
-    detail = models.TextField(_('detail'))
+    value = models.TextField(_('detail'))
+    name = models.CharField(_('name'), max_length=100)
+    price_change = models.DecimalField(_("Item Detail Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
+    sort_order = models.IntegerField(_("Sort Order"),
+        help_text=_("The display order for this group."))
+        
+    class Meta:
+        ordering = ('sort_order',)
