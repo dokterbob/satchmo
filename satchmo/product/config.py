@@ -5,13 +5,7 @@ from satchmo.shop.utils import load_module
 
 PRODUCT_GROUP = ConfigurationGroup('PRODUCT', _('Product Settings'))
 
-#TODO, add to this list when done
-#    ('product', 'DownloadableProduct'),
-#    ('product', 'BundledProduct'),
-
-config_register([
-
-MultipleStringValue(PRODUCT_GROUP,
+PRODUCT_TYPES = config_register(MultipleStringValue(PRODUCT_GROUP,
     'PRODUCT_TYPES',
     description=_("Product Model Options"),
     default=['product::ConfigurableProduct', 'product::ProductVariation'],
@@ -19,8 +13,10 @@ MultipleStringValue(PRODUCT_GROUP,
              ('product::ProductVariation', _('Product Variation')),
              ('product::CustomProduct', _('Custom Order')),
              ('product::DownloadableProduct', _('Downloable Product'))]
-    ),
- 
+    ))
+    
+config_register([
+
 StringValue(PRODUCT_GROUP,
     'IMAGE_DIR',
     description=_("Upload Image Dir"),
@@ -41,7 +37,9 @@ StringValue(PRODUCT_GROUP,
     help_text=_("""This is only used if you use Downloadable Products.  
 This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  
 We can handle it any which way."""),
-    default="protected"),
+    default="protected",
+    requires=PRODUCT_TYPES,
+    requiresvalue='product::DownloadableProduct'),
     
 ])
     
