@@ -5,17 +5,11 @@ Taken from a posting on the Django mailing list.
 Thanks to Vasily Sulatskov for sending this to the list.
 """
 
+from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
 from django.core.validators import email_re
 
-class BasicBackend:
-    def get_user(self, user_id):
-        try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-            return None
-
-class EmailBackend(BasicBackend):
+class EmailBackend(ModelBackend):
     def authenticate(self, username=None, password=None):
         #If username is an email address, then try to pull it up
         if email_re.search(username):
