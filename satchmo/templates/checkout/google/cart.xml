@@ -9,8 +9,8 @@
     </merchant-private-data>
     <items>
         {% for orderitem in order.orderitem_set.all %}<item>
-        <item-name>{{ orderitem.product.name }}</item-name>
-        <item-description>{{ orderitem.product.description }}</item-description>
+        <item-name>{{ orderitem.product.translated_name }}</item-name>
+        <item-description>{{ orderitem.product.translated_description }}</item-description>
         <unit-price currency="{{ currency }}">{{ orderitem.unit_price }}</unit-price>
         <quantity>{{ orderitem.quantity }}</quantity>
       </item>{% endfor %}

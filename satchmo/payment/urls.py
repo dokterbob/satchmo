@@ -12,7 +12,8 @@ config = config_get_group('PAYMENT')
 urlpatterns = patterns('satchmo.payment.views',
      (r'^$', 'contact_info', {'SSL': config.SSL.value}, 'satchmo_checkout-step1'),
      (r'custom/charge/(?P<orderitem_id>\d+)/$', 'charge_remaining', {}, 'satchmo_charge_remaining'),
-     (r'custom/charge/$', 'charge_remaining_post', {}, 'satchmo_charge_remaining_post')
+     (r'custom/charge/$', 'charge_remaining_post', {}, 'satchmo_charge_remaining_post'),
+     (r'^balance/$', 'balance_remaining', {'SSL' : config.SSL.value}, 'satchmo_balance_remaining')
 )
 
 # now add all enabled module payment settings

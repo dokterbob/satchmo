@@ -365,6 +365,23 @@ class Order(models.Model):
         orderstatus.timestamp = datetime.datetime.now()
         orderstatus.order = self
         orderstatus.save()
+        
+    def add_variable(self, key, value):
+        """Add an OrderVariable, used for misc stuff that is just too small to get its own field"""
+        try:
+            v = self.variables.get(key__exact=key)
+            v.value = value
+        except OrderVariable.DoesNotExist:
+            v = OrderVariable(order=self, key=key, value=value)
+        v.save()
+
+    def get_variable(self, key, default=None):
+        qry = self.variables.filter(key__exact=key)
+        ct = qry.count()
+        if ct == 0:
+            return default
+        else:
+            return qry[0]
 
     def copy_addresses(self):
         """
@@ -574,10 +591,10 @@ class OrderItem(models.Model):
         max_digits=6, decimal_places=2)
 
     def __unicode__(self):
-        return self.product.name
+        return self.product.translated_name()
 
     def _get_category(self):
-        return(self.product.get_category.name)
+        return(self.product.get_category.translated_name())
     category = property(_get_category)
 
     class Meta:
@@ -642,7 +659,7 @@ class DownloadLink(models.Model):
         return u"%s - %s" % (self.downloadable_product.product.slug, self.time_stamp)
     
     def _product_name(self):
-        return u"%s" % (self.downloadable_product.product.name)
+        return u"%s" % (self.downloadable_product.product.translated_name)
     product_name=property(_product_name)        
     
     class Admin:
@@ -713,3 +730,18 @@ class OrderPayment(models.Model):
     class Meta:
         verbose_name = _("Order Payment")
         verbose_name_plural = _("Order Payments")
+        
+class OrderVariable(models.Model):
+    order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="variables")
+    key = models.SlugField(_('key'), core=True)
+    value = models.CharField(_('value'), core=True, max_length=100)
+
+    class Meta:
+        ordering=('key',)
+
+    def __unicode__(self):
+        if len(self.value)>10:
+            v = self.value[:10] + '...'
+        else:
+            v = self.value
+        return u"OrderVariable: %s=%s" % (self.key, v)

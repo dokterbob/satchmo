@@ -1,13 +1,18 @@
 from decimal import Decimal
+from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from satchmo.contact.models import OrderItem
+from satchmo.configuration import config_get_group, config_value
+from satchmo.contact.models import Order, OrderItem
+from satchmo.payment.common.forms import PaymentMethodForm
 from satchmo.payment.common.views import common_contact
+from satchmo.payment.urls import lookup_url
 from satchmo.shop.views.utils import bad_or_missing
 import django.newforms as forms
 import logging
+
 
 log = logging.getLogger('payment.views')
 
@@ -16,6 +21,40 @@ class CustomChargeForm(forms.Form):
     amount = forms.DecimalField(label=_('New price'), required=False)
     shipping = forms.DecimalField(label=_('Shipping adjustment'), required=False)
     notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
+
+def balance_remaining(request):
+    order = None
+    orderid = request.session.get('orderID')
+    if orderid:
+        try:
+            order = Order.objects.get(pk=orderid)
+        except Order.DoesNotExist:
+            # TODO: verify user against current user
+            pass
+            
+    if not order:
+        url = urlresolvers.reverse('satchmo_checkout-step1')
+        return HttpResponseRedirect(url)
+
+    if request.method == "POST":
+        new_data = request.POST.copy()
+        form = PaymentMethodForm(new_data)
+        if form.is_valid():
+            data = form.cleaned_data
+            modulename = 'PAYMENT_' + data['paymentmethod']
+            paymentmodule = config_get_group(modulename)
+            url = lookup_url(paymentmodule, 'satchmo_checkout-step2')
+            return HttpResponseRedirect(url)
+        
+    else:
+        form = PaymentMethodForm()
+        
+    ctx = RequestContext(request, {'form' : form, 
+        'order' : order,
+        'paymentmethod_ct': len(config_value('PAYMENT', 'MODULES'))
+    })
+    return render_to_response('checkout/balance_remaining.html', ctx)
+    
 
 def contact_info(request):
     return common_contact.contact_info(request)

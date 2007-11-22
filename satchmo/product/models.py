@@ -12,11 +12,14 @@ from decimal import Decimal
 from django.conf import settings
 from django.core import validators, urlresolvers
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.shop.utils import url_join
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
+import logging
+
+log = logging.getLogger('product.models')
 
 def normalize_dir(dir_name):
     if not dir_name.startswith('./'):
@@ -44,6 +47,12 @@ class Category(models.Model):
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
+
+    def translated_description(self, language_code=None):
+        return lookup_translation(self, 'description', language_code)
+
+    def translated_name(self, language_code=None):
+        return lookup_translation(self, 'name', language_code)
 
     def _recurse_for_parents(self, cat_obj):
         p_list = []
@@ -76,9 +85,9 @@ class Category(models.Model):
         name_list = []
         url_list = []
         for cat in self._recurse_for_parents(self):
-            name_list.append(cat.name)
+            name_list.append(cat.translated_name())
             url_list.append(cat.get_absolute_url())
-        name_list.append(self.name)
+        name_list.append(self.translated_name())
         url_list.append(self.get_absolute_url())
         return zip(name_list, url_list)
 
@@ -127,6 +136,26 @@ class Category(models.Model):
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
 
+class CategoryTranslation(models.Model):
+    """A specific language translation for a `Category`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    category = models.ForeignKey(Category, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
+    description = models.TextField(_("Description of category"), default='', blank=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('Category Translation')
+        verbose_name_plural = _('Category Translations')
+        ordering = ('category', 'name','languagecode')
+        unique_together = ('category', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"CategoryTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.category, self.name)
+
 class OptionGroup(models.Model):
     """
     A set of options that can be applied to an item.
@@ -140,6 +169,12 @@ class OptionGroup(models.Model):
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
 
+    def translated_description(self, language_code=None):
+        return lookup_translation(self, 'description', language_code)
+
+    def translated_name(self, language_code=None):
+        return lookup_translation(self, 'name', language_code)
+        
     def __unicode__(self):
         if self.description:
             return u"%s - %s" % (self.name, self.description)
@@ -153,6 +188,27 @@ class OptionGroup(models.Model):
         ordering = ['sort_order', 'name']
         verbose_name = _("Option Group")
         verbose_name_plural = _("Option Groups")
+
+class OptionGroupTranslation(models.Model):
+    """A specific language translation for an `OptionGroup`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    optiongroup = models.ForeignKey(OptionGroup, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    name = models.CharField(_("Translated OptionGroup Name"), max_length=255, core=True)
+    description = models.TextField(_("Description of OptionGroup"), default='', blank=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('Option Group Translation')
+        verbose_name_plural = _('Option Groups Translations')
+        ordering = ('optiongroup', 'name','languagecode')
+        unique_together = ('optiongroup', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"OptionGroupTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.optiongroup, self.name)
+
 
 class OptionManager(models.Manager):
     def from_unique_id(self, str):
@@ -176,6 +232,9 @@ class Option(models.Model):
         help_text=_("This is the price differential for this option."))
     displayOrder = models.IntegerField(_("Display Order"))
 
+    def translated_name(self, language_code=None):
+        return lookup_translation(self, 'name', language_code)
+
     class Meta:
         ordering = ('optionGroup', 'displayOrder', 'name')
         unique_together = (('optionGroup', 'value'),)
@@ -193,6 +252,26 @@ class Option(models.Model):
     def __unicode__(self):
         return u'%s: %s' % (self.optionGroup.name, self.name)
 
+class OptionTranslation(models.Model):
+    """A specific language translation for an `Option`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    option = models.ForeignKey(Option, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('Option Translation')
+        verbose_name_plural = _('Option Translations')
+        ordering = ('option', 'name','languagecode')
+        unique_together = ('option', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"OptionTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.option, self.name)
+
+
 class ProductManager(models.Manager):
     def active(self):
         return self.filter(active=True)
@@ -201,10 +280,10 @@ class Product(models.Model):
     """
     Root class for all Products
     """
-    name = models.CharField(_("Full Name"), max_length=255)
+    name = models.CharField(_("Full Name"), max_length=255, help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
     slug = models.SlugField(_("Slug Name"), unique=True, prepopulate_from=('name',), core=True, blank=False)
-    short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
-    description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
+    short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
+    description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     category = models.ManyToManyField(Category, filter_interface=True, blank=True, verbose_name=_("Category"))
     items_in_stock = models.IntegerField(_("Number in stock"), default=0)
     meta = models.TextField(_("Meta Description"), max_length=200, blank=True, null=True, help_text=_("Meta description for this product"))
@@ -247,6 +326,15 @@ class Product(models.Model):
         return img
 
     main_image = property(_get_mainImage)
+            
+    def translated_description(self, language_code=None):
+        return lookup_translation(self, 'description', language_code)
+    
+    def translated_name(self, language_code=None):
+        return lookup_translation(self, 'name', language_code)
+    
+    def translated_short_description(self, language_code=None):
+        return lookup_translation(self, 'short_description', language_code)
 
     def _get_fullPrice(self):
         """
@@ -399,6 +487,27 @@ class Product(models.Model):
         return True
     is_shippable = property(_get_shippable)
 
+class ProductTranslation(models.Model):
+    """A specific language translation for a `Product`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    product = models.ForeignKey('Product', edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    name = models.CharField(_("Full Name"), max_length=255, core=True)
+    short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
+    description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('Product Translation')
+        verbose_name_plural = _('Product Translations')
+        ordering = ('product', 'name','languagecode')
+        unique_together = ('product', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"ProductTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.product, self.name)
+
 def _cross_list(sequences):
     """
     Code taken from the Python cookbook v.2 (19.9 - Looping through the cross-product of multiple iterators)
@@ -499,8 +608,30 @@ class CustomTextField(models.Model):
         help_text=_("The display order for this group."))
     price_change = models.DecimalField(_("Price Change"), max_digits=10, decimal_places=2, blank=True, null=True)
         
+    def translated_name(self, language_code=None):
+        return lookup_translation(self, 'name', language_code)
+        
     class Meta:
         ordering = ('sort_order',)
+
+class CustomTextFieldTranslation(models.Model):
+    """A specific language translation for a `CustomTextField`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    customtextfield = models.ForeignKey(CustomTextField, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, core=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('CustomTextField Translation')
+        verbose_name_plural = _('CustomTextField Translations')
+        ordering = ('customtextfield', 'name','languagecode')
+        unique_together = ('customtextfield', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"CustomTextFieldTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.customtextfield, self.name)
 
 
 class ConfigurableProduct(models.Model):
@@ -858,6 +989,9 @@ class ProductImage(models.Model):
         null=True, blank=True)
     sort = models.IntegerField(_("Sort Order"), core=True)
 
+    def translated_caption(self, language_code=None):
+        return lookup_translation(self, 'caption', language_code)
+
     def _get_filename(self):
         if self.product:
             return '%s-%s' % (self.product.slug, self.id)
@@ -881,4 +1015,100 @@ class ProductImage(models.Model):
 
     class Admin:
         pass
+        
+class ProductImageTranslation(models.Model):
+    """A specific language translation for a `ProductImage`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    productimage = models.ForeignKey(ProductImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
 
+    class Meta:
+        verbose_name = _('Product Image Translation')
+        verbose_name_plural = _('Product Image Translations')
+        ordering = ('productimage', 'caption','languagecode')
+        unique_together = ('productimage', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"ProductImageTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.productimage, self.name)
+
+UNSET = object()
+
+def lookup_translation(obj, attr, language_code=None, version=-1):
+    """Get a translated attribute by language.
+
+    If specific language isn't found, returns the attribute from the base object. 
+    """
+    if not language_code:
+        language_code = get_language()
+    
+    log.debug("looking up translation [%s] %s", language_code, attr)
+        
+    if not hasattr(obj, '_translationcache'):
+        obj._translationcache = {}
+        
+    short_code = language_code
+    pos = language_code.find('_')
+    if pos>-1:
+        short_code = language_code[:pos]
+    
+    else:
+        pos = language_code.find('-')
+        if pos>-1:
+            short_code = language_code[:pos]
+        
+    trans = None
+    has_key = obj._translationcache.has_key(language_code)
+    if has_key:
+        if obj._translationcache[language_code] == None and short_code != language_code:
+            return lookup_translation(obj, attr, short_code)
+    
+    if not has_key:        
+        q = obj.translations.filter(
+            languagecode__iexact = language_code)
+    
+        if q.count() == 0:
+            obj._translationcache[language_code] = None
+            
+            if short_code != language_code:
+                return lookup_translation(obj, attr, language_code=short_code, version=version)
+            
+            else:
+                q = obj.translations.filter(
+                    languagecode__istartswith = language_code)
+                        
+        if q.count()>0:
+            trans = None
+            if version > -1:
+                trans = q.order_by('-version')[0]
+            else:
+                # try to get the requested version, if it is available,
+                # else fallback to the most recent version
+                fallback = None
+                for t in q.order_by('-version'):
+                    if not fallback:
+                        fallback = t
+                    if t.version == version:
+                        trans = t
+                        break
+                if not trans:
+                    trans = fallback
+
+            obj._translationcache[language_code] = trans
+        
+    if not trans:
+        trans = obj._translationcache[language_code]
+        
+    if not trans:
+        trans = obj
+        log.debug("No such language version, using obj")                
+        
+    val = getattr(trans, attr, UNSET)
+    if trans != obj and (val in (None, UNSET)):
+        val = getattr(obj, attr)
+        
+    log.debug("Translated version: %s", val)
+    return val

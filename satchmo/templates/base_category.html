@@ -26,22 +26,22 @@
 
 {% block content %}
 <div id="product_category">
-<h3>{{ category.name }}</h3>
+<h3>{{ category.translated_name }}</h3>
     {% for product in category.product_set.active %} 
         {% if forloop.first %} <ul>  {% endif %}
             <li><a href="{{ product.get_absolute_url }}">
             <img src="{{ product.main_image.get_picture_url|thumbnail:"width=85" }}" width="85" /> </a>
-            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a></li>
+            <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></li>
         {% if forloop.last %} </ul> {% endif %}
     {% endfor %}
 {% if child_categories %}
         {% for cat in child_categories %}
-            <h4>{{cat.name}}</h4>
+            <h4>{{cat.translated_name}}</h4>
             {% for product in cat.product_set.active %}
                 {% if forloop.first %} <ul>  {% endif %}
                 <li><a href="{{ product.get_absolute_url }}">
                 <img src="{{ product.main_image.get_picture_url|thumbnail:"width=85" }}" width="85" /> </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a></li>
+                <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></li>
                 {% if forloop.last %} </ul> {% endif %}
             {% endfor %}
         {% endfor %}

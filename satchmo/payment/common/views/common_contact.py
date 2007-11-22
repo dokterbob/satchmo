@@ -28,7 +28,7 @@ def contact_info(request):
 
     contact = Contact.from_request(request, create=False)
 
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True

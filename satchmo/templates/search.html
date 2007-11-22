@@ -15,7 +15,7 @@
 		<h4>Categories</h4>
 		<ul>
 	    {% for category in results.categories %}
-	        <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+	        <li><a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a></li>
 	    {% endfor %}
 		</ul>
 	{% endif %}
@@ -24,7 +24,7 @@
 		<h4>Products</h4>
 		<ul>
 		{% for product in results.products %}
-	        <li><a href="{{ product.get_absolute_url }}">{{ product.name }}</a> for {{ product.unit_price|currency}}</li>
+	        <li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> for {{ product.unit_price|currency}}</li>
 	    {% endfor %}
 		</ul>
 	{% endif %}

@@ -87,7 +87,7 @@ def add(request, id=0):
                 
         if 'CustomProduct' in p_types:
             for customfield in product.customproduct.custom_text_fields.all():
-                data = { 'name' : customfield.name,
+                data = { 'name' : customfield.translated_name(),
                          'value' : request.POST["custom_%s" % customfield.slug],
                          'sort_order': customfield.sort_order,
                          'price_change': customfield.price_change }         
@@ -99,7 +99,7 @@ def add(request, id=0):
                 result = manager.from_unique_id(choice)
                 print result
                 data = { 'name': result.optionGroup,
-                          'value': result.name,
+                          'value': result.translated_name(),
                           'sort_order': result.displayOrder,
                           'price_change': result.price_change
                 }
@@ -159,7 +159,7 @@ def add_ajax(request, id=0, template="json.html"):
     
     else:
         data['id'] = product.id
-        data['name'] = product.name
+        data['name'] = product.translated_name()
 
         try:
             quantity = int(request.POST['quantity'])

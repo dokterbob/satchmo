@@ -52,7 +52,7 @@ def serialize_options(config_product, selected_options=Set()):
         for option in options:
             if not d.has_key(option.optionGroup_id):
                 d[option.optionGroup.id] = {
-                        'name': option.optionGroup.name,
+                        'name': option.optionGroup.translated_name(),
                         'id': option.optionGroup.id,
                         'items': []
                         }

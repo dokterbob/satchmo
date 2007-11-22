@@ -228,7 +228,7 @@ class CartItem(models.Model):
     line_total = property(_get_line_total)
 
     def _get_description(self):
-        return self.product.name
+        return self.product.translated_name()
     description = property(_get_description)
 
     def add_detail(self, data):

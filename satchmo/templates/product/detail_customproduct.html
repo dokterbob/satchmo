@@ -26,8 +26,8 @@
 {% endblock %}
 
 {% block content %}
-<h4>{% blocktrans with product.name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
-<p>{{ product.description }}</p>
+<h4>{% blocktrans with product.translated_name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
+<p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
 {% trans "Price" %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
@@ -37,10 +37,10 @@
 <form id="options" action="{% url satchmo_cart_add %}" method="post">
 
 {% for option_group in options %}
- {{ option_group.name }}
+ {{ option_group.translated_name }}
     <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
     {% for choice in option_group.items %}
-     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
         {% if choice.price_change %}
             {% option_price choice %}
         {% endif %}
@@ -51,7 +51,7 @@
 
 {% for custom in product.customproduct.custom_text_fields.all %}
 <div>
-{{ custom.name }}<br/>
+{{ custom.translated_name }}<br/>
 <textarea name="custom_{{ custom.slug }}" rows="3" cols="40"></textarea>
 </div>
 {% endfor %}
