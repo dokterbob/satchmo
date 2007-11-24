@@ -3,14 +3,13 @@ from django.conf import settings
 from django.template import Context
 from django.template import loader
 from django.utils.translation import ugettext as _
-from satchmo.configuration import config_value
 from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
 from satchmo.payment.config import payment_choices
-from satchmo.payment.urls import lookup_template
+from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
-from satchmo.shop.utils import load_module
+from satchmo.shop.utils.dynamic import lookup_template
 from satchmo.shop.views.utils import CreditCard
 import calendar
 import datetime
@@ -25,21 +24,19 @@ def _get_shipping_choices(paymentmodule, cart, contact):
     shipping_options = []
     shipping_dict = {}
     
-    for module in config_value('SHIPPING','MODULES'):
-        #Create the list of information the user will see
-        shipping_module = load_module(module)
-        shipping_instance = shipping_module.Calc(cart, contact)
-        if shipping_instance.valid():
+    for method in shipping_methods():
+        method.calculate(cart, contact)
+        if method.valid():
             template = lookup_template(paymentmodule, 'shipping_options.html')
             t = loader.get_template(template)
-            shipcost = shipping_instance.cost()
+            shipcost = method.cost()
             c = Context({
                 'amount': shipcost,
-                'description' : shipping_instance.description(),
-                'method' : shipping_instance.method(),
-                'expected_delivery' : shipping_instance.expectedDelivery() })
-            shipping_options.append((shipping_instance.id, t.render(c)))
-            shipping_dict[shipping_instance.id] = shipcost
+                'description' : method.description(),
+                'method' : method.method(),
+                'expected_delivery' : method.expectedDelivery() })
+            shipping_options.append((method.id, t.render(c)))
+            shipping_dict[method.id] = shipcost
     
     return shipping_options, shipping_dict
  

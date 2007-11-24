@@ -1,6 +1,7 @@
 r"""
 >>> from django.db import models
->>> from satchmo.shipping.modules import flat, per
+>>> from satchmo.shipping.modules.flat.shipper import Shipper as flat
+>>> from satchmo.shipping.modules.per.shipper import Shipper as per
 >>> from satchmo.product.models import *
 >>> from satchmo.shop.models import *
 
@@ -18,9 +19,9 @@ True
 True
 >>> cart1.is_shippable
 True
->>> flat.Calc(cart1, None).cost()
+>>> flat(cart1, None).cost()
 Decimal("4.00")
->>> per.Calc(cart1, None).cost()
+>>> per(cart1, None).cost()
 Decimal("12.00")
 
 # TODO: Enable this test when DownloadableProduct is enabled
@@ -33,9 +34,9 @@ Decimal("12.00")
 #False
 #>>> cart1.is_shippable
 #False
-#>>> flat.Calc(cart1, None).cost()
+#>>> flat(cart1, None).cost()
 #Decimal("0.00")
-#>>> per.Calc(cart1, None).cost()
+#>>> per(cart1, None).cost()
 #Decimal("0.00")
 """
 

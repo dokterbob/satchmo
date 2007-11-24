@@ -4,7 +4,7 @@ from django.template import RequestContext
 from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order, Contact, OrderPayment
 from satchmo.payment.common.pay_ship import pay_ship_save, send_order_confirmation
-from satchmo.payment.urls import lookup_url, lookup_template
+from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 
 import logging
@@ -39,7 +39,7 @@ def one_step(request):
     newOrder.add_status(status='Pending', notes = "Order successfully submitted")
 
     orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance, payment=payment_module.KEY.value)
-    orderpayment.save()
+    orderpayment.save()        
 
     #Now, send a confirmation email
     if payment_module['EMAIL'].value:

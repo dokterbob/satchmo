@@ -121,16 +121,17 @@ class ShopTest(TestCase):
         response = self.client.post(prefix+'/product/DJ-Rocks/prices/', {"1" : "S",
                                                       "2" : "B",
                                                       "quantity" : 1})
-        currency = config_get('SHOP', 'CURRENCY')
-        currency.update('C')
-        self.assertEquals('C', config_value('SHOP', 'CURRENCY'))
-        self.assertEquals(response.content, u'["DJ-Rocks_S_B", "C20.00"]')
+        content = response.content.split(',')
+        self.assertEquals(content[0], '["DJ-Rocks_S_B"')
+        self.assert_(content[1].endswith('20.00"]'))
 
         # This tests the option price_change feature, and again the productname
         response = self.client.post(prefix+'/product/DJ-Rocks/prices/', {"1" : "L",
                                                       "2" : "BL",
                                                       "quantity" : 2})
-        self.assertEquals(response.content, u'["DJ-Rocks_L_BL", "C23.00"]')
+        content = response.content.split(',')
+        self.assertEqual(content[0], '["DJ-Rocks_L_BL"')
+        self.assert_(content[1].endswith('23.00"]'))
 
 #        response = self.client.get(prefix+'/product/neat-software/')
 #        self.assertContains(response, "Neat Software", count=1, status_code=200)

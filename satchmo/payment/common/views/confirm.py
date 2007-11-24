@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from satchmo.contact.models import Order
 from satchmo.payment.common.pay_ship import send_order_confirmation
-from satchmo.payment.urls import lookup_url, lookup_template
+from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 import logging
 

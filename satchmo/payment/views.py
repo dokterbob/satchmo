@@ -8,7 +8,7 @@ from satchmo.configuration import config_get_group, config_value
 from satchmo.contact.models import Order, OrderItem
 from satchmo.payment.common.forms import PaymentMethodForm
 from satchmo.payment.common.views import common_contact
-from satchmo.payment.urls import lookup_url
+from satchmo.shop.utils.dynamic import lookup_url
 from satchmo.shop.views.utils import bad_or_missing
 import django.newforms as forms
 import logging

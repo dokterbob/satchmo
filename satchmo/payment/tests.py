@@ -4,7 +4,8 @@ from django.core import urlresolvers
 from django.test import TestCase
 #from models import GiftCertificate
 from satchmo.configuration import config_get_group, config_value
-from urls import lookup_template, lookup_url, make_urlpatterns
+from satchmo.shop.utils.dynamic import lookup_template, lookup_url
+from urls import make_urlpatterns
 #from modules.giftcertificate.utils import generate_certificate_code, generate_code
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'

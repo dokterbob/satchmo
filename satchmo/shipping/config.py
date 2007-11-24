@@ -10,63 +10,49 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
     description=_("Active shipping modules"),
     help_text=_("Select the active shipping modules, save and reload to set any module-specific shipping settings."),
     default=["satchmo.shipping.modules.per"],
-    choices=[('satchmo.shipping.modules.flat', _('Flat rate')),
-             ('satchmo.shipping.modules.per', _('Per piece'))]
+    choices=[('satchmo.shipping.modules.per', _('Per piece'))]
     ))
     
-config_register([
+# --- Load default shipping modules.  Ignore import errors, user may have deleted them. ---
+_default_modules = ('dummy', 'flat', 'per')
 
-DecimalValue(SHIPPING_GROUP,
-    'FLAT_RATE',
-    description=_("Flat shipping"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.flat',
-    default="4.00"),
+for module in _default_modules:
+    try:
+        load_module("satchmo.shipping.modules.%s.config" % module)
+    except ImportError:
+        log.debug('Could not load default shipping module configuration: %s', module)
 
-StringValue(SHIPPING_GROUP,
-    'FLAT_SERVICE',
-    description=_("Flat Shipping Service"),
-    help_text=_("Shipping service used with Flat rate shipping"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.flat',
-    default=u"U.S. Mail"),
-    
-StringValue(SHIPPING_GROUP,
-    'FLAT_DAYS',
-    description=_("Flat Delivery Days"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.flat',
-    default="3 - 4 business days"),
+# --- Load any extra shipping modules. ---
+extra_shipping = getattr(settings, 'CUSTOM_SHIPPING_MODULES', ())
 
-DecimalValue(SHIPPING_GROUP,
-    'PER_RATE',
-    description=_("Per item price"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.per',
-    default="4.00"),
-
-StringValue(SHIPPING_GROUP,
-    'PER_SERVICE',
-    description=_("Per Item Shipping Service"),
-    help_text=_("Shipping service used with per item shipping"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.per',
-    default=u"U.S. Mail"),
-
-StringValue(SHIPPING_GROUP,
-    'PER_DAYS',
-    description=_("Per Item Delivery Days"),
-    requires=SHIPPING_ACTIVE,
-    requiresvalue='satchmo.shipping.modules.per',
-    default="3 - 4 business days")
-
-])
-
-# --- Load any extra payment modules. ---
-extra_payment = getattr(settings, 'CUSTOM_SHIPPING_MODULES', ())
-
-for extra in extra_payment:
+for extra in extra_shipping:
     try:
         load_module("%s.config" % extra)
     except ImportError:
-        log.warn('Could not load payment module configuration: %s' % extra)
+        log.warn('Could not load shipping module configuration: %s' % extra)
+
+class ShippingModuleNotFound(Exception):
+    def __init__(key):
+        self.key = key
+
+def shipping_methods():
+    methods = []
+    for m in config_value('SHIPPING', 'MODULES'):
+        module = load_module(m)
+        methods.extend(module.get_methods())
+    return methods
+    
+def shipping_method_by_key(key):
+    for method in shipping_methods():
+        if method.id == key:
+            return method
+    raise ShippingModuleNotFound(key)
+
+def shipping_choices():
+    choices = []
+    keys = []
+    for method in shipping_methods():
+        key = method.id
+        label = method.description()
+        choices.append((key, label))
+    return choices

@@ -5,24 +5,26 @@ Stores customer, organization, and order information.
 from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+from django.core import urlresolvers
 from django.db import models
+from django.db.models import permalink
+from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _
+from satchmo import tax
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
 from satchmo.discount.models import Discount
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.templatetags.satchmo_currency import moneyfmt
 from satchmo.shop.utils import load_module
-from satchmo import tax
+from signals import order_success
 import config
 import datetime
 import logging
 import operator
 import satchmo.shipping.config
 import sys
-from django.db.models import permalink
-from django.core import urlresolvers
-from django.contrib.sites.models import Site
 
 try:
     from django.utils.safestring import mark_safe
@@ -520,6 +522,8 @@ class Order(models.Model):
             subtype = orderitem.product.get_subtype_with_attr('order_success')
             if subtype:
                 subtype.order_success(self, orderitem)
+        dispatcher.send(signal=order_success, sender=self.__class__, instance=self)
+        
                 
     def _paid_in_full(self):
         """True if total has been paid"""

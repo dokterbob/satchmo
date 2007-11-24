@@ -9,8 +9,8 @@ from satchmo.configuration import config_get_group, config_value
 from satchmo.contact.common import get_area_country_options
 from satchmo.contact.models import Contact
 from satchmo.payment.common.forms import PaymentContactInfoForm
-from satchmo.payment.urls import lookup_url
 from satchmo.shop.models import Cart
+from satchmo.shop.utils.dynamic import lookup_url
 
 def contact_info(request):
     """View which collects demographic information from customer."""

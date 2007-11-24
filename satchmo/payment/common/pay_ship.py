@@ -1,14 +1,15 @@
-from django.template import loader, Context
-from django.utils.translation import ugettext as _
 from decimal import Decimal
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template import loader, Context
+from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.contact.models import OrderItem, OrderItemDetail
+from satchmo.product.models import CustomTextField
+from satchmo.shipping.config import shipping_method_by_key
 from satchmo.shop.models import Config
 from satchmo.shop.utils import load_module
 from socket import error as SocketError
-from satchmo.product.models import CustomTextField
 import logging
 
 log = logging.getLogger('pay_ship')
@@ -18,14 +19,12 @@ def pay_ship_save(new_order, cart, contact, shipping, discount):
     new_order.shipping_cost = Decimal("0.00")
 
     # Save the shipping info
-    for module in config_value('SHIPPING','MODULES'):
-        shipping_module = load_module(module)
-        shipping_instance = shipping_module.Calc(cart, contact)
-        if shipping_instance.id == shipping:
-            new_order.shipping_description = shipping_instance.description().encode()
-            new_order.shipping_method = shipping_instance.method()
-            new_order.shipping_cost = shipping_instance.cost()
-            new_order.shipping_model = shipping
+    shipper = shipping_method_by_key(shipping)
+    shipper.calculate(cart, contact)
+    new_order.shipping_description = shipper.description().encode()
+    new_order.shipping_method = shipper.method()
+    new_order.shipping_cost = shipper.cost()
+    new_order.shipping_model = shipping
 
     # Temp setting of the tax and total so we can save it
     new_order.total = Decimal('0.00')
@@ -77,10 +76,3 @@ def send_order_confirmation(newOrder, template='email/order_complete.txt'):
         else:
             log.fatal('Error sending mail: %s' % e)
             raise IOError('Could not send email, please check to make sure your email settings are correct, and that you are not being blocked by your ISP.')    
-
-
-   
-
-    
-
-

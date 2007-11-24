@@ -13,7 +13,7 @@ from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.config import payment_live
 from satchmo.payment.models import CreditCardDetail
-from satchmo.payment.urls import lookup_url, lookup_template
+from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 
 selection = _("Please Select")
