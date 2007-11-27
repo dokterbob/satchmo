@@ -81,7 +81,7 @@ $(function() {
 {% endif %}
 
 {% for option_group in options %}
- {{ option_group.translated_name }}
+ {{ option_group.name }}
     <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
     {% for choice in option_group.items %}
      <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
