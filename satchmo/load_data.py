@@ -9,7 +9,7 @@ import csv
 import tarfile
 import shutil
 
-if not os.environ.has_key("DJANGO_SETTINGS_MODULE"):
+if "DJANGO_SETTINGS_MODULE" not in os.environ:
     from settings import DJANGO_SETTINGS_MODULE
     os.environ["DJANGO_SETTINGS_MODULE"]=DJANGO_SETTINGS_MODULE
 
@@ -32,11 +32,11 @@ satchmo_apps = [
     'satchmo.supplier',
     'satchmo.shop']
 
-def find_site(): 
+def find_site():
     """Find the site by looking at the environment."""
-    try: 
+    try:
         settings_module = os.environ['DJANGO_SETTINGS_MODULE']
-    except KeyError: 
+    except KeyError:
         raise AssertionError("DJANGO_SETTINGS_MODULE not set.")
 
     settingsl = settings_module.split('.')
@@ -62,50 +62,49 @@ def delete_satchmo():
                 except:
                     print "Failed to delete application %s." % app_name
 
-def delete_db(settings): 
+def delete_db(settings):
     """Delete the old database."""
     engine = settings.DATABASE_ENGINE
-    if engine == 'sqlite3': 
-        try: 
+    if engine == 'sqlite3':
+        try:
             os.unlink(settings.DATABASE_NAME)
-        except OSError: 
+        except OSError:
             pass
-    elif engine == 'mysql': 
+    elif engine == 'mysql':
         import _mysql
-        s = _mysql.connect(host=settings.DATABASE_HOST, 
-                           user=settings.DATABASE_USER, 
+        s = _mysql.connect(host=settings.DATABASE_HOST,
+                           user=settings.DATABASE_USER,
                            passwd=settings.DATABASE_PASSWORD)
-        for cmd in ['drop database if exists %s', 
-                    'create database %s CHARACTER SET utf8 COLLATE utf8_general_ci']: 
+        for cmd in ['drop database if exists %s',
+                    'create database %s CHARACTER SET utf8 COLLATE utf8_general_ci']:
             s.query(cmd % settings.DATABASE_NAME)
-            
+
     elif engine in ('postgresql', 'postgresql_psycopg2'):
 
         if settings.DATABASE_NAME == '':
-            raise AssertionError, "You must specified a value for DATABASE_NAME in local_settings.py."
+            raise AssertionError("You must specify a value for DATABASE_NAME in local_settings.py.")
         if settings.DATABASE_USER == '':
-            raise AssertionError, "You must specified a value for DATABASE_USER in local_settings.py."
+            raise AssertionError("You must specify a value for DATABASE_USER in local_settings.py.")
         params=" --username=%s  --password" % settings.DATABASE_USER
         if settings.DATABASE_HOST:
             params += " --host=%s" % settings.DATABASE_HOST
         if settings.DATABASE_PORT:
             params += " --port=%s" % settings.DATABASE_PORT
         params += " %s" % settings.DATABASE_NAME
-        print """You will be prompted for the password for the user
-        '%s' twice.  Once to drop an existing database and then a second time
-        for create the database """ % settings.DATABASE_USER
+        print("""You will be prompted for the password for the user '%s' twice.
+        Once to drop the existing database and then a second time to create
+        the database.""" % settings.DATABASE_USER)
         for cmd in ['dropdb %s', 'createdb %s']:
-            os.system(cmd % params) 
-    
-    else: 
-        raise AssertionError, "Unknown database engine %s" % engine
+            os.system(cmd % params)
 
+    else:
+        raise AssertionError("Unknown database engine %s" % engine)
 
 def init_and_install():
-    print "Calling syncdb"
+    print("Calling syncdb")
     call_command('syncdb', interactive=True)
     call_command('loaddata', 'l10n_data.xml', interactive=True)
-    
+
 def load_data():
     from satchmo.contact.models import Contact, AddressBook, PhoneNumber
     from satchmo.product.models import Product, Price, ConfigurableProduct, ProductVariation, Category, OptionGroup, Option, ProductImage#, DownloadableProduct
