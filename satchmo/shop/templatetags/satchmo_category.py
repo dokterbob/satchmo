@@ -1,5 +1,8 @@
-from django.template import Library
+from django.template import Library, Node
 from satchmo.product.models import Category
+import logging
+
+log = logging.getLogger('shop.templatetags')
 
 try:
     from xml.etree.ElementTree import Element, SubElement, tostring
@@ -51,3 +54,60 @@ def category_tree(id=None):
 
 register.simple_tag(category_tree)
 
+class CategoryListNode(Node):
+    """Template Node tag which pushes the category list into the context"""
+    def __init__(self, slug, var, nodelist):
+        self.var = var
+        self.slug = slug
+        self.nodelist = nodelist
+
+    def render(self, context):
+                   
+        if self.slug:
+            try:
+                cat = Category.objects.get(slug__iexact=self.slug)
+                cats = cat.child.all()
+            except Category.DoesNotExist:
+                log.warn("No category found for slug: %s", slug)
+                cats = []
+        
+        else:
+            cats = Category.objects.filter(parent__isnull=True)
+                    
+        context[self.var] = cats
+
+        context.push()
+        context[self.var] = cats
+        output = self.nodelist.render(context)
+        context.pop()
+        return output            
+            
+def do_categorylistnode(parser, token):
+    """Push the category list into the context using the given variable name.
+
+    Sample usage::
+
+        {% category_list slug as var %}
+        or
+        {% category_list as var %}
+        
+
+    """
+    args = token.split_contents()
+    ct = len(args)
+    if not ct in (3,4):
+        raise template.TemplateSyntaxError("%r tag expecting '[slug] as varname', got: %s" % (args[0], args))
+    
+    if ct == 3:
+        slug = None
+        var = args[2]
+    else:
+        slug = args[1]
+        var = args[3]
+        
+    nodelist = parser.parse(('endcategory_list',))
+    parser.delete_first_token()
+
+    return CategoryListNode(slug, var, nodelist)
+
+register.tag('category_list', do_categorylistnode)
