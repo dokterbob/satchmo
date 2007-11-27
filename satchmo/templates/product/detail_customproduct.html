@@ -37,7 +37,7 @@
 <form id="options" action="{% url satchmo_cart_add %}" method="post">
 
 {% for option_group in options %}
- {{ option_group.translated_name }}
+ {{ option_group.translated_name}}
     <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
     {% for choice in option_group.items %}
      <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
@@ -51,7 +51,7 @@
 
 {% for custom in product.customproduct.custom_text_fields.all %}
 <div>
-{{ custom.translated_name }}<br/>
+{{ custom.translated_name }} {% if custom.price_change %} ({{ custom.price_change|currency }} {% trans "more" %}){%endif%}<br/>
 <textarea name="custom_{{ custom.slug }}" rows="3" cols="40"></textarea>
 </div>
 {% endfor %}

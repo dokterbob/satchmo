@@ -220,7 +220,13 @@ class CartItem(models.Model):
 
     def _get_line_unitprice(self):
         # Get the qty discount price as the unit price for the line.
-        return self.product.get_qty_price(self.quantity)
+        line_price_delta = Decimal("0")
+        qty_price = self.product.get_qty_price(self.quantity)
+        if self.has_details:
+            for detail in self.details.all():
+                if detail.price_change:
+                    line_price_delta += detail.price_change
+        return (qty_price + line_price_delta)
     unit_price = property(_get_line_unitprice)
 
     def _get_line_total(self):
