@@ -169,6 +169,10 @@ class Cart(models.Model):
     def add_item(self, chosen_item, number_added, details={}):
         try:
             itemToModify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
+            # Custom Products will not be added, they will each get their own line item
+            #TODO: More sophisticated checks to make sure the options really are different
+            if 'CustomProduct' in itemToModify.product.get_subtypes():
+                itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
         except IndexError: #It doesn't exist so create a new one
             itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
         itemToModify.quantity += number_added            
