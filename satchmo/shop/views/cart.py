@@ -97,7 +97,6 @@ def add(request, id=0):
             manager = OptionManager()
             for choice in chosenOptions:
                 result = manager.from_unique_id(choice)
-                print result
                 data = { 'name': result.optionGroup,
                           'value': result.translated_name(),
                           'sort_order': result.displayOrder,
