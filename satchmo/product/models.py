@@ -18,6 +18,10 @@ from satchmo.shop.utils import url_join
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 import logging
+try:
+    from django.utils.safestring import mark_safe
+except ImportError:
+    mark_safe = lambda s:s
 
 log = logging.getLogger('product.models')
 
@@ -1192,4 +1196,4 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
         val = getattr(obj, attr)
         
     log.debug("Translated version: %s", val)
-    return val
+    return mark_safe(val)
