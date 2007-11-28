@@ -11,6 +11,9 @@ Trunk
  * Category code cleanup
  * Highlight active category in the menu
  * Install documentation cleanup
+ * New feature to manage translations of all parts of Satchmo content
+ * Ability to add images to categories & override category sort order
+ * Improvements to CustomProduct to make it more broadly useable
 
 Version 0.6, October 30, 2007
 ----------------
