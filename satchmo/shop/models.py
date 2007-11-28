@@ -228,7 +228,7 @@ class CartItem(models.Model):
         qty_price = self.product.get_qty_price(self.quantity)
         if self.has_details:
             for detail in self.details.all():
-                if detail.price_change:
+                if detail.price_change and detail.value:
                     line_price_delta += detail.price_change
         return (qty_price + line_price_delta)
     unit_price = property(_get_line_unitprice)
