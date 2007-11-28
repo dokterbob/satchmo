@@ -47,6 +47,27 @@ class Category(models.Model):
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
+    ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
+    
+    def _get_mainImage(self):
+        img = False
+        if self.images.count() > 0:
+            img = self.images.order_by('sort')[0]
+        else:
+            if self.parent_id:
+                img = self.parent.main_image
+            
+        if not img:
+            #This should be a "Image Not Found" placeholder image
+            try:
+                img = CategoryImage.objects.filter(cagegory__isnull=True).order_by('sort')[0]
+            except IndexError:
+                import sys
+                print >>sys.stderr, 'Warning: default category image not found - try syncdb'
+
+        return img
+
+    main_image = property(_get_mainImage)
 
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -129,10 +150,10 @@ class Category(models.Model):
 
     class Admin:
         list_display = ('name', '_parents_repr')
-        ordering = ['parent', 'name']
+        ordering = ['parent', 'ordering', 'name']
 
     class Meta:
-        ordering = ['parent', 'name']
+        ordering = ['parent', 'ordering', 'name']
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
 
@@ -155,6 +176,66 @@ class CategoryTranslation(models.Model):
 
     def __unicode__(self):
         return u"CategoryTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.category, self.name)
+
+class CategoryImage(models.Model):
+    """
+    A picture of an item.  Can have many pictures associated with an item.
+    Thumbnails are automatically created.
+    """
+    category = models.ForeignKey(Category, null=True, blank=True,
+        related_name="images",
+        edit_inline=models.TABULAR, num_in_admin=3)
+    picture = ImageWithThumbnailField(verbose_name=_('Picture'), upload_to=upload_dir(),
+        name_field="_filename") #Media root is automatically prepended
+    caption = models.CharField(_("Optional caption"), max_length=100,
+        null=True, blank=True)
+    sort = models.IntegerField(_("Sort Order"), core=True)
+
+    def translated_caption(self, language_code=None):
+        return lookup_translation(self, 'caption', language_code)
+
+    def _get_filename(self):
+        if self.category:
+            return '%s-%s' % (self.category.slug, self.id)
+        else:
+            return 'default'
+    _filename = property(_get_filename)
+
+    def __unicode__(self):
+        if self.category:
+            return u"Image of Category %s" % self.category.slug
+        elif self.caption:
+            return u"Image with caption \"%s\"" % self.caption
+        else:
+            return u"%s" % self.picture
+
+    class Meta:
+        ordering = ['sort']
+        unique_together = (('category', 'sort'),)
+        verbose_name = _("Category Image")
+        verbose_name_plural = _("Category Images")
+
+    class Admin:
+        pass
+
+class CategoryImageTranslation(models.Model):
+    """A specific language translation for a `CategoryImage`.  This is intended for all descriptions which are not the
+    default settings.LANGUAGE.
+    """
+    categoryimage = models.ForeignKey(CategoryImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
+    version = models.IntegerField(_('version'), default=1)
+    active = models.BooleanField(_('active'), default=True)
+
+    class Meta:
+        verbose_name = _('Category Image Translation')
+        verbose_name_plural = _('Category Image Translations')
+        ordering = ('categoryimage', 'caption','languagecode')
+        unique_together = ('categoryimage', 'languagecode', 'version')
+
+    def __unicode__(self):
+        return u"CategoryImageTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.categoryimage, self.name)
 
 class OptionGroup(models.Model):
     """
