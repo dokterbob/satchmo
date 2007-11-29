@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.cache import get_cache
 from django.db.models.fields import ImageField
 from satchmo.thumbnail.text import URLify
+from satchmo.configuration import config_value
 
 image_cache = get_cache('locmem:///')
 
@@ -109,7 +110,7 @@ def make_thumbnail(photo_url, width=None, height=None, root=settings.MEDIA_ROOT,
     try:
         img = Image.open(photo_path).copy()
         img.thumbnail(size, Image.ANTIALIAS)
-        img.save(th_path)
+        img.save(th_path, quality=config_value('SHOP', 'IMAGE_QUALITY'))
     except Exception, err:
         # this goes to webserver error log
         import sys
