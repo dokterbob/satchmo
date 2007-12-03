@@ -166,7 +166,7 @@ class CategoryTranslation(models.Model):
     default settings.LANGUAGE.
     """
     category = models.ForeignKey(Category, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
     description = models.TextField(_("Description of category"), default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
@@ -227,7 +227,7 @@ class CategoryImageTranslation(models.Model):
     default settings.LANGUAGE.
     """
     categoryimage = models.ForeignKey(CategoryImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
@@ -279,7 +279,7 @@ class OptionGroupTranslation(models.Model):
     default settings.LANGUAGE.
     """
     optiongroup = models.ForeignKey(OptionGroup, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated OptionGroup Name"), max_length=255, core=True)
     description = models.TextField(_("Description of OptionGroup"), default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
@@ -342,7 +342,7 @@ class OptionTranslation(models.Model):
     default settings.LANGUAGE.
     """
     option = models.ForeignKey(Option, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
@@ -577,7 +577,7 @@ class ProductTranslation(models.Model):
     default settings.LANGUAGE.
     """
     product = models.ForeignKey('Product', edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Full Name"), max_length=255, core=True)
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
@@ -704,7 +704,7 @@ class CustomTextFieldTranslation(models.Model):
     default settings.LANGUAGE.
     """
     customtextfield = models.ForeignKey(CustomTextField, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
@@ -1106,7 +1106,7 @@ class ProductImageTranslation(models.Model):
     default settings.LANGUAGE.
     """
     productimage = models.ForeignKey(ProductImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
-    languagecode = models.CharField(_('language'), maxlength=10, choices=settings.LANGUAGES)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
