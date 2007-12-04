@@ -30,7 +30,7 @@ def get_locale_conv(loc=None):
             loc = settings.LANGUAGE_CODE
             if loc != startloc:
                 log.warn("Cannot set locale to '%s', using default locale '%s'", startloc, loc)
-                return get_locale_conf(loc)
+                return get_locale_conv(loc)
         
             else:
                 log.fatal("Cannot set locale to default locale '%s', something is misconfigured", loc)
