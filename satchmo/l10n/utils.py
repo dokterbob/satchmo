@@ -1,16 +1,16 @@
+import locale
+import logging
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale
 from satchmo.configuration import config_value
-import locale
-import logging
 
 log = logging.getLogger('l10n.utils')
 
 def get_locale_conv(loc=None):
-    startloc = loc
-    if not loc:
+    if loc is None:
         loc = to_locale(get_language())
+    startloc = loc
 
     # '-' is a language delimiter, not a locale, but people often mess that up
     if loc.find('-') > -1:
@@ -23,18 +23,17 @@ def get_locale_conv(loc=None):
     except locale.Error:
         # darn, try a different path
         pos = loc.find('_')
-        if pos>-1:
+        if pos > -1:
             loc = loc[:pos]
             return get_locale_conv(loc)
         else:
-            loc = settings.LANGUAGE_CODE
-            if loc != startloc:
-                log.warn("Cannot set locale to '%s', using default locale '%s'", startloc, loc)
+            loc = to_locale(settings.LANGUAGE_CODE)
+            if loc != startloc and loc[:loc.find('_')] != startloc:
+                log.warn("Cannot set locale to '%s'. Using default locale '%s'.", startloc, loc)
                 return get_locale_conv(loc)
-        
             else:
-                log.fatal("Cannot set locale to default locale '%s', something is misconfigured", loc)
-                raise ImproperlyConfigured("Bad settings LANGUAGE_CODE")
+                log.fatal("Cannot set locale to default locale '%s'. Something is misconfigured.", loc)
+                raise ImproperlyConfigured("bad settings.LANGUAGE_CODE")
                 
 def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_locale=None):
     """Formats val according to the currency settings in the current locale.
