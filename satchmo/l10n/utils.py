@@ -17,7 +17,7 @@ def get_locale_conv(loc=None):
         loc = to_locale(loc)
 
     try:
-        log.debug('setting locale: %s', loc)
+        log.debug('setting locale: %s', loc.encode('utf-8'))
         locale.setlocale(locale.LC_ALL, locale.normalize(loc))
         return locale.localeconv()
     except locale.Error:
@@ -29,10 +29,10 @@ def get_locale_conv(loc=None):
         else:
             loc = to_locale(settings.LANGUAGE_CODE)
             if loc != startloc and loc[:loc.find('_')] != startloc:
-                log.warn("Cannot set locale to '%s'. Using default locale '%s'.", startloc, loc)
+                log.warn(u"Cannot set locale to '%s'. Using default locale '%s'.", startloc.encode('utf-8'), loc.encode('utf-8'))
                 return get_locale_conv(loc)
             else:
-                log.fatal("Cannot set locale to default locale '%s'. Something is misconfigured.", loc)
+                log.fatal(u"Cannot set locale to default locale '%s'. Something is misconfigured.", loc.encode('utf-8'))
                 raise ImproperlyConfigured("bad settings.LANGUAGE_CODE")
                 
 def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_locale=None):
@@ -43,7 +43,10 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
 
     if places < 0:
         places = conv['int_frac_digits']
-    s = locale.format('%%.%if' % places, abs(val), grouping, monetary=True)
+    try:    # Required because Python < 2.5 does not have monetary arg
+        s = locale.format('%%.%if' % places, abs(val), grouping, monetary=True)
+    except TypeError:
+        s = locale.format('%%.%if' % places, abs(val), grouping)
     # '<' and '>' are markers if the sign must be inserted between symbol and value
     s = '<' + s + '>'
 
