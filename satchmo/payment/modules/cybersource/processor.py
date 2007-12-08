@@ -61,6 +61,11 @@ class PaymentProcessor(object):
         })
         request = t.render(c)
         conn = urllib2.Request(url=self.connection, data=request)
+        try:
+            f = urllib2.urlopen(conn)
+        except urllib2.HTTPError, e:
+            #we probably didn't authenticate properly, make sure the 'v' in your account number is lowercase
+            return(False, '999', 'Problem parsing results')
         f = urllib2.urlopen(conn)
         all_results = f.read()
         tree = fromstring(all_results)
@@ -70,7 +75,7 @@ class PaymentProcessor(object):
         except KeyError:
             return(False, '999', 'Problem parsing results')
         # Ripped from http://apps.cybersource.com/library/documentation/sbc/api_guide/SB_API.pdf
-        response_text = {
+        response_text_dict = {
             '100' : 'Successful transaction.',
             '101' : 'The request is missing one or more required fields.',
             '102' : 'One or more fields in the request contains invalid data.',
@@ -105,7 +110,10 @@ class PaymentProcessor(object):
             '250' : 'Error: The request was received, but there was a timeout at the payment processor.',
             '520' : 'The authorization request was approved by the issuing bank but declined by CyberSource based on your Smart Authorization settings.',
         }
-        response_text = ''
+        if response_text_dict.has_key(reason_code):
+            response_text = response_text_dict[reason_code]
+        else:
+            response_text = 'Unknown failure'
         if reason_code == '100':
             self.order.order_success()
             return(True, reason_code, response_text)
