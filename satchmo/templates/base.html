@@ -56,7 +56,6 @@
             {% if shop.options.LANGUAGE.ALLOW_TRANSLATION.value %}
             <form action="{{shop_base}}/i18n/setlang/" method="post">
             <p> {% trans "Change language" %} </p>
-            <input name="next" type="hidden" value="{{shop_base}}" />
                 <select name="language">
                     {% for lang in shop.options.LANGUAGE.LANGUAGES_AVAILABLE.choice_values %}
                         <option value="{{ lang.0 }}">{{ lang.1 }}</option>
