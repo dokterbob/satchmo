@@ -73,7 +73,7 @@ def display(request, cart = None, error_message = ""):
 def add(request, id=0):
     """Add an item to the cart."""
     #TODO: Error checking for invalid combos
-
+    log.debug('FORM: %s', request.POST)
     try:
         product = Product.objects.get(slug=request.POST['productname'])
         p_types = product.get_subtypes()

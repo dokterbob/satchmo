@@ -43,10 +43,19 @@ def shipping_methods():
     return methods
     
 def shipping_method_by_key(key):
-    for method in shipping_methods():
-        if method.id == key:
-            return method
-    raise ShippingModuleNotFound(key)
+    if key:
+        for method in shipping_methods():
+            if method.id == key:
+                return method
+    else:
+        import satchmo.shipping.modules.no.shipper as noship
+        method = noship.Shipper()
+        
+    if method:
+        return method
+    else:
+        raise ShippingModuleNotFound(key)
+        
 
 def shipping_choices():
     choices = []
