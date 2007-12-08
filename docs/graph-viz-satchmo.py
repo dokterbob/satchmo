@@ -22,7 +22,7 @@ from django.db import models
 from django.db.models import get_models
 from django.db.models.fields.related import \
     ForeignKey, OneToOneField, ManyToManyField
-from django.db.models.fields.generic import GenericRelation
+from django.contrib.contenttypes.generic import GenericRelation 
 from django.template import Template, Context
 import os
 from textwrap import wrap
@@ -32,6 +32,7 @@ os.environ["DJANGO_SETTINGS_MODULE"]="satchmo.settings"
 
 dot_template = """
 digraph {{ name }} 
+    {% autoescape off %} 
    {
   graph [ 
         labelloc = t
@@ -77,6 +78,7 @@ digraph {{ name }}
   {% endfor %}
   {% endfor %}
 }
+{% endautoescape %}
 """
 
 def wrap_doc(docString, wraplimit=45):
@@ -100,7 +102,7 @@ def generate_dot(app_label):
    for appmodel in get_models(app):
       tmpDoc = wrap_doc(appmodel.__doc__)
       model = {
-         'name': appmodel.__name__,
+         'name': app.__name__,
          'fields': [],
          'relations': [],
          'doc': tmpDoc
