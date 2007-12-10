@@ -74,6 +74,14 @@ $(function() {
     <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}
 
+{% with product.translated_attributes as atts %}{% if atts %}
+<p class="productattributes">
+{% for att in product.translated_attributes %}
+{{ att.name }}: {{ att.value }}<br/>
+{% endfor %}
+</p>
+{% endif %}{% endwith %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_cart_add %}" method="post">
 {% if options %}

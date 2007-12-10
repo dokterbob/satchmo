@@ -411,6 +411,14 @@ class Product(models.Model):
         return img
 
     main_image = property(_get_mainImage)
+    
+    def translated_attributes(self, language_code=None):
+        if not language_code:
+            language_code = get_language()
+        q = self.productattribute_set.filter(languagecode__exact = language_code)
+        if q.count() == 0:
+            q = self.productattribute_set.filter(languagecode__isnull = True)
+        return q
             
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -1017,6 +1025,7 @@ class ProductAttribute(models.Model):
     whatever you want to your Products.
     """
     product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=1)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True)
     name = models.SlugField(_("Attribute Name"), max_length=100, core=True)
     value = models.CharField(_("Value"), max_length=255)
 
