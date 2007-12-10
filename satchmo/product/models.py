@@ -7,16 +7,17 @@ options.
 import datetime
 import random
 import sha
-from sets import Set
 from decimal import Decimal
 from django.conf import settings
 from django.core import validators, urlresolvers
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.shop.utils import url_join
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
+from sets import Set
 import logging
 try:
     from django.utils.safestring import mark_safe
@@ -417,7 +418,7 @@ class Product(models.Model):
             language_code = get_language()
         q = self.productattribute_set.filter(languagecode__exact = language_code)
         if q.count() == 0:
-            q = self.productattribute_set.filter(languagecode__isnull = True)
+            q = self.productattribute_set.filter(Q(languagecode__isnull = True) | Q(languagecode__exact = ""))
         return q
             
     def translated_description(self, language_code=None):
@@ -1025,7 +1026,7 @@ class ProductAttribute(models.Model):
     whatever you want to your Products.
     """
     product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=1)
-    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
     name = models.SlugField(_("Attribute Name"), max_length=100, core=True)
     value = models.CharField(_("Value"), max_length=255)
 
@@ -1076,7 +1077,7 @@ class ProductImage(models.Model):
     Thumbnails are automatically created.
     """
     product = models.ForeignKey(Product, null=True, blank=True,
-        edit_inline=models.TABULAR, num_in_admin=3)
+        edit_inline=models.STACKED, num_in_admin=3)
     picture = ImageWithThumbnailField(verbose_name=_('Picture'), upload_to=upload_dir(),
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
