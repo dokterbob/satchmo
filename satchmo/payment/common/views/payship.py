@@ -87,7 +87,7 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
 
             # Create a new order
             newOrder = Order(contact=contact)
-            pay_ship_save(newOrder, tempCart, contact,
+            pay_ship_save(newOrder, working_cart, contact,
                 shipping=data['shipping'], discount=data['discount'])
             request.session['orderID'] = newOrder.id 
 
