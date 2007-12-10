@@ -59,6 +59,8 @@ class Config(models.Model):
     sales_country = models.ForeignKey(Country, blank=True, null=True,
                                      related_name='sales_country',
                                      verbose_name=_("Default country for customers"))
+                                     
+    shipping_countries = models.ManyToManyField(Country, filter_interface=True, blank=True, verbose_name=_("Shipping Countries"), related_name="shop_configs")
 
     def _get_shop_config(cls):
         """Convenience method to get the current shop config"""

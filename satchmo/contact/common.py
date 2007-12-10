@@ -35,7 +35,7 @@ def get_area_country_options(request):
     if not local_only:
         options['country'] = default_country.iso2_code
         countries = [(default_country.iso2_code, default_country.name)]
-        for country in Country.objects.filter(active=True):
+        for country in shop_config.shipping_countries.filter(active=True):
             country_to_choose = (country.iso2_code, country.printable_name)
             #Make sure the default only shows up once
             if country.iso2_code != default_country.iso2_code:
