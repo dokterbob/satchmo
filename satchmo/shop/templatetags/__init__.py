@@ -11,7 +11,7 @@ def _stripquotes(val):
 
     return val
 
-def get_filter_args(argstring, keywords=(), intargs=(), stripquotes=False):
+def get_filter_args(argstring, keywords=(), intargs=(), boolargs=(), stripquotes=False):
     """Convert a string formatted list of arguments into a kwargs dictionary.
     Automatically converts all keywords in intargs to integers.
 
@@ -20,7 +20,7 @@ def get_filter_args(argstring, keywords=(), intargs=(), stripquotes=False):
 
     ex:
     in: get_filter_kwargs('length=10,format=medium', ('length'))
-    out: {'length' : 10, 'format' : 'medium'}
+    out: (), {'length' : 10, 'format' : 'medium'}
     """
     args = []
     kwargs = {}
@@ -31,7 +31,7 @@ def get_filter_args(argstring, keywords=(), intargs=(), stripquotes=False):
             parts = elt.split('=', 1)
             if len(parts) == 1:
                 if stripquotes:
-                    elt=_stripquotes(elt)
+                    elt=stripquotes(elt)
                 args.append(elt)
 
             else:
@@ -50,6 +50,10 @@ def get_filter_args(argstring, keywords=(), intargs=(), stripquotes=False):
                             val = int(val)
                         except ValueError:
                             raise ValueError('Could not convert value "%s" to integer for keyword "%s"' % (val, key))
+                    if key in boolargs:
+                        val = val.lower()
+                        val = val in (1, 't', 'true', 'yes', 'y', 'on')
                     kwargs[key] = val
     return args, kwargs
+
 

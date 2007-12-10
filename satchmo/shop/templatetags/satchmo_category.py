@@ -1,5 +1,6 @@
 from django.template import Library, Node
 from satchmo.product.models import Category
+from satchmo.shop.templatetags import get_filter_args
 import logging
 
 log = logging.getLogger('shop.templatetags')
@@ -109,5 +110,23 @@ def do_categorylistnode(parser, token):
     parser.delete_first_token()
 
     return CategoryListNode(slug, var, nodelist)
+    
 
 register.tag('category_list', do_categorylistnode)
+
+def product_category_siblings(product, args=""):
+    args, kwargs = get_filter_args(args, 
+        keywords=('variations', 'include_self'), 
+        boolargs=('variations', 'include_self'), 
+        stripquotes=True)
+        
+    sibs = product.get_category.product_set.all()
+    if not kwargs.get('variations', True):
+        sibs = [sib for sib in sibs if not sib.has_variants]
+    
+    if not kwargs.get('include_self', True):
+        sibs = [sib for sib in sibs if not sib == product]
+    
+    return sibs
+
+register.filter('product_category_siblings', product_category_siblings)
