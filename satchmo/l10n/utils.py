@@ -20,7 +20,7 @@ def get_locale_conv(loc=None):
         log.debug('setting locale: %s', loc.encode('utf-8'))
         locale.setlocale(locale.LC_ALL, locale.normalize(loc))
         return locale.localeconv()
-    except locale.Error:
+    except (locale.Error, ValueError):
         # darn, try a different path
         pos = loc.find('_')
         if pos > -1:
