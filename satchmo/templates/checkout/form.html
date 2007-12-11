@@ -21,7 +21,7 @@
 {{ form.non_field_errors }}
 {% endif %}
 {% if user.is_anonymous %}
-<form method="post" action="{% url satchmo_login %}">
+<form method="post" action="{% url auth_login %}">
 <input type="hidden" name="next" value="{% url satchmo_checkout-step1 %}" />
 <table>
 		<tr>
