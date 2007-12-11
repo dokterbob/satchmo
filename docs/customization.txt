@@ -72,13 +72,6 @@ For convenience, urls can be modified by changing the SHOP_URLS variable in the
 local_settings.py file.  Any url assigned to this variable will override the existing
 url naming scheme.
 
-Checkout Process Customization
-------------------------------
-
-The checkout process is also designed to be easily configured for your needs.  More details
-of this process are forthcoming.  In the meantime, take a look at the source and see how
-easy it is to modify.
-
 Shipping Module Customization
 -----------------------------
 
@@ -87,10 +80,9 @@ unique needs.
 
 Payment Module Customization
 ----------------------------
+Documentation for payment processing can be found `here </trac/wiki/CustomPaymentModule>`_.
+This documentation will also cover how to customize the checkout process steps for your
+unique needs.
 
-Payment modules are probably the most difficult to provide a cookie cutter approach.  Take a
-look at the payment documentation to see which modules are already configured.  If you
-have a new payment module you would like to add, then contact us on the mailing list for
-hints on how to approach the process.
 
 .. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/
