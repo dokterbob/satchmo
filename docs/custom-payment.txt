@@ -69,8 +69,10 @@ Configuration
 -------------
 
 Each processor will have unique variables that need to be set.  The ``config.py`` file is where
-you can leverage the Satchmo settings capability to add your unique variables.  The working
-modules are great examples of what to setup.  The basic format is:
+you can leverage the Satchmo settings capability to add your unique variables.  Please 
+refer to the `configuation documentation </trac/wiki/ConfigurationSystem>`_ in order to understand 
+how the system works. For more examples, the existing working modules are great examples of what to 
+setup.  The basic format is:
 
 Add the new module into the existing payment modules and give it a name::
 
