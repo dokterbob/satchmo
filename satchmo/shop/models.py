@@ -258,6 +258,7 @@ class CartItem(models.Model):
     
     def __unicode__(self):
         currency = config_value('SHOP', 'CURRENCY')
+        currency = currency.replace("_", " ")
         return u'%s - %s %s%s' % (self.quantity, self.product.name,
             force_unicode(currency), self.line_total)
 

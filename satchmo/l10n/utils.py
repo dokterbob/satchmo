@@ -52,6 +52,7 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
 
     if curr is None:
         curr = config_value('SHOP', 'CURRENCY')
+        curr = curr.replace("_", " ")
     precedes = conv[val<0 and 'n_cs_precedes' or 'p_cs_precedes']
     separated = conv[val<0 and 'n_sep_by_space' or 'p_sep_by_space']
 

@@ -43,8 +43,10 @@ class PaymentProcessor(object):
             'expirationYear' : exp[1],
             'cvNumber' : data.credit_card.ccv
             }
+        currency = self.settings.CURRENCY_CODE.value
+        currency = replace("_", "")
         self.purchase_totals = {
-            'currency' : self.settings.CURRENCY_CODE.value,
+            'currency' : currency,
             'grandTotalAmount' : data.total,
         }
 

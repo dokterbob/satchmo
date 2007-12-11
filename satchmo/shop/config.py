@@ -6,7 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 CURRENCY = config_register(
     StringValue(SHOP_GROUP, 
         'CURRENCY', 
-        description= _("Default currency symbol"), 
+        description= _("Default currency symbol"),
+        help_text= _("Use a '_' character to force a space."),
         default="$"))
 
 ENABLE_RATINGS = config_register(
