@@ -230,20 +230,20 @@ class ShopTest(TestCase):
             status_code=302, target_status_code=200)
         user = User.objects.get(email="sometester@example.com")
         contact = user.contact_set.get()
-        assert contact.billing_address.street1 == "8299 Some Street"
-        assert contact.shipping_address.street1 == "1011 Some Other Street"
-        assert contact.primary_phone.phone == "456-123-5555"
+        self.assertEqual(contact.billing_address.street1, "8299 Some Street")
+        self.assertEqual(contact.shipping_address.street1, "1011 Some Other Street")
+        self.assertEqual(contact.primary_phone.phone, "456-123-5555")
 
     def test_contact_attaches_to_user(self):
         """Check that if a User registers and later creates a Contact, the
         Contact will be attached to the existing User.
         """
         user = User.objects.create_user('teddy', 'sometester@example.com', 'guz90tyc')
-        assert user.contact_set.count() == 0
+        self.assertEqual(user.contact_set.count(), 0)
         self.client.login(username='teddy', password='guz90tyc')
         self.test_cart_adding()
         self.client.post(prefix + '/checkout/', checkout_step1_post_data)
-        assert user.contact_set.count() == 1
+        self.assertEqual(user.contact_set.count(), 1)
 
     def test_logout(self):
         """The logout view should remove the user and contact id from the
@@ -255,10 +255,10 @@ class ShopTest(TestCase):
         self.assertContains(response, "the user you've logged in as doesn't have any contact information.", status_code=200)
         self.test_cart_adding()
         self.client.post(prefix + '/checkout/', checkout_step1_post_data)
-        assert self.client.session.get('custID') is not None
+        self.assert_(self.client.session.get('custID') is not None)
         response = self.client.get('/accounts/logout/')
         self.assertRedirects(response, domain + prefix + '/', status_code=302, target_status_code=200)
-        assert self.client.session.get('custID') is None
+        self.assert_(self.client.session.get('custID') is None)
         response = self.client.get('/accounts/') # test logged in status
         self.assertRedirects(response, domain +'/accounts/login/?next=/accounts/', status_code=302, target_status_code=200)
 

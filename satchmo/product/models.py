@@ -34,7 +34,9 @@ def normalize_dir(dir_name):
     return dir_name
 
 def upload_dir():
-    return normalize_dir(config_value('PRODUCT', 'IMAGE_DIR'))
+    updir = normalize_dir(config_value('PRODUCT', 'IMAGE_DIR'))
+    log.debug('upload dir = %s', updir)
+    return updir
 
 def protected_dir():
     return normalize_dir(config_value('PRODUCT', 'PROTECTED_DIR'))
