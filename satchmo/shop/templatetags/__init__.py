@@ -31,7 +31,7 @@ def get_filter_args(argstring, keywords=(), intargs=(), boolargs=(), stripquotes
             parts = elt.split('=', 1)
             if len(parts) == 1:
                 if stripquotes:
-                    elt=stripquotes(elt)
+                    elt=_stripquotes(elt)
                 args.append(elt)
 
             else:
