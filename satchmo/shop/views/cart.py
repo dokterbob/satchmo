@@ -183,6 +183,15 @@ def add_ajax(request, id=0, template="json.html"):
     log.debug('CART AJAX: %s', data)
 
     return render_to_response(template, {'json' : encoded})
+    
+def agree_terms(request):
+    """Agree to terms"""
+    if request.method == "POST":
+        if request.POST.get('agree_terms', False):
+            url = urlresolvers.reverse('satchmo_checkout-step1')
+            return HttpResponseRedirect(url)
+
+    return display(request, error_message=_('You must accept the terms and conditions.'))    
 
 def remove(request):
     """Remove an item from the cart."""
