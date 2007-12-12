@@ -120,7 +120,7 @@ def product_category_siblings(product, args=""):
         boolargs=('variations', 'include_self'), 
         stripquotes=True)
         
-    sibs = product.get_category.product_set.all()
+    sibs = product.get_category.product_set.all().order_by('ordering', 'name')
     if not kwargs.get('variations', True):
         sibs = [sib for sib in sibs if not sib.has_variants]
     
