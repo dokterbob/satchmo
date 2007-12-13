@@ -1,4 +1,3 @@
-import shipper
 from models import Carrier, Shipper
 
 def get_methods():
