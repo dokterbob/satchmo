@@ -454,4 +454,31 @@ class ConfigCollectGroup(TestCase):
         v = config_collect_values('SHOP', 'collect', 'test', unique=True)
         
         self.assertEqual(v, ['set a', 'set d'])
+        
+class LongSettingTest(TestCase):
+    def setUp(self):
+        caching.cache_delete()
+        wide = config_register(LongStringValue(SHOP_GROUP, 'LONG', ordering=1, default="woot"))
+        self.wide = wide
+        self.wide.update('*' * 1000)
+        
+    def testLongStorage(self):
+        w = config_value('SHOP', 'LONG')
+        self.assertEqual(len(w), 1000)
+        self.assertEqual(w, '*'*1000)
+        
+    def testShortInLong(self):
+        self.wide.update("test")
+        w = config_value('SHOP', 'LONG')
+        self.assertEqual(len(w), 4)
+        self.assertEqual(w, 'test')
     
+    def testDelete(self):
+        remember = self.wide.setting.id
+        self.wide.update('woot')
+        
+        try:
+            q = LongSetting.objects.get(pk = remember)
+            self.fail("Should be deletec")
+        except LongSetting.DoesNotExist:
+            pass

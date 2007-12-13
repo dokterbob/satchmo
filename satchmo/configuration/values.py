@@ -5,7 +5,7 @@ http://code.google.com/p/django-values/
 from django import newforms as forms
 from django.utils.datastructures import SortedDict
 from django.utils.translation import gettext, ugettext_lazy as _
-from models import Setting, SettingNotSet
+from models import find_setting, LongSetting, Setting, SettingNotSet
 from satchmo.shop.utils import load_module, is_string_like, is_list_or_tuple
 import datetime
 import logging
@@ -18,11 +18,11 @@ except ImportError:
 
 __all__ = ['SHOP_GROUP', 'ConfigurationGroup', 'Value', 'BooleanValue', 'DecimalValue', 'DurationValue',
       'FloatValue', 'IntegerValue', 'ModuleValue', 'PercentValue', 'PositiveIntegerValue', 'SortedDotDict',
-      'StringValue', 'MultipleStringValue']
+      'StringValue', 'LongStringValue', 'MultipleStringValue']
 
 log = logging.getLogger('configuration')
 
-NOTSET = "-@@@-"
+NOTSET = object()
 
 class SortedDotDict(SortedDict):
 
@@ -235,9 +235,13 @@ class Value(object):
         field.group = self.group
         field.default_text = self.default_text
         return field
+
+    def make_setting(self, db_value):
+        log.debug('new setting %s.%s', self.group.key, self.key)
+        return Setting(group=self.group.key, key=self.key, value=db_value)
         
     def _setting(self):
-        return Setting.find(self.group.key, self.key)
+        return find_setting(self.group.key, self.key)
         
     setting = property(fget = _setting)
 
@@ -262,8 +266,7 @@ class Value(object):
                 s.value = db_value
                 
             except SettingNotSet:
-                log.debug('new setting %s.%s', self.group.key, self.key)
-                s = Setting(group=self.group.key, key=self.key, value=db_value)
+                s = self.make_setting(db_value)
 
             if self.use_default and self.default == new_value:
                 if s.id:
@@ -471,6 +474,26 @@ class StringValue(Value):
         return unicode(value)
             
     to_editor = to_python
+
+class LongStringValue(Value):
+
+    class field(forms.CharField):
+        def __init__(self, *args, **kwargs):
+            kwargs['required'] = False
+            kwargs['widget'] = forms.Textarea()
+            forms.CharField.__init__(self, *args, **kwargs)
+
+    def make_setting(self, db_value):
+        log.debug('new long setting %s.%s', self.group.key, self.key)
+        return LongSetting(group=self.group.key, key=self.key, value=db_value)        
+
+    def to_python(self, value):
+        if value == NOTSET:
+            value = ""
+        return unicode(value)
+
+    to_editor = to_python
+
 
 class MultipleStringValue(Value):
 
