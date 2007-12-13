@@ -216,7 +216,7 @@ class PhoneNumber(models.Model):
         num_in_admin=1)
     type = models.CharField(_("Description"), choices=PHONE_CHOICES,
         max_length=20, blank=True)
-    phone = models.CharField(_("Phone Number"), blank=True, max_length=12,
+    phone = models.CharField(_("Phone Number"), blank=True, max_length=30,
         core=True)
     primary = models.BooleanField(_("Primary"), default=False)
 
