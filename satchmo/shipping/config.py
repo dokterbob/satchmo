@@ -14,6 +14,11 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
     ))
     
 # --- Load default shipping modules.  Ignore import errors, user may have deleted them. ---
+# DO NOT ADD 'tiered' or 'no' to this list.  
+# 'no' is used internally
+# 'Tiered' is special, since it needs to be added as a module.  To enable it,
+# just add satchmo.shipping.modules.tiered to your INSTALLED_APPS, you don't
+# need to add it to CUSTOM_SHIPPING_MODULES either.
 _default_modules = ('dummy', 'flat', 'per')
 
 for module in _default_modules:

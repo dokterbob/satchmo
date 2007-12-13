@@ -1,6 +1,9 @@
 class BaseShipper(object):
     def __init__(self, cart=None, contact=None):
         self._calculated = False
+        self.cart = cart
+        self.contact = contact 
+        
         if cart or contact:
             self.calculate(cart, contact)
         
