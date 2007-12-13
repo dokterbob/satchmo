@@ -9,6 +9,62 @@ as you would like.  Since everyone has different needs for shipping, there's a s
 but powerful way to define your own shipping modules.
 
 Activate and configure your shipping modules from your site settings page.  Usually this is at
-SHOP_BASE/settings/
- 
- 
+SHOP_BASE/settings/.  You can also access this page from the ``Edit Shop Options`` link on your 
+main admin home page.
+
+.. Note::
+    If you have custom modules you would like to add, make sure it is added to your
+    ``CUSTOM_SHIPPING_MODULES`` list in your local_settings.py file
+
+Available Modules
+-----------------
+
+Satchmo includes several modules in the default distribution.
+
+Dummy
++++++
+
+This module is mainly included in order to demonstrate how you can create your own modules.  If
+you have an interest in creating your own, copy this module to a new directory and use the comments
+to guide you through the process.
+
+Flat
+++++
+
+This is a very simple module that allows you to set a flat rate for all shipments.  It's not very 
+sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
+can be configured through your settings page.
+
+Per
++++
+
+This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
+multiplied by the number of items in your order.  These values are configured through your settings 
+page.
+
+Tiered
+++++++
+
+This one is much more flexible than any of the prior modules, so it requires a little more configuration.  
+It is not enabled by default. 
+
+To enable:
+
+ 1. Add satchmo.shipping.modules.tiered to your settings.py INSTALLED_APPS and then run syncdb.
+ 2. Enable in site settings under "Active Shipping Modules"
+ 3. Configure using the administration page like you would a product.
+
+Why bother?
+
+Well, it allows you to set up multiple carriers, for one thing.  
+For another, you can have different prices based on cart total (total of shippable items, to be specific).  
+For another, it is multilingual from the start, with you being able to specify translations of carrier, 
+method, etc. right in the admin pages.  Lastly, you can have shipping specials, expiring on the dates 
+of your choice.
+
+For example, you can make this shipping table::
+
+    $0-$25   UPS=$8.50, Fedex=$18.00
+    $25.01-$50 UPS=$9.75, Fedex=21.00
+    ....
+    $250.00 + free
