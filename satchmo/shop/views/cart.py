@@ -2,9 +2,10 @@ from django.core import urlresolvers
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
-from django.utils.datastructures import MultiValueDictKeyError
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, CartItemDetails
@@ -180,6 +181,7 @@ def add_ajax(request, id=0, template="json.html"):
     data['cart_count'] = tempCart.numItems
     
     encoded = JSONEncoder().encode(data)
+    encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
 
     return render_to_response(template, {'json' : encoded})
@@ -257,5 +259,7 @@ def set_quantity_ajax(request, template="json.html"):
             data['item_qty'] = cartitem.quantity
             data['item_price'] = str(cartitem.line_total)
 
-    return render_to_response(template, {'json': JSONEncoder().encode(data)})
+    encoded = JSONEncoder().encode(data)
+    encoded = mark_safe(encoded)
+    return render_to_response(template, {'json': encoded})
 
