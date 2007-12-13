@@ -18,6 +18,8 @@ Trunk
  * Documented creation of custom payment modules
  * Creation of new templatetags (product_category_siblings and product_images)
  * Created new Shipping Module, 'Tiered', allowing multiple carriers and variable pricing by cart total.
+ * Increased length of Contact phonenumber to work internationally
+ * Added shipping countries directly to Shop - allowing the shops to specify legal countries for shipping.
 
 Version 0.6, October 30, 2007
 ----------------
