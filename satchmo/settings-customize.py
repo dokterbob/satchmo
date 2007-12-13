@@ -105,6 +105,10 @@ INSTALLED_APPS = (
     'satchmo.thumbnail',
     'satchmo.l10n',
     'satchmo.tax',
+    # enable tiered to activate the "tiered" shipping module
+    # select it in the site settings, then configure it in the
+    # admin/tiered section
+    #'satchmo.shipping.modules.tiered'
     #'satchmo.newsletter',
 )
 

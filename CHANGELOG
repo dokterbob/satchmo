@@ -17,6 +17,7 @@ Trunk
  * Currency displayed using the chosen locale
  * Documented creation of custom payment modules
  * Creation of new templatetags (product_category_siblings and product_images)
+ * Created new Shipping Module, 'Tiered', allowing multiple carriers and variable pricing by cart total.
 
 Version 0.6, October 30, 2007
 ----------------
