@@ -26,6 +26,15 @@ GOOGLE_ANALYTICS = config_register(
         description= _("Enable Analytics"), 
         default=False,
         ordering=0))
+
+GOOGLE_USE_URCHIN = config_register(
+    BooleanValue(GOOGLE_GROUP, 
+        'USE_URCHIN', 
+        description= _("Use Urchin?"), 
+        help_text=_("Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."),
+        default = False,
+        ordering=5,
+        requires = GOOGLE_ANALYTICS))
         
 GOOGLE_ANALYTICS_CODE = config_register(
     StringValue(GOOGLE_GROUP, 
