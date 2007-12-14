@@ -83,7 +83,7 @@ config_register([
         description=_('Your Cybersource merchant ID'),
         default=""),
     
-    StringValue(PAYMENT_GROUP, 
+    LongStringValue(PAYMENT_GROUP, 
         'TRANKEY', 
         description=_('Your Cybersource transaction key'),
         default="")  
