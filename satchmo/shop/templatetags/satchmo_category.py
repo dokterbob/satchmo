@@ -21,7 +21,7 @@ def recurse_for_children(current_node, parent_node, active_cat, show_empty=True)
         if current_node == active_cat:
             attrs["class"] = "current"
         link = SubElement(temp_parent, 'a', attrs)
-        link.text = current_node.name
+        link.text = current_node.translated_name()
 
         if child_count > 0:
             new_parent = SubElement(temp_parent, 'ul')
