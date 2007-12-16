@@ -10,6 +10,8 @@ from satchmo.shop.templatetags.satchmo_currency import moneyfmt
 from satchmo.shop.views.utils import bad_or_missing
 from sets import Set
 import logging
+import random
+from satchmo.configuration import config_value
 
 log = logging.getLogger('product.views')
 
@@ -161,3 +163,15 @@ def getConfigurableProductOptions(request, id):
     if not options:
         return '<option>No valid options found in "%s"</option>' % cp.product.slug
     return http.HttpResponse(options, mimetype="text/html")
+
+def display_featured():
+    """
+    Used by the index generic view to choose how the featured products are displayed.
+    Items can be displayed randomly or all in order
+    """
+    random_display = config_value('SHOP','RANDOM_FEATURED')
+    num_to_display = config_value('SHOP','NUM_DISPLAY')
+    if not random_display:
+        return(Product.objects.filter(active=True).filter(featured=True))[:num_to_display]
+    else:
+        return(Product.objects.filter(active=True).filter(featured=True).order_by('?')[:num_to_display])

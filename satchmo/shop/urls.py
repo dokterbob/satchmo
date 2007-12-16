@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from satchmo.product.models import Product
+from satchmo.product.views import display_featured
 
 urlpatterns = getattr(settings, 'SHOP_URLS', [])
 
@@ -38,7 +39,7 @@ urlpatterns += patterns('satchmo.product.views',
 # Dictionaries for generic views used in Satchmo.
 
 index_dict = {
-    'queryset': Product.objects.filter(active="1").filter(featured="1"),
+    'queryset': display_featured(),
     'template_object_name': 'all_products',
     'template_name': 'base_index.html',
     'allow_empty': True,

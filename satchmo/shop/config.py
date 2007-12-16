@@ -1,4 +1,4 @@
-from satchmo.configuration import config_register, BooleanValue, StringValue, MultipleStringValue, SHOP_GROUP, ConfigurationGroup
+from satchmo.configuration import config_register, BooleanValue, StringValue, MultipleStringValue, SHOP_GROUP, ConfigurationGroup, PositiveIntegerValue
 from django.utils.translation import ugettext_lazy as _
 
 #### SHOP Group ####
@@ -15,6 +15,18 @@ ENABLE_RATINGS = config_register(
         'RATINGS', 
         description= _("Enable product ratings"), 
         default=True))
+        
+RANDOM_FEATURED = config_register(
+    BooleanValue(SHOP_GROUP,
+        'RANDOM_FEATURED',
+        description= _("Enable random display of featured products on home page"),
+        default=False))
+
+NUMBER_FEATURED = config_register(
+    PositiveIntegerValue(SHOP_GROUP,
+        'NUM_DISPLAY',
+        description= _("Number of featured items to display"),
+        default=20))
         
 #### Google Group ####
 
