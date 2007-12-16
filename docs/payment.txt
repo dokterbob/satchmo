@@ -33,6 +33,12 @@ You can get these from TrustCommerce or via this url
 Once the library is installed, you can fill in your login and password information
 in the admin config.
 
+CyberSource
+-----------
+CyberSource operates similar to TrustCommerce and Authorize.net.  If you register,
+at the `CyberSource Site <http://www.cybersource.com/>`_ you will get all the
+credentials you need to configure this module.
+
 PayPal
 ------
 More details needed here.
