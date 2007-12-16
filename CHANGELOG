@@ -20,12 +20,9 @@ Trunk
  * Created new Shipping Module, 'Tiered', allowing multiple carriers and variable pricing by cart total.
  * Added cybersource payment module
  * New config values to display featured products randomly
-
-=======
  * Increased length of Contact phonenumber to work internationally
  * Added shipping countries directly to Shop - allowing the shops to specify legal countries for shipping.
  * Updated google analytics to new code, with an optional fallback to the old urchin.js
->>>>>>> .r955
 
 Version 0.6, October 30, 2007
 ----------------
