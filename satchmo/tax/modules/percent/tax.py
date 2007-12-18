@@ -13,9 +13,9 @@ class Processor(object):
         self.order = order
         self.user = user
 
-    def by_product(self, product):
+    def by_product(self, product, quantity=1):
         percent = config_value('TAX','PERCENT')
-        price = product.unit_price
+        price = product.get_qty_price(quantity)
         t = price * (percent/100)
         
         return t

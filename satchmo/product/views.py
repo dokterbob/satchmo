@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from satchmo.product.models import Category, Product, ConfigurableProduct
 from satchmo.shop.templatetags.satchmo_currency import moneyfmt
 from satchmo.shop.views.utils import bad_or_missing
+from satchmo import tax
 from sets import Set
 import logging
 import random
@@ -63,7 +64,7 @@ def serialize_options(config_product, selected_options=Set()):
                 option.selected = option.unique_id in selected_options
     return d.values()
 
-def get_product(request, product_slug, selected_options=Set()):
+def get_product(request, product_slug, selected_options=Set(), include_tax=False):
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -86,7 +87,17 @@ def get_product(request, product_slug, selected_options=Set()):
         options = serialize_options(product.customproduct, selected_options)
 
     template = find_product_template(product, producttypes=p_types)
-    ctx = RequestContext(request, {'product': product, 'options': options})
+    attributes = {
+        'product': product, 
+        'options': options
+    }
+    
+    if include_tax:
+        tax_amt = _get_tax(request.user, product)
+        attributes['product_tax'] = tax_amt
+        attributes['price_with_tax'] = product.unit_price+tax_amt
+        
+    ctx = RequestContext(request, attributes)
     return http.HttpResponse(template.render(ctx))
 
 def optionset_from_post(configurableproduct, POST):
@@ -125,6 +136,59 @@ def get_price(request, product_slug):
         return http.HttpResponse(simplejson.dumps(('', _("not available"))), mimetype="text/javascript")
 
     return http.HttpResponse(simplejson.dumps((prod_slug, price)), mimetype="text/javascript")
+
+def get_price_detail(request, product_slug):
+    results = {
+        "success" : False,
+        "message" :  _("not available")
+    }
+    price = None
+    
+    if request.method=="POST":
+        reqdata = request.POST
+    else:
+        reqdata = request.GET
+    
+    try:
+        product = Product.objects.get(active=True, slug=product_slug)
+        found = True
+
+        prod_slug = product.slug
+
+        if reqdata.has_key('quantity'):
+            quantity = int(reqdata['quantity'])
+        else:
+            quantity = 1
+
+        if 'ConfigurableProduct' in product.get_subtypes():
+            cp = product.configurableproduct
+            chosenOptions = optionset_from_post(cp, reqdata)
+            product = cp.get_product_from_options(chosenOptions)
+                
+        if product:
+            price = product.get_qty_price(quantity)
+            base_tax = _get_tax(request.user, product, quantity)
+            price_with_tax = price+base_tax
+            
+            results['slug'] = product.slug
+            results['currency_price'] = moneyfmt(price)
+            results['price'] = float(price)
+            results['tax'] = float(base_tax)
+            results['currency_tax'] = moneyfmt(base_tax)
+            results['currency_price_with_tax'] = moneyfmt(price_with_tax)
+            results['price_with_tax'] = float(price_with_tax)
+            results['success'] = True
+            results['message'] = ""
+        
+    except Product.DoesNotExist:
+        found = False
+
+    data = simplejson.dumps(results)
+    if found:        
+        return http.HttpResponse(data, mimetype="text/javascript")
+    else:
+        return http.HttpResponseNotFound(data, mimetype="text/javascript")
+    
 
 def do_search(request):
     if request.GET:
@@ -175,3 +239,12 @@ def display_featured():
         return(Product.objects.filter(active=True).filter(featured=True))[:num_to_display]
     else:
         return(Product.objects.filter(active=True).filter(featured=True).order_by('?')[:num_to_display])
+        
+def _get_tax(user, product, quantity):
+    if user.is_authenticated():
+        user = user
+    else:
+        user = None
+
+    taxer = tax.get_processor(user=user)
+    return taxer.by_product(product, quantity)

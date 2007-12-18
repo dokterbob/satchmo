@@ -19,12 +19,17 @@ var satchmo = {
     		url : url,
     		type: 'POST',
     		success : function(json) {
-    			var name = json[0];
-    			var price = json[1];
-    		    if (name) {
-    		        satchmo.setName(name);
-    		    }
-    		    satchmo.setPrice(price);
+    		    if (!json['success']) {
+                    alert(json['message']);
+                }
+                else {
+        			var name = json['slug'];
+        			var price = json['currency_price'];
+        		    if (name) {
+        		        satchmo.setName(name);
+        		    }
+        		    satchmo.setPrice(price);
+        		}
     		},
     		dataType : 'json'
     	};
@@ -41,7 +46,7 @@ var satchmo = {
     }
 }
 
-var localProductPrice = function() { satchmo.getPrice('{% url satchmo_product_prices product_slug=product.slug %}'); };
+var localProductPrice = function() { satchmo.getPrice('{% url satchmo_product_price_detail product_slug=product.slug %}'); };
 
 $(function() {
     localProductPrice();

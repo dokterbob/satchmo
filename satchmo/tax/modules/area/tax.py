@@ -92,9 +92,9 @@ class Processor(object):
                 
         return rate
 
-    def by_product(self, product):
-        """Get the total price, and the tax by itself for a given product"""
-        price = product.unit_price
+    def by_product(self, product, quantity=1):
+        """Get the tax for a given product"""
+        price = product.get_qty_price(quantity)
         tc = product.taxClass
 
         area, country = self._get_location()

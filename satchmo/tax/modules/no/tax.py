@@ -4,14 +4,14 @@ class Processor(object):
     
     method="no"
     
-    def __init__(self, order=None):
+    def __init__(self, order=None, user=None):
         """
         Any preprocessing steps should go here
         For instance, copying the shipping and billing areas
         """
         pass
 
-    def by_product(self, product, user):
+    def by_product(self, product, quantity=1):
         return Decimal("0.0")
                 
     def shipping(self, product, user):
