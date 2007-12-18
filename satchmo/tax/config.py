@@ -10,23 +10,20 @@ TAX_MODULE = config_register(StringValue(TAX_GROUP,
     description=_("Active tax module"),
     help_text=_("Select a module, save and reload to set any module-specific settings."),
     default="satchmo.tax.modules.no",
-    choices=[('satchmo.tax.modules.percent', _('Percent Tax')),
-            ('satchmo.tax.modules.no', _('No Tax'))]
+    choices=[('satchmo.tax.modules.no', _('No Tax')),
+    ]
     ))
 
-config_register([
+# --- Load default tax modules.  Ignore import errors, user may have deleted them. ---
+_default_modules = ('percent','area')
 
-    DecimalValue(TAX_GROUP,
-    'PERCENT',
-    description=_("Percent tax"),
-    requires=TAX_MODULE,
-    requiresvalue='satchmo.tax.modules.percent'),
-    
-    BooleanValue(TAX_GROUP,
-    'TAX_SHIPPING',
-    description=_("Tax Shipping?"),
-    default=False)    
-])
+for module in _default_modules:
+    try:
+        load_module("satchmo.tax.modules.%s.config" % module)
+    except ImportError:
+        log.debug('Could not load default shipping module configuration: %s', module)
+
+
     
 # --- Load any extra tax modules. ---
 extra_tax = getattr(settings, 'CUSTOM_TAX_MODULES', ())

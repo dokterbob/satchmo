@@ -324,8 +324,9 @@ def load_US_tax_table():
     from satchmo.tax.models import TaxRate, TaxClass
     from satchmo.l10n.models import AdminArea, Country
     us = Country.objects.get(iso2_code="US")
-    defaultTax = TaxClass(description="Default", title="Default")
-    defaultTax.save()
+    defaultTax, created = TaxClass.objects.get_or_create(description="Default", title="Default")
+    if created:
+        defaultTax.save()
     dataFile = "tax-table.csv"
     dataDir = os.path.join(settings.DIRNAME,"tax/data")
     reader = csv.reader(open(os.path.join(dataDir, dataFile), "rb"))

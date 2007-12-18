@@ -36,7 +36,7 @@ class SupplierOrder(models.Model):
     """
     supplier = models.ForeignKey(Organization)
     date_created = models.DateField(_("Date Created"))
-    order_subtotal = models.DecimalField(_("Subtotal"), max_digits=6, decimal_places=2)
+    order_sub_total = models.DecimalField(_("Subtotal"), max_digits=6, decimal_places=2)
     order_shipping = models.DecimalField(_("Shipping"), max_digits=6, decimal_places=2)
     order_tax = models.DecimalField(_("Tax"), max_digits=6, decimal_places=2)
     order_notes = models.CharField(_("Notes"), max_length=200, blank=True)

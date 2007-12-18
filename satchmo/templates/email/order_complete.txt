@@ -7,7 +7,7 @@
 {% trans "Items Ordered" %}
 --------------
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.line_item_price|currency}}
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}
 {% endfor %}
 
 {% trans "Contact Information" %}
@@ -39,7 +39,7 @@
 ---------------
 {{ order.shipping_description }}
 {{ order.shipping_method }} 
-{{ order.shipping_cost|currency }} 
+{{ order.shipping_sub_total|currency }} 
 {% endif %}
 
 {% trans "Total" %}
@@ -47,7 +47,7 @@
 {% if order.discount %}
 {% trans "Discount" %} - {{order.discount|currency}}
 {% endif %}
-{% if order.is_shippable %} {% trans "Shipping" %} + {{order.shipping_cost|currency}} {% endif %}
+{% if order.is_shippable %} {% trans "Shipping" %} + {{order.shipping_sub_total|currency}} {% endif %}
 {% if order.tax %}
 {% trans "Tax" %} + {{order.tax|currency}}
 {% endif %}

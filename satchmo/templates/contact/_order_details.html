@@ -1,7 +1,7 @@
 {% load satchmo_currency %}
 {% load i18n %}
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.line_item_price|currency}}<br/>
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}<br/>
 {% endfor %}
 
 <h4>{% trans "Contact Information" %}</h4>
@@ -29,14 +29,19 @@
 <h4>{% trans "Shipping Method" %}</h4>
 {{ order.shipping_description }}<br/>
 {{ order.shipping_method }}<br/>
-{{ order.shipping_cost|currency }}<br/>
+{{ order.shipping_sub_total|currency }}<br/>
 {% endif %}
 
 <h4>{% trans "Total" %}</h4>
+{% trans "Subtotal" %} = {{ order.sub_total|currency }}<br/>
 {% if order.discount %}
-    {% trans "Discount" %} - {{order.discount|currency}}<br/>
+    {% trans "Discount" %} - {{order.item_discount|currency}}<br/>
 {% endif %}
-{% trans "Shipping" %} + {{order.shipping_cost|currency}}<br/>
+{% if order.shipping_discount %}
+{% trans "Base Shipping" %} + {{order.shipping_cost|currency}}<br/>
+{% trans "Shipping Discount" %} - {{order.shipping_discount|currency}}<br/>
+{% endif %}
+{% trans "Shipping" %} + {{order.shipping_sub_total|currency}}<br/>
 {% if order.tax %}
     {% trans "Tax" %} + {{order.tax|currency}}<br/>
 {% endif %}

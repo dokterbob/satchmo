@@ -1,0 +1,697 @@
+- fields:
+    active: true
+    allowedUses: null
+    amount: '10'
+    code: test10
+    description: Test Amount 10
+    endDate: 5000-01-01
+    freeShipping: false
+    includeShipping: false
+    minOrder: null
+    numUses: null
+    percentage: null
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 1
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    code: test20
+    description: Test Percent 20
+    endDate: 5000-01-01
+    freeShipping: false
+    includeShipping: false
+    minOrder: null
+    numUses: null
+    percentage: '20'
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 2
+- fields:
+    active: true
+    allowedUses: null
+    amount: '10'
+    code: test10ship
+    description: Test Amount 10 w/ship
+    endDate: 5000-01-01
+    freeShipping: false
+    includeShipping: true
+    minOrder: null
+    numUses: null
+    percentage: null
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 3
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    code: test20ship
+    description: Test Percent 20 w/ship
+    endDate: 5000-01-01
+    freeShipping: false
+    includeShipping: true
+    minOrder: null
+    numUses: null
+    percentage: '20'
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 4
+- fields:
+    active: true
+    allowedUses: null
+    amount: '10'
+    code: test10freeship
+    description: Test Amount 10 Free Ship
+    endDate: 5000-01-01
+    freeShipping: true
+    includeShipping: false
+    minOrder: null
+    numUses: null
+    percentage: null
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 5
+- fields:
+    active: false
+    allowedUses: null
+    amount: '20'
+    code: test20freeship
+    description: Test Percent 20 Free ship
+    endDate: 5000-01-01
+    freeShipping: true
+    includeShipping: false
+    minOrder: null
+    numUses: null
+    percentage: null
+    startDate: 2007-12-15
+    validProducts: []
+  model: discount.discount
+  pk: 6
+- fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,
+    slug: book}
+  model: product.category
+  pk: 3
+- fields: {description: Women's Shirts, meta: null, name: Shirts, ordering: 0, parent: null,
+    slug: shirts}
+  model: product.category
+  pk: 1
+- fields: {description: '', meta: null, name: Software, ordering: 0, parent: null,
+    slug: software}
+  model: product.category
+  pk: 7
+- fields: {description: Short sleeve shirts, meta: null, name: Short Sleeve, ordering: 0,
+    parent: 1, slug: shortsleeve}
+  model: product.category
+  pk: 2
+- fields: {description: Fiction Books, meta: null, name: Fiction, ordering: 0, parent: 3,
+    slug: fiction}
+  model: product.category
+  pk: 4
+- fields: {description: Non Fiction, meta: null, name: Non Fiction, ordering: 0, parent: 3,
+    slug: nonfiction}
+  model: product.category
+  pk: 6
+- fields: {description: Science Fiction, meta: null, name: Science Fiction, ordering: 0,
+    parent: 4, slug: scifi}
+  model: product.category
+  pk: 5
+- fields:
+    active: true
+    also_purchased: []
+    category: [4]
+    date_added: 2007-12-15
+    description: A neat book.  You should buy it.
+    featured: true
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: A really neat book
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: neat-book
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 3
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: A really neat book (hard)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: neat-book_hard
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 14
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: A really neat book (soft)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: neat-book_soft
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 15
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: A really neat book (tape)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: neat-book_tape
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 16
+- fields:
+    active: true
+    also_purchased: []
+    category: [1]
+    date_added: 2007-12-15
+    description: Really cool shirt
+    featured: true
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 1
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (L/B)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_L_B
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 11
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (L/BL)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_L_BL
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 13
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (L/W)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_L_W
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 12
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (M/B)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_M_B
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 8
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (M/BL)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_M_BL
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 10
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (M/W)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_M_W
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 9
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (S/B)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_S_B
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 5
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (S/BL)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_S_BL
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 7
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Django Rocks shirt (S/W)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: DJ-Rocks_S_W
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 6
+- fields:
+    active: true
+    also_purchased: []
+    category: [2]
+    date_added: 2007-12-15
+    description: Really cool python shirt - One Size Fits All
+    featured: true
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Python Rocks shirt
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: PY-Rocks
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 2
+- fields:
+    active: true
+    also_purchased: []
+    category: [5]
+    date_added: 2007-12-15
+    description: Robots try to take over the world.
+    featured: true
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Robots Attack!
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: robot-attack
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 4
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Robots Attack! (hard)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: robot-attack_hard
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 17
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Robots Attack! (soft)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: robot-attack_soft
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 18
+- fields:
+    active: true
+    also_purchased: []
+    category: []
+    date_added: 2007-12-15
+    description: ''
+    featured: false
+    height: null
+    items_in_stock: 0
+    length: null
+    meta: null
+    name: Robots Attack! (tape)
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: robot-attack_tape
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 19
+- fields:
+    options: [1, 4]
+    parent: 1
+  model: product.productvariation
+  pk: 5
+- fields:
+    options: [1, 5]
+    parent: 1
+  model: product.productvariation
+  pk: 6
+- fields:
+    options: [1, 6]
+    parent: 1
+  model: product.productvariation
+  pk: 7
+- fields:
+    options: [2, 4]
+    parent: 1
+  model: product.productvariation
+  pk: 8
+- fields:
+    options: [2, 5]
+    parent: 1
+  model: product.productvariation
+  pk: 9
+- fields:
+    options: [2, 6]
+    parent: 1
+  model: product.productvariation
+  pk: 10
+- fields:
+    options: [3, 4]
+    parent: 1
+  model: product.productvariation
+  pk: 11
+- fields:
+    options: [3, 5]
+    parent: 1
+  model: product.productvariation
+  pk: 12
+- fields:
+    options: [3, 6]
+    parent: 1
+  model: product.productvariation
+  pk: 13
+- fields:
+    options: [7]
+    parent: 3
+  model: product.productvariation
+  pk: 14
+- fields:
+    options: [8]
+    parent: 3
+  model: product.productvariation
+  pk: 15
+- fields:
+    options: [9]
+    parent: 3
+  model: product.productvariation
+  pk: 16
+- fields:
+    options: [7]
+    parent: 4
+  model: product.productvariation
+  pk: 17
+- fields:
+    options: [8]
+    parent: 4
+  model: product.productvariation
+  pk: 18
+- fields:
+    options: [9]
+    parent: 4
+  model: product.productvariation
+  pk: 19
+- fields: {displayOrder: 1, name: Small, optionGroup: 1, price_change: null, value: S}
+  model: product.option
+  pk: 1
+- fields: {displayOrder: 2, name: Medium, optionGroup: 1, price_change: null, value: M}
+  model: product.option
+  pk: 2
+- fields: {displayOrder: 3, name: Large, optionGroup: 1, price_change: '1', value: L}
+  model: product.option
+  pk: 3
+- fields: {displayOrder: 1, name: Black, optionGroup: 2, price_change: null, value: B}
+  model: product.option
+  pk: 4
+- fields: {displayOrder: 2, name: White, optionGroup: 2, price_change: null, value: W}
+  model: product.option
+  pk: 5
+- fields: {displayOrder: 3, name: Blue, optionGroup: 2, price_change: '2', value: BL}
+  model: product.option
+  pk: 6
+- fields: {displayOrder: 1, name: Hard cover, optionGroup: 3, price_change: null,
+    value: hard}
+  model: product.option
+  pk: 7
+- fields: {displayOrder: 2, name: Soft cover, optionGroup: 3, price_change: '1', value: soft}
+  model: product.option
+  pk: 8
+- fields: {displayOrder: 3, name: On tape, optionGroup: 3, price_change: null, value: tape}
+  model: product.option
+  pk: 9
+- fields: {displayOrder: 1, name: Full Version, optionGroup: 4, price_change: null,
+    value: full}
+  model: product.option
+  pk: 10
+- fields: {displayOrder: 2, name: Upgrade Version, optionGroup: 4, price_change: null,
+    value: upgrade}
+  model: product.option
+  pk: 11
+- fields:
+    create_subs: false
+    option_group: [1, 2]
+  model: product.configurableproduct
+  pk: 1
+- fields:
+    create_subs: false
+    option_group: [3]
+  model: product.configurableproduct
+  pk: 3
+- fields:
+    create_subs: false
+    option_group: [3]
+  model: product.configurableproduct
+  pk: 4
+- fields: {caption: Photo Not Available, picture: images/productimage-picture-default.jpg,
+    product: null, sort: 1}
+  model: product.productimage
+  pk: 1
+- fields: {expires: null, price: '20', product: 1, quantity: 1}
+  model: product.price
+  pk: 1
+- fields: {expires: null, price: '19.5', product: 2, quantity: 1}
+  model: product.price
+  pk: 2
+- fields: {expires: null, price: '5', product: 3, quantity: 1}
+  model: product.price
+  pk: 3
+- fields: {expires: null, price: '7.99', product: 4, quantity: 1}
+  model: product.price
+  pk: 4
+- fields: {description: '', name: Book type, sort_order: 1}
+  model: product.optiongroup
+  pk: 3
+- fields: {description: '', name: sizes, sort_order: 1}
+  model: product.optiongroup
+  pk: 1
+- fields: {description: '', name: colors, sort_order: 2}
+  model: product.optiongroup
+  pk: 2
+- fields: {description: '', name: Full/Upgrade, sort_order: 5}
+  model: product.optiongroup
+  pk: 4
+

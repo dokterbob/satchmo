@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse as url
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.encoding import smart_str
+from satchmo.caching import cache_delete
 from satchmo.contact.models import Contact
 from satchmo.shop.templatetags import get_filter_args
 from satchmo.configuration import config_value, config_get
@@ -163,6 +164,14 @@ class ShopTest(TestCase):
         """
         Run through a full checkout process
         """
+        cache_delete()
+        tax = config_get('TAX','MODULE')
+        tax.update('satchmo.tax.modules.percent')
+        pcnt = config_get('TAX', 'PERCENT')
+        pcnt.update('10')
+        shp = config_get('TAX', 'TAX_SHIPPING')
+        shp.update(False)
+        
         self.test_cart_adding()
         response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
         self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step2'), status_code=302, target_status_code=200)

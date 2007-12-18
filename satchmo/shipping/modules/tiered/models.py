@@ -65,14 +65,14 @@ class Shipper(BaseShipper):
         or location.
         """
         if order:
-            itemprices = [ item.line_item_price for item in order.orderitem_set.all() if item.product.is_shippable]
+            itemprices = [ item.sub_total for item in order.orderitem_set.all() if item.product.is_shippable]
             if itemprices:
-                subtotal = reduce(operator.add, itemprices)
+                sub_total = reduce(operator.add, itemprices)
             else:
-                subtotal = Decimal('0.00')
+                sub_total = Decimal('0.00')
                 
             try:
-                price = self.carrier.price(subtotal)
+                price = self.carrier.price(sub_total)
                 
             except TieredPriceException:
                 return False

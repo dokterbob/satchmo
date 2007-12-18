@@ -22,7 +22,7 @@
       <continue-shopping-url>{{ continue_shopping_url }}</continue-shopping-url>{% endif %}
       <shipping-methods>
           <flat-rate-shipping name="{{ order.shipping_method }}">
-              <price currency="{{ currency }}">{{ order.shipping_cost }}</price>
+              <price currency="{{ currency }}">{{ order.shipping_sub_total }}</price>
           </flat-rate-shipping>
       </shipping-methods>
     </merchant-checkout-flow-support>

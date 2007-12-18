@@ -13,7 +13,7 @@ from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _
 from satchmo import tax
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
-from satchmo.discount.models import Discount
+from satchmo.discount.models import Discount, find_discount_for_code
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.templatetags.satchmo_currency import moneyfmt
@@ -344,6 +344,8 @@ class Order(models.Model):
         choices=config_choice_values('SHIPPING','MODULES'), max_length=30, blank=True, null=True)
     shipping_cost = models.DecimalField(_("Shipping Cost"),
         max_digits=6, decimal_places=2, blank=True, null=True)
+    shipping_discount = models.DecimalField(_("Shipping Discount"),
+        max_digits=6, decimal_places=2, blank=True, null=True)
     tax = models.DecimalField(_("Tax"),
         max_digits=6, decimal_places=2, blank=True, null=True)
     timestamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
@@ -466,43 +468,70 @@ class Order(models.Model):
     def invoice(self):
         return mark_safe('<a href="/admin/print/invoice/%s/">View</a>' % self.id)
     invoice.allow_tags = True
+    
+    def _item_discount(self):
+        """Get the discount of just the items, less the shipping discount."""
+        return self.discount-self.shipping_discount
+    item_discount = property(_item_discount)
 
     def packingslip(self):
         return mark_safe('<a href="/admin/print/packingslip/%s/">View</a>' % self.id)
     packingslip.allow_tags = True
     
     def recalculate_total(self, save=True):
-        """Calculates subtotal, taxes and total."""
-        #Can't really do a full shipping recalc - shipping is bound to the cart. 
-        
-        discount_amount = Decimal("0.00")
-        if self.discount_code:
-            try:
-                discount = Discount.objects.filter(code=self.discount_code)[0]
-                if discount:
-                    if discount.freeShipping:
-                        self.shipping_cost = Decimal("0.00")
-                    discount_amount = discount.calc(self)
-                    
-            except Discount.DoesNotExist:
-                pass
-
-        self.discount = discount_amount
-        
-        itemprices = [ item.line_item_price for item in self.orderitem_set.all() ]
-        if itemprices:
-            subtotal = reduce(operator.add, itemprices)
+        """Calculates sub_total, taxes and total."""
+        zero = Decimal("0.00")
+        discount = find_discount_for_code(self.discount_code)
+        discount.calc(self)
+        self.discount = discount.total
+        discounts = discount.item_discounts
+        itemprices = []
+        fullprices = []
+        for lineitem in self.orderitem_set.all():
+            lid = lineitem.id
+            if lid in discounts:
+                lineitem.discount = discounts[lid]
+            else:
+                lineitem.discount = zero
+            if save:
+                lineitem.save()
+                
+            itemprices.append(lineitem.sub_total)
+            fullprices.append(lineitem.line_item_price)
+    
+        if 'Shipping' in discounts:
+            self.shipping_discount = discounts['Shipping'] 
         else:
-            subtotal = Decimal('0.00')
+            self.shipping_discount = zero
+        
+        if itemprices:
+            item_sub_total = reduce(operator.add, itemprices)
+        else:
+            item_sub_total = zero
+
+        if fullprices:
+            full_sub_total = reduce(operator.add, fullprices)
+        else:
+            full_sub_total = zero
+
             
-        self.sub_total = subtotal
+        self.sub_total = full_sub_total
         
         taxProcessor = tax.get_processor(self)
-        self.tax = taxProcessor.process()
+        self.tax, taxrates = taxProcessor.process()            
         
-        log.debug("recalc: subtotal=%s, shipping=%s, discount=%s, tax=%s", 
-                subtotal, self.shipping_cost, self.discount, self.tax)
-        self.total = subtotal + self.shipping_cost - self.discount + self.tax
+        # clear old taxes
+        for taxdetl in self.taxes.all():
+            taxdetl.delete()
+            
+        for taxdesc, taxamt in taxrates.items():
+            taxdetl = OrderTaxDetail(order=self, tax=taxamt, description=taxdesc, method=taxProcessor.method)
+            taxdetl.save()
+        
+        log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s", 
+                item_sub_total, self.shipping_sub_total, self.discount, self.tax)
+                
+        self.total = item_sub_total + self.shipping_sub_total + self.tax
         
         if save:
             self.save()
@@ -544,6 +573,10 @@ class Order(models.Model):
                 return True
         return False
     is_shippable = property(_is_shippable)
+    
+    def _shipping_sub_total(self):
+        return self.shipping_cost-self.shipping_discount
+    shipping_sub_total = property(_shipping_sub_total)
 
     def validate(self, request):
         """
@@ -571,7 +604,7 @@ class Order(models.Model):
                 ('bill_street1', 'bill_street2', 'bill_city', 'bill_state',
                 'bill_postal_code', 'bill_country')}),
             (_('Totals'), {'fields':
-                ('sub_total', 'shipping_cost', 'tax', 'discount', 'total',
+                ('sub_total', 'shipping_cost', 'shipping_discount', 'tax', 'discount', 'total',
                 'timestamp')}))
         list_display = ('contact', 'timestamp', 'order_total', 'balance_forward', 'status',
             'invoice', 'packingslip', 'shippinglabel')
@@ -593,6 +626,8 @@ class OrderItem(models.Model):
         max_digits=6, decimal_places=2)
     line_item_price = models.DecimalField(_("Line item price"),
         max_digits=6, decimal_places=2)
+    discount = models.DecimalField(_("Line item discount"),
+        max_digits=6, decimal_places=2, blank=True, null=True)
 
     def __unicode__(self):
         return self.product.translated_name()
@@ -600,6 +635,13 @@ class OrderItem(models.Model):
     def _get_category(self):
         return(self.product.get_category.translated_name())
     category = property(_get_category)
+    
+    def _sub_total(self):
+        if self.discount:
+            return self.line_item_price-self.discount
+        else:
+            return self.line_item_price
+    sub_total = property(_sub_total)
 
     class Meta:
         verbose_name = _("Order Line Item")
@@ -749,3 +791,17 @@ class OrderVariable(models.Model):
         else:
             v = self.value
         return u"OrderVariable: %s=%s" % (self.key, v)
+        
+class OrderTaxDetail(models.Model):
+    """A tax line item"""
+    order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="taxes")
+    method = models.CharField(_("Model"), max_length=50, core=True)
+    description = models.CharField(_("Description"), max_length=50, blank=True)
+    tax = models.DecimalField(_("Tax", core=True),
+        max_digits=6, decimal_places=2, blank=True, null=True)
+
+    def __unicode__(self):
+        if self.description:
+            return u"Tax: %s %s" % (self.description, self.tax)
+        else:
+            return u"Tax: %s" % self.tax

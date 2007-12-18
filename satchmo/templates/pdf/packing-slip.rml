@@ -121,7 +121,7 @@
         <td><para>{{ item }}</para></td>
         <td>{{ item.quantity }} </td>
         <td>{{ item.unit_price|currency }}</td>
-        <td>{{ item.line_item_price|currency }} </td>
+        <td>{{ item.sub_total|currency }} </td>
     </tr>
     {% endfor %}
 	<tr><td></td></tr>
@@ -137,7 +137,7 @@
     </tr>
     <tr>
         <td></td>
-        <td></td><td>{{order.shipping_method}} - {{order.shipping_description}}</td><td>{{order.shipping_cost|currency}}</td>
+        <td></td><td>{{order.shipping_method}} - {{order.shipping_description}}</td><td>{{order.shipping_sub_total|currency}}</td>
     </tr>
     <tr>
         <td></td><td></td>

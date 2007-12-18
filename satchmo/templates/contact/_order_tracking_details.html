@@ -13,21 +13,21 @@
 
 <h4>{% trans "Items Ordered" %}</h4>
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.line_item_price|currency}}<br/>
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}<br/>
 {% endfor %}
 
 {% if order.shipping_method %}
 <h4>{% trans "Shipping Method" %}</h4>
 {{ order.shipping_description }}<br/>
 {% ifnotequal order.shipping_method order.shipping_description %}{{ order.shipping_method }}<br/>{% endifnotequal %}
-{{ order.shipping_cost|currency }}<br/>
+{{ order.shipping_sub_total|currency }}<br/>
 {% endif %}
 
 <h4>{% trans "Total" %}</h4>
 {% if order.discount %}
     {% trans "Discount" %} - {{order.discount|currency}}<br/>
 {% endif %}
-{% if order.is_shippable %} {% trans "Shipping" %} + {{order.shipping_cost|currency}}<br/> {% endif %}
+{% if order.is_shippable %} {% trans "Shipping" %} + {{order.shipping_sub_total|currency}}<br/> {% endif %}
 {% if order.tax %}
     {% trans "Tax" %} + {{order.tax|currency}}<br/>
 {% endif %}
