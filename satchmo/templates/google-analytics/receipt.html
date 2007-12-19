@@ -1,10 +1,36 @@
-<form style="display:none;" name="utmform">
-<textarea id="utmtrans">
-UTM:T|{{order.id}}|{{Store}}|{{order.total}}|{{order.tax}}|{{order.shipping_sub_total}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
-{% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price}}|{{item.quantity}}
-{% endfor %}</textarea>
-</form>
+{% if shop.options.GOOGLE.USE_URCHIN %}
+    <form style="display:none;" name="utmform">
+    <textarea id="utmtrans">
+    UTM:T|{{order.id}}|{{Store}}|{{order.total}}|{{order.tax}}|{{order.shipping_sub_total}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
+    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price}}|{{item.quantity}}
+    {% endfor %}</textarea>
+    </form>
 
-<script type="text/javascript">
-__utmSetTrans();
-</script>
+    <script type="text/javascript">
+    __utmSetTrans();
+    </script>
+{% else %}
+    <script type="text/javascript">
+    pageTracker._addTrans(
+     "{{order.id}}",
+     "{{Store}}",
+     "{{order.total}}",
+     "{{order.tax}}",
+     "{{order.shipping_sub_total}}",
+     "{{order.ship_city}}",
+     "{{order.ship_state}}",
+     "{{order.ship_country}}"
+    );
+    {% for item in order.orderitem_set.all %}
+        pageTracker._addItem(
+         "{{order.id}}",
+         "{{item.product.name}}",
+         "{{item}}",
+         "{{item.category}}",
+         "{{item.unit_price}}",
+         "{{item.quantity}}"
+        );
+    {% endfor %}
+    pageTracker._trackTrans();
+    </script>
+{% endif %}
