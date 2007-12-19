@@ -577,6 +577,9 @@ class Order(models.Model):
     def _shipping_sub_total(self):
         return self.shipping_cost-self.shipping_discount
     shipping_sub_total = property(_shipping_sub_total)
+    
+    def sub_total_with_tax(self):
+        return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
 
     def validate(self, request):
         """
@@ -642,6 +645,14 @@ class OrderItem(models.Model):
         else:
             return self.line_item_price
     sub_total = property(_sub_total)
+    
+    def _total_with_tax(self):
+        return self.sub_total + self.tax
+    total_with_tax = property(_total_with_tax)
+        
+    def _tax(self):
+        return tax.get_processor(order=self.order).by_orderitem(self)
+    tax = property(_tax)
 
     class Meta:
         verbose_name = _("Order Line Item")

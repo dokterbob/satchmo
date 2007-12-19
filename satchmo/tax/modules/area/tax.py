@@ -34,18 +34,24 @@ class Processor(object):
         elif self.user and self.user.is_authenticated():
             try:
                 contact = Contact.objects.get(user=self.user)
-                area = contact.state
-                country = contact.country
+                try:
+                    area = contact.state
+                except AttributeError:
+                    pass
+                try:
+                    country = contact.country
+                except AttributeError:
+                    pass
 
             except Contact.DoesNotExist:
                 pass
         
         if area:
             try:
-                area = AdminArea.get(name__iexact=area)
+                area = AdminArea.objects.get(name__iexact=area)
             except AdminArea.DoesNotExist:
                 try:
-                    area = AdminArea.get(abbrev__iexact=area)
+                    area = AdminArea.objects.get(abbrev__iexact=area)
                 except AdminArea.DoesNotExist:
                     log.info("Couldn't find AdminArea from string: %s", area)
                     area = None
@@ -92,22 +98,27 @@ class Processor(object):
                 
         return rate
 
+    def by_price(self, taxclass, price):
+        area, country = self._get_location()
+        rate = self._get_rate(taxclass, area, country)
+
+        if not rate:
+            t = Decimal("0.00")
+        else:
+            t = rate.percentage * price
+
+        return round_cents(t)
+
     def by_product(self, product, quantity=1):
         """Get the tax for a given product"""
         price = product.get_qty_price(quantity)
         tc = product.taxClass
-
-        area, country = self._get_location()
-
-        rate = self._get_rate(tc, area, country)
-
-        if not rate:
-            t = Decimal("0.00")
-
-        else:
-            t = rate.percentage * price
-
-        return t
+        return self.by_price(tc, price)
+        
+    def by_orderitem(self, orderitem):
+        price = orderitem.sub_total
+        taxclass = orderitem.product.taxClass
+        return self.by_price(taxclass, price)
 
     def shipping(self):
         if self.order:
