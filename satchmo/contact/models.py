@@ -797,7 +797,7 @@ class OrderTaxDetail(models.Model):
     order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="taxes")
     method = models.CharField(_("Model"), max_length=50, core=True)
     description = models.CharField(_("Description"), max_length=50, blank=True)
-    tax = models.DecimalField(_("Tax", core=True),
+    tax = models.DecimalField(_("Tax"), core=True,
         max_digits=6, decimal_places=2, blank=True, null=True)
 
     def __unicode__(self):
