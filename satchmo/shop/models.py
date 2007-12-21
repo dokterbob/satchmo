@@ -2,20 +2,20 @@
 Configuration items for the shop.
 Also contains shopping cart and related classes.
 """
-from config import *
+import datetime
 from decimal import Decimal
+from logging import getLogger
+
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
+
 from satchmo.configuration import ConfigurationSettings, config_value
 from satchmo.contact.models import Contact
 from satchmo.l10n.models import Country
-from satchmo.product.models import ConfigurableProduct, Product, CustomTextField
-import datetime
-
-from logging import getLogger
+from satchmo.product.models import Product
 
 log = getLogger('satchmo.shop.models')
 
@@ -29,10 +29,10 @@ class NullConfig(object):
         self.no_stock_checkout = False
         self.in_country_only = True
         self.sales_country = Country.objects.get(iso3_code__exact='USA')
-    
+
     def _options(self):
         return ConfigurationSettings()
-        
+
     options = property(fget=_options)
 
     def __str__(self):
@@ -59,7 +59,6 @@ class Config(models.Model):
     sales_country = models.ForeignKey(Country, blank=True, null=True,
                                      related_name='sales_country',
                                      verbose_name=_("Default country for customers"))
-                                     
     shipping_countries = models.ManyToManyField(Country, filter_interface=True, blank=True, verbose_name=_("Shipping Countries"), related_name="shop_configs")
 
     def _get_shop_config(cls):
@@ -69,14 +68,14 @@ class Config(models.Model):
         except Config.DoesNotExist:
             log.warning("No Shop Config found, using test shop config.")
             shop_config = NullConfig()
-        
+
         return shop_config
-        
+
     get_shop_config = classmethod(_get_shop_config)
-    
+
     def _options(self):
         return ConfigurationSettings()
-        
+
     options = property(fget=_options)
 
     def __unicode__(self):
@@ -94,8 +93,8 @@ class NullCart(object):
     desc = None
     date_time_created = None
     customer = None
-    total=Decimal("0")
-    numItems=0
+    total = Decimal("0")
+    numItems = 0
 
     def add_item(self, chosen_item, number_added):
         pass
@@ -125,25 +124,38 @@ class Cart(models.Model):
     date_time_created = models.DateTimeField(_("Creation Date"))
     customer = models.ForeignKey(Contact, blank=True, null=True)
 
-    def _get_session_cart(cls, request, create=False):
+    @classmethod
+    def get_session_cart(cls, request, create=False):
         """Convenience method to get the current cart from the session"""
-        if request.session.get('cart'):
+
+        cart = NullCart()
+        contact = Contact.from_request(request, create=False)
+
+        if 'cart' in request.session:
             try:
                 cart = cls.objects.get(id=request.session['cart'])
             except Cart.DoesNotExist:
                 log.debug('Removing invalid cart from session')
                 del request.session['cart']
-                cart = NullCart()
-        else:
+
+        if isinstance(cart, NullCart) and contact is not None:
+            carts = Cart.objects.filter(customer=contact)
+            if carts.count() > 0:
+                cart = carts[0]
+                request.session['cart'] = cart.id
+
+        if isinstance(cart, NullCart):
             if create:
-                cart = cls()
+                if contact is None:
+                    cart = cls()
+                else:
+                    cart = cls(customer=contact)
                 cart.save()
+                request.session['cart'] = cart.id
             else:
                 cart = NullCart()
-        
+
         return cart
-        
-    get_session_cart = classmethod(_get_session_cart)
 
     def _get_count(self):
         itemCount = 0
@@ -177,11 +189,10 @@ class Cart(models.Model):
                 itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
         except IndexError: #It doesn't exist so create a new one
             itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
-        itemToModify.quantity += number_added            
+        itemToModify.quantity += number_added
         itemToModify.save()
         for data in details:
             itemToModify.add_detail(data)
-        
 
     def remove_item(self, chosen_item_id, number_removed):
         itemToModify =  self.cartitem_set.get(id = chosen_item_id)
@@ -253,9 +264,9 @@ class CartItem(models.Model):
         Determine if this specific item has more detail
         """
         return (self.details.count() > 0)
-        
+
     has_details = property(_has_details)
-    
+
     def __unicode__(self):
         currency = config_value('SHOP', 'CURRENCY')
         currency = currency.replace("_", " ")
@@ -275,6 +286,6 @@ class CartItemDetails(models.Model):
     price_change = models.DecimalField(_("Item Detail Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
-        
+
     class Meta:
         ordering = ('sort_order',)
