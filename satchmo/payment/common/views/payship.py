@@ -92,8 +92,9 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
             request.session['orderID'] = newOrder.id 
 
             #TODO: allow partial-pay here, which will mean that not all payments are on new orders.
-            orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance, payment=payment_module.KEY.value)
-            orderpayment.save()
+            if not payment_module.KEY.value == 'PAYPAL': #paypal will add payment to invoice via IPN
+                orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance, payment=payment_module.KEY.value)
+                orderpayment.save()
 
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))

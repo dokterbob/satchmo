@@ -14,10 +14,11 @@
 <form action="{{ post_url }}" method="post">
 <input type="hidden" name="cmd" value="_cart" />
 <input type="hidden" name="upload" value="1" />
-<input type="hidden" name="business" value="{{ business }}" /> 
+<input type="hidden" name="business" value="{{ business }}" />
 <input type="hidden" name="currency_code" value="{{ currency_code }}" />
 <input type="hidden" name="no_shipping" value="1" />
 <input type="hidden" name="return" value="{{ return_address }}" />
+<input type="hidden" name="invoice" value="{{ invoice }}" />
 {% for item in order.orderitem_set.all %}
 <input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
 <input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price}}" />

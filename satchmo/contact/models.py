@@ -751,6 +751,7 @@ class OrderPayment(models.Model):
     amount = models.DecimalField(_("amount"), core=True,
         max_digits=6, decimal_places=2, blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
+    transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
 
     def _credit_card(self):
         """Return the credit card associated with this payment."""

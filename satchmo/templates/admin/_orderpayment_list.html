@@ -9,6 +9,7 @@
             <th>{% trans 'Amount' %}</th>
             <th>{% trans 'Method' %}</th>
             <th>{% trans 'Timestamp' %}</th>
+            <th>{% trans 'Transaction ID' %}</th>
         </tr>
     {% for payment in order.payments.all %}
         <tr>
@@ -23,6 +24,9 @@
             </td>
             <td>
                 {{ payment.timestamp }}
+            </td>
+            <td>
+                {{ payment.transaction_id }}
             </td>
         </tr>
     {% endfor %}
