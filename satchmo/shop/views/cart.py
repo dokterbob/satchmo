@@ -8,7 +8,7 @@ from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
-from satchmo.shop.models import Cart, CartItem, CartItemDetails
+from satchmo.shop.models import Cart, CartItem, NullCart
 from satchmo.shop.views.utils import bad_or_missing
 import logging
 
@@ -24,11 +24,8 @@ def _set_quantity(request, force_delete=False):
     """Set the quantity for a specific cartitem.
     Checks to make sure the item is actually in the user's cart.
     """
-    cart = None
-    cartitem = None
-    if request.session.get('cart'):
-        cart = Cart.objects.get(id=request.session['cart'])
-    else:
+    cart = Cart.get_session_cart(request, create=False)
+    if isinstance(cart, NullCart):
         return (False, None, None, _("No cart to update."))
 
     if force_delete:
@@ -60,7 +57,7 @@ def _set_quantity(request, force_delete=False):
 
     return (True, cart, cartitem, "")
 
-def display(request, cart = None, error_message = ""):
+def display(request, cart=None, error_message=''):
     """Display the items in the cart."""
     if (not cart) and request.session.get('cart'):
         cart = Cart.objects.get(id=request.session['cart'])
@@ -79,19 +76,19 @@ def add(request, id=0):
         product = Product.objects.get(slug=request.POST['productname'])
         p_types = product.get_subtypes()
         details = []
-        
+
         if 'ConfigurableProduct' in p_types:
             # This happens when productname cannot be updated by javascript.
             cp = product.configurableproduct
             chosenOptions = optionset_from_post(cp, request.POST)
             product = cp.get_product_from_options(chosenOptions)
-                
+
         if 'CustomProduct' in p_types:
             for customfield in product.customproduct.custom_text_fields.all():
                 data = { 'name' : customfield.translated_name(),
                          'value' : request.POST["custom_%s" % customfield.slug],
                          'sort_order': customfield.sort_order,
-                         'price_change': customfield.price_change }         
+                         'price_change': customfield.price_change }
                 details.append(data)
                 data = {}
             chosenOptions = optionset_from_post(product.customproduct, request.POST)
@@ -105,34 +102,28 @@ def add(request, id=0):
                 }
                 details.append(data)
                 data = {}
-                
+
         template = find_product_template(product)
     except (Product.DoesNotExist, MultiValueDictKeyError):
         return bad_or_missing(request, _('The product you have requested does not exist.'))
-        
+
     try:
         quantity = int(request.POST['quantity'])
     except ValueError:
         context = RequestContext(request, {
             'product': product,
             'error_message': _("Please enter a whole number.")})
-        
+
         return HttpResponse(template.render(context))
-        
+
     if quantity < 1:
         context = RequestContext(request, {
             'product': product,
             'error_message': _("Please enter a positive number.")})
         return HttpResponse(template.render(context))
 
-    if request.session.get('cart'):
-        cart = Cart.objects.get(id=request.session['cart'])
-    else:
-        cart = Cart()
-        cart.save() # Give the cart an id
-    
+    cart = Cart.get_session_cart(request, create=True)
     cart.add_item(product, number_added=quantity, details=details)
-    request.session['cart'] = cart.id
 
     url = urlresolvers.reverse('satchmo_cart')
     return HttpResponseRedirect(url)
@@ -140,7 +131,7 @@ def add(request, id=0):
 def add_ajax(request, id=0, template="json.html"):
     data = {'errors': []}
     product = None
-    productname = request.POST['productname'];
+    productname = request.POST['productname']
     log.debug('CART_AJAX: slug=%s', productname)
     try:
         product = Product.objects.get(slug=request.POST['productname'])
@@ -153,10 +144,10 @@ def add_ajax(request, id=0, template="json.html"):
     except Product.DoesNotExist:
         log.warn("Could not find product: %s", productname)
         product = None
-        
+
     if not product:
         data['errors'].append(('product', _('The product you have requested does not exist.')))
-    
+
     else:
         data['id'] = product.id
         data['name'] = product.translated_name()
@@ -170,7 +161,7 @@ def add_ajax(request, id=0, template="json.html"):
             data['errors'].append(('quantity', _('Choose a whole number.')))
 
     tempCart = Cart.get_session_cart(request, create=True)
-    
+
     if not data['errors']:
         tempCart.add_item(product, number_added=quantity)
         request.session['cart'] = tempCart.id
@@ -179,13 +170,13 @@ def add_ajax(request, id=0, template="json.html"):
         data['results'] = _('Error')
 
     data['cart_count'] = tempCart.numItems
-    
+
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
 
     return render_to_response(template, {'json' : encoded})
-    
+
 def agree_terms(request):
     """Agree to terms"""
     if request.method == "POST":
@@ -193,7 +184,7 @@ def agree_terms(request):
             url = urlresolvers.reverse('satchmo_checkout-step1')
             return HttpResponseRedirect(url)
 
-    return display(request, error_message=_('You must accept the terms and conditions.'))    
+    return display(request, error_message=_('You must accept the terms and conditions.'))
 
 def remove(request):
     """Remove an item from the cart."""
