@@ -1,5 +1,4 @@
 import logging
-import time
 import urllib2
 from sys import exc_info
 from traceback import format_exception
@@ -21,7 +20,15 @@ from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 log = logging.getLogger()
 
 def pay_ship_info(request):
-    return payship.simple_pay_ship_info(request, config_get_group('PAYMENT_PAYPAL'), 'checkout/paypal/pay_ship.html')
+    return payship.base_pay_ship_info(request,
+        config_get_group('PAYMENT_PAYPAL'), pay_ship_process_form,
+        'checkout/paypal/pay_ship.html')
+
+def pay_ship_process_form(request, contact, working_cart, payment_module):
+    """Return the common simple_pay_ship_process view with the create_payment
+    kwarg set to false."""
+    return payship.simple_pay_ship_process_form(request, contact, working_cart,
+        payment_module, create_payment=False)
 
 def confirm_info(request):
     payment_module = config_get_group('PAYMENT_PAYPAL')

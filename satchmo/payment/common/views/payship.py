@@ -75,10 +75,10 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
             return (True, http.HttpResponseRedirect(url))
     else:
         form = CreditPayShipForm(request, payment_module)
-        
+
     return (False, form)
-    
-def simple_pay_ship_process_form(request, contact, working_cart, payment_module):
+
+def simple_pay_ship_process_form(request, contact, working_cart, payment_module, create_payment=True):
     if request.POST:
         new_data = request.POST.copy()
         form = SimplePayShipForm(request, payment_module, new_data)
@@ -89,10 +89,9 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
             newOrder = Order(contact=contact)
             pay_ship_save(newOrder, working_cart, contact,
                 shipping=data['shipping'], discount=data['discount'])
-            request.session['orderID'] = newOrder.id 
+            request.session['orderID'] = newOrder.id
 
-            #TODO: allow partial-pay here, which will mean that not all payments are on new orders.
-            if not payment_module.KEY.value == 'PAYPAL': #paypal will add payment to invoice via IPN
+            if create_payment:
                 orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance, payment=payment_module.KEY.value)
                 orderpayment.save()
 
@@ -100,9 +99,9 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
             return (True, http.HttpResponseRedirect(url))
     else:
         form = SimplePayShipForm(request, payment_module)
-    
+
     return (False, form)
-    
+
 def pay_ship_render_form(request, form, template, payment_module):
     template = lookup_template(payment_module, template)
     ctx = RequestContext(request, {
