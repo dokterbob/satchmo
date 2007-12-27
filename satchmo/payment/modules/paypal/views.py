@@ -109,7 +109,7 @@ def ipn(request):
             orderpayment = OrderPayment(order=order,
                 amount=gross, payment='PAYPAL', transaction_id=txn_id)
             orderpayment.save()
-            order.add_status(status='Billed', notes=_("Paid through PayPal."))
+            order.add_status(status='Pending', notes=_("Paid through PayPal."))
 
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
