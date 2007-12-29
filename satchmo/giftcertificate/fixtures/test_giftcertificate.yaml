@@ -1,0 +1,33 @@
+- fields: {description: '', meta: '', name: Gift Certificates, ordering: 100, parent: null,
+    slug: gift-certificates}
+  model: product.category
+  pk: 8
+- fields:
+    active: true
+    also_purchased: []
+    category: [8]
+    date_added: 2007-12-27
+    description: $10 Gift Certificate
+    featured: false
+    height: null
+    items_in_stock: 10000
+    length: null
+    meta: ''
+    name: Gift Certificate for $10
+    ordering: 0
+    related_items: []
+    short_description: ''
+    slug: GIFT10
+    taxClass: null
+    taxable: false
+    weight: null
+    width: null
+  model: product.product
+  pk: 20
+- fields: {expires: null, price: '10', product: 20, quantity: 1}
+  model: product.price
+  pk: 5
+- fields: {}
+  model: giftcertificate.giftcertificateproduct
+  pk: 20
+

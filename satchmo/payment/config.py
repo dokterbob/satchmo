@@ -38,7 +38,7 @@ You must enable SSL for each payment module individually."""),
 ])
 
 # --- Load default payment modules.  Ignore import errors, user may have deleted them. ---
-_default_modules = ('authorizenet','dummy','google','paypal', 'trustcommerce', 'cybersource', 'autosuccess', 'cod') #, 'giftcertificate')
+_default_modules = ('authorizenet','dummy','google','paypal', 'trustcommerce', 'cybersource', 'autosuccess', 'cod')
 
 for module in _default_modules:
     try:

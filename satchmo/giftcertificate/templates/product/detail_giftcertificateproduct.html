@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_currency satchmo_category%}
+{% block extra-head %}
+{% if product.meta %}
+    <meta name="description" content="{{product.meta}}">
+{% endif %}
+{% endblock %}
+
+{% block navbar %}
+
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> 
+{% for name, url in product.category.all.0.get_url_name %}
+    :: <a href="{{ url }}">{{ name }}</a>
+{% endfor %}
+
+{% endblock %}
+
+{% block sidebar %}
+    {% trans "Shop Categories" %}<br/>
+    <div id="menu_container">
+    {% category_tree product.get_category.id %}
+    </div>
+{% endblock %}
+
+{% block content %}
+<h4>{% trans 'Gift Certificate' %}</h4>
+<p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
+{% trans "Price" %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_cart_add %}" method="post">
+
+<div>
+{% trans "Quantity (multiply the gift certificate by this amount)" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+</div>
+<div>
+{% trans 'Recipient Email (optional):' %} <input type="text" maxlength="100" name="custom_email" /><br/>
+{% trans 'Message (optional):' %}<br/>
+<textarea name="custom_message" rows="10" cols="40"></textarea>
+</div>
+
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="submit" value="{% trans "Add to cart" %}" /> 
+</form>
+{% endblock %} 

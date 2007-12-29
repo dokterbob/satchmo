@@ -1,6 +1,8 @@
 {# this text is placed by the satchmo_order template tag "order_tracking_details" #}
 {% load i18n %}
 {% load satchmo_currency %}
+{% load satchmo_checkout %}
+{% load satchmo_util %}
 
 <div class="orderdetails">
 <h4>{% trans 'Order #' %} {{ order.id }}</h4>
@@ -33,6 +35,8 @@
 {% endif %}
 {% trans "Total" %} = {{order.total|currency}}<br/>
 
+{% order_payment_summary order paylink %}
+
 {% if order.is_shippable %}
 <h4>{% trans "Shipping To" %}</h4>
 {{ order.full_ship_street }}<br/>
@@ -42,3 +46,7 @@
 {{ order.ship_country }}<br/>
 {% endif %}
 </div>
+{% if "giftcertificate"|app_enabled %}
+{% load satchmo_giftcertificate %}
+{% giftcertificate_order_summary order %}
+{% endif %}

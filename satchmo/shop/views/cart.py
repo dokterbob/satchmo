@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
@@ -24,7 +25,7 @@ def _set_quantity(request, force_delete=False):
     """Set the quantity for a specific cartitem.
     Checks to make sure the item is actually in the user's cart.
     """
-    cart = Cart.get_session_cart(request, create=False)
+    cart = Cart.objects.from_request(request, create=False)
     if isinstance(cart, NullCart):
         return (False, None, None, _("No cart to update."))
 
@@ -59,8 +60,8 @@ def _set_quantity(request, force_delete=False):
 
 def display(request, cart=None, error_message=''):
     """Display the items in the cart."""
-    if (not cart) and request.session.get('cart'):
-        cart = Cart.objects.get(id=request.session['cart'])
+    if not cart:
+        cart = Cart.objects.from_request(request)
 
     context = RequestContext(request, {
         'cart': cart,
@@ -72,26 +73,30 @@ def add(request, id=0):
     """Add an item to the cart."""
     #TODO: Error checking for invalid combos
     log.debug('FORM: %s', request.POST)
+    formdata = request.POST.copy()
+    productslug = formdata['productname']
     try:
-        product = Product.objects.get(slug=request.POST['productname'])
+        product = Product.objects.get(slug=productslug)
+        log.debug('found product: %s', product)
         p_types = product.get_subtypes()
         details = []
 
         if 'ConfigurableProduct' in p_types:
             # This happens when productname cannot be updated by javascript.
             cp = product.configurableproduct
-            chosenOptions = optionset_from_post(cp, request.POST)
+            chosenOptions = optionset_from_post(cp, formdata)
             product = cp.get_product_from_options(chosenOptions)
 
         if 'CustomProduct' in p_types:
-            for customfield in product.customproduct.custom_text_fields.all():
+            cp = product.customproduct
+            for customfield in cp.custom_text_fields.all():
                 data = { 'name' : customfield.translated_name(),
-                         'value' : request.POST["custom_%s" % customfield.slug],
+                         'value' : formdata["custom_%s" % customfield.slug],
                          'sort_order': customfield.sort_order,
                          'price_change': customfield.price_change }
                 details.append(data)
                 data = {}
-            chosenOptions = optionset_from_post(product.customproduct, request.POST)
+            chosenOptions = optionset_from_post(cp, formdata)
             manager = OptionManager()
             for choice in chosenOptions:
                 result = manager.from_unique_id(choice)
@@ -102,13 +107,29 @@ def add(request, id=0):
                 }
                 details.append(data)
                 data = {}
+                
+        if 'GiftCertificateProduct' in p_types:
+            ix = 0
+            zero = Decimal("0.00")
+            for field in ('email', 'message'):
+                data = {
+                    'name' : field,
+                    'value' : formdata.get("custom_%s" % field, ""),
+                    'sort_order' : ix,
+                    'price_change' : zero,
+                }
+                ix += 1
+                details.append(data)
+            log.debug("Gift Certificate details: %s", details)
+            data = {}
 
         template = find_product_template(product)
     except (Product.DoesNotExist, MultiValueDictKeyError):
+        log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
 
     try:
-        quantity = int(request.POST['quantity'])
+        quantity = int(formdata['quantity'])
     except ValueError:
         context = RequestContext(request, {
             'product': product,
@@ -122,7 +143,7 @@ def add(request, id=0):
             'error_message': _("Please enter a positive number.")})
         return HttpResponse(template.render(context))
 
-    cart = Cart.get_session_cart(request, create=True)
+    cart = Cart.objects.from_request(request, create=True)
     cart.add_item(product, number_added=quantity, details=details)
 
     url = urlresolvers.reverse('satchmo_cart')
@@ -160,7 +181,7 @@ def add_ajax(request, id=0, template="json.html"):
         except ValueError:
             data['errors'].append(('quantity', _('Choose a whole number.')))
 
-    tempCart = Cart.get_session_cart(request, create=True)
+    tempCart = Cart.objects.from_request(request, create=True)
 
     if not data['errors']:
         tempCart.add_item(product, number_added=quantity)

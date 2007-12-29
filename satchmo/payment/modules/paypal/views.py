@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 
 from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order, OrderPayment
+from satchmo.payment.common.utils import record_payment, create_pending_payment
 from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart
@@ -21,32 +22,23 @@ log = logging.getLogger()
 
 def pay_ship_info(request):
     return payship.base_pay_ship_info(request,
-        config_get_group('PAYMENT_PAYPAL'), pay_ship_process_form,
+        config_get_group('PAYMENT_PAYPAL'), payship.simple_pay_ship_process_form,
         'checkout/paypal/pay_ship.html')
 
-def pay_ship_process_form(request, contact, working_cart, payment_module):
-    """Return the common simple_pay_ship_process view with the create_payment
-    kwarg set to false."""
-    return payship.simple_pay_ship_process_form(request, contact, working_cart,
-        payment_module, create_payment=False)
 
 def confirm_info(request):
     payment_module = config_get_group('PAYMENT_PAYPAL')
 
-    if not request.session.get('orderID'):
+    try:
+        order = Order.objects.from_request(request)
+    except Order.DoesNotExist:
         url = lookup_url(payment_module, 'satchmo_checkout-step1')
         return HttpResponseRedirect(url)
 
-    if request.session.get('cart'):
-        tempCart = Cart.objects.get(id=request.session['cart'])
-        if tempCart.numItems == 0:
-            template = lookup_template(payment_module, 'checkout/empty_cart.html')
-            return render_to_response(template, RequestContext(request))
-    else:
+    tempCart = Cart.objects.from_request(request)
+    if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'checkout/empty_cart.html')
         return render_to_response(template, RequestContext(request))
-
-    order = Order.objects.get(id=request.session['orderID'])
 
     # Check if the order is still valid
     if not order.validate(request):
@@ -68,6 +60,8 @@ def confirm_info(request):
             payment_module.RETURN_ADDRESS.value, include_server=True)
     except urlresolvers.NoReverseMatch:
         address = payment_module.RETURN_ADDRESS.value
+        
+    create_pending_payment(order, payment_module)
 
     ctx = RequestContext(request, {'order': order,
      'post_url': url,
@@ -113,9 +107,9 @@ def ipn(request):
         if not OrderPayment.objects.filter(transaction_id=txn_id).count():
             # If the payment hasn't already been processed:
             order = Order.objects.get(pk=invoice)
-            orderpayment = OrderPayment(order=order,
-                amount=gross, payment='PAYPAL', transaction_id=txn_id)
-            orderpayment.save()
+            
+            payment_module = config_get_group('PAYMENT_PAYPAL')
+            record_payment(order, payment_module, amount=gross, transaction_id=txn_id)
             order.add_status(status='Pending', notes=_("Paid through PayPal."))
 
             for cart in Cart.objects.filter(customer=order.contact):

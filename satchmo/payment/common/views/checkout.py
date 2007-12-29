@@ -9,8 +9,8 @@ def success(request):
     The order has been succesfully processed.  This can be used to generate a receipt or some other confirmation
     """
     try:
-        order = Order.objects.get(id=request.session['orderID'])
-    except KeyError:
+        order = Order.objects.from_request(request)
+    except Order.DoesNotExist:
         return bad_or_missing(request, _('Your order has already been processed.'))
     del request.session['orderID']
     context = RequestContext(request, {'order': order})

@@ -1,5 +1,5 @@
 from django import template
-
+from django.db import models
 register = template.Library()
 
 class FilterAdminApplistNode(template.Node):
@@ -8,8 +8,6 @@ class FilterAdminApplistNode(template.Node):
         self.varname = varname
 
     def render(self, context):
-        from django.db import models
-
         all_apps = {}
         for app in models.get_apps():
             name = app.__name__.rsplit('.')[-2]

@@ -1,14 +1,12 @@
 """
 Stores customer, organization, and order information.
 """
-
 from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db import models
-from django.db.models import permalink
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _
 from satchmo import tax
@@ -80,6 +78,42 @@ class Organization(models.Model):
         verbose_name = _("Organization")
         verbose_name_plural = _("Organizations")
 
+class ContactManager(models.Manager):
+    
+    def from_request(self, request, create=False):
+        """Get the contact from the session, else look up using the logged-in
+        user. Create an unsaved new contact if `create` is true.
+
+        Returns:
+        - Contact object or None
+        """
+        contact = None
+        if request.session.get('custID'):
+            try:
+                contact = Contact.objects.get(id=request.session['custID'])
+            except Contact.DoesNotExist:
+                del request.session['custID']
+
+        if contact is None and request.user.is_authenticated():
+            try:
+                contact = Contact.objects.get(user=request.user.id)
+                request.session['custID'] = contact.id
+            except Contact.DoesNotExist:
+                pass
+        else:
+            # Don't create a Contact if the user isn't authenticated.
+            create = False
+
+        if contact is None:
+            if create:
+                contact = Contact(user=request.user)
+
+            else:
+                raise Contact.DoesNotExist()
+                
+        return contact
+
+
 class Contact(models.Model):
     """
     A customer, supplier or any individual that a store owner might interact
@@ -98,36 +132,8 @@ class Contact(models.Model):
     notes = models.TextField(_("Notes"), max_length=500, blank=True)
     create_date = models.DateField(_("Creation date"))
 
-    @classmethod
-    def from_request(cls, request, create=False):
-        """Get the contact from the session, else look up using the logged-in
-        user. Create an unsaved new contact if `create` is true.
-
-        Returns:
-        - Contact object or None
-        """
-        contact = None
-        if request.session.get('custID'):
-            try:
-                contact = cls.objects.get(id=request.session['custID'])
-            except Contact.DoesNotExist:
-                del request.session['custID']
-
-        if contact is None and request.user.is_authenticated():
-            try:
-                contact = cls.objects.get(user=request.user.id)
-                request.session['custID'] = contact.id
-            except Contact.DoesNotExist:
-                pass
-        else:
-            # Don't create a Contact if the user isn't authenticated.
-            create = False
-
-        if contact is None and create:
-            contact = Contact(user=request.user)
-
-        return contact
-
+    objects = ContactManager()
+    
     def _get_full_name(self):
         """Return the person's full name."""
         return u'%s %s' % (self.first_name, self.last_name)
@@ -307,6 +313,30 @@ ORDER_STATUS = (
     ('Shipped', _('Shipped')),
 )
 
+class OrderManager(models.Manager):
+    
+    def from_request(self, request):
+        """Get the order from the session
+        
+        Returns:
+        - Order object or None
+        """
+        order = None
+        if 'orderID' in request.session:
+            try:
+                order = Order.objects.get(id=request.session['orderID'])
+                # todo validate against logged-in-user
+            except order.DoesNotExist:
+                pass
+                
+            if not order:
+                del request.session['orderID']
+                
+        if not order:
+            raise Order.DoesNotExist()
+            
+        return order
+
 class Order(models.Model):
     """
     Orders contain a copy of all the information at the time the order was
@@ -351,6 +381,8 @@ class Order(models.Model):
     timestamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
     status = models.CharField(_("Status"), max_length=20, choices=ORDER_STATUS,
         core=True, blank=True, help_text=_("This is set automatically."))
+
+    objects = OrderManager()
 
     def __unicode__(self):
         return "Order #%s: %s" % (self.id, self.contact.full_name)
@@ -413,11 +445,7 @@ class Order(models.Model):
         self.save()
 
     def _balance(self):
-        payments = [p.amount for p in self.payments.all()]
-        if payments:
-            paid = reduce(operator.add, payments)
-            return self.total - paid
-        return self.total
+        return self.total-self.balance_paid
         
     balance = property(fget=_balance)
     
@@ -425,6 +453,15 @@ class Order(models.Model):
         return moneyfmt(self.balance)
 
     balance_forward = property(fget=balance_forward)
+    
+    def _balance_paid(self):
+        payments = [p.amount for p in self.payments.all()]
+        if payments:
+            return reduce(operator.add, payments)
+        else:
+            return Decimal("0.00")
+    
+    balance_paid = property(_balance_paid)
     
     def _credit_card(self):
         """Return the credit card associated with this payment."""
@@ -453,7 +490,20 @@ class Order(models.Model):
         else:
             return self.ship_street1
     full_ship_street = property(_full_ship_street)
-
+    
+    def _get_balance_remaining_url(self):
+        return ('satchmo_balance_remaining_order', None, {'order_id' : self.id})
+    get_balance_remaining_url = models.permalink(_get_balance_remaining_url)
+    
+    def _partially_paid(self):
+        return self.balance_paid > Decimal("0.00")
+    
+    partially_paid = property(_partially_paid)
+    
+    def payments_completed(self):
+        q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
+        return q.exclude(amount=Decimal("0.00"))
+    
     def save(self):
         """
         Copy addresses from contact. If the order has just been created, set
@@ -547,6 +597,7 @@ class Order(models.Model):
 
     def order_success(self):
         """Run each item's order_success method."""
+        log.debug("Order success: %s", self)
         for orderitem in self.orderitem_set.all():
             subtype = orderitem.product.get_subtype_with_attr('order_success')
             if subtype:
@@ -698,7 +749,7 @@ class DownloadLink(models.Model):
         
     def get_absolute_url(self):
         return('satchmo.shop.views.download.process', (), { 'download_key': self.key})
-    get_absolute_url = permalink(get_absolute_url)
+    get_absolute_url = models.permalink(get_absolute_url)
     
     def get_full_url(self):
         url = urlresolvers.reverse('satchmo_download_process', kwargs= {'download_key': self.key})

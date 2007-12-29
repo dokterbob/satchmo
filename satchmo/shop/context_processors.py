@@ -11,7 +11,7 @@ from satchmo.shop.utils import request_is_secure
 
 def settings(request):
     shop_config = Config.get_shop_config()
-    cart = Cart.get_session_cart(request)
+    cart = Cart.objects.from_request(request)
 
     all_categories = Category.objects.all()
 

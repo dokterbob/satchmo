@@ -1148,7 +1148,7 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
     if not language_code:
         language_code = get_language()
     
-    log.debug("looking up translation [%s] %s", language_code.encode('utf-8'), attr.encode('utf-8'))
+    #log.debug("looking up translation [%s] %s", language_code.encode('utf-8'), attr.encode('utf-8'))
         
     if not hasattr(obj, '_translationcache'):
         obj._translationcache = {}
@@ -1207,11 +1207,11 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
         
     if not trans:
         trans = obj
-        log.debug("No such language version, using obj")                
+        #log.debug("No such language version, using obj")                
         
     val = getattr(trans, attr, UNSET)
     if trans != obj and (val in (None, UNSET)):
         val = getattr(obj, attr)
         
-    log.debug("Translated version: %s", val.encode('utf-8'))
+    #log.debug("Translated version: %s", val.encode('utf-8'))
     return mark_safe(val)

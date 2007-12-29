@@ -1,3 +1,4 @@
+from satchmo.shop.templatetags import get_filter_args
 from django import template
 
 register = template.Library()
@@ -46,5 +47,25 @@ def break_at(value,  chars=40):
                 
     return " ".join(out)
 
-    
 register.filter('break_at', break_at)
+
+def in_list(value, val=None):
+    """returns "true" if the value is in the list"""
+    if val in value:
+        return "true"
+    return ""
+    
+register.filter('in_list', in_list)
+
+def app_enabled(value):
+    """returns "true" if the app is enabled"""
+    from django.db import models
+
+    all_apps = {}
+    for app in models.get_apps():
+        n = app.__name__.split('.')[-2]
+        if n  == value:
+            return "true"
+    return ""
+    
+register.filter('app_enabled', app_enabled)

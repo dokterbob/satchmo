@@ -19,6 +19,11 @@
 <input type="hidden" name="no_shipping" value="1" />
 <input type="hidden" name="return" value="{{ return_address }}" />
 <input type="hidden" name="invoice" value="{{ invoice }}" />
+{% if order.partially_paid %}
+<input type="hidden" name="item_name_1" value="Remaining Balance for order {{ order.id }}" />
+<input type="hidden" name="amount_1" value="{{order.balance}}" />
+<input type="hidden" name="quantity_1" value="1" />
+{% else %}
 {% for item in order.orderitem_set.all %}
 <input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
 <input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price}}" />
@@ -26,6 +31,7 @@
 {% endfor %}
 <input type="hidden" name="shipping_1" value="{{order.shipping_sub_total}}" />
 <input type="hidden" name="tax_cart" value="{{order.tax}}" />
+{% endif %}
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>
 {% endblock %}

@@ -13,7 +13,7 @@ from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
 from satchmo.configuration import ConfigurationSettings, config_value
-from satchmo.contact.models import Contact
+from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
 
@@ -96,10 +96,10 @@ class NullCart(object):
     total = Decimal("0")
     numItems = 0
 
-    def add_item(self, chosen_item, number_added):
+    def add_item(self, *args, **kwargs):
         pass
 
-    def remove_item(self, chosen_item_id, number_removed):
+    def remove_item(self, *args, **kwargs):
         pass
 
     def empty(self):
@@ -113,7 +113,88 @@ class NullCart(object):
 
     def __len__(self):
         return 0
+        
+class OrderCart(NullCart):
+    """Allows us to fake a cart if we are reloading an order."""
+    
+    def __init__(self, order):
+        self._order = order
+        
+    def _numItems(self):
+        return self._order.orderitem_set.count()
+        
+    numItems = property(_numItems)
+    
+    def _cartitem_set(self):
+        return self._order.orderitem_set
+        
+    cartitem_set = property(_cartitem_set)
+    
+    def _total(self):
+        return self._order.balance
+    
+    total = property(_total)
+    
+    is_shippable = False
 
+    def __str__(self):
+        return "OrderCart (%i) = %i" % (self._order.id, len(self))
+        
+    def __len__(self):
+        return self.numItems
+
+class CartManager(models.Manager):
+    
+    def from_request(self, request, create=False, return_nullcart=True):
+        """Get the current cart from the request"""
+        cart = None
+        try:
+            contact = Contact.objects.from_request(request, create=False)
+        except Contact.DoesNotExist:
+            contact = None
+
+        if 'cart' in request.session:
+            cartid = request.session['cart']
+            if cartid == "order":
+                log.debug("Getting Order Cart from request")
+                try:
+                    order = Order.objects.from_request(request)
+                    cart = OrderCart(order)
+                except Order.DoesNotExist:
+                    pass
+                    
+            else:
+                try:
+                    cart = Cart.objects.get(id=cartid)
+                except Cart.DoesNotExist:
+                    log.debug('Removing invalid cart from session')
+                    del request.session['cart']
+
+        if isinstance(cart, NullCart) and not isinstance(cart, OrderCart) and contact is not None:
+            carts = Cart.objects.filter(customer=contact)
+            if carts.count() > 0:
+                cart = carts[0]
+                request.session['cart'] = cart.id
+
+        if not cart:
+            if create:
+                if contact is None:
+                    cart = Cart()
+                else:
+                    cart = Cart(customer=contact)
+                cart.save()
+                request.session['cart'] = cart.id
+
+            elif return_nullcart:
+                cart = NullCart()
+                
+            else:
+                raise Cart.DoesNotExist()
+        
+        log.debug("Cart: %s", cart)
+        return cart
+        
+                
 class Cart(models.Model):
     """
     Store items currently in a cart
@@ -123,40 +204,9 @@ class Cart(models.Model):
     desc = models.CharField(_("Description"), blank=True, null=True, max_length=10)
     date_time_created = models.DateTimeField(_("Creation Date"))
     customer = models.ForeignKey(Contact, blank=True, null=True)
-
-    @classmethod
-    def get_session_cart(cls, request, create=False):
-        """Convenience method to get the current cart from the session"""
-
-        cart = NullCart()
-        contact = Contact.from_request(request, create=False)
-
-        if 'cart' in request.session:
-            try:
-                cart = cls.objects.get(id=request.session['cart'])
-            except Cart.DoesNotExist:
-                log.debug('Removing invalid cart from session')
-                del request.session['cart']
-
-        if isinstance(cart, NullCart) and contact is not None:
-            carts = Cart.objects.filter(customer=contact)
-            if carts.count() > 0:
-                cart = carts[0]
-                request.session['cart'] = cart.id
-
-        if isinstance(cart, NullCart):
-            if create:
-                if contact is None:
-                    cart = cls()
-                else:
-                    cart = cls(customer=contact)
-                cart.save()
-                request.session['cart'] = cart.id
-            else:
-                cart = NullCart()
-
-        return cart
-
+    
+    objects = CartManager()
+    
     def _get_count(self):
         itemCount = 0
         for item in self.cartitem_set.all():
@@ -170,7 +220,7 @@ class Cart(models.Model):
             total += item.line_total
         return(total)
     total = property(_get_total)
-
+            
     def __iter__(self):
         return iter(self.cartitem_set.all())
 

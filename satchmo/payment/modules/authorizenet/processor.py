@@ -1,3 +1,4 @@
+from satchmo.payment.common.utils import record_payment
 from urllib import urlencode
 import urllib2
 
@@ -39,7 +40,7 @@ class PaymentProcessor(object):
             }
         # Can add additional info here if you want to but it's not required
         self.transactionData = {
-            'x_amount' : data.total,
+            'x_amount' : data.balance,
             'x_card_num' : data.credit_card.decryptedCC,
             'x_exp_date' : data.credit_card.expirationDate,
             'x_card_code' : data.credit_card.ccv
@@ -57,8 +58,8 @@ class PaymentProcessor(object):
         response_code = parsed_results[0]
         reason_code = parsed_results[1]
         response_text = parsed_results[3]
+        record_payment(self.order, self.settings, order=self.order.balance)
         if response_code == '1':
-            self.order.order_success()
             return(True, reason_code, response_text)
         elif response_code == '2':
             return(False, reason_code, response_text)
@@ -105,6 +106,7 @@ if __name__ == "__main__":
     sampleOrder.bill_city = 'Some City'
     sampleOrder.bill_country = 'US'
     sampleOrder.total = "27.00"
+    sampleOrder.balance = "27.00"
     sampleOrder.credit_card.decryptedCC = '6011000000000012'
     sampleOrder.credit_card.expirationDate = "10/09"
     sampleOrder.credit_card.ccv = "144"

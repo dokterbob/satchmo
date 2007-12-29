@@ -44,7 +44,10 @@ def update(request):
     init_data = {}
     areas, countries, only_country = get_area_country_options(request)
 
-    contact = Contact.from_request(request, create=False)
+    try:
+        contact = Contact.objects.from_request(request, create=False)
+    except Contact.DoesNotExist:
+        contact = None
 
     if request.POST:
         new_data = request.POST.copy()
@@ -99,10 +102,13 @@ def update(request):
 @login_required
 def order_history(request):
     orders = None
-    contact = Contact.from_request(request, create=False)
-    if contact is not None:
+    try:
+        contact = Contact.objects.from_request(request, create=False)
         orders = Order.objects.filter(contact=contact).order_by('-timestamp')
-
+    
+    except Contact.DoesNotExist:
+        contact = None
+        
     ctx = RequestContext(request, {
         'contact' : contact,
         'orders' : orders})
@@ -112,12 +118,14 @@ def order_history(request):
 @login_required
 def order_tracking(request, order_id):
     order = None
-    contact = Contact.from_request(request, create=False)
-    if contact is not None:
+    try:
+        contact = Contact.objects.from_request(request, create=False)
         try:
             order = Order.objects.get(id__exact=order_id, contact=contact)
         except Order.DoesNotExist:
             pass
+    except Contact.DoesNotExist:
+        contact = None
 
     if order is None:
         return bad_or_missing(request, _("The order you have requested doesn't exist, or you don't have access to it."))

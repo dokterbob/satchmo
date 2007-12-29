@@ -1,0 +1,17 @@
+{% load i18n  %}
+{% load satchmo_currency %}
+{% load satchmo_checkout %}
+{% for payment in order.payments_completed %}
+{% if forloop.first %}
+<h4>{% trans 'Paid' %}</h4>
+{% endif %}
+{{ payment.timestamp|date:"y-M-d H:i" }} {{ payment.payment|payment_label }} - {{ payment.amount|currency }}<br/>
+{% if forloop.last %}
+{% with order.balance|currency as balance %}
+Balance = {{ balance }}
+{% endwith %}
+{% endif %}
+{% if paylink and not order.paid_in_full %}
+<p><a href="{% url satchmo_balance_remaining_order order.id %}">{% trans 'Pay remaining balance' %}</a></p>
+{% endif %}
+{% endfor %}

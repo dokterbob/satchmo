@@ -1,4 +1,6 @@
 {% load satchmo_currency %}
+{% load satchmo_checkout %}
+{% load satchmo_util %}
 {% load i18n %}
 {% for item in order.orderitem_set.all %}
 {{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}<br/>
@@ -46,3 +48,10 @@
     {% trans "Tax" %} + {{order.tax|currency}}<br/>
 {% endif %}
 {% trans "Total" %} = {{order.total|currency}}<br/>
+
+{% order_payment_summary order %}
+
+{% if "giftcertificate"|app_enabled %}
+{% load satchmo_giftcertificate %}
+{% giftcertificate_order_summary order %}
+{% endif %}

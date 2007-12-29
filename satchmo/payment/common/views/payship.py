@@ -12,12 +12,28 @@ from satchmo.contact.models import Contact
 from satchmo.contact.models import Order, OrderPayment
 from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.common.pay_ship import pay_ship_save
+from satchmo.payment.common.utils import create_pending_payment
 from satchmo.payment.config import payment_live
 from satchmo.payment.models import CreditCardDetail
-from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
+from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 
 selection = _("Please Select")
+
+def get_or_create_order(request, working_cart, contact, data):
+    """Get the existing order from the session, else create using the working_cart, contact and data"""
+    try:
+        newOrder = Order.objects.from_request(request)
+        
+    except Order.DoesNotExist:
+        # Create a new order.
+        newOrder = Order(contact=contact)
+        pay_ship_save(newOrder, working_cart, contact,
+            shipping=data['shipping'], discount=data['discount'])
+            
+        request.session['orderID'] = newOrder.id
+    
+    return newOrder
 
 def pay_ship_info_verify(request, payment_module):
     """Verify customer and cart.
@@ -26,20 +42,18 @@ def pay_ship_info_verify(request, payment_module):
     False, destination of failure
     """
     # Verify that the customer exists.
-    contact = Contact.from_request(request, create=False)
-    if contact is None:
+    try:
+        contact = Contact.objects.from_request(request, create=False)
+    except Contact.DoesNotExist:
         url = lookup_url(payment_module, 'satchmo_checkout-step1')
         return (False, http.HttpResponseRedirect(url))
 
     # Verify that we still have items in the cart.
-    if request.session.get('cart', False):
-        tempCart = Cart.objects.get(id=request.session['cart'])
-        if tempCart.numItems == 0:
-            template = lookup_template(payment_module, 'checkout/empty_cart.html')
-            return (False, render_to_response(template, RequestContext(request)))
-    else:
-        return (False, render_to_response('checkout/empty_cart.html', RequestContext(request)))
-
+    tempCart = Cart.objects.from_request(request)
+    if tempCart.numItems == 0:
+        template = lookup_template(payment_module, 'checkout/empty_cart.html')
+        return (False, render_to_response(template, RequestContext(request)))
+            
     return (True, contact, tempCart)
 
 def credit_pay_ship_process_form(request, contact, working_cart, payment_module):
@@ -54,15 +68,9 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
         if form.is_valid():
             data = form.cleaned_data
 
-            # Create a new order.
-            newOrder = Order(contact=contact)
-            pay_ship_save(newOrder, working_cart, contact,
-                shipping=data['shipping'], discount=data['discount'])
-            request.session['orderID'] = newOrder.id
+            newOrder = get_or_create_order(request, working_cart, contact, data)
+            orderpayment = create_pending_payment(newOrder, payment_module)
 
-            orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance,
-                payment=unicode(payment_module.KEY.value))
-            orderpayment.save()
             # Save the credit card information.
             cc = CreditCardDetail(orderpayment=orderpayment, ccv=data['ccv'],
                 expireMonth=data['month_expires'],
@@ -78,22 +86,15 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
 
     return (False, form)
 
-def simple_pay_ship_process_form(request, contact, working_cart, payment_module, create_payment=True):
+def simple_pay_ship_process_form(request, contact, working_cart, payment_module):
     if request.POST:
         new_data = request.POST.copy()
         form = SimplePayShipForm(request, payment_module, new_data)
         if form.is_valid():
             data = form.cleaned_data
 
-            # Create a new order.
-            newOrder = Order(contact=contact)
-            pay_ship_save(newOrder, working_cart, contact,
-                shipping=data['shipping'], discount=data['discount'])
-            request.session['orderID'] = newOrder.id
-
-            if create_payment:
-                orderpayment = OrderPayment(order=newOrder, amount=newOrder.balance, payment=payment_module.KEY.value)
-                orderpayment.save()
+            newOrder = get_or_create_order(request, working_cart, contact, data)
+            orderpayment = create_pending_payment(newOrder, payment_module)
 
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))

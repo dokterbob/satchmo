@@ -63,8 +63,8 @@ class TestModulesSettings(TestCase):
 
 # class TestGenerateCertificateCode(TestCase):
 #     def setUp(self):
-#         self.charset = config_value('PAYMENT_GIFTCERTIFICATE', 'CHARSET')
-#         self.format = config_value('PAYMENT_GIFTCERTIFICATE', 'FORMAT')
+#         self.charset = config_value('PAYMENT_PAYMENT_GIFTCERTIFICATE', 'CHARSET')
+#         self.format = config_value('PAYMENT_PAYMENT_GIFTCERTIFICATE', 'FORMAT')
 # 
 #     def testGetCode(self):
 #         c = generate_certificate_code()

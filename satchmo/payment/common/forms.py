@@ -73,8 +73,16 @@ class SimplePayShipForm(forms.Form):
     def __init__(self, request, paymentmodule, *args, **kwargs):
         super(SimplePayShipForm, self).__init__(*args, **kwargs)
 
-        self.tempCart = Cart.objects.get(id=request.session['cart'])
-        self.tempContact = Contact.from_request(request)
+        try:
+            self.tempCart = Cart.objects.from_request(request)
+        except Cart.DoesNotExist:
+            self.tempCart = None
+            
+        try:
+            self.tempContact = Contact.objects.from_request(request)
+        except Contact.DoesNotExist:
+            self.tempContact = None
+            
         shipping_choices, shipping_dict = _get_shipping_choices(paymentmodule, self.tempCart, self.tempContact)
         self.fields['shipping'].choices = shipping_choices
         self.shipping_dict = shipping_dict
@@ -115,8 +123,12 @@ class CreditPayShipForm(SimplePayShipForm):
         year_now = datetime.date.today().year
         self.fields['year_expires'].choices = [(year, year) for year in range(year_now, year_now+6)]
 
-        self.tempCart = Cart.objects.get(id=request.session['cart'])
-        self.tempContact = Contact.from_request(request)
+        self.tempCart = Cart.objects.from_request(request)
+            
+        try:
+            self.tempContact = Contact.objects.from_request(request)
+        except Contact.DoesNotExist:
+            self.tempContact = None
 
         shipping_choices, shipping_dict = _get_shipping_choices(paymentmodule, self.tempCart, self.tempContact)
         self.fields['shipping'].choices = shipping_choices

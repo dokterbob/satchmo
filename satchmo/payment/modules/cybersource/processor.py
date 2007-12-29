@@ -1,4 +1,5 @@
 from django.template import Context, loader
+from satchmo.payment.common.utils import record_payment
 import urllib2
 try:
     from xml.etree.ElementTree import fromstring
@@ -47,7 +48,7 @@ class PaymentProcessor(object):
         currency = currency.replace("_", "")
         self.purchase_totals = {
             'currency' : currency,
-            'grandTotalAmount' : data.total,
+            'grandTotalAmount' : data.balance,
         }
 
         self.order = data
@@ -117,7 +118,7 @@ class PaymentProcessor(object):
         else:
             response_text = 'Unknown failure'
         if reason_code == '100':
-            self.order.order_success()
+            record_payment(self.order, self.settings, amount=self.order.balance)
             return(True, reason_code, response_text)
         else:
             return(False, reason_code, response_text)
@@ -164,6 +165,7 @@ if __name__ == "__main__":
     sampleOrder.bill_city = 'Some City'
     sampleOrder.bill_country = 'US'
     sampleOrder.total = "27.00"
+    sampleOrder.balance = "27.00"
     sampleOrder.credit_card.decryptedCC = '6011000000000012'
     sampleOrder.credit_card.expirationDate = "10/09"
     sampleOrder.credit_card.ccv = "144"

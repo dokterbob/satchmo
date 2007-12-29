@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load satchmo_currency %}
+{% for cert in order.giftcertificates.all %}
+{% if forloop.first %}
+<h4>Gift Certificate Codes</h4>
+{% endif %}
+<p class="giftcertificate">{% trans 'Gift Certificate' %}<br/>
+{% if cert.recipient_email %}
+    {% with cert.recipient_email as recipient %}
+        {% blocktrans %}To: {{ recipient }}{% endblocktrans %}
+        <br/>
+    {% endwith %}
+{% endif %}
+{% with cert.start_balance|currency as start_balance %}
+    {% blocktrans %}Starting Balance: {{ start_balance }}{% endblocktrans %}
+    <br/>
+{% endwith %}
+{% with cert.code as code %}
+    {% blocktrans %}Code: {{ code }}{% endblocktrans %}
+{% endwith %}
+{% if cert.message %}
+    <br/>
+    {% with cert.message as message %}
+    {% blocktrans %}Message: {{ message }}{% endblocktrans %}
+    {% endwith %}
+{% endif %}
+</p>
+{% endfor %}

@@ -16,17 +16,17 @@ def contact_info(request):
     """View which collects demographic information from customer."""
 
     #First verify that the cart exists and has items
-    if request.session.get('cart'):
-        tempCart = Cart.objects.get(id=request.session['cart'])
-        if tempCart.numItems == 0:
-            return render_to_response('checkout/empty_cart.html', RequestContext(request))
-    else:
+    tempCart = Cart.objects.from_request(request)
+    if tempCart.numItems == 0:
         return render_to_response('checkout/empty_cart.html', RequestContext(request))
 
     init_data = {}
     areas, countries, only_country = get_area_country_options(request)
 
-    contact = Contact.from_request(request, create=False)
+    try:
+        contact = Contact.objects.from_request(request, create=False)
+    except Contact.DoesNotExist:
+        contact = None
 
     if request.method == "POST":
         new_data = request.POST.copy()

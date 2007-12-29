@@ -22,7 +22,15 @@ class CustomChargeForm(forms.Form):
     shipping = forms.DecimalField(label=_('Shipping adjustment'), required=False)
     notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
 
+def balance_remaining_order(request, order_id=None):
+    """Load the order into the session, so we can charge the remaining amount"""
+    # this will create an "OrderCart" - a fake cart to allow us to check out
+    request.session['cart'] = 'order'
+    request.session['orderID'] = order_id
+    return balance_remaining(request)
+
 def balance_remaining(request):
+    """Allow the user to pay the remaining balance."""
     order = None
     orderid = request.session.get('orderID')
     if orderid:

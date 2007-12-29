@@ -107,8 +107,10 @@ def register_handle_form(request, redirect=None):
 
             # If the user already has a contact, retrieve it.
             # Otherwise, create a new one.
-            contact = Contact.from_request(request, create=False)
-            if contact is None:
+            try:
+                contact = Contact.objects.from_request(request, create=False)
+                
+            except Contact.DoesNotExist:
                 contact = Contact()
 
             contact.user = user
@@ -138,12 +140,14 @@ def register_handle_form(request, redirect=None):
 
     else:
         initial_data = {}
-        contact = Contact.from_request(request, create=False)
-        if contact is not None:
+        try:
+            contact = Contact.objects.from_request(request, create=False)
             initial_data = {
                 'email': contact.email,
                 'first_name': contact.first_name,
-                'last_name': contact.last_name}
+                'last_name': contact.last_name }
+        except Contact.DoesNotExist:
+            contact = None
 
         if contact and config_get_group('NEWSLETTER'):
             from satchmo.newsletter import is_subscribed

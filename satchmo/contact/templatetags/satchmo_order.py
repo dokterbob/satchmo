@@ -1,6 +1,5 @@
 from django import template
 from satchmo.shop.templatetags import get_filter_args
-#from satchmo.payment.models import GiftCertificate
 
 register = template.Library()
 
@@ -10,9 +9,10 @@ def order_details(order):
     return {'order' : order}
 
 @register.inclusion_tag('contact/_order_tracking_details.html')
-def order_tracking_details(order):
+def order_tracking_details(order, paylink=False):
     """Output a formatted block giving order tracking details."""
-    return {'order' : order}
+    return {'order' : order,
+        'paylink' : paylink }
 
 @register.filter
 def order_variable(order, args):

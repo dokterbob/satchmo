@@ -52,33 +52,31 @@ class GoogleCart(object):
         log.debug("Sig is: %s", sig)
         return sig
 
-
 def pay_ship_info(request):
     return payship.simple_pay_ship_info(request, config_get_group('PAYMENT_GOOGLE'), 'checkout/google/pay_ship.html')
 
 def confirm_info(request):
     payment_module = config_get_group('PAYMENT_GOOGLE')
 
-    if not request.session.get('orderID'):
+    if not 'orderID' in request.session:
         url = lookup_url(payment_module, 'satchmo_checkout-step1')
         return http.HttpResponseRedirect(url)
 
-    if request.session.get('cart'):
-        tempCart = Cart.objects.get(id=request.session['cart'])
-        if tempCart.numItems == 0:
-            template = lookup_template(payment_module, 'checkout/empty_cart.html')
-            return render_to_response(template, RequestContext(request))
-    else:
+    tempCart = Cart.objects.from_request(request)
+    if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'checkout/empty_cart.html')
         return render_to_response(template, RequestContext(request))
+            
+    try:
+        order = Order.objects.from_request(request)
 
-    order = Order.objects.get(id=request.session['orderID'])
+    except Order.DoesNotExist:
+        order = None
 
-    # Check if the order is still valid
-    if not order.validate(request):
+    if not (order and order.validate(request)):
         context = RequestContext(request,
             {'message': _('Your order is no longer valid.')})
-        return render_to_response('shop_404.html', context)
+        return render_to_response('shop_404.html', context)    
 
     live = payment_live(payment_module)
     gcart = GoogleCart(order, payment_module, live)

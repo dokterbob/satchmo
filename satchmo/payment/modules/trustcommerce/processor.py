@@ -4,9 +4,9 @@ You can get it from your TrustCommerce account d/l links or from -
 http://www.trustcommerce.com/tclink.html
 """
 
-import tclink
 from django.utils.translation import ugettext_lazy as _
-
+from satchmo.payment.common.utils import record_payment
+import tclink
 
 class PaymentProcessor(object):
     # TrustCommerce payment processing module
@@ -33,7 +33,7 @@ class PaymentProcessor(object):
         self.order = data
         # See tclink developer's guide for additional fields and info
         # convert amount to cents, no decimal point
-        amount = str(data.total).replace ('.', '')
+        amount = str(data.balance).replace ('.', '')
 
         # convert exp date to mmyy from mm/yy or mm/yyyy
         exp = '%.2d%.2d' % tuple (int (mmyy) % 100 for mmyy in data.credit_card.expirationDate.split ('/'))
@@ -71,7 +71,7 @@ class PaymentProcessor(object):
         result = tclink.send (self.transactionData)
         status = result ['status']
         if status == 'approved':
-            self.order.order_success()
+            record_payment(self.order, self.settings, amount=self.order.balance)
             return (True, status, result)
         if status == 'decline':
             msg = _(u'Transaction was declined.  Reason: %s' % result['declinetype'])
@@ -116,6 +116,7 @@ if __name__ == "__main__":
     sampleOrder.billState = 'TN'
     sampleOrder.billCity = 'Some City'
     sampleOrder.billCountry = 'US'
+    sampleOrder.balance = "27.00"
     sampleOrder.total = "27.00"
     sampleOrder.CC.decryptedCC = '4111111111111111'
     sampleOrder.CC.expirationDate = "10/09"

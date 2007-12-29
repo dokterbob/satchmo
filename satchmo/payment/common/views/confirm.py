@@ -15,21 +15,21 @@ import logging
 
 log = logging.getLogger('satchmo.payment.common.views')
 
-def base_confirm_info(request, payment_module, confirm_template, success_handler):
-    if not request.session.get('orderID'):
+def base_confirm_info(request, payment_module, confirm_template, success_handler, extra_context={}):
+    try:
+        orderToProcess = Order.objects.from_request(request)
+    except Order.DoesNotExist:
         url = urlresolvers.reverse('satchmo_checkout-step1')
         return HttpResponseRedirect(url)
 
-    if request.session.get('cart'):
-        tempCart = Cart.objects.get(id=request.session['cart'])
+    try:
+        tempCart = Cart.objects.from_request(request)
         if tempCart.numItems == 0:
             template = lookup_template(payment_module, 'checkout/empty_cart.html')
             return render_to_response(template, RequestContext(request))
-    else:
+    except Cart.DoesNotExist:
         template = lookup_template(payment_module, 'checkout/empty_cart.html')
         return render_to_response(template, RequestContext(request))
-
-    orderToProcess = Order.objects.get(id=request.session['orderID'])
 
     # Check if the order is still valid
     if not orderToProcess.validate(request):
@@ -51,7 +51,12 @@ Response=%s
 Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProcess.id, results, reason_code, msg)
 
         if results:
-            return success_handler(tempCart, orderToProcess, payment_module)
+            if orderToProcess.paid_in_full:
+                return success_handler(tempCart, orderToProcess, payment_module)
+            else:
+                log.debug('Not paid in full, sending to pay rest of balance')
+                url = orderToProcess.get_balance_remaining_url()
+                return HttpResponseRedirect(url)
             
         #Since we're not successful, let the user know via the confirmation page
         else:
@@ -60,10 +65,13 @@ Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProce
         errors = ''
 
     template = lookup_template(payment_module, confirm_template)
-    context = RequestContext(request, {
+    base_env = {
         'order': orderToProcess,
         'errors': errors,
-        'checkout_step2': lookup_url(payment_module, 'satchmo_checkout-step2')})
+        'checkout_step2': lookup_url(payment_module, 'satchmo_checkout-step2')}
+    if extra_context:
+        base_env.update(extra_context)
+    context = RequestContext(request, base_env)
     return render_to_response(template, context)
 
 def credit_success_handler(working_cart, order, payment_module):
@@ -75,6 +83,6 @@ def credit_success_handler(working_cart, order, payment_module):
     url = lookup_url(payment_module, 'satchmo_checkout-success')
     return HttpResponseRedirect(url)    
 
-def credit_confirm_info(request, payment_module, confirm_template='checkout/confirm.html'):
+def credit_confirm_info(request, payment_module, confirm_template='checkout/confirm.html', extra_context={}):
     """A view which shows and requires credit card selection"""
-    return base_confirm_info(request, payment_module, confirm_template, credit_success_handler)
+    return base_confirm_info(request, payment_module, confirm_template, credit_success_handler, extra_context=extra_context)

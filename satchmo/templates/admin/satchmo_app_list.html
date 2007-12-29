@@ -1,5 +1,4 @@
-{% load i18n %}
-
+{% load i18n adminapplist satchmo_adminapplist satchmo_util %}
         <div class="module satchmo-app">
         <table summary="{% trans "Store Configuration" %}">
         <caption>{% trans "Store Configuration" %}</caption>
@@ -58,13 +57,21 @@
             </table>
         </div>
         <div class="module satchmo-app">
-            <table summary="{% trans "Discounts" %}">
-            <caption>{% trans "Discounts" %}</caption>
+            <table summary="{% trans "Codes" %}">
+            <caption>{% trans "Codes" %}</caption>
                 <tr>
                     <th scope="row"><a href="/admin/discount/discount">{% trans "Discount" %}</a></th>
                     <td><a href="/admin/discount/discount/add/" class="addlink">{% trans "Add" %}</a></td>
                     <td><a href="/admin/discount/discount" class="changelink">{% trans "Change" %}</a></td>
                 </tr>
+
+{% if "giftcertificate"|app_enabled %}
+                <tr>
+                    <th scope="row"><a href="/admin/giftcertificate/giftcertificate">{% trans "Gift Certificates" %}</a></th>
+                    <td><a href="/admin/giftcertificate/giftcertificate/add/" class="addlink">{% trans "Add" %}</a></td>
+                    <td><a href="/admin/giftcertificate/giftcertificate" class="changelink">{% trans "Change" %}</a></td>
+                </tr>
+{% endif %}
             </table>
         </div>
 
