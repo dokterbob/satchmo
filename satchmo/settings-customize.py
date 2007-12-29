@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'satchmo.shipping',
     'satchmo.payment',
     'satchmo.discount',
+    'satchmo.giftcertificate',
     'satchmo.supplier',
     'satchmo.thumbnail',
     'satchmo.l10n',
