@@ -20,7 +20,7 @@ or CustomProducts look for product/detail_xxx.html
 
 {% block navbar %}
 
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> 
+<a href="{{ shop_base }}/">{% trans "Home" %}</a>
 {% for name, url in product.category.all.0.get_url_name %}
     :: <a href="{{ url }}">{{ name }}</a>
 {% endfor %}
@@ -44,9 +44,9 @@ or CustomProducts look for product/detail_xxx.html
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_cart_add %}" method="post">
-{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" /> 
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input type="submit" value="{% trans "Add to cart" %}" /> 
+<input type="submit" value="{% trans "Add to cart" %}" />
 </form>
-{% if shop.options.SHOP.RATINGS %}{% include '_product_ratings.html' %}{% endif %}
-{% endblock %} 
+{% if shop.options.SHOP.RATINGS.value %}{% include '_product_ratings.html' %}{% endif %}
+{% endblock %}
