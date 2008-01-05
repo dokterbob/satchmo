@@ -324,8 +324,8 @@ class OrderManager(models.Manager):
         if 'orderID' in request.session:
             try:
                 order = Order.objects.get(id=request.session['orderID'])
-                # todo validate against logged-in-user
-            except order.DoesNotExist:
+                # TODO: Validate against logged-in user.
+            except Order.DoesNotExist:
                 pass
 
             if not order:
