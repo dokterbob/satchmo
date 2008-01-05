@@ -79,7 +79,7 @@ class Organization(models.Model):
         verbose_name_plural = _("Organizations")
 
 class ContactManager(models.Manager):
-    
+
     def from_request(self, request, create=False):
         """Get the contact from the session, else look up using the logged-in
         user. Create an unsaved new contact if `create` is true.
@@ -110,7 +110,7 @@ class ContactManager(models.Manager):
 
             else:
                 raise Contact.DoesNotExist()
-                
+
         return contact
 
 
@@ -133,7 +133,7 @@ class Contact(models.Model):
     create_date = models.DateField(_("Creation date"))
 
     objects = ContactManager()
-    
+
     def _get_full_name(self):
         """Return the person's full name."""
         return u'%s %s' % (self.first_name, self.last_name)
@@ -314,10 +314,9 @@ ORDER_STATUS = (
 )
 
 class OrderManager(models.Manager):
-    
     def from_request(self, request):
         """Get the order from the session
-        
+
         Returns:
         - Order object or None
         """
@@ -328,13 +327,13 @@ class OrderManager(models.Manager):
                 # todo validate against logged-in-user
             except order.DoesNotExist:
                 pass
-                
+
             if not order:
                 del request.session['orderID']
-                
+
         if not order:
             raise Order.DoesNotExist()
-            
+
         return order
 
 class Order(models.Model):
@@ -390,18 +389,18 @@ class Order(models.Model):
     def add_status(self, status=None, notes=None):
         orderstatus = OrderStatus()
         if not status:
-            if self.orderstatus_set.count() > 0:                
+            if self.orderstatus_set.count() > 0:
                 curr_status = self.orderstatus_set.all().order_by('-timestamp')[0]
                 status = curr_status.status
             else:
                 status = 'Pending'
-        
+
         orderstatus.status = status
         orderstatus.notes = notes
         orderstatus.timestamp = datetime.datetime.now()
         orderstatus.order = self
         orderstatus.save()
-        
+
     def add_variable(self, key, value):
         """Add an OrderVariable, used for misc stuff that is just too small to get its own field"""
         try:
@@ -446,23 +445,23 @@ class Order(models.Model):
 
     def _balance(self):
         return self.total-self.balance_paid
-        
+
     balance = property(fget=_balance)
-    
+
     def balance_forward(self):
         return moneyfmt(self.balance)
 
     balance_forward = property(fget=balance_forward)
-    
+
     def _balance_paid(self):
         payments = [p.amount for p in self.payments.all()]
         if payments:
             return reduce(operator.add, payments)
         else:
             return Decimal("0.00")
-    
+
     balance_paid = property(_balance_paid)
-    
+
     def _credit_card(self):
         """Return the credit card associated with this payment."""
         for payment in self.payments.order_by('-timestamp'):
@@ -473,7 +472,7 @@ class Order(models.Model):
                 pass
         return None
     credit_card = property(_credit_card)
-    
+
 
     def _full_bill_street(self, delim="<br/>"):
         """Return both billing street entries separated by delim."""
@@ -490,20 +489,20 @@ class Order(models.Model):
         else:
             return self.ship_street1
     full_ship_street = property(_full_ship_street)
-    
+
     def _get_balance_remaining_url(self):
         return ('satchmo_balance_remaining_order', None, {'order_id' : self.id})
     get_balance_remaining_url = models.permalink(_get_balance_remaining_url)
-    
+
     def _partially_paid(self):
         return self.balance_paid > Decimal("0.00")
-    
+
     partially_paid = property(_partially_paid)
-    
+
     def payments_completed(self):
         q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
         return q.exclude(amount=Decimal("0.00"))
-    
+
     def save(self):
         """
         Copy addresses from contact. If the order has just been created, set
@@ -518,7 +517,7 @@ class Order(models.Model):
     def invoice(self):
         return mark_safe('<a href="/admin/print/invoice/%s/">View</a>' % self.id)
     invoice.allow_tags = True
-    
+
     def _item_discount(self):
         """Get the discount of just the items, less the shipping discount."""
         return self.discount-self.shipping_discount
@@ -527,7 +526,7 @@ class Order(models.Model):
     def packingslip(self):
         return mark_safe('<a href="/admin/print/packingslip/%s/">View</a>' % self.id)
     packingslip.allow_tags = True
-    
+
     def recalculate_total(self, save=True):
         """Calculates sub_total, taxes and total."""
         zero = Decimal("0.00")
@@ -545,15 +544,15 @@ class Order(models.Model):
                 lineitem.discount = zero
             if save:
                 lineitem.save()
-                
+
             itemprices.append(lineitem.sub_total)
             fullprices.append(lineitem.line_item_price)
-    
+
         if 'Shipping' in discounts:
-            self.shipping_discount = discounts['Shipping'] 
+            self.shipping_discount = discounts['Shipping']
         else:
             self.shipping_discount = zero
-        
+
         if itemprices:
             item_sub_total = reduce(operator.add, itemprices)
         else:
@@ -564,25 +563,25 @@ class Order(models.Model):
         else:
             full_sub_total = zero
 
-            
+
         self.sub_total = full_sub_total
-        
+
         taxProcessor = tax.get_processor(self)
-        self.tax, taxrates = taxProcessor.process()            
-        
+        self.tax, taxrates = taxProcessor.process()
+
         # clear old taxes
         for taxdetl in self.taxes.all():
             taxdetl.delete()
-            
+
         for taxdesc, taxamt in taxrates.items():
             taxdetl = OrderTaxDetail(order=self, tax=taxamt, description=taxdesc, method=taxProcessor.method)
             taxdetl.save()
-        
-        log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s", 
+
+        log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
                 item_sub_total, self.shipping_sub_total, self.discount, self.tax)
-                
+
         self.total = item_sub_total + self.shipping_sub_total + self.tax
-        
+
         if save:
             self.save()
 
@@ -603,13 +602,13 @@ class Order(models.Model):
             if subtype:
                 subtype.order_success(self, orderitem)
         dispatcher.send(signal=order_success, sender=self.__class__, instance=self)
-        
-                
+
+
     def _paid_in_full(self):
         """True if total has been paid"""
         return self.balance <= 0
     paid_in_full = property(fget=_paid_in_full)
-    
+
     def _has_downloads(self):
         """Determine if there are any downloadable products on this order"""
         if self.downloadlink_set.count() > 0:
@@ -624,11 +623,11 @@ class Order(models.Model):
                 return True
         return False
     is_shippable = property(_is_shippable)
-    
+
     def _shipping_sub_total(self):
         return self.shipping_cost-self.shipping_discount
     shipping_sub_total = property(_shipping_sub_total)
-    
+
     def sub_total_with_tax(self):
         return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
 
@@ -689,18 +688,18 @@ class OrderItem(models.Model):
     def _get_category(self):
         return(self.product.get_category.translated_name())
     category = property(_get_category)
-    
+
     def _sub_total(self):
         if self.discount:
             return self.line_item_price-self.discount
         else:
             return self.line_item_price
     sub_total = property(_sub_total)
-    
+
     def _total_with_tax(self):
         return self.sub_total + self.tax
     total_with_tax = property(_total_with_tax)
-        
+
     def _tax(self):
         return tax.get_processor(order=self.order).by_orderitem(self)
     tax = property(_tax)
@@ -719,15 +718,15 @@ class OrderItemDetail(models.Model):
     price_change = models.DecimalField(_("Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
-    
+
     def __unicode__(self):
         return u"%s - %s,%s" % (self.item, self.name, self.value)
-        
+
     class Meta:
         verbose_name = _("Order Item Detail")
         verbose_name_plural = _("Order Item Details")
         ordering = ('sort_order',)
-    
+
 class DownloadLink(models.Model):
     downloadable_product = models.OneToOneField(DownloadableProduct)
     order = models.ForeignKey(Order)
@@ -746,11 +745,11 @@ class DownloadLink(models.Model):
         if datetime.datetime.now() > expire_time:
             return (False, _("This download link has expired."))
         return (True, "")
-        
+
     def get_absolute_url(self):
         return('satchmo.shop.views.download.process', (), { 'download_key': self.key})
     get_absolute_url = models.permalink(get_absolute_url)
-    
+
     def get_full_url(self):
         url = urlresolvers.reverse('satchmo_download_process', kwargs= {'download_key': self.key})
         return('http://%s%s' % (Site.objects.get_current(), url))
@@ -762,14 +761,14 @@ class DownloadLink(models.Model):
         if self.time_stamp is None:
             self.time_stamp = datetime.datetime.now()
         super(DownloadLink, self).save()
-    
+
     def __unicode__(self):
         return u"%s - %s" % (self.downloadable_product.product.slug, self.time_stamp)
-    
+
     def _product_name(self):
         return u"%s" % (self.downloadable_product.product.translated_name)
-    product_name=property(_product_name)        
-    
+    product_name=property(_product_name)
+
     class Admin:
         pass
 
@@ -835,11 +834,11 @@ class OrderPayment(models.Model):
         fields = (
             (None, {'fields': ('order', 'payment', 'amount', 'timestamp')}),
             )
-            
+
     class Meta:
         verbose_name = _("Order Payment")
         verbose_name_plural = _("Order Payments")
-        
+
 class OrderVariable(models.Model):
     order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="variables")
     key = models.SlugField(_('key'), core=True)
@@ -854,7 +853,7 @@ class OrderVariable(models.Model):
         else:
             v = self.value
         return u"OrderVariable: %s=%s" % (self.key, v)
-        
+
 class OrderTaxDetail(models.Model):
     """A tax line item"""
     order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="taxes")
