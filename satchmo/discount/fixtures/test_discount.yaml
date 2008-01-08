@@ -1,3 +1,51 @@
+- fields: {description: '', name: Book type, sort_order: 1}
+  model: product.optiongroup
+  pk: 3
+- fields: {description: '', name: sizes, sort_order: 1}
+  model: product.optiongroup
+  pk: 1
+- fields: {description: '', name: colors, sort_order: 2}
+  model: product.optiongroup
+  pk: 2
+- fields: {description: '', name: Full/Upgrade, sort_order: 5}
+  model: product.optiongroup
+  pk: 4
+- fields: {displayOrder: 1, name: Small, optionGroup: 1, price_change: null, value: S}
+  model: product.option
+  pk: 1
+- fields: {displayOrder: 2, name: Medium, optionGroup: 1, price_change: null, value: M}
+  model: product.option
+  pk: 2
+- fields: {displayOrder: 3, name: Large, optionGroup: 1, price_change: '1', value: L}
+  model: product.option
+  pk: 3
+- fields: {displayOrder: 1, name: Black, optionGroup: 2, price_change: null, value: B}
+  model: product.option
+  pk: 4
+- fields: {displayOrder: 2, name: White, optionGroup: 2, price_change: null, value: W}
+  model: product.option
+  pk: 5
+- fields: {displayOrder: 3, name: Blue, optionGroup: 2, price_change: '2', value: BL}
+  model: product.option
+  pk: 6
+- fields: {displayOrder: 1, name: Hard cover, optionGroup: 3, price_change: null,
+    value: hard}
+  model: product.option
+  pk: 7
+- fields: {displayOrder: 2, name: Soft cover, optionGroup: 3, price_change: '1', value: soft}
+  model: product.option
+  pk: 8
+- fields: {displayOrder: 3, name: On tape, optionGroup: 3, price_change: null, value: tape}
+  model: product.option
+  pk: 9
+- fields: {displayOrder: 1, name: Full Version, optionGroup: 4, price_change: null,
+    value: full}
+  model: product.option
+  pk: 10
+- fields: {displayOrder: 2, name: Upgrade Version, optionGroup: 4, price_change: null,
+    value: upgrade}
+  model: product.option
+  pk: 11
 - fields:
     active: true
     allowedUses: null
@@ -541,6 +589,21 @@
   model: product.product
   pk: 19
 - fields:
+    create_subs: false
+    option_group: [1, 2]
+  model: product.configurableproduct
+  pk: 1
+- fields:
+    create_subs: false
+    option_group: [3]
+  model: product.configurableproduct
+  pk: 3
+- fields:
+    create_subs: false
+    option_group: [3]
+  model: product.configurableproduct
+  pk: 4  
+- fields:
     options: [1, 4]
     parent: 1
   model: product.productvariation
@@ -615,57 +678,6 @@
     parent: 4
   model: product.productvariation
   pk: 19
-- fields: {displayOrder: 1, name: Small, optionGroup: 1, price_change: null, value: S}
-  model: product.option
-  pk: 1
-- fields: {displayOrder: 2, name: Medium, optionGroup: 1, price_change: null, value: M}
-  model: product.option
-  pk: 2
-- fields: {displayOrder: 3, name: Large, optionGroup: 1, price_change: '1', value: L}
-  model: product.option
-  pk: 3
-- fields: {displayOrder: 1, name: Black, optionGroup: 2, price_change: null, value: B}
-  model: product.option
-  pk: 4
-- fields: {displayOrder: 2, name: White, optionGroup: 2, price_change: null, value: W}
-  model: product.option
-  pk: 5
-- fields: {displayOrder: 3, name: Blue, optionGroup: 2, price_change: '2', value: BL}
-  model: product.option
-  pk: 6
-- fields: {displayOrder: 1, name: Hard cover, optionGroup: 3, price_change: null,
-    value: hard}
-  model: product.option
-  pk: 7
-- fields: {displayOrder: 2, name: Soft cover, optionGroup: 3, price_change: '1', value: soft}
-  model: product.option
-  pk: 8
-- fields: {displayOrder: 3, name: On tape, optionGroup: 3, price_change: null, value: tape}
-  model: product.option
-  pk: 9
-- fields: {displayOrder: 1, name: Full Version, optionGroup: 4, price_change: null,
-    value: full}
-  model: product.option
-  pk: 10
-- fields: {displayOrder: 2, name: Upgrade Version, optionGroup: 4, price_change: null,
-    value: upgrade}
-  model: product.option
-  pk: 11
-- fields:
-    create_subs: false
-    option_group: [1, 2]
-  model: product.configurableproduct
-  pk: 1
-- fields:
-    create_subs: false
-    option_group: [3]
-  model: product.configurableproduct
-  pk: 3
-- fields:
-    create_subs: false
-    option_group: [3]
-  model: product.configurableproduct
-  pk: 4
 - fields: {caption: Photo Not Available, picture: images/productimage-picture-default.jpg,
     product: null, sort: 1}
   model: product.productimage
@@ -681,17 +693,5 @@
   pk: 3
 - fields: {expires: null, price: '7.99', product: 4, quantity: 1}
   model: product.price
-  pk: 4
-- fields: {description: '', name: Book type, sort_order: 1}
-  model: product.optiongroup
-  pk: 3
-- fields: {description: '', name: sizes, sort_order: 1}
-  model: product.optiongroup
-  pk: 1
-- fields: {description: '', name: colors, sort_order: 2}
-  model: product.optiongroup
-  pk: 2
-- fields: {description: '', name: Full/Upgrade, sort_order: 5}
-  model: product.optiongroup
   pk: 4
 
