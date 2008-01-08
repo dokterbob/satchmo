@@ -128,7 +128,11 @@ def _remove_thumbnails(photo_url, root=settings.MEDIA_ROOT, url_root=settings.ME
     basedir = os.path.dirname(file_name)
     for file in fnmatch.filter(os.listdir(basedir), _THUMBNAIL_GLOB % (base, ext)):
         path = os.path.join(basedir, file)
-        os.remove(path)
+        try:
+            os.remove(path)
+        except OSError:
+            # no reason to crash due to bad paths.
+            log.warn("Could not delete image thumbnail: %s", path)
         image_cache.delete(path) # delete from cache
 
 def remove_model_thumbnails(model):
