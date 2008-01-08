@@ -204,16 +204,17 @@ def do_search(request):
     categories = Category.objects
     products = Product.objects.active()
     for keyword in keywords:
-        categories = categories.filter(Q(name__icontains=keyword) | Q(meta__icontains=keyword) | Q(description__icontains=keyword))
-        products = products.filter(Q(name__icontains=keyword) | Q(short_description__icontains=keyword) | Q(description__icontains=keyword) | Q(meta__icontains=keyword))
-    clist = []
-    plist = []
-    for category in categories:
-        clist.append(category)
-    for product in products:
-        # we only want to see the master products not each variation of the product
-        if not product.has_variants:
-            plist.append(product)
+        categories = categories.filter(
+            Q(name__icontains=keyword) | 
+            Q(meta__icontains=keyword) | 
+            Q(description__icontains=keyword))
+        products = products.filter(Q(name__icontains=keyword)
+            | Q(short_description__icontains=keyword) 
+            | Q(description__icontains=keyword) 
+            | Q(meta__icontains=keyword)
+            | Q(sku__iexact=keyword))
+    clist = list(categories)
+    plist = [p for p in products if not p.has_variants]
 
     context = RequestContext(request, {'results': {'categories': clist, 'products': plist}})
     return render_to_response('search.html', context)

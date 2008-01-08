@@ -370,6 +370,7 @@ class Product(models.Model):
     """
     name = models.CharField(_("Full Name"), max_length=255, help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
     slug = models.SlugField(_("Slug Name"), unique=True, prepopulate_from=('name',), core=True, blank=False)
+    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True)
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     category = models.ManyToManyField(Category, filter_interface=True, blank=True, verbose_name=_("Category"))
@@ -500,7 +501,7 @@ class Product(models.Model):
         list_display = ('slug', 'name', 'unit_price', 'items_in_stock', 'get_subtypes',)
         list_filter = ('category',)
         fields = (
-        (None, {'fields': ('category', 'name', 'slug', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','ordering')}),
+        (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','ordering')}),
         (_('Meta Data'), {'fields': ('meta',), 'classes': 'collapse'}),
         (_('Item Dimensions'), {'fields': (('length', 'width','height',),'weight'), 'classes': 'collapse'}),
         (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': 'collapse'}),
