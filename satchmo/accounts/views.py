@@ -51,18 +51,11 @@ def register_handle_form(request, redirect=None):
         except Contact.DoesNotExist:
             contact = None
 
-        log.debug("init_data before signal=%s", initial_data)
         dispatcher.send(
             signal=signals.satchmo_registration_initialdata, 
             contact=contact,
             initial_data=initial_data)
-        
-        #for listener in ret:
-        #    if listener[1]:
-        #        initial_data.update(listener[1])
-        
-        log.debug("init_data after signal=%s", initial_data)
-        
+                
         form = RegistrationForm(initial=initial_data)
 
     return (False, form)

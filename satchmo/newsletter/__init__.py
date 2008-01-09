@@ -25,12 +25,10 @@ def update_subscription(contact, subscribed):
     return get_newsletter_module().update_contact(contact, subscribed)
 
 def update_subscription_from_signal(contact=None, subscribed=False, **kwargs):
-    print("update_subscription_from_signal: %s", subscribed)
     if contact:
         update_subscription(contact, subscribed)
 
 def populate_form_initialdata(contact=None, initial_data = {}, **kwargs):
-    print("populate_form_initialdata")
     if contact:
         current_subscriber = is_subscribed(contact)
     else:
