@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from satchmo.contact.models import Contact
-import config
 import datetime
 
 class NullContact(object):

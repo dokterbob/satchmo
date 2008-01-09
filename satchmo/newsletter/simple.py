@@ -31,4 +31,3 @@ def update_contact(contact, subscribe):
             result = _("Unsubscribed: %(email)s")
 
     return result % { 'email' : email }
-    

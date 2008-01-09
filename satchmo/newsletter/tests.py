@@ -1,7 +1,6 @@
 from django.core import urlresolvers
 from django.test import TestCase
 from django.test.client import Client
-from models import Subscription
 from satchmo.configuration import config_get
 from satchmo.newsletter import *
 from satchmo.newsletter.models import get_contact_or_fake

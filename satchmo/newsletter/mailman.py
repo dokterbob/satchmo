@@ -8,7 +8,10 @@ from django.utils.translation import ugettext as _
 from Mailman import MailList, Errors
 from models import Subscription
 from satchmo.configuration import config_value
+import logging
 import sys
+
+log = logging.getLogger('newsletter.mailman')
 
 class UserDesc: pass
 
