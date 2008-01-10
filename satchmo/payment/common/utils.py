@@ -43,7 +43,7 @@ def record_payment(order, config, amount=NOTSET, transaction_id=""):
         orderpayment.transaction_id = transaction_id
 
         if ct > 1:
-            for payment in payments[1:]:
+            for payment in payments[1:len(payments)]:
                 payment.transaction_id="ABORTED"
                 payment.save()
             

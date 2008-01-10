@@ -130,9 +130,9 @@ class CreditPayShipForm(SimplePayShipForm):
         except Contact.DoesNotExist:
             self.tempContact = None
 
-        shipping_choices, shipping_dict = _get_shipping_choices(paymentmodule, self.tempCart, self.tempContact)
-        self.fields['shipping'].choices = shipping_choices
-        self.shipping_dict = shipping_dict
+        #shipping_choices, shipping_dict = _get_shipping_choices(paymentmodule, self.tempCart, self.tempContact)
+        #self.fields['shipping'].choices = shipping_choices
+        #self.shipping_dict = shipping_dict
 
     def clean_credit_number(self):
         """ Check if credit card is valid. """
