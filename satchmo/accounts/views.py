@@ -65,7 +65,14 @@ def register(request, redirect=None, template='registration/registration_form.ht
     Allows a new user to register an account.
     """
 
-    success, todo = register_handle_form(request, redirect=redirect)
+    ret = register_handle_form(request, redirect)
+    success = ret[0]
+    todo = ret[1]
+    if len(ret) > 2:
+        extra_context = ret[2]
+    else:
+        extra_context = {}
+        
     if success:
         return todo
     else:
@@ -74,11 +81,16 @@ def register(request, redirect=None, template='registration/registration_form.ht
         else:
             show_newsletter = False
                 
-        context = RequestContext(request, {
+        ctx = {
             'form': todo, 
             'title' : _('Registration Form'),
             'show_newsletter' : show_newsletter
-            })
+        }
+        
+        if extra_context:
+            ctx.update(extra_context)
+            
+        context = RequestContext(request, ctx)
         return render_to_response(template, context)
 
 def activate(request, activation_key):
