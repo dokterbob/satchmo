@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if display_form %}
-<form {% if photos_optional or photos_required %}enctype="multipart/form-data" {% endif %}action="/comments/post/" method="post">
+<form {% if photos_optional or photos_required %}enctype="multipart/form-data" {% endif %}action="{% url satchmo_rating_post %}" method="post">
 
 {% comment %}
 {% if user.is_authenticated %}
