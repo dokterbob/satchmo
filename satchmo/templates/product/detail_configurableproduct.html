@@ -30,15 +30,13 @@ var satchmo = {
         return k.join('::');
     },
         
-    {# Get the current selected product price.  If currency is true, then return #}
-    {# with the proper currency symbol, and if taxed is true, then return the price #}
-    {# inclusive of taxes. #}
-    get_current_price : function(slug, currency, taxed) {
+    {# Get the current selected product price.  If taxed is true, then #}
+    {# return the price inclusive of taxes. #}
+    get_current_price : function(slug, taxed) {
         if (!slug) { 
             slug = satchmo.get_current_slug(); 
         }
         var qty = parseInt($('#quantity').fieldValue()[0]);
-        var index = currency ? 1 : 0;
         var k = taxed ? "taxes" : "prices";
         var prices = satchmo[k][slug];
         var best = prices['1'];
@@ -51,7 +49,7 @@ var satchmo = {
                 best = prices[pricekey];
             }
         }
-        return best[index];        
+        return best;        
     },
     
     {# look up the slug by options selected #}

@@ -280,18 +280,20 @@ def _productvariation_prices(product, include_tax, user):
         key = prod.slug
         
         base = {}
-        for qty, price in p.get_qty_price_list():
-            base[qty] = (price, moneyfmt(price))
-            
-        prices[key] = base
-        
         if include_tax:
             taxed = {}
-            for qty, price in base.items():
-                price = taxer.by_price(taxclass, price[0]) + price[0]
-                taxed[qty] = (price, moneyfmt(price))
-            taxes[key] = taxed
+                    
+        for qty, price in p.get_qty_price_list():
+            base[qty] = moneyfmt(price)
+            if include_tax:
+                taxprice = taxer.by_price(taxclass, price) + price
+                taxed[qty] = moneyfmt(taxprice)
             
+        prices[key] = base
+        if include_tax:
+            taxes[key] = taxed
+
+        # build option map
         opts = [(opt.id, opt.value) for opt in p.options.all()]
         opts.sort()
         optkeys = [opt[1] for opt in opts]
