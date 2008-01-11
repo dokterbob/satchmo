@@ -17,14 +17,15 @@ class Processor(object):
         price = orderitem.sub_total
         return self.by_price(price)
         
-    def by_price(self, price):
+    def by_price(self, taxclass, price):
         percent = config_value('TAX','PERCENT')
         p = price * (percent/100)
         return round_cents(p)
         
     def by_product(self, product, quantity=1):
         price = product.get_qty_price(quantity)
-        return self.by_price(price)
+        taxclass = product.taxClass
+        return self.by_price(taxclass, price)
         
     def shipping(self):
         if self.order:

@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load satchmo_thumbnail %}
 {% load satchmo_price %}
+{% load satchmo_util %}
 {% load satchmo_currency satchmo_category%}
 {% block extra-head %}
 {% if product.meta %}
@@ -12,45 +13,72 @@
 <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
 <script type="text/javascript">
 var satchmo = {
-    getPrice : function(url) {
-        satchmo.setName("{{product.slug}}");
-        satchmo.setPrice("");
-    	var options = {
-    		url : url,
-    		type: 'POST',
-    		success : function(json) {
-    		    if (!json['success']) {
-                    alert(json['message']);
-                }
-                else {
-        			var name = json['slug'];
-        			var price = json['currency_price'];
-        		    if (name) {
-        		        satchmo.setName(name);
-        		    }
-        		    satchmo.setPrice(price);
-        		}
-    		},
-    		dataType : 'json'
-    	};
+    default_view_tax : {% if default_view_tax %}true{% else %}false{% endif %},
 
-    	$('form#options').ajaxSubmit(options);
+    prices : {{ prices|as_json }},
+        
+    optmap : {{ optmap|as_json }},
+    
+    {% if taxes %}taxes : {{ taxes|as_json }},
+    {% endif %}
+    
+    make_optionkey : function() {
+        var k = Array({{options.count}});
+        {% for option_group in options %}
+        k[{{forloop.counter0}}] = $('#{{ option_group.id }}').fieldValue()[0];
+        {% endfor %}
+        return k.join('::');
     },
-
-    setName : function(name) {
+        
+    {# Get the current selected product price.  If currency is true, then return #}
+    {# with the proper currency symbol, and if taxed is true, then return the price #}
+    {# inclusive of taxes. #}
+    get_current_price : function(slug, currency, taxed) {
+        if (!slug) { 
+            slug = satchmo.get_current_slug(); 
+        }
+        var qty = parseInt($('#quantity').fieldValue()[0]);
+        var index = currency ? 1 : 0;
+        var k = taxed ? "taxes" : "prices";
+        var prices = satchmo[k][slug];
+        var best = prices['1'];
+        if (qty > 1) {
+            for (var pricekey in prices) {
+                var priceqty = parseInt(pricekey);
+                if (priceqty > qty) {
+                    break;
+                }
+                best = prices[pricekey];
+            }
+        }
+        return best[index];        
+    },
+    
+    {# look up the slug by options selected #}
+    get_current_slug : function() {
+        var optkey = satchmo.make_optionkey();
+        return satchmo.optmap[optkey];
+    },
+    
+    set_name : function(name) {
         $("#productname").attr('value', name);
     },
 
-    setPrice : function(price){
+    set_price : function(price){
         $("#price").text(price);
-    }
+    },
+    
+    update_price : function() {
+        slug = satchmo.get_current_slug();
+        satchmo.set_name(slug);
+        satchmo.set_price(satchmo.get_current_price(slug, true, satchmo.default_view_tax));
+    },
+    
 }
 
-var localProductPrice = function() { satchmo.getPrice('{% url satchmo_product_price_detail product_slug=product.slug %}'); };
-
 $(function() {
-    localProductPrice();
-    $('.priced').change(function() { localProductPrice(); });
+    satchmo.update_price();
+    $('.priced').change(function() { satchmo.update_price() });
 });
 </script>
 {% endblock %}
@@ -74,7 +102,7 @@ $(function() {
 {% block content %}
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
-{% trans "Price" %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
+{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}

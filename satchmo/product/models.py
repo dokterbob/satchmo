@@ -479,7 +479,12 @@ class Product(models.Model):
             return Decimal(qty_discounts.order_by('-quantity')[0].price)
         else:
             return None
-
+    
+    def get_qty_price_list(self):
+        """Return a list of tuples (qty, price)"""
+        prices = Price.objects.filter(product__id=self.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
+        return [(price.quantity, price.price) for price in prices]
+            
     def in_stock(self):
         subtype = self.get_subtype_with_attr('in_stock')
         if subtype:
@@ -912,6 +917,12 @@ class DownloadableProduct(models.Model):
 #    class Admin:
 #        pass
 
+class ProductVariationManager(models.Manager):
+    
+    def by_parent(self, parent):
+        """Get the list of productvariations which have the `product` as the parent"""
+        return ProductVariation.objects.filter(parent=parent)
+
 class ProductVariation(models.Model):
     """
     This is the real Product that is ordered when a customer orders a
@@ -921,6 +932,8 @@ class ProductVariation(models.Model):
     product = models.OneToOneField(Product)
     options = models.ManyToManyField(Option, filter_interface=True, core=True)
     parent = models.ForeignKey(ConfigurableProduct, core=True)
+    
+    objects = ProductVariationManager()
 
     def _get_fullPrice(self):
         """ Get price based on parent ConfigurableProduct """
@@ -940,11 +953,7 @@ class ProductVariation(models.Model):
             pass
             
         # calculate from options
-        price_delta = Decimal("0.00")
-        for option in self.options.all():
-            if option.price_change:
-                price_delta += option.price_change
-        return self.parent.product.unit_price + price_delta
+        return self.parent.product.unit_price + self.price_delta()
         
     unit_price = property(_get_fullPrice)
 
@@ -997,8 +1006,29 @@ class ProductVariation(models.Model):
                 groupList.append(option.optionGroup.id)
         return(False)
 
+    def get_qty_price_list(self):
+        """Return a list of tuples (qty, price)"""
+        prices = Price.objects.filter(product__id=self.product.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
+        if prices.count() > 0:
+            # prices directly set, return them
+            pricelist = [(price.quantity, price.price) for price in prices]
+        else:
+            prices = self.parent.product.get_qty_price_list()
+            price_delta = self.price_delta()
+            
+            pricelist = [(qty, price+price_delta) for qty, price in prices]
+            
+        return pricelist
+
     def isValidOption(self, field_data, all_data):
         raise validators.ValidationError(_("Two options from the same option group can not be applied to an item."))
+        
+    def price_delta(self):
+        price_delta = Decimal("0.00")
+        for option in self.options.all():
+            if option.price_change:
+                price_delta += option.price_change
+        return price_delta
 
     def save(self):
         pvs = ProductVariation.objects.filter(parent=self.parent)

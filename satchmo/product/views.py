@@ -3,13 +3,14 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.template.loader import select_template
-from django.utils import simplejson
 from django.utils.translation import ugettext as _
-from satchmo.product.models import Category, Product, ConfigurableProduct
-from satchmo.shop.templatetags.satchmo_currency import moneyfmt
-from satchmo.shop.views.utils import bad_or_missing
 from satchmo import tax
+from satchmo.l10n.utils import moneyfmt
+from satchmo.product.models import Category, Product, ConfigurableProduct, ProductVariation
+from satchmo.shop.utils.json import json_encode
+from satchmo.shop.views.utils import bad_or_missing
 from sets import Set
+import datetime
 import logging
 import random
 from satchmo.configuration import config_value
@@ -64,7 +65,7 @@ def serialize_options(config_product, selected_options=Set()):
                 option.selected = option.unique_id in selected_options
     return d.values()
 
-def get_product(request, product_slug, selected_options=Set(), include_tax=False):
+def get_product(request, product_slug, selected_options=Set(), include_tax=False, default_view_tax=False):        
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -74,28 +75,39 @@ def get_product(request, product_slug, selected_options=Set(), include_tax=False
 
     options = []
 
+    prices = taxes = optmap = None
+    
+    if default_view_tax:
+        include_tax = True
+
     if 'ProductVariation' in p_types:
         selected_options = product.productvariation.option_values
         #Display the ConfigurableProduct that this ProductVariation belongs to.
         product = product.productvariation.parent.product
         p_types = product.get_subtypes()
-
+        
     if 'ConfigurableProduct' in p_types:
         options = serialize_options(product.configurableproduct, selected_options)
-    
+        optmap, prices, taxes = _productvariation_prices(product, include_tax, request.user)
+        
     if 'CustomProduct' in p_types:
         options = serialize_options(product.customproduct, selected_options)
 
     template = find_product_template(product, producttypes=p_types)
+    
     attributes = {
         'product': product, 
-        'options': options
+        'options': options,
+        'optmap' : optmap,
+        'prices' : prices,
+        'default_view_tax': default_view_tax,
     }
-    
+        
     if include_tax:
-        tax_amt = _get_tax(request.user, product)
+        tax_amt = _get_tax(request.user, product, 1)
         attributes['product_tax'] = tax_amt
         attributes['price_with_tax'] = product.unit_price+tax_amt
+        attributes['taxes'] = taxes
         
     ctx = RequestContext(request, attributes)
     return http.HttpResponse(template.render(ctx))
@@ -113,7 +125,7 @@ def get_price(request, product_slug):
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
-        return http.HttpResponseNotFound(simplejson.dumps(('', _("not available"))), mimetype="text/javascript")
+        return http.HttpResponseNotFound(json_encode(('', _("not available"))), mimetype="text/javascript")
 
     prod_slug = product.slug
 
@@ -126,16 +138,16 @@ def get_price(request, product_slug):
         pvp = cp.get_product_from_options(chosenOptions)
 
         if not pvp:
-            return http.HttpResponse(simplejson.dumps(('', _("not available"))), mimetype="text/javascript")
+            return http.HttpResponse(json_encode(('', _("not available"))), mimetype="text/javascript")
         prod_slug = pvp.slug
         price = moneyfmt(pvp.get_qty_price(quantity))
     else:
         price = moneyfmt(product.get_qty_price(quantity))
 
     if not price:
-        return http.HttpResponse(simplejson.dumps(('', _("not available"))), mimetype="text/javascript")
+        return http.HttpResponse(json_encode(('', _("not available"))), mimetype="text/javascript")
 
-    return http.HttpResponse(simplejson.dumps((prod_slug, price)), mimetype="text/javascript")
+    return http.HttpResponse(json_encode((prod_slug, price)), mimetype="text/javascript")
 
 def get_price_detail(request, product_slug):
     results = {
@@ -183,7 +195,7 @@ def get_price_detail(request, product_slug):
     except Product.DoesNotExist:
         found = False
 
-    data = simplejson.dumps(results)
+    data = json_encode(results)
     if found:        
         return http.HttpResponse(data, mimetype="text/javascript")
     else:
@@ -240,12 +252,61 @@ def display_featured():
         return(Product.objects.filter(active=True).filter(featured=True))[:num_to_display]
     else:
         return(Product.objects.filter(active=True).filter(featured=True).order_by('?')[:num_to_display])
-        
-def _get_tax(user, product, quantity):
+            
+def _get_taxprocessor(user):
     if user.is_authenticated():
         user = user
     else:
         user = None
-
-    taxer = tax.get_processor(user=user)
+    
+    return tax.get_processor(user=user)
+    
+def _get_tax(user, product, quantity):
+    taxer = _get_taxprocessor(user)
     return taxer.by_product(product, quantity)
+
+def _productvariation_prices(product, include_tax, user):
+    """Build the product prices, and the optionmap associated with them"""
+    if include_tax:
+        taxer = _get_taxprocessor(user)
+    
+    prices = {}
+    taxes = {}
+    optmap = {}
+    taxclass = product.taxClass
+    
+    for p in ProductVariation.objects.by_parent(product):
+        prod = p.product
+        key = prod.slug
+        
+        base = {}
+        for qty, price in p.get_qty_price_list():
+            base[qty] = (price, moneyfmt(price))
+            
+        prices[key] = base
+        
+        if include_tax:
+            taxed = {}
+            for qty, price in base.items():
+                price = taxer.by_price(taxclass, price[0]) + price[0]
+                taxed[qty] = (price, moneyfmt(price))
+            taxes[key] = taxed
+            
+        opts = [(opt.id, opt.value) for opt in p.options.all()]
+        opts.sort()
+        optkeys = [opt[1] for opt in opts]
+        optkey = "::".join(optkeys)
+        optmap[optkey] = key
+    
+    return optmap, prices, taxes
+        
+def moneyfmt_dict(raw, curr=None, places=-1, grouping=True, wrapcents='', current_locale=None):
+    """Returns a new dictionary, with all values having moneyfmt applied to them."""
+
+    ret = {}
+    
+    for key, val in raw.items():
+        ret[key] = [moneyfmt(v) for v in val]
+        
+    return ret
+

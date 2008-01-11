@@ -17,6 +17,9 @@ class Processor(object):
     def by_orderitem(self, orderitem):
         return Decimal("0.0")
                 
+    def by_price(self, taxclass, price):
+        return Decimal("0.0")                
+                
     def shipping(self, product, user):
         return Decimal("0.0")                
                 

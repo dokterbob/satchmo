@@ -1,5 +1,7 @@
-from satchmo.shop.templatetags import get_filter_args
 from django import template
+from django.utils.safestring import mark_safe
+from satchmo.shop.templatetags import get_filter_args
+from satchmo.shop.utils.json import json_encode
 
 register = template.Library()
 
@@ -69,3 +71,9 @@ def app_enabled(value):
     return ""
     
 register.filter('app_enabled', app_enabled)
+
+def as_json(value):
+    """Return the value as a json encoded object"""
+    return mark_safe(json_encode(value))
+    
+register.filter('as_json', as_json)
