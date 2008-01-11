@@ -1,16 +1,16 @@
-"""
-This is code from http://dpaste.com/hold/4601/
-Originally by Wolfram Kriesing.
-http://wolfram.kriesing.de/blog/
+"""Type safe JSON serialization for use when round-trip serialization-deserialization is not neccessary."""
 
-License has been requested, if not granted then this function will need 
-to be removed or implemented a different way.
-"""
+# This is code from http://dpaste.com/hold/4601
+# Originally by Wolfram Kriesing (http://wolfram.kriesing.de/blog/)
+# Used by written permission to license under the same modified 
+# BSD license as the rest of Satchmo.
+
 import types
 from django.db import models
 from django.utils import simplejson as json
 from django.core.serializers.json import DateTimeAwareJSONEncoder
 from decimal import *
+
 def json_encode(data):
     """
     The main issues with django's default json serializer is that properties that
