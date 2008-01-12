@@ -7,6 +7,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
+from satchmo.configuration import config_value
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
@@ -14,6 +15,8 @@ from satchmo.shop.views.utils import bad_or_missing
 import logging
 
 log = logging.getLogger('shop.views.cart')
+
+NOTSET = object()
 
 class NullCartItem(object):
     def __init__(self, itemid):
@@ -58,14 +61,19 @@ def _set_quantity(request, force_delete=False):
 
     return (True, cart, cartitem, "")
 
-def display(request, cart=None, error_message=''):
+def display(request, cart=None, error_message='', default_view_tax=NOTSET):
     """Display the items in the cart."""
+    
+    if default_view_tax == NOTSET:
+        default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+            
     if not cart:
         cart = Cart.objects.from_request(request)
-
+                
     context = RequestContext(request, {
         'cart': cart,
-        'error_message': error_message
+        'error_message': error_message,
+        'default_view_tax' : default_view_tax,
         })
     return render_to_response('base_cart.html', context)
 

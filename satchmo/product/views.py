@@ -5,17 +5,20 @@ from django.template import RequestContext
 from django.template.loader import select_template
 from django.utils.translation import ugettext as _
 from satchmo import tax
+from satchmo.configuration import config_value
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Category, Product, ConfigurableProduct, ProductVariation
 from satchmo.shop.utils.json import json_encode
 from satchmo.shop.views.utils import bad_or_missing
 from sets import Set
+
 import datetime
 import logging
 import random
-from satchmo.configuration import config_value
 
 log = logging.getLogger('product.views')
+
+NOTSET = object()
 
 def find_product_template(product, producttypes=None):
     if producttypes is None:
@@ -65,11 +68,20 @@ def serialize_options(config_product, selected_options=Set()):
                 option.selected = option.unique_id in selected_options
     return d.values()
 
-def get_product(request, product_slug, selected_options=Set(), include_tax=False, default_view_tax=False):        
+def get_product(request, product_slug, selected_options=Set(), include_tax=NOTSET, default_view_tax=NOTSET):      
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
         return bad_or_missing(request, _('The product you have requested does not exist.'))
+
+    if default_view_tax == NOTSET:
+        default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+
+    if default_view_tax:
+        include_tax = True
+
+    elif include_tax == NOTSET:
+        include_tax = default_view_tax
 
     p_types = product.get_subtypes()
 
@@ -301,14 +313,3 @@ def _productvariation_prices(product, include_tax, user):
         optmap[optkey] = key
     
     return optmap, prices, taxes
-        
-def moneyfmt_dict(raw, curr=None, places=-1, grouping=True, wrapcents='', current_locale=None):
-    """Returns a new dictionary, with all values having moneyfmt applied to them."""
-
-    ret = {}
-    
-    for key, val in raw.items():
-        ret[key] = [moneyfmt(v) for v in val]
-        
-    return ret
-

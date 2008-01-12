@@ -12,6 +12,7 @@ from django.db import models
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
+from satchmo import tax
 from satchmo.configuration import ConfigurationSettings, config_value
 from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
@@ -190,7 +191,7 @@ class CartManager(models.Manager):
                 
             else:
                 raise Cart.DoesNotExist()
-        
+                    
         log.debug("Cart: %s", cart)
         return cart
         
