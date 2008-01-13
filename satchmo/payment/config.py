@@ -19,6 +19,12 @@ PAYMENT_LIVE = config_register(
 
 config_register([
 
+BooleanValue(PAYMENT_GROUP,
+    'COUNTRY_MATCH',
+    description=_("Country match required?"),
+    help_text=_("If True, then customers may not have different countries for shipping and billing."),
+    default=True),
+
 MultipleStringValue(PAYMENT_GROUP,
     'MODULES',
     description=_("Enable payment modules"),

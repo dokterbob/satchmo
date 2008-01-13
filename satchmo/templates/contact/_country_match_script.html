@@ -1,0 +1,27 @@
+<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
+<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+<script type="text/javascript">
+var satchmo = {
+
+updating : false,
+
+force_match : function(elt, ship) {
+    var val = $(elt).fieldValue()[0];
+    if (!satchmo.updating) {
+        satchmo.updating = true;
+        if (ship) {
+            $('#id_country').attr('value', val);
+        } else {
+            $('#id_ship_country').attr('value', val);
+        }
+        satchmo.updating = false;
+    }
+}
+
+}
+$(function() {
+    satchmo.force_match($('#id_country'), false);
+    $('#id_country').change(function() { satchmo.force_match(this, false) });
+    $('#id_ship_country').change(function() { satchmo.force_match(this, true) });
+});
+</script>

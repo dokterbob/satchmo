@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block extra-head %}
+{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
+{% include "contact/_country_match_script.html" %}
+{% endif %}
+{% endblock %}
+
 {% block navbar %}
 <a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
 {% trans "Checkout" %}
@@ -114,6 +120,12 @@
 
     <tr><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
     {% if form.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
+    
+    {% if not country %}
+    <tr><td><label for="id_ship_country">{% trans "Country" %}</label></td><td> {{ form.ship_country }}</td></tr>
+    {% if form.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
+    {% endif %}
+    
 {% endif %}
 
 	<tr><td></td><td><input type="submit" value="{% trans "Continue Checkout" %}"/></td></tr>

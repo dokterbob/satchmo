@@ -25,6 +25,7 @@ class ContactInfoForm(forms.Form):
     ship_city = forms.CharField(max_length=30, required=False)
     ship_state = forms.CharField(max_length=30, required=False)
     ship_postal_code = forms.CharField(max_length=10, required=False)
+    ship_country = forms.CharField(max_length=30, required=False)
 
     def __init__(self, countries, areas, *args, **kwargs):
         super(ContactInfoForm, self).__init__(*args, **kwargs)
@@ -33,6 +34,7 @@ class ContactInfoForm(forms.Form):
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
         if countries is not None:
             self.fields['country'] = forms.ChoiceField(choices=countries)
+            self.fields['ship_country'] = forms.ChoiceField(choices=countries)
 
         shop_config = Config.get_shop_config()
         self._local_only = shop_config.in_country_only
@@ -65,7 +67,7 @@ class ContactInfoForm(forms.Form):
         if self._local_only:
             country_iso2 = self._default_country
         else:
-            country_iso2 = self.data['country']
+            country_iso2 = self.data['ship_country']
 
         data = self.cleaned_data['ship_state']
         country = Country.objects.get(iso2_code=country_iso2)
@@ -80,6 +82,16 @@ class ContactInfoForm(forms.Form):
         if self._local_only:
             return self._default_country
         return self.cleaned_data['country']
+        
+    def clean_ship_country(self):
+        if self._local_only:
+            return self._default_country
+        shipcountry = self.cleaned_data['ship_country']
+        if config_value('PAYMENT', 'COUNTRY_MATCH'):
+            country = self.cleaned_data['country']
+            if shipcountry != country:
+                raise forms.ValidationError(_('Shipping and Billing countries must match'))
+        return shipcountry
 
     def ship_charfield_clean(self, field_name):
         if self.cleaned_data['copy_address']:
@@ -178,7 +190,6 @@ class ContactInfoForm(forms.Form):
             ship_address.is_default_shipping = True
             ship_address.is_default_billing = False
             ship_address.contact = customer
-            ship_address.country = bill_address.country
             ship_address.save()
             
         if not customer.primary_phone:
