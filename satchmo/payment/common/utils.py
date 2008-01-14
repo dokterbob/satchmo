@@ -13,9 +13,19 @@ def create_pending_payment(order, config, amount=NOTSET):
     key = unicode(config.KEY.value)
     if amount == NOTSET:
         amount = Decimal("0.00")
+
+    # kill old pending payments
+    payments = order.payments.filter(transaction_id__exact="PENDING", 
+        payment__exact=key)
+    ct = payments.count()
+    if ct > 0:
+        log.debug("Deleting %i expired pending payment entries for order #%i", ct, order.id)
+
+        for pending in payments:
+            pending.delete()
         
     log.debug("Creating pending payment for %s", order)
-        
+
     orderpayment = OrderPayment(order=order, amount=amount, payment=key, 
         transaction_id="PENDING")
     orderpayment.save()

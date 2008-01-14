@@ -73,6 +73,7 @@ Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProce
         default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
     
     log.info("default_view_tax: %s", default_view_tax)
+    orderToProcess.recalculate_total()
     base_env = {
         'default_view_tax' : default_view_tax,
         'order': orderToProcess,
