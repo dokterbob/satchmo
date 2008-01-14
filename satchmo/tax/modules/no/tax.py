@@ -28,3 +28,10 @@ class Processor(object):
         Calculate the tax and return it
         """
         return Decimal("0.0"), {}
+
+    def get_percent(self, *args, **kwargs):
+        return Decimal("0")
+
+    def get_rate(self, *args, **kwargs):
+        return Decimal("0")
+        

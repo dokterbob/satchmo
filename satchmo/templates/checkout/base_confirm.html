@@ -27,7 +27,7 @@
 {% endblock %}
 
 <h4>{% trans "Items Ordered" %}</h4>
-{% order_details order %}
+{% order_details order default_view_tax %}
 
 {% block payment_display %}
 {# override for module-specific needs, such as displaying card info #}

@@ -79,9 +79,13 @@ def credit_choices(settings=None):
 def payment_choices():
     choices = []
     for module in config_value('PAYMENT', 'MODULES'):
-        key = config_value(module, 'KEY')
-        label = config_value(module, 'LABEL')
-        choices.append((key, ugettext(label)))
+        try:
+            key = config_value(module, 'KEY')
+            label = config_value(module, 'LABEL')
+            choices.append((key, ugettext(label)))
+        except SettingNotSet, se:
+            log.warn("Could not load payment choice for: %s", module)
+            log.error(se)
     return choices
 
 def payment_live(settings):

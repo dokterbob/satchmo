@@ -57,8 +57,9 @@ class TaxRate(models.Model):
     display_percentage = property(_display_percentage)
 
     def __unicode__(self):
-        return u"%s - %s" % (self.taxClass,
-                             self.taxZone and self.taxZone or self.taxCountry)
+        return u"%s - %s = %s" % (self.taxClass,
+                             self.taxZone and self.taxZone or self.taxCountry,
+                             self.display_percentage)
 
     def save(self):
         if self.taxZone and not self.taxCountry or \

@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from satchmo.configuration import config_value
 from satchmo.contact.models import Order
 from satchmo.payment.common.pay_ship import send_order_confirmation
 from satchmo.shop.utils.dynamic import lookup_url, lookup_template
@@ -15,7 +16,10 @@ import logging
 
 log = logging.getLogger('satchmo.payment.common.views')
 
-def base_confirm_info(request, payment_module, confirm_template, success_handler, extra_context={}):
+NOTSET = object()
+
+def base_confirm_info(request, payment_module, confirm_template, success_handler, extra_context={}, default_view_tax=NOTSET):
+    
     try:
         orderToProcess = Order.objects.from_request(request)
     except Order.DoesNotExist:
@@ -38,7 +42,7 @@ def base_confirm_info(request, payment_module, confirm_template, success_handler
         return render_to_response('shop_404.html', context)
 
     if request.POST:
-        #Do the credit card processing here & if successful, execute the success_handler
+        #Do the credit card processing here & if successful, execute the success_handler        
         credit_processor = payment_module.MODULE.load_module('processor')
         processor = credit_processor.PaymentProcessor(payment_module)
         processor.prepareData(orderToProcess)
@@ -65,7 +69,12 @@ Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProce
         errors = ''
 
     template = lookup_template(payment_module, confirm_template)
+    if default_view_tax == NOTSET:
+        default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+    
+    log.info("default_view_tax: %s", default_view_tax)
     base_env = {
+        'default_view_tax' : default_view_tax,
         'order': orderToProcess,
         'errors': errors,
         'checkout_step2': lookup_url(payment_module, 'satchmo_checkout-step2')}

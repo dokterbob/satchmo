@@ -627,6 +627,19 @@ class Order(models.Model):
     def _shipping_sub_total(self):
         return self.shipping_cost-self.shipping_discount
     shipping_sub_total = property(_shipping_sub_total)
+    
+    def _shipping_tax(self):
+        rates = self.taxes.filter(description__iexact = 'shipping')
+        if rates.count()>0:
+            tax = reduce(operator.add, [t.tax for t in rates])
+        else:
+            tax = Decimal("0.00")
+        return tax
+    shipping_tax = property(_shipping_tax)
+
+    def _shipping_with_tax(self):
+        return self.shipping_sub_total + self.shipping_tax
+    shipping_with_tax = property(_shipping_with_tax)
 
     def sub_total_with_tax(self):
         return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
@@ -697,12 +710,20 @@ class OrderItem(models.Model):
     sub_total = property(_sub_total)
 
     def _total_with_tax(self):
-        return self.sub_total + self.tax
+        tt = self.sub_total + self.tax
+        return tt
     total_with_tax = property(_total_with_tax)
 
     def _tax(self):
         return tax.get_processor(order=self.order).by_orderitem(self)
     tax = property(_tax)
+
+    def _unit_price_with_tax(self):
+        taxclass = self.product.taxClass
+        p = self.unit_price
+        t = tax.get_processor(order=self.order).by_price(taxclass, self.unit_price)
+        return  t + p
+    unit_price_with_tax = property(_unit_price_with_tax)
 
     class Meta:
         verbose_name = _("Order Line Item")

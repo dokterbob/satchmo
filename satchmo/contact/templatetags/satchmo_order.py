@@ -3,10 +3,13 @@ from satchmo.shop.templatetags import get_filter_args
 
 register = template.Library()
 
-@register.inclusion_tag('contact/_order_details.html')
-def order_details(order):
+@register.inclusion_tag('contact/_order_details.html', takes_context=True)
+def order_details(context, order, default_view_tax=False):
     """Output a formatted block giving order details."""
-    return {'order' : order}
+    return {'order' : order,
+        'default_view_tax' : default_view_tax,
+        'request' : context['request']
+    }
 
 @register.inclusion_tag('contact/_order_tracking_details.html')
 def order_tracking_details(order, paylink=False):

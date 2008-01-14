@@ -15,7 +15,7 @@ class Processor(object):
 
     def by_orderitem(self, orderitem):
         price = orderitem.sub_total
-        return self.by_price(price)
+        return self.by_price(orderitem.product.taxClass, price)
         
     def by_price(self, taxclass, price):
         percent = config_value('TAX','PERCENT')
@@ -26,6 +26,12 @@ class Processor(object):
         price = product.get_qty_price(quantity)
         taxclass = product.taxClass
         return self.by_price(taxclass, price)
+        
+    def get_percent(self, *args, **kwargs):
+        return Decimal(config_value('TAX','PERCENT'))
+    
+    def get_rate(self, *args, **kwargs):
+        return self.get_rate_percent/100
         
     def shipping(self):
         if self.order:

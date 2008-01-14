@@ -24,7 +24,6 @@ class Processor(object):
         self.user = user
         
     def _get_location(self):
-
         area=country=None
         
         if self.order:
@@ -64,23 +63,24 @@ class Processor(object):
 
         if not country:
             country = Config.get_shop_config().sales_country
-            
         return area, country
         
-    def _get_rate(self, taxclass, area, country):
-        rate = None
+    def get_percent(self, taxclass="Default", area=None, country=None):
+        return 100*self.get_rate(taxclass=taxclass, area=area, country=country)
+        
+    def get_rate(self, taxclass=None, area=None, country=None, get_object=False, **kwargs):
         if not taxclass:
-            taxclass="Default"
+            taxclass = "Default"
+        rate = None
+        if not (area or country):
+            area, country = self._get_location()
             
         if is_string_like(taxclass):
             try:
-                taxclass = TaxClass.objects.get(title__exact=taxclass)
+                taxclass = TaxClass.objects.get(title__iexact=taxclass)
             
             except TaxClass.DoesNotExist:
-                try:
-                    taxclass = TaxRate.objects.get(title__exact="Default")
-                except TaxClass.DoesNotExist:
-                    raise ImproperlyConfigured("You must have a 'default' Tax Class")            
+                raise ImproperlyConfigured("Can't find a '%s' Tax Class", taxclass)            
             
         if area:
             try:
@@ -95,17 +95,23 @@ class Processor(object):
                 
             except TaxRate.DoesNotExist:
                 rate = None
-                
-        return rate
+        
+        log.debug("Got rate [%s] = %s", taxclass, rate)
+        if get_object:
+            return rate
+        else:
+            if rate:
+                return rate.percentage
+            else:
+                return Decimal("0.00")
 
     def by_price(self, taxclass, price):
-        area, country = self._get_location()
-        rate = self._get_rate(taxclass, area, country)
+        rate = self.get_rate(taxclass)
 
         if not rate:
             t = Decimal("0.00")
         else:
-            t = rate.percentage * price
+            t = rate * price
 
         return round_cents(t)
 
@@ -123,12 +129,11 @@ class Processor(object):
     def shipping(self):
         if self.order:
             s = self.order.shipping_sub_total
-            area, country = self._get_location()
             tc = TaxClass.objects.get(title='Shipping')
-            rate = self._get_rate(tc, area, country)
+            rate = self.get_rate(taxclass=tc)
 
             if rate:
-                t = rate.percentage * s
+                t = rate * s
             else:
                 t = Decimal("0.00")
             
@@ -164,8 +169,7 @@ class Processor(object):
             if rates.has_key(tc_key):
                 rate = rates[tc_key]
             else:
-                area, country = self._get_location()
-                rate = self._get_rate(tc, area, country)
+                rate = self.get_rate(tc, get_object=True)
                 rates[tc_key] = rate
                 taxes[tc_key] = Decimal("0.00")
                 

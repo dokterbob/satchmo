@@ -98,5 +98,54 @@ def cart_taxed_total(parser, token):
 
     return CartTaxedTotalNode(tokens[1], tokens[2])
 
+class TaxRateNode(template.Node):
+    """Retrieve the tax rate for a category"""
+    def __init__(self, taxclass, order, digits):
+        self.taxclass = taxclass
+        self.order = order
+        self.digits = digits
+        
+    def render(self, context):
+        taxer = _get_taxprocessor(context['request'])
+        if self.order:
+            try:
+                order = template.resolve_variable(self.order, context)
+                taxer.order = order
+            except template.VariableDoesNotExist:
+                pass            
+
+        pcnt = taxer.get_percent(taxclass=self.taxclass)
+        if self.digits == 0:
+            q = Decimal('0')
+        else:
+            if self.digits == 1:
+                s = "0.1"
+            else:
+                s = "0." + "0" * self.digits-1 + "1"
+            q = Decimal(s)
+        return pcnt.quantize(q)
+
+def tax_rate(parser, token):
+    """Returns the tax rate for an order, by tax category.
+    Example: {% tax_rate taxclass [order] [digits] %}
+    """
+    tokens = token.contents.split()
+    if len(tokens) < 2:
+        raise template.TemplateSyntaxError, "'%s' tag requires a taxclass argument" % tokens[0]
+        
+    taxclass = tokens[1]
+    if len(tokens) > 2:
+        order = tokens[2]
+    else:
+        order = None
+        
+    if len(tokens) > 3:
+        digits = int(tokens[3])
+    else:
+        digits = 0
+        
+    return TaxRateNode(taxclass, order, digits)
+
 register.tag('cartitem_line_taxed_total', cartitem_line_taxed_total)
 register.tag('cart_taxed_total', cart_taxed_total)
+register.tag('tax_rate', tax_rate)
