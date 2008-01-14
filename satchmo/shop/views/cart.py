@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.core import urlresolvers
+from django.dispatch import dispatcher
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -11,6 +12,7 @@ from satchmo.configuration import config_value
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
+from satchmo.shop.signals import satchmo_cart_changed
 from satchmo.shop.views.utils import bad_or_missing
 import logging
 
@@ -59,6 +61,7 @@ def _set_quantity(request, force_delete=False):
         cartitem.quantity = qty
         cartitem.save()
 
+    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
     return (True, cart, cartitem, "")
 
 def display(request, cart=None, error_message='', default_view_tax=NOTSET):
@@ -155,6 +158,7 @@ def add(request, id=0):
     cart.add_item(product, number_added=quantity, details=details)
 
     url = urlresolvers.reverse('satchmo_cart')
+    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
     return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="json.html"):
@@ -203,7 +207,8 @@ def add_ajax(request, id=0, template="json.html"):
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
-
+    
+    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
     return render_to_response(template, {'json' : encoded})
 
 def agree_terms(request):
@@ -282,4 +287,3 @@ def set_quantity_ajax(request, template="json.html"):
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     return render_to_response(template, {'json': encoded})
-

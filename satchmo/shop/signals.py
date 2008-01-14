@@ -1,0 +1,1 @@
+satchmo_cart_changed= object()

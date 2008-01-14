@@ -14,6 +14,7 @@ from satchmo.configuration import config_choice_values, config_value, SettingNot
 from satchmo.discount.models import Discount, find_discount_for_code
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
+from satchmo.shop.signals import satchmo_cart_changed
 from satchmo.shop.templatetags.satchmo_currency import moneyfmt
 from satchmo.shop.utils import load_module
 from signals import order_success
@@ -335,6 +336,19 @@ class OrderManager(models.Manager):
             raise Order.DoesNotExist()
 
         return order
+        
+    def remove_partial_order(self, request):
+        """Delete cart from request if it exists and is incomplete (has no status)"""
+        try:
+            order = Order.objects.from_request(request)
+            if not order.status:
+                del request.session['orderID']
+                log.info("Deleting incomplete order #%i from database", order.id)
+                order.delete()
+                return True
+        except Order.DoesNotExist:
+            pass
+        return False
 
 class Order(models.Model):
     """
@@ -888,3 +902,10 @@ class OrderTaxDetail(models.Model):
             return u"Tax: %s %s" % (self.description, self.tax)
         else:
             return u"Tax: %s" % self.tax
+
+def _remove_order_on_cart_update(request=None, cart=None):
+    if request:
+        log.debug("caught cart changed signal - remove_order_on_cart_update")
+        Order.objects.remove_partial_order(request)
+
+dispatcher.connect(_remove_order_on_cart_update, signal=satchmo_cart_changed)
