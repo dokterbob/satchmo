@@ -1,9 +1,11 @@
 from django import newforms as forms
+from django.dispatch import dispatcher
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value, config_get_group, SettingNotSet
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
+from signals import satchmo_contact_location_changed
 import datetime
 
 selection = ''
@@ -157,8 +159,12 @@ class ContactInfoForm(forms.Form):
         if not bill_address:
             bill_address = AddressBook(contact=customer)
                 
+        changed_location = False
         address_keys = bill_address.__dict__.keys()
         for field in address_keys:
+            if (not changed_location) and field in ('state', 'country', 'city'):
+                if getattr(bill_address, field) != data[field]:
+                    changed_location = True
             try:
                 setattr(bill_address, field, data[field])
             except KeyError:
@@ -183,6 +189,9 @@ class ContactInfoForm(forms.Form):
                 ship_address = AddressBook()
             
             for field in address_keys:
+                if (not changed_location) and field in ('state', 'country', 'city'):
+                    if getattr(ship_address, field) != data[field]:
+                        changed_location = True
                 try:
                     setattr(ship_address, field, data['ship_' + field])
                 except KeyError:
@@ -200,6 +209,9 @@ class ContactInfoForm(forms.Form):
         phone.phone = data['phone']
         phone.contact = customer
         phone.save()
+        
+        if changed_location:
+            dispatcher.send(signal=satchmo_contact_location_changed, contact=contact)
         
         return customer.id
 

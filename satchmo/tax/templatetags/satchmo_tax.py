@@ -47,9 +47,10 @@ class CartitemLineTaxedTotalNode(template.Node):
         try:
             item = template.resolve_variable(self.cartitem, context)
         except template.VariableDoesNotExist:
-            raise tempalte.TemplateSyntaxError("No such variable: %s", self.cartitem)
+            raise template.TemplateSyntaxError("No such variable: %s", self.cartitem)
         
         total = item.line_total + taxer.by_price(item.product.taxClass, item.line_total)
+        
         if self.currency:
             return moneyfmt(total)
         return total
@@ -83,8 +84,6 @@ class CartTaxedTotalNode(template.Node):
         if self.currency:
             return moneyfmt(total)
         
-        if currency:
-            return moneyfmt(total)
         return total
 
 def cart_taxed_total(parser, token):
@@ -145,7 +144,54 @@ def tax_rate(parser, token):
         digits = 0
         
     return TaxRateNode(taxclass, order, digits)
+    
+class TaxedPriceNode(template.Node):
+    """Returns the taxed price for an amount.
+    """
+    def __init__(self, price, currency, taxclass):
+        self.price = price
+        self.taxclass = taxclass
+        self.currency = currency
+
+    def render(self, context):
+        taxer = _get_taxprocessor(context['request'])
+        try:
+            price = template.resolve_variable(self.price, context)
+        except template.VariableDoesNotExist:
+            raise template.TemplateSyntaxError("No such variable: %s", self.price)
+
+        total = price + taxer.by_price(self.taxclass, price)
+        
+        if self.currency:
+            return moneyfmt(total)
+                        
+        return total
+        
+def taxed_price(parser, token):
+    """Returns the taxed price for an amount.  If currency evaluates true,
+    then return the total formatted through moneyfmt.
+    Example: {% taxed_price amount [currency] [taxclass] %}
+    """
+    tokens = token.contents.split()
+    if len(tokens) < 2:
+        raise template.TemplateSyntaxError, "'%s' tag requires an amount argument" % tokens[0]
+    
+    price = tokens[1]
+    if len(tokens) > 2:
+        currency = tokens[2]
+    else:
+        currency = False
+    
+    if len(tokens) > 3:
+        taxclass = tokens[3]
+    else:
+        taxclass = "Default"
+
+    return TaxedPriceNode(price, currency, taxclass)
+
+    
 
 register.tag('cartitem_line_taxed_total', cartitem_line_taxed_total)
 register.tag('cart_taxed_total', cart_taxed_total)
+register.tag('taxed_price', taxed_price)
 register.tag('tax_rate', tax_rate)

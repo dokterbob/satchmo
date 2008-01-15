@@ -17,7 +17,7 @@ from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.signals import satchmo_cart_changed
 from satchmo.shop.templatetags.satchmo_currency import moneyfmt
 from satchmo.shop.utils import load_module
-from signals import order_success
+from signals import order_success, satchmo_contact_location_changed
 import config
 import datetime
 import logging
@@ -907,5 +907,15 @@ def _remove_order_on_cart_update(request=None, cart=None):
     if request:
         log.debug("caught cart changed signal - remove_order_on_cart_update")
         Order.objects.remove_partial_order(request)
-
+        
+def _recalc_total_on_contact_change(contact=None):
+    #TODO: pull just the current order once we start using threadlocal middleware
+    log.debug("Recalculating all contact orders not in process")
+    orders = Order.objects.filter(contact=contact, status="")
+    log.debug("Found %i orders to recalc", orders.count())
+    for order in orders:
+        order.copy_addresses()
+        order.recalculate_total()
+    
 dispatcher.connect(_remove_order_on_cart_update, signal=satchmo_cart_changed)
+dispatcher.connect(_recalc_total_on_contact_change, signal=satchmo_contact_location_changed)

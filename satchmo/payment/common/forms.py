@@ -1,8 +1,9 @@
 from django import newforms as forms
 from django.conf import settings
-from django.template import Context
+from django.template import RequestContext
 from django.template import loader
 from django.utils.translation import ugettext as _
+from satchmo.configuration import config_value
 from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
@@ -15,7 +16,7 @@ import calendar
 import datetime
 import sys
 
-def _get_shipping_choices(paymentmodule, cart, contact):
+def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_tax=False):
     """Iterate through legal shipping modules, building the list for display to the user.
     
     Returns the shipping choices list, along with a dictionary of shipping choices, useful
@@ -30,11 +31,12 @@ def _get_shipping_choices(paymentmodule, cart, contact):
             template = lookup_template(paymentmodule, 'shipping_options.html')
             t = loader.get_template(template)
             shipcost = method.cost()
-            c = Context({
+            c = RequestContext(request, {
                 'amount': shipcost,
                 'description' : method.description(),
                 'method' : method.method(),
-                'expected_delivery' : method.expectedDelivery() })
+                'expected_delivery' : method.expectedDelivery(),
+                'default_view_tax' : default_view_tax })
             shipping_options.append((method.id, t.render(c)))
             shipping_dict[method.id] = shipcost
     
@@ -83,7 +85,12 @@ class SimplePayShipForm(forms.Form):
         except Contact.DoesNotExist:
             self.tempContact = None
             
-        shipping_choices, shipping_dict = _get_shipping_choices(paymentmodule, self.tempCart, self.tempContact)
+        if kwargs.has_key('default_view_tax'):
+            default_view_tax = kwargs['default_view_tax']
+        else:
+            default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+            
+        shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
         self.fields['shipping'].choices = shipping_choices
         self.shipping_dict = shipping_dict
 
