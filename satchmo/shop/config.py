@@ -27,7 +27,14 @@ NUMBER_FEATURED = config_register(
         'NUM_DISPLAY',
         description= _("Number of featured items to display"),
         default=20))
-        
+
+MEASUREMENT_SYSTEM = config_register(
+    MultipleStringValue(SHOP_GROUP,
+    'MEASUREMENT_SYSTEM',
+    description = _("Measurement system to use in store"),
+    choices = [('metric',_('Metric')),
+                ('imperial',_('Imperial'))],
+    default = "imperial"))
 #### Google Group ####
 
 GOOGLE_GROUP = ConfigurationGroup('GOOGLE', 'Google Settings')

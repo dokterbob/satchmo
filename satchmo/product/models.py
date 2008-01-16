@@ -19,6 +19,7 @@ from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from sets import Set
 import logging
+from django.core.validators import RequiredIfOtherFieldGiven
 try:
     from django.utils.safestring import mark_safe
 except ImportError:
@@ -40,6 +41,23 @@ def upload_dir():
 
 def protected_dir():
     return normalize_dir(config_value('PRODUCT', 'PROTECTED_DIR'))
+
+def dimension_units():
+    if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
+        return ([('cm','cm')])
+    else:
+        return ([('in','in')])
+
+def weight_units():
+    if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
+        return ([('kg','kg')])
+    else:
+        return ([('lb','lb')])
+
+length_validator = RequiredIfOtherFieldGiven('length', _("A unit of measure must be entered for the length"))
+width_validator = RequiredIfOtherFieldGiven('width', _("A unit of measure must be entered for the width"))
+height_validator = RequiredIfOtherFieldGiven('height', _("A unit of measure must be entered for the height"))
+weight_validator = RequiredIfOtherFieldGiven('weight', _("A unit of measure must be entered for the weight"))
 
 class Category(models.Model):
     """
@@ -370,7 +388,7 @@ class Product(models.Model):
     """
     name = models.CharField(_("Full Name"), max_length=255, help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
     slug = models.SlugField(_("Slug Name"), unique=True, prepopulate_from=('name',), core=True, blank=False)
-    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True)
+    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True, help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     category = models.ManyToManyField(Category, filter_interface=True, blank=True, verbose_name=_("Category"))
@@ -381,9 +399,13 @@ class Product(models.Model):
     featured = models.BooleanField(_("Featured Item"), default=False, help_text=_("Featured items will show on the front page"))
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
     weight = models.DecimalField(_("Weight"), max_digits=8, decimal_places=2, null=True, blank=True)
+    weight_units = models.CharField(_("Weight units"), max_length=3, choices=weight_units(), null=True, blank=True, validator_list=[weight_validator])
     length = models.DecimalField(_("Length"), max_digits=6, decimal_places=2, null=True, blank=True)
+    length_units = models.CharField(_("Length units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[length_validator])
     width = models.DecimalField(_("Width"), max_digits=6, decimal_places=2, null=True, blank=True)
+    width_units = models.CharField(_("Width units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[width_validator])
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
+    height_units = models.CharField(_("Height units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     taxable = models.BooleanField(_("Taxable"), default=False)
@@ -494,6 +516,20 @@ class Product(models.Model):
             return True
         else:
             return False;
+            
+    def _has_full_dimensions(self):
+        """Return true if the dimensions all have units and values. Used in shipping calcs. """
+        if self.length and self.length_units and self.width and self.width_units and self.height and self.height_units:
+            return True
+        return False
+    has_full_dimensions = property(_has_full_dimensions)
+    
+    def _has_full_weight(self):
+        """Return True if we have weight and weight units"""
+        if self.weight and self.weight_units:
+            return True
+        return False
+    has_full_weight = property(_has_full_weight)            
 
     def __unicode__(self):
         return self.name
@@ -508,7 +544,7 @@ class Product(models.Model):
         fields = (
         (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','ordering')}),
         (_('Meta Data'), {'fields': ('meta',), 'classes': 'collapse'}),
-        (_('Item Dimensions'), {'fields': (('length', 'width','height',),'weight'), 'classes': 'collapse'}),
+        (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': 'collapse'}),
         (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': 'collapse'}),
         (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}),
         )
@@ -522,7 +558,8 @@ class Product(models.Model):
     def save(self):
         if not self.id:
             self.date_added = datetime.date.today()
-
+        if not self.sku:
+            self.sku = self.slug
         super(Product, self).save()
 
     def get_subtypes(self):

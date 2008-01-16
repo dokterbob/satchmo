@@ -19,13 +19,13 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
 # 'Tiered' is special, since it needs to be added as a module.  To enable it,
 # just add satchmo.shipping.modules.tiered to your INSTALLED_APPS, you don't
 # need to add it to CUSTOM_SHIPPING_MODULES either.
-_default_modules = ('dummy', 'flat', 'per')
+_default_modules = ('dummy', 'flat', 'per', 'ups')
 
 for module in _default_modules:
-    try:
-        load_module("satchmo.shipping.modules.%s.config" % module)
-    except ImportError:
-        log.debug('Could not load default shipping module configuration: %s', module)
+    #try:
+    load_module("satchmo.shipping.modules.%s.config" % module)
+    #except ImportError:
+    #    log.debug('Could not load default shipping module configuration: %s', module)
 
 # --- Load any extra shipping modules. ---
 extra_shipping = getattr(settings, 'CUSTOM_SHIPPING_MODULES', ())
