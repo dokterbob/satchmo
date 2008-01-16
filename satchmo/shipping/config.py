@@ -22,9 +22,9 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
 _default_modules = ('dummy', 'flat', 'per', 'ups')
 
 for module in _default_modules:
-    #try:
-    load_module("satchmo.shipping.modules.%s.config" % module)
-    #except ImportError:
+    try:
+    	load_module("satchmo.shipping.modules.%s.config" % module)
+    except ImportError:
     #    log.debug('Could not load default shipping module configuration: %s', module)
 
 # --- Load any extra shipping modules. ---
