@@ -25,7 +25,7 @@ for module in _default_modules:
     try:
     	load_module("satchmo.shipping.modules.%s.config" % module)
     except ImportError:
-    #    log.debug('Could not load default shipping module configuration: %s', module)
+        log.debug('Could not load default shipping module configuration: %s', module)
 
 # --- Load any extra shipping modules. ---
 extra_shipping = getattr(settings, 'CUSTOM_SHIPPING_MODULES', ())
