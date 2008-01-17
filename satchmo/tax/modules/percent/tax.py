@@ -1,5 +1,6 @@
 from decimal import Decimal
 from satchmo.configuration import config_value
+from satchmo.tax import round_cents
 
 class Processor(object):
     
@@ -44,7 +45,7 @@ class Processor(object):
         else:
             t = Decimal("0.00")
                 
-        return t
+        return round_cents(t)
             
     def process(self, order=None):
         """
@@ -69,7 +70,3 @@ class Processor(object):
         
         tax = sub_total * (percent/100)
         return round_cents(tax), taxrates
-
-
-def round_cents(x):
-    return x.quantize(Decimal('0.01'))

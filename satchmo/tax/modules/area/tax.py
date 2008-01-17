@@ -6,6 +6,7 @@ from satchmo.contact.models import Contact
 from satchmo.l10n.models import AdminArea, Country
 from satchmo.shop.models import Config
 from satchmo.shop.utils import is_string_like
+from satchmo.tax import round_cents
 from satchmo.tax.models import TaxRate, TaxClass
 import logging
 
@@ -140,7 +141,7 @@ class Processor(object):
         else:
             t = Decimal("0.00")
         
-        return t
+        return round_cents(t)
 
     def process(self, order=None):
         """
@@ -190,6 +191,3 @@ class Processor(object):
             taxes[k] = round_cents(taxes[k])
         
         return sub_total, taxes
-        
-def round_cents(x):
-    return x.quantize(Decimal('0.01'))
