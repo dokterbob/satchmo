@@ -25,6 +25,10 @@ Trunk
  * Updated google analytics to new code, with an optional fallback to the old urchin.js
  * Added new Tax module "Area", which calculates taxes based on country or state.
  * Updated discount system to track which discounts were applied to which line items.
+ * Add weight and dimension unit info to the product model.
+ * Provide integration for UPS online tools.
+ * New sku model field
+ * New gift certificate capability.
 
 Version 0.6, October 30, 2007
 ----------------
