@@ -146,6 +146,14 @@ Now register the settings you need::
 All of these settings can be accessed in your ``__init__`` method (shown above).  
 For example, the LIVE value above can be accessed by using ``settings.LIVE.value``
 
+In order to enable your new payment processor, you must add it to the CUSTOM_PAYMENT_MODULES variable
+in your local_settings.py::
+
+    # register custom external payment modules by listing their modules here
+    # ex: CUSTOM_NEWSLETTER_MODULES = ['client.payment.wondercharge',]
+    CUSTOM_PAYMENT_MODULES = ['custom.payment.mynewprocessor']
+
+
 Views
 -----
 
