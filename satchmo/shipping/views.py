@@ -1,5 +1,6 @@
 import os
 import trml2pdf
+import urllib
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -28,8 +29,8 @@ def displayDoc(request, id, doc):
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     shopDetails = Config.get_shop_config()
-    t = loader.get_template('pdf/%s' % template)
-    templatedir = os.path.normpath(settings.TEMPLATE_DIRS[0])
+    t = loader.get_template(os.path.join('pdf', template))
+    templatedir = urllib.pathname2url(os.path.abspath(settings.TEMPLATE_DIRS[0]))
     c = Context({
                 'filename' : filename,
                 'templateDir' : templatedir,
@@ -41,5 +42,3 @@ def displayDoc(request, id, doc):
     return response
 displayDoc = staff_member_required(never_cache(displayDoc))
 
-#Note - rendering an image in the file causes problems when running the dev
-#server on windows.  Seems to be an issue with trml2pdf
