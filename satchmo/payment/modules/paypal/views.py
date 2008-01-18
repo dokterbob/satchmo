@@ -110,8 +110,19 @@ def ipn(request):
             
             payment_module = config_get_group('PAYMENT_PAYPAL')
             record_payment(order, payment_module, amount=gross, transaction_id=txn_id)
+            
+            if 'memo' in data:
+                if order.notes:
+                    notes = order.notes + "\n"
+                else:
+                    notes = ""
+                
+                order.notes = notes + _('---Comment via Paypal IPN---') + u'\n' + data['memo']
+                order.save()
+                log.debug("Saved order notes from Paypal")
+            
             order.add_status(status='Pending', notes=_("Paid through PayPal."))
-
+    
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
 
