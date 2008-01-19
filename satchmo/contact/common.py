@@ -1,6 +1,6 @@
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 selection = _("Please Select")
 
@@ -29,14 +29,14 @@ def get_area_country_options(request):
     if area_choices:
         areas = [('', selection)]
         for area in area_choices:
-            value_to_choose = (area.abbrev or area.name, area.name)
+            value_to_choose = (area.abbrev or area.name, ugettext(area.name))
             areas.append(value_to_choose)
 
     if not local_only:
         options['country'] = default_country.iso2_code
-        countries = [(default_country.iso2_code, default_country.printable_name)]
+        countries = [(default_country.iso2_code, ugettext(default_country.printable_name))]
         for country in shop_config.shipping_countries.filter(active=True):
-            country_to_choose = (country.iso2_code, country.printable_name)
+            country_to_choose = (country.iso2_code, ugettext(country.printable_name))
             #Make sure the default only shows up once
             if country.iso2_code != default_country.iso2_code:
                 countries.append(country_to_choose)
