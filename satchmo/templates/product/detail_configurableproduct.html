@@ -69,7 +69,7 @@ var satchmo = {
     update_price : function() {
         slug = satchmo.get_current_slug();
         satchmo.set_name(slug);
-        satchmo.set_price(satchmo.get_current_price(slug, true, satchmo.default_view_tax));
+        satchmo.set_price(satchmo.get_current_price(slug, satchmo.default_view_tax));
     }
 }
 
