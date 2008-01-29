@@ -87,6 +87,7 @@ class ShopTest(TestCase):
 
         response = self.client.get('/accounts/')
         self.assertContains(response, "Welcome, Paul Test.", count=1, status_code=200)
+        response = self.client.get('/accounts/logout/')
 
     def test_cart_adding(self):
         """
@@ -244,6 +245,44 @@ class ShopTest(TestCase):
         self.assertEqual(contact.shipping_address.street1, "1011 Some Other Street")
         self.assertEqual(contact.primary_phone.phone, "456-123-5555")
 
+    def test_contact_email_security(self):
+        """
+        Validate that we can't create a new contact with an existing contact's email address.
+        Ticket #233
+        """
+        self.test_new_account()
+        response = self.client.get('/accounts/register/')
+        init_data = {
+            'email': 'somenewtester@example.com',
+            'first_name': 'New',
+            'last_name': 'Tester',
+            'password': 'new123pass',
+            'password2': 'new123pass',
+            'newsletter': '0'}
+        response = self.client.post('/accounts/register/', init_data)
+        self.assertRedirects(response, domain+'/accounts/register/complete/',
+            status_code=302, target_status_code=200)
+        response = self.client.get('/accounts/update')
+        full_data = {
+            'email': 'someone@test.com',
+            'phone': '901-881-1230',
+            'street1': '8 First Street',
+            'city': 'Littleton',
+            'state': 'MA',
+            'postal_code': '01229',
+            'country': 'US',
+            'ship_street1': '11 Easy Street',
+            'ship_city': 'Littleton',
+            'ship_state': 'MA',
+            'ship_postal_code': '01229',
+        }
+        response = self.client.post('/accounts/update/', full_data)
+        self.assertContains(response,"That email address is already in use", status_code=200)
+        full_data['email'] = 'somenewtester@example.com'
+        response = self.client.post('/accounts/update/', full_data)
+        response = self.client.get('/accounts/')
+        self.assertContains(response,"Email: somenewtester@example.com")
+    
     def test_contact_attaches_to_user(self):
         """Check that if a User registers and later creates a Contact, the
         Contact will be attached to the existing User.

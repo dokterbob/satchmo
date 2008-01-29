@@ -171,6 +171,10 @@ class Contact(models.Model):
         """Ensure we have a create_date before saving the first time."""
         if not self.id:
             self.create_date = datetime.date.today()
+        # Validate the email is in synch between 
+        if self.user and self.user.email != self.email:
+            self.user.email = self.email
+            self.user.save()
         super(Contact, self).save()
 
     class Admin:

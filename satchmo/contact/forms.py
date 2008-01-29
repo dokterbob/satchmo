@@ -1,10 +1,11 @@
 from django import newforms as forms
 from django.dispatch import dispatcher
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
+from django.contrib.auth.models import User
 from signals import satchmo_contact_location_changed
 import datetime
 
@@ -29,7 +30,7 @@ class ContactInfoForm(forms.Form):
     ship_postal_code = forms.CharField(max_length=10, required=False)
     ship_country = forms.CharField(max_length=30, required=False)
 
-    def __init__(self, countries, areas, *args, **kwargs):
+    def __init__(self, countries, areas, contact, *args, **kwargs):
         super(ContactInfoForm, self).__init__(*args, **kwargs)
         if areas is not None and countries is None:
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
@@ -44,8 +45,23 @@ class ContactInfoForm(forms.Form):
         if not country:
             self._default_country = 'US'
         else:
-            self._default_country = country.iso2_code
+            self._default_country = country.iso2_code        
+        self.contact = contact
 
+    def clean_email(self):
+        """Prevent account hijacking by disallowing duplicate emails."""
+        email = self.cleaned_data.get('email', None)
+        if self.contact:
+            if self.contact.email and self.contact.email == email:
+                return email
+            users_with_email = Contact.objects.filter(email=email)
+            if len(users_with_email) == 0:
+                return email
+            if len(users_with_email) > 1 or users_with_email[0].id != self.contact.id:
+                raise forms.ValidationError(
+                    ugettext("That email address is already in use."))
+        return email
+        
     def clean_state(self):
         if self._local_only:
             country_iso2 = self._default_country

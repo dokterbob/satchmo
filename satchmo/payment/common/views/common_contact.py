@@ -22,7 +22,13 @@ def contact_info(request):
 
     init_data = {}
     areas, countries, only_country = get_area_country_options(request)
-
+    if request.user.is_authenticated():
+        if request.user.email:
+            init_data['email'] = request.user.email
+        if request.user.first_name:
+            init_data['first_name'] = request.user.first_name
+        if request.user.last_name:
+            init_data['last_name'] = request.user.last_name
     try:
         contact = Contact.objects.from_request(request, create=False)
     except Contact.DoesNotExist:
@@ -32,7 +38,7 @@ def contact_info(request):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(countries, areas, new_data,
+        form = PaymentContactInfoForm(countries, areas, contact, new_data,
             initial=init_data)
 
         if form.is_valid():
@@ -61,7 +67,7 @@ def contact_info(request):
         else:
             # Allow them to login from this page.
             request.session.set_test_cookie()
-        form = PaymentContactInfoForm(countries, areas, initial=init_data)
+        form = PaymentContactInfoForm(countries, areas, contact, initial=init_data)
 
     context = RequestContext(request, {
         'form': form,
