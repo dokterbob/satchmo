@@ -20,11 +20,13 @@ features in Satchmo.
 - `ReportLab`_
 - `Tiny RML2PDF`_ (`download link`_)
 
+There are also a number of other Django packages (mentioned below) that you will require
+
 For product comment functionality, you will need:
 
 - `django-comment-utils`_ which must be on your PYTHONPATH
 
-For more complex email verification process, you will need:
+For the account registration process, you will need:
 
 - `Django Registration`_
 

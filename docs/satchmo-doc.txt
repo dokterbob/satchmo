@@ -83,8 +83,9 @@ as well as flexible discount options.
 
 Current Development Status
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-Satchmo is currently in alpha status.  Many functions work but there is still a lot
-of change in the underlying api.
+Satchmo is currently in beta status.  The majority of the framework is in place and
+working correctly for many cases. There may be some minor changes but we always clearly
+document any backwards incompatible changes.
 
 Requirements
 ------------
@@ -100,15 +101,13 @@ features in Satchmo.
 - `Python cryptography toolkit`_ ('Python cryptography toolkit(windows)'_)
 - `ReportLab`_
 - `Tiny RML2PDF`_ (`download link`_)
+- `django-comment-utils`_ which must be on your PYTHONPATH
+- `Django Registration`_
 
 The following packages are optional but encouraged:
 
 - `DocUtils`_
 
-The following Internationalization data can be automatically installed by the
-Satchmo scripts.
-
-- `Webda`_
 
 Installation
 ------------
@@ -313,3 +312,5 @@ Roadmap
 .. _Authorize.net: http://www.authorize.net/
 .. _Tiny RML2PDF: http://www.openreport.org/index.py/static/page/trml2pdf
 .. _download link: http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
+.. _Django Registration: http://code.google.com/p/django-registration/
+.. _django-comment-utils: http://code.google.com/p/django-comment-utils/
