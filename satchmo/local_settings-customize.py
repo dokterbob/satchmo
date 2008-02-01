@@ -69,15 +69,15 @@ SHOP_URLS = patterns('satchmo.shop.views',
 CUSTOM_NEWSLETTER_MODULES = []
 
 # register custom external payment modules by listing their modules here
-# ex: CUSTOM_NEWSLETTER_MODULES = ['client.payment.wondercharge',]
+# ex: CUSTOM_PAYMENT_MODULES = ['client.payment.wondercharge',]
 CUSTOM_PAYMENT_MODULES = []
 
 # register custom external shipping modules by listing their modules here
-# ex: CUSTOM_NEWSLETTER_MODULES = ['client.shipping.fancyshipping',]
+# ex: CUSTOM_SHIPPING_MODULES = ['client.shipping.fancyshipping',]
 CUSTOM_SHIPPING_MODULES = []
 
 # register custom external product modules by listing their modules here
-# ex: CUSTOM_NEWSLETTER_MODULES = ['client.product.myproducttype',]
+# ex: CUSTOM_PRODUCT_MODULES = ['client.product.myproducttype',]
 CUSTOM_PRODUCT_MODULES = []
 
 # a cache backend is required.  Do not use locmem, it will not work properly at all in production
