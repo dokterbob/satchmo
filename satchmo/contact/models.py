@@ -359,7 +359,7 @@ class Order(models.Model):
     Orders contain a copy of all the information at the time the order was
     placed.
     """
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, verbose_name=_('Contact'))
     ship_street1 = models.CharField(_("Street"), max_length=50, blank=True)
     ship_street2 = models.CharField(_("Street"), max_length=50, blank=True)
     ship_city = models.CharField(_("City"), max_length=50, blank=True)
@@ -767,12 +767,12 @@ class OrderItemDetail(models.Model):
         ordering = ('sort_order',)
 
 class DownloadLink(models.Model):
-    downloadable_product = models.OneToOneField(DownloadableProduct)
-    order = models.ForeignKey(Order)
-    key = models.CharField(max_length=40)
-    num_attempts = models.IntegerField()
-    time_stamp = models.DateTimeField()
-    active = models.BooleanField(default=True)
+    downloadable_product = models.OneToOneField(DownloadableProduct, verbose_name=_('Downloadable product'))
+    order = models.ForeignKey(Order, verbose_name=_('Order'))
+    key = models.CharField(_('Key'), max_length=40)
+    num_attempts = models.IntegerField(_('Number of attempts'), )
+    time_stamp = models.DateTimeField(_('Time stamp'), )
+    active = models.BooleanField(_('Active'), default=True)
 
     def is_valid(self):
         # Check num attempts and expire_minutes
@@ -810,6 +810,10 @@ class DownloadLink(models.Model):
 
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Download Link")
+        verbose_name_plural = _("Download Links")
 
 class OrderStatus(models.Model):
     """
@@ -885,6 +889,8 @@ class OrderVariable(models.Model):
 
     class Meta:
         ordering=('key',)
+        verbose_name = _("Order variable")
+        verbose_name_plural = _("Order variables")
 
     def __unicode__(self):
         if len(self.value)>10:
@@ -906,6 +912,10 @@ class OrderTaxDetail(models.Model):
             return u"Tax: %s %s" % (self.description, self.tax)
         else:
             return u"Tax: %s" % self.tax
+
+    class Meta:
+        verbose_name = _('Order tax detail')
+        verbose_name_plural = _('Order tax details')
 
 def _remove_order_on_cart_update(request=None, cart=None):
     if request:

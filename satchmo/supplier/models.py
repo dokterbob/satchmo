@@ -13,7 +13,7 @@ class RawItem(models.Model):
     A raw good supplied by a supplier.  For instance, it could be a plain 
     shirt that you process to make your Item
     """
-    supplier = models.ForeignKey(Organization)
+    supplier = models.ForeignKey(Organization, verbose_name=_('Supplier'))
     supplier_num = models.CharField(_("Supplier ID"), max_length=50)
     description = models.CharField(_("Description"), max_length=200)
     unit_cost = models.DecimalField(_("Unit Cost"), max_digits=6, decimal_places=2)
@@ -34,7 +34,7 @@ class SupplierOrder(models.Model):
     """
     An order the store owner places to a supplier for a raw good.
     """
-    supplier = models.ForeignKey(Organization)
+    supplier = models.ForeignKey(Organization, verbose_name=_('Supplier'))
     date_created = models.DateField(_("Date Created"))
     order_sub_total = models.DecimalField(_("Subtotal"), max_digits=6, decimal_places=2)
     order_shipping = models.DecimalField(_("Shipping"), max_digits=6, decimal_places=2)
@@ -70,7 +70,7 @@ class SupplierOrderItem(models.Model):
     Individual line items for an order
     """
     order = models.ForeignKey(SupplierOrder,edit_inline=models.TABULAR, num_in_admin=3)
-    line_item = models.ForeignKey(RawItem, core=True)
+    line_item = models.ForeignKey(RawItem, core=True, verbose_name=_('Line Item'))
     line_item_quantity = models.IntegerField(_("Line Item Quantity"), core=True)
     line_item_total = models.DecimalField(_("Line Item Total"), max_digits=6,decimal_places=2)
     
@@ -91,7 +91,7 @@ class SupplierOrderStatus(models.Model):
     order = models.ForeignKey(SupplierOrder, edit_inline=models.STACKED, num_in_admin=1)
     status = models.CharField(_("Status"), max_length=20, choices=SUPPLIERORDER_STATUS, core=True, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
-    date = models.DateTimeField(blank=True)
+    date = models.DateTimeField(_('Date'), blank=True)
     
     def __unicode__(self):
         return self.status

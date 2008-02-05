@@ -36,8 +36,8 @@ class PaymentOption(models.Model):
         ordering = ['sortOrder']
     
     class Meta:
-        verbose_name = "Payment Option"
-        verbose_name_plural = "Payment Options"
+        verbose_name = _("Payment Option")
+        verbose_name_plural = _("Payment Options")
 
 class CreditCardDetail(models.Model):
     """

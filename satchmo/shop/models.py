@@ -53,7 +53,7 @@ class Config(models.Model):
     city=models.CharField(_("City"), max_length=50, blank=True, null=True)
     state=models.CharField(_("State"), max_length=30, blank=True, null=True)
     postal_code=models.CharField(_("Zip Code"), blank=True, null=True, max_length=9)
-    country=models.ForeignKey(Country, blank=True, null=True)
+    country=models.ForeignKey(Country, blank=True, null=True, verbose_name=_('Country'))
     phone = models.CharField(_("Phone Number"), blank=True, null=True, max_length=12)
     no_stock_checkout = models.BooleanField(_("Purchase item not in stock?"))
     in_country_only = models.BooleanField(_("Only sell to in-country customers?"), default=True)
@@ -204,7 +204,7 @@ class Cart(models.Model):
     """
     desc = models.CharField(_("Description"), blank=True, null=True, max_length=10)
     date_time_created = models.DateTimeField(_("Creation Date"))
-    customer = models.ForeignKey(Contact, blank=True, null=True)
+    customer = models.ForeignKey(Contact, blank=True, null=True, verbose_name=_('Customer'))
     
     objects = CartManager()
     
@@ -282,8 +282,8 @@ class CartItem(models.Model):
     """
     An individual item in the cart
     """
-    cart = models.ForeignKey(Cart, edit_inline=models.TABULAR, num_in_admin=3)
-    product = models.ForeignKey(Product)
+    cart = models.ForeignKey(Cart, edit_inline=models.TABULAR, num_in_admin=3, verbose_name=_('Cart'))
+    product = models.ForeignKey(Product, verbose_name=_('Product'))
     quantity = models.IntegerField(_("Quantity"), core=True)
 
     def _get_line_unitprice(self):
@@ -327,6 +327,10 @@ class CartItem(models.Model):
     class Admin:
         pass
 
+    class Meta:
+        verbose_name = _("Cart Item")
+        verbose_name_plural = _("Cart Items")
+
 class CartItemDetails(models.Model):
     """
     An arbitrary detail about a cart item.
@@ -340,3 +344,5 @@ class CartItemDetails(models.Model):
 
     class Meta:
         ordering = ('sort_order',)
+        verbose_name = _("Cart Item Detail")
+        verbose_name_plural = _("Cart Item Details")

@@ -679,12 +679,12 @@ class CustomProduct(models.Model):
     """
     Product which must be custom-made or ordered.
     """
-    product = models.OneToOneField(Product)
+    product = models.OneToOneField(Product, verbose_name=_('Product'))
     downpayment = models.IntegerField(_("Percent Downpayment"), default=20)
     deferred_shipping = models.BooleanField(_('Deferred Shipping'), 
         help_text=_('Do not charge shipping at checkout for this item.'), 
         default=False)
-    option_group = models.ManyToManyField(OptionGroup, blank=True,)
+    option_group = models.ManyToManyField(OptionGroup, verbose_name=_('Option Group'), blank=True,)
     
     def _is_shippable(self):
         return not self.deferred_shipping
@@ -733,6 +733,10 @@ class CustomProduct(models.Model):
     
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _('Custom Product')
+        verbose_name_plural = _('Custom Products')
 
 class CustomTextField(models.Model):
     """
@@ -912,6 +916,10 @@ class ConfigurableProduct(models.Model):
     class Admin:
         pass
 
+    class Meta:
+        verbose_name = _("Configurable Product")
+        verbose_name_plural = _("Configurable Products")
+
     def __unicode__(self):
         return self.product.slug
 
@@ -942,6 +950,10 @@ class DownloadableProduct(models.Model):
         
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Downloadable Product")
+        verbose_name_plural = _("Downloadable Products")
         
 #class BundledProduct(models.Model):
 #    """
@@ -1090,6 +1102,10 @@ class ProductVariation(models.Model):
 
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Product variation")
+        verbose_name_plural = _("Product variations")
 
     def __unicode__(self):
         return self.product.slug

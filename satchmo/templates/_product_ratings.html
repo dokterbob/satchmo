@@ -10,14 +10,14 @@
         {% for comment in comments %}
         <div class="comment {% cycle odd,even %}" id="c{{ comment.id }}">
             <p><a id="c{{ comment.id }}"></a>
-                <b>{% if comment.user.get_full_name %}{{ comment.user.get_full_name|escape }}{% else %}{{ comment.user.username|escape }}{% endif %}</b> &mdash; {{ comment.submit_date|date:"F j, Y" }} &mdash; Rating {{ comment.rating1 }}/5</span> 
+                <b>{% if comment.user.get_full_name %}{{ comment.user.get_full_name|escape }}{% else %}{{ comment.user.username|escape }}{% endif %}</b> &mdash; {{ comment.submit_date|date:"F j, Y" }} &mdash; {% trans 'Rating' %} {{ comment.rating1 }}/5</span> 
             </p>
         	{{ comment.comment|escape|urlizetrunc:40|linebreaks }}
         </div>
         {% endfor %}
     {% endif %}
     {% if user.is_authenticated %}
-        <h2>Review this product</h2>
+        <h2>{% trans 'Review this product' %}</h2>
         {% comment_form for product.product product.id with ratings_optional scale:1-5|Rating %}
     {% else %}
         {% trans 'Please login to review this product.' %}

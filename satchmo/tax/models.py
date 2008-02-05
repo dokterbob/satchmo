@@ -37,11 +37,13 @@ class TaxRate(models.Model):
     """
     Actual percentage tax based on area and product class
     """
-    taxClass = models.ForeignKey(TaxClass)
+    taxClass = models.ForeignKey(TaxClass, verbose_name=_('Tax Class'))
     taxZone = models.ForeignKey(AdminArea, blank=True, null=True,
-        validator_list=[taxrate_zoneandcountry_zone_validator])
+        validator_list=[taxrate_zoneandcountry_zone_validator],
+        verbose_name=_('Tax Zone'))
     taxCountry = models.ForeignKey(Country, blank=True, null=True,
-        validator_list=[taxrate_zoneandcountry_country_validator])
+        validator_list=[taxrate_zoneandcountry_country_validator],
+        verbose_name=_('Tax Country'))
     percentage = models.DecimalField(_("Percentage"), max_digits=7,
         decimal_places=6, help_text=_("% tax for this area and type"))
 
@@ -54,7 +56,8 @@ class TaxRate(models.Model):
 
     def _display_percentage(self):
         return "%#2.2f%%" % (100*self.percentage)
-    display_percentage = property(_display_percentage)
+    _display_percentage.short_description = _('Percentage')
+    display_percentage = property(_display_percentage)    
 
     def __unicode__(self):
         return u"%s - %s = %s" % (self.taxClass,

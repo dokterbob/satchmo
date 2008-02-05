@@ -25,8 +25,8 @@ class GiftCertificateManager(models.Manager):
     
 class GiftCertificate(models.Model):
     """A Gift Cert which holds value."""
-    site = models.ForeignKey(Site, null=True, blank=True)
-    order = models.ForeignKey(Order, null=True, blank=True, related_name="giftcertificates")
+    site = models.ForeignKey(Site, null=True, blank=True, verbose_name=_('Site'))
+    order = models.ForeignKey(Order, null=True, blank=True, related_name="giftcertificates", verbose_name=_('Order'))
     code = models.CharField(_('Certificate Code'), max_length=100, 
         blank=True, null=True)
     purchased_by =  models.ForeignKey(Contact, verbose_name=_('Purchased by'), 
@@ -85,6 +85,10 @@ class GiftCertificate(models.Model):
         
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Gift Certificate")
+        verbose_name_plural = _("Gift Certificates")    
             
 class GiftCertificateUsage(models.Model):
     """Any usage of a Gift Cert is logged with one of these objects."""
@@ -92,7 +96,7 @@ class GiftCertificateUsage(models.Model):
     notes = models.TextField(_('Notes'), blank=True)
     balance_used = models.DecimalField(_("Amount Used"), decimal_places=2,
         max_digits=8, core=True)
-    orderpayment = models.ForeignKey(OrderPayment, null=True)
+    orderpayment = models.ForeignKey(OrderPayment, null=True, verbose_name=_('Order Payment'))
     used_by = models.ForeignKey(Contact, verbose_name=_('Used by'), 
         blank=True, null=True, related_name='giftcertificates_used')
     giftcertificate = models.ForeignKey(GiftCertificate, related_name='usages', 
@@ -111,7 +115,7 @@ class GiftCertificateProduct(models.Model):
     """
     The product model for a Gift Certificate
     """
-    product = models.OneToOneField(Product)
+    product = models.OneToOneField(Product, verbose_name=_('Product'))
     is_shippable = False
 
     def __unicode__(self):
@@ -141,3 +145,7 @@ class GiftCertificateProduct(models.Model):
 
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Gift certificate product")
+        verbose_name_plural = _("Gift certificate products")
