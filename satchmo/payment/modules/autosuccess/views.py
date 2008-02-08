@@ -36,7 +36,7 @@ def one_step(request):
         
     newOrder.add_status(status='Pending', notes = "Order successfully submitted")
 
-    record_payment(order, payment_module, amount=newOrder.balance)
+    record_payment(newOrder, payment_module, amount=newOrder.balance)
     
     #Now, send a confirmation email
     if payment_module['EMAIL'].value:
