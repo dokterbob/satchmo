@@ -135,7 +135,7 @@ def confirm_ipn_data(data, PP_URL):
 
     newparams = {}
     for key in data.keys():
-        newparams[key] = (data[key])
+        newparams[key] = data[key]
 
     newparams['cmd'] = "_notify-validate"
     params = urlencode(newparams)
