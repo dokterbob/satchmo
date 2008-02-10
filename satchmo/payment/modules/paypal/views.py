@@ -2,8 +2,6 @@ import logging
 import urllib2
 from sys import exc_info
 from traceback import format_exception
-from urllib import urlencode
-
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -17,6 +15,7 @@ from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart
 from satchmo.shop.utils.dynamic import lookup_url, lookup_template
+from django.utils.http import urlencode
 
 log = logging.getLogger()
 
@@ -136,7 +135,7 @@ def confirm_ipn_data(data, PP_URL):
 
     newparams = {}
     for key in data.keys():
-        newparams[key] = data[key]
+        newparams[key] = (data[key])
 
     newparams['cmd'] = "_notify-validate"
     params = urlencode(newparams)
