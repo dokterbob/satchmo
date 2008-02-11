@@ -208,7 +208,7 @@ def add_ajax(request, id=0, template="json.html"):
     encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
     
-    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
+    dispatcher.send(signal=satchmo_cart_changed, cart=tempCart, request=request)
     return render_to_response(template, {'json' : encoded})
 
 def agree_terms(request):
