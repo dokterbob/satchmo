@@ -582,17 +582,18 @@ class Order(models.Model):
             full_sub_total = zero
 
 
-        self.sub_total = full_sub_total
+        self.sub_total = tax.round_cents(full_sub_total)
 
         taxProcessor = tax.get_processor(self)
-        self.tax, taxrates = taxProcessor.process()
+        totaltax, taxrates = taxProcessor.process()
+        self.tax = tax.round_cents(totaltax)
 
         # clear old taxes
         for taxdetl in self.taxes.all():
             taxdetl.delete()
 
         for taxdesc, taxamt in taxrates.items():
-            taxdetl = OrderTaxDetail(order=self, tax=taxamt, description=taxdesc, method=taxProcessor.method)
+            taxdetl = OrderTaxDetail(order=self, tax=tax.round_cents(taxamt), description=taxdesc, method=taxProcessor.method)
             taxdetl.save()
 
         log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",

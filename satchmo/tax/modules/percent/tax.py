@@ -1,6 +1,5 @@
 from decimal import Decimal
 from satchmo.configuration import config_value
-from satchmo.tax import round_cents
 
 class Processor(object):
     
@@ -21,7 +20,7 @@ class Processor(object):
     def by_price(self, taxclass, price):
         percent = config_value('TAX','PERCENT')
         p = price * (percent/100)
-        return round_cents(p)
+        return p
         
     def by_product(self, product, quantity=1):
         price = product.get_qty_price(quantity)
@@ -45,7 +44,7 @@ class Processor(object):
         else:
             t = Decimal("0.00")
                 
-        return round_cents(t)
+        return t
             
     def process(self, order=None):
         """
@@ -60,13 +59,13 @@ class Processor(object):
         sub_total = order.sub_total-order.item_discount
         
         itemtax = sub_total * (percent/100)
-        taxrates = {'%i%%' % percent :  round_cents(itemtax)}
+        taxrates = {'%i%%' % percent :  itemtax}
         
         if config_value('TAX','TAX_SHIPPING'):
             shipping = order.shipping_sub_total
             sub_total += shipping
             ship_tax = shipping * (percent/100)
-            taxrates['Shipping'] = round_cents(ship_tax)
+            taxrates['Shipping'] = ship_tax
         
         tax = sub_total * (percent/100)
-        return round_cents(tax), taxrates
+        return tax, taxrates

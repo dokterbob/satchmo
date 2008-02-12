@@ -334,7 +334,7 @@ class Option(models.Model):
     value = models.SlugField(_("Stored value"), max_length=50,
         prepopulate_from=('name',))
     price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
-        max_digits=10, decimal_places=2,
+        max_digits=14, decimal_places=6,
         help_text=_("This is the price differential for this option."))
     displayOrder = models.IntegerField(_("Display Order"))
 
@@ -551,7 +551,7 @@ class Product(models.Model):
         search_fields = ['slug', 'name']
 
     class Meta:
-        ordering = ('ordering', 'name',)
+        ordering = ('ordering', 'name')
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
 
@@ -749,7 +749,7 @@ class CustomTextField(models.Model):
         edit_inline=models.TABULAR, num_in_admin=3, related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
-    price_change = models.DecimalField(_("Price Change"), max_digits=10, decimal_places=2, blank=True, null=True)
+    price_change = models.DecimalField(_("Price Change"), max_digits=14, decimal_places=6, blank=True, null=True)
         
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
@@ -1135,7 +1135,7 @@ class Price(models.Model):
     that's still below the user specified (IE: ordered) quantity, that matches a given product.
     """
     product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=2)
-    price = models.DecimalField(_("Price"), max_digits=10, decimal_places=2, core=True)
+    price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, core=True)
     quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(null=True, blank=True)
     #TODO: add fields here for locale/currency specific pricing

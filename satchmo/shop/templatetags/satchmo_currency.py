@@ -33,6 +33,8 @@ def currency(value, args=""):
         intargs=('places',), stripquotes=True)
 
     value = Decimal(str(value))
+    if not 'places' in kwargs:
+        kwargs['places'] = 2
         
     return mark_safe(moneyfmt(value, **kwargs))
 

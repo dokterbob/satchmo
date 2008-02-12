@@ -6,7 +6,6 @@ from satchmo.contact.models import Contact
 from satchmo.l10n.models import AdminArea, Country
 from satchmo.shop.models import Config
 from satchmo.shop.utils import is_string_like
-from satchmo.tax import round_cents
 from satchmo.tax.models import TaxRate, TaxClass
 import logging
 
@@ -114,7 +113,7 @@ class Processor(object):
         else:
             t = rate * price
 
-        return round_cents(t)
+        return t
 
     def by_product(self, product, quantity=1):
         """Get the tax for a given product"""
@@ -141,7 +140,7 @@ class Processor(object):
         else:
             t = Decimal("0.00")
         
-        return round_cents(t)
+        return t
 
     def process(self, order=None):
         """
@@ -186,8 +185,7 @@ class Processor(object):
         sub_total += ship
         taxes['Shipping'] = ship
         
-        sub_total = round_cents(sub_total)
         for k in taxes:
-            taxes[k] = round_cents(taxes[k])
+            taxes[k] = taxes[k]
         
         return sub_total, taxes

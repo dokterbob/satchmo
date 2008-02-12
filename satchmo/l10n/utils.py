@@ -1,5 +1,6 @@
 import locale
 import logging
+from decimal import Decimal, ROUND_FLOOR
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale
@@ -121,6 +122,15 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
 
     if places < 0:
         places = conv['int_frac_digits']
+    else:
+        roundfmt = "0."
+        if places > 1:
+            zeros = "0" * (places-1)
+            roundfmt += zeros
+        if places > 0:
+            roundfmt += "1"
+        val = val.quantize(Decimal(roundfmt), ROUND_FLOOR)
+        
     try:    # Required because Python < 2.5 does not have monetary arg
         s = format('%%.%if' % places, abs(val), conv, grouping, monetary=True)
     except TypeError:
