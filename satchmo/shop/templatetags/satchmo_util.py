@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from satchmo.shop.templatetags import get_filter_args
+from satchmo.shop.utils import trunc_decimal
 from satchmo.shop.utils.json import json_encode
 
 register = template.Library()
@@ -77,3 +78,8 @@ def as_json(value):
     return mark_safe(json_encode(value))
     
 register.filter('as_json', as_json)
+
+def truncate_decimal(val, places=2):
+    return trunc_decimal(val, places)
+    
+register.filter('truncate_decimal', truncate_decimal)

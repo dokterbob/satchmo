@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+{% load satchmo_util %}
 <checkout-shopping-cart xmlns="http://checkout.google.com/schema/2">
   <shopping-cart>
     <merchant-private-data>
@@ -11,7 +12,7 @@
         {% for orderitem in order.orderitem_set.all %}<item>
         <item-name>{{ orderitem.product.translated_name }}</item-name>
         <item-description>{{ orderitem.product.translated_description }}</item-description>
-        <unit-price currency="{{ currency }}">{{ orderitem.unit_price }}</unit-price>
+        <unit-price currency="{{ currency }}">{{ orderitem.unit_price|truncate_decimal:2 }}</unit-price>
         <quantity>{{ orderitem.quantity }}</quantity>
       </item>{% endfor %}
     </items>
@@ -22,7 +23,7 @@
       <continue-shopping-url>{{ continue_shopping_url }}</continue-shopping-url>{% endif %}
       <shipping-methods>
           <flat-rate-shipping name="{{ order.shipping_method }}">
-              <price currency="{{ currency }}">{{ order.shipping_sub_total }}</price>
+              <price currency="{{ currency }}">{{ order.shipping_sub_total|truncate_decimal:2 }}</price>
           </flat-rate-shipping>
       </shipping-methods>
     </merchant-checkout-flow-support>

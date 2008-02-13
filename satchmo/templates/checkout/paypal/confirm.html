@@ -1,5 +1,6 @@
 {% extends "checkout/base_confirm.html" %}
 {% load i18n %}
+{% load satchmo_util %}
 {# this is the Paypal confirm template #}
 
 {% block payment_step %}<a href="{% url PAYPAL_satchmo_checkout-step2 %}">{% trans "Payment" %}</a>{% endblock %}
@@ -21,16 +22,16 @@
 <input type="hidden" name="invoice" value="{{ invoice }}" />
 {% if order.partially_paid %}
 <input type="hidden" name="item_name_1" value="Remaining Balance for order {{ order.id }}" />
-<input type="hidden" name="amount_1" value="{{order.balance}}" />
+<input type="hidden" name="amount_1" value="{{order.balance|truncate_decimal:2}}" />
 <input type="hidden" name="quantity_1" value="1" />
 {% else %}
 {% for item in order.orderitem_set.all %}
 <input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
-<input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price}}" />
+<input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price|truncate_decimal:2}}" />
 <input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity}}" />
 {% endfor %}
-<input type="hidden" name="shipping_1" value="{{order.shipping_sub_total}}" />
-<input type="hidden" name="tax_cart" value="{{order.tax}}" />
+<input type="hidden" name="shipping_1" value="{{order.shipping_sub_total|truncate_decimal:2}}" />
+<input type="hidden" name="tax_cart" value="{{order.tax|truncate_decimal:2}}" />
 {% endif %}
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>

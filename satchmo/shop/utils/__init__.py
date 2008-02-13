@@ -1,3 +1,4 @@
+from decimal import Decimal, ROUND_FLOOR
 import os, sys
 import types
 
@@ -70,6 +71,15 @@ def request_is_secure(request):
         return request.META['HTTP_X_FORWARDED_SSL'] == 'on'
 
     return False
+    
+def trunc_decimal(val, places):
+    roundfmt = "0."
+    if places > 1:
+        zeros = "0" * (places-1)
+        roundfmt += zeros
+    if places > 0:
+        roundfmt += "1"
+    return val.quantize(Decimal(roundfmt), ROUND_FLOOR)
 
 def url_join(*args):
     """Join any arbitrary strings into a forward-slash delimited string.

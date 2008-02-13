@@ -18,11 +18,11 @@
 {% endblock %}
 
 {% block google-tracker %}
-{% if shop.options.GOOGLE.ANALYTICS %}
+{% if shop.options.GOOGLE.ANALYTICS.value %}
 {% show_tracker %}
 {% show_receipt %}
 {% endif %}
-{% if shop.options.GOOGLE.ADWORDS %}
+{% if shop.options.GOOGLE.ADWORDS.value %}
 {% google_adwords_sale %}
 {% endif %}
 {% endblock %}

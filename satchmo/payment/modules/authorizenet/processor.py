@@ -1,4 +1,5 @@
 from satchmo.payment.common.utils import record_payment
+from satchmo.shop.utils import trunc_decimal
 from urllib import urlencode
 import urllib2
 
@@ -40,7 +41,7 @@ class PaymentProcessor(object):
             }
         # Can add additional info here if you want to but it's not required
         self.transactionData = {
-            'x_amount' : data.balance,
+            'x_amount' : trunc_decimal(data.balance, 2),
             'x_card_num' : data.credit_card.decryptedCC,
             'x_exp_date' : data.credit_card.expirationDate,
             'x_card_code' : data.credit_card.ccv
