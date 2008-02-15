@@ -331,7 +331,7 @@ class Option(models.Model):
     optionGroup = models.ForeignKey(OptionGroup, edit_inline=models.TABULAR,
         num_in_admin=5)
     name = models.CharField(_("Display value"), max_length=50, core=True)
-    value = models.SlugField(_("Stored value"), max_length=50,
+    value = models.CharField(_("Stored value"), max_length=50,
         prepopulate_from=('name',))
     price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
         max_digits=14, decimal_places=6,
