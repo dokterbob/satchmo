@@ -374,13 +374,13 @@ class Order(models.Model):
     bill_country = models.CharField(_("Country"), max_length=50, blank=True)
     notes = models.TextField(_("Notes"), max_length=100, blank=True, null=True)
     sub_total = models.DecimalField(_("Subtotal"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     total = models.DecimalField(_("Total"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     discount_code = models.CharField(_("Discount Code"), max_length=20, blank=True, null=True,
         help_text=_("Coupon Code"))
     discount = models.DecimalField(_("Discount amount"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     method = models.CharField(_("Order method"),
         choices=ORDER_CHOICES, max_length=50, blank=True)
     shipping_description = models.CharField(_("Shipping Description"),
@@ -390,11 +390,11 @@ class Order(models.Model):
     shipping_model = models.CharField(_("Shipping Models"),
         choices=config_choice_values('SHIPPING','MODULES'), max_length=30, blank=True, null=True)
     shipping_cost = models.DecimalField(_("Shipping Cost"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     shipping_discount = models.DecimalField(_("Shipping Discount"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     tax = models.DecimalField(_("Tax"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     timestamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
     status = models.CharField(_("Status"), max_length=20, choices=ORDER_STATUS,
         core=True, blank=True, help_text=_("This is set automatically."))
@@ -476,7 +476,7 @@ class Order(models.Model):
         if payments:
             return reduce(operator.add, payments)
         else:
-            return Decimal("0.00")
+            return Decimal("0.0000000000")
 
     balance_paid = property(_balance_paid)
 
@@ -513,13 +513,13 @@ class Order(models.Model):
     get_balance_remaining_url = models.permalink(_get_balance_remaining_url)
 
     def _partially_paid(self):
-        return self.balance_paid > Decimal("0.00")
+        return self.balance_paid > Decimal("0.0000000000")
 
     partially_paid = property(_partially_paid)
 
     def payments_completed(self):
         q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
-        return q.exclude(amount=Decimal("0.00"))
+        return q.exclude(amount=Decimal("0.0000000000"))
 
     def save(self):
         """
@@ -547,7 +547,7 @@ class Order(models.Model):
 
     def recalculate_total(self, save=True):
         """Calculates sub_total, taxes and total."""
-        zero = Decimal("0.00")
+        zero = Decimal("0.0000000000")
         discount = find_discount_for_code(self.discount_code)
         discount.calc(self)
         self.discount = discount.total
@@ -582,18 +582,18 @@ class Order(models.Model):
             full_sub_total = zero
 
 
-        self.sub_total = tax.round_cents(full_sub_total)
+        self.sub_total = full_sub_total
 
         taxProcessor = tax.get_processor(self)
         totaltax, taxrates = taxProcessor.process()
-        self.tax = tax.round_cents(totaltax)
+        self.tax = tax.totaltax
 
         # clear old taxes
         for taxdetl in self.taxes.all():
             taxdetl.delete()
 
         for taxdesc, taxamt in taxrates.items():
-            taxdetl = OrderTaxDetail(order=self, tax=tax.round_cents(taxamt), description=taxdesc, method=taxProcessor.method)
+            taxdetl = OrderTaxDetail(order=self, tax=taxamt, description=taxdesc, method=taxProcessor.method)
             taxdetl.save()
 
         log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
@@ -652,7 +652,7 @@ class Order(models.Model):
         if rates.count()>0:
             tax = reduce(operator.add, [t.tax for t in rates])
         else:
-            tax = Decimal("0.00")
+            tax = Decimal("0.0000000000")
         return tax
     shipping_tax = property(_shipping_tax)
 
@@ -708,11 +708,19 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, verbose_name=_("Product"))
     quantity = models.IntegerField(_("Quantity"), core=True)
     unit_price = models.DecimalField(_("Unit price"),
-        max_digits=6, decimal_places=2)
+        max_digits=18, decimal_places=10)
+    unit_tax = models.DecimalField(_("Unit tax"),
+        max_digits=18, decimal_places=10, null=True)
     line_item_price = models.DecimalField(_("Line item price"),
-        max_digits=6, decimal_places=2)
+        max_digits=18, decimal_places=10)
+    tax = models.DecimalField(_("Line item tax"),
+        max_digits=18, decimal_places=10, null=True)
     discount = models.DecimalField(_("Line item discount"),
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
+        
+    def __init__(self, *args, **kwargs):
+        super(OrderItem, self).__init__(*args, **kwargs)
+        self.update_tax()
 
     def __unicode__(self):
         return self.product.translated_name()
@@ -729,20 +737,18 @@ class OrderItem(models.Model):
     sub_total = property(_sub_total)
 
     def _total_with_tax(self):
-        tt = self.sub_total + self.tax
-        return tt
+        return self.sub_total + self.tax
     total_with_tax = property(_total_with_tax)
 
-    def _tax(self):
-        return tax.get_processor(order=self.order).by_orderitem(self)
-    tax = property(_tax)
-
     def _unit_price_with_tax(self):
-        taxclass = self.product.taxClass
-        p = self.unit_price
-        t = tax.get_processor(order=self.order).by_price(taxclass, self.unit_price)
-        return  t + p
+        return self.unit_price + self.unit_tax
     unit_price_with_tax = property(_unit_price_with_tax)
+
+    def update_tax(self):
+        taxclass = self.product.taxClass
+        processor = tax.get_processor(order=self.order)
+        self.unit_tax = processor.by_price(taxclass, self.unit_price)
+        self.tax = processor.by_orderitem(self)
 
     class Meta:
         verbose_name = _("Order Line Item")
@@ -755,7 +761,7 @@ class OrderItemDetail(models.Model):
     item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), edit_inline=models.TABULAR, core=True, num_in_admin=3)
     name = models.CharField(_('Name'), max_length=100)
     value = models.CharField(_('Value'), max_length=255)
-    price_change = models.DecimalField(_("Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
+    price_change = models.DecimalField(_("Price Change"), max_digits=18, decimal_places=10, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
 
@@ -843,7 +849,7 @@ class OrderPayment(models.Model):
     payment = models.CharField(_("Payment Method"),
         choices=payment_choices(), max_length=25, blank=True)
     amount = models.DecimalField(_("amount"), core=True,
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
 
@@ -906,7 +912,7 @@ class OrderTaxDetail(models.Model):
     method = models.CharField(_("Model"), max_length=50, core=True)
     description = models.CharField(_("Description"), max_length=50, blank=True)
     tax = models.DecimalField(_("Tax"), core=True,
-        max_digits=6, decimal_places=2, blank=True, null=True)
+        max_digits=18, decimal_places=10, blank=True, null=True)
 
     def __unicode__(self):
         if self.description:
