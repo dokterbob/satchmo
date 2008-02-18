@@ -59,8 +59,8 @@ class PaymentProcessor(object):
         response_code = parsed_results[0]
         reason_code = parsed_results[1]
         response_text = parsed_results[3]
-        record_payment(self.order, self.settings, order=self.order.balance)
         if response_code == '1':
+            record_payment(self.order, self.settings, amount=self.order.balance)
             return(True, reason_code, response_text)
         elif response_code == '2':
             return(False, reason_code, response_text)
