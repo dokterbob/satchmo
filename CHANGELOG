@@ -29,6 +29,11 @@ Trunk
  * Provide integration for UPS online tools.
  * New sku model field
  * New gift certificate capability.
+ * Fixed New Zealand states/region info in l10n data
+ * Improvements to tax calc code
+ * Updated swedish translation
+ * Improve checks to make sure dupe emails are not used by accounts
+ * Fixed a bug with PDF generation in windows
 
 Version 0.6, October 30, 2007
 ----------------
