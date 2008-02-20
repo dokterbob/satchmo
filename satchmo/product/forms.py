@@ -61,7 +61,7 @@ class ProductExportForm(forms.Form):
         
         for name, value in self.cleaned_data.items():
             if name == 'format':
-                format == value
+                format = value
                 continue
                 
             if name == 'include_images':
@@ -103,7 +103,7 @@ class ProductExportForm(forms.Form):
             zf = zipfile.ZipFile(buf, 'a', zipfile.ZIP_STORED)
             
             export_file = 'products.%s' % format
-            zf.writestr(export_file, raw)
+            zf.writestr(str(export_file), raw)
             
             image_dir = config_value('PRODUCT', 'IMAGE_DIR')
             config = "PRODUCT.IMAGE_DIR=%s\nEXPORT_FILE=%s" % (image_dir, export_file)
@@ -122,7 +122,7 @@ class ProductExportForm(forms.Form):
         else:
             mimetype = "text/" + format
 
-        response = HttpResponse(mimetype="text/" + format, content=raw)
+        response = HttpResponse(mimetype=mimetype + format, content=raw)
         response['Content-Disposition'] = 'attachment; filename="products-%s.%s"' % (time.strftime('%Y%m%d-%H%M'), format)
             
         return response
