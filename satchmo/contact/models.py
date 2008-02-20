@@ -586,7 +586,7 @@ class Order(models.Model):
 
         taxProcessor = tax.get_processor(self)
         totaltax, taxrates = taxProcessor.process()
-        self.tax = tax.totaltax
+        self.tax = totaltax
 
         # clear old taxes
         for taxdetl in self.taxes.all():
