@@ -217,6 +217,18 @@ In addition to configuring the x-send-file header, you will need to ensure that 
     url.access-deny = ("")
     }   
 
+Custom Product
+++++++++++++++
+A custom product is one that is typically assembled or made to order based on the customer's needs. A common situation is a computer configurator that allows a customer to tailor the computer to their needs. Once the order is submitted the store owner will then build or configure that product. 
+
+Once you have created a product as described above, you may wish to use it as a basis for a custom product. The most important additional information you need to associate with your product is the option groups or custom text fields the customer may use to create their product. The option groups are no different from the ones described above. This gives you tremendous flexibility to vary the price of the product based on the chosen options. The custom text fields are free form text fields meant to capture special notes or instructions related to the order.
+
+One unique aspect of the custom product is that you can elect to charge only a certain percentage at the time the order is placed. If you choose a percent downpayment then only that amount will be charged when the order is completed. If you choose 100%, then the entire price will be charged at checkout.
+
+The final unique aspect is that you can elect to defer shipping charges on the order. If you are creating a very unique product, you may wish to have that discussion with the customer when you are collecting the full payment.
+
+The custom product does not create product variations. The downside of this is that you must manage your inventory yourself but the upside is that you don't have all of those different configurations in your store. Feel free to play around with both products and see which one meets your needs the best.
+
 A short tutorial
 ----------------
 

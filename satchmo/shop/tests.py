@@ -324,6 +324,45 @@ class ShopTest(TestCase):
         self.assertContains(response, "Short Sleeve", count=2)
         self.assertContains(response, "Django Rocks shirt", count=1)
         self.assertContains(response, "Python Rocks shirt", count=1)
+    
+    def test_custom_product(self):
+        """
+        Verify that the custom product is working as expected.
+        """
+        response = self.client.get(prefix+"/")
+        self.assertContains(response, "Computer", count=1)
+        response = self.client.get(prefix+"/product/satchmo-computer/")
+        self.assertContains(response, "Memory", count=1)
+        self.assertContains(response, "Case", count=1)
+        self.assertContains(response, "Monogram", count=1)
+        response = self.client.post(prefix+'/cart/add/', { "productname" : "satchmo-computer",
+                                                      "5" : "1.5gb",
+                                                      "6" : "mid",
+                                                      "custom_monogram": "CBM",
+                                                      "quantity" : 1})
+        self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
+        response = self.client.get(prefix+'/cart/')
+        self.assertContains(response, "satchmo computer", count=1, status_code=200)
+        self.assertContains(response, smart_str("%s168.00" % config_value('SHOP', 'CURRENCY')), count=3)
+        self.assertContains(response, smart_str("Monogram: CBM  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
+        self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
+        self.assertContains(response, smart_str("Memory - Internal RAM: 1.5 GB  %s25.00" % config_value('SHOP', 'CURRENCY')), count=1)
+        response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
+        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step2'), status_code=302, target_status_code=200)
+        data = {
+            'credit_type': 'Visa',
+            'credit_number': '4485079141095836',
+            'month_expires': '1',
+            'year_expires': '2012',
+            'ccv': '552',
+            'shipping': 'FlatRate'}
+        response = self.client.post(url('DUMMY_satchmo_checkout-step2'), data)
+        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step3'), status_code=302, target_status_code=200)
+        response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
+        self.assertContains(response, smart_str("satchmo computer - %s168.00" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
+        response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
+        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-success'), status_code=302, target_status_code=200)
+        self.assertEqual(len(mail.outbox), 1)
 
 class AdminTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml']

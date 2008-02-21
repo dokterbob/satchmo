@@ -81,7 +81,7 @@ u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 
 # was [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 >>> Category.objects.all().order_by('name')
-[<Category: Books>, <Category: Books :: Fiction>, <Category: Books :: Non Fiction>, <Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Books :: Fiction :: Science Fiction>, <Category: Shirts>, <Category: Shirts :: Short Sleeve>, <Category: Software>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
+[<Category: Books>, <Category: Computer>, <Category: Books :: Fiction>, <Category: Books :: Non Fiction>, <Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Books :: Fiction :: Science Fiction>, <Category: Shirts>, <Category: Shirts :: Short Sleeve>, <Category: Software>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 
 # Test the ProductExportForm behavior
 >>> import zipfile
