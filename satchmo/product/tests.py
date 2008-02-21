@@ -84,6 +84,8 @@ u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 [<Category: Books>, <Category: Computer>, <Category: Books :: Fiction>, <Category: Books :: Non Fiction>, <Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Books :: Fiction :: Science Fiction>, <Category: Shirts>, <Category: Shirts :: Short Sleeve>, <Category: Software>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 
 # Test the ProductExportForm behavior
+# Specifically, we're checking that a unicode 'format' is converted to ascii
+# in the 'export' method of 'ProductExportForm'.
 >>> import zipfile
 >>> from StringIO import StringIO
 >>> from satchmo.product.forms import ProductExportForm
@@ -91,6 +93,72 @@ u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 >>> form.export(None)
 <django.http.HttpResponse object at ...>
 """
+
+from django.conf import settings
+from django.test import TestCase
+from django.test.client import Client
+
+
+class ProductExportTest(TestCase):
+    """
+    Test product export functionality.
+    """
+    
+    def setUp(self):
+        # Log in as a superuser
+        from django.contrib.auth.models import User
+        user = User.objects.create_user('root', 'root@eruditorum.com', '12345')
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+        self.client.login(username='root', password='12345')
+        
+    
+    def test_text_export(self):
+        """
+        Test the content type of an exported text file.
+        """
+        url = '%s/product/inventory/export/' % settings.SHOP_BASE
+        form_data = {
+            'format': 'yaml',
+            'include_images': False,
+        }
+        
+        response = self.client.post(url, form_data)
+        self.assertTrue(response.has_header('Content-Type'))
+        self.assertEqual('text/yaml', response['Content-Type'])
+
+        form_data['format'] = 'json'
+        response = self.client.post(url, form_data)
+        self.assertTrue(response.has_header('Content-Type'))
+        self.assertEqual('text/json', response['Content-Type'])
+
+        form_data['format'] = 'xml'
+        response = self.client.post(url, form_data)
+        self.assertTrue(response.has_header('Content-Type'))
+        self.assertEqual('text/xml', response['Content-Type'])
+
+        form_data['format'] = 'python'
+        response = self.client.post(url, form_data)
+        self.assertTrue(response.has_header('Content-Type'))
+        self.assertEqual('text/python', response['Content-Type'])
+
+
+    def test_zip_export_content_type(self):
+        """
+        Test the content type of an exported zip file.
+        """
+        url = '%s/product/inventory/export/' % settings.SHOP_BASE
+        form_data = {
+            'format': 'yaml',
+            'include_images': True,
+        }
+        
+        response = self.client.post(url, form_data)
+        self.assertTrue(response.has_header('Content-Type'))
+        self.assertEqual('application/zip', response['Content-Type'])
+        
+
 
 if __name__ == "__main__":
     import doctest
