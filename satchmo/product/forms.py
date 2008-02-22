@@ -127,9 +127,17 @@ class ProductExportForm(forms.Form):
             export_file = 'products.%s' % format
             zf.writestr(str(export_file), raw)
             
+            zinfo = zf.getinfo(str(export_file)) 
+            # Caution, highly magic number, chmods the file to 644 
+            zinfo.external_attr = 2175008768L 
+            
             image_dir = config_value('PRODUCT', 'IMAGE_DIR')
             config = "PRODUCT.IMAGE_DIR=%s\nEXPORT_FILE=%s" % (image_dir, export_file)
             zf.writestr('VARS', config)
+            
+            zinfo = zf.getinfo('VARS') 
+            # Caution, highly magic number, chmods the file to 644 
+            zinfo.external_attr = 2175008768L 
             
             for image in images:
                 f = os.path.join(filedir, image)
