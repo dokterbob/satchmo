@@ -31,6 +31,7 @@ class ProductExportForm(forms.Form):
         
         self.fields['format'] = forms.ChoiceField(label=_('export format'), choices=export_choices(), required=True)
         self.fields['include_images'] = forms.BooleanField(label=_('Include Images'), initial=True, required=False)
+        self.fields['include_categories'] = forms.BooleanField(label=_('Include Categories'), initial=True, required=False)
         
         if not products:
             products = Product.objects.all().order_by('slug')
@@ -58,6 +59,7 @@ class ProductExportForm(forms.Form):
         format = 'yaml'
         selected = []
         include_images = False
+        include_categories = False
         
         for name, value in self.cleaned_data.items():
             if name == 'format':
@@ -66,6 +68,10 @@ class ProductExportForm(forms.Form):
                 
             if name == 'include_images':
                 include_images = value
+                continue
+            
+            if name == 'include_categories':
+                include_categories = value
                 continue
                 
             opt, key = name.split('__')
@@ -81,6 +87,7 @@ class ProductExportForm(forms.Form):
 
         objects = []
         images = []
+        categories = {}
         for slug in selected:
             product = Product.objects.get(slug=slug)
             objects.append(product)
@@ -91,6 +98,21 @@ class ProductExportForm(forms.Form):
             if include_images:
                 for image in product.productimage_set.all():
                     images.append(image.picture)
+            if include_categories:
+                for category in product.category.all():
+                    if category not in categories:
+                        categories[category] = 1
+
+        # Export all categories, translations.  Export images,translations if
+        # desired.
+        if include_categories:
+            for category in categories.keys():
+                objects.append(category)
+                objects.extend(list(category.translations.all()))
+                if include_images:
+                    for image in category.images.all():
+                        objects.append(image)
+                        objects.extend(list(image.translations.all()))
 
         try:
             raw = serializers.serialize(format, objects, indent=False)
@@ -233,6 +255,7 @@ class ProductImportForm(forms.Form):
                             cursor.execute(line)
                     
                 results.append(_('Added %(count)i objects from %(filename)s') % {'count': ct, 'filename': filename})
+                transaction.commit()
                 #label_found = True
             except Exception, e:
                 #fixture.close()
