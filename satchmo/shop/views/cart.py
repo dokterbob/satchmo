@@ -13,6 +13,7 @@ from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
 from satchmo.shop.signals import satchmo_cart_changed
+from satchmo.shop.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
 import logging
 
@@ -278,11 +279,11 @@ def set_quantity_ajax(request, template="json.html"):
 
         # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
         if cart and cartitem:
-            data['cart_total'] = str(cart.total)
+            data['cart_total'] = str(trunc_decimal(cart.total, 2))
             data['cart_count'] = cart.numItems
             data['item_id'] = cartitem.id
             data['item_qty'] = cartitem.quantity
-            data['item_price'] = str(cartitem.line_total)
+            data['item_price'] = str(trunc_decimal(cartitem.line_total, 2))
 
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
