@@ -302,7 +302,12 @@ class InventoryForm(forms.Form):
             qty.product_id = product.id
             qty.subtypes = " ".join(subtypes)
 
-            kw['initial'] = product.unit_price
+            if 'CustomProduct' in subtypes:
+                initial_price = product.customproduct.full_price
+            else:
+                initial_price = product.unit_price
+                
+            kw['initial'] = initial_price
             kw['required'] = False
             kw['widget'] = forms.TextInput(attrs={'class': "text price"})
             price = forms.DecimalField(**kw)
@@ -327,6 +332,8 @@ class InventoryForm(forms.Form):
             opt, key = name.split('__')
 
             prod = Product.objects.get(slug__exact=key)
+            subtypes = prod.get_subtypes()
+            
             if opt=='qty':
                 if value != prod.items_in_stock:
                     request.user.message_set.create(message='Updated %s stock to %s' % (key, value))
@@ -335,13 +342,20 @@ class InventoryForm(forms.Form):
                     prod.save()
 
             elif opt=='price':
-                if value != prod.unit_price:
+                if 'CustomProduct' in subtypes:
+                    full_price = prod.customproduct.full_price
+                else:
+                    full_price = prod.unit_price
+                    
+                if value != full_price:
                     request.user.message_set.create(message='Updated %s unit price to %s' % (key, value))
                     log.debug('Saving new price %s for %s' % (value, key))
                     try:
                         price = Price.objects.get(product=prod, quantity=1)
                     except Price.DoesNotExist:
                         price = Price(product=prod, quantity=1)
+                    price.price = value
+                    price.save()
 
             elif opt=="active":
                 if value != prod.active:
