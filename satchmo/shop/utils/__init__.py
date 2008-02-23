@@ -79,6 +79,8 @@ def trunc_decimal(val, places):
         roundfmt += zeros
     if places > 0:
         roundfmt += "1"
+    if type(val) != Decimal:
+        val = Decimal(val)
     return val.quantize(Decimal(roundfmt), ROUND_FLOOR)
 
 def url_join(*args):
