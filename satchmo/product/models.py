@@ -993,7 +993,7 @@ class ProductVariation(models.Model):
                 # Get the price with the quantity closest to the one specified without going over
                 return qty_discounts.order_by('-quantity')[0].price            
             
-            if not self.parent.product.unit_price:
+            if self.parent.product.unit_price is None:
                 log.warn("%s: Unexpectedly no parent.product.unit_price", self)
                 return None
                 
