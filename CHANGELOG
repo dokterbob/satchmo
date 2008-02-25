@@ -35,6 +35,7 @@ Trunk
  * Improve checks to make sure dupe emails are not used by accounts
  * Fixed a bug with PDF generation in windows
  * Improved product export capability to support categories
+ * Added Brazilian Portuguese translation
 
 Version 0.6, October 30, 2007
 ----------------

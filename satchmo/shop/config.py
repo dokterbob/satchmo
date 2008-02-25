@@ -97,6 +97,7 @@ LANGUAGES_AVAILABLE = config_register(
             ('fr', _("French")),
             ('de',_("German")),
             ('es', _("Spanish")),
-            ('sv', _("Swedish"))]
+            ('sv', _("Swedish")),
+            ('pt-br', _("Brazilian Portuguese"))]
     ))
     
