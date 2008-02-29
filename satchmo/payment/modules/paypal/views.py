@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from satchmo.configuration import config_get_group
+from satchmo.configuration import config_value 
 from satchmo.contact.models import Order, OrderPayment
 from satchmo.payment.common.utils import record_payment, create_pending_payment
 from satchmo.payment.common.views import payship
@@ -61,9 +62,11 @@ def confirm_info(request):
         address = payment_module.RETURN_ADDRESS.value
         
     create_pending_payment(order, payment_module)
+    default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX') 
 
     ctx = RequestContext(request, {'order': order,
      'post_url': url,
+     'default_view_tax': default_view_tax, 
      'business': account,
      'currency_code': payment_module.CURRENCY_CODE.value,
      'return_address': address,

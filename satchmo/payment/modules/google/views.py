@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order
+from satchmo.configuration import config_value 
 from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.shop.utils.dynamic import lookup_url, lookup_template
@@ -91,10 +92,12 @@ def confirm_info(request):
         url_template = payment_module.POST_TEST_URL.value
         
     post_url =  url_template % {'MERCHANT_ID' : merchant_id}
-
+    default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+    
     ctx = RequestContext(request, {
         'order': order,
         'post_url': post_url,
+        'default_view_tax': default_view_tax,
         'google_cart' : gcart.encoded_cart(),
         'google_signature' : gcart.encoded_signature(),
         'PAYMENT_LIVE' : live
