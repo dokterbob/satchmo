@@ -71,7 +71,6 @@ def send_file(request, download_key):
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': download_key})
         return HttpResponseRedirect(url)
     valid, msg, dl_product = _validate_key(request.session['download_key'])
-    print request.session['download_key']
     if not valid:
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': request.session['download_key']})
         return HttpResponseRedirect(url)
