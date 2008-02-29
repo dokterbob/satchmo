@@ -10,7 +10,6 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from forms import RegistrationForm
 from mail import send_welcome_email
-from registration.models import RegistrationProfile
 from satchmo.configuration import config_get_group, config_value
 from satchmo.contact.models import Contact
 
@@ -98,7 +97,7 @@ def activate(request, activation_key):
     Activates a user's account, if their key is valid and hasn't
     expired.
     """
-
+    from registration.models import RegistrationProfile
     activation_key = activation_key.lower()
     account = RegistrationProfile.objects.activate_user(activation_key)
 

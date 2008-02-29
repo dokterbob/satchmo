@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _, ugettext
 from mail import send_welcome_email
-from registration.models import RegistrationProfile
 from satchmo.configuration import config_value
 from satchmo.contact.models import Contact
 from satchmo.shop.utils.unique_id import generate_id
@@ -66,6 +65,7 @@ class RegistrationForm(forms.Form):
         verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 
         if verify:
+            from registration.models import RegistrationProfile
             user = RegistrationProfile.objects.create_inactive_user(
                 username, password, email, send_email=True)
         else:
