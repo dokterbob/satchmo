@@ -15,6 +15,7 @@
     <p>{% with account.email as email %}
     {% trans "Thanks for signing up! You are now logged in." %}
     {% blocktrans %}In the future, you can log in using your email address ({{ email }}).{% endblocktrans %}
+    {% endwith %}
     </p>
 {% else %}
     <p>{% blocktrans %}Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for {{ expiration_days }} days after registration.{% endblocktrans %}</p>
