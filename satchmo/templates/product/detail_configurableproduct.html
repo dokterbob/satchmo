@@ -4,6 +4,7 @@
 {% load satchmo_price %}
 {% load satchmo_util %}
 {% load satchmo_currency satchmo_category%}
+{% load satchmo_ratings %}
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -134,5 +135,5 @@ $(function() {
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
 <input type="submit" value="{% trans "Add to cart" %}" />
 </form>
-{% if shop.options.SHOP.RATINGS.value %}{% include '_product_ratings.html' %}{% endif %}
+{% product_ratings %}
 {% endblock %}

@@ -12,6 +12,7 @@ or CustomProducts look for product/detail_xxx.html
 {% load satchmo_thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category %}
+{% load satchmo_ratings %}
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -48,5 +49,5 @@ or CustomProducts look for product/detail_xxx.html
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
 <input type="submit" value="{% trans "Add to cart" %}" />
 </form>
-{% if shop.options.SHOP.RATINGS.value %}{% include '_product_ratings.html' %}{% endif %}
+{% product_ratings %}
 {% endblock %}
