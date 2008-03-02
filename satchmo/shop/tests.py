@@ -78,7 +78,7 @@ class ShopTest(TestCase):
         response = self.client.post('/accounts/register/', {'email': 'someone@test.com',
                                     'first_name': 'Paul',
                                     'last_name' : 'Test',
-                                    'password' : 'pass1',
+                                    'password1' : 'pass1',
                                     'password2' : 'pass1',
                                     'newsletter': '0'})
         self.assertRedirects(response, domain +'/accounts/register/complete/', status_code=302, target_status_code=200)
@@ -233,7 +233,7 @@ class ShopTest(TestCase):
             'email': 'sometester@example.com',
             'first_name': 'Teddy',
             'last_name': 'Tester',
-            'password': 'guz90tyc',
+            'password1': 'guz90tyc',
             'password2': 'guz90tyc',
             'newsletter': '0'}
         response = self.client.post('/accounts/register/', data)
@@ -256,7 +256,7 @@ class ShopTest(TestCase):
             'email': 'somenewtester@example.com',
             'first_name': 'New',
             'last_name': 'Tester',
-            'password': 'new123pass',
+            'password1': 'new123pass',
             'password2': 'new123pass',
             'newsletter': '0'}
         response = self.client.post('/accounts/register/', init_data)

@@ -19,7 +19,7 @@ class RegistrationForm(forms.Form):
         max_length=30, required=True)
     password2 = forms.CharField(label=_('Password (again)'), 
         max_length=30, widget=forms.PasswordInput(), required=True)
-    password = forms.CharField(label=_('Password'), 
+    password1 = forms.CharField(label=_('Password'), 
         max_length=30, widget=forms.PasswordInput(), required=True)
     first_name = forms.CharField(label=_('First name'), 
         max_length=30, required=True)
@@ -31,7 +31,7 @@ class RegistrationForm(forms.Form):
         
     def clean_password(self):
         """Enforce that password and password2 are the same."""
-        p1 = self.cleaned_data.get('password')
+        p1 = self.cleaned_data.get('password1')
         p2 = self.cleaned_data.get('password2')
         if not (p1 and p2 and p1 == p2):
             raise forms.ValidationError(
@@ -56,7 +56,7 @@ class RegistrationForm(forms.Form):
         """
         
         data = self.cleaned_data
-        password = data['password']
+        password = data['password1']
         email = data['email']
         first_name = data['first_name']
         last_name = data['last_name']

@@ -17,12 +17,12 @@
 
     <tr><td>{{ form.first_name.label_tag }}:</td><td>{{ form.first_name }}</td></tr>
     <tr><td></td><td>{% if form.first_name.errors %}*** {{ form.first_name.errors|join:", " }}{% endif %}</td></tr>
-
+      
     <tr><td>{{ form.last_name.label_tag }}:</td><td>{{ form.last_name }}</td></tr>
     <tr><td></td><td>{% if form.last_name.errors %}*** {{ form.last_name.errors|join:", " }}{% endif %}</td></tr>
 
-    <tr><td>{{ form.password.label_tag }}:</td><td>{{ form.password }}</td></tr>
-    <tr><td></td><td>{% if form.password.errors %}*** {{ form.password.errors|join:", " }}{% endif %}</td></tr>
+    <tr><td>{{ form.password1.label_tag }}:</td><td>{{ form.password1 }}</td></tr>
+    <tr><td></td><td>{% if form.password1.errors %}*** {{ form.password1.errors|join:", " }}{% endif %}</td></tr>
 
     <tr><td>{{ form.password2.label_tag }}:</td><td>{{ form.password2 }}</td></tr>
     <tr><td></td><td>{% if form.password2.errors %}*** {{ form.password2.errors|join:", " }}{% endif %}</td></tr>
