@@ -74,8 +74,6 @@ ValidationError: [u'You must not save a category in itself!']
 # contains an infite loop.
 >>> pet_jewelry = Category.objects.get(slug="pet-jewelry")
 >>> womens_jewelry = Category.objects.get(slug="womens-jewelry")
->>> womens_jewelry.get_absolute_url()
-u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 >>> womens_jewelry.get_all_children()
 [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>]
 
@@ -97,8 +95,31 @@ u'/category/womens-jewelry/pet-jewelry/womens-jewelry/'
 from django.conf import settings
 from django.test import TestCase
 from django.test.client import Client
+from satchmo.product.models import Category
+from django.db.models import Model
+from django.conf import settings
+from django.core.validators import ValidationError
 
 
+class CategoryTest(TestCase):
+    """
+    Run some category tests on urls
+    """
+       
+    def test_absolute_url(self):
+        prefix = settings.SHOP_BASE
+        if prefix == '/':
+            prefix = ''
+        pet_jewelry = Category.objects.create(slug="pet-jewelry", name="Pet Jewelry")
+        womens_jewelry = Category.objects.create(slug="womens-jewelry", name="Women's Jewelry")
+        pet_jewelry.parent = womens_jewelry
+        pet_jewelry.save()
+        womens_jewelry.parent = pet_jewelry
+        self.assertRaises(ValidationError, womens_jewelry.save)
+        Model.save(womens_jewelry)
+        womens_jewelry = Category.objects.get(slug="womens-jewelry")
+        self.assertEqual(womens_jewelry.get_absolute_url(),(u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/"% prefix))
+    
 class ProductExportTest(TestCase):
     """
     Test product export functionality.
