@@ -9,15 +9,19 @@ like to, you can configure Satchmo to use django-registration.
 
 2. Edit local_settings.py:
 
-    - Set REQUIRE_EMAIL_VERIFICATION to True.
     - Set ACCOUNT_ACTIVATION_DAYS to an integer value. This setting determines
       how long it takes for an activation code to expire.
 
 3. Edit settings.py:
 
     - Add 'registration' to INSTALLED_APPS.
-
+    
 4. Run "python manage.py syncdb".
+
+5. In Site Administration -> Site Settings:
+    
+    - Account Verification -> Email
+    - Days to verify Account -> Your integer value here
 
 .. _django-registration: http://code.google.com/p/django-registration/
 
