@@ -86,7 +86,9 @@ def add(request, id=0):
     #TODO: Error checking for invalid combos
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
-    productslug = formdata['productname']
+    productslug = None
+    if formdata.has_key('productname'):
+        productslug = formdata['productname']
     try:
         product = Product.objects.get(slug=productslug)
         log.debug('found product: %s', product)
