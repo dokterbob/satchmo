@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-03 16:17+0100\n"
-"PO-Revision-Date: 2008-02-03 16:18+0100\n"
+"POT-Creation-Date: 2008-03-06 21:52+0100\n"
+"PO-Revision-Date: 2008-03-06 22:11+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: accounts/forms.py:19
+#: accounts/forms.py:18
 #: newsletter/views.py:15
 #: shop/views/contact.py:24
 #: templates/checkout/form.html:57
@@ -31,41 +31,41 @@ msgstr ""
 msgid "Email address"
 msgstr "E-postadress"
 
-#: accounts/forms.py:21
+#: accounts/forms.py:20
 msgid "Password (again)"
 msgstr "Lösenord (igen)"
 
-#: accounts/forms.py:23
+#: accounts/forms.py:22
 #: templates/checkout/form.html:40
 #: templates/registration/login.html:17
 msgid "Password"
 msgstr "Lösenord"
 
-#: accounts/forms.py:25
+#: accounts/forms.py:24
 #: contact/models.py:123
 #: templates/checkout/form.html:60
 #: templates/contact/update_form.html:30
 msgid "First name"
 msgstr "Förnamn"
 
-#: accounts/forms.py:27
+#: accounts/forms.py:26
 #: contact/models.py:124
 #: templates/checkout/form.html:63
 #: templates/contact/update_form.html:33
 msgid "Last name"
 msgstr "Efternamn"
 
-#: accounts/forms.py:30
+#: accounts/forms.py:29
 #: contact/forms.py:243
 #: templates/contact/update_form.html:43
 msgid "Newsletter"
 msgstr "Nyhetsbrev"
 
-#: accounts/forms.py:39
+#: accounts/forms.py:38
 msgid "The two passwords do not match."
 msgstr "De två lösenorden överensstämmer inte."
 
-#: accounts/forms.py:50
+#: accounts/forms.py:49
 #: contact/forms.py:62
 msgid "That email address is already in use."
 msgstr "Den e-postadressen är redan upptagen."
@@ -75,17 +75,17 @@ msgstr "Den e-postadressen är redan upptagen."
 msgid "Welcome to %s"
 msgstr "Välkommen till %s"
 
-#: accounts/views.py:20
+#: accounts/views.py:19
 #: templates/contact/view_profile.html:22
 msgid "Yes"
 msgstr "Ja"
 
-#: accounts/views.py:21
+#: accounts/views.py:20
 #: templates/contact/view_profile.html:22
 msgid "No"
 msgstr "Nej"
 
-#: accounts/views.py:86
+#: accounts/views.py:85
 msgid "Registration Form"
 msgstr "Registreringsformulär"
 
@@ -161,6 +161,7 @@ msgstr "Kund"
 #: contact/models.py:37
 #: contact/models.py:48
 #: supplier/models.py:16
+#: supplier/models.py:37
 msgid "Supplier"
 msgstr "Leverantör"
 
@@ -186,7 +187,7 @@ msgid "Manufacturer"
 msgstr "Tillverkare"
 
 #: contact/models.py:57
-#: contact/models.py:755
+#: contact/models.py:762
 #: product/models.py:66
 #: shop/views/contact.py:23
 #: templates/admin/product_export_form.html:81
@@ -213,7 +214,7 @@ msgstr "Skapat datum"
 #: contact/models.py:63
 #: contact/models.py:133
 #: contact/models.py:375
-#: contact/models.py:825
+#: contact/models.py:832
 #: giftcertificate/models.py:96
 #: payment/views.py:23
 #: supplier/models.py:42
@@ -267,7 +268,7 @@ msgstr "Arbete"
 #: templates/base_cart.html:8
 #: templates/base_category.html:13
 #: templates/base_index.html:7
-#: templates/base_product.html:23
+#: templates/base_product.html:24
 #: templates/contact_form.html:5
 #: templates/download.html:5
 #: templates/search.html:6
@@ -297,8 +298,8 @@ msgstr "Arbete"
 #: templates/newsletter/unsubscribe_form.html:5
 #: templates/newsletter/update_form.html:5
 #: templates/newsletter/update_results.html:5
-#: templates/product/detail_configurableproduct.html:85
-#: templates/product/detail_customproduct.html:14
+#: templates/product/detail_configurableproduct.html:86
+#: templates/product/detail_customproduct.html:15
 #: templates/registration/account_info.html:5
 #: templates/registration/activate.html:6
 #: templates/registration/login.html:5
@@ -339,7 +340,7 @@ msgstr "Datum och tid"
 #: contact/models.py:210
 #: contact/models.py:228
 #: contact/models.py:263
-#: contact/models.py:906
+#: contact/models.py:913
 #: discount/models.py:52
 #: payment/models.py:26
 #: product/models.py:73
@@ -529,7 +530,7 @@ msgid "Shipping Description"
 msgstr "Fraktbeskrivning"
 
 #: contact/models.py:388
-#: contact/models.py:682
+#: contact/models.py:683
 #: templates/contact/_order_details.html:36
 #: templates/contact/_order_tracking_details.html:22
 #: templates/email/order_complete.txt:38
@@ -550,8 +551,8 @@ msgid "Shipping Discount"
 msgstr "Prisnedsättning på frakten"
 
 #: contact/models.py:396
-#: contact/models.py:907
-#: product/models.py:548
+#: contact/models.py:914
+#: product/models.py:547
 #: supplier/models.py:41
 #: templates/contact/_order_details.html:66
 #: templates/contact/_order_tracking_details.html:34
@@ -562,13 +563,13 @@ msgid "Tax"
 msgstr "Moms"
 
 #: contact/models.py:398
-#: contact/models.py:826
+#: contact/models.py:833
 #: templates/admin/_orderpayment_list.html:11
 msgid "Timestamp"
 msgstr "Tidsmärke"
 
 #: contact/models.py:399
-#: contact/models.py:823
+#: contact/models.py:830
 #: supplier/models.py:92
 #: templates/contact/order_history.html:20
 msgid "Status"
@@ -578,7 +579,7 @@ msgstr "Status"
 msgid "This is set automatically."
 msgstr "Denna sätts automatiskt."
 
-#: contact/models.py:684
+#: contact/models.py:685
 #: templates/contact/_order_details.html:27
 #: templates/contact/update_form.html:77
 #: templates/email/order_complete.txt:28
@@ -587,214 +588,222 @@ msgstr "Denna sätts automatiskt."
 msgid "Shipping Address"
 msgstr "Leveransadress"
 
-#: contact/models.py:687
+#: contact/models.py:688
 #: templates/pdf/invoice.rml:24
 #: templates/pdf/packing-slip.rml:24
 msgid "Billing Address"
 msgstr "Fakturaadress"
 
-#: contact/models.py:690
+#: contact/models.py:691
 msgid "Totals"
 msgstr "Totalsumma"
 
-#: contact/models.py:699
+#: contact/models.py:700
 msgid "Product Order"
 msgstr "Produktorder"
 
-#: contact/models.py:700
+#: contact/models.py:701
 msgid "Product Orders"
 msgstr "Produktordrar"
 
-#: contact/models.py:706
-#: contact/models.py:771
-#: contact/models.py:822
+#: contact/models.py:707
+#: contact/models.py:778
+#: contact/models.py:829
 #: giftcertificate/models.py:29
 msgid "Order"
 msgstr "Order"
 
-#: contact/models.py:707
+#: contact/models.py:708
 #: giftcertificate/models.py:118
-#: product/models.py:555
-#: product/models.py:682
+#: product/models.py:554
+#: product/models.py:681
 #: shop/models.py:286
 msgid "Product"
 msgstr "Produkt"
 
-#: contact/models.py:708
+#: contact/models.py:709
 #: shop/models.py:287
 #: templates/base_cart.html:21
-#: templates/base_product.html:47
+#: templates/base_product.html:48
 #: templates/pdf/invoice.rml:115
 #: templates/pdf/packing-slip.rml:115
-#: templates/product/detail_configurableproduct.html:133
-#: templates/product/detail_customproduct.html:58
+#: templates/product/detail_configurableproduct.html:134
+#: templates/product/detail_customproduct.html:59
 msgid "Quantity"
 msgstr "Antal"
 
-#: contact/models.py:709
+#: contact/models.py:710
 msgid "Unit price"
 msgstr "Pris per styck"
 
-#: contact/models.py:711
+#: contact/models.py:712
+msgid "Unit tax"
+msgstr "Moms per styck"
+
+#: contact/models.py:714
 msgid "Line item price"
 msgstr "Orderradspris"
 
-#: contact/models.py:713
+#: contact/models.py:716
+msgid "Line item tax"
+msgstr "Orderrad moms"
+
+#: contact/models.py:718
 msgid "Line item discount"
 msgstr "Prisnedsättning på orderrad"
 
-#: contact/models.py:747
+#: contact/models.py:754
 msgid "Order Line Item"
 msgstr "Orderrad"
 
-#: contact/models.py:748
+#: contact/models.py:755
 msgid "Order Line Items"
 msgstr "Orderrader"
 
-#: contact/models.py:754
+#: contact/models.py:761
 msgid "Order Item"
 msgstr "Ordervara"
 
-#: contact/models.py:756
-#: product/models.py:1123
+#: contact/models.py:763
+#: product/models.py:1122
 msgid "Value"
 msgstr "Värde"
 
-#: contact/models.py:757
-#: product/models.py:336
-#: product/models.py:752
+#: contact/models.py:764
+#: product/models.py:335
+#: product/models.py:751
 msgid "Price Change"
 msgstr "Prisförändring"
 
-#: contact/models.py:758
+#: contact/models.py:765
 #: payment/models.py:32
 #: product/models.py:217
 #: product/models.py:275
-#: product/models.py:750
-#: product/models.py:1177
+#: product/models.py:749
+#: product/models.py:1176
 #: shop/models.py:342
 msgid "Sort Order"
 msgstr "Sorteringsordning"
 
-#: contact/models.py:759
+#: contact/models.py:766
 #: product/models.py:276
-#: product/models.py:751
+#: product/models.py:750
 #: shop/models.py:343
 msgid "The display order for this group."
 msgstr "Visningsordningen för denna grupp."
 
-#: contact/models.py:765
+#: contact/models.py:772
 msgid "Order Item Detail"
 msgstr "Ordervarudetalj"
 
-#: contact/models.py:766
+#: contact/models.py:773
 msgid "Order Item Details"
 msgstr "Ordervarudetaljer"
 
-#: contact/models.py:770
+#: contact/models.py:777
 msgid "Downloadable product"
 msgstr "Nedladdningsbar produkt"
 
-#: contact/models.py:772
+#: contact/models.py:779
 #: shipping/modules/tiered/models.py:91
 msgid "Key"
 msgstr "Nyckel"
 
-#: contact/models.py:773
+#: contact/models.py:780
 msgid "Number of attempts"
 msgstr "Antal nedladdningsförsök"
 
-#: contact/models.py:774
+#: contact/models.py:781
 msgid "Time stamp"
 msgstr "Tidsmärke"
 
-#: contact/models.py:775
+#: contact/models.py:782
 #: discount/models.py:70
 #: payment/models.py:27
 #: shipping/modules/tiered/models.py:93
 msgid "Active"
 msgstr "Aktiverad"
 
-#: contact/models.py:780
+#: contact/models.py:787
 msgid "This download is no longer active"
 msgstr "Denna länk är inte längre aktiv"
 
-#: contact/models.py:782
+#: contact/models.py:789
 msgid "You have exceeded the number of allowed downloads."
 msgstr "Du har redan nått det tillåtna antalet nedladdningar."
 
-#: contact/models.py:785
+#: contact/models.py:792
 msgid "This download link has expired."
 msgstr "Denna nedladdningslänk har gått ut."
 
-#: contact/models.py:815
+#: contact/models.py:822
 msgid "Download Link"
 msgstr "Nedladdningslänk"
 
-#: contact/models.py:816
+#: contact/models.py:823
 msgid "Download Links"
 msgstr "Nedladdningslänkar"
 
-#: contact/models.py:837
+#: contact/models.py:844
 msgid "Order Status"
 msgstr "Orderstatus"
 
-#: contact/models.py:838
+#: contact/models.py:845
 msgid "Order Statuses"
 msgstr "Orderstatus"
 
-#: contact/models.py:842
+#: contact/models.py:849
 msgid "Payment Method"
 msgstr "Betalningssätt"
 
-#: contact/models.py:844
+#: contact/models.py:851
 msgid "amount"
 msgstr "belopp"
 
-#: contact/models.py:846
+#: contact/models.py:853
 msgid "timestamp"
 msgstr "tidsmärke"
 
-#: contact/models.py:847
+#: contact/models.py:854
 #: templates/admin/_orderpayment_list.html:12
 msgid "Transaction ID"
 msgstr "Transaktions-ID"
 
-#: contact/models.py:882
+#: contact/models.py:889
 #: giftcertificate/models.py:99
 msgid "Order Payment"
 msgstr "Orderbetalning"
 
-#: contact/models.py:883
+#: contact/models.py:890
 #: templates/admin/_orderpayment_list.html:3
 msgid "Order Payments"
 msgstr "Orderbetalningar"
 
-#: contact/models.py:887
+#: contact/models.py:894
 msgid "key"
 msgstr "nyckel"
 
-#: contact/models.py:888
+#: contact/models.py:895
 msgid "value"
 msgstr "värde"
 
-#: contact/models.py:892
+#: contact/models.py:899
 msgid "Order variable"
 msgstr "Ordervariabel"
 
-#: contact/models.py:893
+#: contact/models.py:900
 msgid "Order variables"
 msgstr "Ordervariabler"
 
-#: contact/models.py:905
+#: contact/models.py:912
 msgid "Model"
 msgstr ""
 
-#: contact/models.py:917
+#: contact/models.py:924
 msgid "Order tax detail"
 msgstr "Ordermomsdetalj"
 
-#: contact/models.py:918
+#: contact/models.py:925
 msgid "Order tax details"
 msgstr "Ordermomsdetaljer"
 
@@ -1003,7 +1012,7 @@ msgstr "Detta kommer att skickas till översättningsverktyget"
 #: payment/modules/paypal/config.py:81
 #: payment/modules/trustcommerce/config.py:62
 msgid "The url base used for constructing urlpatterns which will use this module"
-msgstr ""
+msgstr "Bas-URL:en som används för att bygga urlpatterns som kommer att använda den här modulen"
 
 #: giftcertificate/forms.py:6
 msgid "Code"
@@ -1022,7 +1031,7 @@ msgid "Purchased by"
 msgstr "Köpt av"
 
 #: giftcertificate/models.py:34
-#: product/models.py:397
+#: product/models.py:396
 msgid "Date added"
 msgstr "Skapad datum"
 
@@ -1079,7 +1088,7 @@ msgstr "Ogiltigt presentkort"
 #: giftcertificate/processor.py:43
 #: payment/modules/cod/processor.py:21
 #: payment/modules/dummy/processor.py:38
-#: shop/views/cart.py:201
+#: shop/views/cart.py:202
 msgid "Success"
 msgstr "Lyckades"
 
@@ -1115,8 +1124,8 @@ msgstr "Utcheckning"
 #: templates/checkout/cod/confirm.html:14
 #: templates/checkout/google/confirm.html:6
 #: templates/checkout/google/confirm.html:9
-#: templates/checkout/paypal/confirm.html:5
-#: templates/checkout/paypal/confirm.html:8
+#: templates/checkout/paypal/confirm.html:6
+#: templates/checkout/paypal/confirm.html:9
 #: templates/email/order_complete.txt:56
 msgid "Payment"
 msgstr "Betalning"
@@ -1196,18 +1205,18 @@ msgstr "Visa saldo"
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:22
 #: templates/base.html:30
 #: templates/base_category.html:21
-#: templates/base_product.html:31
-#: templates/product/detail_configurableproduct.html:93
-#: templates/product/detail_customproduct.html:22
+#: templates/base_product.html:32
+#: templates/product/detail_configurableproduct.html:94
+#: templates/product/detail_customproduct.html:23
 msgid "Shop Categories"
 msgstr "Butikskategorier"
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:31
-#: product/models.py:1138
-#: product/models.py:1162
-#: templates/base_product.html:40
-#: templates/product/detail_configurableproduct.html:102
-#: templates/product/detail_customproduct.html:31
+#: product/models.py:1137
+#: product/models.py:1161
+#: templates/base_product.html:41
+#: templates/product/detail_configurableproduct.html:103
+#: templates/product/detail_customproduct.html:32
 msgid "Price"
 msgstr "Pris"
 
@@ -1224,9 +1233,9 @@ msgid "Message (optional):"
 msgstr "Meddelande (frivilligt):"
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:49
-#: templates/base_product.html:49
-#: templates/product/detail_configurableproduct.html:135
-#: templates/product/detail_customproduct.html:60
+#: templates/base_product.html:50
+#: templates/product/detail_configurableproduct.html:136
+#: templates/product/detail_customproduct.html:61
 msgid "Add to cart"
 msgstr "Lägg till i kundvagn"
 
@@ -1248,7 +1257,7 @@ msgstr "Asien"
 
 #: l10n/models.py:10
 msgid "Oceania"
-msgstr ""
+msgstr "Oceanien"
 
 #: l10n/models.py:11
 msgid "South America"
@@ -1272,7 +1281,7 @@ msgstr ""
 
 #: l10n/models.py:19
 msgid "Atoll"
-msgstr ""
+msgstr "Atoll"
 
 #: l10n/models.py:20
 msgid "Autonomous island"
@@ -1280,7 +1289,7 @@ msgstr "Självständigt örike"
 
 #: l10n/models.py:21
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: l10n/models.py:22
 msgid "Commune"
@@ -1402,7 +1411,7 @@ msgstr "Kontinent"
 #: l10n/models.py:60
 #: l10n/models.py:87
 msgid "Administrative Area"
-msgstr ""
+msgstr "Administrativt område"
 
 #: l10n/models.py:64
 #: templates/admin/satchmo_app_list.html:82
@@ -1411,11 +1420,11 @@ msgstr "Länder"
 
 #: l10n/models.py:82
 msgid "Admin Area name"
-msgstr ""
+msgstr "Namn på administrativt område"
 
 #: l10n/models.py:83
 msgid "Postal Abbreviation"
-msgstr ""
+msgstr "Postkod"
 
 #: l10n/models.py:84
 msgid "Area is active"
@@ -1423,7 +1432,7 @@ msgstr "Området är aktivt"
 
 #: l10n/models.py:88
 msgid "Administrative Areas"
-msgstr ""
+msgstr "Administrativt område"
 
 #: newsletter/config.py:6
 msgid "Newsletter Settings"
@@ -1515,8 +1524,8 @@ msgid "Update Date"
 msgstr "Uppdaterad datum"
 
 #: newsletter/views.py:14
-#: product/models.py:389
-#: product/models.py:635
+#: product/models.py:388
+#: product/models.py:634
 msgid "Full Name"
 msgstr "Fullständigt namn"
 
@@ -1684,7 +1693,7 @@ msgid "Your order has already been processed."
 msgstr "Din beställning har redan behandlats."
 
 #: payment/common/views/confirm.py:41
-#: payment/modules/google/views.py:78
+#: payment/modules/google/views.py:79
 #: payment/modules/paypal/views.py:46
 msgid "Your order is no longer valid."
 msgstr "Din beställning är inte giltig längre."
@@ -1732,11 +1741,11 @@ msgstr "Tillgängliga kreditkort"
 
 #: payment/modules/authorizenet/config.py:83
 msgid "Your authorize.net transaction login"
-msgstr ""
+msgstr "Din authorize.net transaktionsinloggning"
 
 #: payment/modules/authorizenet/config.py:88
 msgid "Your authorize.net transaction key"
-msgstr ""
+msgstr "Din authorize.net transaktionsnyckel"
 
 #: payment/modules/autosuccess/config.py:5
 msgid "Auto Success Module"
@@ -1756,7 +1765,7 @@ msgstr "Sant om du vill skicka e-brev till kunder vid beställningar"
 
 #: payment/modules/cod/config.py:8
 msgid "COD"
-msgstr ""
+msgstr "Postförskott"
 
 #: payment/modules/cod/config.py:11
 msgid "COD Payment Module Settings"
@@ -1793,11 +1802,11 @@ msgstr "Valutakod för Cybersource-transaktioner."
 
 #: payment/modules/cybersource/config.py:83
 msgid "Your Cybersource merchant ID"
-msgstr ""
+msgstr "Din Cybersource merchant-ID"
 
 #: payment/modules/cybersource/config.py:88
 msgid "Your Cybersource transaction key"
-msgstr ""
+msgstr "Din Cybersource transaktionsnyckel"
 
 #: payment/modules/dummy/config.py:8
 msgid "Payment Test Module"
@@ -1829,11 +1838,11 @@ msgstr "Valutakod för Google Checkout transaktioner."
 
 #: payment/modules/google/config.py:31
 msgid "Checkout Button URL"
-msgstr ""
+msgstr "URL för utcheckningsknapp"
 
 #: payment/modules/google/config.py:36
 msgid "Checkout Button Size"
-msgstr ""
+msgstr "Storlek på utcheckningsknapp"
 
 #: payment/modules/google/config.py:38
 msgid "Small"
@@ -1922,11 +1931,11 @@ msgstr "Retur-URL"
 msgid "Where Paypal will return the customer after the purchase is complete.  This can be a named url and defaults to the standard checkout success."
 msgstr ""
 
-#: payment/modules/paypal/views.py:120
+#: payment/modules/paypal/views.py:122
 msgid "---Comment via Paypal IPN---"
-msgstr ""
+msgstr "---Kommentar via Paypal IPN---"
 
-#: payment/modules/paypal/views.py:124
+#: payment/modules/paypal/views.py:126
 msgid "Paid through PayPal."
 msgstr "Betalad med PayPal."
 
@@ -1998,7 +2007,7 @@ msgid "Product Model Options"
 msgstr "Produktmodell-alternativ"
 
 #: product/config.py:12
-#: product/models.py:920
+#: product/models.py:919
 msgid "Configurable Product"
 msgstr "Konfigurerbar produkt"
 
@@ -2058,35 +2067,39 @@ msgstr "exportformat"
 msgid "Include Images"
 msgstr "Inkludera bilder"
 
-#: product/forms.py:136
+#: product/forms.py:34
+msgid "Include Categories"
+msgstr "Inkludera kategorier"
+
+#: product/forms.py:166
 msgid "File to import"
 msgstr "Fil att importera"
 
-#: product/forms.py:154
-#: product/forms.py:197
+#: product/forms.py:184
+#: product/forms.py:227
 #, python-format
 msgid "Could not parse format from filename: %s"
 msgstr "Kunde inte utläsa format från filnamn: %s"
 
-#: product/forms.py:172
+#: product/forms.py:202
 msgid "Bad VARS file in import zipfile."
 msgstr "Ogiltig VARS-fil i import av zip-fil."
 
-#: product/forms.py:202
+#: product/forms.py:232
 msgid "Missing VARS in import zipfile."
 msgstr "Saknar VARS i import av zip-fil."
 
-#: product/forms.py:208
+#: product/forms.py:238
 #, python-format
 msgid "Unknown file format: %s"
 msgstr "Okänt filformat: %s"
 
-#: product/forms.py:235
+#: product/forms.py:265
 #, python-format
 msgid "Added %(count)i objects from %(filename)s"
 msgstr "Lade till %(count)i objekt från %(filename)s"
 
-#: product/forms.py:239
+#: product/forms.py:270
 #, python-format
 msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
 msgstr "Problem vid installation av testdata '%(filename)s': %(error_msg)s\n"
@@ -2112,7 +2125,7 @@ msgid "Used for URLs"
 msgstr "Används för URL:er"
 
 #: product/models.py:71
-#: product/models.py:396
+#: product/models.py:395
 msgid "Meta Description"
 msgstr "Metabeskrivning"
 
@@ -2121,13 +2134,13 @@ msgid "Meta description for this category"
 msgstr "Metabeskrivning av den här kategorin"
 
 #: product/models.py:75
-#: product/models.py:400
+#: product/models.py:399
 #: shipping/modules/tiered/models.py:92
 msgid "Ordering"
 msgstr "Ordning"
 
 #: product/models.py:75
-#: product/models.py:400
+#: product/models.py:399
 msgid "Override alphabetical order in category display"
 msgstr "Åsidosätt alfabetisk ordning vid visning av kategorier"
 
@@ -2136,7 +2149,7 @@ msgid "You must not save a category in itself!"
 msgstr "Du kan inte spara en kategori i sig själv!"
 
 #: product/models.py:182
-#: product/models.py:394
+#: product/models.py:393
 msgid "Category"
 msgstr "Kategori"
 
@@ -2147,17 +2160,17 @@ msgstr "Kategorier"
 #: product/models.py:190
 #: product/models.py:251
 #: product/models.py:303
-#: product/models.py:366
-#: product/models.py:634
-#: product/models.py:765
-#: product/models.py:1121
-#: product/models.py:1211
+#: product/models.py:365
+#: product/models.py:633
+#: product/models.py:764
+#: product/models.py:1120
+#: product/models.py:1210
 #: shipping/modules/tiered/models.py:201
 msgid "language"
 msgstr "språk"
 
 #: product/models.py:191
-#: product/models.py:367
+#: product/models.py:366
 msgid "Translated Category Name"
 msgstr "Översatt kategorinamn"
 
@@ -2168,20 +2181,20 @@ msgstr "Kategoribeskrivning"
 #: product/models.py:193
 #: product/models.py:253
 #: product/models.py:306
-#: product/models.py:368
-#: product/models.py:638
-#: product/models.py:767
-#: product/models.py:1213
+#: product/models.py:367
+#: product/models.py:637
+#: product/models.py:766
+#: product/models.py:1212
 msgid "version"
 msgstr "version"
 
 #: product/models.py:194
 #: product/models.py:254
 #: product/models.py:307
-#: product/models.py:369
-#: product/models.py:639
-#: product/models.py:768
-#: product/models.py:1214
+#: product/models.py:368
+#: product/models.py:638
+#: product/models.py:767
+#: product/models.py:1213
 msgid "active"
 msgstr "aktiverad"
 
@@ -2194,12 +2207,12 @@ msgid "Category Translations"
 msgstr "Kategoriöversättningar"
 
 #: product/models.py:213
-#: product/models.py:1173
+#: product/models.py:1172
 msgid "Picture"
 msgstr "Bild"
 
 #: product/models.py:215
-#: product/models.py:1175
+#: product/models.py:1174
 msgid "Optional caption"
 msgstr "Valfri rubrik"
 
@@ -2212,7 +2225,7 @@ msgid "Category Images"
 msgstr "Kategoribilder"
 
 #: product/models.py:252
-#: product/models.py:1212
+#: product/models.py:1211
 msgid "Translated Caption"
 msgstr "Översatt rubrik"
 
@@ -2241,7 +2254,7 @@ msgid "Further description of this group (i.e. shirt size vs shoe size)."
 msgstr "Ytterligare beskrivning av denna grupp (t ex. tröjstorlek vs skostorlek)."
 
 #: product/models.py:295
-#: product/models.py:687
+#: product/models.py:686
 msgid "Option Group"
 msgstr "Valmöjlighetsgrupp"
 
@@ -2273,300 +2286,301 @@ msgstr "Visat värde"
 msgid "Stored value"
 msgstr "Lagrat värde"
 
-#: product/models.py:338
+#: product/models.py:337
 msgid "This is the price differential for this option."
 msgstr "Det här är prisförändringen för denna valmöjlighet."
 
-#: product/models.py:339
+#: product/models.py:338
 msgid "Display Order"
 msgstr "Visningsordning"
 
-#: product/models.py:347
+#: product/models.py:346
 msgid "Option Item"
 msgstr "Valmöjlighet"
 
-#: product/models.py:348
+#: product/models.py:347
 msgid "Option Items"
 msgstr "Valmöjligheter"
 
-#: product/models.py:372
+#: product/models.py:371
 msgid "Option Translation"
 msgstr "Översättning av valmöjlighet"
 
-#: product/models.py:373
+#: product/models.py:372
 msgid "Option Translations"
 msgstr "Översättningar av valmöjlighet"
 
-#: product/models.py:389
+#: product/models.py:388
 msgid "This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."
 msgstr "Detta är vad produkten kommer att heta på sajtens förvalda språk. För att lägga till ytterligare översättningar, använd produktöversättningsavdelningen nedan."
 
-#: product/models.py:390
+#: product/models.py:389
 msgid "Slug Name"
 msgstr "Slug-namn"
 
-#: product/models.py:391
+#: product/models.py:390
 msgid "SKU"
 msgstr "SKU (Stock Keeping Unit)"
 
-#: product/models.py:391
+#: product/models.py:390
 msgid "Defaults to slug if left blank"
 msgstr "Som default används slug-fältet om detta ej fylls i."
 
-#: product/models.py:392
-#: product/models.py:636
+#: product/models.py:391
+#: product/models.py:635
 msgid "Short description of product"
 msgstr "Kort produktbeskrivning"
 
-#: product/models.py:392
+#: product/models.py:391
 msgid "This should be a 1 or 2 line description in the default site language for use in product listing screens"
 msgstr "Detta ska vara en 1-2 raders beskrivning på sajtens förvalda språk för användning i produktlistor."
 
-#: product/models.py:393
-#: product/models.py:637
+#: product/models.py:392
+#: product/models.py:636
 msgid "Description of product"
 msgstr "Produktbeskrivning"
 
-#: product/models.py:393
+#: product/models.py:392
 msgid "This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."
 msgstr "Detta fält kan innehålla HTML och bör bestå av några stycken på sajtens förvalda språk som förklarar produktens bakgrund och allt som skulle kunna hjälpa en potentiell köpare."
 
-#: product/models.py:395
+#: product/models.py:394
 msgid "Number in stock"
 msgstr "Antal i lager"
 
-#: product/models.py:396
+#: product/models.py:395
 msgid "Meta description for this product"
 msgstr "Metabeskrivning av denna produkt"
 
-#: product/models.py:398
+#: product/models.py:397
 msgid "Is product active?"
 msgstr "Är produkten aktiv?"
 
-#: product/models.py:398
+#: product/models.py:397
 msgid "This will determine whether or not this product will appear on the site"
 msgstr "Detta bestämmer huruvida produkten visas på sajten eller ej."
 
-#: product/models.py:399
+#: product/models.py:398
 msgid "Featured Item"
 msgstr "Framhävd artikel"
 
-#: product/models.py:399
+#: product/models.py:398
 msgid "Featured items will show on the front page"
 msgstr "Framhävda artiklar kommer att visas på huvudsidan."
 
-#: product/models.py:401
+#: product/models.py:400
 msgid "Weight"
 msgstr "Vikt"
 
-#: product/models.py:402
+#: product/models.py:401
 msgid "Weight units"
 msgstr "Viktenhet"
 
-#: product/models.py:403
+#: product/models.py:402
 msgid "Length"
 msgstr "Längd"
 
-#: product/models.py:404
+#: product/models.py:403
 msgid "Length units"
 msgstr "Längdenhet"
 
-#: product/models.py:405
+#: product/models.py:404
 msgid "Width"
 msgstr "Bredd"
 
-#: product/models.py:406
+#: product/models.py:405
 msgid "Width units"
 msgstr "Breddenhet"
 
-#: product/models.py:407
+#: product/models.py:406
 msgid "Height"
 msgstr "Höjd"
 
-#: product/models.py:408
+#: product/models.py:407
 msgid "Height units"
 msgstr "Höjdenhet"
 
-#: product/models.py:409
+#: product/models.py:408
 msgid "Related Items"
 msgstr "Relaterade varor"
 
-#: product/models.py:410
+#: product/models.py:409
 msgid "Previously Purchased"
 msgstr "Tidigare köpt"
 
-#: product/models.py:411
+#: product/models.py:410
 msgid "Taxable"
 msgstr "Moms ska läggas på"
 
-#: product/models.py:412
+#: product/models.py:411
 #: tax/models.py:26
+#: tax/models.py:40
 msgid "Tax Class"
 msgstr "Momstyp"
 
-#: product/models.py:412
+#: product/models.py:411
 msgid "If it is taxable, what kind of tax?"
 msgstr "Om den ska momsbeläggas, vilken typ av moms?"
 
-#: product/models.py:546
+#: product/models.py:545
 msgid "Meta Data"
 msgstr "Metadata"
 
-#: product/models.py:547
+#: product/models.py:546
 msgid "Item Dimensions"
 msgstr "Produktdimensioner"
 
-#: product/models.py:549
+#: product/models.py:548
 msgid "Related Products"
 msgstr "Relaterade produkter"
 
-#: product/models.py:556
+#: product/models.py:555
 msgid "Products"
 msgstr "Produkter"
 
-#: product/models.py:636
+#: product/models.py:635
 msgid "This should be a 1 or 2 line description for use in product listing screens"
 msgstr "Detta ska vara en 1-2 raders beskrivning för användning i produktlistor."
 
-#: product/models.py:637
+#: product/models.py:636
 msgid "This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."
 msgstr "Detta fält kan innehålla HTML och bör bestå av några stycken som förklarar produktens bakgrund och allt som skulle kunna hjälpa en potentiell köpare."
 
-#: product/models.py:642
+#: product/models.py:641
 msgid "Product Translation"
 msgstr "Produktöversättning"
 
-#: product/models.py:643
+#: product/models.py:642
 msgid "Product Translations"
 msgstr "Produktöversättningar"
 
-#: product/models.py:683
+#: product/models.py:682
 msgid "Percent Downpayment"
 msgstr "Handpenning procent"
 
-#: product/models.py:684
+#: product/models.py:683
 msgid "Deferred Shipping"
 msgstr "Uppskjuten betalning"
 
-#: product/models.py:685
+#: product/models.py:684
 msgid "Do not charge shipping at checkout for this item."
 msgstr "Ta inte betalt för frakt vid utcheckning av denna vara."
 
-#: product/models.py:738
+#: product/models.py:737
 msgid "Custom Product"
 msgstr "Anpassad produkt"
 
-#: product/models.py:739
+#: product/models.py:738
 msgid "Custom Products"
 msgstr "Anpassade produkter"
 
-#: product/models.py:746
+#: product/models.py:745
 msgid "Custom field name"
 msgstr "Anpassat fältnamn"
 
-#: product/models.py:748
+#: product/models.py:747
 msgid "Custom Fields"
 msgstr "Anpassade fält"
 
-#: product/models.py:766
+#: product/models.py:765
 msgid "Translated Custom Text Field Name"
 msgstr "Översättning av anpassat fältnamn"
 
-#: product/models.py:771
+#: product/models.py:770
 msgid "CustomTextField Translation"
 msgstr "Översättning av anpassat fältnamn"
 
-#: product/models.py:772
+#: product/models.py:771
 msgid "CustomTextField Translations"
-msgstr ""
+msgstr "Översättningar av anpassade fältnamn"
 
-#: product/models.py:788
+#: product/models.py:787
 msgid "Create Variations"
 msgstr "Skapa varianter:"
 
-#: product/models.py:788
+#: product/models.py:787
 msgid "Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."
 msgstr "Skapa produktvarianter för alla denna produkts valmöjligheter. För att använda detta måste du först lägga till en valmöjlighet, spara, och sedan återvända till denna sida."
 
-#: product/models.py:921
+#: product/models.py:920
 msgid "Configurable Products"
 msgstr "Konfigurerbar produkt"
 
-#: product/models.py:932
+#: product/models.py:931
 msgid "Number of times link can be accessed."
 msgstr "Antal gånger som länken kan användas."
 
-#: product/models.py:933
+#: product/models.py:932
 msgid "Number of minutes the link should remain active."
 msgstr "Antal minuter som länken ska förbli aktiv."
 
-#: product/models.py:934
+#: product/models.py:933
 msgid "Is this download currently active?"
 msgstr "Är den här nedladdningen för närvarande aktiv?"
 
-#: product/models.py:955
+#: product/models.py:954
 msgid "Downloadable Product"
 msgstr "Nedladdningsbar produkt"
 
-#: product/models.py:956
+#: product/models.py:955
 msgid "Downloadable Products"
 msgstr "Nedladdningsbara produkter"
 
-#: product/models.py:1073
+#: product/models.py:1072
 msgid "Two options from the same option group can not be applied to an item."
-msgstr ""
+msgstr "Två valmöjligheter från samma valmöjlighetsgrupp kan inte användas på en artikel."
 
-#: product/models.py:1107
+#: product/models.py:1106
 msgid "Product variation"
 msgstr "Produktvariant"
 
-#: product/models.py:1108
+#: product/models.py:1107
 msgid "Product variations"
 msgstr "Produktvarianter"
 
-#: product/models.py:1122
+#: product/models.py:1121
 msgid "Attribute Name"
 msgstr "Attributnamn"
 
-#: product/models.py:1126
+#: product/models.py:1125
 msgid "Product Attribute"
 msgstr "Produktattribut"
 
-#: product/models.py:1127
+#: product/models.py:1126
 msgid "Product Attributes"
 msgstr "Produktattribut"
 
-#: product/models.py:1139
+#: product/models.py:1138
 msgid "Discount Quantity"
 msgstr "Antal för prisnedsättning"
 
-#: product/models.py:1139
+#: product/models.py:1138
 msgid "Use this price only for this quantity or higher"
 msgstr "Använd detta pris endast för detta antal eller högre"
 
-#: product/models.py:1163
+#: product/models.py:1162
 msgid "Prices"
 msgstr "Priser"
 
-#: product/models.py:1200
+#: product/models.py:1199
 msgid "Product Image"
 msgstr "Produktbild"
 
-#: product/models.py:1201
+#: product/models.py:1200
 msgid "Product Images"
 msgstr "Produktbilder"
 
-#: product/models.py:1217
+#: product/models.py:1216
 msgid "Product Image Translation"
 msgstr "Produktbildsöversättning"
 
-#: product/models.py:1218
+#: product/models.py:1217
 msgid "Product Image Translations"
 msgstr "Produktbildsöversättningar"
 
 #: product/views.py:75
-#: shop/views/cart.py:140
-#: shop/views/cart.py:182
+#: shop/views/cart.py:141
+#: shop/views/cart.py:183
 msgid "The product you have requested does not exist."
 msgstr "Produkten du efterfrågade finns inte."
 
@@ -2796,11 +2810,11 @@ msgstr "Aktivera produktbetyg"
 
 #: shop/config.py:22
 msgid "Enable random display of featured products on home page"
-msgstr ""
+msgstr "Aktivera slumpad visning av utvalda produkter på hemsidan"
 
 #: shop/config.py:28
 msgid "Number of featured items to display"
-msgstr ""
+msgstr "Antal utvalda produkter att visa"
 
 #: shop/config.py:34
 msgid "Measurement system to use in store"
@@ -2869,6 +2883,10 @@ msgstr "Spanska"
 #: shop/config.py:100
 msgid "Swedish"
 msgstr "Svenska"
+
+#: shop/config.py:101
+msgid "Brazilian Portuguese"
+msgstr "Brasiliansk portugisiska"
 
 #: shop/models.py:27
 msgid "Test Store"
@@ -2953,51 +2971,51 @@ msgstr "Var god ange endast ett av fälten."
 msgid "Site Administration"
 msgstr "Sajtadministration"
 
-#: shop/views/cart.py:35
+#: shop/views/cart.py:36
 msgid "No cart to update."
 msgstr "Ingen kundvagn att uppdatera."
 
-#: shop/views/cart.py:43
+#: shop/views/cart.py:44
 msgid "Bad quantity."
 msgstr "Ogiltigt antal."
 
-#: shop/views/cart.py:50
+#: shop/views/cart.py:51
 msgid "Bad item number."
 msgstr "Ogiltigt artikelnummer."
 
-#: shop/views/cart.py:55
+#: shop/views/cart.py:56
 msgid "No such item in your cart."
 msgstr "Ingen sådan vara i din kundvagn."
 
-#: shop/views/cart.py:147
+#: shop/views/cart.py:148
 msgid "Please enter a whole number."
 msgstr "Var god ange ett heltal."
 
-#: shop/views/cart.py:154
+#: shop/views/cart.py:155
 msgid "Please enter a positive number."
 msgstr "Var god ange ett tal större än eller lika med 1."
 
-#: shop/views/cart.py:191
+#: shop/views/cart.py:192
 msgid "Choose a quantity."
 msgstr "Välj antal."
 
-#: shop/views/cart.py:194
+#: shop/views/cart.py:195
 msgid "Choose a whole number."
 msgstr "Välj ett heltal."
 
-#: shop/views/cart.py:203
+#: shop/views/cart.py:204
 #: templates/404.html:10
 #: templates/500.html:10
 #: templates/shop_404.html:10
 msgid "Error"
 msgstr "Fel"
 
-#: shop/views/cart.py:221
+#: shop/views/cart.py:222
 msgid "You must accept the terms and conditions."
 msgstr "Du måste godkänna användarvillkoren."
 
-#: shop/views/cart.py:237
-#: shop/views/cart.py:271
+#: shop/views/cart.py:238
+#: shop/views/cart.py:272
 msgid "Internal error: please submit as a POST"
 msgstr "Internt fel: var god skicka som POST"
 
@@ -3160,23 +3178,32 @@ msgstr "Beskrivning av produkter som momsbeläggs."
 msgid "Tax Classes"
 msgstr "Momstyper"
 
-#: tax/models.py:45
+#: tax/models.py:43
+msgid "Tax Zone"
+msgstr "Skattzon"
+
+#: tax/models.py:46
+msgid "Tax Country"
+msgstr "Skattland"
+
+#: tax/models.py:47
+#: tax/models.py:59
 msgid "Percentage"
 msgstr "Procent"
 
-#: tax/models.py:46
+#: tax/models.py:48
 msgid "% tax for this area and type"
 msgstr "% moms för detta område och typ."
 
-#: tax/models.py:69
+#: tax/models.py:72
 msgid "You must choose a zone or a country."
 msgstr "Du måste välja en zon eller ett land."
 
-#: tax/models.py:75
+#: tax/models.py:78
 msgid "Tax Rate"
 msgstr "Momssats"
 
-#: tax/models.py:76
+#: tax/models.py:79
 #: templates/admin/satchmo_app_list.html:98
 msgid "Tax Rates"
 msgstr "Momssatser"
@@ -3331,7 +3358,7 @@ msgstr "Välkommen till butiken."
 
 #: templates/base_index.html:14
 msgid "Featured Items"
-msgstr ""
+msgstr "Utvalda produkter"
 
 #: templates/base_index.html:31
 #: templates/base_index.html.py:33
@@ -3385,7 +3412,7 @@ msgstr "Hittade ingenting"
 #: templates/shipping_options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
-msgstr "Skickat med %(method)s och kommer fram cirka %(expected_delivery)s."
+msgstr "Skickas med %(method)s och beräknas komma fram på %(expected_delivery)s."
 
 #: templates/thanks.html:12
 msgid "Thank you for contacting us."
@@ -3421,7 +3448,7 @@ msgstr "Fullt betald."
 
 #: templates/admin/_orderpayment_list.html:42
 msgid "Balance on order:"
-msgstr ""
+msgstr "Ordersaldo:"
 
 #: templates/admin/base_site.html:4
 #: templates/admin/base_site.html.py:7
@@ -3474,17 +3501,17 @@ msgid "Inventory Management"
 msgstr "Lagerhantering"
 
 #: templates/admin/inventory_form.html:112
-#: templates/admin/product_export_form.html:110
+#: templates/admin/product_export_form.html:111
 msgid "Helpers"
 msgstr "Hjälpmedel"
 
 #: templates/admin/inventory_form.html:113
 msgid "Mark all featured"
-msgstr ""
+msgstr "Markera alla utvalda"
 
 #: templates/admin/inventory_form.html:114
 msgid "Clear all featured"
-msgstr ""
+msgstr "Avmarkera alla utvalda"
 
 #: templates/admin/inventory_form.html:115
 msgid "Disable all Products with 0 quantity."
@@ -3577,7 +3604,7 @@ msgid "Import from fixture file:"
 msgstr "Importera från testfixturfil:"
 
 #: templates/admin/product_export_form.html:69
-#: templates/admin/product_export_form.html:108
+#: templates/admin/product_export_form.html:109
 msgid "Export"
 msgstr "Exportera"
 
@@ -3594,22 +3621,26 @@ msgid "Include images?"
 msgstr "Inkludera bilder?"
 
 #: templates/admin/product_export_form.html:107
+msgid "Include categories?"
+msgstr "Inkludera kategorier?"
+
+#: templates/admin/product_export_form.html:108
 msgid "Format?"
 msgstr "Format?"
 
-#: templates/admin/product_export_form.html:109
+#: templates/admin/product_export_form.html:110
 msgid "Reset"
 msgstr "Nollställ"
 
-#: templates/admin/product_export_form.html:111
+#: templates/admin/product_export_form.html:112
 msgid "Check all"
 msgstr "Markera alla"
 
-#: templates/admin/product_export_form.html:112
+#: templates/admin/product_export_form.html:113
 msgid "Uncheck all"
 msgstr "Avmarkera alla"
 
-#: templates/admin/product_export_form.html:115
+#: templates/admin/product_export_form.html:116
 msgid "No products."
 msgstr "Inga produkter."
 
@@ -3751,14 +3782,14 @@ msgid "Items Ordered"
 msgstr "Beställda varor"
 
 #: templates/checkout/base_confirm.html:40
-#: templates/checkout/paypal/confirm.html:35
+#: templates/checkout/paypal/confirm.html:36
 msgid "Purchase Items"
 msgstr "Köp varor"
 
 #: templates/checkout/base_pay_ship.html:18
 #: templates/checkout/form.html:24
 msgid "Please complete the following information in order to submit your order."
-msgstr "Var god fyll i följande information för att kunna skicka din beställning."
+msgstr "Var god fyll i följande information för att kunna lägga din order."
 
 #: templates/checkout/base_pay_ship.html:33
 msgid "Discount code"
@@ -3781,7 +3812,7 @@ msgstr "Bekräfta"
 #: templates/email/order_complete.txt:61
 #, python-format
 msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
-msgstr "Från ditt %(credit_card_type)s-kort som slutar med %(credit_card_number)s kommer att dras %(order_total)s."
+msgstr "%(order_total)s kommer att dras från ditt %(credit_card_type)s-kort som slutar med %(credit_card_number)s."
 
 #: templates/checkout/empty_cart.html:12
 msgid "Your cart is empty. Please add some items to your cart, then complete the checkout process."
@@ -3863,7 +3894,7 @@ msgstr "Skriv gärna ut denna sida som kvitto.  Du kommer också att få e-brev 
 #: templates/checkout/cod/confirm.html:17
 #, python-format
 msgid "This order will be COD for %(order_total)s."
-msgstr ""
+msgstr "Den här ordern skickas mot postförskott på %(order_total)s."
 
 #: templates/checkout/google/confirm.html:11
 msgid "Your payment will be processed through Google Checkout."
@@ -3873,7 +3904,7 @@ msgstr "Din betalning kommer att behandlas av Google Checkout."
 msgid "Fast checkout through Google"
 msgstr "Snabb utcheckning med Google"
 
-#: templates/checkout/paypal/confirm.html:10
+#: templates/checkout/paypal/confirm.html:11
 msgid "Your payment will be processed through PayPal."
 msgstr "Din betalning kommer att behandlas av PayPal."
 
@@ -4185,20 +4216,20 @@ msgstr "%(order_total)s drogs från ditt %(credit_card_type)s-kort (x%(credit_ca
 msgid "Thank you for your business!"
 msgstr "Tack för din beställning!"
 
-#: templates/product/detail_configurableproduct.html:102
+#: templates/product/detail_configurableproduct.html:103
 msgid "(incl. tax)"
 msgstr "(inkl. moms)"
 
-#: templates/product/detail_configurableproduct.html:118
+#: templates/product/detail_configurableproduct.html:119
 msgid "Please choose your options"
 msgstr "Var god gör dina val"
 
-#: templates/product/detail_customproduct.html:29
+#: templates/product/detail_customproduct.html:30
 #, python-format
 msgid "Custom order for %(name)s"
 msgstr "Anpassad ordning för %(name)s"
 
-#: templates/product/detail_customproduct.html:54
+#: templates/product/detail_customproduct.html:55
 msgid "more"
 msgstr "mer"
 
@@ -4220,15 +4251,15 @@ msgstr "Tack för att du registrerade dig! Du är nu inloggad."
 msgid "In the future, you can log in using your email address (%(email)s)."
 msgstr "I framtiden kan du logga in genom att använda din e-postadress (%(email)s)."
 
-#: templates/registration/activate.html:20
+#: templates/registration/activate.html:21
 #, python-format
 msgid "Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for %(expiration_days)s days after registration."
 msgstr "Antingen var din aktiveringslänk felaktig eller har aktiveringsnyckeln för ditt konto gått ut. Aktiveringsnycklar är endast giltiga %(expiration_days)s dagar efter registrering."
 
 #: templates/registration/activation_email.txt:1
 #, python-format
-msgid "Someone, hopefully you, signed up for a new account at %(site_url)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
-msgstr "Någon, förhoppningsvis du, registrerade ett nytt konto på %(site_url)s med den här e-postadressen. Om det var du, och du skulle vilja aktivera och använda ditt konto, klicka då på länken nedan eller kopiera och klistra in den i din webbläsares adressfält."
+msgid "Someone, hopefully you, signed up for a new account at %(site)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
+msgstr "Någon, förhoppningsvis du, registrerade ett nytt konto på %(site)s med den här e-postadressen. Om det var du, och du skulle vilja aktivera och använda ditt konto, klicka då på länken nedan eller kopiera och klistra in den i din webbläsares adressfält."
 
 #: templates/registration/activation_email.txt:5
 #, python-format
