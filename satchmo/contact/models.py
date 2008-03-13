@@ -718,9 +718,6 @@ class OrderItem(models.Model):
     discount = models.DecimalField(_("Line item discount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
         
-    def __init__(self, *args, **kwargs):
-        super(OrderItem, self).__init__(*args, **kwargs)
-        self.update_tax()
 
     def __unicode__(self):
         return self.product.translated_name()
@@ -744,6 +741,10 @@ class OrderItem(models.Model):
         return self.unit_price + self.unit_tax
     unit_price_with_tax = property(_unit_price_with_tax)
 
+    def save(self):
+        self.update_tax()
+        super(OrderItem, self).save()
+        
     def update_tax(self):
         taxclass = self.product.taxClass
         processor = tax.get_processor(order=self.order)
