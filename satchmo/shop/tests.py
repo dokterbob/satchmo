@@ -94,7 +94,7 @@ class ShopTest(TestCase):
         Validate we can add some items to the cart
         """
         response = self.client.get(prefix+'/product/DJ-Rocks/')
-        self.assertContains(response, "Django Rocks shirt", count=1, status_code=200)
+        self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
         response = self.client.post(prefix+'/cart/add/', { "productname" : "DJ-Rocks",
                                                       "1" : "L",
                                                       "2" : "BL",
@@ -116,7 +116,7 @@ class ShopTest(TestCase):
         Get a price/productname for a ProductVariation
         """
         response = self.client.get(prefix+'/product/DJ-Rocks/')
-        self.assertContains(response, "Django Rocks shirt", count=1, status_code=200)
+        self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
 
         # this tests the unmolested price from the ConfigurableProduct, and
         # makes sure we get a good productname back for the ProductVariation

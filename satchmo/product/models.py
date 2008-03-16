@@ -407,6 +407,7 @@ class Product(models.Model):
     height_units = models.CharField(_("Height units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
+    total_sold = models.IntegerField(_("Total sold"),default=0)
     taxable = models.BooleanField(_("Taxable"), default=False)
     taxClass = models.ForeignKey(TaxClass, verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
 

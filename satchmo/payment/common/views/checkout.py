@@ -12,6 +12,14 @@ def success(request):
         order = Order.objects.from_request(request)
     except Order.DoesNotExist:
         return bad_or_missing(request, _('Your order has already been processed.'))
+    
+    # Added to track total sold for each product
+    for item in order.orderitem_set.all():
+        product = item.product
+        product.total_sold += item.quantity
+        product.items_in_stock -= item.quantity
+        product.save()
+        
     del request.session['orderID']
     context = RequestContext(request, {'order': order})
     return render_to_response('checkout/success.html', context)
