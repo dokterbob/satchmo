@@ -10,3 +10,13 @@ class MutuallyExclusiveWithField(object):
         if all_data.get(self.other, False) and field_data or \
            not all_data.get(self.other, False) and not field_data:
             raise ValidationError, self.error_message
+
+class ValidateIfFieldsSame(object):
+    def __init__(self, other_field, error_message=_("These fields can not be the same.")):
+        self.other_field = other_field
+        self.always_test = True
+        self.error_message = error_message
+    
+    def __call__(self, field_data, all_data):
+        if field_data == all_data[self.other_field]:
+            raise ValidationError, self.error_message

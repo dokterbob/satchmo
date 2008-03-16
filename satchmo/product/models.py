@@ -20,6 +20,7 @@ from satchmo.thumbnail.field import ImageWithThumbnailField
 from sets import Set
 import logging
 from django.core.validators import RequiredIfOtherFieldGiven
+from satchmo.shop.utils.validators import ValidateIfFieldsSame
 try:
     from django.utils.safestring import mark_safe
 except ImportError:
@@ -58,6 +59,8 @@ length_validator = RequiredIfOtherFieldGiven('length', _("A unit of measure must
 width_validator = RequiredIfOtherFieldGiven('width', _("A unit of measure must be entered for the width"))
 height_validator = RequiredIfOtherFieldGiven('height', _("A unit of measure must be entered for the height"))
 weight_validator = RequiredIfOtherFieldGiven('weight', _("A unit of measure must be entered for the weight"))
+
+variant_validator = ValidateIfFieldsSame('product', _('The product and parent fields can not be the same.'))
 
 class Category(models.Model):
     """
@@ -1048,7 +1051,7 @@ class ProductVariation(models.Model):
     """
     product = models.OneToOneField(Product)
     options = models.ManyToManyField(Option, filter_interface=True, core=True)
-    parent = models.ForeignKey(ConfigurableProduct, core=True)
+    parent = models.ForeignKey(ConfigurableProduct, core=True, validator_list=[variant_validator])
     
     objects = ProductVariationManager()
 
