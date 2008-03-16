@@ -63,7 +63,22 @@ def confirm_info(request):
         
     create_pending_payment(order, payment_module)
     default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX') 
-
+  
+    recurring = None
+    order_items = order.orderitem_set.all()
+    for item in order_items:
+        if item.product.is_subscription:
+            recurring = {'product':item.product, 'price':item.product.price_set.all()[0].price,}
+            if len(order_items) > 1 or recurring['product'].subscriptionproduct.get_trial_terms(0) is not None or recurring['price'] < order.balance:
+                recurring['trial1'] = {'price': order.balance,}
+                if recurring['product'].subscriptionproduct.get_trial_terms(0) is not None:
+                    recurring['trial1']['expire_days'] = recurring['product'].subscriptionproduct.get_trial_terms(0).expire_days
+                else:
+                    recurring['trial1']['expire_days'] = recurring['product'].subscriptionproduct.get_trial_terms(0).expire_days
+                if recurring['product'].subscriptionproduct.get_trial_terms(1) is not None:
+                    recurring['trial2']['expire_days'] = recurring['product'].subscriptionproduct.get_trial_terms(1).expire_days
+                    recurring['trial2']['price'] = recurring['product'].subscriptionproduct.get_trial_terms(1).price
+ 
     ctx = RequestContext(request, {'order': order,
      'post_url': url,
      'default_view_tax': default_view_tax, 
@@ -71,6 +86,7 @@ def confirm_info(request):
      'currency_code': payment_module.CURRENCY_CODE.value,
      'return_address': address,
      'invoice': order.id,
+     'subscription': recurring,
      'PAYMENT_LIVE' : payment_live(payment_module)
     })
 
@@ -97,12 +113,16 @@ def ipn(request):
         if not confirm_ipn_data(data, PP_URL):
             return HttpResponse()
 
-        if not data['payment_status'] == "Completed":
+        if not 'payment_status' in data or not data['payment_status'] == "Completed":
             # We want to respond to anything that isn't a payment - but we won't insert into our database.
              log.info("Ignoring IPN data for non-completed payment.")
              return HttpResponse()
 
-        invoice = data['invoice']
+        try:
+            invoice = data['invoice']
+        except:
+            invoice = data['item_number']
+
         gross = data['mc_gross']
         txn_id = data['txn_id']
 
@@ -124,7 +144,9 @@ def ipn(request):
                 log.debug("Saved order notes from Paypal")
             
             order.add_status(status='Pending', notes=_("Paid through PayPal."))
-    
+            for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=1, completed=False):
+                item.completed = True
+                item.save()
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
 

@@ -27,6 +27,6 @@
   model: !!python/unicode 'configuration.setting'
   pk: !!python/long '7'
 - fields: {group: PRODUCT, key: PRODUCT_TYPES, site: 1, value: '["product::ConfigurableProduct",
-      "product::ProductVariation", "product::CustomProduct"]'}
+      "product::ProductVariation", "product::CustomProduct", "product::SubscriptionProduct"]'}
   model: configuration.setting
   pk: 8

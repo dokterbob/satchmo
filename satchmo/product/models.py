@@ -611,6 +611,18 @@ class Product(models.Model):
         return False
     is_downloadable = property(_get_downloadable)
 
+    def _get_subscription(self):
+        """
+        If this Product has any subtypes associated with it that are subscriptions, then
+        consider it subscription based.
+        """
+        for prod_type in self.get_subtypes():
+            subtype = getattr(self, prod_type.lower())
+            if hasattr(subtype, 'is_subscription'):
+                return True
+        return False
+    is_subscription = property(_get_subscription)
+    
     def _get_shippable(self):
         """
         If this Product has any subtypes associated with it that are not
@@ -954,6 +966,62 @@ class DownloadableProduct(models.Model):
         verbose_name = _("Downloadable Product")
         verbose_name_plural = _("Downloadable Products")
         
+class SubscriptionProduct(models.Model):
+    """
+    This type of Product is for recurring billing (memberships, subscriptions, payment terms)
+    """
+    product = models.OneToOneField(Product)
+    recurring = models.BooleanField(_("Recurring Billing"), help_text=_("Customer will be charged the regular product price on a periodic basis."), default=False)
+    recurring_times = models.IntegerField(_("Recurring Times"), help_text=_("Number of payments which will occur at the regular rate.  (optional)"), null=True, blank=True)
+    expire_days = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle (days)"), null=True, blank=True)
+    SHIPPING_CHOICES = (
+        ('0', _('No Shipping Charges')),
+        ('1', _('Pay Shipping Once')),
+        ('2', _('Pay Shipping Each Billing Cycle')),
+    )
+    is_shippable = models.IntegerField(_("Shippable?"), help_text=_("Is this product shippable?"), max_length=1, choices=SHIPPING_CHOICES)
+    
+    is_subscription = True
+
+    def __unicode__(self):
+        return self.product.slug
+    
+    # use order_success() and DownloadableProduct.create_key() to add user to group and perform other tasks
+    def get_trial_terms(self, trial=None):
+        """Get the trial terms for this subscription"""
+        if trial is None:
+            return self.trial_set.all().order_by('id')
+        else:
+            try:
+                return self.trial_set.all().order_by('id')[trial]
+            except IndexError:
+                return None
+        
+    class Admin:
+        pass
+        
+class Trial(models.Model):
+    """
+    Trial billing terms for subscription products.
+    Separating it out lets us have as many trial periods as we want.
+    Note that some third party payment processors support only a limited number of trial 
+    billing periods.  For example, PayPal limits us to 2 trial periods, so if you are using
+    PayPal for a billing option, you need to create no more than 2 trial periods for your 
+    product.  However, gateway based processors like Authorize.net can support as many
+    billing periods as you wish.
+    """
+    subscription = models.ForeignKey(SubscriptionProduct, edit_inline=models.STACKED, num_in_admin=2)
+    price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, core=True)
+    expire_days = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle (days).  Leave empty if product does not have a trial."), null=True, blank=True)
+
+    def __unicode__(self):
+        return unicode(self.price)
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = _("Trial Terms")
+        verbose_name_plural = _("Trial Terms")
+
 #class BundledProduct(models.Model):
 #    """
 #    This type of Product is a group of products that are sold as a set

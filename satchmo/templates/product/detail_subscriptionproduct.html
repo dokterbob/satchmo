@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_currency satchmo_category%}
+{% load satchmo_ratings %}
+{% block extra-head %}
+{% if product.meta %}
+    <meta name="description" content="{{product.meta}}">
+{% endif %}
+{% endblock %}
+
+{% block navbar %}
+
+<a href="{{ shop_base }}/">{% trans "Home" %}</a>
+{% for name, url in product.category.all.0.get_url_name %}
+    :: <a href="{{ url }}">{{ name }}</a>
+{% endfor %}
+
+{% endblock %}
+
+{% block sidebar %}
+    {% trans "Shop Categories" %}<br/>
+    <div id="menu_container">
+    {% category_tree product.get_category.id %}
+    </div>
+{% endblock %}
+
+{% block content %}
+<h4>{% blocktrans with product.translated_name as name %}Subscription product {{ name }}{% endblocktrans %}</h4>
+<p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
+<h4>{% trans "Only " %}{{product.subscriptionproduct.recurring_times}} {% trans "easy payments of:" %}</h4>
+<h3 id="price">{{ product.unit_price|currency }} </h3>
+
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+ {% for trial in product.subscriptionproduct.get_trial_terms %}
+    {% if forloop.first %} <p> {% blocktrans %}This product has trial subscription pricing {% endblocktrans %}</p><ul> {% endif %}
+    <li>{{trial.price|currency}} {% blocktrans %}for trial period of {% endblocktrans %}{{trial.expire_days}} {% trans "days" %} </li>
+    {% if forloop.last %} </ul> {% endif %}
+ {% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_cart_add %}" method="post">
+
+{% for option_group in options %}
+ {{ option_group.name}}
+    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+    {% for choice in option_group.items %}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
+        {% if choice.price_change %}
+            {% option_price choice %}
+        {% endif %}
+     </option>
+    {% endfor %}
+      </select><br/>
+{% endfor %}
+
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="submit" value="{% trans "Add to cart" %}" />
+</form>
+{% product_ratings %}
+{% endblock %}

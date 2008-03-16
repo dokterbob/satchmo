@@ -11,6 +11,7 @@ from satchmo.shop.models import Config
 from satchmo.shop.utils import load_module
 from socket import error as SocketError
 import logging
+import datetime
 
 log = logging.getLogger('pay_ship')
 
@@ -43,6 +44,19 @@ def pay_ship_save(new_order, cart, contact, shipping, discount):
     for item in cart.cartitem_set.all():
         new_order_item = OrderItem(order=new_order, product=item.product, quantity=item.quantity,
         unit_price=item.unit_price, line_item_price=item.line_total)
+        #if product is recuring, set subscription end
+        #if item.product.expire_days:
+        if item.product.is_subscription and item.product.subscriptionproduct.expire_days:
+            new_order_item.expire_date = datetime.datetime.now() + datetime.timedelta(days=item.product.subscriptionproduct.expire_days)
+        #if product has trial price, set it here and update expire_date with trial period.
+        trial = None
+        if item.product.is_subscription:
+            trial = item.product.subscriptionproduct.get_trial_terms()
+        if trial:
+            trial1 = trial[0]
+            new_order_item.unit_price = trial1.price
+            new_order_item.line_item_price = new_order_item.quantity * new_order_item.unit_price
+            new_order_item.expire_date = datetime.datetime.now() + datetime.timedelta(days=trial1.expire_days)
         new_order_item.save()
         if item.has_details:
             # Check to see if cartitem has CartItemDetails

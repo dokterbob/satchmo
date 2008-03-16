@@ -715,6 +715,8 @@ class OrderItem(models.Model):
         max_digits=18, decimal_places=10)
     tax = models.DecimalField(_("Line item tax"),
         max_digits=18, decimal_places=10, null=True)
+    expire_date = models.DateField(_("Subscription End"), help_text=_("Subscription expiration date."), blank=True, null=True)
+    completed = models.BooleanField(default=False)
     discount = models.DecimalField(_("Line item discount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
         

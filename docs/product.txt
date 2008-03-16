@@ -229,6 +229,50 @@ The final unique aspect is that you can elect to defer shipping charges on the o
 
 The custom product does not create product variations. The downside of this is that you must manage your inventory yourself but the upside is that you don't have all of those different configurations in your store. Feel free to play around with both products and see which one meets your needs the best.
 
+Subscription Product
+++++++++++++++++++++
+A subscription product is a product type that can be used to manage recurring billing memberships or to add payment terms to a non-membership product.
+
+In order to use this product,make sure you have the Subscription Product type enabled in the configuration settings. Additionally, if you would like to use a url to activate the rebilling, you will need to make sure the the setting ALLOW_URL_REBILL is set to True. If you do set it to tru, make sure that you add a new unique key in the CRON_KEY setting.
+
+To use a subscription product, you need to setup a base Product as described in the sections above.  The price you set for the base product will be the amount that is charged to your customer periodically based on your subscription schedule
+
+In order to use this product type, from the Product detail page, choose Add Subscription Product.
+
+On this screen, you will enter your subscription payment terms as described below.
+
+Recurring Billing
+    Select this if you want your customer to be charged the regular product price on a repeating schedule
+
+Recurring Times
+    Enter an integer here to limit the number of times your customer will be charged. (ie only 10 easy payment of $9.95)
+
+Duration
+    Enter the number of days between each billing cycle.
+
+Shippable?
+    The shipping charges, if any, that will be charged to your customer.
+
+Trial Terms:
+    Use this section to add trial pricing to your product (ie only $4.95 for the first 7 days, then $29.95 a month thereafter).
+        
+        Price:  The price of the trial period.  Enter 0 for a free trial, or a decimal number for a non-free trial (ie 9.94)
+        Trial Duration: The number of days the trial will last. Leave both price and trial duration blank if you do not want to add a trial.
+
+    Important Note About Trials:
+        You can add as many trial periods as you wish, unless you are using paypal as a payment option.  PayPal can only accept 2 trial periods.  If you are using PayPal, do not add more than 2 trial periods!
+
+Cronjob:
+In order for recurring billing to work, you need to setup a cronjob on your server to run once a day (preferably in the middle of the night).  Use settings similar to these:
+
+    0 23 * * * /usr/bin/lynx -source http://yourdomain.com/shop/checkout/cron/?key=YOURPASSKEY
+    You will need to set the CRON_KEY variable in your settings file to your desired passphrase.
+
+Alternatively, you can run the rebilling script as a shell script.  In that case, your cron job would look like this:
+    0 23 * * * sh /path/to/satchmo/rebilling_cron.sh
+    If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
+
+
 A short tutorial
 ----------------
 

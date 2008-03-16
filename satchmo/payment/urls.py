@@ -12,6 +12,7 @@ urlpatterns = patterns('satchmo.payment.views',
      (r'custom/charge/$', 'charge_remaining_post', {}, 'satchmo_charge_remaining_post'),
      (r'^balance/(?P<order_id>\d+)/$', 'balance_remaining_order', {'SSL' : config.SSL.value}, 'satchmo_balance_remaining_order'),
      (r'^balance/$', 'balance_remaining', {'SSL' : config.SSL.value}, 'satchmo_balance_remaining'),
+     (r'^cron/$', 'cron_rebill', {}, 'satchmo_cron_rebill'),
 )
 
 # now add all enabled module payment settings

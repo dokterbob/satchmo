@@ -13,12 +13,40 @@
 
 {% block payment_form %}
 <form action="{{ post_url }}" method="post">
-<input type="hidden" name="cmd" value="_cart" />
-<input type="hidden" name="upload" value="1" />
 <input type="hidden" name="business" value="{{ business }}" />
 <input type="hidden" name="currency_code" value="{{ currency_code }}" />
-<input type="hidden" name="no_shipping" value="1" />
 <input type="hidden" name="return" value="{{ return_address }}" />
+{% if subscription %}
+<input type="hidden" name="cmd" value="_xclick-subscriptions">
+<input type="hidden" name="item_name" value="{{ subscription.product.name }}">
+<input type="hidden" name="item_number" value="{{ invoice }}">
+<input type="hidden" name="invoice" value="{{ invoice }}" />
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="bn" value="PP-SubscriptionsBF">
+{% if subscription.trial1 %}
+<input type="hidden" name="a1" value="{{ subscription.trial1.price }}">
+<input type="hidden" name="p1" value="{{ subscription.trial1.expire_days }}">
+<input type="hidden" name="t1" value="D">
+{% endif %}
+{% if subscription.product.trial2_price %}
+<input type="hidden" name="a2" value="{{ subscription.product.trial2_price }}">
+<input type="hidden" name="p2" value="{{ subscription.product.trial2_expire_days }}">
+<input type="hidden" name="t2" value="D">
+{% endif %}
+<input type="hidden" name="a3" value="{{ subscription.price }}">
+<input type="hidden" name="p3" value="{{ subscription.product.subscriptionproduct.expire_days }}">
+<input type="hidden" name="t3" value="D">
+{% if subscription.product.recurring %}
+<input type="hidden" name="src" value="1">
+{% endif %}
+<input type="hidden" name="sra" value="1">
+<input type="hidden" name="srt" value="{{ recuring.recurring_times }}">
+{% else %}
+<input type="hidden" name="cmd" value="_cart" />
+<input type="hidden" name="upload" value="1" />
+<input type="hidden" name="no_shipping" value="1" />
 <input type="hidden" name="invoice" value="{{ invoice }}" />
 {% if order.partially_paid %}
 <input type="hidden" name="item_name_1" value="Remaining Balance for order {{ order.id }}" />
@@ -32,6 +60,7 @@
 {% endfor %}
 <input type="hidden" name="shipping_1" value="{{order.shipping_sub_total|truncate_decimal:2}}" />
 <input type="hidden" name="tax_cart" value="{{order.tax|truncate_decimal:2}}" />
+{% endif %}
 {% endif %}
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>

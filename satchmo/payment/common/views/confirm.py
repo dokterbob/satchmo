@@ -85,7 +85,11 @@ Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProce
     return render_to_response(template, context)
 
 def credit_success_handler(working_cart, order, payment_module):
-    working_cart.empty()    
+    working_cart.empty()
+    for item in order.orderitem_set.all():
+        if item.product.is_subscription:
+            item.completed = True
+            item.save()
     order.add_status(status='Pending', notes = "Order successfully submitted")
     send_order_confirmation(order)
     

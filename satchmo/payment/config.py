@@ -9,6 +9,22 @@ log = logging.getLogger('payment.config')
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT', _('Payment Settings'))
 
+CRON_KEY = config_register(
+    StringValue(PAYMENT_GROUP,
+        'CRON_KEY',
+        description=_("Cron Passkey"),
+        help_text=_("Enter an authentication passkey to secure your recurring billing cron url."),
+        default = "x1234replace_me")
+)
+
+ALLOW_URL_CRON = config_register(
+    BooleanValue(PAYMENT_GROUP,
+        'ALLOW_URL_REBILL',
+        description=_("Allow URL Access to Cron for subscription rebills"),
+        help_text=_("Do you want to allow remote url calls for subscription billing?"),
+        default = False)
+)
+
 PAYMENT_LIVE = config_register(
     BooleanValue(PAYMENT_GROUP, 
         'LIVE', 
