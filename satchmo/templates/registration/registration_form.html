@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block navbar %}
-<a href="{{shop_base}}/">{% trans "Home" %}</a> ::
-{% trans "Registration" %}
+   <li class="first"><a href="{{shop_base}}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Registration" %}</li>
 {% endblock %}
 
 {% block content %}

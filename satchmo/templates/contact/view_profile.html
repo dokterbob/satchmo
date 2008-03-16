@@ -3,8 +3,8 @@
 {% load satchmo_contact %}
 
 {% block navbar %}
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
-{% trans "Account" %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Account" %}</li>
 {% endblock %}
 
 {% block content %}

@@ -3,8 +3,8 @@
 {% load satchmo_order satchmo_currency %}
 
 {% block navbar %}
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
-{% trans "Checkout" %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
 {% endblock %}
 
 {% block content %}

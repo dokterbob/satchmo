@@ -6,8 +6,8 @@
 {% block errorheader %}The following error was returned while trying to process your card.  Please correct and resubmit{% endblock %}
 
 {% block navbar %}
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
-{% trans "Checkout" %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
 {% endblock %}
 
 {% block payment_display %}

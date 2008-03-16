@@ -5,7 +5,8 @@
 {% if default_view_tax %}{% load satchmo_tax %}{% endif %}
 
 {% block navbar %}
-<a href="{{shop_base}}/">{% trans "Home" %}</a>
+    <li class="first"><a href="{{shop_base}}/">{% trans "Home" %}</a></li>
+    <li>{% trans "Cart" %}</li>
 {% endblock %}
 
 {% block content %}

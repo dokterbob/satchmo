@@ -12,10 +12,11 @@
 
 {% block navbar %}
 
-<a href="{{ shop_base }}/">{% trans "Home" %}</a>
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
 {% for name, url in product.category.all.0.get_url_name %}
-    :: <a href="{{ url }}">{{ name }}</a>
+    <li><a href="{{ url }}">{{ name }}</a></li>    
 {% endfor %}
+<li>{{ product.translated_name }}</li>
 
 {% endblock %}
 

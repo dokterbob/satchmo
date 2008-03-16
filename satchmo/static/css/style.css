@@ -5,14 +5,17 @@ background-color: #fff;
 color: #333;
 border: 1px solid gray;
 line-height: 130%;
+padding: 0;
+margin-top: 0;
 }
 
 #navbar {
 width: 100%;
 background-color: #fff;
 color: #333;
-border: 1px solid silver;
 line-height: 90%;	
+border: none;
+border-bottom: 1px solid silver;
 }
 
 #top {
@@ -38,17 +41,37 @@ margin: 0;
 padding: 1em;
 }
 
+#leftnav h3, #rightnav h3 {
+	font-size: 110%;
+	font-weight: bold;
+	margin-bottom: 0.1em;
+	margin-top: 1em;	
+}
+
 #rightnav {
 float: right;
 width: 160px;
 margin: 0;
 padding: 1em;
+background-color: #ddd;
+border-left: 1px solid silver;
+border-bottom: 1px solid silver;
 }
+
+
 
 #content {
 margin-left: 200px;
 margin-right: 200px;
 padding: 1em;
+}
+
+body {
+	font-family:  "Arial", serif;
+	font-size: 12px;
+	background-color: #555;
+	margin-top: 0px;
+	padding-top: 0px;
 }
 
 #pagination {
@@ -126,6 +149,7 @@ padding: 0;
 list-style-type: none;
 }
 
+
 #shipping ul li {
 list-style-type: none;	
 text-decoration: none;
@@ -170,6 +194,17 @@ background-color: #ccc;
 
 #product_category ul li {
 list-style: none;
+padding: 0.5em;
+border-bottom: 1px dashed #e0e0e0;	
+background-color: white;
+}
+
+#product_category ul li:hover {
+	background-color: #f0fff0;
+}
+
+#product_category ul li a {
+	display: block;
 }
 
 #menu_container a {
@@ -236,3 +271,30 @@ table.ordertable thead {
 table.ordertable span.orderitemqty {
 	font-style: italic;
 }
+p {
+	line-height: 150%;
+}
+
+img {
+	border: none;
+}
+/* =============== Navigation Bars ===================== */
+
+#navbar ul {		
+	margin: 1em;
+	padding: 0px;
+}
+#navbar ul li { 
+	display: inline; 
+	list-style: none; 		
+}
+#navbar ul li { 
+	padding-left: 0.7em; 
+	padding-right: 0.5em; 
+	border-left: 1px solid #b0b0b0; 	
+}  
+#navbar ul li.first {
+	padding-left: 0em; 
+	border-left: none; 
+}  
+

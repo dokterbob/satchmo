@@ -15,27 +15,33 @@
     </div>
 
     <div id="navbar">
+    <ul>
     {% block navbar %}
-    Breadcrumbs here
-    {% endblock %}
+       Breadcrumbs here
+   {% endblock %}
+   </ul>
     </div>
 
     <div id="leftnav">
-        {% trans "Search" %}<br/>
-        <form id="search" action="{% url satchmo_search %}" method="get">
-            <input type="text" size="20" name="keywords" id="search_keywords" /><br/>
-            <input type="submit" value="{% trans "Search" %}" />
-         </form>
+	<div>
+            <h3>{% trans "Search" %}</h3>
+            <form id="search" action="{% url satchmo_search %}" method="get">
+                <input type="text" size="20" name="keywords" id="search_keywords" /><br/>
+                <input type="submit" value="{% trans "Search" %}" />
+             </form>
+	</div>
+	<div>
             {% block sidebar %}
-            {% trans "Shop Categories" %}<br/>
+            <h3>{% trans "Shop Categories" %}</h3>
             <div id="menu_container">
                 {% category_tree %}
             </div>
             {% endblock %}
         </div>
+     </div>
 
         <div id="rightnav">
-            {% trans "Account Information" %}<br/>
+            <h3>{% trans "Account Information" %}</h3>
             {% if user.is_authenticated %}
                 <a href="{% url satchmo_account_info %}">{% trans "Account Details" %}</a><br/>
                 <a href="{% url auth_logout %}">{% trans "Log out" %}</a><br/>

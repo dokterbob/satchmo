@@ -9,16 +9,18 @@
 {% endblock %}
 
 {% block navbar %}
-
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> 
+    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
 {% for urls in category.get_url_name %}
-    ::<a href="{{urls.1}}">{{ urls.0 }}</a>
+    {% if forloop.last %}
+    <li>{{ urls.0 }}</li>    
+    {% else %}
+    <li><a href="{{urls.1}}">{{ urls.0 }}</a></li>
+    {% endif %}
 {% endfor %}
-
 {% endblock %}
 
 {% block sidebar %}
-    {% trans "Shop Categories" %}<br/>
+    <h3>{% trans "Shop Categories" %}</h3>
     <div id="menu_container">
     {% category_tree category.id %}
     </div>
