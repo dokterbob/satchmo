@@ -36,6 +36,8 @@ Trunk
  * Fixed a bug with PDF generation in windows
  * Improved product export capability to support categories
  * Added Brazilian Portuguese translation
+ * Added a subscription product
+ * Cleaned up breadcrumbs to make it easier to modify via css
 
 Version 0.6, October 30, 2007
 ----------------
