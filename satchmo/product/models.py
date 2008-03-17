@@ -545,7 +545,7 @@ class Product(models.Model):
         list_display = ('slug', 'name', 'unit_price', 'items_in_stock', 'get_subtypes',)
         list_filter = ('category',)
         fields = (
-        (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','ordering')}),
+        (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}),
         (_('Meta Data'), {'fields': ('meta',), 'classes': 'collapse'}),
         (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': 'collapse'}),
         (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': 'collapse'}),
