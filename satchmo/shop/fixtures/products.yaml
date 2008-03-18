@@ -1,3 +1,77 @@
+- fields: {description: '', name: sizes, sort_order: !!python/long '1'}
+  model: product.optiongroup
+  pk: '1'
+- fields: {description: '', name: Book type, sort_order: !!python/long '1'}
+  model: product.optiongroup
+  pk: '3'
+- fields: {description: '', name: colors, sort_order: !!python/long '2'}
+  model: product.optiongroup
+  pk: '2'
+- fields: {description: '', name: Full/Upgrade, sort_order: !!python/long '5'}
+  model: product.optiongroup
+  pk: '4'
+- fields: {description: Internal RAM, name: Memory, sort_order: 2}
+  model: product.optiongroup
+  pk: 5
+- fields: {description: External Case, name: Case, sort_order: 3}
+  model: product.optiongroup
+  pk: 6
+- fields: {displayOrder: !!python/long '1', name: Small, optionGroup: !!python/long '1',
+    price_change: null, value: S}
+  model: product.option
+  pk: '1'
+- fields: {displayOrder: !!python/long '2', name: Medium, optionGroup: !!python/long '1',
+    price_change: null, value: M}
+  model: product.option
+  pk: '2'
+- fields:
+    displayOrder: !!python/long '3'
+    name: Large
+    optionGroup: !!python/long '1'
+    price_change: !!python/object/apply:decimal.Decimal ['1.00']
+    value: L
+  model: product.option
+  pk: '3'
+- fields: {displayOrder: !!python/long '1', name: Black, optionGroup: !!python/long '2',
+    price_change: null, value: B}
+  model: product.option
+  pk: '4'
+- fields: {displayOrder: !!python/long '2', name: White, optionGroup: !!python/long '2',
+    price_change: null, value: W}
+  model: product.option
+  pk: '5'
+- fields:
+    displayOrder: !!python/long '3'
+    name: Blue
+    optionGroup: !!python/long '2'
+    price_change: !!python/object/apply:decimal.Decimal ['2.00']
+    value: BL
+  model: product.option
+  pk: '6'
+- fields: {displayOrder: !!python/long '1', name: Hard cover, optionGroup: !!python/long '3',
+    price_change: null, value: hard}
+  model: product.option
+  pk: '7'
+- fields:
+    displayOrder: !!python/long '2'
+    name: Soft cover
+    optionGroup: !!python/long '3'
+    price_change: !!python/object/apply:decimal.Decimal ['1.00']
+    value: soft
+  model: product.option
+  pk: '8'
+- fields: {displayOrder: !!python/long '3', name: On tape, optionGroup: !!python/long '3',
+    price_change: null, value: tape}
+  model: product.option
+  pk: '9'
+- fields: {displayOrder: !!python/long '1', name: Full Version, optionGroup: !!python/long '4',
+    price_change: null, value: full}
+  model: product.option
+  pk: '10'
+- fields: {displayOrder: !!python/long '2', name: Upgrade Version, optionGroup: !!python/long '4',
+    price_change: null, value: upgrade}
+  model: product.option
+  pk: '11'
 - fields: {description: Women's Shirts, meta: null, name: Shirts, parent: null, slug: shirts}
   model: product.category
   pk: '1'
@@ -489,74 +563,6 @@
     width: null
   model: product.product
   pk: '20'
-- fields: {description: '', name: sizes, sort_order: !!python/long '1'}
-  model: product.optiongroup
-  pk: '1'
-- fields: {description: '', name: Book type, sort_order: !!python/long '1'}
-  model: product.optiongroup
-  pk: '3'
-- fields: {description: '', name: colors, sort_order: !!python/long '2'}
-  model: product.optiongroup
-  pk: '2'
-- fields: {description: '', name: Full/Upgrade, sort_order: !!python/long '5'}
-  model: product.optiongroup
-  pk: '4'
-- fields: {displayOrder: !!python/long '1', name: Small, optionGroup: !!python/long '1',
-    price_change: null, value: S}
-  model: product.option
-  pk: '1'
-- fields: {displayOrder: !!python/long '2', name: Medium, optionGroup: !!python/long '1',
-    price_change: null, value: M}
-  model: product.option
-  pk: '2'
-- fields:
-    displayOrder: !!python/long '3'
-    name: Large
-    optionGroup: !!python/long '1'
-    price_change: !!python/object/apply:decimal.Decimal ['1.00']
-    value: L
-  model: product.option
-  pk: '3'
-- fields: {displayOrder: !!python/long '1', name: Black, optionGroup: !!python/long '2',
-    price_change: null, value: B}
-  model: product.option
-  pk: '4'
-- fields: {displayOrder: !!python/long '2', name: White, optionGroup: !!python/long '2',
-    price_change: null, value: W}
-  model: product.option
-  pk: '5'
-- fields:
-    displayOrder: !!python/long '3'
-    name: Blue
-    optionGroup: !!python/long '2'
-    price_change: !!python/object/apply:decimal.Decimal ['2.00']
-    value: BL
-  model: product.option
-  pk: '6'
-- fields: {displayOrder: !!python/long '1', name: Hard cover, optionGroup: !!python/long '3',
-    price_change: null, value: hard}
-  model: product.option
-  pk: '7'
-- fields:
-    displayOrder: !!python/long '2'
-    name: Soft cover
-    optionGroup: !!python/long '3'
-    price_change: !!python/object/apply:decimal.Decimal ['1.00']
-    value: soft
-  model: product.option
-  pk: '8'
-- fields: {displayOrder: !!python/long '3', name: On tape, optionGroup: !!python/long '3',
-    price_change: null, value: tape}
-  model: product.option
-  pk: '9'
-- fields: {displayOrder: !!python/long '1', name: Full Version, optionGroup: !!python/long '4',
-    price_change: null, value: full}
-  model: product.option
-  pk: '10'
-- fields: {displayOrder: !!python/long '2', name: Upgrade Version, optionGroup: !!python/long '4',
-    price_change: null, value: upgrade}
-  model: product.option
-  pk: '11'
 - fields:
     create_subs: false
     option_group: [!!python/long '1', !!python/long '2']
@@ -663,6 +669,63 @@
 #  model: product.productvariation
 #  pk: '22'
 - fields:
+      sort: !!python/long '1'
+      picture: 'images/productimage-picture-default.jpg'
+      caption: 'Photo Not Available'
+  model: product.productimage
+  pk: '1'
+- fields:
+    active: true
+    also_purchased: []
+    category: [8]
+    date_added: 2008-02-19
+    description: Satchmo computer. It does it all!
+    featured: false
+    height: null
+    height_units: ''
+    items_in_stock: 0
+    length: null
+    length_units: ''
+    meta: ''
+    name: satchmo computer
+    ordering: 0
+    related_items: []
+    short_description: Not much else to say.
+    sku: satch-1
+    slug: satchmo-computer
+    taxClass: null
+    taxable: false
+    weight: null
+    weight_units: ''
+    width: null
+    width_units: ''
+  model: product.product
+  pk: 30
+- fields: {displayOrder: 1, name: 1 GB, optionGroup: 5, price_change: '0.000000',
+    value: 1gb}
+  model: product.option
+  pk: 12
+- fields: {displayOrder: 2, name: 1.5 GB, optionGroup: 5, price_change: '25.000000',
+    value: 1.5gb}
+  model: product.option
+  pk: 13
+- fields: {displayOrder: 3, name: 2 GB, optionGroup: 5, price_change: '50.000000',
+    value: 2gb}
+  model: product.option
+  pk: 14
+- fields: {displayOrder: 1, name: Cheap, optionGroup: 6, price_change: '0.000000',
+    value: cheap}
+  model: product.option
+  pk: 15
+- fields: {displayOrder: 2, name: Mid, optionGroup: 6, price_change: '10.000000',
+    value: mid}
+  model: product.option
+  pk: 16
+- fields: {displayOrder: 3, name: Large Tower, optionGroup: 6, price_change: '11.000000',
+    value: tower}
+  model: product.option
+  pk: 17
+- fields:
     expires: null
     price: !!python/object/apply:decimal.Decimal ['2.00']
     product: !!python/long '21'
@@ -721,74 +784,11 @@
   model: product.price
   pk: 5
 - fields:
-      sort: !!python/long '1'
-      picture: 'images/productimage-picture-default.jpg'
-      caption: 'Photo Not Available'
-  model: product.productimage
-  pk: '1'
-- fields:
-    active: 1
-    also_purchased: []
-    category: [8]
-    date_added: 2008-02-19
-    description: Satchmo computer. It does it all!
-    featured: 0
-    height: null
-    height_units: ''
-    items_in_stock: 0
-    length: null
-    length_units: ''
-    meta: ''
-    name: satchmo computer
-    ordering: 0
-    related_items: []
-    short_description: Not much else to say.
-    sku: satch-1
-    slug: satchmo-computer
-    taxClass: null
-    taxable: 0
-    weight: null
-    weight_units: ''
-    width: null
-    width_units: ''
-  model: product.product
-  pk: 30
-- fields:
-    deferred_shipping: 0
+    deferred_shipping: false
     downpayment: 100
     option_group: [5, 6]
   model: product.customproduct
   pk: 30
-- fields: {displayOrder: 1, name: 1 GB, optionGroup: 5, price_change: '0.000000',
-    value: 1gb}
-  model: product.option
-  pk: 12
-- fields: {displayOrder: 2, name: 1.5 GB, optionGroup: 5, price_change: '25.000000',
-    value: 1.5gb}
-  model: product.option
-  pk: 13
-- fields: {displayOrder: 3, name: 2 GB, optionGroup: 5, price_change: '50.000000',
-    value: 2gb}
-  model: product.option
-  pk: 14
-- fields: {displayOrder: 1, name: Cheap, optionGroup: 6, price_change: '0.000000',
-    value: cheap}
-  model: product.option
-  pk: 15
-- fields: {displayOrder: 2, name: Mid, optionGroup: 6, price_change: '10.000000',
-    value: mid}
-  model: product.option
-  pk: 16
-- fields: {displayOrder: 3, name: Large Tower, optionGroup: 6, price_change: '11.000000',
-    value: tower}
-  model: product.option
-  pk: 17
-- fields: {description: Internal RAM, name: Memory, sort_order: 2}
-  model: product.optiongroup
-  pk: 5
-- fields: {description: External Case, name: Case, sort_order: 3}
-  model: product.optiongroup
-  pk: 6
 - fields: {name: Monogram, price_change: '10.000000', products: 30, slug: monogram,
     sort_order: 1}
   model: product.customtextfield

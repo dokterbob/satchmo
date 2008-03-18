@@ -97,6 +97,9 @@ class Category(models.Model):
 
     main_image = property(_get_mainImage)
 
+    def active_products(self):
+        return self.product_set.filter(active=True)
+
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
 
