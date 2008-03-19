@@ -72,12 +72,15 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
             orderpayment = create_pending_payment(newOrder, payment_module)
 
             # Save the credit card information.
-            cc = CreditCardDetail(orderpayment=orderpayment, ccv=data['ccv'],
+            cc = CreditCardDetail(orderpayment=orderpayment,
                 expireMonth=data['month_expires'],
                 expireYear=data['year_expires'],
                 creditType=data['credit_type'])
             cc.storeCC(data['credit_number'])
             cc.save()
+            
+            # set ccv into cache
+            cc.ccv = data['ccv']
 
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))

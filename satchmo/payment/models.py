@@ -11,6 +11,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 #from modules.giftcertificate.utils import generate_certificate_code
+from satchmo import caching
 from satchmo.contact.models import Contact, OrderPayment
 from satchmo.payment.config import payment_choices, credit_choices
 import base64
@@ -54,10 +55,9 @@ class CreditCardDetail(models.Model):
         max_length=40, blank=True, null=True, editable=False)
     expireMonth = models.IntegerField(_("Expiration Month"))
     expireYear = models.IntegerField(_("Expiration Year"))
-    ccv = models.IntegerField(_("CCV"), blank=True, null=True)
     
     def storeCC(self, ccnum):
-        # Take as input a valid cc, encrypt it and store the last 4 digits in a visible form
+        """Take as input a valid cc, encrypt it and store the last 4 digits in a visible form"""
         # Must remember to save it after calling!
         secret_key = settings.SECRET_KEY
         encryption_object = Blowfish.new(secret_key)
@@ -67,6 +67,23 @@ class CreditCardDetail(models.Model):
             padding = 'X' * (8 - (len(ccnum) % 8))
         self.encryptedCC = base64.b64encode(encryption_object.encrypt(ccnum + padding))
         self.displayCC = ccnum[-4:]
+    
+    def setCCV(self, ccv):
+        """Put the CCV in the cache, don't save it for security/legal reasons."""
+        if not self.encryptedCC:
+            raise ValueError('CreditCardDetail expecting a credit card number to be stored before storing CCV')
+            
+        caching.cache_set(self.encryptedCC, skiplog=True, length=60*60, value=ccv)
+    
+    def getCCV(self):
+        try:
+            ccv = caching.cache_get(self.encryptedCC)
+        except caching.NotCachedError:
+            ccv = ""
+
+        return ccv
+    
+    ccv = property(fget=getCCV, fset=setCCV)
     
     def _decryptCC(self):
         secret_key = settings.SECRET_KEY
