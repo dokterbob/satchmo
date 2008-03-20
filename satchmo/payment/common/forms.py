@@ -119,7 +119,7 @@ class CreditPayShipForm(SimplePayShipForm):
     credit_number = forms.CharField(max_length=20)
     month_expires = forms.ChoiceField(choices=[(month,month) for month in range(1,13)])
     year_expires = forms.ChoiceField()
-    ccv = forms.IntegerField() # find min_length
+    ccv = forms.CharField() # find min_length
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         creditchoices = paymentmodule.CREDITCHOICES.choice_values
@@ -161,3 +161,11 @@ class CreditPayShipForm(SimplePayShipForm):
         if datetime.date.today() > datetime.date(year=year, month=month, day=max_day):
             raise forms.ValidationError(_('Your card has expired.'))
         return year
+    
+    def clean_ccv(self):
+        """ Validate a proper CCV is entered. Remember it can have a leading 0 so don't convert to int and return it"""
+        try:
+            check = int(self.cleaned_data['ccv'])
+            return self.cleaned_data['ccv']
+        except ValueError:
+            raise forms.ValidationError(_('Invalid ccv.'))
