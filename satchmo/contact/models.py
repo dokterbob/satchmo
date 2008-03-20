@@ -693,7 +693,7 @@ class Order(models.Model):
                 'timestamp')}))
         list_display = ('contact', 'timestamp', 'order_total', 'balance_forward', 'status',
             'invoice', 'packingslip', 'shippinglabel')
-        list_filter = ['timestamp', 'contact']
+        list_filter = ['timestamp', 'contact', 'status']
         date_hierarchy = 'timestamp'
 
     class Meta:
