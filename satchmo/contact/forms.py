@@ -69,7 +69,7 @@ class ContactInfoForm(forms.Form):
             country_iso2 = self.data['country']
         data = self.cleaned_data['state']
         country = Country.objects.get(iso2_code=country_iso2)
-        if country.adminarea_set.count() > 0:
+        if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \
@@ -89,7 +89,7 @@ class ContactInfoForm(forms.Form):
 
         data = self.cleaned_data['ship_state']
         country = Country.objects.get(iso2_code=country_iso2)
-        if country.adminarea_set.count() > 0:
+        if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \

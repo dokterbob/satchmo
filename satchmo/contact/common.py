@@ -25,7 +25,7 @@ def get_area_country_options(request):
     options = {}
     areas = countries = None
 
-    area_choices = default_country.adminarea_set.all()
+    area_choices = default_country.adminarea_set.filter(active=True)
     if area_choices:
         areas = [('', selection)]
         for area in area_choices:
