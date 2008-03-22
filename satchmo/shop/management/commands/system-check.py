@@ -40,7 +40,10 @@ class Command(NoArgsCommand):
             import registration
         except ImportError:
             errors.append("Django registration is not installed.")
-            
+        try:
+            import yaml
+        except ImportError:
+            errors.append("YAML is not installed.")
         python_ver = Decimal("%s.%s" % (sys.version_info[0], sys.version_info[1]))
         if python_ver < Decimal("2.4"):
             errors.append("Python version must be at least 2.4.")
