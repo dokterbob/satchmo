@@ -50,7 +50,7 @@ class PaymentProcessor(object):
         self.postString = urlencode(self.configuration) + "&" + urlencode(self.transactionData) + "&" + urlencode(self.custBillData)
         self.order = data
 
-    def process(self):
+    def process(self, testing=False):
         # Execute the post to Authorize Net
         conn = urllib2.Request(url=self.connection, data=self.postString)
         f = urllib2.urlopen(conn)
@@ -60,7 +60,8 @@ class PaymentProcessor(object):
         reason_code = parsed_results[1]
         response_text = parsed_results[3]
         if response_code == '1':
-            record_payment(self.order, self.settings, amount=self.order.balance)
+            if not testing:
+                record_payment(self.order, self.settings, amount=self.order.balance)
             return(True, reason_code, response_text)
         elif response_code == '2':
             return(False, reason_code, response_text)
@@ -106,10 +107,10 @@ if __name__ == "__main__":
     sampleOrder.bill_state = 'TN'
     sampleOrder.bill_city = 'Some City'
     sampleOrder.bill_country = 'US'
-    sampleOrder.total = "27.00"
-    sampleOrder.balance = "27.00"
+    sampleOrder.total = "27.01"
+    sampleOrder.balance = "27.01"
     sampleOrder.credit_card.decryptedCC = '6011000000000012'
-    sampleOrder.credit_card.expirationDate = "10/09"
+    sampleOrder.credit_card.expirationDate = "10/11"
     sampleOrder.credit_card.ccv = "144"
 
     authorize_settings = config_get_group('PAYMENT_AUTHORIZENET')
@@ -118,7 +119,7 @@ if __name__ == "__main__":
         
     processor = PaymentProcessor(authorize_settings)
     processor.prepareData(sampleOrder)
-    results, reason_code, msg = processor.process()
+    results, reason_code, msg = processor.process(testing=True)
     print results,"::", msg
 
 
