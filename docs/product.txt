@@ -233,7 +233,7 @@ Subscription Product
 ++++++++++++++++++++
 A subscription product is a product type that can be used to manage recurring billing memberships or to add payment terms to a non-membership product.
 
-In order to use this product,make sure you have the Subscription Product type enabled in the configuration settings. Additionally, if you would like to use a url to activate the rebilling, you will need to make sure the the setting ALLOW_URL_REBILL is set to True. If you do set it to tru, make sure that you add a new unique key in the CRON_KEY setting.
+In order to use this product,make sure you have the Subscription Product type enabled in the configuration settings. Additionally, if you would like to use a url to activate the rebilling, you will need to make sure the the setting ALLOW_URL_REBILL is set to True. If you do set it to True, make sure that you add a new unique key in the CRON_KEY setting.
 
 To use a subscription product, you need to setup a base Product as described in the sections above.  The price you set for the base product will be the amount that is charged to your customer periodically based on your subscription schedule
 

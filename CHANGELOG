@@ -38,6 +38,9 @@ Trunk
  * Added Brazilian Portuguese translation
  * Added a subscription product
  * Cleaned up breadcrumbs to make it easier to modify via css
+ * Removed storage of ccv field in database
+ * Actually keep track of items when they are sold
+ * Swedish and German translation updates
 
 Version 0.6, October 30, 2007
 ----------------
