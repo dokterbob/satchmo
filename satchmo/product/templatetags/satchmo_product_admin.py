@@ -2,6 +2,7 @@ from django import template
 from django.conf import settings
 from django.template import Context, Template
 from satchmo.configuration import config_value
+from django.utils.translation import get_language, ugettext_lazy as _
 
 register = template.Library()
 
@@ -31,9 +32,9 @@ def edit_subtypes(product):
     for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
         app, subtype = key.split("::")
         if subtype in product.get_subtypes():
-            output += '<li><a href="/admin/%s/%s/%s/">Edit %s</a></li>'%(app, subtype.lower(), product.id, subtype)
+            output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.id) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
         else:
-            output += ' <li><a href="/admin/%s/%s/add/?product_id=%s">Add %s</a></li>'%(app, subtype.lower(), product.id, subtype)
+            output += ' <li><a href="/admin/%s/%s/add/?product_id=%s">' %(app, subtype.lower(), product.id) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'
 
     output += '</ul>'
     return output

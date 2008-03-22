@@ -210,7 +210,7 @@ class ShippingTier(models.Model):
         help_text=_('The minumum price for this tier to apply'), 
         max_digits=10, decimal_places=2, core=True)
     price = models.DecimalField(_("Shipping Price"), max_digits=10, decimal_places=2, core=True)
-    expires = models.DateField(null=True, blank=True)
+    expires = models.DateField(_("Expires"), null=True, blank=True)
     
     def __unicode__(self):
         return u"ShippingTier: %s @ %s" % (self.price, self.min_total)

@@ -6,7 +6,7 @@
 
 <div class="orderdetails">
 <h4>{% trans 'Order #' %} {{ order.id }}</h4>
-<h4>Status</h4>
+<h4>{% trans 'Status' %}</h4>
 {% for status in order.orderstatus_set.all %}
 <p>{{status.timestamp|date:"F jS Y H:i" }}: {{ status.status }}<br/>
 {% if status.notes %}<i>{{ status.notes }}</i>{% endif %}

@@ -67,7 +67,7 @@ class Category(models.Model):
     Basic hierarchical category model for storing products
     """
     name = models.CharField(_("Name"), core=True, max_length=200)
-    slug = models.SlugField(prepopulate_from=('name',),
+    slug = models.SlugField(_("Slug"), prepopulate_from=('name',),
         help_text=_("Used for URLs"))
     parent = models.ForeignKey('self', blank=True, null=True,
         related_name='child')
@@ -578,7 +578,7 @@ class Product(models.Model):
             except models.ObjectDoesNotExist:
                 pass
         return tuple(types)
-    get_subtypes.short_description = "Product SubTypes"
+    get_subtypes.short_description = _("Product Subtypes")
     
     def get_subtype_with_attr(self, attr):
         for type in self.get_subtypes():
@@ -762,7 +762,7 @@ class CustomTextField(models.Model):
     """
 
     name = models.CharField(_('Custom field name'), max_length=40, core=True)
-    slug = models.SlugField()
+    slug = models.SlugField(_('Slug'))
     products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'),
         edit_inline=models.TABULAR, num_in_admin=3, related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
@@ -801,8 +801,8 @@ class ConfigurableProduct(models.Model):
     This is a sort of virtual product that is visible to the customer, but isn't actually stocked on a shelf,
     the specific "shelf" product is determined by the selected options.
     """
-    product = models.OneToOneField(Product)
-    option_group = models.ManyToManyField(OptionGroup, blank=True,)
+    product = models.OneToOneField(Product, verbose_name=_("Product"))
+    option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
 
     def _cross_list(self, sequences):
@@ -945,11 +945,11 @@ class DownloadableProduct(models.Model):
     """
     This type of Product is a file to be downloaded
     """
-    product = models.OneToOneField(Product)
-    file = models.FileField(upload_to=protected_dir())
-    num_allowed_downloads = models.IntegerField(help_text=_("Number of times link can be accessed."))
-    expire_minutes = models.IntegerField(help_text=_("Number of minutes the link should remain active."))
-    active = models.BooleanField(help_text=_("Is this download currently active?"), default=True)
+    product = models.OneToOneField(Product, verbose_name=_("Product"))
+    file = models.FileField(_("File"), upload_to=protected_dir())
+    num_allowed_downloads = models.IntegerField(_("Num allowed downloads"), help_text=_("Number of times link can be accessed."))
+    expire_minutes = models.IntegerField(_("Expire minutes"), help_text=_("Number of minutes the link should remain active."))
+    active = models.BooleanField(_("Active"), help_text=_("Is this download currently active?"), default=True)
     is_shippable = False
     is_downloadable = True
 
@@ -977,7 +977,7 @@ class SubscriptionProduct(models.Model):
     """
     This type of Product is for recurring billing (memberships, subscriptions, payment terms)
     """
-    product = models.OneToOneField(Product)
+    product = models.OneToOneField(Product, verbose_name=_("Product"))
     recurring = models.BooleanField(_("Recurring Billing"), help_text=_("Customer will be charged the regular product price on a periodic basis."), default=False)
     recurring_times = models.IntegerField(_("Recurring Times"), help_text=_("Number of payments which will occur at the regular rate.  (optional)"), null=True, blank=True)
     expire_days = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle (days)"), null=True, blank=True)
@@ -1006,6 +1006,10 @@ class SubscriptionProduct(models.Model):
         
     class Admin:
         pass
+
+    class Meta:
+        verbose_name = _("Subscription Product")
+        verbose_name_plural = _("Subscription Products")
         
 class Trial(models.Model):
     """
@@ -1052,9 +1056,9 @@ class ProductVariation(models.Model):
     ConfigurableProduct with the matching Options selected
 
     """
-    product = models.OneToOneField(Product)
-    options = models.ManyToManyField(Option, filter_interface=True, core=True)
-    parent = models.ForeignKey(ConfigurableProduct, core=True, validator_list=[variant_validator])
+    product = models.OneToOneField(Product, verbose_name=_('Product'))
+    options = models.ManyToManyField(Option, filter_interface=True, core=True, verbose_name=_('Options'))
+    parent = models.ForeignKey(ConfigurableProduct, core=True, validator_list=[variant_validator], verbose_name=_('Parent'))
     
     objects = ProductVariationManager()
 
@@ -1211,7 +1215,7 @@ class Price(models.Model):
     product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=2)
     price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, core=True)
     quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
-    expires = models.DateField(null=True, blank=True)
+    expires = models.DateField(_("Expires"), null=True, blank=True)
     #TODO: add fields here for locale/currency specific pricing
 
     def __unicode__(self):

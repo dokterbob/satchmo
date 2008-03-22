@@ -8,7 +8,7 @@
 {{ payment.timestamp|date:"y-M-d H:i" }} {{ payment.payment|payment_label }} - {{ payment.amount|currency }}<br/>
 {% if forloop.last %}
 {% with order.balance|currency as balance %}
-Balance = {{ balance }}
+{% blocktrans %}Balance = {{ balance }} {% endblocktrans %}
 {% endwith %}
 {% endif %}
 {% if paylink and not order.paid_in_full %}

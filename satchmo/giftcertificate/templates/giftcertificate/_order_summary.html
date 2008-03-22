@@ -2,7 +2,7 @@
 {% load satchmo_currency %}
 {% for cert in order.giftcertificates.all %}
 {% if forloop.first %}
-<h4>Gift Certificate Codes</h4>
+<h4>{% trans "Gift Certificate Codes" %}</h4>
 {% endif %}
 <p class="giftcertificate">{% trans 'Gift Certificate' %}<br/>
 {% if cert.recipient_email %}

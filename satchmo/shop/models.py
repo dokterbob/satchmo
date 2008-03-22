@@ -44,7 +44,7 @@ class Config(models.Model):
     Used to store specific information about a store.  Also used to
     configure various store behaviors
     """
-    site = models.OneToOneField(Site)
+    site = models.OneToOneField(Site, verbose_name=_("Site"))
     store_name = models.CharField(_("Store Name"),max_length=100, unique=True)
     store_description = models.TextField(_("Description"), blank=True, null=True)
     store_email = models.EmailField(_("Email"), blank=True, null=True)

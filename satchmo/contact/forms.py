@@ -31,7 +31,7 @@ class ContactInfoForm(forms.Form):
     ship_country = forms.CharField(max_length=30, required=False)
 
     def __init__(self, countries, areas, contact, *args, **kwargs):
-        super(ContactInfoForm, self).__init__(*args, **kwargs)
+        super(ContactInfoForm, self).__init__(*args, **kwargs)        
         if areas is not None and countries is None:
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)

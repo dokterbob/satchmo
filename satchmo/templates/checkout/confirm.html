@@ -3,7 +3,7 @@
 {% load satchmo_currency %}
 {# this is the credit-card confirm template #}
 
-{% block errorheader %}The following error was returned while trying to process your card.  Please correct and resubmit{% endblock %}
+{% block errorheader %}{% trans "The following error was returned while trying to process your card.  Please correct and resubmit" %}{% endblock %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
