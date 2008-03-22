@@ -32,9 +32,9 @@ For the account registration process, you will need:
 
 A valid Django cache backend (file, memcached or DB) is required for the config settings.
 
-The following packages are optional but encouraged:
+The following package is required to load the initial data and run the unit tests:
 
-- `PyYaml`_ (For unit tests)
+- `PyYaml`_ 
 
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _Python Imaging Library: http://www.pythonware.com/products/pil/

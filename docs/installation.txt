@@ -98,27 +98,35 @@ dependencies mentioned in the requirements section.
 	urlpatterns += shoppatterns 
 	
    Copy (for windows) or symlink satchmo/tax and satchmo/load_data.py into the root of your app.
+   
+9.  In order to test your Satchmo setup, execute the following command::
+
+        python manage.py satchmocheck
 		
 .. warning::
     The next step can erase data in the satchmo database. Be sure to have a backup of any critical data.
 
-9.  Load the sample data::
+10.  Load the sample data::
 
         python load_data.py
     
-10.  When prompted, enter Yes to all the questions if you want to erase everything.  This script will also install the i18n data.
+11.  When prompted, enter Yes to all the questions if you want to erase everything.  This script will also install the i18n data.
 
-11.  Start up the sample webserver to see your store::
+12.  Start up the sample webserver to see your store::
 
         python manage.py runserver
         
-12.  In order to see your sample store, point your browser to::
+13.  In order to see your sample store, point your browser to::
     
         http://localhost/shop to see your store
 
-13.  If you want to see the admin interface, point your browser to::
+14.  If you want to see the admin interface, point your browser to::
 
         http://localhost/admin
+        
+15.  Many configuration and customization settings are accessed through the url::
+
+        http://localhost/settings
 
 .. note::
     The above urls will be dependent on your Django setup.  If you're running the webserver on the
