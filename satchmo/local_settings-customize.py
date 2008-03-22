@@ -24,14 +24,6 @@ DIRNAME = os.path.dirname(__file__)
 #DJANGO_PROJECT = 'Your Main Project Name'
 #DJANGO_SETTINGS_MODULE = 'main-project.settings'
 
-# Make sure Satchmo templates are added to your existing templates
-# TEMPLATE_DIRS += (
-#    os.path.join(SATCHMO_DIRNAME, "templates"),
-#)
-
-# Make sure Satchmo context processor is called
-# TEMPLATE_CONTEXT_PROCESSORS += ('satchmo.shop.context_processors.settings')
-
 DATABASE_NAME = ''
 DATABASE_PASSWORD = ''
 DATABASE_USER = ''
@@ -85,8 +77,8 @@ CUSTOM_PRODUCT_MODULES = []
 # db, personally.  See: http://www.djangoproject.com/documentation/cache/ for help setting up your
 # cache backend
 #CACHE_BACKEND = "memcached://127.0.0.1:11211/"
-CACHE_BACKEND = "file:///var/tmp/django_cache"
-CACHE_TIMEOUT = 60*5
+#CACHE_BACKEND = "file:///var/tmp/django_cache"
+#CACHE_TIMEOUT = 60*5
 
 # Locale path settings.  Needs to be set for Translation compilation.
 # It can be blank
