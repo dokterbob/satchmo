@@ -56,15 +56,17 @@
                 </tr>
             </table>
         </div>
+{% if "discount"|app_enabled or "giftcertificate"|app_enabled %}
         <div class="module satchmo-app">
             <table summary="{% trans "Codes" %}">
             <caption>{% trans "Codes" %}</caption>
+{% if "discount"|app_enabled %}
                 <tr>
                     <th scope="row"><a href="/admin/discount/discount">{% trans "Discount" %}</a></th>
                     <td><a href="/admin/discount/discount/add/" class="addlink">{% trans "Add" %}</a></td>
                     <td><a href="/admin/discount/discount" class="changelink">{% trans "Change" %}</a></td>
                 </tr>
-
+{% endif %}
 {% if "giftcertificate"|app_enabled %}
                 <tr>
                     <th scope="row"><a href="/admin/giftcertificate/giftcertificate">{% trans "Gift Certificates" %}</a></th>
@@ -74,6 +76,7 @@
 {% endif %}
             </table>
         </div>
+{% endif %}
 
         <div class="module satchmo-app">
             <table summary="{% trans "International Information" %}">
