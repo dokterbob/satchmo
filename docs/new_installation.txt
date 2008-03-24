@@ -2,9 +2,6 @@
 Installation - SVN Version Only
 ===============================
 
-Installing Satchmo into your path
-+++++++++++++++++++++++++++++++++
-
 This guide is the new (and hopefully improved) Satchmo installation process. It is meant to be a cookbook
 approach for most users. Advanced users can modify to integrate into their own projects.
 
@@ -14,6 +11,9 @@ you have write access to. In the below example, we use /home/user/src. You are e
 .. warning::
    You must have a recent SVN version of Django properly installed and all of the
    dependencies mentioned in the requirements section properly installed.
+
+Installing Satchmo into your path
++++++++++++++++++++++++++++++++++
 
 1. Use django to create your new store::
 
@@ -44,7 +44,7 @@ you have write access to. In the below example, we use /home/user/src. You are e
    
    
 Customizing the settings
-++++++++++++++++
+++++++++++++++++++++++++
 
 Now, you need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file called settings-customize.py is available to act as a template. You may choose
 to copy this file and use as a template for settings.py or use the notes below to configure your existing one. Please remember to ensure that your Django database connections and settings are 
