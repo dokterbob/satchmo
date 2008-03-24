@@ -80,6 +80,9 @@ CUSTOM_PRODUCT_MODULES = []
 #CACHE_BACKEND = "file:///var/tmp/django_cache"
 #CACHE_TIMEOUT = 60*5
 
+# modify the cache_prefix if you have multiple concurrent stores.
+CACHE_PREFIX = "STORE"
+
 # Locale path settings.  Needs to be set for Translation compilation.
 # It can be blank
 # LOCALE_PATHS = ""
