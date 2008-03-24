@@ -86,7 +86,7 @@ class CachingTest(TestCase):
 
         # try to delete just one
         killed = caching.cache_delete('del','x',1)
-        self.assertEqual(["del::x::1"], killed)
+        self.assertEqual([caching.CACHE_PREFIX + "::del::x::1"], killed)
         self.assertFalse(caching.cache_get('del', 'x', 1, default=False))
         
         # but the others are still there
@@ -113,19 +113,19 @@ class TestKeyMaker(TestCase):
     
     def testSimpleKey(self):
         v = caching.cache_key('test')
-        self.assertEqual(v, 'test')
+        self.assertEqual(v, caching.CACHE_PREFIX + '::test')
         
     def testDualKey(self):
         v = caching.cache_key('test', 2)
-        self.assertEqual(v, 'test::2')
+        self.assertEqual(v, caching.CACHE_PREFIX + '::test::2')
 
     def testPairedKey(self):
         v = caching.cache_key('test', more='yes')
-        self.assertEqual(v, 'test::more::yes')
+        self.assertEqual(v, caching.CACHE_PREFIX + '::test::more::yes')
         
     def testPairedDualKey(self):
         v = caching.cache_key('test', 3, more='yes')
-        self.assertEqual(v, 'test::3::more::yes')
+        self.assertEqual(v, caching.CACHE_PREFIX + '::test::3::more::yes')
 
 
         

@@ -15,6 +15,11 @@ CACHED_KEYS = {}
 CACHE_CALLS = 0
 CACHE_HITS = 0
 KEY_DELIM = "::"
+try:
+    CACHE_PREFIX = settings.CACHE_PREFIX
+except AttributeError:
+    CACHE_PREFIX = str(settings.SITE_ID)
+    log.warn("No CACHE_PREFIX found in settings, using SITE_ID.  Please update your settings to add a CACHE_PREFIX")
 
 class CacheWrapper(object):
     def __init__(self, val, inprocess=False):
@@ -221,8 +226,11 @@ def cache_key(*keys, **pairs):
         for k in klist:
             keys.append(k)
             keys.append(pairs[k])
-        
+    
     key = KEY_DELIM.join([_hash_or_string(x) for x in keys])
+    prefix = CACHE_PREFIX + KEY_DELIM
+    if not key.startswith(prefix):
+        key = prefix+key
     return key.replace(" ", ".")
     
 def md5_hash(obj):
@@ -238,8 +246,9 @@ def is_memcached_backend():
 
 def cache_require():
     """Error if caching isn't running."""
-    cache_set("require_cache",value='1')
-    v = cache_get('require_cache', default = '0')
+    key = cache_key('require_cache')
+    cache_set(key,value='1')
+    v = cache_get(key, default = '0')
     if v != '1':
         raise CacheNotRespondingError()
     else:

@@ -253,6 +253,10 @@ class Value(object):
                 val = self.default
             else:
                 val = NOTSET
+        except AttributeError, ae:
+            log.error("Attribute error: %s", ae)
+            log.error("%s: Could not get _value of %s", self.key, self.setting)
+            raise(ae)
         return val
 
     def update(self, value):    
