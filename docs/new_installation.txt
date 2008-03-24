@@ -31,13 +31,13 @@ Installing Satchmo into your path
 
 4. Once the above step is completed, you should be able to import both django and satchmo::
 
-	$ python
-    Python 2.5.2 (r252:60911, Mar 12 2008, 13:39:09) 
-    [GCC 4.2.3 (Ubuntu 4.2.3-2ubuntu4)] on linux2
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import django
-    >>> import satchmo
-    >>> 
+        $ python
+        Python 2.5.2 (r252:60911, Mar 12 2008, 13:39:09) 
+        [GCC 4.2.3 (Ubuntu 4.2.3-2ubuntu4)] on linux2
+        Type "help", "copyright", "credits" or "license" for more information.
+        >>> import django
+        >>> import satchmo
+        >>> 
 
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
@@ -97,17 +97,17 @@ working properly before trying to add any pieces of satchmo.
 
 6. Copy the local_settings file to mystore::
 
-    cp /home/user/src/satchmo-trunk/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
+        cp /home/user/src/satchmo-trunk/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
     
 7. You will need to verify the values assigned to the following items in local_settings.py::
 
-    SITE_NAME
-	CACHE_BACKEND
-	CACHE_TIMEOUT
-	SITE_DOMAIN
-    SHOP_BASE
-    LOGDIR
-    LOGFILE
+        SITE_NAME
+        CACHE_BACKEND
+        CACHE_TIMEOUT
+        SITE_DOMAIN
+        SHOP_BASE
+        LOGDIR
+        LOGFILE
 
 Copy the rest of the required files
 +++++++++++++++++++++++++++++++++++
@@ -187,4 +187,4 @@ Satchmo also includes a command that will erase all your tables. It is useful wh
     
 (For development use only)::
 
-    python manage.py delete_all_dbs
+        python manage.py delete_all_dbs
