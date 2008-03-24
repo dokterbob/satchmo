@@ -1,0 +1,186 @@
+====================
+Installation - SVN Version Only
+====================
+
+Installing Satchmo into your path
++++++++++++++++++++++
+
+This guide is the new (and hopefully improved) Satchmo installation process. It is meant to be a cookbook
+approach for most users. Advanced users can modify to integrate into their own projects.
+
+This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
+you have write access to. In the below example, we use /home/user/src. Modify the path to fit your needs.
+
+First, you must have a recent SVN version of Django properly installed and all of the
+dependencies mentioned in the requirements section.
+
+1. Use django to create your new store::
+
+        cd /home/user/src
+        django-admin.py startproject mystore
+
+2. Checkout the latest Satchmo svn release into (/home/user/src) ::
+
+        svn co svn://satchmoproject.com/satchmo/trunk/ satchmo-trunk
+
+3. Install satchmo into your site-packages directory::
+
+        cd /home/user/src/satchmo-trunk
+        sudo python setup.py install
+
+4. Once the above step is completed, you should be able to import both django and satchmo::
+
+	$ python
+    Python 2.5.2 (r252:60911, Mar 12 2008, 13:39:09) 
+    [GCC 4.2.3 (Ubuntu 4.2.3-2ubuntu4)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import django
+    >>> import satchmo
+    >>> 
+
+.. warning::
+   Do not attempt to progress any further on the install until the above imports work.
+   
+   
+Customizing the settings
+++++++++++++++++
+
+Now, you need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file called settings-customize.py is available to act as a template. You may choose
+to copy this file and use as a template for settings.py or use the notes below to configure your existing one. Please remember to ensure that your Django database connections and settings are 
+working properly before trying to add any pieces of satchmo.
+
+5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations (in addition to the defaults and your other app needs)::
+
+        import os
+        DIRNAME = os.path.dirname(__file__)
+        LOCAL_DEV = True
+        
+        MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
+        
+        MIDDLEWARE_CLASSES = ("django.middleware.locale.LocaleMiddleware",  "satchmo.shop.SSLMiddleware.SSLRedirect")
+        TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
+        TEMPLATE_CONTEXT_PROCESSORS = 	('satchmo.shop.context_processors.settings',
+                                                                    'django.core.context_processors.auth',)
+
+        INSTALLED_APPS = (
+                'django.contrib.admin',
+                'django.contrib.auth',
+                'django.contrib.contenttypes',
+                'django.contrib.sessions',
+                'django.contrib.sites',
+                'django.contrib.comments',
+                'comment_utils',
+                'django.contrib.sitemaps',
+                'satchmo.caching',
+                'satchmo.configuration',
+                'satchmo.shop',
+                'satchmo.contact',
+                'satchmo.product',
+                'satchmo.shipping',
+                'satchmo.payment',
+                'satchmo.discount',
+                'satchmo.giftcertificate',
+                'satchmo.supplier',
+                'satchmo.thumbnail',
+                'satchmo.l10n',
+                'satchmo.tax',
+                )
+                
+        AUTHENTICATION_BACKENDS = (
+            'satchmo.accounts.email-auth.EmailBackend',
+            )
+
+        # Load the local settings
+        from local_settings import *
+        
+
+6. Copy the local_settings file to mystore::
+
+    cp /home/user/src/satchmo-trunk/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
+    
+7. You will need to verify the values assigned to the following items in local_settings.py::
+
+        SITE_NAME
+		CACHE_BACKEND
+		CACHE_TIMEOUT
+		the logging items
+		SITE_DOMAIN
+        SHOP_BASE
+        LOGDIR
+        LOGFILE
+
+Copy the rest of the required files
+++++++++++++++++++++++
+
+8. Next, you need to configure your urls.py file. For the simplest approach, copy the satchmo urls.py file into mystore::
+    
+        cp /home/user/src/mystore/urls.py urls.py.orig
+        cp /home/user/src/satchmo-trunk/satchmo/urls.py /home/user/src/mystore/urls.py
+        
+9. Copy over the static directory::
+
+        mkdir /home/user/src/mystore/static
+        cp -r /home/user/src/satchmo-trunk/satchmo/static ./static
+        
+10. Copy over the default templates::
+
+        mkdir /home/user/src/mystore/templates
+        cp -r /home/user/src/satchmo-trunk/satchmo/templates ./templates
+
+Test and Install the Data
+++++++++++++++++
+   
+11.  Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
+
+        python manage.py satchmo_check
+        
+If any errors are identified, resolve them based on the error description.
+
+12. Sync the new satchmo tables::
+
+        python manage.py syncdb
+        
+13. Load the country data stored in the l10n application::
+
+        python manage.py satchmo_load_l10n
+        
+14. (Optional) Load the demo store data::
+
+        python manage.py satchmo_load_store
+        
+15. (Optional) Load the US tax table::
+
+        python manage.py satchmo_load_us_tax
+		
+View the Demo Store
+++++++++++++++
+
+16.  Start up the sample webserver to see your store::
+
+        python manage.py runserver
+        
+13.  In order to see your sample store, point your browser to::
+    
+        http://localhost/shop
+
+14.  If you want to see the admin interface, point your browser to::
+
+        http://localhost/admin
+        
+15.  Many configuration and customization settings are accessed through the url::
+
+        http://localhost/settings
+
+.. note::
+    The above urls will be dependent on your Django setup.  If you're running the webserver on the
+    same machine you're developing on, the above urls should work.  If not, use the appropriate url.
+
+Additional Notes
++++++++++++
+
+Satchmo also includes a command that will erase all your tables. It is useful while devoloping but please be careful before using
+
+.. warning::
+    The next step can erase data in the satchmo database. Be sure to have a backup of any critical data.
+    
+    python manage.py delete_all_dbs
