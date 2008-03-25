@@ -112,10 +112,14 @@ working properly before trying to add any pieces of satchmo.
 Copy the rest of the required files
 +++++++++++++++++++++++++++++++++++
 
-8. Next, you need to configure your urls.py file. For the simplest approach, copy the satchmo urls.py file into mystore::
-    
-        cp /home/user/src/mystore/urls.py urls.py.orig
-        cp /home/user/src/satchmo-trunk/satchmo/urls.py /home/user/src/mystore/urls.py
+8. Next, you need to configure your urls.py file. Get a copy of the satchmo-urls file::
+
+        python manage.py satchmo_copy_urls
+
+9. You will need to merge the satchmo-urls.py file with the existing urls.py file. For most situations, just copy over::
+        
+        cp urls.py urls.py.orig
+        cp satchmo-urls.py urls.py
         
 9. Copy over the static directory::
 
@@ -188,3 +192,7 @@ Satchmo also includes a command that will erase all your tables. It is useful wh
 (For development use only)::
 
         python manage.py delete_all_dbs
+
+Satchmo also includes a full set of unit tests. After you get your system installed, you can run the unit tests with this command::
+
+        python manage.py test
