@@ -1,16 +1,16 @@
-- fields: {expire_days: 21, is_shippable: 0, recurring: 1, recurring_times: null}
+- fields: {expire_days: 21, is_shippable: 0, recurring: 'True', recurring_times: null}
   model: product.subscriptionproduct
   pk: 1
-- fields: {expire_days: 30, is_shippable: 0, recurring: 1, recurring_times: null}
+- fields: {expire_days: 30, is_shippable: 0, recurring: 'True', recurring_times: null}
   model: product.subscriptionproduct
   pk: 2
 - fields:
-    active: 1
+    active: 'True'
     also_purchased: []
     category: []
     date_added: 2008-03-16
     description: ''
-    featured: 0
+    featured: 'False'
     height: null
     height_units: ''
     items_in_stock: 0
@@ -24,7 +24,7 @@
     sku: membership-p1
     slug: membership-p1
     taxClass: null
-    taxable: 0
+    taxable: 'False'
     weight: null
     weight_units: ''
     width: null
@@ -32,12 +32,12 @@
   model: product.product
   pk: 1
 - fields:
-    active: 1
+    active: 'True'
     also_purchased: []
     category: []
     date_added: 2008-03-16
     description: ''
-    featured: 0
+    featured: 'False'
     height: null
     height_units: ''
     items_in_stock: 0
@@ -51,7 +51,7 @@
     sku: membership-p2
     slug: membership-p2
     taxClass: null
-    taxable: 0
+    taxable: 'False'
     weight: null
     weight_units: ''
     width: null
