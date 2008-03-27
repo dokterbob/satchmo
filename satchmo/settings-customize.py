@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     # admin/tiered section
     #'satchmo.shipping.modules.tiered'
     #'satchmo.newsletter',
+    #'satchmo.feeds',
 )
 
 AUTHENTICATION_BACKENDS = (

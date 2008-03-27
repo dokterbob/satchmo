@@ -603,7 +603,11 @@ class Product(models.Model):
         if subtype:
             return subtype.get_category
         
-        return self.category.all()[0]
+        try:
+            return self.category.all()[0]
+        except IndexError:
+            return None
+            
     get_category = property(_get_category)
     
     def _get_downloadable(self):

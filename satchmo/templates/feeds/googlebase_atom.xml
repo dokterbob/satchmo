@@ -1,0 +1,32 @@
+{% load satchmo_feed satchmo_util %}<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/cns/1.0">
+
+	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
+	<link rel="self" href="{{ url }}"/>
+	<updated>2006-06-11T18:30:02Z</updated>
+	<author>
+		<name>{{ shop.store_email }}</name>
+	</author>
+	<id>{{ url|atom_tag_uri }}</id>
+{% for product in products %}
+{% if not product.get_subtypes|in_list:"ConfigurableProduct" %}
+<entry>
+	<id>{{ product.slug }}</id>
+	<title>{{ product.name }}</title>
+	<description>{{ product.description|default:"No description" }}</description>{% if product.short_description %}
+	<summary>{{ product.short_description }}</summary>{% endif %}
+	<link href="{{ product.get_absolute_url }}" />
+	<price>{{ product.unit_price|truncate_decimal }}</price>
+	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}
+	<g:weight>{{ product.weight}} {{product.weight_units }}</g:weight>{% endif %}{% if product.height %}
+	<g:height>{{ product.height}} {{product.height_units }}</g:height>{% endif %}{% if product.length %}
+	<g:length>{{ product.length}} {{product.length_units }}</g:length>{% endif %}
+	{% for payment in payments %}<g:payment_accepted>{{ payment }}</g:payment_accepted>
+	{% endfor %}{% if product.productvariation %}{% for opt in product.productvariation.options.all %}
+	{{ opt|make_googlebase_option }}{% endfor %}{% endif %}
+	{% for att in product.productattribute_set.all %}
+	{{ att|make_googlebase_attribute }}{% endfor %}
+</entry>
+{% endif %}
+{% endfor %}
+</feed>

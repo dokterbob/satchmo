@@ -54,6 +54,10 @@ URLS = patterns('',
 SHOP_URLS = patterns('satchmo.shop.views',
 #    (r'^checkout/pay/$', 'paypal.checkout_step2.pay_ship_info', {'SSL': False}, 'satchmo_checkout-step2'),
 #    (r'^checkout/confirm/$', 'paypal.checkout_step3.confirm_info', {'SSL': False}, 'satchmo_checkout-step3'),
+#   if you have satchmo.feeds, make sure to include its URL
+#    (r'^feed/', include('satchmo.product.feeds.urls')),
+#   likewise with newsletters
+#    (r'^newsletter/', include('satchmo.newsletter.urls'))
 )
 
 # register custom external newsletter modules by listing their modules here

@@ -79,7 +79,7 @@ for extra in extra_payment:
 
 # --- helper functions ---
 
-def credit_choices(settings=None):
+def credit_choices(settings=None, include_module_if_no_choices=False):
     choices = []
     keys = []
     for module in config_value('PAYMENT', 'MODULES'):
@@ -90,6 +90,12 @@ def credit_choices(settings=None):
                 keys.append(key)
                 pair = (key, ugettext(label))
                 choices.append(pair)
+        if include_module_if_no_choices and not vals:
+            key = config_value(module, 'KEY')
+            label = config_value(module, 'LABEL')
+            pair = (key, ugettext(label))
+            choices.append(pair)
+            
     return choices
     
 def payment_choices():
