@@ -17,6 +17,7 @@ from satchmo.configuration import ConfigurationSettings, config_value
 from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
+from satchmo.shop.utils import url_join
 
 log = getLogger('satchmo.shop.models')
 
@@ -78,6 +79,14 @@ class Config(models.Model):
         return ConfigurationSettings()
 
     options = property(fget=_options)
+    
+    def _base_url(self, secure=False):
+        prefix = "http"
+        if secure:
+            prefix += "s"
+        return prefix + "://" + url_join(settings.SHOP_BASE, self.site.domain)
+    
+    base_url = property(fget=_base_url)
 
     def __unicode__(self):
         return self.store_name

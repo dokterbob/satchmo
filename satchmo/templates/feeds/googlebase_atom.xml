@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/cns/1.0">
 
 	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
-	<link rel="self" href="{{ url }}"/>
+	<link rel="self" href="{{ shop.base_url }}{{ url }}"/>
 	<updated>2006-06-11T18:30:02Z</updated>
 	<author>
 		<name>{{ shop.store_email }}</name>
@@ -15,9 +15,9 @@
 	<title>{{ product.name }}</title>
 	<description>{{ product.description|default:"No description" }}</description>{% if product.short_description %}
 	<summary>{{ product.short_description }}</summary>{% endif %}
-	<link href="{{ product.get_absolute_url }}" />
+	<link href="{{ shop.base_url }}{{ product.get_absolute_url }}" />
 	<price>{{ product.unit_price|truncate_decimal }}</price>
-	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}
+	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ shop.base_url }}{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}
 	<g:weight>{{ product.weight}} {{product.weight_units }}</g:weight>{% endif %}{% if product.height %}
 	<g:height>{{ product.height}} {{product.height_units }}</g:height>{% endif %}{% if product.length %}
 	<g:length>{{ product.length}} {{product.length_units }}</g:length>{% endif %}
