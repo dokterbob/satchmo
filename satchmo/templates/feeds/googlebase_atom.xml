@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/cns/1.0">
 
 	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
-	<link rel="self" href="{{ shop.base_url }}{{ url }}"/>
+	<link rel="self" href="{{ url }}"/>
 	<updated>2006-06-11T18:30:02Z</updated>
 	<author>
 		<name>{{ shop.store_email }}</name>
