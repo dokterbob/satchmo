@@ -83,3 +83,31 @@ def truncate_decimal(val, places=2):
     return trunc_decimal(val, places)
     
 register.filter('truncate_decimal', truncate_decimal)
+
+def remove_tags(value):
+    """Returns the text with all tags removed"""
+    i = value.find('<')
+    last = -1
+    out = []
+    if i == -1:
+        return value
+            
+    while i>-1:
+        out.append(value[last+1:i])
+        last = value.find(">", i)
+        if last > -1:
+            i = value.find("<", last)
+        else:
+            break
+
+    if last > -1:
+        out.append(value[last+1:])
+    
+    ret = " ".join(out)
+    ret = ret.replace("  ", " ")
+    ret = ret.replace("  ", " ")
+    if ret.endswith(" "):
+        ret = ret[:-1]
+    return ret
+    
+register.filter('remove_tags', remove_tags)

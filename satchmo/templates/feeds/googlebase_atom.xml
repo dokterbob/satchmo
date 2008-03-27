@@ -3,7 +3,7 @@
 
 	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
 	<link rel="self" href="{{ url }}"/>
-	<updated>2006-06-11T18:30:02Z</updated>
+	<updated>{{ date|atom_date }}</updated>
 	<author>
 		<name>{{ shop.store_email }}</name>
 	</author>
@@ -13,8 +13,8 @@
 <entry>
 	<id>{{ product.slug }}</id>
 	<title>{{ product.name }}</title>
-	<description>{{ product.description|default:"No description" }}</description>{% if product.short_description %}
-	<summary>{{ product.short_description }}</summary>{% endif %}
+	<description>{% if product.description %}{{ product.description|remove_tags }}{% else %}{{ product.productvariation.parent.product.description|remove_tags|default:"No description" }}{% endif %}</description>{% if product.short_description %}
+	<summary>{% if product.short_description %}{{ product.short_description|remove_tags }}{% else %}{{ product.productvariation.parent.product.short_description|remove_tags|default:"No description" }}{% endif %}</summary>{% endif %}
 	<link href="{{ shop.base_url }}{{ product.get_absolute_url }}" />
 	<price>{{ product.unit_price|truncate_decimal }}</price>
 	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ shop.base_url }}{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}

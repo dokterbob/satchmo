@@ -1,3 +1,4 @@
+import datetime
 from django.core import urlresolvers
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response
@@ -33,4 +34,5 @@ def product_feed(request, category=None, template="feeds/googlebase_atom.xml"):
         'url' : url,
         'shop' : shop_config,
         'payments' : payment_choices,
+        'date' : datetime.datetime.now(),
         })
