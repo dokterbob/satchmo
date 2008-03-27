@@ -20,7 +20,7 @@ def product_feed(request, category=None, template="feeds/googlebase_atom.xml"):
         cat = None
         products = Product.objects.filter(active=True)
         
-    url = urlresolvers.reverse('satchmo_atom_feed', None, { 
+    url = shop_config.base_url + urlresolvers.reverse('satchmo_atom_feed', None, { 
         'category' : category, 
         'template' : template 
     })
