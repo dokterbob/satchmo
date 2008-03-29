@@ -18,6 +18,13 @@ config_register([
         description=_("Use SSL for the module checkout pages?"), 
         default=False),
         
+    BooleanValue(PAYMENT_GROUP, 
+        'LIVE', 
+        description=_("Accept real payments"),
+        help_text=_("False if you want to be in test mode"),
+        default=False),
+
+        
     ModuleValue(PAYMENT_GROUP,
         'MODULE',
         description=_('Implementation module'),
