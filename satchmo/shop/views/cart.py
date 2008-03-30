@@ -59,6 +59,11 @@ def _set_quantity(request, force_delete=False):
         cartitem.delete()
         cartitem = NullCartItem(itemid)
     else:
+        from satchmo.shop.models import Config
+        config = Config.get_shop_config()
+        if config.no_stock_checkout == False:
+            if cartitem.product.items_in_stock < qty: 
+                return (False, cart, cartitem, _("Not enough items of '%s' in stock.") % cartitem.product.translated_name())
         cartitem.quantity = qty
         cartitem.save()
 
@@ -158,7 +163,11 @@ def add(request, id=0):
         return HttpResponse(template.render(context))
 
     cart = Cart.objects.from_request(request, create=True)
-    cart.add_item(product, number_added=quantity, details=details)
+    if cart.add_item(product, number_added=quantity, details=details) == False:
+        context = RequestContext(request, {
+            'product': product,
+            'error_message': _("Not enough items of '%s' in stock.") % product.translated_name()})
+        return HttpResponse(template.render(context))
 
     url = urlresolvers.reverse('satchmo_cart')
     dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
@@ -199,9 +208,12 @@ def add_ajax(request, id=0, template="json.html"):
     tempCart = Cart.objects.from_request(request, create=True)
 
     if not data['errors']:
-        tempCart.add_item(product, number_added=quantity)
-        request.session['cart'] = tempCart.id
-        data['results'] = _('Success')
+        if tempCart.add_item(product, number_added=quantity):
+           request.session['cart'] = tempCart.id
+           data['results'] = _('Success')
+        else:
+           data['results'] = _('Error')
+           data['errors'].append(('quantity', _("Not enough items of '%s' in stock.") % product.translated_name()))
     else:
         data['results'] = _('Error')
 

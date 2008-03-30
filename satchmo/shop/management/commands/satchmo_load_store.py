@@ -20,7 +20,7 @@ class Command(NoArgsCommand):
         site.name = settings.SITE_NAME
         site.save()
         store_country = Country.objects.get(iso3_code='USA')
-        config = Config(site=site, store_name = settings.SITE_NAME, no_stock_checkout=False, country=store_country, sales_country=store_country)
+        config = Config(site=site, store_name = settings.SITE_NAME, no_stock_checkout=True, country=store_country, sales_country=store_country)
         config.save()
         print "Creating Customers..."
         # Import some customers

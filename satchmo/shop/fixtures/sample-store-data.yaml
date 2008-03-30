@@ -55,7 +55,7 @@
   model: !!python/unicode 'contact.phonenumber'
   pk: !!python/unicode '4'
 - fields: {city: null, country: null, in_country_only: true,
-    no_stock_checkout: false, phone: null, postal_code: null, sales_country: null,
+    no_stock_checkout: true, phone: null, postal_code: null, sales_country: null,
     state: null, store_description: null, store_email: null, store_name: !!python/unicode 'My
       Site - Trunk',  street1: null, street2: null}
   model: !!python/unicode 'shop.config'

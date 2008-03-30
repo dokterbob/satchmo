@@ -56,7 +56,7 @@ class Config(models.Model):
     postal_code=models.CharField(_("Zip Code"), blank=True, null=True, max_length=9)
     country=models.ForeignKey(Country, blank=True, null=True, verbose_name=_('Country'))
     phone = models.CharField(_("Phone Number"), blank=True, null=True, max_length=12)
-    no_stock_checkout = models.BooleanField(_("Purchase item not in stock?"))
+    no_stock_checkout = models.BooleanField(_("Purchase item not in stock?"), default=True)
     in_country_only = models.BooleanField(_("Only sell to in-country customers?"), default=True)
     sales_country = models.ForeignKey(Country, blank=True, null=True,
                                      related_name='sales_country',
@@ -249,10 +249,17 @@ class Cart(models.Model):
                 itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
         except IndexError: #It doesn't exist so create a new one
             itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
+        config=Config.get_shop_config()
+        if config.no_stock_checkout == False:
+            if chosen_item.items_in_stock < (itemToModify.quantity + number_added):
+                return False
+
         itemToModify.quantity += number_added
         itemToModify.save()
         for data in details:
             itemToModify.add_detail(data)
+
+        return True
 
     def remove_item(self, chosen_item_id, number_removed):
         itemToModify =  self.cartitem_set.get(id = chosen_item_id)
