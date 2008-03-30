@@ -41,6 +41,8 @@ Trunk
  * Removed storage of ccv field in database
  * Actually keep track of items when they are sold
  * Swedish and German translation updates
+ * Can now prevent someone from purchasing an item that is out of stock
+ * Google feed support
 
 Version 0.6, October 30, 2007
 ----------------

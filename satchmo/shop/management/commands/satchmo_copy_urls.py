@@ -3,7 +3,7 @@ import os
 import shutil
 
 class Command(NoArgsCommand):
-    help = "Copy the satchmo urls and settings files to the current project."
+    help = "Copy the satchmo urls file to the current project."
 
     def handle_noargs(self, **options):
         import satchmo
@@ -11,8 +11,3 @@ class Command(NoArgsCommand):
         url_dest = os.path.join(os.getcwd(), 'satchmo-urls.py')
         shutil.copyfile(url_src, url_dest)
         print "Copied %s to %s" % (url_src, url_dest)
-        settings_src = os.path.join(satchmo.__path__[0],'local_settings-customize.py')
-        settings_dest = os.path.join(os.getcwd(), 'local_settings.py')
-        shutil.copyfile(settings_src, settings_dest)
-        print "Copied %s to %s" % (settings_src, settings_dest)
-        

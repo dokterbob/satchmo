@@ -94,11 +94,10 @@ working properly before trying to add any pieces of satchmo.
         # Load the local settings
         from local_settings import *
         
-
 6. Copy the local_settings file to mystore::
 
         cp /home/user/src/satchmo-trunk/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
-    
+        
 7. You will need to verify the values assigned to the following items in local_settings.py::
 
         SITE_NAME
@@ -108,11 +107,11 @@ working properly before trying to add any pieces of satchmo.
         SHOP_BASE
         LOGDIR
         LOGFILE
-
+        
 Copy the rest of the required files
 +++++++++++++++++++++++++++++++++++
 
-8. Next, you need to configure your urls.py file. Get a copy of the satchmo-urls file::
+8. Next, you need to configure your urls.py file::
 
         python manage.py satchmo_copy_urls
 
@@ -121,20 +120,18 @@ Copy the rest of the required files
         cp urls.py urls.py.orig
         cp satchmo-urls.py urls.py
         
-9. Copy over the static directory::
+10. Copy over the static directory::
 
-        mkdir /home/user/src/mystore/static
-        cp -r /home/user/src/satchmo-trunk/satchmo/static ./static
+        python manage.py satchmo_copy_static
         
-10. Copy over the default templates::
+11. Copy over the default templates::
 
-        mkdir /home/user/src/mystore/templates
-        cp -r /home/user/src/satchmo-trunk/satchmo/templates ./templates
+        python manage.py satchmo_copy_templates
 
 Test and Install the Data
 +++++++++++++++++++++++++
    
-11.  Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
+12.  Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
 
         python manage.py satchmo_check
         Checking your satchmo configuration.
@@ -142,38 +139,38 @@ Test and Install the Data
         
 If any errors are identified, resolve them based on the error description.
 
-12. Sync the new satchmo tables::
+13. Sync the new satchmo tables::
 
         python manage.py syncdb
         
-13. Load the country data stored in the l10n application::
+14. Load the country data stored in the l10n application::
 
         python manage.py satchmo_load_l10n
         
-14. (Optional) Load the demo store data::
+15. (Optional) Load the demo store data::
 
         python manage.py satchmo_load_store
         
-15. (Optional) Load the US tax table::
+16. (Optional) Load the US tax table::
 
         python manage.py satchmo_load_us_tax
 		
 View the Demo Store
 +++++++++++++++++++
 
-16.  Start up the sample webserver to see your store::
+17.  Start up the sample webserver to see your store::
 
         python manage.py runserver
         
-13.  In order to see your sample store, point your browser to::
+17.  In order to see your sample store, point your browser to::
     
         http://localhost/shop
 
-14.  If you want to see the admin interface, point your browser to::
+19.  If you want to see the admin interface, point your browser to::
 
         http://localhost/admin
         
-15.  Many configuration and customization settings are accessed through the url::
+20.  Many configuration and customization settings are accessed through the url::
 
         http://localhost/settings
 

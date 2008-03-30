@@ -23,11 +23,10 @@ DIRNAME = os.path.dirname(__file__)
 #MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 #DJANGO_PROJECT = 'Your Main Project Name'
 #DJANGO_SETTINGS_MODULE = 'main-project.settings'
-
-DATABASE_NAME = ''
-DATABASE_PASSWORD = ''
-DATABASE_USER = ''
-SECRET_KEY = ''
+#DATABASE_NAME = ''
+#DATABASE_PASSWORD = ''
+#DATABASE_USER = ''
+#SECRET_KEY = ''
 
 ##### For Email ########
 # If this isn't set in your settings file, you can set these here
@@ -82,7 +81,7 @@ CUSTOM_PRODUCT_MODULES = []
 # cache backend
 #CACHE_BACKEND = "memcached://127.0.0.1:11211/"
 #CACHE_BACKEND = "file:///var/tmp/django_cache"
-#CACHE_TIMEOUT = 60*5
+CACHE_TIMEOUT = 60*5
 
 # modify the cache_prefix if you have multiple concurrent stores.
 CACHE_PREFIX = "STORE"
