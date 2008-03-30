@@ -48,10 +48,11 @@ def update(request):
         contact = Contact.objects.from_request(request, create=False)
     except Contact.DoesNotExist:
         contact = None
+    
 
     if request.POST:
         new_data = request.POST.copy()
-        form = ExtendedContactInfoForm(countries, areas, contact, new_data,
+        form = ExtendedContactInfoForm(countries, areas, contact, new_data, shippable=True,
             initial=init_data)
 
         if form.is_valid():
@@ -91,7 +92,7 @@ def update(request):
 
         init_data['newsletter'] = current_subscriber
             
-        form = ExtendedContactInfoForm(countries, areas, contact, initial=init_data)
+        form = ExtendedContactInfoForm(countries, areas, contact, shippable=True, initial=init_data)
 
     context = RequestContext(request, {
         'form': form,

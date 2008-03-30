@@ -31,13 +31,18 @@ class ContactInfoForm(forms.Form):
     ship_country = forms.CharField(max_length=30, required=False)
 
     def __init__(self, countries, areas, contact, *args, **kwargs):
-        super(ContactInfoForm, self).__init__(*args, **kwargs)        
+        self.shippable = True
+        if kwargs.has_key('shippable'):
+            self.shippable = kwargs['shippable']
+            del(kwargs['shippable'])
+        super(ContactInfoForm, self).__init__(*args, **kwargs)    
         if areas is not None and countries is None:
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
         if countries is not None:
             self.fields['country'] = forms.ChoiceField(choices=countries)
-            self.fields['ship_country'] = forms.ChoiceField(choices=countries)
+            if self.shippable:
+                self.fields['ship_country'] = forms.ChoiceField(choices=countries)
 
         shop_config = Config.get_shop_config()
         self._local_only = shop_config.in_country_only
@@ -104,6 +109,8 @@ class ContactInfoForm(forms.Form):
     def clean_ship_country(self):
         if self._local_only:
             return self._default_country
+        if not self.shippable:
+            return self.cleaned_data['country']
         shipcountry = self.cleaned_data['ship_country']
         if config_value('PAYMENT', 'COUNTRY_MATCH'):
             country = self.cleaned_data['country']

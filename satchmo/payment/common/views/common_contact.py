@@ -38,7 +38,7 @@ def contact_info(request):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(countries, areas, contact, new_data,
+        form = PaymentContactInfoForm(countries, areas, contact, new_data, shippable=tempCart.is_shippable, 
             initial=init_data)
 
         if form.is_valid():
@@ -67,7 +67,7 @@ def contact_info(request):
         else:
             # Allow them to login from this page.
             request.session.set_test_cookie()
-        form = PaymentContactInfoForm(countries, areas, contact, initial=init_data)
+        form = PaymentContactInfoForm(countries, areas, contact, shippable=tempCart.is_shippable, initial=init_data)
 
     context = RequestContext(request, {
         'form': form,
