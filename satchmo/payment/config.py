@@ -113,5 +113,12 @@ def payment_choices():
 def payment_live(settings):
     if is_string_like(settings):
         settings = config_get_group(settings)
+    
+    try:    
+        if config_value('PAYMENT', 'LIVE'):
+            return settings['LIVE'].value
+            
+    except SettingNotSet:
+        pass
         
-    return config_value('PAYMENT', 'LIVE') and settings['LIVE']
+    return False

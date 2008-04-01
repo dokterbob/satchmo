@@ -10,6 +10,7 @@ from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.contact.models import Order
 from satchmo.payment.common.pay_ship import send_order_confirmation
+from satchmo.payment.config import payment_live
 from satchmo.shop.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 import logging
@@ -75,6 +76,7 @@ Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, orderToProce
     log.info("default_view_tax: %s", default_view_tax)
     orderToProcess.recalculate_total()
     base_env = {
+        'PAYMENT_LIVE' : payment_live(payment_module),
         'default_view_tax' : default_view_tax,
         'order': orderToProcess,
         'errors': errors,
