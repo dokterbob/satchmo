@@ -1,5 +1,5 @@
 {% load satchmo_feed satchmo_util %}<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/cns/1.0">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/ns/1.0">
 
 	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
 	<link rel="self" href="{{ url }}"/>
@@ -9,7 +9,6 @@
 	</author>
 	<id>{{ url|atom_tag_uri }}</id>
 {% for product in products %}
-{% if not product.get_subtypes|in_list:"ConfigurableProduct" %}
 <entry>
 	<id>{{ product.slug }}</id>
 	<title>{{ product.name }}</title>
@@ -21,12 +20,11 @@
 	<g:weight>{{ product.weight}} {{product.weight_units }}</g:weight>{% endif %}{% if product.height %}
 	<g:height>{{ product.height}} {{product.height_units }}</g:height>{% endif %}{% if product.length %}
 	<g:length>{{ product.length}} {{product.length_units }}</g:length>{% endif %}
-	{% for payment in payments %}<g:payment_accepted>{{ payment }}</g:payment_accepted>
+	{% for payment in payments %}<g:payment_accepted>{% ifequal payment "Google Checkout" %}GoogleCheckout{% else %}{{ payment }}{% endifequal %}</g:payment_accepted>
 	{% endfor %}{% if product.productvariation %}{% for opt in product.productvariation.options.all %}
-	{{ opt|make_googlebase_option }}{% endfor %}{% endif %}
+	{{ opt|make_googlebase_option:"false" }}{% endfor %}{% endif %}
 	{% for att in product.productattribute_set.all %}
-	{{ att|make_googlebase_attribute }}{% endfor %}
+	{{ att|make_googlebase_attribute:"false" }}{% endfor %}
 </entry>
-{% endif %}
 {% endfor %}
 </feed>

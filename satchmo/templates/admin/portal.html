@@ -3,6 +3,7 @@
 {% load satchmo_currency %}
 {% load adminapplist %}
 {% load satchmo_adminapplist %}
+{% load satchmo_util %}
 
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
 {% block extrastyle %}
@@ -119,6 +120,9 @@
 <div id="content-related">
     {% include "admin/order_sidebar.html" %}
     <a href="{% url satchmo_site_settings %}">{% trans "Edit Site Settings" %}</a><br/>
+    {% if "feeds"|app_enabled %}
+    <a href="{% url satchmo_product_feed %}">{% trans 'Export Products as CSV' %}</a><br/>
+    {% endif %}
     <a href="{% url satchmo_admin_edit_inventory %}">{% trans 'Edit Inventory' %}</a><br/>
     <a href="{% url satchmo_admin_product_export %}">{% trans 'Export Product Defs' %}</a><br/>
     <a href="{% url caching_stats %}">{% trans 'Cache Status' %}</a><br/>

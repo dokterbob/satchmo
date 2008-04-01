@@ -55,23 +55,25 @@ GOOGLE_TAGS = ('actor', 'age', 'age_range', 'agent', 'area', 'artist', 'aspect_r
     'venue_website', 'vin', 'weight', 'width', 'wireless_interface', 'year', 'zoning', 'zoom'
 )   
  
-def make_googlebase_option(opt):
+def make_googlebase_option(opt, custom):
     """Convert an option into a tag.  First look to see if it is a predefined tag, 
     if it is, good, use it.  Otherwise make a custom tag."""
     
-    return make_googlebase_tag(opt.optionGroup.name, opt.name)
+    custom = custom.lower() in ('true','t','1')
+    return make_googlebase_tag(opt.optionGroup.name, opt.name,custom)
 
 register.filter('make_googlebase_option', make_googlebase_option)
 
-def make_googlebase_attribute(att):
+def make_googlebase_attribute(att, custom):
     """Convert an attribute into a tag.  First look to see if it is a predefined tag, 
        if it is, good, use it.  Otherwise make a custom tag."""
-       
-    return make_googlebase_tag(att.name, att.value)
+     
+    custom = custom.lower() in ('true','t','1')
+    return make_googlebase_tag(att.name, att.value, custom)
 
 register.filter('make_googlebase_attribute', make_googlebase_attribute)
 
-def make_googlebase_tag(key, val):
+def make_googlebase_tag(key, val, custom):
     """Convert a key/val pair into a tag.  First look to see if it is a predefined tag, 
     if it is, good, use it.  Otherwise make a custom tag."""
     key = feed_safe_name(key)
@@ -81,10 +83,20 @@ def make_googlebase_tag(key, val):
     elif key.endswith('s') and key[:-1] in GOOGLE_TAGS:
         key = key[:-1]
         tag = "<g:%s>%s</g:%s>"
-    else:
+    elif custom:
         tag = "<c:%s:string>%s</c:%s:string>"
+    else:
+        tag = None
     
-    return mark_safe(tag % (key, val, key))
+    if tag:
+        return mark_safe(tag % (key, val, key))
+    else:
+        return ""
     
-
-
+def stripspaces(s):
+    s = re.sub(r'^\s+', '', s)
+    s = re.sub(r'\s+$', '', s)
+    s = s.replace('\n\n','\n')
+    return s
+        
+register.filter('stripspaces', stripspaces)

@@ -1,0 +1,3 @@
+{% load satchmo_feed satchmo_util %}id,name,category,price,link,image,weight,height,length
+{% filter stripspaces %}{% for product in products %}{{ product.slug }},{{ product.name }},{{ product.get_category }},{{ product.unit_price|truncate_decimal }},{{ shop.base_url }}{{ product.get_absolute_url }},{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}{{ shop.base_url }}{{ imgurl }}{% endif %},{% endwith %}{% if product.weight %}{{ product.weight}} {{product.weight_units }}{% endif %},{% if product.height %}{{ product.height}} {{product.height_units }}{% endif %},{% if product.length %}{{ product.length}} {{product.length_units }}{% endif %}
+{% endfor %}{% endfilter %}
