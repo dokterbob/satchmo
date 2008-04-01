@@ -1,8 +1,8 @@
-{% if shop.options.GOOGLE.USE_URCHIN %}
+{% load satchmo_util%}{% if shop.options.GOOGLE.USE_URCHIN %}
     <form style="display:none;" name="utmform">
     <textarea id="utmtrans">
-    UTM:T|{{order.id}}|{{Store}}|{{order.total}}|{{order.tax}}|{{order.shipping_sub_total}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
-    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price}}|{{item.quantity}}
+    UTM:T|{{order.id}}|{{Store}}|{{order.total|truncate_decimal}}|{{order.tax|truncate_decimal}}|{{order.shipping_sub_total|truncate_decimal}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
+    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price|truncate_decimal}}|{{item.quantity}}
     {% endfor %}</textarea>
     </form>
 
@@ -14,9 +14,9 @@
     pageTracker._addTrans(
      "{{order.id}}",
      "{{Store}}",
-     "{{order.total}}",
-     "{{order.tax}}",
-     "{{order.shipping_sub_total}}",
+     "{{order.total|truncate_decimal}}",
+     "{{order.tax|truncate_decimal}}",
+     "{{order.shipping_sub_total|truncate_decimal}}",
      "{{order.ship_city}}",
      "{{order.ship_state}}",
      "{{order.ship_country}}"
@@ -27,7 +27,7 @@
          "{{item.product.name}}",
          "{{item}}",
          "{{item.category}}",
-         "{{item.unit_price}}",
+         "{{item.unit_price|truncate_decimal}}",
          "{{item.quantity}}"
         );
     {% endfor %}
