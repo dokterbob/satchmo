@@ -36,6 +36,10 @@ The following package is required to load the initial data and run the unit test
 
 - `PyYaml`_ 
 
+Docutils is useful for auto generating some documentation:
+
+- `Docutils`_
+
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _Python Imaging Library: http://www.pythonware.com/products/pil/
 .. _Elementtree: http://effbot.org/zone/element-index.htm
@@ -50,3 +54,4 @@ The following package is required to load the initial data and run the unit test
 .. _Django Registration: http://code.google.com/p/django-registration/
 .. _django-comment-utils: http://code.google.com/p/django-comment-utils/
 .. _snapshot: http://www.satchmoproject.com/snapshots/
+.. _Docutils: http://docutils.sourceforge.net/

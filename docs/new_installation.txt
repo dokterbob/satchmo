@@ -164,15 +164,19 @@ View the Demo Store
         
 17.  In order to see your sample store, point your browser to::
     
-        http://localhost/shop
+        http://127.0.0.1:8000/shop
 
 19.  If you want to see the admin interface, point your browser to::
 
-        http://localhost/admin
+        http://127.0.0.1:8000/admin
         
 20.  Many configuration and customization settings are accessed through the url::
 
-        http://localhost/settings
+        http://127.0.0.1:8000/settings
+        
+21.  Additional detailed documentation can be found here::
+
+        http://127.0.0.1:8000/admin/doc
 
 .. note::
     The above urls will be dependent on your Django setup.  If you're running the webserver on the
