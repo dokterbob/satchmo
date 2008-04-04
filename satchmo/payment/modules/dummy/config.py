@@ -53,6 +53,7 @@ config_register([
         choices = (
             (('Visa','Visa')),
             (('Mastercard','Mastercard')),
-            (('Discover','Discover'))),
-        default = ('Visa', 'Mastercard', 'Discover'))
+            (('Discover','Discover')),
+            (('American Express', 'American Express'))),
+        default = ('Visa', 'Mastercard', 'Discover', 'American Express'))
 ])

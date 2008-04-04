@@ -66,7 +66,7 @@ config_register([
         'CREDITCHOICES',
         description=_('Available credit cards'),
         choices = (
-            (('Amex', 'American Express')),
+            (('American Express', 'American Express')),
             (('Visa','Visa')),
             (('Mastercard','Mastercard')),
             (('Discover','Discover'))),

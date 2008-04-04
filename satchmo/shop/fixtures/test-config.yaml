@@ -26,7 +26,7 @@
     value: !!python/unicode '€'}
   model: !!python/unicode 'configuration.setting'
   pk: !!python/long '7'
-- fields: {group: PRODUCT, key: PRODUCT_TYPES, site: 1, value: '["product::ConfigurableProduct",
-      "product::ProductVariation", "product::CustomProduct", "product::SubscriptionProduct"]'}
-  model: configuration.setting
-  pk: 8
+- fields: {group: !!python/unicode 'PRODUCT', key: !!python/unicode 'PRODUCT_TYPES', site: !!python/long '1', 
+    value: !!python/unicode '["product::ConfigurableProduct","product::ProductVariation", "product::CustomProduct", "product::SubscriptionProduct"]'}
+  model: !!python/unicode 'configuration.setting'
+  pk: !!python/long '8'
