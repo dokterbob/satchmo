@@ -1,7 +1,11 @@
 """
 Stores customer, organization, and order information.
 """
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -598,8 +602,8 @@ class Order(models.Model):
 
         log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
                 item_sub_total, self.shipping_sub_total, self.discount, self.tax)
-
-        self.total = item_sub_total + self.shipping_sub_total + self.tax
+	
+        self.total = Decimal(item_sub_total + self.shipping_sub_total + self.tax)
 
         if save:
             self.save()

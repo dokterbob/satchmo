@@ -3,7 +3,11 @@ Configuration items for the shop.
 Also contains shopping cart and related classes.
 """
 import datetime
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from logging import getLogger
 
 from django.conf import settings

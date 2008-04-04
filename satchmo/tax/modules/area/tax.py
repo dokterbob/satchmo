@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
 from satchmo.configuration import config_value

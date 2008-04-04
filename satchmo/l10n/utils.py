@@ -1,6 +1,9 @@
 import locale
 import logging
-from decimal import Decimal, ROUND_FLOOR
+try:
+    from decimal import Decimal, ROUND_FLOOR
+except:
+    from django.utils._decimal import Decimal, ROUND_FLOOR
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale

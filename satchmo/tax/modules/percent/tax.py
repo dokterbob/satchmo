@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from satchmo.configuration import config_value
 
 class Processor(object):

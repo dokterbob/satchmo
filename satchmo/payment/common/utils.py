@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from datetime import datetime
 from satchmo.contact.models import OrderPayment
 import logging

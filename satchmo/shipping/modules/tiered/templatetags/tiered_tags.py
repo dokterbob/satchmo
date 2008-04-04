@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django import template
 from django.utils.safestring import mark_safe
 from satchmo.shipping.modules.tiered.models import Carrier
@@ -7,7 +11,6 @@ from satchmo.l10n.utils import moneyfmt
 
 register = template.Library()
 
-@register.filter
 def tiered_shipping(price, args=''):
     if not args:
         raise template.TemplateSyntaxError('tiered_shipping needs the name of the carrier, as value|tiered_shipping:"carrier"')
@@ -19,3 +22,5 @@ def tiered_shipping(price, args=''):
     shipping = c.price(Decimal(price))
     
     return mark_safe(moneyfmt(shipping))
+
+register.filter(tiered_shipping)

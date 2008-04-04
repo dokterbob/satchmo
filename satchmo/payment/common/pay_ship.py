@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template import loader, Context

@@ -1,5 +1,9 @@
 r"""
->>> from decimal import Decimal
+>>> try:
+...     from decimal import Decimal
+... except:
+...     from django.utils._decimal import Decimal
+
 >>> from django import db
 >>> from django.db.models import Model
 >>> from satchmo.product.models import *

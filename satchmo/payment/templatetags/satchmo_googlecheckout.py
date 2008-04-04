@@ -39,7 +39,6 @@ class GoogleCheckoutImageUrlNode(template.Node):
         return checkout_image_url(self.merchid, self.imgsize, locale, transparent=self.transparent, disabled=self.disabled)
 
 
-@register.tag
 def google_checkout_image_url(parser, token):
     """
     Render the url for a google checkout image.
@@ -72,3 +71,5 @@ def google_checkout_image_url(parser, token):
                 raise template.TemplateSyntaxError("%r tag got an unexpected argument.  Perhaps a bad size?  Didn't know: %s" % (args[0], arg))
                 
     return GoogleCheckoutImageUrlNode(merchid, imgsize, transparent, disabled)
+
+register.tag(google_checkout_image_url)

@@ -10,7 +10,6 @@ import logging
 
 log = logging.getLogger('product.adminviews')
 
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
 def edit_inventory(request):
     """A quick inventory price, qty update form"""
     if request.POST:
@@ -30,7 +29,8 @@ def edit_inventory(request):
 
     return render_to_response('admin/inventory_form.html', ctx)
 
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
+edit_inventory = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(edit_inventory)
+
 def export_products(request, template='admin/product_export_form.html'):
     """A product export tool"""
     if request.method == 'POST':
@@ -51,7 +51,8 @@ def export_products(request, template='admin/product_export_form.html'):
 
     return render_to_response(template, ctx)
 
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
+export_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(export_products)
+
 def import_products(request, maxsize=10000000):  
     """ 
     Imports product from an uploaded file.
@@ -77,8 +78,9 @@ def import_products(request, maxsize=10000000):
     else:  
         url = urlresolvers.reverse('satchmo_admin_product_export')
         return HttpResponseRedirect(url)
+
+import_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(import_products)
         
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
 def product_active_report(request):
     
     products = Product.objects.filter(active=True)
@@ -86,4 +88,4 @@ def product_active_report(request):
     ctx = RequestContext(Request, {title: 'Active Product Report', 'products' : products })
     return render_to_response('admin/product/active_product_report.html', ctx)
     
-    
+product_active_report = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(product_active_report)    

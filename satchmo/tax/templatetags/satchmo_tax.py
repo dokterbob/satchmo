@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django import template
 from satchmo import tax
 from satchmo.l10n.utils import moneyfmt

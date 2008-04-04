@@ -33,13 +33,14 @@ class Subscription(models.Model):
     create_date = models.DateField(_("Creation Date"))
     update_date = models.DateField(_("Update Date"))
 
-    @classmethod
     def email_is_subscribed(cls, email):
         try:
             sub = cls.objects.get(email=email)
             return sub.subscribed
         except cls.DoesNotExist:
             return False
+
+    email_is_subscribed = classmethod(email_is_subscribed)
 
     def __unicode__(self):
         if self.subscribed:

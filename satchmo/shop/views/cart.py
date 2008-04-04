@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.core import urlresolvers
 from django.dispatch import dispatcher
 from django.http import HttpResponseRedirect, HttpResponse

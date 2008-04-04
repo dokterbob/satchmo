@@ -8,13 +8,14 @@ import time
 
 CACHE_HIT=0
 
-@caching.cache_function(2)
 def cachetest(a,b,c):
     global CACHE_HIT
     CACHE_HIT += 1
     r = [random.randrange(0,1000) for x in range(0,3)]
     ret = [r, a + r[0], b + r[1], c + r[2]]
     return ret
+
+cachetest = caching.cache_function(2)(cachetest)
     
 class DecoratorTest(TestCase):
     

@@ -3,7 +3,10 @@ Sets up a discount that can be applied to a product
 """
 
 from datetime import date
-from decimal import Decimal, getcontext
+try:
+    from decimal import Decimal, getcontext
+except:
+    from django.utils._decimal import Decimal, getcontext
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.product.models import Product

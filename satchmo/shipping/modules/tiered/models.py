@@ -1,7 +1,11 @@
 """
 Tiered shipping models
 """
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -126,7 +130,6 @@ class Carrier(models.Model):
 
         return trans
 
-    @property
     def delivery(self):
         """Get the delivery, looking up by language code, falling back intelligently.
         """
@@ -136,8 +139,9 @@ class Carrier(models.Model):
             return trans.delivery
         else:
             return ""
-    
-    @property
+
+    delivery = property(delivery)
+ 
     def description(self):
         """Get the description, looking up by language code, falling back intelligently.
         """
@@ -147,8 +151,9 @@ class Carrier(models.Model):
             return trans.description
         else:
             return ""
+
+    description = property(description)
     
-    @property
     def method(self):
         """Get the description, looking up by language code, falling back intelligently.
         """
@@ -158,8 +163,9 @@ class Carrier(models.Model):
             return trans.method
         else:
             return ""
-    
-    @property
+
+    method = property(method)    
+ 
     def name(self):
         """Get the name, looking up by language code, falling back intelligently.
         """
@@ -169,7 +175,9 @@ class Carrier(models.Model):
             return trans.name
         else:
             return ""
-        
+
+    name = property(name)
+    
     def price(self, total):
         """Get a price for this total."""
         # first check for special discounts

@@ -32,13 +32,13 @@ class CacheWrapper(object):
     def __repr__(self):
         return repr(self.val)
 
-    @classmethod
     def wrap(cls, obj):
         if isinstance(obj, cls):
             return obj
         else:
             return cls(obj)
 
+    wrap = classmethod(wrap)
 
 class MethodNotFinishedError(Exception): 
     def __init__(self, f):

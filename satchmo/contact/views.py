@@ -13,7 +13,6 @@ from satchmo.shop.views.utils import bad_or_missing
 
 log = logging.getLogger('satchmo.contact.views')
 
-@login_required
 def view(request):
     """View contact info."""
     try:
@@ -37,7 +36,8 @@ def view(request):
     
     return render_to_response('contact/view_profile.html', context)
 
-@login_required
+view = login_required(view)
+
 def update(request):
     """Update contact info"""
 
@@ -100,7 +100,8 @@ def update(request):
         'show_newsletter': show_newsletter})
     return render_to_response('contact/update_form.html', context)
 
-@login_required
+update = login_required(update)
+
 def order_history(request):
     orders = None
     try:
@@ -116,7 +117,8 @@ def order_history(request):
 
     return render_to_response('contact/order_history.html', ctx)
 
-@login_required
+order_history = login_required(order_history)
+
 def order_tracking(request, order_id):
     order = None
     try:
@@ -137,3 +139,4 @@ def order_tracking(request, order_id):
 
     return render_to_response('contact/order_tracking.html', ctx)
 
+order_tracking = login_required(order_tracking)

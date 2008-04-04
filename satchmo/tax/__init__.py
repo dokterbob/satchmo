@@ -1,6 +1,10 @@
 from satchmo.configuration import config_value
 from satchmo.shop.utils import load_module
-import decimal
+
+try:
+    import decimal
+except ImportError:
+    from django.utils import _decimal as decimal    # for Python 2.3
 
 TWOPLACES = decimal.Decimal('0.01')
 

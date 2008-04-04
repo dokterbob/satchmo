@@ -1,5 +1,9 @@
 from datetime import datetime
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -39,7 +43,7 @@ class GiftCertificate(models.Model):
         max_digits=8)    
         
     objects = GiftCertificateManager()
-    @property
+
     def balance(self):
         b = Decimal(self.start_balance)
         for usage in self.usages.all():
@@ -47,6 +51,8 @@ class GiftCertificate(models.Model):
             b = b - Decimal(usage.balance_used)
 
         return b
+
+    balance = property(balance)
 
     def apply_to_order(self, order):
         """Apply up to the full amount of the balance of this cert to the order.

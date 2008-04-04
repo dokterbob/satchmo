@@ -3,7 +3,6 @@ from satchmo.shop.templatetags import get_filter_args
 
 register = template.Library()
 
-@register.inclusion_tag('contact/_order_details.html', takes_context=True)
 def order_details(context, order, default_view_tax=False):
     """Output a formatted block giving order details."""
     return {'order' : order,
@@ -11,13 +10,15 @@ def order_details(context, order, default_view_tax=False):
         'request' : context['request']
     }
 
-@register.inclusion_tag('contact/_order_tracking_details.html')
+register.inclusion_tag('contact/_order_details.html', takes_context=True)(order_details)
+
 def order_tracking_details(order, paylink=False):
     """Output a formatted block giving order tracking details."""
     return {'order' : order,
         'paylink' : paylink }
 
-@register.filter
+register.inclusion_tag('contact/_order_tracking_details.html')(order_tracking_details)
+
 def order_variable(order, args):
     """
     Get a variable from an order
@@ -33,8 +34,9 @@ def order_variable(order, args):
         raise template.TemplateSyntaxError("%r filter expected variable, got: %s" % (args[0], args))
 
     return order.get_variable(args[0])
-    
-# @register.filter
+
+register.filter(order_variable)    
+
 # def giftcertificate(order):
 #     """Get the giftcertificate from the order, if any"""
 #     try:
@@ -43,3 +45,5 @@ def order_variable(order, args):
 #         pass
 #             
 #     return None
+#
+# register.filter(giftcertificate)

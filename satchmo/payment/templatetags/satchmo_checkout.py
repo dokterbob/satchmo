@@ -4,7 +4,6 @@ from satchmo.configuration import config_get_group, config_get
 
 register = template.Library()
 
-@register.filter
 def payment_label(value):
     """convert a payment key into its translated text"""
     
@@ -15,8 +14,11 @@ def payment_label(value):
             return translation.ugettext(config.LABEL)
     return value.capitalize()
 
-@register.inclusion_tag('contact/_order_payment_summary.html')
+register.filter(payment_label)
+
 def order_payment_summary(order, paylink=False):
     """Output a formatted block giving attached payment details."""
     return {'order' : order,
         'paylink' : paylink}
+
+register.inclusion_tag('contact/_order_payment_summary.html')(order_payment_summary)

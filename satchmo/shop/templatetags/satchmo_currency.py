@@ -1,4 +1,8 @@
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django import template
 from django.conf import settings
 from django.utils.encoding import force_unicode

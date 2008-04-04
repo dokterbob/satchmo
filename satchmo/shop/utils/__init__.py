@@ -1,4 +1,8 @@
-from decimal import Decimal, ROUND_FLOOR
+try:
+    from decimal import Decimal, ROUND_FLOOR
+except:
+    from django.utils._decimal import Decimal, ROUND_FLOOR
+
 import os, sys
 import types
 

@@ -35,7 +35,6 @@ class CacheDeleteForm(forms.Form):
         log.debug(result)
         return result
 
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
 def stats_page(request):
     calls = caching.CACHE_CALLS
     hits = caching.CACHE_HITS
@@ -62,8 +61,9 @@ def stats_page(request):
     })
     
     return render_to_response('caching/stats.html', ctx)
+
+stats_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(stats_page)
     
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')    
 def view_page(request):
     keys = caching.CACHED_KEYS.keys()
     
@@ -75,7 +75,8 @@ def view_page(request):
     
     return render_to_response('caching/view.html', ctx)
 
-@user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
+view_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(view_page)
+
 def delete_page(request):
     log.debug("delete_page")
     if request.method == "POST":
@@ -97,3 +98,4 @@ def delete_page(request):
     
     return render_to_response('caching/delete.html', ctx)
 
+delete_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(delete_page)

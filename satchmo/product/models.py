@@ -7,7 +7,11 @@ options.
 import datetime
 import random
 import sha
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.conf import settings
 from django.core import validators, urlresolvers
 from django.db import models
@@ -1096,7 +1100,7 @@ class ProductVariation(models.Model):
         numProcessed = 0
         # We want the options to be sorted in a consistent manner
         optionDict = dict([(sub.optionGroup.sort_order, sub) for sub in self.options.all()])
-        for optionNum in sorted(optionDict.keys()):
+        for optionNum in optionDict.keys().sort():
             numProcessed += 1
             if numProcessed == self.options.count():
                 output += optionDict[optionNum].name
@@ -1158,7 +1162,7 @@ class ProductVariation(models.Model):
         price_delta = Decimal("0.00")
         for option in self.options.all():
             if option.price_change:
-                price_delta += option.price_change
+                price_delta += Decimal(option.price_change)
         return price_delta
 
     def save(self):

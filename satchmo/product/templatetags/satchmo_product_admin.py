@@ -6,7 +6,6 @@ from django.utils.translation import get_language, ugettext_lazy as _
 
 register = template.Library()
 
-@register.simple_tag
 def js_make_select_readonly(select):
     #This is really just a mini-template
     #select must be a jquery object
@@ -26,7 +25,8 @@ def js_make_select_readonly(select):
     }
     """ % {'select':select}
 
-@register.simple_tag
+register.simple_tag(js_make_select_readonly)
+
 def edit_subtypes(product):
     output = '<ul>'
     for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
@@ -39,7 +39,8 @@ def edit_subtypes(product):
     output += '</ul>'
     return output
 
-@register.simple_tag
+register.simple_tag(edit_subtypes)
+
 def list_variations(configurableproduct):
     opts = configurableproduct.get_all_options()
     output = "{% load admin_modify adminmedia %}"
@@ -78,7 +79,8 @@ def list_variations(configurableproduct):
     t = Template(output)
     return t.render(Context())
 
-@register.inclusion_tag('admin/_customproduct_management.html')
+register.simple_tag(list_variations)
+
 def customproduct_management(order):
     custom = []
     for orderitem in order.orderitem_set.all():
@@ -90,10 +92,13 @@ def customproduct_management(order):
         'customitems' : custom
     }
 
-@register.inclusion_tag('admin/_orderpayment_list.html')
+register.inclusion_tag('admin/_customproduct_management.html')(customproduct_management)
+
 def orderpayment_list(order):
     return {
         'SHOP_BASE' : settings.SHOP_BASE, 
         'order' : order,
         'payments' : order.payments.all()
         }
+
+register.inclusion_tag('admin/_orderpayment_list.html')(orderpayment_list)

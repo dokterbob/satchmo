@@ -1,5 +1,9 @@
 # -*- coding: UTF-8 -*-
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.core import urlresolvers
 from django.test import TestCase
 from django.test.client import Client

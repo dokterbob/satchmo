@@ -1,5 +1,9 @@
 import datetime
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.test import TestCase
 from models import *
 from satchmo.contact.models import AddressBook, Contact, Order, OrderItem
