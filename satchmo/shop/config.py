@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from satchmo.configuration import config_register, BooleanValue, StringValue, MultipleStringValue, SHOP_GROUP, ConfigurationGroup, PositiveIntegerValue
 from django.utils.translation import ugettext_lazy as _
 
@@ -93,12 +95,12 @@ LANGUAGES_AVAILABLE = config_register(
     requires = LANGUAGE_ALLOW_TRANSLATIONS,
     description = _("Available languages"),
     help_text=_("Languages that have valid translations"),
-    choices=[('en', _("English")),
-            ('fr', _("French")),
-            ('de',_("German")),
-            ('es', _("Spanish")),
-            ('sv', _("Swedish")),
-            ('pt-br', _("Brazilian Portuguese")),
-            ('bg',_("Bulgarian"))]
+    choices=[('en', "English"),
+            ('fr', "Français"),
+            ('de',"Deutsch"),
+            ('es', "Español"),
+            ('sv', "Svenska"),
+            ('pt-br',"Português"),
+            ('bg',"Български")]
     ))
     
