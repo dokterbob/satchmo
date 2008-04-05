@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_product.html" %}
 {% load i18n %}
 {% load satchmo_thumbnail %}
 {% load satchmo_price %}
@@ -6,9 +6,6 @@
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_ratings %}
 {% block extra-head %}
-{% if product.meta %}
-    <meta name="description" content="{{product.meta}}">
-{% endif %}
 
 <script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
 <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
@@ -79,23 +76,6 @@ $(function() {
     $('.priced').change(function() { satchmo.update_price() });
 });
 </script>
-{% endblock %}
-
-{% block navbar %}
-
-<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
-{% for name, url in product.category.all.0.get_url_name %}
-    <li><a href="{{ url }}">{{ name }}</a></li>    
-{% endfor %}
-<li>{{ product.translated_name }}</li>
-
-{% endblock %}
-
-{% block sidebar %}
-    <h3>{% trans "Shop Categories" %}</h3>
-    <div id="menu_container">
-    {% category_tree product.get_category.id %}
-    </div>
 {% endblock %}
 
 {% block content %}
