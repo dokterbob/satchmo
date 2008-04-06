@@ -85,7 +85,14 @@ def truncate_decimal(val, places=2):
 register.filter('truncate_decimal', truncate_decimal)
 
 def remove_tags(value):
-    """Returns the text with all tags removed"""
+    """
+    Returns the text with all tags removed
+    This can fail if give invalid input. This is only intended to be used on safe HTML markup. It should not be used to 
+    clean unsafe input data.
+    For example, this will fail:
+    >> remove_tags('<<> <test></test>')
+        '<test></test>'
+    """
     i = value.find('<')
     last = -1
     out = []
