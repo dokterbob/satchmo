@@ -1,22 +1,24 @@
 import logging
 import urllib2
-from sys import exc_info
-from traceback import format_exception
+
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.http import urlencode
 from django.utils.translation import ugettext as _
+from sys import exc_info
+from traceback import format_exception
 
 from satchmo.configuration import config_get_group
 from satchmo.configuration import config_value 
 from satchmo.contact.models import Order, OrderPayment
+from satchmo.payment.common.pay_ship import send_order_confirmation
 from satchmo.payment.common.utils import record_payment, create_pending_payment
 from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart
 from satchmo.shop.utils.dynamic import lookup_url, lookup_template
-from django.utils.http import urlencode
 
 log = logging.getLogger()
 
@@ -149,6 +151,9 @@ def ipn(request):
                 item.save()
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
+                
+            if order.paid_in_full:
+                send_confirmation_email(order)
 
     except:
         log.exception(''.join(format_exception(*exc_info())))
