@@ -1,3 +1,7 @@
+.. index::
+   single: Analytics
+   single: Google; analytics
+
 ==========
 Analytics
 ==========

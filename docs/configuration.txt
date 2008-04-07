@@ -4,38 +4,120 @@ Basic Configuration
 Store Settings
 --------------
 
+.. index::
+   single: settings; SHOP_BASE
+   single: settings; LOCAL_DEV
+   
 If you followed the installation steps, you should have a basic store to start playing with.  There are a
 number of places you might want to configure.
 
 1. In the settings.py (or local_settings.py) file, there are a number of general Django settings.  However, there are a
    few that are specific to Satchmo.
 
-    - SHOP_BASE is used as the prefix for your store.  In the default setting, your store is 
+    - ``SHOP_BASE`` is used as the prefix for your store.  In the default setting, your store is 
       located at www.yourname.com/shop.  If you would like to change this setting, this is the 
       place to do it.  If you would like your store to be at the root of the url, set
-      SHOP_BASE = ""
-    - LOCAL_DEV is used to make sure static files are served properly when developing.  This must
+      ``SHOP_BASE = ""``
+    - ``LOCAL_DEV`` is used to make sure static files are served properly when developing.  This must
       be set to FALSE when you deploy your site.
-    - CURRENCY is the currency symbol to use within the store.
-    - Make sure that your DATABASE_ENGINE variable is also set correctly.
+    - Make sure that your ``DATABASE_ENGINE`` variable is also set correctly.
     - You should ensure that all of your paths are setup correctly.  Key ones to look at are:
         
-        + MEDIA_ROOT (this is where images will be stored)
-        + MEDIA_URL
-        + ADMIN_MEDIA_PREFIX
-        + TEMPLATE_DIRS
+        + ``MEDIA_ROOT`` (this is where images will be stored)
+        + ``MEDIA_URL``
+        + ``ADMIN_MEDIA_PREFIX``
+        + ``TEMPLATE_DIRS``
         
-2. The load_data.py script is helpful during testing. Make sure the following values are set in your
-   local_settings.py file:
+Site Settings
+-------------
 
-    - SITE_DOMAIN = "example.com"
-    - SITE_NAME = "My Site"
+The majority of the store configuration is done through the admin interface. Satchmo has a flexible Site Settings capability that can be accessed through the admin interface or through the url: /admin/settings
 
-Module Configurations
----------------------
+All of the configuration settings have detailed help notes. They also default to sensible configurations so your initial store should work fine without changing any values.
 
-There are a number of additional places where you can customize Satchmo for your needs.  Some changes
-are simple, others might require more python knowledge to implement.
+Base Settings
++++++++++++++
+
+These items are used for general store configuration and include:
+
+    - Account verification options
+    - Default currency symbol
+    - Enable/disable product ratings
+    - Controlling display of featured products
+    - Controlling quality of thumbnail creating
+
+.. index::
+   single: Google; analytics
+   single: Google; adwords
+
+Google Settings
++++++++++++++++
+
+This section allows you to enable or disable google analytics and conversion tracking for adwords.
+
+Language Settings
++++++++++++++++++
+
+Allows the user to manually choose their language they would like to see.
+
+Payment Settings
+++++++++++++++++
+
+Satchmo can handle multiple ways of accepting payment.  By default, you have a dummy processor that does nothing but accept payments.  Obviously, you'll want to enable one of the other modules before going live.
+
+Each payment module will have it's own configuration items. These items apply universally to all payment modules.
+
+    - Accept real payments
+    - Allow URL access for cron rebilling of subscriptions
+    - Force ship to and bill to countries to match during checkout
+    - Cron passkey to allow subscription rebilling
+    - Enable/disable ssl for the checkout process
+    - Enable specific payment modules.
+    
+.. Note::
+    If you add a new payment module, you will need to save the changes in order for the new payment module configuration items to appear.
+    
+.. index::
+   single: Product types; enabling
+
+Product Settings
+++++++++++++++++
+
+Before you use any of the products, you need to enable them in this section. The following products are available here:
+
+    - Configurable Products
+    - Product Variations
+    - Custom Orders
+    - Subscription Products
+    - Downloadable Products
+    - Gift Certificates
+    
+In this section you can also configure:
+
+    - Protected directory to be used for downloadable products
+    - Whether or not images should be renamed
+    - Specific directory where images should be uploaded to
+
+.. index::
+   single: Shipping; enabling
+   
+Shipping Settings
++++++++++++++++++
+
+This section allows you to choose which shipping modules you want to make available to users when they check out.
+
+Once you select the modules you would like to use, you will be given an option to enter any additional information required for that module.
+
+.. index::
+   single: Tax; enabling
+
+Tax Settings
+++++++++++++
+
+Satchmo allows different tax configurations. This section allows you to choose the active tax module and configure it for your store.
+
+.. index::
+   single: Newsletters; enabling
 
 Newsletters
 +++++++++++
@@ -48,76 +130,9 @@ Next, choose the way you want to handle the subscriptions.  Currently we have tw
 	- ``satchmo.newsletter.simple``  - This just tracks subscriptions in a database table for your querying pleasure.  You can then export that list to whatever mailing manager you want to use.
 	- ``satchmo.newsletter.mailman`` - This is an integration module which works with Gnu Mailman (http://www.gnu.org/software/mailman/).  This is particularly convenient if you have a Cpanel VPS system, since Mailman is installed by default on most such systems. To use this, you need to make sure Mailman is on your PYTHONPATH and you should have already set up a mailing list as an announce-only list (http://www.modwest.com/help/kb13-195.html). You'll need to enter the name of the list in your local settings file.
 
-*Note:* After [758], you manage the newsletter plugins from your ShopOptions page.  Ignore the part below about local_settings below.
-
-Enable your chosen module by adding the following line to your local_settings file::
-	
-	NEWSLETTER_MODULE = 'satchmo.newsletter.mailman'
-
-If you are using Mailman, you need to tell it the name of your mailing list in your local_settings file as well::
-
-	NEWSLETTER_NAME = 'my_nifty_store_announce_list'
-
-Payment Processing
-++++++++++++++++++
-
-Satchmo can handle multiple ways of accepting payment.  By default, you have a dummy processor that does 
-nothing but accept payments.  Obviously, you'll want to enable one of the other modules before going live.
-
-*Note:* After [758], you manage the payment modules ShopOptions page.  Ignore the part below about local_settings 
-or copying settings files.  They are not used at anymore.
-
-Payments are configured using *Satchmo Payment Modules*.  These modules are found at
-``satchmo/payment/modules/``:
-
-	- ``authorizenet`` is used to process credit cards.  
-	- ``dummy`` is used to test payments during development.
-	- ``paypal`` is used to handle PayPal payments.  (Basic module works, IPN is not yet done.)
-	- ``google`` is used to handle Google Checkout payments. (Level 1 complete)
-
-To enable a payment module or modules, prepare a custom configuration file for that module, and modify your local_settings file to load
-it.  Example configuration files are found in each payment module directory.
-
-For example, to enable authorize.net, first copy the file 
-``satchmo/payment/modules/authorizenet/authorizenet_settings_customize.py`` to the root of your store.  
-The critical part of that file will look something like this::
-
-	CONNECTION = 'https://test.authorize.net/gateway/transact.dll'
-	TEST = 'TRUE'
-	LOGIN = ''
-	TRANKEY = ''
-	
-Modify the file, putting in the proper settings for your account with Authorize.net, and then enable it in your
-settings.py or local_settings.py by adding it to the PAYMENT_MODULES like so::
-
-	PAYMENT_MODULES = (
-	    'satchmo.payment.modules.dummy.dummy_settings',
- 	    'satchmo.authorizenet_settings',
-	#    'satchmo.paypal_settings',	
-	#    'satchmo.google_settings'
-	)
-	
-In the example above, we would now have two payment systems set up:  Dummy and Authorize.net.  Each of the payment modules works
-the same, with important settings for that module stored in their own settings file.
-
-Shipping Calculations
-+++++++++++++++++++++
-
-Satchmo allows very flexible shipping calculations.  
-
-*Note:* After [758], you configure your shipping choices ShopOptions page.  Ignore the rest of this section.
-
-You will want to tailor the default ones stored
-in /satchmo/shipping/modules.py.  The API is fairly simple but will be covered in more detail later
-in this document.
-
-Taxes
-+++++
-
-Satchmo has support for selling taxable products.  Since tax calculations include many different 
-calculations, you can modify the tax calculations using the objects in /satchmo/tax/modules.py.  The
-API will be covered in more detail later in this document.
-
+.. index::
+   single: SSL
+   
 SSL
 +++
 
@@ -143,18 +158,15 @@ Then, enable it for the specific urls you would like to be protected by adding
 
 	(r'^accounts/login/$', 'login', {'SSL': True', 'template_name': 'login.html'}, 'satchmo_login'),
 
-*Note:* After [758], you manage SSL for payment modules in the ShopOptions page.
-
 SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can 
 have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set 
 ``CHECKOUT_SSL=True`` in your local_settings file.
 
-If you only want to enable SSL for some payment modules, set ``CHECKOUT_SSL=False`` in your local_settings file
-and then put ``SSL=True`` in the payment module configuration file for the module you want to have SSL enabled.
+If you only want to enable SSL for some payment modules, enable SSL for payments as described above
+and then check ``SSL=True`` in the payment module configuration setting for the module you want to have SSL enabled.
 This may be useful if you accept both PayPal and Authorize.net payments, for example.  PayPal wouldn't need
 to be SSL enabled, but Authorize.net should be.
 
-Note that SSL in the payment settings file will always overrule any CHECKOUT_SSL setting.
 
 .. _Authorize.net: http://www.authorize.net/
 .. _Mailman: http://www.gnu.org/software/mailman/

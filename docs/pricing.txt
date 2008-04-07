@@ -3,6 +3,9 @@ Pricing
 
 Satchmo has flexible pricing that allows you to price at multiple levels.
 
+.. index::
+   single: Price overview
+   
 Pricing at the Item Level
 -------------------------
 

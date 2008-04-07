@@ -1,3 +1,5 @@
+.. _custom-payment-modules:
+
 Custom Payment Modules
 ======================
 

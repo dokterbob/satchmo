@@ -5,6 +5,8 @@ Satchmo currently has support for several different payment modules.  This
 document will discuss some of the particular configuration items to keep in
 mind for each module.
 
+.. index:: Authorize.net
+
 Authorize.net
 -------------
 The authorize.net module requires that you have a valid authorize.net account.
@@ -20,6 +22,8 @@ and you are not using an account whose API login ID starts with
 posting to https://certification.authorize.net/gateway/transact.dll for
 test transactions if you do not have a cpdev or cnpdev.
 
+.. index:: TrustCommerce
+
 TrustCommerce
 -------------
 TrustCommerce configuration is very similar to authorize.net.  You will need
@@ -33,16 +37,22 @@ You can get these from TrustCommerce or via this url
 Once the library is installed, you can fill in your login and password information
 in the admin config.
 
+.. index:: CyberSource
+
 CyberSource
 -----------
 CyberSource operates similar to TrustCommerce and Authorize.net.  If you register,
 at the `CyberSource Site <http://www.cybersource.com/>`_ you will get all the
 credentials you need to configure this module.
 
+.. index:: Paypal
+
 PayPal
 ------
 More details needed here.
 
-Google
-------
+.. index:: Google Checkout
+
+Google Checkout
+---------------
 More details needed here.

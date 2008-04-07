@@ -80,9 +80,7 @@ unique needs.
 
 Payment Module Customization
 ----------------------------
-Documentation for payment processing can be found `here </trac/wiki/CustomPaymentModule>`_.
-This documentation will also cover how to customize the checkout process steps for your
-unique needs.
+See :ref:`Custom Payment Modules <custom-payment-modules>`
 
 
 .. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/

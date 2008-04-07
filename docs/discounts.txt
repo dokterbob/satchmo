@@ -13,6 +13,9 @@ Each of these types can be qualified or limited by:
  * Minimum order
  * Specific dates
  * Specific products
+
+.. index::
+   single: Discounts
  
 Creating Discounts
 ------------------
