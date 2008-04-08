@@ -88,7 +88,7 @@ class SimplePayShipForm(forms.Form):
         if kwargs.has_key('default_view_tax'):
             default_view_tax = kwargs['default_view_tax']
         else:
-            default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
+            default_view_tax = config_value('TAX', 'TAX_SHIPPING')
             
         shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
         self.fields['shipping'].choices = shipping_choices
