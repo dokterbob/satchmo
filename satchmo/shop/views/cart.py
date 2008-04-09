@@ -96,6 +96,7 @@ def add(request, id=0):
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
+    zero = Decimal("0.00")
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
@@ -113,27 +114,34 @@ def add(request, id=0):
         if 'CustomProduct' in p_types:
             cp = product.customproduct
             for customfield in cp.custom_text_fields.all():
+                if customfield.price_change is not None:
+                    price_change = customfield.price_change
+                else:
+                    price_change = zero
                 data = { 'name' : customfield.translated_name(),
                          'value' : formdata["custom_%s" % customfield.slug],
                          'sort_order': customfield.sort_order,
-                         'price_change': customfield.price_change }
+                         'price_change': price_change }
                 details.append(data)
                 data = {}
             chosenOptions = optionset_from_post(cp, formdata)
             manager = OptionManager()
             for choice in chosenOptions:
                 result = manager.from_unique_id(choice)
-                data = { 'name': result.optionGroup,
-                          'value': result.translated_name(),
+                if result.price_change is not None:
+                    price_change = result.price_change
+                else:
+                    price_change = zero
+                data = { 'name': unicode(result.optionGroup),
+                          'value': unicode(result.translated_name()),
                           'sort_order': result.displayOrder,
-                          'price_change': result.price_change
+                          'price_change': price_change
                 }
                 details.append(data)
                 data = {}
                 
         if 'GiftCertificateProduct' in p_types:
             ix = 0
-            zero = Decimal("0.00")
             for field in ('email', 'message'):
                 data = {
                     'name' : field,
