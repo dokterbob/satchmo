@@ -4,6 +4,7 @@ http://code.google.com/p/django-values/
 """
 from django import newforms as forms
 from django.utils.datastructures import SortedDict
+from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _
 from models import find_setting, LongSetting, Setting, SettingNotSet
 from satchmo.shop.utils import load_module, is_string_like, is_list_or_tuple
@@ -197,7 +198,7 @@ class Value(object):
                 work = []
                 for x in self.choices:
                     if x[0] in self.default:
-                        work.append(x[1].encode())
+                        work.append(smart_str(x[1]))
                 note = gettext('Default value: ') + ", ".join(work)
         
             else:
