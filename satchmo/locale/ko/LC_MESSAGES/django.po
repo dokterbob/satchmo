@@ -1,0 +1,3994 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: accounts/views.py:22 templates/contact/view_profile.html:22
+msgid "Yes"
+msgstr "YES"
+
+#: accounts/views.py:23 templates/contact/view_profile.html:22
+msgid "No"
+msgstr "NO"
+
+#: accounts/views.py:28 newsletter/views.py:15 shop/views/contact.py:24
+#: templates/checkout/form.html:51 templates/contact/update_form.html:21
+#: templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+#: templates/registration/login.html:16
+msgid "Email address"
+msgstr "이 메일"
+
+#: accounts/views.py:29
+msgid "Password (again)"
+msgstr "패스워드 (한번 더 입력)"
+
+#: accounts/views.py:30 templates/checkout/form.html:34
+#: templates/registration/login.html:17
+msgid "Password"
+msgstr "패스워드"
+
+#: accounts/views.py:31 contact/models.py:122 templates/checkout/form.html:54
+#: templates/contact/update_form.html:24
+msgid "First name"
+msgstr "성"
+
+#: accounts/views.py:32 contact/models.py:123 templates/checkout/form.html:57
+#: templates/contact/update_form.html:27
+msgid "Last name"
+msgstr "이름"
+
+#: accounts/views.py:33 contact/forms.py:204
+#: templates/contact/update_form.html:37
+msgid "Newsletter"
+msgstr "뉴스레터"
+
+#: accounts/views.py:40
+msgid "The two passwords do not match."
+msgstr "패스워드가 일치 하지 않습니다."
+
+#: accounts/views.py:49
+msgid "That email address is already in use."
+msgstr "이 메일이 이미 사용중입니다. 다는 이메일을 사용해 주세요"
+
+#: accounts/views.py:57
+#, python-format
+msgid "Welcome to %s"
+msgstr "%s 에 오신것을 환영합니다."
+
+#: accounts/views.py:180
+msgid "Registration Form"
+msgstr "등록 폼"
+
+#: configuration/values.py:88
+msgid "Base Settings"
+msgstr "기본 세팅"
+
+#: configuration/values.py:194
+msgid "Default value: \"\""
+msgstr "기본 값: \"\""
+
+#: configuration/values.py:201
+msgid "Default value: "
+msgstr "기본 값: "
+
+#: configuration/values.py:204
+#, python-format
+msgid "Default value: %s"
+msgstr "기본 값:%s"
+
+#: contact/common.py:5 payment/common/views/payship.py:21
+msgid "Please Select"
+msgstr "선택해주세요"
+
+#: contact/config.py:9
+msgid "Account Verification"
+msgstr "계정 확인"
+
+#: contact/config.py:10
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
+msgstr "계정 확인 타입을 선택해주세요. 즉시를 선택하시면 계정 확인 작업을 거치지 않습니다."
+
+#: contact/config.py:12
+msgid "Immediate"
+msgstr "즉시"
+
+#: contact/config.py:13 contact/models.py:131 contact/models.py:192
+#: giftcertificate/models.py:37 newsletter/models.py:33 shop/models.py:49
+#: templates/pdf/invoice.rml:99 templates/pdf/packing-slip.rml:99
+msgid "Email"
+msgstr "이메일"
+
+#: contact/config.py:20
+msgid "Days to verify account"
+msgstr "계정 확인하기 위한 날"
+
+#: contact/forms.py:55 contact/forms.py:75 payment/common/forms.py:93
+msgid "This field is required."
+msgstr "이 필드는 입력값이 필요합니다."
+
+#: contact/forms.py:56 contact/forms.py:76
+msgid "State is required for your country."
+msgstr ""
+
+#: contact/models.py:35
+msgid "Customer"
+msgstr "고객"
+
+#: contact/models.py:36 contact/models.py:47
+msgid "Supplier"
+msgstr "공급자"
+
+#: contact/models.py:37 contact/models.py:48
+msgid "Distributor"
+msgstr "배급자"
+
+#: contact/models.py:41
+msgid "Company"
+msgstr "회사"
+
+#: contact/models.py:42
+msgid "Government"
+msgstr "정부"
+
+#: contact/models.py:43
+msgid "Non-profit"
+msgstr "비영리"
+
+#: contact/models.py:49
+msgid "Manufacturer"
+msgstr "생산자"
+
+#: contact/models.py:56 contact/models.py:717 product/models.py:48
+#: shop/views/contact.py:23 templates/admin/product_export_form.html:81
+#: templates/checkout/form.html:33
+msgid "Name"
+msgstr "이름"
+
+#: contact/models.py:57 contact/models.py:203
+msgid "Type"
+msgstr "형태"
+
+#: contact/models.py:59 contact/models.py:127
+msgid "Role"
+msgstr "역할"
+
+#: contact/models.py:61 newsletter/models.py:34 shop/models.py:205
+msgid "Creation Date"
+msgstr "생성 날짜"
+
+#: contact/models.py:62 contact/models.py:132 contact/models.py:358
+#: contact/models.py:783 giftcertificate/models.py:92 payment/views.py:23
+#: supplier/models.py:42 supplier/models.py:93
+#: templates/admin/charge_remaining_confirm.html:16
+msgid "Notes"
+msgstr "노트"
+
+#: contact/models.py:78 contact/models.py:129
+msgid "Organization"
+msgstr "조직"
+
+#: contact/models.py:79 templates/admin/satchmo_app_list.html:53
+msgid "Organizations"
+msgstr "조직들"
+
+#: contact/models.py:130
+msgid "Date of birth"
+msgstr "생일"
+
+#: contact/models.py:133
+msgid "Creation date"
+msgstr "생성일"
+
+#: contact/models.py:181 contact/models.py:202
+#: templates/admin/satchmo_app_list.html:43
+msgid "Contact"
+msgstr "연락처"
+
+#: contact/models.py:182 templates/admin/satchmo_app_list.html:40
+#: templates/admin/satchmo_app_list.html:41
+msgid "Contacts"
+msgstr "연락처"
+
+#: contact/models.py:185
+msgid "Work"
+msgstr "직업"
+
+#: contact/models.py:186 giftcertificate/templates/checkout/confirm.html:9
+#: giftcertificate/templates/checkout/giftcertificate/confirm.html:9
+#: giftcertificate/templates/giftcertificate/balance.html:5
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:14
+#: templates/404.html:5 templates/500.html:5 templates/base_cart.html:7
+#: templates/base_category.html:13 templates/base_index.html:7
+#: templates/base_product.html:23 templates/contact_form.html:5
+#: templates/download.html:5 templates/search.html:6 templates/shop_404.html:5
+#: templates/thanks.html:5 templates/admin/inventory_form.html:66
+#: templates/admin/product_export_form.html:51
+#: templates/admin/product_import_result.html:11
+#: templates/caching/delete.html:6 templates/caching/stats.html:6
+#: templates/caching/view.html:6 templates/checkout/balance_remaining.html:6
+#: templates/checkout/base_confirm.html:7
+#: templates/checkout/base_pay_ship.html:5 templates/checkout/confirm.html:9
+#: templates/checkout/empty_cart.html:5 templates/checkout/form.html:5
+#: templates/checkout/success.html:7 templates/checkout/cod/confirm.html:9
+#: templates/configuration/group_settings.html:10
+#: templates/configuration/site_settings.html:10
+#: templates/contact/order_history.html:7
+#: templates/contact/order_tracking.html:6
+#: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+#: templates/product/detail_configurableproduct.html:60
+#: templates/product/detail_customproduct.html:14
+#: templates/registration/account_info.html:5
+#: templates/registration/activate.html:6 templates/registration/login.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_form.html:5
+#: templates/registration/repeat_activation.html:5
+msgid "Home"
+msgstr "홈"
+
+#: contact/models.py:187
+msgid "Fax"
+msgstr "팩스"
+
+#: contact/models.py:188
+msgid "Mobile"
+msgstr "휴대폰"
+
+#: contact/models.py:193 templates/pdf/invoice.rml:98
+#: templates/pdf/packing-slip.rml:98
+msgid "Phone"
+msgstr "전화"
+
+#: contact/models.py:194 contact/models.py:304
+msgid "In Person"
+msgstr "개인"
+
+#: contact/models.py:204
+msgid "Date and Time"
+msgstr "날짜 시간"
+
+#: contact/models.py:205 contact/models.py:223 contact/models.py:258
+#: contact/models.py:862 discount/models.py:52 payment/models.py:26
+#: product/models.py:55 shipping/modules/tiered/models.py:203
+#: shop/models.py:48 shop/models.py:204 supplier/models.py:18 tax/models.py:19
+#: templates/pdf/invoice.rml:114 templates/pdf/packing-slip.rml:114
+msgid "Description"
+msgstr "설명"
+
+#: contact/models.py:214
+msgid "Interaction"
+msgstr "작용"
+
+#: contact/models.py:215
+msgid "Interactions"
+msgstr "작용"
+
+#: contact/models.py:225 contact/models.py:249 shop/models.py:56
+msgid "Phone Number"
+msgstr "전화 번호"
+
+#: contact/models.py:227
+msgid "Primary"
+msgstr "주요"
+
+#: contact/models.py:250
+msgid "Phone Numbers"
+msgstr "전화번호"
+
+#: contact/models.py:259
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "주소 상세 설명 - 홈, 사무실, 창고, 등"
+
+#: contact/models.py:260 contact/models.py:261 contact/models.py:346
+#: contact/models.py:347 contact/models.py:352 contact/models.py:353
+#: shop/models.py:50 shop/models.py:51 templates/checkout/form.html:65
+#: templates/checkout/form.html.py:68 templates/checkout/form.html:97
+#: templates/checkout/form.html.py:100 templates/contact/update_form.html:45
+#: templates/contact/update_form.html:48 templates/contact/update_form.html:76
+#: templates/contact/update_form.html:79
+msgid "Street"
+msgstr "거리"
+
+#: contact/models.py:262 contact/models.py:349 contact/models.py:355
+#: l10n/models.py:41 shop/models.py:53
+msgid "State"
+msgstr "주"
+
+#: contact/models.py:263 contact/models.py:348 contact/models.py:354
+#: shop/models.py:52 templates/checkout/form.html:71
+#: templates/checkout/form.html.py:103 templates/contact/update_form.html:51
+#: templates/contact/update_form.html:82
+msgid "City"
+msgstr "시"
+
+#: contact/models.py:264 contact/models.py:350 contact/models.py:356
+#: shop/models.py:54
+msgid "Zip Code"
+msgstr "우편 번호"
+
+#: contact/models.py:265 contact/models.py:351 contact/models.py:357
+#: l10n/models.py:63 templates/checkout/form.html:87
+#: templates/contact/update_form.html:67
+msgid "Country"
+msgstr "나라"
+
+#: contact/models.py:266
+msgid "Default Shipping Address"
+msgstr "기본 배송지 주소"
+
+#: contact/models.py:268
+msgid "Default Billing Address"
+msgstr "기본 "
+
+#: contact/models.py:299
+msgid "Address Book"
+msgstr "주소록"
+
+#: contact/models.py:300
+msgid "Address Books"
+msgstr "주소록"
+
+#: contact/models.py:303
+msgid "Online"
+msgstr "온라인"
+
+#: contact/models.py:305
+msgid "Show"
+msgstr "보기"
+
+#: contact/models.py:309
+msgid "Temp"
+msgstr "임시"
+
+#: contact/models.py:310
+msgid "Pending"
+msgstr "대기"
+
+#: contact/models.py:311
+msgid "In Process"
+msgstr "진행"
+
+#: contact/models.py:312
+msgid "Billed"
+msgstr "결재"
+
+#: contact/models.py:313 supplier/models.py:82
+msgid "Shipped"
+msgstr "배송"
+
+#: contact/models.py:359 supplier/models.py:39
+#: templates/contact/_order_details.html:38 templates/pdf/invoice.rml:136
+#: templates/pdf/packing-slip.rml:136
+msgid "Subtotal"
+msgstr "소계"
+
+#: contact/models.py:361 supplier/models.py:43 templates/base_cart.html:22
+#: templates/contact/_order_details.html:37
+#: templates/contact/_order_details.html:50
+#: templates/contact/_order_tracking_details.html:28
+#: templates/contact/_order_tracking_details.html:36
+#: templates/contact/order_history.html:23
+#: templates/email/order_complete.txt:45 templates/email/order_complete.txt:54
+#: templates/pdf/invoice.rml:117 templates/pdf/invoice.rml.py:147
+#: templates/pdf/packing-slip.rml:117 templates/pdf/packing-slip.rml.py:147
+msgid "Total"
+msgstr "합계"
+
+#: contact/models.py:363 discount/models.py:53
+msgid "Discount Code"
+msgstr "할인 번호"
+
+#: contact/models.py:364 discount/models.py:54
+msgid "Coupon Code"
+msgstr "쿠폰 번호"
+
+#: contact/models.py:365
+msgid "Discount amount"
+msgstr "할인 금액"
+
+#: contact/models.py:367
+msgid "Order method"
+msgstr "주문 방법"
+
+#: contact/models.py:369
+msgid "Shipping Description"
+msgstr "배송 설명"
+
+#: contact/models.py:371 contact/models.py:652
+#: templates/contact/_order_details.html:31
+#: templates/contact/_order_tracking_details.html:22
+#: templates/email/order_complete.txt:38
+msgid "Shipping Method"
+msgstr "배송 방법"
+
+#: contact/models.py:373
+msgid "Shipping Models"
+msgstr "배송 모델"
+
+#: contact/models.py:375
+msgid "Shipping Cost"
+msgstr "배송비"
+
+#: contact/models.py:377 templates/contact/_order_details.html:44
+msgid "Shipping Discount"
+msgstr "배송 할인"
+
+#: contact/models.py:379 contact/models.py:863 product/models.py:506
+#: supplier/models.py:41 templates/contact/_order_details.html:48
+#: templates/contact/_order_tracking_details.html:34
+#: templates/email/order_complete.txt:52 templates/pdf/invoice.rml:144
+#: templates/pdf/packing-slip.rml:144
+msgid "Tax"
+msgstr "세금"
+
+#: contact/models.py:381 contact/models.py:784
+#: templates/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "시간"
+
+#: contact/models.py:382 contact/models.py:781 supplier/models.py:92
+#: templates/contact/order_history.html:20
+msgid "Status"
+msgstr "상태"
+
+#: contact/models.py:383
+msgid "This is set automatically."
+msgstr "자동 설정"
+
+#: contact/models.py:654 templates/contact/_order_details.html:22
+#: templates/contact/update_form.html:71 templates/email/order_complete.txt:28
+#: templates/pdf/invoice.rml:25 templates/pdf/packing-slip.rml:25
+msgid "Shipping Address"
+msgstr "배송지"
+
+#: contact/models.py:657 templates/pdf/invoice.rml:24
+#: templates/pdf/packing-slip.rml:24
+msgid "Billing Address"
+msgstr "청구 주소"
+
+#: contact/models.py:660
+msgid "Totals"
+msgstr "합계"
+
+#: contact/models.py:669
+msgid "Product Order"
+msgstr "제품 주문"
+
+#: contact/models.py:670
+msgid "Product Orders"
+msgstr "제품 주문"
+
+#: contact/models.py:676 contact/models.py:780
+msgid "Order"
+msgstr "주문"
+
+#: contact/models.py:677 product/models.py:513
+msgid "Product"
+msgstr "제품"
+
+#: contact/models.py:678 shop/models.py:286 templates/base_cart.html:20
+#: templates/base_product.html:47 templates/pdf/invoice.rml:115
+#: templates/pdf/packing-slip.rml:115
+#: templates/product/detail_configurableproduct.html:108
+#: templates/product/detail_customproduct.html:58
+msgid "Quantity"
+msgstr "양"
+
+#: contact/models.py:679
+msgid "Unit price"
+msgstr "개당 가격"
+
+#: contact/models.py:681
+msgid "Line item price"
+msgstr "라인 아이템 가격"
+
+#: contact/models.py:683
+msgid "Line item discount"
+msgstr "라인 아이템 할인 가격"
+
+#: contact/models.py:709
+msgid "Order Line Item"
+msgstr "라인 아이템 주문"
+
+#: contact/models.py:710
+msgid "Order Line Items"
+msgstr "라인 아이템 주문"
+
+#: contact/models.py:716
+msgid "Order Item"
+msgstr "아이템 주문"
+
+#: contact/models.py:718 product/models.py:1039
+msgid "Value"
+msgstr "가치"
+
+#: contact/models.py:719 product/models.py:318 product/models.py:705
+msgid "Price Change"
+msgstr "가격 변경"
+
+#: contact/models.py:720 payment/models.py:32 product/models.py:199
+#: product/models.py:257 product/models.py:703 product/models.py:1093
+#: shop/models.py:337
+msgid "Sort Order"
+msgstr "주문 정렬"
+
+#: contact/models.py:721 product/models.py:258 product/models.py:704
+#: shop/models.py:338
+msgid "The display order for this group."
+msgstr "이 그룹에 대한 주문 표시"
+
+#: contact/models.py:727
+msgid "Order Item Detail"
+msgstr "주문 아이템 상세"
+
+#: contact/models.py:728
+msgid "Order Item Details"
+msgstr "주문 아이템 상세"
+
+#: contact/models.py:742
+msgid "This download is no longer active"
+msgstr "이 다운로드는 더 이상 유효하지 않습니다."
+
+#: contact/models.py:744
+msgid "You have exceeded the number of allowed downloads."
+msgstr "당신은 이미 유효한 다운로드 횟수를 초과하셨습니다."
+
+#: contact/models.py:747
+msgid "This download link has expired."
+msgstr "이 다운로드 링크는 만료되었습니다."
+
+#: contact/models.py:795
+msgid "Order Status"
+msgstr "주문 상태"
+
+#: contact/models.py:796
+msgid "Order Statuses"
+msgstr "주문 상태"
+
+#: contact/models.py:800
+msgid "Payment Method"
+msgstr "지불 방법"
+
+#: contact/models.py:802
+msgid "amount"
+msgstr "총계"
+
+#: contact/models.py:804
+msgid "timestamp"
+msgstr "시간"
+
+#: contact/models.py:805 templates/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "거래 아이디"
+
+#: contact/models.py:840
+msgid "Order Payment"
+msgstr "주문 지불"
+
+#: contact/models.py:841 templates/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "주문 지불"
+
+#: contact/models.py:845
+msgid "key"
+msgstr "키"
+
+#: contact/models.py:846
+msgid "value"
+msgstr "가치"
+
+#: contact/models.py:861
+msgid "Model"
+msgstr "모델"
+
+#: contact/views.py:131
+msgid ""
+"The order you have requested doesn't exist, or you don't have access to it."
+msgstr ""
+"요청하신 주문은 존재하지 않습니다. 또는 접근하실 수 없습니다."
+
+#: discount/models.py:39
+msgid "No Discount"
+msgstr "할인 불가"
+
+#: discount/models.py:55
+msgid "Discount Amount"
+msgstr "할인 총액"
+
+#: discount/models.py:57
+msgid "Enter absolute discount amount OR percentage."
+msgstr "절대 할인 가격 또는 할인 율을 입력하세요"
+
+#: discount/models.py:58
+msgid "Discount Percentage"
+msgstr "할인율"
+
+#: discount/models.py:61
+msgid ""
+"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr ""
+"절대 할인 가격 또는 할인율을 입력하세요. 할인율 예시: \"0.10\"."
+
+#: discount/models.py:62
+msgid "Number of allowed uses"
+msgstr "허가된 사용자 수"
+
+#: discount/models.py:63 discount/models.py:65
+msgid "Not implemented."
+msgstr "실행되지 않음"
+
+#: discount/models.py:64
+msgid "Number of times already used"
+msgstr "이미 사용된 횟수"
+
+#: discount/models.py:66
+msgid "Minimum order value"
+msgstr "최소 주문 가격"
+
+#: discount/models.py:68
+msgid "Start Date"
+msgstr "시작일"
+
+#: discount/models.py:69
+msgid "End Date"
+msgstr "종료일"
+
+#: discount/models.py:70 payment/models.py:27
+#: shipping/modules/tiered/models.py:93
+msgid "Active"
+msgstr "활성"
+
+#: discount/models.py:71
+msgid "Free shipping"
+msgstr "무료 배송"
+
+#: discount/models.py:72
+msgid "Should this discount remove all shipping costs?"
+msgstr "이 할인 금액은 배송료에서 제거되어야 합니까?"
+
+#: discount/models.py:73
+msgid "Include shipping"
+msgstr "배송료 포함"
+
+#: discount/models.py:74
+msgid "Should shipping be included in the discount calculation?"
+msgstr "배송료가 할인 계산에 포함되어야 합니까?"
+
+#: discount/models.py:75
+msgid "Valid Products"
+msgstr "유효한 제품"
+
+#: discount/models.py:90
+msgid "This coupon is disabled."
+msgstr "이 쿠폰은 사용하실수 없습니다."
+
+#: discount/models.py:92
+msgid "This coupon is not active yet."
+msgstr "이 쿠폰은 아직 활성화 되지 않았습니다."
+
+#: discount/models.py:94
+msgid "This coupon has expired."
+msgstr "이 쿠폰은 만료되었습니다."
+
+#: discount/models.py:96
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "이 쿠폰은 할당된 사용자 수를 초과 하였습니다."
+
+#: discount/models.py:98 discount/models.py:114
+msgid "Valid."
+msgstr "유효함"
+
+#: discount/models.py:102
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "이 할인은 적어도 %s 주문에 적용될 수 있습니다."
+
+#: discount/models.py:116
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "이 할인은 장바구니 제품에 적용될 수 없습니다."
+
+#: discount/models.py:174 templates/admin/satchmo_app_list.html:63
+#: templates/contact/_order_details.html:40
+#: templates/contact/_order_tracking_details.html:30
+#: templates/email/order_complete.txt:48
+msgid "Discount"
+msgstr "할인"
+
+#: discount/models.py:175 templates/checkout/base_pay_ship.html:32
+msgid "Discounts"
+msgstr "할인"
+
+#: giftcertificate/config.py:8
+#: giftcertificate/templates/giftcertificate/_order_summary.html:7
+#: giftcertificate/templates/giftcertificate/balance.html:13
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:29
+msgid "Gift Certificate"
+msgstr "선물 인즘"
+
+#: giftcertificate/config.py:11
+msgid "Gift Certificate Settings"
+msgstr "선물 인증 세팅"
+
+#: giftcertificate/config.py:18 payment/modules/authorizenet/config.py:39
+#: payment/modules/cybersource/config.py:33
+#: payment/modules/trustcommerce/config.py:31
+msgid "Use SSL for the checkout pages?"
+msgstr "결재 페이지를 사용하기 위해서는 SSL 을 사용하세요"
+
+#: giftcertificate/config.py:23
+msgid "Character Set"
+msgstr "문자 셑"
+
+#: giftcertificate/config.py:25
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
+msgstr ""
+"문자들은 무작위로 생성된 인증 코드"
+""
+
+#: giftcertificate/config.py:29 payment/modules/authorizenet/config.py:56
+#: payment/modules/autosuccess/config.py:33 payment/modules/cod/config.py:29
+#: payment/modules/cybersource/config.py:50 payment/modules/dummy/config.py:35
+#: payment/modules/google/config.py:94 payment/modules/paypal/config.py:69
+#: payment/modules/trustcommerce/config.py:19
+msgid "Module key"
+msgstr "모듈 키"
+
+#: giftcertificate/config.py:35
+msgid "Code format"
+msgstr "코드 포맷"
+
+#: giftcertificate/config.py:37
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
+msgstr ""
+"인증 코드 포맷을 입력하세요. 무작위로 생성된 글자의 위치에 '^'를 사용하세요"
+""
+
+#: giftcertificate/config.py:41 payment/modules/authorizenet/config.py:50
+#: payment/modules/autosuccess/config.py:27 payment/modules/cod/config.py:23
+#: payment/modules/cybersource/config.py:44 payment/modules/dummy/config.py:29
+#: payment/modules/google/config.py:88 payment/modules/paypal/config.py:63
+#: payment/modules/trustcommerce/config.py:25
+msgid "Implementation module"
+msgstr "실행 모듈"
+
+#: giftcertificate/config.py:47 payment/modules/authorizenet/config.py:62
+#: payment/modules/autosuccess/config.py:39 payment/modules/cod/config.py:35
+#: payment/modules/cybersource/config.py:56 payment/modules/dummy/config.py:41
+#: payment/modules/google/config.py:100 payment/modules/paypal/config.py:75
+#: payment/modules/trustcommerce/config.py:56
+msgid "English name for this group on the checkout screens"
+msgstr "결재 화면에서 이 그룹에 대한 영문 이름"
+
+#: giftcertificate/config.py:49 payment/modules/authorizenet/config.py:64
+#: payment/modules/autosuccess/config.py:41 payment/modules/cod/config.py:37
+#: payment/modules/cybersource/config.py:58 payment/modules/dummy/config.py:43
+#: payment/modules/google/config.py:102 payment/modules/paypal/config.py:77
+#: payment/modules/trustcommerce/config.py:58
+msgid "This will be passed to the translation utility"
+msgstr "이 부분은 번역되어질 것입니다."
+
+#: giftcertificate/config.py:53 payment/modules/authorizenet/config.py:68
+#: payment/modules/autosuccess/config.py:45 payment/modules/cod/config.py:41
+#: payment/modules/cybersource/config.py:68 payment/modules/dummy/config.py:47
+#: payment/modules/google/config.py:106 payment/modules/paypal/config.py:81
+#: payment/modules/trustcommerce/config.py:62
+msgid ""
+"The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+"url 패턴을 만들기 위한 url 베이스는 이 모듈을 사용할 것입니다."
+
+#: giftcertificate/forms.py:6
+msgid "Code"
+msgstr "코드"
+
+#: giftcertificate/models.py:30
+msgid "Certificate Code"
+msgstr "인증 코드"
+
+#: giftcertificate/models.py:32
+msgid "Purchased by"
+msgstr "구매자"
+
+#: giftcertificate/models.py:34 product/models.py:378
+msgid "Date added"
+msgstr "등록일"
+
+#: giftcertificate/models.py:35
+msgid "Valid"
+msgstr "유효성"
+
+#: giftcertificate/models.py:36
+msgid "Message"
+msgstr "메세지"
+
+#: giftcertificate/models.py:38
+msgid "Starting Balance"
+msgstr "잔액"
+
+#: giftcertificate/models.py:91
+msgid "Date of usage"
+msgstr "사용일"
+
+#: giftcertificate/models.py:93
+msgid "Amount Used"
+msgstr "총사용액"
+
+#: giftcertificate/models.py:96
+msgid "Used by"
+msgstr "사용자"
+
+#: giftcertificate/processor.py:24
+msgid "No balance to pay"
+msgstr "잔액 없음"
+
+#: giftcertificate/processor.py:33
+msgid "No such Gift Certificate"
+msgstr "요청하신 상품 인증은 않습니다.존"
+
+#: giftcertificate/processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "잘못된 상품 인증입니다."
+
+#: giftcertificate/processor.py:43 payment/modules/cod/processor.py:21
+#: payment/modules/dummy/processor.py:38 shop/views/cart.py:189
+msgid "Success"
+msgstr "성공"
+
+#: giftcertificate/processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "%s 잔액이 남았습니다. 선물 적용 후 "
+
+#: giftcertificate/templates/checkout/confirm.html:10
+#: giftcertificate/templates/checkout/giftcertificate/confirm.html:10
+#: templates/checkout/balance_remaining.html:7
+#: templates/checkout/base_confirm.html:8
+#: templates/checkout/base_confirm.html:12
+#: templates/checkout/base_pay_ship.html:6
+#: templates/checkout/base_pay_ship.html:10 templates/checkout/confirm.html:10
+#: templates/checkout/empty_cart.html:6 templates/checkout/empty_cart.html:10
+#: templates/checkout/form.html:6 templates/checkout/form.html.py:10
+#: templates/checkout/success.html:8 templates/checkout/cod/confirm.html:10
+msgid "Checkout"
+msgstr "계산"
+
+#: giftcertificate/templates/checkout/confirm.html:14
+#: giftcertificate/templates/checkout/giftcertificate/confirm.html:14
+#: templates/admin/_orderpayment_list.html:8
+#: templates/checkout/base_confirm.html:16
+#: templates/checkout/base_pay_ship.html:14 templates/checkout/confirm.html:14
+#: templates/checkout/form.html:14 templates/checkout/cod/confirm.html:14
+#: templates/checkout/google/confirm.html:6
+#: templates/checkout/google/confirm.html:9
+#: templates/checkout/paypal/confirm.html:5
+#: templates/checkout/paypal/confirm.html:8
+#: templates/email/order_complete.txt:56
+msgid "Payment"
+msgstr "지불"
+
+#: giftcertificate/templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "주문 합계: %(orderbalance)s"
+
+#: giftcertificate/templates/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"당신은 지금 총 %(certbalance)s 만큼을 선물 코드 #%(giftcode)s로 사용 할것입나디. "
+
+#: giftcertificate/templates/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+"만약 남은 금액이 충분하지 않다면, 당신은 다음 입력 창에서 남은 금액을 결재하실 수 있습니다."
+""
+
+
+#: giftcertificate/templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "남기실 말씀"
+
+#: giftcertificate/templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+"선물 인즘 코드: %(giftcode)s , 남은 금액 :%(balance)s"
+
+#: giftcertificate/templates/checkout/giftcertificate/pay_ship.html:6
+#: templates/checkout/pay_ship.html:6
+msgid "Payment Information"
+msgstr "지불 정보"
+
+#: giftcertificate/templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "선물 인증 코드"
+
+#: giftcertificate/templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "받는 사람: %(recipient)s "
+
+#: giftcertificate/templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "시작 금액: %(start_balance)s"
+
+#: giftcertificate/templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "코드: %(code)s"
+
+#: giftcertificate/templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "메세지: %(message)s"
+
+#: giftcertificate/templates/giftcertificate/balance.html:6
+#: templates/admin/satchmo_app_list.html:70
+msgid "Gift Certificates"
+msgstr "선물 인즘"
+
+#: giftcertificate/templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "구매 품목:"
+
+#: giftcertificate/templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "금액초"
+
+#: giftcertificate/templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "현재 금액"
+
+#: giftcertificate/templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "요청하신 선물 코드는 없습니다."
+
+#: giftcertificate/templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "남은 금액을 체크하세요."
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:22
+#: templates/base.html:30 templates/base_category.html:21
+#: templates/base_product.html:31
+#: templates/product/detail_configurableproduct.html:68
+#: templates/product/detail_customproduct.html:22
+msgid "Shop Categories"
+msgstr "카테고리"
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:31
+#: product/models.py:1054 product/models.py:1078
+#: templates/base_product.html:40
+#: templates/product/detail_configurableproduct.html:77
+#: templates/product/detail_customproduct.html:31
+msgid "Price"
+msgstr "금액"
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:40
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "수량"
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:43
+msgid "Recipient Email (optional):"
+msgstr "수령자 이메일 (선택 사항입니다.)"
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:44
+msgid "Message (optional):"
+msgstr "메세지 (선택 사항입니다.)"
+
+#: giftcertificate/templates/product/detail_giftcertificateproduct.html:49
+#: templates/base_product.html:49
+#: templates/product/detail_configurableproduct.html:110
+#: templates/product/detail_customproduct.html:60
+msgid "Add to cart"
+msgstr "장바구니 담기"
+
+#: l10n/models.py:6
+msgid "Africa"
+msgstr "아프리카"
+
+#: l10n/models.py:7
+msgid "North America"
+msgstr "북 아메리카"
+
+#: l10n/models.py:8
+msgid "Europe"
+msgstr "유럽"
+
+#: l10n/models.py:9
+msgid "Asia"
+msgstr "아시아"
+
+#: l10n/models.py:10
+msgid "Oceania"
+msgstr "오세아니아"
+
+#: l10n/models.py:11
+msgid "South America"
+msgstr "남 아메리카"
+
+#: l10n/models.py:12
+msgid "Antarctica"
+msgstr "안타르시아"
+
+#: l10n/models.py:16
+msgid "Another"
+msgstr "이 외의 다른 지역"
+
+#: l10n/models.py:17
+msgid "Island"
+msgstr "섬"
+
+#: l10n/models.py:18
+msgid "Arrondissement"
+msgstr "구"
+
+#: l10n/models.py:19
+msgid "Atoll"
+msgstr "산호섬"
+
+#: l10n/models.py:20
+msgid "Autonomous island"
+msgstr "자율통치 섬"
+
+#: l10n/models.py:21
+msgid "Canton"
+msgstr "군"
+
+#: l10n/models.py:22
+msgid "Commune"
+msgstr "동"
+
+#: l10n/models.py:23
+msgid "County"
+msgstr "군"
+
+#: l10n/models.py:24
+msgid "Department"
+msgstr "부문"
+
+#: l10n/models.py:25
+msgid "Dependency"
+msgstr "부속"
+
+#: l10n/models.py:26
+msgid "District"
+msgstr "지역"
+
+#: l10n/models.py:27
+msgid "Division"
+msgstr "부"
+
+#: l10n/models.py:28
+msgid "Emirate"
+msgstr "관할 구역"
+
+#: l10n/models.py:29
+msgid "Governorate"
+msgstr "정부"
+
+#: l10n/models.py:30
+msgid "Island council"
+msgstr "섬 의회 "
+
+#: l10n/models.py:31
+msgid "Island group"
+msgstr "섬 그룹"
+
+#: l10n/models.py:32
+msgid "Island region"
+msgstr "섬 지역"
+
+#: l10n/models.py:33
+msgid "Kingdom"
+msgstr "왕국"
+
+#: l10n/models.py:34
+msgid "Municipality"
+msgstr "지방 자치제"
+
+#: l10n/models.py:35
+msgid "Parish"
+msgstr "교구"
+
+#: l10n/models.py:36
+msgid "Prefecture"
+msgstr "도"
+
+#: l10n/models.py:37
+msgid "Province"
+msgstr "지방"
+
+#: l10n/models.py:38
+msgid "Region"
+msgstr "지역"
+
+#: l10n/models.py:39
+msgid "Republic"
+msgstr "공화국"
+
+#: l10n/models.py:40
+msgid "Sheading"
+msgstr "차고"
+
+#: l10n/models.py:42
+msgid "Subdivision"
+msgstr "세분"
+
+#: l10n/models.py:43 shop/views/contact.py:25
+msgid "Subject"
+msgstr "제목"
+
+#: l10n/models.py:44
+msgid "Territory"
+msgstr "지역"
+
+#: l10n/models.py:53
+msgid "ISO alpha-2"
+msgstr ""
+
+#: l10n/models.py:54
+msgid "Official name (CAPS)"
+msgstr "공식 이름(CAPS)"
+
+#: l10n/models.py:55
+msgid "Country name"
+msgstr "지역 이름"
+
+#: l10n/models.py:56
+msgid "ISO alpha-3"
+msgstr ""
+
+#: l10n/models.py:57
+msgid "ISO numeric"
+msgstr "ISO 숫자"
+
+#: l10n/models.py:58
+msgid "Country is active"
+msgstr "지역은 활성 상태입니다."
+
+#: l10n/models.py:59
+msgid "Continent"
+msgstr "대륙"
+
+#: l10n/models.py:60 l10n/models.py:87
+msgid "Administrative Area"
+msgstr "관리자 영역"
+
+#: l10n/models.py:64 templates/admin/satchmo_app_list.html:82
+msgid "Countries"
+msgstr "지역들"
+
+#: l10n/models.py:82
+msgid "Admin Area name"
+msgstr "관리자 영역 이름"
+
+#: l10n/models.py:83
+msgid "Postal Abbreviation"
+msgstr "우편 번호"
+
+#: l10n/models.py:84
+msgid "Area is active"
+msgstr "지역 활성화"
+
+#: l10n/models.py:88
+msgid "Administrative Areas"
+msgstr "관리자 영역"
+
+#: newsletter/config.py:6
+msgid "Newsletter Settings"
+msgstr "뉴스레터 설정"
+
+#: newsletter/config.py:10
+msgid "Active newsletter module"
+msgstr "뉴스레터 활성 모듈"
+
+#: newsletter/config.py:11
+msgid ""
+"Select a newsletter, save and reload to set any module-specific newsletter "
+"settings."
+msgstr ""
+"뉴스레터를 선택하세요, 해당 뉴스레터 모듈을 설정하기 위해서는 저장 후 다시 페이지를 읽으세요" 
+
+#: newsletter/config.py:13
+msgid "No newsletter"
+msgstr "뉴스레터 없음"
+
+#: newsletter/config.py:14
+msgid "Simple list"
+msgstr "간단 목록"
+
+#: newsletter/config.py:15
+msgid "Mailman"
+msgstr "집배원"
+
+#: newsletter/config.py:20
+msgid "Name of Newsletter"
+msgstr "뉴스레터 이름"
+
+#: newsletter/config.py:21
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr "메일맨에 설정된 정확한 메일링 리스트 이름을 입력 하세요"
+
+#: newsletter/mailman.py:24 newsletter/simple.py:18
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "%(email)s은 이미 받이 보고 있습니다. "
+
+#: newsletter/mailman.py:26 newsletter/simple.py:20
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "%(email)s은 탈퇴 이미 하셨습니다."
+
+#: newsletter/mailman.py:35 newsletter/mailman.py:71 newsletter/simple.py:29
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "구독: %(email)s"
+
+#: newsletter/mailman.py:38 newsletter/simple.py:31
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "비구독: %(email)s"
+
+#: newsletter/mailman.py:63
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "구독: %s"
+
+#: newsletter/mailman.py:74
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "이미 구독자 입니다: %(email)s"
+
+#: newsletter/mailman.py:78
+msgid "Bad/Invalid email address: blank line"
+msgstr "적합하지 않은 이메일 입니다."
+
+#: newsletter/mailman.py:80
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "적합하지 않은 이메일 입니다: %(email)s"
+
+#: newsletter/mailman.py:83
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "부적합한 글자입니다: %(email)s"
+
+#: newsletter/models.py:32
+msgid "Subscribed"
+msgstr "구독"
+
+#: newsletter/models.py:35
+msgid "Update Date"
+msgstr "업데이트 날짜"
+
+#: newsletter/views.py:14 product/models.py:371 product/models.py:592
+msgid "Full Name"
+msgstr "이름"
+
+#: newsletter/views.py:16 templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+msgid "Subscribe"
+msgstr "구독"
+
+#: newsletter/views.py:53
+msgid "Error, not valid."
+msgstr "에르 유효하지 않음"
+
+#: payment/config.py:10
+msgid "Payment Settings"
+msgstr "지불 설정"
+
+#: payment/config.py:15 payment/modules/authorizenet/config.py:44
+#: payment/modules/autosuccess/config.py:15
+#: payment/modules/cybersource/config.py:38 payment/modules/dummy/config.py:23
+#: payment/modules/google/config.py:82 payment/modules/paypal/config.py:57
+#: payment/modules/trustcommerce/config.py:41
+msgid "Accept real payments"
+msgstr "실제 지불 수락"
+
+#: payment/config.py:16
+msgid ""
+"False if you want to be in test mode.  This is the master switch, turn it "
+"off to force all payments into test mode."
+msgstr ""
+"이것은 모든 결제에 대해서 테스트 모드로 바꾸기 위한 것입니다. False로 두시면 테스트 모드로 전환 됩니다."
+
+#: payment/config.py:24
+msgid "Enable payment modules"
+msgstr "결제 모듈 실행"
+
+#: payment/config.py:25
+msgid ""
+"Select the payment modules you want to use with your shop.  \n"
+"If you are adding a new one, you should save and come back to this page, \n"
+"as it may have enabled a new configuration section."
+msgstr ""
+"샵에서 사용하실 결제 모듈을 선택해 주세요. \n"
+"만약 당신이 결제 새로운 결제 모듈을 추가 하셨다면, 먼저 저장 하시고 이 페이지로 오세요. "
+""
+
+#: payment/config.py:32
+msgid "Enable SSL"
+msgstr "가능 SSL"
+
+#: payment/config.py:33
+msgid ""
+"This enables for generic pages like contact information capturing.  \n"
+"It does not set SSL for individual modules. \n"
+"You must enable SSL for each payment module individually."
+msgstr ""
+"이것은 연락처 같은 일반 페이지를 가능하게 합니다. \n"
+"이것은 개인 모듈에 대한 SSL을 설정하지 않습니다. \n"
+"각각의 지불 모듈에 대해서 SSL 가능 설정을 해야 합니다."
+
+#: payment/models.py:28
+msgid "Should this be displayed as an option for the user?"
+msgstr "이 페이지는 사용자 선택 사항을 위해 보여져야 합니까?"
+
+#: payment/models.py:29
+msgid "Option Name"
+msgstr "선택 사항 이름"
+
+#: payment/models.py:31
+msgid "The class name as defined in payment.py"
+msgstr "payment.py에 정의된 클래스 이름"
+
+#: payment/models.py:49
+msgid "Credit Card Type"
+msgstr "신용 카드 형태"
+
+#: payment/models.py:51
+msgid "CC Number (Last 4 digits)"
+msgstr "CC 번호"
+
+#: payment/models.py:53
+msgid "Encrypted Credit Card"
+msgstr "암호화된 신용카드"
+
+#: payment/models.py:55
+msgid "Expiration Month"
+msgstr "만료 월"
+
+#: payment/models.py:56
+msgid "Expiration Year"
+msgstr "만료 년"
+
+#: payment/models.py:57 templates/checkout/pay_ship.html:20
+msgid "CCV"
+msgstr "CCV"
+
+#: payment/models.py:84 payment/modules/authorizenet/config.py:6
+#: payment/modules/cybersource/config.py:6
+#: payment/modules/trustcommerce/config.py:5
+msgid "Credit Card"
+msgstr "신용카드"
+
+#: payment/models.py:85
+msgid "Credit Cards"
+msgstr "신용카드"
+
+#: payment/views.py:21
+msgid "New price"
+msgstr "새로운 가격"
+
+#: payment/views.py:22
+msgid "Shipping adjustment"
+msgstr "배송 적용"
+
+#: payment/views.py:76 payment/views.py:100
+msgid ""
+"The orderitem you have requested doesn't exist, or you don't have access to "
+"it."
+msgstr ""
+"당신이 요청하신 제품은 존제하지 않거나 또는 당신은 이 제품에 접근할 권한이 없습니다."
+
+#: payment/views.py:90
+msgid "No form found in request."
+msgstr "요청하신 폼을 찾을 수 없습니다."
+
+#: payment/common/forms.py:51 payment/common/forms.py:64
+#: templates/checkout/balance_remaining.html:23
+#: templates/checkout/form.html:47
+msgid "Payment method"
+msgstr "지불 수단"
+
+#: payment/common/forms.py:103
+msgid "Invalid discount."
+msgstr "유효하지 않은 할인"
+
+#: payment/common/forms.py:155
+msgid "Your card has expired."
+msgstr "카드가 만료되었습니다."
+
+#: payment/common/pay_ship.py:65
+#, python-format
+msgid "Thank you for your order from %(shop_name)s"
+msgstr "%(shop_name)s 에서의 주문을 감사드립니다."
+
+#: payment/common/views/checkout.py:14
+msgid "Your order has already been processed."
+msgstr "당신의 주문은 이미 처리 되었습니다."
+
+#: payment/common/views/confirm.py:37 payment/modules/google/views.py:78
+#: payment/modules/paypal/views.py:46
+msgid "Your order is no longer valid."
+msgstr "당신의 주문은 더 이성 유효하지 않습니다."
+
+#: payment/modules/authorizenet/config.py:6
+#: payment/modules/cybersource/config.py:6
+#: payment/modules/trustcommerce/config.py:5
+msgid "CreditCard"
+msgstr "신용카드"
+
+#: payment/modules/authorizenet/config.py:12
+msgid "Authorize.net Payment Settings"
+msgstr "Authorize.net 지불 설정"
+
+#: payment/modules/authorizenet/config.py:20
+msgid "Submit to URL"
+msgstr "URL에 전송"
+
+#: payment/modules/authorizenet/config.py:21
+#: payment/modules/cybersource/config.py:22
+msgid "This is the address to submit live transactions."
+msgstr "실 거래에 전송하기 위한 주소입니다."
+
+#: payment/modules/authorizenet/config.py:26
+msgid "Submit to Test URL"
+msgstr "테스트 URL에 전송"
+
+#: payment/modules/authorizenet/config.py:45
+#: payment/modules/autosuccess/config.py:16
+#: payment/modules/cybersource/config.py:39 payment/modules/dummy/config.py:24
+#: payment/modules/google/config.py:83 payment/modules/paypal/config.py:58
+#: payment/modules/trustcommerce/config.py:42
+msgid "False if you want to be in test mode"
+msgstr "테스트 모드로 전환 하실려면 False로 설정하세요"
+
+#: payment/modules/authorizenet/config.py:73
+#: payment/modules/cybersource/config.py:73 payment/modules/dummy/config.py:52
+#: payment/modules/trustcommerce/config.py:67
+msgid "Available credit cards"
+msgstr "가용한 신용 카드"
+
+#: payment/modules/authorizenet/config.py:83
+msgid "Your authorize.net transaction login"
+msgstr "당신의 authorize.net 거래 로그인"
+
+#: payment/modules/authorizenet/config.py:88
+msgid "Your authorize.net transaction key"
+msgstr "당신의 authorize.net 거래 키"
+
+#: payment/modules/autosuccess/config.py:5
+msgid "Auto Success Module"
+msgstr "자동 성공 모듈"
+
+#: payment/modules/autosuccess/config.py:8
+msgid "Payment Auto Success Module Settings"
+msgstr "지불 자동 성공 모듈 설정"
+
+#: payment/modules/autosuccess/config.py:21
+msgid "Send order emails"
+msgstr "주문을 이메일로 보내주세요"
+
+#: payment/modules/autosuccess/config.py:22
+msgid "True if you want to send emails to customers on order"
+msgstr "주문에 대한 정보를 고객에게 이메일로 보내시길 원하시면 True로 설정하세요"
+
+#: payment/modules/cod/config.py:8
+msgid "COD"
+msgstr "COD"
+
+#: payment/modules/cod/config.py:11
+msgid "COD Payment Module Settings"
+msgstr "COD 지불 모듈 세팅"
+
+#: payment/modules/cod/config.py:18 payment/modules/dummy/config.py:18
+#: payment/modules/google/config.py:77 payment/modules/paypal/config.py:52
+msgid "Use SSL for the module checkout pages?"
+msgstr "모듈 체크 아웃 페이지를 위해서 SSL을 사용하시겠습니까?"
+
+#: payment/modules/cybersource/config.py:13
+msgid "Cybersource.net Payment Settings"
+msgstr "Cybersource.net 지불 설정"
+
+#: payment/modules/cybersource/config.py:21
+msgid "WSDL URL"
+msgstr "WSDL URL"
+
+#: payment/modules/cybersource/config.py:27
+msgid "Submit to Test WSDL URL"
+msgstr "테스트 WSDL URL에 전송"
+
+#: payment/modules/cybersource/config.py:62
+#: payment/modules/google/config.py:25 payment/modules/paypal/config.py:16
+msgid "Currency Code"
+msgstr "통화 코드"
+
+#: payment/modules/cybersource/config.py:63
+msgid "Currency code for Cybersource transactions."
+msgstr "사이버 거래에 대한 통화 코드"
+
+#: payment/modules/cybersource/config.py:83
+msgid "Your Cybersource merchant ID"
+msgstr "당신의 사이버소스 상점 아이디"
+
+#: payment/modules/cybersource/config.py:88
+msgid "Your Cybersource transaction key"
+msgstr "당신의 사이버소스 거래 아이디"
+
+#: payment/modules/dummy/config.py:8
+msgid "Payment Test Module"
+msgstr "지불 테스트 모듈"
+
+#: payment/modules/dummy/config.py:11
+msgid "Payment Test Module Settings"
+msgstr "지불 테스트 모듈 설정"
+
+#: payment/modules/google/config.py:8
+msgid "Google Checkout Module"
+msgstr "구글 체크아웃 모듈"
+
+#: payment/modules/google/config.py:11
+msgid "Google Checkout Module Settings"
+msgstr "구글 체크아웃 모듈 설정"
+
+#: payment/modules/google/config.py:19
+msgid "XML Template"
+msgstr "XML 템플릿"
+
+#: payment/modules/google/config.py:20
+msgid ""
+"The XML template to use when submitting to Google. Probably you should not "
+"change this."
+msgstr ""
+"구글에 전송하기 위한 XML 템플릿. 아마도 당신은 변경할 필요가 없습니다."
+
+#: payment/modules/google/config.py:26
+msgid "Currency code for Google Checkout transactions."
+msgstr "구글 지불 거래에 대한 통화 코드"
+
+#: payment/modules/google/config.py:31
+msgid "Checkout Button URL"
+msgstr "거래 버튼 URL"
+
+#: payment/modules/google/config.py:36
+msgid "Checkout Button Size"
+msgstr "거래 버튼 사이즈"
+
+#: payment/modules/google/config.py:38
+msgid "Small"
+msgstr "작게"
+
+#: payment/modules/google/config.py:39
+msgid "Medium"
+msgstr "중간"
+
+#: payment/modules/google/config.py:40
+msgid "Large"
+msgstr "크게"
+
+#: payment/modules/google/config.py:45 payment/modules/google/config.py:51
+#: payment/modules/paypal/config.py:22 payment/modules/paypal/config.py:28
+msgid "Post URL"
+msgstr "포스트 URL"
+
+#: payment/modules/google/config.py:46
+msgid "The Google URL for real transaction posting."
+msgstr "실 거래에 대한 구글 URL"
+
+#: payment/modules/google/config.py:52
+msgid "The Google URL for test transaction posting."
+msgstr "테스트 거래에 대한 구글 URL"
+
+#: payment/modules/google/config.py:57
+msgid "Merchant ID"
+msgstr "상점 아이디"
+
+#: payment/modules/google/config.py:62
+msgid "Merchant Key"
+msgstr "상점 키"
+
+#: payment/modules/google/config.py:67
+msgid "Merchant Test ID"
+msgstr "상점 테스트 아이디"
+
+#: payment/modules/google/config.py:72
+msgid "Merchant Test Key"
+msgstr "상점 테스트 키"
+
+#: payment/modules/paypal/config.py:5
+msgid "Paypal Payment Settings"
+msgstr "페이팔 지불 설정"
+
+#: payment/modules/paypal/config.py:8
+msgid "Paypal Payment Module Settings"
+msgstr "페이팔 지불 모듈 설정"
+
+#: payment/modules/paypal/config.py:17
+msgid "Currency code for Paypal transactions."
+msgstr "페이팔 거래에 대한 통화 코드"
+
+#: payment/modules/paypal/config.py:23
+msgid "The Paypal URL for real transaction posting."
+msgstr "실 거래를 위한 페이팔 URL"
+
+#: payment/modules/paypal/config.py:29
+msgid "The Paypal URL for test transaction posting."
+msgstr "테스트 거래에 대한 페이팔 URL"
+
+#: payment/modules/paypal/config.py:34
+msgid "Paypal account email"
+msgstr "페이팔 계정 이메일"
+
+#: payment/modules/paypal/config.py:35
+msgid "The email address for your paypal account"
+msgstr "페이팔 계정에 대한 이메일 주소"
+
+#: payment/modules/paypal/config.py:40
+msgid "Paypal test account email"
+msgstr "페이팔 테스트 계정 이메일"
+
+#: payment/modules/paypal/config.py:41
+msgid "The email address for testing your paypal account"
+msgstr "테스트 페이팔 모듈에 대한 이메일 주소"
+
+#: payment/modules/paypal/config.py:46
+msgid "Return URL"
+msgstr "리턴 URL"
+
+#: payment/modules/paypal/config.py:47
+msgid ""
+"Where Paypal will return the customer after the purchase is complete.  This "
+"can be a named url and defaults to the standard checkout success."
+msgstr ""
+"페이팔이 구매 완료 한 고객을 돌려 보내줄 곳. \n"
+"이 것은 이름붙인 url이나 표준 지불 완료 기본 페이지가 될 수 있습니다."
+
+#: payment/modules/paypal/views.py:113
+msgid "Paid through PayPal."
+msgstr "페이폴을 통한 지불"
+
+#: payment/modules/trustcommerce/config.py:11
+msgid "TrustCommerce Payment Settings"
+msgstr "TrustCommerce 지불 세팅"
+
+#: payment/modules/trustcommerce/config.py:36
+msgid "Use Address Verification System (AVS)?"
+msgstr "주소 확인 시스템 사용"
+
+#: payment/modules/trustcommerce/config.py:47
+msgid "Type of authorization to perform."
+msgstr "인증 타입"
+
+#: payment/modules/trustcommerce/config.py:48
+msgid "Refer to manual for details on the different types."
+msgstr "다른 타입에 대한 자세한 사항은 메뉴얼 참조"
+
+#: payment/modules/trustcommerce/config.py:50
+msgid "Sale"
+msgstr "판매"
+
+#: payment/modules/trustcommerce/config.py:51
+msgid "Preauth"
+msgstr ""
+
+#: payment/modules/trustcommerce/config.py:77
+msgid "Your TrustCommerce login"
+msgstr "당신의 TrustCommerce 로그인 아이디"
+
+#: payment/modules/trustcommerce/config.py:82
+msgid "Your TrustCommerce password"
+msgstr "당신의 TrustCommerce 패스워드"
+
+#: payment/modules/trustcommerce/processor.py:77
+#, python-format
+msgid "Transaction was declined.  Reason: %s"
+msgstr "거래가 거부 되었습니다. 이유: %s"
+
+#: payment/modules/trustcommerce/processor.py:80
+#, python-format
+msgid "Improperly formatted data. Offending fields: %s"
+msgstr "부적절한 포맷 데이타. 잘못된 필드: %s"
+
+#: payment/modules/trustcommerce/processor.py:83
+#, python-format
+msgid "An error occurred: %s"
+msgstr "에러 발생: %s"
+
+#: product/adminviews.py:27
+msgid "Inventory Editor"
+msgstr "인벤토리 에디터"
+
+#: product/adminviews.py:47
+msgid "Product Import/Export"
+msgstr "제품 입력/출력"
+
+#: product/adminviews.py:70
+msgid "No upload file found"
+msgstr "업로드 파일을 찾지 못했습니다."
+
+#: product/config.py:6
+msgid "Product Settings"
+msgstr "제품 세팅"
+
+#: product/config.py:10
+msgid "Product Model Options"
+msgstr "제품 모델 옵션"
+
+#: product/config.py:12
+msgid "Configurable Product"
+msgstr "제품 설정"
+
+#: product/config.py:13
+msgid "Product Variation"
+msgstr "제품 변동"
+
+#: product/config.py:14
+msgid "Custom Order"
+msgstr "고객 주문"
+
+#: product/config.py:15
+msgid "Downloable Product"
+msgstr "다운로드 가능 제품"
+
+#: product/config.py:22
+msgid "Upload Image Dir"
+msgstr "업로드 이미지 디렉토리"
+
+#: product/config.py:23
+msgid ""
+"Directory name for storing uploaded images.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"업로드 이미지를 저장하기 위한 디렉토리 이름. \n"
+"이 값은 MEDIA_ROOT에 추가 될 것입니다. 슬래쉬에 대해서는 걱정하지 마세요. \n"
+"프로그램이 알아서 처리할 것입니다."
+
+#: product/config.py:30
+msgid "Rename product images?"
+msgstr "제품 이미지 이름 다시 설정?"
+
+#: product/config.py:31
+msgid "Automatically rename product images on upload?"
+msgstr "자동 제품 이미지 이름 설정?"
+
+#: product/config.py:36
+msgid "Protected dir"
+msgstr "보호된 디렉토리"
+
+#: product/config.py:37
+msgid ""
+"This is only used if you use Downloadable Products.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"당신이 다운로드 가능한 제품을 사용할 때에만 이것은 사용될 것입니다."
+"이 값은 MEDIA_ROOT에 추가 될 것입니다. 슬래쉬에 대해서는 걱정하지 마세요. \n"
+"프로그램이 알아서 처리할 것입니다."
+
+#: product/forms.py:32
+msgid "export format"
+msgstr "출력 포맷"
+
+#: product/forms.py:33
+msgid "Include Images"
+msgstr "이미지 포함"
+
+#: product/forms.py:136
+msgid "File to import"
+msgstr "임포트할 파일"
+
+#: product/forms.py:154 product/forms.py:197
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "파싱할 수 없는 파일 포맷: %s"
+
+#: product/forms.py:172
+msgid "Bad VARS file in import zipfile."
+msgstr "압축 파일을 임포트 하는데 있어서 잘못된 VARS 파일"
+
+#: product/forms.py:202
+msgid "Missing VARS in import zipfile."
+msgstr "압축 파일을 임포트 하는데 있어서 VAR 잃어버림"
+
+#: product/forms.py:208
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "알려지지 않은 파일 포맷: %s"
+
+#: product/forms.py:235
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr "%(filename)s에서 %(count)i의 객체 추가"
+
+#: product/forms.py:239
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr "fixture 설치중 문제 발생 '%(filename)s': %(error_msg)s\n"
+
+#: product/models.py:50
+msgid "Used for URLs"
+msgstr "URL에 대한 사용"
+
+#: product/models.py:53 product/models.py:377
+msgid "Meta Description"
+msgstr "메타 상세 설명"
+
+#: product/models.py:54
+msgid "Meta description for this category"
+msgstr "이 카테고리에 대한 메타 상세 설명"
+
+#: product/models.py:57 product/models.py:381
+#: shipping/modules/tiered/models.py:92
+msgid "Ordering"
+msgstr "순서"
+
+#: product/models.py:57 product/models.py:381
+msgid "Override alphabetical order in category display"
+msgstr "알파벳순 카테고리 정렬"
+
+#: product/models.py:130
+msgid "You must not save a category in itself!"
+msgstr "카테고리 자체를 저장하셔야 합니다."
+
+#: product/models.py:164 product/models.py:375
+msgid "Category"
+msgstr "카테고리"
+
+#: product/models.py:165
+msgid "Categories"
+msgstr "카테고리"
+
+#: product/models.py:172 product/models.py:233 product/models.py:285
+#: product/models.py:348 product/models.py:591 product/models.py:718
+#: product/models.py:1037 product/models.py:1127
+#: shipping/modules/tiered/models.py:201
+msgid "language"
+msgstr "언어"
+
+#: product/models.py:173 product/models.py:349
+msgid "Translated Category Name"
+msgstr "번역된 카테고리 이름"
+
+#: product/models.py:174
+msgid "Description of category"
+msgstr "카테고리 상세 설명"
+
+#: product/models.py:175 product/models.py:235 product/models.py:288
+#: product/models.py:350 product/models.py:595 product/models.py:720
+#: product/models.py:1129
+msgid "version"
+msgstr "버전"
+
+#: product/models.py:176 product/models.py:236 product/models.py:289
+#: product/models.py:351 product/models.py:596 product/models.py:721
+#: product/models.py:1130
+msgid "active"
+msgstr "활성"
+
+#: product/models.py:179
+msgid "Category Translation"
+msgstr "카테고리 번역"
+
+#: product/models.py:180
+msgid "Category Translations"
+msgstr "카테고리 번역"
+
+#: product/models.py:195 product/models.py:1089
+msgid "Picture"
+msgstr "사진"
+
+#: product/models.py:197 product/models.py:1091
+msgid "Optional caption"
+msgstr "선택 머릿말"
+
+#: product/models.py:222
+msgid "Category Image"
+msgstr "카테고리 이미지"
+
+#: product/models.py:223
+msgid "Category Images"
+msgstr "카테고리 이미지"
+
+#: product/models.py:234 product/models.py:1128
+msgid "Translated Caption"
+msgstr "번역된 자막"
+
+#: product/models.py:239
+msgid "Category Image Translation"
+msgstr "카테고리 이미지 번역"
+
+#: product/models.py:240
+msgid "Category Image Translations"
+msgstr "카테고리 이미지 번역"
+
+#: product/models.py:252
+msgid "Name of Option Group"
+msgstr "선택 그룹 이름"
+
+#: product/models.py:253
+msgid "This will be the text displayed on the product page."
+msgstr "이것은 제품 페이지에 텍스트로 보여질 것입니다."
+
+#: product/models.py:254
+msgid "Detailed Description"
+msgstr "상세 설명"
+
+#: product/models.py:256
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "이 그룹에 대한 더 자세한 설명( 예를 들면 셔츠 사이즈 , 신발 사이즈 )."
+
+#: product/models.py:277
+msgid "Option Group"
+msgstr "옵션 그룹"
+
+#: product/models.py:278
+msgid "Option Groups"
+msgstr "옵션 그룹"
+
+#: product/models.py:286
+msgid "Translated OptionGroup Name"
+msgstr "번역된 오션그룹 이름"
+
+#: product/models.py:287
+msgid "Description of OptionGroup"
+msgstr "옵션 그룹 설명"
+
+#: product/models.py:292
+msgid "Option Group Translation"
+msgstr "옵션 그룹 번역"
+
+#: product/models.py:293
+msgid "Option Groups Translations"
+msgstr "옵션 그롭 번역"
+
+#: product/models.py:315
+msgid "Display value"
+msgstr "표시 값"
+
+#: product/models.py:316
+msgid "Stored value"
+msgstr "저장된 값"
+
+#: product/models.py:320
+msgid "This is the price differential for this option."
+msgstr "이 옵션에 대해 다른 가격"
+
+#: product/models.py:321
+msgid "Display Order"
+msgstr "정렬 순서"
+
+#: product/models.py:329
+msgid "Option Item"
+msgstr "선택 아이템"
+
+#: product/models.py:330
+msgid "Option Items"
+msgstr "선택 아이템"
+
+#: product/models.py:354
+msgid "Option Translation"
+msgstr "선택 번역"
+
+#: product/models.py:355
+msgid "Option Translations"
+msgstr "선택 번역"
+
+#: product/models.py:371
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+"이곳은 기본 사이트 언어에서 제품이 보여질 것 입니다."
+"다른 기본 언어로 추가 하기 위해서는 아래 섹션의 제품 번역을 사용하세요."
+
+#: product/models.py:372
+msgid "Slug Name"
+msgstr "Slug 이름"
+
+#: product/models.py:373 product/models.py:593
+msgid "Short description of product"
+msgstr "제품에 대한 짦은 설명"
+
+#: product/models.py:373
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr ""
+"제품 리스팅 화면에 사용하기 위해서는 한 두줄의 잛은 설명을 써 주세요."
+
+#: product/models.py:374 product/models.py:594
+msgid "Description of product"
+msgstr "제품 설명"
+
+#: product/models.py:374
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr ""
+"이 필드는 HTML을 포함할 수 있습니다. 그리고 몇 문단으로 사이트 기본 언어로 제품에 대한"
+"배경에 대해서 설명하며, 고객이 이 제품 구매에 도움을 줄 수 있는 어떤 정보도 이 곳에 쓸"
+"수 있습니다."
+
+#: product/models.py:376
+msgid "Number in stock"
+msgstr "제고 수"
+
+#: product/models.py:377
+msgid "Meta description for this product"
+msgstr "이 제품에 대한 메타 설명"
+
+#: product/models.py:379
+msgid "Is product active?"
+msgstr "이 제품이 활성화 상태인가요?"
+
+#: product/models.py:379
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "이 것은 이 제품이 사이트에 보일지 말지를 결정합니다."
+
+#: product/models.py:380
+msgid "Featured Item"
+msgstr "특별 아이템"
+
+#: product/models.py:380
+msgid "Featured items will show on the front page"
+msgstr "특별 아이템은 첫 페이지에 나타날 것입니다."
+
+#: product/models.py:382
+msgid "Weight"
+msgstr "무게"
+
+#: product/models.py:383
+msgid "Length"
+msgstr "길이"
+
+#: product/models.py:384
+msgid "Width"
+msgstr "폭"
+
+#: product/models.py:385
+msgid "Height"
+msgstr "높이"
+
+#: product/models.py:386
+msgid "Related Items"
+msgstr "관련 이이템"
+
+#: product/models.py:387
+msgid "Previously Purchased"
+msgstr "이전 구매"
+
+#: product/models.py:388
+msgid "Taxable"
+msgstr "세금"
+
+#: product/models.py:389 tax/models.py:26
+msgid "Tax Class"
+msgstr "세금 등급"
+
+#: product/models.py:389
+msgid "If it is taxable, what kind of tax?"
+msgstr "만약 세금 부과 항목이면, 어떤 세금인가?"
+
+#: product/models.py:504
+msgid "Meta Data"
+msgstr "메타 데이타"
+
+#: product/models.py:505
+msgid "Item Dimensions"
+msgstr "아이템 치수"
+
+#: product/models.py:507
+msgid "Related Products"
+msgstr "관련 제품"
+
+#: product/models.py:514
+msgid "Products"
+msgstr "제품"
+
+#: product/models.py:593
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr ""
+"제품 리스트 화면에 사용하기 위해서는 한 두줄 정도의 설명이어야 합니다."
+
+#: product/models.py:594
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr ""
+"이 필드는 HTML을 포함할 수 있으며, 제품의 배경 설명을 할 수 있는 몇 문단으로 구성할 수 있습니다."
+"그리고, 고객들에게 그들의 구매에 도움을 줄 수 있는 어떤 정보도 포함할 수 있습니다."
+
+#: product/models.py:599
+msgid "Product Translation"
+msgstr "제품 번역"
+
+#: product/models.py:600
+msgid "Product Translations"
+msgstr "제품 번역"
+
+#: product/models.py:640
+msgid "Percent Downpayment"
+msgstr "다운로드한 퍼센트"
+
+#: product/models.py:641
+msgid "Deferred Shipping"
+msgstr "배송지연"
+
+#: product/models.py:642
+msgid "Do not charge shipping at checkout for this item."
+msgstr "이 아이템의 결제에 대해서는 배송비를 부과하지 마시오"
+
+#: product/models.py:699
+msgid "Custom field name"
+msgstr "사용자 필드 이름"
+
+#: product/models.py:701
+msgid "Custom Fields"
+msgstr "사용자 필드"
+
+#: product/models.py:719
+msgid "Translated Custom Text Field Name"
+msgstr "번역한 사용자 텍스트 필드 이름"
+
+#: product/models.py:724
+msgid "CustomTextField Translation"
+msgstr "번역된 사용자 텍스트 필드 이름"
+
+#: product/models.py:725
+msgid "CustomTextField Translations"
+msgstr "번역된 사용자 텍스트 필드 이름"
+
+#: product/models.py:741
+msgid "Create Variations"
+msgstr "변동 생성"
+
+#: product/models.py:741
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+"모든 이 제품의 옵션에 대해서 제품 변동을 만드세요. 이것을 사용하기 위해서는, "
+"먼저 옵션을 추가하셔야 합니다. 그리고 이 페이지로 돌아오신 후 이 옵션을 선택하세요."
+
+#: product/models.py:881
+msgid "Number of times link can be accessed."
+msgstr "접근될 수 있는 아이템 링크 갯수"
+
+#: product/models.py:882
+msgid "Number of minutes the link should remain active."
+msgstr "링크가 활성화 상태로 남아 있어야할 시간(분)"
+
+#: product/models.py:883
+msgid "Is this download currently active?"
+msgstr "이 다운로드가 현재 활성화 되어있나요?"
+
+#: product/models.py:1000
+msgid "Two options from the same option group can not be applied to an item."
+msgstr "같은 옵션의 두 옵션은 한 아이템에 같이 적용될 수 없습니다."
+
+#: product/models.py:1038
+msgid "Attribute Name"
+msgstr "속성 이름"
+
+#: product/models.py:1042
+msgid "Product Attribute"
+msgstr "제품 속성"
+
+#: product/models.py:1043
+msgid "Product Attributes"
+msgstr "제품 속성"
+
+#: product/models.py:1055
+msgid "Discount Quantity"
+msgstr "할인 수"
+
+#: product/models.py:1055
+msgid "Use this price only for this quantity or higher"
+msgstr "이 가격은 이 양 또는 이보다 많을때 사용하세요."
+
+#: product/models.py:1079
+msgid "Prices"
+msgstr "기격"
+
+#: product/models.py:1116
+msgid "Product Image"
+msgstr "제품 이미지"
+
+#: product/models.py:1117
+msgid "Product Images"
+msgstr "제품 이미지"
+
+#: product/models.py:1133
+msgid "Product Image Translation"
+msgstr "제품 이미지 번역"
+
+#: product/models.py:1134
+msgid "Product Image Translations"
+msgstr "제품 이미지 번역"
+
+#: product/views.py:71 shop/views/cart.py:129 shop/views/cart.py:170
+msgid "The product you have requested does not exist."
+msgstr "당신이 요청하신 제품은 존재하지 않습니다."
+
+#: product/views.py:116 product/views.py:129 product/views.py:136
+#: product/views.py:143
+msgid "not available"
+msgstr "가용하지 않음"
+
+#: shipping/config.py:6
+msgid "Shipping Settings"
+msgstr "배송 설정"
+
+#: shipping/config.py:10
+msgid "Active shipping modules"
+msgstr "배송 모듈 활성"
+
+#: shipping/config.py:11
+msgid ""
+"Select the active shipping modules, save and reload to set any module-"
+"specific shipping settings."
+msgstr ""
+"활성 배송 모듈을 선택하세요. 어떤 특정 모듈 배송 설정을 설정하기 위해서는"
+"저장하시고 페이지를 다시 읾어 들이세요."
+
+#: shipping/config.py:13
+msgid "Per piece"
+msgstr "개당 가격"
+
+#: shipping/modules/dummy/shipper.py:28
+msgid "Dummy Flat Rate Shipping"
+msgstr "고정 배송율"
+
+#: shipping/modules/dummy/shipper.py:41
+msgid "US Mail"
+msgstr "US 메일"
+
+#: shipping/modules/dummy/shipper.py:47
+msgid "3 - 4 business days"
+msgstr "3 - 4 업무일"
+
+#: shipping/modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "고정율"
+
+#: shipping/modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "고정 배송"
+
+#: shipping/modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "고정 배송 서비스"
+
+#: shipping/modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr "고정 배송율에 의한 배송 서비스 "
+
+#: shipping/modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr "고정 배송 일"
+
+#: shipping/modules/flat/shipper.py:23
+msgid "Flat Rate Shipping"
+msgstr "고정 배송율"
+
+#: shipping/modules/no/shipper.py:22 shipping/modules/no/shipper.py:34
+msgid "No Shipping"
+msgstr "배송 볼가"
+
+#: shipping/modules/no/shipper.py:40
+msgid "immediately"
+msgstr "즉시"
+
+#: shipping/modules/per/config.py:14
+msgid "Per item price"
+msgstr "아이템 개당 가격"
+
+#: shipping/modules/per/config.py:21
+msgid "Per Item Shipping Service"
+msgstr "아이템 배송 서비스 당"
+
+#: shipping/modules/per/config.py:22
+msgid "Shipping service used with per item shipping"
+msgstr "아이템 배송당 사용된 배송 서비스"
+
+#: shipping/modules/per/config.py:29
+msgid "Per Item Delivery Days"
+msgstr "아이템 배송 일"
+
+#: shipping/modules/per/shipper.py:23
+msgid "Per Item shipping"
+msgstr "아이템 배송당"
+
+#: shipping/modules/tiered/config.py:5
+msgid "Tiered Shipping"
+msgstr "묶음 배송"
+
+#: shipping/modules/tiered/models.py:91
+msgid "Key"
+msgstr "키"
+
+#: shipping/modules/tiered/models.py:202
+msgid "Carrier"
+msgstr "배송자"
+
+#: shipping/modules/tiered/models.py:204
+#: templates/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "방법"
+
+#: shipping/modules/tiered/models.py:204
+msgid "i.e. US Mail"
+msgstr "예를 들면, US 메일"
+
+#: shipping/modules/tiered/models.py:205
+msgid "Delivery Days"
+msgstr "배송일"
+
+#: shipping/modules/tiered/models.py:209
+msgid "Min Price"
+msgstr "최소 가격"
+
+#: shipping/modules/tiered/models.py:210
+msgid "The minumum price for this tier to apply"
+msgstr "이 묶음 배송을 적용하기 위한 최소 가격"
+
+#: shipping/modules/tiered/models.py:212
+msgid "Shipping Price"
+msgstr "배송 가격"
+
+#: shop/config.py:9
+msgid "Default currency symbol"
+msgstr "기본 통화 기호"
+
+#: shop/config.py:10
+msgid "Use a '_' character to force a space."
+msgstr "띄워쓰기를 하실려면 '_'을 쓰세요"
+
+#: shop/config.py:16
+msgid "Enable product ratings"
+msgstr "제품 평가 가능"
+
+#: shop/config.py:22
+msgid "Enable random display of featured products on home page"
+msgstr "홈 페이지의 특별 상품 표시를 무작위로 하기"
+
+#: shop/config.py:28
+msgid "Number of featured items to display"
+msgstr "특별 상품 갯수"
+
+#: shop/config.py:38
+msgid "Enable Analytics"
+msgstr "웹로그 분석 가능"
+
+#: shop/config.py:45
+msgid "Use Urchin?"
+msgstr "Urchin 사용?"
+
+#: shop/config.py:46
+msgid ""
+"Use the old-style, urchin javascript?.  This is not needed unless your "
+"analytics account hasn't been updated yet."
+msgstr ""
+"오래된 스타일의 Urchin 자바스크립트 사용하실 것입니까?. 이것은 필요하지 않습니다."
+"당신의 로그분석 계정이 아직 업데이트 되지 않았다면"
+
+#: shop/config.py:54
+msgid "Analytics Code"
+msgstr "웹분석 코드"
+
+#: shop/config.py:62
+msgid "Enable Conversion Tracking"
+msgstr "전환 트래킹 사용"
+
+#: shop/config.py:69
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Adwords 아이디 (예: UA-abcd-1)"
+
+#: shop/config.py:79
+msgid "Allow user to choose from available translations"
+msgstr "사용자가 가용한 언아 중에서 선택할 수 있게함"
+
+#: shop/config.py:87
+msgid "Available languages"
+msgstr "가용 언어"
+
+#: shop/config.py:88
+msgid "Languages that have valid translations"
+msgstr "유효한 언어"
+
+#: shop/config.py:89
+msgid "English"
+msgstr "영어"
+
+#: shop/config.py:90
+msgid "French"
+msgstr "프랑스어"
+
+#: shop/config.py:91
+msgid "German"
+msgstr "독일어"
+
+#: shop/config.py:92
+msgid "Spanish"
+msgstr "스페인어"
+
+#: shop/config.py:93
+msgid "Swedish"
+msgstr "스웨덴어"
+
+#: shop/models.py:26
+msgid "Test Store"
+msgstr "테스트 상점"
+
+#: shop/models.py:47
+msgid "Store Name"
+msgstr "상점 이름"
+
+#: shop/models.py:57
+msgid "Purchase item not in stock?"
+msgstr "제고없는 아이템에 대한 구매?"
+
+#: shop/models.py:58
+msgid "Only sell to in-country customers?"
+msgstr "해당국가 고객에게만 판매?"
+
+#: shop/models.py:61
+msgid "Default country for customers"
+msgstr "고객에대한 기본 국가"
+
+#: shop/models.py:62
+msgid "Shipping Countries"
+msgstr "배송 국가"
+
+#: shop/models.py:88 templates/admin/satchmo_app_list.html:3
+#: templates/admin/satchmo_app_list.html:4
+msgid "Store Configuration"
+msgstr "상점"
+
+#: shop/models.py:89
+msgid "Store Configurations"
+msgstr "상점 설정"
+
+#: shop/models.py:277
+msgid "Shopping Cart"
+msgstr "장바구니"
+
+#: shop/models.py:278
+msgid "Shopping Carts"
+msgstr "장바구니"
+
+#: shop/models.py:334
+msgid "detail"
+msgstr "상세"
+
+#: shop/models.py:335
+msgid "name"
+msgstr "이름"
+
+#: shop/models.py:336
+msgid "Item Detail Price Change"
+msgstr "아이템 "
+
+#: shop/utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "이 필드 중 단지 하나민 입력하세요."
+
+#: shop/views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "관리자 화면"
+
+#: shop/views/cart.py:30
+msgid "No cart to update."
+msgstr "업데이트할 장바구니가 없습니다."
+
+#: shop/views/cart.py:38
+msgid "Bad quantity."
+msgstr "잘못딘 수량"
+
+#: shop/views/cart.py:45
+msgid "Bad item number."
+msgstr "잘못된 아이템 수량"
+
+#: shop/views/cart.py:50
+msgid "No such item in your cart."
+msgstr "그러한 아이템은 장바구니에 없습니다."
+
+#: shop/views/cart.py:136
+msgid "Please enter a whole number."
+msgstr "전체 번호늘 입력해 주세요"
+
+#: shop/views/cart.py:143
+msgid "Please enter a positive number."
+msgstr "양수만 입력해 주세요"
+
+#: shop/views/cart.py:179
+msgid "Choose a quantity."
+msgstr "수량선택"
+
+#: shop/views/cart.py:182
+msgid "Choose a whole number."
+msgstr "전체수량 선택"
+
+#: shop/views/cart.py:191 templates/404.html:10 templates/500.html:10
+#: templates/shop_404.html:10
+msgid "Error"
+msgstr "에러"
+
+#: shop/views/cart.py:208
+msgid "You must accept the terms and conditions."
+msgstr "계약서에 동의 하셔야 합니다."
+
+#: shop/views/cart.py:224 shop/views/cart.py:258
+msgid "Internal error: please submit as a POST"
+msgstr "내부에러: POST로 전송하기 바람"
+
+#: shop/views/category.py:12
+msgid "The category you have requested does not exist."
+msgstr "요청하신 카테고리는 존재하지 않습니다."
+
+#: shop/views/comments.py:26
+msgid "One or more of the required fields wasn't submitted"
+msgstr "하나 또는 그 이상의 요청 필드가 전송되지 않았습니다."
+
+#: shop/views/comments.py:33
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "잘못된 내용 타입: %s"
+
+#: shop/views/contact.py:18
+msgid "General question"
+msgstr "일반 요청"
+
+#: shop/views/contact.py:19
+msgid "Order problem"
+msgstr "주문 문제"
+
+#: shop/views/contact.py:26
+msgid "Inquiry"
+msgstr "요청"
+
+#: shop/views/contact.py:27
+msgid "Contents"
+msgstr "내용"
+
+#: shop/views/download.py:19 shop/views/download.py:24
+msgid "The download key is invalid."
+msgstr "다운로드 키가 유효하지 않습니다."
+
+#: shop/views/utils.py:71
+msgid "Card type does not match card number."
+msgstr "카드 타입과 카드 번화가 일치하지 않습니다."
+
+#: shop/views/utils.py:73
+msgid "Invalid credit card number."
+msgstr "유효하지 않은 카드 번호"
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "공급자 아이디"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "단가"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "인벤토리"
+
+#: supplier/models.py:30
+msgid "Raw Item"
+msgstr "아이템 수"
+
+#: supplier/models.py:31
+msgid "Raw Items"
+msgstr "아이템 수"
+
+#: supplier/models.py:38
+msgid "Date Created"
+msgstr "생성일"
+
+#: supplier/models.py:40 templates/contact/_order_details.html:46
+#: templates/contact/_order_tracking_details.html:32
+#: templates/email/order_complete.txt:50
+msgid "Shipping"
+msgstr "배송"
+
+#: supplier/models.py:65
+msgid "Supplier Order"
+msgstr "공급자 주문"
+
+#: supplier/models.py:66
+msgid "Supplier Orders"
+msgstr "공급자 주문"
+
+#: supplier/models.py:74
+msgid "Line Item Quantity"
+msgstr "아이템 수량"
+
+#: supplier/models.py:75
+msgid "Line Item Total"
+msgstr "아이템 총수"
+
+#: supplier/models.py:81
+msgid "Sent in"
+msgstr "발송"
+
+#: supplier/models.py:83
+msgid "Received"
+msgstr "수령"
+
+#: supplier/models.py:100
+msgid "Supplier Order Status"
+msgstr "공급자 주문 상태"
+
+#: supplier/models.py:101
+msgid "Supplier Order Statuses"
+msgstr "공급자 주문 상태"
+
+#: tax/config.py:6
+msgid "Tax Settings"
+msgstr "세금 설정"
+
+#: tax/config.py:10
+msgid "Active tax module"
+msgstr "세금 모듈 화성화"
+
+#: tax/config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr "어떤 특정 모듈 설정을 저장하기 위해서는 모듈을 선택하세요."
+
+#: tax/config.py:13
+msgid "No Tax"
+msgstr "비과세"
+
+#: tax/models.py:17
+msgid "Title"
+msgstr "제목"
+
+#: tax/models.py:18
+msgid "Displayed title of this tax."
+msgstr "이 세금의 제목"
+
+#: tax/models.py:20
+msgid "Description of products that would be taxed."
+msgstr "세금 설명"
+
+#: tax/models.py:27 templates/admin/satchmo_app_list.html:93
+msgid "Tax Classes"
+msgstr "세금 등급"
+
+#: tax/models.py:45
+msgid "Percentage"
+msgstr "퍼센티지"
+
+#: tax/models.py:46
+msgid "% tax for this area and type"
+msgstr "% 이 영역과 형태에 대한 세금"
+
+#: tax/models.py:68
+msgid "You must choose a zone or a country."
+msgstr "지역이나 나라늘 선택해 주세요"
+
+#: tax/models.py:74
+msgid "Tax Rate"
+msgstr "세금율"
+
+#: tax/models.py:75 templates/admin/satchmo_app_list.html:98
+msgid "Tax Rates"
+msgstr "세금율"
+
+#: tax/modules/area/config.py:5
+msgid "By Country/Area"
+msgstr "나라 지역에 따라"
+
+#: tax/modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "세금 퍼센트"
+
+#: tax/modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "세금 퍼센트"
+
+#: tax/modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr "배송 세금?"
+
+#: templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "찾으시는 페이지를 찾을수 없습니다."
+
+#: templates/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "상점에러 발생 관리자에게 통보되었습니다."
+
+#: templates/_product_ratings.html:3
+msgid "Product Reviews"
+msgstr "제품 리뷰"
+
+#: templates/_product_ratings.html:7
+msgid "Be the first to review it!"
+msgstr "첫번째 리뷰어가 되이 주세요"
+
+#: templates/_product_ratings.html:23
+msgid "Please login to review this product."
+msgstr "이 제품에 리뷰를 남기실려면 로그인 해 주세요"
+
+#: templates/base.html:24 templates/base.html.py:27
+msgid "Search"
+msgstr "검색"
+
+#: templates/base.html:38
+msgid "Account Information"
+msgstr "계정 정보"
+
+#: templates/base.html:40
+msgid "Account Details"
+msgstr "계정 상세 정보"
+
+#: templates/base.html:41 templates/admin/inventory_form.html:63
+#: templates/admin/product_export_form.html:48
+#: templates/admin/product_import_result.html:8
+#: templates/configuration/group_settings.html:7
+#: templates/configuration/site_settings.html:7
+msgid "Log out"
+msgstr "로그 아웃"
+
+#: templates/base.html:43
+msgid "Log in"
+msgstr "로그인"
+
+#: templates/base.html:47
+msgid "Cart"
+msgstr "장바구니"
+
+#: templates/base.html:51 templates/base_cart.html:67
+msgid "Check out"
+msgstr "결재"
+
+#: templates/base.html:54 templates/contact_form.html:6
+#: templates/thanks.html:6
+msgid "Contact Us"
+msgstr "연락처"
+
+#: templates/base.html:58
+msgid "Change language"
+msgstr "언어 변경"
+
+#: templates/base.html:64 templates/admin/portal.html:104
+#: templates/admin/satchmo_app_list.html:8
+#: templates/admin/satchmo_app_list.html:13
+#: templates/admin/satchmo_app_list.html:24
+#: templates/admin/satchmo_app_list.html:29
+#: templates/admin/satchmo_app_list.html:34
+#: templates/admin/satchmo_app_list.html:45
+#: templates/admin/satchmo_app_list.html:50
+#: templates/admin/satchmo_app_list.html:55
+#: templates/admin/satchmo_app_list.html:65
+#: templates/admin/satchmo_app_list.html:72
+#: templates/admin/satchmo_app_list.html:84
+#: templates/admin/satchmo_app_list.html:95
+#: templates/admin/satchmo_app_list.html:100 templates/widget/file.html:4
+msgid "Change"
+msgstr "변경"
+
+#: templates/base.html:74
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr ""
+
+#: templates/base_cart.html:16
+msgid "Your cart is empty."
+msgstr "장바구니가 비어있습니다."
+
+#: templates/base_cart.html:18
+msgid "Your Cart"
+msgstr "고객님의 장바구니"
+
+#: templates/base_cart.html:21
+msgid "Item"
+msgstr "아이템"
+
+#: templates/base_cart.html:29
+msgid "Remove"
+msgstr "제거"
+
+#: templates/base_cart.html:40
+msgid "update amount"
+msgstr "수량 업데이트"
+
+#: templates/base_cart.html:51
+msgid "Base Price: "
+msgstr "최고 가격"
+
+#: templates/base_cart.html:52
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+"오른쪽에 있는 금액은 적립금입니다. 나머지 금액에 대해서만 금액이 청구될 것입니다."
+
+#: templates/base_cart.html:63
+msgid "Cart Total"
+msgstr "장바구니 총계"
+
+#: templates/base_index.html:11
+msgid "Welcome to the shop."
+msgstr "쇼핑몰에 방문해 주셔서 감사드립니다."
+
+#: templates/base_index.html:14
+msgid "Featured Items"
+msgstr "특별 품목"
+
+#: templates/base_index.html:31 templates/base_index.html.py:33
+msgid "Previous"
+msgstr "이전"
+
+#: templates/base_index.html:43 templates/base_index.html.py:45
+msgid "Next"
+msgstr "다음"
+
+#: templates/contact_form.html:10 templates/thanks.html:10
+#: templates/contact/_order_details.html:9
+#: templates/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "연락처 정보"
+
+#: templates/contact_form.html:13 templates/checkout/base_pay_ship.html:21
+#: templates/checkout/form.html:20 templates/contact/update_form.html:13
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/contact_form.html:19
+msgid "Send Email"
+msgstr "이메일 발송"
+
+#: templates/download.html:13
+msgid "Downloading of"
+msgstr "다운로드"
+
+#: templates/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "아래의 림크를 클릭 후 시작:"
+
+#: templates/download.html:15
+msgid ""
+"Once you click the link, the download will be counted.  If you have trouble "
+"with the download, please refresh yourbrowser and try the download again"
+msgstr ""
+"일단 링크를 클릭후에는 다운로드 횟수가 기록될 것입니다. 만약 다운로드에 문제가 있으시면, "
+"보라우즈를 다시 읿기 하신 후 다시 다운로드 받으세요."
+
+#: templates/search.html:12
+msgid "Nothing found"
+msgstr "찾은 결과 없음"
+
+#: templates/shipping_options.html:5
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr " %(method)s로 발송 대략 %(expected_delivery)s 소요"
+
+#: templates/thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "문의해 주셔서 감사드립니다."
+
+#: templates/thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "48시간 안에 연락드리도록 하겠습니다."
+
+#: templates/admin/_customproduct_management.html:8
+msgid "Fully charged"
+msgstr "전체 금액에 대해서 부과"
+
+#: templates/admin/_customproduct_management.html:10
+msgid "Charge remaining amount"
+msgstr "남은 금액에 대해서만 부과"
+
+#: templates/admin/_customproduct_management.html:13
+msgid "Product Details"
+msgstr "제품 상세"
+
+#: templates/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "총"
+
+#: templates/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "미지불"
+
+#: templates/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "지불 완료"
+
+#: templates/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "남은 금액:"
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "Satchmo 관리자 사이트"
+
+#: templates/admin/charge_remaining_confirm.html:4
+msgid "Custom Charge"
+msgstr "고객 부과"
+
+#: templates/admin/charge_remaining_confirm.html:7
+#: templates/admin/inventory_form.html:74
+#: templates/admin/product_export_form.html:61
+#: templates/admin/product_export_form.html:72
+#: templates/configuration/group_settings.html:18
+#: templates/configuration/site_settings.html:18
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/admin/charge_remaining_confirm.html:12
+msgid "New amount"
+msgstr "새로운 총액"
+
+#: templates/admin/charge_remaining_confirm.html:14
+msgid "Extra Shipping"
+msgstr "부과 배송"
+
+#: templates/admin/inventory_form.html:63
+#: templates/admin/product_export_form.html:48
+#: templates/admin/product_import_result.html:8
+#: templates/configuration/group_settings.html:7
+#: templates/configuration/site_settings.html:7
+msgid "Documentation"
+msgstr "문서"
+
+#: templates/admin/inventory_form.html:63
+#: templates/admin/product_export_form.html:48
+#: templates/admin/product_import_result.html:8
+#: templates/configuration/group_settings.html:7
+#: templates/configuration/site_settings.html:7
+#: templates/registration/password_change_form.html:36
+msgid "Change password"
+msgstr "패스워드 변경"
+
+#: templates/admin/inventory_form.html:67
+#: templates/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "인벤토리 관리"
+
+#: templates/admin/inventory_form.html:112
+#: templates/admin/product_export_form.html:110
+msgid "Helpers"
+msgstr "도움말"
+
+#: templates/admin/inventory_form.html:113
+msgid "Mark all featured"
+msgstr "모든 상품 특별 상품으라 마크"
+
+#: templates/admin/inventory_form.html:114
+msgid "Clear all featured"
+msgstr "모든 특별 상폼 지우기"
+
+#: templates/admin/inventory_form.html:115
+msgid "Disable all Products with 0 quantity."
+msgstr "모든 상품을 0 수량으로 비활성화"
+
+#: templates/admin/inventory_form.html:116
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "수량이 0인 제품변경 비활성화"
+
+#: templates/admin/inventory_form.html:120
+msgid "No inventory items."
+msgstr "재고 품목 없음"
+
+#: templates/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "새로운 주문"
+
+#: templates/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "진행중인 주문"
+
+#: templates/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "모든 주문 보기"
+
+#: templates/admin/portal.html:33
+msgid "Switch to Shop View"
+msgstr "상점 보기로 전환"
+
+#: templates/admin/portal.html:38 templates/admin/portal.html.py:125
+msgid "Switch to Legacy View"
+msgstr "예전 보기로 전환"
+
+#: templates/admin/portal.html:87
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "%(name)s에서 가용한 모델 "
+
+#: templates/admin/portal.html:88
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/admin/portal.html:98 templates/admin/satchmo_app_list.html:7
+#: templates/admin/satchmo_app_list.html:12
+#: templates/admin/satchmo_app_list.html:23
+#: templates/admin/satchmo_app_list.html:28
+#: templates/admin/satchmo_app_list.html:33
+#: templates/admin/satchmo_app_list.html:44
+#: templates/admin/satchmo_app_list.html:49
+#: templates/admin/satchmo_app_list.html:54
+#: templates/admin/satchmo_app_list.html:64
+#: templates/admin/satchmo_app_list.html:71
+#: templates/admin/satchmo_app_list.html:83
+#: templates/admin/satchmo_app_list.html:94
+#: templates/admin/satchmo_app_list.html:99
+msgid "Add"
+msgstr "추가"
+
+#: templates/admin/portal.html:121
+msgid "Edit Shop Options"
+msgstr "상점 옵션 변경"
+
+#: templates/admin/portal.html:122
+msgid "Edit Inventory"
+msgstr "재고 수정"
+
+#: templates/admin/portal.html:123
+msgid "Export Product Defs"
+msgstr "제품 정의 이출"
+
+#: templates/admin/portal.html:124
+msgid "Cache Status"
+msgstr "캐쉬 상태"
+
+#: templates/admin/product_export_form.html:57
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+"경고 이 함수는 여전히 실험상태입니다. 실 모드에서는 사용하지 마세요"
+
+#: templates/admin/product_export_form.html:58
+#: templates/admin/product_export_form.html:66
+msgid "Import"
+msgstr "임포트"
+
+#: templates/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr "고정 파일에서 임포트:"
+
+#: templates/admin/product_export_form.html:69
+#: templates/admin/product_export_form.html:108
+msgid "Export"
+msgstr "엑스포트"
+
+#: templates/admin/product_export_form.html:79
+msgid "Export?"
+msgstr "엑스포트?"
+
+#: templates/admin/product_export_form.html:80
+msgid "Slug"
+msgstr "슬러그"
+
+#: templates/admin/product_export_form.html:106
+msgid "Include images?"
+msgstr "이미지 포함?"
+
+#: templates/admin/product_export_form.html:107
+msgid "Format?"
+msgstr "포맷?"
+
+#: templates/admin/product_export_form.html:109
+msgid "Reset"
+msgstr "리셑"
+
+#: templates/admin/product_export_form.html:111
+msgid "Check all"
+msgstr "모두 체크"
+
+#: templates/admin/product_export_form.html:112
+msgid "Uncheck all"
+msgstr "모두 체크 하지 않음"
+
+#: templates/admin/product_export_form.html:115
+msgid "No products."
+msgstr "제품 없음"
+
+#: templates/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr "제품 임포트/엑스포트"
+
+#: templates/admin/product_import_result.html:13
+msgid "Results"
+msgstr "결과"
+
+#: templates/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr "임포트 결과"
+
+#: templates/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "에러"
+
+#: templates/admin/product_import_result.html:27
+msgid "results"
+msgstr "결과"
+
+#: templates/admin/satchmo_app_list.html:6
+msgid "Store Details"
+msgstr "상점 상세"
+
+#: templates/admin/satchmo_app_list.html:11
+msgid "Store Web Site"
+msgstr "상점 웹 사이트"
+
+#: templates/admin/satchmo_app_list.html:19
+#: templates/admin/satchmo_app_list.html:20
+msgid "Product Configuration"
+msgstr "제품 설정"
+
+#: templates/admin/satchmo_app_list.html:22
+msgid "Product Categories"
+msgstr "제품 카테고리"
+
+#: templates/admin/satchmo_app_list.html:27
+msgid "Product Options"
+msgstr "제품 옵션"
+
+#: templates/admin/satchmo_app_list.html:32
+msgid "Individual Products"
+msgstr "개인 제품"
+
+#: templates/admin/satchmo_app_list.html:48
+msgid "Contact Interactions"
+msgstr "상호 연락"
+
+#: templates/admin/satchmo_app_list.html:60
+#: templates/admin/satchmo_app_list.html:61
+msgid "Codes"
+msgstr "코드"
+
+#: templates/admin/satchmo_app_list.html:79
+#: templates/admin/satchmo_app_list.html:80
+msgid "International Information"
+msgstr "국제 정보"
+
+#: templates/admin/satchmo_app_list.html:90
+msgid "Taxes"
+msgstr "세금"
+
+#: templates/admin/satchmo_app_list.html:91
+msgid "Tax Information"
+msgstr "세금 정보"
+
+#: templates/admin/product/configurableproduct/change_form.html:17
+msgid "Variations"
+msgstr "변이"
+
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "제품 하위 타입"
+
+#: templates/caching/delete.html:7 templates/caching/view.html:7
+msgid "Cache"
+msgstr "캐쉬"
+
+#: templates/caching/delete.html:8
+msgid "Cache Delete"
+msgstr "캐쉬 삭제"
+
+#: templates/caching/stats.html:7
+msgid "Cache Stats"
+msgstr "캐쉬 상태"
+
+#: templates/caching/view.html:8
+msgid "Cache View"
+msgstr "캐쉬 보기"
+
+#: templates/checkout/balance_remaining.html:12
+msgid "Order Balance"
+msgstr "주문 잔고"
+
+#: templates/checkout/balance_remaining.html:17
+#, python-format
+msgid ""
+"To complete this order, you need to pay the %(orderbalance)s balance "
+"remaining on this order."
+msgstr ""
+"주문을 완료하기 위해서는 %(orderbalance)s 잔고가 필요합니다."
+
+#: templates/checkout/balance_remaining.html:22
+#: templates/checkout/form.html:46
+msgid "How do you want to pay?"
+msgstr "지볼 방법"
+
+#: templates/checkout/balance_remaining.html:26
+#: templates/checkout/form.html:119
+msgid "Continue Checkout"
+msgstr "결재"
+
+#: templates/checkout/base_confirm.html:15
+#: templates/checkout/base_pay_ship.html:13 templates/checkout/form.html:13
+msgid "Ship/Bill"
+msgstr "배송/계산"
+
+#: templates/checkout/base_confirm.html:17
+#: templates/checkout/base_pay_ship.html:15 templates/checkout/form.html:15
+msgid "Confirmation"
+msgstr "확인"
+
+#: templates/checkout/base_confirm.html:22
+msgid ""
+"The following error was returned while trying to process your payment. "
+"Please correct and resubmit."
+msgstr ""
+"지불 정보를 처리하는 동안 다음 에러가 발생했습니다."
+"수정하신 후 다신 전송해 주세요"
+
+#: templates/checkout/base_confirm.html:25
+msgid "Please validate the following information, then submit your order."
+msgstr "다음 정보를 확인하신 후 다신 보내주세요"
+
+#: templates/checkout/base_confirm.html:29
+#: templates/contact/_order_tracking_details.html:16
+#: templates/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "주문한 품목"
+
+#: templates/checkout/base_confirm.html:40
+#: templates/checkout/paypal/confirm.html:35
+msgid "Purchase Items"
+msgstr "구매한 품목"
+
+#: templates/checkout/base_pay_ship.html:18 templates/checkout/form.html:18
+msgid ""
+"Please complete the following information in order to submit your order."
+msgstr ""
+"주문을 전송하기 위해서는 다음 정보를 완료해 주세요"
+
+#: templates/checkout/base_pay_ship.html:33
+msgid "Discount code"
+msgstr "할인 코드"
+
+#: templates/checkout/base_pay_ship.html:38 templates/checkout/form.html:92
+msgid "Shipping Information"
+msgstr "배송 정보"
+
+#: templates/checkout/base_pay_ship.html:42
+msgid "Please choose your preferred shipping method"
+msgstr "선호하는 배송 방법을 선택해 주세요"
+
+#: templates/checkout/base_pay_ship.html:50
+msgid "Confirm"
+msgstr "확인"
+
+#: templates/checkout/confirm.html:19 templates/email/order_complete.txt:61
+#, python-format
+msgid ""
+"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+"charged %(order_total)s."
+msgstr ""
+"%(credit_card_type)s 고객님의 카드 %(credit_card_number)s에서 %(order_total)s원이 부과될 것입니다."
+""
+
+#: templates/checkout/empty_cart.html:12
+msgid ""
+"Your cart is empty. Please add some items to your cart, then complete the "
+"checkout process."
+msgstr ""
+"장바구니가 비어있습니다. 장바구니에 물건을 추가해 주세요."
+"그리고 난 후 결재 절차를 완료해 주세요."
+
+#: templates/checkout/form.html:29
+msgid ""
+"If you already have an account, you can login now to fill in most of the "
+"information below."
+msgstr ""
+"이미 계정을 가지고 계시다면, 로그인 하시면 아래의 대부분의 정보가 채워질 것입니다."
+
+#: templates/checkout/form.html:30
+msgid "This is just a convenience, no account is required!"
+msgstr "단지 편의를 위해서 입니다. 계정이 꼭 필요한 것은 아닙니다."
+
+#: templates/checkout/form.html:35 templates/registration/login.html:20
+msgid "Login"
+msgstr "로그인"
+
+#: templates/checkout/form.html:42
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "적어도 *로 시작하는 필드는 입력하셔야 합니다."
+
+#: templates/checkout/form.html:50 templates/contact/update_form.html:20
+msgid "Basic Information"
+msgstr "기본 정보"
+
+#: templates/checkout/form.html:60 templates/contact/update_form.html:33
+msgid "Phone number"
+msgstr "전화 번호"
+
+#: templates/checkout/form.html:63 templates/contact/_order_details.html:14
+#: templates/contact/update_form.html:43 templates/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "계산서 정보"
+
+#: templates/checkout/form.html:79 templates/checkout/form.html.py:111
+#: templates/contact/update_form.html:59 templates/contact/update_form.html:90
+msgid "State/Province"
+msgstr "시/군"
+
+#: templates/checkout/form.html:83 templates/checkout/form.html.py:115
+#: templates/contact/update_form.html:63 templates/contact/update_form.html:94
+msgid "Zipcode/Postcode"
+msgstr "우편번호"
+
+#: templates/checkout/form.html:94 templates/contact/update_form.html:73
+msgid "Shipping same as billing?"
+msgstr "배송지 주소를 계선서 주소와 일치"
+
+#: templates/checkout/pay_ship.html:11
+msgid "Type of credit card"
+msgstr "신용카드 타입"
+
+#: templates/checkout/pay_ship.html:14
+msgid "Credit card number"
+msgstr "신용카드 번호"
+
+#: templates/checkout/pay_ship.html:17
+msgid "Expiration date"
+msgstr "만기일"
+
+#: templates/checkout/success.html:13
+msgid "Thank you for your order!"
+msgstr "주문해 주셔서 감사합니다."
+
+#: templates/checkout/success.html:14
+msgid ""
+"Please print out this page as a receipt.  You will also receive an email "
+"with this information."
+msgstr ""
+"영수증에 이 페이지를 프린터해 주세요. 이 정보를 포함한 이 메일도 받으실 것입니다."
+
+#: templates/checkout/cod/confirm.html:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "이 주문은 %(order_total)s에 대한 COD가 될 것입니다."
+
+#: templates/checkout/google/confirm.html:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "고객님의 지불은 구글 체크 아웃을 통하여 처리될 것입니다."
+
+#: templates/checkout/google/confirm.html:18
+msgid "Fast checkout through Google"
+msgstr "구글을 통한 빠른 체크아웃"
+
+#: templates/checkout/paypal/confirm.html:10
+msgid "Your payment will be processed through PayPal."
+msgstr "고객님의 지불은 PayPal을 통하여 처리될 것입니다."
+
+#: templates/comments/form.html:7 templates/comments/form.html.py:9
+msgid "Username:"
+msgstr "사용자 아이디"
+
+#: templates/comments/form.html:9
+msgid "Password:"
+msgstr "패스워드"
+
+#: templates/comments/form.html:9
+msgid "Forgotten your password?"
+msgstr "비말번호 찾기"
+
+#: templates/comments/form.html:25
+msgid "Post a photo"
+msgstr "사진 업로드"
+
+#: templates/comments/form.html:25
+msgid "Required"
+msgstr "필수"
+
+#: templates/comments/form.html:25
+msgid "Optional"
+msgstr "선택 사항"
+
+#: templates/comments/form.html:30
+msgid "Review:"
+msgstr "리뷰"
+
+#: templates/comments/form.html:39
+msgid "Send review"
+msgstr "리뷰 전송"
+
+#: templates/configuration/group_settings.html:11
+msgid "Edit Group Settings"
+msgstr "그룹설정 수정"
+
+#: templates/configuration/group_settings.html:24
+#, python-format
+msgid "Settings included in %(name)s."
+msgstr "%(name)s을 포함한 설정"
+
+#: templates/configuration/group_settings.html:49
+#: templates/configuration/site_settings.html:61
+msgid "You don't have permission to edit values."
+msgstr "이 값을 수정할 권한이 없습니다."
+
+#: templates/configuration/site_settings.html:11
+msgid "Edit Site Settings"
+msgstr "사이트 설정 수정"
+
+#: templates/configuration/site_settings.html:34
+#, python-format
+msgid "Group settings: %(name)s"
+msgstr "그룹 설정: %(name)s"
+
+#: templates/contact/_addressblock.html:11
+msgid "Not set"
+msgstr "설정 되지 않음"
+
+#: templates/contact/_order_details.html:43
+msgid "Base Shipping"
+msgstr "기본 배송"
+
+#: templates/contact/_order_payment_summary.html:6
+msgid "Paid"
+msgstr "지불됨"
+
+#: templates/contact/_order_payment_summary.html:15
+msgid "Pay remaining balance"
+msgstr "잔액"
+
+#: templates/contact/_order_tracking_details.html:8
+#: templates/contact/order_history.html:19
+msgid "Order #"
+msgstr "주문 #"
+
+#: templates/contact/_order_tracking_details.html:41
+msgid "Shipping To"
+msgstr "배송지"
+
+#: templates/contact/order_history.html:8
+#: templates/contact/order_tracking.html:7
+#: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
+#: templates/registration/password_change_done.html:6
+#: templates/registration/password_change_form.html:6
+msgid "Account"
+msgstr "계정"
+
+#: templates/contact/order_history.html:9
+#: templates/contact/order_history.html:14
+#: templates/contact/view_profile.html:33
+msgid "Order History"
+msgstr "주문 기록"
+
+#: templates/contact/order_history.html:21 templates/pdf/invoice.rml:15
+#: templates/pdf/invoice.rml.py:51 templates/pdf/packing-slip.rml:15
+#: templates/pdf/packing-slip.rml.py:51
+msgid "Date"
+msgstr "날짜"
+
+#: templates/contact/order_history.html:22
+msgid "Items"
+msgstr "품목"
+
+#: templates/contact/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "아직 어떤 주문도 하지 않으셨습니다."
+
+#: templates/contact/order_tracking.html:8
+#: templates/contact/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "주몬 추적"
+
+#: templates/contact/update_form.html:7
+msgid "Update Profile"
+msgstr "고객정보 업데이트"
+
+#: templates/contact/update_form.html:11
+msgid "Your Profile"
+msgstr "고객 정보"
+
+#: templates/contact/update_form.html:18
+msgid "You&apos;ll need to fill out at least the fields with a *"
+msgstr "*로 시작하는 필드를 체워 주세요."
+
+#: templates/contact/update_form.html:30
+msgid "Birthday"
+msgstr "생일"
+
+#: templates/contact/update_form.html:97
+msgid "Update"
+msgstr "업데이트"
+
+#: templates/contact/view_profile.html:11
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "계정 정보"
+
+#: templates/contact/view_profile.html:14
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "환영합니다. %(full_name)s님"
+
+#: templates/contact/view_profile.html:17
+msgid "Your profile"
+msgstr "고객님의 정보"
+
+#: templates/contact/view_profile.html:19
+msgid "Email:"
+msgstr "이메일"
+
+#: templates/contact/view_profile.html:20
+msgid "Birthday:"
+msgstr "생일"
+
+#: templates/contact/view_profile.html:22
+msgid "Newsletter:"
+msgstr "뉴스레터"
+
+#: templates/contact/view_profile.html:24
+msgid "Billing Address:"
+msgstr "계산서 주소"
+
+#: templates/contact/view_profile.html:25
+msgid "Shipping Address:"
+msgstr "배송 주소"
+
+#: templates/contact/view_profile.html:27
+#: templates/contact/view_profile.html:40
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "계정 옵션"
+
+#: templates/contact/view_profile.html:29
+msgid "Update your profile"
+msgstr "고객 정보 수정"
+
+#: templates/contact/view_profile.html:31
+#: templates/contact/view_profile.html:44
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:11
+msgid "Change your password"
+msgstr "암호 변경"
+
+#: templates/contact/view_profile.html:38
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
+msgstr ""
+
+#: templates/contact/view_profile.html:38
+msgid "Probably because you are an admin."
+msgstr "당신은 관리자님 입니다."
+
+#: templates/contact/view_profile.html:42
+msgid "Set up contact information"
+msgstr "연락 정보 설정"
+
+#: templates/email/contact_us.txt:1
+#, python-format
+msgid ""
+"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
+"contact form."
+msgstr ""
+"웹 컨택트 폼을 통해서 %(name)s ( %(email)s )이 보내신 %(request_type)s 입니다."
+
+#: templates/email/order_complete.txt:1 templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "%(first_name)s %(last_name)s 님께"
+
+#: templates/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "주문에 감사드립니다. %(shop_name)s"
+
+#: templates/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "고객님의 주문은 아래와 같이 요약되었습니다."
+
+#: templates/email/order_complete.txt:67
+msgid "Your order contains products that can be downloaded"
+msgstr "고객님의 주문에 있는 상품은 다운로드 받으실 수 있습니다."
+
+#: templates/email/order_complete.txt:68
+msgid "Please click the link to being the download"
+msgstr "다운로드 받으시려면 링크를 클릭 하세요"
+
+#: templates/email/order_complete.txt:74 templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr ""
+
+#: templates/email/order_complete.txt:76 templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "상점 관리"
+
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+msgid "Newsletter Subscription"
+msgstr "뉴스레터 구독"
+
+#: templates/newsletter/subscribe_form.html:18
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+msgid "Your name"
+msgstr "이름"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+msgid "Newsletter Unsubscribe"
+msgstr "뉴스레터 구독하지 않음"
+
+#: templates/newsletter/unsubscribe_form.html:22
+msgid "Remove Me"
+msgstr "탈퇴"
+
+#: templates/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "상점 송장"
+
+#: templates/pdf/invoice.rml:14 templates/pdf/invoice.rml.py:50
+#: templates/pdf/packing-slip.rml:14 templates/pdf/packing-slip.rml.py:50
+msgid "Invoice #"
+msgstr "송장 #"
+
+#: templates/pdf/invoice.rml:21 templates/pdf/invoice.rml.py:57
+msgid "INVOICE"
+msgstr "송장"
+
+#: templates/pdf/invoice.rml:57 templates/pdf/packing-slip.rml:57
+msgid "Page"
+msgstr "페이지"
+
+#: templates/pdf/invoice.rml:116 templates/pdf/packing-slip.rml:116
+msgid "Unit Price"
+msgstr "개당 가격"
+
+#: templates/pdf/invoice.rml:153
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "지불 금액 합계 %(order_total)s"
+
+#: templates/pdf/invoice.rml:158
+msgid "Accounts Receivable"
+msgstr ""
+
+#: templates/pdf/packing-slip.rml:21 templates/pdf/packing-slip.rml.py:57
+msgid "PACKING SLIP"
+msgstr ""
+
+#: templates/pdf/packing-slip.rml:156
+#, python-format
+msgid ""
+"%(order_total)s was charged to your %(credit_card_type)s card (x%"
+"(credit_card_number)s) on %(order_date)s."
+msgstr ""
+
+#: templates/pdf/packing-slip.rml:162
+msgid "Thank you for your business!"
+msgstr "고객님의 거래에 감사드립니다."
+
+#: templates/product/detail_configurableproduct.html:93
+msgid "Please choose your options"
+msgstr "당신의 옵션을 선택하세요"
+
+#: templates/product/detail_customproduct.html:29
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "%(name)s 님의 주문"
+
+#: templates/product/detail_customproduct.html:54
+msgid "more"
+msgstr ""
+
+#: templates/registration/activate.html:7
+msgid "Registration Complete"
+msgstr "등록 완료"
+
+#: templates/registration/activate.html:12
+#: templates/registration/repeat_activation.html:11
+msgid "Account Activation"
+msgstr "계정 활성"
+
+#: templates/registration/activate.html:16
+msgid "Thanks for signing up! You are now logged in."
+msgstr "회원 가입해 주셔서 감사합니다. 고객님은 이미 로그인 되셨습니다."
+
+#: templates/registration/activate.html:17
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr "(%(email)s)로 다음에 로그인 하실 수 있습니다."
+
+#: templates/registration/activate.html:20
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr ""
+"고객님의 활성 링크가 부정확하개나 또는 고객님의 활성 키가 만료되었습니다."
+"활성키는 단지 등록 후 %(expiration_days)s 동안만 유효합니다."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site_url)s using "
+"this email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr ""
+"누군가가 고객님의 이메일로 이미 가입한 후 입니다 %(site_url)s."
+"만약 고객님이시라면, 주소를 복사 하셔서 웹 브라우저에 붙여 넣어서 접속하시던지 아니면 "
+"링크를 클릭 하셔서 고객님의 계정을 활성화 시키세요."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr ""
+""
+
+#: templates/registration/login.html:11
+msgid "Your email address and password didn't match. Please try again."
+msgstr "이메일 주소와 패스워드가 일치하지 않습니다. 다시 시도해 주세요"
+
+#: templates/registration/login.html:29
+msgid "If you do not have an account, please"
+msgstr ""
+
+#: templates/registration/login.html:29
+msgid "click here"
+msgstr "여기를 클릭하세요"
+
+#: templates/registration/login.html:30
+msgid "If you do not remember your password, please"
+msgstr "고객님의 패스워드를 기억하지 못하신다면, "
+
+#: templates/registration/login.html:30
+msgid "click here</a> to have it reset."
+msgstr "이곳</a>을 클릭하세요 다시 설정하실려면 "
+
+#: templates/registration/password_change_done.html:7
+msgid "Password Change Done"
+msgstr "패스워디 변경됨"
+
+#: templates/registration/password_change_done.html:12
+msgid "Password change successful"
+msgstr "패스워드 변경 성공"
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password change has been completed."
+msgstr "고객님의 패스워드 변경이 성공적으로 이루어 졌습니다."
+
+#: templates/registration/password_change_form.html:7
+msgid "Password Change"
+msgstr "패스워드 변경"
+
+#: templates/registration/password_change_form.html:12
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr ""
+"보안상의 이유로, 고객님의 옛 패스워드 입력 후 새 패스워드를 두번 입력해 주세요."
+
+#: templates/registration/password_change_form.html:19
+msgid "Old password"
+msgstr "구 패스워드"
+
+#: templates/registration/password_change_form.html:26
+msgid "New password"
+msgstr "새로운 패스워드"
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm new password"
+msgstr "새로운 패스워드 확인"
+
+#: templates/registration/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s"
+msgstr ""
+"고객님의 패스워드 변경 요청에 따라 %(site_name)s에 있는 고객님의 사용자 계정에 대한 이메일을 받으셨습니다."
+
+#: templates/registration/password_reset.txt:3
+msgid "Your new password is"
+msgstr "당신의 새로운 패스워드 "
+
+#: templates/registration/password_reset.txt:5
+msgid "Feel free to change this password by going to this page"
+msgstr "이 페이지에서 패스워드를 변경해 주세요"
+
+#: templates/registration/password_reset.txt:7
+#, python-format
+msgid ""
+"You can log in using your email address (%(email)s) or your username (%"
+"(username)s)."
+msgstr ""
+"당신의 이메일 주소 (%(email)s) 또는 당신의 사용자명 (%(username)s)로 로그인 하실 수 있습니다."
+
+#: templates/registration/password_reset.txt:9
+msgid "Thanks for using our site!"
+msgstr "저희 사이트를 이용해 주셔서 감사합니다."
+
+#: templates/registration/password_reset.txt:11
+#, python-format
+msgid "The %(site_name)s team "
+msgstr "%(site_name)s 팀 일동"
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "패스워드 재 설정이 성공적으로 이루어 졌습니다."
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr ""
+"당신이 입력하신 이메일로 새로운 패스워드가 전송되었습니다."
+"이 메일을 확인해 보세요"
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "패스워드 재 설정"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr ""
+"이 메일 주소를 잃어 버리셨습니까? 당신의 이메일 주소를 아래에 입력해 주세요"
+"새로운 패스워드를 보내드리겠습니다."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "이메일 주소"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr "당신이 등록하실 때 사용한 이 메일 주소와 같은 이메일 주소를 입력해 주세요"
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "패스워드 재 설정"
+
+#: templates/registration/registration_complete.html:7
+#: templates/registration/registration_complete.html:11
+msgid "Account Creation"
+msgstr "계정 생성"
+
+#: templates/registration/registration_complete.html:12
+msgid "Thank you for signing up."
+msgstr "계약 해 주셔서 감사합니다."
+
+#: templates/registration/registration_complete.html:14
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr ""
+"당신의 계정을 활성화 하기 위한 안내문과 함께 활성화 링크가 이메일로 전송 되었습니다."
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "등록"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "당신의 계정 정보를 입력하세요"
+
+#: templates/registration/registration_form.html:37
+msgid "Create Account"
+msgstr "계정 생성"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "다시 활성화"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "이 계정은 이미 활성화 되었습니다. 로그인 해 주세요"
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(company_name)s."
+msgstr "%(company_name)s 와 계약해 주셔서 감사합니다."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr "당신의 사용자명은 이 이메일 입니다."
+
+#: templates/widget/file.html:3
+msgid "Currently"
+msgstr "현재"
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr "썸네일 질"
+
+#: thumbnail/config.py:10
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+"1 에서 100까지의 값을 여기에 사용하세요, 그리고 이 값은 제품 또는 카테고리 "
+"생성 JPG썸네일 질을 설정하는 값으로 사용될 것입니다."
