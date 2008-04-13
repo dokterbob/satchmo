@@ -146,14 +146,14 @@ def ipn(request):
                 log.debug("Saved order notes from Paypal")
             
             order.add_status(status='Pending', notes=_("Paid through PayPal."))
-            for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=1, completed=False):
+            for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=True, completed=False):
                 item.completed = True
                 item.save()
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
                 
             if order.paid_in_full:
-                send_confirmation_email(order)
+                send_order_confirmation(order)
 
     except:
         log.exception(''.join(format_exception(*exc_info())))
