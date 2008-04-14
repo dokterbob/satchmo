@@ -30,7 +30,13 @@ def displayDoc(request, id, doc):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     shopDetails = Config.get_shop_config()
     t = loader.get_template(os.path.join('pdf', template))
-    templatedir = urllib.pathname2url(os.path.abspath(settings.TEMPLATE_DIRS[0]))
+    # Must search through all template dirs to find the pdf we are looking for
+    for templatedir in settings.TEMPLATE_DIRS:
+        filepathpdf = os.path.join(templatedir, 'pdf')
+        filepath = os.path.join(filepathpdf, template)
+        if os.path.exists(filepath):
+            break
+    templatedir = urllib.pathname2url(os.path.abspath(templatedir))
     c = Context({
                 'filename' : filename,
                 'templateDir' : templatedir,
