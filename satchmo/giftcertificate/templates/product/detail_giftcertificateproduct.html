@@ -3,6 +3,7 @@
 {% load satchmo_thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
+{% load satchmo_util %}
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -34,7 +35,7 @@
 {% endfor %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form id="options" action="{% url satchmo_cart_add %}" method="post">
+<form id="options" action="{% url satchmo_smart_add %}" method="post">
 
 <div>
 {% trans "Quantity (multiply the gift certificate by this amount)" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
@@ -46,6 +47,6 @@
 </div>
 
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input type="submit" value="{% trans "Add to cart" %}" /> 
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
 </form>
 {% endblock %} 

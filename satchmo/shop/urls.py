@@ -2,11 +2,13 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from satchmo.product.models import Product
 from satchmo.product.views import display_featured
+from satchmo.shop.utils import app_enabled
 
 urlpatterns = getattr(settings, 'SHOP_URLS', [])
 
 urlpatterns += patterns('satchmo.shop.views',
     (r'^category/(?P<parent_slugs>[-\w]+/)*(?P<slug>[-\w]+)/$', 'category.display', {}, 'satchmo_category'),
+    (r'^add/$', 'smart.smart_add', {}, 'satchmo_smart_add'),
     (r'^cart/add/$', 'cart.add', {}, 'satchmo_cart_add'),
     (r'^cart/add/ajax/$', 'cart.add_ajax', {}, 'satchmo_cart_add_ajax'),
     (r'^cart/remove/$', 'cart.remove', {}, 'satchmo_cart_remove'),
@@ -35,6 +37,11 @@ urlpatterns += patterns('satchmo.shop.views',
 urlpatterns += patterns('satchmo.product.views',
     (r'^search/$', 'do_search', {}, 'satchmo_search'),
 )
+
+if app_enabled('wishlist'):
+    urlpatterns += patterns('',
+        ('wishlist/', include('satchmo.wishlist.urls')),
+    )
 
 # Dictionaries for generic views used in Satchmo.
 

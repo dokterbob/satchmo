@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from satchmo.shop.templatetags import get_filter_args
-from satchmo.shop.utils import trunc_decimal
+from satchmo.shop import utils
 from satchmo.shop.utils.json import json_encode
 
 register = template.Library()
@@ -62,14 +62,10 @@ register.filter('in_list', in_list)
 
 def app_enabled(value):
     """returns "true" if the app is enabled"""
-    from django.db import models
-
-    all_apps = {}
-    for app in models.get_apps():
-        n = app.__name__.split('.')[-2]
-        if n  == value:
-            return "true"
-    return ""
+    if utils.app_enabled(value):
+        return "true"
+    else:
+        return ""
     
 register.filter('app_enabled', app_enabled)
 
@@ -80,7 +76,7 @@ def as_json(value):
 register.filter('as_json', as_json)
 
 def truncate_decimal(val, places=2):
-    return trunc_decimal(val, places)
+    return utils.trunc_decimal(val, places)
     
 register.filter('truncate_decimal', truncate_decimal)
 

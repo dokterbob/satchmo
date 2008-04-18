@@ -4,6 +4,7 @@
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_ratings %}
+{% load satchmo_util %}
 
 {% block content %}
 <h4>{% blocktrans with product.translated_name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
@@ -14,7 +15,7 @@
 {% endfor %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form id="options" action="{% url satchmo_cart_add %}" method="post">
+<form id="options" action="{% url satchmo_smart_add %}" method="post">
 
 {% for option_group in options %}
  {{ option_group.name}}
@@ -37,7 +38,10 @@
 {% endfor %}
 {% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input type="submit" value="{% trans "Add to cart" %}" />
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
+{% if "wishlist"|app_enabled and user.is_authenticated %}
+<input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
+{% endif %}
 </form>
 {% product_ratings %}
 {% endblock %}

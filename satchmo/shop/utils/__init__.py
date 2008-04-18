@@ -3,9 +3,19 @@ try:
 except:
     from django.utils._decimal import Decimal, ROUND_FLOOR
 
+from django.db import models
 import os, sys
 import types
 
+def app_enabled(appname):
+    """Check the app list to see if a named app is installed."""
+    all_apps = {}
+    for app in models.get_apps():
+        n = app.__name__.split('.')[-2]
+        if n  == appname:
+            return True
+    return False
+    
 def can_loop_over(maybe):
     """Test value to see if it is list like"""
     try:

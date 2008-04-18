@@ -22,7 +22,7 @@ def get_locale_conv(loc=None):
         loc = to_locale(loc)
 
     try:
-        log.debug('setting locale: %s', loc.encode('utf-8'))
+        #log.debug('setting locale: %s', loc.encode('utf-8'))
         locale.setlocale(locale.LC_ALL, locale.normalize(loc))
         return locale.localeconv()
     except (locale.Error, ValueError):

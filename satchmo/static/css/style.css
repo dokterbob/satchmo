@@ -60,6 +60,9 @@ border-left: 1px solid silver;
 border-bottom: 1px solid silver;
 }
 
+#rightnav .wishlist {
+	padding-top: 10px;
+}
 
 
 #content {
@@ -194,6 +197,7 @@ content: " ";
 background-color: #ccc;
 }
 
+#wishlist ul li,
 #product_category ul li {
 list-style: none;
 padding: 0.5em;
@@ -201,13 +205,26 @@ border-bottom: 1px dashed #e0e0e0;
 background-color: white;
 }
 
+#wishlist ul li:hover
 #product_category ul li:hover {
 	background-color: #f0fff0;
 }
 
+#wishlist ul li a,
 #product_category ul li a {
 	display: block;
 }
+
+#wishlist span.date {
+	font-style: italic;
+	display: block;
+}
+
+#wishlist form {
+	display: inline;
+}
+
+/* My Comment */
 
 #menu_container a {
 display: block;

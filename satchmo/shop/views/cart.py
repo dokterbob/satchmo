@@ -100,60 +100,8 @@ def add(request, id=0):
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
-        product = Product.objects.get(slug=productslug)
-        log.debug('found product: %s', product)
-        p_types = product.get_subtypes()
-        details = []
-
-        if 'ConfigurableProduct' in p_types:
-            # This happens when productname cannot be updated by javascript.
-            cp = product.configurableproduct
-            chosenOptions = optionset_from_post(cp, formdata)
-            product = cp.get_product_from_options(chosenOptions)
-
-        if 'CustomProduct' in p_types:
-            cp = product.customproduct
-            for customfield in cp.custom_text_fields.all():
-                if customfield.price_change is not None:
-                    price_change = customfield.price_change
-                else:
-                    price_change = zero
-                data = { 'name' : customfield.translated_name(),
-                         'value' : formdata["custom_%s" % customfield.slug],
-                         'sort_order': customfield.sort_order,
-                         'price_change': price_change }
-                details.append(data)
-                data = {}
-            chosenOptions = optionset_from_post(cp, formdata)
-            manager = OptionManager()
-            for choice in chosenOptions:
-                result = manager.from_unique_id(choice)
-                if result.price_change is not None:
-                    price_change = result.price_change
-                else:
-                    price_change = zero
-                data = { 'name': unicode(result.optionGroup),
-                          'value': unicode(result.translated_name()),
-                          'sort_order': result.displayOrder,
-                          'price_change': price_change
-                }
-                details.append(data)
-                data = {}
-                
-        if 'GiftCertificateProduct' in p_types:
-            ix = 0
-            for field in ('email', 'message'):
-                data = {
-                    'name' : field,
-                    'value' : formdata.get("custom_%s" % field, ""),
-                    'sort_order' : ix,
-                    'price_change' : zero,
-                }
-                ix += 1
-                details.append(data)
-            log.debug("Gift Certificate details: %s", details)
-            data = {}
-
+        product, details = product_from_post(productslug, formdata)
+        
         template = find_product_template(product)
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
@@ -188,16 +136,13 @@ def add(request, id=0):
 def add_ajax(request, id=0, template="json.html"):
     data = {'errors': []}
     product = None
-    productname = request.POST['productname']
-    log.debug('CART_AJAX: slug=%s', productname)
+    formdata = request.POST.copy()
+    productslug = formdata['productname']
+
+    log.debug('CART_AJAX: slug=%s', productslug)
     try:
-        product = Product.objects.get(slug=request.POST['productname'])
-        if 'ConfigurableProduct' in product.get_subtypes():
-            log.debug('Got a configurable product, trying by option')
-            # This happens when productname cannot be updated by javascript.
-            cp = product.configurableproduct
-            chosenOptions = optionset_from_post(cp, request.POST)
-            product = cp.get_product_from_options(chosenOptions)
+        product, details = product_from_post(productslug, formdata)
+
     except Product.DoesNotExist:
         log.warn("Could not find product: %s", productname)
         product = None
@@ -210,7 +155,7 @@ def add_ajax(request, id=0, template="json.html"):
         data['name'] = product.translated_name()
 
         try:
-            quantity = int(request.POST['quantity'])
+            quantity = int(formdata['quantity'])
             if quantity < 0:
                 data['errors'].append(('quantity', _('Choose a quantity.')))
 
@@ -314,3 +259,62 @@ def set_quantity_ajax(request, template="json.html"):
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     return render_to_response(template, {'json': encoded})
+
+
+def product_from_post(productslug, formdata):
+    product = Product.objects.get(slug=productslug)
+    log.debug('found product: %s', product)
+    p_types = product.get_subtypes()
+    details = []
+
+    if 'ConfigurableProduct' in p_types:
+        # This happens when productname cannot be updated by javascript.
+        cp = product.configurableproduct
+        chosenOptions = optionset_from_post(cp, formdata)
+        product = cp.get_product_from_options(chosenOptions)
+
+    if 'CustomProduct' in p_types:
+        cp = product.customproduct
+        for customfield in cp.custom_text_fields.all():
+            if customfield.price_change is not None:
+                price_change = customfield.price_change
+            else:
+                price_change = zero
+            data = { 'name' : customfield.translated_name(),
+                     'value' : formdata["custom_%s" % customfield.slug],
+                     'sort_order': customfield.sort_order,
+                     'price_change': price_change }
+            details.append(data)
+            data = {}
+        chosenOptions = optionset_from_post(cp, formdata)
+        manager = OptionManager()
+        for choice in chosenOptions:
+            result = manager.from_unique_id(choice)
+            if result.price_change is not None:
+                price_change = result.price_change
+            else:
+                price_change = zero
+            data = { 'name': unicode(result.optionGroup),
+                      'value': unicode(result.translated_name()),
+                      'sort_order': result.displayOrder,
+                      'price_change': price_change
+            }
+            details.append(data)
+            data = {}
+            
+    if 'GiftCertificateProduct' in p_types:
+        ix = 0
+        for field in ('email', 'message'):
+            data = {
+                'name' : field,
+                'value' : formdata.get("custom_%s" % field, ""),
+                'sort_order' : ix,
+                'price_change' : zero,
+            }
+            ix += 1
+            details.append(data)
+        log.debug("Gift Certificate details: %s", details)
+        data = {}
+        
+    return product, details
+    

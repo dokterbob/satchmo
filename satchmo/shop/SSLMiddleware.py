@@ -52,6 +52,7 @@ __author__ = "Stephen Zabel"
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, get_host
+from satchmo.shop.models import Config
 from satchmo.shop.utils import request_is_secure
 
 SSL = 'SSL'
@@ -68,12 +69,13 @@ class SSLRedirect:
             return self._redirect(request, secure)
 
     def _redirect(self, request, secure):
-        protocol = secure and "https" or "http"
-        newurl = "%s://%s%s" % (protocol,get_host(request),request.get_full_path())
-
         if settings.DEBUG and request.method == 'POST':
             raise RuntimeError(
 """Django can't perform a SSL redirect while maintaining POST data.
 Please structure your views so that redirects only occur during GETs.""")
+
+        protocol = secure and "https" or "http"
+            
+        newurl = "%s://%s%s" % (protocol,get_host(request),request.get_full_path())
 
         return HttpResponseRedirect(newurl)
