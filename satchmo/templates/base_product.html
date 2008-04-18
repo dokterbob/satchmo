@@ -13,8 +13,8 @@ or CustomProducts look for product/detail_xxx.html
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category %}
 {% load satchmo_ratings %}
-{% load satchmo_recentlist %}
 {% load satchmo_util %}
+{% if "recentlist"|app_enabled %}{% load satchmo_recentlist %}{% endif %}
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -38,7 +38,7 @@ or CustomProducts look for product/detail_xxx.html
 {% endblock %}
 
 {% block recentview %}
-{% recentlyviewed recent_products product.slug %}
+{% if "recentlist"|app_enabled %}{% recentlyviewed recent_products product.slug %}{% endif %}
 {% endblock %}
 
 {% block content %}

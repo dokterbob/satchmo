@@ -218,6 +218,8 @@ background-color: white;
 #wishlist span.date {
 	font-style: italic;
 	display: block;
+	margin-left: 5px;
+	font-size: 10px;
 }
 
 #wishlist form {
