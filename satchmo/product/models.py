@@ -422,6 +422,16 @@ class Product(models.Model):
     taxClass = models.ForeignKey(TaxClass, verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
 
     objects = ProductManager()
+    
+    def _get_mainCategory(self):
+        """Return the first category for the product"""
+        
+        if self.category.count() > 0:
+            return self.category.all()[0]
+        else:
+            return None
+        
+    main_category = property(_get_mainCategory)
 
     def _get_mainImage(self):
         img = False

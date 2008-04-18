@@ -1,3 +1,5 @@
+/* @override http://localhost:8000/static/css/style.css */
+
 #container {
 width: 90%;
 margin: 10px auto;
@@ -296,5 +298,12 @@ img {
 #navbar ul li.first {
 	padding-left: 0em; 
 	border-left: none; 
-}  
+}
 
+.recentview h3 {
+	padding-bottom: 10px;
+}
+
+.recentitem {
+	padding-bottom: 10px;
+}

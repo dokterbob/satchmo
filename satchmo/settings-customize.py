@@ -70,11 +70,15 @@ MIDDLEWARE_CLASSES = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.doc.XViewMiddleware",
     "satchmo.shop.SSLMiddleware.SSLRedirect"
+    "satchmo.recentlist.middleware.RecentProductMiddleware",
 )
 
 #this is used to add additional config variables to each request
-TEMPLATE_CONTEXT_PROCESSORS = ('satchmo.shop.context_processors.settings',
-                               'django.core.context_processors.auth',)
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'satchmo.shop.context_processors.settings',
+    'django.core.context_processors.auth',
+    'satchmo.recentlist.context_processors.recent_products',
+)
 
 ROOT_URLCONF = 'satchmo.urls'
 
@@ -107,6 +111,7 @@ INSTALLED_APPS = (
     'satchmo.thumbnail',
     'satchmo.l10n',
     'satchmo.tax',
+    'satchmo.recentlist',
     # enable tiered to activate the "tiered" shipping module
     # select it in the site settings, then configure it in the
     # admin/tiered section

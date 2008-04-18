@@ -13,6 +13,7 @@ or CustomProducts look for product/detail_xxx.html
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category %}
 {% load satchmo_ratings %}
+{% load satchmo_recentlist %}
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -33,6 +34,10 @@ or CustomProducts look for product/detail_xxx.html
     <div id="menu_container">
     {% category_tree product.get_category.id %}
     </div>
+{% endblock %}
+
+{% block recentview %}
+{% recentlyviewed recent_products product.slug %}
 {% endblock %}
 
 {% block content %}

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-{% load i18n satchmo_category satchmo_google %}
+{% load i18n satchmo_category satchmo_google satchmo_recentlist %}
 <head>
     {% block extra-head %}{% endblock %}
     <link rel="stylesheet" href="{{ media_url }}css/style.css" />
@@ -72,6 +72,9 @@
             <input type="submit" value="{% trans 'Change' %}" />
             </form>
             {% endif %}
+            {% block recentview %}
+            {% recentlyviewed recent_products %}
+            {% endblock %}
         </div>
 
         <div id="content">
