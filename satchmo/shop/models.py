@@ -34,7 +34,6 @@ class NullConfig(object):
         self.site = self.country = None
         self.no_stock_checkout = False
         self.in_country_only = True
-        self.secure_url = ""
         self.sales_country = Country.objects.get(iso3_code__exact='USA')
 
     def _options(self):
@@ -92,14 +91,6 @@ class Config(models.Model):
         return prefix + "://" + url_join(settings.SHOP_BASE, self.site.domain)
     
     base_url = property(fget=_base_url)
-
-    def save(self):
-        # strip http from domain name, if any.
-        if self.secure_domain.startswith('http://'):
-            self.secure_domain = self.secure_domain[7:]
-        elif self.secure_domain.startswith('https://'):
-            self.secure_domain = self.secure_domain[8:]
-        super(Config, self).save()
 
     def __unicode__(self):
         return self.store_name
