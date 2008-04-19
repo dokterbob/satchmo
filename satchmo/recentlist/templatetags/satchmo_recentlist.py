@@ -1,7 +1,7 @@
 from django.template import Node, NodeList
 from django.template import TemplateSyntaxError
 from django.template import Library
-from solid.util.logs import getLogger
+from logging import getLogger
 from satchmo.product.models import Product
 from satchmo.configuration import config_value
 
