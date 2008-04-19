@@ -1,0 +1,71 @@
+Translating Content
+===================
+
+When translating Satchmo to your desired language, you will generally need to translate the words in the templates as well as the text used in your product and category descriptions. The `Django Internationalization documentation`_ is an excellent resource on the overall capability available through Django. The sections below describe the Satchmo specific steps.
+
+Template Translations
+---------------------
+
+1. Change to the directory where Satchmo is stored (somewhere on your PYTHONPATH) and create your translation file::
+    
+    python make-messages.py -l de
+    
+
+ In the example above, replace "de" with the language code for the message file you want to create. 
+ The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
+ Portuguese and de_AT for Austrian German. The first two letters of the locale is a language code defined
+ in `ISO 639-1`_ . The second and optional part  consists of an underscore followed by a two letter country code as defined in 
+ `ISO 3166-1`_ . For the command above to work you need to have python and xgettext installed.
+
+ This will extract strings that need to be translated from the Satchmo code and templates.
+ Upon completion of this command these strings along with references to where they are used
+ are stored in the file `satchmo/locale/de/LC_MESSAGES/django.po` (again, replace "de" 
+ with your own locale). 
+
+ If the `django.po` file already exists the above command will update it and
+ add new strings if any are discovered.
+
+2. Translate the `django.po` file of your locale using a translation editor:
+   
+   * `poedit`_
+   * `kbabel`_
+   * `gtranslator`_
+
+3. After translating the file, you must compile it to an .mo file.  To do this, you must make sure that your local_settings.py file has a LOCALE_PATHS variable defined (it can be a blank string).
+
+4. Compile the file using django's compile-messages.py script::
+    
+    /path/to/django/bin/compile-messages.py -l de
+
+5. (Optional but encouraged) Submit a ticket with your translation.
+
+Translating dependencies 
+------------------------
+
+Unless a translation to your language is already available, you may also need to translate packages on which Satchmo depends:
+
+ * `Django`_ 
+ * `Django Registration`_ 
+
+ Such translations are to be submitted to the corresponding project and not to the Satchmo project.
+ 
+.. note::
+  Although Django provides a `make-messages.py` script, it does not support the PDF generation templates used in Satchmo.
+  For that reason you should use the customized `make-messages.py` script that comes with Satchmo instead of the Django one.
+ 
+Content Translations
+--------------------
+
+After you have translated the templates, you will need to add your translations for the product information. Satchmo has extensive support for multiple languages in your product and category descriptions.
+
+After you have created a product, you can use the Product Translation section to create translated Name, Short Description and Full Description of the product. Creation is straightforward and allows you to version your changes so that you can try different translations to see which is most effective.
+
+
+.. _Django Internationalization documentation: http://www.djangoproject.com/documentation/i18n/
+.. _ISO 639-1: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+.. _ISO 3166-1: http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
+.. _Django: http://www.djangoproject.com/
+.. _Django Registration: http://code.google.com/p/django-registration/
+.. _poedit: http://www.poedit.net/ 
+.. _kbabel: http://kbabel.kde.org/
+.. _gtranslator: http://gtranslator.sourceforge.net/

@@ -65,6 +65,7 @@ Satchmo includes extensive Internationalization and translation support:
         - Swedish
         - Bulgarian
         - Portuguese
+        - Korean
     - Full country specific information
     - Translation support for all products and categories
     - Support for date and currency formating based on locale
@@ -90,3 +91,5 @@ In addition to these items, Satchmo provides:
     - Google adwords support
     - Google base feeds
     - Newsletter support via mailman or custom database
+    - Recently viewed items
+    - Wishlists

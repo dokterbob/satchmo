@@ -45,6 +45,7 @@ Modifying A Store
    
    customization
    custom-payment
+   translation
    
 Additional Notes
 ================
