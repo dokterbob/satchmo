@@ -33,10 +33,11 @@ class PaymentProcessor(object):
         self.order = data
         # See tclink developer's guide for additional fields and info
         # convert amount to cents, no decimal point
-        amount = str(data.balance).replace ('.', '')
+        amount = unicode((data.balance * 100).to_integral()) 
 
         # convert exp date to mmyy from mm/yy or mm/yyyy
-        exp = '%.2d%.2d' % tuple (int (mmyy) % 100 for mmyy in data.credit_card.expirationDate.split ('/'))
+        cc = data.credit_card 
+        exp = u"%.2d%.2d" % (int(cc.expireMonth), (int(cc.expireYear) % 100)) 
 
         self.transactionData = {
             # account data
@@ -45,13 +46,13 @@ class PaymentProcessor(object):
             'demo'	: self.demo,
 
             # Customer data
-            'name'  	: data.contact.first_name + ' ' + data.contact.last_name,
+            'name'  	: data.contact.first_name + u' ' + data.contact.last_name,
             'address1'	: data.full_bill_street,
             'city'	: data.bill_city,
             'state' 	: data.bill_state,
-            'zip' 	: str(data.bill_postal_code),
+            'zip' 	:data.bill_postal_code,
             'country'	: data.bill_country,
-            'phone' 	: str(data.contact.primary_phone.phone),
+            'phone' 	: data.contact.primary_phone.phone,
             # other possibiliities include email, ip, offlineauthcode, etc 
 
             # transaction data
@@ -60,15 +61,18 @@ class PaymentProcessor(object):
             'amount' 	: amount,	# in cents
             'cc'	: data.credit_card.decryptedCC,  # use '4111111111111111' for test
             'exp'	: exp, 		# 4 digits eg 0108
-            'cvv'	: str(data.credit_card.ccv),
+            'cvv'	: data.credit_card.ccv,
             'avs'	: self.AVS,		# address verification - see tclink dev guide
-            'ticket'	: 'Order: ' + str(data.credit_card.orderpayment_id),
+            'ticket'	: u'Order: %s ' % data.credit_card.orderpayment_id,
             'operator'	: 'Satchmo'
             }
+        for key, value in self.transactionData.items(): 
+            if isinstance(value, unicode): 
+                self.transactionData[key] = value.encode('utf7',"ignore") 
         
     def process(self):
-        # process thre transaction through tclink
-        result = tclink.send (self.transactionData)
+        # process the transaction through tclink
+        result = tclink.send(self.transactionData)
         status = result ['status']
         if status == 'approved':
             record_payment(self.order, self.settings, amount=self.order.balance)
@@ -90,16 +94,21 @@ if __name__ == "__main__":
     #####
     import os
     from satchmo.configuration import config_get_group 
+    from decimal import Decimal
+    from django.utils.encoding import smart_str
     
     # Set up some dummy classes to mimic classes being passed through Satchmo
     class testContact(object):
         pass
     class testCC(object):
         pass
+    class phone(object):
+        pass
     class testOrder(object):
         def __init__(self):
             self.contact = testContact()
-            self.CC = testCC()
+            self.credit_card = testCC()
+            self.contact.primary_phone = phone()
         def order_sucess(self):
             pass
 
@@ -110,23 +119,25 @@ if __name__ == "__main__":
     sampleOrder = testOrder()
     sampleOrder.contact.first_name = 'Chris'
     sampleOrder.contact.last_name = 'Smith'
-    sampleOrder.contact.primary_phone = '801-555-9242'
-    sampleOrder.fullBillStreet = '123 Main Street'
-    sampleOrder.billPostalCode = '12345'
-    sampleOrder.billState = 'TN'
-    sampleOrder.billCity = 'Some City'
-    sampleOrder.billCountry = 'US'
-    sampleOrder.balance = "27.00"
-    sampleOrder.total = "27.00"
-    sampleOrder.CC.decryptedCC = '4111111111111111'
-    sampleOrder.CC.expirationDate = "10/09"
-    sampleOrder.CC.ccv = "123"
-    sampleOrder.CC.order = "987654"
+    sampleOrder.contact.primary_phone.phone = '801-555-9242'
+    sampleOrder.full_bill_street = '123 Main Street'
+    sampleOrder.bill_postal_code = '12345'
+    sampleOrder.bill_state = 'TN'
+    sampleOrder.bill_city = 'Some City'
+    sampleOrder.bill_country = 'US'
+    sampleOrder.balance = Decimal("27.00")
+    sampleOrder.total = Decimal("27.00")
+    sampleOrder.credit_card.decryptedCC = '4111111111111111'
+    sampleOrder.credit_card.expireMonth = "10"
+    sampleOrder.credit_card.expireYear = "2010"
+    sampleOrder.credit_card.ccv = "123"
+    sampleOrder.credit_card.order = "987654"
+    sampleOrder.credit_card.orderpayment_id = "123"
     
     trustcommerce_settings = config_get_group('PAYMENT_TRUSTCOMMERCE')
 
     processor = PaymentProcessor (trustcommerce_settings)
-    processor.prepareData (sampleOrder)
+    processor.prepareData(sampleOrder)
     results, reason_code, msg = processor.process()
-    print results, "::", msg
+    print results, "::", smart_str(msg)
 
