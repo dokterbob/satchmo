@@ -22,14 +22,19 @@ selection = _("Please Select")
 
 def get_or_create_order(request, working_cart, contact, data):
     """Get the existing order from the session, else create using the working_cart, contact and data"""
+    shipping = data['shipping']
+    discount = data['discount']
+    
     try:
         newOrder = Order.objects.from_request(request)
+        pay_ship_save(newOrder, working_cart, contact,
+            shipping=shipping, discount=discount, update=True)
         
     except Order.DoesNotExist:
         # Create a new order.
         newOrder = Order(contact=contact)
         pay_ship_save(newOrder, working_cart, contact,
-            shipping=data['shipping'], discount=data['discount'])
+            shipping=shipping, discount=discount)
             
         request.session['orderID'] = newOrder.id
     
