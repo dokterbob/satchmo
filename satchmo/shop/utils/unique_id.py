@@ -5,7 +5,7 @@ If that doesn't work, we add random numbers to the name
 """
 
 from django.contrib.auth.models import User
-import random
+from satchmo.shop.utils import random_string
 
 def generate_id(first_name=None, last_name=None):
     valid_id = False
@@ -16,5 +16,5 @@ def generate_id(first_name=None, last_name=None):
         except User.DoesNotExist:
             valid_id = True
         else:
-            test_name = first_name + last_name + str(random.randrange(1,9999))
+            test_name = first_name + last_name + "_" + random_string(7, True)
     return(test_name)

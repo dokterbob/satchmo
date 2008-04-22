@@ -5,6 +5,7 @@ except:
 
 from django.db import models
 import os, sys
+import random
 import types
 
 def app_enabled(appname):
@@ -75,6 +76,13 @@ def load_module(module):
         __import__(module)
         module = sys.modules[module]
     return module
+
+_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+def random_string(length, variable=False, charset=_LETTERS):
+    if variable:
+        length = random.randrange(1, length+1)
+    return ''.join([random.choice(charset) for x in xrange(length)])
 
 def request_is_secure(request):
     if request.is_secure():
