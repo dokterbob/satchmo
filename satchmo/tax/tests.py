@@ -93,6 +93,38 @@ class TaxTest(TestCase):
         
         self.assertEqual(tmain.tax, Decimal('16.00'))
         self.assertEqual(tship.tax, Decimal('0.00'))
+        
+    def testDuplicateAdminAreas(self):
+        """Test the situation where we have multiple adminareas with the same name"""
+        cache_delete()
+        tax = config_get('TAX','MODULE')
+        tax.update('satchmo.tax.modules.area')
+
+        order = make_test_order('GB', 'Manchester')
+
+        order.recalculate_total(save=False)
+        price = order.total
+        subtotal = order.sub_total
+        tax = order.tax
+
+        self.assertEqual(subtotal, Decimal('100.00'))
+        self.assertEqual(tax, Decimal('20.00'))
+        # 100 + 10 shipping + 20 tax
+        self.assertEqual(price, Decimal('130.00'))
+
+        taxes = order.taxes.all()
+        self.assertEqual(2, len(taxes))
+        t1 = taxes[0]
+        t2 = taxes[1]
+        self.assert_('Shipping' in (t1.description, t2.description))
+        if t1.description == 'Shipping':
+            tship = t1
+            tmain = t2
+        else:
+            tship = t2
+            tmain = t1
+        self.assertEqual(tmain.tax, Decimal('20.00'))
+        self.assertEqual(tship.tax, Decimal('0.00'))
 
     def testPercent(self):
         """Test percent tax without shipping"""

@@ -49,15 +49,6 @@ class Processor(object):
             except Contact.DoesNotExist:
                 pass
         
-        if area:
-            try:
-                area = AdminArea.objects.get(name__iexact=area)
-            except AdminArea.DoesNotExist:
-                try:
-                    area = AdminArea.objects.get(abbrev__iexact=area)
-                except AdminArea.DoesNotExist:
-                    log.info("Couldn't find AdminArea from string: %s", area)
-                    area = None
         if country:
             try:
                 country = Country.objects.get(iso2_code__exact=country)
@@ -67,6 +58,20 @@ class Processor(object):
 
         if not country:
             country = Config.get_shop_config().sales_country
+
+        if area:
+            try:
+                area = AdminArea.objects.get(name__iexact=area,
+                                             country=country)
+            except AdminArea.DoesNotExist:
+                try:
+                    area = AdminArea.objects.get(abbrev__iexact=area,
+                                                 country=country)
+                except AdminArea.DoesNotExist:
+                    log.info("Couldn't find AdminArea from string: %s", area)
+                    area = None
+
+
         return area, country
         
     def get_percent(self, taxclass="Default", area=None, country=None):

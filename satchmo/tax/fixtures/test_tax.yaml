@@ -178,10 +178,15 @@
 - fields: {percentage: '0.16', taxClass: 1, taxCountry: 211, taxZone: null}
   model: tax.taxrate
   pk: 53
+- fields: {percentage: '0.20', taxClass: 1, taxCountry: null, taxZone: 1414}
+  model: tax.taxrate
+  pk: 54
+- fields: {percentage: '0.10', taxClass: 1, taxCountry: null, taxZone: 2146}
+  model: tax.taxrate
+  pk: 55
 - fields: {description: Shipping, title: Shipping}
   model: tax.taxclass
   pk: 2
 - fields: {description: Default, title: Default}
   model: tax.taxclass
   pk: 1
-
