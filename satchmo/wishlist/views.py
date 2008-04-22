@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core import urlresolvers
 from django.dispatch import dispatcher
 from django.http import HttpResponseRedirect, HttpResponse
@@ -25,7 +26,9 @@ def wishlist_view(request, message=""):
     try:
         contact = Contact.objects.from_request(request)
     except Contact.DoesNotExist:
-        return bad_or_missing(request, _('You must be logged in to view your wishlist.'))
+        return render_to_response('wishlist/login_required.html', {
+            'login_url' : settings.LOGIN_URL
+            })
         
     wishes = ProductWish.objects.filter(contact=contact)
 
@@ -41,7 +44,10 @@ def wishlist_add(request):
     try:
         contact = Contact.objects.from_request(request)
     except Contact.DoesNotExist:
-        return bad_or_missing(request, _('You must be logged in to view your wishlist.'))
+        return render_to_response('wishlist/login_required.html', {
+            'login_url' : settings.LOGIN_URL
+            })
+        
 
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
@@ -108,10 +114,13 @@ def wishlist_move_to_cart(request):
         
     
 def wishlist_remove(request):
-    success, msg = _wishlist_remove(request)
     contact = Contact.objects.from_request(request)
     if not contact:
-        return bad_or_missing(request, _('You must be logged in to view your wishlist.'))
+        return render_to_response('wishlist/login_required.html', {
+            'login_url' : settings.LOGIN_URL
+            })
+            
+    success, msg = _wishlist_remove(request)
         
     return wishlist_view(request, message=msg)
 
