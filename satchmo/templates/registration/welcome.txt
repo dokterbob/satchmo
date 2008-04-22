@@ -2,7 +2,7 @@
 
 {% blocktrans %}Thank you for signing up with {{ company_name }}.{% endblocktrans %}
 
-{% blocktrans %}Your new username is this email address, and you can login at{% endblocktrans %} http://{{ site_url }}{% url auth_login %}
+{% blocktrans %}Your new username is this email address, and you can login at{% endblocktrans %} http://{{ site_url }}{{ login_url }}
 
 {% trans "Regards" %},
 

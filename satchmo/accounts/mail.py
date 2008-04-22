@@ -23,6 +23,7 @@ def send_welcome_email(email, first_name, last_name):
         'last_name': last_name,
         'company_name': shop_config.store_name,
         'site_url': shop_config.site.domain,
+        'login_url': settings.LOGIN_URL,
     })
     body = t.render(c)
     try:

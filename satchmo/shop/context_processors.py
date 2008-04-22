@@ -37,4 +37,6 @@ def settings(request):
         'categories': all_categories,
         'is_secure' : secure,
         'request' : request,
+        'login_url': site_settings.LOGIN_URL,
+        'logout_url': site_settings.LOGOUT_URL,
     }

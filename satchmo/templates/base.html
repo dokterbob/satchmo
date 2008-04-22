@@ -47,7 +47,7 @@
                 <a href="{% url satchmo_account_info %}">{% trans "Account Details" %}</a><br/>
                 <a href="{% url auth_logout %}">{% trans "Log out" %}</a><br/>
             {% else %}
-                <a href="{% url auth_login %}">{% trans "Log in" %}</a><br/>
+                <a href="{{ login_url }}?next={{request.path}}">{% trans "Log in" %}</a><br/>
             {% endif %}
 
             {% load satchmo_currency %}
