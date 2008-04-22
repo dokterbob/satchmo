@@ -93,7 +93,6 @@ class Shipper(BaseShipper):
         """
         Post the data and return the XML response
         """
-        print request.encode("utf-8")
         conn = urllib2.Request(url=connection, data=request.encode("utf-8"))
         f = urllib2.urlopen(conn)
         all_results = f.read()
