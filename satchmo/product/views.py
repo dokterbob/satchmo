@@ -306,8 +306,8 @@ def _productvariation_prices(product, include_tax, user):
             taxes[key] = taxed
 
         # build option map
-        opts = [(opt.id, opt.value) for opt in p.options.all()]
-        opts.sort()
+        opts = [(opt.id, opt.value) for opt in p.options.order_by('optionGroup')]
+        #opts.sort()
         optkeys = [opt[1] for opt in opts]
         optkey = "::".join(optkeys)
         optmap[optkey] = key
