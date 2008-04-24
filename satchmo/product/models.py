@@ -19,6 +19,7 @@ from django.db.models import Q
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.shop.utils import url_join
+from satchmo.shop.utils.unique_id import slugify
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from sets import Set
@@ -71,8 +72,7 @@ class Category(models.Model):
     Basic hierarchical category model for storing products
     """
     name = models.CharField(_("Name"), core=True, max_length=200)
-    slug = models.SlugField(_("Slug"), prepopulate_from=('name',),
-        help_text=_("Used for URLs"))
+    slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
         related_name='child')
     meta = models.TextField(_("Meta Description"), blank=True, null=True,
@@ -156,6 +156,8 @@ class Category(models.Model):
         parents = self._recurse_for_parents(self)
         if self in parents:
             raise validators.ValidationError(_("You must not save a category in itself!"))
+        if not self.slug:
+            self.slug = slugify(self.name, instance=self)
         super(Category, self).save()
 
     def _flatten(self, L):
@@ -395,9 +397,12 @@ class Product(models.Model):
     """
     Root class for all Products
     """
-    name = models.CharField(_("Full Name"), max_length=255, help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
-    slug = models.SlugField(_("Slug Name"), unique=True, prepopulate_from=('name',), core=True, blank=False)
-    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True, help_text=_("Defaults to slug if left blank"))
+    name = models.CharField(_("Full Name"), max_length=255, core=True, blank=False, 
+        help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
+    slug = models.SlugField(_("Slug Name"), unique=True, blank=True, 
+        help_text=_("Used for URLs, auto-generated from name if blank"))
+    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True, 
+        help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     category = models.ManyToManyField(Category, filter_interface=True, blank=True, verbose_name=_("Category"))
@@ -578,8 +583,13 @@ class Product(models.Model):
     def save(self):
         if not self.id:
             self.date_added = datetime.date.today()
+
+        if self.name and not self.slug:
+            self.slug = slugify(self.name, instance=self)
+            
         if not self.sku:
             self.sku = self.slug
+
         super(Product, self).save()
 
     def get_subtypes(self):
@@ -780,12 +790,17 @@ class CustomTextField(models.Model):
     """
 
     name = models.CharField(_('Custom field name'), max_length=40, core=True)
-    slug = models.SlugField(_('Slug'))
+    slug = models.SlugField(_("Slug"), help_text=_("Auto-generated from name if blank"), blank=True)
     products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'),
         edit_inline=models.TABULAR, num_in_admin=3, related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
     price_change = models.DecimalField(_("Price Change"), max_digits=14, decimal_places=6, blank=True, null=True)
+        
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(self.name, instance=self)
+        super(CustomTextField, self).save()
         
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
@@ -874,34 +889,61 @@ class ConfigurableProduct(models.Model):
             variant = self.create_variation(options)
         return True
         
-    def create_variation(self, options):
+    def create_variation(self, options, name=u"", sku=u"", slug=u""):
         """Create a productvariation with the specified options.  
         Will not create a duplicate."""
-        # Check for an existing ProductVariation.
-        # Simplify this when Django #4464 is fixed.
+        log.debug("Create variation: %s", options)
         products = self.get_variations_for_options(options)
 
         if not products:        
             # There isn't an existing ProductVariation.            
-            variant = Product(items_in_stock=0)
+            variant = Product(items_in_stock=0, name=name)
             optnames = [opt.value for opt in options]
-            log.info("Creating variation for [%s] %s", self.product.slug, optnames)
-            
-            slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
+            if not slug:
+                optnames = [opt.value for opt in options]
+                slug = slugify(u'%s_%s' % (self.product.slug, u'_'.join(optnames)))
+
             while Product.objects.filter(slug=slug).count():
                 slug = u'_'.join((slug, unicode(self.product.id)))
+
             variant.slug = slug
+            
+            log.info("Creating variation for [%s] %s", self.product.slug, variant.slug)
             variant.save()
-            pv = ProductVariation(product=variant, parent=self)
+
+            pv = ProductVariation(product=variant, parent=self)                
             pv.save()
+            
             for option in options:
                 pv.options.add(option)
-            variant.name = u'%s (%s)' % (
-                self.product.name, u'/'.join(optnames))
-            variant.save()
-            return variant
+                
+            pv.name = name
+            pv.sku = sku
+            pv.save()
+
         else:
-            return products[0]
+            log.debug("Existing variant")
+            variant = Product.objects.get(pk=products[0])
+            dirty = False
+            if name != variant.name:
+                log.debug("Updating name: %s --> %s", self, name)
+                variant.name = name
+                dirty = True
+            if sku != variant.sku:
+                variant.sku = sku
+                log.debug("Updating sku: %s --> %s", self, sku)
+                dirty = True
+            if slug:
+                # just in case
+                slug = slugify(slug)
+            if slug != variant.slug:
+                variant.slug = slug
+                log.debug("Updating slug: %s --> %s", self, slug)
+                dirty = True
+            if dirty:
+                variant.save()
+                
+        return variant
 
     def _ensure_option_set(self, options):
         """
@@ -946,6 +988,7 @@ class ConfigurableProduct(models.Model):
             else:
                 query = query.filter(product__id__in=products)
             products = [variation.product.id for variation in query]
+        return products
 
     def save(self):
         """
@@ -1196,17 +1239,39 @@ class ProductVariation(models.Model):
             if pv.option_values == self.option_values:
                 return # Don't allow duplicates
 
-        #Ensure associated Product has a reasonable display name
         if not self.product.name:
-            options = []
-            for option in self.options.order_by("optionGroup"):
-                options += [option.name]
-
-            self.product.name = u'%s (%s)' % (self.parent.product.name, u'/'.join(options))
-            self.product.save()
+            # will force calculation of default name
+            self.name = ""
 
         super(ProductVariation, self).save()
+        
+    def _set_name(self, name):
+        if not name:
+            name = self.parent.product.name
+            options = [option.name for option in self.options.order_by("optionGroup")]
+            if options:
+                name = u'%s (%s)' % (name, u'/'.join(options))
+            log.debug("Setting default name for ProductVariant: %s", name)
 
+        self.product.name = name
+        self.product.save()
+        
+    def _get_name(self):
+        return self.product.name
+        
+    name = property(fset=_set_name, fget=_get_name)
+    
+    def _set_sku(self, sku):
+        if not sku:
+            sku = self.product.slug
+        self.product.sku = sku
+        self.product.save()
+        
+    def _get_sku(self):
+        return self.product.sku
+        
+    sku = property(fset=_set_sku, fget=_get_sku)
+            
     def get_absolute_url(self):
         return self.product.get_absolute_url()
 

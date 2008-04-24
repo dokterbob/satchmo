@@ -24,7 +24,6 @@
     };
     
     satchmo.optionkeys = {{ form.optionkeys|as_json }};
-    satchmo.optiondict = {{ form.optiondict|as_json }};
     
     satchmo.cross_list = function(list) {
         var fn = function(head, list, work) {
@@ -49,13 +48,12 @@
 
     satchmo.select_all = function() {
         satchmo.toggle('#variation_options input', true);
-        satchmo.toggle('#variation_products input', true);
+        satchmo.toggle('#variation_products .checkbox input', true);
     }
         
     satchmo.select_these = function(only, state) {
         
         keys = satchmo.selected_by_group();
-        console.log(keys);
         if (keys.length > 0) {
             if (only) {
                 satchmo.deselect_all();
@@ -101,10 +99,10 @@
             satchmo.optiongroups[satchmo.optionkeys[i]] = [];
         }
         
-        $('#variation_options input').each(function() {
+        $('#variation_options .checkbox input').each(function() {
             var parts = this.id.split("__");
-            var key = parts[1]
-            var group = key.split("_")[0]
+            var key = parts[1];
+            var group = key.split("_")[0];
 
             satchmo.optiongroups['optiongroup__' + group].push(key)
         })
@@ -145,6 +143,17 @@
 
 <fieldset class="module">
 <h2>{% trans "Variations" %}</h2>
+<div style="font-style: italic; font-size: .9em;">
+    {% blocktrans %}
+    <p>The Variation Manager helps create the exact set of variations you need for your Configurable Product</p>
+    <p>Make choices from the Option Groups below, and then click one of the helper links 
+    below them to select or deselect variations which have those options.</p>
+    <p>Fine tune the active variations by putting a checkmark next to those that you want to keep or 
+    create, then then click <b>Update Variations</b>.
+    </p>
+    {% endblocktrans %}
+</div>
+<form name="variations" action="{% url satchmo_admin_variation_manager product.slug %}" method="POST">
 <div style="float:left;">
     <table id="variation_options">
     <tr>
@@ -157,7 +166,7 @@
         <td>
             {{ field.label_tag }}
         </td>
-        <td>
+        <td class="checkbox">
             {{ field }}
             {% if field.errors %}
     		<span class="error">{{ field.errors }}</span><br/>
@@ -167,6 +176,11 @@
     </tr>
     {% endwith %}
     {% endfor %}
+    <tr>
+        <th colspan="2">
+            {% trans "Helper Links" %}
+        </th>
+    </tr>
     <tr>
         <td colspan="2">
         <a href="#" id="select_these">{% trans 'Select These Options' %}</a>
@@ -179,15 +193,24 @@
         <br/>
         <a href="#" id="deselect_all">{% trans 'Deselect All' %}</a>
         </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="{% trans "Update Variations" %}" />
+            <input type="reset" value="{% trans "Reset Form" %}" />
+        </td>
+    </tr>
     </table>
 </div>
-<form name="variations" action="{% url satchmo_admin_variation_manager product.slug %}" method="POST">
 <div style="float:left;">
     <table id="variation_products">
     <tr>
         <th>{% trans "Variation" %}</th>
         <th>{% trans "Exists" %}</th>
         <th>{% trans "Create/Keep" %}</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "SKU" %}</th>
+        <th>{% trans "Slug" %}</th>
     </tr>
     {% for varkey in form.variationkeys %}
     {% with form|lookup:varkey as field %}
@@ -202,20 +225,46 @@
         <td>
             <img src="{% admin_media_prefix %}img/admin/icon-{% if form.existing|lookup:varkey %}yes.gif" alt="{% trans "yes" %}"{% else %}no.gif" alt="{% trans "no" %}"{% endif %} />
         </td>
-        <td>
+        <td class="checkbox">
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span><br/>
+    		<span class="error">{{ field.errors }}</span>
 	        {% endif %}
+        </td>
+        <td>
+            {% with form.namedict|lookup:varkey as namekey %}
+            {% with form|lookup:namekey as field %}
+            {{ field }}
+            {% if field.errors %}
+    		<span class="error">{{ field.errors }}</span>
+	        {% endif %}
+            {% endwith %}
+            {% endwith %}
+        </td>
+        <td>
+            {% with form.skudict|lookup:varkey as skukey %}
+            {% with form|lookup:skukey as field %}
+            {{ field }}
+            {% if field.errors %}
+    		<span class="error">{{ field.errors }}</span>
+	        {% endif %}
+            {% endwith %}
+            {% endwith %}
+        </td>
+        <td>
+            {% with form.slugdict|lookup:varkey as slugkey %}
+            {% with form|lookup:slugkey as field %}
+            {{ field }}
+            {% if field.errors %}
+    		<span class="error">{{ field.errors }}</span>
+	        {% endif %}
+            {% endwith %}
+            {% endwith %}
         </td>
     </tr>
     {% endwith %}
     {% endfor %}
     </table>
-</div>
-<div style="clear: both;">
-<input type="submit" value="{% trans "Update Variations" %}" />
-<input type="reset" value="{% trans "Reset Form" %}" />
 </div>
 </form>
 </fieldset>

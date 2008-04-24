@@ -391,6 +391,9 @@ class VariationManagerForm(forms.Form):
         self.existing = {}
         self.optiondict = {}
         self.edit_urls = {}
+        self.namedict = {}
+        self.skudict = {}
+        self.slugdict = {}
         
         self.product = kwargs.pop('product', None)
         
@@ -415,21 +418,27 @@ class VariationManagerForm(forms.Form):
                 
             for opts in configurableproduct.get_all_options():
                 variation = configurableproduct.get_product_from_options(opts)
+                optnames = [opt.value for opt in opts]
                 kw = { 
                     'initial' : None,
+                    'label' : " ".join(optnames)
                 }
+                
                 opt_str = '__'.join(["%i_%i" % (opt.optionGroup.id, opt.id) for opt in opts])    
-                                        
+                
                 key = "pv__%s" % opt_str
 
                 if variation:
-                    kw['label'] = variation.name
+                    basename = variation.name
+                    sku = variation.sku
+                    slug = variation.slug
                     kw['initial'] = 'add'
                     self.existing[key] = True
-                    self.edit_urls[key] = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'productvariation', variation.id))
+                    self.edit_urls[key] = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'product', variation.id))
                 else:
-                    optnames = [opt.value for opt in opts]
-                    kw['label'] = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
+                    basename = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
+                    slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
+                    sku = self.product.sku
 
                 pv = forms.BooleanField(**kw)
 
@@ -439,6 +448,26 @@ class VariationManagerForm(forms.Form):
                     self.optiondict[opt.optionGroup.id].append(key)
                 
                 self.variationkeys.append(key)
+                
+                # Name Field
+                
+                nv = forms.CharField(initial=basename)
+                namekey = "name__%s" % opt_str
+                self.fields[namekey] = nv
+                self.namedict[key] = namekey
+                
+                # SKU Field                
+
+                sv = forms.CharField(initial=sku)
+                skukey = "sku__%s" % opt_str
+                self.fields[skukey] = sv
+                self.skudict[key] = skukey
+                
+                # Slug Field
+                sf = forms.CharField(initial=slug)
+                slugkey = "slug__%s" % opt_str
+                self.fields[slugkey] = sf
+                self.slugdict[key] = slugkey
 
     def save(self, request):
         self.full_clean()
@@ -453,7 +482,15 @@ class VariationManagerForm(forms.Form):
                     if value:
                         opts = _get_options_for_ids(ids)
                         if opts:
-                            configurableproduct.create_variation(opts)
+                            namekey = "name" + name[2:]
+                            nameval = self.cleaned_data[namekey]
+                            skukey = "sku" + name[2:]
+                            skuval = self.cleaned_data[skukey]
+                            slugkey = "slug" + name[2:]
+                            slugval = self.cleaned_data[slugkey]
+                            log.debug("Got name=%s, sku=%s, slug=%s", nameval, skuval, slugval)
+                            
+                            configurableproduct.create_variation(opts, name=nameval, sku=skuval, slug=slugval)
                             
                     else:
                         opts = _get_options_for_ids(ids)
