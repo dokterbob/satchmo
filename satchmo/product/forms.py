@@ -4,13 +4,13 @@ except ImportError:
     from StringIO import StringIO
 from django import newforms as forms
 from django.conf import settings
-from django.core import serializers
+from django.core import serializers, urlresolvers
 from django.core.management.base import CommandError
 from django.core.management.color import no_style
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
-from satchmo.product.models import Product, Price
+from satchmo.product.models import Product, Price, Option
 import logging
 import os
 import time
@@ -383,3 +383,90 @@ class InventoryForm(forms.Form):
 
                     prod.featured = value
                     prod.save()
+
+class VariationManagerForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.optionkeys = []
+        self.variationkeys = []
+        self.existing = {}
+        self.optiondict = {}
+        self.edit_urls = {}
+        
+        self.product = kwargs.pop('product', None)
+        
+        super(VariationManagerForm, self).__init__(*args, **kwargs)
+        
+        if self.product:
+            configurableproduct = self.product.configurableproduct;
+            
+            for grp in configurableproduct.option_group.all():
+                optchoices = [("%i_%i" % (opt.optionGroup.id, opt.id), opt.name) for opt in grp.option_set.all()]
+                kw = { 
+                    'label' : grp.name,
+                    'widget' : forms.CheckboxSelectMultiple(),
+                    'required' : False,
+                    'choices' : optchoices,
+                }
+                fld = forms.MultipleChoiceField(**kw)
+                key = 'optiongroup__%s' % grp.id
+                self.fields[key] = fld
+                self.optionkeys.append(key)
+                self.optiondict[grp.id] = []
+                
+            for opts in configurableproduct.get_all_options():
+                variation = configurableproduct.get_product_from_options(opts)
+                kw = { 
+                    'initial' : None,
+                }
+                opt_str = '__'.join(["%i_%i" % (opt.optionGroup.id, opt.id) for opt in opts])    
+                                        
+                key = "pv__%s" % opt_str
+
+                if variation:
+                    kw['label'] = variation.name
+                    kw['initial'] = 'add'
+                    self.existing[key] = True
+                    self.edit_urls[key] = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'productvariation', variation.id))
+                else:
+                    optnames = [opt.value for opt in opts]
+                    kw['label'] = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
+
+                pv = forms.BooleanField(**kw)
+
+                self.fields[key] = pv
+                
+                for opt in opts:
+                    self.optiondict[opt.optionGroup.id].append(key)
+                
+                self.variationkeys.append(key)
+
+    def save(self, request):
+        self.full_clean()
+        configurableproduct = self.product.configurableproduct;
+        for name, value in self.cleaned_data.items():
+            if '__' in name:
+                parts = name.split('__')
+                opt = parts[0]
+                ids = [part.split('_') for part in parts[1:]]
+                
+                if opt == "pv":
+                    if value:
+                        opts = _get_options_for_ids(ids)
+                        if opts:
+                            configurableproduct.create_variation(opts)
+                            
+                    else:
+                        opts = _get_options_for_ids(ids)
+                        if opts:
+                            variation = configurableproduct.get_product_from_options(opts)
+                            if variation:
+                                log.info("Deleting variation for [%s] %s", self.product.slug, opts)
+                                variation.delete()
+            
+def _get_options_for_ids(ids):
+    opts = []
+    for grpid, optid in ids:
+        option = Option.objects.get(optionGroup__id = grpid, id = optid)
+        opts.append(option)
+    return opts
+    

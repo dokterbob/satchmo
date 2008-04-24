@@ -114,3 +114,14 @@ def remove_tags(value):
     return ret
     
 register.filter('remove_tags', remove_tags)
+
+def lookup(value, key):
+    """
+    Return a dictionary lookup of key in value
+    """
+    try:
+        return value[key]
+    except KeyError:
+        return ""
+        
+register.filter('lookup', lookup)

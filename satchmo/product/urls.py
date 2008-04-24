@@ -8,4 +8,6 @@ urlpatterns = patterns('satchmo.product',
     (r'^inventory/export/$', 'adminviews.export_products', {}, 'satchmo_admin_product_export'),
     (r'^inventory/import/$', 'adminviews.import_products', {}, 'satchmo_admin_product_import'),
     (r'^inventory/report/$', 'adminviews.product_active_report', {}, 'satchmo_admin_product_report'),
+    (r'^admin/(?P<product_slug>[-\w]+)/variations/$', 'adminviews.variation_manager', {}, 'satchmo_admin_variation_manager'),
+    (r'^admin/variations/$', 'adminviews.variation_list', {}, 'satchmo_admin_variation_list'),
 )

@@ -180,10 +180,10 @@ class Command(NoArgsCommand):
 
         print "Creating product variations..."
         #Create the required sub_items
-        pg1.create_products()
-        pg3.create_products()
-        pg4.create_products()
-        #pg5.create_products()
+        pg1.create_all_variations()
+        pg3.create_all_variations()
+        pg4.create_all_variations()
+        #pg5.create_all_variations()
 
         #set prices for full and upgrade versions of neat-software, this is an alternative to using the price_change in options, it allows for more flexability when required.
     #    pv1 = pg5.get_product_from_options([optItem4a])

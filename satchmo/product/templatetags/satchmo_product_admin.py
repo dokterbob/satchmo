@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from django.core import urlresolvers
 from django.template import Context, Template
 from satchmo.configuration import config_value
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -53,28 +54,30 @@ def list_variations(configurableproduct):
         product = configurableproduct.get_product_from_options(p_opt)
         if product:
             #TODO: What's the right way to get this URL?
-            p_url = '/admin/product/product/%s/' % product.id
-            pv_url = '/admin/product/productvariation/%s/' % product.id
-
+            #p_url = '/admin/product/product/%s/' % product.id
+            p_url = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'product', product.id))
+            #pv_url = '/admin/product/productvariation/%s/' % product.id
+            pv_url = urlresolvers.reverse('django.contrib.admin.views.main.delete_stage', args=('product', 'productvariation', product.id))
             output += """
             <tr>
             <td>%s</td>
             <td><a href="%s">%s</a></td>
-            <td><a class="deletelink" href="%sdelete/"> Delete ProductVariation</a></td>
+            <td><a class="deletelink" href="%s"> Delete ProductVariation</a></td>
             </tr>
             """ % (opt_str, p_url, product.slug, pv_url)
         else:
             opt_ids = []
             [opt_ids.append(str(opt.id)) for opt in p_opt]
             opt_ids = ','.join(opt_ids)
-
+            add_url = urlresolvers.reverse('django.contrib.admin.views.main.add_stage', args=('product', 'productvariation')) 
+            add_url += "?parent_id=%s&options=%s" % (configurableproduct.product.id, opt_ids)
             output += """
             <tr>
             <td>%s</td>
             <td/>
-            <td><a href="../../productvariation/add/?parent_id=%s&options=%s" class="add-another" id="add_productvariation"> <img src="{%% admin_media_prefix %%}img/admin/icon_addlink.gif" width="10" height="10" alt="Add ProductVariation"/> Add Variation</a></td>
+            <td><a href="%s" class="add-another" id="add_productvariation"> <img src="{%% admin_media_prefix %%}img/admin/icon_addlink.gif" width="10" height="10" alt="Add ProductVariation"/> Add Variation</a></td>
             </tr>
-            """ % (opt_str, configurableproduct.product.id, opt_ids)
+            """ % (opt_str, add_url)
     output += "</table>"
     t = Template(output)
     return t.render(Context())

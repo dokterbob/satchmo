@@ -1,0 +1,222 @@
+{% extends "admin/base_site.html" %}
+{% load i18n satchmo_util adminmedia %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
+     <a href="{% url satchmo_admin_variation_list %}">{% trans 'Product Variation Manager' %}</a>
+</div>
+{% endif %}{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+    <script src="{{media_url}}js/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+    <script type="text/javascript">
+    var satchmo = satchmo || {};
+    
+    satchmo.deselect_all = function() {
+        satchmo.toggle('#variation_products input', false);
+    };
+
+    satchmo.toggle = function(cls, state) {
+        $(cls).each(function() { this.checked = state });
+        return false;
+    };
+    
+    satchmo.optionkeys = {{ form.optionkeys|as_json }};
+    satchmo.optiondict = {{ form.optiondict|as_json }};
+    
+    satchmo.cross_list = function(list) {
+        var fn = function(head, list, work) {
+            var first = list[0];
+            for (var i=0; i<first.length; i++) {
+                var elt = first[i];
+                var h = (head == "") ? elt : head + "__" + elt;
+                
+                if (list.length > 1) {
+                    fn(h, list.slice(1), work);
+                }
+                else {
+                    work.push(h);
+                }
+            }
+            return work
+        }
+        
+        work = fn("#id_pv", list, []);
+        return work;
+    };
+
+    satchmo.select_all = function() {
+        satchmo.toggle('#variation_options input', true);
+        satchmo.toggle('#variation_products input', true);
+    }
+        
+    satchmo.select_these = function(only, state) {
+        
+        keys = satchmo.selected_by_group();
+        console.log(keys);
+        if (keys.length > 0) {
+            if (only) {
+                satchmo.deselect_all();
+            }
+            
+            for (var i=0; i<keys.length; i++) {
+                var key = keys[i];
+                satchmo.toggle(key, state);
+            }
+        }
+    };
+    
+    satchmo.selected_by_group = function() {
+        var opts = [];
+    
+        for (var i=0; i<satchmo.optionkeys.length; i++) {
+            var key = satchmo.optionkeys[i];
+            var group = satchmo.optiongroups[key];
+            var group_choices = [];
+            for (var j=0; j<group.length; j++) {
+                var elt = $('#id_optiongroup__' + group[j])[0];
+                if (elt.checked) {
+                    group_choices.push(elt.value)
+                }
+            }
+            if (group_choices.length > 0) {
+                opts.push(group_choices);
+            }
+        }
+        
+        if (opts.length != satchmo.optionkeys.length) {
+            alert('You have to pick one from each optiongroup before this will work');
+            return [];
+        }
+        
+        return satchmo.cross_list(opts);
+    };
+
+    $(function() {
+        // make a list of the optiongroups and associated checkbox keys for easier lookup later
+        satchmo.optiongroups = {};
+        for (var i=0; i<satchmo.optionkeys.length; i++) {
+            satchmo.optiongroups[satchmo.optionkeys[i]] = [];
+        }
+        
+        $('#variation_options input').each(function() {
+            var parts = this.id.split("__");
+            var key = parts[1]
+            var group = key.split("_")[0]
+
+            satchmo.optiongroups['optiongroup__' + group].push(key)
+        })
+
+        $('#select_all').click(function() {
+            satchmo.select_all();
+            return false;
+        });
+    
+        $('#select_these').click(function() {
+            satchmo.select_these(false, true);
+            return false;
+        });
+        
+        $('#select_only_these').click(function() {
+            satchmo.select_these(true, true);
+            return false;
+        });
+        
+        $('#deselect_these').click(function() {
+            satchmo.select_these(false, false);
+            return false;
+        });
+        
+        $('#deselect_all').click(function() {
+            satchmo.deselect_all();
+            return false;
+        });
+    });
+    </script>
+{% endblock %}
+{% block content %}
+<h1>Variation Manager for {{ product.name }}</h1>
+{% if form.errors %}
+    <p class="errornote">
+    {% blocktrans count importform.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+{% endif %}
+
+<fieldset class="module">
+<h2>{% trans "Variations" %}</h2>
+<div style="float:left;">
+    <table id="variation_options">
+    <tr>
+        <th>{% trans "Option Group" %}</th>
+        <th>{% trans "Choices" %}</th>
+    </tr>
+    {% for grp in form.optionkeys %}
+    {% with form|lookup:grp as field %}
+    <tr>
+        <td>
+            {{ field.label_tag }}
+        </td>
+        <td>
+            {{ field }}
+            {% if field.errors %}
+    		<span class="error">{{ field.errors }}</span><br/>
+	        {% endif %}    
+            
+        </td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    <tr>
+        <td colspan="2">
+        <a href="#" id="select_these">{% trans 'Select These Options' %}</a>
+        <br/>
+        <a href="#" id="select_only_these">{% trans 'Select Only These Options' %}</a>
+        <br/>
+        <a href="#" id="select_all">{% trans 'Select All' %}</a>
+        <br/>
+        <a href="#" id="deselect_these">{% trans 'Deselect These Options' %}</a>
+        <br/>
+        <a href="#" id="deselect_all">{% trans 'Deselect All' %}</a>
+        </td>
+    </table>
+</div>
+<form name="variations" action="{% url satchmo_admin_variation_manager product.slug %}" method="POST">
+<div style="float:left;">
+    <table id="variation_products">
+    <tr>
+        <th>{% trans "Variation" %}</th>
+        <th>{% trans "Exists" %}</th>
+        <th>{% trans "Create/Keep" %}</th>
+    </tr>
+    {% for varkey in form.variationkeys %}
+    {% with form|lookup:varkey as field %}
+    <tr>
+        <td>
+            {% if form.existing|lookup:varkey %}
+                <a href="{{ form.edit_urls|lookup:varkey }}">{{ field.label}}</a>
+            {% else %}
+                {{ field.label_tag }}
+            {% endif %}
+        </td>
+        <td>
+            <img src="{% admin_media_prefix %}img/admin/icon-{% if form.existing|lookup:varkey %}yes.gif" alt="{% trans "yes" %}"{% else %}no.gif" alt="{% trans "no" %}"{% endif %} />
+        </td>
+        <td>
+            {{ field }}
+            {% if field.errors %}
+    		<span class="error">{{ field.errors }}</span><br/>
+	        {% endif %}
+        </td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    </table>
+</div>
+<div style="clear: both;">
+<input type="submit" value="{% trans "Update Variations" %}" />
+<input type="reset" value="{% trans "Reset Form" %}" />
+</div>
+</form>
+</fieldset>
+{% endblock %}

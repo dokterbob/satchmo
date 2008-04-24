@@ -14,6 +14,10 @@ jquery script should've already been added in admin/product/change_form.html, so
 {% if original %}
 {% comment %} Edit form {% endcomment %}
 <fieldset class="module">
+<h2>{% trans "Helpers" %}</h2>
+<a href="{% url satchmo_admin_variation_manager original %}">{% trans "Variation Manager" %}</a>
+</fieldset>
+<fieldset class="module">
 <h2>{% trans "Variations" %}</h2>
 {% list_variations original %}
 </fieldset>

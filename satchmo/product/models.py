@@ -863,7 +863,7 @@ class ConfigurableProduct(models.Model):
                 newopts.append(a)
         return newopts
 
-    def create_products(self):
+    def create_all_variations(self):
         """
         Get a list of all the optiongroups applied to this object
         Create all combinations of the options and create variations
@@ -871,35 +871,37 @@ class ConfigurableProduct(models.Model):
         combinedlist = self.get_all_options()
         #Create new ProductVariation for each combo.
         for options in combinedlist:
-            # Check for an existing ProductVariation.
-            # Simplify this when Django #4464 is fixed.
-            first_option = True
-            pvs = ProductVariation.objects.filter(parent=self)
-            for option in options:
-                query = pvs.filter(options=option)
-                if first_option:
-                    first_option = False
-                else:
-                    query = query.filter(product__id__in=products)
-                products = [variation.product.id for variation in query]
-
-            if not products:
-                # There isn't an existing ProductVariation.
-                variant = Product(items_in_stock=0)
-                optnames = [opt.value for opt in options]
-                slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
-                while Product.objects.filter(slug=slug).count():
-                    slug = u'_'.join((slug, unicode(self.product.id)))
-                variant.slug = slug
-                variant.save()
-                pv = ProductVariation(product=variant, parent=self)
-                pv.save()
-                for option in options:
-                    pv.options.add(option)
-                variant.name = u'%s (%s)' % (
-                    self.product.name, u'/'.join(optnames))
-                variant.save()
+            variant = self.create_variation(options)
         return True
+        
+    def create_variation(self, options):
+        """Create a productvariation with the specified options.  
+        Will not create a duplicate."""
+        # Check for an existing ProductVariation.
+        # Simplify this when Django #4464 is fixed.
+        products = self.get_variations_for_options(options)
+
+        if not products:        
+            # There isn't an existing ProductVariation.            
+            variant = Product(items_in_stock=0)
+            optnames = [opt.value for opt in options]
+            log.info("Creating variation for [%s] %s", self.product.slug, optnames)
+            
+            slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
+            while Product.objects.filter(slug=slug).count():
+                slug = u'_'.join((slug, unicode(self.product.id)))
+            variant.slug = slug
+            variant.save()
+            pv = ProductVariation(product=variant, parent=self)
+            pv.save()
+            for option in options:
+                pv.options.add(option)
+            variant.name = u'%s (%s)' % (
+                self.product.name, u'/'.join(optnames))
+            variant.save()
+            return variant
+        else:
+            return products[0]
 
     def _ensure_option_set(self, options):
         """
@@ -932,6 +934,18 @@ class ConfigurableProduct(models.Model):
             if variant.option_values == options:
                 count+=1
         return count
+        
+    def get_variations_for_options(self, options):
+        """Get a list of existing productvariations with the specified options"""
+        first_option = True
+        pvs = ProductVariation.objects.filter(parent=self)
+        for option in options:
+            query = pvs.filter(options=option)
+            if first_option:
+                first_option = False
+            else:
+                query = query.filter(product__id__in=products)
+            products = [variation.product.id for variation in query]
 
     def save(self):
         """
@@ -942,7 +956,7 @@ class ConfigurableProduct(models.Model):
         # Doesn't work with admin - the manipulator doesn't add the option_group
         # until after save() is called.
         if self.create_subs and self.option_group.count():
-            self.create_products()
+            self.create_all_variations()
             self.create_subs = False
             super(ConfigurableProduct, self).save()
 
