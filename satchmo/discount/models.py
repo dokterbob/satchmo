@@ -104,6 +104,7 @@ class Discount(models.Model):
         if cart.total < minOrder:
             return (False, ugettext('This discount only applies to orders of at least %s.' % moneyfmt(minOrder)))
 
+        validItems = False
         validproducts = self._get_valid_product_dict()
         if validproducts:
             for cart_item in cart.cartitem_set.all():
