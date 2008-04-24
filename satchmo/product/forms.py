@@ -458,7 +458,7 @@ class VariationManagerForm(forms.Form):
                 
                 # SKU Field                
 
-                sv = forms.CharField(initial=sku)
+                sv = forms.CharField(initial=sku, required=False)
                 skukey = "sku__%s" % opt_str
                 self.fields[skukey] = sv
                 self.skudict[key] = skukey
