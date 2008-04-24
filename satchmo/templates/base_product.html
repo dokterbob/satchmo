@@ -38,7 +38,9 @@ or CustomProducts look for product/detail_xxx.html
 {% endblock %}
 
 {% block recentview %}
+{% if recent_products %}
 {% if "recentlist"|app_enabled %}{% recentlyviewed recent_products product.slug %}{% endif %}
+{% endif %}
 {% endblock %}
 
 {% block content %}

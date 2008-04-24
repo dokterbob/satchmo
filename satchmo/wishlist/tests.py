@@ -61,7 +61,7 @@ class WishTest(TestCase):
             "2" : "BL",
             "addwish" : "Add to wishlist"
         })
-        self.assertContains(response, "You must be logged in to view your wishlist.", count=1, status_code=404)
+        self.assertContains(response, "Sorry, you must be", count=1, status_code=200)
     
 class WishTestLoggedIn(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']

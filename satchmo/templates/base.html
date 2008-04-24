@@ -78,7 +78,9 @@
             </form>
             {% endif %}
             {% block recentview %}
+            {% if recent_products %}
             {% if "recentlist"|app_enabled %}{% recentlyviewed recent_products %}{% endif %}
+            {% endif %}
             {% endblock %}
         </div>
 
