@@ -438,7 +438,7 @@ class VariationManagerForm(forms.Form):
                 else:
                     basename = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
                     slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
-                    sku = self.product.sku
+                    sku = ""
 
                 pv = forms.BooleanField(**kw)
 

@@ -17,6 +17,14 @@
     satchmo.deselect_all = function() {
         satchmo.toggle('#variation_products input', false);
     };
+    
+    satchmo.hide_inactive = function() {
+        $('#variation_products .checkbox input').each(function() {
+            if (!$(this)[0].checked) {
+                $(this).parent().parent().hide();
+            }
+        });
+    };
 
     satchmo.toggle = function(cls, state) {
         $(cls).each(function() { this.checked = state });
@@ -92,6 +100,12 @@
         return satchmo.cross_list(opts);
     };
 
+    satchmo.show_all = function() {
+        $('tr.optionrow').each(function() {
+            $(this).show();
+        });
+    }
+
     $(function() {
         // make a list of the optiongroups and associated checkbox keys for easier lookup later
         satchmo.optiongroups = {};
@@ -131,6 +145,17 @@
             satchmo.deselect_all();
             return false;
         });
+        
+        $('#show_all').click(function() {
+            satchmo.show_all();
+            return false;
+        });
+        
+        $('#hide_inactive').click(function() {
+            satchmo.hide_inactive();
+            return false;
+        });
+        
     });
     </script>
 {% endblock %}
@@ -192,6 +217,10 @@
         <a href="#" id="deselect_these">{% trans 'Deselect These Options' %}</a>
         <br/>
         <a href="#" id="deselect_all">{% trans 'Deselect All' %}</a>
+        <br/>
+        <a href="#" id="show_all">{% trans 'Show All' %}</a>
+        <br/>
+        <a href="#" id="hide_inactive">{% trans 'Hide Inactive Rows' %}</a>
         </td>
     </tr>
     <tr>
@@ -214,7 +243,7 @@
     </tr>
     {% for varkey in form.variationkeys %}
     {% with form|lookup:varkey as field %}
-    <tr>
+    <tr class="optionrow">
         <td>
             {% if form.existing|lookup:varkey %}
                 <a href="{{ form.edit_urls|lookup:varkey }}">{{ field.label}}</a>
