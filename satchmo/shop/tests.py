@@ -342,7 +342,7 @@ class ShopTest(TestCase):
                                                       "quantity" : 1})
         self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
-        self.assertContains(response, "satchmo computer", count=1, status_code=200)
+        self.assertContains(response, '/satchmo-computer/">satchmo computer', count=1, status_code=200)
         self.assertContains(response, smart_str("%s168.00" % config_value('SHOP', 'CURRENCY')), count=3)
         self.assertContains(response, smart_str("Monogram: CBM  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
         self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)

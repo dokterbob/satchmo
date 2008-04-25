@@ -15,7 +15,7 @@ from sets import Set
 import datetime
 import logging
 import random
-
+        
 log = logging.getLogger('product.views')
 
 NOTSET = object()
@@ -55,7 +55,10 @@ def serialize_options(config_product, selected_options=Set()):
     the options white and large.
     """
     d = {}
-    for options in config_product.get_valid_options():
+    
+    all_options = config_product.get_valid_options()
+    
+    for options in all_options:
         for option in options:
             if not d.has_key(option.optionGroup_id):
                 d[option.optionGroup.id] = {
@@ -66,6 +69,7 @@ def serialize_options(config_product, selected_options=Set()):
             if not option in d[option.optionGroup_id]['items']:
                 d[option.optionGroup_id]['items'] += [option]
                 option.selected = option.unique_id in selected_options
+    
     return d.values()
 
 def get_product(request, product_slug, selected_options=Set(), include_tax=NOTSET, default_view_tax=NOTSET):      
@@ -279,6 +283,7 @@ def _get_tax(user, product, quantity):
 
 def _productvariation_prices(product, include_tax, user):
     """Build the product prices, and the optionmap associated with them"""
+    
     if include_tax:
         taxer = _get_taxprocessor(user)
     
@@ -310,6 +315,6 @@ def _productvariation_prices(product, include_tax, user):
         #opts.sort()
         optkeys = [opt[1] for opt in opts]
         optkey = "::".join(optkeys)
-        optmap[optkey] = key
+        optmap[optkey] = key    
     
     return optmap, prices, taxes

@@ -3,7 +3,6 @@ Base model used for products.  Stores hierarchical categories
 as well as individual product level information which includes
 options.
 """
-
 import datetime
 import random
 import sha
@@ -589,7 +588,6 @@ class Product(models.Model):
             
         if not self.sku:
             self.sku = self.slug
-
         super(Product, self).save()
 
     def get_subtypes(self):
@@ -710,7 +708,7 @@ def get_all_options(obj):
     For OptionGroups Color and Size with Options (Blue, Green) and (Large, Small) you'll get
     [['Blue', 'Small'], ['Blue', 'Large'], ['Green', 'Small'], ['Green', 'Large']]
     Note: the actual values will be instances of Option instead of strings
-    """
+    """    
     sublist = []
     masterlist = []
     #Create a list of all the options & create all combos of the options
@@ -719,7 +717,9 @@ def get_all_options(obj):
             sublist.append(value)
         masterlist.append(sublist)
         sublist = []
-    return _cross_list(masterlist)
+    results = _cross_list(masterlist)
+    return results
+    
 
 class CustomProduct(models.Model):
     """
@@ -871,12 +871,14 @@ class ConfigurableProduct(models.Model):
         Returns the same output as get_all_options(), but filters out Options that this
         ConfigurableProduct doesn't have a ProductVariation for.
         """
-        opts = get_all_options(self)
-        newopts = []
-        for a in opts:
-            if self.get_product_count(a):
-                newopts.append(a)
-        return newopts
+        
+        # Note by Bruce Kroeze: Sorry this is so dense and possibly confusing.
+        # The old version took approx. 60 seconds to run on my laptop with 81 variants
+        # this one runs in .3 seconds.  I think a 200x speed improvement is worth some
+        # dense code.  List comprehensions (and avoiding hitting the database many times
+        # for the same data) *rule*.
+        active_options = [v.option_values for v in self.productvariation_set.filter(product__active='1')]
+        return [opt for opt in get_all_options(self) if self._ensure_option_set(opt) in active_options]
 
     def create_all_variations(self):
         """
@@ -968,14 +970,6 @@ class ConfigurableProduct(models.Model):
             if member.option_values == options:
                 return member.product
         return None
-
-    def get_product_count(self, options):
-        options = self._ensure_option_set(options)
-        count = 0
-        for variant in self.productvariation_set.filter(product__active='1'):
-            if variant.option_values == options:
-                count+=1
-        return count
         
     def get_variations_for_options(self, options):
         """Get a list of existing productvariations with the specified options"""
@@ -1242,7 +1236,7 @@ class ProductVariation(models.Model):
         if not self.product.name:
             # will force calculation of default name
             self.name = ""
-
+            
         super(ProductVariation, self).save()
         
     def _set_name(self, name):
@@ -1329,7 +1323,7 @@ class Price(models.Model):
             prices = prices.exclude(id=self.id)
         if prices.count():
             return #Duplicate Price
-
+            
         super(Price, self).save()
 
     class Meta:
