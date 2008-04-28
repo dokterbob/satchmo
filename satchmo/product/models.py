@@ -186,10 +186,10 @@ class Category(models.Model):
 
     class Admin:
         list_display = ('name', '_parents_repr')
-        ordering = ['parent', 'ordering', 'name']
+        ordering = ['parent__id', 'ordering', 'name']
 
     class Meta:
-        ordering = ['parent', 'ordering', 'name']
+        ordering = ['parent__id', 'ordering', 'name']
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
 
