@@ -591,15 +591,31 @@ class Product(models.Model):
         super(Product, self).save()
 
     def get_subtypes(self):
+        legal_types = config_value('PRODUCT', 'PRODUCT_TYPES')        
         types = []
         for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
             app, subtype = key.split("::")
             try:
-                if getattr(self, subtype.lower()):
-                    types += [subtype]
+                subclass = getattr(self, subtype.lower())
+                gettype = getattr(subclass, '_get_subtype')
+                subtype = gettype()
+                if not subtype in types:
+                    types.append(subtype)
             except models.ObjectDoesNotExist:
                 pass
+            
         return tuple(types)
+        
+        #types = []
+        #for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
+        #    app, subtype = key.split("::")
+        #    try:
+        #        if getattr(self, subtype.lower()):
+        #            types += [subtype]
+        #    except models.ObjectDoesNotExist:
+        #        pass
+        #return tuple(types)
+        
     get_subtypes.short_description = _("Product Subtypes")
 
     def get_subtype_with_attr(self, attr):
@@ -767,6 +783,9 @@ class CustomProduct(models.Model):
         return price
 
     full_price = property(fget=get_full_price)
+    
+    def _get_subtype(self):
+        return 'CustomProduct'
 
     def __unicode__(self):
         return u"CustomProduct: %s" % self.product.name
@@ -847,6 +866,9 @@ class ConfigurableProduct(models.Model):
         for seq in sequences:
             result = [sublist+[item] for sublist in result for item in seq]
         return result
+        
+    def _get_subtype(self):
+        return 'ConfigurableProduct'
 
     def get_all_options(self):
         """
@@ -1024,6 +1046,9 @@ class DownloadableProduct(models.Model):
 
     def __unicode__(self):
         return self.product.slug
+        
+    def _get_subtype(self):
+        return 'DownloadableProduct'
 
     def create_key(self):
         salt = sha.new(str(random.random())).hexdigest()[:5]
@@ -1058,6 +1083,9 @@ class SubscriptionProduct(models.Model):
     is_shippable = models.IntegerField(_("Shippable?"), help_text=_("Is this product shippable?"), max_length=1, choices=SHIPPING_CHOICES)
 
     is_subscription = True
+    
+    def _get_subtype(self):
+        return 'SubscriptionProduct'
 
     def __unicode__(self):
         return self.product.slug
@@ -1181,6 +1209,9 @@ class ProductVariation(models.Model):
             output.add(option.unique_id)
         return(output)
     option_values = property(_get_optionValues)
+    
+    def _get_subtype(self):
+        return 'ProductVariation'
 
     def _has_variants(self):
         return True
