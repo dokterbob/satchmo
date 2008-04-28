@@ -21,7 +21,7 @@ except:
 from django.utils.translation import ugettext as _
 from satchmo.shipping.modules.base import BaseShipper
 from django.template import Context, loader
-from satchmo.configuration import config_get_group
+from satchmo.configuration import config_get_group, config_value
 import urllib2
 from django.core.cache import cache
 import logging
@@ -44,6 +44,7 @@ class Shipper(BaseShipper):
             self.service_type_code = "99"
             self.service_type_text = "Uninitialized"
         self.id = u"UPS-%s-%s" % (self.service_type_code, self.service_type_text)
+        self.raw = "NO DATA"
         #if cart or contact:
         #    self.calculate(cart, contact)
     
@@ -96,6 +97,7 @@ class Shipper(BaseShipper):
         conn = urllib2.Request(url=connection, data=request.encode("utf-8"))
         f = urllib2.urlopen(conn)
         all_results = f.read()
+        self.raw = all_results
         return(fromstring(all_results))
         
     def calculate(self, cart, contact):
@@ -106,6 +108,7 @@ class Shipper(BaseShipper):
         methods above
         """
         from satchmo.shop.models import Config
+        
         settings =  config_get_group('satchmo.shipping.modules.ups')
         self.delivery_days = _("3 - 4") #Default setting for ground delivery
         shop_details = Config.get_shop_config()
@@ -134,12 +137,25 @@ class Shipper(BaseShipper):
         cache_key_response = "ups-cart-%s-response" % int(cart.id)
         cache_key_request = "ups-cart-%s-request" % int(cart.id)
         last_request = cache.get(cache_key_request)
-        if (last_request != request) or cache.get(cache_key_response) is None:
-            cache.set(cache_key_request, request, 60)
-            cache.set(cache_key_response, self._process_request(connection, request), 60)
         tree = cache.get(cache_key_response)
-        status_code = tree.getiterator('ResponseStatusCode')
-        if status_code[0].text == '1':
+
+        if (last_request != request) or tree is None:
+            self.verbose_log("Requesting from UPS [%s]\n%s", cache_key_request, request)
+            cache.set(cache_key_request, request, 60)
+            tree = self._process_request(connection, request)
+            self.verbose_log("Got from UPS [%s]:\n%s", cache_key_response, self.raw)
+            needs_cache = True
+        else:
+            needs_cache = False
+
+        try:
+            status_code = tree.getiterator('ResponseStatusCode')
+            status_val = status_code[0].text
+            self.verbose_log("UPS Status Code for cart #%s = %s", int(cart.id), status_val)
+        except AttributeError:
+            status_val = "-1"
+        
+        if status_val == '1':
             all_rates = tree.getiterator('RatedShipment')
             for response in all_rates:
                 if self.service_type_code == response.find('.//Service/Code/').text:
@@ -148,7 +164,20 @@ class Shipper(BaseShipper):
                         self.delivery_days = response.find('.//GuaranteedDaysToDelivery').text
                     self.is_valid = True
                     self._calculated = True
+                    if needs_cache:
+                        cache.set(cache_key_response, tree, 60)
         else:
-            errors = tree.find('.//Error')
-            log.info("UPS %s Error: Code %s - %s" % (errors[0].text, errors[1].text, errors[2].text))
+            self.is_valid = False
+            self._calculated = False
+
+            try:
+                errors = tree.find('.//Error')
+                log.info("UPS %s Error: Code %s - %s" % (errors[0].text, errors[1].text, errors[2].text))
+            except AttributeError:
+                log.info("UPS error - cannot parse response:\n %s", self.raw)
+            
+    def verbose_log(self, *args, **kwargs):
+        if config_value('satchmo.shipping.modules.ups', 'VERBOSE_LOG'):
+            log.debug(*args, **kwargs)
+        
         

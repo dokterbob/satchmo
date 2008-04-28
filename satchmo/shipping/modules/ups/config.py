@@ -88,6 +88,12 @@ StringValue(SHIPPING_GROUP,
     help_text=_("Address to submit test transactions."),
     default="https://wwwcie.ups.com/ups.app/xml/Rate"),
 
+BooleanValue(SHIPPING_GROUP,
+    'VERBOSE_LOG',
+    description=_("Verbose logs"),
+    help_text=_("Send the entire request and response to the log - for debugging help when setting up UPS."),
+    default=False),
+
 #ModuleValue(SHIPPING_GROUP,
 #    'MODULE',
 #    description=_('Implementation module'),
