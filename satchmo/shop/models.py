@@ -49,7 +49,7 @@ class Config(models.Model):
     Used to store specific information about a store.  Also used to
     configure various store behaviors
     """
-    site = models.OneToOneField(Site, verbose_name=_("Site"))
+    site = models.OneToOneField(Site, verbose_name=_("Site"), primary_key=True)
     store_name = models.CharField(_("Store Name"),max_length=100, unique=True)
     store_description = models.TextField(_("Description"), blank=True, null=True)
     store_email = models.EmailField(_("Email"), blank=True, null=True)
@@ -83,13 +83,13 @@ class Config(models.Model):
         return ConfigurationSettings()
 
     options = property(fget=_options)
-    
+
     def _base_url(self, secure=False):
         prefix = "http"
         if secure:
             prefix += "s"
         return prefix + "://" + url_join(settings.SHOP_BASE, self.site.domain)
-    
+
     base_url = property(fget=_base_url)
 
     def __unicode__(self):
@@ -127,38 +127,38 @@ class NullCart(object):
 
     def __len__(self):
         return 0
-        
+
 class OrderCart(NullCart):
     """Allows us to fake a cart if we are reloading an order."""
-    
+
     def __init__(self, order):
         self._order = order
-        
+
     def _numItems(self):
         return self._order.orderitem_set.count()
-        
+
     numItems = property(_numItems)
-    
+
     def _cartitem_set(self):
         return self._order.orderitem_set
-        
+
     cartitem_set = property(_cartitem_set)
-    
+
     def _total(self):
         return self._order.balance
-    
+
     total = property(_total)
-    
+
     is_shippable = False
 
     def __str__(self):
         return "OrderCart (%i) = %i" % (self._order.id, len(self))
-        
+
     def __len__(self):
         return self.numItems
 
 class CartManager(models.Manager):
-    
+
     def from_request(self, request, create=False, return_nullcart=True):
         """Get the current cart from the request"""
         cart = None
@@ -176,7 +176,7 @@ class CartManager(models.Manager):
                     cart = OrderCart(order)
                 except Order.DoesNotExist:
                     pass
-                    
+
             else:
                 try:
                     cart = Cart.objects.get(id=cartid)
@@ -201,14 +201,14 @@ class CartManager(models.Manager):
 
             elif return_nullcart:
                 cart = NullCart()
-                
+
             else:
                 raise Cart.DoesNotExist()
-                    
+
         #log.debug("Cart: %s", cart)
         return cart
-        
-                
+
+
 class Cart(models.Model):
     """
     Store items currently in a cart
@@ -218,9 +218,9 @@ class Cart(models.Model):
     desc = models.CharField(_("Description"), blank=True, null=True, max_length=10)
     date_time_created = models.DateTimeField(_("Creation Date"))
     customer = models.ForeignKey(Contact, blank=True, null=True, verbose_name=_('Customer'))
-    
+
     objects = CartManager()
-    
+
     def _get_count(self):
         itemCount = 0
         for item in self.cartitem_set.all():
@@ -234,7 +234,7 @@ class Cart(models.Model):
             total += item.line_total
         return(total)
     total = property(_get_total)
-            
+
     def __iter__(self):
         return iter(self.cartitem_set.all())
 

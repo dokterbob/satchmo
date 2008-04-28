@@ -175,7 +175,7 @@ class Contact(models.Model):
         """Ensure we have a create_date before saving the first time."""
         if not self.id:
             self.create_date = datetime.date.today()
-        # Validate the email is in synch between 
+        # Validate the email is in synch between
         if self.user and self.user.email != self.email:
             self.user.email = self.email
             self.user.save()
@@ -344,7 +344,7 @@ class OrderManager(models.Manager):
             raise Order.DoesNotExist()
 
         return order
-        
+
     def remove_partial_order(self, request):
         """Delete cart from request if it exists and is incomplete (has no status)"""
         try:
@@ -602,7 +602,7 @@ class Order(models.Model):
 
         log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
                 item_sub_total, self.shipping_sub_total, self.discount, self.tax)
-	
+
         self.total = Decimal(item_sub_total + self.shipping_sub_total + self.tax)
 
         if save:
@@ -650,7 +650,7 @@ class Order(models.Model):
     def _shipping_sub_total(self):
         return self.shipping_cost-self.shipping_discount
     shipping_sub_total = property(_shipping_sub_total)
-    
+
     def _shipping_tax(self):
         rates = self.taxes.filter(description__iexact = 'shipping')
         if rates.count()>0:
@@ -723,7 +723,7 @@ class OrderItem(models.Model):
     completed = models.BooleanField(_("Completed"), default=False)
     discount = models.DecimalField(_("Line item discount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
-        
+
 
     def __unicode__(self):
         return self.product.translated_name()
@@ -750,7 +750,7 @@ class OrderItem(models.Model):
     def save(self):
         self.update_tax()
         super(OrderItem, self).save()
-        
+
     def update_tax(self):
         taxclass = self.product.taxClass
         processor = tax.get_processor(order=self.order)
@@ -781,7 +781,7 @@ class OrderItemDetail(models.Model):
         ordering = ('sort_order',)
 
 class DownloadLink(models.Model):
-    downloadable_product = models.OneToOneField(DownloadableProduct, verbose_name=_('Downloadable product'))
+    downloadable_product = models.OneToOneField(DownloadableProduct, verbose_name=_('Downloadable product'), primary_key=True)
     order = models.ForeignKey(Order, verbose_name=_('Order'))
     key = models.CharField(_('Key'), max_length=40)
     num_attempts = models.IntegerField(_('Number of attempts'), )
@@ -935,7 +935,7 @@ def _remove_order_on_cart_update(request=None, cart=None):
     if request:
         log.debug("caught cart changed signal - remove_order_on_cart_update")
         Order.objects.remove_partial_order(request)
-        
+
 def _recalc_total_on_contact_change(contact=None):
     #TODO: pull just the current order once we start using threadlocal middleware
     log.debug("Recalculating all contact orders not in process")
@@ -944,6 +944,6 @@ def _recalc_total_on_contact_change(contact=None):
     for order in orders:
         order.copy_addresses()
         order.recalculate_total()
-    
+
 dispatcher.connect(_remove_order_on_cart_update, signal=satchmo_cart_changed)
 dispatcher.connect(_recalc_total_on_contact_change, signal=satchmo_contact_location_changed)
