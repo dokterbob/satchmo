@@ -99,7 +99,7 @@ ValidationError: [u'You must not save a category in itself!']
 from django.conf import settings
 from django.test import TestCase
 from django.test.client import Client
-from satchmo.product.models import Category
+from satchmo.product.models import *
 from django.db.models import Model
 from django.conf import settings
 from django.core.validators import ValidationError
@@ -182,9 +182,7 @@ class ProductExportTest(TestCase):
         response = self.client.post(url, form_data)
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('application/zip', response['Content-Type'])
-        
-
-
+                
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

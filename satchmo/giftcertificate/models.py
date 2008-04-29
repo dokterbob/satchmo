@@ -126,6 +126,9 @@ class GiftCertificateProduct(models.Model):
 
     def __unicode__(self):
         return u"GiftCertificateProduct: %s" % self.product.name
+        
+    def _get_subtype(self):
+        return 'GiftCertificateProduct'        
 
     def order_success(self, order, order_item):
         log.debug("Order success called, creating gift certs on order: %s", order)

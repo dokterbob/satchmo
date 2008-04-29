@@ -26,6 +26,16 @@ def can_loop_over(maybe):
     else:
         return 1
 
+def cross_list(sequences):
+    """
+    Code taken from the Python cookbook v.2 (19.9 - Looping through the cross-product of multiple iterators)
+    This is used to create all the variations associated with an product
+    """
+    result =[[]]
+    for seq in sequences:
+        result = [sublist+[item] for sublist in result for item in seq]
+    return result
+
 def is_scalar(maybe):
     """Test to see value is a string, an int, or some other scalar type"""
     return is_string_like(maybe) or not can_loop_over(maybe)
@@ -76,6 +86,13 @@ def load_module(module):
         __import__(module)
         module = sys.modules[module]
     return module
+
+def normalize_dir(dir_name):
+    if not dir_name.startswith('./'):
+        dir_name = url_join('.', dir_name)
+    if dir_name.endswith("/"):
+        dir_name = dir_name[:-1]
+    return dir_name
 
 _LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 

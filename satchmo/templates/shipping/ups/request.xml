@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+{% load satchmo_util %}<?xml version="1.0"?>
 <AccessRequest xml:lang="en-US">
  	<AccessLicenseNumber>{{config.xml_key}}</AccessLicenseNumber>
 	<UserId>{{config.userid}}</UserId>
@@ -75,19 +75,19 @@
             {% if cart_item.product.has_full_dimensions %}
             <Dimensions>
                 <UnitOfMeasurement>
-                      <Code>{{cart_item.product.length_units|upper}}</Code>
+                      <Code>{{cart_item.product|smart_attr:"length_units"|upper}}</Code>
                 </UnitOfMeasurement>
-                <Length>{{cart_item.product.length}}</Length>
-                <Width>{{cart_item.product.length}}</Width>
-                <Height>{{cart_item.product.length}}</Height>
+                <Length>{{cart_item.product|smart_attr:"length"}}</Length>
+                <Width>{{cart_item.product|smart_attr:"width"}}</Width>
+                <Height>{{cart_item.product|smart_attr:"height"}}</Height>
             </Dimensions>
             {% endif %}
             {% if cart_item.product.has_full_weight %}
                 <PackageWeight>
                     <UnitOfMeasurement>
-                      <Code>{{cart_item.product.weight_units|upper}}S</Code>
+                      <Code>{{cart_item.product|smart_attr:"weight_units"|upper}}S</Code>
                     </UnitOfMeasurement>
-                    <Weight>{{cart_item.product.weight}}</Weight>
+                    <Weight>{{cart_itemproduct|smart_attr:"weight"}}</Weight>
                 </PackageWeight>   
             {% endif %}
    	</Package>

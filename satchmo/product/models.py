@@ -6,6 +6,7 @@ options.
 import datetime
 import random
 import sha
+import logging
 try:
     from decimal import Decimal
 except:
@@ -13,31 +14,24 @@ except:
 
 from django.conf import settings
 from django.core import validators, urlresolvers
+from django.core.validators import RequiredIfOtherFieldGiven
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
+from satchmo.shop.utils import cross_list, normalize_dir
 from satchmo.shop.utils import url_join
 from satchmo.shop.utils.unique_id import slugify
+from satchmo.shop.utils.validators import ValidateIfFieldsSame
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from sets import Set
-import logging
-from django.core.validators import RequiredIfOtherFieldGiven
-from satchmo.shop.utils.validators import ValidateIfFieldsSame
 try:
     from django.utils.safestring import mark_safe
 except ImportError:
     mark_safe = lambda s:s
 
 log = logging.getLogger('product.models')
-
-def normalize_dir(dir_name):
-    if not dir_name.startswith('./'):
-        dir_name = url_join('.', dir_name)
-    if dir_name.endswith("/"):
-        dir_name = dir_name[:-1]
-    return dir_name
 
 def upload_dir():
     updir = normalize_dir(config_value('PRODUCT', 'IMAGE_DIR'))
@@ -443,12 +437,9 @@ class Product(models.Model):
             img = self.productimage_set.order_by('sort')[0]
         else:
             # try to get a main image by looking at the parent if this has one
-            try:
-                parent = self.productvariation.parent
-                img = parent.product.main_image
-
-            except ProductVariation.DoesNotExist:
-                pass
+            p = self.get_subtype_with_attr('parent', 'product')
+            if p:
+                img = p.parent.product.main_image
 
         if not img:
             #This should be a "Image Not Found" placeholder image
@@ -485,13 +476,12 @@ class Product(models.Model):
         """
 
         subtype = self.get_subtype_with_attr('unit_price')
-        price = None
 
         if subtype:
             price = subtype.unit_price
-
         else:
             price = self._get_qty_price(1)
+            
         if not price:
             price = Decimal("0.00")
         return price
@@ -543,16 +533,20 @@ class Product(models.Model):
 
     def _has_full_dimensions(self):
         """Return true if the dimensions all have units and values. Used in shipping calcs. """
-        if self.length and self.length_units and self.width and self.width_units and self.height and self.height_units:
-            return True
-        return False
+        for att in ('length', 'length_units', 'width', 'width_units', 'height', 'height_units'):
+            if self.smart_attr(att) is None:
+                return False
+        return True
+
     has_full_dimensions = property(_has_full_dimensions)
 
     def _has_full_weight(self):
         """Return True if we have weight and weight units"""
-        if self.weight and self.weight_units:
-            return True
-        return False
+        for att in ('weight', 'weight_units'):
+            if self.smart_attr(att) is None:
+                return False
+        return True
+
     has_full_weight = property(_has_full_weight)
 
     def __unicode__(self):
@@ -606,31 +600,56 @@ class Product(models.Model):
             
         return tuple(types)
         
-        #types = []
-        #for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
-        #    app, subtype = key.split("::")
-        #    try:
-        #        if getattr(self, subtype.lower()):
-        #            types += [subtype]
-        #    except models.ObjectDoesNotExist:
-        #        pass
-        #return tuple(types)
-        
     get_subtypes.short_description = _("Product Subtypes")
 
-    def get_subtype_with_attr(self, attr):
+    def get_subtype_with_attr(self, *args):
+        """Get a subtype with the specified attributes.  Note that this can be chained
+        so that you can ensure that the attribute then must have the specified attributes itself.
+        
+        example:  get_subtype_with_attr('parent') = any parent
+        example:  get_subtype_with_attr('parent', 'product') = any parent which has a product attribute
+        """
         for type in self.get_subtypes():
             subtype = getattr(self, type.lower())
-            if hasattr(subtype, attr):
-                return subtype
+            if hasattr(subtype, args[0]):
+                if len(args) == 1:
+                    return subtype
+                else:
+                    found = True
+                    for attr in args[1:-1]:
+                        if hasattr(subtype, attr):
+                            subtype = getattr(self, attr)
+                        else:
+                            found = False
+                            break
+                    if found and hasattr(subtype, args[-1]):
+                        return subtype
+                    
         return None
+        
+    def smart_attr(self, attr):
+        """Retrieve an attribute, or its parent's attribute if it is null.
+        Ex: to get a weight.  obj.smart_attr('weight')"""
+        
+        val = getattr(self, attr)
+        if val is None:
+            for type in self.get_subtypes():
+                subtype = getattr(self, type.lower())
+
+                if hasattr(subtype, 'parent'):
+                    subtype = subtype.parent.product
+
+                if hasattr(subtype, attr):
+                    val = getattr(subtype, attr)
+                    if val is not None:
+                        break
+        
+        return val
 
     def _has_variants(self):
         subtype = self.get_subtype_with_attr('has_variants')
-        if subtype:
-            return subtype.has_variants
+        return subtype and subtype.has_variants
 
-        return False
     has_variants = property(_has_variants)
 
     def _get_category(self):
@@ -653,11 +672,8 @@ class Product(models.Model):
         If this Product has any subtypes associated with it that are downloadable, then
         consider it downloadable
         """
-        for prod_type in self.get_subtypes():
-            subtype = getattr(self, prod_type.lower())
-            if hasattr(subtype, 'is_downloadable'):
-                return True
-        return False
+        return self.get_subtype_with_attr('is_downloadable') is not None
+
     is_downloadable = property(_get_downloadable)
 
     def _get_subscription(self):
@@ -678,8 +694,6 @@ class Product(models.Model):
         shippable, then consider the product not shippable.
         If it is downloadable, then we don't ship it either.
         """
-        if self.is_downloadable:
-            return False
         subtype = self.get_subtype_with_attr('is_shippable')
         if subtype and not subtype.is_shippable:
             return False
@@ -707,15 +721,6 @@ class ProductTranslation(models.Model):
     def __unicode__(self):
         return u"ProductTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.product, self.name)
 
-def _cross_list(sequences):
-    """
-    Code taken from the Python cookbook v.2 (19.9 - Looping through the cross-product of multiple iterators)
-    This is used to create all the variations associated with an product
-    """
-    result =[[]]
-    for seq in sequences:
-        result = [sublist+[item] for sublist in result for item in seq]
-    return result
 
 def get_all_options(obj):
     """
@@ -733,7 +738,7 @@ def get_all_options(obj):
             sublist.append(value)
         masterlist.append(sublist)
         sublist = []
-    results = _cross_list(masterlist)
+    results = cross_list(masterlist)
     return results
     
 
@@ -856,16 +861,6 @@ class ConfigurableProduct(models.Model):
     product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
     option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
-
-    def _cross_list(self, sequences):
-        """
-        Code taken from the Python cookbook v.2 (19.9 - Looping through the cross-product of multiple iterators)
-        This is used to create all the variations associated with an product
-        """
-        result =[[]]
-        for seq in sequences:
-            result = [sublist+[item] for sublist in result for item in seq]
-        return result
         
     def _get_subtype(self):
         return 'ConfigurableProduct'
@@ -886,7 +881,7 @@ class ConfigurableProduct(models.Model):
                 sublist.append(value)
             masterlist.append(sublist)
             sublist = []
-        return _cross_list(masterlist)
+        return cross_list(masterlist)
 
     def get_valid_options(self):
         """

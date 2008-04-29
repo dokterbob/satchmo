@@ -9,6 +9,7 @@ from satchmo.caching import cache_delete
 from satchmo.contact.models import Contact
 from satchmo.shop.templatetags import get_filter_args
 from satchmo.configuration import config_value, config_get
+from satchmo.product.models import Product
 
 domain = 'http://testserver'
 prefix = settings.SHOP_BASE
@@ -444,3 +445,26 @@ class FilterUtilTest(TestCase):
 
         self.assertEqual(kwargs['one'], '"test"')
 
+class ProductTest(TestCase):
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+
+    def test_smart_attr(self):
+        p = Product.objects.get(slug__iexact='DJ-Rocks')
+        mb = Product.objects.get(slug__iexact='DJ-Rocks_M_B')
+        sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
+
+        # going to set a weight on the product, and an override weight on the medium
+        # shirt.
+
+        p.weight = 100
+        p.save()
+        sb.weight = 50
+        sb.save()
+
+        self.assertEqual(p.smart_attr('weight'), 100)
+        self.assertEqual(sb.smart_attr('weight'), 50)
+        self.assertEqual(mb.smart_attr('weight'), 100)
+
+        # no height
+        self.assertEqual(p.smart_attr('height'), None)
+        self.assertEqual(sb.smart_attr('height'), None)

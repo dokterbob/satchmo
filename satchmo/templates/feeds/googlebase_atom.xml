@@ -17,9 +17,9 @@
 	<link href="{{ shop.base_url }}{{ product.get_absolute_url }}" />
 	<price>{{ product.unit_price|truncate_decimal }}</price>
 	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ shop.base_url }}{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}
-	<g:weight>{{ product.weight}} {{product.weight_units }}</g:weight>{% endif %}{% if product.height %}
-	<g:height>{{ product.height}} {{product.height_units }}</g:height>{% endif %}{% if product.length %}
-	<g:length>{{ product.length}} {{product.length_units }}</g:length>{% endif %}
+	<g:weight>{{ product|smart_attr:"weight"}} {{product|smart_attr:"weight_units" }}</g:weight>{% endif %}{% if product.height %}
+	<g:height>{{ product|smart_attr:"height"}} {{product|smart_attr:"height_units" }}</g:height>{% endif %}{% if product.length %}
+	<g:length>{{ product|smart_attr:"length"}} {{product|smart_attr:"length_units" }}</g:length>{% endif %}
 	{% for payment in payments %}<g:payment_accepted>{% ifequal payment "Google Checkout" %}GoogleCheckout{% else %}{{ payment }}{% endifequal %}</g:payment_accepted>
 	{% endfor %}{% if product.productvariation %}{% for opt in product.productvariation.options.all %}
 	{{ opt|make_googlebase_option:"false" }}{% endfor %}{% endif %}
