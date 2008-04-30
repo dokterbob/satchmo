@@ -2,6 +2,21 @@
 {% load i18n admin_modify satchmo_util %}
 
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
+{% block extrahead %}
+<script type="text/javascript" src="../admin/jsi18n/" />
+<script type="text/javascript" src="{% admin_media_prefix %}js/core.js" />
+<script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedFieldsets.js" />
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+<style type="text/css">
+ul.fieldref { margin: 0; padding: 0; font-size: 9px; }
+ul.fieldref li { float: left; margin: 0 10px 0 0; list-style: none; }
+fieldset.collapsed h2 { display: block !important; }
+fieldset.collapsed h2 a { display: inline !important; }
+div.fieldcontainer { float: left; margin-right: 0; }
+</style>
+{% endblock %}
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
 {% block userlinks %}<a href="/admin/doc/">{% trans 'Documentation' %}</a> / <a href="/admin/password_change/">{% trans 'Change password' %}</a> / <a href="/admin/logout/">{% trans 'Log out' %}</a>{% endblock %}
@@ -12,6 +27,14 @@
 </div>
 {% endif %}{% endblock %}
 {% block content %}
+<div class="fieldcontainer">
+<ul class="fieldref">
+{% for group in form.groups %}
+    <li><a href="#{{ group.key }}"/>{{ group.name }}</li>
+{% endfor %}
+</ul>
+</div>
+<br style="clear: both;" />
 <div id="content-main">
 {% if form.errors %}
     <p class="errornote">
@@ -19,6 +42,7 @@
     </p>
 {% endif %}
 {% if form.fields %}
+<br class="clear: both;" />
 <form method="post">
     {% for field in form %}
         {% if field.is_hidden %}
@@ -27,10 +51,10 @@
             {% ifchanged field.field.group %}{% with field.field.group as group %}
             {% if not forloop.first %}
             </table>
-            </div>
+            </fieldset>
             {% endif %}
-            <div class="module">
-                <h2>{{ group.name }}</h2>
+            <fieldset class="module collapse">
+            <h2 id="{{ group.key }}">{{ group.name }}</h2>
                 <table summary="{% blocktrans with group.name as name %}Group settings: {{ name }}{% endblocktrans %}" style="width: 100%">
             {% endwith %}{% endifchanged %}
         
@@ -55,7 +79,9 @@
     {% endfor %}    			
     	</table>
 	</div>
+<br class="clear:both;" /> 
 <input type="submit" value="Save" class="default" />
+<p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">Uncollapse all</a></p>
 </form>
 {% else %}
     <p>{% trans "You don't have permission to edit values." %}</p>

@@ -11,6 +11,7 @@ class SettingsEditor(forms.Form):
         settings = kwargs.pop('settings') 
         super(SettingsEditor, self).__init__(*args, **kwargs)
         flattened = []
+        groups = []
         for setting in settings:
             if isinstance(setting, ConfigurationGroup):
                 for s in setting:
@@ -30,4 +31,8 @@ class SettingsEditor(forms.Form):
             
             k = '%s__%s' % (setting.group.key, setting.key)
             self.fields[k] = field
+            if not setting.group in groups:
+                groups.append(setting.group)
             #log.debug("Added field: %s = %s" % (k, str(field)))
+
+        self.groups = groups
