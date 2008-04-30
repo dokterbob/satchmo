@@ -33,6 +33,8 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
     
     if discount:
         new_order.discount_code = discount
+    else:
+        new_order.discount_code = ""
     
     update_orderitems(new_order, cart, update=update)
 
