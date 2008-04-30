@@ -12,6 +12,8 @@ from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
 from satchmo.shop.utils.dynamic import lookup_template
 from satchmo.shop.views.utils import CreditCard
+from satchmo.tax.templatetags.satchmo_tax import _get_taxprocessor
+from satchmo.l10n.utils import moneyfmt
 import calendar
 import datetime
 import sys
@@ -31,12 +33,21 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
             template = lookup_template(paymentmodule, 'shipping_options.html')
             t = loader.get_template(template)
             shipcost = method.cost()
+            shipping_tax = None
+            taxed_shipping_price = None
+            if config_value('TAX','TAX_SHIPPING'):
+                shipping_tax = config_value('TAX', 'TAX_CLASS')
+                taxer = _get_taxprocessor(request)
+                total = shipcost + taxer.by_price(shipping_tax, shipcost)
+                taxed_shipping_price = moneyfmt(total)
             c = RequestContext(request, {
                 'amount': shipcost,
                 'description' : method.description(),
                 'method' : method.method(),
                 'expected_delivery' : method.expectedDelivery(),
-                'default_view_tax' : default_view_tax })
+                'default_view_tax' : default_view_tax,
+                'shipping_tax': shipping_tax,
+                'taxed_shipping_price': taxed_shipping_price})
             shipping_options.append((method.id, t.render(c)))
             shipping_dict[method.id] = shipcost
     

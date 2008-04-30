@@ -138,8 +138,13 @@ class Processor(object):
     def shipping(self):
         if self.order:
             s = self.order.shipping_sub_total
-            tc = TaxClass.objects.get(title='Shipping')
-            rate = self.get_rate(taxclass=tc)
+            rate = None
+            if config_value('TAX','TAX_SHIPPING'):
+                try:
+                    tc = TaxClass.objects.get(title=config_value('TAX', 'TAX_CLASS'))
+                    rate = self.get_rate(taxclass=tc)
+                except:
+                    log.error("'Shipping' TaxClass doesn't exist.")
 
             if rate:
                 t = rate * s
