@@ -146,11 +146,17 @@ class Category(models.Model):
         return self.get_separator().join(name_list)
 
     def save(self):
-        parents = self._recurse_for_parents(self)
-        if self in parents:
-            raise validators.ValidationError(_("You must not save a category in itself!"))
+        if self.id:
+            if self.parent and self.parent_id == self.id:
+                raise validators.ValidationError(_("You must not save a category in itself!"))
+                
+            for p in self._recurse_for_parents(self):
+                if self.id == p.id:
+                    raise validators.ValidationError(_("You must not save a category in itself!"))
+                
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
+
         super(Category, self).save()
 
     def _flatten(self, L):
