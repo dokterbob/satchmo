@@ -356,6 +356,9 @@ class Option(models.Model):
         unique_together = (('optionGroup', 'value'),)
         verbose_name = _("Option Item")
         verbose_name_plural = _("Option Items")
+        
+    class Admin:
+        pass
 
     def _get_unique_id(self):
         return '%s-%s' % (str(self.optionGroup.id), str(self.value),)
@@ -374,7 +377,7 @@ class OptionTranslation(models.Model):
     """
     option = models.ForeignKey(Option, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
+    name = models.CharField(_("Translated Option Name"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 
