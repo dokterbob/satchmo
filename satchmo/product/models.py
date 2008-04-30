@@ -563,8 +563,8 @@ class Product(models.Model):
             kwargs={'product_slug': self.slug})
 
     class Admin:
-        list_display = ('slug', 'name', 'unit_price', 'items_in_stock', 'get_subtypes',)
-        list_filter = ('category',)
+        list_display = ('slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
+        list_filter = ('category', 'date_added')
         fields = (
         (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}),
         (_('Meta Data'), {'fields': ('meta',), 'classes': 'collapse'}),
@@ -572,7 +572,7 @@ class Product(models.Model):
         (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': 'collapse'}),
         (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}),
         )
-        search_fields = ['slug', 'name']
+        search_fields = ['slug', 'sku', 'name']
 
     class Meta:
         ordering = ('ordering', 'name')
