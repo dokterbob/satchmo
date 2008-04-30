@@ -123,6 +123,7 @@ INSTALLED_APPS = (
 
 AUTHENTICATION_BACKENDS = (
     'satchmo.accounts.email-auth.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 # Load the local settings
