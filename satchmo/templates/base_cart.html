@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load satchmo_currency %}
 {% load satchmo_util %}
+{% load satchmo_product %}
 {% if default_view_tax %}{% load satchmo_tax %}{% endif %}
 
 {% block navbar %}
@@ -45,7 +46,7 @@
             <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>
             <td align="center">{% if default_view_tax %}{% cartitem_line_taxed_total cartitem 1 %}{% else %}{{ cartitem.line_total|currency }}{% endif %}</td>
         </tr>
-        {% if cartitem.product.customproduct %}{% with cartitem.product.customproduct as custom %}
+        {% if cartitem.product|is_producttype:"CustomProduct" %}{% with cartitem.product.customproduct as custom %}
         <tr>
             <td>&nbsp;</td>
             <td colspan="2">
