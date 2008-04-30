@@ -495,21 +495,22 @@ class Order(models.Model):
         return None
     credit_card = property(_credit_card)
 
-
     def _full_bill_street(self, delim="<br/>"):
         """Return both billing street entries separated by delim."""
         if self.bill_street2:
-            return self.bill_street1 + delim + self.bill_street2
+            address = self.bill_street1 + delim + self.bill_street2
         else:
-            return self.bill_street1
+            address = self.bill_street1
+        return mark_safe(address)
     full_bill_street = property(_full_bill_street)
 
     def _full_ship_street(self, delim="<br/>"):
         """Return both shipping street entries separated by delim."""
         if self.ship_street2:
-            return self.ship_street1 + delim + self.ship_street2
+            address = self.ship_street1 + delim + self.ship_street2
         else:
-            return self.ship_street1
+            address = self.ship_street1
+        return mark_safe(address)
     full_ship_street = property(_full_ship_street)
 
     def _get_balance_remaining_url(self):
