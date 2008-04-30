@@ -1,4 +1,4 @@
-{% load satchmo_util %}<?xml version="1.0"?>
+{% load satchmo_product %}<?xml version="1.0"?>
 <AccessRequest xml:lang="en-US">
  	<AccessLicenseNumber>{{config.xml_key}}</AccessLicenseNumber>
 	<UserId>{{config.userid}}</UserId>
@@ -87,7 +87,7 @@
                     <UnitOfMeasurement>
                       <Code>{{cart_item.product|smart_attr:"weight_units"|upper}}S</Code>
                     </UnitOfMeasurement>
-                    <Weight>{{cart_itemproduct|smart_attr:"weight"}}</Weight>
+                    <Weight>{{cart_item.product|smart_attr:"weight"}}</Weight>
                 </PackageWeight>   
             {% endif %}
    	</Package>

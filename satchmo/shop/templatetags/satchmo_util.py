@@ -125,10 +125,3 @@ def lookup(value, key):
         return ""
         
 register.filter('lookup', lookup)
-
-def smart_attr(product, key):
-    """Run the smart_attr function on the spec'd product
-    """
-    return product.smart_attr(key)
-    
-register.filter('smart_attr', smart_attr)

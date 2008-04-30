@@ -1,4 +1,4 @@
-{% load satchmo_feed satchmo_util %}<?xml version="1.0" encoding="UTF-8"?>
+{% load satchmo_feed satchmo_util satchmo_product %}<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:g="http://base.google.com/ns/1.0">
 
 	<title>{{ shop.store_name }} Product Feed{% if category %} for {{ category.translated_name }}{% endif %}</title>
