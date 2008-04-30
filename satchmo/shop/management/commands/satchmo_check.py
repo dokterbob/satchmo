@@ -67,7 +67,7 @@ class Command(NoArgsCommand):
             errors.append("Python version must be at least 2.4.")
         if python_ver < Decimal("2.5"):
             try:
-                from xml.etree.ElementTree import Element
+                from elementtree.ElementTree import Element
             except ImportError:
                 errors.append("Elementtree is not installed.")
         if len(errors) == 0:
