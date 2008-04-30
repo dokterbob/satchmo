@@ -62,7 +62,7 @@ $(function() {
 {{ form.non_field_errors }}
 {% endif %}
 {% if user.is_anonymous %}
-<form method="post" action="{{ login_url }}">
+<form method="post" action="{% if is_secure %}{% url auth_secure_login %}{% else %}{{ login_url }}{% endif %}">
 <input type="hidden" name="next" value="{% url satchmo_checkout-step1 %}" />
 <table>
 		<tr>
