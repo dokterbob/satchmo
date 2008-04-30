@@ -125,3 +125,29 @@ def lookup(value, key):
         return ""
         
 register.filter('lookup', lookup)
+
+def is_mod(value, args=""):
+    try:
+        val = int(value)
+        mod = int(args)
+        if val%mod == 0:
+            return "true"
+    except:
+        pass
+        
+    return ""
+
+register.filter('is_mod', is_mod)
+
+def more_than(value, args=""):
+    try:
+        val = int(value)
+        more = int(args)
+        if val > more:
+            return "true"
+    except:
+        pass
+        
+    return ""
+    
+register.filter('more_than', more_than)
