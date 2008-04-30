@@ -1,6 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import * 
 from satchmo.tax.models import TaxClass
+import logging
+
+log = logging.getLogger('tax.modules.area')
 
 TAX_MODULE = config_get('TAX', 'MODULE')
 TAX_MODULE.add_choice(('satchmo.tax.modules.area', _('By Country/Area')))
@@ -8,14 +11,18 @@ TAX_GROUP = config_get_group('TAX')
 
 _tax_classes = []
 ship_default = ""
-for tax in TaxClass.objects.all():
-     _tax_classes.append( (tax.title, tax.title) )
-     if "ship" in tax.title.lower():
-         ship_default = tax.title
+try:
+    for tax in TaxClass.objects.all():
+         _tax_classes.append( (tax.title, tax.title) )
+         if "ship" in tax.title.lower():
+             ship_default = tax.title
+except:
+    # ignore the error which can happen on initial install.
+    log.warn("ignoring database error retrieving tax classes - OK if you are in syncdb.")
          
 if ship_default == "" and len(_tax_classes) > 0:
     ship_default = _tax_classes[0].title
-
+    
 config_register([
 #     DecimalValue(TAX_GROUP,
 #     'PERCENT',
