@@ -1,11 +1,9 @@
-<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
-<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
 <script type="text/javascript">
-var satchmo = {
+var satchmo = satchmo || {};
 
-updating : false,
+satchmo.updating = false;
 
-force_match : function(elt, ship) {
+satchmo.force_match = function(elt, ship) {
     var val = $(elt).fieldValue()[0];
     if (!satchmo.updating) {
         satchmo.updating = true;
@@ -16,9 +14,8 @@ force_match : function(elt, ship) {
         }
         satchmo.updating = false;
     }
-}
+};
 
-}
 $(function() {
     satchmo.force_match($('#id_country'), false);
     $('#id_country').change(function() { satchmo.force_match(this, false) });
