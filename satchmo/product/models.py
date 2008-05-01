@@ -85,7 +85,7 @@ class Category(models.Model):
         if not img:
             #This should be a "Image Not Found" placeholder image
             try:
-                img = CategoryImage.objects.filter(cagegory__isnull=True).order_by('sort')[0]
+                img = CategoryImage.objects.filter(category__isnull=True).order_by('sort')[0]
             except IndexError:
                 import sys
                 print >>sys.stderr, 'Warning: default category image not found - try syncdb'
@@ -594,7 +594,6 @@ class Product(models.Model):
         super(Product, self).save()
 
     def get_subtypes(self):
-        legal_types = config_value('PRODUCT', 'PRODUCT_TYPES')        
         types = []
         for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
             app, subtype = key.split("::")
