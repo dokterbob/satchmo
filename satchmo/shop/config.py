@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 from satchmo.configuration import config_register, BooleanValue, StringValue, MultipleStringValue, SHOP_GROUP, ConfigurationGroup, PositiveIntegerValue
 from django.utils.translation import ugettext_lazy as _
@@ -39,7 +39,7 @@ MEASUREMENT_SYSTEM = config_register(
     default = "imperial"))
 #### Google Group ####
 
-GOOGLE_GROUP = ConfigurationGroup('GOOGLE', 'Google Settings')
+GOOGLE_GROUP = ConfigurationGroup('GOOGLE', _('Google Settings'))
 
 GOOGLE_ANALYTICS = config_register(
     BooleanValue(GOOGLE_GROUP, 
@@ -80,7 +80,7 @@ GOOGLE_ADWORDS_ID = config_register(
         ordering=15,
         requires = GOOGLE_ADWORDS))
 
-LANGUAGE_GROUP = ConfigurationGroup('LANGUAGE','Language Settings')
+LANGUAGE_GROUP = ConfigurationGroup('LANGUAGE',_('Language Settings'))
 
 LANGUAGE_ALLOW_TRANSLATIONS = config_register(
     BooleanValue(LANGUAGE_GROUP,

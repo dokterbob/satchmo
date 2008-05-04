@@ -160,7 +160,7 @@
     </script>
 {% endblock %}
 {% block content %}
-<h1>Variation Manager for {{ product.name }}</h1>
+<h1>{% blocktrans with product.name as product_name %}Variation Manager for {{ product_name }}{% endblocktrans %}</h1>
 {% if form.errors %}
     <p class="errornote">
     {% blocktrans count importform.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}

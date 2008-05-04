@@ -78,12 +78,12 @@ tr.ConfigurableProduct {
 <form method="post" id="inventoryform">
     <table>
         <tr>
-            <th>Slug</th>
-            <th>Name</th>
-            <th>Inventory</th>
-            <th>Unit Price</th>
-            <th>Active</th>
-            <th>Featured</th>
+            <th>{% trans 'Slug' %}</th>
+            <th>{% trans 'Name' %}</th>
+            <th>{% trans 'Inventory' %}</th>
+            <th>{% trans 'Unit Price' %}</th>
+            <th>{% trans 'Active' %}</th>
+            <th>{% trans 'Featured' %}</th>
         </tr>
     {% for field in form %}
         {% if field.is_hidden %}
