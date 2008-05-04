@@ -2854,7 +2854,7 @@ msgstr "Warenkorb"
 
 #: shop/models.py:286
 msgid "Shopping Carts"
-msgstr "Warenbörbe"
+msgstr "Warenkörbe"
 
 #: shop/models.py:292 templates/base.html:53 templates/base_cart.html:9
 msgid "Cart"
@@ -4207,25 +4207,25 @@ msgstr "(inkl. MwSt.)"
 
 #: templates/product/detail_configurableproduct.html:120
 msgid "Please choose your options"
-msgstr ""
+msgstr "Bitte wählen Sie aus den Optionen"
 
 #: templates/product/detail_customproduct.html:31
 #, python-format
 msgid "Custom order for %(name)s"
-msgstr ""
+msgstr "Kundenbestellung für %(name)s"
 
 #: templates/product/detail_customproduct.html:56
 msgid "more"
 msgstr "mehr"
 
 #: templates/product/detail_subscriptionproduct.html:31
-#, fuzzy, python-format
+#, python-format
 msgid "Subscription product %(name)s"
-msgstr ""
+msgstr "Subskriptionsprodukt %(name)s"
 
 #: templates/product/detail_subscriptionproduct.html:33
 msgid "Only "
-msgstr ""
+msgstr "Nur "
 
 #: templates/product/detail_subscriptionproduct.html:33
 msgid "easy payments of:"
@@ -4241,7 +4241,7 @@ msgstr ""
 
 #: templates/product/detail_subscriptionproduct.html:41
 msgid "days"
-msgstr ""
+msgstr "Tage"
 
 #: templates/registration/activate.html:7
 msgid "Registration Complete"
@@ -4321,7 +4321,7 @@ msgstr "klicken Sie hier</a> um es zurückzusetzen."
 
 #: templates/registration/logout.html:9
 msgid "You have been successfully logged out."
-msgstr ""
+msgstr "Sie wurden erfolgreich abgemeldet."
 
 #: templates/registration/password_change_done.html:7
 msgid "Password Change Done"
