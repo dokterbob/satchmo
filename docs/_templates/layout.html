@@ -11,4 +11,11 @@
 </div>
 {% endblock %}
 
-
+{%- block afterfooter %}
+<script src='http://www.google-analytics.com/ga.js' type='text/javascript'></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1711397-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+{% endblock %}
