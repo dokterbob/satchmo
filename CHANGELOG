@@ -47,6 +47,13 @@ Trunk
  * Korean translation
  * Recently viewed items support
  * Wishlist support
+ * UI improvements to the admin site
+ * Added some javascript to disable shipping address fields if "same shipping and billing address are used"
+ * SEO optimizations to templates
+ * Performance improvements when using Configurable Products
+ * Fix some unicode issues with some of the shipping and payment processing backends
+ * Trustcommerce bug fixes
+ * Updated documentation to use sphinx
 
 Version 0.6, October 30, 2007
 ----------------
