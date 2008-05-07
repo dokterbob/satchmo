@@ -156,6 +156,8 @@ class Shipper(BaseShipper):
             status_val = "-1"
         
         if status_val == '1':
+            self.is_valid = False
+            self._calculated = False
             all_rates = tree.getiterator('RatedShipment')
             for response in all_rates:
                 if self.service_type_code == response.find('.//Service/Code/').text:
@@ -166,6 +168,10 @@ class Shipper(BaseShipper):
                     self._calculated = True
                     if needs_cache:
                         cache.set(cache_key_response, tree, 60)
+                        
+            if not self.is_valid:
+                self.verbose_log("UPS Cannot find rate for code: %s [%s]", self.service_type_code, self.service_type_text)
+        
         else:
             self.is_valid = False
             self._calculated = False
