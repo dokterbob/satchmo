@@ -96,7 +96,6 @@ def add(request, id=0):
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
-    zero = Decimal("0.00")
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
@@ -282,7 +281,8 @@ def product_from_post(productslug, formdata):
     log.debug('found product: %s', product)
     p_types = product.get_subtypes()
     details = []
-
+    zero = Decimal("0.00")
+    
     if 'ConfigurableProduct' in p_types:
         # This happens when productname cannot be updated by javascript.
         cp = product.configurableproduct
