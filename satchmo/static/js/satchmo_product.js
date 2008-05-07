@@ -9,17 +9,22 @@ satchmo.get_current_price = function(slug, taxed) {
     var qty = parseInt($('#quantity').fieldValue()[0]);
     var k = taxed ? "taxes" : "prices";
     var prices = satchmo[k][slug];
-    var best = prices['1'];
-    if (qty > 1) {
-        for (var pricekey in prices) {
-            var priceqty = parseInt(pricekey);
-            if (priceqty > qty) {
-                break;
+    if (prices) {
+        var best = prices['1'];
+        if (qty > 1) {
+            for (var pricekey in prices) {
+                var priceqty = parseInt(pricekey);
+                if (priceqty > qty) {
+                    break;
+                }
+                best = prices[pricekey];
             }
-            best = prices[pricekey];
         }
+        return best;        
     }
-    return best;        
+    else {
+        return ""
+    }
 };
     
 // look up the slug by options selected

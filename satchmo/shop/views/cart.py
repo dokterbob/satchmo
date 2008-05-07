@@ -249,12 +249,28 @@ def set_quantity_ajax(request, template="json.html"):
         data['errors'] = errors
 
         # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
-        if cart and cartitem:
-            data['cart_total'] = str(trunc_decimal(cart.total, 2))
-            data['cart_count'] = cart.numItems
-            data['item_id'] = cartitem.id
-            data['item_qty'] = cartitem.quantity
-            data['item_price'] = str(trunc_decimal(cartitem.line_total, 2))
+        if cart:
+            carttotal = str(trunc_decimal(cart.total, 2))
+            cartqty = cart.numItems
+        else:
+            carttotal = "0.00"
+            cartqty = 0
+        
+        data['cart_total'] = carttotal
+        data['cart_count'] = cartqty
+            
+        if cartitem:
+            itemid = cartitem.id
+            itemqty = cartitem.quantity
+            price = str(trunc_decimal(cartitem.line_total, 2)) 
+        else:
+            itemid = -1
+            itemqty = 0
+            price = "0.00"
+            
+        data['item_id'] = itemid
+        data['item_qty'] = itemqty
+        data['item_price'] = price
 
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)

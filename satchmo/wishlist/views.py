@@ -26,9 +26,7 @@ def wishlist_view(request, message=""):
     try:
         contact = Contact.objects.from_request(request)
     except Contact.DoesNotExist:
-        return render_to_response('wishlist/login_required.html', {
-            'login_url' : settings.LOGIN_URL
-            })
+        return _wishlist_requires_login(request)
         
     wishes = ProductWish.objects.filter(contact=contact)
 
@@ -44,11 +42,8 @@ def wishlist_add(request):
     try:
         contact = Contact.objects.from_request(request)
     except Contact.DoesNotExist:
-        return render_to_response('wishlist/login_required.html', {
-            'login_url' : settings.LOGIN_URL
-            })
+        return _wishlist_requires_login(request)
         
-
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
@@ -116,9 +111,7 @@ def wishlist_move_to_cart(request):
 def wishlist_remove(request):
     contact = Contact.objects.from_request(request)
     if not contact:
-        return render_to_response('wishlist/login_required.html', {
-            'login_url' : settings.LOGIN_URL
-            })
+        return _wishlist_requires_login(request)
             
     success, msg = _wishlist_remove(request)
         
@@ -180,3 +173,10 @@ def _remove_wishes_on_order(instance=None):
             wish.delete()
 
 dispatcher.connect(_remove_wishes_on_order, signal=order_success)
+
+def _wishlist_requires_login(request):
+    log.debug("wishlist requires login")
+    ctx = RequestContext(request, {
+        'login_url' : settings.LOGIN_URL
+        })
+    return render_to_response('wishlist/login_required.html', ctx)
