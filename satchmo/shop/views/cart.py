@@ -136,30 +136,37 @@ def add_ajax(request, id=0, template="json.html"):
     data = {'errors': []}
     product = None
     formdata = request.POST.copy()
-    productslug = formdata['productname']
-
-    log.debug('CART_AJAX: slug=%s', productslug)
-    try:
-        product, details = product_from_post(productslug, formdata)
-
-    except Product.DoesNotExist:
-        log.warn("Could not find product: %s", productname)
-        product = None
-
-    if not product:
-        data['errors'].append(('product', _('The product you have requested does not exist.')))
-
+    if not formdata.has_key('productname'):
+        data['errors'].append(('product', _('No product requested')))
     else:
-        data['id'] = product.id
-        data['name'] = product.translated_name()
-
+        productslug = formdata['productname']
+        log.debug('CART_AJAX: slug=%s', productslug)
         try:
-            quantity = int(formdata['quantity'])
-            if quantity < 0:
-                data['errors'].append(('quantity', _('Choose a quantity.')))
+            product, details = product_from_post(productslug, formdata)
 
-        except ValueError:
-            data['errors'].append(('quantity', _('Choose a whole number.')))
+        except Product.DoesNotExist:
+            log.warn("Could not find product: %s", productname)
+            product = None
+
+        if not product:
+            data['errors'].append(('product', _('The product you have requested does not exist.')))
+
+        else:
+            data['id'] = product.id
+            data['name'] = product.translated_name()
+
+            if not formdata.has_key('quantity'):
+                quantity = -1
+            else:
+                quantity = formdata['quantity']
+                
+            try:
+                quantity = int(quantity)
+                if quantity < 0:
+                    data['errors'].append(('quantity', _('Choose a quantity.')))
+
+            except (TypeError, ValueError):
+                data['errors'].append(('quantity', _('Choose a whole number.')))
 
     tempCart = Cart.objects.from_request(request, create=True)
 
