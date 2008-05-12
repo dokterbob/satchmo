@@ -22,7 +22,7 @@ def smart_add(request):
     (overridden) view"""
     
     if use_wishlist:
-        if request.POST.get('addwish', '') != '':
+        if request.POST.get('addwish', '') != '' or request.POST.get('addwish.x', '') != '':
             log.debug("Found addwish in post, returning the wishlist add view")
             from satchmo.wishlist.views import wishlist_add
             return wishlist_add(request)
