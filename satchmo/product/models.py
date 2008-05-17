@@ -41,17 +41,21 @@ def upload_dir():
 def protected_dir():
     return normalize_dir(config_value('PRODUCT', 'PROTECTED_DIR'))
 
-def dimension_units():
-    if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
-        return ([('cm','cm')])
-    else:
-        return ([('in','in')])
+dimension_units = (('cm','cm'), ('in','in'))
 
-def weight_units():
+def default_dimension_unit():
     if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
-        return ([('kg','kg')])
+        return 'cm'
     else:
-        return ([('lb','lb')])
+        return 'in'
+
+weight_units = (('kg','kg'), ('lb','lb')) 
+
+def default_weight_unit():
+    if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
+        return 'kg'
+    else:
+        return 'lb'
 
 length_validator = RequiredIfOtherFieldGiven('length', _("A unit of measure must be entered for the length"))
 width_validator = RequiredIfOtherFieldGiven('width', _("A unit of measure must be entered for the width"))
@@ -415,13 +419,13 @@ class Product(models.Model):
     featured = models.BooleanField(_("Featured Item"), default=False, help_text=_("Featured items will show on the front page"))
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
     weight = models.DecimalField(_("Weight"), max_digits=8, decimal_places=2, null=True, blank=True)
-    weight_units = models.CharField(_("Weight units"), max_length=3, choices=weight_units(), null=True, blank=True, validator_list=[weight_validator])
+    weight_units = models.CharField(_("Weight units"), max_length=3, choices=weight_units, null=True, blank=True, default=default_weight_unit, validator_list=[weight_validator])
     length = models.DecimalField(_("Length"), max_digits=6, decimal_places=2, null=True, blank=True)
-    length_units = models.CharField(_("Length units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[length_validator])
+    length_units = models.CharField(_("Length units"), max_length=3, choices=dimension_units, null=True, blank=True, default=default_dimension_unit, validator_list=[length_validator])
     width = models.DecimalField(_("Width"), max_digits=6, decimal_places=2, null=True, blank=True)
-    width_units = models.CharField(_("Width units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[width_validator])
+    width_units = models.CharField(_("Width units"), max_length=3, choices=dimension_units, null=True, blank=True, default=default_dimension_unit, validator_list=[width_validator])
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
-    height_units = models.CharField(_("Height units"), max_length=3, choices=dimension_units(), null=True, blank=True, validator_list=[height_validator])
+    height_units = models.CharField(_("Height units"), max_length=3, choices=dimension_units, null=True, blank=True, default=default_dimension_unit, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.IntegerField(_("Total sold"),default=0)
