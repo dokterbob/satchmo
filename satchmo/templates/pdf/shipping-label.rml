@@ -14,16 +14,16 @@
     <pageTemplate>
           <pageGraphics>
           </pageGraphics>
-          <frame id="returnto" x1=".7cm" y1="10.5cm" width="4cm"
+          <frame id="returnto" x1=".7cm" y1="10.5cm" width="5cm"
               height="3cm"/>
-          <frame id="sendto" x1="5cm" y1="7.5cm" width="5cm"
-              height="4cm"/>
+          <frame id="sendto" x1="3.5cm" y1="6cm" width="5cm"
+              height="5cm"/>
     </pageTemplate>
 </template>
 <stylesheet>
     <paraStyle name="returnto"
     fontName="Helvetica"
-    fontSize="10"
+    fontSize="9"
     spaceBefore="0.1 cm"
      />
      <paraStyle name="sendto"
@@ -31,22 +31,35 @@
      fontSize="12"
      spaceBefore="0.1 cm"
      />
+     <blockTableStyle id="temp001">
+       <blockAlignment value="left"/>
+       <blockFont name="Helvetica-Oblique"/>
+       <lineStyle kind="GRID" colorName="black"/>
+       <lineStyle kind="OUTLINE" colorName="black" thickness="2"/>
+     </blockTableStyle>
 </stylesheet>
 <story>
      <para style="returnto">
-        {{shopDetails.storeName}}
+        {{shopDetails.store_name}}
      </para>
      <para style="returnto">
         {{shopDetails.street1}}
      </para>
+     {% if shopDetails.street2 %}
      <para style="returnto">
-        {{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postalCode}}
+        {{shopDetails.street2}}
+     </para>
+     {% endif %}
+     <para style="returnto">
+        {{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}
      </para>
      <nextFrame/>
 
     <para style="sendto"><b>{{order.contact.full_name}}</b></para>
-    <para style="sendto">{{order.full_ship_street}}</para>
+    <para style="sendto">{{order.ship_street1}}</para>
+    {% if order.ship_street2 %}
+    <para style="sendto">{{order.ship_street2}}</para>
+    {% endif %}
     <para style="sendto">{{order.ship_city}}, {{order.ship_state}} {{order.ship_postal_code}}</para>
-
 </story>
 </document>

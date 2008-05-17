@@ -10,38 +10,33 @@ from django.utils.encoding import smart_str
 from django.views.decorators.cache import never_cache
 from satchmo.contact.models import Order
 from satchmo.shop.models import Config
+from satchmo.configuration import config_value
 
 def displayDoc(request, id, doc):
     # Create the HttpResponse object with the appropriate PDF headers for an invoice or a packing slip
     order = get_object_or_404(Order, pk=id)
-
+    shopDetails = Config.get_shop_config()
+    filename_prefix = shopDetails.site.domain
     if doc == "invoice":
-        filename = "mystore-invoice.pdf"
+        filename = "%s-invoice.pdf" % filename_prefix
         template = "invoice.rml"
     elif doc == "packingslip":
-        filename = "mystore-packingslip.pdf"
+        filename = "%s-packingslip.pdf" % filename_prefix
         template = "packing-slip.rml"
     elif doc == "shippinglabel":
-        filename = "mystore-shippinglabel.pdf"
+        filename = "%s-shippinglabel.pdf" % filename_prefix
         template = "shipping-label.rml"
     else:
         return HttpResponseRedirect('/admin')
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
-    shopDetails = Config.get_shop_config()
+    icon_uri = config_value('SHOP', 'LOGO_URI')
     t = loader.get_template(os.path.join('pdf', template))
-    # Must search through all template dirs to find the pdf we are looking for
-    for templatedir in settings.TEMPLATE_DIRS:
-        filepathpdf = os.path.join(templatedir, 'pdf')
-        filepath = os.path.join(filepathpdf, template)
-        if os.path.exists(filepath):
-            break
-    templatedir = urllib.pathname2url(os.path.abspath(templatedir))
     c = Context({
                 'filename' : filename,
-                'templateDir' : templatedir,
+                'iconURI' : icon_uri,
                 'shopDetails' : shopDetails,
-                'order' : order
+                'order' : order,
                 })
     pdf = trml2pdf.parseString(smart_str(t.render(c)))
     response.write(pdf)

@@ -6,7 +6,7 @@
 	<pageTemplate id="first">
 		<pageGraphics>
 
-			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{templateDir}}/pdf/sample-logo.bmp"/>
+			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}"/>
 
             <setFont name="Helvetica" size="10"/>
 			<fill color="(0,0,0)"/>
@@ -26,10 +26,16 @@
             
             <setFont name="Helvetica" size="12"/>
             <drawString x="1cm" y="235mm">{{shopDetails.street1}}</drawString>
-            <drawString x="1cm" y="230mm">{{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postalCode}}</drawString>
+            {% if shopDetails.street2 %}
+            <drawString x="1cm" y="230mm">{{shopDetails.street2}}</drawString>
+            <drawString x="1cm" y="225mm">{{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}</drawString>
+            <drawString x="1cm" y="220mm">{{shopDetails.phone}}</drawString>
+            <drawString x="1cm" y="215mm">{{shopDetails.store_email}}</drawString>
+            {% else %}
+            <drawString x="1cm" y="230mm">{{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}</drawString>
             <drawString x="1cm" y="225mm">{{shopDetails.phone}}</drawString>
-            <drawString x="1cm" y="220mm">{{shopDetails.storeEmail}}</drawString>
-            
+            <drawString x="1cm" y="220mm">{{shopDetails.store_email}}</drawString>
+            {% endif %}
             <rect x="13.5cm" y="26.2cm" width="5cm" height="1.3cm" fill="no" stroke="yes" round="5mm" />
             
             <rect x="7.1cm" y="19.8cm" width="5cm" height="4cm" fill="no" stroke="yes" round="5mm" />
@@ -42,7 +48,7 @@
 	</pageTemplate>
 	<pageTemplate id="others">
 		<pageGraphics>
-			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{templateDir}}/pdf/sample-logo.bmp"/>
+			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}"/>
 
 			<setFont name="Helvetica" size="8"/>
 			<fill color="(0,0,0)"/>
@@ -77,21 +83,14 @@
 		 <blockAlignment value="RIGHT" start="1,0" stop="-1,-1"/>
 		 <lineStyle kind="LINEBELOW" colorName="black" start="0,0" stop="-1,0"/>
 	</blockTableStyle>
-	<blockTableStyle id="products2">
-		 <blockValign value="TOP"/>
-		 <blockAlignment value="RIGHT" start="1,0" stop="-1,-1"/>
-		 <lineStyle kind="LINEABOVE" colorName="black" start="-1,-3" stop="-1,-3"/>
-		 <lineStyle kind="LINEABOVE" colorName="black" start="-1,-1" stop="-1,-1"/>
-		 <lineStyle kind="LINEBELOW" colorName="black" start="-1,-1" stop="-1,-1"/>
-		 <lineStyle kind="LINEBEFORE" colorName="black" start="-1,-1" stop="-1,-1"/>
-		 <lineStyle kind="LINEAFTER" colorName="black" start="-1,-1" stop="-1,-1"/>
-		 <blockBackground colorName="(0.85,0.85,0.85)" start="-1,-1" stop="-1,-1"/>
-	</blockTableStyle>
 </stylesheet>
 <story>
 
     <para style="name">{{order.contact.full_name}}</para>
-	<para>{{order.full_bill_street}}</para>
+	<para>{{order.bill_street1}}</para>
+	{% if order.bill_street2 %}
+          <para>{{ order.bill_street2}}</para<
+        {% endif %}
 	<para>{{order.bill_city}}, {{order.bill_state}}</para>
 	<para>{{order.bill_postal_code}}</para>
 	<spacer length="0.8cm" width="1mm"/>
@@ -101,7 +100,10 @@
 	<nextFrame/>
     
     <para style="name">{{order.contact.full_name}}</para>
-	<para>{{order.full_ship_street}}</para>
+	<para>{{order.ship_street1}}</para>
+        {% if order.ship_street2 %}
+          <para>{{ order.ship_street2 %}
+        {% endif %}
 	<para>{{order.ship_city}}, {{order.ship_state}}</para>
 	<para>{{order.ship_postal_code}}</para>
 	<spacer length="0.8cm" width="1mm"/>
@@ -109,54 +111,20 @@
     
 	<setNextTemplate name="others"/>
 	<spacer length="0.5cm" width="1mm"/>
-	<blockTable colWidths="7cm, 3.5cm, 3.5cm, 3.5cm" style="products">
+	<blockTable colWidths="14cm, 3.5cm" style="products">
 	<tr>
 		<td>{% trans "Description" %}</td>
         <td>{% trans "Quantity" %}</td>
-        <td>{% trans "Unit Price" %}</td>
-        <td>{% trans "Total" %}</td>
 	</tr>
     {% for item in order.orderitem_set.all %}
     <tr>
         <td><para>{{ item }}</para></td>
         <td>{{ item.quantity }} </td>
-        <td>{{ item.unit_price|currency }}</td>
-        <td>{{ item.sub_total|currency }} </td>
     </tr>
     {% endfor %}
 	<tr><td></td></tr>
     <tr><td></td></tr>
-    <tr><td></td></tr>
-    <tr><td></td></tr>
-    <tr><td></td></tr>
 	</blockTable>
-	<blockTable colWidths="7cm, 3.5cm, 3.5cm,3.5cm" style="products2">
-	<tr>
-        <td></td><td></td>
-		<td>{% trans "Subtotal" %}:</td><td>{{order.sub_total|currency}}</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td><td>{{order.shipping_method}} - {{order.shipping_description}}</td><td>{{order.shipping_sub_total|currency}}</td>
-    </tr>
-    <tr>
-        <td></td><td></td>
-		<td>{% trans "Tax" %}: </td><td>{{order.tax|currency}}</td>
-	</tr><tr>
-        <td></td><td></td>
-		<td>{% trans "Total" %}:</td><td>{{order.total|currency}}</td>
-	</tr>
-	</blockTable>
-	<spacer length="2cm" width="1mm"/>
-	<para style="payment">
-        {% if order.credit_card %}
-        {% with order.total|currency as order_total %}
-        {% with order.credit_card.creditType as credit_card_type %}
-        {% with order.credit_card.displayCC as credit_card_number %}
-        {% blocktrans with order.timestamp|date:"F j, Y" as order_date %}{{ order_total }} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}
-        {% endwith %}{% endwith %}{% endwith %}
-        {% endif %}
-	</para>
 	<spacer length="0.5cm" width="1mm"/>
 	<para style="payment">
 		{% trans "Thank you for your business!" %}

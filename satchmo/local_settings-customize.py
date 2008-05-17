@@ -12,7 +12,6 @@
 
 import os
 import logging
-DIRNAME = os.path.dirname(__file__)
 
 # This is useful, since satchmo is not the "current directory" like load_data expects.
 # SATCHMO_DIRNAME = ''

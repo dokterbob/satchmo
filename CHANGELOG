@@ -54,6 +54,8 @@ Trunk
  * Fix some unicode issues with some of the shipping and payment processing backends
  * Trustcommerce bug fixes
  * Updated documentation to use sphinx
+ * Fixed some bugs in pdf generation
+ * Made pdf logo selection part of the configuration settings
 
 Version 0.6, October 30, 2007
 ----------------

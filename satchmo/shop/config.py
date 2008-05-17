@@ -1,7 +1,20 @@
 ﻿# -*- coding: utf-8 -*-
 
+import urlparse
+import os
 from satchmo.configuration import config_register, BooleanValue, StringValue, MultipleStringValue, SHOP_GROUP, ConfigurationGroup, PositiveIntegerValue
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
+
+install_path = ((hasattr(settings, 'SATCHMO_DIRNAME') and SATCHMO_DIRNAME) or \
+                settings.DIRNAME)
+default_icon_url = urlparse.urlunsplit(
+    ('file',
+     '',
+     os.path.join(install_path, 'templates/pdf/sample-logo.bmp'),
+     '',
+     '')
+    )
 
 #### SHOP Group ####
 
@@ -37,6 +50,16 @@ MEASUREMENT_SYSTEM = config_register(
     choices = [('metric',_('Metric')),
                 ('imperial',_('Imperial'))],
     default = "imperial"))
+
+LOGO_URI = config_register(
+    StringValue(SHOP_GROUP,
+    'LOGO_URI',
+    description = _("URI to the logo for the store"),
+    help_text = _(("For example http://www.example.com/images/logo.jpg or "
+                   "file:///var/www/html/images/logo.jpg")),
+    default = default_icon_url
+))
+                
 #### Google Group ####
 
 GOOGLE_GROUP = ConfigurationGroup('GOOGLE', _('Google Settings'))

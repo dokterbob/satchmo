@@ -53,7 +53,7 @@ working properly before trying to add any pieces of satchmo.
 5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations (in addition to the defaults and your other app needs)::
 
         import os
-        DIRNAME = os.path.dirname(__file__)
+        DIRNAME = os.path.abspath(os.path.dirname(__file__))
         LOCAL_DEV = True
         
         MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
