@@ -42,7 +42,7 @@ class ContactInfoForm(forms.Form):
         if countries is not None:
             self.fields['country'] = forms.ChoiceField(choices=countries)
             if self.shippable:
-                self.fields['ship_country'] = forms.ChoiceField(choices=countries)
+                self.fields['ship_country'] = forms.ChoiceField(choices=countries, required=False)
 
         shop_config = Config.get_shop_config()
         self._local_only = shop_config.in_country_only
@@ -68,11 +68,15 @@ class ContactInfoForm(forms.Form):
         return email
         
     def clean_state(self):
+        data = self.cleaned_data['state']
         if self._local_only:
             country_iso2 = self._default_country
         else:
+            if not 'country' in self.data:
+                # The user didn't even submit a country, but this error will
+                # be handled by the clean_country function
+                return data
             country_iso2 = self.data['country']
-        data = self.cleaned_data['state']
         country = Country.objects.get(iso2_code=country_iso2)
         if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
@@ -82,6 +86,7 @@ class ContactInfoForm(forms.Form):
         return data
 
     def clean_ship_state(self):
+        data = self.cleaned_data['ship_state']
         if self.cleaned_data['copy_address']:
             if 'state' in self.cleaned_data:
                 self.cleaned_data['ship_state'] = self.cleaned_data['state']
@@ -90,9 +95,12 @@ class ContactInfoForm(forms.Form):
         if self._local_only:
             country_iso2 = self._default_country
         else:
+            if not 'ship_country' in self.data:
+                # This user didn't even submit a country, but this error will
+                # be handled by the clean_ship_country function
+                return data
             country_iso2 = self.data['ship_country']
 
-        data = self.cleaned_data['ship_state']
         country = Country.objects.get(iso2_code=country_iso2)
         if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
@@ -104,14 +112,22 @@ class ContactInfoForm(forms.Form):
     def clean_country(self):
         if self._local_only:
             return self._default_country
+        else:
+            if not self.cleaned_data['country']:
+                raise forms.ValidationError(_('This field is required.'))
         return self.cleaned_data['country']
         
     def clean_ship_country(self):
+        copy_address = self.cleaned_data['copy_address']
+        if copy_address:
+            return self.cleaned_data['country']
         if self._local_only:
             return self._default_country
         if not self.shippable:
             return self.cleaned_data['country']
         shipcountry = self.cleaned_data['ship_country']
+        if not shipcountry:
+            raise forms.ValidationError(_('This field is required.'))
         if config_value('PAYMENT', 'COUNTRY_MATCH'):
             country = self.cleaned_data['country']
             if shipcountry != country:
