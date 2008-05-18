@@ -3,6 +3,10 @@ from django.conf import settings
 from satchmo.product.models import Product
 from satchmo.product.views import display_featured
 from satchmo.shop.utils import app_enabled
+from satchmo.configuration import config_value
+
+num_to_paginate = config_value('SHOP','NUM_PAGINATED')
+
 
 urlpatterns = getattr(settings, 'SHOP_URLS', [])
 
@@ -50,7 +54,7 @@ index_dict = {
     'template_object_name': 'all_products',
     'template_name': 'base_index.html',
     'allow_empty': True,
-    'paginate_by': 10,
+    'paginate_by': num_to_paginate,
 }
 
 urlpatterns += patterns('django.views.generic',

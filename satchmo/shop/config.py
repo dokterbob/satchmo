@@ -40,8 +40,14 @@ RANDOM_FEATURED = config_register(
 NUMBER_FEATURED = config_register(
     PositiveIntegerValue(SHOP_GROUP,
         'NUM_DISPLAY',
-        description= _("Number of featured items to display"),
+        description= _("Total number of featured items to display"),
         default=20))
+
+NUMBER_PAGINATED = config_register(
+    PositiveIntegerValue(SHOP_GROUP,
+        'NUM_PAGINATED',
+        description= _("Number of featured items to display on each page"),
+        default=10))
 
 MEASUREMENT_SYSTEM = config_register(
     MultipleStringValue(SHOP_GROUP,
