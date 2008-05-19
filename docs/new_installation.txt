@@ -85,10 +85,12 @@ working properly before trying to add any pieces of satchmo.
                 'satchmo.thumbnail',
                 'satchmo.l10n',
                 'satchmo.tax',
+                'satchmo.recentlist',
                 )
                 
         AUTHENTICATION_BACKENDS = (
             'satchmo.accounts.email-auth.EmailBackend',
+            'django.contrib.auth.backends.ModelBackend'
             )
 
         # Load the local settings

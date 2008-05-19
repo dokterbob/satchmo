@@ -309,6 +309,15 @@ Alternatively, you can run the rebilling script as a shell script.  In that case
     0 23 * * * sh /path/to/satchmo/rebilling_cron.sh
     If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
 
+.. index::
+   single: Product; gift certificate
+   single: Gift certificate
+   
+Gift Certificate Product
+++++++++++++++++++++++++
+A gift certificate is a special product. In order to use it, make sure it is an enabled product type and that it is a selected payment method.
+
+Once you have enabled the gift certificate product type and payment methods, you need to create a product as described above. Then, in the product subtypes section, select "Enable GiftCertificateProduct" to turn the product into a gift certificate. Now, a user has the option of purchasing a gift certificate and receiving a unique code that can be applied towards the purchase of a product at your store.
 
 A short tutorial
 ----------------
