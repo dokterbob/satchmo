@@ -47,6 +47,14 @@ Modifying A Store
    custom-payment
    translation
    
+Optional Modules
+================
+
+.. toctree::
+   :maxdepth: 1
+   
+   google-base
+
 Additional Notes
 ================
 .. toctree::

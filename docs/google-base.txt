@@ -1,0 +1,38 @@
+.. index::
+   single: Google; Base
+
+===========
+Google Base
+===========
+
+Google Base is a "free Google service that lets you publish virtually any kind of information." This module allows you to create a feed of your products and add to Google Base. It is not enabled by default.
+
+Features
+++++++++
+
+    * It exports all active products into the feed.
+    * It adds all the legal payment types to the feed.
+    * It skips "Configurable Products" - since the products that should be exported are child ProductVariations. (I.E. the XL Blue Fancy Shirt, not the Fancy Shirt parent)
+    * It adds dimensions if found.
+    * It automatically tries to figure out how to apply product options. For example, if you have an OptionGroup named "Size" or "Sizes", it will automatically be applied to the GoogleBase attribute <g:size>size</g:size>. Similarly for "Color", "Style", etc.
+    * It applies the same logic to attributes. If you have an attribute, "Brand", for example, then the feed will contain an entry for "<g:brand>brand</g:brand>"
+    * In either case, if it is not found in the base google tags, it will make a custom tag. For example. "<c:book_type:string>hardback</c:book_type:string>" 
+
+Installing
+++++++++++
+
+On your site:
+
+    * Add "satchmo.feeds" to your settings.py INSTALLED_APPS
+    * In local_settings.py, add the feeds to the site urls::
+    
+                    URLS = patterns('', 
+                        # your other url overrides here
+                        (r'^feed/', include('satchmo.feeds.urls')),
+                    )
+                    
+On Google:
+    
+    Review the `Google Installation Steps`_
+
+.. _Google Installation Steps: http://base.google.com/support/bin/answer.py?answer=59537&hl=en
