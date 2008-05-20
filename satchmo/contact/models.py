@@ -782,7 +782,7 @@ class OrderItemDetail(models.Model):
         ordering = ('sort_order',)
 
 class DownloadLink(models.Model):
-    downloadable_product = models.OneToOneField(DownloadableProduct, verbose_name=_('Downloadable product'), primary_key=True)
+    downloadable_product = models.ForeignKey(DownloadableProduct, verbose_name=_('Downloadable product'))
     order = models.ForeignKey(Order, verbose_name=_('Order'))
     key = models.CharField(_('Key'), max_length=40)
     num_attempts = models.IntegerField(_('Number of attempts'), )
