@@ -12,15 +12,15 @@ register = template.Library()
 def is_producttype(product, ptype):
     """Returns True if product is ptype"""
     if ptype in product.get_subtypes():
-        return "true"
+        return True
     else:
-        return ""
+        return False
 
 register.filter('is_producttype', is_producttype)
 
 def product_images(product, args=""):
-    args, kwargs = get_filter_args(args, 
-        keywords=('include_main', 'maximum'), 
+    args, kwargs = get_filter_args(args,
+        keywords=('include_main', 'maximum'),
         boolargs=('include_main'),
         intargs=('maximum'),
         stripquotes=True)
@@ -31,11 +31,11 @@ def product_images(product, args=""):
     else:
         main = product.main_image
         q = q.exclude(id = main.id)
-    
+
     maximum = kwargs.get('maximum', -1)
     if maximum>-1:
         q = list(q)[:maximum]
-    
+
     return q
 
 register.filter('product_images', product_images)
@@ -44,5 +44,5 @@ def smart_attr(product, key):
     """Run the smart_attr function on the spec'd product
     """
     return product.smart_attr(key)
-    
+
 register.filter('smart_attr', smart_attr)
