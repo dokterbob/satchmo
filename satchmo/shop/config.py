@@ -6,7 +6,7 @@ from satchmo.configuration import config_register, BooleanValue, StringValue, Mu
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
-install_path = ((hasattr(settings, 'SATCHMO_DIRNAME') and SATCHMO_DIRNAME) or \
+install_path = ((hasattr(settings, 'SATCHMO_DIRNAME') and settings.SATCHMO_DIRNAME) or \
                 settings.DIRNAME)
 default_icon_url = urlparse.urlunsplit(
     ('file',
