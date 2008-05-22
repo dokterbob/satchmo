@@ -12,7 +12,7 @@ from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db import models
 from django.dispatch import dispatcher
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo import tax
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
 from satchmo.discount.models import Discount, find_discount_for_code
@@ -625,6 +625,8 @@ class Order(models.Model):
             subtype = orderitem.product.get_subtype_with_attr('order_success')
             if subtype:
                 subtype.order_success(self, orderitem)
+        if self.is_downloadable:
+            self.add_status('Shipped', ugettext("Order immediately available for download"))
         dispatcher.send(signal=order_success, sender=self.__class__, instance=self)
 
 
@@ -639,6 +641,14 @@ class Order(models.Model):
             return True
         return False
     has_downloads = property(_has_downloads)
+
+    def _is_downloadable(self):
+        """Determine if all products on this order are downloadable"""
+        for orderitem in self.orderitem_set.all():
+           if not orderitem.product.is_downloadable:
+               return False
+        return True
+    is_downloadable = property(_is_downloadable)
 
     def _is_shippable(self):
         """Determine if we will be shipping any items on this order """
