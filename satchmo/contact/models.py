@@ -834,7 +834,7 @@ class DownloadLink(models.Model):
         return u"%s - %s" % (self.downloadable_product.product.slug, self.time_stamp)
 
     def _product_name(self):
-        return u"%s" % (self.downloadable_product.product.translated_name)
+        return u"%s" % (self.downloadable_product.product.translated_name())
     product_name=property(_product_name)
 
     class Admin:
