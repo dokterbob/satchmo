@@ -149,8 +149,14 @@ class Discount(models.Model):
             # in cart
             discounted = apply_even_split(discounted, self.amount)        
         
-        else:
+        elif self.percentage:
             discounted = apply_percentage(discounted, self.percentage)
+        
+        else:
+            # no discount, probably shipping-only
+            zero = Decimal("0.00")
+            for key in discounted.keys():
+                discounted[key] = zero
             
         if self.freeShipping:
             shipcost = order.shipping_cost
