@@ -526,9 +526,12 @@ class Product(models.Model):
         if qty_discounts.count() > 0:
             # Get the price with the quantity closest to the one specified without going over
             val = qty_discounts.order_by('-quantity')[0].price
-            if not type(val) is Decimal:
-                val = Decimal(val)
-            return val
+            try:
+                if not type(val) is Decimal:
+                    val = Decimal(val)
+                return val
+            except TypeError:
+                return val
         else:
             return None
 
