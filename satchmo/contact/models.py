@@ -789,6 +789,10 @@ class DownloadLink(models.Model):
     time_stamp = models.DateTimeField(_('Time stamp'), )
     active = models.BooleanField(_('Active'), default=True)
 
+    def _attempts_left(self):
+        return self.downloadable_product.num_allowed_downloads - self.num_attempts
+    attempts_left = property(_attempts_left)
+
     def is_valid(self):
         # Check num attempts and expire_minutes
         if not self.downloadable_product.active:
