@@ -25,7 +25,12 @@ from satchmo.shop.utils.unique_id import slugify
 from satchmo.shop.utils.validators import ValidateIfFieldsSame
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-from sets import Set
+#from sets import Set
+try:
+    set
+except NameError:
+    from sets import Set as set     #python 2.3 fallback
+    
 try:
     from django.utils.safestring import mark_safe
 except ImportError:
@@ -987,8 +992,8 @@ class ConfigurableProduct(models.Model):
         Takes an iterable of Options (or str(Option)) and outputs a Set of
         str(Option) suitable for comparing to a productvariation.option_values
         """
-        if not isinstance(options, Set):
-            optionSet = Set()
+        if not isinstance(options, set):
+            optionSet = set()
             for opt in options:
                 optionSet.add(opt.unique_id)
             return optionSet
@@ -1217,7 +1222,7 @@ class ProductVariation(models.Model):
         Return a set of all the valid options for this variant.
         A set makes sure we don't have to worry about ordering.
         """
-        output = Set()
+        output = set()
         for option in self.options.all():
             output.add(option.unique_id)
         return(output)

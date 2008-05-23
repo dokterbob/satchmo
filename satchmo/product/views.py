@@ -10,7 +10,11 @@ from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Category, Product, ConfigurableProduct, ProductVariation
 from satchmo.shop.utils.json import json_encode
 from satchmo.shop.views.utils import bad_or_missing
-from sets import Set
+#from sets import Set
+try:
+    set
+except NameError:
+    from sets import Set as set     #python 2.3 fallback
 
 import datetime
 import logging
@@ -28,7 +32,7 @@ def find_product_template(product, producttypes=None):
     templates.append('base_product.html')
     return select_template(templates)
 
-def serialize_options(config_product, selected_options=Set()):
+def serialize_options(config_product, selected_options=set()):
     """
     Return a list of optiongroups and options for display to the customer.
     Only returns options that are actually used by members of this ConfigurableProduct.
@@ -72,7 +76,7 @@ def serialize_options(config_product, selected_options=Set()):
     
     return d.values()
 
-def get_product(request, product_slug, selected_options=Set(), include_tax=NOTSET, default_view_tax=NOTSET):      
+def get_product(request, product_slug, selected_options=set(), include_tax=NOTSET, default_view_tax=NOTSET):      
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -129,7 +133,7 @@ def get_product(request, product_slug, selected_options=Set(), include_tax=NOTSE
     return http.HttpResponse(template.render(ctx))
 
 def optionset_from_post(configurableproduct, POST):
-    chosenOptions = Set()
+    chosenOptions = set()
     for opt_grp in configurableproduct.option_group.all():
         if POST.has_key(str(opt_grp.id)):
             chosenOptions.add('%s-%s' % (opt_grp.id, POST[str(opt_grp.id)]))
