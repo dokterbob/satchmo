@@ -807,7 +807,7 @@ class DownloadLink(models.Model):
         # Check num attempts and expire_minutes
         if not self.downloadable_product.active:
             return (False, _("This download is no longer active"))
-        if self.num_attempts > self.downloadable_product.num_allowed_downloads:
+        if self.num_attempts >= self.downloadable_product.num_allowed_downloads:
             return (False, _("You have exceeded the number of allowed downloads."))
         expire_time = datetime.timedelta(minutes=self.downloadable_product.expire_minutes) + self.time_stamp
         if datetime.datetime.now() > expire_time:
