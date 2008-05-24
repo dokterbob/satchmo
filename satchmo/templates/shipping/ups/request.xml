@@ -65,29 +65,29 @@
         		</BillShipper>
       		</Prepaid>
   	</PaymentInformation>
-    {% for cart_item in cart.cartitem_set.all %}
-  	<Package>
+    {% for product in cart.get_shipment_list %}
+	<Package>
       		<PackagingType>
 	        	<Code>{{config.container}}</Code>
         		<Description>Customer Supplied</Description>
       		</PackagingType>
-      		<Description>{{cart_item.product.name }}</Description>
-            {% if cart_item.product.has_full_dimensions %}
+      		<Description>{{product.name }}</Description>
+            {% if product.has_full_dimensions %}
             <Dimensions>
                 <UnitOfMeasurement>
-                      <Code>{{cart_item.product|smart_attr:"length_units"|upper}}</Code>
+                      <Code>{{product|smart_attr:"length_units"|upper}}</Code>
                 </UnitOfMeasurement>
-                <Length>{{cart_item.product|smart_attr:"length"}}</Length>
-                <Width>{{cart_item.product|smart_attr:"width"}}</Width>
-                <Height>{{cart_item.product|smart_attr:"height"}}</Height>
+                <Length>{{product|smart_attr:"length"}}</Length>
+                <Width>{{product|smart_attr:"width"}}</Width>
+                <Height>{{product|smart_attr:"height"}}</Height>
             </Dimensions>
             {% endif %}
-            {% if cart_item.product.has_full_weight %}
+            {% if product.has_full_weight %}
                 <PackageWeight>
                     <UnitOfMeasurement>
-                      <Code>{{cart_item.product|smart_attr:"weight_units"|upper}}S</Code>
+                      <Code>{{product|smart_attr:"weight_units"|upper}}S</Code>
                     </UnitOfMeasurement>
-                    <Weight>{{cart_item.product|smart_attr:"weight"}}</Weight>
+                    <Weight>{{product|smart_attr:"weight"}}</Weight>
                 </PackageWeight>   
             {% endif %}
    	</Package>

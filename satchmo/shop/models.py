@@ -290,6 +290,17 @@ class Cart(models.Model):
                 return True
         return False
     is_shippable = property(_get_shippable)
+    
+    def get_shipment_list(self):
+        """Return a list of shippable products, where each item is split into 
+        multiple elements, one for each quantity."""
+        items = []
+        for cartitem in self.cartitem_set.all():
+            p = cartitem.product
+            if p.is_shippable:
+                for single in range(0,cartitem.quantity):
+                    items.append(p)
+        return items
 
     class Admin:
         list_display = ('date_time_created','numItems','total')
