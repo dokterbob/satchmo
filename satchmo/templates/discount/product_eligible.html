@@ -1,0 +1,7 @@
+{% load i18n %}
+<div class="saleprice">
+{% with sale.percentage_text as pct %}{% with sale.code as code %}{% with sale.description as desc %}{% with sale.endDate|date:"y-M-d" as enddate %}
+{% blocktrans %}<p>This item is eligible to receive a discount of {{ pct }} during checkout when you enter the code "{{ code }}" during our {{ desc }} which ends on {{ enddate }}.</p>
+{% endblocktrans %}
+{% endwith %}{% endwith %}{% endwith %}{% endwith %}
+</div>

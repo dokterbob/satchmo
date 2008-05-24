@@ -6,6 +6,7 @@ from django.template.loader import select_template
 from django.utils.translation import ugettext as _
 from satchmo import tax
 from satchmo.configuration import config_value
+from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Category, Product, ConfigurableProduct, ProductVariation
 from satchmo.shop.utils.json import json_encode
@@ -115,12 +116,15 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
 
     template = find_product_template(product, producttypes=p_types)
     
+    sale = find_best_auto_discount(product)
+    
     attributes = {
         'product': product, 
         'options': options,
         'optmap' : optmap,
         'prices' : prices,
         'default_view_tax': default_view_tax,
+        'sale' : sale,
     }
         
     if include_tax:

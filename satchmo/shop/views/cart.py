@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
+from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
@@ -82,11 +83,18 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
             
     if not cart:
         cart = Cart.objects.from_request(request)
+    
+    if cart.numItems > 0:    
+        products = [item.product for item in cart.cartitem_set.all()]
+        sale = find_best_auto_discount(products)    
+    else:
+        sale = None
                 
     context = RequestContext(request, {
         'cart': cart,
         'error_message': error_message,
         'default_view_tax' : default_view_tax,
+        'sale' : sale,
         })
     return render_to_response('base_cart.html', context)
 

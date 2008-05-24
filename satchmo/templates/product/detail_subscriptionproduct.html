@@ -44,5 +44,8 @@
 <input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
 {% endif %}
 </form>
+{% if sale %}
+{% include "discount/product_eligible.html" %}
+{% endif %}
 {% product_ratings %}
 {% endblock %}

@@ -66,7 +66,10 @@
     <tr><td colspan="3" align="right">{% trans "Cart Total" %}:</td>
         <td>{% if default_view_tax %}{% cart_taxed_total cart 1 %}{% else %}{{cart.total|currency}}{% endif %}</td></tr>
     </table>
-    
+    {% if sale %}
+	{% include "discount/some_eligible.html" %}
+	{% endif %}
+	
     <a href="{% url satchmo_checkout-step1 %}">{% trans "Check out" %}</a>
 {% endif %}
 {% endblock %}

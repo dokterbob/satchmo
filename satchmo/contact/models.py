@@ -15,7 +15,8 @@ from django.dispatch import dispatcher
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo import tax
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
-from satchmo.discount.models import Discount, find_discount_for_code
+from satchmo.discount.models import Discount
+from satchmo.discount.utils import find_discount_for_code
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.signals import satchmo_cart_changed

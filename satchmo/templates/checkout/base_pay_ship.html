@@ -32,6 +32,7 @@
     <tr><td><h4>{% trans "Discounts" %}</h4></td></tr>
     <tr><td><label for="id_discount">{% trans "Discount code" %}</label></td><td> {{ form.discount }}</td></tr>
     <tr><td></td><td>{% if form.discount.errors %}*** {{ form.discount.errors|join:", " }}{% endif %}</td></tr>
+	{% if sale %}{% include "discount/checkout_form.html" %}{% endif %}
     {% endblock %}
 
 {% if cart.is_shippable %}

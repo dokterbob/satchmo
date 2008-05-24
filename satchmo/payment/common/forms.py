@@ -7,6 +7,7 @@ from satchmo.configuration import config_value
 from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
+from satchmo.discount.utils import find_best_auto_discount
 from satchmo.payment.config import payment_choices
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
@@ -85,9 +86,15 @@ class SimplePayShipForm(forms.Form):
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         super(SimplePayShipForm, self).__init__(*args, **kwargs)
-
+        
         try:
             self.tempCart = Cart.objects.from_request(request)
+            if self.tempCart.numItems > 0:
+                products = [item.product for item in self.tempCart.cartitem_set.all()]
+                sale = find_best_auto_discount(products)
+                if sale:
+                    self.fields['discount'].initial = sale.code
+            
         except Cart.DoesNotExist:
             self.tempCart = None
             

@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from satchmo.contact.models import Contact
 from satchmo.contact.models import Order, OrderPayment
+from satchmo.discount.utils import find_best_auto_discount
 from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.common.utils import create_pending_payment
@@ -111,10 +112,18 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
 
     return (False, form)
 
-def pay_ship_render_form(request, form, template, payment_module):
+def pay_ship_render_form(request, form, template, payment_module, cart):
     template = lookup_template(payment_module, template)
+    
+    if cart.numItems > 0:    
+        products = [item.product for item in cart.cartitem_set.all()]
+        sale = find_best_auto_discount(products)
+    else:
+        sale = None
+        
     ctx = RequestContext(request, {
         'form': form,
+        'sale' : sale,
         'PAYMENT_LIVE': payment_live(payment_module)})
     return render_to_response(template, ctx)
 
@@ -131,7 +140,7 @@ def base_pay_ship_info(request, payment_module, form_handler, template):
         return results[1]
 
     form = results[1]
-    return pay_ship_render_form(request, form, template, payment_module)
+    return pay_ship_render_form(request, form, template, payment_module, working_cart)
 
 def credit_pay_ship_info(request, payment_module, template='checkout/pay_ship.html'):
     """A pay_ship view which uses a credit card."""

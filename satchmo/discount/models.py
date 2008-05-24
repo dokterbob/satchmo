@@ -20,22 +20,6 @@ log = logging.getLogger('Discount.models')
 percentage_validator = MutuallyExclusiveWithField('amount')
 amount_validator = MutuallyExclusiveWithField('percentage')
 
-def find_discount_for_code(code):
-    discount = None
-    
-    if code:
-        try:
-            discount = Discount.objects.get(code=code)
-            
-        except Discount.DoesNotExist:
-            pass
-            
-    if not discount:
-        discount = NullDiscount()
-        
-    return discount
-    
-
 class NullDiscount(object):
     
     def __init__(self):
@@ -43,6 +27,7 @@ class NullDiscount(object):
         self.total = Decimal("0.00")
         self.item_discounts = {}
         self.discounted_prices = []
+        self.automatic = False
         
     def calc(self, *args):
         return Decimal("0.00")
@@ -62,6 +47,8 @@ class Discount(models.Model):
         max_digits=4, blank=True, null=True,
         validator_list=[percentage_validator],
         help_text=_("Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."))
+    automatic = models.BooleanField(_("Is this an automatic discount?"), default=False, blank=True, 
+        null=True, help_text=_("Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."))
     allowedUses = models.IntegerField(_("Number of allowed uses"),
         blank=True, null=True, help_text=_('Not implemented.'))
     numUses = models.IntegerField(_("Number of times already used"),
@@ -75,7 +62,8 @@ class Discount(models.Model):
         help_text=_("Should this discount remove all shipping costs?"))
     includeShipping = models.BooleanField(_("Include shipping"), blank=True, null=True,
         help_text=_("Should shipping be included in the discount calculation?"))
-    validProducts = models.ManyToManyField(Product, verbose_name=_("Valid Products"), filter_interface=True, blank=True, null=True)
+    validProducts = models.ManyToManyField(Product, verbose_name=_("Valid Products"), filter_interface=True, 
+        blank=True, null=True, help_text="Make sure not to include gift certificates!")
 
     def __init__(self, *args, **kwargs):
         self._calculated = False
@@ -176,6 +164,18 @@ class Discount(models.Model):
         assert(self._calculated)
         return self._item_discounts
     item_discounts = property(_item_discounts)
+    
+    def _percentage_text(self):
+        """Get the human readable form of the sale percentage."""
+        if self.percentage > 1:        
+            pct = self.percentage
+        else:
+            pct = self.percentage*100
+        cents = Decimal("0")
+        pct = pct.quantize(cents)
+        return "%i%%" % pct
+
+    percentage_text = property(_percentage_text)
 
     class Admin:
         list_display=('description','active')

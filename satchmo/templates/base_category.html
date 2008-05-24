@@ -48,5 +48,8 @@
             {% endfor %}
         {% endfor %}
 {% endif %}
+{% if sale %}
+{% include "discount/some_eligible.html" %}
+{% endif %}
 </div>
 {% endblock %}
