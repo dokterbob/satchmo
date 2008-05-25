@@ -90,7 +90,7 @@ CACHE_PREFIX = "STORE"
 # LOCALE_PATHS = ""
 
 #Configure logging
-LOGDIR = DIRNAME
+LOGDIR = os.path.abspath(os.path.dirname(__file__))
 LOGFILE = "satchmo.log"
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
