@@ -13,4 +13,5 @@ class Command(NoArgsCommand):
             print "Static directory exists. You must manually copy the files you need."
         else:
             shutil.copytree(static_src, static_dest)
+            shutil.rmtree(os.path.join(static_dest,'.svn'), True)
             print "Copied %s to %s" % (static_src, static_dest)
