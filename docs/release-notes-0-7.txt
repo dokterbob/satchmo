@@ -1,0 +1,77 @@
+Satchmo 0.7 Release
+===================
+
+Welcome to Satchmo 0.7. This release occurs after nearly 7 months of additional development. This release includes major new features, bug fixes and lots of other improvements. Anyone working on a Satchmo project is encouraged to use this release as the baseline for their store.
+
+New Features
+------------
+
+Satchmo 0.7 includes many new features and improvements. Some of the highlights are:
+
+    - Capability to choose language translation
+    - Improvements to the category code and display including adding images to categories
+    - New translation capabilities were added for all parts of Satchmo
+    - Improved Custom Product which supports much more broad usage
+    - Currency is displayed based on the current locale
+    - Allow featured products to be randomly displayed
+    - Increase phone number field length to support more country's phone numbers
+    - Updated google analytics to use new google code but allow fall back to old urchin.js
+    - New template tags: product_category_siblings and product_images
+    - New tax module to calculate taxes based on country or state
+    - Updated discount system to track which discounts were applied to which line items.
+    - Add weight and dimension unit info to the product model.
+    - Created integration with UPS online tools
+    - Created new Shipping Module, 'Tiered', allowing multiple carriers and variable pricing by cart total.
+    - Added sku model field
+    - Added gift certificate functionality
+    - Cleaned up New Zealand l10n data
+    - Improved tax calc code
+    - Improved security by ensuring dupe emails couldn't be used
+    - Fixed PDF generation bug in windows
+    - Added support for categories in the product export function
+    - New subscription product with recurring billing support
+    - CSS fixes and improvements to breadcrumbs and other parts of base store
+    - Remove storage of ccv field from database
+    - More control for purchasing items not in stock
+    - New recently viewed items support
+    - Added wishlist functionality
+    - UI improvements on the admin site
+    - Disable shipping address fields if user selects "same shipping and billing address are used"
+    - SEO optimizations to templates
+    - Massive performance improvements when using Configurable Products
+    - Unicode fixes to shipping and payment backends
+    - Allow PDF logo to be selected from the admin site
+    - Added Google Feed support
+
+The following documentation improvements were made:
+
+    - Documentation system now uses Sphinx
+    - New installation instructions
+    - Improved documentation for custom payment modules
+    
+The following payment modules were added or updated:
+
+    - New Cybersource module
+    - New COD module
+    - Bug fixes in Trustcommerce
+
+The following translations were updated or added:
+
+    - German
+    - Swedish
+    - Brazilian Portuguese
+    - Bulgarian
+    - Korean
+    - French
+    
+Backwards-incompatible Changes
+------------------------------
+
+This release does introduce some backwards incompatible-changes so you are encouraged to review and understand the changes listed here - http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChangesAfter0.6
+
+Thanks
+------
+
+Thanks to the many people who have contributed to or supported the project. This release includes some new translations and we are very appreciate of those who have taken the time to contribute their linguistic skills to the project. 
+
+A special thanks goes to Bruce Kroeze who continues to provide major improvements and fixes to Satchmo. The project would not be where it is today without his support.
