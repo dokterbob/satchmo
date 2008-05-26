@@ -42,7 +42,7 @@ copyright = '2008, Chris Moffitt'
 # The short X.Y version.
 version = '1.0'
 # The full version, including alpha/beta/rc tags.
-release = '0.7 (svn)'
+release = '0.7'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:

@@ -1,9 +1,9 @@
-===============================
-Installation - SVN Version Only
-===============================
+============
+Installation
+============
 
 This guide is the new (and hopefully improved) Satchmo installation process. It is meant to be a cookbook
-approach for most users. Advanced users can modify to integrate into their own projects.
+approach for most users. Advanced users may wish to modify this in order to integrate into their own projects.
 
 This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
 you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
@@ -58,10 +58,14 @@ working properly before trying to add any pieces of satchmo.
         
         MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
         
-        MIDDLEWARE_CLASSES = ("django.middleware.locale.LocaleMiddleware",  "satchmo.shop.SSLMiddleware.SSLRedirect")
+        MIDDLEWARE_CLASSES = ("django.middleware.locale.LocaleMiddleware",  
+                              "satchmo.shop.SSLMiddleware.SSLRedirect",
+                              "satchmo.recentlist.middleware.RecentProductMiddleware")
         TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
         TEMPLATE_CONTEXT_PROCESSORS = 	('satchmo.shop.context_processors.settings',
-                                                                    'django.core.context_processors.auth',)
+                                         'django.core.context_processors.auth',
+                                         'satchmo.recentlist.context_processors.recent_products',
+                                         )
 
         INSTALLED_APPS = (
                 'django.contrib.admin',
