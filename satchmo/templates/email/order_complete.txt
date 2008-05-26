@@ -65,7 +65,7 @@
 
 {% if order.has_downloads %}
 {% trans "Your order contains products that can be downloaded" %}
-{% trans "Please click the link to being the download" %}
+{% trans "Please click the link to begin the download" %}
 {% for download in order.downloadlink_set.all %}
 {{ download.product_name }} - {{download.get_full_url}}
 {% endfor %}
