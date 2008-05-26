@@ -1,7 +1,7 @@
 Satchmo 0.7 Release
 ===================
 
-Welcome to Satchmo 0.7. This release occurs after nearly 7 months of additional development. This release includes major new features, bug fixes and lots of other improvements. Anyone working on a Satchmo project is encouraged to use this release as the baseline for their store.
+Welcome to Satchmo 0.7. This release occurs after nearly 7 months of additional development and includes major new features, bug fixes and lots of other improvements. Anyone working on a Satchmo project is encouraged to use this release as the baseline for their store.
 
 New Features
 ------------
