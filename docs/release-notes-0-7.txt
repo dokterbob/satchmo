@@ -42,6 +42,7 @@ Satchmo 0.7 includes many new features and improvements. Some of the highlights 
     - Unicode fixes to shipping and payment backends
     - Allow PDF logo to be selected from the admin site
     - Added Google Feed support
+    - Support for store wide sales via "auto discounts"
 
 The following documentation improvements were made:
 
