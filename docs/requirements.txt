@@ -1,17 +1,17 @@
 Requirements
 ============
 
-Satchmo is based on the Django framework, therefore you do need a fully functioning 
-Django instance to use Satchmo.  The `Django installation guide`_ will step you 
-through the process. 
+Satchmo is based on the Django framework, therefore you do need a fully functioning
+Django instance to use Satchmo.  The `Django installation guide`_ will step you
+through the process.
 
 As of now, it is recommended that you use a Django version from the current trunk.
 Some of the most recent features in Satchmo require a recent (0.97-pre) checkout
 from svn.  A known good version of Django can be found in the `snapshot`_ directory.
 
-Satchmo requires Python 2.4 or later and a database supported by Django.
+Satchmo requires Python 2.3 or later and a database supported by Django.
 
-There are a number of other Python packages that are required for usage of all the 
+There are a number of other Python packages that are required for usage of all the
 features in Satchmo.
 
 - `Python Imaging Library`_
@@ -34,7 +34,7 @@ A valid Django cache backend (file, memcached or DB) is required for the config 
 
 The following package is required to load the initial data and run the unit tests:
 
-- `PyYaml`_ 
+- `PyYaml`_
 
 Docutils is useful for auto generating some documentation:
 
