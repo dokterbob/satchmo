@@ -176,6 +176,11 @@ class Discount(models.Model):
         return "%i%%" % pct
 
     percentage_text = property(_percentage_text)
+    
+    def valid_for_product(self, product):
+        """Tests if discount is valid for a single product"""
+        p = self.validProducts.filter(id__exact = product.id)
+        return p.count() > 0
 
     class Admin:
         list_display=('description','active')
