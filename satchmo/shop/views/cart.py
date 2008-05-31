@@ -153,7 +153,7 @@ def add_ajax(request, id=0, template="json.html"):
             product, details = product_from_post(productslug, formdata)
 
         except Product.DoesNotExist:
-            log.warn("Could not find product: %s", productname)
+            log.warn("Could not find product: %s", productslug)
             product = None
 
         if not product:
