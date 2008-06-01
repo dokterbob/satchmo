@@ -68,7 +68,7 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
         (True, destination) on success
         (False, form) on failure
     """
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         form = CreditPayShipForm(request, payment_module, new_data)
         if form.is_valid():
@@ -96,7 +96,7 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
     return (False, form)
 
 def simple_pay_ship_process_form(request, contact, working_cart, payment_module):
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         form = SimplePayShipForm(request, payment_module, new_data)
         if form.is_valid():

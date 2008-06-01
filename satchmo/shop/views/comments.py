@@ -14,6 +14,9 @@ def post_rating(request, url='/ratings/posted/', maxcomments=1):
     is returned after submit, also add the ability to control the maximum number of ratings per user 
     per product.
     """
+    if request.method != "POST":
+        raise Http404, _("One or more of the required fields wasn't submitted")
+        
     if request.POST.has_key('url'):
         url = request.POST['url']
         

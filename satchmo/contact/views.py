@@ -50,7 +50,7 @@ def update(request):
         contact = None
     
 
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         form = ExtendedContactInfoForm(countries, areas, contact, new_data, shippable=True,
             initial=init_data)

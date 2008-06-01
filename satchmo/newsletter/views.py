@@ -41,7 +41,7 @@ def _update(request, state, template, result_template):
     """Add a subscription and return the results in the requested template."""
     success = False
 
-    if request.POST:
+    if request.method == "POST":
         form = NewsletterForm(request.POST)
         if form.is_valid():
             contact = form.get_contact()

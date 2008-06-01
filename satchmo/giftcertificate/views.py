@@ -17,7 +17,7 @@ log = logging.getLogger("giftcertificate.views")
 gc = config_get_group('PAYMENT_GIFTCERTIFICATE')
     
 def giftcert_pay_ship_process_form(request, contact, working_cart, payment_module):
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         form = GiftCertPayShipForm(request, payment_module, new_data)
         if form.is_valid():

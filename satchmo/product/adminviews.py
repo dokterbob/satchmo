@@ -14,7 +14,7 @@ log = logging.getLogger('product.adminviews')
 
 def edit_inventory(request):
     """A quick inventory price, qty update form"""
-    if request.POST:
+    if request.method == "POST":
         new_data = request.POST.copy()
         form = forms.InventoryForm(new_data)
         if form.is_valid():

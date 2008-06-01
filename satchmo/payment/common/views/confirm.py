@@ -42,7 +42,7 @@ def base_confirm_info(request, payment_module, confirm_template, success_handler
             {'message': _('Your order is no longer valid.')})
         return render_to_response('shop_404.html', context)
 
-    if request.POST:
+    if request.method == "POST":
         #Do the credit card processing here & if successful, execute the success_handler        
         credit_processor = payment_module.MODULE.load_module('processor')
         processor = credit_processor.PaymentProcessor(payment_module)

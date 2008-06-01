@@ -153,7 +153,7 @@ def get_price(request, product_slug):
 
     prod_slug = product.slug
 
-    if request.POST.has_key('quantity'):
+    if request.method == "POST" and request.POST.has_key('quantity'):
         quantity = int(request.POST['quantity'])
 
     if 'ConfigurableProduct' in product.get_subtypes():
