@@ -695,7 +695,7 @@ class Order(models.Model):
 
     class Admin:
         fields = (
-            (None, {'fields': ('contact', 'method', 'status', 'notes')}),
+            (None, {'fields': ('contact', 'method', 'status', 'discount_code', 'notes')}),
             (_('Shipping Method'), {'fields':
                 ('shipping_method', 'shipping_description')}),
             (_('Shipping Address'), {'classes': 'collapse', 'fields':
