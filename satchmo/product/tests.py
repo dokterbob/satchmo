@@ -81,7 +81,6 @@ ValidationError: [u'You must not save a category in itself!']
 >>> womens_jewelry.get_all_children()
 [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>]
 
-# was [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 >>> Category.objects.all().order_by('name')
 [<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
 
@@ -97,19 +96,17 @@ ValidationError: [u'You must not save a category in itself!']
 """
 
 from django.conf import settings
-from django.test import TestCase
-from django.test.client import Client
-from satchmo.product.models import *
-from django.db.models import Model
-from django.conf import settings
 from django.core.validators import ValidationError
+from django.db.models import Model
+from django.test import TestCase
+from satchmo.product.models import Category
 
 
 class CategoryTest(TestCase):
     """
     Run some category tests on urls
     """
-       
+
     def test_absolute_url(self):
         prefix = settings.SHOP_BASE
         if prefix == '/':
@@ -122,13 +119,13 @@ class CategoryTest(TestCase):
         self.assertRaises(ValidationError, womens_jewelry.save)
         Model.save(womens_jewelry)
         womens_jewelry = Category.objects.get(slug="womens-jewelry")
-        self.assertEqual(womens_jewelry.get_absolute_url(),(u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/"% prefix))
-    
+        self.assertEqual(womens_jewelry.get_absolute_url(),(u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/" % prefix))
+
 class ProductExportTest(TestCase):
     """
     Test product export functionality.
     """
-    
+
     def setUp(self):
         # Log in as a superuser
         from django.contrib.auth.models import User
@@ -137,8 +134,7 @@ class ProductExportTest(TestCase):
         user.is_superuser = True
         user.save()
         self.client.login(username='root', password='12345')
-        
-    
+
     def test_text_export(self):
         """
         Test the content type of an exported text file.
@@ -148,7 +144,7 @@ class ProductExportTest(TestCase):
             'format': 'yaml',
             'include_images': False,
         }
-        
+
         response = self.client.post(url, form_data)
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('text/yaml', response['Content-Type'])
@@ -168,7 +164,6 @@ class ProductExportTest(TestCase):
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('text/python', response['Content-Type'])
 
-
     def test_zip_export_content_type(self):
         """
         Test the content type of an exported zip file.
@@ -178,11 +173,11 @@ class ProductExportTest(TestCase):
             'format': 'yaml',
             'include_images': True,
         }
-        
+
         response = self.client.post(url, form_data)
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('application/zip', response['Content-Type'])
-                
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
