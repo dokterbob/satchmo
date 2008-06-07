@@ -13,38 +13,38 @@ PRODUCT_TYPES = config_register(MultipleStringValue(PRODUCT_GROUP,
              ('product::ProductVariation', _('Product Variation')),
              ('product::CustomProduct', _('Custom Order')),
              ('product::SubscriptionProduct', _('Subscription Product')),
-             ('product::DownloadableProduct', _('Downloable Product'))]
+             ('product::DownloadableProduct', _('Downloadable Product'))]
     ))
-    
+
 config_register([
 
 StringValue(PRODUCT_GROUP,
     'IMAGE_DIR',
     description=_("Upload Image Dir"),
-    help_text=_("""Directory name for storing uploaded images.  
-This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  
+    help_text=_("""Directory name for storing uploaded images.
+This value will be appended to MEDIA_ROOT.  Do not worry about slashes.
 We can handle it any which way."""),
     default="images"),
-    
+
 BooleanValue(PRODUCT_GROUP,
     'RENAME_IMAGES',
     description=_("Rename product images?"),
     help_text=_("Automatically rename product images on upload?"),
     default=True),
-    
+
 StringValue(PRODUCT_GROUP,
     'PROTECTED_DIR',
     description=_("Protected dir"),
-    help_text=_("""This is only used if you use Downloadable Products.  
-This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  
+    help_text=_("""This is only used if you use Downloadable Products.
+This value will be appended to MEDIA_ROOT.  Do not worry about slashes.
 We can handle it any which way."""),
     default="protected",
     requires=PRODUCT_TYPES,
     requiresvalue='product::DownloadableProduct'),
-    
+
 ])
-    
-# --- Load any extra payment modules. ---
+
+# --- Load any extra product modules. ---
 extra_product = getattr(settings, 'CUSTOM_PRODUCT_MODULES', ())
 
 for extra in extra_product:
