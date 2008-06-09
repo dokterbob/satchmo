@@ -67,7 +67,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
     				    <td style="width: 50%;">
         					{{ field.label_tag }}
         					{% if field.help_text %}
-        						<p class="help">{{ field.help_text|break_at:40 }}</p>
+        						<p class="help">{{ field.help_text|break_at:40|safe }}</p>
         					{% endif %}
         					{% if field.field.default_text %}
         					    <p class="help">{{ field.field.default_text|break_at:40}}</p>
