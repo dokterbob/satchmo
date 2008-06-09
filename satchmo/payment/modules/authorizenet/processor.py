@@ -1,7 +1,10 @@
 from satchmo.payment.common.utils import record_payment
 from satchmo.shop.utils import trunc_decimal
 from urllib import urlencode
+import logging
 import urllib2
+
+log = logging.getLogger('payment.authorize')
 
 class PaymentProcessor(object):
     #Authorize.NET payment processing module
@@ -16,6 +19,13 @@ class PaymentProcessor(object):
             testflag = 'TRUE'
             self.connection = settings.CONNECTION_TEST.value
             
+        if settings.CAPTURE.value:
+            transaction_type = 'AUTH_CAPTURE'
+            self.authorize_only = False
+        else:
+            transaction_type = 'AUTH_ONLY'
+            self.authorize_only = True
+            
         self.configuration = {
             'x_login' : settings.LOGIN.value,
             'x_tran_key' : settings.TRANKEY.value,
@@ -24,7 +34,7 @@ class PaymentProcessor(object):
             'x_test_request' : testflag,
             'x_delim_data' : 'TRUE',
             'x_delim_char' : '|',
-            'x_type': 'AUTH_CAPTURE',
+            'x_type': transaction_type,
             'x_method': 'CC',
             }
 
@@ -40,18 +50,35 @@ class PaymentProcessor(object):
             'x_phone' : data.contact.primary_phone
             }
         # Can add additional info here if you want to but it's not required
+        balance = trunc_decimal(data.balance, 2)
+        
         self.transactionData = {
-            'x_amount' : trunc_decimal(data.balance, 2),
+            'x_amount' : balance,
             'x_card_num' : data.credit_card.decryptedCC,
             'x_exp_date' : data.credit_card.expirationDate,
             'x_card_code' : data.credit_card.ccv
             }
 
-        self.postString = urlencode(self.configuration) + "&" + urlencode(self.transactionData) + "&" + urlencode(self.custBillData)
+        part1 = urlencode(self.configuration) + "&"
+        part2 = "&" + urlencode(self.custBillData)
+        self.postString = part1 + urlencode(self.transactionData) + part2
+        
+        redactedData = {
+            'x_amount' : trunc_decimal(data.balance, 2),
+            'x_card_num' : data.credit_card.displayCC,
+            'x_exp_date' : data.credit_card.expirationDate,
+            'x_card_code' : "REDACTED"
+        }
+        self.logPostString = part1 + urlencode(redactedData) + part2
         self.order = data
 
     def process(self, testing=False):
         # Execute the post to Authorize Net
+        if self.authorize_only:
+            log.info("About to process payment [AUTHORIZE ONLY] %s", self.logPostString)
+        else:
+            log.info("About to process payment [AUTH/CAPTURE] %s", self.logPostString)
+
         conn = urllib2.Request(url=self.connection, data=self.postString)
         f = urllib2.urlopen(conn)
         all_results = f.read()
@@ -59,9 +86,10 @@ class PaymentProcessor(object):
         response_code = parsed_results[0]
         reason_code = parsed_results[1]
         response_text = parsed_results[3]
+        transaction_id = parsed_results[6]
         if response_code == '1':
             if not testing:
-                record_payment(self.order, self.settings, amount=self.order.balance)
+                record_payment(self.order, self.settings, amount=self.order.balance, transaction_id=transaction_id)
             return(True, reason_code, response_text)
         elif response_code == '2':
             return(False, reason_code, response_text)

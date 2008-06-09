@@ -86,5 +86,12 @@ for test transactions if you do not have a cpdev or cnpdev.
     StringValue(PAYMENT_GROUP, 
         'TRANKEY', 
         description=_('Your authorize.net transaction key'),
-        default="")  
+        default=""),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'CAPTURE',
+        description=_('Capture Payment?'),
+        default=True,
+        help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.'))
+         
 ])
