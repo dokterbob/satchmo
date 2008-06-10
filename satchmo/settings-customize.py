@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.sites',
     #'registration',
+    'satchmo',
     'satchmo.caching',
     'satchmo.configuration',
     'satchmo.shop',
