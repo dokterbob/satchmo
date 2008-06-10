@@ -75,9 +75,10 @@ MIDDLEWARE_CLASSES = (
 
 #this is used to add additional config variables to each request
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'satchmo.shop.context_processors.settings',
     'django.core.context_processors.auth',
+    'django.core.context_processors.media',
     'satchmo.recentlist.context_processors.recent_products',
+    'satchmo.shop.context_processors.settings',
 )
 
 ROOT_URLCONF = 'satchmo.urls'
