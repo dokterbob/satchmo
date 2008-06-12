@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% comment %}
 -------------------------------------------------------------------
-Note to template authors.
-
 This is the base product detail page.
-To modify pages specific types of pages, such as ProductVariations
-or CustomProducts look for product/detail_xxx.html
+To modify the templates of specific types of products, such as
+ProductVariations or CustomProducts, look for product/detail_xxx.html
 -------------------------------------------------------------------
 {% endcomment %}
 {% load i18n %}
@@ -15,6 +13,7 @@ or CustomProducts look for product/detail_xxx.html
 {% load satchmo_ratings %}
 {% load satchmo_util %}
 {% if "recentlist"|app_enabled %}{% load satchmo_recentlist %}{% endif %}
+
 {% block extra-head %}
 {% if product.meta %}
     <meta name="description" content="{{product.meta}}">
@@ -22,10 +21,9 @@ or CustomProducts look for product/detail_xxx.html
 {% endblock %}
 
 {% block navbar %}
-
 <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
-{% for name, url in product.category.all.0.get_url_name %}        
-    <li><a href="{{ url }}">{{ name }}</a></li>    
+{% for name, url in product.category.all.0.get_url_name %}
+    <li><a href="{{ url }}">{{ name }}</a></li>
 {% endfor %}
 <li>{{ product.translated_name }}</li>
 {% endblock %}
@@ -46,8 +44,8 @@ or CustomProducts look for product/detail_xxx.html
 {% block content %}
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
-{% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: 
-<h3 id="price">{% if default_view_tax %}{{ price_with_tax|currency }}{% else %}{{ product.unit_price|currency }}{% endif %}</h3> 
+{% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}:
+<h3 id="price">{% if default_view_tax %}{{ price_with_tax|currency }}{% else %}{{ product.unit_price|currency }}{% endif %}</h3>
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}
@@ -56,9 +54,9 @@ or CustomProducts look for product/detail_xxx.html
 <form id="options" action="{% url satchmo_smart_add %}" method="post">
 {% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" />
 {% if "wishlist"|app_enabled and user.is_authenticated %}
-<input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
+<input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" />
 {% endif %}
 </form>
 {% if sale %}
