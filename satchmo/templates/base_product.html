@@ -31,7 +31,11 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 {% block sidebar %}
     <h3>{% trans "Shop Categories" %}</h3>
     <div id="menu_container">
-    {% category_tree product.get_category.id %}
+    {% if product.get_category %}
+        {% category_tree product.get_category.id %}
+    {% else %}
+        {% category_tree %}
+    {% endif %}
     </div>
 {% endblock %}
 

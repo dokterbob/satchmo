@@ -112,9 +112,18 @@ class ShopTest(TestCase):
         self.assertContains(response, 'option value="soft" selected="selected"')
         self.assertContains(response, smart_str("%s5.00" % config_value('SHOP', 'CURRENCY')))
 
+    def test_orphaned_product(self):
+        """
+        Get the page of a Product that is not in a Category.
+        """
+        Product.objects.create(name="Orphaned Product", slug="orphaned-product")
+        response = self.client.get(prefix + '/product/orphaned-product/')
+        self.assertContains(response, 'Orphaned Product')
+        self.assertContains(response, 'Software')
+
     def test_get_price(self):
         """
-        Get a price/productname for a ProductVariation
+        Get the price and productname of a ProductVariation.
         """
         response = self.client.get(prefix+'/product/DJ-Rocks/')
         self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
@@ -173,7 +182,7 @@ class ShopTest(TestCase):
         pcnt.update('10')
         shp = config_get('TAX', 'TAX_SHIPPING')
         shp.update(False)
-        
+
         self.test_cart_adding()
         response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
         self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step2'), status_code=302, target_status_code=200)
@@ -283,7 +292,7 @@ class ShopTest(TestCase):
         response = self.client.post('/accounts/update/', full_data)
         response = self.client.get('/accounts/')
         self.assertContains(response,"Email: somenewtester@example.com")
-    
+
     def test_contact_attaches_to_user(self):
         """Check that if a User registers and later creates a Contact, the
         Contact will be attached to the existing User.
@@ -325,7 +334,7 @@ class ShopTest(TestCase):
         self.assertContains(response, "Short Sleeve", count=2)
         self.assertContains(response, "Django Rocks shirt", count=1)
         self.assertContains(response, "Python Rocks shirt", count=1)
-    
+
     def test_custom_product(self):
         """
         Verify that the custom product is working as expected.
