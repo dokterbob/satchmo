@@ -30,7 +30,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
 <div class="fieldcontainer">
 <ul class="fieldref">
 {% for group in form.groups %}
-    <li><a href="#{{ group.key }}"/>{{ group.name }}</li>
+    <li><a href="#{{ group.key }}">{{ group.name }}</a></li>
 {% endfor %}
 </ul>
 </div>
@@ -57,7 +57,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
             <h2 id="{{ group.key }}">{{ group.name }}</h2>
                 <table summary="{% blocktrans with group.name as name %}Group settings: {{ name }}{% endblocktrans %}" style="width: 100%">
             {% endwith %}{% endifchanged %}
-        
+
             	    {% if field.errors %}
             		<tr class="error">
             			<td colspan="2">{{ field.errors }}</td>
@@ -76,10 +76,10 @@ div.fieldcontainer { float: left; margin-right: 0; }
         				<td>{{ field }}</td>
         			</tr>
     	{% endif %}
-    {% endfor %}    			
+    {% endfor %}
     	</table>
 	</div>
-<br class="clear:both;" /> 
+<br class="clear:both;" />
 <input type="submit" value="Save" class="default" />
 <p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">{% trans 'Uncollapse all' %}</a></p>
 </form>
