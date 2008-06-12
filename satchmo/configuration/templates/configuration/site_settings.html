@@ -30,7 +30,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
 <div class="fieldcontainer">
 <ul class="fieldref">
 {% for group in form.groups %}
-    <li><a href="#{{ group.key }}">{{ group.name }}</a></li>
+    <li><a onclick="javascript:CollapsedFieldsets.show({{ forloop.counter0 }});" href="#{{ group.key }}">{{ group.name }}</a></li>
 {% endfor %}
 </ul>
 </div>
