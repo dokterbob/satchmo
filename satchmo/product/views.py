@@ -9,6 +9,7 @@ from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Category, Product, ConfigurableProduct, ProductVariation
+from satchmo.shop.models import Config
 from satchmo.shop.utils.json import json_encode
 from satchmo.shop.views.utils import bad_or_missing
 #from sets import Set
@@ -95,8 +96,7 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
     p_types = product.get_subtypes()
 
     options = []
-
-    prices = taxes = optmap = None
+    details = None
     
     if default_view_tax:
         include_tax = True
@@ -109,7 +109,7 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
         
     if 'ConfigurableProduct' in p_types:
         options = serialize_options(product.configurableproduct, selected_options)
-        optmap, prices, taxes = _productvariation_prices(product, include_tax, request.user)
+        details = _productvariation_details(product, include_tax, request.user)
         
     if 'CustomProduct' in p_types:
         options = serialize_options(product.customproduct, selected_options)
@@ -121,8 +121,7 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
     attributes = {
         'product': product, 
         'options': options,
-        'optmap' : optmap,
-        'prices' : prices,
+        'details': details,
         'default_view_tax': default_view_tax,
         'sale' : sale,
     }
@@ -289,20 +288,45 @@ def _get_tax(user, product, quantity):
     taxer = _get_taxprocessor(user)
     return taxer.by_product(product, quantity)
 
-def _productvariation_prices(product, include_tax, user):
-    """Build the product prices, and the optionmap associated with them"""
+def _productvariation_details(product, include_tax, user):
+    """Build the product variation details, for conversion to javascript.
+    
+    Returns variation detail dictionary built like so:
+    details = {
+        "OPTION_KEY" : {
+            "SLUG": "Variation Slug", 
+            "PRICE" : {"qty" : "$price", [...]}, 
+            "TAXED" : "$taxed price",   # omitted if no taxed price requested
+            "QTY" : 1
+        },
+        [...]
+    }
+    """
+    
+    config = Config.get_shop_config()
+    ignore_stock = config.no_stock_checkout
     
     if include_tax:
         taxer = _get_taxprocessor(user)
+        taxclass = product.taxClass
     
-    prices = {}
-    taxes = {}
-    optmap = {}
-    taxclass = product.taxClass
+    details = {}
     
     for p in ProductVariation.objects.by_parent(product):
+        
+        detail = {}
+
         prod = p.product
-        key = prod.slug
+        detail['SLUG'] = prod.slug
+        
+        if not prod.active:
+            qty = -1
+        elif ignore_stock:
+            qty = 10000
+        else:
+            qty = prod.items_in_stock
+            
+        detail['QTY'] = qty
         
         base = {}
         if include_tax:
@@ -314,15 +338,13 @@ def _productvariation_prices(product, include_tax, user):
                 taxprice = taxer.by_price(taxclass, price) + price
                 taxed[qty] = moneyfmt(taxprice)
             
-        prices[key] = base
+        detail['PRICE'] = base
         if include_tax:
-            taxes[key] = taxed
-
+            detail['TAXED'] = taxed
+            
         # build option map
         opts = [(opt.id, opt.value) for opt in p.options.order_by('optionGroup')]
-        #opts.sort()
-        optkeys = [opt[1] for opt in opts]
-        optkey = "::".join(optkeys)
-        optmap[optkey] = key    
+        optkey = "::".join([opt[1] for opt in opts])
+        details[optkey] = detail
     
-    return optmap, prices, taxes
+    return details

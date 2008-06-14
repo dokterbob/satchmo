@@ -100,16 +100,18 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
 
 def add(request, id=0):
     """Add an item to the cart."""
-    #TODO: Error checking for invalid combos
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
+    
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
         product, details = product_from_post(productslug, formdata)
+        if not product.active:
+            return _product_error(
+                product, _("That product is not available at the moment."))
         
-        template = find_product_template(product)
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
@@ -117,24 +119,17 @@ def add(request, id=0):
     try:
         quantity = int(formdata['quantity'])
     except ValueError:
-        context = RequestContext(request, {
-            'product': product,
-            'error_message': _("Please enter a whole number.")})
-
-        return HttpResponse(template.render(context))
+        return _product_error(
+            product, _("Please enter a whole number."))
 
     if quantity < 1:
-        context = RequestContext(request, {
-            'product': product,
-            'error_message': _("Please enter a positive number.")})
-        return HttpResponse(template.render(context))
-
+        return _product_error(
+            product, _("Please enter a positive number."))
+            
     cart = Cart.objects.from_request(request, create=True)
     if cart.add_item(product, number_added=quantity, details=details) == False:
-        context = RequestContext(request, {
-            'product': product,
-            'error_message': _("Not enough items of '%s' in stock.") % product.translated_name()})
-        return HttpResponse(template.render(context))
+        return _product_error(
+            product, _("Not enough items of '%s' in stock.") % product.translated_name())
 
     url = urlresolvers.reverse('satchmo_cart')
     dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
@@ -160,21 +155,25 @@ def add_ajax(request, id=0, template="json.html"):
             data['errors'].append(('product', _('The product you have requested does not exist.')))
 
         else:
-            data['id'] = product.id
-            data['name'] = product.translated_name()
+            if not product.active:
+                data['errors'].append(('product', _('That product is not available at the moment.')))
+             
+            else:   
+                data['id'] = product.id
+                data['name'] = product.translated_name()
 
-            if not formdata.has_key('quantity'):
-                quantity = -1
-            else:
-                quantity = formdata['quantity']
+                if not formdata.has_key('quantity'):
+                    quantity = -1
+                else:
+                    quantity = formdata['quantity']
                 
-            try:
-                quantity = int(quantity)
-                if quantity < 0:
-                    data['errors'].append(('quantity', _('Choose a quantity.')))
+                try:
+                    quantity = int(quantity)
+                    if quantity < 0:
+                        data['errors'].append(('quantity', _('Choose a quantity.')))
 
-            except (TypeError, ValueError):
-                data['errors'].append(('quantity', _('Choose a whole number.')))
+                except (TypeError, ValueError):
+                    data['errors'].append(('quantity', _('Choose a whole number.')))
 
     tempCart = Cart.objects.from_request(request, create=True)
 
@@ -348,4 +347,11 @@ def product_from_post(productslug, formdata):
         data = {}
         
     return product, details
+    
+def _product_error(product, msg):
+    template = find_product_template(product)
+    context = RequestContext(request, {
+        'product': product,
+        'error_message': msg})      
+    return HttpResponse(template.render(context))
     

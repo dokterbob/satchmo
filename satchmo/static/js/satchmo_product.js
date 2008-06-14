@@ -2,13 +2,9 @@ var satchmo = satchmo || {};
 
 // Get the current selected product price.  If taxed is true, then
 // return the price inclusive of taxes.
-satchmo.get_current_price = function(slug, taxed) {
-    if (!slug) { 
-        slug = satchmo.get_current_slug(); 
-    }
-    var qty = parseInt($('#quantity').fieldValue()[0]);
-    var k = taxed ? "taxes" : "prices";
-    var prices = satchmo[k][slug];
+satchmo.get_current_price = function(detail, qty, taxed) {
+    var k = taxed ? "TAXED" : "PRICE";
+    var prices = detail[k];
     if (prices) {
         var best = prices['1'];
         if (qty > 1) {
@@ -26,26 +22,55 @@ satchmo.get_current_price = function(slug, taxed) {
         return ""
     }
 };
-    
-// look up the slug by options selected
-satchmo.get_current_slug = function() {
-    var optkey = satchmo.make_optionkey();
-    return satchmo.optmap[optkey];
-};
-    
+        
 // Update the product name
 satchmo.set_name = function(name) {
     $("#productname").attr('value', name);
 };
 
 // Update the product price
-satchmo.set_price = function(price){
+satchmo.set_price = function(price) {
     $("#price").text(price);
+};
+
+satchmo.show_error = function(msg) {
+    var section = $('#js_error');
+    if (section.length == 0) {
+        if (msg != "") {
+            $('form#options').before("<div id='js_error' class='error'>" + msg + "</div>");
+        }
+    }
+    else {
+        section.text(msg);
+        if (msg == "") {
+            section.hide();
+        }
+    }
+    var disabled = (msg != "");
+    $('#addcart').attr('disabled', disabled);
 };
     
 // update name and price based on the current selections
 satchmo.update_price = function() {
-    slug = satchmo.get_current_slug();
-    satchmo.set_name(slug);
-    satchmo.set_price(satchmo.get_current_price(slug, satchmo.default_view_tax));
+    var key = satchmo.make_optionkey();
+    var detail = satchmo.variations[key];
+    var msg = "";
+    if (detail) {
+        var qty = parseInt($('#quantity').fieldValue()[0]);
+        satchmo.set_name(detail['SLUG']);
+        var price = satchmo.get_current_price(detail, qty, satchmo.default_view_tax);
+        satchmo.set_price(price);
+        if (qty && qty > detail['QTY']) {
+            if (detail['QTY'] == -1) {
+                msg = "Sorry, we are out of stock on that combination.";
+             }
+             else {
+                 msg = "Sorry, we only have " + detail['QTY'] + " available in that combination.";
+             }
+        }
+    }
+    else {
+        msg = "Sorry, we don't have any of that combination available.";
+    }
+    satchmo.show_error(msg);
 };

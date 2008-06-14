@@ -176,20 +176,26 @@ class Category(models.Model):
         if L == []: return L
         return self._flatten(L[0]) + self._flatten(L[1:])
 
-    def _recurse_for_children(self, node):
+    def _recurse_for_children(self, node, only_active=False):
         children = []
         children.append(node)
         for child in node.child.all():
-            if child != self:
-                children_list = self._recurse_for_children(child)
+            if child != self and ((not only_active) or node.active_products().count() > 0):
+                children_list = self._recurse_for_children(child, only_active=only_active)
                 children.append(children_list)
         return children
 
-    def get_all_children(self):
+    def get_active_children(self):
+        """
+        Gets a list of all of the children categories which have active products.
+        """
+        return self.get_all_children(only_active=True)
+
+    def get_all_children(self, only_active=False):
         """
         Gets a list of all of the children categories.
         """
-        children_list = self._recurse_for_children(self)
+        children_list = self._recurse_for_children(self, only_active=only_active)
         flat_list = self._flatten(children_list[1:])
         return flat_list
 

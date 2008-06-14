@@ -226,8 +226,6 @@ background-color: white;
 	display: inline;
 }
 
-/* My Comment */
-
 #menu_container a {
 display: block;
 color: #FFF;
@@ -299,6 +297,11 @@ p {
 img {
 	border: none;
 }
+
+.error {
+    color: red;
+}
+
 /* =============== Navigation Bars ===================== */
 
 #navbar ul {		
