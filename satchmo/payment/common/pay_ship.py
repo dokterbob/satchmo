@@ -7,7 +7,7 @@ import logging
 import datetime
 from socket import error as SocketError
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.template import loader, Context
 from django.utils.translation import ugettext as _
 from satchmo.contact.models import OrderItem, OrderItemDetail
@@ -36,22 +36,21 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
     update_orderitems(new_order, cart, update=update)
 
 
-def send_order_confirmation(newOrder, template='email/order_complete.txt'):
+def send_order_confirmation(new_order, template='email/order_complete.txt'):
     """Send an order confirmation mail to the customer.
     """
     shop_config = Config.get_shop_config()
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
     t = loader.get_template(template)
-    c = Context({'order': newOrder,
-                  'shop_name': shop_name})
+    c = Context({'order': new_order, 'shop_name': shop_name})
     subject = _("Thank you for your order from %(shop_name)s") % {'shop_name' : shop_name}
 
     try:
-        email = newOrder.contact.email
+        customer_email = new_order.contact.email
         body = t.render(c)
-        send_mail(subject, body, shop_email,
-                  [email], fail_silently=False)
+        message = EmailMessage(subject, body, shop_email, [customer_email])
+        message.send()
 
     except SocketError, e:
         if settings.DEBUG:
