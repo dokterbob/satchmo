@@ -49,7 +49,11 @@ class Command(NoArgsCommand):
              from satchmo.l10n.utils import get_locale_conv
              get_locale_conv()
         except:
-            errors.append("Locale is not set correctly. On unix systems, try executing locale-gen.")
+            errors.append("""
+            Locale is not set correctly.  Try 
+            Unix: sudo locale-gen en_US  
+            Windows: set LANGUAGE_CODE in settings.py to LANGUAGE_CODE = 'us'
+            """)
         try:
             cache_avail = settings.CACHE_BACKEND
         except AttributeError:
