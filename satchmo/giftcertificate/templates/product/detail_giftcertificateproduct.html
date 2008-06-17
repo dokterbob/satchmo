@@ -1,30 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_product.html" %}
 {% load i18n %}
 {% load satchmo_thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_util %}
-{% block extra-head %}
-{% if product.meta %}
-    <meta name="description" content="{{product.meta}}">
-{% endif %}
-{% endblock %}
-
-{% block navbar %}
-
-<a href="{{ shop_base }}/">{% trans "Home" %}</a> 
-{% for name, url in product.category.all.0.get_url_name %}
-    :: <a href="{{ url }}">{{ name }}</a>
-{% endfor %}
-
-{% endblock %}
-
-{% block sidebar %}
-    {% trans "Shop Categories" %}<br/>
-    <div id="menu_container">
-    {% category_tree product.get_category.id %}
-    </div>
-{% endblock %}
 
 {% block content %}
 <h4>{% trans 'Gift Certificate' %}</h4>
@@ -47,6 +26,6 @@
 </div>
 
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" />
 </form>
-{% endblock %} 
+{% endblock %}
