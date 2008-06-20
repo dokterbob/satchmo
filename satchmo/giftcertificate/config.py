@@ -47,6 +47,12 @@ config_register([
         description=_('English name for this group on the checkout screens'),
         default = 'Gift Certificate',
         help_text = _('This will be passed to the translation utility')),
+        
+    BooleanValue(PAYMENT_GROUP, 
+        'LIVE', 
+        description=_("Accept real payments"),
+        help_text=_("False if you want to be in test mode"),
+        default=False),
 
     StringValue(PAYMENT_GROUP,
         'URL_BASE',
