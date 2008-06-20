@@ -31,6 +31,22 @@ class CachedObjectMixin(object):
         
     def is_cached(self, *args, **kwargs):
         return caching.is_cached(self.cache_key(*args, **kwargs))
+        
+def find_by_id(cls, groupkey, id):
+    """A helper function to look up an object by id"""
+    ob = None
+    try:
+        ob = caching.cache_get(groupkey, id)
+    except caching.NotCachedError, e:
+        try: 
+            ob = cls.objects.get(pk=id)
+            caching.cache_set(e.key, value=ob)
+
+        except cls.DoesNotExist:
+            log.debug("No such %s: %s", groupkey, id)
+
+    return ob
+
 
 def find_by_key(cls, groupkey, key):
     """A helper function to look up an object by key"""
