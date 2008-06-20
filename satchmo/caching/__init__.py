@@ -137,6 +137,9 @@ def cache_function(length=settings.CACHE_TIMEOUT):
                 cache_set(e.key, value=funcwrapper, length=length, skiplog=True)
                 value = func(*args, **kwargs)
                 cache_set(e.key, value=value, length=length)
+                
+            except MethodNotFinishedError, e:
+                value = func(*args, **kwargs)
 
             return value
         return inner_func

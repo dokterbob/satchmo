@@ -60,6 +60,12 @@ class GiftCertificate(models.Model):
         Returns new balance.
         """
         amount = min(order.balance, self.balance)
+        log.info('applying %s from giftcert #%i [%s] to order #%i [%s]', 
+            moneyfmt(amount), 
+            self.id, 
+            moneyfmt(self.balance), 
+            order.id, 
+            moneyfmt(order.balance))
         config = config_get_group('PAYMENT_GIFTCERTIFICATE')
         orderpayment = record_payment(order, config, amount)
         return self.use(amount, orderpayment=orderpayment)

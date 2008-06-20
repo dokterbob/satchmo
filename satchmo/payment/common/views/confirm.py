@@ -29,7 +29,7 @@ def base_confirm_info(request, payment_module, confirm_template, success_handler
 
     try:
         tempCart = Cart.objects.from_request(request)
-        if tempCart.numItems == 0:
+        if tempCart.numItems == 0 and not orderToProcess.is_partially_paid:
             template = lookup_template(payment_module, 'checkout/empty_cart.html')
             return render_to_response(template, RequestContext(request))
     except Cart.DoesNotExist:

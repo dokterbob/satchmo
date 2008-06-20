@@ -28,7 +28,7 @@ def create_pending_payment(order, config, amount=NOTSET):
         for pending in payments:
             pending.delete()
         
-    log.debug("Creating pending payment for %s", order)
+    log.debug("Creating pending %s payment for %s", key, order)
 
     orderpayment = OrderPayment(order=order, amount=amount, payment=key, 
         transaction_id="PENDING")

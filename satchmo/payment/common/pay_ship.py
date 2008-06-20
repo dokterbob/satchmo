@@ -14,7 +14,7 @@ from satchmo.contact.models import OrderItem, OrderItemDetail
 from satchmo.shipping.utils import update_shipping
 from satchmo.shop.models import Config
 
-log = logging.getLogger('pay_ship')
+log = logging.getLogger('payment.common.pay_ship')
 
 def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
     """Save the order details, first removing all items if this is an update.
@@ -55,7 +55,7 @@ def send_order_confirmation(new_order, template='email/order_complete.txt'):
     except SocketError, e:
         if settings.DEBUG:
             log.error('Error sending mail: %s' % e)
-            log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', email, subject, body)
+            log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', customer_email, subject, body)
         else:
             log.fatal('Error sending mail: %s' % e)
             raise IOError('Could not send email, please check to make sure your email settings are correct, and that you are not being blocked by your ISP.')

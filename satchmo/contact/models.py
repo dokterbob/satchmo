@@ -35,7 +35,7 @@ try:
 except ImportError:
     mark_safe = lambda s:s
 
-log = logging.getLogger('contact.views')
+log = logging.getLogger('contact.models')
 
 CONTACT_CHOICES = (
     ('Customer', _('Customer')),
@@ -484,7 +484,7 @@ class Order(models.Model):
             return Decimal("0.0000000000")
 
     balance_paid = property(_balance_paid)
-
+    
     def _credit_card(self):
         """Return the credit card associated with this payment."""
         for payment in self.payments.order_by('-timestamp'):
@@ -522,6 +522,15 @@ class Order(models.Model):
         return self.balance_paid > Decimal("0.0000000000")
 
     partially_paid = property(_partially_paid)
+    
+    def _is_partially_paid(self):
+        if self.total:
+            balance = self.balance
+            return balance > Decimal("0.0000000000") and self.balance != self.balance_paid
+        else:
+            return False
+
+    is_partially_paid = property(fget=_is_partially_paid)
 
     def payments_completed(self):
         q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
@@ -552,6 +561,13 @@ class Order(models.Model):
     packingslip.allow_tags = True
 
     def recalculate_total(self, save=True):
+        """Calculates sub_total, taxes and total if the order is not already partially paid."""
+        if self.is_partially_paid:
+            log.debug("Order %i - skipping recalculate_total since product is partially paid.", self.id)
+        else:
+            self.force_recalculate_total(save=save)
+    
+    def force_recalculate_total(self, save=True):
         """Calculates sub_total, taxes and total."""
         zero = Decimal("0.0000000000")
         discount = find_discount_for_code(self.discount_code)
@@ -587,7 +603,6 @@ class Order(models.Model):
         else:
             full_sub_total = zero
 
-
         self.sub_total = full_sub_total
 
         taxProcessor = tax.get_processor(self)
@@ -602,8 +617,12 @@ class Order(models.Model):
             taxdetl = OrderTaxDetail(order=self, tax=taxamt, description=taxdesc, method=taxProcessor.method)
             taxdetl.save()
 
-        log.debug("recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
-                item_sub_total, self.shipping_sub_total, self.discount, self.tax)
+        log.debug("Order #%i, recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
+            self.id,
+            moneyfmt(item_sub_total), 
+            moneyfmt(self.shipping_sub_total),
+            moneyfmt(self.discount), 
+            moneyfmt(self.tax))
 
         self.total = Decimal(item_sub_total + self.shipping_sub_total + self.tax)
 
@@ -621,7 +640,7 @@ class Order(models.Model):
 
     def order_success(self):
         """Run each item's order_success method."""
-        log.debug("Order success: %s", self)
+        log.info("Order success: %s", self)
         for orderitem in self.orderitem_set.all():
             subtype = orderitem.product.get_subtype_with_attr('order_success')
             if subtype:
