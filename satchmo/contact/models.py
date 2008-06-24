@@ -72,7 +72,7 @@ class Organization(models.Model):
 
     def save(self):
         """Ensure we have a create_date before saving the first time."""
-        if not self.id:
+        if not self.pk:
             self.create_date = datetime.date.today()
         super(Organization, self).save()
 
@@ -174,7 +174,7 @@ class Contact(models.Model):
 
     def save(self):
         """Ensure we have a create_date before saving the first time."""
-        if not self.id:
+        if not self.pk:
             self.create_date = datetime.date.today()
         # Validate the email is in synch between
         if self.user and self.user.email != self.email:
@@ -541,7 +541,7 @@ class Order(models.Model):
         Copy addresses from contact. If the order has just been created, set
         the create_date.
         """
-        if not self.id:
+        if not self.pk:
             self.timestamp = datetime.datetime.now()
 
         self.copy_addresses()
@@ -915,7 +915,7 @@ class OrderPayment(models.Model):
             return u"Order payment (unsaved)"
 
     def save(self):
-        if not self.id:
+        if not self.pk:
             self.timestamp = datetime.datetime.now()
 
         super(OrderPayment, self).save()

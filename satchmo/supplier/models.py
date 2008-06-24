@@ -51,7 +51,7 @@ class SupplierOrder(models.Model):
     
     def save(self):
         """Ensure we have a date_created before saving the first time."""
-        if not self.id:
+        if not self.pk:
             self.date_created = datetime.date.today()
         super(SupplierOrder, self).save()
     

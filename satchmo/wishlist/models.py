@@ -46,7 +46,7 @@ class ProductWish(models.Model):
 
     def save(self):
         """Ensure we have a create_date before saving the first time."""
-        if not self.id:
+        if not self.pk:
             self.create_date = datetime.date.today()
         super(ProductWish, self).save()
 

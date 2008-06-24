@@ -78,7 +78,7 @@ class GiftCertificate(models.Model):
         return self.balance
 
     def save(self):
-        if not self.id:
+        if not self.pk:
             self.date_added = datetime.now()
         if not self.code:
             self.code = generate_certificate_code()
@@ -118,7 +118,7 @@ class GiftCertificateUsage(models.Model):
         return u"GiftCertificateUsage: %s" % self.balance_used
 
     def save(self):
-        if not self.id:
+        if not self.pk:
             self.usage_date = datetime.now()
         super(GiftCertificateUsage, self).save()
 

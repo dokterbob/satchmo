@@ -53,7 +53,7 @@ class Subscription(models.Model):
         return "<Subscription: %s>" % str(self)
 
     def save(self):
-        if not self.id:
+        if not self.pk:
             self.create_date = datetime.date.today()
 
         self.update_date = datetime.date.today()

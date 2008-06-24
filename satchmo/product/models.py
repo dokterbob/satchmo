@@ -604,7 +604,7 @@ class Product(models.Model):
         verbose_name_plural = _("Products")
 
     def save(self):
-        if not self.id:
+        if not self.pk:
             self.date_added = datetime.date.today()
 
         if self.name and not self.slug:

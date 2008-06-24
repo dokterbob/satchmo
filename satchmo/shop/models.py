@@ -279,7 +279,7 @@ class Cart(models.Model):
 
     def save(self):
         """Ensure we have a date_time_created before saving the first time."""
-        if not self.id:
+        if not self.pk:
             self.date_time_created = datetime.datetime.now()
         super(Cart, self).save()
 
