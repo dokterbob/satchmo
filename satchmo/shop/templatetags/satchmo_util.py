@@ -25,7 +25,7 @@ def app_enabled(value):
     if utils.app_enabled(value):
         return "true"
     else:
-        return "true"
+        return ""
     
 register.filter('app_enabled', app_enabled)
 
