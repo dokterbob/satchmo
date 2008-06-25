@@ -80,7 +80,7 @@ class TestRecurringBilling(TestCase):
         self.assertEqual(self.response.status_code, 200)
         self.assertEqual(self.response.content, '')
         self.assert_(order_count < OrderItem.objects.count())
-        self.assertEqual(order_count, OrderItem.objects.count()/2)
+        self.assertEqual(order_count, OrderItem.objects.count()/2.0)
         for order in OrderItem.objects.filter(expire_date__gt=datetime.datetime.now()):
             price, expire_days = self.getTerms(order.product, ignore_trial=True)
             if price is None:
