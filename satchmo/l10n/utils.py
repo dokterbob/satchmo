@@ -1,9 +1,5 @@
 import locale
 import logging
-try:
-    from decimal import Decimal, ROUND_FLOOR
-except:
-    from django.utils._decimal import Decimal, ROUND_FLOOR
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale
@@ -168,7 +164,7 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
     val = s.replace('<', '').replace('>', '')
 
     if wrapcents:
-        pos = s.rfind(conf['decimal_point'])
+        pos = s.rfind(conv['decimal_point'])
         if pos>-1:
             pos +=1 
             val = u"%s<%s>%s</%s>" % val[:pos], wrapcents, val[pos:], wrapcents
