@@ -12,9 +12,12 @@ log = logging.getLogger('satchmo.contrib.cartqty_discounts')
 def lineitem_cartqty_price(cartitem=None):
     cart = cartitem.cart
     qty = cart.numItems
-    log.debug("price of cartitem before = %0.2f", cartitem.qty_price)
-    cartitem.qty_price = cartitem.get_qty_price(qty)
-    log.debug("after calc with cart qty=%i price = %0.2f", qty, cartitem.qty_price)
+    oldprice = cartitem.qty_price
+    newprice = cartitem.get_qty_price(qty)
+    if oldprice != newprice:
+        cartitem.qty_price = newprice
+        log.debug("updated price for item based on cart qty=%i new price on %s = %0.2f", 
+            qty, cartitem.product.slug, cartitem.qty_price)
 
 dispatcher.connect(lineitem_cartqty_price, signal=satchmo_cartitem_price_query)
 log.debug('registered lineitem_cartqty_price')
