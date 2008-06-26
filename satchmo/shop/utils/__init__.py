@@ -3,10 +3,11 @@ try:
 except:
     from django.utils._decimal import Decimal, ROUND_FLOOR
 
-from django.db import models
-import os, sys
+import os
+import sys
 import random
 import types
+from django.db import models
 
 def app_enabled(appname):
     """Check the app list to see if a named app is installed."""
@@ -16,7 +17,7 @@ def app_enabled(appname):
         if n  == appname:
             return True
     return False
-    
+
 def can_loop_over(maybe):
     """Test value to see if it is list like"""
     try:
@@ -110,7 +111,7 @@ def request_is_secure(request):
         return request.META['HTTP_X_FORWARDED_SSL'] == 'on'
 
     return False
-    
+
 def trunc_decimal(val, places):
     roundfmt = "0."
     if places > 1:

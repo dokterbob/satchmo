@@ -1,3 +1,8 @@
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from django.test import TestCase
 from django.test.client import Client
 from django.core import mail
@@ -5,16 +10,13 @@ from django.core.urlresolvers import reverse as url
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.encoding import smart_str
+
 from satchmo.caching import cache_delete
-from satchmo.contact.models import Contact
-from satchmo.shop.templatetags import get_filter_args
 from satchmo.configuration import config_value, config_get
+from satchmo.contact.models import Contact
 from satchmo.product.models import Product
 from satchmo.shop.models import Cart
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
+from satchmo.shop.templatetags import get_filter_args
 
 domain = 'http://testserver'
 prefix = settings.SHOP_BASE
@@ -148,24 +150,7 @@ class ShopTest(TestCase):
                                                       "quantity" : 2})
         content = response.content.split(',')
         self.assertEqual(content[0], '["DJ-Rocks_L_BL"')
-        print content[1]
         self.assert_(content[1].endswith('23.00"]'))
-
-#        response = self.client.get(prefix+'/product/neat-software/')
-#        self.assertContains(response, "Neat Software", count=1, status_code=200)
-
-        # The following 2 test using the ProductVariation Price
-#        response = self.client.post(prefix+'/product/neat-software/prices/', {"4" : "full",
-#                                                      "quantity" : 1})
-#        self.assertContains(response, "$5.00", count=1, status_code=200)
-#        response = self.client.post(prefix+'/product/neat-software/prices/', {"4" : "upgrade",
-#                                                      "quantity" : 1})
-#        self.assertContains(response, "$1.00", count=1, status_code=200)
-
-        # This tests quantity discounts
-#        response = self.client.post(prefix+'/product/neat-software/prices/', {"4" : "full",
-#                                                      "quantity" : 50})
-#        self.assertContains(response, "$2.00", count=1, status_code=200)
 
     def test_cart_removing(self):
         """
@@ -202,11 +187,7 @@ class ShopTest(TestCase):
         response = self.client.post(url('DUMMY_satchmo_checkout-step2'), data)
         self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step3'), status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
-        #print response
         self.assertContains(response, smart_str("Shipping + %s4.00" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
-        print "----------------------"
-        print response
-        print "----------------------"
         self.assertContains(response, smart_str("Tax + %s4.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         self.assertContains(response, smart_str("Total = %s54.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
@@ -471,12 +452,28 @@ class CartTest(TestCase):
         lb = Product.objects.get(slug__iexact='DJ-Rocks_L_BL')
         sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
 
+        # going to set a weight on the product, and an override weight on the medium
+        # shirt.
+
+        p.weight = 100
+        p.save()
+        sb.weight = 50
+        sb.save()
+
+        self.assertEqual(p.smart_attr('weight'), 100)
+        self.assertEqual(sb.smart_attr('weight'), 50)
+        self.assertEqual(lb.smart_attr('weight'), 100)
+
+        # no height
+        self.assertEqual(p.smart_attr('height'), None)
+        self.assertEqual(sb.smart_attr('height'), None)
+
         cart = Cart()
         cart.save()
         cart.add_item(sb, 1)
         self.assertEqual(cart.numItems, 1)
         self.assertEqual(cart.total, Decimal("20.00"))
-        
+
         cart.add_item(lb, 1)
         self.assertEqual(cart.numItems, 2)
         items = list(cart.cartitem_set.all())
