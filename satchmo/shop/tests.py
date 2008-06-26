@@ -1,3 +1,15 @@
+r"""
+>>> from satchmo.shop.utils import trunc_decimal
+
+# Test trunc_decimal's rounding behavior.
+>>> trunc_decimal("0.004", 2)
+Decimal("0.00")
+>>> trunc_decimal("0.005", 2)
+Decimal("0.01")
+>>> trunc_decimal("0.009", 2)
+Decimal("0.01")
+"""
+
 try:
     from decimal import Decimal
 except:
@@ -466,3 +478,7 @@ class CartTest(TestCase):
         self.assertEqual(item1.unit_price, Decimal("20.00"))
         self.assertEqual(item2.unit_price, Decimal("23.00"))
         self.assertEqual(cart.total, Decimal("43.00"))
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

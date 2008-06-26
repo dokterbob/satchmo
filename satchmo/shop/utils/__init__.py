@@ -1,7 +1,7 @@
 try:
-    from decimal import Decimal, ROUND_FLOOR
+    from decimal import Decimal, ROUND_HALF_UP
 except:
-    from django.utils._decimal import Decimal, ROUND_FLOOR
+    from django.utils._decimal import Decimal, ROUND_HALF_UP
 
 import os
 import sys
@@ -121,7 +121,7 @@ def trunc_decimal(val, places):
         roundfmt += "1"
     if type(val) != Decimal:
         val = Decimal(val)
-    return val.quantize(Decimal(roundfmt), ROUND_FLOOR)
+    return val.quantize(Decimal(roundfmt), ROUND_HALF_UP)
 
 def url_join(*args):
     """Join any arbitrary strings into a forward-slash delimited string.
