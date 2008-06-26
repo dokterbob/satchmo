@@ -111,3 +111,15 @@ def more_than(value, args=""):
     return ""
     
 register.filter('more_than', more_than)
+
+def product_upsell(product):
+    goals = None
+    try:
+        if product.upselltargets.count() > 0:
+            goals = product.upselltargets.all()
+    except AttributeError:
+        #upsell probably not enabled
+        pass
+        
+    return { 'goals' : goals }
+register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(product_upsell)=======

@@ -29,7 +29,7 @@ $(function() {
 </script>
 {% endblock %}
 
-{% block content %}
+{% block productdetail %}
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
 {% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
@@ -69,9 +69,6 @@ $(function() {
 {% if "wishlist"|app_enabled and user.is_authenticated %}
 <input id="addwish" type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
 {% endif %}
+{% product_upsell product %}
 </form>
-{% if sale %}
-{% include "discount/product_eligible.html" %}
-{% endif %}
-{% product_ratings %}
 {% endblock %}

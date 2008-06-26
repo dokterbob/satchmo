@@ -1,4 +1,6 @@
-/* @override http://localhost:8000/static/css/style.css */
+/* @override 
+	http://localhost:8000/static/css/style.css
+*/
 
 #container {
 width: 90%;
@@ -332,4 +334,14 @@ img {
 
 .qtyform #id_quantity {
     width: 5em;
+}
+
+/* ============ Upsell section ============== */
+
+div.upsell {
+	padding-top: 10px;
+}
+
+div.upsell .upselldescription {
+	padding-bottom: 10px;
 }

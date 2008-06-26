@@ -17,7 +17,7 @@ from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
-from satchmo.shop.signals import satchmo_cart_changed
+from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete
 from satchmo.shop.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
 import logging
@@ -130,6 +130,10 @@ def add(request, id=0):
     if cart.add_item(product, number_added=quantity, details=details) == False:
         return _product_error(
             product, _("Not enough items of '%s' in stock.") % product.translated_name())
+            
+    # got to here with no error, now send a signal so that listeners can also operate on this form.
+    results = dispatcher.send(signal=satchmo_cart_add_complete, cart=cart, product=product, request=request, form=formdata)
+    log.debug('Dispatcher results: %s', results)
 
     url = urlresolvers.reverse('satchmo_cart')
     dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)

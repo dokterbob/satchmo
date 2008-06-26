@@ -1,0 +1,29 @@
+{# Include file for product pages when this is a target product #}
+{% if goals %}
+{% load i18n %}
+<div class="upsells">
+<input type="hidden" name="upsell_count" value="{{ goals.count }}" />
+
+{% for upsell in goals %}
+	<div class="upsell">
+		{% if upsell.description %}
+		<div class="upselldescription">{{ upsell.description }}</div>
+		{% endif %}
+		<div class="upsellproduct">
+		{% if upsell.is_form %}
+		<input type="hidden" name="upsell_include_{{ forloop.counter0 }}" value="true" />
+		{% trans "Add" %}
+		<span class="productname">{{ upsell.goal.translated_name }}</span>
+		<br/>
+		{% trans "Quantity" %}
+		<input name="upsell_qty_{{ forloop.counter0 }}" id="id_upsell_qty_{{ forloop.counter0 }}" value="{{ form.upsell_qty }}" />
+		{% else %}
+		<input type="hidden" name="upsell_qty_{{ forloop.counter0 }}" value="{% if upsell.is_qty_one %}1{% else %}MATCH{% endif %}" />
+		<input type="checkbox" name="upsell_include_{{ forloop.counter0 }}" value="true" {% if upsell.is_checked %}checked="true"{% endif %} />
+		<span class="productname">{{ upsell.goal.translated_name }}</span>
+		{% endif %}
+		<input type="hidden" name="upsell_slug_{{ forloop.counter0 }}" value="{{ upsell.goal.slug }}" />
+	</div>
+{% endfor %}
+</div>
+{% endif %}

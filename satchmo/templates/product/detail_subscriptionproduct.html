@@ -6,7 +6,7 @@
 {% load satchmo_ratings %}
 {% load satchmo_util %}
 
-{% block content %}
+{% block productdetail %}
 <h4>{% blocktrans with product.translated_name as name %}Subscription product {{ name }}{% endblocktrans %}</h4>
 <p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
 <h4>{% trans "Only " %}{{product.subscriptionproduct.recurring_times}} {% trans "easy payments of:" %}</h4>
@@ -43,9 +43,6 @@
 {% if "wishlist"|app_enabled and user.is_authenticated %}
 <input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
 {% endif %}
+{% product_upsell product %}
 </form>
-{% if sale %}
-{% include "discount/product_eligible.html" %}
-{% endif %}
-{% product_ratings %}
 {% endblock %}
