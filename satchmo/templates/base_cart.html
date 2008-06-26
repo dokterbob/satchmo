@@ -20,7 +20,7 @@
 {% else %}
     <h4>{% trans "Your Cart" %}</h4>
     <table><tr><th></th>
-    <th>{% trans "Quantity" %}</th>
+    <th align="left">{% trans "Quantity" %}</th>
     <th>{% trans "Item" %}</th>
     <th align="center">{% if default_view_tax %}{% trans "Total<br/>(incl.&nbsp;tax)" %}{% else %}{% trans "Total" %}{% endif %}</th>
     </tr>
@@ -35,12 +35,8 @@
             <td align="center">
                 <form class="qtyform" id="form-{{ cartitem.id }}" action="{% url satchmo_cart_set_qty %}" method="post">
                     <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
-                    <select name="quantity">
-                        {% for q in 10|template_range %}
-                        <option {% ifequal q cartitem.quantity %}selected="yes"{% endifequal %} value="{{ q }}">{{ q }}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="{% trans 'update amount' %}" />
+					<input type="text" name="quantity" id="id_quantity" value="{{ cartitem.quantity }}" />
+                    <input type="submit" id="id_update_submit" value="{% trans 'update amount' %}" />
                 </form>
             </td>
             <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>

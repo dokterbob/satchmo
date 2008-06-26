@@ -10,6 +10,11 @@ from satchmo.contact.models import Contact
 from satchmo.shop.templatetags import get_filter_args
 from satchmo.configuration import config_value, config_get
 from satchmo.product.models import Product
+from satchmo.shop.models import Cart
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 domain = 'http://testserver'
 prefix = settings.SHOP_BASE
@@ -143,6 +148,7 @@ class ShopTest(TestCase):
                                                       "quantity" : 2})
         content = response.content.split(',')
         self.assertEqual(content[0], '["DJ-Rocks_L_BL"')
+        print content[1]
         self.assert_(content[1].endswith('23.00"]'))
 
 #        response = self.client.get(prefix+'/product/neat-software/')
@@ -198,6 +204,9 @@ class ShopTest(TestCase):
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
         #print response
         self.assertContains(response, smart_str("Shipping + %s4.00" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
+        print "----------------------"
+        print response
+        print "----------------------"
         self.assertContains(response, smart_str("Tax + %s4.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         self.assertContains(response, smart_str("Total = %s54.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
@@ -454,26 +463,25 @@ class FilterUtilTest(TestCase):
 
         self.assertEqual(kwargs['one'], '"test"')
 
-class ProductTest(TestCase):
+class CartTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
 
-    def test_smart_attr(self):
+    def test_line_cost(self):
         p = Product.objects.get(slug__iexact='DJ-Rocks')
-        mb = Product.objects.get(slug__iexact='DJ-Rocks_M_B')
+        lb = Product.objects.get(slug__iexact='DJ-Rocks_L_BL')
         sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
 
-        # going to set a weight on the product, and an override weight on the medium
-        # shirt.
-
-        p.weight = 100
-        p.save()
-        sb.weight = 50
-        sb.save()
-
-        self.assertEqual(p.smart_attr('weight'), 100)
-        self.assertEqual(sb.smart_attr('weight'), 50)
-        self.assertEqual(mb.smart_attr('weight'), 100)
-
-        # no height
-        self.assertEqual(p.smart_attr('height'), None)
-        self.assertEqual(sb.smart_attr('height'), None)
+        cart = Cart()
+        cart.save()
+        cart.add_item(sb, 1)
+        self.assertEqual(cart.numItems, 1)
+        self.assertEqual(cart.total, Decimal("20.00"))
+        
+        cart.add_item(lb, 1)
+        self.assertEqual(cart.numItems, 2)
+        items = list(cart.cartitem_set.all())
+        item1 = items[0]
+        item2 = items[1]
+        self.assertEqual(item1.unit_price, Decimal("20.00"))
+        self.assertEqual(item2.unit_price, Decimal("23.00"))
+        self.assertEqual(cart.total, Decimal("43.00"))

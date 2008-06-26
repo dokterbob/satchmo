@@ -17,6 +17,7 @@ from django.core import validators, urlresolvers
 from django.core.validators import RequiredIfOtherFieldGiven
 from django.db import models
 from django.db.models import Q
+from django.dispatch import dispatcher
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.shop.utils import cross_list, normalize_dir
@@ -25,6 +26,7 @@ from satchmo.shop.utils.unique_id import slugify
 from satchmo.shop.utils.validators import ValidateIfFieldsSame
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
+import signals
 #from sets import Set
 try:
     set
@@ -504,7 +506,7 @@ class Product(models.Model):
         if subtype:
             price = subtype.unit_price
         else:
-            price = self._get_qty_price(1)
+            price = get_product_quantity_price(self, 1)
             
         if not price:
             price = Decimal("0.00")
@@ -523,33 +525,16 @@ class Product(models.Model):
             price = subtype.get_qty_price(qty)
 
         else:
-            price = self._get_qty_price(qty)
+            price = get_product_quantity_price(self, 1)
             if not price:
                 price = self._get_fullPrice()
 
         return price
 
-    def _get_qty_price(self, qty):
-        """
-        returns price as a Decimal
-        """
-        qty_discounts = self.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty)
-        if qty_discounts.count() > 0:
-            # Get the price with the quantity closest to the one specified without going over
-            val = qty_discounts.order_by('-quantity')[0].price
-            try:
-                if not type(val) is Decimal:
-                    val = Decimal(val)
-                return val
-            except TypeError:
-                return val
-        else:
-            return None
-
     def get_qty_price_list(self):
         """Return a list of tuples (qty, price)"""
         prices = Price.objects.filter(product__id=self.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
-        return [(price.quantity, price.price) for price in prices]
+        return [(price.quantity, price.dynamic_price) for price in prices]
 
     def in_stock(self):
         subtype = self.get_subtype_with_attr('in_stock')
@@ -800,7 +785,7 @@ class CustomProduct(models.Model):
         the specified qty.  Otherwise, return the unit_price
         returns price as a Decimal
         """
-        price = self.product._get_qty_price(qty)
+        price = get_product_quantity_price(self.product, qty)
         if not price:
             price = self.product._get_fullPrice()
 
@@ -810,7 +795,7 @@ class CustomProduct(models.Model):
         """
         Return the full price, ignoring the deposit.
         """
-        price = self.product._get_qty_price(qty)
+        price = get_product_quantity_price(self.product, qty)
         if not price:
             price = self.product._get_fullPrice()
 
@@ -1191,7 +1176,7 @@ class ProductVariation(models.Model):
             qty_discounts = Price.objects.filter(product__id=self.product.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
             if qty_discounts.count() > 0:
                 # Get the price with the quantity closest to the one specified without going over
-                return qty_discounts.order_by('-quantity')[0].price
+                return qty_discounts.order_by('-quantity')[0].dynamic_price
 
             if self.parent.product.unit_price is None:
                 log.warn("%s: Unexpectedly no parent.product.unit_price", self)
@@ -1257,12 +1242,15 @@ class ProductVariation(models.Model):
                 groupList.append(option.optionGroup.id)
         return(False)
 
+    def get_qty_price(self, qty):
+        return get_product_quantity_price(self.product, qty, delta=self.price_delta(), parent=self.parent.product)
+
     def get_qty_price_list(self):
         """Return a list of tuples (qty, price)"""
         prices = Price.objects.filter(product__id=self.product.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
         if prices.count() > 0:
             # prices directly set, return them
-            pricelist = [(price.quantity, price.price) for price in prices]
+            pricelist = [(price.quantity, price.dynamic_price) for price in prices]
         else:
             prices = self.parent.product.get_qty_price_list()
             price_delta = self.price_delta()
@@ -1366,6 +1354,13 @@ class Price(models.Model):
 
     def __unicode__(self):
         return unicode(self.price)
+        
+    def _dynamic_price(self):
+        """Get the current price as modified by all listeners."""
+        dispatcher.send(signal=signals.satchmo_price_query, price=self)
+        return self.price
+
+    dynamic_price = property(fget=_dynamic_price)
 
     def save(self):
         prices = Price.objects.filter(product=self.product, quantity=self.quantity)
@@ -1523,3 +1518,24 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
 
     #log.debug("Translated version: %s", val.encode('utf-8'))
     return mark_safe(val)
+
+def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=None):
+    """
+    Returns price as a Decimal else None.  
+    First checks the product, if none, then checks the parent.
+    """
+        
+    qty_discounts = product.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty)
+    if qty_discounts.count() > 0:
+        # Get the price with the quantity closest to the one specified without going over
+        val = qty_discounts.order_by('-quantity')[0].dynamic_price
+        try:
+            if not type(val) is Decimal:
+                val = Decimal(val)
+            return val+delta
+        except TypeError:
+            return val+delta
+    else:
+        if parent:
+            return get_product_quantity_price(parent, qty, delta=delta)
+        return None

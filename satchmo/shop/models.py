@@ -13,6 +13,7 @@ from logging import getLogger
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
+from django.dispatch import dispatcher
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,6 +23,8 @@ from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
 from satchmo.shop.utils import url_join
+
+from signals import satchmo_cartitem_price_query
 
 log = getLogger('satchmo.shop.models')
 
@@ -319,14 +322,34 @@ class CartItem(models.Model):
 
     def _get_line_unitprice(self):
         # Get the qty discount price as the unit price for the line.
-        line_price_delta = Decimal("0")
-        qty_price = self.product.get_qty_price(self.quantity)
+
+        self.qty_price = self.get_qty_price(self.quantity)
+        self.detail_price = self.get_detail_price()
+        
+        #send signal to possibly adjust the unitprice                    
+        dispatcher.send(satchmo_cartitem_price_query, cartitem=self)
+        price = self.qty_price + self.detail_price
+        
+        #clean up temp vars
+        del self.qty_price
+        del self.detail_price
+        
+        return price
+        
+    unit_price = property(_get_line_unitprice)
+
+    def get_detail_price(self):
+        """Get the delta price based on detail modifications"""
+        delta = Decimal("0")        
         if self.has_details:
             for detail in self.details.all():
                 if detail.price_change and detail.value:
-                    line_price_delta += detail.price_change
-        return (qty_price + line_price_delta)
-    unit_price = property(_get_line_unitprice)
+                    delta += detail.price_change
+        return delta
+
+    def get_qty_price(self, qty):
+        """Get the price for for each unit before any detail modifications"""
+        return self.product.get_qty_price(qty)        
 
     def _get_line_total(self):
         return self.unit_price * self.quantity

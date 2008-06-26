@@ -329,3 +329,7 @@ img {
 .recentitem {
 	padding-bottom: 10px;
 }
+
+.qtyform #id_quantity {
+    width: 5em;
+}

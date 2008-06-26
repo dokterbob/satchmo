@@ -61,29 +61,6 @@ True
 >>> ProductVariation.objects.filter(parent=django_config).count()
 4
 
-# Create two Categories that are each other's parents. First make sure that
-# attempting to save them throws an error, then force a save anyway.
->>> pet_jewelry = Category.objects.create(slug="pet-jewelry", name="Pet Jewelry")
->>> womens_jewelry = Category.objects.create(slug="womens-jewelry", name="Women's Jewelry")
->>> pet_jewelry.parent = womens_jewelry
->>> pet_jewelry.save()
->>> womens_jewelry.parent = pet_jewelry
->>> womens_jewelry.save()
-Traceback (most recent call last):
-    ...
-ValidationError: [u'You must not save a category in itself!']
->>> Model.save(womens_jewelry)
-
-# Check that Category methods still work on a Category whose parents list
-# contains an infite loop.
->>> pet_jewelry = Category.objects.get(slug="pet-jewelry")
->>> womens_jewelry = Category.objects.get(slug="womens-jewelry")
->>> womens_jewelry.get_all_children()
-[<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>]
-
->>> Category.objects.all().order_by('name')
-[<Category: Pet Jewelry :: Women's Jewelry :: Pet Jewelry>, <Category: Women's Jewelry :: Pet Jewelry :: Women's Jewelry>]
-
 # Test the ProductExportForm behavior
 # Specifically, we're checking that a unicode 'format' is converted to ascii
 # in the 'export' method of 'ProductExportForm'.
@@ -99,7 +76,12 @@ from django.conf import settings
 from django.core.validators import ValidationError
 from django.db.models import Model
 from django.test import TestCase
-from satchmo.product.models import Category
+from satchmo.product.models import Category, Product
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 
 
 class CategoryTest(TestCase):
@@ -120,6 +102,30 @@ class CategoryTest(TestCase):
         Model.save(womens_jewelry)
         womens_jewelry = Category.objects.get(slug="womens-jewelry")
         self.assertEqual(womens_jewelry.get_absolute_url(),(u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/" % prefix))
+        
+    def test_infinite_loop(self):
+        """Check that Category methods still work on a Category whose parents list contains an infinite loop."""
+        # Create two Categories that are each other's parents. First make sure that
+        # attempting to save them throws an error, then force a save anyway.
+        pet_jewelry = Category.objects.create(slug="pet-jewelry", name="Pet Jewelry")
+        womens_jewelry = Category.objects.create(slug="womens-jewelry", name="Women's Jewelry")
+        pet_jewelry.parent = womens_jewelry
+        pet_jewelry.save()
+        womens_jewelry.parent = pet_jewelry
+        try:
+            womens_jewelry.save()
+            self.fail('Should have thrown a ValidationError')
+        except ValidationError:
+            pass
+        
+        # force save
+        Model.save(womens_jewelry)
+        pet_jewelry = Category.objects.get(slug="pet-jewelry")
+        womens_jewelry = Category.objects.get(slug="womens-jewelry")
+
+        kids = Category.objects.all().order_by('name')
+        slugs = [cat.slug for cat in kids]
+        self.assertEqual(slugs, [u'pet-jewelry', u'womens-jewelry'])
 
 class ProductExportTest(TestCase):
     """
@@ -177,6 +183,55 @@ class ProductExportTest(TestCase):
         response = self.client.post(url, form_data)
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('application/zip', response['Content-Type'])
+
+class ProductTest(TestCase):
+    """Test Product functions"""
+    fixtures = ['sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+    
+    def test_quantity_price_standard_product(self):
+        """Check quantity price for a standard product"""
+        
+        product = Product.objects.get(slug='PY-Rocks')
+        self.assertEqual(product.unit_price, Decimal("19.50"))
+
+    def test_quantity_price_productvariation(self):
+        """Check quantity price for a productvariation"""
+
+        # base product
+        product = Product.objects.get(slug='DJ-Rocks')
+        self.assertEqual(product.unit_price, Decimal("20.00"))
+        self.assertEqual(product.unit_price, product.get_qty_price(1))
+        
+        # product with no price delta
+        product = Product.objects.get(slug='DJ-Rocks_S_B')
+        self.assertEqual(product.unit_price, Decimal("20.00"))
+        self.assertEqual(product.unit_price, product.get_qty_price(1))
+        
+        # product which costs more due to details
+        product = Product.objects.get(slug='DJ-Rocks_L_BL')
+        self.assertEqual(product.unit_price, Decimal("23.00"))
+        self.assertEqual(product.unit_price, product.get_qty_price(1))
+        
+    def test_smart_attr(self):
+        p = Product.objects.get(slug__iexact='DJ-Rocks')
+        mb = Product.objects.get(slug__iexact='DJ-Rocks_M_B')
+        sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
+
+        # going to set a weight on the product, and an override weight on the medium
+        # shirt.
+
+        p.weight = 100
+        p.save()
+        sb.weight = 50
+        sb.save()
+
+        self.assertEqual(p.smart_attr('weight'), 100)
+        self.assertEqual(sb.smart_attr('weight'), 50)
+        self.assertEqual(mb.smart_attr('weight'), 100)
+
+        # no height
+        self.assertEqual(p.smart_attr('height'), None)
+        self.assertEqual(sb.smart_attr('height'), None)
 
 if __name__ == "__main__":
     import doctest
