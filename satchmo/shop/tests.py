@@ -452,22 +452,6 @@ class CartTest(TestCase):
         lb = Product.objects.get(slug__iexact='DJ-Rocks_L_BL')
         sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
 
-        # going to set a weight on the product, and an override weight on the medium
-        # shirt.
-
-        p.weight = 100
-        p.save()
-        sb.weight = 50
-        sb.save()
-
-        self.assertEqual(p.smart_attr('weight'), 100)
-        self.assertEqual(sb.smart_attr('weight'), 50)
-        self.assertEqual(lb.smart_attr('weight'), 100)
-
-        # no height
-        self.assertEqual(p.smart_attr('height'), None)
-        self.assertEqual(sb.smart_attr('height'), None)
-
         cart = Cart()
         cart.save()
         cart.add_item(sb, 1)
