@@ -122,4 +122,4 @@ def product_upsell(product):
         pass
         
     return { 'goals' : goals }
-register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(product_upsell)=======
+register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(product_upsell)
