@@ -32,7 +32,7 @@ for module in _default_modules:
     try:
         load_module("satchmo.tax.modules.%s.config" % module)
     except ImportError:
-        log.debug('Could not load default shipping module configuration: %s', module)
+        log.debug('Could not load default tax module configuration: %s', module)
 
 
     
