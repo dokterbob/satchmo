@@ -332,6 +332,10 @@ img {
 	padding-bottom: 10px;
 }
 
+div.recentlyadded { 
+    display: block;
+}
+
 .qtyform #id_quantity {
     width: 5em;
 }

@@ -1,4 +1,5 @@
 {% load i18n comments comment_utils %}
+{% load satchmo_ratings %}
 <div class="productreviews">
     <h2>{% trans 'Product Reviews' %}</h2>
     {% get_public_comment_list for product.product product.id as comments %}
@@ -7,6 +8,9 @@
             {% trans 'Be the first to review it!' %}
         {% endif %}
     {% else %}
+		{% with product|product_rating_average_string as rating %}
+		<p class="averagerating">{% blocktrans %}Average rating {{rating}}{% endblocktrans %}</p>
+		{% endwith %}
         {% for comment in comments %}
         <div class="comment {% cycle odd,even %}" id="c{{ comment.id }}">
             <p><a id="c{{ comment.id }}"></a>

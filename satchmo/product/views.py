@@ -275,7 +275,7 @@ def display_featured():
         return(Product.objects.filter(active=True).filter(featured=True))[:num_to_display]
     else:
         return(Product.objects.filter(active=True).filter(featured=True).order_by('?')[:num_to_display])
-            
+
 def _get_taxprocessor(user):
     if user.is_authenticated():
         user = user

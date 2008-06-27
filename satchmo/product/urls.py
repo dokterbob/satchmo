@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('satchmo.product',
+    (r'^view/recent/$', 'filterviews.display_recent', {}, 'satchmo_product_recently_added'),
+    (r'^view/bestrated/$', 'filterviews.display_bestratings', {}, 'satchmo_product_best_rated'),
+    (r'^view/bestsellers/$', 'filterviews.display_bestsellers', {}, 'satchmo_product_best_selling'),
     (r'^(?P<product_slug>[-\w]+)/$', 'views.get_product', {}, 'satchmo_product'),
     (r'^(?P<product_slug>[-\w]+)/prices/$', 'views.get_price', {}, 'satchmo_product_prices'),
     (r'^(?P<product_slug>[-\w]+)/price_detail/$', 'views.get_price_detail', {}, 'satchmo_product_price_detail'),

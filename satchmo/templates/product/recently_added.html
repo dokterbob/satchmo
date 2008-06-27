@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_util %}
+
+{% block content %}
+<h2>{% trans "Recently Added" %}</h2>
+{% for product in page.object_list %}
+	<div class="recentlyadded">
+    <div class = "productImage">    
+   		{% if product.main_image %}
+      	<center>
+      		<a href="{{ product.get_absolute_url }}"><img src="{{ product.main_image.get_picture_url|thumbnail:"width=85" }}" width="85" /> </a>
+      	</center>
+   		{% endif %}     
+    	<p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+	</div>
+	</div>
+{% endfor %}
+{% if page.has_other_pages %}
+<div id = "pagination">
+<ul>
+    {% if page.has_previous %}
+        <li> <a href="{{ request.path }}?page={{page.previous_page_number}}">{% trans "Previous" %}</a> </li>
+    {% else %}
+        <li> {% trans "Previous" %} </li>
+    {% endif %}
+    {% if page.has_next %}
+        <li> <a href="{{ request.path }}?page={{page.next_page_number}}">{% trans "Next" %}</a></li>
+    {% else %}
+        <li> {% trans "Next" %} </li>
+    {% endif %}
+</ul>
+</div>
+{% endif %}
+
+{% endblock %}
