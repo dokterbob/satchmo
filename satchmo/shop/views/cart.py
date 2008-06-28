@@ -3,6 +3,8 @@ try:
 except:
     from django.utils._decimal import Decimal
 
+import logging
+
 from django.core import urlresolvers
 from django.dispatch import dispatcher
 from django.http import HttpResponseRedirect, HttpResponse
@@ -12,6 +14,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
+
 from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
@@ -20,7 +23,6 @@ from satchmo.shop.models import Cart, CartItem, NullCart
 from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete
 from satchmo.shop.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
-import logging
 
 log = logging.getLogger('shop.views.cart')
 
@@ -67,7 +69,7 @@ def _set_quantity(request, force_delete=False):
         from satchmo.shop.models import Config
         config = Config.get_shop_config()
         if config.no_stock_checkout == False:
-            if cartitem.product.items_in_stock < qty: 
+            if cartitem.product.items_in_stock < qty:
                 return (False, cart, cartitem, _("Not enough items of '%s' in stock.") % cartitem.product.translated_name())
         cartitem.quantity = qty
         cartitem.save()
@@ -77,19 +79,19 @@ def _set_quantity(request, force_delete=False):
 
 def display(request, cart=None, error_message='', default_view_tax=NOTSET):
     """Display the items in the cart."""
-    
+
     if default_view_tax == NOTSET:
         default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
-            
+
     if not cart:
         cart = Cart.objects.from_request(request)
-    
-    if cart.numItems > 0:    
+
+    if cart.numItems > 0:
         products = [item.product for item in cart.cartitem_set.all()]
-        sale = find_best_auto_discount(products)    
+        sale = find_best_auto_discount(products)
     else:
         sale = None
-                
+
     context = RequestContext(request, {
         'cart': cart,
         'error_message': error_message,
@@ -103,7 +105,7 @@ def add(request, id=0):
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
-    
+
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
@@ -111,7 +113,7 @@ def add(request, id=0):
         if not product.active:
             return _product_error(
                 product, _("That product is not available at the moment."))
-        
+
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
@@ -125,12 +127,12 @@ def add(request, id=0):
     if quantity < 1:
         return _product_error(
             product, _("Please enter a positive number."))
-            
+
     cart = Cart.objects.from_request(request, create=True)
     if cart.add_item(product, number_added=quantity, details=details) == False:
         return _product_error(
             product, _("Not enough items of '%s' in stock.") % product.translated_name())
-            
+
     # got to here with no error, now send a signal so that listeners can also operate on this form.
     results = dispatcher.send(signal=satchmo_cart_add_complete, cart=cart, product=product, request=request, form=formdata)
     log.debug('Dispatcher results: %s', results)
@@ -161,8 +163,8 @@ def add_ajax(request, id=0, template="json.html"):
         else:
             if not product.active:
                 data['errors'].append(('product', _('That product is not available at the moment.')))
-             
-            else:   
+
+            else:
                 data['id'] = product.id
                 data['name'] = product.translated_name()
 
@@ -170,7 +172,7 @@ def add_ajax(request, id=0, template="json.html"):
                     quantity = -1
                 else:
                     quantity = formdata['quantity']
-                
+
                 try:
                     quantity = int(quantity)
                     if quantity < 0:
@@ -196,7 +198,7 @@ def add_ajax(request, id=0, template="json.html"):
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
-    
+
     dispatcher.send(signal=satchmo_cart_changed, cart=tempCart, request=request)
     return render_to_response(template, {'json' : encoded})
 
@@ -272,19 +274,19 @@ def set_quantity_ajax(request, template="json.html"):
         else:
             carttotal = "0.00"
             cartqty = 0
-        
+
         data['cart_total'] = carttotal
         data['cart_count'] = cartqty
-            
+
         if cartitem:
             itemid = cartitem.id
             itemqty = cartitem.quantity
-            price = str(trunc_decimal(cartitem.line_total, 2)) 
+            price = str(trunc_decimal(cartitem.line_total, 2))
         else:
             itemid = -1
             itemqty = 0
             price = "0.00"
-            
+
         data['item_id'] = itemid
         data['item_qty'] = itemqty
         data['item_price'] = price
@@ -300,7 +302,7 @@ def product_from_post(productslug, formdata):
     p_types = product.get_subtypes()
     details = []
     zero = Decimal("0.00")
-    
+
     if 'ConfigurableProduct' in p_types:
         # This happens when productname cannot be updated by javascript.
         cp = product.configurableproduct
@@ -335,7 +337,7 @@ def product_from_post(productslug, formdata):
             }
             details.append(data)
             data = {}
-            
+
     if 'GiftCertificateProduct' in p_types:
         ix = 0
         for field in ('email', 'message'):
@@ -349,13 +351,13 @@ def product_from_post(productslug, formdata):
             details.append(data)
         log.debug("Gift Certificate details: %s", details)
         data = {}
-        
+
     return product, details
-    
+
 def _product_error(product, msg):
     template = find_product_template(product)
     context = RequestContext(request, {
         'product': product,
-        'error_message': msg})      
+        'error_message': msg})
     return HttpResponse(template.render(context))
-    
+
