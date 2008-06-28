@@ -110,9 +110,9 @@ def add(request, id=0):
         productslug = formdata['productname']
     try:
         product, details = product_from_post(productslug, formdata)
-        if not product.active:
-            return _product_error(
-                product, _("That product is not available at the moment."))
+        if not (product and product.active):
+            return _product_error(request, product,
+                _("That product is not available at the moment."))
 
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
@@ -121,24 +121,24 @@ def add(request, id=0):
     try:
         quantity = int(formdata['quantity'])
     except ValueError:
-        return _product_error(
-            product, _("Please enter a whole number."))
+        return _product_error(request, product,
+            _("Please enter a whole number."))
 
     if quantity < 1:
-        return _product_error(
-            product, _("Please enter a positive number."))
+        return _product_error(request, product,
+            _("Please enter a positive number."))
 
     cart = Cart.objects.from_request(request, create=True)
     if cart.add_item(product, number_added=quantity, details=details) == False:
-        return _product_error(
-            product, _("Not enough items of '%s' in stock.") % product.translated_name())
+        return _product_error(request, product,
+            _("Not enough items of '%s' in stock.") % product.translated_name())
 
     # got to here with no error, now send a signal so that listeners can also operate on this form.
     results = dispatcher.send(signal=satchmo_cart_add_complete, cart=cart, product=product, request=request, form=formdata)
     log.debug('Dispatcher results: %s', results)
+    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
 
     url = urlresolvers.reverse('satchmo_cart')
-    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
     return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="json.html"):
@@ -354,7 +354,7 @@ def product_from_post(productslug, formdata):
 
     return product, details
 
-def _product_error(product, msg):
+def _product_error(request, product, msg):
     template = find_product_template(product)
     context = RequestContext(request, {
         'product': product,

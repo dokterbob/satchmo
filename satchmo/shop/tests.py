@@ -27,7 +27,7 @@ from satchmo.caching import cache_delete
 from satchmo.configuration import config_value, config_get
 from satchmo.contact.models import Contact
 from satchmo.product.models import Product
-from satchmo.shop.models import Cart
+from satchmo.shop.models import Cart, Config
 from satchmo.shop.templatetags import get_filter_args
 
 domain = 'http://testserver'
@@ -89,7 +89,6 @@ class ShopTest(TestCase):
         """
         Validate account creation process
         """
-        from satchmo.shop.models import Config
         shop_config = Config.get_shop_config()
         subject = u"Welcome to %s" % shop_config.store_name
         response = self.client.get('/accounts/register/')
@@ -122,6 +121,43 @@ class ShopTest(TestCase):
         self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, "Django Rocks shirt (Large/Blue)", count=1, status_code=200)
+
+    def test_cart_adding_errors(self):
+        """
+        Test proper error reporting when attempting to add items to the cart.
+        """
+
+        # Attempting to add a nonexistent product should result in a 404 error.
+        response = self.client.post(prefix + '/cart/add/',
+            {'productname': 'nonexistent-product', 'quantity': '1'})
+        self.assertContains(response, "The product you have requested does not exist.", count=1, status_code=404)
+
+        # You should not be able to add a product that is inactive.
+        py_shirt = Product.objects.get(slug='PY-Rocks')
+        py_shirt.active = False
+        py_shirt.save()
+        response = self.client.post(prefix + '/cart/add/',
+            {'productname': 'PY-Rocks', 'quantity': '1'})
+        self.assertContains(response, "That product is not available at the moment.", count=1, status_code=200)
+
+        # You should not be able to add a product with a non-integer quantity.
+        response = self.client.post(prefix + '/cart/add/',
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5'})
+        self.assertContains(response, "Please enter a whole number.", count=1, status_code=200)
+
+        # You should not be able to add a product with a quantity less than one.
+        response = self.client.post(prefix + '/cart/add/',
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '0'})
+        self.assertContains(response, "Please enter a positive number.", count=1, status_code=200)
+
+        # If no_stock_checkout is False, you should not be able to order a
+        # product that is out of stock.
+        shop_config = Config.get_shop_config()
+        shop_config.no_stock_checkout = False
+        shop_config.save()
+        response = self.client.post(prefix + '/cart/add/',
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '1'})
+        self.assertContains(response, "Not enough items of &#39;A really neat book (Soft cover)&#39; in stock.", count=1, status_code=200)
 
     def test_product(self):
         # Test for an easily missed reversion. When you lookup a productvariation product then
