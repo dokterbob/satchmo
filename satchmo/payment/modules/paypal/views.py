@@ -132,6 +132,7 @@ def ipn(request):
             # If the payment hasn't already been processed:
             order = Order.objects.get(pk=invoice)
             
+            order.add_status(status='Pending', notes=_("Paid through PayPal."))
             payment_module = config_get_group('PAYMENT_PAYPAL')
             record_payment(order, payment_module, amount=gross, transaction_id=txn_id)
             
@@ -145,7 +146,6 @@ def ipn(request):
                 order.save()
                 log.debug("Saved order notes from Paypal")
             
-            order.add_status(status='Pending', notes=_("Paid through PayPal."))
             for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=True, completed=False):
                 item.completed = True
                 item.save()

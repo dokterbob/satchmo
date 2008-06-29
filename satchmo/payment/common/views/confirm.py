@@ -92,7 +92,8 @@ def credit_success_handler(working_cart, order, payment_module):
         if item.product.is_subscription:
             item.completed = True
             item.save()
-    order.add_status(status='Pending', notes = "Order successfully submitted")
+    if order.status == None:
+        order.add_status(status='Pending', notes = "Order successfully submitted")
     send_order_confirmation(order)
     
     #Redirect to the success page
