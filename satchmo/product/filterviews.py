@@ -24,7 +24,7 @@ def display_bestsellers(request):
         pks = cache_get('BESTSELLERS')
         pks = [long(pk) for pk in pks.split(',')]
         productdict = Product.objects.in_bulk(pks)
-        log.debug(productdict)
+        #log.debug(productdict)
         sellers = [productdict[pk] for pk in pks]
         log.debug('retrieved bestselling products from cache')
         
@@ -45,7 +45,7 @@ def display_bestsellers(request):
         
         for p in work:
             product = p[1]
-            pks.append(str(product.pk))
+            pks.append("%i" % product.pk)
             sellers.append(product)
              
         pks = ",".join(pks)

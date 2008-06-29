@@ -23,7 +23,7 @@ def get_product_rating(product, free=False, site=None):
                                site__id__exact=site,
                                is_public__exact=True)
     ratings = [comment.rating1 for comment in comments]
-    log.debug(ratings)
+    #log.debug(ratings)
     if ratings:
         return average(ratings)
     
@@ -70,7 +70,7 @@ def highest_rated(num=None, free=False, site=None):
         # now take the average of each, and make a nice list suitable for sorting
         ratelist = [(average(ratings), pk) for pk, ratings in commentdict.items()]
         ratelist.sort()
-        log.debug(ratelist)
+        #log.debug(ratelist)
         
         # chop off the highest and reverse so highest is the first
         if num is None:
@@ -78,7 +78,7 @@ def highest_rated(num=None, free=False, site=None):
         ratelist = ratelist[-num:]
         ratelist.reverse()
 
-        pks = [str(p[1]) for p in ratelist]
+        pks = ["%i" % p[1] for p in ratelist]
         pkstring = ",".join(pks)
         log.debug('calculated highest rated products, set to cache: %s', pkstring)
         cache_set(nce.key, value=pkstring)
