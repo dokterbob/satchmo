@@ -3,7 +3,7 @@
 # and import it from your main settings file. (from local_settings import *)
 import os
 
-DIRNAME = os.path.abspath(os.path.dirname(__file__))
+DIRNAME = os.path.abspath(os.path.dirname(__file__).decode('utf-8'))
 
 DJANGO_PROJECT = 'satchmo'
 DJANGO_SETTINGS_MODULE = 'satchmo.settings'
