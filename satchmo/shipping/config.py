@@ -19,7 +19,7 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
 # 'Tiered' is special, since it needs to be added as a module.  To enable it,
 # just add satchmo.shipping.modules.tiered to your INSTALLED_APPS, you don't
 # need to add it to CUSTOM_SHIPPING_MODULES either.
-_default_modules = ('dummy', 'flat', 'per', 'ups')
+_default_modules = ('dummy', 'fedex', 'flat', 'per', 'ups')
 
 for module in _default_modules:
     try:
@@ -42,7 +42,9 @@ class ShippingModuleNotFound(Exception):
 
 def shipping_methods():
     methods = []
-    for m in config_value('SHIPPING', 'MODULES'):
+    modules = config_value('SHIPPING', 'MODULES')
+    log.debug('Getting shipping methods: %s', modules)
+    for m in modules:
         module = load_module(m)
         methods.extend(module.get_methods())
     return methods

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  {% spaceless %}
+  <FDXRateRequest xmlns:api="http://www.fedex.com/fsmapi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FDXRateRequest.xsd">
+
+    <RequestHeader>
+      <AccountNumber>{{ config.account }}</AccountNumber>
+      <MeterNumber>{{ config.meter }}</MeterNumber>
+      <CarrierCode>FDXG</CarrierCode>
+    </RequestHeader>
+
+    <Service>{{ config.ship_type }}</Service>
+    <Packaging>{{ config.packaging }}</Packaging>
+    <WeightUnits>{{ cart_item.product.weight_units|upper }}S</WeightUnits>
+    <Weight>{{ weight }}</Weight>
+
+    <OriginAddress>
+      <StateOrProvinceCode>{{ config.shop_details.state }}</StateOrProvinceCode>
+      <PostalCode>{{ config.shop_details.postal_code }}</PostalCode>
+      <CountryCode>{{ config.shop_details.country.iso2_code }}</CountryCode>
+    </OriginAddress>
+
+    <DestinationAddress>
+      <StateOrProvinceCode>{{ contact.shipping_address.state }}</StateOrProvinceCode>
+      <PostalCode>{{ contact.shipping_address.postal_code }}</PostalCode>
+      <CountryCode>{{ contact.shipping_address.country }}</CountryCode>
+    </DestinationAddress>
+
+    <Payment>
+      <PayorType>SENDER</PayorType>
+    </Payment>
+
+    <DeclaredValue>
+      <Value>{{ unit_price }}</Value>
+      <CurrencyCode>USD</CurrencyCode>
+    </DeclaredValue>
+    <PackageCount>1</PackageCount>
+  </FDXRateRequest>
+  {% endspaceless %}
