@@ -12,7 +12,7 @@ import datetime
 selection = ''
 
 class ContactInfoForm(forms.Form):
-    email = forms.EmailField(max_length=30)
+    email = forms.EmailField(max_length=75)
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     phone = forms.CharField(max_length=30)
