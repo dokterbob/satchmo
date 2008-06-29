@@ -6,6 +6,8 @@ import values
 
 log = logging.getLogger('configuration')
 
+_NOTSET = object()
+
 class ConfigurationSettings(object):
     """A singleton manager for ConfigurationSettings"""
 
@@ -202,9 +204,14 @@ def config_register(value):
     else:
         return ConfigurationSettings().register(value)
     
-def config_value(group, key):
+def config_value(group, key, default=_NOTSET):
     """Get a value from the configuration system"""
-    return config_get(group, key).value
+    try:
+        return config_get(group, key).value
+    except SettingNotSet:
+        if default != _NOTSET:
+            return default
+        raise
     
 def config_choice_values(group, key, skip_missing=True):
     """Get pairs of key, label from the setting."""

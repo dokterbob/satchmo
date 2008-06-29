@@ -20,7 +20,7 @@ class ImageWithThumbnailField(ImageField):
                  width_field=None, height_field=None,
                  auto_rename="UNSET", name_field=None, **kwargs):
         if auto_rename == 'UNSET':
-            auto_rename = config_value('PRODUCT','RENAME_IMAGES')
+            auto_rename = config_value('THUMBNAIL','RENAME_IMAGES')
             
         self.width_field, self.height_field = width_field, height_field
         super(ImageWithThumbnailField, self).__init__(verbose_name, name,

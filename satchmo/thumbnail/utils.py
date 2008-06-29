@@ -110,7 +110,7 @@ def make_thumbnail(photo_url, width=None, height=None, root=settings.MEDIA_ROOT,
     try:
         img = Image.open(photo_path).copy()
         img.thumbnail(size, Image.ANTIALIAS)
-        img.save(th_path, quality=config_value('SHOP', 'IMAGE_QUALITY'))
+        img.save(th_path, quality=config_value('THUMBNAIL', 'IMAGE_QUALITY'))
     except Exception, err:
         # this goes to webserver error log
         import sys
