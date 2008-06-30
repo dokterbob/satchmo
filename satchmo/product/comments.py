@@ -85,7 +85,18 @@ def highest_rated(num=None, free=False, site=None):
     
     if pks:
         productdict = Product.objects.in_bulk(pks)
-        products = [productdict[int(pk)] for pk in pks]
+        products = []
+        for pk in pks:
+            try:
+                if (int(pk)) in productdict:
+                    key = int(pk)
+                elif long(pk) in productdict:
+                    key = long(pk)
+                else:
+                    continue
+                products.append(productdict[key])
+            except ValueError:
+                pass
     else:
         products = []
         

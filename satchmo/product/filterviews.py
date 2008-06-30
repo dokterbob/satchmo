@@ -22,10 +22,22 @@ def display_bestsellers(request):
     """Display a list of the products which have sold the most"""
     try:
         pks = cache_get('BESTSELLERS')
-        pks = [int(pk) for pk in pks.split(',')]
+        pks = [long(pk) for pk in pks.split(',')]
         productdict = Product.objects.in_bulk(pks)
         #log.debug(productdict)
-        sellers = [productdict[pk] for pk in pks]
+        sellers = []
+        for pk in pks:
+            try:
+                if (int(pk)) in productdict:
+                    key = int(pk)
+                elif long(pk) in productdict:
+                    key = long(pk)
+                else:
+                    continue
+                sellers.append(productdict[key])
+            except ValueError:
+                pass
+            
         log.debug('retrieved bestselling products from cache')
         
     except NotCachedError, nce:
