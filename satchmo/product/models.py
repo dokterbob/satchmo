@@ -525,7 +525,7 @@ class Product(models.Model):
             price = subtype.get_qty_price(qty)
 
         else:
-            price = get_product_quantity_price(self, 1)
+            price = get_product_quantity_price(self, qty)
             if not price:
                 price = self._get_fullPrice()
 

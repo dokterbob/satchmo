@@ -76,7 +76,7 @@ from django.conf import settings
 from django.core.validators import ValidationError
 from django.db.models import Model
 from django.test import TestCase
-from satchmo.product.models import Category, Product
+from satchmo.product.models import Category, Product, Price
 try:
     from decimal import Decimal
 except:
@@ -193,6 +193,17 @@ class ProductTest(TestCase):
         
         product = Product.objects.get(slug='PY-Rocks')
         self.assertEqual(product.unit_price, Decimal("19.50"))
+
+    def test_discount_qty_price(self):
+        """Test quantity price discounts"""
+        product = Product.objects.get(slug='PY-Rocks')
+        price = Price(product=product, quantity=10, price=Decimal("10.00"))
+        price.save()
+    
+        self.assertEqual(product.unit_price, Decimal("19.50"))
+        self.assertEqual(product.get_qty_price(1), Decimal("19.50"))
+        self.assertEqual(product.get_qty_price(2), Decimal("19.50"))
+        self.assertEqual(product.get_qty_price(10), Decimal("10.00"))
 
     def test_quantity_price_productvariation(self):
         """Check quantity price for a productvariation"""
