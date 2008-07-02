@@ -37,7 +37,7 @@ class NullConfig(object):
         self.site = self.country = None
         self.no_stock_checkout = False
         self.in_country_only = True
-        self.sales_country = Country.objects.get(iso3_code__exact='USA')
+        self.sales_country = None
 
     def _options(self):
         return ConfigurationSettings()
