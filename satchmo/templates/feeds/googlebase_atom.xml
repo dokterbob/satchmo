@@ -10,13 +10,14 @@
 	<id>{{ url|atom_tag_uri }}</id>
 {% for product in products %}
 <entry>
-	<id>{{ product.slug }}</id>
+	<g:id>{{ product.pk }}</g:id>
 	<title>{{ product.name }}</title>
 	<description>{% if product.description %}{{ product.description|remove_tags }}{% else %}{{ product.productvariation.parent.product.description|remove_tags|default:"No description" }}{% endif %}</description>{% if product.short_description %}
 	<summary>{% if product.short_description %}{{ product.short_description|remove_tags }}{% else %}{{ product.productvariation.parent.product.short_description|remove_tags|default:"No description" }}{% endif %}</summary>{% endif %}
 	<link href="{{ shop.base_url }}{{ product.get_absolute_url }}" />
-	<price>{{ product.unit_price|truncate_decimal }}</price>
-	<g:product_type>{{ product.get_category }}</g:product_type>{% with product.main_image.get_image_url as imgurl %}{% if imgurl %}<g:image_link>{{ shop.base_url }}{{ imgurl }}</g:image_link>{% endif %}{% endwith %}{% if product.weight %}
+	<g:price>{{ product.unit_price|truncate_decimal }}</g:price>
+	<g:product_type>{{ product.get_category }}</g:product_type>{% for pic in product.productimage_set.all %}
+	<g:image_link>{{ shop.base_url }}{{ pic.get_picture_url }}</g:image_link>{% endfor %}{% if product.weight %}
 	<g:weight>{{ product|smart_attr:"weight"}} {{product|smart_attr:"weight_units" }}</g:weight>{% endif %}{% if product.height %}
 	<g:height>{{ product|smart_attr:"height"}} {{product|smart_attr:"height_units" }}</g:height>{% endif %}{% if product.length %}
 	<g:length>{{ product|smart_attr:"length"}} {{product|smart_attr:"length_units" }}</g:length>{% endif %}
