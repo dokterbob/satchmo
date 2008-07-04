@@ -51,7 +51,7 @@
      </para>
      {% endif %}
      <para style="returnto">
-        {{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}
+        {{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}
      </para>
      <nextFrame/>
 

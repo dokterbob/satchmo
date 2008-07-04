@@ -28,7 +28,7 @@
             <drawString x="1cm" y="235mm">{{shopDetails.street1}}</drawString>
 	    {% if shopDetails.street2 %}
             <drawString x="1cm" y="230mm">{{shopDetails.street2}}</drawString>
-            <drawString x="1cm" y="225mm">{{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}</drawString>
+            <drawString x="1cm" y="225mm">{{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}</drawString>
             <drawString x="1cm" y="220mm">{{shopDetails.phone}}</drawString>
             <drawString x="1cm" y="215mm">{{shopDetails.store_email}}</drawString>
 	    {% else %}
