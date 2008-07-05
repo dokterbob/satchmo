@@ -933,7 +933,6 @@ class ConfigurableProduct(models.Model):
             variant = Product(items_in_stock=0, name=name)
             optnames = [opt.value for opt in options]
             if not slug:
-                optnames = [opt.value for opt in options]
                 slug = slugify(u'%s_%s' % (self.product.slug, u'_'.join(optnames)))
 
             while Product.objects.filter(slug=slug).count():
