@@ -11,6 +11,9 @@ Trunk
    in the cart, rather than the total amount of the lineitem.
  * Improved inheritance of detail_producttype.html pages, which no longer need to duplicate as much of
    the code of base_product.html, allowing for easier addition of features to the product detail pages.
+ * New most popular, best sellers and recently added views
+ * New tiered shipping module based on quantity
+ * New Fedex shipping module
 
 
 Version 0.7, May 26, 2008
