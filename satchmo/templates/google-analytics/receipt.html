@@ -1,4 +1,4 @@
-{% load satchmo_util%}{% if shop.options.GOOGLE.USE_URCHIN %}
+{% load satchmo_util%}{% if shop.options.GOOGLE.USE_URCHIN.value %}
     <form style="display:none;" name="utmform">
     <textarea id="utmtrans">
     UTM:T|{{order.id}}|{{Store}}|{{order.total|truncate_decimal}}|{{order.tax|truncate_decimal}}|{{order.shipping_sub_total|truncate_decimal}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
