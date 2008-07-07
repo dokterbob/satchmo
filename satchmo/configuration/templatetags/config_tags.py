@@ -1,4 +1,8 @@
 from django import template
+from satchmo.configuration import config_value, SettingNotSet
+import logging
+
+log = logging.getLogger('configuration.config_tags')
 
 register = template.Library()
 
@@ -41,3 +45,18 @@ def break_at(value,  chars=40):
     return " ".join(out)
 
 register.filter('break_at', break_at)
+
+def config_boolean(option):
+    """Looks up the configuration option, returning true or false."""
+    args = option.split('.')
+    try:
+        val = config_value(*args)
+    except:
+        log.warn('config_boolean tag: Tried to look up config setting "%s", got SettingNotSet, returning False')
+        val = False
+    if val:
+        return "true"
+    else:
+        return ""
+
+register.filter('config_boolean', config_boolean)
