@@ -919,9 +919,9 @@ class ConfigurableProduct(models.Model):
         """Create a productvariation with the specified options.
         Will not create a duplicate."""
         log.debug("Create variation: %s", options)
-        products = self.get_variations_for_options(options)
+        variations = self.get_variations_for_options(options)
 
-        if not products:
+        if not variations:
             # There isn't an existing ProductVariation.
             variant = Product(items_in_stock=0, name=name)
             optnames = [opt.value for opt in options]
@@ -948,7 +948,7 @@ class ConfigurableProduct(models.Model):
 
         else:
             log.debug("Existing variant")
-            variant = Product.objects.get(pk=products[0])
+            variant = variations[0].product
             dirty = False
             if name != variant.name:
                 log.debug("Updating name: %s --> %s", self, name)
