@@ -995,17 +995,13 @@ class ConfigurableProduct(models.Model):
         return None
 
     def get_variations_for_options(self, options):
-        """Get a list of existing productvariations with the specified options"""
-        first_option = True
-        pvs = ProductVariation.objects.filter(parent=self)
+        """
+        Returns a list of existing ProductVariations with the specified options.
+        """
+        variations = ProductVariation.objects.filter(parent=self)
         for option in options:
-            query = pvs.filter(options=option)
-            if first_option:
-                first_option = False
-            else:
-                query = query.filter(product__id__in=products)
-            products = [variation.product.id for variation in query]
-        return products
+            variations = variations.filter(options=option)
+        return variations
 
     def save(self):
         """

@@ -76,7 +76,7 @@ from django.conf import settings
 from django.core.validators import ValidationError
 from django.db.models import Model
 from django.test import TestCase
-from satchmo.product.models import Category, Product, Price
+from satchmo.product.models import Category, ConfigurableProduct, Option, Product, Price
 try:
     from decimal import Decimal
 except ImportError:
@@ -242,6 +242,24 @@ class ProductTest(TestCase):
         # no height
         self.assertEqual(p.smart_attr('height'), None)
         self.assertEqual(sb.smart_attr('height'), None)
+
+class ConfigurableProductTest(TestCase):
+    """Test ConfigurableProduct."""
+    fixtures = ['products.yaml']
+
+    def test_get_variations_for_options(self):
+        dj_rocks = ConfigurableProduct.objects.get(product__slug="DJ-Rocks")
+        option_small = Option.objects.get(pk=1)
+        option_black = Option.objects.get(pk=4)
+        option_hard_cover = Option.objects.get(pk=7)
+
+        self.assertEqual([variation.pk for variation in
+            dj_rocks.get_variations_for_options([option_small])], [6, 7, 8])
+        self.assertEqual(
+            len(dj_rocks.get_variations_for_options([option_hard_cover])), 0)
+        self.assertEqual([variation.pk for variation in
+            dj_rocks.get_variations_for_options([option_small, option_black])],
+            [6])
 
 if __name__ == "__main__":
     import doctest
