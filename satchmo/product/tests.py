@@ -248,18 +248,26 @@ class ConfigurableProductTest(TestCase):
     fixtures = ['products.yaml']
 
     def test_get_variations_for_options(self):
+        # Retrieve the objects.
         dj_rocks = ConfigurableProduct.objects.get(product__slug="DJ-Rocks")
         option_small = Option.objects.get(pk=1)
         option_black = Option.objects.get(pk=4)
         option_hard_cover = Option.objects.get(pk=7)
 
+        # Test filtering for one valid option.
         self.assertEqual([variation.pk for variation in
             dj_rocks.get_variations_for_options([option_small])], [6, 7, 8])
-        self.assertEqual(
-            len(dj_rocks.get_variations_for_options([option_hard_cover])), 0)
+        # Test filtering for two valid options.
         self.assertEqual([variation.pk for variation in
             dj_rocks.get_variations_for_options([option_small, option_black])],
             [6])
+        # Test filtering for an option that cannot apply to the product.
+        self.assertEqual(
+            len(dj_rocks.get_variations_for_options([option_hard_cover])), 0)
+        # Test filtering for nothing.
+        self.assertEqual([variation.pk for variation in
+            dj_rocks.get_variations_for_options([])],
+            [6, 7, 8, 9, 10, 11, 12, 13, 14])
 
 if __name__ == "__main__":
     import doctest
