@@ -79,9 +79,8 @@ from django.test import TestCase
 from satchmo.product.models import Category, Product, Price
 try:
     from decimal import Decimal
-except:
+except ImportError:
     from django.utils._decimal import Decimal
-
 
 
 class CategoryTest(TestCase):
@@ -101,8 +100,8 @@ class CategoryTest(TestCase):
         self.assertRaises(ValidationError, womens_jewelry.save)
         Model.save(womens_jewelry)
         womens_jewelry = Category.objects.get(slug="womens-jewelry")
-        self.assertEqual(womens_jewelry.get_absolute_url(),(u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/" % prefix))
-        
+        self.assertEqual(womens_jewelry.get_absolute_url(), (u"%s/category/womens-jewelry/pet-jewelry/womens-jewelry/" % prefix))
+
     def test_infinite_loop(self):
         """Check that Category methods still work on a Category whose parents list contains an infinite loop."""
         # Create two Categories that are each other's parents. First make sure that
@@ -117,7 +116,7 @@ class CategoryTest(TestCase):
             self.fail('Should have thrown a ValidationError')
         except ValidationError:
             pass
-        
+
         # force save
         Model.save(womens_jewelry)
         pet_jewelry = Category.objects.get(slug="pet-jewelry")
@@ -187,10 +186,10 @@ class ProductExportTest(TestCase):
 class ProductTest(TestCase):
     """Test Product functions"""
     fixtures = ['sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
-    
+
     def test_quantity_price_standard_product(self):
         """Check quantity price for a standard product"""
-        
+
         product = Product.objects.get(slug='PY-Rocks')
         self.assertEqual(product.unit_price, Decimal("19.50"))
 
@@ -199,7 +198,7 @@ class ProductTest(TestCase):
         product = Product.objects.get(slug='PY-Rocks')
         price = Price(product=product, quantity=10, price=Decimal("10.00"))
         price.save()
-    
+
         self.assertEqual(product.unit_price, Decimal("19.50"))
         self.assertEqual(product.get_qty_price(1), Decimal("19.50"))
         self.assertEqual(product.get_qty_price(2), Decimal("19.50"))
@@ -212,17 +211,17 @@ class ProductTest(TestCase):
         product = Product.objects.get(slug='DJ-Rocks')
         self.assertEqual(product.unit_price, Decimal("20.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
-        
+
         # product with no price delta
         product = Product.objects.get(slug='DJ-Rocks_S_B')
         self.assertEqual(product.unit_price, Decimal("20.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
-        
+
         # product which costs more due to details
         product = Product.objects.get(slug='DJ-Rocks_L_BL')
         self.assertEqual(product.unit_price, Decimal("23.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
-        
+
     def test_smart_attr(self):
         p = Product.objects.get(slug__iexact='DJ-Rocks')
         mb = Product.objects.get(slug__iexact='DJ-Rocks_M_B')
