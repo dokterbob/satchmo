@@ -4,9 +4,9 @@ as well as individual product level information which includes
 options.
 """
 import datetime
+import logging
 import random
 import sha
-import logging
 try:
     from decimal import Decimal
 except:
@@ -20,19 +20,18 @@ from django.db.models import Q
 from django.dispatch import dispatcher
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
+from satchmo.product import signals
 from satchmo.shop.utils import cross_list, normalize_dir
-from satchmo.shop.utils import url_join
 from satchmo.shop.utils.unique_id import slugify
 from satchmo.shop.utils.validators import ValidateIfFieldsSame
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-import signals
-#from sets import Set
+
 try:
     set
 except NameError:
-    from sets import Set as set     #python 2.3 fallback
-    
+    from sets import Set as set  # Python 2.3 fallback
+
 try:
     from django.utils.safestring import mark_safe
 except ImportError:
@@ -42,7 +41,6 @@ log = logging.getLogger('product.models')
 
 def upload_dir():
     updir = normalize_dir(config_value('PRODUCT', 'IMAGE_DIR'))
-    #log.debug('upload dir = %s', updir)
     return updir
 
 def protected_dir():
@@ -56,7 +54,7 @@ def default_dimension_unit():
     else:
         return 'in'
 
-weight_units = (('kg','kg'), ('lb','lb')) 
+weight_units = (('kg','kg'), ('lb','lb'))
 
 def default_weight_unit():
     if config_value('SHOP','MEASUREMENT_SYSTEM')[0] == 'metric':
@@ -160,11 +158,11 @@ class Category(models.Model):
         if self.id:
             if self.parent and self.parent_id == self.id:
                 raise validators.ValidationError(_("You must not save a category in itself!"))
-                
+
             for p in self._recurse_for_parents(self):
                 if self.id == p.id:
                     raise validators.ValidationError(_("You must not save a category in itself!"))
-                
+
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
 
@@ -345,10 +343,10 @@ class OptionGroupTranslation(models.Model):
 
 
 class OptionManager(models.Manager):
-    def from_unique_id(self, str):
-        (og, opt) = str.split('-')
-        group = OptionGroup.objects.get(id=og)
-        return Option.objects.get(optionGroup=og, value=opt)
+    def from_unique_id(self, unique_id):
+        (group_id, option_value) = unique_id.split('-')
+        group = OptionGroup.objects.get(id=group_id)
+        return Option.objects.get(optionGroup=group_id, value=option_value)
 
 class Option(models.Model):
     """
@@ -373,7 +371,7 @@ class Option(models.Model):
         unique_together = (('optionGroup', 'value'),)
         verbose_name = _("Option Item")
         verbose_name_plural = _("Option Items")
-        
+
     class Admin:
         pass
 
@@ -416,11 +414,11 @@ class Product(models.Model):
     """
     Root class for all Products
     """
-    name = models.CharField(_("Full Name"), max_length=255, core=True, blank=False, 
+    name = models.CharField(_("Full Name"), max_length=255, core=True, blank=False,
         help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
-    slug = models.SlugField(_("Slug Name"), unique=True, blank=True, 
+    slug = models.SlugField(_("Slug Name"), unique=True, blank=True,
         help_text=_("Used for URLs, auto-generated from name if blank"))
-    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True, 
+    sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True, unique=True,
         help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
@@ -441,7 +439,7 @@ class Product(models.Model):
     height_units = models.CharField(_("Height units"), max_length=3, choices=dimension_units, null=True, blank=True, default=default_dimension_unit, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
-    total_sold = models.IntegerField(_("Total sold"),default=0)
+    total_sold = models.IntegerField(_("Total sold"), default=0)
     taxable = models.BooleanField(_("Taxable"), default=False)
     taxClass = models.ForeignKey(TaxClass, verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
 
@@ -507,7 +505,7 @@ class Product(models.Model):
             price = subtype.unit_price
         else:
             price = get_product_quantity_price(self, 1)
-            
+
         if not price:
             price = Decimal("0.00")
         return price
@@ -541,10 +539,7 @@ class Product(models.Model):
         if subtype:
             return subtype.in_stock
 
-        if self.items_in_stock > 0:
-            return True
-        else:
-            return False;
+        return self.items_in_stock > 0
 
     def _has_full_dimensions(self):
         """Return true if the dimensions all have units and values. Used in shipping calcs. """
@@ -594,7 +589,7 @@ class Product(models.Model):
 
         if self.name and not self.slug:
             self.slug = slugify(self.name, instance=self)
-            
+
         if not self.sku:
             self.sku = self.slug
         super(Product, self).save()
@@ -611,20 +606,20 @@ class Product(models.Model):
                     types.append(subtype)
             except models.ObjectDoesNotExist:
                 pass
-            
+
         return tuple(types)
-        
+
     get_subtypes.short_description = _("Product Subtypes")
 
     def get_subtype_with_attr(self, *args):
         """Get a subtype with the specified attributes.  Note that this can be chained
         so that you can ensure that the attribute then must have the specified attributes itself.
-        
+
         example:  get_subtype_with_attr('parent') = any parent
         example:  get_subtype_with_attr('parent', 'product') = any parent which has a product attribute
         """
-        for type in self.get_subtypes():
-            subtype = getattr(self, type.lower())
+        for subtype_name in self.get_subtypes():
+            subtype = getattr(self, subtype_name.lower())
             if hasattr(subtype, args[0]):
                 if len(args) == 1:
                     return subtype
@@ -638,17 +633,17 @@ class Product(models.Model):
                             break
                     if found and hasattr(subtype, args[-1]):
                         return subtype
-                    
+
         return None
-        
+
     def smart_attr(self, attr):
         """Retrieve an attribute, or its parent's attribute if it is null.
         Ex: to get a weight.  obj.smart_attr('weight')"""
-        
+
         val = getattr(self, attr)
         if val is None:
-            for type in self.get_subtypes():
-                subtype = getattr(self, type.lower())
+            for subtype_name in self.get_subtypes():
+                subtype = getattr(self, subtype_name.lower())
 
                 if hasattr(subtype, 'parent'):
                     subtype = subtype.parent.product
@@ -657,7 +652,7 @@ class Product(models.Model):
                     val = getattr(subtype, attr)
                     if val is not None:
                         break
-        
+
         return val
 
     def _has_variants(self):
@@ -743,7 +738,7 @@ def get_all_options(obj):
     For OptionGroups Color and Size with Options (Blue, Green) and (Large, Small) you'll get
     [['Blue', 'Small'], ['Blue', 'Large'], ['Green', 'Small'], ['Green', 'Large']]
     Note: the actual values will be instances of Option instead of strings
-    """    
+    """
     sublist = []
     masterlist = []
     #Create a list of all the options & create all combos of the options
@@ -754,7 +749,7 @@ def get_all_options(obj):
         sublist = []
     results = cross_list(masterlist)
     return results
-    
+
 
 class CustomProduct(models.Model):
     """
@@ -797,12 +792,12 @@ class CustomProduct(models.Model):
         """
         price = get_product_quantity_price(self.product, qty)
         if not price:
-            price = self.product._get_fullPrice()
+            price = self.product.unit_price
 
         return price
 
     full_price = property(fget=get_full_price)
-    
+
     def _get_subtype(self):
         return 'CustomProduct'
 
@@ -839,7 +834,7 @@ class CustomTextField(models.Model):
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
         super(CustomTextField, self).save()
-        
+
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
 
@@ -875,7 +870,7 @@ class ConfigurableProduct(models.Model):
     product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
     option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
-        
+
     def _get_subtype(self):
         return 'ConfigurableProduct'
 
@@ -902,7 +897,7 @@ class ConfigurableProduct(models.Model):
         Returns the same output as get_all_options(), but filters out Options that this
         ConfigurableProduct doesn't have a ProductVariation for.
         """
-        
+
         # Note by Bruce Kroeze: Sorry this is so dense and possibly confusing.
         # The old version took approx. 60 seconds to run on my laptop with 81 variants
         # this one runs in .3 seconds.  I think a 200x speed improvement is worth some
@@ -916,20 +911,18 @@ class ConfigurableProduct(models.Model):
         Get a list of all the optiongroups applied to this object
         Create all combinations of the options and create variations
         """
-        combinedlist = self.get_all_options()
-        #Create new ProductVariation for each combo.
-        for options in combinedlist:
-            variant = self.create_variation(options)
-        return True
-        
+        # Create a new ProductVariation for each combination.
+        for options in self.get_all_options():
+            self.create_variation(options)
+
     def create_variation(self, options, name=u"", sku=u"", slug=u""):
-        """Create a productvariation with the specified options.  
+        """Create a productvariation with the specified options.
         Will not create a duplicate."""
         log.debug("Create variation: %s", options)
         products = self.get_variations_for_options(options)
 
-        if not products:        
-            # There isn't an existing ProductVariation.            
+        if not products:
+            # There isn't an existing ProductVariation.
             variant = Product(items_in_stock=0, name=name)
             optnames = [opt.value for opt in options]
             if not slug:
@@ -939,16 +932,16 @@ class ConfigurableProduct(models.Model):
                 slug = u'_'.join((slug, unicode(self.product.id)))
 
             variant.slug = slug
-            
+
             log.info("Creating variation for [%s] %s", self.product.slug, variant.slug)
             variant.save()
 
-            pv = ProductVariation(product=variant, parent=self)                
+            pv = ProductVariation(product=variant, parent=self)
             pv.save()
-            
+
             for option in options:
                 pv.options.add(option)
-                
+
             pv.name = name
             pv.sku = sku
             pv.save()
@@ -974,7 +967,7 @@ class ConfigurableProduct(models.Model):
                 dirty = True
             if dirty:
                 variant.save()
-                
+
         return variant
 
     def _ensure_option_set(self, options):
@@ -1000,7 +993,7 @@ class ConfigurableProduct(models.Model):
             if member.option_values == options:
                 return member.product
         return None
-        
+
     def get_variations_for_options(self, options):
         """Get a list of existing productvariations with the specified options"""
         first_option = True
@@ -1054,7 +1047,7 @@ class DownloadableProduct(models.Model):
 
     def __unicode__(self):
         return self.product.slug
-        
+
     def _get_subtype(self):
         return 'DownloadableProduct'
 
@@ -1091,7 +1084,7 @@ class SubscriptionProduct(models.Model):
     is_shippable = models.IntegerField(_("Shippable?"), help_text=_("Is this product shippable?"), max_length=1, choices=SHIPPING_CHOICES)
 
     is_subscription = True
-    
+
     def _get_subtype(self):
         return 'SubscriptionProduct'
 
@@ -1217,7 +1210,7 @@ class ProductVariation(models.Model):
             output.add(option.unique_id)
         return(output)
     option_values = property(_get_optionValues)
-    
+
     def _get_subtype(self):
         return 'ProductVariation'
 
@@ -1259,7 +1252,7 @@ class ProductVariation(models.Model):
         return pricelist
 
     def isValidOption(self, field_data, all_data):
-        raise validators.ValidationError(_("Two options from the same option group can not be applied to an item."))
+        raise validators.ValidationError(_("Two options from the same option group cannot be applied to an item."))
 
     def price_delta(self):
         price_delta = Decimal("0.00")
@@ -1278,9 +1271,9 @@ class ProductVariation(models.Model):
         if not self.product.name:
             # will force calculation of default name
             self.name = ""
-            
+
         super(ProductVariation, self).save()
-        
+
     def _set_name(self, name):
         if not name:
             name = self.parent.product.name
@@ -1291,23 +1284,23 @@ class ProductVariation(models.Model):
 
         self.product.name = name
         self.product.save()
-        
+
     def _get_name(self):
         return self.product.name
-        
+
     name = property(fset=_set_name, fget=_get_name)
-    
+
     def _set_sku(self, sku):
         if not sku:
             sku = self.product.slug
         self.product.sku = sku
         self.product.save()
-        
+
     def _get_sku(self):
         return self.product.sku
-        
+
     sku = property(fset=_set_sku, fget=_get_sku)
-            
+
     def get_absolute_url(self):
         return self.product.get_absolute_url()
 
@@ -1353,7 +1346,7 @@ class Price(models.Model):
 
     def __unicode__(self):
         return unicode(self.price)
-        
+
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
         dispatcher.send(signal=signals.satchmo_price_query, price=self)
@@ -1372,7 +1365,7 @@ class Price(models.Model):
             prices = prices.exclude(id=self.id)
         if prices.count():
             return #Duplicate Price
-            
+
         super(Price, self).save()
 
     class Meta:
@@ -1450,19 +1443,17 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
     if not language_code:
         language_code = get_language()
 
-    #log.debug("looking up translation [%s] %s", language_code.encode('utf-8'), attr.encode('utf-8'))
-
     if not hasattr(obj, '_translationcache'):
         obj._translationcache = {}
 
     short_code = language_code
     pos = language_code.find('_')
-    if pos>-1:
+    if pos > -1:
         short_code = language_code[:pos]
 
     else:
         pos = language_code.find('-')
-        if pos>-1:
+        if pos > -1:
             short_code = language_code[:pos]
 
     trans = None
@@ -1485,7 +1476,7 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
                 q = obj.translations.filter(
                     languagecode__istartswith = language_code)
 
-        if q.count()>0:
+        if q.count() > 0:
             trans = None
             if version > -1:
                 trans = q.order_by('-version')[0]
@@ -1509,21 +1500,19 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
 
     if not trans:
         trans = obj
-        #log.debug("No such language version, using obj")
 
     val = getattr(trans, attr, UNSET)
     if trans != obj and (val in (None, UNSET)):
         val = getattr(obj, attr)
 
-    #log.debug("Translated version: %s", val.encode('utf-8'))
     return mark_safe(val)
 
 def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=None):
     """
-    Returns price as a Decimal else None.  
+    Returns price as a Decimal else None.
     First checks the product, if none, then checks the parent.
     """
-        
+
     qty_discounts = product.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty)
     if qty_discounts.count() > 0:
         # Get the price with the quantity closest to the one specified without going over
