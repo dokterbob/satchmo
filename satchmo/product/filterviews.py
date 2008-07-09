@@ -78,6 +78,8 @@ def display_recent(request):
         
     num = config_value('SHOP', 'NUM_PAGINATED')
     query = Product.objects.filter(active=True, productvariation__product__isnull=True).order_by('-date_added')
+    if query.count() == 0:
+        query = Product.objects.filter(active=True).order_by('-date_added')
     paginator = Paginator(query, num)
     currentpage = paginator.page(page)
     

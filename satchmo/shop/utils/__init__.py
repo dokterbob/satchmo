@@ -1,13 +1,16 @@
 try:
-    from decimal import Decimal, ROUND_HALF_UP
+    from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 except:
-    from django.utils._decimal import Decimal, ROUND_HALF_UP
+    from django.utils._decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 
+import logging
 import os
-import sys
 import random
+import sys
 import types
 from django.db import models
+
+log = logging.getLogger('shop.utils')
 
 def app_enabled(appname):
     """Check the app list to see if a named app is installed."""
@@ -120,7 +123,11 @@ def trunc_decimal(val, places):
     if places > 0:
         roundfmt += "1"
     if type(val) != Decimal:
-        val = Decimal(val)
+        try:
+            val = Decimal(val)
+        except InvalidOperation:
+            log.warn("invalid operation trying to convert '%s' to decimal, returning raw", val)
+            return val
     return val.quantize(Decimal(roundfmt), ROUND_HALF_UP)
 
 def url_join(*args):
