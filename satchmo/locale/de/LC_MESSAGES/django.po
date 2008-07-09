@@ -1992,11 +1992,11 @@ msgstr "Metabeschreibung für diese Kategorie"
 #: product/models.py:78 product/models.py:405
 #: shipping/modules/tiered/models.py:92
 msgid "Ordering"
-msgstr "bestellen"
+msgstr "Reihenfolge"
 
 #: product/models.py:78 product/models.py:405
 msgid "Override alphabetical order in category display"
-msgstr ""
+msgstr "Überschreibt alphabetische Reihenfolge in Kategorieanzeige"
 
 #: product/models.py:154
 msgid "You must not save a category in itself!"
@@ -2256,7 +2256,7 @@ msgstr "zuletzt gekauft"
 
 #: product/models.py:416
 msgid "Total sold"
-msgstr "Gesamtsumme"
+msgstr "Verkauf gesamt"
 
 #: product/models.py:417
 msgid "Taxable"
