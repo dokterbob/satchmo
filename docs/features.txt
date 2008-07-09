@@ -18,6 +18,7 @@ Satchmo support many payment modules including:
 
 Satchmo has flexible shipping options and allows you to create your own. Satchmo includes:
     - UPS integration
+    - Fedex integration
     - Flat rate shipping
     - Multi-tiered shipping
     

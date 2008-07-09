@@ -69,6 +69,9 @@ For example, you can make this shipping table::
     ....
     $250.00 + free
 
+.. index::
+   single: UPS
+
 UPS
 +++
 
@@ -112,4 +115,32 @@ local_settings.py file.
 
 The shipping module does rely on the weight and dimension data you have entered for your products. If you have not
 entered the weight, then the module will not display any choices.
+
+.. index::
+   single: Fedex;
+
+Fedex
++++++
+The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
+
+One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response. 
+If you have a configurable product you will need to set weights on each product option. Otherwise you will get errors when the 
+FedEx module tries to calculate the weight to send to FedEx for the quote.
+
+To enable in Satchmo:
+
+ 1. In your site settings, make sure that the Fedex module is active
+ 2. Configure the settings as described below
+ 
+Once you've got the module installed its time to get your account set up with FedEx. (It does not work without the following steps)
+
+ 1. Go to http://www.fedex.com/us/developer/ 
+ 2. Log in (you may need to create an account) and go to technical resources. https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=index.html
+ 3. Click "Get Started with FedEx Web Services Technical Resources now"
+ 4. Click "Move to Production"
+ 5. At the bottom click "Get Production Key"
+ 6. Answer the questions / Fill out the forms. Note: You will need a FedEx account number.
+ 7. Save your authentication key and meter number.
+ 8. Add your meter number to the shop settings after enabling the FedEx shipping module.
+ 9. Check the box to connect to the production server.
 
