@@ -130,7 +130,6 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
         tax_amt = _get_tax(request.user, product, 1)
         attributes['product_tax'] = tax_amt
         attributes['price_with_tax'] = product.unit_price+tax_amt
-        attributes['taxes'] = taxes
         
     ctx = RequestContext(request, attributes)
     return http.HttpResponse(template.render(ctx))
