@@ -1,11 +1,12 @@
 try:
-    from decimal import Decimal, getcontext
+    from decimal import Decimal
 except:
-    from django.utils._decimal import Decimal, getcontext
-from datetime import date
-from models import Discount, NullDiscount
+    from django.utils._decimal import Decimal
+
+import datetime
 import logging
 import types
+from satchmo.discount.models import Discount, NullDiscount
 
 log = logging.getLogger('discount.utils')
 
@@ -13,31 +14,31 @@ def calc_by_percentage(price, percentage):
     if percentage > 1:
         log.warn("Correcting discount percentage, should be less than 1, is %s", percentage)
         percentage = percentage/100
-        
+
     work = price * (1-percentage)
     cents = Decimal("0.01")
     return work.quantize(cents)
 
 def find_discount_for_code(code):
     discount = None
-    
+
     if code:
         try:
             discount = Discount.objects.get(code=code, active=True)
-            
+
         except Discount.DoesNotExist:
             pass
-            
+
     if not discount:
         discount = NullDiscount()
-        
+
     return discount
-    
+
 def find_auto_discounts(product):
     if not type(product) in (types.ListType, types.TupleType):
         product = (product,)
-    today = date.today()
-    discs = Discount.objects.filter(automatic=True, active=True, startDate__lte=today, endDate__gt=today) 
+    today = datetime.date.today()
+    discs = Discount.objects.filter(automatic=True, active=True, startDate__lte=today, endDate__gt=today)
     return discs.filter(validProducts__in=product).order_by('-percentage')
 
 def find_best_auto_discount(product):
