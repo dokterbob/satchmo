@@ -13,7 +13,7 @@
 <script type="text/javascript">{# Javascript which is generated uniquely for each page #}
 satchmo.default_view_tax = {% if default_view_tax %}true{% else %}false{% endif %};
 satchmo.variations = {{ details|as_json }};
-    
+
 satchmo.make_optionkey = function() {
     var k = Array({{options.count}});
     {% for option_group in options %}
@@ -25,7 +25,7 @@ satchmo.make_optionkey = function() {
 $(function() {
     satchmo.update_price();
     $('.priced').change(function() { satchmo.update_price() });
-});        
+});
 </script>
 {% endblock %}
 
@@ -65,9 +65,9 @@ $(function() {
 {% endfor %}
 {% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input id="addcart" type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
+<input id="addcart" type="submit" name="addcart" value="{% trans "Add to cart" %}" />
 {% if "wishlist"|app_enabled and user.is_authenticated %}
-<input id="addwish" type="submit" name="addwish" value="{% trans "Add to wishlist" %}" /> 
+<input id="addwish" type="submit" name="addwish" value="{% trans "Add to wishlist" %}" />
 {% endif %}
 {% product_upsell product %}
 </form>

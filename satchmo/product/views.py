@@ -1,3 +1,4 @@
+import logging
 from django import http
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render_to_response
@@ -12,16 +13,12 @@ from satchmo.product.models import Category, Product, ConfigurableProduct, Produ
 from satchmo.shop.models import Config
 from satchmo.shop.utils.json import json_encode
 from satchmo.shop.views.utils import bad_or_missing
-#from sets import Set
+
 try:
     set
 except NameError:
     from sets import Set as set     #python 2.3 fallback
 
-import datetime
-import logging
-import random
-        
 log = logging.getLogger('product.views')
 
 NOTSET = object()
@@ -29,7 +26,7 @@ NOTSET = object()
 def find_product_template(product, producttypes=None):
     if producttypes is None:
         producttypes = product.get_subtypes()
-    
+
     templates = ["product/detail_%s.html" % x.lower() for x in producttypes]
     templates.append('base_product.html')
     return select_template(templates)
@@ -61,9 +58,9 @@ def serialize_options(config_product, selected_options=set()):
     the options white and large.
     """
     d = {}
-    
+
     all_options = config_product.get_valid_options()
-    
+
     for options in all_options:
         for option in options:
             if not d.has_key(option.optionGroup_id):
@@ -75,10 +72,10 @@ def serialize_options(config_product, selected_options=set()):
             if not option in d[option.optionGroup_id]['items']:
                 d[option.optionGroup_id]['items'] += [option]
                 option.selected = option.unique_id in selected_options
-    
+
     return d.values()
 
-def get_product(request, product_slug, selected_options=set(), include_tax=NOTSET, default_view_tax=NOTSET):      
+def get_product(request, product_slug, selected_options=set(), include_tax=NOTSET, default_view_tax=NOTSET):
     try:
         product = Product.objects.get(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -97,7 +94,7 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
 
     options = []
     details = None
-    
+
     if default_view_tax:
         include_tax = True
 
@@ -106,31 +103,31 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
         #Display the ConfigurableProduct that this ProductVariation belongs to.
         product = product.productvariation.parent.product
         p_types = product.get_subtypes()
-        
+
     if 'ConfigurableProduct' in p_types:
         options = serialize_options(product.configurableproduct, selected_options)
         details = _productvariation_details(product, include_tax, request.user)
-        
+
     if 'CustomProduct' in p_types:
         options = serialize_options(product.customproduct, selected_options)
 
     template = find_product_template(product, producttypes=p_types)
-    
+
     sale = find_best_auto_discount(product)
-    
+
     attributes = {
-        'product': product, 
+        'product': product,
         'options': options,
         'details': details,
         'default_view_tax': default_view_tax,
         'sale' : sale,
     }
-        
+
     if include_tax:
         tax_amt = _get_tax(request.user, product, 1)
         attributes['product_tax'] = tax_amt
         attributes['price_with_tax'] = product.unit_price+tax_amt
-        
+
     ctx = RequestContext(request, attributes)
     return http.HttpResponse(template.render(ctx))
 
@@ -177,12 +174,12 @@ def get_price_detail(request, product_slug):
         "message" :  _("not available")
     }
     price = None
-    
+
     if request.method=="POST":
         reqdata = request.POST
     else:
         reqdata = request.GET
-    
+
     try:
         product = Product.objects.get(active=True, slug=product_slug)
         found = True
@@ -198,12 +195,12 @@ def get_price_detail(request, product_slug):
             cp = product.configurableproduct
             chosenOptions = optionset_from_post(cp, reqdata)
             product = cp.get_product_from_options(chosenOptions)
-                
+
         if product:
             price = product.get_qty_price(quantity)
             base_tax = _get_tax(request.user, product, quantity)
             price_with_tax = price+base_tax
-            
+
             results['slug'] = product.slug
             results['currency_price'] = moneyfmt(price)
             results['price'] = float(price)
@@ -213,16 +210,16 @@ def get_price_detail(request, product_slug):
             results['price_with_tax'] = float(price_with_tax)
             results['success'] = True
             results['message'] = ""
-        
+
     except Product.DoesNotExist:
         found = False
 
     data = json_encode(results)
-    if found:        
+    if found:
         return http.HttpResponse(data, mimetype="text/javascript")
     else:
         return http.HttpResponseNotFound(data, mimetype="text/javascript")
-    
+
 
 def do_search(request):
     if request.GET:
@@ -239,12 +236,12 @@ def do_search(request):
     products = Product.objects.active()
     for keyword in keywords:
         categories = categories.filter(
-            Q(name__icontains=keyword) | 
-            Q(meta__icontains=keyword) | 
+            Q(name__icontains=keyword) |
+            Q(meta__icontains=keyword) |
             Q(description__icontains=keyword))
         products = products.filter(Q(name__icontains=keyword)
-            | Q(short_description__icontains=keyword) 
-            | Q(description__icontains=keyword) 
+            | Q(short_description__icontains=keyword)
+            | Q(description__icontains=keyword)
             | Q(meta__icontains=keyword)
             | Q(sku__iexact=keyword))
     clist = list(categories)
@@ -253,7 +250,7 @@ def do_search(request):
     context = RequestContext(request, {'results': {'categories': clist, 'products': plist}})
     return render_to_response('search.html', context)
 
-def getConfigurableProductOptions(request, id):
+def get_configurable_product_options(request, id):
     cp = get_object_or_404(ConfigurableProduct, product__id=id)
     options = ''
     for og in cp.option_group.all():
@@ -280,70 +277,70 @@ def _get_taxprocessor(user):
         user = user
     else:
         user = None
-    
+
     return tax.get_processor(user=user)
-    
+
 def _get_tax(user, product, quantity):
     taxer = _get_taxprocessor(user)
     return taxer.by_product(product, quantity)
 
 def _productvariation_details(product, include_tax, user):
     """Build the product variation details, for conversion to javascript.
-    
+
     Returns variation detail dictionary built like so:
     details = {
         "OPTION_KEY" : {
-            "SLUG": "Variation Slug", 
-            "PRICE" : {"qty" : "$price", [...]}, 
+            "SLUG": "Variation Slug",
+            "PRICE" : {"qty" : "$price", [...]},
             "TAXED" : "$taxed price",   # omitted if no taxed price requested
             "QTY" : 1
         },
         [...]
     }
     """
-    
+
     config = Config.get_shop_config()
     ignore_stock = config.no_stock_checkout
-    
+
     if include_tax:
         taxer = _get_taxprocessor(user)
         taxclass = product.taxClass
-    
+
     details = {}
-    
+
     for p in ProductVariation.objects.by_parent(product):
-        
+
         detail = {}
 
         prod = p.product
         detail['SLUG'] = prod.slug
-        
+
         if not prod.active:
             qty = -1
         elif ignore_stock:
             qty = 10000
         else:
             qty = prod.items_in_stock
-            
+
         detail['QTY'] = qty
-        
+
         base = {}
         if include_tax:
             taxed = {}
-                    
+
         for qty, price in p.get_qty_price_list():
             base[qty] = moneyfmt(price)
             if include_tax:
                 taxprice = taxer.by_price(taxclass, price) + price
                 taxed[qty] = moneyfmt(taxprice)
-            
+
         detail['PRICE'] = base
         if include_tax:
             detail['TAXED'] = taxed
-            
+
         # build option map
         opts = [(opt.id, opt.value) for opt in p.options.order_by('optionGroup')]
         optkey = "::".join([opt[1] for opt in opts])
         details[optkey] = detail
-    
+
     return details

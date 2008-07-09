@@ -11,7 +11,7 @@ urlpatterns = getattr(settings, 'URLS', [])
 
 urlpatterns += patterns('',
     (r'^admin/print/(?P<doc>[-\w]+)/(?P<id>\d+)', 'satchmo.shipping.views.displayDoc'),
-    (r'^admin/product/configurableproduct/(?P<id>\d+)/getoptions/', 'satchmo.product.views.getConfigurableProductOptions'),
+    (r'^admin/product/configurableproduct/(?P<id>\d+)/getoptions/', 'satchmo.product.views.get_configurable_product_options'),
     (r'^admin/$', 'satchmo.shop.views.admin-portal.home'),
     (r'^admin/', include('django.contrib.admin.urls')),
     (r'^accounts/', include('satchmo.accounts.urls')),
