@@ -60,6 +60,7 @@ Additional Notes
 .. toctree::
    :maxdepth: 1
    
+   release-notes-0-8
    release-notes-0-7
    migration
    
