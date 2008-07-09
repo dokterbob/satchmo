@@ -548,7 +548,7 @@ class Order(models.Model):
         super(Order, self).save() # Call the "real" save() method.
 
     def invoice(self):
-        return mark_safe('<a href="/admin/print/invoice/%s/">View</a>' % self.id)
+        return mark_safe(u'<a href="/admin/print/invoice/%s/">%s</a>' % (self.id, ugettext('View'))) 
     invoice.allow_tags = True
 
     def _item_discount(self):
@@ -557,7 +557,7 @@ class Order(models.Model):
     item_discount = property(_item_discount)
 
     def packingslip(self):
-        return mark_safe('<a href="/admin/print/packingslip/%s/">View</a>' % self.id)
+        return mark_safe(u'<a href="/admin/print/packingslip/%s/">%s</a>' % (self.id, ugettext('View')))
     packingslip.allow_tags = True
 
     def recalculate_total(self, save=True):
@@ -630,7 +630,7 @@ class Order(models.Model):
             self.save()
 
     def shippinglabel(self):
-        return mark_safe('<a href="/admin/print/shippinglabel/%s/">View</a>' % self.id)
+        return mark_safe(u'<a href="/admin/print/shippinglabel/%s/">%s</a>' % (self.id, ugettext('View')))
     shippinglabel.allow_tags = True
 
     def _order_total(self):
