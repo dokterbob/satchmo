@@ -1,21 +1,23 @@
-{% extends "!layout.html" %}
+{%- extends "!layout.html" %}
 
-{% block rootrellink %}
+{%- block rootrellink %}
         <li><a href="http://www.satchmoproject.com">Satchmo home </a> |&nbsp;</li>
-        <li><a href="{{ pathto('index') }}">{{ project }} v{{ release }} documentation </a> &raquo;</li>
-{% endblock %}
+        {{ super() }}
+{%- endblock %}
 
-{% block beforerelbar %}
-<div class="logo">
+{%- block relbar1 %}
+<div style="background-image: url({{ pathto("_static/satchmo-sliver.jpg",1)}}); background-repeat: repeat-x; background-color: white; text-align: left;">
 <img src="{{ pathto("_static/satchmo-front.jpg", 1) }}">
 </div>
-{% endblock %}
+{{ super() }}
+{%- endblock %}
 
-{%- block afterfooter %}
+{%- block footer %}
+{{ super() }}
 <script src='http://www.google-analytics.com/ga.js' type='text/javascript'></script>
 <script type="text/javascript">
 var pageTracker = _gat._getTracker("UA-1711397-1");
 pageTracker._initData();
 pageTracker._trackPageview();
 </script>
-{% endblock %}
+{%- endblock %}
