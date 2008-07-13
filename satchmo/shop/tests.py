@@ -30,7 +30,7 @@ from satchmo.product.models import Product
 from satchmo.shop.models import Cart, Config
 from satchmo.shop.templatetags import get_filter_args
 
-domain = 'http://testserver'
+domain = 'http://example.com'
 prefix = settings.SHOP_BASE
 if prefix == '/':
     prefix = ''
@@ -81,7 +81,8 @@ class ShopTest(TestCase):
                               'subject': 'A question to test',
                               'inquiry': 'General Question',
                               'contents': 'A lot of info goes here.'})
-        self.assertRedirects(response, domain + prefix+'/contact/thankyou/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, prefix + '/contact/thankyou/',
+            status_code=302, target_status_code=200)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'A question to test')
 
@@ -100,7 +101,8 @@ class ShopTest(TestCase):
                                     'password1' : 'pass1',
                                     'password2' : 'pass1',
                                     'newsletter': '0'})
-        self.assertRedirects(response, domain +'/accounts/register/complete/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, '/accounts/register/complete/',
+            status_code=302, target_status_code=200)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, subject)
 
@@ -118,7 +120,8 @@ class ShopTest(TestCase):
                                                       "1" : "L",
                                                       "2" : "BL",
                                                       "quantity" : 2})
-        self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, prefix + '/cart/',
+            status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, "Django Rocks shirt (Large/Blue)", count=1, status_code=200)
 
@@ -206,7 +209,8 @@ class ShopTest(TestCase):
         """
         self.test_cart_adding()
         response = self.client.post(prefix + '/cart/remove/', {'cartitem': '1'})
-        self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, prefix + '/cart/',
+            status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, "Your cart is empty.", count=1, status_code=200)
 
@@ -224,7 +228,8 @@ class ShopTest(TestCase):
 
         self.test_cart_adding()
         response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step2'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
+            status_code=302, target_status_code=200)
         data = {
             'credit_type': 'Visa',
             'credit_number': '4485079141095836',
@@ -233,13 +238,15 @@ class ShopTest(TestCase):
             'ccv': '552',
             'shipping': 'FlatRate'}
         response = self.client.post(url('DUMMY_satchmo_checkout-step2'), data)
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step3'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
+            status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
         self.assertContains(response, smart_str("Shipping + %s4.00" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         self.assertContains(response, smart_str("Tax + %s4.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         self.assertContains(response, smart_str("Total = %s54.60" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-success'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
+            status_code=302, target_status_code=200)
         self.assertEqual(len(mail.outbox), 1)
 
         # Log in as a superuser
@@ -285,7 +292,7 @@ class ShopTest(TestCase):
             'password2': 'guz90tyc',
             'newsletter': '0'}
         response = self.client.post('/accounts/register/', data)
-        self.assertRedirects(response, domain+'/accounts/register/complete/',
+        self.assertRedirects(response, '/accounts/register/complete/',
             status_code=302, target_status_code=200)
         user = User.objects.get(email="sometester@example.com")
         contact = user.contact_set.get()
@@ -308,7 +315,7 @@ class ShopTest(TestCase):
             'password2': 'new123pass',
             'newsletter': '0'}
         response = self.client.post('/accounts/register/', init_data)
-        self.assertRedirects(response, domain+'/accounts/register/complete/',
+        self.assertRedirects(response, '/accounts/register/complete/',
             status_code=302, target_status_code=200)
         response = self.client.get('/accounts/update')
         full_data = {
@@ -354,10 +361,12 @@ class ShopTest(TestCase):
         self.client.post(prefix + '/checkout/', checkout_step1_post_data)
         self.assert_(self.client.session.get('custID') is not None)
         response = self.client.get('/accounts/logout/')
-        self.assertRedirects(response, domain + prefix + '/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, prefix + '/',
+            status_code=302, target_status_code=200)
         self.assert_(self.client.session.get('custID') is None)
         response = self.client.get('/accounts/') # test logged in status
-        self.assertRedirects(response, domain +'/accounts/login/?next=/accounts/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, '/accounts/login/?next=/accounts/',
+            status_code=302, target_status_code=200)
 
     def test_search(self):
         """
@@ -388,7 +397,8 @@ class ShopTest(TestCase):
                                                       "6" : "mid",
                                                       "custom_monogram": "CBM",
                                                       "quantity" : 1})
-        self.assertRedirects(response, domain + prefix+'/cart/', status_code=302, target_status_code=200)
+        self.assertRedirects(response, prefix + '/cart/',
+            status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, '/satchmo-computer/">satchmo computer', count=1, status_code=200)
         self.assertContains(response, smart_str("%s168.00" % config_value('SHOP', 'CURRENCY')), count=3)
@@ -396,7 +406,8 @@ class ShopTest(TestCase):
         self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
         self.assertContains(response, smart_str("Memory - Internal RAM: 1.5 GB  %s25.00" % config_value('SHOP', 'CURRENCY')), count=1)
         response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step2'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
+            status_code=302, target_status_code=200)
         data = {
             'credit_type': 'Visa',
             'credit_number': '4485079141095836',
@@ -405,11 +416,13 @@ class ShopTest(TestCase):
             'ccv': '552',
             'shipping': 'FlatRate'}
         response = self.client.post(url('DUMMY_satchmo_checkout-step2'), data)
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-step3'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
+            status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
         self.assertContains(response, smart_str("satchmo computer - %s168.00" % config_value('SHOP', 'CURRENCY')), count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
-        self.assertRedirects(response, domain + url('DUMMY_satchmo_checkout-success'), status_code=302, target_status_code=200)
+        self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
+            status_code=302, target_status_code=200)
         self.assertEqual(len(mail.outbox), 1)
 
 class AdminTest(TestCase):
@@ -514,6 +527,13 @@ class CartTest(TestCase):
         self.assertEqual(item1.unit_price, Decimal("20.00"))
         self.assertEqual(item2.unit_price, Decimal("23.00"))
         self.assertEqual(cart.total, Decimal("43.00"))
+
+class ConfigTest(TestCase):
+    fixtures = ['sample-store-data.yaml', 'test-config.yaml']
+
+    def test_base_url(self):
+        config = Config.get_shop_config()
+        self.assertEquals(config.base_url, domain)
 
 if __name__ == "__main__":
     import doctest

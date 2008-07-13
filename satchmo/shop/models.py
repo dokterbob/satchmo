@@ -91,7 +91,7 @@ class Config(models.Model):
         prefix = "http"
         if secure:
             prefix += "s"
-        return prefix + "://" + url_join(settings.SHOP_BASE, self.site.domain)
+        return prefix + "://" + self.site.domain
 
     base_url = property(fget=_base_url)
 
