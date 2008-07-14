@@ -20,6 +20,7 @@ def display_bestratings(request):
     
 def display_bestsellers(request):
     """Display a list of the products which have sold the most"""
+    ok = False
     try:
         pks = cache_get('BESTSELLERS')
         pks = [long(pk) for pk in pks.split(',')]
@@ -37,10 +38,17 @@ def display_bestsellers(request):
                 sellers.append(productdict[key])
             except ValueError:
                 pass
-            
+                
+        ok = True
         log.debug('retrieved bestselling products from cache')
         
-    except NotCachedError, nce:
+    except NotCachedError:
+        pass
+        
+    except ValueError:
+        pass
+    
+    if not ok:
         products = Product.objects.all()
         work = []
         for p in products:
@@ -62,7 +70,7 @@ def display_bestsellers(request):
              
         pks = ",".join(pks)
         log.debug('calculated bestselling products, set to cache: %s', sellers)
-        cache_set(nce.key, value=pks)
+        cache_set('BESTSELLERS', value=pks)
 
     ctx = RequestContext(request, {
         'products' : sellers,
