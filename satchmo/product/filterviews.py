@@ -89,7 +89,10 @@ def display_recent(request):
     if query.count() == 0:
         query = Product.objects.filter(active=True).order_by('-date_added')
     paginator = Paginator(query, num)
-    currentpage = paginator.page(page)
+    try:
+        currentpage = paginator.page(page)
+    except InvalidPage:
+        currentpage = None
     
     ctx = RequestContext(request, {
         'page' : currentpage
