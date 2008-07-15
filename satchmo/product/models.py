@@ -709,6 +709,19 @@ class Product(models.Model):
         return True
     is_shippable = property(_get_shippable)
 
+    def add_template_context(self, context, *args, **kwargs):
+        """
+        Add context for the product template.
+        Call the add_template_context method of each subtype and return the
+        combined context.
+        """
+        for subtype_name in self.get_subtypes():
+            subtype = getattr(self, subtype_name.lower())
+            if hasattr(subtype, 'add_template_context'):
+                context = subtype.add_template_context(context, *args, **kwargs)
+
+        return context
+
 class ProductTranslation(models.Model):
     """A specific language translation for a `Product`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
@@ -774,6 +787,17 @@ class CustomProduct(models.Model):
 
     unit_price = property(_get_fullPrice)
 
+    def add_template_context(self, context, selected_options, **kwargs):
+        """
+        Add context for the product template.
+        Return the updated context.
+        """
+        from satchmo.product.utils import serialize_options
+
+        context['options'] = serialize_options(self, selected_options)
+
+        return context
+
     def get_qty_price(self, qty):
         """
         If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
@@ -797,6 +821,8 @@ class CustomProduct(models.Model):
         return price
 
     full_price = property(fget=get_full_price)
+
+
 
     def _get_subtype(self):
         return 'CustomProduct'
@@ -1002,6 +1028,20 @@ class ConfigurableProduct(models.Model):
         for option in options:
             variations = variations.filter(options=option)
         return variations
+
+    def add_template_context(self, context, request, selected_options,
+            include_tax, **kwargs):
+        """
+        Add context for the product template.
+        Return the updated context.
+        """
+        from satchmo.product.utils import productvariation_details, serialize_options
+
+        context['options'] = serialize_options(self, selected_options)
+        context['details'] = productvariation_details(self.product, include_tax,
+            request.user)
+
+        return context
 
     def save(self):
         """
