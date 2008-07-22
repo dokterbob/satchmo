@@ -53,10 +53,10 @@ class WishTest(TestCase):
         """
         Validate we can't add unless we are logged in.
         """
-        response = self.client.get(prefix+'/product/DJ-Rocks/')
+        response = self.client.get(prefix+'/product/dj-rocks/')
         self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
         response = self.client.post(prefix+'/add/', { 
-            "productname" : "DJ-Rocks",
+            "productname" : "dj-rocks",
             "1" : "M",
             "2" : "BL",
             "addwish" : "Add to wishlist"
@@ -80,10 +80,10 @@ class WishTestLoggedIn(TestCase):
         """
         Validate we can add some items to the wishlist
         """
-        response = self.client.get(prefix+'/product/DJ-Rocks/')
+        response = self.client.get(prefix+'/product/dj-rocks/')
         self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
         response = self.client.post(prefix+'/add/', { 
-            "productname" : "DJ-Rocks",
+            "productname" : "dj-rocks",
             "1" : "M",
             "2" : "BL",
             "addwish" : "Add to wishlist"
@@ -97,11 +97,11 @@ class WishTestLoggedIn(TestCase):
         """
         Validate that we can remove wishlist items
         """
-        product = Product.objects.get(slug="DJ-Rocks_M_BL")
+        product = Product.objects.get(slug="dj-rocks-m-bl")
         wish = ProductWish(product = product, contact=self.contact)
         wish.save()
         
-        product = Product.objects.get(slug="robot-attack_soft")
+        product = Product.objects.get(slug="robot-attack-soft")
         wish = ProductWish(product = product, contact=self.contact)
         wish.save()
         
@@ -119,11 +119,11 @@ class WishTestLoggedIn(TestCase):
         """
         Validate that we can move an item to the cart
         """
-        product = Product.objects.get(slug="DJ-Rocks_M_BL")
+        product = Product.objects.get(slug="dj-rocks-m-bl")
         wish = ProductWish(product = product, contact=self.contact)
         wish.save()
         
-        product = Product.objects.get(slug="robot-attack_soft")
+        product = Product.objects.get(slug="robot-attack-soft")
         wish = ProductWish(product = product, contact=self.contact)
         wish.save()
         

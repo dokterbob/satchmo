@@ -113,7 +113,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks
+    slug: dj-rocks
     related_items: []
     short_description: ''
     taxClass: null
@@ -134,7 +134,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_L_B
+    slug: dj-rocks-l-b
     related_items: []
     short_description: ''
     taxClass: null
@@ -155,7 +155,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_L_BL
+    slug: dj-rocks-l-bl
     related_items: []
     short_description: ''
     taxClass: null
@@ -176,7 +176,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_L_W
+    slug: dj-rocks-l-w
     related_items: []
     short_description: ''
     taxClass: null
@@ -197,7 +197,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_M_B
+    slug: dj-rocks-m-b
     related_items: []
     short_description: ''
     taxClass: null
@@ -218,7 +218,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_M_BL
+    slug: dj-rocks-m-bl
     related_items: []
     short_description: ''
     taxClass: null
@@ -239,7 +239,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_M_W
+    slug: dj-rocks-m-w
     related_items: []
     short_description: ''
     taxClass: null
@@ -260,7 +260,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_S_B
+    slug: dj-rocks-s-b
     related_items: []
     short_description: ''
     taxClass: null
@@ -281,7 +281,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_S_BL
+    slug: dj-rocks-s-bl
     related_items: []
     short_description: ''
     taxClass: null
@@ -302,7 +302,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: DJ-Rocks_S_W
+    slug: dj-rocks-s-w
     related_items: []
     short_description: ''
     taxClass: null
@@ -344,7 +344,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: neat-book_hard
+    slug: neat-book-hard
     related_items: []
     short_description: ''
     taxClass: null
@@ -365,7 +365,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: neat-book_soft
+    slug: neat-book-soft
     related_items: []
     short_description: ''
     taxClass: null
@@ -386,7 +386,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: neat-book_tape
+    slug: neat-book-tape
     related_items: []
     short_description: ''
     taxClass: null
@@ -428,7 +428,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: neat-software_full
+    slug: neat-software-full
     related_items: []
     short_description: ''
     taxClass: null
@@ -449,7 +449,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: neat-software_upgrade
+    slug: neat-software-upgrade
     related_items: []
     short_description: ''
     taxClass: null
@@ -512,7 +512,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: robot-attack_hard
+    slug: robot-attack-hard
     related_items: []
     short_description: ''
     taxClass: null
@@ -533,7 +533,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: robot-attack_soft
+    slug: robot-attack-soft
     related_items: []
     short_description: ''
     taxClass: null
@@ -554,7 +554,7 @@
     items_in_stock: !!python/long '0'
     length: null
     meta: null
-    slug: robot-attack_tape
+    slug: robot-attack-tape
     related_items: []
     short_description: ''
     taxClass: null

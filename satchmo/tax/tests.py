@@ -10,33 +10,7 @@ from satchmo.contact.models import AddressBook, Contact, Order, OrderItem
 from satchmo.product.models import Product
 from satchmo.configuration import config_get
 from satchmo.caching import cache_delete
-
-def make_test_order(country, state, include_non_taxed=False):
-    c = Contact(first_name="Tax", last_name="Tester", 
-        role="Customer", email="tax@example.com")
-    c.save()
-    ad = AddressBook(contact=c, description="home",
-        street1 = "test", state=state, city="Portland",
-        country = country, is_default_shipping=True,
-        is_default_billing=True)
-    ad.save()
-    o = Order(contact=c, shipping_cost=Decimal('10.00'))
-    o.save()
-    
-    p = Product.objects.get(slug='DJ-Rocks_S_B')
-    price = p.unit_price
-    item1 = OrderItem(order=o, product=p, quantity=5,
-        unit_price=price, line_item_price=price*5)
-    item1.save()
-    
-    if include_non_taxed:
-        p = Product.objects.get(slug='neat-book_hard')
-        price = p.unit_price
-        item2 = OrderItem(order=o, product=p, quantity=1,
-            unit_price=price, line_item_price=price)
-        item2.save()
-    
-    return o
+from satchmo.contact.tests import make_test_order
 
 class TaxTest(TestCase):
     

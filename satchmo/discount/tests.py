@@ -180,7 +180,7 @@ class DiscountAmountTest(TestCase):
         small = Order(contact=c, shipping_cost=Decimal('6.00'))
         small.save()
 
-        p = Product.objects.get(slug='neat-book_soft')
+        p = Product.objects.get(slug='neat-book-soft')
         price = p.unit_price
         item1 = OrderItem(order=o, product=p, quantity=1,
             unit_price=price, line_item_price=price)
@@ -190,7 +190,7 @@ class DiscountAmountTest(TestCase):
             unit_price=price, line_item_price=price)
         item1s.save()
         
-        p = Product.objects.get(slug='neat-book_hard')
+        p = Product.objects.get(slug='neat-book-hard')
         price = p.unit_price
         item2 = OrderItem(order=o, product=p, quantity=1,
             unit_price=price, line_item_price=price)

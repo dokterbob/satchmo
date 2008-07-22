@@ -18,5 +18,5 @@ class GoogleBaseTest(TestCase):
             "<title>Robots Attack! (Hard cover)</title>",
             count=1, status_code=200)
         self.assertContains(response,
-            "<link href=\"%s%s/product/robot-attack_hard/\" />" % (
+            "<link href=\"%s%s/product/robot-attack-hard/\" />" % (
             domain, prefix), count=1, status_code=200)

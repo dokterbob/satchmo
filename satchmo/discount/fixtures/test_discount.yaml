@@ -207,7 +207,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: neat-book_hard
+    slug: neat-book-hard
     taxClass: null
     taxable: false
     weight: null
@@ -229,7 +229,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: neat-book_soft
+    slug: neat-book-soft
     taxClass: null
     taxable: false
     weight: null
@@ -251,7 +251,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: neat-book_tape
+    slug: neat-book-tape
     taxClass: null
     taxable: false
     weight: null
@@ -273,7 +273,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks
+    slug: dj-rocks
     taxClass: null
     taxable: true
     weight: null
@@ -295,7 +295,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_L_B
+    slug: dj-rocks-l-b
     taxClass: null
     taxable: true
     weight: null
@@ -317,7 +317,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_L_BL
+    slug: dj-rocks-l-bl
     taxClass: null
     taxable: true
     weight: null
@@ -339,7 +339,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_L_W
+    slug: dj-rocks-l-w
     taxClass: null
     taxable: true
     weight: null
@@ -361,7 +361,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_M_B
+    slug: dj-rocks-m-b
     taxClass: null
     taxable: true
     weight: null
@@ -383,7 +383,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_M_BL
+    slug: dj-rocks-m-bl
     taxClass: null
     taxable: true
     weight: null
@@ -405,7 +405,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_M_W
+    slug: dj-rocks-m-w
     taxClass: null
     taxable: true
     weight: null
@@ -427,7 +427,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_S_B
+    slug: dj-rocks-s-b
     taxClass: null
     taxable: true
     weight: null
@@ -449,7 +449,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_S_BL
+    slug: dj-rocks-s-bl
     taxClass: null
     taxable: true
     weight: null
@@ -471,7 +471,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: DJ-Rocks_S_W
+    slug: dj-rocks-s-w
     taxClass: null
     taxable: true
     weight: null
@@ -537,7 +537,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: robot-attack_hard
+    slug: robot-attack-hard
     taxClass: null
     taxable: false
     weight: null
@@ -559,7 +559,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: robot-attack_soft
+    slug: robot-attack-soft
     taxClass: null
     taxable: false
     weight: null
@@ -581,7 +581,7 @@
     ordering: 0
     related_items: []
     short_description: ''
-    slug: robot-attack_tape
+    slug: robot-attack-tape
     taxClass: null
     taxable: false
     weight: null

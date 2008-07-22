@@ -208,24 +208,24 @@ class ProductTest(TestCase):
         """Check quantity price for a productvariation"""
 
         # base product
-        product = Product.objects.get(slug='DJ-Rocks')
+        product = Product.objects.get(slug='dj-rocks')
         self.assertEqual(product.unit_price, Decimal("20.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
 
         # product with no price delta
-        product = Product.objects.get(slug='DJ-Rocks_S_B')
+        product = Product.objects.get(slug='dj-rocks-s-b')
         self.assertEqual(product.unit_price, Decimal("20.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
 
         # product which costs more due to details
-        product = Product.objects.get(slug='DJ-Rocks_L_BL')
+        product = Product.objects.get(slug='dj-rocks-l-bl')
         self.assertEqual(product.unit_price, Decimal("23.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
 
     def test_smart_attr(self):
-        p = Product.objects.get(slug__iexact='DJ-Rocks')
-        mb = Product.objects.get(slug__iexact='DJ-Rocks_M_B')
-        sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
+        p = Product.objects.get(slug__iexact='dj-rocks')
+        mb = Product.objects.get(slug__iexact='dj-rocks-m-b')
+        sb = Product.objects.get(slug__iexact='dj-rocks-s-b')
 
         # going to set a weight on the product, and an override weight on the medium
         # shirt.
@@ -249,7 +249,7 @@ class ConfigurableProductTest(TestCase):
 
     def test_get_variations_for_options(self):
         # Retrieve the objects.
-        dj_rocks = ConfigurableProduct.objects.get(product__slug="DJ-Rocks")
+        dj_rocks = ConfigurableProduct.objects.get(product__slug="dj-rocks")
         option_small = Option.objects.get(pk=1)
         option_black = Option.objects.get(pk=4)
         option_hard_cover = Option.objects.get(pk=7)

@@ -182,7 +182,7 @@ def load_data():
     
     print "Creating products..."   
     #Create some items
-    i1 = Product(name="Django Rocks shirt", slug="DJ-Rocks", description="Really cool shirt",
+    i1 = Product(name="Django Rocks shirt", slug="dj-rocks", description="Really cool shirt",
              active=True, featured=True)
     i1.save()
     p1 = Price(price="20.00", product=i1)

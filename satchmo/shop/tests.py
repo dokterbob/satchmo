@@ -114,9 +114,9 @@ class ShopTest(TestCase):
         """
         Validate we can add some items to the cart
         """
-        response = self.client.get(prefix+'/product/DJ-Rocks/')
+        response = self.client.get(prefix+'/product/dj-rocks/')
         self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
-        response = self.client.post(prefix+'/cart/add/', { "productname" : "DJ-Rocks",
+        response = self.client.post(prefix+'/cart/add/', { "productname" : "dj-rocks",
                                                       "1" : "L",
                                                       "2" : "BL",
                                                       "quantity" : 2})
@@ -166,7 +166,7 @@ class ShopTest(TestCase):
         # Test for an easily missed reversion. When you lookup a productvariation product then
         # you should get the page of the parent configurableproduct, but with the options for
         # that variation already selected
-        response = self.client.get(prefix+'/product/neat-book_soft/')
+        response = self.client.get(prefix+'/product/neat-book-soft/')
         self.assertContains(response, 'option value="soft" selected="selected"')
         self.assertContains(response, smart_str("%s5.00" % config_value('SHOP', 'CURRENCY')))
 
@@ -183,24 +183,24 @@ class ShopTest(TestCase):
         """
         Get the price and productname of a ProductVariation.
         """
-        response = self.client.get(prefix+'/product/DJ-Rocks/')
+        response = self.client.get(prefix+'/product/dj-rocks/')
         self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
 
         # this tests the unmolested price from the ConfigurableProduct, and
         # makes sure we get a good productname back for the ProductVariation
-        response = self.client.post(prefix+'/product/DJ-Rocks/prices/', {"1" : "S",
+        response = self.client.post(prefix+'/product/dj-rocks/prices/', {"1" : "S",
                                                       "2" : "B",
                                                       "quantity" : 1})
         content = response.content.split(',')
-        self.assertEquals(content[0], '["DJ-Rocks_S_B"')
+        self.assertEquals(content[0], '["dj-rocks-s-b"')
         self.assert_(content[1].endswith('20.00"]'))
 
         # This tests the option price_change feature, and again the productname
-        response = self.client.post(prefix+'/product/DJ-Rocks/prices/', {"1" : "L",
+        response = self.client.post(prefix+'/product/dj-rocks/prices/', {"1" : "L",
                                                       "2" : "BL",
                                                       "quantity" : 2})
         content = response.content.split(',')
-        self.assertEqual(content[0], '["DJ-Rocks_L_BL"')
+        self.assertEqual(content[0], '["dj-rocks-l-bl"')
         self.assert_(content[1].endswith('23.00"]'))
 
     def test_cart_removing(self):
@@ -509,9 +509,9 @@ class CartTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
 
     def test_line_cost(self):
-        p = Product.objects.get(slug__iexact='DJ-Rocks')
-        lb = Product.objects.get(slug__iexact='DJ-Rocks_L_BL')
-        sb = Product.objects.get(slug__iexact='DJ-Rocks_S_B')
+        p = Product.objects.get(slug__iexact='dj-rocks')
+        lb = Product.objects.get(slug__iexact='dj-rocks-l-bl')
+        sb = Product.objects.get(slug__iexact='dj-rocks-s-b')
 
         cart = Cart()
         cart.save()
