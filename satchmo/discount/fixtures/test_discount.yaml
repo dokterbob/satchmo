@@ -127,9 +127,9 @@
   model: discount.discount
   pk: 5
 - fields:
-    active: false
+    active: true
     allowedUses: null
-    amount: '20'
+    amount: null
     code: test20freeship
     description: Test Percent 20 Free ship
     endDate: 5000-01-01
@@ -137,7 +137,7 @@
     includeShipping: false
     minOrder: null
     numUses: null
-    percentage: null
+    percentage: '20'
     startDate: 2007-12-15
     validProducts: []
   model: discount.discount

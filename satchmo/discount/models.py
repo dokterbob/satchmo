@@ -119,19 +119,16 @@ class Discount(models.Model):
         discounted = {}
         validproducts = self._get_valid_product_dict()
         allvalid = len(validproducts) == 0
-        ordertotal = Decimal("0.00")
 
         for lineitem in order.orderitem_set.all():
             lid = lineitem.id
             price = lineitem.line_item_price
             if allvalid or lineitem.product.id in validproducts:
                 discounted[lid] = price
-                ordertotal += price
 
         if self.includeShipping and not self.freeShipping:
             shipcost = order.shipping_cost
             discounted['Shipping'] = shipcost
-            ordertotal += shipcost
 
         if self.amount:
             # perform a flat rate discount, applying evenly to all items
@@ -150,7 +147,6 @@ class Discount(models.Model):
         if self.freeShipping:
             shipcost = order.shipping_cost
             discounted['Shipping'] = shipcost
-            ordertotal += shipcost
 
         self._item_discounts = discounted
         self._calculated = True

@@ -385,5 +385,20 @@ class DiscountAmountTest(TestCase):
         self.assertEqual(shipcost, Decimal('6.00'))
         self.assertEqual(shiptotal, Decimal('4.80'))
         self.assertEqual(discount, Decimal('2.40'))
+
+    def testApplySmallPercentFreeShip(self):
+        self.small.discount_code="test20freeship"
+        self.small.recalculate_total(save=False)
+        sub_total = self.small.sub_total
+        price = self.small.total
+        shipcost = self.small.shipping_cost
+        shiptotal = self.small.shipping_sub_total
+        discount = self.small.discount
+
+        self.assertEqual(sub_total, Decimal('6.00'))
+        self.assertEqual(price, Decimal('4.80'))
+        self.assertEqual(shipcost, Decimal('6.00'))
+        self.assertEqual(shiptotal, Decimal('0.00'))
+        self.assertEqual(discount, Decimal('7.20'))
         
 
