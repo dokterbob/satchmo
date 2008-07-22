@@ -11,7 +11,7 @@ from satchmo.product.models import Product
 from satchmo.configuration import config_get
 from satchmo.caching import cache_delete
 
-def make_test_order(country, state):
+def make_test_order(country, state, include_non_taxed=False):
     c = Contact(first_name="Tax", last_name="Tester", 
         role="Customer", email="tax@example.com")
     c.save()
@@ -29,6 +29,13 @@ def make_test_order(country, state):
         unit_price=price, line_item_price=price*5)
     item1.save()
     
+    if include_non_taxed:
+        p = Product.objects.get(slug='neat-book_hard')
+        price = p.unit_price
+        item2 = OrderItem(order=o, product=p, quantity=1,
+            unit_price=price, line_item_price=price)
+        item2.save()
+    
     return o
 
 class TaxTest(TestCase):
@@ -41,17 +48,17 @@ class TaxTest(TestCase):
         tax = config_get('TAX','MODULE')
         tax.update('satchmo.tax.modules.area')
         
-        order = make_test_order('DE', '')
+        order = make_test_order('DE', '', include_non_taxed=True)
         
         order.recalculate_total(save=False)
         price = order.total
         subtotal = order.sub_total
         tax = order.tax
         
-        self.assertEqual(subtotal, Decimal('100.00'))
+        self.assertEqual(subtotal, Decimal('105.00'))
         self.assertEqual(tax, Decimal('20.00'))
         # 100 + 10 shipping + 20 tax
-        self.assertEqual(price, Decimal('130.00'))
+        self.assertEqual(price, Decimal('135.00'))
         
         taxes = order.taxes.all()
         self.assertEqual(2, len(taxes))

@@ -18,8 +18,11 @@ class Processor(object):
         self.user = user
 
     def by_orderitem(self, orderitem):
-        price = orderitem.sub_total
-        return self.by_price(orderitem.product.taxClass, price)
+        if orderitem.product.taxable:
+            price = orderitem.sub_total
+            return self.by_price(orderitem.product.taxClass, price)
+        else:
+            return Decimal("0.00")
         
     def by_price(self, taxclass, price):
         percent = config_value('TAX','PERCENT')
@@ -60,7 +63,10 @@ class Processor(object):
             order = self.order
 
         percent = config_value('TAX','PERCENT')    
-        sub_total = order.sub_total-order.item_discount
+
+        sub_total = Decimal("0.00")
+        for item in order.orderitem_set.filter(product__taxable=True):
+            sub_total += item.sub_total
         
         itemtax = sub_total * (percent/100)
         taxrates = {'%i%%' % percent :  itemtax}

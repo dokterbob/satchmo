@@ -131,9 +131,12 @@ class Processor(object):
         return self.by_price(tc, price)
         
     def by_orderitem(self, orderitem):
-        price = orderitem.sub_total
-        taxclass = orderitem.product.taxClass
-        return self.by_price(taxclass, price)
+        if orderitem.product.taxable:
+            price = orderitem.sub_total
+            taxclass = orderitem.product.taxClass
+            return self.by_price(taxclass, price)
+        else:
+            return Decimal("0.00")
 
     def shipping(self):
         if self.order:
@@ -160,8 +163,6 @@ class Processor(object):
         """
         Calculate the tax and return it.
         
-        Ignoring discounts for now.
-        
         Probably need to make a breakout.
         """
         if order:
@@ -173,7 +174,7 @@ class Processor(object):
         taxes = {}
         
         rates = {}
-        for item in order.orderitem_set.all():
+        for item in order.orderitem_set.filter(product__taxable=True):
             tc = item.product.taxClass
             if tc:
                 tc_key = tc.title

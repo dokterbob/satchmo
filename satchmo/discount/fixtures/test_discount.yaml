@@ -275,7 +275,7 @@
     short_description: ''
     slug: DJ-Rocks
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -297,7 +297,7 @@
     short_description: ''
     slug: DJ-Rocks_L_B
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -319,7 +319,7 @@
     short_description: ''
     slug: DJ-Rocks_L_BL
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -341,7 +341,7 @@
     short_description: ''
     slug: DJ-Rocks_L_W
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -363,7 +363,7 @@
     short_description: ''
     slug: DJ-Rocks_M_B
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -385,7 +385,7 @@
     short_description: ''
     slug: DJ-Rocks_M_BL
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -407,7 +407,7 @@
     short_description: ''
     slug: DJ-Rocks_M_W
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -429,7 +429,7 @@
     short_description: ''
     slug: DJ-Rocks_S_B
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -451,7 +451,7 @@
     short_description: ''
     slug: DJ-Rocks_S_BL
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
@@ -473,7 +473,7 @@
     short_description: ''
     slug: DJ-Rocks_S_W
     taxClass: null
-    taxable: false
+    taxable: true
     weight: null
     width: null
   model: product.product
