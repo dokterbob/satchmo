@@ -9,10 +9,10 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_value, config_get_group
 from satchmo.contact.models import Contact, OrderPayment, Order
+from satchmo.giftcertificate.utils import generate_certificate_code
 from satchmo.l10n.utils import moneyfmt
 from satchmo.payment.common.utils import record_payment
 from satchmo.product.models import Product
-from utils import generate_certificate_code
 import logging
 
 GIFTCODE_KEY = 'GIFTCODE'
@@ -91,13 +91,6 @@ class GiftCertificate(models.Model):
         b = moneyfmt(self.balance)
         return "Gift Cert: %s/%s" % (sb, b)
 
-    class Admin:
-        list_display = ['code','balance']
-        ordering = ['date_added']
-
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Gift Certificate")
         verbose_name_plural = _("Gift Certificates")
@@ -111,8 +104,7 @@ class GiftCertificateUsage(models.Model):
     orderpayment = models.ForeignKey(OrderPayment, null=True, verbose_name=_('Order Payment'))
     used_by = models.ForeignKey(Contact, verbose_name=_('Used by'),
         blank=True, null=True, related_name='giftcertificates_used')
-    giftcertificate = models.ForeignKey(GiftCertificate, related_name='usages',
-        edit_inline=models.STACKED, num_in_admin=1)
+    giftcertificate = models.ForeignKey(GiftCertificate, related_name='usages')
 
     def __unicode__(self):
         return u"GiftCertificateUsage: %s" % self.balance_used
@@ -158,9 +150,8 @@ class GiftCertificateProduct(models.Model):
             )
         gc.save()
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Gift certificate product")
         verbose_name_plural = _("Gift certificate products")
+
+from satchmo.giftcertificate import admin

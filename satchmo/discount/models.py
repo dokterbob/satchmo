@@ -14,7 +14,7 @@ from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Product
-from satchmo.shop.utils.validators import MutuallyExclusiveWithField
+from satchmo.utils.validators import MutuallyExclusiveWithField
 
 log = logging.getLogger('Discount.models')
 
@@ -63,7 +63,7 @@ class Discount(models.Model):
         help_text=_("Should this discount remove all shipping costs?"))
     includeShipping = models.BooleanField(_("Include shipping"), blank=True, null=True,
         help_text=_("Should shipping be included in the discount calculation?"))
-    validProducts = models.ManyToManyField(Product, verbose_name=_("Valid Products"), filter_interface=True,
+    validProducts = models.ManyToManyField(Product, verbose_name=_("Valid Products"),
         blank=True, null=True, help_text="Make sure not to include gift certificates!")
 
     def __init__(self, *args, **kwargs):
@@ -183,9 +183,6 @@ class Discount(models.Model):
         p = self.validProducts.filter(id__exact = product.id)
         return p.count() > 0
 
-    class Admin:
-        list_display=('description','active')
-
     class Meta:
         verbose_name = _("Discount")
         verbose_name_plural = _("Discounts")
@@ -240,3 +237,5 @@ def round_cents(work):
     cents = Decimal("0.01")
     for lid in work:
         work[lid] = work[lid].quantize(cents)
+
+from satchmo.discount import admin

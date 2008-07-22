@@ -4,9 +4,9 @@ except:
     from django.utils._decimal import Decimal
 
 from django import template
-from satchmo import tax
 from satchmo.l10n.utils import moneyfmt
 from satchmo.shop.templatetags import get_filter_args
+from satchmo.tax.utils import get_tax_processor
 import logging
 
 log = logging.getLogger('satchmo.tax.templatetags')
@@ -36,7 +36,7 @@ def _get_taxprocessor(request):
         else:
             user = None
 
-        taxprocessor = tax.get_processor(user=user)    
+        taxprocessor = get_tax_processor(user=user)    
         set_thread_variable('taxer', taxprocessor)
         
     return taxprocessor

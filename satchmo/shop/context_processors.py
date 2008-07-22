@@ -7,7 +7,7 @@ It is used to add some common variables to all the templates
 from django.conf import settings as site_settings
 from satchmo.product.models import Category
 from satchmo.shop.models import Config, NullConfig, Cart, NullCart
-from satchmo.shop.utils import request_is_secure
+from satchmo.utils import request_is_secure
 import logging
 
 log = logging.getLogger('shop_context')

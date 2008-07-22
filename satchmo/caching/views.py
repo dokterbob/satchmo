@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import user_passes_test
@@ -12,20 +12,25 @@ import logging
 
 log = logging.getLogger('caching.views')
 
+YN = (
+    ('Y', _('Yes')),
+    ('N', _('No')),
+    )
+
 class CacheDeleteForm(forms.Form):
-    tag = forms.CharField('Key to delete', required=False)
-    children = forms.BooleanField('Include Children?', initial=True)
-    kill_all = forms.BooleanField('Delete all keys?', initial=False)
+    tag = forms.CharField(label=_('Key to delete'), required=False)
+    children = forms.ChoiceField(label=_('Include Children?'), choices=YN, initial="Y")
+    kill_all = forms.ChoiceField(label=_('Delete all keys?'), choices=YN, initial="Y")
     
     def delete_cache(self):
         
         data = self.cleaned_data
-        if data['kill_all']:
+        if data['kill_all'] == "Y":
             caching.cache_delete()
             result = "Deleted all keys"
         elif data['tag']:
             caching.cache_delete(data['tag'], children=data['children'])
-            if data['children']:
+            if data['children'] == "Y":
                 result = "Deleted %s and children" % data['tag']
             else:
                 result = "Deleted %s" % data['tag']
@@ -84,8 +89,7 @@ def delete_page(request):
         if form.is_valid():
             log.debug('delete form valid')
             results = form.delete_cache()
-            url = urlresolvers.reverse('caching_stats')
-            return HttpResponseRedirect(url)
+            return HttpResponseRedirect('../')
         else:
             log.debug("Errors in form: %s", form.errors)
     else:

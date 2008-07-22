@@ -198,14 +198,11 @@ class Carrier(models.Model):
     def __unicode__(self):
         return u"Carrier: %s" % self.name
         
-    class Admin:
-        ordering = ('key',)
-
     class Meta:
         pass
         
 class CarrierTranslation(models.Model):
-    carrier = models.ForeignKey('Carrier', edit_inline=models.STACKED, related_name='translations', num_in_admin=2)
+    carrier = models.ForeignKey('Carrier', related_name='translations')
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, core=True)
     name = models.CharField(_('Carrier'), max_length=50, core=True)
     description = models.CharField(_('Description'), max_length=200)
@@ -213,7 +210,7 @@ class CarrierTranslation(models.Model):
     delivery = models.CharField(_('Delivery Days'), max_length=200)
 
 class ShippingTier(models.Model):
-    carrier = models.ForeignKey('Carrier', edit_inline=models.TABULAR, related_name='tiers', num_in_admin=5)
+    carrier = models.ForeignKey('Carrier', related_name='tiers')
     min_total = models.DecimalField(_("Min Price"), 
         help_text=_('The minumum price for this tier to apply'), 
         max_digits=10, decimal_places=2, core=True)
@@ -222,9 +219,6 @@ class ShippingTier(models.Model):
     
     def __unicode__(self):
         return u"ShippingTier: %s @ %s" % (self.price, self.min_total)
-    
-    class Admin:
-        ordering = ('min_total', 'expires')
     
     class Meta:
         pass

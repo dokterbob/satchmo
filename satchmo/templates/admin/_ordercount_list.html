@@ -1,0 +1,16 @@
+{# used by status_ordercounts templatetags #}
+{% load satchmo_currency i18n %}
+<ul>
+{% for order in orders %}
+	<li>
+		<a href="/admin/contact/order/{{ order.id }}">{{ order }}</a> 
+		&ndash; {{ order.total|currency }} {% trans "on" %} {{ order.timestamp|date:"F jS Y H:i" }}
+	    <ul>
+	        {% for item in order.orderitem_set.all %}
+	            <li>
+					{{ item }} x {{ item.quantity }}
+				</li>
+	        {% endfor %}
+	    </ul>
+	</li>{% endfor %}
+</ul>

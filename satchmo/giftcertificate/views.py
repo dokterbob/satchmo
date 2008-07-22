@@ -9,7 +9,7 @@ from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.common.views import confirm, payship
-from satchmo.shop.utils.dynamic import lookup_url, lookup_template
+from satchmo.utils.dynamic import lookup_url, lookup_template
 import logging
 
 log = logging.getLogger("giftcertificate.views")

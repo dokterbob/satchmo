@@ -9,7 +9,7 @@ from satchmo.configuration import config_value
 from satchmo.contact.models import Contact
 from satchmo.l10n.models import AdminArea, Country
 from satchmo.shop.models import Config
-from satchmo.shop.utils import is_string_like
+from satchmo.utils import is_string_like
 from satchmo.tax.models import TaxRate, TaxClass
 import logging
 

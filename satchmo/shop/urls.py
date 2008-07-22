@@ -1,12 +1,11 @@
-from django.conf.urls.defaults import *
 from django.conf import settings
+from django.conf.urls.defaults import *
+from satchmo.configuration import config_value
 from satchmo.product.models import Product
 from satchmo.product.views import display_featured
-from satchmo.shop.utils import app_enabled
-from satchmo.configuration import config_value
+from satchmo.utils import app_enabled
 
 num_to_paginate = config_value('SHOP','NUM_PAGINATED')
-
 
 urlpatterns = getattr(settings, 'SHOP_URLS', [])
 

@@ -59,8 +59,5 @@ class Subscription(models.Model):
         self.update_date = datetime.date.today()
 
         super(Subscription, self).save()
-        
-    class Admin:
-        list_display = ['email', 'subscribed', 'create_date', 'update_date']
-        list_filter = ['subscribed']
 
+from satchmo.newsletter import admin

@@ -1,28 +1,12 @@
 {% load i18n %}
-{% load satchmo_currency %}
-
+{% load satchmo_currency satchmo_adminorder_tags %}
     <div class="module" id="Orders">
-        <h2><a href="/admin/contact/order/?status__exact=Pending">{% trans "New Orders" %}</a></h2>
-        <ul>
-        {% for order in pendings %}
-            <li><a href="/admin/contact/order/{{ order.id }}">{{ order }}</a> - {{ order.total|currency }} {% trans "on" %} {{ order.timestamp|date:"F jS Y H:i" }}</li>
-            <ul>
-                {% for item in order.orderitem_set.all %}
-                    <li>{{ item }} x {{ item.quantity }}</li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
-        </ul>
-        <h2><a href="/admin/contact/order/?status__exact=In%20Process">{% trans "Orders in Process" %}</a></h2>
-        <ul>
-        {% for order in in_process %}
-             <li><a href="/admin/contact/order/{{ order.id }}">{{ order }}</a> - {{ order.total|currency }} {% trans "on" %} {{ order.timestamp|date:"F jS Y H:i" }}</li>
-            <ul>
-                {% for item in order.orderitem_set.all %}
-                    <li>{{ item }} x {{ item.quantity }}</li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
-        </ul>
-         <h2><a href="/admin/contact/order/">{% trans "View all Orders" %}</a></h2>
-    </div>
+		<h2 class="module-title">{% trans "Satchmo Orders" %}</h2>
+		<div class="module-content">
+        	<h2><a href="/admin/contact/order/?status__exact=Pending">{% trans "New Orders" %}</a></h2>
+			{% pending_order_list %}
+	        <h2><a href="/admin/contact/order/?status__exact=In%20Process">{% trans "Orders in Process" %}</a></h2>
+			{% inprocess_order_list %}
+	        <h2><a href="/admin/contact/order/">{% trans "View all Orders" %}</a></h2>
+	    </div>
+	</div>

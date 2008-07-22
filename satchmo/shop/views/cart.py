@@ -21,7 +21,7 @@ from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop.models import Cart, CartItem, NullCart
 from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete
-from satchmo.shop.utils import trunc_decimal
+from satchmo.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
 
 log = logging.getLogger('shop.views.cart')

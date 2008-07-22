@@ -1,10 +1,10 @@
-import locale
-import logging
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale
 from satchmo.configuration import config_value
-from satchmo.shop.utils import trunc_decimal
+from satchmo.utils import trunc_decimal
+import locale
+import logging
 
 log = logging.getLogger('l10n.utils')
 

@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _, ugettext

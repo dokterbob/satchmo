@@ -2,9 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.admin.views.decorators import staff_member_required
-
-from satchmo.configuration import *
-from satchmo.configuration import forms
+from satchmo.configuration import ConfigurationSettings, forms
 import logging
 
 log = logging.getLogger('configuration.views')

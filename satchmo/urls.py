@@ -1,5 +1,6 @@
-from django.conf.urls.defaults import *
 from django.conf import settings
+from django.conf.urls.defaults import *
+from django.contrib import admin
 from satchmo.shop.views.sitemaps import sitemaps
 
 if settings.SHOP_BASE == '':
@@ -12,8 +13,7 @@ urlpatterns = getattr(settings, 'URLS', [])
 urlpatterns += patterns('',
     (r'^admin/print/(?P<doc>[-\w]+)/(?P<id>\d+)', 'satchmo.shipping.views.displayDoc'),
     (r'^admin/product/configurableproduct/(?P<id>\d+)/getoptions/', 'satchmo.product.views.get_configurable_product_options'),
-    (r'^admin/$', 'satchmo.shop.views.admin-portal.home'),
-    (r'^admin/', include('django.contrib.admin.urls')),
+    (r'^admin/(.*)', admin.site.root),
     (r'^accounts/', include('satchmo.accounts.urls')),
     (shopregex, include('satchmo.shop.urls')),
     (r'sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),

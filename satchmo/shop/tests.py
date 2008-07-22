@@ -1,5 +1,5 @@
 r"""
->>> from satchmo.shop.utils import trunc_decimal
+>>> from satchmo.utils import trunc_decimal
 
 # Test trunc_decimal's rounding behavior.
 >>> trunc_decimal("0.004", 2)
@@ -438,7 +438,7 @@ class AdminTest(TestCase):
 
     def test_index(self):
         response = self.client.get('/admin/')
-        self.assertContains(response, "auth/user/", status_code=200)
+        self.assertContains(response, "contact/contact/", status_code=200)
 
     #def test_product(self):
         response = self.client.get('/admin/product/product/1/')

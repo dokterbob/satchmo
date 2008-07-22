@@ -3,23 +3,22 @@ Stores details about the available payment options.
 Also stores credit card info in an encrypted format.
 """
 
-from satchmo.configuration import config_value
 from Crypto.Cipher import Blowfish
 from datetime import datetime
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-#from modules.giftcertificate.utils import generate_certificate_code
 from satchmo import caching
+from satchmo.configuration import config_value
 from satchmo.contact.models import Contact, OrderPayment
 from satchmo.payment.config import payment_choices, credit_choices
 import base64
 import logging
+
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 log = logging.getLogger('payment.models')
         
@@ -36,10 +35,6 @@ class PaymentOption(models.Model):
         help_text=_("The class name as defined in payment.py"))
     sortOrder = models.IntegerField(_("Sort Order"))
     
-    class Admin:
-        list_display = ['optionName','description','active']
-        ordering = ['sortOrder']
-    
     class Meta:
         verbose_name = _("Payment Option")
         verbose_name_plural = _("Payment Options")
@@ -49,8 +44,8 @@ class CreditCardDetail(models.Model):
     Stores an encrypted CC number, its information, and its
     displayable number.
     """
-    orderpayment = models.ForeignKey(OrderPayment, unique=True, edit_inline=True,
-        num_in_admin=1, max_num_in_admin=1, related_name="creditcards")
+    orderpayment = models.ForeignKey(OrderPayment, unique=True, 
+        related_name="creditcards")
     creditType = models.CharField(_("Credit Card Type"), max_length=16,
         choices=credit_choices())
     displayCC = models.CharField(_("CC Number (Last 4 digits)"),
@@ -104,3 +99,5 @@ class CreditCardDetail(models.Model):
     class Meta:
         verbose_name = _("Credit Card")
         verbose_name_plural = _("Credit Cards")
+
+from satchmo.payment import admin

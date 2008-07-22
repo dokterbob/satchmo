@@ -49,11 +49,10 @@ __license__ = "Python"
 __copyright__ = "Copyright (C) 2007, Stephen Zabel"
 __author__ = "Stephen Zabel"
 
-
 from django.conf import settings
 from django.http import HttpResponseRedirect, get_host
 from satchmo.shop.models import Config
-from satchmo.shop.utils import request_is_secure
+from satchmo.utils import request_is_secure
 
 SSL = 'SSL'
 

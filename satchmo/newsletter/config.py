@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import *
-from satchmo.shop.utils import load_module
+from satchmo.utils import load_module
 
 NEWSLETTER_GROUP = ConfigurationGroup('NEWSLETTER', _('Newsletter Settings'))
 

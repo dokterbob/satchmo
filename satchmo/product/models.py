@@ -3,6 +3,7 @@ Base model used for products.  Stores hierarchical categories
 as well as individual product level information which includes
 options.
 """
+
 import datetime
 import logging
 import random
@@ -18,24 +19,20 @@ from django.core.validators import RequiredIfOtherFieldGiven
 from django.db import models
 from django.db.models import Q
 from django.dispatch import dispatcher
+from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.product import signals
-from satchmo.shop.utils import cross_list, normalize_dir
-from satchmo.shop.utils.unique_id import slugify
-from satchmo.shop.utils.validators import ValidateIfFieldsSame
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
+from satchmo.utils import cross_list, normalize_dir, url_join
+from satchmo.utils.unique_id import slugify
+from satchmo.utils.validators import ValidateIfFieldsSame
 
 try:
     set
 except NameError:
     from sets import Set as set  # Python 2.3 fallback
-
-try:
-    from django.utils.safestring import mark_safe
-except ImportError:
-    mark_safe = lambda s:s
 
 log = logging.getLogger('product.models')
 
@@ -199,10 +196,6 @@ class Category(models.Model):
         flat_list = self._flatten(children_list[1:])
         return flat_list
 
-    class Admin:
-        list_display = ('name', '_parents_repr')
-        ordering = ['parent__id', 'ordering', 'name']
-
     class Meta:
         ordering = ['parent__id', 'ordering', 'name']
         verbose_name = _("Category")
@@ -212,7 +205,7 @@ class CategoryTranslation(models.Model):
     """A specific language translation for a `Category`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    category = models.ForeignKey(Category, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    category = models.ForeignKey(Category, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
     description = models.TextField(_("Description of category"), default='', blank=True)
@@ -234,9 +227,9 @@ class CategoryImage(models.Model):
     Thumbnails are automatically created.
     """
     category = models.ForeignKey(Category, null=True, blank=True,
-        related_name="images",
-        edit_inline=models.TABULAR, num_in_admin=3)
-    picture = ImageWithThumbnailField(verbose_name=_('Picture'), upload_to=upload_dir(),
+        related_name="images")
+    picture = ImageWithThumbnailField(verbose_name=_('Picture'),
+        upload_to=upload_dir(),
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
@@ -266,14 +259,11 @@ class CategoryImage(models.Model):
         verbose_name = _("Category Image")
         verbose_name_plural = _("Category Images")
 
-    class Admin:
-        pass
-
 class CategoryImageTranslation(models.Model):
     """A specific language translation for a `CategoryImage`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    categoryimage = models.ForeignKey(CategoryImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    categoryimage = models.ForeignKey(CategoryImage, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
@@ -313,9 +303,6 @@ class OptionGroup(models.Model):
         else:
             return self.name
 
-    class Admin:
-        pass
-
     class Meta:
         ordering = ['sort_order', 'name']
         verbose_name = _("Option Group")
@@ -325,7 +312,7 @@ class OptionGroupTranslation(models.Model):
     """A specific language translation for an `OptionGroup`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    optiongroup = models.ForeignKey(OptionGroup, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    optiongroup = models.ForeignKey(OptionGroup, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated OptionGroup Name"), max_length=255, core=True)
     description = models.TextField(_("Description of OptionGroup"), default='', blank=True)
@@ -354,8 +341,7 @@ class Option(models.Model):
     would be Small.
     """
     objects = OptionManager()
-    optionGroup = models.ForeignKey(OptionGroup, edit_inline=models.TABULAR,
-        num_in_admin=5)
+    optionGroup = models.ForeignKey(OptionGroup)
     name = models.CharField(_("Display value"), max_length=50, core=True)
     value = models.CharField(_("Stored value"), max_length=50)
     price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
@@ -372,9 +358,6 @@ class Option(models.Model):
         verbose_name = _("Option Item")
         verbose_name_plural = _("Option Items")
 
-    class Admin:
-        pass
-
     def _get_unique_id(self):
         return '%s-%s' % (str(self.optionGroup.id), str(self.value),)
     # optionGroup.id-value
@@ -390,7 +373,7 @@ class OptionTranslation(models.Model):
     """A specific language translation for an `Option`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    option = models.ForeignKey(Option, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    option = models.ForeignKey(Option, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Option Name"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
@@ -422,7 +405,7 @@ class Product(models.Model):
         help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
-    category = models.ManyToManyField(Category, filter_interface=True, blank=True, verbose_name=_("Category"))
+    category = models.ManyToManyField(Category, blank=True, verbose_name=_("Category"))
     items_in_stock = models.IntegerField(_("Number in stock"), default=0)
     meta = models.TextField(_("Meta Description"), max_length=200, blank=True, null=True, help_text=_("Meta description for this product"))
     date_added = models.DateField(_("Date added"), null=True, blank=True)
@@ -528,7 +511,6 @@ class Product(models.Model):
                 price = self._get_fullPrice()
 
         return price
-
     def get_qty_price_list(self):
         """Return a list of tuples (qty, price)"""
         prices = Price.objects.filter(product__id=self.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
@@ -565,18 +547,6 @@ class Product(models.Model):
     def get_absolute_url(self):
         return urlresolvers.reverse('satchmo_product',
             kwargs={'product_slug': self.slug})
-
-    class Admin:
-        list_display = ('slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
-        list_filter = ('category', 'date_added')
-        fields = (
-        (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}),
-        (_('Meta Data'), {'fields': ('meta',), 'classes': 'collapse'}),
-        (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': 'collapse'}),
-        (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': 'collapse'}),
-        (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}),
-        )
-        search_fields = ['slug', 'sku', 'name']
 
     class Meta:
         ordering = ('ordering', 'name')
@@ -726,7 +696,7 @@ class ProductTranslation(models.Model):
     """A specific language translation for a `Product`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    product = models.ForeignKey('Product', edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    product = models.ForeignKey('Product', related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Full Name"), max_length=255, core=True)
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
@@ -836,9 +806,6 @@ class CustomProduct(models.Model):
         """
         return get_all_options(self)
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _('Custom Product')
         verbose_name_plural = _('Custom Products')
@@ -849,12 +816,14 @@ class CustomTextField(models.Model):
     """
 
     name = models.CharField(_('Custom field name'), max_length=40, core=True)
-    slug = models.SlugField(_("Slug"), help_text=_("Auto-generated from name if blank"), blank=True)
-    products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'),
-        edit_inline=models.TABULAR, num_in_admin=3, related_name='custom_text_fields')
+    slug = models.SlugField(_("Slug"), help_text=_("Auto-generated from name if blank"),
+        blank=True)
+    products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'), 
+        related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
-    price_change = models.DecimalField(_("Price Change"), max_digits=14, decimal_places=6, blank=True, null=True)
+    price_change = models.DecimalField(_("Price Change"), max_digits=14, 
+        decimal_places=6, blank=True, null=True)
 
     def save(self):
         if not self.slug:
@@ -871,7 +840,7 @@ class CustomTextFieldTranslation(models.Model):
     """A specific language translation for a `CustomTextField`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    customtextfield = models.ForeignKey(CustomTextField, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    customtextfield = models.ForeignKey(CustomTextField, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
@@ -1059,9 +1028,6 @@ class ConfigurableProduct(models.Model):
     def get_absolute_url(self):
         return self.product.get_absolute_url()
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Configurable Product")
         verbose_name_plural = _("Configurable Products")
@@ -1096,9 +1062,6 @@ class DownloadableProduct(models.Model):
         from satchmo.contact.models import DownloadLink
         new_link = DownloadLink(downloadable_product=self, order=order, key=self.create_key(), num_attempts=0)
         new_link.save()
-
-    class Admin:
-        pass
 
     class Meta:
         verbose_name = _("Downloadable Product")
@@ -1138,9 +1101,6 @@ class SubscriptionProduct(models.Model):
             except IndexError:
                 return None
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Subscription Product")
         verbose_name_plural = _("Subscription Products")
@@ -1155,7 +1115,7 @@ class Trial(models.Model):
     product.  However, gateway based processors like Authorize.net can support as many
     billing periods as you wish.
     """
-    subscription = models.ForeignKey(SubscriptionProduct, edit_inline=models.STACKED, num_in_admin=2)
+    subscription = models.ForeignKey(SubscriptionProduct)
     price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, core=True)
     expire_days = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle (days).  Leave empty if product does not have a trial."), null=True, blank=True)
 
@@ -1175,8 +1135,6 @@ class Trial(models.Model):
 #    product = models.OneToOneField(Product)
 #    members = models.ManyToManyField(Product, related_name='parent_productgroup_set')
 #
-#    class Admin:
-#        pass
 
 class ProductVariationManager(models.Manager):
 
@@ -1191,7 +1149,7 @@ class ProductVariation(models.Model):
 
     """
     product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
-    options = models.ManyToManyField(Option, filter_interface=True, core=True, verbose_name=_('Options'))
+    options = models.ManyToManyField(Option, core=True, verbose_name=_('Options'))
     parent = models.ForeignKey(ConfigurableProduct, core=True, validator_list=[variant_validator], verbose_name=_('Parent'))
 
     objects = ProductVariationManager()
@@ -1340,9 +1298,6 @@ class ProductVariation(models.Model):
     def get_absolute_url(self):
         return self.product.get_absolute_url()
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Product variation")
         verbose_name_plural = _("Product variations")
@@ -1357,7 +1312,7 @@ class ProductAttribute(models.Model):
     If you want more structure then this, create your own subtype to add
     whatever you want to your Products.
     """
-    product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=1)
+    product = models.ForeignKey(Product)
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
     name = models.SlugField(_("Attribute Name"), max_length=100, core=True)
     value = models.CharField(_("Value"), max_length=255)
@@ -1374,7 +1329,7 @@ class Price(models.Model):
     The current price should be the one with the earliest expires date, and the highest quantity
     that's still below the user specified (IE: ordered) quantity, that matches a given product.
     """
-    product = models.ForeignKey(Product, edit_inline=models.TABULAR, num_in_admin=2)
+    product = models.ForeignKey(Product)
     price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, core=True)
     quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(_("Expires"), null=True, blank=True)
@@ -1415,9 +1370,9 @@ class ProductImage(models.Model):
     A picture of an item.  Can have many pictures associated with an item.
     Thumbnails are automatically created.
     """
-    product = models.ForeignKey(Product, null=True, blank=True,
-        edit_inline=models.STACKED, num_in_admin=3)
-    picture = ImageWithThumbnailField(verbose_name=_('Picture'), upload_to=upload_dir(),
+    product = models.ForeignKey(Product, null=True, blank=True)
+    picture = ImageWithThumbnailField(verbose_name=_('Picture'),
+        upload_to=upload_dir(),
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
@@ -1447,14 +1402,11 @@ class ProductImage(models.Model):
         verbose_name = _("Product Image")
         verbose_name_plural = _("Product Images")
 
-    class Admin:
-        pass
-
 class ProductImageTranslation(models.Model):
     """A specific language translation for a `ProductImage`.  This is intended for all descriptions which are not the
     default settings.LANGUAGE.
     """
-    productimage = models.ForeignKey(ProductImage, edit_inline=models.STACKED, related_name="translations", num_in_admin=1)
+    productimage = models.ForeignKey(ProductImage, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
     version = models.IntegerField(_('version'), default=1)
@@ -1563,3 +1515,5 @@ def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=Non
         if parent:
             return get_product_quantity_price(parent, qty, delta=delta)
         return None
+
+from satchmo.product import admin

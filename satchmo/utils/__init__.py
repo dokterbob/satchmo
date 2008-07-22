@@ -91,6 +91,12 @@ def load_module(module):
         module = sys.modules[module]
     return module
 
+_MODULES = []
+def load_once(key, module):
+    if key not in _MODULES:
+        load_module(module)
+        _MODULES.append(key)
+
 def normalize_dir(dir_name):
     if not dir_name.startswith('./'):
         dir_name = url_join('.', dir_name)

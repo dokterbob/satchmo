@@ -7,7 +7,7 @@
 
 {% block content %}
 
-{% if form.has_errors %}
+{% if form.errors %}
 <p>{% trans "Your email address and password didn't match. Please try again." %}</p>
 {% endif %}
 
@@ -18,7 +18,7 @@
 </table>
 
 <input type="submit" value="{% trans 'Login' %}" />
-<input type="hidden" name="next" 
+<input type="hidden" name="next"
 {% if next %}
     value={{ next }} />
 {% else %}

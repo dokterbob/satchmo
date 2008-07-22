@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms
 from django.conf import settings
 from django.template import RequestContext
 from django.template import loader
@@ -11,7 +11,7 @@ from satchmo.discount.utils import find_best_auto_discount
 from satchmo.payment.config import payment_choices
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
-from satchmo.shop.utils.dynamic import lookup_template
+from satchmo.utils.dynamic import lookup_template
 from satchmo.shop.views.utils import CreditCard
 from satchmo.tax.templatetags.satchmo_tax import _get_taxprocessor
 from satchmo.l10n.utils import moneyfmt

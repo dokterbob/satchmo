@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy, ugettext
 from satchmo.configuration import *
-from satchmo.shop.utils import is_string_like, load_module
+from satchmo.utils import is_string_like, load_module
+import logging
+
 _ = ugettext_lazy
 
-import logging
 log = logging.getLogger('payment.config')
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT', _('Payment Settings'))
@@ -95,9 +96,8 @@ def credit_choices(settings=None, include_module_if_no_choices=False):
             label = config_value(module, 'LABEL')
             pair = (key, ugettext(label))
             choices.append(pair)
-            
     return choices
-    
+
 def payment_choices():
     choices = []
     for module in config_value('PAYMENT', 'MODULES'):

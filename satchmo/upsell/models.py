@@ -32,7 +32,7 @@ UPSELL_CHOICES=(
 class Upsell(models.Model, CachedObjectMixin):
     
     target = models.ManyToManyField(Product, verbose_name=_('Target Product'), 
-        related_name="upselltargets", filter_interface=True,
+        related_name="upselltargets",
         help_text = _("The products for which you want to show this goal product as an Upsell."))
     
     goal = models.ForeignKey(Product, verbose_name=_('Goal Product'), 
@@ -121,19 +121,17 @@ class Upsell(models.Model, CachedObjectMixin):
         self.cache_set()
         return self
         
-    class Admin:
-        fields = (
-            (None, {'fields': ('target', 'goal', 'style', 'notes', 'create_date')}),
-        )
-        
     class Meta:
         ordering = ('goal',)
         
 class UpsellTranslation(models.Model):
 
-    menu = models.ForeignKey(Upsell, related_name="translations", edit_inline=models.TABULAR, num_in_admin=1)
-    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, core=True, default=settings.LANGUAGES[0][0])
+    menu = models.ForeignKey(Upsell, related_name="translations")
+    languagecode = models.CharField(_('language'), max_length=10, 
+        choices=settings.LANGUAGES, core=True, default=settings.LANGUAGES[0][0])
     description = models.TextField(_('Description'), blank=True)
 
     class Meta:
         ordering=('languagecode', )
+
+from satchmo.upsell import admin

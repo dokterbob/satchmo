@@ -5,11 +5,11 @@ If that doesn't work, we add random numbers to the name
 """
 
 from django.contrib.auth.models import User
-from satchmo.shop.utils import random_string
+from django.utils.encoding import smart_unicode, force_unicode
+from htmlentitydefs import name2codepoint
+from satchmo.utils import random_string
 import re
 import unicodedata
-from htmlentitydefs import name2codepoint
-from django.utils.encoding import smart_unicode, force_unicode
 
 def generate_id(first_name=None, last_name=None):
     valid_id = False

@@ -1,8 +1,8 @@
 from django.conf import settings
-from models import SettingNotSet
-from satchmo.shop.utils import flatten_list, is_list_or_tuple, is_string_like, load_module
+from satchmo.configuration import values
+from satchmo.configuration.models import SettingNotSet
+from satchmo.utils import flatten_list, is_list_or_tuple, is_string_like, load_module
 import logging
-import values
 
 log = logging.getLogger('configuration')
 
@@ -88,8 +88,9 @@ class ConfigurationSettings(object):
                 try:
                     load_module(modulename + '.config')
                     log.debug('Loaded configuration for %s', modulename)
-                except ImportError:
-                    pass
+                except ImportError, ie:
+                    if settings.DEBUG and not ie.message.startswith("No module named"):
+                        raise ie
             
         def preregister_choice(self, group, key, choice):
             """Setup a choice for a group/key which hasn't been instantiated yet."""

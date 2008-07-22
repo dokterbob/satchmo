@@ -1,11 +1,6 @@
 """
 Stores customer, organization, and order information.
 """
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -13,22 +8,25 @@ from django.core import urlresolvers
 from django.db import models
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext, ugettext_lazy as _
-from satchmo import tax
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_discount_for_code
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.signals import satchmo_cart_changed
-from satchmo.shop.templatetags.satchmo_currency import moneyfmt
-from satchmo.shop.utils import load_module
-from signals import order_success, satchmo_contact_location_changed
-import config
+from satchmo.l10n.utils import moneyfmt
+from satchmo.tax.utils import get_tax_processor
+from satchmo.utils import load_module
+from satchmo.contact.signals import order_success, satchmo_contact_location_changed
 import datetime
 import logging
 import operator
-import satchmo.shipping.config
 import sys
+
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 try:
     from django.utils.safestring import mark_safe
@@ -75,10 +73,6 @@ class Organization(models.Model):
         if not self.pk:
             self.create_date = datetime.date.today()
         super(Organization, self).save()
-
-    class Admin:
-        list_filter = ['type', 'role']
-        list_display = ['name', 'type', 'role']
 
     class Meta:
         verbose_name = _("Organization")
@@ -127,9 +121,7 @@ class Contact(models.Model):
     """
     first_name = models.CharField(_("First name"), max_length=30, core=True)
     last_name = models.CharField(_("Last name"), max_length=30, core=True)
-    user = models.ForeignKey(User, unique=True, blank=True, null=True,
-        edit_inline=models.TABULAR, num_in_admin=1, min_num_in_admin=1,
-        max_num_in_admin=1, num_extra_on_change=0)
+    user = models.ForeignKey(User, unique=True, blank=True, null=True)
     role = models.CharField(_("Role"), max_length=20, blank=True, null=True,
         choices=CONTACT_CHOICES)
     organization = models.ForeignKey(Organization, verbose_name=_("Organization"), blank=True, null=True)
@@ -182,11 +174,6 @@ class Contact(models.Model):
             self.user.save()
         super(Contact, self).save()
 
-    class Admin:
-        list_display = ('last_name', 'first_name', 'organization', 'role')
-        list_filter = ['create_date', 'role', 'organization']
-        ordering = ['last_name']
-
     class Meta:
         verbose_name = _("Contact")
         verbose_name_plural = _("Contacts")
@@ -217,9 +204,6 @@ class Interaction(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.contact.full_name, self.type)
 
-    class Admin:
-        list_filter = ['type', 'date_time']
-
     class Meta:
         verbose_name = _("Interaction")
         verbose_name_plural = _("Interactions")
@@ -228,8 +212,7 @@ class PhoneNumber(models.Model):
     """
     Phone number associated with a contact.
     """
-    contact = models.ForeignKey(Contact, edit_inline=models.TABULAR,
-        num_in_admin=1)
+    contact = models.ForeignKey(Contact)
     type = models.CharField(_("Description"), choices=PHONE_CHOICES,
         max_length=20, blank=True)
     phone = models.CharField(_("Phone Number"), blank=True, max_length=30,
@@ -263,8 +246,7 @@ class AddressBook(models.Model):
     """
     Address information associated with a contact.
     """
-    contact = models.ForeignKey(Contact,
-        edit_inline=models.STACKED, num_in_admin=1)
+    contact = models.ForeignKey(Contact)
     description = models.CharField(_("Description"), max_length=20, blank=True,
         help_text=_('Description of address - Home, Office, Warehouse, etc.',))
     street1 = models.CharField(_("Street"), core=True, max_length=50)
@@ -605,7 +587,7 @@ class Order(models.Model):
 
         self.sub_total = full_sub_total
 
-        taxProcessor = tax.get_processor(self)
+        taxProcessor = get_tax_processor(self)
         totaltax, taxrates = taxProcessor.process()
         self.tax = totaltax
 
@@ -712,25 +694,6 @@ class Order(models.Model):
                     valid = valid and validate_method(request, self, orderitem)
         return valid
 
-    class Admin:
-        fields = (
-            (None, {'fields': ('contact', 'method', 'status', 'discount_code', 'notes')}),
-            (_('Shipping Method'), {'fields':
-                ('shipping_method', 'shipping_description')}),
-            (_('Shipping Address'), {'classes': 'collapse', 'fields':
-                ('ship_street1', 'ship_street2', 'ship_city', 'ship_state',
-                'ship_postal_code', 'ship_country')}),
-            (_('Billing Address'), {'classes': 'collapse', 'fields':
-                ('bill_street1', 'bill_street2', 'bill_city', 'bill_state',
-                'bill_postal_code', 'bill_country')}),
-            (_('Totals'), {'fields':
-                ('sub_total', 'shipping_cost', 'shipping_discount', 'tax', 'discount', 'total',
-                'timestamp')}))
-        list_display = ('contact', 'timestamp', 'order_total', 'balance_forward', 'status',
-            'invoice', 'packingslip', 'shippinglabel')
-        list_filter = ['timestamp', 'contact', 'status']
-        date_hierarchy = 'timestamp'
-
     class Meta:
         verbose_name = _("Product Order")
         verbose_name_plural = _("Product Orders")
@@ -739,7 +702,7 @@ class OrderItem(models.Model):
     """
     A line item on an order.
     """
-    order = models.ForeignKey(Order, verbose_name=_("Order"), edit_inline=models.TABULAR, num_in_admin=3)
+    order = models.ForeignKey(Order, verbose_name=_("Order"))
     product = models.ForeignKey(Product, verbose_name=_("Product"))
     quantity = models.IntegerField(_("Quantity"), core=True)
     unit_price = models.DecimalField(_("Unit price"),
@@ -784,7 +747,7 @@ class OrderItem(models.Model):
 
     def update_tax(self):
         taxclass = self.product.taxClass
-        processor = tax.get_processor(order=self.order)
+        processor = get_tax_processor(order=self.order)
         self.unit_tax = processor.by_price(taxclass, self.unit_price)
         self.tax = processor.by_orderitem(self)
 
@@ -796,7 +759,7 @@ class OrderItemDetail(models.Model):
     """
     Name, value pair and price delta associated with a specific item in an order
     """
-    item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), edit_inline=models.TABULAR, core=True, num_in_admin=3)
+    item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), core=True)
     name = models.CharField(_('Name'), max_length=100)
     value = models.CharField(_('Value'), max_length=255)
     price_change = models.DecimalField(_("Price Change"), max_digits=18, decimal_places=10, blank=True, null=True)
@@ -857,9 +820,6 @@ class DownloadLink(models.Model):
         return u"%s" % (self.downloadable_product.product.translated_name())
     product_name=property(_product_name)
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Download Link")
         verbose_name_plural = _("Download Links")
@@ -868,7 +828,7 @@ class OrderStatus(models.Model):
     """
     An order will have multiple statuses as it moves its way through processing.
     """
-    order = models.ForeignKey(Order, verbose_name=_("Order"), edit_inline=models.STACKED, num_in_admin=1)
+    order = models.ForeignKey(Order, verbose_name=_("Order"))
     status = models.CharField(_("Status"),
         max_length=20, choices=ORDER_STATUS, core=True, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
@@ -920,19 +880,12 @@ class OrderPayment(models.Model):
 
         super(OrderPayment, self).save()
 
-    class Admin:
-        list_filter = ['order', 'payment']
-        list_display = ['id', 'order', 'payment', 'amount_total', 'timestamp']
-        fields = (
-            (None, {'fields': ('order', 'payment', 'amount', 'timestamp')}),
-            )
-
     class Meta:
         verbose_name = _("Order Payment")
         verbose_name_plural = _("Order Payments")
 
 class OrderVariable(models.Model):
-    order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="variables")
+    order = models.ForeignKey(Order, related_name="variables")
     key = models.SlugField(_('key'), core=True)
     value = models.CharField(_('value'), core=True, max_length=100)
 
@@ -950,7 +903,7 @@ class OrderVariable(models.Model):
 
 class OrderTaxDetail(models.Model):
     """A tax line item"""
-    order = models.ForeignKey(Order, edit_inline=models.TABULAR, num_in_admin=1, related_name="taxes")
+    order = models.ForeignKey(Order, related_name="taxes")
     method = models.CharField(_("Model"), max_length=50, core=True)
     description = models.CharField(_("Description"), max_length=50, blank=True)
     tax = models.DecimalField(_("Tax"), core=True,
@@ -982,3 +935,5 @@ def _recalc_total_on_contact_change(contact=None):
 
 dispatcher.connect(_remove_order_on_cart_update, signal=satchmo_cart_changed)
 dispatcher.connect(_recalc_total_on_contact_change, signal=satchmo_contact_location_changed)
+
+from satchmo.contact import admin

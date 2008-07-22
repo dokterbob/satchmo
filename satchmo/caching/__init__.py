@@ -7,7 +7,7 @@ import cPickle as pickle
 import md5
 import types
 import logging
-from satchmo.shop.utils import is_string_like, is_list_or_tuple
+from satchmo.utils import is_string_like, is_list_or_tuple
 
 log = logging.getLogger('caching')
 

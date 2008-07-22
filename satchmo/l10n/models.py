@@ -64,12 +64,6 @@ class Country(models.Model):
         verbose_name_plural = _('Countries')
         ordering = ('name',)
 
-    class Admin:
-        list_display = ('printable_name', 'iso2_code',)
-        list_filter = ('continent', 'active')
-        search_fields = ('name', 'iso2_code', 'iso3_code')
-
-
     def __unicode__(self):
         return self.printable_name
 
@@ -78,7 +72,7 @@ class AdminArea(models.Model):
     """
     Administrative Area level 1 for a country.  For the US, this would be the states
     """
-    country = models.ForeignKey(Country, edit_inline=models.TABULAR)
+    country = models.ForeignKey(Country)
     name = models.CharField(_('Admin Area name'), max_length=60, core=True)
     abbrev = models.CharField(_('Postal Abbreviation'), max_length=3, null=True, blank=True)
     active = models.BooleanField(_('Area is active'), default=True)
@@ -90,3 +84,5 @@ class AdminArea(models.Model):
 
     def __unicode__(self):
         return self.name
+
+from satchmo.l10n import admin

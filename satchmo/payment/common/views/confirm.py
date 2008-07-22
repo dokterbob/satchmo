@@ -11,7 +11,7 @@ from satchmo.configuration import config_value
 from satchmo.contact.models import Order
 from satchmo.payment.common.pay_ship import send_order_confirmation
 from satchmo.payment.config import payment_live
-from satchmo.shop.utils.dynamic import lookup_url, lookup_template
+from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 import logging
 
@@ -92,7 +92,7 @@ def credit_success_handler(working_cart, order, payment_module):
         if item.product.is_subscription:
             item.completed = True
             item.save()
-    if order.status == None:
+    if not order.status:
         order.add_status(status='Pending', notes = "Order successfully submitted")
     send_order_confirmation(order)
     

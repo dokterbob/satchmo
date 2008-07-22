@@ -2,29 +2,27 @@
 Configuration items for the shop.
 Also contains shopping cart and related classes.
 """
-import datetime
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
-from logging import getLogger
-
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.dispatch import dispatcher
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
-
+from logging import getLogger
 from satchmo import tax
 from satchmo.configuration import ConfigurationSettings, config_value
 from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
-from satchmo.shop.utils import url_join
+from satchmo.shop.signals import satchmo_cartitem_price_query
+from satchmo.utils import url_join
 
-from signals import satchmo_cartitem_price_query
+import datetime
+
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 log = getLogger('satchmo.shop.models')
 
@@ -68,7 +66,7 @@ class Config(models.Model):
     sales_country = models.ForeignKey(Country, blank=True, null=True,
                                      related_name='sales_country',
                                      verbose_name=_("Default country for customers"))
-    shipping_countries = models.ManyToManyField(Country, filter_interface=True, blank=True, verbose_name=_("Shipping Countries"), related_name="shop_configs")
+    shipping_countries = models.ManyToManyField(Country, blank=True, verbose_name=_("Shipping Countries"), related_name="shop_configs")
 
     def _get_shop_config(cls):
         """Convenience method to get the current shop config"""
@@ -97,9 +95,6 @@ class Config(models.Model):
 
     def __unicode__(self):
         return self.store_name
-
-    class Admin:
-        pass
 
     class Meta:
         verbose_name = _("Store Configuration")
@@ -305,9 +300,6 @@ class Cart(models.Model):
                     items.append(p)
         return items
 
-    class Admin:
-        list_display = ('date_time_created','numItems','total')
-
     class Meta:
         verbose_name = _("Shopping Cart")
         verbose_name_plural = _("Shopping Carts")
@@ -316,7 +308,7 @@ class CartItem(models.Model):
     """
     An individual item in the cart
     """
-    cart = models.ForeignKey(Cart, edit_inline=models.TABULAR, num_in_admin=3, verbose_name=_('Cart'))
+    cart = models.ForeignKey(Cart, verbose_name=_('Cart'))
     product = models.ForeignKey(Product, verbose_name=_('Product'))
     quantity = models.IntegerField(_("Quantity"), core=True)
 
@@ -378,9 +370,6 @@ class CartItem(models.Model):
         return u'%s - %s %s%s' % (self.quantity, self.product.name,
             force_unicode(currency), self.line_total)
 
-    class Admin:
-        pass
-
     class Meta:
         verbose_name = _("Cart Item")
         verbose_name_plural = _("Cart Items")
@@ -389,7 +378,7 @@ class CartItemDetails(models.Model):
     """
     An arbitrary detail about a cart item.
     """
-    cartitem = models.ForeignKey(CartItem, related_name='details', edit_inline=True, core=True)
+    cartitem = models.ForeignKey(CartItem, related_name='details', core=True)
     value = models.TextField(_('detail'))
     name = models.CharField(_('name'), max_length=100)
     price_change = models.DecimalField(_("Item Detail Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
@@ -400,3 +389,5 @@ class CartItemDetails(models.Model):
         ordering = ('sort_order',)
         verbose_name = _("Cart Item Detail")
         verbose_name_plural = _("Cart Item Details")
+
+from satchmo.shop import admin

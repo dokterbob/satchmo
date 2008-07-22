@@ -2,11 +2,11 @@
 Store tables used to calculate tax on a product
 """
 
-from django.db import models
-from satchmo.l10n.models import AdminArea, Country
-from satchmo.shop.utils.validators import MutuallyExclusiveWithField
-from django.utils.translation import ugettext, ugettext_lazy as _
 from django.core import validators
+from django.db import models
+from django.utils.translation import ugettext, ugettext_lazy as _
+from satchmo.l10n.models import AdminArea, Country
+from satchmo.utils.validators import MutuallyExclusiveWithField
 
 class TaxClass(models.Model):
     """
@@ -25,10 +25,6 @@ class TaxClass(models.Model):
     class Meta:
         verbose_name = _("Tax Class")
         verbose_name_plural = _("Tax Classes")
-
-    class Admin:
-        pass
-
 
 taxrate_zoneandcountry_zone_validator = MutuallyExclusiveWithField('taxCountry')
 taxrate_zoneandcountry_country_validator = MutuallyExclusiveWithField('taxZone')
@@ -71,10 +67,8 @@ class TaxRate(models.Model):
         else:
             raise validators.ValidationError(ugettext("You must choose a zone or a country."))
 
-    class Admin:
-        list_display = ("taxClass", "taxZone", "taxCountry", "display_percentage")
-
     class Meta:
         verbose_name = _("Tax Rate")
         verbose_name_plural = _("Tax Rates")
 
+from satchmo.tax import admin

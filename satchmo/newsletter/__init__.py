@@ -1,13 +1,13 @@
 """Pluggable newsletter handling."""
 
-from django import newforms as forms
+from django import forms
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _
 from satchmo.accounts.signals import satchmo_registration, satchmo_registration_initialdata
 from satchmo.configuration import config_value
-from satchmo.shop.utils import load_module
-
+from satchmo.utils import load_module
 import logging
+
 log = logging.getLogger('newsletter')
 
 def get_newsletter_module():

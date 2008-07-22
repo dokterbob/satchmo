@@ -1,8 +1,5 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+import logging
+from django import forms
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -12,11 +9,13 @@ from satchmo.configuration import config_get_group, config_value
 from satchmo.contact.models import Order, OrderItem, OrderPayment
 from satchmo.payment.common.forms import PaymentMethodForm
 from satchmo.payment.common.views import common_contact
-from satchmo.shop.utils.dynamic import lookup_url
 from satchmo.shop.views.utils import bad_or_missing
-import django.newforms as forms
-import logging
+from satchmo.utils.dynamic import lookup_url
 
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 log = logging.getLogger('payment.views')
 

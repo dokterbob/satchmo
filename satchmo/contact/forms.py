@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet

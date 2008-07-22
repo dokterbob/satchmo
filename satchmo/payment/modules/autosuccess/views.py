@@ -4,7 +4,7 @@ from django.template import RequestContext
 from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order, Contact, OrderPayment
 from satchmo.payment.common.pay_ship import pay_ship_save, send_order_confirmation
-from satchmo.shop.utils.dynamic import lookup_url, lookup_template
+from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 from satchmo.payment.common.utils import record_payment
 

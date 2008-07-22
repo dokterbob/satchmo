@@ -5,7 +5,7 @@ For example, the product add form.  You can add to the cart, or to the
 wishlist.  The view here just looks in the formdata to determine whether
  to send the request to the cart_add or the wishlist_add view.
 """
-from satchmo.shop.utils import app_enabled
+from satchmo.utils import app_enabled
 from satchmo.shop.views import cart
 import logging
 if app_enabled("wishlist"):

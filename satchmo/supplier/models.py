@@ -22,10 +22,6 @@ class RawItem(models.Model):
     def __unicode__(self):
         return self.description
     
-    class Admin:
-        list_display = ('supplier','description','supplier_num','inventory',)
-        list_filter = ('supplier',)
-    
     class Meta:
         verbose_name = _("Raw Item")
         verbose_name_plural = _("Raw Items")
@@ -55,12 +51,6 @@ class SupplierOrder(models.Model):
             self.date_created = datetime.date.today()
         super(SupplierOrder, self).save()
     
-    
-    class Admin:
-        list_display = ('supplier','date_created', 'order_total','status')
-        list_filter = ('date_created','supplier',)
-        date_hierarchy = 'date_created'
-    
     class Meta:
         verbose_name = _("Supplier Order")
         verbose_name_plural = _("Supplier Orders")
@@ -69,7 +59,7 @@ class SupplierOrderItem(models.Model):
     """
     Individual line items for an order
     """
-    order = models.ForeignKey(SupplierOrder,edit_inline=models.TABULAR, num_in_admin=3)
+    order = models.ForeignKey(SupplierOrder)
     line_item = models.ForeignKey(RawItem, core=True, verbose_name=_('Line Item'))
     line_item_quantity = models.IntegerField(_("Line Item Quantity"), core=True)
     line_item_total = models.DecimalField(_("Line Item Total"), max_digits=6,decimal_places=2)
@@ -88,7 +78,7 @@ class SupplierOrderStatus(models.Model):
     Status of a supplier's order.  There will be multiple statuses as it is
     placed and subsequently processed and received.
     """
-    order = models.ForeignKey(SupplierOrder, edit_inline=models.STACKED, num_in_admin=1)
+    order = models.ForeignKey(SupplierOrder)
     status = models.CharField(_("Status"), max_length=20, choices=SUPPLIERORDER_STATUS, core=True, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
     date = models.DateTimeField(_('Date'), blank=True)
@@ -100,3 +90,4 @@ class SupplierOrderStatus(models.Model):
         verbose_name = _("Supplier Order Status")
         verbose_name_plural = _("Supplier Order Statuses")
 
+from satchmo.supplier import admin

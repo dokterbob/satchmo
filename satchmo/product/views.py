@@ -10,8 +10,11 @@ from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Category, Product, ConfigurableProduct
 from satchmo.product.utils import get_tax
-from satchmo.shop.utils.json import json_encode
 from satchmo.shop.views.utils import bad_or_missing
+from satchmo.tax.utils import get_tax_processor
+from satchmo.utils.json import json_encode
+import datetime
+import random
 
 try:
     set

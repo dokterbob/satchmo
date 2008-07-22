@@ -1,4 +1,4 @@
-from django import newforms as forms
+from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.dispatch import dispatcher
@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from mail import send_welcome_email
 from satchmo.configuration import config_value
 from satchmo.contact.models import Contact
-from satchmo.shop.utils.unique_id import generate_id
+from satchmo.utils.unique_id import generate_id
 
 import logging
 import signals

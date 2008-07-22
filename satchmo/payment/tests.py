@@ -1,21 +1,20 @@
 # -*- coding: UTF-8 -*-
+
+from django.conf import settings
+from django.core import urlresolvers
+from django.test import TestCase
+from django.test.client import Client
+from satchmo.configuration import config_get_group, config_value
+from satchmo.contact.models import *
+from satchmo.product.models import *
+from satchmo.shop.models import *
+from satchmo.utils.dynamic import lookup_template, lookup_url
+from urls import make_urlpatterns
+
 try:
     from decimal import Decimal
 except:
     from django.utils._decimal import Decimal
-
-from django.core import urlresolvers
-from django.test import TestCase
-from django.test.client import Client
-from django.conf import settings
-#from models import GiftCertificate
-from satchmo.configuration import config_get_group, config_value
-from satchmo.shop.utils.dynamic import lookup_template, lookup_url
-from urls import make_urlpatterns
-#from modules.giftcertificate.utils import generate_certificate_code, generate_code
-from satchmo.product.models import *
-from satchmo.shop.models import *
-from satchmo.contact.models import *
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 

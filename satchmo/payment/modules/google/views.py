@@ -8,7 +8,7 @@ from satchmo.contact.models import Order
 from satchmo.configuration import config_value 
 from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
-from satchmo.shop.utils.dynamic import lookup_url, lookup_template
+from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 import base64
 import hmac

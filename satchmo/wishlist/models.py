@@ -49,12 +49,9 @@ class ProductWish(models.Model):
         if not self.pk:
             self.create_date = datetime.date.today()
         super(ProductWish, self).save()
-
-    class Admin:
-        list_display = ('contact', 'product', 'create_date')
-        ordering = ('contact', '-create_date', 'product')
         
     class Meta:
         verbose_name = _('Product Wish')
         verbose_name_plural = _('Product Wishes')
-    
+
+from satchmo.wishlist import admin

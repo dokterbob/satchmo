@@ -2,15 +2,15 @@
 
 http://code.google.com/p/django-values/
 """
-from django import newforms as forms
+from django import forms
+from django.utils import simplejson
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _
-from models import find_setting, LongSetting, Setting, SettingNotSet
-from satchmo.shop.utils import load_module, is_string_like, is_list_or_tuple
+from satchmo.configuration.models import find_setting, LongSetting, Setting, SettingNotSet
+from satchmo.utils import load_module, is_string_like, is_list_or_tuple
 import datetime
 import logging
-from django.utils import simplejson
 
 try:
     from decimal import Decimal

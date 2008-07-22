@@ -2,7 +2,7 @@ try:
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
-from django import newforms as forms
+from django import forms
 from django.conf import settings
 from django.core import serializers, urlresolvers
 from django.core.management.base import CommandError
@@ -421,7 +421,8 @@ class VariationManagerForm(forms.Form):
                 optnames = [opt.value for opt in opts]
                 kw = { 
                     'initial' : None,
-                    'label' : " ".join(optnames)
+                    'label' : " ".join(optnames),
+                    'required' : False
                 }
                 
                 opt_str = '__'.join(["%i_%i" % (opt.optionGroup.id, opt.id) for opt in opts])    
@@ -434,7 +435,7 @@ class VariationManagerForm(forms.Form):
                     slug = variation.slug
                     kw['initial'] = 'add'
                     self.existing[key] = True
-                    self.edit_urls[key] = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'product', variation.id))
+                    self.edit_urls[key] = "/admin/product/product/%i/" % variation.id
                 else:
                     basename = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
                     slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))

@@ -1,19 +1,18 @@
+import logging
+from socket import error as SocketError
 from django import http
-from django import newforms as forms
+from django import forms
 from django.conf import settings
 from django.core.mail import send_mail
-from django.newforms import widgets
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext, Context
 from django.utils.translation import ugettext as _
 from satchmo.shop.models import Config
-from socket import error as SocketError
-import logging
 
 log = logging.getLogger('satchmo.shop.views')
 
-#Choices displayed to the user to categorize the type of contact request
+# Choices displayed to the user to categorize the type of contact request.
 email_choices = (
     ("General Question", _("General question")),
     ("Order Problem", _("Order problem")),
@@ -24,7 +23,8 @@ class ContactForm(forms.Form):
     sender = forms.EmailField(label=_("Email address"))
     subject = forms.CharField(label=_("Subject"))
     inquiry = forms.ChoiceField(label=_("Inquiry"), choices=email_choices)
-    contents = forms.CharField(label=_("Contents"), widget=widgets.Textarea(attrs = {'cols': 40, 'rows': 5}))
+    contents = forms.CharField(label=_("Contents"), widget=
+        forms.widgets.Textarea(attrs={'cols': 40, 'rows': 5}))
 
 def form(request):
     if request.method == "POST":
@@ -35,7 +35,7 @@ def form(request):
             c = Context({
                 'request_type': new_data['inquiry'],
                 'name': new_data['name'],
-                'email': new_data['sender'],    
+                'email': new_data['sender'],
                 'request_text': new_data['contents'] })
             subject = new_data['subject']
             shop_config = Config.get_shop_config()
@@ -53,8 +53,8 @@ def form(request):
                     log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', shop_email, subject, body)
                 else:
                     log.fatal('Error sending mail: %s' % e)
-                    raise IOError('Could not send email, please check to make sure your email settings are correct, and that you are not being blocked by your ISP.')                
-            
+                    raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
+
             return http.HttpResponseRedirect('%s/contact/thankyou/' % (settings.SHOP_BASE))
     else: #Not a post so create an empty form
         initialData = {}
@@ -64,5 +64,5 @@ def form(request):
         form = ContactForm(initial=initialData)
 
     return render_to_response('contact_form.html', {'form': form},
-                                RequestContext(request))
+        RequestContext(request))
 

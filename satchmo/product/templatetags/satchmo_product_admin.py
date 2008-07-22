@@ -1,6 +1,5 @@
 from django import template
 from django.conf import settings
-from django.core import urlresolvers
 from django.template import Context, Template
 from satchmo.configuration import config_value
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -33,9 +32,9 @@ def edit_subtypes(product):
     for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
         app, subtype = key.split("::")
         if subtype in product.get_subtypes():
-            output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.id) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
+            output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.pk) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
         else:
-            output += ' <li><a href="/admin/%s/%s/add/?product_id=%s">' %(app, subtype.lower(), product.id) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'
+            output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'
 
     output += '</ul>'
     return output
@@ -53,24 +52,25 @@ def list_variations(configurableproduct):
 
         product = configurableproduct.get_product_from_options(p_opt)
         if product:
-            #TODO: What's the right way to get this URL?
-            #p_url = '/admin/product/product/%s/' % product.id
-            p_url = urlresolvers.reverse('django.contrib.admin.views.main.change_stage', args=('product', 'product', product.id))
-            #pv_url = '/admin/product/productvariation/%s/' % product.id
-            pv_url = urlresolvers.reverse('django.contrib.admin.views.main.delete_stage', args=('product', 'productvariation', product.id))
+            p_url = '/admin/product/product/%s/' % product.pk
+            pv_url = '/admin/product/productvariation/%s/delete/' % product.pk
             output += """
             <tr>
             <td>%s</td>
             <td><a href="%s">%s</a></td>
-            <td><a class="deletelink" href="%s"> Delete ProductVariation</a></td>
+            <td><a class="deletelink" href="%s">%s</a></td>
             </tr>
-            """ % (opt_str, p_url, product.slug, pv_url)
+            """ % (opt_str, p_url, product.slug, pv_url,
+                _("Delete ProductVariation"))
         else:
-            opt_ids = []
-            [opt_ids.append(str(opt.id)) for opt in p_opt]
-            opt_ids = ','.join(opt_ids)
-            add_url = urlresolvers.reverse('django.contrib.admin.views.main.add_stage', args=('product', 'productvariation')) 
-            add_url += "?parent_id=%s&options=%s" % (configurableproduct.product.id, opt_ids)
+            #opt_pks = [str(opt.pk) for opt in p_opt]
+            #opt_pks = ','.join(opt_pks)
+            # TODO [NFA]: Blocked by Django ticket #7738.
+            opt_pks = ''
+            add_url = ('/admin/product/productvariation/add/' +
+                "?product=%s&parent=%s&options=%s" % (
+                configurableproduct.product.pk, configurableproduct.product.pk,
+                opt_pks))
             output += """
             <tr>
             <td>%s</td>
@@ -89,7 +89,7 @@ def customproduct_management(order):
     for orderitem in order.orderitem_set.all():
         if 'CustomProduct' in orderitem.product.get_subtypes():
             custom.append(orderitem)
-            
+
     return {
         'SHOP_BASE' : settings.SHOP_BASE,
         'customitems' : custom
@@ -99,7 +99,7 @@ register.inclusion_tag('admin/_customproduct_management.html')(customproduct_man
 
 def orderpayment_list(order):
     return {
-        'SHOP_BASE' : settings.SHOP_BASE, 
+        'SHOP_BASE' : settings.SHOP_BASE,
         'order' : order,
         'payments' : order.payments.all()
         }
