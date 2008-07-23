@@ -71,6 +71,9 @@ class Setting(models.Model, CachedObjectMixin):
         self.site = Site.objects.get_current()
         super(Setting, self).save()
         self.cache_set()
+        
+    class Meta:
+        unique_together = ('site', 'group', 'key')
 
 
 class LongSettingManager(models.Manager):
@@ -106,3 +109,7 @@ class LongSetting(models.Model, CachedObjectMixin):
         self.site = Site.objects.get_current()
         super(LongSetting, self).save()
         self.cache_set()
+        
+    class Meta:
+        unique_together = ('site', 'group', 'key')
+    
