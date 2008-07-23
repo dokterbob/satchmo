@@ -1,7 +1,7 @@
 from satchmo.product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, Price, ProductImage, ProductImageTranslation
 from django.contrib import admin
+from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
-
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -55,10 +55,27 @@ class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
     extra = 1
 
+class CategoryAdminForm(models.ModelForm):
+    
+    def clean_parent(self):
+        parent = self.cleaned_data['parent']
+        slug = self.cleaned_data['slug']
+        if parent and slug:
+            if parent.slug == slug:
+                raise ValidationError(_("You must not save a category in itself!"))
+
+            for p in parent._recurse_for_parents(parent):
+                if slug == p.slug:
+                    raise ValidationError(_("You must not save a category in itself!"))
+                    
+        return parent
+
 class CategoryOptions(admin.ModelAdmin):
     list_display = ('name', '_parents_repr')
     ordering = ['parent__id', 'ordering', 'name']
     inlines = [CategoryTranslation_Inline, CategoryImage_Inline]
+    
+    form = CategoryAdminForm    
 
 class CategoryImageOptions(admin.ModelAdmin):
     inlines = [CategoryImageTranslation_Inline]

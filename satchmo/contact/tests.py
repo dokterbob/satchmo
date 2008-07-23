@@ -67,6 +67,7 @@ from satchmo.caching import cache_delete
 from satchmo.configuration import config_get
 from satchmo.product.models import Product
 from satchmo.payment.config import payment_choices
+from satchmo import caching
 
 def make_test_order(country, state, include_non_taxed=False):
     c = Contact(first_name="Tax", last_name="Tester", 
@@ -97,6 +98,9 @@ def make_test_order(country, state, include_non_taxed=False):
 
 class OrderTest(TestCase):
     fixtures = ['products.yaml']    
+    
+    def setUp(self):
+        caching.cache_delete()
 
     def testBalanceMethods(self):
         order = make_test_order('US', '', include_non_taxed=True)

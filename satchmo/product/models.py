@@ -73,7 +73,7 @@ class Category(models.Model):
     name = models.CharField(_("Name"), core=True, max_length=200)
     slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
-        related_name='child')
+        related_name='child', validator_list=['categoryvalidator'])
     meta = models.TextField(_("Meta Description"), blank=True, null=True,
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
@@ -195,7 +195,7 @@ class Category(models.Model):
         children_list = self._recurse_for_children(self, only_active=only_active)
         flat_list = self._flatten(children_list[1:])
         return flat_list
-
+        
     class Meta:
         ordering = ['parent__id', 'ordering', 'name']
         verbose_name = _("Category")
