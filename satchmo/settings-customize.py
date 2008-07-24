@@ -79,6 +79,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'satchmo.recentlist.context_processors.recent_products',
     'satchmo.shop.context_processors.settings',
+    'django.core.context_processors.i18n'
 )
 
 ROOT_URLCONF = 'satchmo.urls'

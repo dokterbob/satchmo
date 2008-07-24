@@ -55,6 +55,9 @@ Create a `config.py` file in your project directory. Add the following lines, an
 
 Then, make sure that your project is listed in your INSTALLED_APPS setting. If you've done everything correctly, the translation should be available under the Language Settings section of your Site Settings page.
 
+Please edit your settings.py file and make sure to add 'satchmo' to INSTALLED_APPS so that Django will use the translations. Also, make sure to add 'django.core.context_processors.i18n' to TEMPLATE_CONTEXT_PROCESSORS so that templates will use the correct language code.
+
+
 Translating dependencies
 ------------------------
 
