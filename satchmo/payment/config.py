@@ -34,6 +34,23 @@ PAYMENT_LIVE = config_register(
         default=False)
 )
 
+ORDER_EMAIL = config_register(
+    BooleanValue(PAYMENT_GROUP,
+        'ORDER_EMAIL_OWNER',
+        description=_("Email owner?"),
+        help_text=_("True if you want to email the owner on order"),
+        default=False)
+)
+    
+ORDER_EMAIL_EXTRA = config_register(
+    StringValue(PAYMENT_GROUP,
+        'ORDER_EMAIL_EXTRA',
+        description=_("Extra order emails?"),
+        requires=ORDER_EMAIL,
+        help_text=_("Put all email addresses you want to email in addition to the owner when an order is placed."),
+        default = "")
+)
+
 config_register([
 
 BooleanValue(PAYMENT_GROUP,

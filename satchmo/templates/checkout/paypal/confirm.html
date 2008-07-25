@@ -58,7 +58,9 @@
 <input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price|truncate_decimal:2}}" />
 <input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity}}" />
 {% endfor %}
-<input type="hidden" name="shipping_1" value="{{order.shipping_sub_total|truncate_decimal:2}}" />
+{# LEAVE THE HANDLING CHARGE ALONE!  PAYPAL SHIPPING WILL INEVITABLY BE MESSED UP IF YOU USE THEIR SHIPPING METHODS #}
+{# To work around their bizarre system, we are telling Paypal "no shipping" and adding all shipping charges as handling #}
+<input type="hidden" name="handling_cart" value="{{order.shipping_sub_total|truncate_decimal:2}}" />
 <input type="hidden" name="tax_cart" value="{{order.tax|truncate_decimal:2}}" />
 {% endif %}
 {% endif %}

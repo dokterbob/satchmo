@@ -9,15 +9,17 @@ from django.db import models
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.configuration import config_choice_values, config_value, SettingNotSet
+from satchmo.contact import notification
+from satchmo.contact.signals import order_success, satchmo_contact_location_changed
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_discount_for_code
+from satchmo.l10n.utils import moneyfmt
 from satchmo.payment.config import payment_choices
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shop.signals import satchmo_cart_changed
-from satchmo.l10n.utils import moneyfmt
 from satchmo.tax.utils import get_tax_processor
 from satchmo.utils import load_module
-from satchmo.contact.signals import order_success, satchmo_contact_location_changed
+
 import datetime
 import logging
 import operator
@@ -631,7 +633,6 @@ class Order(models.Model):
             self.add_status('Shipped', ugettext("Order immediately available for download"))
         dispatcher.send(signal=order_success, sender=self.__class__, instance=self)
 
-
     def _paid_in_full(self):
         """True if total has been paid"""
         return self.balance <= 0
@@ -935,5 +936,6 @@ def _recalc_total_on_contact_change(contact=None):
 
 dispatcher.connect(_remove_order_on_cart_update, signal=satchmo_cart_changed)
 dispatcher.connect(_recalc_total_on_contact_change, signal=satchmo_contact_location_changed)
+dispatcher.connect(notification.order_success_listener, signal=order_success)
 
 from satchmo.contact import admin

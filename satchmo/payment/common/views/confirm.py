@@ -9,7 +9,6 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.contact.models import Order
-from satchmo.payment.common.pay_ship import send_order_confirmation
 from satchmo.payment.config import payment_live
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
@@ -94,7 +93,6 @@ def credit_success_handler(working_cart, order, payment_module):
             item.save()
     if not order.status:
         order.add_status(status='Pending', notes = "Order successfully submitted")
-    send_order_confirmation(order)
     
     #Redirect to the success page
     url = lookup_url(payment_module, 'satchmo_checkout-success')

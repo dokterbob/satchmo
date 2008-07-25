@@ -4,6 +4,9 @@ Satchmo Change Log
 
 Trunk
 -----
+ * New configuration feature in payment section, allowing shop owners to be notified by email
+   when they have a new sale.
+ * Refactor of emailing on order completion, now uses signals, simplifying payment modules.
  * New optional app "satchmo.upsell" which allows product upselling on product detail pages.
  * New signals in get_qty_price methods of products, allowing code to manipulate the price returned
    by the function.  Example code using these signals is at satchmo.contrib.cartqty_discounts,

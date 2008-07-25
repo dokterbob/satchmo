@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group
 from satchmo.contact.models import Order, Contact, OrderPayment
-from satchmo.payment.common.pay_ship import pay_ship_save, send_order_confirmation
+from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart
 from satchmo.payment.common.utils import record_payment
@@ -38,10 +38,6 @@ def one_step(request):
 
     record_payment(newOrder, payment_module, amount=newOrder.balance)
     
-    #Now, send a confirmation email
-    if payment_module['EMAIL'].value:
-        send_order_confirmation(newOrder)    
-
     tempCart.empty()
     success = lookup_url(payment_module, 'satchmo_checkout-success')
     return HttpResponseRedirect(success)

@@ -90,7 +90,6 @@ def cron_rebill(request=None):
                             new_order_item.save()
                             orderpayment = OrderPayment(order=item.order, amount=item.order.balance, payment=unicode(payment_module.KEY.value))
                             orderpayment.save()
-                            #send_order_confirmation(item.order)
     return HttpResponse()
 
 
