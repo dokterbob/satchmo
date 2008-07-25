@@ -27,6 +27,7 @@ The following translations were updated or added:
     - German
     - French
     - Hebrew
+    - Turkish
 
 
     

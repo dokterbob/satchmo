@@ -130,6 +130,7 @@ LANGUAGES_AVAILABLE = config_register(
             ('ko', "한국어"),
             ('sv', "Svenska"),
             ('pt-br',"Português"),
-            ('bg',"Български")]
+            ('bg',"Български"),
+            ('tr',"Türkçe")]
     ))
 
