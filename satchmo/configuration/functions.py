@@ -89,7 +89,7 @@ class ConfigurationSettings(object):
                     load_module(modulename + '.config')
                     log.debug('Loaded configuration for %s', modulename)
                 except ImportError, ie:
-                    if settings.DEBUG and not ie.message.startswith("No module named"):
+                    if settings.DEBUG and not str(ie).startswith("No module named"):
                         raise ie
             
         def preregister_choice(self, group, key, choice):
