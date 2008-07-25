@@ -1,7 +1,7 @@
 try:
-    from decimal import Decimal
+    from decimal import Decimal, InvalidOperation
 except:
-    from django.utils._decimal import Decimal
+    from django.utils._decimal import Decimal, InvalidOperation
 
 from django import template
 from django.conf import settings
@@ -13,7 +13,11 @@ try:
     from django.utils.safestring import mark_safe
 except ImportError:
     mark_safe = lambda s:s
-    
+
+import logging
+
+log = logging.getLogger("satchmo_currency")
+
 register = template.Library()
 
 def currency(value, args=""):
@@ -29,14 +33,19 @@ def currency(value, args=""):
         val|currency:'places=2:wrapcents=sup'
     """
     
-    if value == '':
+    if value == '' or value is None:
         return value
 
     args, kwargs = get_filter_args(args, 
         keywords=('places','curr', 'wrapcents'),
         intargs=('places',), stripquotes=True)
 
-    value = Decimal(str(value))
+    try:
+        value = Decimal(str(value))
+    except InvalidOperation:
+        log.error("Could not convert value '%s' to decimal", value)
+        raise
+        
     if not 'places' in kwargs:
         kwargs['places'] = 2
         
