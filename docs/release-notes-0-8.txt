@@ -26,6 +26,7 @@ The following payment modules were added or updated:
 The following translations were updated or added:
     - German
     - French
+    - Hebrew
 
 
     
