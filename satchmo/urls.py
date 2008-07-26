@@ -8,6 +8,10 @@ if settings.SHOP_BASE == '':
 else:
     shopregex = '^' + settings.SHOP_BASE[1:] + '/'
 
+# discover all admin modules - if you override this for your
+# own base URLs, you'll need to autodiscover there.
+admin.autodiscover()
+
 urlpatterns = getattr(settings, 'URLS', [])
 
 urlpatterns += patterns('',
