@@ -1,4 +1,3 @@
-from satchmo.product.models import Product
 import logging
 
 log = logging.getLogger('upsell.views')
@@ -49,6 +48,8 @@ def _add_upsell(form, cart, i):
                 qty = 0
 
         if qty > 0:
+            from satchmo.product.models import Product
+
             try:
                 product = Product.objects.get(slug=slug)
                 
