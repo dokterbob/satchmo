@@ -2,29 +2,26 @@
 Configuration items for the shop.
 Also contains shopping cart and related classes.
 """
+import datetime
+import logging
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.dispatch import dispatcher
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
-from logging import getLogger
-from satchmo import tax
 from satchmo.configuration import ConfigurationSettings, config_value
 from satchmo.contact.models import Contact, Order
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
 from satchmo.shop.signals import satchmo_cartitem_price_query
-from satchmo.utils import url_join
-
-import datetime
 
 try:
     from decimal import Decimal
 except:
     from django.utils._decimal import Decimal
 
-log = getLogger('satchmo.shop.models')
+log = logging.getLogger('satchmo.shop.models')
 
 class NullConfig(object):
     """Standin for a real config when we don't have one yet."""
@@ -244,30 +241,32 @@ class Cart(models.Model):
 
     def add_item(self, chosen_item, number_added, details={}):
         try:
-            itemToModify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
-            # Custom Products will not be added, they will each get their own line item
-            #TODO: More sophisticated checks to make sure the options really are different
-            if 'CustomProduct' in itemToModify.product.get_subtypes():
-                itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
-        except IndexError: #It doesn't exist so create a new one
-            itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
-        config=Config.get_shop_config()
+            item_to_modify = self.cartitem_set.filter(product__id = chosen_item.id)[0]
+            # CustomProducts will not be added. They will each get their own
+            # line item.
+            # TODO: Use more sophisticated checks to make sure the options
+            # really are different.
+            if 'CustomProduct' in item_to_modify.product.get_subtypes():
+                item_to_modify = self.cartitem_set.create(product=chosen_item, quantity=0)
+        except IndexError: # It doesn't exist, so create a new one.
+            item_to_modify = self.cartitem_set.create(product=chosen_item, quantity=0)
+        config = Config.get_shop_config()
         if config.no_stock_checkout == False:
-            if chosen_item.items_in_stock < (itemToModify.quantity + number_added):
+            if chosen_item.items_in_stock < (item_to_modify.quantity + number_added):
                 return False
 
-        itemToModify.quantity += number_added
-        itemToModify.save()
+        item_to_modify.quantity += number_added
+        item_to_modify.save()
         for data in details:
-            itemToModify.add_detail(data)
+            item_to_modify.add_detail(data)
 
         return True
 
     def remove_item(self, chosen_item_id, number_removed):
-        itemToModify =  self.cartitem_set.get(id = chosen_item_id)
-        itemToModify.quantity -= number_removed
-        if itemToModify.quantity <= 0:
-            itemToModify.delete()
+        item_to_modify = self.cartitem_set.get(id = chosen_item_id)
+        item_to_modify.quantity -= number_removed
+        if item_to_modify.quantity <= 0:
+            item_to_modify.delete()
         self.save()
 
     def empty(self):
@@ -288,9 +287,9 @@ class Cart(models.Model):
                 return True
         return False
     is_shippable = property(_get_shippable)
-    
+
     def get_shipment_list(self):
-        """Return a list of shippable products, where each item is split into 
+        """Return a list of shippable products, where each item is split into
         multiple elements, one for each quantity."""
         items = []
         for cartitem in self.cartitem_set.all():
@@ -317,22 +316,22 @@ class CartItem(models.Model):
 
         self.qty_price = self.get_qty_price(self.quantity)
         self.detail_price = self.get_detail_price()
-        
-        #send signal to possibly adjust the unitprice                    
+
+        #send signal to possibly adjust the unitprice
         dispatcher.send(satchmo_cartitem_price_query, cartitem=self)
         price = self.qty_price + self.detail_price
-        
+
         #clean up temp vars
         del self.qty_price
         del self.detail_price
-        
+
         return price
-        
+
     unit_price = property(_get_line_unitprice)
 
     def get_detail_price(self):
         """Get the delta price based on detail modifications"""
-        delta = Decimal("0")        
+        delta = Decimal("0")
         if self.has_details:
             for detail in self.details.all():
                 if detail.price_change and detail.value:
@@ -341,7 +340,7 @@ class CartItem(models.Model):
 
     def get_qty_price(self, qty):
         """Get the price for for each unit before any detail modifications"""
-        return self.product.get_qty_price(qty)        
+        return self.product.get_qty_price(qty)
 
     def _get_line_total(self):
         return self.unit_price * self.quantity
