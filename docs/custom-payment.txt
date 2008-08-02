@@ -13,18 +13,18 @@ Overview
 --------
 
 Satchmo's payment processor modules are meant to be as modular as possible.  For
-many types of payment processors, you should be able to use one of the existing 
+many types of payment processors, you should be able to use one of the existing
 modules as a basis for creating your own.
 
-All of the modules are stored in the ``/payment/modules`` directory.  If you take a 
+All of the modules are stored in the ``/payment/modules`` directory.  If you take a
 quick look at any one of the subdirectories, you will see a number of files:
- 
+
  - __init__.py
  - config.py
  - processor.py
  - urls.py
  - views.py
- 
+
 The ``__init__.py`` is required so that satchmo can import the files.  There is no need
 to put any code in this file.  Just be sure it exists!
 
@@ -40,7 +40,7 @@ does 4 things:
  - Takes order data and formats it in the appropriate manner (``prepareData``)
  - Sends the data to the processing server/url (``process``)
  - Returns the results (``process``)
- 
+
 Optionally, the processor can include include test code so that it is easy to verify from
 the command line.
 
@@ -52,17 +52,17 @@ Here is a stub you can use to create your own processor::
         def __init__(self, settings):
             # Set up your configuration for items like
             # Test server, url, various flags and settings
-            
+
         def prepareData(self, data):
             # data will contain an order object
             # use this data to create the unique string that will
             # be sent to the payment processor
-            
+
         def process(self):
             # Send the data via the appropriate manner
             # and False if not.  Include an error message to display if it fails
             # Be sure to return True if successful
-        
+
 
 Refer to the authorize.net, cybersource or trustcommerce modules for various examples to
 help you through the process.
@@ -71,23 +71,23 @@ Configuration
 -------------
 
 Each processor will have unique variables that need to be set.  The ``config.py`` file is where
-you can leverage the Satchmo settings capability to add your unique variables.  Please 
-refer to the `configuation documentation </trac/wiki/ConfigurationSystem>`_ in order to understand 
-how the system works. For more examples, the existing working modules are great examples of what to 
+you can leverage the Satchmo settings capability to add your unique variables.  Please
+refer to the `configuation documentation </trac/wiki/ConfigurationSystem>`_ in order to understand
+how the system works. For more examples, the existing working modules are great examples of what to
 setup.  The basic format is:
 
 Add the new module into the existing payment modules and give it a name::
 
     PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
     PAYMENT_MODULES.add_choice(('PAYMENT_MYNEWPROCESSOR', 'MyNewProcessor'))
-    
+
 Create the new configuration group::
 
     PAYMENT_GROUP = ConfigurationGroup('PAYMENT_MYNEWPROCESSOR',
     _('My New Processor Payment Settings'),
     requires=PAYMENT_MODULES,
     ordering=102)
-    
+
 Now register the settings you need::
 
     config_register([
@@ -103,19 +103,19 @@ Now register the settings you need::
             description=_('Implementation module'),
             hidden=True,
             default = 'satchmo.payment.modules.mynewprocessor'),
-            
-        BooleanValue(PAYMENT_GROUP, 
-            'SSL', 
-            description=_("Use SSL for the checkout pages?"), 
+
+        BooleanValue(PAYMENT_GROUP,
+            'SSL',
+            description=_("Use SSL for the checkout pages?"),
             default=False),
-        
-        
-        BooleanValue(PAYMENT_GROUP, 
-            'LIVE', 
+
+
+        BooleanValue(PAYMENT_GROUP,
+            'LIVE',
             description=_("Accept real payments"),
             help_text=_("False if you want to be in test mode"),
             default=False),
-        
+
         StringValue(PAYMENT_GROUP,
             'LABEL',
             description=_('English name for this group on the checkout screens'),
@@ -136,16 +136,16 @@ Now register the settings you need::
                 (('Mastercard','Mastercard')),
                 (('Discover','Discover'))),
             default = ('Visa', 'Mastercard', 'Discover')),
-        
 
-        StringValue(PAYMENT_GROUP, 
-            'PASSWORD', 
+
+        StringValue(PAYMENT_GROUP,
+            'PASSWORD',
             description=_('Your Processor password'),
-            default="")  
+            default="")
 
     ])
 
-All of these settings can be accessed in your ``__init__`` method (shown above).  
+All of these settings can be accessed in your ``__init__`` method (shown above).
 For example, the LIVE value above can be accessed by using ``settings.LIVE.value``
 
 In order to enable your new payment processor, you must add it to the CUSTOM_PAYMENT_MODULES variable
@@ -165,20 +165,20 @@ Most payment processing have similar steps:
  - Collect payment information
  - Confirm info is correct
  - Return a status
- 
+
 
 The ``views.py`` file contains the information that maps your processor views to the existing
-views or your own custom view.  
+views or your own custom view.
 
 For most people, the views contained in payment.common.views will be sufficient.  The example below
 maps these views to views already available in Satchmo::
 
     from satchmo.configuration import config_get_group
     from satchmo.payment.common.views import confirm, payship
-        
+
     def pay_ship_info(request):
         return payship.credit_pay_ship_info(request, config_get_group('PAYMENT_MYNEWPROCESSOR'))
-        
+
     def confirm_info(request):
         return confirm.credit_confirm_info(request, config_get_group('PAYMENT_MYNEWPROCESSOR'))
 
@@ -188,7 +188,7 @@ However, there is nothing stopping you from creating your own view::
     def confirm_info(request):
         # Do a lot of custom stuff here
         return render_to_response(template, context)
-        
+
 
 All of the current satchmo payment views are in ``/payment/common/views``
 Please review these before trying to build one of your own!
@@ -212,7 +212,7 @@ For most processors, a simple file would look like this::
          (r'^confirm/$', 'payment.modules.trustcommerce.views.confirm_info', {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-step3'),
          (r'^success/$', 'payment.common.views.checkout.success', {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-success'),
     )
-    
+
 
 The nice thing about this file is that it allows you to easily plug in the views you need and rename the urls
 to whatever form you need.  Just make sure to maintain the naming convention for the urls as shown above.
