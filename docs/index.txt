@@ -46,6 +46,7 @@ Modifying A Store
    customization
    custom-payment
    translation
+   templates
    
 Optional Modules
 ================
@@ -54,6 +55,7 @@ Optional Modules
    :maxdepth: 1
    
    google-base
+   upsell
 
 Additional Notes
 ================

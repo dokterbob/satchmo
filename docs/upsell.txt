@@ -1,0 +1,58 @@
+Upsell
+==========
+
+Allows for easy upselling or cross-selling of a product. Up-selling can imply selling something additional, or selling something that is more profitable or otherwise preferable for the seller instead of the original sale [#]_ .
+
+A practical example would be If you were selling ebooks, you could make a checkbox on the ebook detail page, which would allow your customer to order the companion CD. This is useful as you are able to provide customers with a direct way of purchasing a companion item without the need to search for it.
+
+.. note::
+   Currently, the goal product doesn't have any options.  It can be a be a product variation, but can't be a configurable product by itself.
+
+When entering a category in the admin interface, you will have several fields to fill in.  Below is a description of each field and how it is used:
+
+Target Product
+	The product(s) for which you want to add an upsell to.
+
+Goal Product
+	This is the product you are upselling.
+	
+Upsell Style
+	There are five styles:
+		- Checkbox to add 1.
+		- Checkbox to add 1 (checked by default).
+		- Checkbox to match the quantity of the product on the page.
+		- Checkbox to match the quantity of the product on the page (checked selected by default).
+		- Simple manual entry quantity box.
+		
+Notes
+	Optional field for internal notes.
+
+Creation Date
+	Date when upsell was created.
+	
+Translations
+	Optional field for translated description(s).
+	
+A short tutorial
+----------------
+
+Here is a quick step by step overview for adding and using the upsell application.
+
+	- In your site's ``settings.py`` file, edit the ``INSTALLED_APP`` list to include ``satchmo.upsell``. Run a syncdb on your site to ensure that the necessary database tables are created.
+	- Log into the your site's admin interface, and add a new product. You will want to add the target product (remember that an upselling item can be a standalone product, as well as a variation of an existing product) and an upsell product. You can read the Products_ page for details on how to do this.
+	- From your site's admin main page, navigate to the Upsells section to add/change an upsell.
+
+Useful links
+----------------
+
+	- `Upsell template tag`_.
+	- Satchmo Products_ application.
+
+References
+---------------
+
+.. [#] Wikipedia article on Up-selling_
+
+.. _Up-selling: http://en.wikipedia.org/wiki/Up-selling
+.. _Products: product.html
+.. _`Upsell template tag`: templates.html

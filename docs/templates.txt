@@ -1,0 +1,32 @@
+==================================
+Satchmo Templates
+==================================
+
+Filter Reference
++++++++++++++++++++++++++++++++++
+
+Tag Reference
++++++++++++++++++++++++++++++++++
+
+product_upsell
+---------------------------------
+
+Allows for easy upselling or cross-selling of a product. Up-selling can imply selling something additional, or selling something that is more profitable or otherwise preferable for the seller instead of the original sale [#]_ .
+
+A practical example would be If you were selling ebooks, you could make a checkbox on the ebook detail page, which would allow your customer to order the companion CD. This is useful as you are able to provide customers with a direct way of purchasing a companion item without the need to search for it.
+
+	
+	Usage::
+	
+		{% product_upsell product %}
+
+		
+This tag renders another template using the ``django.template.Library().inclusion_tag`` library. The tag should be used within a html form, most commonly within the order form for the product you want to upsell.
+
+
+.. note::
+   Currently, the goal product doesn't have any options.  It can be a be a product variation, but can't be a configurable product by itself.
+
+.. [#] Wikipedia article Up-selling_
+
+.. _Up-selling: http://en.wikipedia.org/wiki/Up-selling
