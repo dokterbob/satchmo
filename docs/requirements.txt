@@ -6,7 +6,7 @@ Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
 As of now, it is recommended that you use a Django version from the current trunk.
-Some of the most recent features in Satchmo require a recent (0.97-pre) checkout
+Some of the most recent features in Satchmo require a recent (1.0-alpha) checkout
 from svn.  A known good version of Django can be found in the `snapshot`_ directory.
 
 Satchmo requires Python 2.3 or later and a database supported by Django.
@@ -40,6 +40,8 @@ Docutils is useful for auto generating some documentation:
 
 - `Docutils`_
 
+Detailed steps for installing these dependencies is included in the installation_ section.
+
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _Python Imaging Library: http://www.pythonware.com/products/pil/
 .. _Elementtree: http://effbot.org/zone/element-index.htm
@@ -55,3 +57,4 @@ Docutils is useful for auto generating some documentation:
 .. _django-comment-utils: http://code.google.com/p/django-comment-utils/
 .. _snapshot: http://www.satchmoproject.com/snapshots/
 .. _Docutils: http://docutils.sourceforge.net/
+.. _installation : new_installation.html

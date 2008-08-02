@@ -10,7 +10,37 @@ you have write access to. In the below example, we use /home/user/src. You are e
 
 .. warning::
    You must have a recent SVN version of Django properly installed and all of the
-   dependencies mentioned in the requirements section properly installed.
+   dependencies mentioned in the requirements_ section properly installed. For a complete up-to-date listing, please see the requirements_ section.
+   
+The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
+one simple method to install the dependencies. You may manually install them if you wish.
+
+Installing Dependencies
++++++++++++++++++++++++++++++++++
+
+1. Install setuputils by following the instructions on easy_install_ page. After installation, you should be able to run ``easy_install`` directly (assuming the install directory is in you $PATH).
+		
+2. Install required dependencies::
+	
+        easy_install --find-links=http://download.zope.org/distribution PILwoTk
+        easy_install pycrypto
+        easy_install http://code.enthought.com/enstaller/eggs/rhel/3/Reportlab-2.1.0001-py2.5.egg
+        easy_install django-registration
+        easy_install http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
+        easy_install PyYAML
+        
+.. warning::
+	Not all dependencies are available via ``easy_install``. ``comment_utils`` is required but you will have to manually download and install (this is also very easy to do) into your $PYTHONPATH.
+	For download and installation instructions, see the `Django Comment Utils`_ page.
+        
+3. Optional dependencies::
+
+	easy_install elementtree
+	easy_install docutils
+	
+.. note::
+	Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
+	recommended satchmo version is available via ``easy_install`` before proceeding.
 
 Installing Satchmo into your path
 +++++++++++++++++++++++++++++++++
@@ -203,3 +233,13 @@ Satchmo also includes a command that will erase all your tables. It is useful wh
 Satchmo also includes a full set of unit tests. After you get your system installed, you can run the unit tests with this command::
 
         python manage.py test
+		
+Useful Links
+++++++++++++++++++++++++++
+
+`Django installation guide`_
+
+.. _Django installation guide: http://www.djangoproject.com/documentation/install/
+.. _`Django Comment Utils`: http://code.google.com/p/django-comment-utils/
+.. _easy_install : http://peak.telecommunity.com/DevCenter/EasyInstall#installation-instructions   
+.. _requirements : requirements.html
