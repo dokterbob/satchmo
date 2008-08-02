@@ -16,8 +16,8 @@ Satchmo Trunk includes many new features and improvements. Some of the highlight
 
 
 The following documentation improvements were made:
-
-
+    - Addition of upsell documentation
+    - Improved dependency installation instructions
     
 The following payment modules were added or updated:
 
