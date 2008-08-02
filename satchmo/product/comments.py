@@ -10,7 +10,13 @@ import operator
 
 log = logging.getLogger('product.comments')
 
-average = lambda ratings: float(reduce(operator.add,ratings))/len(ratings)
+def average(ratings):
+    """ Average a list of numbers, return None if it fails """
+    total = reduce(operator.add, ratings)
+    if(total == None):
+        return None
+    return float(total)/len(ratings)
+
 
 def get_product_rating(product, free=False, site=None):
     """Get the average product rating"""
