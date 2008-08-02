@@ -14,13 +14,14 @@ class Command(NoArgsCommand):
         from django.contrib.sites.models import Site
         from django.contrib.auth.models import User
         #Load basic configuration information
+
         print "Creating site..."
         site = Site.objects.get(id=settings.SITE_ID)
-        site.domain = settings.SITE_DOMAIN  
+        site.domain = settings.SITE_DOMAIN
         site.name = settings.SITE_NAME
         site.save()
         store_country = Country.objects.get(iso3_code='USA')
-        config = Config(site=site, store_name = settings.SITE_NAME, no_stock_checkout=True, country=store_country, sales_country=store_country)
+        config = Config(site=site, store_name=settings.SITE_NAME, no_stock_checkout=True, country=store_country, sales_country=store_country)
         config.save()
         print "Creating Customers..."
         # Import some customers
@@ -57,12 +58,12 @@ class Command(NoArgsCommand):
         #              notes="My main supplier")
         #s1.save()
 
-        #s2 = Supplier(name="Shirt Sally", address1="9 ABC Lane", 
+        #s2 = Supplier(name="Shirt Sally", address1="9 ABC Lane",
         #    city="Happyville", state="MD", zip="190111", phone1="888-888-1111", fax="999-110-1909", email="sally@shirts.com",
         #              notes="Shirt Supplier")
         #s2.save()
-        
-        
+
+
         print "Creating Categories..."
         #Create some categories
         cat1 = Category(name="Shirts",slug="shirts",description="Women's Shirts")
@@ -79,9 +80,9 @@ class Command(NoArgsCommand):
         cat6.save()
         cat7 = Category(name="Software", slug="software")
         cat7.save()
-        
-        
-        print "Creating products..."   
+
+
+        print "Creating products..."
         #Create some items
         i1 = Product(name="Django Rocks shirt", slug="dj-rocks", description="Really cool shirt",
                  active=True, featured=True)
@@ -90,21 +91,21 @@ class Command(NoArgsCommand):
         p1.save()
         i1.category.add(cat1)
         i1.save()
-        i2 = Product(name="Python Rocks shirt", slug="PY-Rocks", description="Really cool python shirt - One Size Fits All", 
+        i2 = Product(name="Python Rocks shirt", slug="PY-Rocks", description="Really cool python shirt - One Size Fits All",
                  active=True, featured=True)
         i2.save()
         p2 = Price(price="19.50", product=i2)
         p2.save()
         i2.category.add(cat2)
         i2.save()
-        i3 = Product(name="A really neat book", slug="neat-book", description="A neat book.  You should buy it.", 
+        i3 = Product(name="A really neat book", slug="neat-book", description="A neat book.  You should buy it.",
                  active=True, featured=True)
         i3.save()
         p3 = Price(price="5.00", product=i3)
         p3.save()
         i3.category.add(cat4)
         i3.save()
-        i4 = Product(name="Robots Attack!", slug="robot-attack", description="Robots try to take over the world.", 
+        i4 = Product(name="Robots Attack!", slug="robot-attack", description="Robots try to take over the world.",
                  active=True, featured=True)
         i4.save()
         p4 = Price(price="7.99", product=i4)
@@ -117,35 +118,35 @@ class Command(NoArgsCommand):
     #    i5.category.add(cat7)
     #    i5.save()
 
-        #Create an attribute set 
+        #Create an attribute set
         optSet1 = OptionGroup(name="sizes", sort_order=1)
         optSet2 = OptionGroup(name="colors", sort_order=2)
         optSet1.save()
         optSet2.save()
-        
+
         optSet3 = OptionGroup(name="Book type", sort_order=1)
         optSet3.save()
 
         optSet4 = OptionGroup(name="Full/Upgrade", sort_order=5)
         optSet4.save()
-        
+
         optItem1a = Option(name="Small", value="S", displayOrder=1, optionGroup=optSet1)
         optItem1a.save()
         optItem1b = Option(name="Medium", value="M", displayOrder=2, optionGroup=optSet1)
         optItem1b.save()
-        optItem1c = Option(name="Large", value="L", displayOrder=3, price_change = 1.00, optionGroup=optSet1)
+        optItem1c = Option(name="Large", value="L", displayOrder=3, price_change="1.00", optionGroup=optSet1)
         optItem1c.save()
 
         optItem2a = Option(name="Black", value="B", displayOrder=1, optionGroup=optSet2)
         optItem2a.save()
         optItem2b = Option(name="White", value="W", displayOrder=2, optionGroup=optSet2)
         optItem2b.save()
-        optItem2c = Option(name="Blue", value="BL", displayOrder=3, price_change=2.00, optionGroup=optSet2)
+        optItem2c = Option(name="Blue", value="BL", displayOrder=3, price_change="2.00", optionGroup=optSet2)
         optItem2c.save()
 
         optItem3a = Option(name="Hard cover", value="hard", displayOrder=1, optionGroup=optSet3)
         optItem3a.save()
-        optItem3b = Option(name="Soft cover", value="soft", displayOrder=2, price_change=1.00, optionGroup=optSet3)
+        optItem3b = Option(name="Soft cover", value="soft", displayOrder=2, price_change="1.00", optionGroup=optSet3)
         optItem3b.save()
         optItem3c = Option(name="On tape", value="tape", displayOrder=3, optionGroup=optSet3)
         optItem3c.save()
@@ -168,7 +169,7 @@ class Command(NoArgsCommand):
         pg3.save()
         pg3.option_group.add(optSet3)
         pg3.save()
-        
+
         pg4 = ConfigurableProduct(product=i4)
         pg4.save()
         pg4.option_group.add(optSet3)
@@ -194,7 +195,7 @@ class Command(NoArgsCommand):
     #    pv2 = pg5.get_product_from_options([optItem4b])
     #    Price(product=pv2, price='1.00').save()
     #    DownloadableProduct(product=pv2).save()
-        
+
         print "Create a test user..."
         #First see if our test user is still there, then use or create that user
         try:
