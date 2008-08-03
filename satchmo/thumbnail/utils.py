@@ -2,7 +2,10 @@ import os
 import fnmatch
 import shutil
 import urlparse
-import Image
+try:
+    import Image
+except ImportError:
+    import PIL as Image
 from django.conf import settings
 from django.core.cache import get_cache
 from django.db.models.fields import ImageField

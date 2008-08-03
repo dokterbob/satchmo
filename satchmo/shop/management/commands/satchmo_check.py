@@ -24,7 +24,10 @@ class Command(NoArgsCommand):
         try:
             import Image
         except ImportError:
-            errors.append("The Python Imaging Library is not installed.")
+            try:
+                import PIL as Image
+            except ImportError:
+                errors.append("The Python Imaging Library is not installed.")
         try:
             import reportlab
         except ImportError:
