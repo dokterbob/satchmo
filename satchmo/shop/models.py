@@ -240,20 +240,27 @@ class Cart(models.Model):
         return u"Shopping Cart (%s)" % self.date_time_created
 
     def add_item(self, chosen_item, number_added, details={}):
+        needs_add = False
+        
         try:
-            item_to_modify = self.cartitem_set.filter(product__id = chosen_item.id)[0]
-            # CustomProducts will not be added. They will each get their own
-            # line item.
-            # TODO: Use more sophisticated checks to make sure the options
-            # really are different.
-            if 'CustomProduct' in item_to_modify.product.get_subtypes():
-                item_to_modify = self.cartitem_set.create(product=chosen_item, quantity=0)
-        except IndexError: # It doesn't exist, so create a new one.
-            item_to_modify = self.cartitem_set.create(product=chosen_item, quantity=0)
-        config = Config.get_shop_config()
+            itemToModify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
+            # Custom Products will not be added, they will each get their own line item
+            #TODO: More sophisticated checks to make sure the options really are different
+            if 'CustomProduct' in itemToModify.product.get_subtypes():
+                itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
+                needs_add = True
+        except IndexError: #It doesn't exist so create a new one
+            itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
+            needs_add = True
+            
+        config=Config.get_shop_config()
+
         if config.no_stock_checkout == False:
             if chosen_item.items_in_stock < (item_to_modify.quantity + number_added):
                 return False
+            
+        if needs_add:
+            self.cartitem_set.add(itemToModify)
 
         item_to_modify.quantity += number_added
         item_to_modify.save()
