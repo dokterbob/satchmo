@@ -42,7 +42,7 @@ def contact_info(request):
             initial=init_data)
 
         if form.is_valid():
-            if contact is None and request.user:
+            if contact is None and request.user and request.user.is_authenticated():
                 contact = Contact(user=request.user)
             custID = form.save(contact=contact, update_newsletter=False)
             request.session['custID'] = custID
