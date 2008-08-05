@@ -243,14 +243,14 @@ class Cart(models.Model):
         needs_add = False
         
         try:
-            itemToModify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
+            item_to_modify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
             # Custom Products will not be added, they will each get their own line item
             #TODO: More sophisticated checks to make sure the options really are different
-            if 'CustomProduct' in itemToModify.product.get_subtypes():
-                itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
+            if 'CustomProduct' in item_to_modify.product.get_subtypes():
+                item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
                 needs_add = True
         except IndexError: #It doesn't exist so create a new one
-            itemToModify = CartItem(cart=self, product=chosen_item, quantity=0)
+            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
             needs_add = True
             
         config=Config.get_shop_config()
@@ -260,7 +260,7 @@ class Cart(models.Model):
                 return False
             
         if needs_add:
-            self.cartitem_set.add(itemToModify)
+            self.cartitem_set.add(item_to_modify)
 
         item_to_modify.quantity += number_added
         item_to_modify.save()
