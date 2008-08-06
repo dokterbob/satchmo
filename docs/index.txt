@@ -8,26 +8,26 @@ Overview
 
 .. toctree::
    :maxdepth: 1
-   
+
    introduction
    features
    requirements
-   
+
 Installation
 ============
 
 .. toctree::
    :maxdepth: 1
-   
+
    new_installation
    configuration
-   
+
 Store Usage
 ===========
 
 .. toctree::
    :maxdepth: 1
-   
+
    product
    discounts
    pricing
@@ -42,18 +42,19 @@ Modifying A Store
 
 .. toctree::
    :maxdepth: 1
-   
+
    customization
    custom-payment
+   custom-product
    translation
    templates
-   
+
 Optional Modules
 ================
 
 .. toctree::
    :maxdepth: 1
-   
+
    google-base
    upsell
 
@@ -61,10 +62,10 @@ Additional Notes
 ================
 .. toctree::
    :maxdepth: 1
-   
+
    release-notes-0-8
    release-notes-0-7
    migration
-   
+
 
 
