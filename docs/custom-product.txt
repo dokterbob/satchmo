@@ -1,0 +1,144 @@
+.. _custom-product-modules:
+
+Custom Product Modules
+======================
+
+.. warning::
+    You must be using Django revision 8032. Later revisions cause fatal errors
+    with Satchmo. See `Django ticket 7947`_ for more details.
+
+Though Satchmo includes a number of versatile product types, many projects have
+needs that are best met by creating a custom product module. A custom product
+module is a module with a product model which deviates from the normal behavior
+of Satchmo.
+
+To work with custom product modules, you will need a basic understanding of
+Django apps, projects, and templates. You should understand the default
+behavior of Satchmo before trying to customize it.
+
+Building your module
+--------------------
+
+In a custom product module, most of the work is done in the ``models.py`` and
+template files. You will also need an ``admin.py`` file and a ``config.py``
+file. This section contains several example files that you can add to a new
+or existing app and extend.
+
+A basic ``models.py`` file with a custom product model looks like this::
+
+
+    from django.db import models
+    from django.utils.translation import ugettext_lazy as _
+    from satchmo.product.models import Product
+
+    class MyNewProduct(models.Model):
+        product = models.OneToOneField(Product, verbose_name=_('Product'),
+            primary_key=True)
+
+        def _get_subtype(self):
+            return 'MyNewProduct'
+
+        def __unicode__(self):
+            return u"MyNewProduct: %s" % self.product.name
+
+        class Admin:
+            pass
+
+        class Meta:
+            verbose_name = _('My New Product')
+            verbose_name_plural = _('My New Products')
+
+
+This is the corresponding ``admin.py`` file. This file is needed to make your
+models visible in Django's admin app. Make sure that you replace ``my_app``
+with the name of your app::
+
+
+    from django.contrib import admin
+    from my_app.models import MyNewProduct # TODO: Replace app name!
+
+    admin.site.register(MyNewProduct)
+
+
+The ``config.py`` file tells Satchmo about your product model. Replace
+``my_app`` here too::
+
+
+    from django.utils.translation import ugettext_lazy as _
+    from satchmo.configuration import config_get
+
+    PRODUCT_TYPES = config_get('PRODUCT', 'PRODUCT_TYPES')
+
+    # TODO: Replace app name!
+    PRODUCT_TYPES.add_choice(('my_app::MyNewProduct', _('My New Product')))
+
+
+Configuration
+-------------
+
+Once you've created the above three files in your app, you have all the code
+necessary to use your new product model in Satchmo. All that's left is the
+configuration.
+
+1. Make sure that the app with your product model is in your project's
+``INSTALLED_APPS`` setting.
+
+2. Run ``python manage.py syncdb`` in your project directory.
+
+3. Add your app name to your project's ``CUSTOM_PRODUCT_MODULES`` setting.
+
+4. Enable the new model in Satchmo's settings.
+    1. Go to "Edit Site Settings" in the admin app.
+    2. Look in the "Product Settings" section and find the "Product Model
+    Options" setting.
+    3. Add your new product model and click "Save".
+
+You can now use the new product model in the same way that you would use one
+of Satchmo's default product types. You will find an "Add MyNewProduct" link in
+the "Product Subtypes" section of each product's admin page.
+
+Extending the model and templates
+---------------------------------
+
+A product model is a Django model with a ``OneToOneField`` to
+``satchmo.product.models.Product`` and a ``_get_subtype`` method. You may add
+new fields and behavior as you would with any other Django model.
+
+When Satchmo renders a product page, it looks for a template named
+``product/detail_productname.html`` (in all lowercase). If the template is not
+found, Satchmo uses the ``base_product.html`` template.
+
+As an example, say you are using ``MyNewProduct`` from the previous example
+and you want to extend it to display a special title on the product's page.
+First, you would add a ``CharField`` named ``title`` to the existing model and
+to the table in your database (or just drop the table and run ``syncdb``). Then,
+create a template named ``product/detail_mynewproduct.html`` with the following
+content::
+
+
+    {% extends "base_product.html" %}
+
+    {% block title %}{{ product.mynewproduct.title }}{% endblock title %}
+
+
+If you create a MyNewProduct and view its page in the store, the page will have
+the title you assigned it in the admin app. Notice that the custom product model
+is accessed as an attribute of ``product``.
+
+For more examples, look at ``product/models.py``,
+``templates/base_product.html``, and ``templates/product/`` in the Satchmo
+source code.
+
+Conclusion
+----------
+
+This document should get you started in customizing Satchmo through the product
+model. If you need help with something discussed here or with more advanced
+topics, feel free to ask the `mailing list`_.
+
+Finally, if you create a product model that others may find useful, please
+consider contributing it to the Satchmo community.
+
+
+.. _Django ticket 7947: http://code.djangoproject.com/ticket/7947
+.. _mailing list: http://groups.google.com/group/satchmo-users

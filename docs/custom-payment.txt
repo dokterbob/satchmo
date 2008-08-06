@@ -214,13 +214,18 @@ For most processors, a simple file would look like this::
     )
 
 
-The nice thing about this file is that it allows you to easily plug in the views you need and rename the urls
-to whatever form you need.  Just make sure to maintain the naming convention for the urls as shown above.
+The nice thing about this file is that it allows you to easily plug in the views
+you need and rename the urls to whatever form you need.  Just make sure to
+maintain the naming convention for the urls as shown above.
 
 Conclusion
 ----------
 
-Hopefully this document will help you get started in creating your own payment modules.  Before trying to tackle
-one on your own, take some time to look at the existing models and get a feel for how things have been done.  Once
-you are comfortable, I suggest copying one of the modules and using it as a starting point for your subsequent
-efforts.  If you get stuck, please feel free to as the list for help.
+Hopefully this document will help you get started in creating your own payment
+modules.  Before trying to tackle one on your own, take some time to look at
+the existing models and get a feel for how things have been done.  Once you are
+comfortable, I suggest copying one of the modules and using it as a starting
+point for your subsequent efforts.  If you get stuck, please feel free to ask
+the `mailing list`_ for help.
+
+.. _mailing list: http://groups.google.com/group/satchmo-users
