@@ -80,8 +80,7 @@ Once you've created the above three files in your app, you have all the code
 necessary to use your new product model in Satchmo. All that's left is the
 configuration.
 
-1. Make sure that the app with your product model is in your project's
-``INSTALLED_APPS`` setting.
+1. Make sure that the app with your product model is in your project's ``INSTALLED_APPS`` setting.
 
 2. Run ``python manage.py syncdb`` in your project directory.
 
@@ -89,8 +88,7 @@ configuration.
 
 4. Enable the new model in Satchmo's settings.
     1. Go to "Edit Site Settings" in the admin app.
-    2. Look in the "Product Settings" section and find the "Product Model
-    Options" setting.
+    2. Look in the "Product Settings" section and find the "Product Model Options" setting.
     3. Add your new product model and click "Save".
 
 You can now use the new product model in the same way that you would use one
