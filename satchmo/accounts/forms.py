@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _, ugettext
-from mail import send_welcome_email
+from satchmo.accounts.mail import send_welcome_email
 from satchmo.configuration import config_value
 from satchmo.contact.models import Contact
 from satchmo.utils.unique_id import generate_id
@@ -15,21 +15,21 @@ log = logging.getLogger('newsletter.forms')
 
 class RegistrationForm(forms.Form):
     """The basic account registration form."""
-    email = forms.EmailField(label=_('Email address'), 
+    email = forms.EmailField(label=_('Email address'),
         max_length=30, required=True)
-    password2 = forms.CharField(label=_('Password (again)'), 
+    password2 = forms.CharField(label=_('Password (again)'),
         max_length=30, widget=forms.PasswordInput(), required=True)
-    password1 = forms.CharField(label=_('Password'), 
+    password1 = forms.CharField(label=_('Password'),
         max_length=30, widget=forms.PasswordInput(), required=True)
-    first_name = forms.CharField(label=_('First name'), 
+    first_name = forms.CharField(label=_('First name'),
         max_length=30, required=True)
-    last_name = forms.CharField(label=_('Last name'), 
+    last_name = forms.CharField(label=_('Last name'),
         max_length=30, required=True)
 
-    newsletter = forms.BooleanField(label=_('Newsletter'), 
+    newsletter = forms.BooleanField(label=_('Newsletter'),
         widget=forms.CheckboxInput(), required=False)
-        
-    def clean_password(self):
+
+    def clean_password1(self):
         """Enforce that password and password2 are the same."""
         p1 = self.cleaned_data.get('password1')
         p2 = self.cleaned_data.get('password2')
@@ -37,7 +37,7 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError(
                 ugettext("The two passwords do not match."))
 
-        # note, here is where we'd put some kind of custom 
+        # note, here is where we'd put some kind of custom
         # validator to enforce "hard" passwords.
         return p1
 
@@ -49,12 +49,12 @@ class RegistrationForm(forms.Form):
                 ugettext("That email address is already in use."))
 
         return email
-        
+
     def save(self, request):
         """Create the contact and user described on the form.  Returns the
         `contact`.
         """
-        
+
         data = self.cleaned_data
         password = data['password1']
         email = data['email']
@@ -79,29 +79,29 @@ class RegistrationForm(forms.Form):
         # Otherwise, create a new one.
         try:
             contact = Contact.objects.from_request(request, create=False)
-            
+
         except Contact.DoesNotExist:
             contact = Contact()
 
         contact.user = user
         contact.first_name = first_name
         contact.last_name = last_name
-        contact.email = email                
+        contact.email = email
         contact.role = 'Customer'
         contact.save()
-        
+
         if 'newsletter' not in data:
             subscribed = False
         else:
             subscribed = data['newsletter']
-        
+
         dispatcher.send(signal=signals.satchmo_registration, contact=contact, subscribed=subscribed, data=data)
-        
+
         if not verify:
             user = authenticate(username=username, password=password)
             login(request, user)
             send_welcome_email(email, first_name, last_name)
             dispatcher.send(signal=signals.satchmo_registration_verified, contact=contact)
-            
+
         return contact
-                
+
