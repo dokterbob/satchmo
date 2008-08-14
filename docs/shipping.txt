@@ -8,9 +8,9 @@ Satchmo provides you the flexibility to enable and disable as many shipping modu
 as you would like.  Since everyone has different needs for shipping, there's a simple
 but powerful way to define your own shipping modules.
 
-Activate and configure your shipping modules from your site settings page.  Usually this is at
-SHOP_BASE/settings/.  You can also access this page from the ``Edit Shop Options`` link on your 
-main admin home page.
+Activate and configure your shipping modules from your site settings page.
+Usually this is at ``SHOP_BASE/settings/``. You can also access this page from
+the ``Edit Site Settings`` link on your main admin home page.
 
 .. Note::
     If you have custom modules you would like to add, make sure it is added to your
@@ -31,7 +31,7 @@ to guide you through the process.
 Flat
 ++++
 
-This is a very simple module that allows you to set a flat rate for all shipments.  It's not very 
+This is a very simple module that allows you to set a flat rate for all shipments.  It's not very
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
 can be configured through your settings page.
 
@@ -39,14 +39,14 @@ Per
 +++
 
 This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
-multiplied by the number of items in your order.  These values are configured through your settings 
+multiplied by the number of items in your order.  These values are configured through your settings
 page.
 
 Tiered
 ++++++
 
-This one is much more flexible than any of the prior modules, so it requires a little more configuration.  
-It is not enabled by default. 
+This one is much more flexible than any of the prior modules, so it requires a little more configuration.
+It is not enabled by default.
 
 To enable:
 
@@ -56,10 +56,10 @@ To enable:
 
 Why bother?
 
-Well, it allows you to set up multiple carriers, for one thing.  
-For another, you can have different prices based on cart total (total of shippable items, to be specific).  
-For another, it is multilingual from the start, with you being able to specify translations of carrier, 
-method, etc. right in the admin pages.  Lastly, you can have shipping specials, expiring on the dates 
+Well, it allows you to set up multiple carriers, for one thing.
+For another, you can have different prices based on cart total (total of shippable items, to be specific).
+For another, it is multilingual from the start, with you being able to specify translations of carrier,
+method, etc. right in the admin pages.  Lastly, you can have shipping specials, expiring on the dates
 of your choice.
 
 For example, you can make this shipping table::
@@ -84,15 +84,15 @@ robust and allows many complex actions. Satchmo is configured to support a basic
 to use this service, you should review the UPS developer documents (available when you sign up) and verify
 that the shipping configuration currently used by Satchmo makes sense for your needs.
 
-Before you attempt to test the UPS module, you must sign up for a developer account at the 
+Before you attempt to test the UPS module, you must sign up for a developer account at the
 `UPS web site <http://www.ups.com/content/us/en/bussol/offering/technology/automated_shipping/online_tools.html>`_.
 
 To enable:
- 
+
  1. In your site settings, make sure that the UPS shipping module is active
  2. Configure the UPS settings as described below.
  3. Make sure your store mailing address is correct in the Store Configuration
- 
+
 You must configure the following settings in the Site Settings -> UPS Shipping Settings:
 
  - Type of packaging used by your store (refer to UPS docs for details)
@@ -102,7 +102,7 @@ You must configure the following settings in the Site Settings -> UPS Shipping S
  - UPS user ID
  - UPD user password
  - UPS XML Access key
- 
+
 Refer to the UPS developer documentation for more definitions on these options.
 
 The UPS api is very powerful and does extensive validation on the data being submitted. Depending on your configuration,
@@ -123,18 +123,18 @@ Fedex
 +++++
 The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
 
-One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response. 
-If you have a configurable product you will need to set weights on each product option. Otherwise you will get errors when the 
+One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response.
+If you have a configurable product you will need to set weights on each product option. Otherwise you will get errors when the
 FedEx module tries to calculate the weight to send to FedEx for the quote.
 
 To enable in Satchmo:
 
  1. In your site settings, make sure that the Fedex module is active
  2. Configure the settings as described below
- 
+
 Once you've got the module installed its time to get your account set up with FedEx. (It does not work without the following steps)
 
- 1. Go to http://www.fedex.com/us/developer/ 
+ 1. Go to http://www.fedex.com/us/developer/
  2. Log in (you may need to create an account) and go to technical resources. https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=index.html
  3. Click "Get Started with FedEx Web Services Technical Resources now"
  4. Click "Move to Production"

@@ -15,7 +15,7 @@ In order to use Google analytics, you must have an analytics id, which you can g
 for free for registering with Google.  Once you get this tracking code, you must 
 enable it in the store.
 
-*Note:* After [758], you use the ShopOptions page to enter your Google information.
+*Note:* After [758], you use the Site Settings page to enter your Google information.
 Ignore the part below about your local_settings.py file.
 
 make 2 changes to your local_settings.py file::
