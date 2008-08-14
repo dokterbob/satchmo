@@ -119,9 +119,9 @@ content::
     {% block title %}{{ product.mynewproduct.title }}{% endblock title %}
 
 
-If you create a MyNewProduct and view its page in the store, the page will have
-the title you assigned it in the admin app. Notice that the custom product model
-is accessed as an attribute of ``product``.
+If you create a ``MyNewProduct`` and view its page in the store, the page will
+have the title you assigned it in the admin app. Notice that the
+``MyNewProduct`` is accessed as an attribute of ``product``.
 
 For more examples, look at ``product/models.py``,
 ``templates/base_product.html``, and ``templates/product/`` in the Satchmo
