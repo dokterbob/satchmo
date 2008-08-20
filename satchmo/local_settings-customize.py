@@ -63,19 +63,19 @@ SATCHMO_SETTINGS = {
     
     # register custom external newsletter modules by listing their modules here
     # 'CUSTOM_NEWSLETTER_MODULES' : ['client.newsletter.autoresponder',]
-    'CUSTOM_NEWSLETTER_MODULES' : []
+    'CUSTOM_NEWSLETTER_MODULES' : [],
 
     # register custom external payment modules by listing their modules here
     # ex: 'CUSTOM_PAYMENT_MODULES' : ['client.payment.wondercharge',]
-    'CUSTOM_PAYMENT_MODULES' : []
+    'CUSTOM_PAYMENT_MODULES' : [],
 
     # register custom external shipping modules by listing their modules here
     # ex: 'CUSTOM_SHIPPING_MODULES' : ['client.shipping.fancyshipping',]
-    'CUSTOM_SHIPPING_MODULES' : []
+    'CUSTOM_SHIPPING_MODULES' : [],
 
     # register custom external product modules by listing their modules here
     # ex: 'CUSTOM_PRODUCT_MODULES' : ['client.product.myproducttype',]
-    'CUSTOM_PRODUCT_MODULES' : []
+    'CUSTOM_PRODUCT_MODULES' : [],
 }
 
 # These can override or add to the default URLs
