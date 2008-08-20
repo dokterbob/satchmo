@@ -2,6 +2,8 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import *
 from satchmo.utils import is_string_like, load_module
+from satchmo.shop import get_satchmo_setting
+
 TAX_GROUP = ConfigurationGroup('TAX', _('Tax Settings'))
 TAX_MODULE = config_register(StringValue(TAX_GROUP,
     'MODULE',
@@ -28,7 +30,7 @@ for module in _default_modules:
 
     
 # --- Load any extra tax modules. ---
-extra_tax = getattr(settings, 'CUSTOM_TAX_MODULES', ())
+extra_tax = get_satchmo_setting('CUSTOM_TAX_MODULES')
 for extra in extra_tax:
     try:
         load_module("%s.config" % extra)
