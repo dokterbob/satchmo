@@ -109,40 +109,25 @@ class Command(NoArgsCommand):
         p1.save()
         i1.category.add(cat1)
         i1.save()
-<<<<<<< .working
-        i2 = Product(name="Python Rocks shirt", slug="PY-Rocks", description="Really cool python shirt - One Size Fits All",
-                 active=True, featured=True)
-=======
         i2 = Product(site=site, name="Python Rocks shirt", slug="PY-Rocks", 
             description="Really cool python shirt - One Size Fits All", 
             active=True, featured=True)
->>>>>>> .merge-right.r1423
         i2.save()
         p2 = Price(price="19.50", product=i2)
         p2.save()
         i2.category.add(cat2)
         i2.save()
-<<<<<<< .working
-        i3 = Product(name="A really neat book", slug="neat-book", description="A neat book.  You should buy it.",
-                 active=True, featured=True)
-=======
         i3 = Product(site=site, name="A really neat book", slug="neat-book", 
             description="A neat book.  You should buy it.", 
             active=True, featured=True)
->>>>>>> .merge-right.r1423
         i3.save()
         p3 = Price(price="5.00", product=i3)
         p3.save()
         i3.category.add(cat4)
         i3.save()
-<<<<<<< .working
-        i4 = Product(name="Robots Attack!", slug="robot-attack", description="Robots try to take over the world.",
-                 active=True, featured=True)
-=======
         i4 = Product(site=site, name="Robots Attack!", slug="robot-attack", 
             description="Robots try to take over the world.", 
             active=True, featured=True)
->>>>>>> .merge-right.r1423
         i4.save()
         p4 = Price(price="7.99", product=i4)
         p4.save()
@@ -154,63 +139,35 @@ class Command(NoArgsCommand):
     #    i5.category.add(cat7)
     #    i5.save()
 
-<<<<<<< .working
-        #Create an attribute set
-        optSet1 = OptionGroup(name="sizes", sort_order=1)
-        optSet2 = OptionGroup(name="colors", sort_order=2)
-=======
         #Create an attribute set
         optSet1 = OptionGroup(site=site, name="sizes", sort_order=1)
         optSet2 = OptionGroup(site=site, name="colors", sort_order=2)
->>>>>>> .merge-right.r1423
         optSet1.save()
         optSet2.save()
-<<<<<<< .working
-
-        optSet3 = OptionGroup(name="Book type", sort_order=1)
-=======
 
         optSet3 = OptionGroup(site=site, name="Book type", sort_order=1)
->>>>>>> .merge-right.r1423
         optSet3.save()
 
         optSet4 = OptionGroup(site=site, name="Full/Upgrade", sort_order=5)
         optSet4.save()
-<<<<<<< .working
-
-        optItem1a = Option(name="Small", value="S", displayOrder=1, optionGroup=optSet1)
-=======
 
         optItem1a = Option(name="Small", value="S", sort_order=1, option_group=optSet1)
->>>>>>> .merge-right.r1423
         optItem1a.save()
         optItem1b = Option(name="Medium", value="M", sort_order=2, option_group=optSet1)
         optItem1b.save()
-<<<<<<< .working
-        optItem1c = Option(name="Large", value="L", displayOrder=3, price_change="1.00", optionGroup=optSet1)
-=======
         optItem1c = Option(name="Large", value="L", sort_order=3, price_change="1.00", option_group=optSet1)
->>>>>>> .merge-right.r1423
         optItem1c.save()
 
         optItem2a = Option(name="Black", value="B", sort_order=1, option_group=optSet2)
         optItem2a.save()
         optItem2b = Option(name="White", value="W", sort_order=2, option_group=optSet2)
         optItem2b.save()
-<<<<<<< .working
-        optItem2c = Option(name="Blue", value="BL", displayOrder=3, price_change="2.00", optionGroup=optSet2)
-=======
         optItem2c = Option(name="Blue", value="BL", sort_order=3, price_change="2.00", option_group=optSet2)
->>>>>>> .merge-right.r1423
         optItem2c.save()
 
         optItem3a = Option(name="Hard cover", value="hard", sort_order=1, option_group=optSet3)
         optItem3a.save()
-<<<<<<< .working
-        optItem3b = Option(name="Soft cover", value="soft", displayOrder=2, price_change="1.00", optionGroup=optSet3)
-=======
         optItem3b = Option(name="Soft cover", value="soft", sort_order=2, price_change="1.00", option_group=optSet3)
->>>>>>> .merge-right.r1423
         optItem3b.save()
         optItem3c = Option(name="On tape", value="tape", sort_order=3, option_group=optSet3)
         optItem3c.save()
