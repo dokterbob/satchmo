@@ -8,9 +8,33 @@
 {% endblock %}
 
 {% block extra-head %}
+<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
+<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
 {% endif %}
+<script type="text/javascript">
+
+name_change = function() {
+    var first_name = $('#id_first_name').attr('value');
+    var last_name = $('#id_last_name').attr('value');
+    if (!first_name ) { first_name = '' };
+    if (!last_name ) { last_name = '' };
+    $('#id_addressee').attr('value',  jQuery.trim(first_name + ' ' + last_name));
+    $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
+};
+
+$(document).ready(function() {
+    name_change();
+    $('#id_first_name').bind("change", {}, name_change);
+    $('#id_last_name').bind("change", {}, name_change);
+    $('#id_addressee').bind("change", function() {
+         $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
+    });
+});
+
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -48,6 +72,9 @@
 
     <tr><td colspan="2"><h4>{% trans "Billing Information" %}</h4></td></tr>
 
+    <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.addressee }}</td></tr>
+    {% if form.addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ form.addressee.errors|join:", "}}</td></tr>{% endif %}
+
     <tr><td><label for="id_street1">{% trans "Street" %}*</label></td><td> {{ form.street1 }}</td></tr>
     {% if form.street1.errors %}<tr><td>&nbsp;</td><td>*** {{ form.street1.errors|join:", " }}</td></tr>{% endif %}
 
@@ -78,6 +105,9 @@
 
     <tr><td><label for="id_copy_address">{% trans "Shipping same as billing?" %}</label></td><td> {{ form.copy_address }}</td></tr>
     {% if form.copy_address.errors %}<tr><td>&nbsp;</td><td>*** {{ form.copy_address.errors|join:", " }}</td></tr>{% endif %}
+
+    <tr><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.ship_addressee }}</td></tr>
+    {% if form.ship_addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
 
     <tr><td><label for="id_ship_street1">{% trans "Street" %}</label></td><td> {{ form.ship_street1 }}</td></tr>
     {% if form.ship_street1.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_street1.errors|join:", " }}</td></tr>{% endif %}

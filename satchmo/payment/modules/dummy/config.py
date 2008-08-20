@@ -12,7 +12,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_DUMMY',
     requires=PAYMENT_MODULES,
     ordering = 100)
 
-config_register([
+config_register_list(
     BooleanValue(PAYMENT_GROUP, 
         'SSL', 
         description=_("Use SSL for the module checkout pages?"), 
@@ -56,4 +56,4 @@ config_register([
             (('Discover','Discover')),
             (('American Express', 'American Express'))),
         default = ('Visa', 'Mastercard', 'Discover', 'American Express'))
-])
+)

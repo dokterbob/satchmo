@@ -1,4 +1,4 @@
-- fields: {description: '', meta: '', name: Gift Certificates, ordering: 100, parent: null,
+- fields: {description: '', meta: '', name: Gift Certificates, ordering: 100, parent: null, site: 1,
     slug: gift-certificates}
   model: product.category
   pk: 8
@@ -22,6 +22,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 20
 - fields: {expires: null, price: '10', product: 20, quantity: 1}

@@ -1,7 +1,9 @@
-from satchmo.product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, Price, ProductImage, ProductImageTranslation
+from satchmo.product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, Price, ProductImage, ProductImageTranslation, default_weight_unit, default_dimension_unit
 from django.contrib import admin
 from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
+from satchmo.thumbnail.field import ImageWithThumbnailField
+from satchmo.thumbnail.widgets import AdminImageWithThumbnailWidget
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -10,6 +12,15 @@ class CategoryTranslation_Inline(admin.StackedInline):
 class CategoryImage_Inline(admin.TabularInline):
     model = CategoryImage
     extra = 3
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        # This method will turn all TextFields into giant TextFields
+        if isinstance(db_field, ImageWithThumbnailField):
+            kwargs['widget'] = AdminImageWithThumbnailWidget
+            return db_field.formfield(**kwargs)
+            
+        return super(CategoryImage_Inline, self).formfield_for_dbfield(db_field, **kwargs)
+    
 
 class CategoryImageTranslation_Inline(admin.StackedInline):
     model = CategoryImageTranslation
@@ -50,6 +61,15 @@ class Price_Inline(admin.TabularInline):
 class ProductImage_Inline(admin.StackedInline):
     model = ProductImage
     extra = 3
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        # This method will turn all TextFields into giant TextFields
+        if isinstance(db_field, ImageWithThumbnailField):
+            kwargs['widget'] = AdminImageWithThumbnailWidget
+            return db_field.formfield(**kwargs)
+            
+        return super(ProductImage_Inline, self).formfield_for_dbfield(db_field, **kwargs)
+    
 
 class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
@@ -71,8 +91,8 @@ class CategoryAdminForm(models.ModelForm):
         return parent
 
 class CategoryOptions(admin.ModelAdmin):
-    list_display = ('name', '_parents_repr')
-    ordering = ['parent__id', 'ordering', 'name']
+    list_display = ('site','name', '_parents_repr')
+    ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryTranslation_Inline, CategoryImage_Inline]
     
     form = CategoryAdminForm    
@@ -82,18 +102,28 @@ class CategoryImageOptions(admin.ModelAdmin):
 
 class OptionGroupOptions(admin.ModelAdmin):
     inlines = [OptionGroupTranslation_Inline, Option_Inline]
+    list_display = ['site', 'name']
 
 class OptionOptions(admin.ModelAdmin):
     inlines = [OptionTranslation_Inline]
 
 class ProductOptions(admin.ModelAdmin):
-    list_display = ('slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
+    list_display = ('site', 'slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
     list_filter = ('category', 'date_added')
     fieldsets = (
-    (None, {'fields': ('category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
+    (None, {'fields': ('site', 'category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
     filter_horizontal = ('category',)
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        field = super(ProductOptions, self).formfield_for_dbfield(db_field, **kwargs)
+        fieldname = db_field.name
+        if fieldname in ("length_units", "width_units", "height_units"): 
+            field.initial = default_dimension_unit()
+        elif fieldname == "weight_units":
+            field.initial = default_weight_unit()
+        return field
 
 class CustomProductOptions(admin.ModelAdmin):
     inlines = [CustomTextField_Inline]

@@ -1,7 +1,9 @@
 from django.conf import settings
+from django.utils.translation import ugettext
 from satchmo.configuration import values
 from satchmo.configuration.models import SettingNotSet
 from satchmo.utils import flatten_list, is_list_or_tuple, is_string_like, load_module
+
 import logging
 
 log = logging.getLogger('configuration')
@@ -82,16 +84,7 @@ class ConfigurationSettings(object):
                 return True
             else:
                 return False
-            
-        def load_app_configurations(self):
-            for modulename in settings.INSTALLED_APPS:
-                try:
-                    load_module(modulename + '.config')
-                    log.debug('Loaded configuration for %s', modulename)
-                except ImportError, ie:
-                    if settings.DEBUG and not str(ie).startswith("No module named"):
-                        raise ie
-            
+                        
         def preregister_choice(self, group, key, choice):
             """Setup a choice for a group/key which hasn't been instantiated yet."""
             k = (group, key)
@@ -125,7 +118,7 @@ class ConfigurationSettings(object):
     def __init__(self):
         if ConfigurationSettings.__instance is None:
             ConfigurationSettings.__instance = ConfigurationSettings.__impl()
-            ConfigurationSettings.__instance.load_app_configurations()
+            #ConfigurationSettings.__instance.load_app_configurations()
         
         self.__dict__['_ConfigurationSettings__instance'] = ConfigurationSettings.__instance
 
@@ -153,7 +146,11 @@ def config_exists(group, key):
     
 def config_get(group, key):
     """Get a configuration setting"""
-    return ConfigurationSettings().get_config(group, key)
+    try:
+        return ConfigurationSettings().get_config(group, key)
+    except SettingNotSet:
+        log.debug('SettingNotSet: %s.%s', group, key)
+        raise
     
 def config_get_group(group):
     return ConfigurationSettings()[group]
@@ -194,16 +191,13 @@ def config_register(value):
     """Register a value or values.
 
     Parameters:
-    - setting - any of:
         -A Value
-        -a list of lists of Values, 
-        -a list of Values
     """
-    if is_list_or_tuple(value):
-        flatten_list(value)
-        return [config_register(v) for v in value]
-    else:
-        return ConfigurationSettings().register(value)
+    return ConfigurationSettings().register(value)
+    
+def config_register_list(*args):
+    for value in args:
+        config_register(value)
     
 def config_value(group, key, default=_NOTSET):
     """Get a value from the configuration system"""
@@ -214,17 +208,36 @@ def config_value(group, key, default=_NOTSET):
             return default
         raise
     
-def config_choice_values(group, key, skip_missing=True):
+def config_value_safe(group, key, default_value):
+    """Get a config value with a default fallback, safe for use during SyncDB."""
+    raw = default_value
+
+    try:
+        raw = config_value(group, key)
+    except SettingNotSet:
+        pass
+    except ImportError, e:
+        log.warn("Error getting %s.%s, OK if you are in SyncDB.", group, key)
+
+    return raw
+
+    
+def config_choice_values(group, key, skip_missing=True, translate=False):
     """Get pairs of key, label from the setting."""
     try:
         cfg = config_get(group, key)
-        return cfg.choice_values
+        choices = cfg.choice_values
         
     except SettingNotSet:
         if skip_missing:
             return []
         else:
             raise SettingNotSet('%s.%s' % (group, key))
+            
+    if translate:
+        choices = [(k, ugettext(v)) for k, v in choices]
+        
+    return choices
 
 def config_add_choice(group, key, choice):
     """Add a choice to a value"""

@@ -1,48 +1,48 @@
-- fields: {description: '', name: Book type, sort_order: 1}
+- fields: {description: '', name: Book type, sort_order: 1, site: 1}
   model: product.optiongroup
   pk: 3
-- fields: {description: '', name: sizes, sort_order: 1}
+- fields: {description: '', name: sizes, sort_order: 1, site: 1}
   model: product.optiongroup
   pk: 1
-- fields: {description: '', name: colors, sort_order: 2}
+- fields: {description: '', name: colors, sort_order: 2, site: 1}
   model: product.optiongroup
   pk: 2
-- fields: {description: '', name: Full/Upgrade, sort_order: 5}
+- fields: {description: '', name: Full/Upgrade, sort_order: 5, site: 1}
   model: product.optiongroup
   pk: 4
-- fields: {displayOrder: 1, name: Small, optionGroup: 1, price_change: null, value: S}
+- fields: {sort_order: 1, name: Small, option_group: 1, price_change: null, value: S}
   model: product.option
   pk: 1
-- fields: {displayOrder: 2, name: Medium, optionGroup: 1, price_change: null, value: M}
+- fields: {sort_order: 2, name: Medium, option_group: 1, price_change: null, value: M}
   model: product.option
   pk: 2
-- fields: {displayOrder: 3, name: Large, optionGroup: 1, price_change: '1', value: L}
+- fields: {sort_order: 3, name: Large, option_group: 1, price_change: '1', value: L}
   model: product.option
   pk: 3
-- fields: {displayOrder: 1, name: Black, optionGroup: 2, price_change: null, value: B}
+- fields: {sort_order: 1, name: Black, option_group: 2, price_change: null, value: B}
   model: product.option
   pk: 4
-- fields: {displayOrder: 2, name: White, optionGroup: 2, price_change: null, value: W}
+- fields: {sort_order: 2, name: White, option_group: 2, price_change: null, value: W}
   model: product.option
   pk: 5
-- fields: {displayOrder: 3, name: Blue, optionGroup: 2, price_change: '2', value: BL}
+- fields: {sort_order: 3, name: Blue, option_group: 2, price_change: '2', value: BL}
   model: product.option
   pk: 6
-- fields: {displayOrder: 1, name: Hard cover, optionGroup: 3, price_change: null,
+- fields: {sort_order: 1, name: Hard cover, option_group: 3, price_change: null,
     value: hard}
   model: product.option
   pk: 7
-- fields: {displayOrder: 2, name: Soft cover, optionGroup: 3, price_change: '1', value: soft}
+- fields: {sort_order: 2, name: Soft cover, option_group: 3, price_change: '1', value: soft}
   model: product.option
   pk: 8
-- fields: {displayOrder: 3, name: On tape, optionGroup: 3, price_change: null, value: tape}
+- fields: {sort_order: 3, name: On tape, option_group: 3, price_change: null, value: tape}
   model: product.option
   pk: 9
-- fields: {displayOrder: 1, name: Full Version, optionGroup: 4, price_change: null,
+- fields: {sort_order: 1, name: Full Version, option_group: 4, price_change: null,
     value: full}
   model: product.option
   pk: 10
-- fields: {displayOrder: 2, name: Upgrade Version, optionGroup: 4, price_change: null,
+- fields: {sort_order: 2, name: Upgrade Version, option_group: 4, price_change: null,
     value: upgrade}
   model: product.option
   pk: 11
@@ -60,6 +60,7 @@
     percentage: null
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 1
 - fields:
@@ -76,6 +77,7 @@
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 2
 - fields:
@@ -92,6 +94,7 @@
     percentage: null
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 3
 - fields:
@@ -108,6 +111,7 @@
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 4
 - fields:
@@ -124,6 +128,7 @@
     percentage: null
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 5
 - fields:
@@ -140,34 +145,35 @@
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
+    site: 1
   model: discount.discount
   pk: 6
 - fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,
-    slug: book}
+    slug: book, site: 1}
   model: product.category
   pk: 3
 - fields: {description: Women's Shirts, meta: null, name: Shirts, ordering: 0, parent: null,
-    slug: shirts}
+    slug: shirts, site: 1}
   model: product.category
   pk: 1
 - fields: {description: '', meta: null, name: Software, ordering: 0, parent: null,
-    slug: software}
+    slug: software, site: 1}
   model: product.category
   pk: 7
 - fields: {description: Short sleeve shirts, meta: null, name: Short Sleeve, ordering: 0,
-    parent: 1, slug: shortsleeve}
+    parent: 1, slug: shortsleeve, site: 1}
   model: product.category
   pk: 2
 - fields: {description: Fiction Books, meta: null, name: Fiction, ordering: 0, parent: 3,
-    slug: fiction}
+    slug: fiction, site: 1}
   model: product.category
   pk: 4
 - fields: {description: Non Fiction, meta: null, name: Non Fiction, ordering: 0, parent: 3,
-    slug: nonfiction}
+    slug: nonfiction, site: 1}
   model: product.category
   pk: 6
 - fields: {description: Science Fiction, meta: null, name: Science Fiction, ordering: 0,
-    parent: 4, slug: scifi}
+    parent: 4, slug: scifi, site: 1}
   model: product.category
   pk: 5
 - fields:
@@ -190,6 +196,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 3
 - fields:
@@ -212,6 +219,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 14
 - fields:
@@ -234,6 +242,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 15
 - fields:
@@ -256,6 +265,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 16
 - fields:
@@ -278,6 +288,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 1
 - fields:
@@ -300,6 +311,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 11
 - fields:
@@ -322,6 +334,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 13
 - fields:
@@ -344,6 +357,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 12
 - fields:
@@ -366,6 +380,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 8
 - fields:
@@ -388,6 +403,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 10
 - fields:
@@ -410,6 +426,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 9
 - fields:
@@ -432,6 +449,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 5
 - fields:
@@ -454,6 +472,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 7
 - fields:
@@ -476,6 +495,7 @@
     taxable: true
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 6
 - fields:
@@ -498,6 +518,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 2
 - fields:
@@ -520,6 +541,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 4
 - fields:
@@ -542,6 +564,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 17
 - fields:
@@ -564,6 +587,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 18
 - fields:
@@ -586,6 +610,7 @@
     taxable: false
     weight: null
     width: null
+    site: 1
   model: product.product
   pk: 19
 - fields:

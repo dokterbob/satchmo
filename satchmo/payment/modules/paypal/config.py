@@ -9,7 +9,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PAYPAL',
     requires=PAYMENT_MODULES,
     ordering = 101)
 
-config_register([
+config_register_list(
 
 StringValue(PAYMENT_GROUP,
     'CURRENCY_CODE',
@@ -80,4 +80,4 @@ StringValue(PAYMENT_GROUP,
     'URL_BASE',
     description=_('The url base used for constructing urlpatterns which will use this module'),
     default = '^paypal/')
-])
+)

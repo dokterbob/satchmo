@@ -4,11 +4,15 @@ from django.conf import settings
 from django.core import urlresolvers
 from django.test import TestCase
 from django.test.client import Client
+from satchmo import caching
 from satchmo.configuration import config_get_group, config_value
 from satchmo.contact.models import *
+from satchmo.l10n.models import *
 from satchmo.product.models import *
+from satchmo.shop import get_satchmo_setting
 from satchmo.shop.models import *
 from satchmo.utils.dynamic import lookup_template, lookup_url
+from django.contrib.sites.models import Site
 from urls import make_urlpatterns
 
 try:
@@ -19,22 +23,24 @@ except:
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 domain = 'http://testserver'
-prefix = settings.SHOP_BASE
+prefix = get_satchmo_setting('SHOP_BASE')
 if prefix == '/':
     prefix = ''
 
 class TestRecurringBilling(TestCase):
-    fixtures = ['sub_products', 'config']
+    fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'sub_products', 'config']
 
     def setUp(self):
         self.customer = Contact.objects.create(first_name='Jane', last_name='Doe')
-        self.customer.addressbook_set.create(street1='123 Main St', city='New York', state='NY', postal_code='12345', country='US')       
+        US = Country.objects.get(iso2_code__iexact="US")
+        self.customer.addressbook_set.create(street1='123 Main St', city='New York', state='NY', postal_code='12345', country=US)       
         import datetime
+        site = Site.objects.get_current()
         for product in Product.objects.all():
             price, expire_days = self.getTerms(product)
             if price is None:
                 continue
-            order = Order.objects.create(contact=self.customer, shipping_cost=0)
+            order = Order.objects.create(contact=self.customer, shipping_cost=0, site=site)
             order.orderitem_set.create(
                 product=product, 
                 quantity=1,
@@ -46,6 +52,9 @@ class TestRecurringBilling(TestCase):
             order.recalculate_total()
             order.payments.create(order=order, payment='DUMMY', amount=order.total)
             order.save()
+        
+    def tearDown(self):
+        caching.cache_delete()
         
     def testProductType(self):
         product1 = Product.objects.get(slug='membership-p1')
@@ -103,6 +112,9 @@ class TestModulesSettings(TestCase):
 
     def setUp(self):
         self.dummy = config_get_group('PAYMENT_DUMMY')
+
+    def tearDown(self):
+        caching.cache_delete()
 
     def testGetDummy(self):
         self.assert_(self.dummy != None)

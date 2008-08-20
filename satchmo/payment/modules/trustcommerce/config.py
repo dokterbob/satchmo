@@ -12,7 +12,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_TRUSTCOMMERCE',
     requires=PAYMENT_MODULES,
     ordering=102)
 
-config_register([
+config_register_list(
 
     StringValue(PAYMENT_GROUP,
         'KEY',
@@ -81,4 +81,4 @@ config_register([
         'PASSWORD', 
         description=_('Your TrustCommerce password'),
         default="")  
-])
+)

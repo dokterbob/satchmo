@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_get_group, config_value
-from satchmo.contact.models import Order, OrderItem, OrderPayment
+from satchmo.shop.models import Order, OrderItem, OrderPayment
 from satchmo.payment.common.forms import PaymentMethodForm
 from satchmo.payment.common.views import common_contact
 from satchmo.shop.views.utils import bad_or_missing
@@ -120,7 +120,10 @@ def balance_remaining(request):
         form = PaymentMethodForm(new_data)
         if form.is_valid():
             data = form.cleaned_data
-            modulename = 'PAYMENT_' + data['paymentmethod']
+            modulename = data['paymentmethod']
+            if not modulename.startswith('PAYMENT_'):
+                modulename = 'PAYMENT_' + modulename
+            
             paymentmodule = config_get_group(modulename)
             url = lookup_url(paymentmodule, 'satchmo_checkout-step2')
             return HttpResponseRedirect(url)

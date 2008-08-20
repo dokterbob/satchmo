@@ -11,6 +11,8 @@ from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.product.models import Product, Price, Option
+
+import config
 import logging
 import os
 import time
@@ -39,7 +41,7 @@ class ProductExportForm(forms.Form):
         self.fields['include_categories'] = forms.BooleanField(label=_('Include Categories'), initial=True, required=False)
         
         if not products:
-            products = Product.objects.all().order_by('slug')
+            products = Product.objects.by_site().order_by('slug')
             
         for product in products:
             subtypes = product.get_subtypes()
@@ -288,7 +290,7 @@ class InventoryForm(forms.Form):
         super(InventoryForm, self).__init__(*args, **kwargs)
 
         if not products:
-            products = Product.objects.all().order_by('slug')
+            products = Product.objects.by_site().order_by('slug')
 
         for product in products:
             subtypes = product.get_subtypes()
@@ -403,7 +405,7 @@ class VariationManagerForm(forms.Form):
             configurableproduct = self.product.configurableproduct;
             
             for grp in configurableproduct.option_group.all():
-                optchoices = [("%i_%i" % (opt.optionGroup.id, opt.id), opt.name) for opt in grp.option_set.all()]
+                optchoices = [("%i_%i" % (opt.option_group.id, opt.id), opt.name) for opt in grp.option_set.all()]
                 kw = { 
                     'label' : grp.name,
                     'widget' : forms.CheckboxSelectMultiple(),
@@ -425,7 +427,7 @@ class VariationManagerForm(forms.Form):
                     'required' : False
                 }
                 
-                opt_str = '__'.join(["%i_%i" % (opt.optionGroup.id, opt.id) for opt in opts])    
+                opt_str = '__'.join(["%i_%i" % (opt.option_group.id, opt.id) for opt in opts])    
                 
                 key = "pv__%s" % opt_str
 
@@ -446,7 +448,7 @@ class VariationManagerForm(forms.Form):
                 self.fields[key] = pv
                 
                 for opt in opts:
-                    self.optiondict[opt.optionGroup.id].append(key)
+                    self.optiondict[opt.option_group.id].append(key)
                 
                 self.variationkeys.append(key)
                 
@@ -504,7 +506,7 @@ class VariationManagerForm(forms.Form):
 def _get_options_for_ids(ids):
     opts = []
     for grpid, optid in ids:
-        option = Option.objects.get(optionGroup__id = grpid, id = optid)
+        option = Option.objects.get(option_group__id = grpid, id = optid)
         opts.append(option)
     return opts
     

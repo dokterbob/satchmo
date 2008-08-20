@@ -13,13 +13,11 @@ ACCOUNT_VERIFICATION = config_register(StringValue(SHOP_GROUP,
              ('EMAIL', _('Email'))]
     ))
              
-config_register([
-
-IntegerValue(SHOP_GROUP,
+config_register(
+    IntegerValue(SHOP_GROUP,
     'ACCOUNT_ACTIVATION_DAYS',
     description=_('Days to verify account'),
     default=7,
     requires=ACCOUNT_VERIFICATION,
     requiresvalue='EMAIL')
-    
-])
+)

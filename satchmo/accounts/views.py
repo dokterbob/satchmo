@@ -4,14 +4,15 @@ from django import http
 from django.conf import settings
 from django.contrib.auth import logout, login
 from django.core import urlresolvers
-from django.dispatch import dispatcher
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from forms import RegistrationForm
 from mail import send_welcome_email
 from satchmo.configuration import config_get_group, config_value
+from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.models import Contact
+from satchmo.shop import get_satchmo_setting
 
 log = logging.getLogger('satchmo.accounts.views')
 
@@ -48,10 +49,10 @@ def register_handle_form(request, redirect=None):
                 'first_name': contact.first_name,
                 'last_name': contact.last_name }
         except Contact.DoesNotExist:
+            log.debug("No contact in request")
             contact = None
 
-        dispatcher.send(
-            signal=signals.satchmo_registration_initialdata, 
+        signals.satchmo_registration_initialdata.send(contact,
             contact=contact,
             initial_data=initial_data)
                 
@@ -108,9 +109,9 @@ def activate(request, activation_key):
         account.backend = settings.AUTHENTICATION_BACKENDS[0]
         login(request, account)
         contact = Contact.objects.get(user=account)
-        request.session['custID'] = contact.id
+        request.session[CUSTOMER_ID] = contact.id
         send_welcome_email(contact.email, contact.first_name, contact.last_name)
-        dispatcher.send(signal=signals.satchmo_registration_verified, sender=Contact, contact=contact)
+        signals.satchmo_registration_verified.send(contact, contact=contact)
 
     context = RequestContext(request, {
         'account': account,
@@ -120,7 +121,7 @@ def activate(request, activation_key):
 
 def shop_logout(request):
     logout(request)
-    if 'custID' in request.session:
-        del request.session['custID']
-    return http.HttpResponseRedirect('%s/' % (settings.SHOP_BASE))
+    if CUSTOMER_ID in request.session:
+        del request.session[CUSTOMER_ID]
+    return http.HttpResponseRedirect('%s/' % (get_satchmo_setting('SHOP_BASE')))
 

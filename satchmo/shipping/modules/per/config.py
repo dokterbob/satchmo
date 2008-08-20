@@ -8,26 +8,27 @@ SHIP_MODULES = config_get('SHIPPING', 'MODULES')
 
 SHIPPING_GROUP = config_get_group('SHIPPING')
 
-config_register([
-DecimalValue(SHIPPING_GROUP,
-    'PER_RATE',
-    description=_("Per item price"),
-    requires=SHIP_MODULES,
-    requiresvalue='satchmo.shipping.modules.per',
-    default="4.00"),
+config_register_list(
 
-StringValue(SHIPPING_GROUP,
-    'PER_SERVICE',
-    description=_("Per Item Shipping Service"),
-    help_text=_("Shipping service used with per item shipping"),
-    requires=SHIP_MODULES,
-    requiresvalue='satchmo.shipping.modules.per',
-    default=u"U.S. Mail"),
+    DecimalValue(SHIPPING_GROUP,
+        'PER_RATE',
+        description=_("Per item price"),
+        requires=SHIP_MODULES,
+        requiresvalue='satchmo.shipping.modules.per',
+        default="4.00"),
 
-StringValue(SHIPPING_GROUP,
-    'PER_DAYS',
-    description=_("Per Item Delivery Days"),
-    requires=SHIP_MODULES,
-    requiresvalue='satchmo.shipping.modules.per',
-    default="3 - 4 business days")
-])
+    StringValue(SHIPPING_GROUP,
+        'PER_SERVICE',
+        description=_("Per Item Shipping Service"),
+        help_text=_("Shipping service used with per item shipping"),
+        requires=SHIP_MODULES,
+        requiresvalue='satchmo.shipping.modules.per',
+        default=u"U.S. Mail"),
+
+    StringValue(SHIPPING_GROUP,
+        'PER_DAYS',
+        description=_("Per Item Delivery Days"),
+        requires=SHIP_MODULES,
+        requiresvalue='satchmo.shipping.modules.per',
+        default="3 - 4 business days")
+)

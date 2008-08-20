@@ -60,4 +60,5 @@ class Subscription(models.Model):
 
         super(Subscription, self).save()
 
-from satchmo.newsletter import admin
+import config
+

@@ -1,107 +1,108 @@
-- fields: {description: '', name: sizes, sort_order: !!python/long '1'}
+- fields: {site: 1, description: '', name: sizes, sort_order: !!python/long '1'}
   model: product.optiongroup
   pk: '1'
-- fields: {description: '', name: Book type, sort_order: !!python/long '1'}
+- fields: {site: 1, description: '', name: Book type, sort_order: !!python/long '1'}
   model: product.optiongroup
   pk: '3'
-- fields: {description: '', name: colors, sort_order: !!python/long '2'}
+- fields: {site: 1, description: '', name: colors, sort_order: !!python/long '2'}
   model: product.optiongroup
   pk: '2'
-- fields: {description: '', name: Full/Upgrade, sort_order: !!python/long '5'}
+- fields: {site: 1, description: '', name: Full/Upgrade, sort_order: !!python/long '5'}
   model: product.optiongroup
   pk: '4'
-- fields: {description: Internal RAM, name: Memory, sort_order: 2}
+- fields: {site: 1, description: Internal RAM, name: Memory, sort_order: 2}
   model: product.optiongroup
   pk: 5
-- fields: {description: External Case, name: Case, sort_order: 3}
+- fields: {site: 1, description: External Case, name: Case, sort_order: 3}
   model: product.optiongroup
   pk: 6
-- fields: {displayOrder: !!python/long '1', name: Small, optionGroup: !!python/long '1',
+- fields: {sort_order: !!python/long '1', name: Small, option_group: !!python/long '1',
     price_change: null, value: S}
   model: product.option
   pk: '1'
-- fields: {displayOrder: !!python/long '2', name: Medium, optionGroup: !!python/long '1',
+- fields: {sort_order: !!python/long '2', name: Medium, option_group: !!python/long '1',
     price_change: null, value: M}
   model: product.option
   pk: '2'
 - fields:
-    displayOrder: !!python/long '3'
+    sort_order: !!python/long '3'
     name: Large
-    optionGroup: !!python/long '1'
+    option_group: !!python/long '1'
     price_change: !!python/object/apply:decimal.Decimal ['1.00']
     value: L
   model: product.option
   pk: '3'
-- fields: {displayOrder: !!python/long '1', name: Black, optionGroup: !!python/long '2',
+- fields: {sort_order: !!python/long '1', name: Black, option_group: !!python/long '2',
     price_change: null, value: B}
   model: product.option
   pk: '4'
-- fields: {displayOrder: !!python/long '2', name: White, optionGroup: !!python/long '2',
+- fields: {sort_order: !!python/long '2', name: White, option_group: !!python/long '2',
     price_change: null, value: W}
   model: product.option
   pk: '5'
 - fields:
-    displayOrder: !!python/long '3'
+    sort_order: !!python/long '3'
     name: Blue
-    optionGroup: !!python/long '2'
+    option_group: !!python/long '2'
     price_change: !!python/object/apply:decimal.Decimal ['2.00']
     value: BL
   model: product.option
   pk: '6'
-- fields: {displayOrder: !!python/long '1', name: Hard cover, optionGroup: !!python/long '3',
+- fields: {sort_order: !!python/long '1', name: Hard cover, option_group: !!python/long '3',
     price_change: null, value: hard}
   model: product.option
   pk: '7'
 - fields:
-    displayOrder: !!python/long '2'
+    sort_order: !!python/long '2'
     name: Soft cover
-    optionGroup: !!python/long '3'
+    option_group: !!python/long '3'
     price_change: !!python/object/apply:decimal.Decimal ['1.00']
     value: soft
   model: product.option
   pk: '8'
-- fields: {displayOrder: !!python/long '3', name: On tape, optionGroup: !!python/long '3',
+- fields: {sort_order: !!python/long '3', name: On tape, option_group: !!python/long '3',
     price_change: null, value: tape}
   model: product.option
   pk: '9'
-- fields: {displayOrder: !!python/long '1', name: Full Version, optionGroup: !!python/long '4',
+- fields: {sort_order: !!python/long '1', name: Full Version, option_group: !!python/long '4',
     price_change: null, value: full}
   model: product.option
   pk: '10'
-- fields: {displayOrder: !!python/long '2', name: Upgrade Version, optionGroup: !!python/long '4',
+- fields: {sort_order: !!python/long '2', name: Upgrade Version, option_group: !!python/long '4',
     price_change: null, value: upgrade}
   model: product.option
   pk: '11'
-- fields: {description: Women's Shirts, meta: null, name: Shirts, parent: null, slug: shirts}
+- fields: {site: 1, description: Women's Shirts, meta: null, name: Shirts, parent: null, slug: shirts}
   model: product.category
   pk: '1'
-- fields: {description: Short sleeve shirts, meta: null, name: Short Sleeve, parent: !!python/long '1',
+- fields: {site: 1, description: Short sleeve shirts, meta: null, name: Short Sleeve, parent: !!python/long '1',
     slug: shortsleeve}
   model: product.category
   pk: '2'
-- fields: {description: Books, meta: null, name: Books, parent: null, slug: book}
+- fields: {site: 1, description: Books, meta: null, name: Books, parent: null, slug: book}
   model: product.category
   pk: '3'
-- fields: {description: Fiction Books, meta: null, name: Fiction, parent: !!python/long '3',
+- fields: {site: 1, description: Fiction Books, meta: null, name: Fiction, parent: !!python/long '3',
     slug: fiction}
   model: product.category
   pk: '4'
-- fields: {description: Science Fiction, meta: null, name: Science Fiction, parent: !!python/long '4',
+- fields: {site: 1, description: Science Fiction, meta: null, name: Science Fiction, parent: !!python/long '4',
     slug: scifi}
   model: product.category
   pk: '5'
-- fields: {description: Non Fiction, meta: null, name: Non Fiction, parent: !!python/long '3',
+- fields: {site: 1, description: Non Fiction, meta: null, name: Non Fiction, parent: !!python/long '3',
     slug: nonfiction}
   model: product.category
   pk: '6'
-- fields: {description: '', meta: null, name: Software, parent: null, slug: software}
+- fields: {site: 1, description: '', meta: null, name: Software, parent: null, slug: software}
   model: product.category
   pk: '7'
-- fields: {description: '', meta: You know what a computer is, name: Computer, ordering: 0,
+- fields: {site: 1, description: '', meta: You know what a computer is, name: Computer, ordering: 0,
     parent: null, slug: computer}
   model: product.category
   pk: 8
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: [!!python/long '1']
@@ -123,6 +124,7 @@
   model: product.product
   pk: '1'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -144,6 +146,7 @@
   model: product.product
   pk: '12'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -165,6 +168,7 @@
   model: product.product
   pk: '14'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -186,6 +190,7 @@
   model: product.product
   pk: '13'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -207,6 +212,7 @@
   model: product.product
   pk: '9'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -228,6 +234,7 @@
   model: product.product
   pk: '11'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -249,6 +256,7 @@
   model: product.product
   pk: '10'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -270,6 +278,7 @@
   model: product.product
   pk: '6'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -291,6 +300,7 @@
   model: product.product
   pk: '8'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -312,6 +322,7 @@
   model: product.product
   pk: '7'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: [!!python/long '4']
@@ -333,6 +344,7 @@
   model: product.product
   pk: '3'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -354,6 +366,7 @@
   model: product.product
   pk: '15'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -375,6 +388,7 @@
   model: product.product
   pk: '16'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -417,6 +431,7 @@
 #  model: product.product
 #  pk: '5'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -438,6 +453,7 @@
   model: product.product
   pk: '21'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -459,6 +475,7 @@
   model: product.product
   pk: '22'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: [!!python/long '2']
@@ -480,6 +497,7 @@
   model: product.product
   pk: '2'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: [!!python/long '5']
@@ -501,6 +519,7 @@
   model: product.product
   pk: '4'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -522,6 +541,7 @@
   model: product.product
   pk: '18'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -543,6 +563,7 @@
   model: product.product
   pk: '19'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: []
@@ -675,6 +696,7 @@
   model: product.productimage
   pk: '1'
 - fields:
+    site: 1
     active: true
     also_purchased: []
     category: [8]
@@ -701,27 +723,27 @@
     width_units: ''
   model: product.product
   pk: 30
-- fields: {displayOrder: 1, name: 1 GB, optionGroup: 5, price_change: '0.000000',
+- fields: {sort_order: 1, name: 1 GB, option_group: 5, price_change: '0.000000',
     value: 1gb}
   model: product.option
   pk: 12
-- fields: {displayOrder: 2, name: 1.5 GB, optionGroup: 5, price_change: '25.000000',
+- fields: {sort_order: 2, name: 1.5 GB, option_group: 5, price_change: '25.000000',
     value: 1.5gb}
   model: product.option
   pk: 13
-- fields: {displayOrder: 3, name: 2 GB, optionGroup: 5, price_change: '50.000000',
+- fields: {sort_order: 3, name: 2 GB, option_group: 5, price_change: '50.000000',
     value: 2gb}
   model: product.option
   pk: 14
-- fields: {displayOrder: 1, name: Cheap, optionGroup: 6, price_change: '0.000000',
+- fields: {sort_order: 1, name: Cheap, option_group: 6, price_change: '0.000000',
     value: cheap}
   model: product.option
   pk: 15
-- fields: {displayOrder: 2, name: Mid, optionGroup: 6, price_change: '10.000000',
+- fields: {sort_order: 2, name: Mid, option_group: 6, price_change: '10.000000',
     value: mid}
   model: product.option
   pk: 16
-- fields: {displayOrder: 3, name: Large Tower, optionGroup: 6, price_change: '11.000000',
+- fields: {sort_order: 3, name: Large Tower, option_group: 6, price_change: '11.000000',
     value: tower}
   model: product.option
   pk: 17

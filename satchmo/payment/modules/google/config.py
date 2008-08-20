@@ -12,7 +12,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_GOOGLE',
     requires=PAYMENT_MODULES,
     ordering = 101)
 
-config_register([
+config_register_list(
 
     StringValue(PAYMENT_GROUP,
         'CART_XML_TEMPLATE',
@@ -105,4 +105,4 @@ config_register([
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
         default = '^google/')
-])
+)

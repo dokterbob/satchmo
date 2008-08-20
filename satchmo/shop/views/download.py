@@ -1,10 +1,13 @@
+from django.core import urlresolvers
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
-import os.path, re, os
 from django.utils.translation import ugettext_lazy as _
-from satchmo.contact.models import DownloadLink
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core import urlresolvers
+from satchmo.shop.models import DownloadLink
+
+import os
+import os.path
+import re
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
@@ -74,13 +77,13 @@ def send_file(request, download_key):
     if not valid:
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': request.session['download_key']})
         return HttpResponseRedirect(url)
-    file_name = os.path.split(dl_product.downloadable_product.get_file_filename())[1]
+    file_name = os.path.split(dl_product.downloadable_product.file.path)[1]
     dl_product.num_attempts += 1
     dl_product.save()
     del request.session['download_key']
     response = HttpResponse()
-    response['X-Sendfile'] = dl_product.downloadable_product.get_file_filename()
-    response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.get_file_filename()
+    response['X-Sendfile'] = dl_product.downloadable_product.file.path
+    response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
-    response['Content-length'] =  os.stat(dl_product.downloadable_product.get_file_filename()).st_size
+    response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
     return response

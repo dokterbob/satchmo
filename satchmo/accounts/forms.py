@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.accounts.mail import send_welcome_email
 from satchmo.configuration import config_value
@@ -95,13 +94,13 @@ class RegistrationForm(forms.Form):
         else:
             subscribed = data['newsletter']
 
-        dispatcher.send(signal=signals.satchmo_registration, contact=contact, subscribed=subscribed, data=data)
+        signals.satchmo_registration.send(self, contact=contact, subscribed=subscribed, data=data)
 
         if not verify:
             user = authenticate(username=username, password=password)
             login(request, user)
             send_welcome_email(email, first_name, last_name)
-            dispatcher.send(signal=signals.satchmo_registration_verified, contact=contact)
+            signals.satchmo_registration_verified.send(self, contact=contact)
 
         return contact
 

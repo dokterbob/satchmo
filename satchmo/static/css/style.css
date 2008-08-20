@@ -296,6 +296,10 @@ p {
 	line-height: 150%;
 }
 
+.help, p.help {
+        font-size:9px !important; color:#999;
+}
+
 img {
 	border: none;
 }

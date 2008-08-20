@@ -215,8 +215,9 @@ def display_featured():
     """
     random_display = config_value('SHOP','RANDOM_FEATURED')
     num_to_display = config_value('SHOP','NUM_DISPLAY')
+    q = Product.objects.featured_by_site()
     if not random_display:
-        return(Product.objects.filter(active=True).filter(featured=True))[:num_to_display]
+        return q[:num_to_display]
     else:
-        return(Product.objects.filter(active=True).filter(featured=True).order_by('?')[:num_to_display])
+        return q.order_by('?')[:num_to_display]
 

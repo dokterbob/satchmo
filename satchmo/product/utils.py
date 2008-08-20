@@ -30,7 +30,7 @@ def productvariation_details(product, include_tax, user):
     }
     """
 
-    config = Config.get_shop_config()
+    config = Config.objects.get_current()
     ignore_stock = config.no_stock_checkout
 
     if include_tax:
@@ -70,7 +70,7 @@ def productvariation_details(product, include_tax, user):
             detail['TAXED'] = taxed
 
         # build option map
-        opts = [(opt.id, opt.value) for opt in p.options.order_by('optionGroup')]
+        opts = [(opt.id, opt.value) for opt in p.options.order_by('option_group')]
         optkey = "::".join([opt[1] for opt in opts])
         details[optkey] = detail
 
@@ -108,14 +108,14 @@ def serialize_options(product, selected_options=set()):
 
     for options in all_options:
         for option in options:
-            if not d.has_key(option.optionGroup_id):
-                d[option.optionGroup.id] = {
-                    'name': option.optionGroup.translated_name(),
-                    'id': option.optionGroup.id,
+            if not d.has_key(option.option_group_id):
+                d[option.option_group.id] = {
+                    'name': option.option_group.translated_name(),
+                    'id': option.option_group.id,
                     'items': [],
                 }
-            if not option in d[option.optionGroup_id]['items']:
-                d[option.optionGroup_id]['items'] += [option]
+            if not option in d[option.option_group_id]['items']:
+                d[option.option_group_id]['items'] += [option]
                 option.selected = option.unique_id in selected_options
 
     return d.values()

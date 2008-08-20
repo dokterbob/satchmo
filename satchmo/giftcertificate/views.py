@@ -6,10 +6,11 @@ from django.utils.translation import ugettext_lazy as _
 from forms import GiftCertCodeForm, GiftCertPayShipForm
 from models import GiftCertificate, GIFTCODE_KEY
 from satchmo.configuration import config_get_group
-from satchmo.contact.models import Order
+from satchmo.shop.models import Order
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.common.views import confirm, payship
 from satchmo.utils.dynamic import lookup_url, lookup_template
+from django.contrib.sites.models import Site
 import logging
 
 log = logging.getLogger("giftcertificate.views")
@@ -65,7 +66,7 @@ def check_balance(request):
             try:
                 gc = GiftCertificate.objects.get(code=code, 
                     value=True, 
-                    site=Site.objects.get_current())
+                    site=Site.objects.get_current()
                 success = True
                 balance = gc.balance
             except GiftCertificate.DoesNotExist:

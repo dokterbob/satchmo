@@ -4,7 +4,7 @@ from django.utils.translation import get_language, ugettext_lazy as _
 
 
 class DiscountOptions(admin.ModelAdmin):
-    list_display=('description','active')
+    list_display=('site', 'description','active')
     filter_horizontal = ('validProducts',)
 
 admin.site.register(Discount, DiscountOptions)

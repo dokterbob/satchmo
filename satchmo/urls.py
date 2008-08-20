@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from satchmo.shop import get_satchmo_setting
 from satchmo.shop.views.sitemaps import sitemaps
 
-if settings.SHOP_BASE == '':
+shop_base = get_satchmo_setting('SHOP_BASE')
+if shop_base == '':
     shopregex = '^'
 else:
-    shopregex = '^' + settings.SHOP_BASE[1:] + '/'
+    shopregex = '^' + shop_base[1:] + '/'
 
 # discover all admin modules - if you override this for your
 # own base URLs, you'll need to autodiscover there.

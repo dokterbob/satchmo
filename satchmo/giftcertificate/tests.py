@@ -8,8 +8,11 @@ from django.test import TestCase
 from models import *
 from satchmo.caching import cache_delete
 from satchmo.configuration import config_get_group, config_value
-from satchmo.contact.models import AddressBook, Contact, Order, OrderItem, OrderItemDetail
+from satchmo.contact.models import AddressBook, Contact
+from satchmo.l10n.models import Country
 from satchmo.product.models import Product
+from satchmo.shop.models import Order, OrderItem, OrderItemDetail
+from django.contrib.sites.models import Site
 from utils import generate_certificate_code, generate_code
 import datetime, logging
 
@@ -21,12 +24,15 @@ def make_test_order(country, state):
     c = Contact(first_name="Gift", last_name="Tester", 
         role="Customer", email="gift@example.com")
     c.save()
+    if not isinstance(country, Country):
+        country = Country.objects.get(iso2_code__iexact = country)
     ad = AddressBook(contact=c, description="home",
         street1 = "test", state=state, city="Portland",
         country = country, is_default_shipping=True,
         is_default_billing=True)
     ad.save()
-    o = Order(contact=c, shipping_cost=Decimal('0.00'))
+    site = Site.objects.get_current()
+    o = Order(contact=c, shipping_cost=Decimal('0.00'), site=site)
     o.save()
 
     p = Product.objects.get(slug='GIFT10')
@@ -80,15 +86,23 @@ class TestGenerateCertificateCode(TestCase):
             self.assert_(ch in chars)
     
 class TestCertCreate(TestCase):
+    fixtures = ['test_shop']
+    
+    def setUp(self):
+        self.site = Site.objects.get_current()
+    
+    def tearDown(self):
+        cache_delete()
+
     def testCreate(self):
-        gc = GiftCertificate(start_balance = '100.00')
+        gc = GiftCertificate(start_balance = '100.00', site=self.site)
         gc.save()
         
         self.assert_(gc.code)
         self.assertEqual(gc.balance, Decimal('100.00'))
 
     def testUse(self):
-        gc = GiftCertificate(start_balance = '100.00')
+        gc = GiftCertificate(start_balance = '100.00', site=self.site)
         gc.save()
         bal = gc.use('10.00')
         self.assertEqual(bal, Decimal('90.00'))
@@ -97,7 +111,10 @@ class TestCertCreate(TestCase):
         
 class GiftCertOrderTest(TestCase):
 
-    fixtures = ['test_giftcertificate.yaml', 'test_giftcertificate_config.yaml']
+    fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'test_giftcertificate.yaml', 'test_giftcertificate_config.yaml']
+    
+    def tearDown(self):
+        cache_delete()
 
     def testOrderSuccess(self):
         """Test cert creation on order success"""

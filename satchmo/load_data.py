@@ -8,6 +8,10 @@ import string
 import csv
 import tarfile
 import shutil
+try:
+    from decimal import Decimal
+except ImportError:
+    from django.utils._decimal import Decimal
 
 if "DJANGO_SETTINGS_MODULE" not in os.environ:
     from settings import DJANGO_SETTINGS_MODULE
@@ -164,47 +168,47 @@ def load_data():
     
     print "Creating Categories..."
     #Create some categories
-    cat1 = Category(name="Shirts",slug="shirts",description="Women's Shirts")
+    cat1 = Category(name="Shirts",slug="shirts",description="Women's Shirts", site=site)
     cat1.save()
-    cat2 = Category(name="Short Sleeve",slug="shortsleeve",description="Short sleeve shirts", parent=cat1)
+    cat2 = Category(name="Short Sleeve",slug="shortsleeve",description="Short sleeve shirts", parent=cat1, site=site)
     cat2.save()
-    cat3 = Category(name="Books",slug="book",description="Books")
+    cat3 = Category(name="Books",slug="book",description="Books", site=site)
     cat3.save()
-    cat4 = Category(name="Fiction",slug="fiction",description="Fiction Books", parent=cat3)
+    cat4 = Category(name="Fiction",slug="fiction",description="Fiction Books", parent=cat3, site=site)
     cat4.save()
-    cat5 = Category(name="Science Fiction",slug="scifi",description="Science Fiction",parent=cat4)
+    cat5 = Category(name="Science Fiction",slug="scifi",description="Science Fiction",parent=cat4, site=site)
     cat5.save()
-    cat6 = Category(name="Non Fiction",slug="nonfiction",description="Non Fiction",parent=cat3)
+    cat6 = Category(name="Non Fiction",slug="nonfiction",description="Non Fiction",parent=cat3, site=site)
     cat6.save()
-    cat7 = Category(name="Software", slug="software")
+    cat7 = Category(name="Software", slug="software", site=site)
     cat7.save()
     
     
     print "Creating products..."   
     #Create some items
     i1 = Product(name="Django Rocks shirt", slug="dj-rocks", description="Really cool shirt",
-             active=True, featured=True)
+             active=True, featured=True, site=site)
     i1.save()
     p1 = Price(price="20.00", product=i1)
     p1.save()
     i1.category.add(cat1)
     i1.save()
     i2 = Product(name="Python Rocks shirt", slug="PY-Rocks", description="Really cool python shirt - One Size Fits All", 
-             active=True, featured=True)
+             active=True, featured=True, site=site)
     i2.save()
     p2 = Price(price="19.50", product=i2)
     p2.save()
     i2.category.add(cat2)
     i2.save()
     i3 = Product(name="A really neat book", slug="neat-book", description="A neat book.  You should buy it.", 
-             active=True, featured=True)
+             active=True, featured=True, site=site)
     i3.save()
     p3 = Price(price="5.00", product=i3)
     p3.save()
     i3.category.add(cat4)
     i3.save()
     i4 = Product(name="Robots Attack!", slug="robot-attack", description="Robots try to take over the world.", 
-             active=True, featured=True)
+             active=True, featured=True, site=site)
     i4.save()
     p4 = Price(price="7.99", product=i4)
     p4.save()
@@ -217,41 +221,41 @@ def load_data():
 #    i5.save()
 
     #Create an attribute set 
-    optSet1 = OptionGroup(name="sizes", sort_order=1)
-    optSet2 = OptionGroup(name="colors", sort_order=2)
+    optSet1 = OptionGroup(name="sizes", sort_order=1, site=site)
+    optSet2 = OptionGroup(name="colors", sort_order=2, site=site)
     optSet1.save()
     optSet2.save()
     
-    optSet3 = OptionGroup(name="Book type", sort_order=1)
+    optSet3 = OptionGroup(name="Book type", sort_order=1, site=site)
     optSet3.save()
 
-    optSet4 = OptionGroup(name="Full/Upgrade", sort_order=5)
+    optSet4 = OptionGroup(name="Full/Upgrade", sort_order=5, site=site)
     optSet4.save()
     
-    optItem1a = Option(name="Small", value="S", displayOrder=1, optionGroup=optSet1)
+    optItem1a = Option(name="Small", value="S", sort_order=1, option_group=optSet1)
     optItem1a.save()
-    optItem1b = Option(name="Medium", value="M", displayOrder=2, optionGroup=optSet1)
+    optItem1b = Option(name="Medium", value="M", sort_order=2, option_group=optSet1)
     optItem1b.save()
-    optItem1c = Option(name="Large", value="L", displayOrder=3, price_change = 1.00, optionGroup=optSet1)
+    optItem1c = Option(name="Large", value="L", sort_order=3, price_change = Decimal("1.00"), option_group=optSet1)
     optItem1c.save()
 
-    optItem2a = Option(name="Black", value="B", displayOrder=1, optionGroup=optSet2)
+    optItem2a = Option(name="Black", value="B", sort_order=1, option_group=optSet2)
     optItem2a.save()
-    optItem2b = Option(name="White", value="W", displayOrder=2, optionGroup=optSet2)
+    optItem2b = Option(name="White", value="W", sort_order=2, option_group=optSet2)
     optItem2b.save()
-    optItem2c = Option(name="Blue", value="BL", displayOrder=3, price_change=2.00, optionGroup=optSet2)
+    optItem2c = Option(name="Blue", value="BL", sort_order=3, price_change=Decimal("2.00"), option_group=optSet2)
     optItem2c.save()
 
-    optItem3a = Option(name="Hard cover", value="hard", displayOrder=1, optionGroup=optSet3)
+    optItem3a = Option(name="Hard cover", value="hard", sort_order=1, option_group=optSet3)
     optItem3a.save()
-    optItem3b = Option(name="Soft cover", value="soft", displayOrder=2, price_change=1.00, optionGroup=optSet3)
+    optItem3b = Option(name="Soft cover", value="soft", sort_order=2, price_change=Decimal("1.00"), option_group=optSet3)
     optItem3b.save()
-    optItem3c = Option(name="On tape", value="tape", displayOrder=3, optionGroup=optSet3)
+    optItem3c = Option(name="On tape", value="tape", sort_order=3, option_group=optSet3)
     optItem3c.save()
 
-    optItem4a = Option(name="Full Version", value="full", optionGroup=optSet4, displayOrder=1)
+    optItem4a = Option(name="Full Version", value="full", option_group=optSet4, sort_order=1)
     optItem4a.save()
-    optItem4b = Option(name="Upgrade Version", value="upgrade", optionGroup=optSet4, displayOrder=2)
+    optItem4b = Option(name="Upgrade Version", value="upgrade", option_group=optSet4, sort_order=2)
     optItem4b.save()
 
 

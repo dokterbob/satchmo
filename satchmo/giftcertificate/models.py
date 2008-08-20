@@ -8,11 +8,13 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_value, config_get_group
-from satchmo.contact.models import Contact, OrderPayment, Order
+from satchmo.contact.models import Contact
+from satchmo.shop.models import OrderPayment, Order
 from satchmo.giftcertificate.utils import generate_certificate_code
 from satchmo.l10n.utils import moneyfmt
 from satchmo.payment.common.utils import record_payment
 from satchmo.product.models import Product
+from django.contrib.sites.models import Site
 import logging
 
 GIFTCODE_KEY = 'GIFTCODE'
@@ -24,7 +26,8 @@ class GiftCertificateManager(models.Manager):
         code = order.get_variable(GIFTCODE_KEY, "")
         log.debug("GiftCert.from_order code=%s", code)
         if code:
-            return GiftCertificate.objects.get(code__exact=code.value, valid__exact=True, site=Site.objects.get_current())
+            site = order.site
+            return GiftCertificate.objects.get(code__exact=code.value, valid__exact=True, site=site)
         raise GiftCertificate.DoesNotExist()
 
 class GiftCertificate(models.Model):
@@ -154,4 +157,4 @@ class GiftCertificateProduct(models.Model):
         verbose_name = _("Gift certificate product")
         verbose_name_plural = _("Gift certificate products")
 
-from satchmo.giftcertificate import admin
+import config

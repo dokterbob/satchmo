@@ -1,7 +1,6 @@
 """
 Store tables used to calculate tax on a product
 """
-
 from django.core import validators
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -25,7 +24,6 @@ class TaxClass(models.Model):
     class Meta:
         verbose_name = _("Tax Class")
         verbose_name_plural = _("Tax Classes")
-
 taxrate_zoneandcountry_zone_validator = MutuallyExclusiveWithField('taxCountry')
 taxrate_zoneandcountry_country_validator = MutuallyExclusiveWithField('taxZone')
 
@@ -71,4 +69,4 @@ class TaxRate(models.Model):
         verbose_name = _("Tax Rate")
         verbose_name_plural = _("Tax Rates")
 
-from satchmo.tax import admin
+import config

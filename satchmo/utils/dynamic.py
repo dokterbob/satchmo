@@ -1,6 +1,7 @@
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from satchmo.utils import url_join
+from django.contrib.sites.models import Site
 
 def lookup_template(settings, template):
     """Return a template name, which may have been overridden in the settings."""

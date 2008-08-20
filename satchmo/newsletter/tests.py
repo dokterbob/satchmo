@@ -1,6 +1,7 @@
 from django.core import urlresolvers
 from django.test import TestCase
 from django.test.client import Client
+from satchmo import caching
 from satchmo.configuration import config_get
 from satchmo.newsletter import *
 from satchmo.newsletter.models import get_contact_or_fake
@@ -13,6 +14,9 @@ class NewsletterTest(TestCase):
     def setUp(self):
         cfg = config_get('NEWSLETTER', 'MODULE')
         cfg.update('satchmo.newsletter.simple')
+        
+    def tearDown(self):
+        caching.cache_delete()
         
     def  testNewIsUnsubscribed(self):
         c = get_contact_or_fake('test test', 'testnew@test.com')
@@ -50,6 +54,9 @@ class NewsletterTestViews(TestCase):
         cfg.update('satchmo.newsletter.simple')
         self.client = Client()
         
+    def tearDown(self):
+        caching.cache_delete()
+    
     def  testNewIsSubscribed(self):
         url = urlresolvers.reverse('newsletter_subscribe_ajah')
         c = get_contact_or_fake('test test', 'testsubview@test.com')

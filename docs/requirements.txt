@@ -19,6 +19,7 @@ features in Satchmo.
 - `Python cryptography toolkit`_ (`Windows binary`_)
 - `ReportLab`_
 - `Tiny RML2PDF`_ (`download link`_)
+- `Django Threaded Multihost`_
 
 There are also a number of other Django packages (mentioned below) that you will require
 
@@ -58,3 +59,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _snapshot: http://www.satchmoproject.com/snapshots/
 .. _Docutils: http://docutils.sourceforge.net/
 .. _installation : new_installation.html
+.. _`Django Threaded Multihost`: http://getbanjo.com/threaded-multihost/

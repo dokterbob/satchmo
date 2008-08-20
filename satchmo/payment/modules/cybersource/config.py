@@ -14,7 +14,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_CYBERSOURCE',
     requires=PAYMENT_MODULES,
     ordering=102)
 
-config_register([
+config_register_list(
 
     StringValue(PAYMENT_GROUP, 
         'CONNECTION',
@@ -87,4 +87,4 @@ config_register([
         'TRANKEY', 
         description=_('Your Cybersource transaction key'),
         default="")  
-])
+)

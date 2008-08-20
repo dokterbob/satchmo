@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import *
+from satchmo.shop import get_satchmo_setting
 from satchmo.utils import is_string_like, load_module
 
 SHIPPING_GROUP = ConfigurationGroup('SHIPPING', _('Shipping Settings'))
@@ -28,7 +29,7 @@ for module in _default_modules:
         log.debug('Could not load default shipping module configuration: %s', module)
 
 # --- Load any extra shipping modules. ---
-extra_shipping = getattr(settings, 'CUSTOM_SHIPPING_MODULES', ())
+extra_shipping = get_satchmo_setting('CUSTOM_SHIPPING_MODULES')
 
 for extra in extra_shipping:
     try:

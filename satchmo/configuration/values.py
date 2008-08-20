@@ -3,12 +3,14 @@
 http://code.google.com/p/django-values/
 """
 from django import forms
+from django.core.exceptions import ImproperlyConfigured
 from django.utils import simplejson
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _
 from satchmo.configuration.models import find_setting, LongSetting, Setting, SettingNotSet
 from satchmo.utils import load_module, is_string_like, is_list_or_tuple
+from django.contrib.sites.models import Site
 import datetime
 import logging
 
@@ -20,6 +22,8 @@ except ImportError:
 __all__ = ['SHOP_GROUP', 'ConfigurationGroup', 'Value', 'BooleanValue', 'DecimalValue', 'DurationValue',
       'FloatValue', 'IntegerValue', 'ModuleValue', 'PercentValue', 'PositiveIntegerValue', 'SortedDotDict',
       'StringValue', 'LongStringValue', 'MultipleStringValue']
+
+_WARN = {}
 
 log = logging.getLogger('configuration')
 
@@ -254,10 +258,39 @@ class Value(object):
                 val = self.default
             else:
                 val = NOTSET
+                
         except AttributeError, ae:
             log.error("Attribute error: %s", ae)
             log.error("%s: Could not get _value of %s", self.key, self.setting)
             raise(ae)
+            
+        # except sites.MultihostNotReady:
+        #     if not _WARN.has_key('multihost'):
+        #         log.warn('Multihost Error: Loading setting %s.%s from database, OK if you are in syncdb', self.group.key, self.key)
+        #         _WARN['multihost'] = True
+        #         
+        #     if self.use_default:
+        #         val = self.default
+        #     else:
+        #         raise ImproperlyConfigured("All settings used in startup must have defaults, %s.%s does not", self.group.key, self.key)
+        except Exception, e:
+            global _WARN
+            log.error(e)
+            msg = e.args[0]
+            if msg.find("configuration_setting") > -1:
+                if not _WARN.has_key('configuration_setting'):
+                    log.warn('Error loading setting %s.%s from table, OK if you are in syncdb', self.group.key, self.key)
+                    _WARN['configuration_setting'] = True
+                    
+                if self.use_default:
+                    val = self.default
+                else:
+                    raise ImproperlyConfigured("All settings used in startup must have defaults, %s.%s does not", self.group.key, self.key)
+            else:
+                import traceback
+                traceback.print_exc()
+                log.warn("Problem finding settings %s.%s, %s", self.group.key, self.key, e)
+                raise SettingNotSet("Startup error, couldn't load %s.%s" %(self.group.key, self.key))
         return val
 
     def update(self, value):    

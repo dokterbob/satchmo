@@ -8,8 +8,8 @@ class GiftCertificateUsage_Inline(admin.StackedInline):
     extra = 1
 
 class GiftCertificateOptions(admin.ModelAdmin):
-    list_display = ['code','balance']
-    ordering = ['date_added']
+    list_display = ['site', 'code','balance']
+    ordering = ['site', 'date_added']
     inlines = [GiftCertificateUsage_Inline]
 
 admin.site.register(GiftCertificate, GiftCertificateOptions)

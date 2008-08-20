@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from satchmo.shop.views.utils import bad_or_missing
-from satchmo.contact.models import Order
+from satchmo.shop.models import Order
 
 def success(request):
     """

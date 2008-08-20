@@ -3,12 +3,11 @@ from django.conf import settings
 from django.template import RequestContext
 from django.template import loader
 from django.utils.translation import ugettext as _
-from satchmo.configuration import config_value
+from satchmo.configuration import config_value, config_choice_values
 from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_best_auto_discount
-from satchmo.payment.config import payment_choices
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_template
@@ -55,7 +54,7 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
     return shipping_options, shipping_dict
  
 class PaymentMethodForm(forms.Form):
-    _choices = payment_choices()
+    _choices = config_choice_values('PAYMENT', 'MODULES', translate=True)
     if len(_choices) > 0:
         if len(_choices) > 1:
             _paymentwidget = forms.RadioSelect
@@ -68,7 +67,7 @@ class PaymentMethodForm(forms.Form):
                                         required=True)
 
 class PaymentContactInfoForm(ContactInfoForm):
-    _choices = payment_choices()
+    _choices = config_choice_values('PAYMENT', 'MODULES', translate=True)
     if len(_choices) > 0:
         if len(_choices) > 1:
             _paymentwidget = forms.RadioSelect

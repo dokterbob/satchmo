@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 
 from satchmo.contact.models import Contact
-from satchmo.contact.models import Order, OrderPayment
+from satchmo.shop.models import Order, OrderPayment
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.common.pay_ship import pay_ship_save

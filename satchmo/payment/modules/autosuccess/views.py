@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group
-from satchmo.contact.models import Order, Contact, OrderPayment
+from satchmo.shop.models import Order, Contact, OrderPayment
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart

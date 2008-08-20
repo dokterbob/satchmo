@@ -4,7 +4,7 @@ except:
     from django.utils._decimal import Decimal
 
 from datetime import datetime
-from satchmo.contact.models import OrderPayment
+from satchmo.shop.models import OrderPayment
 import logging
 
 log = logging.getLogger('payment.common.utils')

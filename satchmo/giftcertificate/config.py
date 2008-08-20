@@ -11,8 +11,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_GIFTCERTIFICATE',
     _('Gift Certificate Settings'), 
     requires=PAYMENT_MODULES)
 
-config_register([
-        
+config_register_list(
     BooleanValue(PAYMENT_GROUP, 
         'SSL', 
         description=_("Use SSL for the checkout pages?"), 
@@ -57,5 +56,5 @@ config_register([
     StringValue(PAYMENT_GROUP,
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
-        default = r'^giftcertificate/'),
-])
+        default = r'^giftcertificate/')
+)

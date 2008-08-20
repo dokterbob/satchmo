@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy, ugettext
 from satchmo.configuration import *
+from satchmo.shop import get_satchmo_setting
 from satchmo.utils import is_string_like, load_module
 import logging
 
@@ -51,31 +52,31 @@ ORDER_EMAIL_EXTRA = config_register(
         default = "")
 )
 
-config_register([
+config_register_list(
 
-BooleanValue(PAYMENT_GROUP,
-    'COUNTRY_MATCH',
-    description=_("Country match required?"),
-    help_text=_("If True, then customers may not have different countries for shipping and billing."),
-    default=True),
+    BooleanValue(PAYMENT_GROUP,
+        'COUNTRY_MATCH',
+        description=_("Country match required?"),
+        help_text=_("If True, then customers may not have different countries for shipping and billing."),
+        default=True),
 
-MultipleStringValue(PAYMENT_GROUP,
-    'MODULES',
-    description=_("Enable payment modules"),
-    help_text=_("""Select the payment modules you want to use with your shop.  
-If you are adding a new one, you should save and come back to this page, 
-as it may have enabled a new configuration section."""),
-    default=["PAYMENT_DUMMY"]),
+    MultipleStringValue(PAYMENT_GROUP,
+        'MODULES',
+        description=_("Enable payment modules"),
+        help_text=_("""Select the payment modules you want to use with your shop.  
+    If you are adding a new one, you should save and come back to this page, 
+    as it may have enabled a new configuration section."""),
+        default=["PAYMENT_DUMMY"]),
     
-BooleanValue(PAYMENT_GROUP,
-    'SSL',
-    description=_("Enable SSL"),
-    help_text=_("""This enables for generic pages like contact information capturing.  
-It does not set SSL for individual modules. 
-You must enable SSL for each payment module individually."""),
-    default=False)
+    BooleanValue(PAYMENT_GROUP,
+        'SSL',
+        description=_("Enable SSL"),
+        help_text=_("""This enables for generic pages like contact information capturing.  
+    It does not set SSL for individual modules. 
+    You must enable SSL for each payment module individually."""),
+        default=False)
 
-])
+)
 
 # --- Load default payment modules.  Ignore import errors, user may have deleted them. ---
 _default_modules = ('authorizenet','dummy','google','paypal', 'trustcommerce', 'cybersource', 'autosuccess', 'cod')
@@ -87,7 +88,7 @@ for module in _default_modules:
         log.debug('Could not load default payment module configuration: %s', module)
 
 # --- Load any extra payment modules. ---
-extra_payment = getattr(settings, 'CUSTOM_PAYMENT_MODULES', ())
+extra_payment = get_satchmo_setting('CUSTOM_PAYMENT_MODULES')
 
 for extra in extra_payment:
     try:
@@ -113,18 +114,6 @@ def credit_choices(settings=None, include_module_if_no_choices=False):
             label = config_value(module, 'LABEL')
             pair = (key, ugettext(label))
             choices.append(pair)
-    return choices
-
-def payment_choices():
-    choices = []
-    for module in config_value('PAYMENT', 'MODULES'):
-        try:
-            key = config_value(module, 'KEY')
-            label = config_value(module, 'LABEL')
-            choices.append((key, ugettext(label)))
-        except SettingNotSet, se:
-            log.warn("Could not load payment choice for: %s", module)
-            log.error(se)
     return choices
 
 def payment_live(settings):

@@ -9,9 +9,11 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from satchmo import caching
-from satchmo.configuration import config_value
-from satchmo.contact.models import Contact, OrderPayment
-from satchmo.payment.config import payment_choices, credit_choices
+from satchmo.configuration import config_value, config_choice_values, SettingNotSet
+from satchmo.contact.models import Contact
+from satchmo.payment.fields import PaymentChoiceCharField
+from satchmo.shop.models import OrderPayment
+import config
 import base64
 import logging
 
@@ -30,8 +32,8 @@ class PaymentOption(models.Model):
     description = models.CharField(_("Description"), max_length=20)
     active = models.BooleanField(_("Active"), 
         help_text=_("Should this be displayed as an option for the user?"))
-    optionName = models.CharField(_("Option Name"), max_length=20, 
-        choices = payment_choices(), unique=True, 
+    optionName = PaymentChoiceCharField(_("Option Name"), max_length=20, 
+        unique=True, 
         help_text=_("The class name as defined in payment.py"))
     sortOrder = models.IntegerField(_("Sort Order"))
     
@@ -47,7 +49,7 @@ class CreditCardDetail(models.Model):
     orderpayment = models.ForeignKey(OrderPayment, unique=True, 
         related_name="creditcards")
     creditType = models.CharField(_("Credit Card Type"), max_length=16,
-        choices=credit_choices())
+        choices=config.credit_choices())
     displayCC = models.CharField(_("CC Number (Last 4 digits)"),
         max_length=4, core=True)
     encryptedCC = models.CharField(_("Encrypted Credit Card"),
@@ -99,5 +101,3 @@ class CreditCardDetail(models.Model):
     class Meta:
         verbose_name = _("Credit Card")
         verbose_name_plural = _("Credit Cards")
-
-from satchmo.payment import admin

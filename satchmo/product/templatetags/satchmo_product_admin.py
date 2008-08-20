@@ -1,8 +1,9 @@
 from django import template
 from django.conf import settings
 from django.template import Context, Template
-from satchmo.configuration import config_value
 from django.utils.translation import get_language, ugettext_lazy as _
+from satchmo.configuration import config_value
+from satchmo.shop import get_satchmo_setting
 
 register = template.Library()
 
@@ -91,7 +92,7 @@ def customproduct_management(order):
             custom.append(orderitem)
 
     return {
-        'SHOP_BASE' : settings.SHOP_BASE,
+        'SHOP_BASE' : get_satchmo_setting('SHOP_BASE'),
         'customitems' : custom
     }
 
@@ -99,7 +100,7 @@ register.inclusion_tag('admin/_customproduct_management.html')(customproduct_man
 
 def orderpayment_list(order):
     return {
-        'SHOP_BASE' : settings.SHOP_BASE,
+        'SHOP_BASE' : get_satchmo_setting('SHOP_BASE'),
         'order' : order,
         'payments' : order.payments.all()
         }

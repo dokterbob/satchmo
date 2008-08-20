@@ -1,6 +1,15 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
+{% block extrastyle %}
+{{ block.super }}
+<style type="text/css">
+#content-related { float:right; width:29em; position:relative; margin-right: -30em;}
+#content-related .module h2 { cursor: default; }
+#content-related .module h2 .status { font-style: italic; }
+</style>
+{% endblock %}
+
 {% block title %}{{ title|escape }} | {% trans 'Satchmo Site Administration' %}{% endblock %}
 
 {% block branding %}

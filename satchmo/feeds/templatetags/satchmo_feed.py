@@ -60,7 +60,7 @@ def make_googlebase_option(opt, custom):
     if it is, good, use it.  Otherwise make a custom tag."""
     
     custom = custom.lower() in ('true','t','1')
-    return make_googlebase_tag(opt.optionGroup.name, opt.name,custom)
+    return make_googlebase_tag(opt.option_group.name, opt.name,custom)
 
 register.filter('make_googlebase_option', make_googlebase_option)
 

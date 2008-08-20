@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from models import Product
 from satchmo.caching import cache_get, cache_set, NotCachedError
 from satchmo.configuration import config_value
+from django.contrib.sites.models import Site
 import logging
 import math
 import operator
@@ -21,7 +22,10 @@ def average(ratings):
 def get_product_rating(product, free=False, site=None):
     """Get the average product rating"""
     if site is None:
-        site = settings.SITE_ID
+        site = Site.objects.get_current()
+    
+    site = site.id
+        
     manager = free and FreeComment.objects or Comment.objects
     comments = manager.filter(object_id__exact=product.id,
                                content_type__app_label__exact='product',
@@ -53,7 +57,9 @@ def get_product_rating_string(product, free=False, site=None):
 def highest_rated(num=None, free=False, site=None):
     """Get the most highly rated products"""
     if site is None:
-        site = settings.SITE_ID
+        site = Site.objects.get_current()
+
+    site = site.id
 
     try:
         pks = cache_get("BESTRATED", site=site, free=free, num=num)

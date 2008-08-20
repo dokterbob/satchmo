@@ -53,13 +53,22 @@
      <para style="returnto">
         {{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}
      </para>
+     {% ifnotequal shopDetails.country.iso2_code order.ship_country %}
+     <para style="returnto">
+       {{ shopDetails.country.name }}
+     </para>
+     {% endifnotequal %}
      <nextFrame/>
 
-    <para style="sendto"><b>{{order.contact.full_name}}</b></para>
+    <para style="sendto"><b>{{order.ship_addressee}}</b></para>
     <para style="sendto">{{order.ship_street1}}</para>
     {% if order.ship_street2 %}
     <para style="sendto">{{order.ship_street2}}</para>
     {% endif %}
     <para style="sendto">{{order.ship_city}}, {{order.ship_state}} {{order.ship_postal_code}}</para>
+    {% ifnotequal shopDetails.country.iso2_code order.ship_country %}
+    <para style="sendto">{{ order.ship_country_name }}</para>
+    {% endifnotequal %}
+
 </story>
 </document>

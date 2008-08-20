@@ -49,7 +49,7 @@ def display_bestsellers(request):
         pass
     
     if not ok:
-        products = Product.objects.all()
+        products = Product.objects.by_site()
         work = []
         for p in products:
             ct = p.orderitem_set.count()

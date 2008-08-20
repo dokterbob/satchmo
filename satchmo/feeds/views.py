@@ -17,7 +17,7 @@ def product_feed(request, category=None, template="feeds/googlebase_atom.xml", m
     """Build a feed of all active products.
     """
 
-    shop_config = Config.get_shop_config()
+    shop_config = Config.objects.get_current()
     if category:
         try:
             cat = Category.objects.get(slug=category)

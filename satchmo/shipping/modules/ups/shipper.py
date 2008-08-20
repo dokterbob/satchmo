@@ -111,7 +111,7 @@ class Shipper(BaseShipper):
         
         settings =  config_get_group('satchmo.shipping.modules.ups')
         self.delivery_days = _("3 - 4") #Default setting for ground delivery
-        shop_details = Config.get_shop_config()
+        shop_details = Config.objects.get_current()
         configuration = {
             'xml_key': settings.XML_KEY.value,
             'account': settings.ACCOUNT.value,

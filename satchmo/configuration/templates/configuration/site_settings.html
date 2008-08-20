@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_modify config_tags %}
+{% load i18n admin_modify config_tags satchmo_adminsite_tags %}
 
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
 {% block extrahead %}
@@ -27,6 +27,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
 </div>
 {% endif %}{% endblock %}
 {% block content %}
+{% comment %}
 <div class="fieldcontainer">
 <ul class="fieldref">
 {% for group in form.groups %}
@@ -34,7 +35,8 @@ div.fieldcontainer { float: left; margin-right: 0; }
 {% endfor %}
 </ul>
 </div>
-<br style="clear: both;" />
+{% endcomment %}
+<span style="clear: both;" />
 <div id="content-main">
 {% if form.errors %}
     <p class="errornote">
@@ -42,7 +44,6 @@ div.fieldcontainer { float: left; margin-right: 0; }
     </p>
 {% endif %}
 {% if form.fields %}
-<br class="clear: both;" />
 <form method="post">
     {% for field in form %}
         {% if field.is_hidden %}
@@ -79,6 +80,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
     {% endfor %}
     	</table>
 	</div>
+{% admin_site_views 'satchmo_site_settings' %}
 <br class="clear:both;" />
 <input type="submit" value="Save" class="default" />
 <p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">{% trans 'Uncollapse all' %}</a></p>

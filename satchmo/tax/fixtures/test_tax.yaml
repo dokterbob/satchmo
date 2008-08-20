@@ -16,7 +16,7 @@
   model: shop.config
   pk: 1
 - fields: {customer: null, date_time_created: !!timestamp '2007-12-17 16:54:20.198576',
-    desc: null}
+    desc: null, site: 1}
   model: shop.cart
   pk: 1
 - fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 1}

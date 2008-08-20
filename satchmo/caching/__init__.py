@@ -170,8 +170,10 @@ def cache_get(*keys, **kwargs):
             
         return obj.val
     else:
-        if CACHED_KEYS.has_key(key):
+        try:
             del CACHED_KEYS[key]
+        except KeyError:
+            pass
 
         if use_default:
             return default_value

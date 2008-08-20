@@ -1,9 +1,9 @@
-from satchmo.configuration import ConfigurationGroup, config_register, IntegerValue, BooleanValue
+from satchmo.configuration import ConfigurationGroup, config_register_list, IntegerValue, BooleanValue
 from django.utils.translation import ugettext_lazy as _
 
 THUMB_GROUP = ConfigurationGroup('THUMBNAIL', _('Thumbnail Settings'))
 
-config_register([
+config_register_list(
     IntegerValue(THUMB_GROUP, 
         'IMAGE_QUALITY', 
         description= _("Thumbnail quality"), 
@@ -15,5 +15,5 @@ config_register([
         'RENAME_IMAGES',
         description=_("Rename product images?"),
         help_text=_("Automatically rename product images on upload?"),
-        default=True),
-])
+        default=True)
+)

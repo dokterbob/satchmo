@@ -6,19 +6,26 @@ except:
 
 from django.test import TestCase
 from models import *
-from satchmo.contact.models import AddressBook, Contact, Order, OrderItem
-from satchmo.product.models import Product
-from satchmo.configuration import config_get
 from satchmo.caching import cache_delete
+from satchmo.configuration import config_get
+from satchmo.contact.models import AddressBook, Contact
+from satchmo.l10n.models import Country
+from satchmo.product.models import Product
+from satchmo.shop.models import Order, OrderItem
+from django.contrib.sites.models import Site
 
 class DiscountTest(TestCase):
-    fixtures = []
+    fixtures = ['test_shop.yaml']
 
     def setUp(self):
+        self.site = Site.objects.get_current()
         start = datetime.date(2006, 10, 1)
         end = datetime.date(5000, 10, 1)
         self.discount = Discount.objects.create(description="New Sale", code="BUYME", amount="5.00", allowedUses=10,
-            numUses=0, minOrder=5, active=True, startDate=start, endDate=end, freeShipping=False)
+            numUses=0, minOrder=5, active=True, startDate=start, endDate=end, freeShipping=False, site=self.site)
+    
+    def tearDown(self):
+        cache_delete()
     
     def testValid(self):
 
@@ -161,10 +168,11 @@ class CalcFunctionTest(TestCase):
         self.assertEqual(s[3], Decimal("1.00"))
         
 class DiscountAmountTest(TestCase):
-    fixtures = ['test_discount.yaml']
+    fixtures = ['l10n-data.yaml', 'test_discount.yaml']
     
     def setUp(self):
-        cache_delete()
+        self.US = Country.objects.get(iso2_code__iexact = 'US')
+        self.site = Site.objects.get_current()
         tax = config_get('TAX','MODULE')
         tax.update('satchmo.tax.modules.no')
         c = Contact(first_name="Jim", last_name="Tester", 
@@ -172,12 +180,12 @@ class DiscountAmountTest(TestCase):
         c.save()
         ad = AddressBook(contact=c, description="home",
             street1 = "test", state="OR", city="Portland",
-            country = "United States", is_default_shipping=True,
+            country = self.US, is_default_shipping=True,
             is_default_billing=True)
         ad.save()
-        o = Order(contact=c, shipping_cost=Decimal('6.00'))
+        o = Order(contact=c, shipping_cost=Decimal('6.00'), site=self.site)
         o.save()
-        small = Order(contact=c, shipping_cost=Decimal('6.00'))
+        small = Order(contact=c, shipping_cost=Decimal('6.00'), site=self.site)
         small.save()
 
         p = Product.objects.get(slug='neat-book-soft')
@@ -197,6 +205,9 @@ class DiscountAmountTest(TestCase):
         item2.save()
         self.order = o
         self.small = small
+
+    def tearDown(self):
+        cache_delete()
     
     def testBase(self):
         """Check base prices"""

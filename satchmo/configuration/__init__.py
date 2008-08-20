@@ -10,6 +10,7 @@ Appropriate:  Your google code for adwords.
 Inappropriate: The caching timeout for the store.
 
 """
-from values import *
+
 from functions import *
 from models import *
+from values import *

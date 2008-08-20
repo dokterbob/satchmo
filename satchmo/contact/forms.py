@@ -1,5 +1,4 @@
 from django import forms
-from django.dispatch import dispatcher
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
@@ -8,6 +7,9 @@ from satchmo.shop.models import Config
 from django.contrib.auth.models import User
 from signals import satchmo_contact_location_changed
 import datetime
+import logging
+
+log = logging.getLogger('satchmo.contact.forms')
 
 selection = ''
 
@@ -16,41 +18,49 @@ class ContactInfoForm(forms.Form):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
     phone = forms.CharField(max_length=30)
+    addressee = forms.CharField(max_length=61, required=False)
     street1 = forms.CharField(max_length=30)
     street2 = forms.CharField(max_length=30, required=False)
     city = forms.CharField(max_length=30)
     state = forms.CharField(max_length=30, required=False)
-    country = forms.CharField(max_length=30, required=False)
+    country = forms.ModelChoiceField(Country.objects.all(), required=False)
     postal_code = forms.CharField(max_length=10)
     copy_address = forms.BooleanField(required=False)
+    ship_addressee = forms.CharField(max_length=61, required=False)
     ship_street1 = forms.CharField(max_length=30, required=False)
     ship_street2 = forms.CharField(max_length=30, required=False)
     ship_city = forms.CharField(max_length=30, required=False)
     ship_state = forms.CharField(max_length=30, required=False)
     ship_postal_code = forms.CharField(max_length=10, required=False)
-    ship_country = forms.CharField(max_length=30, required=False)
+    ship_country = forms.ModelChoiceField(Country.objects.all(), required=False)
 
     def __init__(self, countries, areas, contact, *args, **kwargs):
         self.shippable = True
         if kwargs.has_key('shippable'):
             self.shippable = kwargs['shippable']
             del(kwargs['shippable'])
-        super(ContactInfoForm, self).__init__(*args, **kwargs)    
+        super(ContactInfoForm, self).__init__(*args, **kwargs)   
         if areas is not None and countries is None:
+            log.debug('populating admin areas')
+            areas = [(area.abbrev, area.name) for area in areas]
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
         if countries is not None:
-            self.fields['country'] = forms.ChoiceField(choices=countries)
+            self.fields['country'] = forms.ModelChoiceField(countries)
             if self.shippable:
-                self.fields['ship_country'] = forms.ChoiceField(choices=countries, required=False)
+                self.fields['ship_country'] = forms.ModelChoiceField(countries)
 
-        shop_config = Config.get_shop_config()
+        shop_config = Config.objects.get_current()
         self._local_only = shop_config.in_country_only
+        # country = shop_config.sales_country
+        # if not country:
+        #     self._default_country = Country.objects.get(iso2_code__iequals='US')
+        # else:
+        #     self._default_country = country
         country = shop_config.sales_country
-        if not country:
-            self._default_country = 'US'
-        else:
-            self._default_country = country.iso2_code        
+        self._default_country = country.pk
+        self.fields['country'].initial = country.pk
+        self.fields['ship_country'].initial = country.pk
         self.contact = contact
 
     def clean_email(self):
@@ -70,14 +80,14 @@ class ContactInfoForm(forms.Form):
     def clean_state(self):
         data = self.cleaned_data['state']
         if self._local_only:
-            country_iso2 = self._default_country
+            country_pk = self._default_country
         else:
             if not 'country' in self.data:
                 # The user didn't even submit a country, but this error will
                 # be handled by the clean_country function
                 return data
-            country_iso2 = self.data['country']
-        country = Country.objects.get(iso2_code=country_iso2)
+            country = self.data['country']
+        country = Country.objects.get(pk=country_pk)
         if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
@@ -93,15 +103,14 @@ class ContactInfoForm(forms.Form):
             return self.cleaned_data['ship_state']
 
         if self._local_only:
-            country_iso2 = self._default_country
+            country_pk = self._default_country
         else:
             if not 'ship_country' in self.data:
                 # This user didn't even submit a country, but this error will
                 # be handled by the clean_ship_country function
                 return data
-            country_iso2 = self.data['ship_country']
-
-        country = Country.objects.get(iso2_code=country_iso2)
+            country_pk = self.data['ship_country']
+        country = Country.objects.get(pk=country_pk)
         if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
@@ -109,6 +118,23 @@ class ContactInfoForm(forms.Form):
                                or _('State is required for your country.'))
         return data
 
+    def clean_addressee(self):
+        if not self.cleaned_data['addressee']:
+            first_and_last = u' '.join((self.cleaned_data['first_name'],
+                                       self.cleaned_data['last_name']))
+            return first_and_last
+        else:
+            return self.cleaned_data['addressee']
+    
+    def clean_ship_addressee(self):
+        if not self.cleaned_data['ship_addressee'] and \
+                not self.cleaned_data['copy_address']:
+            first_and_last = u' '.join((self.cleaned_data['first_name'],
+                                       self.cleaned_data['last_name']))
+            return first_and_last
+        else:
+            return self.cleaned_data['ship_addressee']
+    
     def clean_country(self):
         if self._local_only:
             return self._default_country
@@ -167,8 +193,21 @@ class ContactInfoForm(forms.Form):
         else:
             customer = contact
 
-        data = self.cleaned_data
+        data = self.cleaned_data.copy()
 
+        country = data['country']
+        if not isinstance(country, Country):
+            country = Country.objects.get(pk=country)
+            data['country'] = country
+        data['country_id'] = country.id
+
+        shipcountry = data['ship_country']
+        if not isinstance(shipcountry, Country):
+            shipcountry = Country.objects.get(pk=shipcountry)
+            data['ship_country'] = shipcountry
+        
+        data['ship_country_id'] = shipcountry.id
+        
         for field in customer.__dict__.keys():
             try:
                 setattr(customer, field, data[field])
@@ -250,7 +289,7 @@ class ContactInfoForm(forms.Form):
         phone.save()
         
         if changed_location:
-            dispatcher.send(signal=satchmo_contact_location_changed, contact=contact)
+            satchmo_contact_location_changed.send(self, contact=contact)
         
         return customer.id
 

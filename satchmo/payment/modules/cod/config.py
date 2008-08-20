@@ -12,7 +12,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_COD',
     requires=PAYMENT_MODULES,
     ordering = 100)
 
-config_register([
+config_register_list(
     BooleanValue(PAYMENT_GROUP, 
         'SSL', 
         description=_("Use SSL for the module checkout pages?"), 
@@ -47,5 +47,4 @@ config_register([
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
         default = '^cod/'),
-
-])
+)

@@ -29,6 +29,7 @@
     weight_units: ''
     width: null
     width_units: ''
+    site: 1
   model: product.product
   pk: 1
 - fields:
@@ -56,6 +57,7 @@
     weight_units: ''
     width: null
     width_units: ''
+    site: 1
   model: product.product
   pk: 2
 - fields: {expires: null, price: '3.950000', product: 1, quantity: 1}

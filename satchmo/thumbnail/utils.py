@@ -8,7 +8,7 @@ except ImportError:
     import PIL as Image
 from django.conf import settings
 from django.core.cache import get_cache
-from django.db.models.fields import ImageField
+from django.db.models.fields.files import ImageField
 from satchmo.thumbnail.text import URLify
 from satchmo.configuration import config_value
 
@@ -45,11 +45,11 @@ def _get_thumbnail_path(path, width=None, height=None):
 def _get_path_from_url(url, root=settings.MEDIA_ROOT, url_root=settings.MEDIA_URL):
     """ make filesystem path from url """
 
+#    if url.startswith('/'):
+#        return url
+
     if url.startswith(url_root):
         url = url[len(url_root):] # strip media root url
-
-    if url.startswith('/'):
-        url = url[1:]
 
     return os.path.normpath(os.path.join(root, url))
 
@@ -143,19 +143,19 @@ def remove_model_thumbnails(model):
 
     for obj in model._meta.fields:
         if isinstance(obj, ImageField):
-            url = getattr(model, 'get_%s_url' % obj.name)()
+            url = getattr(model, obj.name).path
             _remove_thumbnails(url)
 
-def _make_admin_thumbnail(url):
+def make_admin_thumbnail(url):
     """ make thumbnails for admin interface """
-    make_thumbnail(url, width=120)
+    return make_thumbnail(url, width=120)
 
 def make_admin_thumbnails(model):
     """ create thumbnails for admin interface for all ImageFields (and subclasses) in the model """
 
     for obj in model._meta.fields:
         if isinstance(obj, ImageField):
-            url = getattr(model, 'get_%s_url' % obj.name)()
+            url = getattr(model, obj.name).path
             make_thumbnail(url, width=120)
 
 def _get_thumbnail_url(photo_url, width=None, height=None, root=settings.MEDIA_ROOT, url_root=settings.MEDIA_URL):
@@ -208,7 +208,7 @@ def get_image_size(photo_url, root=settings.MEDIA_ROOT, url_root=settings.MEDIA_
         image sizes are cached (using separate locmem:/// cache instance)
     """
 
-    path = os.path.join(root, _get_path_from_url(photo_url, root, url_root))
+    path = _get_path_from_url(photo_url, root, url_root)
 
     size = _get_cached_file(path)
     if size is None:
@@ -239,11 +239,24 @@ def _rename(old_name, new_name):
     except IOError:
         return old_name
 
+# BJK Note: I think this might be the way to approach it
+
+# def rename_by_field(field, req_name, add_path=None):
+#     """Rename the file in filefield `field`"""
+#     if not (field and field.content):
+#         return field
+
 def rename_by_field(file_path, req_name, add_path=None):
     if file_path.strip() == '': return '' # no file uploaded
 
     old_name = os.path.basename(file_path)
     path = os.path.dirname(file_path)
+
+    media_root = os.path.normpath(settings.MEDIA_ROOT)
+    if path.startswith(media_root):
+        path = path[len(media_root):]
+    if path[0] == '/':
+        path = path[1:]
 
     name, ext = os.path.splitext(old_name)
     new_name = URLify(req_name) + ext
@@ -253,8 +266,8 @@ def rename_by_field(file_path, req_name, add_path=None):
     else:
         dest_path = path
 
-    if not os.path.isdir(os.path.join(settings.MEDIA_ROOT, dest_path)):
-        os.mkdir(os.path.join(settings.MEDIA_ROOT, dest_path))
+    if not os.path.isdir(os.path.join(media_root, dest_path)):
+        os.mkdir(os.path.join(media_root, dest_path))
 
     dest_path = os.path.join(dest_path, new_name)
 

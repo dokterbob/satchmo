@@ -20,19 +20,19 @@
     user: null}
   model: !!python/unicode 'contact.contact'
   pk: !!python/unicode '3'
-- fields: {city: !!python/unicode 'Anywhere Town', contact: !!python/long '1', country: !!python/unicode 'US',
+- fields: {city: !!python/unicode 'Anywhere Town', contact: !!python/long '1', country: 231,
     description: !!python/unicode 'Home', is_default_billing: true, is_default_shipping: true,
     postal_code: !!python/unicode '38138', state: !!python/unicode 'TN', street1: !!python/unicode '8235
       Pike Street', street2: !!python/unicode ''}
   model: !!python/unicode 'contact.addressbook'
   pk: !!python/unicode '1'
-- fields: {city: !!python/unicode 'Stillwater', contact: !!python/long '2', country: !!python/unicode 'US',
+- fields: {city: !!python/unicode 'Stillwater', contact: !!python/long '2', country: 231,
     description: !!python/unicode 'Work', is_default_billing: true, is_default_shipping: true,
     postal_code: !!python/unicode '55082', state: !!python/unicode 'MN', street1: !!python/unicode '1245
       Main Street', street2: !!python/unicode ''}
   model: !!python/unicode 'contact.addressbook'
   pk: !!python/unicode '2'
-- fields: {city: !!python/unicode 'Fishkill', contact: !!python/long '3', country: !!python/unicode 'US',
+- fields: {city: !!python/unicode 'Fishkill', contact: !!python/long '3', country: 231,
     description: !!python/unicode 'Mailing address', is_default_billing: true, is_default_shipping: true,
     postal_code: !!python/unicode '19010', state: !!python/unicode 'NJ', street1: !!python/unicode 'Receiving
       Dept', street2: !!python/unicode '918 Funky Town St'}
@@ -54,13 +54,9 @@
     type: !!python/unicode 'Fax'}
   model: !!python/unicode 'contact.phonenumber'
   pk: !!python/unicode '4'
-- fields: {city: null, country: null, in_country_only: true,
-    no_stock_checkout: true, phone: null, postal_code: null, sales_country: null,
+- fields: {city: null, country: 231, in_country_only: true,
+    no_stock_checkout: true, phone: null, postal_code: null, sales_country: 231,
     state: null, store_description: null, store_email: null, store_name: !!python/unicode 'My
       Site - Trunk',  street1: null, street2: null}
   model: !!python/unicode 'shop.config'
   pk: !!python/unicode '1'
-- fields: {group: !!python/unicode 'SHIPPING', key: !!python/unicode 'MODULES', site: !!python/long '1',
-    value: !!python/unicode '["satchmo.shipping.modules.flat", "satchmo.shipping.modules.per"]'}
-  model: !!python/unicode 'configuration.setting'
-  pk: !!python/long '1'

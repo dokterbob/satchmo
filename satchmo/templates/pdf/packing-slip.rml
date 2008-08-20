@@ -32,7 +32,7 @@
             <drawString x="1cm" y="220mm">{{shopDetails.phone}}</drawString>
             <drawString x="1cm" y="215mm">{{shopDetails.store_email}}</drawString>
             {% else %}
-            <drawString x="1cm" y="230mm">{{shopDetails.city}} {{shopDetails.state}}, {{shopDetails.postal_code}}</drawString>
+            <drawString x="1cm" y="230mm">{{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}</drawString>
             <drawString x="1cm" y="225mm">{{shopDetails.phone}}</drawString>
             <drawString x="1cm" y="220mm">{{shopDetails.store_email}}</drawString>
             {% endif %}
@@ -86,27 +86,35 @@
 </stylesheet>
 <story>
 
-    <para style="name">{{order.contact.full_name}}</para>
+    <para style="name">{{order.bill_addressee}}</para>
 	<para>{{order.bill_street1}}</para>
 	{% if order.bill_street2 %}
-          <para>{{ order.bill_street2}}</para<
+          <para>{{ order.bill_street2}}</para>
         {% endif %}
 	<para>{{order.bill_city}}, {{order.bill_state}}</para>
 	<para>{{order.bill_postal_code}}</para>
+        {% ifnotequal order.bill_country shopDetails.country.iso2_code %}
+        <para>{{order.bill_country_name}}</para>
+        {% else %}
 	<spacer length="0.8cm" width="1mm"/>
+	{% endifnotequal %}
 	<para>{% trans "Phone" %}: {{order.contact.primary_phone.phone}}</para>
 	<para>{% trans "Email" %}: {{order.contact.email}}</para>
 
 	<nextFrame/>
     
-    <para style="name">{{order.contact.full_name}}</para>
+    <para style="name">{{order.ship_addressee}}</para>
 	<para>{{order.ship_street1}}</para>
         {% if order.ship_street2 %}
-          <para>{{ order.ship_street2 %}
+          <para>{{ order.ship_street2 %}</para>
         {% endif %}
 	<para>{{order.ship_city}}, {{order.ship_state}}</para>
 	<para>{{order.ship_postal_code}}</para>
+        {% ifnotequal order.ship_country shopDetails.country.iso2_code %}
+        <para>{{ order.ship_country_name }}</para>
+        {% else %}
 	<spacer length="0.8cm" width="1mm"/>
+        {% endifnotequal %}
     <nextFrame/>
     
 	<setNextTemplate name="others"/>

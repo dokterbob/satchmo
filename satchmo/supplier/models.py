@@ -89,5 +89,3 @@ class SupplierOrderStatus(models.Model):
     class Meta:
         verbose_name = _("Supplier Order Status")
         verbose_name_plural = _("Supplier Order Statuses")
-
-from satchmo.supplier import admin

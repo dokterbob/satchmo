@@ -133,5 +133,3 @@ class UpsellTranslation(models.Model):
 
     class Meta:
         ordering=('languagecode', )
-
-from satchmo.upsell import admin

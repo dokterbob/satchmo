@@ -1,4 +1,3 @@
-import logging
 from django import http
 from django.contrib.auth.decorators import login_required
 from django.core import urlresolvers
@@ -6,10 +5,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_value, config_get_group, SettingNotSet
+from satchmo.contact import signals, CUSTOMER_ID
 from satchmo.contact.common import get_area_country_options
 from satchmo.contact.forms import ExtendedContactInfoForm
-from satchmo.contact.models import Contact, Order
-from satchmo.shop.views.utils import bad_or_missing
+from satchmo.contact.models import Contact
+import logging
 
 log = logging.getLogger('satchmo.contact.views')
 
@@ -20,19 +20,13 @@ def view(request):
     except Contact.DoesNotExist:
         user_data = None
 
-    show_newsletter = False
-    newsletter = False
-
-    if config_get_group('NEWSLETTER'):
-        show_newsletter = True
-        from satchmo.newsletter import is_subscribed
-        if user_data:
-            newsletter = is_subscribed(user_data)
-        
-    context = RequestContext(request, {
+    contact_dict = {
         'user_data': user_data, 
-        'show_newsletter' : show_newsletter, 
-        'newsletter' : newsletter })
+    }
+
+    signals.satchmo_contact_view.send(user_data, contact=user_data, contact_dict=contact_dict)
+            
+    context = RequestContext(request, contact_dict)
     
     return render_to_response('contact/view_profile.html', context)
 
@@ -59,14 +53,11 @@ def update(request):
             if contact is None and request.user:
                 contact = Contact(user=request.user)
             custID = form.save(contact=contact)
-            request.session['custID'] = custID
+            request.session[CUSTOMER_ID] = custID
             url = urlresolvers.reverse('satchmo_account_info')
             return http.HttpResponseRedirect(url)
         else:
-            if config_get_group('NEWSLETTER'):
-                show_newsletter = True
-            else:
-                show_newsletter = False
+            signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
 
     else:
         if contact:
@@ -82,61 +73,15 @@ def update(request):
             if contact.primary_phone:
                 init_data['phone'] = contact.primary_phone.phone
             
-        show_newsletter = False
-        current_subscriber = False
-        if config_get_group('NEWSLETTER'):
-            show_newsletter = True
-            if contact:
-                from satchmo.newsletter import is_subscribed
-                current_subscriber = is_subscribed(contact)
-
-        init_data['newsletter'] = current_subscriber
-            
+        signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
         form = ExtendedContactInfoForm(countries, areas, contact, shippable=True, initial=init_data)
 
-    context = RequestContext(request, {
-        'form': form,
-        'country': only_country,
-        'show_newsletter': show_newsletter})
+    init_data['form'] = form
+    init_data['country'] = only_country
+    
+    context = RequestContext(request, init_data)
+        
     return render_to_response('contact/update_form.html', context)
 
 update = login_required(update)
 
-def order_history(request):
-    orders = None
-    try:
-        contact = Contact.objects.from_request(request, create=False)
-        orders = Order.objects.filter(contact=contact).order_by('-timestamp')
-    
-    except Contact.DoesNotExist:
-        contact = None
-        
-    ctx = RequestContext(request, {
-        'contact' : contact,
-        'orders' : orders})
-
-    return render_to_response('contact/order_history.html', ctx)
-
-order_history = login_required(order_history)
-
-def order_tracking(request, order_id):
-    order = None
-    try:
-        contact = Contact.objects.from_request(request, create=False)
-        try:
-            order = Order.objects.get(id__exact=order_id, contact=contact)
-        except Order.DoesNotExist:
-            pass
-    except Contact.DoesNotExist:
-        contact = None
-
-    if order is None:
-        return bad_or_missing(request, _("The order you have requested doesn't exist, or you don't have access to it."))
-
-    ctx = RequestContext(request, {
-        'contact' : contact,
-        'order' : order})
-
-    return render_to_response('contact/order_tracking.html', ctx)
-
-order_tracking = login_required(order_tracking)

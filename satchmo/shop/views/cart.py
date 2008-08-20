@@ -6,7 +6,6 @@ except:
 import logging
 
 from django.core import urlresolvers
-from django.dispatch import dispatcher
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -19,7 +18,8 @@ from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
-from satchmo.shop.models import Cart, CartItem, NullCart
+from satchmo.shop import OutOfStockError
+from satchmo.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete
 from satchmo.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
@@ -27,12 +27,6 @@ from satchmo.shop.views.utils import bad_or_missing
 log = logging.getLogger('shop.views.cart')
 
 NOTSET = object()
-
-class NullCartItem(object):
-    def __init__(self, itemid):
-        self.id = itemid
-        self.quantity = 0
-        self.line_total = 0
 
 def _set_quantity(request, force_delete=False):
     """Set the quantity for a specific cartitem.
@@ -67,14 +61,16 @@ def _set_quantity(request, force_delete=False):
         cartitem = NullCartItem(itemid)
     else:
         from satchmo.shop.models import Config
-        config = Config.get_shop_config()
+        config = Config.objects.get_current()
         if config.no_stock_checkout == False:
-            if cartitem.product.items_in_stock < qty:
+            stock = cartitem.product.items_in_stock
+            log.debug('checking stock quantity.  Have %i, need %i', stock, qty)
+            if stock < qty:
                 return (False, cart, cartitem, _("Not enough items of '%s' in stock.") % cartitem.product.translated_name())
         cartitem.quantity = qty
         cartitem.save()
 
-    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
+    satchmo_cart_changed.send(cart, cart=cart, request=request)
     return (True, cart, cartitem, "")
 
 def display(request, cart=None, error_message='', default_view_tax=NOTSET):
@@ -129,14 +125,20 @@ def add(request, id=0):
             _("Please enter a positive number."))
 
     cart = Cart.objects.from_request(request, create=True)
-    if cart.add_item(product, number_added=quantity, details=details) == False:
-        return _product_error(request, product,
-            _("Not enough items of '%s' in stock.") % product.translated_name())
+    try:
+        cart.add_item(product, number_added=quantity, details=details)
+        
+    except OutOfStockError, os:
+        if os.have == 0:
+            msg = _("'%s' is out of stock.") % product.translated_name()
+        else:
+            msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
+            
+        return _product_error(request, product,msg)
 
     # got to here with no error, now send a signal so that listeners can also operate on this form.
-    results = dispatcher.send(signal=satchmo_cart_add_complete, cart=cart, product=product, request=request, form=formdata)
-    log.debug('Dispatcher results: %s', results)
-    dispatcher.send(signal=satchmo_cart_changed, cart=cart, request=request)
+    satchmo_cart_add_complete.send(cart, cart=cart, product=product, request=request, form=formdata)
+    satchmo_cart_changed.send(cart, cart=cart, request=request)
 
     url = urlresolvers.reverse('satchmo_cart')
     return HttpResponseRedirect(url)
@@ -184,12 +186,18 @@ def add_ajax(request, id=0, template="json.html"):
     tempCart = Cart.objects.from_request(request, create=True)
 
     if not data['errors']:
-        if tempCart.add_item(product, number_added=quantity):
-           request.session['cart'] = tempCart.id
-           data['results'] = _('Success')
-        else:
-           data['results'] = _('Error')
-           data['errors'].append(('quantity', _("Not enough items of '%s' in stock.") % product.translated_name()))
+        try:
+            tempCart.add_item(product, number_added=quantity)
+            request.session['cart'] = tempCart.id
+            data['results'] = _('Success')
+        except OutOfStockError, oe:
+            data['results'] = _('Error')
+            if oe.have == 0:
+                msg = _("'%s' is out of stock.") % product.translated_name()
+            else:
+                msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
+                
+            data['errors'].append(('quantity', msg))
     else:
         data['results'] = _('Error')
 
@@ -199,7 +207,7 @@ def add_ajax(request, id=0, template="json.html"):
     encoded = mark_safe(encoded)
     log.debug('CART AJAX: %s', data)
 
-    dispatcher.send(signal=satchmo_cart_changed, cart=tempCart, request=request)
+    satchmo_cart_changed.send(tempCart, cart=tempCart, request=request)
     return render_to_response(template, {'json' : encoded})
 
 def agree_terms(request):
@@ -330,9 +338,9 @@ def product_from_post(productslug, formdata):
                 price_change = result.price_change
             else:
                 price_change = zero
-            data = { 'name': unicode(result.optionGroup),
+            data = { 'name': unicode(result.option_group),
                       'value': unicode(result.translated_name()),
-                      'sort_order': result.displayOrder,
+                      'sort_order': result.sort_order,
                       'price_change': price_change
             }
             details.append(data)

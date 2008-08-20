@@ -1,20 +1,24 @@
-from django.test import TestCase
-from django.test.client import Client
-from django.core.urlresolvers import reverse as url
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse as url
+from django.test import TestCase
+from django.test.client import Client
 from django.utils.encoding import smart_str
 from satchmo.caching import cache_delete
-from satchmo.contact.models import Contact
-from satchmo.product.models import Product
-from satchmo.shop.templatetags import get_filter_args
 from satchmo.configuration import config_value, config_get
+from satchmo.contact.models import Contact
+from satchmo.l10n.models import Country
+from satchmo.product.models import Product
+from satchmo.shop import get_satchmo_setting
+from satchmo.shop.templatetags import get_filter_args
 from satchmo.wishlist.models import *
 
 domain = 'http://testserver'
-prefix = settings.SHOP_BASE
+prefix = get_satchmo_setting('SHOP_BASE')
 if prefix == '/':
     prefix = ''
+
+US = Country.objects.get(iso2_code__iexact='US')
 
 checkout_step1_post_data = {
     'email': 'sometester@example.com',
@@ -25,7 +29,7 @@ checkout_step1_post_data = {
     'city': 'Springfield',
     'state': 'MO',
     'postal_code': '81122',
-    'country': 'US',
+    'country': US.pk,
     'ship_street1': '1011 Some Other Street',
     'ship_city': 'Springfield',
     'ship_state': 'MO',
@@ -38,6 +42,9 @@ class WishTest(TestCase):
     def setUp(self):
         # Every test needs a client
         self.client = Client()
+
+    def tearDown(self):
+        cache_delete()
 
     def test_main_page(self):
         """
@@ -75,6 +82,9 @@ class WishTestLoggedIn(TestCase):
         self.contact = Contact.objects.create(user=user, first_name="Wish",
             last_name="Tester")
         self.client.login(username='wisher', password='passwd')
+        
+    def tearDown(self):
+        cache_delete()
         
     def test_wish_adding(self):
         """

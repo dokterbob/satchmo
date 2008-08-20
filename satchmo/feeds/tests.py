@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.core import urlresolvers
 from django.test import TestCase
+from satchmo import caching
+from satchmo.shop import get_satchmo_setting
 
 domain = 'http://example.com'
-prefix = settings.SHOP_BASE
+prefix = get_satchmo_setting('SHOP_BASE')
 if prefix == '/':
     prefix = ''
 
@@ -11,6 +13,9 @@ class GoogleBaseTest(TestCase):
     """Test Google Base feed."""
 
     fixtures = ['sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+
+    def tearDown(self):
+        caching.cache_delete
 
     def test_feed(self):
         response = self.client.get(urlresolvers.reverse('satchmo_atom_feed'))

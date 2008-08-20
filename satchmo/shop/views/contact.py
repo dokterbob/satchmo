@@ -1,14 +1,15 @@
-import logging
-from socket import error as SocketError
-from django import http
 from django import forms
+from django import http
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext, Context
 from django.utils.translation import ugettext as _
+from satchmo.shop import get_satchmo_setting
 from satchmo.shop.models import Config
+from socket import error as SocketError
+import logging
 
 log = logging.getLogger('satchmo.shop.views')
 
@@ -38,7 +39,7 @@ def form(request):
                 'email': new_data['sender'],
                 'request_text': new_data['contents'] })
             subject = new_data['subject']
-            shop_config = Config.get_shop_config()
+            shop_config = Config.objects.get_current()
             shop_email = shop_config.store_email
             if not shop_email:
                 log.warn('No email address configured for the shop.  Using admin settings.')
@@ -55,7 +56,7 @@ def form(request):
                     log.fatal('Error sending mail: %s' % e)
                     raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
 
-            return http.HttpResponseRedirect('%s/contact/thankyou/' % (settings.SHOP_BASE))
+            return http.HttpResponseRedirect('%s/contact/thankyou/' % (get_satchmo_setting('SHOP_BASE')))
     else: #Not a post so create an empty form
         initialData = {}
         if request.user.is_authenticated():

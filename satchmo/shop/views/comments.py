@@ -5,6 +5,8 @@ from django.contrib.comments.models import Comment
 from django.contrib.comments.views.comments import post_comment
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, Http404
+from django.contrib.sites.models import Site
+
 from logging import getLogger
 
 log = getLogger('satchmo.shop.views.ratings')
@@ -38,7 +40,7 @@ def post_rating(request, url='/ratings/posted/', maxcomments=1):
         comments = Comment.objects.filter(object_id__exact=object_id,
             content_type__app_label__exact=ct.app_label,
             content_type__model__exact=ct.model,
-            site__id__exact=settings.SITE_ID,
+            site__exact=Site.objects.get_current(),
             is_public__exact=True,
             user__exact=request.user.id).order_by('submit_date')
             

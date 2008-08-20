@@ -69,6 +69,9 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.doc.XViewMiddleware",
+    #The next middleware is required if you want to use satchmo
+    #to serve multiple simultaneous shops.
+    #"threaded_multihost.middleware.ThreadLocalMiddleware",
     "satchmo.shop.SSLMiddleware.SSLRedirect",
     "satchmo.recentlist.middleware.RecentProductMiddleware",
 )
@@ -132,3 +135,6 @@ AUTHENTICATION_BACKENDS = (
 
 # Load the local settings
 from local_settings import *
+
+# if you want to use a multi-shop, uncomment the patch
+#from threaded_multihost import multihost_patch

@@ -57,7 +57,7 @@ class Processor(object):
                 country = None
 
         if not country:
-            country = Config.get_shop_config().sales_country
+            country = Config.objects.get_current().sales_country
 
         if area:
             try:

@@ -13,17 +13,18 @@ from satchmo.configuration import config_value
 
 log = logging.getLogger('contact.notifications')
 
-def order_success_listener(sender=None, instance=None):
+def order_success_listener(order=None, **kwargs):
     """Listen for order_success signal, and send confirmations"""
-    send_order_confirmation(instance)
-    send_order_notice(instance)
+    if order:
+        send_order_confirmation(order)
+        send_order_notice(order)
 
 def send_order_confirmation(new_order, template='email/order_complete.txt'):
     """Send an order confirmation mail to the customer.
     """
     from satchmo.shop.models import Config
 
-    shop_config = Config.get_shop_config()
+    shop_config = Config.objects.get_current()
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
     t = loader.get_template(template)
@@ -50,7 +51,7 @@ def send_order_notice(new_order, template='email/order_placed_notice.txt'):
     from satchmo.shop.models import Config
     
     if config_value("PAYMENT", "ORDER_EMAIL_OWNER"):
-        shop_config = Config.get_shop_config()
+        shop_config = Config.objects.get_current()
         shop_email = shop_config.store_email
         shop_name = shop_config.store_name
         t = loader.get_template(template)

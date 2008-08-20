@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import *
 from satchmo.utils import load_module
+from satchmo.shop import get_satchmo_setting
 
 NEWSLETTER_GROUP = ConfigurationGroup('NEWSLETTER', _('Newsletter Settings'))
 
@@ -25,7 +26,7 @@ config_register(StringValue(NEWSLETTER_GROUP,
     ))
 
 # --- Load any extra payment modules. ---
-extra_payment = getattr(settings, 'CUSTOM_NEWSLETTER_MODULES', ())
+extra_payment = get_satchmo_setting('CUSTOM_NEWSLETTER_MODULES')
 
 for extra in extra_payment:
     try:

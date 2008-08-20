@@ -18,6 +18,7 @@
 
 {% trans "Billing Information" %}
 -------------------
+{{ order.bill_addressee }}
 {{ order.full_bill_street }}
 {{ order.bill_city }} 
 {{ order.bill_state }}
@@ -27,6 +28,7 @@
 {% if order.is_shippable %}
 {% trans "Shipping Address" %}
 ----------------
+{{ order.ship_addressee }}
 {{ order.full_ship_street }}
 {{ order.ship_city }}
 {{ order.ship_state }}

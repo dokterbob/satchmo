@@ -13,7 +13,7 @@ PAYMENT_GROUP = ConfigurationGroup('PAYMENT_AUTHORIZENET',
     requires=PAYMENT_MODULES,
     ordering=101)
 
-config_register([
+config_register_list(
 
     StringValue(PAYMENT_GROUP, 
         'CONNECTION',
@@ -94,4 +94,4 @@ for test transactions if you do not have a cpdev or cnpdev.
         default=True,
         help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.'))
          
-])
+)

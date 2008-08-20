@@ -4,6 +4,10 @@ Satchmo Change Log
 
 Trunk
 -----
+ * Removed all standalone satchmo settings from settings.py and local_settings.py, moving them
+   to a dictionary.  This allows for explicit defaults and for easier integration with other apps.
+ * Moved all order methods, classes and views into the satchmo.shop application from Contact
+ * Fixed circular imports in several apps.
  * New configuration feature in payment section, allowing shop owners to be notified by email
    when they have a new sale.
  * Refactor of emailing on order completion, now uses signals, simplifying payment modules.

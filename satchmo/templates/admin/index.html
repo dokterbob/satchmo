@@ -10,15 +10,6 @@
 
 {% block breadcrumbs %}{% endblock %}
 
-{% block extrastyle %}
-{{ block.super }}
-<style type="text/css">
-#content-related { float:right; width:29em; position:relative; margin-right: -30em;}
-#content-related .module h2 { cursor: default; }
-#content-related .module h2 .status { font-style: italic; }
-</style>
-{% endblock %}
-
 {% block extrahead %}
 {{ block.super }}
 <script src="{{media_url}}js/jquery.js" type="text/javascript"></script>

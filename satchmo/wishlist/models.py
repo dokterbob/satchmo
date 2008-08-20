@@ -53,5 +53,3 @@ class ProductWish(models.Model):
     class Meta:
         verbose_name = _('Product Wish')
         verbose_name_plural = _('Product Wishes')
-
-from satchmo.wishlist import admin

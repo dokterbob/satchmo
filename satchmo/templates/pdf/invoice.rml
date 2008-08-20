@@ -100,7 +100,7 @@
 </stylesheet>
 <story>
 
-    <para style="name">{{order.contact.full_name}}</para>
+    <para style="name">{{order.bill_addressee}}</para>
     <para>{{order.bill_street1}}</para>
     {% if order.bill_street2 %}
     <para>{{order.bill_street2}}</para>
@@ -113,7 +113,7 @@
 
     <nextFrame/>
 
-    <para style="name">{{order.contact.full_name}}</para>
+    <para style="name">{{order.ship_addressee}}</para>
     <para>{{order.ship_street1}}</para>
     {% if order.ship_street2 %}
     <para>{{order.ship_street2}}</para>

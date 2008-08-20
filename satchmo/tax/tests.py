@@ -6,15 +6,19 @@ except:
 
 from django.test import TestCase
 from models import *
-from satchmo.contact.models import AddressBook, Contact, Order, OrderItem
-from satchmo.product.models import Product
-from satchmo.configuration import config_get
 from satchmo.caching import cache_delete
-from satchmo.contact.tests import make_test_order
+from satchmo.configuration import config_get
+from satchmo.contact.models import AddressBook, Contact
+from satchmo.product.models import Product
+from satchmo.shop.models import Order, OrderItem
+from satchmo.shop.tests import make_test_order
 
 class TaxTest(TestCase):
     
     fixtures = ['l10n_data.xml', 'test_tax.yaml', 'test_discount.yaml']
+            
+    def tearDown(self):
+        cache_delete()
             
     def testAreaCountries(self):
         """Test Area tax module"""

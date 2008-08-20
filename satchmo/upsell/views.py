@@ -1,8 +1,9 @@
 import logging
+from satchmo.shop import OutOfStockError
 
 log = logging.getLogger('upsell.views')
 
-def cart_add_listener(cart=None, product=None, form=None, request=None):
+def cart_add_listener(cart=None, product=None, form=None, request=None, **kwargs):
     """Post-processes the form, handling upsell formfields.
     
     fields (potentially) in the form:
@@ -49,15 +50,15 @@ def _add_upsell(form, cart, i):
 
         if qty > 0:
             from satchmo.product.models import Product
-
             try:
                 product = Product.objects.get(slug=slug)
                 
-                if cart.add_item(product, number_added=qty):
+                try:
+                    cart.add_item(product, number_added=qty)
                     log.info('Added upsell item: %s qty=%i', product.slug, qty)
                     return (True, product)
-                else:
-                    log.debug('Failed to add upsell item: %s qty=%i', product.slug, qty)
+                except OutOfStockError, oe:
+                    log.debug('Failed to add upsell item: %s qty=%i, we only have %i in stock', product.slug, qty, oe.have)
                     return (False, product)
                     
             except Product.DoesNotExist:

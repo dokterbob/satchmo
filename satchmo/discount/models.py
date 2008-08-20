@@ -7,14 +7,15 @@ try:
 except:
     from django.utils._decimal import Decimal
 
-import datetime
-import operator
-import logging
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Product
 from satchmo.utils.validators import MutuallyExclusiveWithField
+import datetime
+import logging
+import operator
 
 log = logging.getLogger('Discount.models')
 
@@ -38,6 +39,7 @@ class Discount(models.Model):
     Allows for multiple types of discounts including % and dollar off.
     Also allows finite number of uses.
     """
+    site = models.ForeignKey(Site, verbose_name=_('site'))
     description = models.CharField(_("Description"), max_length=100)
     code = models.CharField(_("Discount Code"), max_length=20, unique=True,
         help_text=_("Coupon Code"))
@@ -233,5 +235,3 @@ def round_cents(work):
     cents = Decimal("0.01")
     for lid in work:
         work[lid] = work[lid].quantize(cents)
-
-from satchmo.discount import admin

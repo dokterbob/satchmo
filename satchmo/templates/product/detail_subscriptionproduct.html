@@ -13,7 +13,7 @@
 <h3 id="price">{{ product.unit_price|currency }} </h3>
 
 {% for pic in product.productimage_set.all %}
-    <img src="{{ pic.get_picture_url|thumbnail:"width=280" }}" width="280" />
+    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}
  {% for trial in product.subscriptionproduct.get_trial_terms %}
     {% if forloop.first %} <p> {% blocktrans %}This product has trial subscription pricing {% endblocktrans %}</p><ul> {% endif %}

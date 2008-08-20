@@ -8,14 +8,14 @@ from django.template import loader, Context
 from django.shortcuts import get_object_or_404
 from django.utils.encoding import smart_str
 from django.views.decorators.cache import never_cache
-from satchmo.contact.models import Order
+from satchmo.shop.models import Order
 from satchmo.shop.models import Config
 from satchmo.configuration import config_value
 
 def displayDoc(request, id, doc):
     # Create the HttpResponse object with the appropriate PDF headers for an invoice or a packing slip
     order = get_object_or_404(Order, pk=id)
-    shopDetails = Config.get_shop_config()
+    shopDetails = Config.objects.get_current()
     filename_prefix = shopDetails.site.domain
     if doc == "invoice":
         filename = "%s-invoice.pdf" % filename_prefix

@@ -148,7 +148,7 @@ class Shipper(BaseShipper):
         verbose = settings.VERBOSE_LOG.value
             
         self.delivery_days = _('3 - 4') #Default setting for ground delivery
-        shop_details = Config.get_shop_config()
+        shop_details = Config.objects.get_current()
         self.packaging = ''
 
 

@@ -17,7 +17,7 @@ class ConfigurationFunctionTest(TestCase):
         
     def testSetTwoConfigItems(self):
         s = [IntegerValue(SHOP_GROUP, 'testTwoA'), StringValue(SHOP_GROUP, 'testTwoB')]
-        config_register(s)
+        config_register_list(*s)
         
         self.assert_(config_exists(SHOP_GROUP, 'testTwoA'))
         self.assert_(config_exists(SHOP_GROUP, 'testTwoB'))

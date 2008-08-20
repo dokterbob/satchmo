@@ -6,6 +6,7 @@ from django import http
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group, config_value
+from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.common import get_area_country_options
 from satchmo.contact.models import Contact
 from satchmo.payment.common.forms import PaymentContactInfoForm
@@ -45,9 +46,11 @@ def contact_info(request):
             if contact is None and request.user and request.user.is_authenticated():
                 contact = Contact(user=request.user)
             custID = form.save(contact=contact, update_newsletter=False)
-            request.session['custID'] = custID
+            request.session[CUSTOMER_ID] = custID
             #TODO - Create an order here and associate it with a session
-            modulename = 'PAYMENT_' + new_data['paymentmethod']
+            modulename = new_data['paymentmethod']
+            if not modulename.startswith('PAYMENT_'):
+                modulename = 'PAYMENT_' + modulename
             paymentmodule = config_get_group(modulename)
             url = lookup_url(paymentmodule, 'satchmo_checkout-step2')
             return http.HttpResponseRedirect(url)

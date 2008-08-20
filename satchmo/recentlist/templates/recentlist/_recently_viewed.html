@@ -4,7 +4,7 @@
 <h3>{% trans 'Recently Viewed' %}</h3>
 {% for item in recent_products %}
 <a href="{{ item.get_absolute_url }}" class="recentitem item-{{forloop.counter0}}">
-    <img src="{{ item.main_image.get_picture_url|thumbnail:"width=85" }}" alt="{{item.translated_name}}" />
+    <img src="{{ item.main_image.picture.url|thumbnail:"width=85" }}" alt="{{item.translated_name}}" />
     <p>{{ item.translated_name }}</p>
 </a>
 {% endfor %}
