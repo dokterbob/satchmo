@@ -17,6 +17,7 @@ satchmo_settings_defaults = {
     'CUSTOM_PAYMENT_MODULES' : [],
     'CUSTOM_SHIPPING_MODULES' : [],
     'CUSTOM_PRODUCT_MODULES' : [],
+    'CUSTOM_TAX_MODULES' : [],
     }
 
 
