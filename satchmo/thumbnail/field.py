@@ -89,6 +89,6 @@ class ImageWithThumbnailField(ImageField):
 
     def contribute_to_class(self, cls, name):
         super(ImageWithThumbnailField, self).contribute_to_class(cls, name)
-        signals.post_delete.connect(_delete, sender=cls)
+        signals.pre_delete.connect(_delete, sender=cls)
         signals.post_save.connect(self._save_rename, sender=cls)
 
