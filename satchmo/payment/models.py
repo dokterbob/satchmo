@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from satchmo import caching
 from satchmo.configuration import config_value, config_choice_values, SettingNotSet
 from satchmo.contact.models import Contact
-from satchmo.payment.fields import PaymentChoiceCharField
+from satchmo.payment.fields import PaymentChoiceCharField, CreditChoiceCharField
 from satchmo.shop.models import OrderPayment
 import config
 import base64
@@ -48,8 +48,7 @@ class CreditCardDetail(models.Model):
     """
     orderpayment = models.ForeignKey(OrderPayment, unique=True, 
         related_name="creditcards")
-    creditType = models.CharField(_("Credit Card Type"), max_length=16,
-        choices=config.credit_choices())
+    creditType = CreditChoiceCharField(_("Credit Card Type"), max_length=16)
     displayCC = models.CharField(_("CC Number (Last 4 digits)"),
         max_length=4, core=True)
     encryptedCC = models.CharField(_("Encrypted Credit Card"),
