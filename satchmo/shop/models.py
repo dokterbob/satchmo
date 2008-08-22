@@ -936,6 +936,10 @@ class OrderItem(models.Model):
         return self.unit_price + self.unit_tax
     unit_price_with_tax = property(_unit_price_with_tax)
 
+    def _get_description(self):
+        return self.product.translated_name()
+    description = property(_get_description)
+
     def save(self):
         self.update_tax()
         super(OrderItem, self).save()
