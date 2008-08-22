@@ -20,7 +20,7 @@ from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
 from satchmo.shop import OutOfStockError
 from satchmo.shop.models import Cart, CartItem, NullCart, NullCartItem
-from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete
+from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
 from satchmo.utils import trunc_decimal
 from satchmo.shop.views.utils import bad_or_missing
 
@@ -125,19 +125,26 @@ def add(request, id=0):
             _("Please enter a positive number."))
 
     cart = Cart.objects.from_request(request, create=True)
+    # send a signal so that listeners can update product details before we add it to the cart.
+    satchmo_cart_details_query.send(
+            cart,
+            product=product,
+            quantity=quantity,
+            details=details,
+            request=request,
+            form=formdata
+            )
     try:
-        cart.add_item(product, number_added=quantity, details=details)
-        
+        added_item = cart.add_item(product, number_added=quantity, details=details)
     except OutOfStockError, os:
         if os.have == 0:
             msg = _("'%s' is out of stock.") % product.translated_name()
         else:
             msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
-            
         return _product_error(request, product,msg)
 
     # got to here with no error, now send a signal so that listeners can also operate on this form.
-    satchmo_cart_add_complete.send(cart, cart=cart, product=product, request=request, form=formdata)
+    satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, product=product, request=request, form=formdata)
     satchmo_cart_changed.send(cart, cart=cart, request=request)
 
     url = urlresolvers.reverse('satchmo_cart')
@@ -186,17 +193,34 @@ def add_ajax(request, id=0, template="json.html"):
     tempCart = Cart.objects.from_request(request, create=True)
 
     if not data['errors']:
+        # send a signal so that listeners can update product details before we add it to the cart.
+        satchmo_cart_details_query.send(
+                cart,
+                product=product,
+                quantity=quantity,
+                details=details,
+                request=request,
+                form=formdata
+                )
         try:
-            tempCart.add_item(product, number_added=quantity)
+            added_item = tempCart.add_item(product, number_added=quantity)
             request.session['cart'] = tempCart.id
             data['results'] = _('Success')
+            if added_item:
+                # send a signal so that listeners can also operate on this form and item.
+                satchmo_cart_add_complete.send(
+                        cart,
+                        cartitem=added_item,
+                        product=product,
+                        request=request,
+                        form=formdata
+                        )
         except OutOfStockError, oe:
             data['results'] = _('Error')
             if oe.have == 0:
                 msg = _("'%s' is out of stock.") % product.translated_name()
             else:
                 msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
-                
             data['errors'].append(('quantity', msg))
     else:
         data['results'] = _('Error')

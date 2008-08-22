@@ -5,6 +5,7 @@ except:
 
 import logging
 import datetime
+from satchmo.shop.signals import satchmo_post_copy_item_to_order
 from socket import error as SocketError
 from satchmo.shop.models import OrderItem, OrderItemDetail
 from satchmo.shipping.utils import update_shipping
@@ -92,5 +93,12 @@ def update_orderitems(new_order, cart, update=False):
         update_orderitem_for_subscription(new_order_item, item)
         update_orderitem_details(new_order_item, item)
 
-    new_order.recalculate_total()
+        # Send a signal after copying items
+        # External applications can copy their related objects using this
+        satchmo_post_copy_item_to_order.send(
+                cart,
+                cartitem=item,
+                order=new_order, orderitem=new_order_item
+                )
 
+    new_order.recalculate_total()
