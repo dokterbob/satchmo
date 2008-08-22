@@ -287,19 +287,28 @@ class Cart(models.Model):
         return u"Shopping Cart (%s)" % self.date_time_created
 
     def add_item(self, chosen_item, number_added, details={}):
-        needs_add = False
-        
-        try:
-            item_to_modify =  self.cartitem_set.filter(product__id = chosen_item.id)[0]
-            # Custom Products will not be added, they will each get their own line item
-            #TODO: More sophisticated checks to make sure the options really are different
-            if 'CustomProduct' in item_to_modify.product.get_subtypes():
-                item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
-                needs_add = True
-        except IndexError: #It doesn't exist so create a new one
+        alreadyInCart = False
+        # Custom Products will not be added, they will each get their own line item
+        if 'CustomProduct' in chosen_item.get_subtypes():
             item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
-            needs_add = True
-            
+        else:
+            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
+            for similarItem in self.cartitem_set.filter(product__id = chosen_item.id):
+                looksTheSame = len(details) == similarItem.details.count()
+                if looksTheSame:
+                    for detail in details:
+                        try:
+                            similarItem.details.get(
+                                    name=detail['name'],
+                                    value=detail['value'],
+                                    price_change=detail['price_change']
+                                    )
+                        except CartItemDetails.DoesNotExist:
+                            looksTheSame = False
+                if looksTheSame:
+                    item_to_modify = similarItem
+                    alreadyInCart = True
+                    break
         config=Config.objects.get_current()
 
         if config.no_stock_checkout == False:
@@ -307,13 +316,14 @@ class Cart(models.Model):
             if chosen_item.items_in_stock < need_qty:
                 raise OutOfStockError(chosen_item, chosen_item.items_in_stock, need_qty)
             
-        if needs_add:
+        if not alreadyInCart:
             self.cartitem_set.add(item_to_modify)
 
         item_to_modify.quantity += number_added
         item_to_modify.save()
-        for data in details:
-            item_to_modify.add_detail(data)
+        if not alreadyInCart:
+            for data in details:
+                item_to_modify.add_detail(data)
 
         return item_to_modify
 
