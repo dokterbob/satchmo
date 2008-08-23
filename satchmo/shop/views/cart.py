@@ -140,7 +140,7 @@ def add(request, id=0):
         if os.have == 0:
             msg = _("'%s' is out of stock.") % product.translated_name()
         else:
-            msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
+            msg = _("Only %(amount)i of '%(product)s' in stock.") % {'amount': os.have, 'product': product.translated_name()}
         return _product_error(request, product,msg)
 
     # got to here with no error, now send a signal so that listeners can also operate on this form.
@@ -220,7 +220,7 @@ def add_ajax(request, id=0, template="json.html"):
             if oe.have == 0:
                 msg = _("'%s' is out of stock.") % product.translated_name()
             else:
-                msg = _("Only %i of '%s' in stock.") % (oe.have, product.translated_name())
+                msg = _("Only %(amount)i of '%(product)s' in stock.") % {'amount': oe.have, 'product': product.translated_name()}
             data['errors'].append(('quantity', msg))
     else:
         data['results'] = _('Error')
