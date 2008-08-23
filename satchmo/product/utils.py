@@ -1,4 +1,4 @@
-from satchmo import tax
+from satchmo.tax.utils import get_tax_processor
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import ProductVariation
 from satchmo.shop.models import Config
@@ -9,7 +9,7 @@ def get_taxprocessor(user):
     else:
         user = None
 
-    return tax.get_processor(user=user)
+    return get_tax_processor(user=user)
 
 def get_tax(user, product, quantity):
     taxer = get_taxprocessor(user)
