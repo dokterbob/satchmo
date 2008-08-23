@@ -7,6 +7,7 @@ from satchmo.caching import cache_key, cache_get, NotCachedError
 from satchmo.caching.models import CachedObjectMixin
 from django.contrib.sites.models import Site
 import logging
+from django.db import transaction
 
 log = logging.getLogger('configuration.models')
 
@@ -17,14 +18,17 @@ def _safe_get_siteid(site):
         try:
             site = Site.objects.get_current()
         except:
-            pass
+            transaction.rollback()
         if site:
             siteid = site.id
         else:
             siteid = settings.SITE_ID
     else:
         siteid = site.id
+    transaction.commit()
     return siteid
+
+_safe_get_siteid=transaction.commit_manually(_safe_get_siteid)
 
 def find_setting(group, key, site=None):
     """Get a setting or longsetting by group and key, cache and return it."""
@@ -91,7 +95,9 @@ class Setting(models.Model, CachedObjectMixin):
             site = self.site
         except Site.DoesNotExist:
             self.site = Site.objects.get_current()
+            
         super(Setting, self).save()
+        
         self.cache_set()
         
     class Meta:
