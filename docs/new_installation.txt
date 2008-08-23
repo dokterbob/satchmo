@@ -20,7 +20,7 @@ Installing Dependencies
 
 1. Install setuputils by following the instructions on easy_install_ page. After installation, you should be able to run ``easy_install`` directly (assuming the install directory is in you $PATH).
 		
-2. Install required dependencies::
+2. Install required dependencies (this may vary based on your OS of choice)::
 	
         easy_install --find-links=http://download.zope.org/distribution PILwoTk
         easy_install pycrypto
@@ -32,6 +32,9 @@ Installing Dependencies
 .. warning::
 	Not all dependencies are available via ``easy_install``. ``comment_utils`` is required but you will have to manually download and install (this is also very easy to do) into your $PYTHONPATH.
 	For download and installation instructions, see the `Django Comment Utils`_ page.
+	
+.. note::
+   On Ubuntu, you can use the following command to install PIL: sudo apt-get install python-imaging
         
 3. Optional dependencies::
 
