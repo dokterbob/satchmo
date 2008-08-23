@@ -125,6 +125,8 @@ def load_data():
     store_country = Country.objects.get(iso3_code='USA')
     config = Config(site=site, store_name = settings.SITE_NAME, no_stock_checkout=False, country=store_country, sales_country=store_country)
     config.save()
+    config.shipping_countries.add(store_country)
+    config.save()
     print "Creating Customers..."
     # Import some customers
     c1 = Contact(first_name="Chris", last_name="Smith", email="chris@aol.com", role="Customer", notes="Really cool stuff")

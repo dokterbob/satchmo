@@ -124,11 +124,14 @@ class Config(models.Model):
                 self.sales_country = mycountry
             salescountry = self.sales_country
         
-            try:
-                need = self.shipping_countries.get(pk=salescountry.pk)
-            except Country.DoesNotExist:
-                log.debug("%s: Adding default country '%s' to shipping countries", self, salescountry.iso2_code)
-                self.shipping_countries.add(salescountry)
+# This code doesn't work when creating a new site. At the time of creation, all of the necessary relationships
+# aren't setup. I modified the load_store code so that it would create this relationship manually when running 
+# with sample data. This is a bit of a django limitation so I'm leaving this in here for now. - CBM
+#            try:
+#                need = self.shipping_countries.get(pk=salescountry.pk)
+#            except Country.DoesNotExist:
+#                log.debug("%s: Adding default country '%s' to shipping countries", self, salescountry.iso2_code)
+#                self.shipping_countries.add(salescountry)
         else:
             log.warn("%s: has no country set", self)
             
