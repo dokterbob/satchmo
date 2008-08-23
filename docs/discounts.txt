@@ -34,6 +34,9 @@ Amount
 Percentage
     A percent discount off the price.
     
+Auto Discounts
+	Use this field to advertise the discount on all products to which it applies. Generally this is used for site-wide sales. See `Auto Discounts`_ for details.
+    
 Allowed Uses
     The number of times this discount can be applied.
     
@@ -60,3 +63,37 @@ Include Shipping
     
 Valid Products
     A list of all the products this discount is valid for.
+
+.. _`Auto Discounts`:
+
+Store Wide Sales
+--------------------------
+
+Automatic discounts are how you do store wide sales.
+
+.. warning:: 
+	Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
+
+1. In your site's admin interface, create a new discount.
+
+2. Make an "automatic" discount, so that it is available to the automatic discount template tags. Do not enter a new price in the admin for the products.
+
+3. In the template where you want to show the auto discount, load the ``{% satchmo_discount %}`` (Visit `Satchmo Templates`_ documentation for details on Satchmo filters) filter library.
+
+4. You can now add some markup to your template, similar to below::
+
+	{% if sale %}
+	<div>
+		<div class="saleprices">
+			<h3> Regular price: <span class="saleprice" id="price">{{product.unit_price|currency}}</span></h3>
+	    	<h3> {{ sale.percentage_text }} off: <span class="saleprice" id="sale_saved">{{ product|discount_saved:"sale"|currency }}</span></h3>
+	    	<h3> Your price: <span class="saleprice" id="sale_price">{{ product|discount_price:"sale"|currency }}</span></h3>
+	{% else %}
+		<h3 id="price">{{product.unit_price|currency}}</h3>
+	</div>
+	{% endif %}
+	
+The key parts of the above markup are the ``{{ product|discount_saved:"sale"|currency }}`` and the ``{{ product|discount_price:"sale"|currency }}`` filtered variables. The former returns the amount saved by the discount while the latter returns the discounted price, all in the correct locale currency.
+
+
+.. _`Satchmo Templates`: templates.html

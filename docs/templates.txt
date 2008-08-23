@@ -2,31 +2,134 @@
 Satchmo Templates
 ==================================
 
+Filters and Tags provide great flexibility when working with templates and are an important part of Django, and by association, Satchmo.
+
+It is possible to easily create your own filters and tags (you can read the `Django Template`_ documentation for details), but Satchmo also includes several useful filters and tags already.
+
 Filter Reference
 +++++++++++++++++++++++++++++++++
 
+To use Tags in templates, you need to use the ``load`` tag to load the custom library into the template.
+
+discount_cart_total
+---------------------------------
+
+Returns the discounted total for a given cart item.
+
+	Usage::
+
+		{% load satchmo_discounts %}
+		{{ cart|discount_cart_total:"discount" }}
+		
+The ``discount`` argument, if omitted will only result in returning the total for the cart, not the discounted total. 
+
+discount_line_total
+---------------------------------
+
+Returns the discounted line total for this cart item.
+
+    Usage::
+
+		{% load satchmo_discounts %}
+		{{ product|discount_line_total:"sale" }}
+
+discount_price
+---------------------------------
+
+Returns the product price with the discount applied.
+    
+    Usage::
+
+		{% load satchmo_discounts %}
+		{{ product|discount_price:"sale" }}
+		
+You would replace ``product`` with your actual product template variable.
+
+discount_ratio
+---------------------------------
+
+Returns the discount as a ratio, making sure that the percent is under 1.
+
+    Usage::
+
+		{% load satchmo_discounts %}
+		{{ discount|discount_ratio }}
+
+discount_saved
+---------------------------------
+
+Returns the amount saved by the discount.
+
+    Usage::
+
+		{% load satchmo_discounts %}
+		{{ product|discount_saved:"sale" }}
+
+sale_price
+---------------------------------
+
+Returns the product unit price with the best auto discount applied.
+
+    Usage::
+
+		{% load satchmo_discounts %}
+		{{ product|sale_price }}
+		
+This filter goes through all applicable `auto discounts`_, finds and then sorts them by percentage. The return value would represent the greatest discount available for a product.
+
 Tag Reference
 +++++++++++++++++++++++++++++++++
+
+To use Tags in templates, you need to use the ``load`` tag to load the custom library into the template.
+ 
+filter_admin_app_list
+---------------------------------
+
+Filters the list of installed applications returned by ``django.contrib.admin.templatetags.adminapplist``, excluding applications installed by Satchmo.
+
+	Usage::
+
+		{% load satchmo_adminapplist %}
+		{% filter_admin_app_list app_list varname %}
+		
+In the above usage you would replace ``app_list`` with the list of applications you would like to filter, and ``varname`` with the name of the variable you want to be returned in the template context.
+
+inprocess_order_list
+-----------------------------
+
+Returns a formatted list of in-process orders.
+
+	Usage::
+
+		{% load satchmo_adminorder_tags %}
+		{% inprocess_order_list %}
+
+This tag renders another template (default is ``templates\admin\_ordercount_list.html``), which produces an html list, using the ``django.template.Library().inclusion_tag`` library.
 
 product_upsell
 ---------------------------------
 
 Allows for easy upselling or cross-selling of a product. Up-selling can imply selling something additional, or selling something that is more profitable or otherwise preferable for the seller instead of the original sale [#]_ .
 
-A practical example would be If you were selling ebooks, you could make a checkbox on the ebook detail page, which would allow your customer to order the companion CD. This is useful as you are able to provide customers with a direct way of purchasing a companion item without the need to search for it.
+A practical example would be If you were selling ebooks, you could make a checkbox on the ebook detail page, which would allow your customer to order the companion CD. This is useful as you are able to provide customers with
+a direct way of purchasing a companion item without the need to search for it.
 
 	
 	Usage::
 	
+		{% load satchmo_util %}
 		{% product_upsell product %}
 
 		
-This tag renders another template using the ``django.template.Library().inclusion_tag`` library. The tag should be used within a html form, most commonly within the order form for the product you want to upsell.
+This tag renders another template (default is ``templates\upsell\product_upsell.html``) using the ``django.template.Library().inclusion_tag`` library. The tag should be used within a html form, most commonly within the order form for the product you want to upsell.
 
 
-.. note::
-   Currently, the goal product doesn't have any options.  It can be a be a product variation, but can't be a configurable product by itself.
+.. admonition:: No product options
+
+	Currently, the goal product doesn't have any options.  It can be a be a product variation, but can't be a configurable product by itself.
+	
 
 .. [#] Wikipedia article Up-selling_
-
+.. _`Django Template`: http://www.djangoproject.com/documentation/templates/#custom-tag-and-filter-libraries
 .. _Up-selling: http://en.wikipedia.org/wiki/Up-selling
+.. _`auto discounts`: discounts.html
