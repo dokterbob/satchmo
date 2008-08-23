@@ -5,7 +5,7 @@ import urlparse
 try:
     import Image
 except ImportError:
-    import PIL as Image
+    from PIL import Image
 from django.conf import settings
 from django.core.cache import get_cache
 from django.db.models.fields.files import ImageField
