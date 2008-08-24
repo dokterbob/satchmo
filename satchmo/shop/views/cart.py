@@ -278,12 +278,16 @@ def set_quantity(request):
 
     Intended to be called via the cart itself, returning to the cart after done.
     """
+    cart_url = urlresolvers.reverse('satchmo_cart')
+    
     if not request.POST:
-        url = urlresolvers.reverse('satchmo_cart')
-        return HttpResponseRedirect(url)
-
+        return HttpResponseRedirect(cart_url)
+    
     success, cart, cartitem, errors = _set_quantity(request)
-    return display(request, cart = cart, error_message = errors)
+    if success:
+        return HttpResponseRedirect(cart_url)
+    else:
+        return display(request, cart = cart, error_message = errors)
 
 def set_quantity_ajax(request, template="json.html"):
     """Set the quantity for a cart item, returning results formatted for handling by script.
