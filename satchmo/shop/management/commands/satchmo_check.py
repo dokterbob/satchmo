@@ -68,7 +68,8 @@ class Command(NoArgsCommand):
             errors.append("You must have satchmo.shop.context_processors.settings in your TEMPLATE_CONTEXT_PROCESSORS.")
         if 'satchmo.accounts.email-auth.EmailBackend' not in settings.AUTHENTICATION_BACKENDS:
             errors.append("You must have satchmo.accounts.email-auth.EmailBackend in your AUTHENTICATION_BACKENDS")
-
+        if len(settings.SECRET_KEY) == 0:
+            errors.append("You must have SECRET_KEY set to a valid string in your settings.py file")
         python_ver = Decimal("%s.%s" % (sys.version_info[0], sys.version_info[1]))
         if python_ver < Decimal("2.4"):
             errors.append("Python version must be at least 2.4.")
