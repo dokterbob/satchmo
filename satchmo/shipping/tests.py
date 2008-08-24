@@ -15,7 +15,7 @@ except ImportError:
 
 class ShippingBaseTest(TestCase):
 
-    fixtures = ['test_shop.yaml']
+    fixtures = ['l10n-data.yaml','test_shop.yaml']
 
     def setUp(self):
         self.site = Site.objects.get_current()

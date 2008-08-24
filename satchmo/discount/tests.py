@@ -15,7 +15,7 @@ from satchmo.shop.models import Order, OrderItem
 from django.contrib.sites.models import Site
 
 class DiscountTest(TestCase):
-    fixtures = ['test_shop.yaml']
+    #fixtures = ['test_shop.yaml']
 
     def setUp(self):
         self.site = Site.objects.get_current()

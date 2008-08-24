@@ -12,7 +12,7 @@ if prefix == '/':
 class GoogleBaseTest(TestCase):
     """Test Google Base feed."""
 
-    fixtures = ['sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+    fixtures = ['l10n-data.yaml','sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
 
     def tearDown(self):
         caching.cache_delete

@@ -86,7 +86,7 @@ class TestGenerateCertificateCode(TestCase):
             self.assert_(ch in chars)
     
 class TestCertCreate(TestCase):
-    fixtures = ['test_shop']
+    fixtures = ['l10n-data.yaml','test_shop']
     
     def setUp(self):
         self.site = Site.objects.get_current()
