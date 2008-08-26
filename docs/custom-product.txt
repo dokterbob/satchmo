@@ -3,10 +3,6 @@
 Custom Product Modules
 ======================
 
-.. warning::
-    You must be using Django revision 8032. Later revisions cause fatal errors
-    with Satchmo. See `Django ticket 7947`_ for more details.
-
 Though Satchmo includes a number of versatile product types, many projects have
 needs that are best met by creating a custom product module. A custom product
 module is a module with a product model which deviates from the normal behavior
