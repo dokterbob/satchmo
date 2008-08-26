@@ -427,8 +427,8 @@ class Product(models.Model):
     site = models.ForeignKey(Site, verbose_name=_('Site'))
     name = models.CharField(_("Full Name"), max_length=255, core=True, blank=False,
         help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
-    slug = models.SlugField(_("Slug Name"), unique=True, blank=True,
-        help_text=_("Used for URLs, auto-generated from name if blank"))
+    slug = models.SlugField(_("Slug Name"), blank=True,
+        help_text=_("Used for URLs, auto-generated from name if blank"), max_length=80)
     sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True,
         help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
@@ -580,7 +580,7 @@ class Product(models.Model):
         ordering = ('site', 'ordering', 'name')
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
-        unique_together = (('site', 'sku'),)
+        unique_together = (('site', 'sku'),('site','slug'))
 
     def save(self):
         if not self.pk:
