@@ -63,8 +63,8 @@ class ImageWithThumbnailField(ImageField):
             except SettingNotSet:
                 self.auto_rename = False
         
-        if self.auto_rename:
-            image = getattr(instance, self.attname)
+        image = getattr(instance, self.attname)
+        if image and self.auto_rename:
             if self.name_field:
                 field = getattr(instance, self.name_field)
                 image = rename_by_field(image.path, '%s-%s-%s' \
