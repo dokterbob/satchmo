@@ -51,7 +51,7 @@ def _add_upsell(form, cart, i):
         if qty > 0:
             from satchmo.product.models import Product
             try:
-                product = Product.objects.get(slug=slug)
+                product = Product.objects.get_by_site(slug=slug)
                 
                 try:
                     cart.add_item(product, number_added=qty)

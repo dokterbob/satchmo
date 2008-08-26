@@ -408,6 +408,9 @@ class ProductManager(models.Manager):
     def active(self):
         return self.filter(active=True)
 
+    def active_by_site(self):
+        return self.by_site().filter(active=True)
+
     def by_site(self, site=None):
         if not site:
             site = Site.objects.get_current()
@@ -419,6 +422,13 @@ class ProductManager(models.Manager):
 
     def featured_by_site(self, site=None):
         return self.by_site(site=site).filter(active=True).filter(featured=True)
+
+    def get_by_site(self, site=None, **kwargs):
+        products = self.by_site(site=site).filter(**kwargs)
+        if len(products) == 0:
+            raise Product.DoesNotExist
+        else:
+            return products[0]
 
 class Product(models.Model):
     """

@@ -26,7 +26,7 @@ def product_feed(request, category=None, template="feeds/googlebase_atom.xml", m
             raise Http404, _("Bad Category: %s" % category)
     else:
         cat = None
-        products = Product.objects.filter(active=True)
+        products = Product.objects.active_by_site()
         
     products = filter(lambda product:"ConfigurableProduct" not in product.get_subtypes(), products)
     

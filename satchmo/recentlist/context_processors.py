@@ -12,7 +12,7 @@ def recent_products(request):
             break
             
         try:
-            p = Product.objects.get(slug__exact = slug)
+            p = Product.objects.get_by_site(slug__exact = slug)
             products.append(p)
         except Product.DoesNotExist:
             pass

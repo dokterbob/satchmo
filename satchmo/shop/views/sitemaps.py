@@ -16,7 +16,7 @@ class ProductSitemap(Sitemap):
     changefreq = 'weekly'
 
     def items(self):
-        return Product.objects.filter(active=True)
+        return Product.objects.active_by_site()
 
 class MainSitemap(Sitemap):
     urls = []
