@@ -86,7 +86,7 @@ class ContactInfoForm(forms.Form):
                 # The user didn't even submit a country, but this error will
                 # be handled by the clean_country function
                 return data
-            country = self.data['country']
+            country_pk = self.data['country']
         country = Country.objects.get(pk=country_pk)
         if country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
