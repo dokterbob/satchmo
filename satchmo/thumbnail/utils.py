@@ -143,8 +143,10 @@ def remove_model_thumbnails(model):
 
     for obj in model._meta.fields:
         if isinstance(obj, ImageField):
-            url = getattr(model, obj.name).path
-            _remove_thumbnails(url)
+            field_value = getattr(model, obj.name)
+            if field_value:
+                url = field_value.path
+                _remove_thumbnails(url)
 
 def make_admin_thumbnail(url):
     """ make thumbnails for admin interface """
