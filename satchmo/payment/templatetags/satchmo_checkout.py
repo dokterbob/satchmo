@@ -21,4 +21,4 @@ def order_payment_summary(order, paylink=False):
     return {'order' : order,
         'paylink' : paylink}
 
-register.inclusion_tag('contact/_order_payment_summary.html')(order_payment_summary)
+register.inclusion_tag('payment/_order_payment_summary.html')(order_payment_summary)

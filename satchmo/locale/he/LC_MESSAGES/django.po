@@ -97,8 +97,8 @@ msgstr "טופס רישום"
 #: templates/checkout/base_pay_ship.html:5 templates/checkout/confirm.html:9
 #: templates/checkout/empty_cart.html:5 templates/checkout/form.html:46
 #: templates/checkout/success.html:7 templates/checkout/cod/confirm.html:9
-#: templates/contact/order_history.html:7
-#: templates/contact/order_tracking.html:6
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
 #: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
 #: templates/newsletter/subscribe_form.html:5
 #: templates/newsletter/unsubscribe_form.html:5
@@ -488,7 +488,7 @@ msgstr "סיכום ביניים"
 #: templates/contact/_order_details.html:68
 #: templates/contact/_order_tracking_details.html:28
 #: templates/contact/_order_tracking_details.html:36
-#: templates/contact/order_history.html:23
+#: templates/shop/order_history.html:23
 #: templates/email/order_complete.txt:45 templates/email/order_complete.txt:54
 #: templates/pdf/invoice.rml:134 templates/pdf/invoice.rml.py:177
 msgid "Total"
@@ -548,7 +548,7 @@ msgstr "תאריך"
 
 #: contact/models.py:404 contact/models.py:872 supplier/models.py:92
 #: templates/contact/_order_tracking_details.html:9
-#: templates/contact/order_history.html:20
+#: templates/shop/order_history.html:20
 msgid "Status"
 msgstr "סטטוס"
 
@@ -3387,7 +3387,7 @@ msgstr "נשלח"
 msgid "Received"
 msgstr "התקבל"
 
-#: supplier/models.py:94 templates/contact/order_history.html:21
+#: supplier/models.py:94 templates/shop/order_history.html:21
 #: templates/pdf/invoice.rml:15 templates/pdf/invoice.rml.py:57
 #: templates/pdf/packing-slip.rml:15 templates/pdf/packing-slip.rml.py:57
 msgid "Date"
@@ -4385,7 +4385,7 @@ msgid "Pay remaining balance"
 msgstr "שלם את יתרת המאזן"
 
 #: templates/contact/_order_tracking_details.html:8
-#: templates/contact/order_history.html:19
+#: templates/shop/order_history.html:19
 msgid "Order #"
 msgstr "הזמנה #"
 
@@ -4393,30 +4393,30 @@ msgstr "הזמנה #"
 msgid "Shipping To"
 msgstr "משלוח אל"
 
-#: templates/contact/order_history.html:8
-#: templates/contact/order_tracking.html:7
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
 #: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
 #: templates/registration/password_change_done.html:6
 #: templates/registration/password_change_form.html:6
 msgid "Account"
 msgstr "חשבון"
 
-#: templates/contact/order_history.html:9
-#: templates/contact/order_history.html:14
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
 #: templates/contact/view_profile.html:33
 msgid "Order History"
 msgstr "הסטוריה של ההזמנה"
 
-#: templates/contact/order_history.html:22
+#: templates/shop/order_history.html:22
 msgid "Items"
 msgstr "פריטים"
 
-#: templates/contact/order_history.html:52
+#: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
 msgstr "לא ביצעת עדיין אף הזמנה."
 
-#: templates/contact/order_tracking.html:8
-#: templates/contact/order_tracking.html:13
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
 msgstr "מעקב אחרי הזמנות"
 

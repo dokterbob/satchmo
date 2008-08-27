@@ -198,7 +198,7 @@ def charge_remaining_post(request):
             
         order.add_status(notes=notes)
         
-        return HttpResponseRedirect('/admin/contact/order/%i' % order.id)
+        return HttpResponseRedirect('/admin/shop/order/%i' % order.id)
     else:
         ctx = RequestContext(request, {'form' : form})
         return render_to_response('admin/charge_remaining_confirm.html', ctx)

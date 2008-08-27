@@ -121,7 +121,7 @@ msgstr "Formulaire d'enregistrement"
 #: .\templates\configuration\group_settings.html.py:10
 #: .\templates\configuration\site_settings.html.py:25
 #: .\templates\contact\order_history.html.py:7
-#: .\templates\contact\order_tracking.html.py:6
+#: .\templates/shop/order_tracking.html.py:6
 #: .\templates\contact\update_form.html.py:5
 #: .\templates\contact\view_profile.html.py:6
 #: .\templates\newsletter\subscribe_form.html.py:5
@@ -4557,7 +4557,7 @@ msgid "Shipping To"
 msgstr "Expédié à"
 
 #: .\templates\contact\order_history.html.py:8
-#: .\templates\contact\order_tracking.html.py:7
+#: .\templates/shop/order_tracking.html.py:7
 #: .\templates\contact\update_form.html.py:6
 #: .\templates\contact\view_profile.html.py:7
 #: .\templates\registration\password_change_done.html.py:6
@@ -4579,8 +4579,8 @@ msgstr "Articles"
 msgid "You haven't made any orders yet."
 msgstr "Vous n'avez pas encore fait de commande."
 
-#: .\templates\contact\order_tracking.html.py:8
-#: .\templates\contact\order_tracking.html.py:13
+#: .\templates/shop/order_tracking.html.py:8
+#: .\templates/shop/order_tracking.html.py:13
 msgid "Order Tracking"
 msgstr "Suivi de la commande"
 

@@ -14,7 +14,7 @@
     {% for payment in order.payments.all %}
         <tr>
             <td>
-                <a href="/admin/contact/orderpayment/{{ payment.id}}">{{ payment.id }}</a>
+                <a href="/admin/shop/orderpayment/{{ payment.id}}">{{ payment.id }}</a>
             </td>
             <td>
                 {{ payment.amount|currency }}

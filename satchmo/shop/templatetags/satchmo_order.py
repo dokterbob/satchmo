@@ -10,14 +10,14 @@ def order_details(context, order, default_view_tax=False):
         'request' : context['request']
     }
 
-register.inclusion_tag('contact/_order_details.html', takes_context=True)(order_details)
+register.inclusion_tag('shop/_order_details.html', takes_context=True)(order_details)
 
 def order_tracking_details(order, paylink=False):
     """Output a formatted block giving order tracking details."""
     return {'order' : order,
         'paylink' : paylink }
 
-register.inclusion_tag('contact/_order_tracking_details.html')(order_tracking_details)
+register.inclusion_tag('shop/_order_tracking_details.html')(order_tracking_details)
 
 def order_variable(order, args):
     """

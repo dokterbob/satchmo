@@ -244,8 +244,8 @@ msgstr "Arbete"
 #: templates/checkout/success.html:7 templates/checkout/cod/confirm.html:9
 #: templates/configuration/group_settings.html:10
 #: templates/configuration/site_settings.html:25
-#: templates/contact/order_history.html:7
-#: templates/contact/order_tracking.html:6
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
 #: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
 #: templates/newsletter/subscribe_form.html:5
 #: templates/newsletter/unsubscribe_form.html:5
@@ -407,7 +407,7 @@ msgstr "Delsumma"
 #: templates/contact/_order_details.html:68
 #: templates/contact/_order_tracking_details.html:28
 #: templates/contact/_order_tracking_details.html:36
-#: templates/contact/order_history.html:23
+#: templates/shop/order_history.html:23
 #: templates/email/order_complete.txt:45 templates/email/order_complete.txt:54
 #: templates/pdf/invoice.rml:117 templates/pdf/invoice.rml.py:147
 #: templates/pdf/packing-slip.rml:117 templates/pdf/packing-slip.rml.py:147
@@ -468,7 +468,7 @@ msgstr "Tidsmärke"
 
 #: contact/models.py:403 contact/models.py:838 supplier/models.py:92
 #: templates/contact/_order_tracking_details.html:9
-#: templates/contact/order_history.html:20
+#: templates/shop/order_history.html:20
 msgid "Status"
 msgstr "Status"
 
@@ -3189,7 +3189,7 @@ msgstr "Insänd"
 msgid "Received"
 msgstr "Mottagen"
 
-#: supplier/models.py:94 templates/contact/order_history.html:21
+#: supplier/models.py:94 templates/shop/order_history.html:21
 #: templates/pdf/invoice.rml:15 templates/pdf/invoice.rml.py:51
 #: templates/pdf/packing-slip.rml:15 templates/pdf/packing-slip.rml.py:51
 msgid "Date"
@@ -4244,7 +4244,7 @@ msgid "Pay remaining balance"
 msgstr "Betala resterande belopp"
 
 #: templates/contact/_order_tracking_details.html:8
-#: templates/contact/order_history.html:19
+#: templates/shop/order_history.html:19
 msgid "Order #"
 msgstr "Order #"
 
@@ -4252,30 +4252,30 @@ msgstr "Order #"
 msgid "Shipping To"
 msgstr "Leverans till"
 
-#: templates/contact/order_history.html:8
-#: templates/contact/order_tracking.html:7
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
 #: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
 #: templates/registration/password_change_done.html:6
 #: templates/registration/password_change_form.html:6
 msgid "Account"
 msgstr "Konto"
 
-#: templates/contact/order_history.html:9
-#: templates/contact/order_history.html:14
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
 #: templates/contact/view_profile.html:33
 msgid "Order History"
 msgstr "Orderhistorik"
 
-#: templates/contact/order_history.html:22
+#: templates/shop/order_history.html:22
 msgid "Items"
 msgstr "Artiklar"
 
-#: templates/contact/order_history.html:52
+#: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
 msgstr "Du har inte lagt några beställningar än."
 
-#: templates/contact/order_tracking.html:8
-#: templates/contact/order_tracking.html:13
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
 msgstr "Orderspårning"
 

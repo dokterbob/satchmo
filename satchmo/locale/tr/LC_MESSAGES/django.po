@@ -284,8 +284,8 @@ msgstr "İş"
 #: templates/checkout/cod/confirm.html:9
 #: templates/configuration/group_settings.html:10
 #: templates/configuration/site_settings.html:10
-#: templates/contact/order_history.html:7
-#: templates/contact/order_tracking.html:6
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
 #: templates/contact/update_form.html:5
 #: templates/contact/view_profile.html:6
 #: templates/newsletter/subscribe_form.html:5
@@ -490,7 +490,7 @@ msgstr "Ara Tutar"
 #: templates/contact/_order_details.html:50
 #: templates/contact/_order_tracking_details.html:28
 #: templates/contact/_order_tracking_details.html:36
-#: templates/contact/order_history.html:23
+#: templates/shop/order_history.html:23
 #: templates/email/order_complete.txt:45
 #: templates/email/order_complete.txt:54
 #: templates/pdf/invoice.rml:117
@@ -564,7 +564,7 @@ msgstr "Tarih Bilgisi"
 #: contact/models.py:382
 #: contact/models.py:781
 #: supplier/models.py:92
-#: templates/contact/order_history.html:20
+#: templates/shop/order_history.html:20
 msgid "Status"
 msgstr "Durum"
 
@@ -3706,7 +3706,7 @@ msgid "Pay remaining balance"
 msgstr "Kalan bakiyeyi öde"
 
 #: templates/contact/_order_tracking_details.html:8
-#: templates/contact/order_history.html:19
+#: templates/shop/order_history.html:19
 msgid "Order #"
 msgstr "sipariş #"
 
@@ -3714,8 +3714,8 @@ msgstr "sipariş #"
 msgid "Shipping To"
 msgstr ""
 
-#: templates/contact/order_history.html:8
-#: templates/contact/order_tracking.html:7
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
 #: templates/contact/update_form.html:6
 #: templates/contact/view_profile.html:7
 #: templates/registration/password_change_done.html:6
@@ -3723,13 +3723,13 @@ msgstr ""
 msgid "Account"
 msgstr "Kullanıcı Hesabı"
 
-#: templates/contact/order_history.html:9
-#: templates/contact/order_history.html:14
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
 #: templates/contact/view_profile.html:33
 msgid "Order History"
 msgstr "Geçmişi Düzenle"
 
-#: templates/contact/order_history.html:21
+#: templates/shop/order_history.html:21
 #: templates/pdf/invoice.rml:15
 #: templates/pdf/invoice.rml.py:51
 #: templates/pdf/packing-slip.rml:15
@@ -3737,16 +3737,16 @@ msgstr "Geçmişi Düzenle"
 msgid "Date"
 msgstr "Tarih"
 
-#: templates/contact/order_history.html:22
+#: templates/shop/order_history.html:22
 msgid "Items"
 msgstr "Ürünler"
 
-#: templates/contact/order_history.html:52
+#: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
 msgstr "Sepetinizde ürün bulunmuyor."
 
-#: templates/contact/order_tracking.html:8
-#: templates/contact/order_tracking.html:13
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
 msgstr "Sipariş Takibi"
 

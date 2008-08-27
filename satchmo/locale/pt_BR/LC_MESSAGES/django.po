@@ -281,8 +281,8 @@ msgstr "Trabalho"
 #: templates/checkout/cod/confirm.html:9
 #: templates/configuration/group_settings.html:10
 #: templates/configuration/site_settings.html:10
-#: templates/contact/order_history.html:7
-#: templates/contact/order_tracking.html:6
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
 #: templates/contact/update_form.html:5
 #: templates/contact/view_profile.html:6
 #: templates/newsletter/subscribe_form.html:5
@@ -487,7 +487,7 @@ msgstr "Subtotal"
 #: templates/contact/_order_details.html:68
 #: templates/contact/_order_tracking_details.html:28
 #: templates/contact/_order_tracking_details.html:36
-#: templates/contact/order_history.html:23
+#: templates/shop/order_history.html:23
 #: templates/email/order_complete.txt:45
 #: templates/email/order_complete.txt:54
 #: templates/pdf/invoice.rml:117
@@ -561,7 +561,7 @@ msgstr "Timestamp"
 #: contact/models.py:395
 #: contact/models.py:815
 #: supplier/models.py:92
-#: templates/contact/order_history.html:20
+#: templates/shop/order_history.html:20
 msgid "Status"
 msgstr "Status"
 
@@ -3818,7 +3818,7 @@ msgid "Pay remaining balance"
 msgstr "Pague saldo restante"
 
 #: templates/contact/_order_tracking_details.html:8
-#: templates/contact/order_history.html:19
+#: templates/shop/order_history.html:19
 msgid "Order #"
 msgstr "Pedido nº"
 
@@ -3826,8 +3826,8 @@ msgstr "Pedido nº"
 msgid "Shipping To"
 msgstr "Enviando para"
 
-#: templates/contact/order_history.html:8
-#: templates/contact/order_tracking.html:7
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
 #: templates/contact/update_form.html:6
 #: templates/contact/view_profile.html:7
 #: templates/registration/password_change_done.html:6
@@ -3835,13 +3835,13 @@ msgstr "Enviando para"
 msgid "Account"
 msgstr "Conta"
 
-#: templates/contact/order_history.html:9
-#: templates/contact/order_history.html:14
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
 #: templates/contact/view_profile.html:33
 msgid "Order History"
 msgstr "Histórico de pedidos"
 
-#: templates/contact/order_history.html:21
+#: templates/shop/order_history.html:21
 #: templates/pdf/invoice.rml:15
 #: templates/pdf/invoice.rml.py:51
 #: templates/pdf/packing-slip.rml:15
@@ -3849,16 +3849,16 @@ msgstr "Histórico de pedidos"
 msgid "Date"
 msgstr "Data"
 
-#: templates/contact/order_history.html:22
+#: templates/shop/order_history.html:22
 msgid "Items"
 msgstr "Itens"
 
-#: templates/contact/order_history.html:52
+#: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
 msgstr "Você não fez nenhum pedido ainda."
 
-#: templates/contact/order_tracking.html:8
-#: templates/contact/order_tracking.html:13
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
 msgstr "Rastreamento de pedidos"
 

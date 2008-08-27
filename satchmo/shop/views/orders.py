@@ -19,7 +19,7 @@ def order_history(request):
         'contact' : contact,
         'orders' : orders})
 
-    return render_to_response('contact/order_history.html', ctx)
+    return render_to_response('shop/order_history.html', ctx)
 
 order_history = login_required(order_history)
 
@@ -41,6 +41,6 @@ def order_tracking(request, order_id):
         'contact' : contact,
         'order' : order})
 
-    return render_to_response('contact/order_tracking.html', ctx)
+    return render_to_response('shop/order_tracking.html', ctx)
 
 order_tracking = login_required(order_tracking)
