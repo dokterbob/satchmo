@@ -128,7 +128,7 @@ class UpsellTranslation(models.Model):
 
     menu = models.ForeignKey(Upsell, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, 
-        choices=settings.LANGUAGES, core=True, default=settings.LANGUAGES[0][0])
+        choices=settings.LANGUAGES, default=settings.LANGUAGES[0][0])
     description = models.TextField(_('Description'), blank=True)
 
     class Meta:

@@ -60,8 +60,8 @@ class SupplierOrderItem(models.Model):
     Individual line items for an order
     """
     order = models.ForeignKey(SupplierOrder)
-    line_item = models.ForeignKey(RawItem, core=True, verbose_name=_('Line Item'))
-    line_item_quantity = models.IntegerField(_("Line Item Quantity"), core=True)
+    line_item = models.ForeignKey(RawItem, verbose_name=_('Line Item'))
+    line_item_quantity = models.IntegerField(_("Line Item Quantity"), )
     line_item_total = models.DecimalField(_("Line Item Total"), max_digits=6,decimal_places=2)
     
     def __unicode__(self):
@@ -79,7 +79,7 @@ class SupplierOrderStatus(models.Model):
     placed and subsequently processed and received.
     """
     order = models.ForeignKey(SupplierOrder)
-    status = models.CharField(_("Status"), max_length=20, choices=SUPPLIERORDER_STATUS, core=True, blank=True)
+    status = models.CharField(_("Status"), max_length=20, choices=SUPPLIERORDER_STATUS, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
     date = models.DateTimeField(_('Date'), blank=True)
     

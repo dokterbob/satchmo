@@ -82,7 +82,7 @@ class Category(models.Model):
     Basic hierarchical category model for storing products
     """
     site = models.ForeignKey(Site, verbose_name=_('Site'))
-    name = models.CharField(_("Name"), core=True, max_length=200)
+    name = models.CharField(_("Name"), max_length=200)
     slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
         related_name='child', validator_list=['categoryvalidator'])
@@ -221,7 +221,7 @@ class CategoryTranslation(models.Model):
     """
     category = models.ForeignKey(Category, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated Category Name"), max_length=255, core=True)
+    name = models.CharField(_("Translated Category Name"), max_length=255, )
     description = models.TextField(_("Description of category"), default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
@@ -247,7 +247,7 @@ class CategoryImage(models.Model):
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
-    sort = models.IntegerField(_("Sort Order"), core=True)
+    sort = models.IntegerField(_("Sort Order"), )
 
     def translated_caption(self, language_code=None):
         return lookup_translation(self, 'caption', language_code)
@@ -279,7 +279,7 @@ class CategoryImageTranslation(models.Model):
     """
     categoryimage = models.ForeignKey(CategoryImage, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
+    caption = models.CharField(_("Translated Caption"), max_length=255, )
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 
@@ -298,7 +298,7 @@ class OptionGroup(models.Model):
     Examples - Size, Color, Shape, etc
     """
     site = models.ForeignKey(Site, verbose_name=_('Site'))
-    name = models.CharField(_("Name of Option Group"), max_length=50, core=True,
+    name = models.CharField(_("Name of Option Group"), max_length=50, 
         help_text=_("This will be the text displayed on the product page."))
     description = models.CharField(_("Detailed Description"), max_length=100,
         blank=True,
@@ -329,7 +329,7 @@ class OptionGroupTranslation(models.Model):
     """
     optiongroup = models.ForeignKey(OptionGroup, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated OptionGroup Name"), max_length=255, core=True)
+    name = models.CharField(_("Translated OptionGroup Name"), max_length=255, )
     description = models.TextField(_("Description of OptionGroup"), default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
@@ -357,7 +357,7 @@ class Option(models.Model):
     """
     objects = OptionManager()
     option_group = models.ForeignKey(OptionGroup)
-    name = models.CharField(_("Display value"), max_length=50, core=True)
+    name = models.CharField(_("Display value"), max_length=50, )
     value = models.CharField(_("Stored value"), max_length=50)
     price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
         max_digits=14, decimal_places=6,
@@ -390,7 +390,7 @@ class OptionTranslation(models.Model):
     """
     option = models.ForeignKey(Option, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated Option Name"), max_length=255, core=True)
+    name = models.CharField(_("Translated Option Name"), max_length=255, )
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 
@@ -435,7 +435,7 @@ class Product(models.Model):
     Root class for all Products
     """
     site = models.ForeignKey(Site, verbose_name=_('Site'))
-    name = models.CharField(_("Full Name"), max_length=255, core=True, blank=False,
+    name = models.CharField(_("Full Name"), max_length=255, blank=False,
         help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
     slug = models.SlugField(_("Slug Name"), blank=True,
         help_text=_("Used for URLs, auto-generated from name if blank"), max_length=80)
@@ -740,7 +740,7 @@ class ProductTranslation(models.Model):
     """
     product = models.ForeignKey('Product', related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Full Name"), max_length=255, core=True)
+    name = models.CharField(_("Full Name"), max_length=255, )
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
@@ -855,7 +855,7 @@ class CustomTextField(models.Model):
     A text field to be filled in by a customer.
     """
 
-    name = models.CharField(_('Custom field name'), max_length=40, core=True)
+    name = models.CharField(_('Custom field name'), max_length=40, )
     slug = models.SlugField(_("Slug"), help_text=_("Auto-generated from name if blank"),
         blank=True)
     products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'), 
@@ -882,7 +882,7 @@ class CustomTextFieldTranslation(models.Model):
     """
     customtextfield = models.ForeignKey(CustomTextField, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, core=True)
+    name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, )
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 
@@ -1162,7 +1162,7 @@ class Trial(models.Model):
     billing periods as you wish.
     """
     subscription = models.ForeignKey(SubscriptionProduct)
-    price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, core=True)
+    price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, )
     expire_days = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle (days).  Leave empty if product does not have a trial."), null=True, blank=True)
 
     def __unicode__(self):
@@ -1195,8 +1195,8 @@ class ProductVariation(models.Model):
 
     """
     product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
-    options = models.ManyToManyField(Option, core=True, verbose_name=_('Options'))
-    parent = models.ForeignKey(ConfigurableProduct, core=True, validator_list=[variant_validator], verbose_name=_('Parent'))
+    options = models.ManyToManyField(Option, verbose_name=_('Options'))
+    parent = models.ForeignKey(ConfigurableProduct, validator_list=[variant_validator], verbose_name=_('Parent'))
 
     objects = ProductVariationManager()
 
@@ -1360,7 +1360,7 @@ class ProductAttribute(models.Model):
     """
     product = models.ForeignKey(Product)
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
-    name = models.SlugField(_("Attribute Name"), max_length=100, core=True)
+    name = models.SlugField(_("Attribute Name"), max_length=100, )
     value = models.CharField(_("Value"), max_length=255)
 
     class Meta:
@@ -1376,7 +1376,7 @@ class Price(models.Model):
     that's still below the user specified (IE: ordered) quantity, that matches a given product.
     """
     product = models.ForeignKey(Product)
-    price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, core=True)
+    price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, )
     quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(_("Expires"), null=True, blank=True)
     #TODO: add fields here for locale/currency specific pricing
@@ -1422,7 +1422,7 @@ class ProductImage(models.Model):
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
-    sort = models.IntegerField(_("Sort Order"), core=True)
+    sort = models.IntegerField(_("Sort Order"), )
 
     def translated_caption(self, language_code=None):
         return lookup_translation(self, 'caption', language_code)
@@ -1453,7 +1453,7 @@ class ProductImageTranslation(models.Model):
     """
     productimage = models.ForeignKey(ProductImage, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    caption = models.CharField(_("Translated Caption"), max_length=255, core=True)
+    caption = models.CharField(_("Translated Caption"), max_length=255, )
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 

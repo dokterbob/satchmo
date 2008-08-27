@@ -387,7 +387,7 @@ class CartItem(models.Model):
     """
     cart = models.ForeignKey(Cart, verbose_name=_('Cart'))
     product = models.ForeignKey(Product, verbose_name=_('Product'))
-    quantity = models.IntegerField(_("Quantity"), core=True)
+    quantity = models.IntegerField(_("Quantity"), )
 
     def _get_line_unitprice(self):
         # Get the qty discount price as the unit price for the line.
@@ -459,7 +459,7 @@ class CartItemDetails(models.Model):
     """
     An arbitrary detail about a cart item.
     """
-    cartitem = models.ForeignKey(CartItem, related_name='details', core=True)
+    cartitem = models.ForeignKey(CartItem, related_name='details', )
     value = models.TextField(_('detail'))
     name = models.CharField(_('name'), max_length=100)
     price_change = models.DecimalField(_("Item Detail Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
@@ -568,7 +568,7 @@ class Order(models.Model):
         max_digits=18, decimal_places=10, blank=True, null=True)
     timestamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
     status = models.CharField(_("Status"), max_length=20, choices=ORDER_STATUS,
-        core=True, blank=True, help_text=_("This is set automatically."))
+        blank=True, help_text=_("This is set automatically."))
 
     objects = OrderManager()
 
@@ -898,7 +898,7 @@ class OrderItem(models.Model):
     """
     order = models.ForeignKey(Order, verbose_name=_("Order"))
     product = models.ForeignKey(Product, verbose_name=_("Product"))
-    quantity = models.IntegerField(_("Quantity"), core=True)
+    quantity = models.IntegerField(_("Quantity"), )
     unit_price = models.DecimalField(_("Unit price"),
         max_digits=18, decimal_places=10)
     unit_tax = models.DecimalField(_("Unit tax"),
@@ -961,7 +961,7 @@ class OrderItemDetail(models.Model):
     """
     Name, value pair and price delta associated with a specific item in an order
     """
-    item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), core=True)
+    item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), )
     name = models.CharField(_('Name'), max_length=100)
     value = models.CharField(_('Value'), max_length=255)
     price_change = models.DecimalField(_("Price Change"), max_digits=18, decimal_places=10, blank=True, null=True)
@@ -1032,7 +1032,7 @@ class OrderStatus(models.Model):
     """
     order = models.ForeignKey(Order, verbose_name=_("Order"))
     status = models.CharField(_("Status"),
-        max_length=20, choices=ORDER_STATUS, core=True, blank=True)
+        max_length=20, choices=ORDER_STATUS, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
     timestamp = models.DateTimeField(_("Timestamp"))
 
@@ -1052,7 +1052,7 @@ class OrderPayment(models.Model):
     order = models.ForeignKey(Order, related_name="payments")
     payment = PaymentChoiceCharField(_("Payment Method"),
         max_length=25, blank=True)
-    amount = models.DecimalField(_("amount"), core=True,
+    amount = models.DecimalField(_("amount"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
     timestamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
@@ -1088,8 +1088,8 @@ class OrderPayment(models.Model):
 
 class OrderVariable(models.Model):
     order = models.ForeignKey(Order, related_name="variables")
-    key = models.SlugField(_('key'), core=True)
-    value = models.CharField(_('value'), core=True, max_length=100)
+    key = models.SlugField(_('key'), )
+    value = models.CharField(_('value'), max_length=100)
 
     class Meta:        
         ordering=('key',)
@@ -1106,9 +1106,9 @@ class OrderVariable(models.Model):
 class OrderTaxDetail(models.Model):
     """A tax line item"""
     order = models.ForeignKey(Order, related_name="taxes")
-    method = models.CharField(_("Model"), max_length=50, core=True)
+    method = models.CharField(_("Model"), max_length=50, )
     description = models.CharField(_("Description"), max_length=50, blank=True)
-    tax = models.DecimalField(_("Tax"), core=True,
+    tax = models.DecimalField(_("Tax"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
 
     def __unicode__(self):

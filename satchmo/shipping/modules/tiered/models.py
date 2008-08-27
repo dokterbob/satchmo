@@ -203,8 +203,8 @@ class Carrier(models.Model):
         
 class CarrierTranslation(models.Model):
     carrier = models.ForeignKey('Carrier', related_name='translations')
-    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, core=True)
-    name = models.CharField(_('Carrier'), max_length=50, core=True)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, )
+    name = models.CharField(_('Carrier'), max_length=50, )
     description = models.CharField(_('Description'), max_length=200)
     method = models.CharField(_('Method'), help_text=_("i.e. US Mail"), max_length=200)
     delivery = models.CharField(_('Delivery Days'), max_length=200)
@@ -213,8 +213,8 @@ class ShippingTier(models.Model):
     carrier = models.ForeignKey('Carrier', related_name='tiers')
     min_total = models.DecimalField(_("Min Price"), 
         help_text=_('The minumum price for this tier to apply'), 
-        max_digits=10, decimal_places=2, core=True)
-    price = models.DecimalField(_("Shipping Price"), max_digits=10, decimal_places=2, core=True)
+        max_digits=10, decimal_places=2, )
+    price = models.DecimalField(_("Shipping Price"), max_digits=10, decimal_places=2, )
     expires = models.DateField(_("Expires"), null=True, blank=True)
     
     def __unicode__(self):

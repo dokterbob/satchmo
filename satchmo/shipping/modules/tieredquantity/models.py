@@ -200,8 +200,8 @@ class Carrier(models.Model):
         
 class CarrierTranslation(models.Model):
     carrier = models.ForeignKey('Carrier', edit_inline=models.STACKED, related_name='translations', num_in_admin=2)
-    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, core=True)
-    name = models.CharField(_('Carrier'), max_length=50, core=True)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, )
+    name = models.CharField(_('Carrier'), max_length=50, )
     description = models.CharField(_('Description'), max_length=200)
     method = models.CharField(_('Method'), help_text=_("i.e. US Mail"), max_length=200)
     delivery = models.CharField(_('Delivery Days'), max_length=200)
@@ -210,11 +210,11 @@ class QuantityTier(models.Model):
     carrier = models.ForeignKey('Carrier', 
         edit_inline=models.TABULAR, related_name='tiers', num_in_admin=5)
     quantity = models.IntegerField(_("Min Quantity"), 
-        help_text=_('Minimum qty in order for this to apply?'), core=True)
+        help_text=_('Minimum qty in order for this to apply?'), )
     handling = models.DecimalField(_("Handling Price"), max_digits=10, 
-        decimal_places=2, core=True)
+        decimal_places=2, )
     price = models.DecimalField(_("Shipping Per Item"), max_digits=10, 
-        decimal_places=2, core=True)
+        decimal_places=2, )
     expires = models.DateField(_("Expires"), null=True, blank=True)
     
     def calculate_price(self, qty):

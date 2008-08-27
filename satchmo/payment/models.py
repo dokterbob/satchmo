@@ -50,7 +50,7 @@ class CreditCardDetail(models.Model):
         related_name="creditcards")
     creditType = CreditChoiceCharField(_("Credit Card Type"), max_length=16)
     displayCC = models.CharField(_("CC Number (Last 4 digits)"),
-        max_length=4, core=True)
+        max_length=4, )
     encryptedCC = models.CharField(_("Encrypted Credit Card"),
         max_length=40, blank=True, null=True, editable=False)
     expireMonth = models.IntegerField(_("Expiration Month"))

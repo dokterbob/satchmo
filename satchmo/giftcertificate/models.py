@@ -103,7 +103,7 @@ class GiftCertificateUsage(models.Model):
     usage_date = models.DateField(_("Date of usage"), null=True, blank=True)
     notes = models.TextField(_('Notes'), blank=True)
     balance_used = models.DecimalField(_("Amount Used"), decimal_places=2,
-        max_digits=8, core=True)
+        max_digits=8, )
     orderpayment = models.ForeignKey(OrderPayment, null=True, verbose_name=_('Order Payment'))
     used_by = models.ForeignKey(Contact, verbose_name=_('Used by'),
         blank=True, null=True, related_name='giftcertificates_used')

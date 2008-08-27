@@ -96,6 +96,7 @@ def highest_rated(num=None, free=False, site=None):
         cache_set(nce.key, value=pkstring)
     
     if pks:
+        pks = [pk for pk in pks if _is_int(pk)]
         productdict = Product.objects.in_bulk(pks)
         products = []
         for pk in pks:
@@ -115,3 +116,9 @@ def highest_rated(num=None, free=False, site=None):
     return products
         
         
+def _is_int(v):
+    try:
+        v = int(v)
+        return True
+    except ValueError:
+        return False

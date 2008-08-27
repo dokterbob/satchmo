@@ -36,7 +36,7 @@ class Organization(models.Model):
     """
     An organization can be a company, government or any kind of group.
     """
-    name = models.CharField(_("Name"), max_length=50, core=True)
+    name = models.CharField(_("Name"), max_length=50, )
     type = models.CharField(_("Type"), max_length=30,
         choices=ORGANIZATION_CHOICES)
     role = models.CharField(_("Role"), max_length=30,
@@ -98,8 +98,8 @@ class Contact(models.Model):
     A customer, supplier or any individual that a store owner might interact
     with.
     """
-    first_name = models.CharField(_("First name"), max_length=30, core=True)
-    last_name = models.CharField(_("Last name"), max_length=30, core=True)
+    first_name = models.CharField(_("First name"), max_length=30, )
+    last_name = models.CharField(_("Last name"), max_length=30, )
     user = models.ForeignKey(User, blank=True, null=True, unique=True)
     role = models.CharField(_("Role"), max_length=20, blank=True, null=True,
         choices=CONTACT_CHOICES)
@@ -177,7 +177,7 @@ class Interaction(models.Model):
     """
     contact = models.ForeignKey(Contact, verbose_name=_("Contact"))
     type = models.CharField(_("Type"), max_length=30,choices=INTERACTION_CHOICES)
-    date_time = models.DateTimeField(_("Date and Time"), core=True)
+    date_time = models.DateTimeField(_("Date and Time"), )
     description = models.TextField(_("Description"), max_length=200)
 
     def __unicode__(self):
@@ -195,7 +195,7 @@ class PhoneNumber(models.Model):
     type = models.CharField(_("Description"), choices=PHONE_CHOICES,
         max_length=20, blank=True)
     phone = models.CharField(_("Phone Number"), blank=True, max_length=30,
-        core=True)
+        )
     primary = models.BooleanField(_("Primary"), default=False)
 
     def __unicode__(self):
@@ -228,8 +228,8 @@ class AddressBook(models.Model):
     contact = models.ForeignKey(Contact)
     description = models.CharField(_("Description"), max_length=20, blank=True,
         help_text=_('Description of address - Home, Office, Warehouse, etc.',))
-    addressee = models.CharField(_("Addressee"), core=True, max_length=80)
-    street1 = models.CharField(_("Street"), core=True, max_length=80)
+    addressee = models.CharField(_("Addressee"), max_length=80)
+    street1 = models.CharField(_("Street"), max_length=80)
     street2 = models.CharField(_("Street"), max_length=80, blank=True)
     state = models.CharField(_("State"), max_length=50, blank=True)
     city = models.CharField(_("City"), max_length=50)
