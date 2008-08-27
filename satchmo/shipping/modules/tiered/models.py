@@ -222,3 +222,5 @@ class ShippingTier(models.Model):
     
     class Meta:
         pass
+
+import config
