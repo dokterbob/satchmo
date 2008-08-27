@@ -207,7 +207,7 @@ class Shipper(BaseShipper):
                 if product.weight is None:
                     log.warn("No weight on product (skipping for ship calculations): %s", product)
                 else:
-                    box_weight += weight
+                    box_weight += product.weight
                 if product.weight_units and product.weight_units != "":
                     box_weight_units = product.weight_units
             
