@@ -77,7 +77,8 @@ def update(request):
         form = ExtendedContactInfoForm(countries, areas, contact, shippable=True, initial=init_data)
 
     init_data['form'] = form
-    init_data['country'] = only_country
+    if only_country:
+        init_data['country'] = only_country
     
     context = RequestContext(request, init_data)
         
