@@ -66,7 +66,7 @@ def check_balance(request):
             try:
                 gc = GiftCertificate.objects.get(code=code, 
                     value=True, 
-                    site=Site.objects.get_current()
+                    site=Site.objects.get_current())
                 success = True
                 balance = gc.balance
             except GiftCertificate.DoesNotExist:
