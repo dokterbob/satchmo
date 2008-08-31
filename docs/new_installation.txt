@@ -102,6 +102,7 @@ working properly before trying to add any pieces of satchmo.
 
         INSTALLED_APPS = (
                 'django.contrib.admin',
+                'django.contrib.admindocs',
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
                 'django.contrib.sessions',
@@ -123,6 +124,7 @@ working properly before trying to add any pieces of satchmo.
                 'satchmo.l10n',
                 'satchmo.tax',
                 'satchmo.recentlist',
+                'satchmo.productratings'
                 )
                 
         AUTHENTICATION_BACKENDS = (

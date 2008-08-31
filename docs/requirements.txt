@@ -6,7 +6,7 @@ Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
 As of now, it is recommended that you use a Django version from the current trunk.
-Some of the most recent features in Satchmo require a recent (1.0-alpha) checkout
+Some of the most recent features in Satchmo require a recent (1.0) checkout
 from svn.  A known good version of Django can be found in the `snapshot`_ directory.
 
 Satchmo requires Python 2.3 or later and a database supported by Django.
@@ -22,10 +22,6 @@ features in Satchmo.
 - `Django Threaded Multihost`_
 
 There are also a number of other Django packages (mentioned below) that you will require
-
-For product comment functionality, you will need:
-
-- `django-comment-utils`_ which must be on your PYTHONPATH
 
 For the account registration process, you will need:
 
