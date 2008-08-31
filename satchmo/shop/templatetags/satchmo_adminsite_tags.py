@@ -27,7 +27,6 @@ def admin_site_views(view):
         'links' : links,
         'multihost' : is_multihost_enabled()
     }
-    print ret
     return ret
     
 
