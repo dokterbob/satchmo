@@ -113,7 +113,7 @@ class Config(models.Model):
 
     base_url = property(fget=_base_url)
     
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         caching.cache_delete("Config", self.site.id)
         # ensure the default country is in shipping countries
         mycountry = self.country
@@ -135,7 +135,7 @@ class Config(models.Model):
         else:
             log.warn("%s: has no country set", self)
             
-        super(Config, self).save()
+        super(Config, self).save(force_insert=force_insert, force_update=force_update)
         caching.cache_set("Config", self.site.id, value=self)
 
     def __unicode__(self):
@@ -342,7 +342,7 @@ class Cart(models.Model):
             item.delete()
         self.save()
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         """Ensure we have a date_time_created before saving the first time."""
         if not self.pk:
             self.date_time_created = datetime.datetime.now()
@@ -350,7 +350,7 @@ class Cart(models.Model):
             site = self.site
         except Site.DoesNotExist:
             self.site = Site.objects.get_current()
-        super(Cart, self).save()
+        super(Cart, self).save(force_insert=force_insert, force_update=force_update)
 
     def _get_shippable(self):
         """Return whether the cart contains shippable items."""
@@ -712,7 +712,7 @@ class Order(models.Model):
         q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
         return q.exclude(amount=Decimal("0.0000000000"))
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         """
         Copy addresses from contact. If the order has just been created, set
         the create_date.
@@ -720,7 +720,7 @@ class Order(models.Model):
         if not self.pk:
             self.timestamp = datetime.datetime.now()
             self.copy_addresses()
-        super(Order, self).save() # Call the "real" save() method.
+        super(Order, self).save(force_insert=force_insert, force_update=force_update) # Call the "real" save() method.
 
     def invoice(self):
         return mark_safe(u'<a href="/admin/print/invoice/%s/">%s</a>' % (self.id, ugettext('View'))) 
@@ -943,9 +943,9 @@ class OrderItem(models.Model):
         return self.product.translated_name()
     description = property(_get_description)
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         self.update_tax()
-        super(OrderItem, self).save()
+        super(OrderItem, self).save(force_insert=force_insert, force_update=force_update)
 
     def update_tax(self):
         taxclass = self.product.taxClass
@@ -1007,13 +1007,13 @@ class DownloadLink(models.Model):
         url = urlresolvers.reverse('satchmo_download_process', kwargs= {'download_key': self.key})
         return('http://%s%s' % (Site.objects.get_current(), url))
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         """
        Set the initial time stamp
         """
         if self.time_stamp is None:
             self.time_stamp = datetime.datetime.now()
-        super(DownloadLink, self).save()
+        super(DownloadLink, self).save(force_insert=force_insert, force_update=force_update)
 
     def __unicode__(self):
         return u"%s - %s" % (self.downloadable_product.product.slug, self.time_stamp)
@@ -1039,8 +1039,8 @@ class OrderStatus(models.Model):
     def __unicode__(self):
         return self.status
 
-    def save(self):
-        super(OrderStatus, self).save()
+    def save(self, force_insert=False, force_update=False):
+        super(OrderStatus, self).save(force_insert=force_insert, force_update=force_update)
         self.order.status = self.status
         self.order.save()
 
@@ -1076,11 +1076,11 @@ class OrderPayment(models.Model):
         else:
             return u"Order payment (unsaved)"
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.timestamp = datetime.datetime.now()
 
-        super(OrderPayment, self).save()
+        super(OrderPayment, self).save(force_insert=force_insert, force_update=force_update)
 
     class Meta:
         verbose_name = _("Order Payment")

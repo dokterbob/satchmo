@@ -1,6 +1,4 @@
-/* @override 
-	http://localhost:8000/static/css/style.css
-*/
+/* @override http://localhost:8000/static/css/style.css */
 
 #container {
 width: 90%;
@@ -121,6 +119,11 @@ font-size: 12px;
 
 #content div.productreviews h2 {
     font-size: 14px;
+}
+
+#content div.productreviews span.label {
+	float: left;
+	width: 80px;
 }
 
 #footer {

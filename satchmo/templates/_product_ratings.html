@@ -1,8 +1,8 @@
-{% load i18n comment_utils comments%}
+{% load i18n comments %}
 {% load satchmo_ratings %}
 <div class="productreviews">
     <h2>{% trans 'Product Reviews' %}</h2>
-    {% get_public_comment_list for product.product product.id as comments %}
+    {% get_comment_list for product as comments %}
     {% if not comments %}
         {% if user.is_authenticated %}
             {% trans 'Be the first to review it!' %}
@@ -14,7 +14,7 @@
         {% for comment in comments %}
         <div class="comment {% cycle odd,even %}" id="c{{ comment.id }}">
             <p><a id="c{{ comment.id }}"></a>
-                <b>{% if comment.user.get_full_name %}{{ comment.user.get_full_name|escape }}{% else %}{{ comment.user.username|escape }}{% endif %}</b> &mdash; {{ comment.submit_date|date:"F j, Y" }} &mdash; {% trans 'Rating' %} {{ comment.rating1 }}/5</span> 
+                <b>{% if comment.user.get_full_name %}{{ comment.user.get_full_name|escape }}{% else %}{{ comment.user.username|escape }}{% endif %}</b> &mdash; {{ comment.submit_date|date:"F j, Y" }}{% if comment.productrating.rating %} &mdash; {% trans 'Rating' %} {{ comment.productrating.rating }}/5{% endif %}</span> 
             </p>
         	{{ comment.comment|escape|urlizetrunc:40|linebreaks }}
         </div>
@@ -22,7 +22,8 @@
     {% endif %}
     {% if user.is_authenticated %}
         <h2>{% trans 'Review this product' %}</h2>
-        {% comment_form for product.product product.id with ratings_optional scale:1-5|Rating %}
+		{% get_comment_form for product as form %}
+		{% product_rating_form request product form %}
     {% else %}
         {% trans 'Please login to review this product.' %}
     {% endif %}

@@ -1,11 +1,22 @@
 import logging
-from django.template import Library
-from satchmo.product.comments import get_product_rating_string
+from django import template
+from satchmo.productratings.utils import get_product_rating_string
 from satchmo.configuration import config_value
 
 log = logging.getLogger('shop.templatetags')
 
-register = Library()
+register = template.Library()
+
+def product_rating_form(request, product, form):
+    """Output our product comment form with the proper redirect in it."""
+    log.debug('returning product rating form for %s', product)
+    return {
+        "form" : form,
+        "product" : product,
+        "user" : request.user,
+    }
+
+register.inclusion_tag('comments/product_rating_form.html')(product_rating_form)
 
 def product_ratings(context):
     shop = context['shop']

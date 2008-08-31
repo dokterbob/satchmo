@@ -44,11 +44,12 @@ class Discount(models.Model):
     code = models.CharField(_("Discount Code"), max_length=20, unique=True,
         help_text=_("Coupon Code"))
     amount = models.DecimalField(_("Discount Amount"), decimal_places=2,
-        max_digits=4, blank=True, null=True, validator_list=[amount_validator],
+        max_digits=4, blank=True, null=True, 
+        #validator_list=[amount_validator],
         help_text=_("Enter absolute discount amount OR percentage."))
     percentage = models.DecimalField(_("Discount Percentage"), decimal_places=2,
         max_digits=4, blank=True, null=True,
-        validator_list=[percentage_validator],
+        #validator_list=[percentage_validator],
         help_text=_("Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."))
     automatic = models.BooleanField(_("Is this an automatic discount?"), default=False, blank=True,
         null=True, help_text=_("Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."))

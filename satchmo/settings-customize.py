@@ -98,7 +98,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.comments',
-    'comment_utils', # get this from http://code.google.com/p/django-comment-utils
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'django.contrib.sites',
@@ -120,6 +119,7 @@ INSTALLED_APPS = (
     'satchmo.recentlist',
     'satchmo.wishlist',
     'satchmo.upsell',
+    'satchmo.productratings'
     # enable tiered to activate the "tiered" shipping module
     # select it in the site settings, then configure it in the
     # admin/tiered section

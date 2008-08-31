@@ -45,11 +45,11 @@ class SupplierOrder(models.Model):
         return(self.supplierorderstatus_set.latest('date').status)
     status = property(_status)  
     
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         """Ensure we have a date_created before saving the first time."""
         if not self.pk:
             self.date_created = datetime.date.today()
-        super(SupplierOrder, self).save()
+        super(SupplierOrder, self).save(force_insert=force_insert, force_update=force_update)
     
     class Meta:
         verbose_name = _("Supplier Order")

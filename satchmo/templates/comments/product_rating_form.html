@@ -1,7 +1,9 @@
 {% load comments %}
 <form action="{% comment_form_target %}" method="POST">
-	<input type="hidden" name="next" value="{{ product.get_absolute_url }}" />
-	{% for field in form %}
+  <input type="hidden" name="next" value="{{ product.get_absolute_url }}" />
+  <input type='hidden' name="name" value="{{ user.get_full_name|default:user.username }}" />
+  <input type='hidden' name="name" value="{{ user.email }}" />
+  {% for field in form %}
     {% ifnotequal field.name "url" %}
 	    {% if field.is_hidden %}
 	      {{ field }}
@@ -21,13 +23,14 @@
 	        {% if field.errors %}{{ field.errors }}{% endif %}
 	        <label for="{{ field.field_id }}">{{ field.label_tag }}</label><br/>{{ field }}
 	      </p>	      
-		  {% else %}
+		  {% else %}{% ifnotequal field.name "name" %}{% ifnotequal field.name "email" %}
 	      <p
 	        {% if field.errors %} class="error"{% endif %}
 	        {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
 	        {% if field.errors %}{{ field.errors }}{% endif %}
 	        <span class="label"><label for="{{ field.field_id }}">{{ field.label_tag }}</label></span>{{ field }}
 	      </p>
+		  {% endifnotequal %}{% endifnotequal %}
 		  {% endifequal %}
 	    {% endif %}
 	{% endifnotequal %}

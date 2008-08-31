@@ -1,10 +1,10 @@
 from django.conf import settings
-from django.contrib.comments.models import Comment, FreeComment
+from django.contrib.comments.models import Comment
+from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
-from models import Product
 from satchmo.caching import cache_get, cache_set, NotCachedError
 from satchmo.configuration import config_value
-from django.contrib.sites.models import Site
+from satchmo.product.models import Product
 import logging
 import math
 import operator
@@ -19,30 +19,36 @@ def average(ratings):
     return float(total)/len(ratings)
 
 
-def get_product_rating(product, free=False, site=None):
+def get_product_rating(product, site=None):
     """Get the average product rating"""
     if site is None:
         site = Site.objects.get_current()
     
     site = site.id
         
-    manager = free and FreeComment.objects or Comment.objects
-    comments = manager.filter(object_id__exact=product.id,
+    manager = Comment.objects
+    comments = manager.filter(object_pk__exact=product.id,
                                content_type__app_label__exact='product',
                                content_type__model__exact='product',
                                site__id__exact=site,
                                is_public__exact=True)
-    ratings = [comment.rating1 for comment in comments]
-    #log.debug(ratings)
+    ratings = []
+    for comment in comments:
+        if hasattr(comment,'productrating'):
+            rating = comment.productrating.rating
+            if rating > 0:
+                ratings.append(rating)
+
+    log.debug("Ratings: %s", ratings)
     if ratings:
         return average(ratings)
     
     else:
         return None
 
-def get_product_rating_string(product, free=False, site=None):
+def get_product_rating_string(product, site=None):
     """Get the average product rating as a string, for use in templates"""
-    rating = get_product_rating(product, free=free, site=site)
+    rating = get_product_rating(product, site=site)
     
     if rating is not None:
         rating = "%0.1f" % rating
@@ -54,7 +60,7 @@ def get_product_rating_string(product, free=False, site=None):
         
     return rating
     
-def highest_rated(num=None, free=False, site=None):
+def highest_rated(num=None, site=None):
     """Get the most highly rated products"""
     if site is None:
         site = Site.objects.get_current()
@@ -62,22 +68,26 @@ def highest_rated(num=None, free=False, site=None):
     site = site.id
 
     try:
-        pks = cache_get("BESTRATED", site=site, free=free, num=num)
+        pks = cache_get("BESTRATED", site=site, num=num)
         pks = [pk for pk in pks.split(',')]
         log.debug('retrieved highest rated products from cache')
         
     except NotCachedError, nce:
         # here were are going to do just one lookup for all product comments
-        manager = free and FreeComment.objects or Comment.objects
-        comments = manager.filter(content_type__app_label__exact='product',
-                                   content_type__model__exact='product',
-                                   site__id__exact=site,
-                                   is_public__exact=True).order_by('object_id')
+
+        comments = Comment.objects.filter(content_type__app_label__exact='product',
+            content_type__model__exact='product',
+            site__id__exact=site.id,
+            productrating__rating__gt=0,
+            is_public__exact=True).order_by('object_pk')
         
         # then make lists of ratings for each
         commentdict = {}
         for comment in comments:
-            commentdict.setdefault(comment.object_id, []).append(comment.rating1)
+            if hasattr(comment, 'productrating'):
+                rating = comment.productrating.rating
+                if rating>0:
+                    commentdict.setdefault(comment.object_id, []).append(rating)
         
         # now take the average of each, and make a nice list suitable for sorting
         ratelist = [(average(ratings), pk) for pk, ratings in commentdict.items()]

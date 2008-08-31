@@ -37,10 +37,6 @@ class Command(NoArgsCommand):
         except ImportError:
             errors.append("Tiny RML2PDF is not installed.")
         try:
-            import comment_utils
-        except ImportError:
-            errors.append("Django comment_utils is not installed.")
-        try:
             import registration
         except ImportError:
             errors.append("Django registration is not installed.")

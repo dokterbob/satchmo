@@ -85,7 +85,8 @@ class Category(models.Model):
     name = models.CharField(_("Name"), max_length=200)
     slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
-        related_name='child', validator_list=['categoryvalidator'])
+        related_name='child')
+        #,validator_list=['categoryvalidator'])
     meta = models.TextField(_("Meta Description"), blank=True, null=True,
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
@@ -165,7 +166,7 @@ class Category(models.Model):
         name_list.append(self.name)
         return self.get_separator().join(name_list)
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if self.id:
             if self.parent and self.parent_id == self.id:
                 raise validators.ValidationError(_("You must not save a category in itself!"))
@@ -177,7 +178,7 @@ class Category(models.Model):
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
 
-        super(Category, self).save()
+        super(Category, self).save(force_insert=force_insert, force_update=force_update)
 
     def _flatten(self, L):
         """
@@ -451,13 +452,17 @@ class Product(models.Model):
     featured = models.BooleanField(_("Featured Item"), default=False, help_text=_("Featured items will show on the front page"))
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
     weight = models.DecimalField(_("Weight"), max_digits=8, decimal_places=2, null=True, blank=True)
-    weight_units = models.CharField(_("Weight units"), max_length=3, null=True, blank=True, validator_list=[weight_validator])
+    weight_units = models.CharField(_("Weight units"), max_length=3, null=True, blank=True) 
+    #, validator_list=[weight_validator])
     length = models.DecimalField(_("Length"), max_digits=6, decimal_places=2, null=True, blank=True)
-    length_units = models.CharField(_("Length units"), max_length=3, null=True, blank=True, validator_list=[length_validator])
+    length_units = models.CharField(_("Length units"), max_length=3, null=True, blank=True)
+    #, validator_list=[length_validator])
     width = models.DecimalField(_("Width"), max_digits=6, decimal_places=2, null=True, blank=True)
-    width_units = models.CharField(_("Width units"), max_length=3, null=True, blank=True, validator_list=[width_validator])
+    width_units = models.CharField(_("Width units"), max_length=3, null=True, blank=True)
+    #, validator_list=[width_validator])
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
-    height_units = models.CharField(_("Height units"), max_length=3, null=True, blank=True, validator_list=[height_validator])
+    height_units = models.CharField(_("Height units"), max_length=3, null=True, blank=True)
+    #, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.IntegerField(_("Total sold"), default=0)
@@ -592,7 +597,7 @@ class Product(models.Model):
         verbose_name_plural = _("Products")
         unique_together = (('site', 'sku'),('site','slug'))
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.date_added = datetime.date.today()
 
@@ -601,7 +606,7 @@ class Product(models.Model):
 
         if not self.sku:
             self.sku = self.slug
-        super(Product, self).save()
+        super(Product, self).save(force_insert=force_insert, force_update=force_update)
 
     def get_subtypes(self):
         types = []
@@ -865,10 +870,10 @@ class CustomTextField(models.Model):
     price_change = models.DecimalField(_("Price Change"), max_digits=14, 
         decimal_places=6, blank=True, null=True)
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
-        super(CustomTextField, self).save()
+        super(CustomTextField, self).save(force_insert=force_insert, force_update=force_update)
 
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
@@ -1055,7 +1060,7 @@ class ConfigurableProduct(models.Model):
 
         return context
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         """
         Right now this only works if you save the suboptions, then go back and choose to create the variations.
         """
@@ -1066,7 +1071,7 @@ class ConfigurableProduct(models.Model):
         if self.create_subs and self.option_group.count():
             self.create_all_variations()
             self.create_subs = False
-            super(ConfigurableProduct, self).save()
+            super(ConfigurableProduct, self).save(force_insert=force_insert, force_update=force_update)
 
     def get_absolute_url(self):
         return self.product.get_absolute_url()
@@ -1196,7 +1201,9 @@ class ProductVariation(models.Model):
     """
     product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
     options = models.ManyToManyField(Option, verbose_name=_('Options'))
-    parent = models.ForeignKey(ConfigurableProduct, validator_list=[variant_validator], verbose_name=_('Parent'))
+    parent = models.ForeignKey(ConfigurableProduct, 
+    #, validator_list=[variant_validator]
+    verbose_name=_('Parent'))
 
     objects = ProductVariationManager()
 
@@ -1301,7 +1308,7 @@ class ProductVariation(models.Model):
                 price_delta += Decimal(option.price_change)
         return price_delta
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         pvs = ProductVariation.objects.filter(parent=self.parent)
         pvs = pvs.exclude(product=self.product)
         for pv in pvs:
@@ -1312,7 +1319,7 @@ class ProductVariation(models.Model):
             # will force calculation of default name
             self.name = ""
 
-        super(ProductVariation, self).save()
+        super(ProductVariation, self).save(force_insert=force_insert, force_update=force_update)
 
     def _set_name(self, name):
         if not name:
@@ -1391,7 +1398,7 @@ class Price(models.Model):
 
     dynamic_price = property(fget=_dynamic_price)
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         prices = Price.objects.filter(product=self.product, quantity=self.quantity)
         ## Jump through some extra hoops to check expires - if there's a better way to handle this field I can't think of it. Expires needs to be able to be set to None in cases where there is no expiration date.
         if self.expires:
@@ -1403,7 +1410,7 @@ class Price(models.Model):
         if prices.count():
             return #Duplicate Price
 
-        super(Price, self).save()
+        super(Price, self).save(force_insert=force_insert, force_update=force_update)
 
     class Meta:
         ordering = ['expires', '-quantity']

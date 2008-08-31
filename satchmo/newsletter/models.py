@@ -52,13 +52,13 @@ class Subscription(models.Model):
     def __repr__(self):
         return "<Subscription: %s>" % str(self)
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.create_date = datetime.date.today()
 
         self.update_date = datetime.date.today()
 
-        super(Subscription, self).save()
+        super(Subscription, self).save(force_insert=force_insert, force_update=force_update)
 
 import config
 

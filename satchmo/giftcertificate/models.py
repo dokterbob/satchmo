@@ -80,14 +80,14 @@ class GiftCertificate(models.Model):
         u.save()
         return self.balance
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.date_added = datetime.now()
         if not self.code:
             self.code = generate_certificate_code()
         if not self.site:
             self.site = Site.objects.get_current()
-        super(GiftCertificate, self).save()
+        super(GiftCertificate, self).save(force_insert=force_insert, force_update=force_update)
 
     def __str__(self):
         sb = moneyfmt(self.start_balance)
@@ -112,10 +112,10 @@ class GiftCertificateUsage(models.Model):
     def __unicode__(self):
         return u"GiftCertificateUsage: %s" % self.balance_used
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.usage_date = datetime.now()
-        super(GiftCertificateUsage, self).save()
+        super(GiftCertificateUsage, self).save(force_insert=force_insert, force_update=force_update)
 
 
 class GiftCertificateProduct(models.Model):
