@@ -4,6 +4,8 @@ Satchmo Change Log
 
 Trunk
 -----
+ * Migrated to new django comments functionality. Remove the need for comment_utils
+ * Move admin to use nfa and rest of Satchmo now compatible with django 1.0
  * Removed all standalone satchmo settings from settings.py and local_settings.py, moving them
    to a dictionary.  This allows for explicit defaults and for easier integration with other apps.
  * Moved all order methods, classes and views into the satchmo.shop application from Contact

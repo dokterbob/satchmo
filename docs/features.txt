@@ -39,10 +39,12 @@ All products offer you the opportunity to have:
     - Featured items
     - Tax tables
     - Related products
+    - Most popular products
     - Arbitrary attributes
     - Multiple translations per product
     - Flexible variant creation (shirts with sizes and colors) including price changes for combinations
     - Allow user to comment and rate products
+    - Comments support akismet spam tagging
 
 The customer model allows you to:
     - Have multiple ship to and bill to addresses
@@ -67,6 +69,8 @@ Satchmo includes extensive Internationalization and translation support:
         - Bulgarian
         - Portuguese
         - Korean
+        - Hebrew
+        - Turkish
     - Full country specific information
     - Translation support for all products and categories
     - Support for date and currency formating based on locale
