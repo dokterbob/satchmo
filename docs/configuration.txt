@@ -31,7 +31,7 @@ number of places you might want to configure.
 Site Settings
 -------------
 
-The majority of the store configuration is done through the admin interface. Satchmo has a flexible Site Settings capability that can be accessed through the admin interface or through the url: /admin/settings
+The majority of the store configuration is done through the admin interface. Satchmo has a flexible Site Settings capability that can be accessed through the admin interface or through the url: /settings
 
 All of the configuration settings have detailed help notes. They also default to sensible configurations so your initial store should work fine without changing any values.
 
