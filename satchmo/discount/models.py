@@ -12,15 +12,12 @@ from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import Product
-from satchmo.utils.validators import MutuallyExclusiveWithField
 import datetime
 import logging
 import operator
 
 log = logging.getLogger('Discount.models')
 
-percentage_validator = MutuallyExclusiveWithField('amount')
-amount_validator = MutuallyExclusiveWithField('percentage')
 
 class NullDiscount(object):
 

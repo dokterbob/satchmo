@@ -14,8 +14,7 @@ import signals
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.sites.models import Site
-from django.core import validators, urlresolvers
-from django.core.validators import RequiredIfOtherFieldGiven
+from django.core import urlresolvers
 from django.db import models
 from django.db.models import Q
 from django.db.models.fields.files import FileField
@@ -27,7 +26,6 @@ from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from satchmo.utils import cross_list, normalize_dir, url_join
 from satchmo.utils.unique_id import slugify
-from satchmo.utils.validators import ValidateIfFieldsSame
 
 try:
     from decimal import Decimal
@@ -40,13 +38,6 @@ except NameError:
     from sets import Set as set  # Python 2.3 fallback
 
 log = logging.getLogger('product.models')
-
-length_validator = RequiredIfOtherFieldGiven('length', _("A unit of measure must be entered for the length"))
-width_validator = RequiredIfOtherFieldGiven('width', _("A unit of measure must be entered for the width"))
-height_validator = RequiredIfOtherFieldGiven('height', _("A unit of measure must be entered for the height"))
-weight_validator = RequiredIfOtherFieldGiven('weight', _("A unit of measure must be entered for the weight"))
-
-variant_validator = ValidateIfFieldsSame('product', _('The product and parent fields can not be the same.'))
 
 dimension_units = (('cm','cm'), ('in','in'))
 

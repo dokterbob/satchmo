@@ -5,14 +5,14 @@ from django.template import RequestContext
 from satchmo.caching import cache_get, cache_set, NotCachedError
 from satchmo.configuration import config_value
 from satchmo.product.models import Product
-import comments
+from satchmo.productratings.utils import highest_rated
 import logging
         
 log = logging.getLogger('product.filterviews')
 
 def display_bestratings(request):
     """Display a list of the products with the best ratings in comments"""
-    products = comments.highest_rated()
+    products = highest_rated()
     ctx = RequestContext(request, {
         'products' : products,
     })
