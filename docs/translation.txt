@@ -35,7 +35,7 @@ Template Translations
 
 4. Compile the file using django's compile-messages.py script::
 
-    /path/to/django/bin/compile-messages.py -l de
+    /path/to/django-admin.py compile-messages -l de
 
 5. (Optional but encouraged) Submit a ticket with your translation.
 
