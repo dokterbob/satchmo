@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo.shop.models import DownloadLink
+import mimetypes
 
 import os
 import os.path
@@ -86,4 +87,7 @@ def send_file(request, download_key):
     response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
     response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
+    contenttype, encoding = mimetypes.guess_type(file_name)
+    if contenttype:
+        response['Content-type'] = contenttype
     return response
