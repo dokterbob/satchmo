@@ -25,9 +25,8 @@ def get_product_rating(product, site=None):
         site = Site.objects.get_current()
     
     site = site.id
-        
     manager = Comment.objects
-    comments = manager.filter(object_pk__exact=product.id,
+    comments = manager.filter(object_pk__exact=str(product.id),
                                content_type__app_label__exact='product',
                                content_type__model__exact='product',
                                site__id__exact=site,
@@ -65,10 +64,10 @@ def highest_rated(num=None, site=None):
     if site is None:
         site = Site.objects.get_current()
 
-    site = site.id
+    site_id = site.id
 
     try:
-        pks = cache_get("BESTRATED", site=site, num=num)
+        pks = cache_get("BESTRATED", site=site_id, num=num)
         pks = [pk for pk in pks.split(',')]
         log.debug('retrieved highest rated products from cache')
         
@@ -77,7 +76,7 @@ def highest_rated(num=None, site=None):
 
         comments = Comment.objects.filter(content_type__app_label__exact='product',
             content_type__model__exact='product',
-            site__id__exact=site.id,
+            site__id__exact=site_id,
             productrating__rating__gt=0,
             is_public__exact=True).order_by('object_pk')
         
@@ -87,10 +86,10 @@ def highest_rated(num=None, site=None):
             if hasattr(comment, 'productrating'):
                 rating = comment.productrating.rating
                 if rating>0:
-                    commentdict.setdefault(comment.object_id, []).append(rating)
+                    commentdict.setdefault(comment.object_pk, []).append(rating)
         
         # now take the average of each, and make a nice list suitable for sorting
-        ratelist = [(average(ratings), pk) for pk, ratings in commentdict.items()]
+        ratelist = [(average(ratings), int(pk)) for pk, ratings in commentdict.items()]
         ratelist.sort()
         #log.debug(ratelist)
         
