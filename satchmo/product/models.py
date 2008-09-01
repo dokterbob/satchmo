@@ -26,6 +26,7 @@ from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from satchmo.utils import cross_list, normalize_dir, url_join
 from satchmo.utils.unique_id import slugify
+from django.utils.encoding import smart_str
 
 try:
     from decimal import Decimal
@@ -1099,7 +1100,7 @@ class DownloadableProduct(models.Model):
 
     def create_key(self):
         salt = sha.new(str(random.random())).hexdigest()[:5]
-        download_key = sha.new(salt+self.product.name).hexdigest()
+        download_key = sha.new(salt+smart_str(self.product.name)).hexdigest()
         return download_key
 
     def order_success(self, order, order_item):
