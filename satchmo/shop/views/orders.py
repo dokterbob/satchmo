@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from satchmo.contact.models import Contact
 from satchmo.shop.models import Order
 from satchmo.shop.views.utils import bad_or_missing
+from satchmo.configuration import config_value 
 
 def order_history(request):
     orders = None
@@ -17,6 +18,7 @@ def order_history(request):
         
     ctx = RequestContext(request, {
         'contact' : contact,
+        'default_view_tax': config_value('TAX', 'DEFAULT_VIEW_TAX'),
         'orders' : orders})
 
     return render_to_response('shop/order_history.html', ctx)

@@ -12,9 +12,10 @@ def order_details(context, order, default_view_tax=False):
 
 register.inclusion_tag('shop/_order_details.html', takes_context=True)(order_details)
 
-def order_tracking_details(order, paylink=False):
+def order_tracking_details(order, paylink=False, default_view_tax=False):
     """Output a formatted block giving order tracking details."""
     return {'order' : order,
+        'default_view_tax': default_view_tax,
         'paylink' : paylink }
 
 register.inclusion_tag('shop/_order_tracking_details.html')(order_tracking_details)
