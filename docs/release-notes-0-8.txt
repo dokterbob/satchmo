@@ -13,6 +13,7 @@ Satchmo Trunk includes many new features and improvements. Some of the highlight
     - New signals in get_qty_price methods of products, allowing code to manipulate the price returned by the function.  Example code using these signals is at satchmo.contrib.cartqty_discounts, which modifies the qty_discount method to calculate the discount based on the total number of items in the cart, rather than the total amount of the lineitem.
     - Improved inheritance of detail_producttype.html pages, which no longer need to duplicate as much of the code of base_product.html, allowing for easier addition of features to the product detail pages.
     - Migrated to newforms admin which fixed some bugs and provides a much more solid base for future changes
+    - Added multi-shop capability
 
 
 The following documentation improvements were made:
@@ -28,6 +29,7 @@ The following translations were updated or added:
     - French
     - Hebrew
     - Turkish
+    - Italian
 
 
     

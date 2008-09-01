@@ -4,6 +4,7 @@ Satchmo Change Log
 
 Trunk
 -----
+ * Added Italian translation
  * Migrated to new django comments functionality. Remove the need for comment_utils
  * Move admin to use nfa and rest of Satchmo now compatible with django 1.0
  * Removed all standalone satchmo settings from settings.py and local_settings.py, moving them
