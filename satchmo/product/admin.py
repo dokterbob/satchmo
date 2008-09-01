@@ -92,6 +92,7 @@ class CategoryAdminForm(models.ModelForm):
 
 class CategoryOptions(admin.ModelAdmin):
     list_display = ('site','name', '_parents_repr')
+    list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryTranslation_Inline, CategoryImage_Inline]
     
@@ -109,6 +110,7 @@ class OptionOptions(admin.ModelAdmin):
 
 class ProductOptions(admin.ModelAdmin):
     list_display = ('site', 'slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
+    list_display_links = ('slug', 'name')
     list_filter = ('category', 'date_added')
     fieldsets = (
     (None, {'fields': ('site', 'category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )

@@ -61,7 +61,7 @@ class OrderOptions(admin.ModelAdmin):
             ('bill_street1', 'bill_street2', 'bill_city', 'bill_state', 'bill_postal_code', 'bill_country')}), (_('Totals'), {'fields':
             ('sub_total', 'shipping_cost', 'shipping_discount', 'tax', 'discount', 'total', 'timestamp')}))
     list_display = ('contact', 'timestamp', 'order_total', 'balance_forward', 'status', 'invoice', 'packingslip', 'shippinglabel')
-    list_filter = ['timestamp', 'contact', 'status']
+    list_filter = ['timestamp', 'status']
     date_hierarchy = 'timestamp'
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, OrderTaxDetail_Inline]
 
