@@ -127,6 +127,7 @@ LANGUAGES_AVAILABLE = config_register(
             ('de',"Deutsch"),
             ('es', "Español"),
             ('he',"עִבְרִית"),
+            ('it',"Italiano"),
             ('ko', "한국어"),
             ('sv', "Svenska"),
             ('pt-br',"Português"),
