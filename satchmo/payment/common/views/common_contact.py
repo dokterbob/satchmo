@@ -5,7 +5,7 @@
 from django import http
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from satchmo.configuration import config_get_group, config_value
+from satchmo.configuration import config_get_group, config_value, SHOP_GROUP
 from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.common import get_area_country_options
 from satchmo.contact.models import Contact
@@ -20,6 +20,13 @@ def contact_info(request):
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
         return render_to_response('checkout/empty_cart.html', RequestContext(request))
+
+    if not request.user.is_authenticated() and config_value(SHOP_GROUP, 'AUTHENTICATION_REQUIRED'):
+        return render_to_response(
+                'checkout/authentication_required.html',
+                {},
+                context_instance = RequestContext(request)
+                )
 
     init_data = {}
     areas, countries, only_country = get_area_country_options(request)
