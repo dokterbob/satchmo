@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _, ugettext
-from satchmo.configuration import config_value, config_get_group, SettingNotSet
+from satchmo.configuration import config_value, config_get_group, SettingNotSet, SHOP_GROUP
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
@@ -39,6 +39,7 @@ class ContactInfoForm(forms.Form):
         if kwargs.has_key('shippable'):
             self.shippable = kwargs['shippable']
             del(kwargs['shippable'])
+        self._billing_data_optional = config_value(SHOP_GROUP, 'BILLING_DATA_OPTIONAL'),
         super(ContactInfoForm, self).__init__(*args, **kwargs)   
         if areas is not None and countries is None:
             log.debug('populating admin areas')
@@ -62,6 +63,9 @@ class ContactInfoForm(forms.Form):
         self.fields['country'].initial = country.pk
         self.fields['ship_country'].initial = country.pk
         self.contact = contact
+        if self._billing_data_optional:
+            for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code'):
+                self.fields[fname].required = False
 
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
@@ -88,7 +92,7 @@ class ContactInfoForm(forms.Form):
                 return data
             country_pk = self.data['country']
         country = Country.objects.get(pk=country_pk)
-        if country.adminarea_set.filter(active=True).count() > 0:
+        if country.adminarea_set.filter(active=True).count() > 0 and not self._billing_data_optional:
             if not data or data == selection:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \

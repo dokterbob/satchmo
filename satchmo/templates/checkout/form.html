@@ -125,25 +125,25 @@ $(document).ready(function() {
     <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.addressee }}</td></tr>
     {% if form.addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ form.addressee.errors|join:", "}}</td></tr>{% endif %}
 
-    <tr><td><label for="id_street1">{% trans "Street" %}*</label></td><td> {{ form.street1 }}</td></tr>
+    <tr><td><label for="id_street1">{% trans "Street" %}{% if form.street1.field.required %}*{% endif %}</label></td><td> {{ form.street1 }}</td></tr>
     {% if form.street1.errors %}<tr><td>&nbsp;</td><td>*** {{ form.street1.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_street2">{% trans "Street" %}</label></td><td> {{ form.street2 }}</td></tr>
     {% if form.street2.errors %}<tr><td>&nbsp;</td><td>*** {{ form.street2.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_city">{% trans "City" %}*</label></td><td> {{ form.city }}</td></tr>
+    <tr><td><label for="id_city">{% trans "City" %}{% if form.city.field.required %}*{% endif %}</label></td><td> {{ form.city }}</td></tr>
     {% if form.city.errors %}<tr><td>&nbsp;</td><td>*** {{ form.city.errors|join:", " }}</td></tr>{% endif %}
 
     {% if country %}
       {% if form.fields.state.choices %}
-        <tr><td><label for="id_state">{{ country.get_admin_area_display }}*</label></td><td> {{ form.state }}</td></tr>
+      <tr><td><label for="id_state">{{ country.get_admin_area_display }}{% if form.country.field.required %}*{% endif %}</label></td><td> {{ form.state }}</td></tr>
       {% endif %}
     {% else %}
       <tr><td><label for="id_state">{% trans "State/Province" %}</label></td><td> {{ form.state }}</td></tr>
     {% endif %}
     {% if form.state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.state.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_postal_code">{% trans "Zipcode/Postcode" %}*</label></td><td> {{ form.postal_code }}</td></tr>
+    <tr><td><label for="id_postal_code">{% trans "Zipcode/Postcode" %}{% if form.postal_code.field.required %}*{% endif %}</label></td><td> {{ form.postal_code }}</td></tr>
     {% if form.postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.postal_code.errors|join:", " }}</td></tr>{% endif %}
 
     {% if not country %}

@@ -10,6 +10,20 @@ config_register(
     default=False,
     )
 )
+
+config_register(
+    BooleanValue(SHOP_GROUP,
+    'BILLING_DATA_OPTIONAL',
+    description=_("Billing data is optional"),
+    help_text=_(
+        "Users will not be required to provide billing address and phone number. If authentication "
+        "before checkout is required, this allows instant purchase (all required contact data will "
+        "have already been provided in registration form). Otherwise be careful, as this may leave "
+        "you orders with almost no customer data!"
+        ),
+    default=False,
+    )
+)
 # I am doing it this way instead of a boolean for email verification because I
 # intend to add a "manual approval" style of account verification. -Bruce
 ACCOUNT_VERIFICATION = config_register(StringValue(SHOP_GROUP,
