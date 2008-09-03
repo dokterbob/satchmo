@@ -46,3 +46,12 @@ def smart_attr(product, key):
     return product.smart_attr(key)
 
 register.filter('smart_attr', smart_attr)
+
+def product_sort_by_price(products):
+    """Sort a product list by unit price"""
+    
+    fast = [(product.unit_price, product) for product in products]
+    fast.sort()
+    return zip(*fast)[1]
+    
+register.filter('product_sort_by_price', product_sort_by_price)

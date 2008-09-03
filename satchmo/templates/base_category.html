@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail satchmo_category%}
+{% load satchmo_thumbnail satchmo_category %}
 
 {% block extra-head %}
 {% if category.meta %}
@@ -29,7 +29,7 @@
 {% block content %}
 <div id="product_category">
 <h3>{{ category.translated_name }}</h3>
-    {% for product in category.active_products %} 
+    {% for product in products %} 
         {% if forloop.first %} <ul>  {% endif %}
             <li><a href="{{ product.get_absolute_url }}">
             <img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>

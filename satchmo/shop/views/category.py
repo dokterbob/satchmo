@@ -6,7 +6,12 @@ from satchmo.product.models import Category
 from satchmo.shop.views.utils import bad_or_missing
 
 def display(request, slug, parent_slugs=''):
-    # Display the category, its child categories, and its products.
+    """Display the category, its child categories, and its products.
+    
+    Parameters:
+     - slug: slug of category
+     - parent_slugs: ignored    
+    """
     try:
         category = Category.objects.get(slug=slug)
         products = list(category.active_products())
@@ -19,6 +24,7 @@ def display(request, slug, parent_slugs=''):
     ctx = RequestContext(request, {
         'category': category, 
         'child_categories': child_categories,
-        'sale' : sale
+        'sale' : sale,
+        'products' : products,
         })
     return render_to_response('base_category.html', ctx)
