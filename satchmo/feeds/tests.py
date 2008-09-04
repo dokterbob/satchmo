@@ -18,7 +18,9 @@ class GoogleBaseTest(TestCase):
         caching.cache_delete
 
     def test_feed(self):
-        response = self.client.get(urlresolvers.reverse('satchmo_atom_feed'))
+        url = urlresolvers.reverse('satchmo_atom_feed')
+        print "url == " + url
+        response = self.client.get(url)
         self.assertContains(response,
             "<title>Robots Attack! (Hard cover)</title>",
             count=1, status_code=200)

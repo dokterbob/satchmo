@@ -30,10 +30,13 @@ def product_feed(request, category=None, template="feeds/googlebase_atom.xml", m
         
     products = filter(lambda product:"ConfigurableProduct" not in product.get_subtypes(), products)
     
-    url = shop_config.base_url + urlresolvers.reverse('satchmo_atom_feed', None, { 
-        'category' : category, 
-        'template' : template 
-    })
+    params = {}
+    view = 'satchmo_atom_feed'
+    if category:
+        params['category'] = category
+        view = 'satchmo_atom_category_feed'
+    
+    url = shop_config.base_url + urlresolvers.reverse(view, None, params)
     
     payment_choices = [c[1] for c in credit_choices(None, True)]
     
