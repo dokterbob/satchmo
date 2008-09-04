@@ -125,7 +125,7 @@ class Discount(models.Model):
             lid = lineitem.id
             price = lineitem.line_item_price
             if lineitem.product.is_discountable and (allvalid or lineitem.product.id in validproducts):
-                discounted[lid] = price
+                discounted[lid] = price 
 
         if self.includeShipping and not self.freeShipping:
             shipcost = order.shipping_cost
