@@ -55,4 +55,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _snapshot: http://www.satchmoproject.com/snapshots/
 .. _Docutils: http://docutils.sourceforge.net/
 .. _installation : new_installation.html
-.. _`Django Threaded Multihost`: http://gosatchmo.com/django-threaded-multihost/
+.. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
