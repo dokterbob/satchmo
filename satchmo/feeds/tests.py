@@ -19,7 +19,6 @@ class GoogleBaseTest(TestCase):
 
     def test_feed(self):
         url = urlresolvers.reverse('satchmo_atom_feed')
-        print "url == " + url
         response = self.client.get(url)
         self.assertContains(response,
             "<title>Robots Attack! (Hard cover)</title>",
