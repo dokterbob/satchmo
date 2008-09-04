@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-02 16:18+0200\n"
-"PO-Revision-Date: 2008-09-02 17:17+0100\n"
+"PO-Revision-Date: 2008-09-04 13:29+0100\n"
 "Last-Translator: Michal Salaban <michal@salaban.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Nazwisko"
 #: contact/forms.py:305
 #: templates/contact/update_form.html:67
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr "Biuletyn"
 
 #: accounts/forms.py:37
 msgid "The two passwords do not match."
@@ -494,7 +494,7 @@ msgstr "Opis adresu - dom, biuro, magazyn, itp."
 #: shop/models.py:532
 #: shop/models.py:539
 msgid "Addressee"
-msgstr ""
+msgstr "Adresat"
 
 #: contact/models.py:232
 #: contact/models.py:233
@@ -680,7 +680,7 @@ msgstr "Ważność tego kuponu skończyła się."
 
 #: discount/models.py:88
 msgid "This discount has exceeded the number of allowed uses."
-msgstr ""
+msgstr "Ten rabat został już użyty dozwoloną ilość razy."
 
 #: discount/models.py:90
 #: discount/models.py:107
@@ -690,28 +690,28 @@ msgstr ""
 #: discount/models.py:94
 #, python-format
 msgid "This discount only applies to orders of at least %s."
-msgstr ""
+msgstr "Ten rabat ma zastosowanie do zamówień na kwotę conajmniej %s."
 
 #: discount/models.py:109
 msgid "This discount cannot be applied to the products in your cart."
-msgstr ""
+msgstr "Ten rabat nie może być zastosowany do produktów w Twoim koszyku."
 
 #: discount/models.py:183
 #: templates/admin/satchmo_app_list.html:70
 #: templates/shop/_order_details.html:53
 #: templates/shop/_order_tracking_details.html:30
 msgid "Discount"
-msgstr ""
+msgstr "Rabat"
 
 #: discount/models.py:184
 #: templates/checkout/base_pay_ship.html:32
 msgid "Discounts"
-msgstr ""
+msgstr "Rabaty"
 
 #: feeds/views.py:26
 #, python-format
 msgid "Bad Category: %s"
-msgstr ""
+msgstr "Nieprawidłowa kategoria: %s"
 
 #: giftcertificate/config.py:8
 #: giftcertificate/models.py:98
@@ -730,11 +730,11 @@ msgstr ""
 #: payment/modules/cybersource/config.py:33
 #: payment/modules/trustcommerce/config.py:31
 msgid "Use SSL for the checkout pages?"
-msgstr ""
+msgstr "Używać protokołu SSL na stronach dotyczących płatności?"
 
 #: giftcertificate/config.py:22
 msgid "Character Set"
-msgstr ""
+msgstr "Zestaw znaków"
 
 #: giftcertificate/config.py:24
 msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
@@ -807,7 +807,7 @@ msgstr ""
 #: payment/modules/paypal/config.py:57
 #: payment/modules/trustcommerce/config.py:41
 msgid "Accept real payments"
-msgstr ""
+msgstr "Akceptuj rzeczywiste płatności"
 
 #: giftcertificate/config.py:53
 #: payment/modules/authorizenet/config.py:45
@@ -835,14 +835,14 @@ msgstr ""
 
 #: giftcertificate/forms.py:6
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: giftcertificate/models.py:36
 #: shop/models.py:899
 #: shop/models.py:981
 #: shop/models.py:1033
 msgid "Order"
-msgstr ""
+msgstr "Zamówienie"
 
 #: giftcertificate/models.py:37
 msgid "Certificate Code"
@@ -881,12 +881,12 @@ msgstr ""
 
 #: giftcertificate/models.py:105
 msgid "Amount Used"
-msgstr ""
+msgstr "Użyta kwota"
 
 #: giftcertificate/models.py:107
 #: shop/models.py:1086
 msgid "Order Payment"
-msgstr ""
+msgstr "Płatność za zamówienie"
 
 #: giftcertificate/models.py:108
 msgid "Used by"
@@ -903,7 +903,7 @@ msgstr ""
 #: shop/models.py:900
 #: wishlist/models.py:27
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #: giftcertificate/models.py:157
 msgid "Gift certificate product"
@@ -931,7 +931,7 @@ msgstr ""
 #: shop/views/cart.py:208
 #: wishlist/views.py:86
 msgid "Success"
-msgstr ""
+msgstr "Sukces"
 
 #: giftcertificate/processor.py:47
 #, python-format
@@ -953,7 +953,7 @@ msgstr ""
 #: templates/checkout/success.html:8
 #: templates/checkout/cod/confirm.html:10
 msgid "Checkout"
-msgstr ""
+msgstr "Do kasy"
 
 #: giftcertificate/templates/checkout/confirm.html:14
 #: giftcertificate/templates/checkout/giftcertificate/confirm.html:14
@@ -968,12 +968,12 @@ msgstr ""
 #: templates/checkout/paypal/confirm.html:6
 #: templates/checkout/paypal/confirm.html:9
 msgid "Payment"
-msgstr ""
+msgstr "Płatność"
 
 #: giftcertificate/templates/checkout/confirm.html:20
 #, python-format
 msgid "Order total: %(orderbalance)s"
-msgstr ""
+msgstr "Suma zamówienia: %(orderbalance)s"
 
 #: giftcertificate/templates/checkout/confirm.html:21
 #, python-format
@@ -1028,15 +1028,15 @@ msgstr ""
 
 #: giftcertificate/templates/giftcertificate/balance.html:15
 msgid "Purchased on:"
-msgstr ""
+msgstr "Zakupione dnia:"
 
 #: giftcertificate/templates/giftcertificate/balance.html:21
 msgid "Initial Balance:"
-msgstr ""
+msgstr "Saldo początkowe:"
 
 #: giftcertificate/templates/giftcertificate/balance.html:22
 msgid "Current Balance:"
-msgstr ""
+msgstr "Saldo bieżące:"
 
 #: giftcertificate/templates/giftcertificate/balance.html:25
 msgid "No such gift certificate found."
@@ -1054,7 +1054,7 @@ msgstr ""
 #: templates/product/detail_configurableproduct.html:35
 #: templates/product/detail_customproduct.html:12
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:20
 msgid "Quantity (multiply the gift certificate by this amount)"
@@ -1062,11 +1062,11 @@ msgstr ""
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:23
 msgid "Recipient Email (optional):"
-msgstr ""
+msgstr "Email odbiorcy (opcjonalny):"
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:24
 msgid "Message (optional):"
-msgstr ""
+msgstr "Wiadomość (opcjonalna):"
 
 #: giftcertificate/templates/product/detail_giftcertificateproduct.html:29
 #: templates/base_product.html:62
@@ -1075,7 +1075,7 @@ msgstr ""
 #: templates/product/detail_subscriptionproduct.html:42
 #: templates/wishlist/index.html:38
 msgid "Add to cart"
-msgstr ""
+msgstr "Dodaj do koszyka"
 
 #: l10n/models.py:6
 msgid "Africa"
@@ -1274,7 +1274,7 @@ msgstr ""
 
 #: newsletter/config.py:7
 msgid "Newsletter Settings"
-msgstr ""
+msgstr "Ustawienia biuletynu"
 
 #: newsletter/config.py:11
 msgid "Active newsletter module"
@@ -1298,7 +1298,7 @@ msgstr ""
 
 #: newsletter/config.py:21
 msgid "Name of Newsletter"
-msgstr ""
+msgstr "Nazwa biuletynu"
 
 #: newsletter/config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
@@ -1473,46 +1473,46 @@ msgstr ""
 
 #: payment/models.py:41
 msgid "Payment Option"
-msgstr ""
+msgstr "Parametr płatności"
 
 #: payment/models.py:42
 msgid "Payment Options"
-msgstr ""
+msgstr "Parametry płatności"
 
 #: payment/models.py:51
 msgid "Credit Card Type"
-msgstr ""
+msgstr "Numer karty kredytowej"
 
 #: payment/models.py:52
 msgid "CC Number (Last 4 digits)"
-msgstr ""
+msgstr "Numer karty (ostatnie 4 cyfry)"
 
 #: payment/models.py:54
 msgid "Encrypted Credit Card"
-msgstr ""
+msgstr "Zaszyfrowany numer karty"
 
 #: payment/models.py:56
 msgid "Expiration Month"
-msgstr ""
+msgstr "Miesiąc terminu ważności"
 
 #: payment/models.py:57
 msgid "Expiration Year"
-msgstr ""
+msgstr "Rok terminu ważności"
 
 #: payment/models.py:101
 #: payment/modules/authorizenet/config.py:6
 #: payment/modules/cybersource/config.py:6
 #: payment/modules/trustcommerce/config.py:5
 msgid "Credit Card"
-msgstr ""
+msgstr "Karta kredytowa"
 
 #: payment/models.py:102
 msgid "Credit Cards"
-msgstr ""
+msgstr "Karty kredytowe"
 
 #: payment/views.py:24
 msgid "New price"
-msgstr ""
+msgstr "Nowa cena"
 
 #: payment/views.py:25
 msgid "Shipping adjustment"
@@ -1529,7 +1529,7 @@ msgstr ""
 
 #: payment/views.py:164
 msgid "No form found in request."
-msgstr ""
+msgstr "W zapytaniu do serwera nie znaleziono formularza."
 
 #: payment/common/forms.py:64
 #: payment/common/forms.py:77
@@ -1663,31 +1663,31 @@ msgstr ""
 
 #: payment/modules/dummy/config.py:8
 msgid "Payment Test Module"
-msgstr ""
+msgstr "Moduł płatności testowej"
 
 #: payment/modules/dummy/config.py:11
 msgid "Payment Test Module Settings"
-msgstr ""
+msgstr "Ustawienia modułu płatności testowej"
 
 #: payment/modules/google/config.py:8
 msgid "Google Checkout Module"
-msgstr ""
+msgstr "Moduł Google Checkout"
 
 #: payment/modules/google/config.py:11
 msgid "Google Checkout Module Settings"
-msgstr ""
+msgstr "Ustawienia modułu Google Checkout"
 
 #: payment/modules/google/config.py:19
 msgid "XML Template"
-msgstr ""
+msgstr "Szablon XML"
 
 #: payment/modules/google/config.py:20
 msgid "The XML template to use when submitting to Google. Probably you should not change this."
-msgstr ""
+msgstr "Szablon XML używany do wysyłania informacji do Google. Najprawdopodobniej nie chesz tego zmieniać."
 
 #: payment/modules/google/config.py:26
 msgid "Currency code for Google Checkout transactions."
-msgstr ""
+msgstr "Kod waluty do operacji w Google Checkout."
 
 #: payment/modules/google/config.py:31
 msgid "Checkout Button URL"
@@ -1699,86 +1699,86 @@ msgstr ""
 
 #: payment/modules/google/config.py:38
 msgid "Small"
-msgstr ""
+msgstr "Mały"
 
 #: payment/modules/google/config.py:39
 msgid "Medium"
-msgstr ""
+msgstr "Średni"
 
 #: payment/modules/google/config.py:40
 msgid "Large"
-msgstr ""
+msgstr "Duży"
 
 #: payment/modules/google/config.py:45
 #: payment/modules/google/config.py:51
 #: payment/modules/paypal/config.py:22
 #: payment/modules/paypal/config.py:28
 msgid "Post URL"
-msgstr ""
+msgstr "URL nadania (POST)"
 
 #: payment/modules/google/config.py:46
 msgid "The Google URL for real transaction posting."
-msgstr ""
+msgstr "URL Google dla rzeczywistych transakcji."
 
 #: payment/modules/google/config.py:52
 msgid "The Google URL for test transaction posting."
-msgstr ""
+msgstr "URL Google dla testowych transakcji."
 
 #: payment/modules/google/config.py:57
 msgid "Merchant ID"
-msgstr ""
+msgstr "Merchant ID"
 
 #: payment/modules/google/config.py:62
 msgid "Merchant Key"
-msgstr ""
+msgstr "Merchant Key"
 
 #: payment/modules/google/config.py:67
 msgid "Merchant Test ID"
-msgstr ""
+msgstr "Merchant Test ID"
 
 #: payment/modules/google/config.py:72
 msgid "Merchant Test Key"
-msgstr ""
+msgstr "Merchant Test Key"
 
 #: payment/modules/paypal/config.py:5
 msgid "Paypal Payment Settings"
-msgstr ""
+msgstr "Ustawienia płatności PayPal"
 
 #: payment/modules/paypal/config.py:8
 msgid "Paypal Payment Module Settings"
-msgstr ""
+msgstr "Ustawienia modułu płatności PayPal"
 
 #: payment/modules/paypal/config.py:17
 msgid "Currency code for Paypal transactions."
-msgstr ""
+msgstr "Kod waluty do operacji PayPal"
 
 #: payment/modules/paypal/config.py:23
 msgid "The Paypal URL for real transaction posting."
-msgstr ""
+msgstr "URL PayPal do rzeczywistych operacji."
 
 #: payment/modules/paypal/config.py:29
 msgid "The Paypal URL for test transaction posting."
-msgstr ""
+msgstr "URL PayPal do testowych operacji."
 
 #: payment/modules/paypal/config.py:34
 msgid "Paypal account email"
-msgstr ""
+msgstr "Email konta PayPal"
 
 #: payment/modules/paypal/config.py:35
 msgid "The email address for your paypal account"
-msgstr ""
+msgstr "Adres email dla Twojego konta w PayPal"
 
 #: payment/modules/paypal/config.py:40
 msgid "Paypal test account email"
-msgstr ""
+msgstr "Email konta testowego PayPal"
 
 #: payment/modules/paypal/config.py:41
 msgid "The email address for testing your paypal account"
-msgstr ""
+msgstr "Adres email dla Twojego konta testowego w PayPal"
 
 #: payment/modules/paypal/config.py:46
 msgid "Return URL"
-msgstr ""
+msgstr "URL powrotu"
 
 #: payment/modules/paypal/config.py:47
 msgid "Where Paypal will return the customer after the purchase is complete.  This can be a named url and defaults to the standard checkout success."
@@ -1786,7 +1786,7 @@ msgstr ""
 
 #: payment/modules/paypal/views.py:134
 msgid "Paid through PayPal."
-msgstr ""
+msgstr "Zapłacono przez PayPal."
 
 #: payment/modules/paypal/views.py:144
 msgid "---Comment via Paypal IPN---"
@@ -3872,31 +3872,6 @@ msgstr ""
 msgid "Contact Information"
 msgstr ""
 
-#: templates/contact_form.html:13
-#: templates/checkout/base_pay_ship.html:21
-#: templates/checkout/form.html:80
-#: templates/contact/update_form.html:43
-#: templates/newsletter/subscribe_form.html:13
-#: templates/newsletter/unsubscribe_form.html:13
-#: templates/newsletter/update_form.html:13
-#, fuzzy
-msgid "Please correct the following error:"
-msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-
 #: templates/contact_form.html:19
 msgid "Send Email"
 msgstr ""
@@ -4324,27 +4299,27 @@ msgstr ""
 
 #: templates/admin/product/configurableproduct/variation_manager.html:238
 msgid "Exists"
-msgstr ""
+msgstr "Istnieje"
 
 #: templates/admin/product/configurableproduct/variation_manager.html:239
 msgid "Create/Keep"
-msgstr ""
+msgstr "Utwórz/Zachowaj"
 
 #: templates/admin/product/configurableproduct/variation_manager.html:255
 msgid "yes"
-msgstr ""
+msgstr "tak"
 
 #: templates/admin/product/configurableproduct/variation_manager.html:255
 msgid "no"
-msgstr ""
+msgstr "nie"
 
 #: templates/admin/product/configurableproduct/variation_manager_list.html:12
 msgid "Select the Configurable Product to manage."
-msgstr ""
+msgstr "Wybierz produkt konfigurowalny, który chcesz zmieniać."
 
 #: templates/checkout/balance_remaining.html:12
 msgid "Order Balance"
-msgstr ""
+msgstr "Saldo zamówienia"
 
 #: templates/checkout/balance_remaining.html:17
 #, python-format
@@ -4354,7 +4329,7 @@ msgstr ""
 #: templates/checkout/balance_remaining.html:22
 #: templates/checkout/form.html:106
 msgid "How do you want to pay?"
-msgstr ""
+msgstr "Jak chcesz zapłacić?"
 
 #: templates/checkout/balance_remaining.html:26
 #: templates/checkout/form.html:191
@@ -4365,13 +4340,13 @@ msgstr ""
 #: templates/checkout/base_pay_ship.html:13
 #: templates/checkout/form.html:73
 msgid "Ship/Bill"
-msgstr ""
+msgstr "Dostawa/Rachunek"
 
 #: templates/checkout/base_confirm.html:17
 #: templates/checkout/base_pay_ship.html:15
 #: templates/checkout/form.html:75
 msgid "Confirmation"
-msgstr ""
+msgstr "Potwierdzenie"
 
 #: templates/checkout/base_confirm.html:22
 msgid "The following error was returned while trying to process your payment. Please correct and resubmit."
@@ -4398,16 +4373,16 @@ msgstr ""
 
 #: templates/checkout/base_pay_ship.html:33
 msgid "Discount code"
-msgstr ""
+msgstr "Kod rabatowy"
 
 #: templates/checkout/base_pay_ship.html:39
 #: templates/checkout/form.html:155
 msgid "Shipping Information"
-msgstr ""
+msgstr "Informacje o dostawie"
 
 #: templates/checkout/base_pay_ship.html:43
 msgid "Please choose your preferred shipping method"
-msgstr ""
+msgstr "Proszę wybrać sposób dostawy"
 
 #: templates/checkout/base_pay_ship.html:51
 msgid "Confirm"
@@ -4552,7 +4527,7 @@ msgstr ""
 
 #: templates/contact/update_form.html:7
 msgid "Update Profile"
-msgstr ""
+msgstr "Edytuj profil"
 
 #: templates/contact/update_form.html:41
 msgid "Your Profile"
@@ -4564,7 +4539,7 @@ msgstr ""
 
 #: templates/contact/update_form.html:60
 msgid "Birthday"
-msgstr ""
+msgstr "Data urodzenia"
 
 #: templates/contact/update_form.html:139
 msgid "Update"
@@ -4595,7 +4570,7 @@ msgstr "Dat aurodzenia:"
 
 #: templates/contact/view_profile.html:22
 msgid "Newsletter:"
-msgstr "Newsletter:"
+msgstr "Biuletyn:"
 
 #: templates/contact/view_profile.html:24
 msgid "Billing Address:"
@@ -4804,11 +4779,11 @@ msgstr ""
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password change has been completed."
-msgstr ""
+msgstr "Zmiana hasła została zakończona."
 
 #: templates/registration/password_change_form.html:7
 msgid "Password Change"
-msgstr ""
+msgstr "Zmiana hasła"
 
 #: templates/registration/password_change_form.html:12
 msgid "For the sake of security, please enter your old password, and then enter your new password twice."
@@ -4816,15 +4791,15 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:19
 msgid "Old password"
-msgstr ""
+msgstr "Stare hasło"
 
 #: templates/registration/password_change_form.html:26
 msgid "New password"
-msgstr ""
+msgstr "Nowe hasło"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm new password"
-msgstr ""
+msgstr "Potwierdź nowe hasło"
 
 #: templates/registration/password_reset_complete.html:8
 #: templates/registration/password_reset_complete.html:12
@@ -4833,7 +4808,7 @@ msgstr ""
 
 #: templates/registration/password_reset_complete.html:14
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "Twoje hasło zostało zmienione. Możesz przejść do logowania."
 
 #: templates/registration/password_reset_confirm.html:8
 msgid "Password reset"
@@ -4841,7 +4816,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter new password"
-msgstr ""
+msgstr "Wprowadź nowe hasło"
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "Please enter your new password twice so we can verify you typed it in correctly."
@@ -4849,15 +4824,15 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:20
 msgid "New password:"
-msgstr ""
+msgstr "Nowe hasło:"
 
 #: templates/registration/password_reset_confirm.html:22
 msgid "Confirm password:"
-msgstr ""
+msgstr "Potwierdź hasło:"
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "Change my password"
-msgstr ""
+msgstr "Zmień moje hasło"
 
 #: templates/registration/password_reset_confirm.html:28
 msgid "Password reset unsuccessful"
@@ -4898,7 +4873,7 @@ msgstr ""
 #: templates/registration/registration_complete.html:7
 #: templates/registration/registration_complete.html:11
 msgid "Account Creation"
-msgstr ""
+msgstr "Utworzenie konta"
 
 #: templates/registration/registration_complete.html:12
 msgid "Thank you for signing up."
@@ -4943,7 +4918,7 @@ msgstr ""
 #: templates/shop/_order_tracking_details.html:8
 #: templates/shop/order_history.html:19
 msgid "Order #"
-msgstr ""
+msgstr "Numer zamówienia"
 
 #: templates/shop/_order_tracking_details.html:41
 msgid "Shipping To"
@@ -4951,7 +4926,7 @@ msgstr ""
 
 #: templates/shop/order_history.html:22
 msgid "Items"
-msgstr ""
+msgstr "Elementy"
 
 #: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
@@ -5054,7 +5029,7 @@ msgstr ""
 
 #: wishlist/models.py:28
 msgid "Details"
-msgstr ""
+msgstr "Szczegóły"
 
 #: wishlist/models.py:54
 msgid "Product Wish"
