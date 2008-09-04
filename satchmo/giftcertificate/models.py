@@ -124,6 +124,7 @@ class GiftCertificateProduct(models.Model):
     """
     product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
     is_shippable = False
+    discountable = False
 
     def __unicode__(self):
         return u"GiftCertificateProduct: %s" % self.product.name

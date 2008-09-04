@@ -111,7 +111,8 @@ class Discount(models.Model):
     def _get_valid_product_dict(self):
         vd = {}
         for p in self.validProducts.all():
-            vd[p.id] = p
+            if p.is_discountable:
+                vd[p.id] = p
         return vd
 
     def calc(self, order):
@@ -123,7 +124,7 @@ class Discount(models.Model):
         for lineitem in order.orderitem_set.all():
             lid = lineitem.id
             price = lineitem.line_item_price
-            if allvalid or lineitem.product.id in validproducts:
+            if lineitem.product.is_discountable and (allvalid or lineitem.product.id in validproducts):
                 discounted[lid] = price
 
         if self.includeShipping and not self.freeShipping:
@@ -176,6 +177,8 @@ class Discount(models.Model):
 
     def valid_for_product(self, product):
         """Tests if discount is valid for a single product"""
+        if not p.is_discountable:
+            return False
         p = self.validProducts.filter(id__exact = product.id)
         return p.count() > 0
 

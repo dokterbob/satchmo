@@ -494,6 +494,15 @@ class Product(models.Model):
         return img
 
     main_image = property(_get_mainImage)
+    
+    def _is_discountable(self):
+        p = self.get_subtype_with_attr('discountable')
+        if p:
+            return p.discountable
+        else:
+            return True
+            
+    is_discountable = property(_is_discountable)
 
     def translated_attributes(self, language_code=None):
         if not language_code:
