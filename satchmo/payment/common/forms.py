@@ -8,6 +8,7 @@ from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_best_auto_discount
+from satchmo.payment.config import labelled_payment_choices
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_template
@@ -52,10 +53,11 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
             shipping_dict[method.id] = shipcost
     
     return shipping_options, shipping_dict
- 
+     
 class PaymentMethodForm(forms.Form):
-    _choices = config_choice_values('PAYMENT', 'MODULES', translate=True)
+    _choices = labelled_payment_choices()
     if len(_choices) > 0:
+        
         if len(_choices) > 1:
             _paymentwidget = forms.RadioSelect
         else:
@@ -67,7 +69,7 @@ class PaymentMethodForm(forms.Form):
                                         required=True)
 
 class PaymentContactInfoForm(ContactInfoForm):
-    _choices = config_choice_values('PAYMENT', 'MODULES', translate=True)
+    _choices = labelled_payment_choices()
     if len(_choices) > 0:
         if len(_choices) > 1:
             _paymentwidget = forms.RadioSelect

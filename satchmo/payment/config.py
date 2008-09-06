@@ -116,6 +116,17 @@ def credit_choices(settings=None, include_module_if_no_choices=False):
             choices.append(pair)
     return choices
 
+def labelled_payment_choices():
+    active_payment_modules = config_choice_values('PAYMENT', 'MODULES', translate=True)
+
+    choices = []
+    for module, module_name in active_payment_modules:
+        label = config_value(module, 'LABEL', default = module_name)
+        choices.append((module, label))
+    
+    return choices
+
+
 def payment_live(settings):
     if is_string_like(settings):
         settings = config_get_group(settings)
