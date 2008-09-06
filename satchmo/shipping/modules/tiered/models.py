@@ -1,6 +1,6 @@
 """
 Tiered shipping models
-"""
+""" 
 try:
     from decimal import Decimal
 except:
@@ -107,11 +107,11 @@ class Carrier(models.Model):
             pos = language_code.find('-')
             if pos>-1:
                 short_code = language_code[:pos]
-                log.debug("%s: Trying to find root language content for: [%s]", self, short_code)
+                log.debug("Carrier: Trying to find root language content for: [%s]", short_code)
                 c = self.translations.filter(languagecode__exact = short_code)
                 ct = c.count()
                 if ct>0:
-                    log.debug("%s: Found root language content for: [%s]", self, short_code)
+                    log.debug("Carrier: Found root language content for: [%s]", short_code)
 
         if not c or ct == 0:
             #log.debug("Trying to find default language content for: %s", self)
