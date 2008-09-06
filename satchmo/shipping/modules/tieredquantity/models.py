@@ -228,3 +228,5 @@ class QuantityTier(models.Model):
     
     class Meta:
         pass
+
+import config
