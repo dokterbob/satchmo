@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'satchmo.recentlist',
     'satchmo.wishlist',
     'satchmo.upsell',
-    'satchmo.productratings'
+    'satchmo.productratings',
     # enable tiered to activate the "tiered" shipping module
     # select it in the site settings, then configure it in the
     # admin/tiered section
