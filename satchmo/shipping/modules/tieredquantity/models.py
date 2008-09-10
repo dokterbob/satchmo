@@ -168,7 +168,7 @@ class Carrier(models.Model):
         if trans:
             return trans.name
         else:
-            return ""
+            return self.key
 
     name = property(name)
     
@@ -199,7 +199,7 @@ class Carrier(models.Model):
         pass
         
 class CarrierTranslation(models.Model):
-    carrier = models.ForeignKey('Carrier', edit_inline=models.STACKED, related_name='translations', num_in_admin=2)
+    carrier = models.ForeignKey('Carrier', related_name='translations')
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, )
     name = models.CharField(_('Carrier'), max_length=50, )
     description = models.CharField(_('Description'), max_length=200)
@@ -207,8 +207,7 @@ class CarrierTranslation(models.Model):
     delivery = models.CharField(_('Delivery Days'), max_length=200)
 
 class QuantityTier(models.Model):
-    carrier = models.ForeignKey('Carrier', 
-        edit_inline=models.TABULAR, related_name='tiers', num_in_admin=5)
+    carrier = models.ForeignKey('Carrier', related_name='tiers')
     quantity = models.IntegerField(_("Min Quantity"), 
         help_text=_('Minimum qty in order for this to apply?'), )
     handling = models.DecimalField(_("Handling Price"), max_digits=10, 
@@ -221,7 +220,7 @@ class QuantityTier(models.Model):
         return self.handling + self.price * qty
     
     def __unicode__(self):
-        return u"QuantityTier: %s @ %s" % (self.price, self.min_total)
+        return u"QuantityTier: %s @ %s" % (self.price, self.quantity)
     
     class Admin:
         ordering = ('min_total', 'expires')

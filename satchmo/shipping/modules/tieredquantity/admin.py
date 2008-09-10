@@ -1,11 +1,11 @@
-from satchmo.shipping.modules.tiered.models import Carrier, ShippingTier, CarrierTranslation
+from satchmo.shipping.modules.tieredquantity.models import Carrier, QuantityTier, CarrierTranslation
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
 
-class ShippingTier_Inline(admin.TabularInline):
-    model = ShippingTier
-    extra = 6
-    ordering = ('min_total', 'expires')
+class QuantityTier_Inline(admin.TabularInline):
+    model = QuantityTier
+    extra = 5
+    ordering = ('quantity', 'expires')
 
 class CarrierTranslation_Inline(admin.TabularInline):
     model = CarrierTranslation
@@ -13,8 +13,7 @@ class CarrierTranslation_Inline(admin.TabularInline):
 
 class CarrierOptions(admin.ModelAdmin):
     ordering = ('key',)
-    inlines = [CarrierTranslation_Inline, ShippingTier_Inline, ]
+    inlines = [CarrierTranslation_Inline, QuantityTier_Inline]
 
 admin.site.register(Carrier, CarrierOptions)
-
 
