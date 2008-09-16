@@ -195,7 +195,7 @@ def add_ajax(request, id=0, template="json.html"):
     if not data['errors']:
         # send a signal so that listeners can update product details before we add it to the cart.
         satchmo_cart_details_query.send(
-                cart,
+                tempCart,
                 product=product,
                 quantity=quantity,
                 details=details,
@@ -209,7 +209,7 @@ def add_ajax(request, id=0, template="json.html"):
             if added_item:
                 # send a signal so that listeners can also operate on this form and item.
                 satchmo_cart_add_complete.send(
-                        cart,
+                        tempCart,
                         cartitem=added_item,
                         product=product,
                         request=request,
