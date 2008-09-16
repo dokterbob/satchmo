@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_get_group, config_value
 from satchmo.shop.models import Order, OrderItem, OrderPayment
+from satchmo.payment.decorators import cart_has_minimum_order
 from satchmo.payment.common.forms import PaymentMethodForm
 from satchmo.payment.common.views import common_contact
 from satchmo.shop.views.utils import bad_or_missing
@@ -137,9 +138,11 @@ def balance_remaining(request):
     })
     return render_to_response('checkout/balance_remaining.html', ctx)
     
-
-def contact_info(request):
+    
+def _contact_info(request):
     return common_contact.contact_info(request)
+
+contact_info = cart_has_minimum_order()(_contact_info)
 
 def charge_remaining(request, orderitem_id):
     """Given an orderitem_id, this returns a confirmation form."""

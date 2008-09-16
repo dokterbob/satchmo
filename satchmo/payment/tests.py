@@ -1,18 +1,19 @@
 # -*- coding: UTF-8 -*-
-
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core import urlresolvers
+from django.core.urlresolvers import reverse as url
 from django.test import TestCase
 from django.test.client import Client
+from django.test.client import Client
 from satchmo import caching
-from satchmo.configuration import config_get_group, config_value
+from satchmo.configuration import config_get_group, config_value, config_get
 from satchmo.contact.models import *
 from satchmo.l10n.models import *
 from satchmo.product.models import *
 from satchmo.shop import get_satchmo_setting
 from satchmo.shop.models import *
 from satchmo.utils.dynamic import lookup_template, lookup_url
-from django.contrib.sites.models import Site
 from urls import make_urlpatterns
 
 try:
@@ -191,3 +192,48 @@ class TestModulesSettings(TestCase):
 #         self.assertEqual(bal, Decimal('90.00'))
 #         self.assertEqual(gc.usages.count(), 1)
 
+class TestMinimumOrder(TestCase):
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+
+    def setUp(self):
+        # Every test needs a client
+        self.client = Client()
+        
+    def tearDown(self):
+        caching.cache_delete()
+
+    def test_checkout_minimums(self):
+        """
+        Validate we can add some items to the cart
+        """
+        min_order = config_get('PAYMENT', 'MINIMUM_ORDER')
+        
+        #start with no min.
+        min_order.update("0.00")
+        response = self.client.get(prefix+'/product/dj-rocks/')
+        self.assertContains(response, "Django Rocks shirt", count=2, status_code=200)
+        response = self.client.post(prefix+'/cart/add/', { "productname" : "dj-rocks",
+                                                      "1" : "L",
+                                                      "2" : "BL",
+                                                      "quantity" : 2})
+        self.assertRedirects(response, prefix + '/cart/',
+            status_code=302, target_status_code=200)
+        response = self.client.get(prefix+'/cart/')
+        self.assertContains(response, "Django Rocks shirt (Large/Blue)", count=1, status_code=200)
+        response = self.client.get(url('satchmo_checkout-step1'))
+        self.assertContains(response, "Billing Information", count=1, status_code=200)
+
+        # now check for min order not met
+        min_order.update("100.00")
+        response = self.client.get(url('satchmo_checkout-step1'))
+        self.assertContains(response, "This store requires a minimum order", count=1, status_code=200)
+        
+        # add a bunch of shirts, to make the min order
+        response = self.client.post(prefix+'/cart/add/', { "productname" : "dj-rocks",
+                                                      "1" : "L",
+                                                      "2" : "BL",
+                                                      "quantity" : 10})
+        self.assertRedirects(response, prefix + '/cart/',
+            status_code=302, target_status_code=200)
+        response = self.client.get(url('satchmo_checkout-step1'))
+        self.assertContains(response, "Billing Information", count=1, status_code=200)

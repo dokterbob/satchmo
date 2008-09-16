@@ -74,8 +74,13 @@ config_register_list(
         help_text=_("""This enables for generic pages like contact information capturing.  
     It does not set SSL for individual modules. 
     You must enable SSL for each payment module individually."""),
-        default=False)
+        default=False),
 
+    DecimalValue(PAYMENT_GROUP,
+        'MINIMUM_ORDER',
+        description=_("Minimum Order"),
+        help_text=_("""The minimum cart total before checkout is allowed."""),
+        default="0.00")
 )
 
 # --- Load default payment modules.  Ignore import errors, user may have deleted them. ---

@@ -61,8 +61,7 @@ LOGO_URI = config_register(
     description = _("URI to the logo for the store"),
     help_text = _(("For example http://www.example.com/images/logo.jpg or "
                    "file:///var/www/html/images/logo.jpg")),
-    default = default_icon_url
-))
+    default = default_icon_url))
 
 #### Google Group ####
 

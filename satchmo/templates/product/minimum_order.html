@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n satchmo_currency %}
+
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+<li><a href="{% url satchmo_cart %}">{% trans "Cart" %}</a></li>
+<li><a href="{% url satchmo_cart %}">{% trans "Notice" %}</a></li>
+{% endblock %}
+
+
+{% block content %}
+<h4>Notice</h4>
+{% with minimum_order|currency as value %}
+<p>{% blocktrans %}This store requires a minimum order of {{ value }} before you can check out.{% endblocktrans %}</p>
+{% endwith %}
+{% endblock %}
