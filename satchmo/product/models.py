@@ -236,7 +236,7 @@ class CategoryImage(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True,
         related_name="images")
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
-        upload_to="images",
+        upload_to="__DYNAMIC__",
         name_field="_filename") #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
