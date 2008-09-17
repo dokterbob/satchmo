@@ -131,8 +131,12 @@ class Category(models.Model):
     def get_absolute_url(self):
         parents = self._recurse_for_parents(self)
         slug_list = [cat.slug for cat in parents]
-        slug_list.append(self.slug)
-        return u'%s/category/%s/' % (get_satchmo_setting('SHOP_BASE'), u'/'.join(slug_list))
+        if slug_list:
+            slug_list = "/".join(slug_list) + "/"
+        else:
+            slug_list = ""
+        return urlresolvers.reverse('satchmo_category', 
+            kwargs={'parent_slugs' : slug_list, 'slug' : self.slug})
 
     def get_separator(self):
         return ' :: '
@@ -414,10 +418,10 @@ class ProductManager(models.Manager):
         return self.filter(site__id__exact=site)
 
     def featured_by_site(self, site=None):
-        return self.by_site(site=site).filter(active=True).filter(featured=True)
+        return self.by_site(site=site).filter(active=True, featured=True)
 
     def get_by_site(self, site=None, **kwargs):
-        products = self.by_site(site=site).filter(**kwargs)
+        products = self.by_site(site=site, **kwargs)
         if len(products) == 0:
             raise Product.DoesNotExist
         else:
