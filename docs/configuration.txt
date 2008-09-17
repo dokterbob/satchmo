@@ -156,7 +156,7 @@ will automatically be used in pages served by SSL, but only if you specify it in
 Then, enable it for the specific urls you would like to be protected by adding
 {'SSL': True} to each url.  Here's an example which would enable SSL for login::
 
-	(r'^accounts/login/$', 'login', {'SSL': True', 'template_name': 'login.html'}, 'satchmo_login'),
+	(r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
 SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can 
 have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set 
