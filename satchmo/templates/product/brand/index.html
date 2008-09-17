@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load satchmo_thumbnail i18n %}
+{% block pagename %}{% trans 'Brands' %}{% endblock %}
+
+{% block navbar %}
+<li><a href="{{shop_base}}"{% trans 'Home' %}</a></li>
+<li>{% trans 'Brands' %}</li>
+{% endblock %}
+
+{% block content %}
+<h2>Brands</h2>
+{% if brands %}
+<div id="product_category" class="brand">
+	{% for brand in brands %}{% with brand.translation as translated %}
+	<div class="brandImage">
+       	<a href="{{ brand.get_absolute_url }}">
+       		<img src="{{ translated.picture.url|thumbnail:"width=85" }}" width="85" /> 
+		</a>
+		<br/>
+       	<a href="{{ brand.get_absolute_url }}">{{ translated.name }}</a>
+	</div>
+       {% endwith %}{% endfor %}
+</div>
+{% else %}
+<p>{% trans 'No brands are active' %}</p>
+{% endif %}
+{% endblock %}

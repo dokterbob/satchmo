@@ -41,6 +41,8 @@ import logging
 SITE_DOMAIN = "example.com"
 SITE_NAME = "My Site"
 
+from django.conf.urls.defaults import *
+
 SATCHMO_SETTINGS = {
     # this will override any urls set in the store url modules
     #'SHOP_URLS' : patterns('satchmo.shop.views',
@@ -50,6 +52,9 @@ SATCHMO_SETTINGS = {
     #    (r'^feed/', include('satchmo.feeds.urls')),
     #   likewise with newsletters
     #    (r'^newsletter/', include('satchmo.newsletter.urls'))
+    #   enable brands here
+    #    (r'^brand/', include('satchmo.product.brand.urls'))
+    #}
     
     # This is the base url for the shop.  Only include a leading slash
     # examples: '/shop' or '/mystore'

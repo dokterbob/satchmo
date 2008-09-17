@@ -138,6 +138,11 @@ border-top: 1px solid gray;
 #leftnav p, #rightnav p { margin: 0 0 1em 0; }
 #content h2 { margin: 0 0 .5em 0; }
 
+.brandcategories {
+    clear: both;
+}
+
+.brandImage,
 .productImage {
 border:solid 1px silver;
 padding:5px;
@@ -146,6 +151,7 @@ margin-top: 10px;
 margin-left: 10px;
 margin-right: 10px;
 margin-bottom:2px;
+text-align: center;
 }
 
 .productImage p {

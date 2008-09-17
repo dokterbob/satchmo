@@ -109,6 +109,9 @@ INSTALLED_APPS = (
     'satchmo.shop',
     'satchmo.contact',
     'satchmo.product',
+    # to use brands, uncomment this line, and also add the brand url in your satchmo_urls setting
+    # usually in local_settings.py
+    #'satchmo.product.brand'
     'satchmo.shipping',
     'satchmo.payment',
     'satchmo.discount',
