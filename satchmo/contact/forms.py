@@ -43,7 +43,7 @@ class ContactInfoForm(forms.Form):
         super(ContactInfoForm, self).__init__(*args, **kwargs)   
         if areas is not None and countries is None:
             log.debug('populating admin areas')
-            areas = [(area.abbrev, area.name) for area in areas]
+            areas = [(area.abbrev or area.name, area.name) for area in areas]
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
         if countries is not None:
