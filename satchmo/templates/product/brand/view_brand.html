@@ -9,8 +9,9 @@
 {% endblock %}
 
 {% block navbar %}
-<li><a href="{{shop_base}}"{% trans 'Home' %}</a></li>
-<li>{{ brand.name }}</li>
+<li><a href="{{shop_base}}">{% trans 'Home' %}</a></li>
+{% if brand.brand %}<li><a href="{{ brand.brand.get_absolute_url }}">{{ brand.brand.translation.name }}</a></li>{% endif %}
+<li>{{ brand.translation.name }}</li>
 {% endblock %}
 
 {% block content %}
