@@ -408,14 +408,14 @@ class ProductManager(models.Manager):
     def active_by_site(self):
         return self.by_site().filter(active=True)
 
-    def by_site(self, site=None):
+    def by_site(self, site=None, **kwargs):
         if not site:
             site = Site.objects.get_current()
         
         site = site.id
 
         log.debug("by_site: site=%s", site)
-        return self.filter(site__id__exact=site)
+        return self.filter(site__id__exact=site, **kwargs)
 
     def featured_by_site(self, site=None):
         return self.by_site(site=site).filter(active=True, featured=True)
