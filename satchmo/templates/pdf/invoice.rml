@@ -207,8 +207,8 @@
     {% else %}
         {% if order.credit_card %}
         {% with order.total|currency as order_total %}
-        {% with order.credit_card.creditType as credit_card_type %}
-        {% with order.credit_card.displayCC as credit_card_number %}
+        {% with order.credit_card.credit_type as credit_card_type %}
+        {% with order.credit_card.display_cc as credit_card_number %}
         <para style="payment">{% blocktrans with order.timestamp|date:"F j, Y" as order_date %}{{ order_total }} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}</para>
         {% endwith %}{% endwith %}{% endwith %}
         {% endif %}

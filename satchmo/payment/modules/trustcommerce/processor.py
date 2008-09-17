@@ -37,7 +37,7 @@ class PaymentProcessor(object):
 
         # convert exp date to mmyy from mm/yy or mm/yyyy
         cc = data.credit_card 
-        exp = u"%.2d%.2d" % (int(cc.expireMonth), (int(cc.expireYear) % 100)) 
+        exp = u"%.2d%.2d" % (int(cc.expire_month), (int(cc.expire_year) % 100)) 
 
         self.transactionData = {
             # account data
@@ -128,8 +128,8 @@ if __name__ == "__main__":
     sampleOrder.balance = Decimal("27.00")
     sampleOrder.total = Decimal("27.00")
     sampleOrder.credit_card.decryptedCC = '4111111111111111'
-    sampleOrder.credit_card.expireMonth = "10"
-    sampleOrder.credit_card.expireYear = "2010"
+    sampleOrder.credit_card.expire_month = "10"
+    sampleOrder.credit_card.expire_year = "2010"
     sampleOrder.credit_card.ccv = "123"
     sampleOrder.credit_card.order = "987654"
     sampleOrder.credit_card.orderpayment_id = "123"

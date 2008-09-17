@@ -1,23 +1,26 @@
 from django import forms
 from django.conf import settings
-from django.template import RequestContext
 from django.template import loader
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value, config_choice_values
 from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_best_auto_discount
+from satchmo.l10n.utils import moneyfmt
 from satchmo.payment.config import labelled_payment_choices
+from satchmo.payment.models import CreditCardDetail
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
-from satchmo.utils.dynamic import lookup_template
 from satchmo.shop.views.utils import CreditCard
 from satchmo.tax.templatetags.satchmo_tax import _get_taxprocessor
-from satchmo.l10n.utils import moneyfmt
+from satchmo.utils.dynamic import lookup_template
 import calendar
 import datetime
 import sys
+
+MONTHS = [(month,'%02d'%month) for month in range(1,13)]
 
 def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_tax=False):
     """Iterate through legal shipping modules, building the list for display to the user.
@@ -136,9 +139,9 @@ class SimplePayShipForm(forms.Form):
 class CreditPayShipForm(SimplePayShipForm):
     credit_type = forms.ChoiceField()
     credit_number = forms.CharField(max_length=20)
-    month_expires = forms.ChoiceField(choices=[(month,month) for month in range(1,13)])
+    month_expires = forms.ChoiceField(choices=MONTHS)
     year_expires = forms.ChoiceField()
-    ccv = forms.CharField() # find min_length
+    ccv = forms.CharField(max_length=4, label='Sec code')
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         creditchoices = paymentmodule.CREDITCHOICES.choice_values
@@ -188,3 +191,20 @@ class CreditPayShipForm(SimplePayShipForm):
             return self.cleaned_data['ccv']
         except ValueError:
             raise forms.ValidationError(_('Invalid ccv.'))
+            
+    def save(self, orderpayment):
+        """Save the credit card information for this orderpayment"""
+        data = self.cleaned_data
+        cc = CreditCardDetail(orderpayment=orderpayment,
+            expire_month=data['month_expires'],
+            expire_year=data['year_expires'],
+            credit_type=data['credit_type'])
+            
+        cc.storeCC(data['credit_number'])
+        cc.save()
+        
+        # set ccv into cache
+        cc.ccv = data['ccv']
+        
+        return cc
+

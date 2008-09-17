@@ -48,13 +48,17 @@ class CreditCardDetail(models.Model):
     """
     orderpayment = models.ForeignKey(OrderPayment, unique=True, 
         related_name="creditcards")
-    creditType = CreditChoiceCharField(_("Credit Card Type"), max_length=16)
-    displayCC = models.CharField(_("CC Number (Last 4 digits)"),
+    credit_type = CreditChoiceCharField(_("Credit Card Type"), max_length=16)
+    display_cc = models.CharField(_("CC Number (Last 4 digits)"),
         max_length=4, )
-    encryptedCC = models.CharField(_("Encrypted Credit Card"),
+    encrypted_cc = models.CharField(_("Encrypted Credit Card"),
         max_length=40, blank=True, null=True, editable=False)
-    expireMonth = models.IntegerField(_("Expiration Month"))
-    expireYear = models.IntegerField(_("Expiration Year"))
+    expire_month = models.IntegerField(_("Expiration Month"))
+    expire_year = models.IntegerField(_("Expiration Year"))
+    card_holder = models.CharField(_("card_holder Name"), max_length=60, blank=True)
+    start_month = models.IntegerField(_("Start Month"), blank=True, null=True)
+    start_year = models.IntegerField(_("Start Year"), blank=True, null=True)
+    issue_num = models.CharField(blank=True, max_length=2)
     
     def storeCC(self, ccnum):
         """Take as input a valid cc, encrypt it and store the last 4 digits in a visible form"""
@@ -65,19 +69,19 @@ class CreditCardDetail(models.Model):
         padding = ''
         if (len(ccnum) % 8) <> 0:
             padding = 'X' * (8 - (len(ccnum) % 8))
-        self.encryptedCC = base64.b64encode(encryption_object.encrypt(ccnum + padding))
-        self.displayCC = ccnum[-4:]
+        self.encrypted_cc = base64.b64encode(encryption_object.encrypt(ccnum + padding))
+        self.display_cc = ccnum[-4:]
     
     def setCCV(self, ccv):
         """Put the CCV in the cache, don't save it for security/legal reasons."""
-        if not self.encryptedCC:
+        if not self.encrypted_cc:
             raise ValueError('CreditCardDetail expecting a credit card number to be stored before storing CCV')
             
-        caching.cache_set(self.encryptedCC, skiplog=True, length=60*60, value=ccv)
+        caching.cache_set(self.encrypted_cc, skiplog=True, length=60*60, value=ccv)
     
     def getCCV(self):
         try:
-            ccv = caching.cache_get(self.encryptedCC)
+            ccv = caching.cache_get(self.encrypted_cc)
         except caching.NotCachedError:
             ccv = ""
 
@@ -89,12 +93,12 @@ class CreditCardDetail(models.Model):
         secret_key = settings.SECRET_KEY
         encryption_object = Blowfish.new(secret_key)
         # strip padding from decrypted credit card number
-        ccnum = encryption_object.decrypt(base64.b64decode(self.encryptedCC)).rstrip('X')
+        ccnum = encryption_object.decrypt(base64.b64decode(self.encrypted_cc)).rstrip('X')
         return (ccnum)
     decryptedCC = property(_decryptCC) 
 
     def _expireDate(self):
-        return(str(self.expireMonth) + "/" + str(self.expireYear))
+        return(str(self.expire_month) + "/" + str(self.expire_year))
     expirationDate = property(_expireDate)
     
     class Meta:

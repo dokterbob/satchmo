@@ -13,7 +13,7 @@ from satchmo.payment.common.forms import PaymentContactInfoForm
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_url
 
-def contact_info(request):
+def contact_info(request, **kwargs):
     """View which collects demographic information from customer."""
 
     #First verify that the cart exists and has items

@@ -15,3 +15,4 @@ import django.dispatch
 
 satchmo_contact_location_changed = django.dispatch.Signal()
 satchmo_contact_view = django.dispatch.Signal()
+validate_postcode = django.dispatch.Signal()

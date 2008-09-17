@@ -53,8 +53,8 @@
 
 {% trans "Payment" %}
 -------
-{% with order.credit_card.creditType as credit_card_type %}
-{% with order.credit_card.displayCC as credit_card_number %}
+{% with order.credit_card.credit_type as credit_card_type %}
+{% with order.credit_card.display_cc as credit_card_number %}
 {% with order.total|currency as order_total %}
 {% blocktrans %}{{ credit_card_type }} card ending in {{ credit_card_number }} will be charged {{ order_total }}.{% endblocktrans %}
 {% endwith %}

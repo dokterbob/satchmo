@@ -65,7 +65,7 @@ class PaymentProcessor(object):
         
         redactedData = {
             'x_amount' : trunc_decimal(data.balance, 2),
-            'x_card_num' : data.credit_card.displayCC,
+            'x_card_num' : data.credit_card.display_cc,
             'x_exp_date' : data.credit_card.expirationDate,
             'x_card_code' : "REDACTED"
         }

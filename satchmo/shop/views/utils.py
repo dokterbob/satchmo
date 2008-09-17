@@ -5,24 +5,59 @@ from django.utils.translation import ugettext as _
 
 ccInfo = (
     #  type, prefix, length
-    ( 'Visa', '4', 16),
-    ( 'Visa', '4', 13),
-    ( 'Mastercard', '51', 16),
-    ( 'Mastercard', '52', 16),
-    ( 'Mastercard', '53', 16),
-    ( 'Mastercard', '54', 16),
-    ( 'Mastercard', '55', 16),
-    ( 'Discover', '6011', 16),
-    ( 'American Express', '34', 15),
-    ( 'American Express', '37', 15),
-    ( 'Diners Club/Carte Blanche', '300', 14),
-    ( 'Diners Club/Carte Blanche', '301', 14),
-    ( 'Diners Club/Carte Blanche', '302', 14),
-    ( 'Diners Club/Carte Blanche', '303', 14),
-    ( 'Diners Club/Carte Blanche', '304', 14),
-    ( 'Diners Club/Carte Blanche', '305', 14),
-    ( 'Diners Club/Carte Blanche', '36', 14),
-    ( 'Diners Club/Carte Blanche', '38', 14),
+    ( 'VISA', '4', 16),
+    ( 'VISA', '4', 13),
+    ( 'UKE', '417500', 16),
+    ( 'UKE', '4917', 16),
+    ( 'UKE', '4913', 16),
+    ( 'SWITCH', '4903', 16),
+    ( 'SWITCH', '4905', 16),
+    ( 'SWITCH', '4911', 16),
+    ( 'SWITCH', '4936', 16),
+    ( 'SWITCH', '564182', 16),
+    ( 'SWITCH', '633110', 16),
+    ( 'SWITCH', '6333', 16),
+    ( 'SWITCH', '6759', 16),
+    ( 'SWITCH', '4903', 18),
+    ( 'SWITCH', '4905', 18),
+    ( 'SWITCH', '4911', 18),
+    ( 'SWITCH', '4936', 18),
+    ( 'SWITCH', '564182', 18),
+    ( 'SWITCH', '633110', 18),
+    ( 'SWITCH', '6333', 18),
+    ( 'SWITCH', '6759', 18),
+    ( 'SWITCH', '4903', 19),
+    ( 'SWITCH', '4905', 19),
+    ( 'SWITCH', '4911', 19),
+    ( 'SWITCH', '4936', 19),
+    ( 'SWITCH', '564182', 19),
+    ( 'SWITCH', '633110', 19),
+    ( 'SWITCH', '6333', 19),
+    ( 'SWITCH', '6759', 19),
+    ( 'SOLO', '6334', 16),
+    ( 'SOLO', '6767', 16),  
+    ( 'SOLO', '6334', 18),
+    ( 'SOLO', '6767', 18),      
+    ( 'SOLO', '6334', 19),
+    ( 'SOLO', '6767', 19),    
+    ( 'MAESTRO', '5020', 16),
+    ( 'MAESTRO', '6', 16),
+    ( 'MC', '51', 16),
+    ( 'MC', '52', 16),
+	( 'MC', '53', 16),
+	( 'MC', '54', 16),
+	( 'MC', '55', 16),
+	( 'DISCOVER', '6011', 16),
+	( 'AMEX', '34', 15),
+	( 'AMEX', '37', 15),
+	( 'DC', '300', 14),
+	( 'DC', '301', 14),
+	( 'DC', '302', 14),
+	( 'DC', '303', 14),
+	( 'DC', '304', 14),
+	( 'DC', '305', 14),
+	( 'DC', '36', 14),
+	( 'DC', '38', 14),
     ( 'JCB', '3', 16),
     ( 'JCB', '2131', 15),
     ( 'JCB', '1800', 15),
@@ -55,11 +90,8 @@ class CreditCard(object):
         RETURNS: (String) Credit card type string if legal.(None) if invalid.
         '''
         s = self._stripCardNum(self.card_number)
-        for name, prefix, length in ccInfo:
-            if len(s) == length and s[:len(prefix)] == prefix:
-                if self._verifyMod10(s):
-                    return name
-                break
+        if self._verifyMod10(s):
+            return self.card_type
         return None
 
     def verifyCardTypeandNumber(self):

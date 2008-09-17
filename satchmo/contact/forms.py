@@ -5,7 +5,7 @@ from satchmo.contact.models import Contact, AddressBook, PhoneNumber
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
 from django.contrib.auth.models import User
-from signals import satchmo_contact_location_changed
+import signals
 import datetime
 import logging
 
@@ -14,25 +14,25 @@ log = logging.getLogger('satchmo.contact.forms')
 selection = ''
 
 class ContactInfoForm(forms.Form):
-    email = forms.EmailField(max_length=75)
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    phone = forms.CharField(max_length=30)
-    addressee = forms.CharField(max_length=61, required=False)
-    street1 = forms.CharField(max_length=30)
+    email = forms.EmailField(max_length=75, label=_('Email'))
+    first_name = forms.CharField(max_length=30, label=_('First Name'))
+    last_name = forms.CharField(max_length=30, label=_('Last Name'))
+    phone = forms.CharField(max_length=30, label=_('Phone'))
+    addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
+    street1 = forms.CharField(max_length=30, label=_('Street'))
     street2 = forms.CharField(max_length=30, required=False)
-    city = forms.CharField(max_length=30)
-    state = forms.CharField(max_length=30, required=False)
-    country = forms.ModelChoiceField(Country.objects.all(), required=False)
-    postal_code = forms.CharField(max_length=10)
-    copy_address = forms.BooleanField(required=False)
-    ship_addressee = forms.CharField(max_length=61, required=False)
-    ship_street1 = forms.CharField(max_length=30, required=False)
+    city = forms.CharField(max_length=30, label=_('City'))
+    state = forms.CharField(max_length=30, required=False, label=_('State'))
+    country = forms.ModelChoiceField(Country.objects.all(), required=False, label=_('Country'))
+    postal_code = forms.CharField(max_length=10, label=_('Zipcode/Postcode'))
+    copy_address = forms.BooleanField(required=False, label=_('Shipping same as billing?'))
+    ship_addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
+    ship_street1 = forms.CharField(max_length=30, required=False, label=_('Street'))
     ship_street2 = forms.CharField(max_length=30, required=False)
-    ship_city = forms.CharField(max_length=30, required=False)
-    ship_state = forms.CharField(max_length=30, required=False)
-    ship_postal_code = forms.CharField(max_length=10, required=False)
-    ship_country = forms.ModelChoiceField(Country.objects.all(), required=False)
+    ship_city = forms.CharField(max_length=30, required=False, label=_('City'))
+    ship_state = forms.CharField(max_length=30, required=False, label=_('State'))
+    ship_postal_code = forms.CharField(max_length=10, required=False, label=_('Zipcode/Postcode'))
+    ship_country = forms.ModelChoiceField(Country.objects.all(), required=False, label=_('Country'))
 
     def __init__(self, countries, areas, contact, *args, **kwargs):
         self.shippable = True
@@ -66,6 +66,12 @@ class ContactInfoForm(forms.Form):
         if self._billing_data_optional:
             for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code'):
                 self.fields[fname].required = False
+                
+        # slap a star on the required fields
+        for f in self.fields:
+            fld = self.fields[f]
+            if fld.required:
+                fld.label = (fld.label or f) + '*'
 
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
@@ -80,6 +86,13 @@ class ContactInfoForm(forms.Form):
                 raise forms.ValidationError(
                     ugettext("That email address is already in use."))
         return email
+        
+    def clean_postal_code(self):
+        return self.validate_postcode_by_country(self.cleaned_data['postal_code'])
+    
+    def clean_ship_postal_code(self):
+        code = self.ship_charfield_clean('postal_code')
+        return self.validate_postcode_by_country(code)
         
     def clean_state(self):
         data = self.cleaned_data['state']
@@ -293,9 +306,27 @@ class ContactInfoForm(forms.Form):
         phone.save()
         
         if changed_location:
-            satchmo_contact_location_changed.send(self, contact=contact)
+            signals.satchmo_contact_location_changed.send(self, contact=contact)
         
         return customer.id
+        
+    def validate_postcode_by_country(self, postcode):
+        country = None
+        
+        if self._local_only:
+            shop_config = Config.objects.get_current()
+            country = shop_config.sales_country
+        else:
+            country = self.cleaned_data['country']
+                
+        responses = signals.validate_postcode.send(self, postcode=postcode, country=country)
+        # allow responders to reformat the code, but if they don't return
+        # anything, then just use the existing code
+        for responder, response in responses:
+            if response:
+                return response
+                
+        return postcode
 
 class DateTextInput(forms.TextInput):
     def render(self, name, value, attrs=None):

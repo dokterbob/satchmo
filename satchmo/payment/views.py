@@ -139,8 +139,8 @@ def balance_remaining(request):
     return render_to_response('checkout/balance_remaining.html', ctx)
     
     
-def _contact_info(request):
-    return common_contact.contact_info(request)
+def _contact_info(request, **kwargs):
+    return common_contact.contact_info(request, **kwargs)
 
 contact_info = cart_has_minimum_order()(_contact_info)
 

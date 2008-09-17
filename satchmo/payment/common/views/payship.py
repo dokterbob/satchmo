@@ -15,7 +15,6 @@ from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.common.utils import create_pending_payment
 from satchmo.payment.config import payment_live
-from satchmo.payment.models import CreditCardDetail
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_url, lookup_template
 
@@ -68,30 +67,30 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module)
         (True, destination) on success
         (False, form) on failure
     """
+    
+    def _get_form(payment_module, *args, **kwargs):
+        if hasattr(payment_module, 'form'):
+            form = payment_module.form(payment_module, *args)
+        else:
+            form = CreditPayShipForm(payment_module, *args)
+        return form
+    
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = CreditPayShipForm(request, payment_module, new_data)
+        
+        form = _get_form(request, payment_module, new_data)
         if form.is_valid():
             data = form.cleaned_data
 
             newOrder = get_or_create_order(request, working_cart, contact, data)
             orderpayment = create_pending_payment(newOrder, payment_module)
 
-            # Save the credit card information.
-            cc = CreditCardDetail(orderpayment=orderpayment,
-                expireMonth=data['month_expires'],
-                expireYear=data['year_expires'],
-                creditType=data['credit_type'])
-            cc.storeCC(data['credit_number'])
-            cc.save()
-            
-            # set ccv into cache
-            cc.ccv = data['ccv']
+            cc = form.save(orderpayment)
 
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
     else:
-        form = CreditPayShipForm(request, payment_module)
+        form = _get_form(request, payment_module)
 
     return (False, form)
 
