@@ -9,6 +9,6 @@ def pay_ship_info(request):
     return payship.simple_pay_ship_info(request, config_get_group('PAYMENT_COD'), 'checkout/cod/pay_ship.html')
     
 def confirm_info(request):
-    return confirm.credit_confirm_info(request, cod, 'checkout/cod/confirm.html')
+    return confirm.credit_confirm_info(request, cod, template='checkout/cod/confirm.html')
 
 
