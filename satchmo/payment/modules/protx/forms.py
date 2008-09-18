@@ -1,3 +1,5 @@
+"""Protx Form"""
+from django import forms
 from satchmo.payment.common.forms import CreditPayShipForm, MONTHS
 
 class ProtxPayShipForm(CreditPayShipForm):

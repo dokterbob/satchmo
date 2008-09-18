@@ -1,8 +1,7 @@
-import os
 from django.conf.urls.defaults import *
-from satchmo.payment.paymentsettings import PaymentSettings
+from satchmo.configuration import config_get_group
 
-config = config_get_group('PAYMENT_AUTHORIZENET')
+config = config_get_group('PAYMENT_PROTX')
 
 urlpatterns = patterns('satchmo',
      (r'^$', 'payment.modules.protx.views.pay_ship_info', 
@@ -14,6 +13,6 @@ urlpatterns = patterns('satchmo',
     (r'^secure3d/$', 'payment.modules.protx.views.confirm_secure3d', 
        {'SSL':config.SSL.value}, 'PROTX_satchmo_checkout-secure3d'),
 
-     (r'^success/$', 'shop.views.common.checkout_success', 
+     (r'^success/$', 'payment.common.views.checkout.success', 
         {'SSL':config.SSL.value}, 'PROTX_satchmo_checkout-success'),
 )

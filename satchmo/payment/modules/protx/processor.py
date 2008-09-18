@@ -36,14 +36,17 @@ class PaymentProcessor(object):
     
     def __init__(self, settings):
         self.settings = settings
+        if settings.VENDOR.value == "":
+            log.warn('Prot/X Vendor is not set, please configure in your site configuration.')
         self.packet = {
             'VPSProtocol': PROTOCOL,
             'TxType': settings.CAPTURE.value,
             'Vendor': settings.VENDOR.value,
             'Currency': settings.CURRENCY_CODE.value,
             }
+        self.valid = False
 
-    def _url(key):
+    def _url(self, key):
         urls = PROTX_DEFAULT_URLS
         if hasattr(settings, 'PROTX_URLS'):
             urls.update(settings.PROTX_URLS)
@@ -59,38 +62,45 @@ class PaymentProcessor(object):
 
     def _connection(self):
         return self._url('CONNECTION')
-        
-    connection = property(fget=_connection)
+
+    connection = property(fget=_connection)        
         
     def _callback(self):
         return self._url('CALLBACK')
 
     callback = property(fget=_callback)
-
+    
+    def log_extra(self, msg, *args):
+        if self.settings.EXTRA_LOGGING.value:
+            log.info("(Extra logging) " + msg, *args)
+    
     def prepareData(self, data):
         try:
+            cc = data.credit_card
             self.packet['VendorTxCode'] = data.id
             self.packet['Amount'] = data.total
             self.packet['Description'] = 'Online purchase'
-            self.packet['CardType'] = data.CC.credit_type
-            self.packet['card_holder'] = data.CC.card_holder
-            self.packet['CardNumber'] = data.CC.decryptedCC
-            self.packet['ExpiryDate'] = '%02d%s' % (data.CC.expire_month, str(data.CC.expire_year)[2:])
-            if data.CC.start_month is not None:
-                self.packet['StartDate'] = '%02d%s' % (data.CC.start_month, str(data.CC.start_year)[2:])
-            if data.CC.ccv != '':
-                self.packet['CV2'] = data.CC.ccv
-            if data.CC.issue_num != '':
-                self.packet['IssueNumber'] = data.CC.issue_num #'%02d' % int(data.CC.issue_num)
-            addr = [data.billStreet1, data.billStreet2, data.billCity, data.billState]
+            self.packet['CardType'] = cc.credit_type
+            self.packet['card_holder'] = cc.card_holder
+            self.packet['CardNumber'] = cc.decryptedCC
+            self.packet['ExpiryDate'] = '%02d%s' % (cc.expire_month, str(cc.expire_year)[2:])
+            if cc.start_month is not None:
+                self.packet['StartDate'] = '%02d%s' % (cc.start_month, str(cc.start_year)[2:])
+            if cc.ccv != '':
+                self.packet['CV2'] = cc.ccv
+            if cc.issue_num != '':
+                self.packet['IssueNumber'] = cc.issue_num #'%02d' % int(cc.issue_num)
+            addr = [data.bill_street1, data.bill_street2, data.bill_city, data.bill_state]
             self.packet['BillingAddress'] = ', '.join(addr)
-            self.packet['BillingPostCode'] = data.billPostalCode
+            self.packet['BillingPostCode'] = data.bill_postal_code
         except Exception, e:
-            log.error('preparing data, got error: %s', e)
+            log.error('preparing data, got error: %s\nData: %s', e, data)
+            self.valid = False
             return
         self.postString = urlencode(self.packet)
         self.url = self.connection
         self.order = data
+        self.valid = True
     
     def prepareData3d(self, md, pares):
         self.packet = {}
@@ -98,25 +108,31 @@ class PaymentProcessor(object):
         self.packet['PARes'] = pares
         self.postString = urlencode(self.packet)
         self.url = self.callback
+        self.valid = True
         
     def process(self):
         # Execute the post to protx VSP DIRECT
-        # print self.postString
-        conn = urllib2.Request(url=self.url, data=self.postString)
-        f = urllib2.urlopen(conn)
-        result = f.read()
-        log.debug('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
-        try:
-            self.response = dict([ row.split('=', 1) for row in result.splitlines() ])
-            status = self.response['Status']
-            success = (status == 'OK')
-            detail = self.response['StatusDetail']
-            if success:
-                record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
-                return (True, status, detail)
-            else:
-                return (False, status, detail)
-        except Exception, e:
-            log.info('Error submitting payment: %s', e)
-            return (False, 'ERROR', 'Invalid response from payment gateway')
-        
+        if self.valid:
+            self.log_extra("About to post to server: url=%s\ndata=%s", self.url, self.postString)
+            conn = urllib2.Request(url=self.url, data=self.postString)
+            try:
+                f = urllib2.urlopen(conn)
+                result = f.read()
+                self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
+            except urllib2.URLError, ue:
+                log.error("error opening %s\n%s", self.url, ue)
+                return (False, 'ERROR', 'Could not talk to Protx gateway')
+            try:
+                self.response = dict([row.split('=', 1) for row in result.splitlines()])
+                status = self.response['Status']
+                success = (status == 'OK')
+                detail = self.response['StatusDetail']
+                if success:
+                    log.info('Success on order #%i, recording payment', self.order.id)
+                    record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
+                return (success, status, detail)
+            except Exception, e:
+                log.info('Error submitting payment: %s', e)
+                return (False, 'ERROR', 'Invalid response from payment gateway')
+        else:
+            return (False, 'ERROR', 'Error processing payment.')

@@ -1,9 +1,10 @@
 """Protx checkout custom views"""
 
 from django.utils.translation import ugettext as _
+from satchmo.configuration import config_get_group
 from satchmo.payment.common.views import payship, confirm
-
 import logging
+
 log = logging.getLogger('protx.views')
     
 def pay_ship_info(request):
@@ -11,7 +12,7 @@ def pay_ship_info(request):
     
 def confirm_info(request, template='checkout/protx/confirm.html', extra_context={}):
     payment_module = config_get_group('PAYMENT_PROTX')
-    controller = confirm.ConfirmController(request, payment_module, template=template)
+    controller = confirm.ConfirmController(request, payment_module)
     controller.templates['CONFIRM'] = template
     controller.extraContext = extra_context
     controller.onForm = secure3d_form_handler

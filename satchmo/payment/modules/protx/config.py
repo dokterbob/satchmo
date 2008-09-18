@@ -6,7 +6,7 @@ gettext = lambda s: s
 _strings = (gettext('CreditCard'), gettext('Credit Card'), gettext('Prot/X Secure Payments'))
 
 PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_PROTX', 'Protx'))
+PAYMENT_MODULES.add_choice(('PAYMENT_PROTX', 'Prot/X VSP Direct'))
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PROTX', 
     _('Prot/X Payment Settings'), 
@@ -92,4 +92,9 @@ config_register_list(
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
         default = r'^protx/'),
+        
+    BooleanValue(PAYMENT_GROUP, 
+        'EXTRA_LOGGING', 
+        description=_("Verbose logging?"),
+        default=False),
 )
