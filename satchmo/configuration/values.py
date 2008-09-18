@@ -13,6 +13,7 @@ from satchmo.utils import load_module, is_string_like, is_list_or_tuple
 from django.contrib.sites.models import Site
 import datetime
 import logging
+import signals
 
 try:
     from decimal import Decimal
@@ -313,6 +314,8 @@ class Value(object):
             else:
                 log.info("Updated setting %s.%s = %s", self.group.key, self.key, value)
                 s.save()
+                
+            signals.configuration_value_changed.send(self, old_value=current_value, new_value=new_value, setting=self)
             
             return True
         return False
