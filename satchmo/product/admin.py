@@ -95,7 +95,7 @@ class CategoryOptions(admin.ModelAdmin):
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryTranslation_Inline, CategoryImage_Inline]
-    
+    filter_horizontal = ('related_categories',)
     form = CategoryAdminForm    
 
 class CategoryImageOptions(admin.ModelAdmin):

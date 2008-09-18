@@ -84,7 +84,8 @@ class Category(models.Model):
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
-
+    related_categories = models.ManyToManyField('self', blank=True, null=True, 
+        verbose_name=_('Related Categories'), related_name='related_categories')
     objects = CategoryManager()
 
     def _get_mainImage(self):
