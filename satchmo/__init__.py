@@ -1,4 +1,4 @@
-VERSION = (1, 0, 'pre')
+VERSION = (0, 8, 'pre')
 
 def get_version():
     "Returns the version as a human-format string."

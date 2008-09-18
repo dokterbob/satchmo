@@ -1,5 +1,6 @@
 from django.core.management.base import NoArgsCommand
 import sys
+import django
 try:
     from decimal import Decimal
 except:
@@ -17,6 +18,8 @@ class Command(NoArgsCommand):
             import satchmo
         except ImportError:
             errors.append("Satchmo is not installed correctly. Please verify satchmo is on your sys path.")
+        print "Using Django version %s" % django.get_version()
+        print "Using Satchmo version %s" % satchmo.get_version()
         try:
             import Crypto.Cipher
         except ImportError:
