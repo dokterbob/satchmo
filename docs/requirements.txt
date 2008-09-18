@@ -48,7 +48,7 @@ Detailed steps for installing these dependencies is included in the installation
 .. _DocUtils: http://docutils.sourceforge.net/
 .. _PyYaml: http://pyyaml.org/
 .. _Authorize.net: http://www.authorize.net/
-.. _Tiny RML2PDF: http://www.openreport.org/index.py/static/page/trml2pdf
+.. _Tiny RML2PDF: http://openreport.org/index.py/static/page/trml2pdf
 .. _download link: http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
 .. _Django Registration: http://code.google.com/p/django-registration/
 .. _django-comment-utils: http://code.google.com/p/django-comment-utils/
