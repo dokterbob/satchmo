@@ -80,8 +80,13 @@ class PaymentProcessor(object):
             log.info("About to process payment [AUTH/CAPTURE] %s", self.logPostString)
 
         conn = urllib2.Request(url=self.connection, data=self.postString)
-        f = urllib2.urlopen(conn)
-        all_results = f.read()
+        try:
+            f = urllib2.urlopen(conn)
+            all_results = f.read()
+        except urllib2.URLError, ue:
+            log.error("error opening %s\n%s", self.url, ue)
+            return (False, 'ERROR', 'Could not talk to Authorize.net gateway')
+            
         parsed_results = all_results.split(self.configuration['x_delim_char'])
         response_code = parsed_results[0]
         reason_code = parsed_results[1]
