@@ -19,7 +19,7 @@ class ProtxPayShipForm(CreditPayShipForm):
         cc.card_holder=data.get('card_holder', '')
         cc.start_month=data.get('month_start', None)
         cc.start_year=data.get('year_start', None)
-        cc.issue_num=data.get('issue_num', ''))
+        cc.issue_num=data.get('issue_num', '')
         cc.save()
         
         return cc
