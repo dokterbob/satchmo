@@ -1,5 +1,4 @@
 from django.template import Library, Node
-from django.contrib.sites.models import Site
 from satchmo.product.models import Category
 from satchmo.shop.templatetags import get_filter_args
 import logging
@@ -50,7 +49,7 @@ def category_tree(id=None):
     if id:
         active_cat = Category.objects.get(id=id)
     root = Element("ul")
-    for cats in Category.objects.filter(parent__isnull=True, site=Site.objects.get_current()):
+    for cats in Category.objects.root_categories():
         recurse_for_children(cats, root, active_cat)
     return tostring(root, 'utf-8')
 
@@ -74,7 +73,7 @@ class CategoryListNode(Node):
                 cats = []
         
         else:
-            cats = Category.objects.filter(parent__isnull=True)
+            cats = Category.objects.root_categories()
                     
         context[self.var] = cats
 

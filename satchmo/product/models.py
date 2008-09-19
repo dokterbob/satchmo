@@ -68,6 +68,12 @@ class CategoryManager(models.Manager):
         site = site.id
 
         return self.filter(site__id__exact = site)
+        
+    def root_categories(self, site=None):
+        if not site:
+            site = Site.objects.get_current()
+        
+        return self.filter(parent__isnull=True, site=site)
 
 class Category(models.Model):
     """
