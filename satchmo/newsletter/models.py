@@ -59,6 +59,19 @@ class Subscription(models.Model):
         self.update_date = datetime.date.today()
 
         super(Subscription, self).save(force_insert=force_insert, force_update=force_update)
+        
+class SubscriptionAttribute(models.Model):
+    """
+    Allows arbitrary name/value pairs (as strings) to be attached to a subscription.
+    """
+    subscription = models.ForeignKey(Subscription)
+    name = models.SlugField(_("Attribute Name"), max_length=100, )
+    value = models.CharField(_("Value"), max_length=255)
+
+    class Meta:
+        verbose_name = _("Subscription Attribute")
+        verbose_name_plural = _("Subscription Attributes")
+
 
 import config
 

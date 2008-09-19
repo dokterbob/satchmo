@@ -7,6 +7,7 @@ from satchmo.configuration import config_value
 from satchmo.contact.signals import satchmo_contact_view
 from satchmo.utils import load_module
 import logging
+import signals
 
 log = logging.getLogger('newsletter')
 
@@ -24,7 +25,11 @@ def is_subscribed(contact):
     return get_newsletter_module().is_subscribed(contact)
 
 def update_subscription(contact, subscribed):
-    return get_newsletter_module().update_contact(contact, subscribed)
+    current = is_subscribed(contact)
+    log.debug("Updating subscription status from %s to %s for %s", current, subscribed, contact)
+    result = get_newsletter_module().update_contact(contact, subscribed)
+    signals.newsletter_subscription_updated.send(contact, old_state=current, new_state=subscribed, contact=contact)
+    return result
 
 def update_subscription_listener(contact=None, subscribed=False, **kwargs):
     if contact:
