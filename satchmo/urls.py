@@ -23,7 +23,7 @@ urlpatterns += patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^accounts/', include('satchmo.accounts.urls')),
     (shopregex, include('satchmo.shop.urls')),
-    (r'sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    (r'sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, 'satchmo_sitemap_xml'),
     (r'settings/', include('satchmo.configuration.urls')),
     (r'cache/', include('satchmo.caching.urls')),
 )
