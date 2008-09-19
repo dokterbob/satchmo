@@ -25,7 +25,7 @@ class Brand(models.Model, TranslatedObjectMixin):
     site = models.ForeignKey(Site)
     slug = models.SlugField(_("Slug"), unique=True,
         help_text=_("Used for URLs"))
-    products = models.ManyToManyField(Product, blank=True, verbose_name=_("Products"))
+    products = models.ManyToManyField(Product, blank=True, verbose_name=_("Products"), through='BrandProduct')
     ordering = models.IntegerField(_("Ordering"))
     active = models.BooleanField(default=True)
     
@@ -68,9 +68,11 @@ class Brand(models.Model, TranslatedObjectMixin):
         verbose_name = _('Brand')
         verbose_name_plural = _('Brands')
 
+class BrandProduct(models.Model):
+    brand = models.ForeignKey(Brand)
+    product = models.ForeignKey(Product)
 
 class BrandTranslation(models.Model):
-
     brand = models.ForeignKey(Brand, related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
     name = models.CharField(_('title'), max_length=100, blank=False)
