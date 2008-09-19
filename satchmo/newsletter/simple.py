@@ -12,15 +12,36 @@ def is_subscribed(contact):
 def update_contact(contact, subscribe, attributes={}):
     email = contact.email
     current = Subscription.email_is_subscribed(email)
+    attributesChanged = False
+    sub = None
+    
+    if attributes:
+        sub, created = Subscription.objects.get_or_create(email=email)
+        if created:
+            attributesChanged = True
+        else:
+            oldAttr = [(a.name,a.value) for a in sub.attributes.all()]
+            oldAttr.sort()
+        sub.update_attributes(attributes)
+        newAttr = [(a.name,a.value) for a in sub.attributes.all()]
+        newAttr.sort()
+        
+        if not created:
+            attributesChanged = oldAttr != newAttr
     
     if current == subscribe:
         if subscribe:
-            result = _("Already subscribed %(email)s.")
+            if attributesChanged:
+                result = _("Updated subscription for %(email)s.")
+            else:
+                result = _("Already subscribed %(email)s.")
+                
         else:
             result = _("Already removed %(email)s.")
         
     else:
-        sub, created = Subscription.objects.get_or_create(email=email)
+        if not sub:
+            sub, created = Subscription.objects.get_or_create(email=email)
         sub.subscribed = subscribe
         sub.save()
         log.debug("Subscription now: %s" % sub)
@@ -29,9 +50,5 @@ def update_contact(contact, subscribe, attributes={}):
             result = _("Subscribed: %(email)s")
         else:
             result = _("Unsubscribed: %(email)s")
-
-    if attributes:
-        sub, created = Subscription.objects.get_or_create(email=email)
-        sub.update_attributes(attributes)    
 
     return result % { 'email' : email }

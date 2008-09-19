@@ -76,6 +76,7 @@ class Subscription(models.Model):
                 
     def update_attribute(self, name, value):
         """Update or create a `SubscriptionAttribute` object with the passed `name` and `value`."""
+        value = str(value)
         try:
             att = self.attributes.get(name=name)
             att.value = value
