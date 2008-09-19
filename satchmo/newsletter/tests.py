@@ -4,7 +4,7 @@ from django.test.client import Client
 from satchmo import caching
 from satchmo.configuration import config_get
 from satchmo.newsletter import *
-from satchmo.newsletter.models import get_contact_or_fake
+from satchmo.newsletter.models import get_contact_or_fake, Subscription
 import logging
 
 log = logging.getLogger('test');
@@ -44,6 +44,14 @@ class NewsletterTest(TestCase):
         results = update_subscription(c, False)
         sub = is_subscribed(c)
         self.assertFalse(sub)
+        
+    def testAttributeSetting(self):
+        c = get_contact_or_fake('test test', 'setattr@test.com')
+        results = update_subscription(c, True, attributes = {'var1' : 'True'})
+        sub = Subscription.objects.get(email='setattr@test.com')
+        self.assert_(sub)
+        self.assertEqual(sub.attribute_value('var1'), 'True')
+        self.assertTrue(sub.subscribed)
         
 class NewsletterTestViews(TestCase):
     

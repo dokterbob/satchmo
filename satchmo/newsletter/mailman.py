@@ -18,7 +18,7 @@ class UserDesc: pass
 def is_subscribed(contact):
     return Subscription.email_is_subscribed(contact.email)
 
-def update_contact(contact, subscribe):
+def update_contact(contact, subscribe, attributes={}):
     email = contact.email
     current = Subscription.email_is_subscribed(email)
     
@@ -39,6 +39,10 @@ def update_contact(contact, subscribe):
         else:
             mailman_remove(contact)
             result = _("Unsubscribed: %(email)s")
+            
+    if attributes:
+        sub, created = Subscription.objects.get_or_create(email=email)
+        sub.update_attributes(attributes)
 
     return result % { 'email' : email }
 

@@ -24,8 +24,8 @@ class NewsletterForm(forms.Form):
         
         return get_contact_or_fake(full_name, email)
     
-    def save(self, state=_NOTSET):
+    def save(self, state=_NOTSET, attributes={}):
         contact = self.get_contact()
         if state == _NOTSET:
             state = self.cleaned_data['subscribed']
-        update_subscription(contact, state)
+        return update_subscription(contact, state, attributes=attributes)

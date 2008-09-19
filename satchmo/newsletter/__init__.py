@@ -24,11 +24,12 @@ def is_subscribed(contact):
         return False
     return get_newsletter_module().is_subscribed(contact)
 
-def update_subscription(contact, subscribed):
+def update_subscription(contact, subscribed, attributes={}):
     current = is_subscribed(contact)
     log.debug("Updating subscription status from %s to %s for %s", current, subscribed, contact)
-    result = get_newsletter_module().update_contact(contact, subscribed)
-    signals.newsletter_subscription_updated.send(contact, old_state=current, new_state=subscribed, contact=contact)
+    result = get_newsletter_module().update_contact(contact, subscribed, attributes=attributes)
+    signals.newsletter_subscription_updated.send(contact, 
+        old_state=current, new_state=subscribed, contact=contact, attributes=attributes)
     return result
 
 def update_subscription_listener(contact=None, subscribed=False, **kwargs):

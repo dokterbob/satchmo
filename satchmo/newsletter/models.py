@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from satchmo.contact.models import Contact
 import datetime
 
+_NOTSET = object()
+
 class NullContact(object):
     """Simple object emulating a Contact, so that we can add users who aren't Satchmo Contacts.
 
@@ -17,6 +19,7 @@ class NullContact(object):
         self.email = email
 
 def get_contact_or_fake(full_name, email):
+    """Get a `Contact` by email or if it doesn't exist, then a `NullContact`"""
     try:
         contact = Contact.objects.get(email=email)
 
@@ -52,6 +55,17 @@ class Subscription(models.Model):
     def __repr__(self):
         return "<Subscription: %s>" % str(self)
 
+    def attribute_value(self, name, value=_NOTSET):
+        """Get a value from an attribute."""
+        try:
+            att = self.attributes.get(name=name)
+            value = att.value
+        except SubscriptionAttribute.DoesNotExist:
+            if value != _NOTSET:
+                raise
+
+        return value
+
     def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.create_date = datetime.date.today()
@@ -59,12 +73,28 @@ class Subscription(models.Model):
         self.update_date = datetime.date.today()
 
         super(Subscription, self).save(force_insert=force_insert, force_update=force_update)
+                
+    def update_attribute(self, name, value):
+        """Update or create a `SubscriptionAttribute` object with the passed `name` and `value`."""
+        try:
+            att = self.attributes.get(name=name)
+            att.value = value
+        except SubscriptionAttribute.DoesNotExist:
+            att = SubscriptionAttribute(subscription=self, name=name, value=value)
+        
+        att.save()
+        return att
+
+    def update_attributes(self, attributes):
+        """Update `SubscriptionAttribute` objects from a dictionary of name val mappings."""
+        return [self.update_attribute(name, value) for name, value in attributes.items()]
+
         
 class SubscriptionAttribute(models.Model):
     """
     Allows arbitrary name/value pairs (as strings) to be attached to a subscription.
     """
-    subscription = models.ForeignKey(Subscription)
+    subscription = models.ForeignKey(Subscription, related_name="attributes")
     name = models.SlugField(_("Attribute Name"), max_length=100, )
     value = models.CharField(_("Value"), max_length=255)
 
