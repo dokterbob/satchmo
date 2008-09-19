@@ -61,7 +61,7 @@ class Brand(models.Model, TranslatedObjectMixin):
         return self.active_products().count > 0
             
     def __unicode__(self):
-        return u"Brand: %s" % self.slug
+        return u"%s" % self.slug
             
     class Meta:
         ordering=('ordering', 'slug')
@@ -71,6 +71,10 @@ class Brand(models.Model, TranslatedObjectMixin):
 class BrandProduct(models.Model):
     brand = models.ForeignKey(Brand)
     product = models.ForeignKey(Product)
+    
+    class Meta:
+        verbose_name=_("Brand Product")
+        verbose_name_plural=_("Brand Products")
 
 class BrandTranslation(models.Model):
     brand = models.ForeignKey(Brand, related_name="translations")
@@ -80,7 +84,8 @@ class BrandTranslation(models.Model):
     description = models.TextField(_('Full Description'), blank=True)
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
-        name_field="_filename") #Media root is automatically prepended
+        name_field="_filename",
+        null=True, blank=True) #Media root is automatically prepended
     
     def _get_filename(self):
         if self.brand:
@@ -104,7 +109,7 @@ class BrandCategory(models.Model, TranslatedObjectMixin):
     slug = models.SlugField(_("Slug"),
         help_text=_("Used for URLs"))
     brand = models.ForeignKey(Brand, related_name="categories")
-    products = models.ManyToManyField(Product, blank=True, verbose_name=_("Products"))
+    products = models.ManyToManyField(Product, blank=True, verbose_name=_("Products"), through='BrandCategoryProduct')
     ordering = models.IntegerField(_("Ordering"))
     active = models.BooleanField(default=True)
 
@@ -132,11 +137,20 @@ class BrandCategory(models.Model, TranslatedObjectMixin):
         return self.active_products().count > 0
 
     def __unicode__(self):
-        return u"BrandCategory: %s" % self.slug
+        return u"%s: %s" % (self.brand.slug, self.slug)
 
     class Meta:
         ordering=('ordering', 'slug')
-        verbose_name_plural = _('Brand Categories')
+        verbose_name = _('Brand Category')
+        verbose_name_plural = _('Categories')
+
+class BrandCategoryProduct(models.Model):
+    brandcategory = models.ForeignKey(BrandCategory)
+    product = models.ForeignKey(Product)
+    
+    class Meta:
+        verbose_name = _('Brand Category Product')
+        verbose_name_plural = _('Brand Category Products')
 
 class BrandCategoryTranslation(models.Model):
 
@@ -147,7 +161,8 @@ class BrandCategoryTranslation(models.Model):
     description = models.TextField(_('Description'), blank=True)
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
-        name_field="_filename") #Media root is automatically prepended
+        name_field="_filename",
+        null=True, blank=True) #Media root is automatically prepended
     
     def _get_filename(self):
         if self.brandcategory:
