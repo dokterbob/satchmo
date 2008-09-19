@@ -11,8 +11,9 @@ log = logging.getLogger('brand.models')
 
 class BrandManager(models.Manager):
     
-    def active(self):
-        site = Site.objects.get_current()
+    def active(self, site=None):
+        if not site:
+            site = Site.objects.get_current()
         return self.filter(site=site, active=True)
     
     def by_slug(self, slug):
