@@ -277,8 +277,7 @@ class Value(object):
         except Exception, e:
             global _WARN
             log.error(e)
-            msg = e.args[0]
-            if msg.find("configuration_setting") > -1:
+            if str(e).find("configuration_setting") > -1:
                 if not _WARN.has_key('configuration_setting'):
                     log.warn('Error loading setting %s.%s from table, OK if you are in syncdb', self.group.key, self.key)
                     _WARN['configuration_setting'] = True
