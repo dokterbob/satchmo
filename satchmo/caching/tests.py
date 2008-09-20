@@ -110,6 +110,27 @@ class CachingTest(TestCase):
                 self.assertFalse(caching.cache_get('del', 'x', x, 'y', y, default=False))
 
 
+class TestCacheDisable(TestCase):
+    
+    def testDisable(self):
+        caching.cache_set('disabled', value=False)
+        v = caching.cache_get('disabled')
+        self.assertEqual(v, False)
+        
+        caching.cache_enable(False)
+        caching.cache_set('disabled', value=True)
+        try:
+            caching.cache_get('disabled')
+            self.fail('should have raised NotCachedError')
+        except caching.NotCachedError, nce:
+            key = caching.cache_key('disabled')
+            self.assertEqual(nce.key, key)
+            
+        caching.cache_enable()
+        v2 = caching.cache_get('disabled')
+        # should still be False, since the cache was disabled
+        self.assertEqual(v2, False)
+
 class TestKeyMaker(TestCase):
     
     def testSimpleKey(self):
