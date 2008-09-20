@@ -33,9 +33,9 @@ Template Translations
 
 3. After translating the file, you must compile it to an .mo file.  To do this, you must make sure that your local_settings.py file has a LOCALE_PATHS variable defined (it can be a blank string).
 
-4. Compile the file using django's compile-messages.py script::
+4. Compile the file using the compilemessages command (run from your project directory)::
 
-    /path/to/django-admin.py compile-messages -l de
+    python manage.py compilemessages -l de
 
 5. (Optional but encouraged) Submit a ticket with your translation.
 
