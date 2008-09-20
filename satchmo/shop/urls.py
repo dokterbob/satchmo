@@ -49,7 +49,7 @@ if app_enabled('wishlist'):
     )
 
 urlpatterns += patterns('django.views.generic',
-    (r'^contact/thankyou/$','simple.direct_to_template',{'template':'thanks.html'}),
+    (r'^contact/thankyou/$','simple.direct_to_template',{'template':'thanks.html'},'satchmo_contact_thanks'),
 )
 
 # Make sure thumbnails and images are served up properly when using the dev server.

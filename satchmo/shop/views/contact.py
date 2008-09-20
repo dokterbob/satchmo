@@ -10,6 +10,7 @@ from satchmo.shop import get_satchmo_setting
 from satchmo.shop.models import Config
 from socket import error as SocketError
 import logging
+from django.core import urlresolvers
 
 log = logging.getLogger('satchmo.shop.views')
 
@@ -55,8 +56,8 @@ def form(request):
                 else:
                     log.fatal('Error sending mail: %s' % e)
                     raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
-
-            return http.HttpResponseRedirect('%s/contact/thankyou/' % (get_satchmo_setting('SHOP_BASE')))
+            url = urlresolvers.reverse('satchmo_contact_thanks')
+            return http.HttpResponseRedirect(url)
     else: #Not a post so create an empty form
         initialData = {}
         if request.user.is_authenticated():
