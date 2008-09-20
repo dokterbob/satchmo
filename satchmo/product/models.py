@@ -409,11 +409,11 @@ class OptionTranslation(models.Model):
 
 class ProductManager(models.Manager):
     
-    def active(self):
-        return self.filter(active=True)
+    def active(self, **kwargs):
+        return self.filter(active=True, **kwargs)
 
-    def active_by_site(self):
-        return self.by_site().filter(active=True)
+    def active_by_site(self, **kwargs):
+        return self.by_site(active=True, **kwargs)
 
     def by_site(self, site=None, **kwargs):
         if not site:
@@ -425,7 +425,7 @@ class ProductManager(models.Manager):
         return self.filter(site__id__exact=site, **kwargs)
 
     def featured_by_site(self, site=None):
-        return self.by_site(site=site).filter(active=True, featured=True)
+        return self.by_site(site=site, active=True, featured=True)
 
     def get_by_site(self, site=None, **kwargs):
         products = self.by_site(site=site, **kwargs)
@@ -433,6 +433,15 @@ class ProductManager(models.Manager):
             raise Product.DoesNotExist
         else:
             return products[0]
+            
+    def recent_by_site(self):
+        query = self.active_by_site(productvariation__parent__isnull=True)
+        if query.count() == 0:
+            query = self.active_by_site()
+            
+        query = query.order_by('-date_added')
+        return query
+    
 
 class Product(models.Model):
     """
