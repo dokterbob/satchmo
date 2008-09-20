@@ -42,7 +42,7 @@
         <City>{{contact.shipping_address.city}}</City>
         <StateProvinceCode>{{contact.shipping_address.state}}</StateProvinceCode>
         <PostalCode>{{contact.shipping_address.postal_code}}</PostalCode> 
-        <CountryCode>{{contact.shipping_address.country}}</CountryCode>
+        <CountryCode>{{contact.shipping_address.country.iso2_code}}</CountryCode>
       </Address>
     </ShipTo>
     <ShipFrom>

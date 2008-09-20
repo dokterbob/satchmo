@@ -22,7 +22,7 @@
     <DestinationAddress>
       <StateOrProvinceCode>{{ contact.shipping_address.state }}</StateOrProvinceCode>
       <PostalCode>{{ contact.shipping_address.postal_code }}</PostalCode>
-      <CountryCode>{{ contact.shipping_address.country }}</CountryCode>
+      <CountryCode>{{ contact.shipping_address.country.iso2_code }}</CountryCode>
     </DestinationAddress>
 
     <Payment>
