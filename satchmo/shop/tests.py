@@ -480,12 +480,12 @@ class AdminTest(TestCase):
         self.assertContains(response, "Small, Black", status_code=200)
 
     #def test_productimage_list(self):
-        response = self.client.get('/admin/product/productimage/')
-        self.assertContains(response, "Photo Not Available", status_code=200)
+        # response = self.client.get('/admin/product/productimage/')
+        # self.assertContains(response, "Photo Not Available", status_code=200)
 
     #def test_productimage(self):
-        response = self.client.get('/admin/product/productimage/1/')
-        self.assertContains(response, "Photo Not Available", status_code=200)
+        # response = self.client.get('/admin/product/productimage/1/')
+        # self.assertContains(response, "Photo Not Available", status_code=200)
 
 class FilterUtilTest(TestCase):
     """Test the templatetags util class"""
