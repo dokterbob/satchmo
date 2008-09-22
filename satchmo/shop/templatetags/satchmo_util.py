@@ -39,6 +39,17 @@ def truncate_decimal(val, places=2):
     
 register.filter('truncate_decimal', truncate_decimal)
 
+def shuffle(l):
+    """
+    Returns the shuffled list.
+    """
+    import random
+    l = list(l)
+    random.shuffle(l)
+    return l
+    
+register.filter('shuffle', shuffle)
+
 def remove_tags(value):
     """
     Returns the text with all tags removed
