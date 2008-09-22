@@ -170,10 +170,14 @@ def get_price_detail(request, product_slug):
 
 
 def do_search(request):
-    if request.GET:
-        keywords = request.GET.get('keywords', '').split(' ')
+    if request.method=="GET":
+        data = request.GET
     else:
-        keywords = request.POST.get('keywords', '').split(' ')
+        data = request.POST
+        
+    
+    keywords = data.get('keywords', '').split(' ')
+    category = data.get('category', None)
 
     keywords = filter(None, keywords)
 
@@ -182,11 +186,18 @@ def do_search(request):
 
     categories = Category.objects
     products = Product.objects.active()
-    for keyword in keywords:
+    if category:
         categories = categories.filter(
-            Q(name__icontains=keyword) |
-            Q(meta__icontains=keyword) |
-            Q(description__icontains=keyword))
+            Q(name__icontains=category) |
+            Q(meta__icontains=category) |
+            Q(description__icontains=category))
+
+    for keyword in keywords:
+        if not category:
+            categories = categories.filter(
+                Q(name__icontains=keyword) |
+                Q(meta__icontains=keyword) |
+                Q(description__icontains=keyword))
         products = products.filter(Q(name__icontains=keyword)
             | Q(short_description__icontains=keyword)
             | Q(description__icontains=keyword)
@@ -195,7 +206,13 @@ def do_search(request):
     clist = list(categories)
     plist = [p for p in products if not p.has_variants]
 
-    context = RequestContext(request, {'results': {'categories': clist, 'products': plist}})
+    context = RequestContext(request, {
+            'results': {
+                'categories': clist, 
+                'products': plist
+                },
+            'category' : category,
+            'keywords' : keywords})
     return render_to_response('search.html', context)
 
 def get_configurable_product_options(request, id):
