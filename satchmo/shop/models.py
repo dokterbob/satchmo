@@ -30,7 +30,6 @@ from satchmo.payment.fields import PaymentChoiceCharField
 from satchmo.product import signals as product_signals
 from satchmo.product.models import Product, DownloadableProduct
 from satchmo.shipping.fields import ShippingChoiceCharField
-from satchmo.shop import OutOfStockError
 from satchmo.tax.utils import get_tax_processor
 from django.contrib.sites.models import Site
     
@@ -312,14 +311,9 @@ class Cart(models.Model):
                     item_to_modify = similarItem
                     alreadyInCart = True
                     break
-        config=Config.objects.get_current()
-
-        if config.no_stock_checkout == False:
-            need_qty = item_to_modify.quantity + number_added
-            if chosen_item.items_in_stock < need_qty:
-                raise OutOfStockError(chosen_item, chosen_item.items_in_stock, need_qty)
             
         if not alreadyInCart:
+            signals.satchmo_cart_add_verify.send(self, cart=self, cartitem=item_to_modify, added_quantity=number_added, details=details)                
             self.cartitem_set.add(item_to_modify)
 
         item_to_modify.quantity += number_added

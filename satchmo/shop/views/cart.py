@@ -18,7 +18,7 @@ from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
 from satchmo.product.views import find_product_template, optionset_from_post
-from satchmo.shop import OutOfStockError
+from satchmo.shop import CartAddProhibited
 from satchmo.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
 from satchmo.utils import trunc_decimal
@@ -136,13 +136,10 @@ def add(request, id=0):
             )
     try:
         added_item = cart.add_item(product, number_added=quantity, details=details)
-    except OutOfStockError, os:
-        if os.have == 0:
-            msg = _("'%s' is out of stock.") % product.translated_name()
-        else:
-            msg = _("Only %(amount)i of '%(product)s' in stock.") % {'amount': os.have, 'product': product.translated_name()}
-        return _product_error(request, product,msg)
-
+        
+    except CartAddProhibited, cap:
+        return _product_error(request, product, cap.message)
+        
     # got to here with no error, now send a signal so that listeners can also operate on this form.
     satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, product=product, request=request, form=formdata)
     satchmo_cart_changed.send(cart, cart=cart, request=request)
@@ -215,13 +212,11 @@ def add_ajax(request, id=0, template="json.html"):
                         request=request,
                         form=formdata
                         )
-        except OutOfStockError, oe:
+                        
+        except CartAddProhibited, cap:
             data['results'] = _('Error')
-            if oe.have == 0:
-                msg = _("'%s' is out of stock.") % product.translated_name()
-            else:
-                msg = _("Only %(amount)i of '%(product)s' in stock.") % {'amount': oe.have, 'product': product.translated_name()}
-            data['errors'].append(('quantity', msg))
+            data['errors'].append(('product', cap.message))
+        
     else:
         data['results'] = _('Error')
 

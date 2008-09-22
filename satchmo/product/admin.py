@@ -143,7 +143,7 @@ class ProductImageOptions(admin.ModelAdmin):
     inlines = [ProductImageTranslation_Inline]
 
 admin.site.register(Category, CategoryOptions)
-admin.site.register(CategoryImage, CategoryImageOptions)
+#admin.site.register(CategoryImage, CategoryImageOptions)
 admin.site.register(OptionGroup, OptionGroupOptions)
 admin.site.register(Option, OptionOptions)
 admin.site.register(Product, ProductOptions)
@@ -153,5 +153,5 @@ admin.site.register(ConfigurableProduct)
 admin.site.register(DownloadableProduct)
 admin.site.register(SubscriptionProduct, SubscriptionProductOptions)
 admin.site.register(ProductVariation, ProductVariationOptions)
-admin.site.register(ProductImage, ProductImageOptions)
+#admin.site.register(ProductImage, ProductImageOptions)
 

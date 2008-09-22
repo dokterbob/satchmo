@@ -22,6 +22,7 @@ from django.core.urlresolvers import reverse as url
 from django.test import TestCase
 from django.test.client import Client
 from django.utils.encoding import smart_str
+from django.utils.translation import ugettext as _
 
 from django.contrib.sites.models import Site
 from satchmo import caching
@@ -31,9 +32,11 @@ from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.models import Contact, AddressBook
 from satchmo.l10n.models import Country
 from satchmo.product.models import Product
-from satchmo.shop import get_satchmo_setting
+from satchmo.shop import get_satchmo_setting, CartAddProhibited
 from satchmo.shop.models import *
 from satchmo.shop.templatetags import get_filter_args
+
+from satchmo.shop import signals
 
 import datetime
 
@@ -650,6 +653,36 @@ class OrderTest(TestCase):
         pmt.save()
     
         self.assert_(order.is_partially_paid)
+
+def vetoAllListener(sender, vetoes={}, **kwargs):
+    raise CartAddProhibited(None, "No")
+
+class SignalTest(TestCase):
+    fixtures = ['l10n-data.yaml', 'test_multishop.yaml', 'products.yaml']    
+
+    def setUp(self):
+        caching.cache_delete()
+        signals.satchmo_cart_add_verify.connect(vetoAllListener)
+
+    def tearDown(self):
+        cache_delete()
+        signals.satchmo_cart_add_verify.disconnect(vetoAllListener)
+
+    def testCartAddVerifyVeto(self):
+        """Test that vetoes from `signals.satchmo_cart_add_verify` are caught and cause an error."""
+        try:
+            site = Site.objects.get_current()
+            cart = Cart(site=site)
+            cart.save()
+            p = Product.objects.get(slug='dj-rocks-s-b')
+            cart.add_item(p, 1)
+            order = make_test_order(US, '', include_non_taxed=True)
+            self.fail('Should have thrown a CartAddProhibited error')
+            
+        except CartAddProhibited, cap:
+            pass
+            
+        self.assertEqual(len(cart), 0)
 
 
 if __name__ == "__main__":

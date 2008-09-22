@@ -1,5 +1,5 @@
 import logging
-from satchmo.shop import OutOfStockError
+from satchmo.shop import CartAddProhibited
 
 log = logging.getLogger('upsell.views')
 
@@ -57,8 +57,14 @@ def _add_upsell(form, cart, i):
                     cart.add_item(product, number_added=qty)
                     log.info('Added upsell item: %s qty=%i', product.slug, qty)
                     return (True, product)
-                except OutOfStockError, oe:
-                    log.debug('Failed to add upsell item: %s qty=%i, we only have %i in stock', product.slug, qty, oe.have)
+                                        
+                except CartAddProhibited, cap:
+                    vetomsg = cap.veto_messages() 
+                    msg = _("'%(product)s' couldn't be added to the cart. %(details)s") % {
+                        'product' : product.slug, 
+                        'detail' : cap.message 
+                        }
+                    log.debug("Failed to add upsell item: '%s', message= %s", product.slug, msg)
                     return (False, product)
                     
             except Product.DoesNotExist:

@@ -11,7 +11,7 @@ from satchmo.contact.models import Contact
 from satchmo.shop.signals import order_success
 from satchmo.product.models import Product
 from satchmo.product.views import find_product_template
-from satchmo.shop import OutOfStockError
+from satchmo.shop import CartAddProhibited
 from satchmo.shop.models import Cart, Order
 from satchmo.shop.signals import satchmo_cart_changed
 from satchmo.shop.views.cart import product_from_post
@@ -99,8 +99,12 @@ def wishlist_move_to_cart(request):
         cart = Cart.objects.from_request(request, create=True)
         try:
             cart.add_item(wish.product, number_added=1, details=wish.details)
-        except OutOfStockError, oe:
-            return wishlist_view(request, message=_("Not enough items of '%s' in stock.") % wish.product.translated_name())
+        except CartAddProhibited, cap:
+            msg = _("Wishlist product '%(product)s' could't be added to the cart. %(details)s") % {
+                'product' : wish.product.translated_name, 
+                'detail' : cap.message
+                }
+            return wishlist_view(request, message=msg)
             
         url = urlresolvers.reverse('satchmo_cart')
         satchmo_cart_changed.send(cart, cart=cart, request=request)

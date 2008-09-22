@@ -12,8 +12,11 @@ import django.dispatch
 
 order_success = django.dispatch.Signal()
 
-#satchmo_cart_add_complete.send(cart, cart=cart, product=product, form=form, request=request)
+#satchmo_cart_add_complete.send(cart, cart=cart, cartitem=cartitem, form=form, request=request)
 satchmo_cart_add_complete=django.dispatch.Signal()
+
+#satchmo_cart_add_verify(cart, cart=cart, cartitem=cartitem, added_quantity=0, details=details)
+satchmo_cart_add_verify=django.dispatch.Signal()
 
 satchmo_cart_changed=django.dispatch.Signal()
 
