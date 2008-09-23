@@ -55,7 +55,7 @@ class OrderTaxDetail_Inline(admin.TabularInline):
 
 class OrderOptions(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('contact', 'method', 'status', 'discount_code', 'notes')}), (_('Shipping Method'), {'fields':
+        (None, {'fields': ('site', 'contact', 'method', 'status', 'discount_code', 'notes')}), (_('Shipping Method'), {'fields':
             ('shipping_method', 'shipping_description')}), (_('Shipping Address'), {'classes': ('collapse',), 'fields':
             ('ship_street1', 'ship_street2', 'ship_city', 'ship_state', 'ship_postal_code', 'ship_country')}), (_('Billing Address'), {'classes': ('collapse',), 'fields':
             ('bill_street1', 'bill_street2', 'bill_city', 'bill_state', 'bill_postal_code', 'bill_country')}), (_('Totals'), {'fields':

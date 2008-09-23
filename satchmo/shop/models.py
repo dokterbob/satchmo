@@ -629,6 +629,8 @@ class Order(models.Model):
         self.save()
 
     def _balance(self):
+        if self.total is None:
+            self.force_recalculate_total(save=True)
         return self.total-self.balance_paid
 
     balance = property(fget=_balance)
@@ -849,6 +851,10 @@ class Order(models.Model):
     is_shippable = property(_is_shippable)
 
     def _shipping_sub_total(self):
+        if self.shipping_cost is None:
+            self.shipping_cost = Decimal('0.00')
+        if self.shipping_discount is None:
+            self.shipping_discount = Decimal('0.00')
         return self.shipping_cost-self.shipping_discount
     shipping_sub_total = property(_shipping_sub_total)
 
