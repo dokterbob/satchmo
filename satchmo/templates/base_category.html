@@ -10,13 +10,8 @@
 
 {% block navbar %}
     <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
-{% for urls in category.get_url_name %}
-    {% if forloop.last %}
-    <li>{{ urls.0 }}</li>    
-    {% else %}
-    <li><a href="{{urls.1}}">{{ urls.0 }}</a></li>
-    {% endif %}
-{% endfor %}
+	{% for parent in category.parents %}<li><a href="{{ parent.get_absolute_url }}">{{ parent.translated_name }}</a></li>{% endfor %}
+	<li>{{ category.translated_name }}</li>
 {% endblock %}
 
 {% block sidebar %}
