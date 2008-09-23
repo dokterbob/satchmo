@@ -3,5 +3,5 @@
 def is_subscribed(contact):
     return False
 
-def update_contact(*args):
+def update_contact(*args, **kwargs):
     pass
