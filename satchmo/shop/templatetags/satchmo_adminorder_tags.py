@@ -10,7 +10,7 @@ def orders_at_status(status):
 
 def pending_order_list():
     """Returns a formatted list of pending orders"""
-    pending = unicode(ORDER_STATUS[1][1])
+    pending = unicode(ORDER_STATUS[1][0])
     orders = orders_at_status(pending)
     
     return {
@@ -22,7 +22,7 @@ register.inclusion_tag('admin/_ordercount_list.html')(pending_order_list)
 
 def inprocess_order_list():
     """Returns a formatted list of in-process orders"""
-    inprocess = unicode(ORDER_STATUS[2][1])
+    inprocess = unicode(ORDER_STATUS[2][0])
     orders = orders_at_status(inprocess)
     
     return {
