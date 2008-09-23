@@ -115,7 +115,7 @@ class Category(models.Model):
     main_image = property(_get_mainImage)
 
     def active_products(self):
-        return self.product_set.filter(active=True)
+        return self.product_set.filter(site=self.site, active=True)
 
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -134,6 +134,9 @@ class Category(models.Model):
         if cat_obj == self and p_list:
             p_list.reverse()
         return p_list
+        
+    def parents(self):
+        return self._recurse_for_parents(self)
 
     def get_absolute_url(self):
         parents = self._recurse_for_parents(self)
