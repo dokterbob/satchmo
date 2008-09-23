@@ -9,7 +9,7 @@ def uk_postcode_validator(sender, postcode=None, country=None, **kwargs):
         log.debug('Validating UK Postcode: %s', postcode)
         from satchmo.l10n.validators import ukpostcode
         try:
-            pc = ukpostcode.parse_uk_postcode(str)
+            pc = ukpostcode.parse_uk_postcode(postcode)
         except ValueError, ve:
             log.debug('UK Postcode validator caught error: %s', ve)
             raise forms.ValidationError('Please enter a valid UK postcode.')
