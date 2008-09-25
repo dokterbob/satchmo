@@ -6,7 +6,7 @@ def default_product_search_listener(sender, request=None, category=None, keyword
     However, it usually won't have to be overridden, since it just adds data to the results dict.  If you are simply
     adding more results, then leave this listener registered and add more objects in your search listener.
     """
-    categories = Category.objects.all()
+    categories = Category.objects.by_site()
     products = Product.objects.active()
     if category:
         categories = categories.filter(

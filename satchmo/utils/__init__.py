@@ -3,12 +3,13 @@ try:
 except:
     from django.utils._decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 
+from django.conf import settings
+from django.db import models
 import logging
 import os
 import random
 import sys
 import types
-from django.db import models
 
 log = logging.getLogger('shop.utils')
 
@@ -39,6 +40,17 @@ def cross_list(sequences):
     for seq in sequences:
         result = [sublist+[item] for sublist in result for item in seq]
     return result
+
+def current_media_url(request):    
+    """Return the media_url, taking into account SSL."""
+    media_url = settings.MEDIA_URL
+    secure = request_is_secure(request)
+    if secure:
+        try:
+            media_url = settings.MEDIA_SECURE_URL
+        except AttributeError:
+            media_url = media_url.replace('http://','https://')
+    return media_url
 
 def is_scalar(maybe):
     """Test to see value is a string, an int, or some other scalar type"""
@@ -120,6 +132,7 @@ def request_is_secure(request):
         return request.META['HTTP_X_FORWARDED_SSL'] == 'on'
 
     return False
+
 
 def trunc_decimal(val, places):
     roundfmt = "0."

@@ -5,7 +5,7 @@
 	<select name="category">
 	 	<option value="" selected="selected">{% trans "All Products" %}</option>
 		{% for cat in categories %}
-		<option value="{{ cat.slug }}">{{ cat.name}}</option>
+		<option value="{{ cat.slug }}"{% ifequal cat category %} selected="selected"{% endifequal %}>{{ cat.name}}</option>
 		{% endfor %}
 	</select><br/>
 	{% endif %}
