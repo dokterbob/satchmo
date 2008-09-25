@@ -44,9 +44,6 @@ class Brand(models.Model, TranslatedObjectMixin):
         return ('satchmo_brand_view', None, {'brandname' : self.slug})
         
     get_absolute_url = models.permalink(_get_absolute_url)
-
-    def active_categories(self):
-        return self.categories.filter(active=True)        
         
     def active_products(self):
         return self.products.filter(site=self.site, active=True)        
