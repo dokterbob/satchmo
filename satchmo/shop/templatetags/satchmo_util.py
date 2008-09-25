@@ -1,5 +1,6 @@
 from django import template
 from django.utils.safestring import mark_safe
+from satchmo.product.models import Category
 from satchmo.utils import app_enabled, trunc_decimal
 from satchmo.utils.json import json_encode
 
