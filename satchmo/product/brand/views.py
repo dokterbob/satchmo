@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from models import Brand, BrandCategory
+from models import Brand, BrandCategory, BrandProduct
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product
 from satchmo.product import signals
@@ -26,14 +26,20 @@ def brand_page(request, brandname):
         
     except Brand.DoesNotExist:
         raise Http404(_('Brand "%s" does not exist') % brandname)
+
         
     products = list(brand.active_products())
     sale = find_best_auto_discount(products)
-    
-    ctx = RequestContext(request, {
+
+    ctx = {
         'brand' : brand,
+        'products': products,
         'sale' : sale,
-    })
+    }
+
+    ctx = RequestContext(request, ctx)
+    signals.index_prerender.send(BrandProduct, request=request, context=ctx, brand=brand, object_list=products)
+    
     return render_to_response('product/brand/view_brand.html', ctx)
 
 

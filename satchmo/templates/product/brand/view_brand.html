@@ -35,7 +35,7 @@
     {% if brand.has_content %}
     	{% if brand.has_products %}
 		<div class="brandproducts">
-		{% for product in brand.active_products %} 
+		{% for product in products %} 
 			<div class="productImage{% if forloop.first %} first{% endif %}">	
 		        <a href="{{ product.get_absolute_url }}">
 		        	<img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" />

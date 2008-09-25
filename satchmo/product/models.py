@@ -22,6 +22,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value, SettingNotSet, config_value_safe
 from satchmo.shop import get_satchmo_setting
+from satchmo.shop.signals import satchmo_search
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from satchmo.utils import cross_list, normalize_dir, url_join
@@ -1591,3 +1592,8 @@ def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=Non
         if parent:
             return get_product_quantity_price(parent, qty, delta=delta)
         return None
+
+import listeners
+satchmo_search.connect(listeners.default_product_search_listener, Product)
+log.debug('registered base search listener')
+

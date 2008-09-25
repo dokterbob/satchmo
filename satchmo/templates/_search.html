@@ -1,0 +1,15 @@
+{% load i18n %}
+<h3>{% trans "Search" %}</h3>
+<form id="search" action="{% url satchmo_search %}" method="get">
+	{% if categories %}
+	<select name="category">
+	 	<option value="" selected="selected">{% trans "All Products" %}</option>
+		{% for cat in categories %}
+		<option value="{{ cat.slug }}">{{ cat.name}}</option>
+		{% endfor %}
+	</select><br/>
+	{% endif %}
+    <input type="text" size="20" name="keywords" id="search_keywords" /><br/>
+    <input type="submit" value="{% trans "Search" %}" />
+ </form>
+

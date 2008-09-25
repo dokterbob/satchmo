@@ -133,3 +133,13 @@ def product_upsell(product):
         
     return { 'goals' : goals }
 register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(product_upsell)
+
+def satchmo_search_form(include_categories=False):
+    if include_categories:
+        cats = Category.objects.root_categories()
+    else:
+        cats = None
+    return {
+        'categories' : cats,
+    }
+register.inclusion_tag("_search.html", takes_context=False)(satchmo_search_form)

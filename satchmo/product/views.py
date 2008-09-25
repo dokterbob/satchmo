@@ -1,6 +1,4 @@
-import logging
 from django import http
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.template.loader import select_template
@@ -8,32 +6,102 @@ from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
+from satchmo.product import signals
 from satchmo.product.models import Category, Product, ConfigurableProduct
+from satchmo.product.signals import index_prerender
 from satchmo.product.utils import get_tax
 from satchmo.shop.views.utils import bad_or_missing
 from satchmo.tax.utils import get_tax_processor
 from satchmo.utils.json import json_encode
 import datetime
+import logging
 import random
 
 try:
     set
 except NameError:
     from sets import Set as set     # Python 2.3 fallback.
-
+    
 log = logging.getLogger('product.views')
 
 NOTSET = object()
 
+# ---- Helpers ----
+
 def find_product_template(product, producttypes=None):
+    """Searches for the correct override template given a product."""
     if producttypes is None:
         producttypes = product.get_subtypes()
 
     templates = ["product/detail_%s.html" % x.lower() for x in producttypes]
     templates.append('base_product.html')
     return select_template(templates)
+    
+def optionset_from_post(configurableproduct, POST):
+    """Reads through the POST dictionary and tries to match keys to possible `OptionGroup` ids
+    from the passed `ConfigurableProduct`"""
+    chosen_options = set()
+    for opt_grp in configurableproduct.option_group.all():
+        if POST.has_key(str(opt_grp.id)):
+            chosen_options.add('%s-%s' % (opt_grp.id, POST[str(opt_grp.id)]))
+    return chosen_options
 
-def get_product(request, product_slug, selected_options=set(), include_tax=NOTSET, default_view_tax=NOTSET):
+# ---- Views ----
+def category_view(request, slug, parent_slugs='', template='base_category.html'):
+    """Display the category, its child categories, and its products.
+
+    Parameters:
+     - slug: slug of category
+     - parent_slugs: ignored    
+    """
+    try:
+        category = Category.objects.get(slug=slug)
+        products = list(category.active_products())
+        sale = find_best_auto_discount(products)
+
+    except Category.DoesNotExist:
+        return bad_or_missing(request, _('The category you have requested does not exist.'))
+
+    child_categories = category.get_all_children()
+
+    ctx = {
+        'category': category, 
+        'child_categories': child_categories,
+        'sale' : sale,
+        'products' : products,
+    }
+    index_prerender.send(Product, request=request, context=ctx, category=category, object_list=products)
+    return render_to_response(template, RequestContext(request, ctx))
+
+
+def display_featured():
+    """
+    Used by the index generic view to choose how the featured products are displayed.
+    Items can be displayed randomly or all in order
+    """
+    random_display = config_value('SHOP','RANDOM_FEATURED')
+    num_to_display = config_value('SHOP','NUM_DISPLAY')
+    q = Product.objects.featured_by_site()
+    if not random_display:
+        return q[:num_to_display]
+    else:
+        return q.order_by('?')[:num_to_display]
+
+def get_configurable_product_options(request, id):
+    """Used by admin views"""
+    cp = get_object_or_404(ConfigurableProduct, product__id=id)
+    options = ''
+    for og in cp.option_group.all():
+        for opt in og.option_set.all():
+            options += '<option value="%s">%s</option>' % (opt.id, str(opt))
+    if not options:
+        return '<option>No valid options found in "%s"</option>' % cp.product.slug
+    return http.HttpResponse(options, mimetype="text/html")
+
+
+def get_product(request, product_slug, selected_options=set(), 
+    include_tax=NOTSET, default_view_tax=NOTSET):
+    """Basic product view"""
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -79,14 +147,9 @@ def get_product(request, product_slug, selected_options=set(), include_tax=NOTSE
     context = RequestContext(request, extra_context)
     return http.HttpResponse(template.render(context))
 
-def optionset_from_post(configurableproduct, POST):
-    chosen_options = set()
-    for opt_grp in configurableproduct.option_group.all():
-        if POST.has_key(str(opt_grp.id)):
-            chosen_options.add('%s-%s' % (opt_grp.id, POST[str(opt_grp.id)]))
-    return chosen_options
 
 def get_price(request, product_slug):
+    """Get base price for a product, returning the answer encoded as JSON."""
     quantity = 1
 
     try:
@@ -116,7 +179,9 @@ def get_price(request, product_slug):
 
     return http.HttpResponse(json_encode((prod_slug, price)), mimetype="text/javascript")
 
+
 def get_price_detail(request, product_slug):
+    """Get all price details for a product, returning the response encoded as JSON."""
     results = {
         "success" : False,
         "message" :  _("not available")
@@ -167,74 +232,3 @@ def get_price_detail(request, product_slug):
         return http.HttpResponse(data, mimetype="text/javascript")
     else:
         return http.HttpResponseNotFound(data, mimetype="text/javascript")
-
-
-def do_search(request):
-    if request.method=="GET":
-        data = request.GET
-    else:
-        data = request.POST
-        
-    
-    keywords = data.get('keywords', '').split(' ')
-    category = data.get('category', None)
-
-    keywords = filter(None, keywords)
-
-    if not keywords:
-        return render_to_response('search.html', RequestContext(request))
-
-    categories = Category.objects
-    products = Product.objects.active()
-    if category:
-        categories = categories.filter(
-            Q(name__icontains=category) |
-            Q(meta__icontains=category) |
-            Q(description__icontains=category))
-
-    for keyword in keywords:
-        if not category:
-            categories = categories.filter(
-                Q(name__icontains=keyword) |
-                Q(meta__icontains=keyword) |
-                Q(description__icontains=keyword))
-        products = products.filter(Q(name__icontains=keyword)
-            | Q(short_description__icontains=keyword)
-            | Q(description__icontains=keyword)
-            | Q(meta__icontains=keyword)
-            | Q(sku__iexact=keyword))
-    clist = list(categories)
-    plist = [p for p in products if not p.has_variants]
-
-    context = RequestContext(request, {
-            'results': {
-                'categories': clist, 
-                'products': plist
-                },
-            'category' : category,
-            'keywords' : keywords})
-    return render_to_response('search.html', context)
-
-def get_configurable_product_options(request, id):
-    cp = get_object_or_404(ConfigurableProduct, product__id=id)
-    options = ''
-    for og in cp.option_group.all():
-        for opt in og.option_set.all():
-            options += '<option value="%s">%s</option>' % (opt.id, str(opt))
-    if not options:
-        return '<option>No valid options found in "%s"</option>' % cp.product.slug
-    return http.HttpResponse(options, mimetype="text/html")
-
-def display_featured():
-    """
-    Used by the index generic view to choose how the featured products are displayed.
-    Items can be displayed randomly or all in order
-    """
-    random_display = config_value('SHOP','RANDOM_FEATURED')
-    num_to_display = config_value('SHOP','NUM_DISPLAY')
-    q = Product.objects.featured_by_site()
-    if not random_display:
-        return q[:num_to_display]
-    else:
-        return q.order_by('?')[:num_to_display]
-

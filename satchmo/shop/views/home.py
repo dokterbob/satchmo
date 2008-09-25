@@ -5,14 +5,6 @@ from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.product.views import display_featured
 
-# index_dict = {
-#     'queryset': display_featured(),
-#     'template_object_name': 'all_products',
-#     'template_name': 'base_index.html',
-#     'allow_empty': True,
-#     'paginate_by': num_to_paginate,
-# }
-
 def home(request, template="base_index.html"):
     # Display the category, its child categories, and its products.
     
