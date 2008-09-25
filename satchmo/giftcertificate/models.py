@@ -89,10 +89,10 @@ class GiftCertificate(models.Model):
             self.site = Site.objects.get_current()
         super(GiftCertificate, self).save(force_insert=force_insert, force_update=force_update)
 
-    def __str__(self):
+    def __unicode__(self):
         sb = moneyfmt(self.start_balance)
         b = moneyfmt(self.balance)
-        return "Gift Cert: %s/%s" % (sb, b)
+        return u"Gift Cert: %s/%s" % (sb, b)
 
     class Meta:
         verbose_name = _("Gift Certificate")
