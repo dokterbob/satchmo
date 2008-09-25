@@ -6,15 +6,19 @@ from django.utils.translation import ugettext_lazy as _
 from models import Brand, BrandCategory
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product
+from satchmo.product import signals
 import logging
 
 log = logging.getLogger("satchmo_brand.views")
 
 def brand_list(request):
-    ctx = RequestContext(request, {
-        'brands' : Brand.objects.active(),
-    })
-    return render_to_response('product/brand/index.html', ctx)
+    brands = Brand.objects.active()
+    ctx = {
+        'brands' : brands,
+    }
+    signals.index_prerender.send(Brand, request=request, context=ctx, object_list=brands)
+    requestctx = RequestContext(request, ctx)
+    return render_to_response('product/brand/index.html', requestctx)
 
 def brand_page(request, brandname):
     try:
