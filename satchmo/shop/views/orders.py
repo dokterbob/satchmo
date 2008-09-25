@@ -40,6 +40,7 @@ def order_tracking(request, order_id):
         return bad_or_missing(request, _("The order you have requested doesn't exist, or you don't have access to it."))
 
     ctx = RequestContext(request, {
+        'default_view_tax': config_value('TAX', 'DEFAULT_VIEW_TAX'),
         'contact' : contact,
         'order' : order})
 
