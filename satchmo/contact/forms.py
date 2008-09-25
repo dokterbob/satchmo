@@ -88,14 +88,14 @@ class ContactInfoForm(forms.Form):
         return email
         
     def clean_postal_code(self):
-        return self.validate_postcode_by_country(self.cleaned_data['postal_code'])
+        return self.validate_postcode_by_country(self.cleaned_data.get('postal_code'))
     
     def clean_ship_postal_code(self):
         code = self.ship_charfield_clean('postal_code')
         return self.validate_postcode_by_country(code)
         
     def clean_state(self):
-        data = self.cleaned_data['state']
+        data = self.cleaned_data.get('state')
         if self._local_only:
             country_pk = self._default_country
         else:
@@ -113,8 +113,8 @@ class ContactInfoForm(forms.Form):
         return data
 
     def clean_ship_state(self):
-        data = self.cleaned_data['ship_state']
-        if self.cleaned_data['copy_address']:
+        data = self.cleaned_data.get('ship_state')
+        if self.cleaned_data.get('copy_address'):
             if 'state' in self.cleaned_data:
                 self.cleaned_data['ship_state'] = self.cleaned_data['state']
             return self.cleaned_data['ship_state']
@@ -136,18 +136,18 @@ class ContactInfoForm(forms.Form):
         return data
 
     def clean_addressee(self):
-        if not self.cleaned_data['addressee']:
-            first_and_last = u' '.join((self.cleaned_data['first_name'],
-                                       self.cleaned_data['last_name']))
+        if not self.cleaned_data.get('addressee'):
+            first_and_last = u' '.join((self.cleaned_data.get('first_name', ''),
+                                       self.cleaned_data.get('last_name', '')))
             return first_and_last
         else:
             return self.cleaned_data['addressee']
     
     def clean_ship_addressee(self):
-        if not self.cleaned_data['ship_addressee'] and \
-                not self.cleaned_data['copy_address']:
-            first_and_last = u' '.join((self.cleaned_data['first_name'],
-                                       self.cleaned_data['last_name']))
+        if not self.cleaned_data.get('ship_addressee') and \
+                not self.cleaned_data.get('copy_address'):
+            first_and_last = u' '.join((self.cleaned_data.get('first_name', ''),
+                                       self.cleaned_data.get('last_name', '')))
             return first_and_last
         else:
             return self.cleaned_data['ship_addressee']
@@ -156,29 +156,29 @@ class ContactInfoForm(forms.Form):
         if self._local_only:
             return self._default_country
         else:
-            if not self.cleaned_data['country']:
+            if not self.cleaned_data.get('country'):
                 raise forms.ValidationError(_('This field is required.'))
         return self.cleaned_data['country']
         
     def clean_ship_country(self):
-        copy_address = self.cleaned_data['copy_address']
+        copy_address = self.cleaned_data.get('copy_address')
         if copy_address:
             return self.cleaned_data['country']
         if self._local_only:
             return self._default_country
         if not self.shippable:
             return self.cleaned_data['country']
-        shipcountry = self.cleaned_data['ship_country']
+        shipcountry = self.cleaned_data.get('ship_country')
         if not shipcountry:
             raise forms.ValidationError(_('This field is required.'))
         if config_value('PAYMENT', 'COUNTRY_MATCH'):
-            country = self.cleaned_data['country']
+            country = self.cleaned_data.get('country')
             if shipcountry != country:
                 raise forms.ValidationError(_('Shipping and Billing countries must match'))
         return shipcountry
 
     def ship_charfield_clean(self, field_name):
-        if self.cleaned_data['copy_address']:
+        if self.cleaned_data.get('copy_address'):
             if field_name in self.cleaned_data:
                 self.cleaned_data['ship_' + field_name] = self.cleaned_data[field_name]
             return self.cleaned_data['ship_' + field_name]
@@ -189,10 +189,10 @@ class ContactInfoForm(forms.Form):
         return self.ship_charfield_clean('street1')
 
     def clean_ship_street2(self):
-        if self.cleaned_data['copy_address']:
+        if self.cleaned_data.get('copy_address'):
             if 'street2' in self.cleaned_data:
-                self.cleaned_data['ship_street2'] = self.cleaned_data['street2']
-        return self.cleaned_data['ship_street2']
+                self.cleaned_data['ship_street2'] = self.cleaned_data.get('street2')
+        return self.cleaned_data.get('ship_street2')
 
     def clean_ship_city(self):
         return self.ship_charfield_clean('city')
@@ -317,7 +317,7 @@ class ContactInfoForm(forms.Form):
             shop_config = Config.objects.get_current()
             country = shop_config.sales_country
         else:
-            country = self.cleaned_data['country']
+            country = self.cleaned_data.get('country')
                 
         responses = signals.validate_postcode.send(self, postcode=postcode, country=country)
         # allow responders to reformat the code, but if they don't return

@@ -1,6 +1,7 @@
 import datetime
 from satchmo.contact.models import *
 from satchmo.l10n.models import Country
+from satchmo.contact.forms import ContactInfoForm
 
 from django.test import TestCase
 
@@ -50,3 +51,11 @@ class ContactTest(TestCase):
         self.assertNotEqual(contact1.billing_address, contact1.shipping_address)
         self.assertEqual(contact1.billing_address.description, "Home Address")
         self.assertEqual(contact1.shipping_address.description, "Work Address")
+        
+class ContactInfoFormTest(TestCase):
+    fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'test-config.yaml']
+    
+    def test_missing_first_and_last_name_should_not_raise_exception(self):
+        form = ContactInfoForm(None, None, None, {'phone':'800-111-9900'})
+        self.assertEqual(False, form.is_valid())
+        
