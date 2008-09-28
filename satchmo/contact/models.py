@@ -98,6 +98,7 @@ class Contact(models.Model):
     A customer, supplier or any individual that a store owner might interact
     with.
     """
+    title = models.CharField(_("Title"), max_length=30, blank=True, null=True)
     first_name = models.CharField(_("First name"), max_length=30, )
     last_name = models.CharField(_("Last name"), max_length=30, )
     user = models.ForeignKey(User, blank=True, null=True, unique=True)
