@@ -845,7 +845,9 @@ class CustomProduct(models.Model):
         returns price as a Decimal
         """
         price = get_product_quantity_price(self.product, qty)
-        if not price:
+        if not price and qty == 1:      # Prevent a recursive loop.
+            price = Decimal("0.00")
+        elif not price:      
             price = self.product._get_fullPrice()
 
         return price * self.downpayment / 100
