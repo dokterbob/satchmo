@@ -11,7 +11,7 @@ def order_history(request):
     orders = None
     try:
         contact = Contact.objects.from_request(request, create=False)
-        orders = Order.objects.filter(contact=contact).order_by('-timestamp')
+        orders = Order.objects.filter(contact=contact).order_by('-time_stamp')
     
     except Contact.DoesNotExist:
         contact = None

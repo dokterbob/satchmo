@@ -5,7 +5,7 @@
 {% if forloop.first %}
 <h4>{% trans 'Paid' %}</h4>
 {% endif %}
-{{ payment.timestamp|date:"y-M-d H:i" }} {{ payment.payment|payment_label }} - {{ payment.amount|currency }}<br/>
+{{ payment.time_stamp|date:"y-M-d H:i" }} {{ payment.payment|payment_label }} - {{ payment.amount|currency }}<br/>
 {% if forloop.last %}
 {% with order.balance|currency as balance %}
 {% blocktrans %}Balance = {{ balance }} {% endblocktrans %}

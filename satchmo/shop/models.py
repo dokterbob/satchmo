@@ -560,7 +560,7 @@ class Order(models.Model):
         max_digits=18, decimal_places=10, blank=True, null=True)
     tax = models.DecimalField(_("Tax"),
         max_digits=18, decimal_places=10, blank=True, null=True)
-    timestamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
+    time_stamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
     status = models.CharField(_("Status"), max_length=20, choices=ORDER_STATUS,
         blank=True, help_text=_("This is set automatically."))
 
@@ -573,14 +573,14 @@ class Order(models.Model):
         orderstatus = OrderStatus()
         if not status:
             if self.orderstatus_set.count() > 0:
-                curr_status = self.orderstatus_set.all().order_by('-timestamp')[0]
+                curr_status = self.orderstatus_set.all().order_by('-time_stamp')[0]
                 status = curr_status.status
             else:
                 status = 'Pending'
 
         orderstatus.status = status
         orderstatus.notes = notes
-        orderstatus.timestamp = datetime.datetime.now()
+        orderstatus.time_stamp = datetime.datetime.now()
         orderstatus.order = self
         orderstatus.save()
 
@@ -651,7 +651,7 @@ class Order(models.Model):
 
     def _credit_card(self):
         """Return the credit card associated with this payment."""
-        for payment in self.payments.order_by('-timestamp'):
+        for payment in self.payments.order_by('-time_stamp'):
             try:
                 if payment.creditcards.count() > 0:
                     return payment.creditcards.get()
@@ -714,7 +714,7 @@ class Order(models.Model):
         the create_date.
         """
         if not self.pk:
-            self.timestamp = datetime.datetime.now()
+            self.time_stamp = datetime.datetime.now()
             self.copy_addresses()
         super(Order, self).save(force_insert=force_insert, force_update=force_update) # Call the "real" save() method.
 
@@ -1034,7 +1034,7 @@ class OrderStatus(models.Model):
     status = models.CharField(_("Status"),
         max_length=20, choices=ORDER_STATUS, blank=True)
     notes = models.CharField(_("Notes"), max_length=100, blank=True)
-    timestamp = models.DateTimeField(_("Timestamp"))
+    time_stamp = models.DateTimeField(_("Timestamp"))
 
     def __unicode__(self):
         return self.status
@@ -1054,7 +1054,7 @@ class OrderPayment(models.Model):
         max_length=25, blank=True)
     amount = models.DecimalField(_("amount"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
-    timestamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
+    time_stamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
 
     def _credit_card(self):
@@ -1078,7 +1078,7 @@ class OrderPayment(models.Model):
 
     def save(self, force_insert=False, force_update=False):
         if not self.pk:
-            self.timestamp = datetime.datetime.now()
+            self.time_stamp = datetime.datetime.now()
 
         super(OrderPayment, self).save(force_insert=force_insert, force_update=force_update)
 

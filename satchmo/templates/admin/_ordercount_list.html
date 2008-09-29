@@ -4,7 +4,7 @@
 {% for order in orders %}
 	<li>
 		{% if multihost %}[{{ order.site.name }}] {% endif %}<a href="/admin/shop/order/{{ order.id }}">{{ order }}</a> 
-		&ndash; {{ order.total|currency }} {% trans "on" %} {{ order.timestamp|date:"F jS Y H:i" }}
+		&ndash; {{ order.total|currency }} {% trans "on" %} {{ order.time_stamp|date:"F jS Y H:i" }}
 	    <ul>
 	        {% for item in order.orderitem_set.all %}
 	            <li>

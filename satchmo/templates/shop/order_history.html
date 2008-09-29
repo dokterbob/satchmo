@@ -33,7 +33,7 @@
                     {{ order.status }}
                 </td>
                 <td class="orderdate">
-                    {{ order.timestamp|date:"F jS Y H:i" }}
+                    {{ order.time_stamp|date:"F jS Y H:i" }}
                 </td>
                 <td class="orderitems">
                     {% for item in order.orderitem_set.all %}

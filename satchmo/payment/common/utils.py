@@ -61,7 +61,7 @@ def record_payment(order, config, amount=NOTSET, transaction_id=""):
                 payment.transaction_id="ABORTED"
                 payment.save()
             
-    orderpayment.timestamp = datetime.now()
+    orderpayment.time_stamp = datetime.now()
     orderpayment.save()
     
     if order.paid_in_full:

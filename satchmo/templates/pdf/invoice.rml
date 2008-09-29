@@ -209,7 +209,7 @@
         {% with order.total|currency as order_total %}
         {% with order.credit_card.credit_type as credit_card_type %}
         {% with order.credit_card.display_cc as credit_card_number %}
-        <para style="payment">{% blocktrans with order.timestamp|date:"F j, Y" as order_date %}{{ order_total }} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}</para>
+        <para style="payment">{% blocktrans with order.time_stamp|date:"F j, Y" as order_date %}{{ order_total }} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}</para>
         {% endwith %}{% endwith %}{% endwith %}
         {% endif %}
         <para style="payment">{% blocktrans %}This invoice has been paid in full. Thank you for your business!{% endblocktrans %}</para>
