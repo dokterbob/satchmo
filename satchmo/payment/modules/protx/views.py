@@ -2,7 +2,7 @@
 
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_get_group
-from satchmo.payment.common.views import payship, confirm
+from satchmo.payment.views import payship, confirm
 import logging
 
 log = logging.getLogger('protx.views')

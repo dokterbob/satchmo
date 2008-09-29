@@ -15,7 +15,7 @@ from satchmo.shop.models import Cart
 from satchmo.payment import signals
 import logging
 
-log = logging.getLogger('satchmo.payment.common.views')
+log = logging.getLogger('satchmo.payment.views')
 
 class ConfirmController(object):
     """Centralizes and manages data used by the confirm views.

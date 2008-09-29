@@ -8,7 +8,7 @@ from models import GiftCertificate, GIFTCODE_KEY
 from satchmo.configuration import config_get_group
 from satchmo.shop.models import Order
 from satchmo.payment.utils import pay_ship_save, get_or_create_order
-from satchmo.payment.common.views import confirm, payship
+from satchmo.payment.views import confirm, payship
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from django.contrib.sites.models import Site
 import logging

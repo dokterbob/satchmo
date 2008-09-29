@@ -3,12 +3,11 @@ try:
 except:
     from django.utils._decimal import Decimal
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from satchmo.shipping.utils import update_shipping
 from satchmo.shop.models import Order, OrderItem, OrderItemDetail, OrderPayment
 from satchmo.shop.signals import satchmo_post_copy_item_to_order
 from socket import error as SocketError
-import datetime
 import logging
 
 log = logging.getLogger('payment.utils')
@@ -141,7 +140,7 @@ def update_orderitem_for_subscription(new_order_item, item):
     #if product is recurring, set subscription end
     #if item.product.expire_days:
     if item.product.is_subscription and item.product.subscriptionproduct.expire_days:
-        new_order_item.expire_date = datetime.datetime.now() + datetime.timedelta(days=item.product.subscriptionproduct.expire_days)
+        new_order_item.expire_date = datetime.now() + timedelta(days=item.product.subscriptionproduct.expire_days)
 
     #if product has trial price, set it here and update expire_date with trial period.
     trial = None
@@ -153,7 +152,7 @@ def update_orderitem_for_subscription(new_order_item, item):
         trial1 = trial[0]
         new_order_item.unit_price = trial1.price
         new_order_item.line_item_price = new_order_item.quantity * new_order_item.unit_price
-        new_order_item.expire_date = datetime.datetime.now() + datetime.timedelta(days=trial1.expire_days)
+        new_order_item.expire_date = datetime.now() + timedelta(days=trial1.expire_days)
 
     new_order_item.save()
 

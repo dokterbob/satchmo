@@ -11,6 +11,8 @@ from satchmo.contact.models import Contact
 from satchmo.payment.forms import PaymentContactInfoForm
 from satchmo.shop.models import Cart, Config
 from satchmo.utils.dynamic import lookup_url
+from satchmo.payment.decorators import cart_has_minimum_order
+
 import logging
 
 log = logging.getLogger('satchmo.contact.contact')
@@ -95,3 +97,4 @@ def contact_info(request, **kwargs):
         })
     return render_to_response('checkout/form.html', context)
 
+contact_info_view = cart_has_minimum_order()(contact_info)

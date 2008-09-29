@@ -59,6 +59,14 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
             shipping_dict[method.id] = shipcost
     
     return shipping_options, shipping_dict
+    
+     
+class CustomChargeForm(forms.Form):
+    orderitem = forms.IntegerField(required=True, widget=forms.HiddenInput())
+    amount = forms.DecimalField(label=_('New price'), required=False)
+    shipping = forms.DecimalField(label=_('Shipping adjustment'), required=False)
+    notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
+    
      
 class PaymentMethodForm(forms.Form):
     _choices = labelled_payment_choices()

@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 from satchmo.configuration import config_get_group
 from satchmo.shop.models import Order
 from satchmo.configuration import config_value 
-from satchmo.payment.common.views import payship
+from satchmo.payment.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from satchmo.shop.models import Cart

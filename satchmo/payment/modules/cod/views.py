@@ -1,7 +1,7 @@
-"""Simple wrapper for standard checkout as implemented in satchmo.payment.common.views"""
+"""Simple wrapper for standard checkout as implemented in satchmo.payment.views"""
 
 from satchmo.configuration import config_get_group
-from satchmo.payment.common.views import confirm, payship
+from satchmo.payment.views import confirm, payship
     
 cod = config_get_group('PAYMENT_COD')
     

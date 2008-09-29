@@ -13,6 +13,6 @@ urlpatterns = patterns('satchmo',
     (r'^secure3d/$', 'payment.modules.protx.views.confirm_secure3d', 
        {'SSL':config.SSL.value}, 'PROTX_satchmo_checkout-secure3d'),
 
-     (r'^success/$', 'payment.common.views.checkout.success', 
+     (r'^success/$', 'payment.views.checkout.success', 
         {'SSL':config.SSL.value}, 'PROTX_satchmo_checkout-success'),
 )

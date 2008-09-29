@@ -1,5 +1,5 @@
 from satchmo.configuration import config_get_group
-from satchmo.payment.common.views import confirm, payship
+from satchmo.payment.views import confirm, payship
     
 def pay_ship_info(request):
     return payship.credit_pay_ship_info(request, config_get_group('PAYMENT_CYBERSOURCE'))
