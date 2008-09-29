@@ -1,3 +1,4 @@
+from django import forms
 from satchmo.contact import signals
 import logging
 

@@ -1,9 +1,9 @@
-import datetime
+from django.test import TestCase
+from satchmo.contact.forms import ContactInfoForm
 from satchmo.contact.models import *
 from satchmo.l10n.models import Country
-from satchmo.contact.forms import ContactInfoForm
-
-from django.test import TestCase
+from satchmo.shop.models import Config
+import datetime
 
 US = Country.objects.get(iso2_code__iexact="US")
 
@@ -56,6 +56,7 @@ class ContactInfoFormTest(TestCase):
     fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'test-config.yaml']
     
     def test_missing_first_and_last_name_should_not_raise_exception(self):
-        form = ContactInfoForm(None, None, None, {'phone':'800-111-9900'})
+        shop = Config.objects.get_current()
+        form = ContactInfoForm(shop, {'phone':'800-111-9900'})
         self.assertEqual(False, form.is_valid())
         

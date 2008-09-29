@@ -6,9 +6,9 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_value, config_get_group, SettingNotSet
 from satchmo.contact import signals, CUSTOMER_ID
-from satchmo.contact.common import get_area_country_options
 from satchmo.contact.forms import ExtendedContactInfoForm
 from satchmo.contact.models import Contact
+from satchmo.shop.models import Config
 import logging
 
 log = logging.getLogger('satchmo.contact.views')
@@ -36,7 +36,7 @@ def update(request):
     """Update contact info"""
 
     init_data = {}
-    areas, countries, only_country = get_area_country_options(request)
+    shop = Config.objects.get_current()
 
     try:
         contact = Contact.objects.from_request(request, create=False)
@@ -46,7 +46,7 @@ def update(request):
 
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = ExtendedContactInfoForm(countries, areas, contact, new_data, shippable=True,
+        form = ExtendedContactInfoForm(shop, contact, new_data, shippable=True,
             initial=init_data)
 
         if form.is_valid():
@@ -74,11 +74,15 @@ def update(request):
                 init_data['phone'] = contact.primary_phone.phone
             
         signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
-        form = ExtendedContactInfoForm(countries, areas, contact, shippable=True, initial=init_data)
+        form = ExtendedContactInfoForm(shop, contact, shippable=True, initial=init_data)
 
     init_data['form'] = form
-    if only_country:
-        init_data['country'] = only_country
+    if shop.in_country_only:
+        init_data['country'] = areaOptions.default_country
+    else:
+        countries = shop.countries()
+        if countries and countries.count() == 1:
+            init_data['country'] = countries[0]
     
     context = RequestContext(request, init_data)
         

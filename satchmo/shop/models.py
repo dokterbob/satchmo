@@ -103,6 +103,21 @@ class Config(models.Model):
         return ConfigurationSettings()
 
     options = property(fget=_options)
+    
+    def areas(self):
+        """Get country areas (states/counties).  Used in forms."""
+        if self.in_country_only:
+            return self.sales_country.adminarea_set.filter(active=True)
+        else:
+            return None
+            
+    def countries(self):
+        """Get country selections.  Used in forms."""
+        if self.in_country_only:
+            return Country.objects.filter(pk=self.default_country.pk)
+        else:
+            return self.shipping_countries.filter(active=True)
+        
 
     def _base_url(self, secure=False):
         prefix = "http"
@@ -121,11 +136,11 @@ class Config(models.Model):
             if not self.sales_country:
                 log.debug("%s: No sales_country set, adding country of store, '%s'", self, mycountry)
                 self.sales_country = mycountry
-            salescountry = self.sales_country
         
 # This code doesn't work when creating a new site. At the time of creation, all of the necessary relationships
 # aren't setup. I modified the load_store code so that it would create this relationship manually when running 
 # with sample data. This is a bit of a django limitation so I'm leaving this in here for now. - CBM
+#            salescountry = self.sales_country
 #            try:
 #                need = self.shipping_countries.get(pk=salescountry.pk)
 #            except Country.DoesNotExist:
@@ -143,6 +158,7 @@ class Config(models.Model):
     class Meta:
         verbose_name = _("Store Configuration")
         verbose_name_plural = _("Store Configurations")
+
 
 class NullCart(object):
     """Standin for a real cart when we don't have one yet.  More convenient than testing for null all the time."""

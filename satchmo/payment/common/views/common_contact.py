@@ -7,11 +7,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group, config_value, SHOP_GROUP
 from satchmo.contact import CUSTOMER_ID
-from satchmo.contact.common import get_area_country_options
 from satchmo.contact.models import Contact
 from satchmo.payment.common.forms import PaymentContactInfoForm
-from satchmo.shop.models import Cart
+from satchmo.shop.models import Cart, Config
 from satchmo.utils.dynamic import lookup_url
+import logging
+
+log = logging.getLogger('satchmo.contact.common_contact')
 
 def contact_info(request, **kwargs):
     """View which collects demographic information from customer."""
@@ -29,7 +31,7 @@ def contact_info(request, **kwargs):
                 )
 
     init_data = {}
-    areas, countries, only_country = get_area_country_options(request)
+    shop = Config.objects.get_current()
     if request.user.is_authenticated():
         if request.user.email:
             init_data['email'] = request.user.email
@@ -46,7 +48,7 @@ def contact_info(request, **kwargs):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(countries, areas, contact, new_data, shippable=tempCart.is_shippable, 
+        form = PaymentContactInfoForm(shop, contact, new_data, shippable=tempCart.is_shippable, 
             initial=init_data)
 
         if form.is_valid():
@@ -61,6 +63,8 @@ def contact_info(request, **kwargs):
             paymentmodule = config_get_group(modulename)
             url = lookup_url(paymentmodule, 'satchmo_checkout-step2')
             return http.HttpResponseRedirect(url)
+        else:
+            log.debug("Form errors: %s", form.errors)
     else:
         if contact:
             #If a person has their contact info, make sure we populate it in the form
@@ -77,8 +81,13 @@ def contact_info(request, **kwargs):
         else:
             # Allow them to login from this page.
             request.session.set_test_cookie()
-        form = PaymentContactInfoForm(countries, areas, contact, shippable=tempCart.is_shippable, initial=init_data)
+        form = PaymentContactInfoForm(shop, contact, shippable=tempCart.is_shippable, initial=init_data)
 
+    if shop.in_country_only:
+        only_country = shop.sales_country
+    else:
+        only_country = None
+        
     context = RequestContext(request, {
         'form': form,
         'country': only_country,

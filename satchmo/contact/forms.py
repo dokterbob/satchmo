@@ -1,13 +1,13 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet, SHOP_GROUP
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
-from django.contrib.auth.models import User
-import signals
 import datetime
 import logging
+import signals
 
 log = logging.getLogger('satchmo.contact.forms')
 
@@ -35,37 +35,35 @@ class ContactInfoForm(forms.Form):
     ship_postal_code = forms.CharField(max_length=10, required=False, label=_('Zipcode/Postcode'))
     ship_country = forms.ModelChoiceField(Country.objects.all(), required=False, label=_('Country'))
 
-    def __init__(self, countries, areas, contact, *args, **kwargs):
+    def __init__(self, shop, contact, *args, **kwargs):
         self.shippable = True
         if kwargs.has_key('shippable'):
             self.shippable = kwargs['shippable']
             del(kwargs['shippable'])
         self._billing_data_optional = config_value(SHOP_GROUP, 'BILLING_DATA_OPTIONAL'),
         super(ContactInfoForm, self).__init__(*args, **kwargs)   
-        if areas is not None and countries is None:
+        
+        self._local_only = shop.in_country_only
+        country = shop.sales_country
+        self._default_country = country.pk
+        self.fields['country'].initial = country.pk
+        self.fields['ship_country'].initial = country.pk
+        
+        areas = shop.areas()
+        if shop.in_country_only and areas and areas.count()>0:
             log.debug('populating admin areas')
             areas = [(area.abbrev or area.name, area.name) for area in areas]
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
-        if countries is not None:
+        if not self._local_only:
+            countries = shop.countries()
             self.fields['country'] = forms.ModelChoiceField(countries)
             if self.shippable:
                 self.fields['ship_country'] = forms.ModelChoiceField(countries)
 
-        shop_config = Config.objects.get_current()
-        self._local_only = shop_config.in_country_only
-        # country = shop_config.sales_country
-        # if not country:
-        #     self._default_country = Country.objects.get(iso2_code__iequals='US')
-        # else:
-        #     self._default_country = country
-        country = shop_config.sales_country
-        self._default_country = country.pk
-        self.fields['country'].initial = country.pk
-        self.fields['ship_country'].initial = country.pk
         self.contact = contact
         if self._billing_data_optional:
-            for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code'):
+            for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code', 'title'):
                 self.fields[fname].required = False
                 
         # slap a star on the required fields
