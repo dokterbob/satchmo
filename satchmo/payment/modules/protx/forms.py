@@ -1,6 +1,6 @@
 """Protx Form"""
 from django import forms
-from satchmo.payment.common.forms import CreditPayShipForm, MONTHS
+from satchmo.payment.forms import CreditPayShipForm, MONTHS
 
 class ProtxPayShipForm(CreditPayShipForm):
     """Adds fields required by Prot/X to the Credit form."""

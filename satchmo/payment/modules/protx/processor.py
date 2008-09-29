@@ -10,7 +10,7 @@ will fall back to the defaults for any not specified in your dictionary.
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from satchmo.configuration import config_value
-from satchmo.payment.common.utils import record_payment
+from satchmo.payment.utils import record_payment
 from urllib import urlencode
 import forms
 import logging

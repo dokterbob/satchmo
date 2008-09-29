@@ -8,12 +8,12 @@ from django.template import RequestContext
 from satchmo.configuration import config_get_group, config_value, SHOP_GROUP
 from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.models import Contact
-from satchmo.payment.common.forms import PaymentContactInfoForm
+from satchmo.payment.forms import PaymentContactInfoForm
 from satchmo.shop.models import Cart, Config
 from satchmo.utils.dynamic import lookup_url
 import logging
 
-log = logging.getLogger('satchmo.contact.common_contact')
+log = logging.getLogger('satchmo.contact.contact')
 
 def contact_info(request, **kwargs):
     """View which collects demographic information from customer."""

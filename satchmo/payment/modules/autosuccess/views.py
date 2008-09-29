@@ -2,11 +2,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group
-from satchmo.shop.models import Order, Contact, OrderPayment
-from satchmo.payment.common.pay_ship import pay_ship_save
-from satchmo.utils.dynamic import lookup_url, lookup_template
+from satchmo.payment.utils import pay_ship_save, record_payment
 from satchmo.shop.models import Cart
-from satchmo.payment.common.utils import record_payment
+from satchmo.shop.models import Order, Contact, OrderPayment
+from satchmo.utils.dynamic import lookup_url, lookup_template
 
 import logging
 

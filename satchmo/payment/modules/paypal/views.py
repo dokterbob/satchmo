@@ -13,7 +13,7 @@ from traceback import format_exception
 from satchmo.configuration import config_get_group
 from satchmo.configuration import config_value 
 from satchmo.shop.models import Order, OrderPayment
-from satchmo.payment.common.utils import record_payment, create_pending_payment
+from satchmo.payment.utils import record_payment, create_pending_payment
 from satchmo.payment.common.views import payship
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart

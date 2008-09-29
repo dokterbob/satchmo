@@ -5,7 +5,7 @@ http://www.trustcommerce.com/tclink.html
 """
 
 from django.utils.translation import ugettext_lazy as _
-from satchmo.payment.common.utils import record_payment
+from satchmo.payment.utils import record_payment
 import tclink
 
 class PaymentProcessor(object):

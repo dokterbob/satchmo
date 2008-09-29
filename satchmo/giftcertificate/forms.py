@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from satchmo.payment.common.forms import SimplePayShipForm
+from satchmo.payment.forms import SimplePayShipForm
 
 class GiftCertCodeForm(forms.Form):
     code = forms.CharField(_('Code'), required=True)

@@ -1,4 +1,4 @@
-from satchmo.payment.common.utils import record_payment
+from satchmo.payment.utils import record_payment
 from satchmo.utils import trunc_decimal
 from urllib import urlencode
 import logging

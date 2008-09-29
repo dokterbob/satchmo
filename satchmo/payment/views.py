@@ -8,8 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from satchmo.configuration import config_get_group, config_value
 from satchmo.shop.models import Order, OrderItem, OrderPayment
 from satchmo.payment.decorators import cart_has_minimum_order
-from satchmo.payment.common.forms import PaymentMethodForm
-from satchmo.payment.common.views import common_contact
+from satchmo.payment.forms import PaymentMethodForm
+from satchmo.payment.common.views import contact
 from satchmo.shop.views.utils import bad_or_missing
 from satchmo.utils.dynamic import lookup_url
 
@@ -140,7 +140,7 @@ def balance_remaining(request):
     
     
 def _contact_info(request, **kwargs):
-    return common_contact.contact_info(request, **kwargs)
+    return contact.contact_info(request, **kwargs)
 
 contact_info = cart_has_minimum_order()(_contact_info)
 

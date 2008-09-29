@@ -2,7 +2,7 @@
 Handle a cash-on-delivery payment.
 """
 from django.utils.translation import ugettext as _
-from satchmo.payment.common.utils import record_payment
+from satchmo.payment.utils import record_payment
 
 class PaymentProcessor(object):
 

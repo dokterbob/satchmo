@@ -12,7 +12,7 @@ from satchmo.contact.models import Contact
 from satchmo.shop.models import OrderPayment, Order
 from satchmo.giftcertificate.utils import generate_certificate_code
 from satchmo.l10n.utils import moneyfmt
-from satchmo.payment.common.utils import record_payment
+from satchmo.payment.utils import record_payment
 from satchmo.product.models import Product
 from django.contrib.sites.models import Site
 import logging

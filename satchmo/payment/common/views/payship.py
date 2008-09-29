@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from satchmo.contact.models import Contact
 from satchmo.shop.models import Order, OrderPayment
 from satchmo.discount.utils import find_best_auto_discount
-from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
+from satchmo.payment.forms import CreditPayShipForm, SimplePayShipForm
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_url, lookup_template

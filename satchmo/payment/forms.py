@@ -10,11 +10,9 @@ from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.payment import signals
-from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.config import labelled_payment_choices
 from satchmo.payment.models import CreditCardDetail
-from satchmo.payment.common.utils import create_pending_payment
-from satchmo.payment.common.pay_ship import get_or_create_order
+from satchmo.payment.utils import create_pending_payment, get_or_create_order, pay_ship_save
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
 from satchmo.shop.views.utils import CreditCard
@@ -23,6 +21,7 @@ from satchmo.utils.dynamic import lookup_template
 import calendar
 import datetime
 import sys
+
 
 MONTHS = [(month,'%02d'%month) for month in range(1,13)]
 
