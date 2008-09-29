@@ -9,8 +9,12 @@ from satchmo.contact.models import Contact
 from satchmo.discount.models import Discount
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
+from satchmo.payment import signals
+from satchmo.payment.common.pay_ship import pay_ship_save
 from satchmo.payment.config import labelled_payment_choices
 from satchmo.payment.models import CreditCardDetail
+from satchmo.payment.common.utils import create_pending_payment
+from satchmo.payment.common.pay_ship import get_or_create_order
 from satchmo.shipping.config import shipping_methods
 from satchmo.shop.models import Cart
 from satchmo.shop.views.utils import CreditCard
@@ -91,6 +95,9 @@ class SimplePayShipForm(forms.Form):
     def __init__(self, request, paymentmodule, *args, **kwargs):
         super(SimplePayShipForm, self).__init__(*args, **kwargs)
         
+        self.order = None
+        self.orderpayment = None
+        
         try:
             self.tempCart = Cart.objects.from_request(request)
             if self.tempCart.numItems > 0:
@@ -115,6 +122,8 @@ class SimplePayShipForm(forms.Form):
         shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
         self.fields['shipping'].choices = shipping_choices
         self.shipping_dict = shipping_dict
+        
+        signals.payment_form_init.send(SimplePayShipForm, form=self)
 
     def clean_shipping(self):
         shipping = self.cleaned_data['shipping']
@@ -134,7 +143,12 @@ class SimplePayShipForm(forms.Form):
             if not valid:
                 raise forms.ValidationError(msg)
             # TODO: validate that it can work with these products
-        return data
+        return data        
+
+    def save(self, request, cart, contact, payment_module):
+        self.order = get_or_create_order(request, cart, contact, self.cleaned_data)
+        self.orderpayment = create_pending_payment(self.order, payment_module)
+
 
 class CreditPayShipForm(SimplePayShipForm):
     credit_type = forms.ChoiceField()
@@ -146,6 +160,8 @@ class CreditPayShipForm(SimplePayShipForm):
     def __init__(self, request, paymentmodule, *args, **kwargs):
         creditchoices = paymentmodule.CREDITCHOICES.choice_values
         super(CreditPayShipForm, self).__init__(request, paymentmodule, *args, **kwargs)
+
+        self.cc = None
 
         self.fields['credit_type'].choices = creditchoices
 
@@ -192,10 +208,11 @@ class CreditPayShipForm(SimplePayShipForm):
         except ValueError:
             raise forms.ValidationError(_('Invalid ccv.'))
             
-    def save(self, orderpayment):
-        """Save the credit card information for this orderpayment"""
+    def save(self, request, cart, contact, payment_module):
+        """Save the order and the credit card information for this orderpayment"""
+        super(CreditPayShipForm, self).save(request, cart, contact, payment_module)
         data = self.cleaned_data
-        cc = CreditCardDetail(orderpayment=orderpayment,
+        cc = CreditCardDetail(orderpayment=self.orderpayment,
             expire_month=data['month_expires'],
             expire_year=data['year_expires'],
             credit_type=data['credit_type'])
@@ -205,6 +222,4 @@ class CreditPayShipForm(SimplePayShipForm):
         
         # set ccv into cache
         cc.ccv = data['ccv']
-        
-        return cc
-
+        self.cc = cc

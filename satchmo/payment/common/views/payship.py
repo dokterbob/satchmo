@@ -12,33 +12,13 @@ from satchmo.contact.models import Contact
 from satchmo.shop.models import Order, OrderPayment
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.payment.common.forms import CreditPayShipForm, SimplePayShipForm
-from satchmo.payment.common.pay_ship import pay_ship_save
-from satchmo.payment.common.utils import create_pending_payment
 from satchmo.payment.config import payment_live
 from satchmo.shop.models import Cart
 from satchmo.utils.dynamic import lookup_url, lookup_template
+import logging
 
+log = logging.getLogger('payship')
 selection = _("Please Select")
-
-def get_or_create_order(request, working_cart, contact, data):
-    """Get the existing order from the session, else create using the working_cart, contact and data"""
-    shipping = data['shipping']
-    discount = data['discount']
-    
-    try:
-        newOrder = Order.objects.from_request(request)
-        pay_ship_save(newOrder, working_cart, contact,
-            shipping=shipping, discount=discount, update=True)
-        
-    except Order.DoesNotExist:
-        # Create a new order.
-        newOrder = Order(contact=contact)
-        pay_ship_save(newOrder, working_cart, contact,
-            shipping=shipping, discount=discount)
-            
-        request.session['orderID'] = newOrder.id
-    
-    return newOrder
 
 def pay_ship_info_verify(request, payment_module):
     """Verify customer and cart.
@@ -61,36 +41,36 @@ def pay_ship_info_verify(request, payment_module):
             
     return (True, contact, tempCart)
 
-def credit_pay_ship_process_form(request, contact, working_cart, payment_module):
+def credit_pay_ship_process_form(request, contact, working_cart, payment_module, *args, **kwargs):
     """Handle the form information.
     Returns:
         (True, destination) on success
         (False, form) on failure
     """
     
-    def _get_form(payment_module, *args, **kwargs):
-        if hasattr(payment_module, 'form'):
-            form = payment_module.form(payment_module, *args)
+    def _get_form(request, payment_module, *args, **kwargs):
+        processor = payment_module.MODULE.load_module('processor')
+        log.debug('processor=%s', processor)
+        if hasattr(processor, 'FORM'):
+            log.debug('getting form from module')
+            formclass = processor.FORM
         else:
-            form = CreditPayShipForm(payment_module, *args)
+            log.debug('using default form')
+            formclass = CreditPayShipForm
+        
+        form = formclass(request, payment_module, *args, **kwargs)
         return form
-    
+
     if request.method == "POST":
         new_data = request.POST.copy()
         
-        form = _get_form(request, payment_module, new_data)
+        form = _get_form(request, payment_module, new_data, *args, **kwargs)
         if form.is_valid():
-            data = form.cleaned_data
-
-            newOrder = get_or_create_order(request, working_cart, contact, data)
-            orderpayment = create_pending_payment(newOrder, payment_module)
-
-            cc = form.save(orderpayment)
-
+            form.save(request, working_cart, contact, payment_module)
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
     else:
-        form = _get_form(request, payment_module)
+        form = _get_form(request, payment_module, *args, **kwargs)
 
     return (False, form)
 
@@ -99,11 +79,7 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
         new_data = request.POST.copy()
         form = SimplePayShipForm(request, payment_module, new_data)
         if form.is_valid():
-            data = form.cleaned_data
-
-            newOrder = get_or_create_order(request, working_cart, contact, data)
-            orderpayment = create_pending_payment(newOrder, payment_module)
-
+            form.save(request, working_cart, contact, payment_module)
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
     else:

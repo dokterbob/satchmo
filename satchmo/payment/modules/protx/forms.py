@@ -12,16 +12,19 @@ class ProtxPayShipForm(CreditPayShipForm):
     
     def __init__(self, request, paymentmodule, *args, **kwargs):
         super(ProtxPayShipForm, self).__init__(request, paymentmodule, *args, **kwargs)
-    
-    def save(self, orderpayment):
-        cc = super(ProtxPayShipForm, self).save(orderpayment)
-        
-        data = self.cleaned_data
-        
-        cc.card_holder=data.get('card_holder', '')
-        cc.start_month=data.get('month_start', None)
-        cc.start_year=data.get('year_start', None)
-        cc.issue_num=data.get('issue_num', '')
-        cc.save()
-        
-        return cc
+        cf = self.fields['card_holder']
+        if cf.initial == "":
+            user = request.user
+            if user.contact_set.count() > 0:
+                contact = user.contact_set.all()[0]
+                cf.initial = contact.full_name
+
+    def save(self, request, cart, contact, payment_module):
+        """Save the order and the credit card details."""
+        super(ProtxPayShipForm, self).save(request, cart, contact, payment_module)
+                        
+        self.cc.card_holder=data.get('card_holder', '')
+        self.cc.start_month=data.get('month_start', None)
+        self.cc.start_year=data.get('year_start', None)
+        self.cc.issue_num=data.get('issue_num', '')
+        self.cc.save()

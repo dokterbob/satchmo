@@ -29,8 +29,9 @@ PROTX_DEFAULT_URLS = {
     'SIMULATOR_CALLBACK' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectCallback.asp' 
 }
 
+FORM = forms.ProtxPayShipForm
+
 class PaymentProcessor(object):
-    form = forms.ProtxPayShipForm
     packet = {}
     response = {}
     

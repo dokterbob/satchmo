@@ -7,7 +7,7 @@ from forms import GiftCertCodeForm, GiftCertPayShipForm
 from models import GiftCertificate, GIFTCODE_KEY
 from satchmo.configuration import config_get_group
 from satchmo.shop.models import Order
-from satchmo.payment.common.pay_ship import pay_ship_save
+from satchmo.payment.common.pay_ship import pay_ship_save, get_or_create_order
 from satchmo.payment.common.views import confirm, payship
 from satchmo.utils.dynamic import lookup_url, lookup_template
 from django.contrib.sites.models import Site
@@ -25,7 +25,7 @@ def giftcert_pay_ship_process_form(request, contact, working_cart, payment_modul
             data = form.cleaned_data
 
             # Create a new order.
-            newOrder = payship.get_or_create_order(request, working_cart, contact, data)            
+            newOrder = get_or_create_order(request, working_cart, contact, data)            
             newOrder.add_variable(GIFTCODE_KEY, data['giftcode'])
             
             request.session['orderID'] = newOrder.id

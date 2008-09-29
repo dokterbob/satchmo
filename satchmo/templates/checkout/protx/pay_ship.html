@@ -8,11 +8,21 @@
     <tr><td valign="top"><b>TEST MODE</b></td><td><i>Use Visa 4111111111111111 for CC#<br/>any future date for expiration<br/>any 3 digit CCV</i></td></tr>
     {% endif %}
 
+    <tr><td><label for="id_card_holder">{% trans "Card Holder" %}</label></td> <td>{{ form.card_holder }}</td></tr>
+    {% if form.card_holder.errors %}<tr><td></td><td>*** {{ form.card_holder.errors|join:", " }}</td></tr>{% endif %}
+
     <tr><td><label for="id_credit_type">{% trans "Type of credit card" %}</label></td> <td>{{ form.credit_type }}</td></tr>
     {% if form.credit_type.errors %}<tr><td></td><td>*** {{ form.credit_type.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_credit_number">{% trans "Credit card number" %}</label></td><td> {{ form.credit_number }}</td></tr>
     {% if form.credit_number.errors %}<tr><td></td><td>*** {{ form.credit_number.errors|join:", " }}</td></tr>{% endif %}
+
+    <tr><td><label for="id_issue_num">{% trans "Issue number" %}</label></td><td> {{ form.issue_num }}</td></tr>
+    {% if form.issue_num.errors %}<tr><td></td><td>*** {{ form.issue_num.errors|join:", " }}</td></tr>{% endif %}
+
+    <tr><td><label for="id_year_start">{% trans "Issue date" %}</label><label for="id_year_start"></label></td><td> {{ form.month_start}} {{ form.year_start }}</td></tr>
+    {% if form.year_start.errors %}<tr><td></td><td>*** {{ form.year_start.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.month_start.errors %}<tr><td></td><td>*** {{ form.month_start.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_month_expires">{% trans "Expiration date" %}</label><label for="id_year_expires"></label></td><td> {{ form.month_expires }} {{form.year_expires}}</td></tr>
     {% if form.year_expires.errors %}<tr><td></td><td>*** {{ form.year_expires.errors|join:", " }}</td></tr>{% endif %}

@@ -78,7 +78,7 @@ def update(request):
 
     init_data['form'] = form
     if shop.in_country_only:
-        init_data['country'] = areaOptions.default_country
+        init_data['country'] = shop.sales_country
     else:
         countries = shop.countries()
         if countries and countries.count() == 1:

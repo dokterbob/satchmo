@@ -3,14 +3,37 @@ try:
 except:
     from django.utils._decimal import Decimal
 
-import logging
-import datetime
+from satchmo.payment.common.utils import create_pending_payment
+from satchmo.shipping.utils import update_shipping
+from satchmo.shop.models import Order, OrderItem, OrderItemDetail
 from satchmo.shop.signals import satchmo_post_copy_item_to_order
 from socket import error as SocketError
-from satchmo.shop.models import OrderItem, OrderItemDetail
-from satchmo.shipping.utils import update_shipping
+import datetime
+import logging
 
 log = logging.getLogger('payment.common.pay_ship')
+
+def get_or_create_order(request, working_cart, contact, data):
+    """Get the existing order from the session, else create using 
+    the working_cart, contact and data"""
+    shipping = data['shipping']
+    discount = data['discount']
+    
+    try:
+        newOrder = Order.objects.from_request(request)
+        pay_ship_save(newOrder, working_cart, contact,
+            shipping=shipping, discount=discount, update=True)
+        
+    except Order.DoesNotExist:
+        # Create a new order.
+        newOrder = Order(contact=contact)
+        pay_ship_save(newOrder, working_cart, contact,
+            shipping=shipping, discount=discount)
+            
+        request.session['orderID'] = newOrder.id
+    
+    return newOrder
+
 
 def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
     """Save the order details, first removing all items if this is an update.
@@ -30,6 +53,7 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
         new_order.discount_code = ""
 
     update_orderitems(new_order, cart, update=update)
+
 
 def update_orderitem_details(new_order_item, item):
     """Update orderitem details, if any.

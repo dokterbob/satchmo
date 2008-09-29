@@ -8,7 +8,7 @@ import logging
 log = logging.getLogger('protx.views')
     
 def pay_ship_info(request):
-    return payship.credit_pay_ship_info(request, config_get_group('PAYMENT_PROTX'))
+    return payship.credit_pay_ship_info(request, config_get_group('PAYMENT_PROTX'), template="checkout/protx/pay_ship.html")
     
 def confirm_info(request, template='checkout/protx/confirm.html', extra_context={}):
     payment_module = config_get_group('PAYMENT_PROTX')
