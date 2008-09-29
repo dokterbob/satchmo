@@ -15,7 +15,7 @@ selection = ''
 
 class ContactInfoForm(forms.Form):
     email = forms.EmailField(max_length=75, label=_('Email'))
-    title = forms.CharField(max_length=30, label=_('Title'))
+    title = forms.CharField(max_length=30, label=_('Title'), required=False)
     first_name = forms.CharField(max_length=30, label=_('First Name'))
     last_name = forms.CharField(max_length=30, label=_('Last Name'))
     phone = forms.CharField(max_length=30, label=_('Phone'))
