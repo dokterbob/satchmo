@@ -168,7 +168,7 @@ def confirm_ipn_data(data, PP_URL):
 
     req = urllib2.Request(PP_URL)
     req.add_header("Content-type", "application/x-www-form-urlencoded")
-    fo = urllib2.urlopen(PP_URL, params)
+    fo = urllib2.urlopen(req, params)
 
     ret = fo.read()
     if ret == "VERIFIED":
