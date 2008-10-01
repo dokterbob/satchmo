@@ -17,6 +17,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.encoding import force_unicode
+from django.core import urlresolvers 
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo import caching

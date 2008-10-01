@@ -10,6 +10,7 @@ import logging
 import random
 import sha
 import signals
+import os.path
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -1113,14 +1114,14 @@ class ConfigurableProduct(models.Model):
 def _protected_dir(instance, filename):
     raw = config_value_safe('PRODUCT', 'PROTECTED_DIR', 'images/')
     updir = normalize_dir(raw)
-    return updir
+    return os.path.join(updir, os.path.basename(filename))
 
 class DownloadableProduct(models.Model):
     """
     This type of Product is a file to be downloaded
     """
     product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
-    file = FileField(_("File"), upload_to=_protected_dir),
+    file = FileField(_("File"), upload_to=_protected_dir)
     num_allowed_downloads = models.IntegerField(_("Num allowed downloads"), help_text=_("Number of times link can be accessed."))
     expire_minutes = models.IntegerField(_("Expire minutes"), help_text=_("Number of minutes the link should remain active."))
     active = models.BooleanField(_("Active"), help_text=_("Is this download currently active?"), default=True)
