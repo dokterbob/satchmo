@@ -69,6 +69,8 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module,
             form.save(request, working_cart, contact, payment_module)
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
+        else:
+            log.debug('Form errors: %s', form.errors)
     else:
         form = _get_form(request, payment_module, *args, **kwargs)
 

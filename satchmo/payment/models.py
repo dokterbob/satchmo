@@ -58,7 +58,7 @@ class CreditCardDetail(models.Model):
     card_holder = models.CharField(_("card_holder Name"), max_length=60, blank=True)
     start_month = models.IntegerField(_("Start Month"), blank=True, null=True)
     start_year = models.IntegerField(_("Start Year"), blank=True, null=True)
-    issue_num = models.CharField(blank=True, max_length=2)
+    issue_num = models.CharField(blank=True, null=True, max_length=2)
     
     def storeCC(self, ccnum):
         """Take as input a valid cc, encrypt it and store the last 4 digits in a visible form"""
