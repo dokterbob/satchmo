@@ -11,6 +11,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from satchmo.configuration import config_value
 from satchmo.payment.utils import record_payment
+from satchmo.utils import trunc_decimal
 from urllib import urlencode
 import forms
 import logging
@@ -21,12 +22,12 @@ log = logging.getLogger('protx.processor')
 PROTOCOL = "2.22"
 
 PROTX_DEFAULT_URLS = {
-    'LIVE_CONNECTION' : 'https://ukvps.protx.com/vpsDirectAuth/PaymentGateway3D.asp',
-    'LIVE_CALLBACK' : 'https://ukvps.protx.com/vpsDirectAuth/Callback3D.asp',
-    'TEST_CONNECTION' : 'https://ukvpstest.protx.com/vpsDirectAuth/PaymentGateway3D.asp',
-    'TEST_CALLBACK' : 'https://ukvpstest.protx.com/vpsDirectAuth/Callback3D.asp',
+    'LIVE_CONNECTION' : 'https://ukvps.protx.com/vspgateway/service/vspdirect-register.vsp',
+    'LIVE_CALLBACK' : 'https://ukvps.protx.com/vspgateway/service/direct3dcallback.vsp',
+    'TEST_CONNECTION' : 'http://ukvpstest.protx.com/vspgateway/service/vspdirect-register.vsp',
+    'TEST_CALLBACK' : 'https://ukvpstest.protx.com/vspgateway/service/direct3dcallback.vsp',
     'SIMULATOR_CONNECTION' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectGateway.asp',
-    'SIMULATOR_CALLBACK' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectCallback.asp' 
+    'SIMULATOR_CALLBACK' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectCallback.asp'
 }
 
 FORM = forms.ProtxPayShipForm
@@ -78,8 +79,9 @@ class PaymentProcessor(object):
     def prepareData(self, data):
         try:
             cc = data.credit_card
+            balance = trunc_decimal(data.balance, 2)
             self.packet['VendorTxCode'] = data.id
-            self.packet['Amount'] = data.total
+            self.packet['Amount'] = balance
             self.packet['Description'] = 'Online purchase'
             self.packet['CardType'] = cc.credit_type
             self.packet['card_holder'] = cc.card_holder
@@ -87,9 +89,9 @@ class PaymentProcessor(object):
             self.packet['ExpiryDate'] = '%02d%s' % (cc.expire_month, str(cc.expire_year)[2:])
             if cc.start_month is not None:
                 self.packet['StartDate'] = '%02d%s' % (cc.start_month, str(cc.start_year)[2:])
-            if cc.ccv != '':
+            if cc.ccv is not None and cc.ccv != "":
                 self.packet['CV2'] = cc.ccv
-            if cc.issue_num != '':
+            if cc.issue_num is not None and cc.issue_num != "":
                 self.packet['IssueNumber'] = cc.issue_num #'%02d' % int(cc.issue_num)
             addr = [data.bill_street1, data.bill_street2, data.bill_city, data.bill_state]
             self.packet['BillingAddress'] = ', '.join(addr)
@@ -114,14 +116,15 @@ class PaymentProcessor(object):
     def process(self):
         # Execute the post to protx VSP DIRECT
         if self.valid:
-            self.log_extra("About to post to server: url=%s\ndata=%s", self.url, self.postString)
-            conn = urllib2.Request(url=self.url, data=self.postString)
+            self.log_extra("About to post to server: %s?%s" % (self.url, self.postString))
+            conn = urllib2.Request(self.url, data=self.postString)
             try:
                 f = urllib2.urlopen(conn)
                 result = f.read()
                 self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
             except urllib2.URLError, ue:
                 log.error("error opening %s\n%s", self.url, ue)
+                print ue
                 return (False, 'ERROR', 'Could not talk to Protx gateway')
             try:
                 self.response = dict([row.split('=', 1) for row in result.splitlines()])
