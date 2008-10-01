@@ -1157,7 +1157,7 @@ def _create_download_link(product=None, order=None, subtype=None, **kwargs):
         new_link = DownloadLink(downloadable_product=product, order=order, key=product.create_key(), num_attempts=0)
         new_link.save()
     else:
-        log.debug("ignoring subtype_order_success signal, looking for download product, got %s", instance)
+        log.debug("ignoring subtype_order_success signal, looking for download product, got %s", subtype)
 
 signals.satchmo_cart_changed.connect(_remove_order_on_cart_update, sender=None)
 satchmo_contact_location_changed.connect(_recalc_total_on_contact_change, sender=None)
