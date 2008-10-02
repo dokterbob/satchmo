@@ -114,29 +114,35 @@ class PaymentProcessor(object):
         self.valid = True
         
     def process(self):
-        # Execute the post to protx VSP DIRECT
+        # Execute the post to protx VSP DIRECT        
         if self.valid:
-            self.log_extra("About to post to server: %s?%s" % (self.url, self.postString))
-            conn = urllib2.Request(self.url, data=self.postString)
-            try:
-                f = urllib2.urlopen(conn)
-                result = f.read()
-                self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
-            except urllib2.URLError, ue:
-                log.error("error opening %s\n%s", self.url, ue)
-                print ue
-                return (False, 'ERROR', 'Could not talk to Protx gateway')
-            try:
-                self.response = dict([row.split('=', 1) for row in result.splitlines()])
-                status = self.response['Status']
-                success = (status == 'OK')
-                detail = self.response['StatusDetail']
-                if success:
-                    log.info('Success on order #%i, recording payment', self.order.id)
-                    record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
-                return (success, status, detail)
-            except Exception, e:
-                log.info('Error submitting payment: %s', e)
-                return (False, 'ERROR', 'Invalid response from payment gateway')
+            if self.settings.SKIP_POST.value:
+                log.info("TESTING MODE - Skipping post to server.  Would have posted %s?%s", self.url, self.postString)
+                record_payment(self.order, self.settings, amount=self.order.balance, transaction_id="TESTING")
+                return (True, 'OK', "TESTING MODE")
+
+            else:
+                self.log_extra("About to post to server: %s?%s", self.url, self.postString)
+                conn = urllib2.Request(self.url, data=self.postString)
+                try:
+                    f = urllib2.urlopen(conn)
+                    result = f.read()
+                    self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
+                except urllib2.URLError, ue:
+                    log.error("error opening %s\n%s", self.url, ue)
+                    print ue
+                    return (False, 'ERROR', 'Could not talk to Protx gateway')
+                try:
+                    self.response = dict([row.split('=', 1) for row in result.splitlines()])
+                    status = self.response['Status']
+                    success = (status == 'OK')
+                    detail = self.response['StatusDetail']
+                    if success:
+                        log.info('Success on order #%i, recording payment', self.order.id)
+                        record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
+                    return (success, status, detail)
+                except Exception, e:
+                    log.info('Error submitting payment: %s', e)
+                    return (False, 'ERROR', 'Invalid response from payment gateway')
         else:
             return (False, 'ERROR', 'Error processing payment.')

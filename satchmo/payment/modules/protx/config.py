@@ -26,6 +26,12 @@ config_register_list(
         description=_("Simulated Transactions?"),
         help_text=_("Must be false to accept real payments"),
         default=False),
+
+    BooleanValue(PAYMENT_GROUP, 
+        'SKIP_POST', 
+        description=_("Skip post?"),
+        help_text=_("For testing only, this will skip actually posting to Prot/x servers.  This is because their servers restrict IPs of posting servers, even for tests.  If you are developing on a desktop, you'll have to enable this."),
+        default=False),
         
     StringValue(PAYMENT_GROUP, 
         'CAPTURE',
