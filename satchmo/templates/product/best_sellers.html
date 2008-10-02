@@ -3,6 +3,12 @@
 {% load satchmo_thumbnail %}
 {% load satchmo_util %}
 
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+<li>{% trans "Best Sellers" %}</li>
+{% endblock %}
+
+
 {% block content %}
 <h2>{% trans "Best Selling Products" %}</h2>
 {% for product in products %}

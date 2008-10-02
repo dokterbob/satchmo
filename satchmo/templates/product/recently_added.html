@@ -3,6 +3,11 @@
 {% load satchmo_thumbnail %}
 {% load satchmo_util %}
 
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+<li>{% trans "Recently Added" %}</li>
+{% endblock %}
+
 {% block content %}
 <h2>{% trans "Recently Added" %}</h2>
 {% if page %}

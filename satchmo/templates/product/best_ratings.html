@@ -4,6 +4,11 @@
 {% load satchmo_util %}
 {% load satchmo_ratings %}
 
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+<li>{% trans "Most Popular" %}</li>
+{% endblock %}
+
 {% block content %}
 <h2>{% trans "Best Rated Products" %}</h2>
 {% for product in products %}
