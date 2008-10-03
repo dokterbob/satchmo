@@ -771,9 +771,9 @@ class ProductTranslation(models.Model):
     """
     product = models.ForeignKey('Product', related_name="translations")
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Full Name"), max_length=255, )
-    short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
+    name = models.CharField(_("Full Name"), max_length=255)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
+    short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description for use in product listing screens"), max_length=200, default='', blank=True)
     version = models.IntegerField(_('version'), default=1)
     active = models.BooleanField(_('active'), default=True)
 
