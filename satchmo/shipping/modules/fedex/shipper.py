@@ -257,15 +257,12 @@ class Shipper(BaseShipper):
             # So, to simulate this functionality, and return a total 
             # price, we have to loop through all of our items, and 
             # pray the customer isn't ordering a thousand boxes of bagels.
-            if product.weight_units:
-                box_weight_units = product.weight_units
-            
             for product in cart.get_shipment_list():
                 c = Context({
                   'config': configuration,
-                  'box_weight' : '%.1f' % product.weight,
-                  'box_weight_units' : product.weight_units,
-                  'box_price' : product.unit_price,
+                  'box_weight' : '%.1f' % (product.weight or 0.0),
+                  'box_weight_units' : product.weight_units and product.weight_units.upper() or 'LB',
+                  'box_price' : '%.2f' % product.unit_price,
                   'contact': contact,
                 })
     

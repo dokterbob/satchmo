@@ -10,8 +10,8 @@
 
     <Service>{{ config.ship_type }}</Service>
     <Packaging>{{ config.packaging }}</Packaging>
-    <WeightUnits>{{ cart_item.product.weight_units|upper }}S</WeightUnits>
-    <Weight>{{ weight }}</Weight>
+    <WeightUnits>{{ box_weight_units|upper }}S</WeightUnits>
+    <Weight>{{ box_weight }}</Weight>
 
     <OriginAddress>
       <StateOrProvinceCode>{{ config.shop_details.state }}</StateOrProvinceCode>
@@ -30,7 +30,7 @@
     </Payment>
 
     <DeclaredValue>
-      <Value>{{ unit_price }}</Value>
+      <Value>{{ box_price }}</Value>
       <CurrencyCode>USD</CurrencyCode>
     </DeclaredValue>
     <PackageCount>1</PackageCount>
