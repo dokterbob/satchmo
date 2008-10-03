@@ -62,7 +62,7 @@ class CartitemLineTaxedTotalNode(template.Node):
 def cartitem_line_taxed_total(parser, token):
     """Returns the line total for the cartitem, with tax added.  If currency evaluates true,
     then return the total formatted through moneyfmt.
-    Example: {% taxed_line_total cartitem [currency] %}
+    Example: {% cartitem_line_taxed_total cartitem [currency] %}
     """
     tokens = token.contents.split()
     if len(tokens) < 2:
@@ -93,7 +93,7 @@ class CartTaxedTotalNode(template.Node):
 def cart_taxed_total(parser, token):
     """Returns the line total for the cartitem, with tax added.  If currency evaluates true,
     then return the total formatted through moneyfmt.
-    Example: {% taxed_line_total cartitem [currency] %}
+    Example: {% cart_taxed_total cartitem [currency] %}
     """
     tokens = token.contents.split()
     if len(tokens) < 2:
