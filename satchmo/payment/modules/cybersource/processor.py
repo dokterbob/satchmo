@@ -1,6 +1,7 @@
 from django.template import Context, loader
 from satchmo.payment.utils import record_payment
 from satchmo.utils import trunc_decimal
+
 import urllib2
 try:
     from xml.etree.ElementTree import fromstring
@@ -8,8 +9,11 @@ except ImportError:
     from elementtree.ElementTree import fromstring
 
 class PaymentProcessor(object):
-    #Cybersource payment processing module
-    #You must have an account with Cybersource in order to use this module
+    """
+    Cybersource payment processing module
+    You must have an account with Cybersource in order to use this module
+    
+    """
     def __init__(self, settings):
         self.settings = settings
         self.contents = ''
@@ -36,8 +40,8 @@ class PaymentProcessor(object):
             'country': data.bill_country,
             'email' : data.contact.email,
             'phoneNumber' : data.contact.primary_phone,
+            # Can add additional info here if you want to but it's not required
             }
-        # Can add additional info here if you want to but it's not required
         exp = data.credit_card.expirationDate.split('/')
         self.card = {
             'accountNumber' : data.credit_card.decryptedCC,
@@ -55,6 +59,11 @@ class PaymentProcessor(object):
         self.order = data
 
     def process(self):
+        """
+        Creates and sends XML representation of transaction to Cybersource
+        
+        """
+        # XML format is very simple, using ElementTree for generation would be overkill
         t = loader.get_template('checkout/cybersource/request.xml')
         c = Context({
             'config' : self.configuration,
@@ -68,7 +77,8 @@ class PaymentProcessor(object):
         try:
             f = urllib2.urlopen(conn)
         except urllib2.HTTPError, e:
-            #we probably didn't authenticate properly, make sure the 'v' in your account number is lowercase
+            # we probably didn't authenticate properly
+            # make sure the 'v' in your account number is lowercase
             return(False, '999', 'Problem parsing results')
         f = urllib2.urlopen(conn)
         all_results = f.read()
@@ -78,7 +88,8 @@ class PaymentProcessor(object):
             reason_code = parsed_results[0].text
         except KeyError:
             return(False, '999', 'Problem parsing results')
-        # Ripped from http://apps.cybersource.com/library/documentation/sbc/api_guide/SB_API.pdf
+        # Response codes available at:
+        # http://apps.cybersource.com/library/documentation/sbc/api_guide/SB_API.pdf
         response_text_dict = {
             '100' : 'Successful transaction.',
             '101' : 'The request is missing one or more required fields.',
@@ -126,10 +137,11 @@ class PaymentProcessor(object):
 
 
 if __name__ == "__main__":
-    #####
-    # This is for testing - enabling you to run from the command line and make
-    # sure everything is ok
-    #####
+    """
+    For testing purposes only.
+    Allows this module to be run as a script to test the connection
+    
+    """
 
     import os
     from satchmo.configuration import config_get_group
