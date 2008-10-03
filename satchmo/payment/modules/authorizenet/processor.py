@@ -7,8 +7,10 @@ import urllib2
 log = logging.getLogger('payment.authorize')
 
 class PaymentProcessor(object):
-    #Authorize.NET payment processing module
-    #You must have an account with authorize.net in order to use this module
+    """
+    Authorize.NET payment processing module
+    You must have an account with authorize.net in order to use this module
+    """
     def __init__(self, settings):
         self.settings = settings
         self.contents = ''
@@ -84,7 +86,7 @@ class PaymentProcessor(object):
             f = urllib2.urlopen(conn)
             all_results = f.read()
         except urllib2.URLError, ue:
-            log.error("error opening %s\n%s", self.url, ue)
+            log.error("error opening %s\n%s", self.connection, ue)
             return (False, 'ERROR', 'Could not talk to Authorize.net gateway')
             
         parsed_results = all_results.split(self.configuration['x_delim_char'])
@@ -103,11 +105,10 @@ class PaymentProcessor(object):
 
 
 if __name__ == "__main__":
-    #####
-    # This is for testing - enabling you to run from the command line and make
-    # sure everything is ok
-    #####
-
+    """
+    This is for testing - enabling you to run from the command line and make
+    sure everything is ok
+    """
     import os
     from satchmo.configuration import config_get_group
     import config
