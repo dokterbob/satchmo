@@ -1,4 +1,9 @@
-from satchmo.product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, Price, ProductImage, ProductImageTranslation, default_weight_unit, default_dimension_unit
+from satchmo.product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, \
+                                   OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, \
+                                   CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, \
+                                   DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
+                                   Price, ProductImage, ProductImageTranslation, default_weight_unit, \
+                                   default_dimension_unit, ProductTranslation
 from django.contrib import admin
 from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -69,7 +74,10 @@ class ProductImage_Inline(admin.StackedInline):
             return db_field.formfield(**kwargs)
             
         return super(ProductImage_Inline, self).formfield_for_dbfield(db_field, **kwargs)
-    
+ 
+class ProductTranslation_Inline(admin.TabularInline): 
+    model = ProductTranslation 
+    extra = 1    
 
 class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
@@ -113,9 +121,13 @@ class ProductOptions(admin.ModelAdmin):
     list_display_links = ('slug', 'name')
     list_filter = ('category', 'date_added')
     fieldsets = (
-    (None, {'fields': ('site', 'category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 'active', 'featured', 'items_in_stock','total_sold','ordering')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
+    (None, {'fields': ('site', 'category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 
+            'active', 'featured', 'items_in_stock','total_sold','ordering')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), 
+            (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), 
+            (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), 
+            (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
     search_fields = ['slug', 'sku', 'name']
-    inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
+    inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline, ProductTranslation_Inline]
     filter_horizontal = ('category',)
     
     def formfield_for_dbfield(self, db_field, **kwargs):
