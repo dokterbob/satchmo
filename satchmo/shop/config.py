@@ -114,6 +114,13 @@ LANGUAGE_ALLOW_TRANSLATIONS = config_register(
     description=_("Allow user to choose from available translations"),
     default=False,
     ordering=1))
+    
+LANGUAGE_PRODUCT_TRANSLATIONS = config_register(
+    BooleanValue(LANGUAGE_GROUP,
+    'ALLOW_PRODUCT_TRANSLATIONS',
+    description=_("Allow the admin user to translate product information. You must restart the server for changes to take effect."),
+    default=True,
+    ordering=2))
 
 LANGUAGES_AVAILABLE = config_register(
     MultipleStringValue(LANGUAGE_GROUP,

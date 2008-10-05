@@ -9,6 +9,7 @@ from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from satchmo.thumbnail.widgets import AdminImageWithThumbnailWidget
+from satchmo.configuration import config_value
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -102,7 +103,9 @@ class CategoryOptions(admin.ModelAdmin):
     list_display = ('site','name', '_parents_repr')
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
-    inlines = [CategoryTranslation_Inline, CategoryImage_Inline]
+    inlines = [CategoryImage_Inline]
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm    
 
@@ -110,11 +113,16 @@ class CategoryImageOptions(admin.ModelAdmin):
     inlines = [CategoryImageTranslation_Inline]
 
 class OptionGroupOptions(admin.ModelAdmin):
-    inlines = [OptionGroupTranslation_Inline, Option_Inline]
+    inlines = [Option_Inline]
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(OptionGroupTranslation_Inline)
+
     list_display = ['site', 'name']
 
 class OptionOptions(admin.ModelAdmin):
-    inlines = [OptionTranslation_Inline]
+    inlines = []
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
     list_display = ('site', 'slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
@@ -127,7 +135,9 @@ class ProductOptions(admin.ModelAdmin):
             (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), 
             (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
     search_fields = ['slug', 'sku', 'name']
-    inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline, ProductTranslation_Inline]
+    inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(ProductTranslation_Inline)
     filter_horizontal = ('category',)
     
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -143,7 +153,9 @@ class CustomProductOptions(admin.ModelAdmin):
     inlines = [CustomTextField_Inline]
 
 class CustomTextFieldOptions(admin.ModelAdmin):
-    inlines = [CustomTextFieldTranslation_Inline]
+    inlines = []
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(CustomTextFieldTranslation_Inline)
 
 class SubscriptionProductOptions(admin.ModelAdmin):
     inlines = [Trial_Inline]
@@ -152,7 +164,9 @@ class ProductVariationOptions(admin.ModelAdmin):
     filter_horizontal = ('options',)
 
 class ProductImageOptions(admin.ModelAdmin):
-    inlines = [ProductImageTranslation_Inline]
+    inlines = []
+    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+        inlines.append(ProductImageTranslation_Inline)
 
 admin.site.register(Category, CategoryOptions)
 #admin.site.register(CategoryImage, CategoryImageOptions)
