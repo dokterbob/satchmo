@@ -1,0 +1,10 @@
+{% load satchmo_util %}
+<IntlRateRequest USERID="{{ config.userid }}" PASSWORD="{{ config.password }}">
+<Package ID="products">
+<Pounds>{{ weight|pounds }}</Pounds>
+<Ounces>{{ weight|ounces }}</Ounces>
+<MailType>Package</MailType>
+<ValueOfContents>{{ cart.total }}</ValueOfContents>
+<Country>{{ country }}</Country>
+</Package>
+</IntlRateRequest>

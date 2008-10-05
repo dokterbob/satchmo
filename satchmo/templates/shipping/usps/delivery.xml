@@ -1,0 +1,5 @@
+<{{ api }}Request USERID="{{ config.userid }}" PASSWORD="{{ config.password }}">
+    <Origin{{ zip }}>{{ config.shop_details.postal_code }}</Origin{{ zip }}>
+    <Destination{{ zip }}>{{ contact.shipping_address.postal_code }}</Destination{{ zip }}>
+    {% ifequal api "ExpressMailCommitment" %}<Date></Date>{% endifequal %}
+</{{ api }}Request>

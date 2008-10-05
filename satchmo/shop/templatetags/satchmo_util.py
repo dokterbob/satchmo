@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 from satchmo.product.models import Category
 from satchmo.utils import app_enabled, trunc_decimal
 from satchmo.utils.json import json_encode
+import math
 
 register = template.Library()
 
@@ -148,3 +149,16 @@ def satchmo_search_form():
         'categories' : None,
     }
 register.inclusion_tag("_search.html", takes_context=False)(satchmo_search_form)
+
+def pounds(weight):
+    """
+    Finds the weight of a cart item, taking into consideration the quantity in
+    the order.
+    """
+    return int(weight)
+register.filter('pounds', pounds)
+
+def ounces(weight):
+    fract = weight - pounds(weight)
+    return int(math.ceil(fract * 16))
+register.filter('ounces', ounces)
