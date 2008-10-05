@@ -115,7 +115,7 @@ class Config(models.Model):
     def countries(self):
         """Get country selections.  Used in forms."""
         if self.in_country_only:
-            return Country.objects.filter(pk=self.default_country.pk)
+            return Country.objects.filter(pk=self.sales_country.pk)
         else:
             return self.shipping_countries.filter(active=True)
         

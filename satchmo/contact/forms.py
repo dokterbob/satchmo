@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet, SHOP_GROUP
 from satchmo.contact.models import Contact, AddressBook, PhoneNumber
@@ -24,16 +25,14 @@ class ContactInfoForm(forms.Form):
     street2 = forms.CharField(max_length=30, required=False)
     city = forms.CharField(max_length=30, label=_('City'))
     state = forms.CharField(max_length=30, required=False, label=_('State'))
-    country = forms.ModelChoiceField(Country.objects.all(), required=False, label=_('Country'))
-    postal_code = forms.CharField(max_length=10, label=_('Zipcode/Postcode'))
+    postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'))
     copy_address = forms.BooleanField(required=False, label=_('Shipping same as billing?'))
     ship_addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
     ship_street1 = forms.CharField(max_length=30, required=False, label=_('Street'))
     ship_street2 = forms.CharField(max_length=30, required=False)
     ship_city = forms.CharField(max_length=30, required=False, label=_('City'))
     ship_state = forms.CharField(max_length=30, required=False, label=_('State'))
-    ship_postal_code = forms.CharField(max_length=10, required=False, label=_('Zipcode/Postcode'))
-    ship_country = forms.ModelChoiceField(Country.objects.all(), required=False, label=_('Country'))
+    ship_postal_code = forms.CharField(max_length=10, required=False, label=_('ZIP code/Postcode'))
 
     def __init__(self, shop, contact, *args, **kwargs):
         self.shippable = True
@@ -44,23 +43,17 @@ class ContactInfoForm(forms.Form):
         super(ContactInfoForm, self).__init__(*args, **kwargs)   
         
         self._local_only = shop.in_country_only
-        country = shop.sales_country
-        self._default_country = country.pk
-        self.fields['country'].initial = country.pk
-        self.fields['ship_country'].initial = country.pk
-        
         areas = shop.areas()
         if shop.in_country_only and areas and areas.count()>0:
             log.debug('populating admin areas')
             areas = [(area.abbrev or area.name, area.name) for area in areas]
             self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
             self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
-        if not self._local_only:
-            countries = shop.countries()
-            self.fields['country'] = forms.ModelChoiceField(countries)
-            if self.shippable:
-                self.fields['ship_country'] = forms.ModelChoiceField(countries)
 
+        self._default_country = shop.sales_country
+        self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=self._default_country.pk)
+        self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=self._default_country.pk)
+        
         self.contact = contact
         if self._billing_data_optional:
             for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code', 'title'):
@@ -85,53 +78,38 @@ class ContactInfoForm(forms.Form):
                 raise forms.ValidationError(
                     ugettext("That email address is already in use."))
         return email
-        
-    def clean_postal_code(self):
-        return self.validate_postcode_by_country(self.cleaned_data.get('postal_code'))
     
-    def clean_ship_postal_code(self):
-        code = self.ship_charfield_clean('postal_code')
-        return self.validate_postcode_by_country(code)
+    def clean_postal_code(self):
+        postcode = self.cleaned_data.get('postal_code')
+        country = None
         
+        if self._local_only:
+            shop_config = Config.objects.get_current()
+            country = shop_config.sales_country
+        else:
+            country = self.fields['country'].clean(self.data['country'])
+
+        if not country:
+            # Either the store is misconfigured, or the country was
+            # not supplied, so the country validation will fail and
+            # we can defer the postcode validation until that's fixed.
+            return postcode
+        
+        return self.validate_postcode_by_country(postcode, country)
+    
     def clean_state(self):
         data = self.cleaned_data.get('state')
         if self._local_only:
-            country_pk = self._default_country
+            country = self._default_country
         else:
-            if not 'country' in self.data:
-                # The user didn't even submit a country, but this error will
-                # be handled by the clean_country function
-                return data
-            country_pk = self.data['country']
-        country = Country.objects.get(pk=country_pk)
-        if country.adminarea_set.filter(active=True).count() > 0 and not self._billing_data_optional:
-            if not data or data == selection:
-                raise forms.ValidationError(
-                    self._local_only and _('This field is required.') \
-                               or _('State is required for your country.'))
-        return data
-
-    def clean_ship_state(self):
-        data = self.cleaned_data.get('ship_state')
-        if self.cleaned_data.get('copy_address'):
-            if 'state' in self.cleaned_data:
-                self.cleaned_data['ship_state'] = self.cleaned_data['state']
-            return self.cleaned_data['ship_state']
-
-        if self._local_only:
-            country_pk = self._default_country
-        else:
-            if not 'ship_country' in self.data:
-                # This user didn't even submit a country, but this error will
-                # be handled by the clean_ship_country function
-                return data
-            country_pk = self.data['ship_country']
-        country = Country.objects.get(pk=country_pk)
+            country = self.fields['country'].clean(self.data['country'])
         if country.adminarea_set.filter(active=True).count() > 0:
-            if not data or data == selection:
+            if not data or data == selection and not self._billing_data_optional:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \
                                or _('State is required for your country.'))
+            if country.adminarea_set.filter(active=True).filter(Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
+                raise forms.ValidationError(_('Invalid state or province.'))
         return data
 
     def clean_addressee(self):
@@ -156,6 +134,7 @@ class ContactInfoForm(forms.Form):
             return self._default_country
         else:
             if not self.cleaned_data.get('country'):
+                log.error("No country! Got '%s'" % self.cleaned_data.get('country'))
                 raise forms.ValidationError(_('This field is required.'))
         return self.cleaned_data['country']
         
@@ -178,11 +157,9 @@ class ContactInfoForm(forms.Form):
 
     def ship_charfield_clean(self, field_name):
         if self.cleaned_data.get('copy_address'):
-            if field_name in self.cleaned_data:
-                self.cleaned_data['ship_' + field_name] = self.cleaned_data[field_name]
+            self.cleaned_data['ship_' + field_name] = self.fields[field_name].clean(self.data[field_name])
             return self.cleaned_data['ship_' + field_name]
-        field = forms.CharField(max_length=30)
-        return field.clean(self.cleaned_data['ship_' + field_name])
+        return self.fields['ship_' + field_name].clean(self.data['ship_' + field_name])
 
     def clean_ship_street1(self):
         return self.ship_charfield_clean('street1')
@@ -197,8 +174,44 @@ class ContactInfoForm(forms.Form):
         return self.ship_charfield_clean('city')
 
     def clean_ship_postal_code(self):
-        return self.ship_charfield_clean('postal_code')
+        code = self.ship_charfield_clean('postal_code')
 
+        country = None
+        
+        if self._local_only:
+            shop_config = Config.objects.get_current()
+            country = shop_config.sales_country
+        else:
+            country = self.ship_charfield_clean('country')
+        
+        if not country:
+            # Either the store is misconfigured, or the country was
+            # not supplied, so the country validation will fail and
+            # we can defer the postcode validation until that's fixed.
+            return code
+        
+        return self.validate_postcode_by_country(code, country)
+        
+    def clean_ship_state(self):
+        data = self.cleaned_data.get('ship_state')
+        if self.cleaned_data.get('copy_address'):
+            if 'state' in self.cleaned_data:
+                self.cleaned_data['ship_state'] = self.cleaned_data['state']
+            return self.cleaned_data['ship_state']
+
+        if self._local_only:
+            country = self._default_country
+        else:
+            country = self.ship_charfield_clean('country')
+        if country.adminarea_set.filter(active=True).count() > 0:
+            if not data or data == selection:
+                raise forms.ValidationError(
+                    self._local_only and _('This field is required.') \
+                               or _('State is required for your country.'))
+            if country.adminarea_set.filter(active=True).filter(Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
+                raise forms.ValidationError(_('Invalid state or province.'))
+        return data
+    
     def save(self, contact=None, update_newsletter=True):
         """Save the contact info into the database.
         Checks to see if contact exists. If not, creates a contact
@@ -309,15 +322,7 @@ class ContactInfoForm(forms.Form):
         
         return customer.id
         
-    def validate_postcode_by_country(self, postcode):
-        country = None
-        
-        if self._local_only:
-            shop_config = Config.objects.get_current()
-            country = shop_config.sales_country
-        else:
-            country = self.cleaned_data.get('country')
-                
+    def validate_postcode_by_country(self, postcode, country):
         responses = signals.validate_postcode.send(self, postcode=postcode, country=country)
         # allow responders to reformat the code, but if they don't return
         # anything, then just use the existing code

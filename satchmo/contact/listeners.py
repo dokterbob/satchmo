@@ -4,6 +4,17 @@ import logging
 
 log = logging.getLogger('contact.listeners')
 
+def ca_postcode_validator(sender, postcode=None, country=None, **kwargs):
+    if country.iso2_code == 'CA':
+        log.debug('Validating Canadian postal code')
+        from satchmo.l10n.validators import capostcode
+        try:
+            pc = capostcode.validate(postcode)
+            return pc
+        except ValueError, ve:
+            raise forms.ValidationError('Please enter a valid Canadian postal code.')
+signals.validate_postcode.connect(ca_postcode_validator)
+
 def uk_postcode_validator(sender, postcode=None, country=None, **kwargs):
     """Validates UK postcodes"""
     if country.iso2_code == 'GB':
@@ -17,3 +28,14 @@ def uk_postcode_validator(sender, postcode=None, country=None, **kwargs):
         return ' '.join(pc)
 
 signals.validate_postcode.connect(uk_postcode_validator)
+
+def us_postcode_validator(sender, postcode=None, country=None, **kwargs):
+    if country.iso2_code == 'US':
+        log.debug('Validating US ZIP code')
+        from satchmo.l10n.validators import uspostcode
+        try:
+            pc = uspostcode.validate(postcode)
+            return pc
+        except ValueError, ve:
+            raise forms.ValidationError('Please enter a valid US ZIP code.')
+signals.validate_postcode.connect(us_postcode_validator)

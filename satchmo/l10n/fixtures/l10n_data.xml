@@ -3727,7 +3727,7 @@
     <object pk="612" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Alberta</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">AB</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="752" model="l10n.adminarea">
@@ -6835,7 +6835,7 @@
     <object pk="613" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">British Columbia</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">BC</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="4738" model="l10n.adminarea">
@@ -17743,7 +17743,7 @@
     <object pk="614" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Manitoba</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">MB</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="718" model="l10n.adminarea">
@@ -19735,7 +19735,7 @@
     <object pk="615" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">New Brunswick</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NB</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="40" model="l10n.adminarea">
@@ -19801,7 +19801,7 @@
     <object pk="616" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Newfoundland and Labrador</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NL</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="1420" model="l10n.adminarea">
@@ -20425,7 +20425,7 @@
     <object pk="623" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Northwest Territories</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NT</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="4298" model="l10n.adminarea">
@@ -20467,7 +20467,7 @@
     <object pk="617" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Nova Scotia</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NS</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="2759" model="l10n.adminarea">
@@ -20563,7 +20563,7 @@
     <object pk="624" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Nunavut</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NU</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="1925" model="l10n.adminarea">
@@ -20941,7 +20941,7 @@
     <object pk="618" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Ontario</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">ON</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="326" model="l10n.adminarea">
@@ -22453,7 +22453,7 @@
     <object pk="619" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Prince Edward Island</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">PE</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="1186" model="l10n.adminarea">
@@ -22765,7 +22765,7 @@
     <object pk="620" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Quebec</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">QC</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="217" model="l10n.adminarea">
@@ -24949,7 +24949,7 @@
     <object pk="621" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Saskatchewan</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">SK</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="739" model="l10n.adminarea">
@@ -30175,7 +30175,7 @@
     <object pk="622" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">39</field>
         <field type="CharField" name="name">Yukon Territory</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">YT</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="4666" model="l10n.adminarea">
