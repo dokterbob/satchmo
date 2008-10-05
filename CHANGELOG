@@ -4,7 +4,17 @@ Satchmo Change Log
 
 Trunk
 -----
- * Added Italian translation
+ * Add USPS shipping module
+ * Converted to using newforms admin
+ * Made country validation of post code and territories/states more robust
+ * Added Protx payment support
+ * New config setting to hide translation fields
+ * Refactored payment code to be more modular
+ * Change a time stamp field name for Oracle compatability
+ * Added support for brands
+ * New shuffle filter
+ * Multi-site support
+ * Added Italian & Hebrew translation
  * Migrated to new django comments functionality. Remove the need for comment_utils
  * Move admin to use nfa and rest of Satchmo now compatible with django 1.0
  * Removed all standalone satchmo settings from settings.py and local_settings.py, moving them
