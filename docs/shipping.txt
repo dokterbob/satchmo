@@ -144,3 +144,23 @@ Once you've got the module installed its time to get your account set up with Fe
  8. Add your meter number to the shop settings after enabling the FedEx shipping module.
  9. Check the box to connect to the production server.
 
+.. index::
+   single: USPS;
+   
+USPS
+++++
+The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
+regarding this module:
+
+ - The USPS API won't return shipping rates if you are trying to go against the testing server, 
+   so a couple of the settings in modules/config.py become useless and confusing
+ - Make sure your products have weights associated with them. The USPS API won't accept weightless packages and your 
+   list of shipping options might not be a list at all!
+ - The module assumes that the value entered in a product's "weight" attribute is in pounds (because that's what USPS expects)
+ - Some rates such as parcel post automatically include the "additional postage may apply" values, and according to 
+   exchanges with the USPS support crew, we just have to deal with it.
+   
+To enable in Satchmo:
+
+ 1. In your site settings, make sure that the USPS module is active
+ 2. Configure the password and package settings
