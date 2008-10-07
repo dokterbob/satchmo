@@ -14,7 +14,7 @@ def form_terms_listener(sender, form=None, **kwargs):
         log.warn('To use the form_terms_listener, you must have a "shop_terms" url in your site urls')
         url = "#"
         
-    link = u'<a href="%s"></a>' % ugettext('terms and conditions')
+    link = u'<a target="_blank" href="%s"></a>' % ugettext('terms and conditions')
     form.fields['terms'] = forms.BooleanField(
         label=_('Do you accept the %(terms_link)s?') % {'terms_link' : link}, 
         widget=forms.CheckboxInput(), required=True)
