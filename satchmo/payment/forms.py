@@ -91,14 +91,18 @@ class PaymentMethodForm(forms.Form):
         # Send a signal to perform additional filtering of available payment methods.
         # Receivers have cart/order passed in variables to check the contents and modify methods
         # list if neccessary.
+        payment_choices = labelled_payment_choices()
         signals.payment_methods_query.send(
                 PaymentMethodForm,
-                methods=self.fields['paymentmethod'].choices,
+                methods=payment_choices,
                 cart=cart,
                 order=order
                 )
-        if len(self.fields['paymentmethod'].choices) == 1:
-            self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : self.fields['paymentmethod'].choices[0][0]})
+        self.fields['paymentmethod'].choices = payment_choices
+        if len(payment_choices) == 1:
+            self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : payment_choices[0][0]})
+        else:
+            self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
 
 class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
     pass
