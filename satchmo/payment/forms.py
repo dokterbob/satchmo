@@ -82,18 +82,8 @@ class PaymentMethodForm(forms.Form):
                                         widget=_paymentwidget,
                                         required=True)
 
-class PaymentContactInfoForm(ContactInfoForm):
-    _choices = labelled_payment_choices()
-    if len(_choices) > 0:
-        if len(_choices) > 1:
-            _paymentwidget = forms.RadioSelect
-        else:
-            _paymentwidget = forms.HiddenInput(attrs={'value' : _choices[0][0]})
-
-        paymentmethod = forms.ChoiceField(label=_('Payment method'),
-                                        choices=_choices,
-                                        widget=_paymentwidget,
-                                        required=True)
+class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
+    pass
 
 class SimplePayShipForm(forms.Form):
     shipping = forms.ChoiceField(widget=forms.RadioSelect(), required=False)
