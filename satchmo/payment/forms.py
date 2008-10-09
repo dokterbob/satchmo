@@ -69,18 +69,36 @@ class CustomChargeForm(forms.Form):
     
      
 class PaymentMethodForm(forms.Form):
-    _choices = labelled_payment_choices()
-    if len(_choices) > 0:
-        
-        if len(_choices) > 1:
-            _paymentwidget = forms.RadioSelect
-        else:
-            _paymentwidget = forms.HiddenInput(attrs={'value' : _choices[0][0]})
+    paymentmethod = forms.ChoiceField(
+            label=_('Payment method'),
+            choices=labelled_payment_choices(),
+            widget=forms.RadioSelect,
+            required=True
+            )
 
-        paymentmethod = forms.ChoiceField(label=_('Payment method'),
-                                        choices=_choices,
-                                        widget=_paymentwidget,
-                                        required=True)
+    def __init__(self, *args, **kwargs):
+        try:
+            cart = kwargs['cart']
+            del kwargs['cart']
+        except KeyError:
+            cart = None
+        try:
+            order = kwargs['order']
+            del kwargs['order']
+        except KeyError:
+            order = None
+        super(forms.Form, self).__init__(*args, **kwargs)
+        # Send a signal to perform additional filtering of available payment methods.
+        # Receivers have cart/order passed in variables to check the contents and modify methods
+        # list if neccessary.
+        signals.payment_methods_query.send(
+                PaymentMethodForm,
+                methods=self.fields['paymentmethod'].choices,
+                cart=cart,
+                order=order
+                )
+        if len(self.fields['paymentmethod'].choices) == 1:
+            self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : self.fields['paymentmethod'].choices[0][0]})
 
 class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
     pass

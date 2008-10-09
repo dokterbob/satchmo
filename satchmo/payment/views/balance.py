@@ -43,7 +43,7 @@ def balance_remaining(request):
 
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = PaymentMethodForm(new_data)
+        form = PaymentMethodForm(new_data, order=order)
         if form.is_valid():
             data = form.cleaned_data
             modulename = data['paymentmethod']
@@ -55,7 +55,7 @@ def balance_remaining(request):
             return HttpResponseRedirect(url)
         
     else:
-        form = PaymentMethodForm()
+        form = PaymentMethodForm(order=order)
         
     ctx = RequestContext(request, {'form' : form, 
         'order' : order,

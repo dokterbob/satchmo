@@ -51,7 +51,7 @@ def contact_info(request, **kwargs):
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
         form = PaymentContactInfoForm(shop, contact, new_data, shippable=tempCart.is_shippable, 
-            initial=init_data)
+            initial=init_data, cart=tempCart)
 
         if form.is_valid():
             if contact is None and request.user and request.user.is_authenticated():
@@ -83,7 +83,7 @@ def contact_info(request, **kwargs):
         else:
             # Allow them to login from this page.
             request.session.set_test_cookie()
-        form = PaymentContactInfoForm(shop, contact, shippable=tempCart.is_shippable, initial=init_data)
+        form = PaymentContactInfoForm(shop, contact, shippable=tempCart.is_shippable, initial=init_data, cart=tempCart)
 
     if shop.in_country_only:
         only_country = shop.sales_country
@@ -93,7 +93,7 @@ def contact_info(request, **kwargs):
     context = RequestContext(request, {
         'form': form,
         'country': only_country,
-        'paymentmethod_ct': len(config_value('PAYMENT', 'MODULES'))
+        'paymentmethod_ct': len(form.fields['paymentmethod'].choices)
         })
     return render_to_response('checkout/form.html', context)
 
