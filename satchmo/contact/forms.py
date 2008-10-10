@@ -317,8 +317,10 @@ class ContactInfoForm(forms.Form):
         phone.contact = customer
         phone.save()
         
+        signals.form_save.send(ContactInfoForm, object=customer, formdata=data, form=self)
+        
         if changed_location:
-            signals.satchmo_contact_location_changed.send(self, contact=contact)
+            signals.satchmo_contact_location_changed.send(self, contact=customer)
         
         return customer.id
         
