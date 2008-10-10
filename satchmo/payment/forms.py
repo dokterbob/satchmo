@@ -105,7 +105,11 @@ class PaymentMethodForm(forms.Form):
             self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
 
 class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
-    pass
+                                        
+        def __init__(self, *args, **kwargs):
+            super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
+            
+            signals.payment_form_init.send(PaymentContactInfoForm, form=self)
 
 class SimplePayShipForm(forms.Form):
     shipping = forms.ChoiceField(widget=forms.RadioSelect(), required=False)
