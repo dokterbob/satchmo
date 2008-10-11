@@ -86,7 +86,7 @@ $(document).ready(function() {
 
     {% if country %}
       {% if form.fields.state.choices %}
-        <tr><td><label for="id_state">{{ country.get_admin_area_display }}{% if form.country.field.required %}*{% endif %}</label></td><td> {{ form.state }}</td></tr>
+        <tr><td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if form.country.field.required %}*{% endif %}</label></td><td> {{ form.state }}</td></tr>
       {% endif %}
     {% else %}
       <tr><td><label for="id_state">{% trans "State/Province" %}</label></td><td> {{ form.state }}</td></tr>
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
     {% if country %}
       {% if form.fields.ship_state.choices %}
-        <tr><td><label for="id_ship_state">{{ country.get_admin_area_display }}*</label></td><td> {{ form.ship_state }}</td></tr>
+       <tr><td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td><td> {{ form.ship_state }}</td></tr>
       {% endif %}
     {% else %}
       <tr><td><label for="id_ship_state">{% trans "State/Province" %}</label></td><td> {{ form.ship_state }}</td></tr>

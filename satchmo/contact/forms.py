@@ -144,11 +144,11 @@ class ContactInfoForm(forms.Form):
     def clean_ship_country(self):
         copy_address = self.fields['copy_address'].clean(self.data.get('copy_address'))
         if copy_address:
-            return self.fields['country'].clean(self.data.get('country'))
+            return self.cleaned_data.get('country')
         if self._local_only:
             return self._default_country
         if not self.shippable:
-            return self.cleaned_data['country']
+            return self.cleaned_data.get['country']
         shipcountry = self.cleaned_data.get('ship_country')
         if not shipcountry:
             raise forms.ValidationError(_('This field is required.'))
