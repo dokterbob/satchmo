@@ -39,7 +39,7 @@ class ContactInfoForm(forms.Form):
         if kwargs.has_key('shippable'):
             self.shippable = kwargs['shippable']
             del(kwargs['shippable'])
-        self._billing_data_optional = config_value(SHOP_GROUP, 'BILLING_DATA_OPTIONAL'),
+        self._billing_data_optional = config_value(SHOP_GROUP, 'BILLING_DATA_OPTIONAL')
         super(ContactInfoForm, self).__init__(*args, **kwargs)   
         
         self._local_only = shop.in_country_only
