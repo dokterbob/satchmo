@@ -1,0 +1,6 @@
+- fields: {city: null, country: 231, in_country_only: false,
+    no_stock_checkout: true, phone: null, postal_code: null, sales_country: 231, shipping_countries: [231, 14, 39, 230],
+    state: null, store_description: null, store_email: null, store_name: !!python/unicode 'My
+      Site - Trunk',  street1: null, street2: null}
+  model: !!python/unicode 'shop.config'
+  pk: !!python/unicode '1'
