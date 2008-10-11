@@ -15,13 +15,13 @@
 
     <OriginAddress>
       <StateOrProvinceCode>{{ config.shop_details.state }}</StateOrProvinceCode>
-      <PostalCode>{{ config.shop_details.postal_code }}</PostalCode>
+      <PostalCode>{{ config.shop_details.postal_code|cut:" " }}</PostalCode>
       <CountryCode>{{ config.shop_details.country.iso2_code }}</CountryCode>
     </OriginAddress>
 
     <DestinationAddress>
       <StateOrProvinceCode>{{ contact.shipping_address.state }}</StateOrProvinceCode>
-      <PostalCode>{{ contact.shipping_address.postal_code }}</PostalCode>
+      <PostalCode>{{ contact.shipping_address.postal_code|cut:" " }}</PostalCode>
       <CountryCode>{{ contact.shipping_address.country.iso2_code }}</CountryCode>
     </DestinationAddress>
 
