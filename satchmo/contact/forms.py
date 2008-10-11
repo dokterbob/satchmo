@@ -45,14 +45,17 @@ class ContactInfoForm(forms.Form):
         self._local_only = shop.in_country_only
         areas = shop.areas()
         if shop.in_country_only and areas and areas.count()>0:
-            log.debug('populating admin areas')
             areas = [(area.abbrev or area.name, area.name) for area in areas]
-            self.fields['state'] = forms.ChoiceField(choices=areas, initial=selection)
-            self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=selection, required=False)
-
+            billing_state = (contact and getattr(contact.billing_address, 'state', None)) or selection
+            shipping_state = (contact and getattr(contact.shipping_address, 'state', None)) or selection
+            self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
+            self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
+        
         self._default_country = shop.sales_country
-        self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=self._default_country.pk)
-        self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=self._default_country.pk)
+        billing_country = (contact and getattr(contact.billing_address, 'country', None)) or self._default_country
+        shipping_country = (contact and getattr(contact.shipping_address, 'country', None)) or self._default_country
+        self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
+        self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
         
         self.contact = contact
         if self._billing_data_optional:
@@ -87,7 +90,7 @@ class ContactInfoForm(forms.Form):
             shop_config = Config.objects.get_current()
             country = shop_config.sales_country
         else:
-            country = self.fields['country'].clean(self.data['country'])
+            country = self.fields['country'].clean(self.data.get('country'))
 
         if not country:
             # Either the store is misconfigured, or the country was
@@ -102,13 +105,13 @@ class ContactInfoForm(forms.Form):
         if self._local_only:
             country = self._default_country
         else:
-            country = self.fields['country'].clean(self.data['country'])
-        if country.adminarea_set.filter(active=True).count() > 0:
+            country = self.fields['country'].clean(self.data.get('country'))
+        if country and country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection and not self._billing_data_optional:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \
                                or _('State is required for your country.'))
-            if country.adminarea_set.filter(active=True).filter(Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
+            if country.adminarea_set.filter(active=True).filter(Q(name=data)|Q(abbrev=data)|Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
                 raise forms.ValidationError(_('Invalid state or province.'))
         return data
 
@@ -139,9 +142,9 @@ class ContactInfoForm(forms.Form):
         return self.cleaned_data['country']
         
     def clean_ship_country(self):
-        copy_address = self.cleaned_data.get('copy_address')
+        copy_address = self.fields['copy_address'].clean(self.data.get('copy_address'))
         if copy_address:
-            return self.cleaned_data['country']
+            return self.fields['country'].clean(self.data.get('country'))
         if self._local_only:
             return self._default_country
         if not self.shippable:
@@ -157,9 +160,9 @@ class ContactInfoForm(forms.Form):
 
     def ship_charfield_clean(self, field_name):
         if self.cleaned_data.get('copy_address'):
-            self.cleaned_data['ship_' + field_name] = self.fields[field_name].clean(self.data[field_name])
+            self.cleaned_data['ship_' + field_name] = self.fields[field_name].clean(self.data.get(field_name))
             return self.cleaned_data['ship_' + field_name]
-        return self.fields['ship_' + field_name].clean(self.data['ship_' + field_name])
+        return self.fields['ship_' + field_name].clean(self.data.get('ship_' + field_name))
 
     def clean_ship_street1(self):
         return self.ship_charfield_clean('street1')
@@ -203,12 +206,12 @@ class ContactInfoForm(forms.Form):
             country = self._default_country
         else:
             country = self.ship_charfield_clean('country')
-        if country.adminarea_set.filter(active=True).count() > 0:
+        if country and country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \
                                or _('State is required for your country.'))
-            if country.adminarea_set.filter(active=True).filter(Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
+            if country.adminarea_set.filter(active=True).filter(Q(name=data)|Q(abbrev=data)|Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
                 raise forms.ValidationError(_('Invalid state or province.'))
         return data
     

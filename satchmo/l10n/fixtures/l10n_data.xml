@@ -4837,7 +4837,7 @@
     <object pk="214" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Australian Capital Territory</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">ACT</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="203" model="l10n.adminarea">
@@ -19783,7 +19783,7 @@
     <object pk="215" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">New South Wales</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NSW</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="43" model="l10n.adminarea">
@@ -20407,7 +20407,7 @@
     <object pk="216" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Northern Territory</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">NT</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="1428" model="l10n.adminarea">
@@ -22771,7 +22771,7 @@
     <object pk="217" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Queensland</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">QLD</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="2990" model="l10n.adminarea">
@@ -25963,7 +25963,7 @@
     <object pk="218" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">South Australia</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">SA</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="1543" model="l10n.adminarea">
@@ -27265,7 +27265,7 @@
     <object pk="219" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Tasmania</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">TAS</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="2599" model="l10n.adminarea">
@@ -29107,7 +29107,7 @@
     <object pk="220" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Victoria</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">VIC</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="4530" model="l10n.adminarea">
@@ -29737,7 +29737,7 @@
     <object pk="221" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">14</field>
         <field type="CharField" name="name">Western Australia</field>
-        <field type="CharField" name="abbrev"></field>
+        <field type="CharField" name="abbrev">WA</field>
         <field type="BooleanField" name="active">1</field>
     </object>
     <object pk="4890" model="l10n.adminarea">
