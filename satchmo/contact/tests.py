@@ -71,7 +71,7 @@ class ContactInfoFormL10NTest(TestCase):
         # a valid one
         contact = Contact.objects.create()
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231
@@ -81,7 +81,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # bad state
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "ON", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "ON", 'ship_postal_code': "12366", 'ship_country': 231
@@ -94,7 +94,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # a valid one
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "ON", 'postal_code': "M5V 2T6", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "ON", 'ship_postal_code': "M5V 2T6", 'ship_country': 39
@@ -104,7 +104,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # bad province
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "NY", 'postal_code': "M5V 2T6", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "NY", 'ship_postal_code': "M5V 2T6", 'ship_country': 39
@@ -114,7 +114,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # bad postal code
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "ON", 'postal_code': "M5V 2TA", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "ON", 'ship_postal_code': "M5V 2TA", 'ship_country': 39
@@ -127,7 +127,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # a valid one
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "2000", 'ship_country': 14
@@ -137,7 +137,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # bad state
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NY", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NY", 'ship_postal_code': "2000", 'ship_country': 14
@@ -147,7 +147,7 @@ class ContactInfoFormL10NTest(TestCase):
         
         # bad postal code
         data = {
-            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot',
+            'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
 
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "200A", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "200A", 'ship_country': 14

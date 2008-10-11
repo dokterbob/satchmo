@@ -24,9 +24,9 @@ class AUPostCodeTest(TestCase):
 class CAPostCodeTest(TestCase):
     def test_valid(self):
         code = capostcode.validate("M5V2T6")
-        self.assertEqual('M5V 2T6', code)
+        self.assertEqual('M5V2T6', code)
         code = capostcode.validate("m5v2t6")
-        self.assertEqual('M5V 2T6', code)
+        self.assertEqual('M5V2T6', code)
     
     def test_invalid(self):
         try:
