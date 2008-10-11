@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from django.utils.translation import get_language
 from satchmo import caching
 import logging
+from django.conf import settings
 
 log = logging.getLogger('satchmo.l10n.mixins')
 
