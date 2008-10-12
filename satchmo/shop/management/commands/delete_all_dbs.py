@@ -14,13 +14,11 @@ class Command(NoArgsCommand):
         # Because settings are imported lazily, we need to explicitly load them.
         settings._import_settings()
         engine = settings.DATABASE_ENGINE
-        user_settings = module_to_dict(settings._target)
-        #engine = user_settings['DATABASE_ENGINE']
-        db_host = user_settings['DATABASE_HOST']
-        db_port = user_settings['DATABASE_PORT']
-        db_pass = user_settings['DATABASE_PASSWORD']
-        db_name = user_settings['DATABASE_NAME']
-        db_user = user_settings['DATABASE_USER']
+        db_host = settings.DATABASE_HOST 
+        db_port = settings.DATABASE_PORT 
+        db_pass = settings.DATABASE_PASSWORD 
+        db_name = settings.DATABASE_NAME 
+        db_user = settings.DATABASE_USER 
 
         if engine == 'sqlite3':
             try:
