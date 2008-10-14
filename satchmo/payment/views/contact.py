@@ -3,19 +3,25 @@
 #####################################################################
 
 from django import http
+from django.core import urlresolvers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from satchmo.configuration import config_get_group, config_value, SHOP_GROUP
 from satchmo.contact import CUSTOMER_ID
 from satchmo.contact.models import Contact
+from satchmo.payment.decorators import cart_has_minimum_order
 from satchmo.payment.forms import PaymentContactInfoForm
 from satchmo.shop.models import Cart, Config
 from satchmo.utils.dynamic import lookup_url
-from satchmo.payment.decorators import cart_has_minimum_order
 
 import logging
 
 log = logging.getLogger('satchmo.contact.contact')
+
+def authentication_required(request, template='checkout/authentication_required.html'):
+    return render_to_response(
+        template, {}, context_instance = RequestContext(request)
+    )
 
 def contact_info(request, **kwargs):
     """View which collects demographic information from customer."""
@@ -26,11 +32,8 @@ def contact_info(request, **kwargs):
         return render_to_response('checkout/empty_cart.html', RequestContext(request))
 
     if not request.user.is_authenticated() and config_value(SHOP_GROUP, 'AUTHENTICATION_REQUIRED'):
-        return render_to_response(
-                'checkout/authentication_required.html',
-                {},
-                context_instance = RequestContext(request)
-                )
+        url = urlresolvers.reverse('satchmo_checkout_auth_required')
+        return http.HttpResponseRedirect(url)
 
     init_data = {}
     shop = Config.objects.get_current()
