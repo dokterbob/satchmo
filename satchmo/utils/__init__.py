@@ -133,7 +133,6 @@ def request_is_secure(request):
 
     return False
 
-
 def trunc_decimal(val, places):
     roundfmt = "0."
     if places > 1:

@@ -3,6 +3,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 from satchmo.shop import get_satchmo_setting
 from satchmo.shop.views.sitemaps import sitemaps
+from satchmo.utils import urlhelper
 
 shop_base = get_satchmo_setting('SHOP_BASE')
 if shop_base == '':
@@ -36,16 +37,5 @@ if settings.LOCAL_DEV:
         {'document_root':  settings.MEDIA_ROOT}),
     )
 
-def remove_duplicate_urls(urls, names):
-    """Remove any URLs whose names are already in use."""
-    for pattern in urls:
-        if hasattr(pattern, 'url_patterns'):
-            remove_duplicate_urls(pattern.url_patterns, names)
-        elif hasattr(pattern, 'name') and pattern.name:
-            if pattern.name in names:
-                urls.remove(pattern)
-            else:
-                names.append(pattern.name)
-
-remove_duplicate_urls(urlpatterns, [])
+urlherlper.remove_duplicate_urls(urlpatterns, [])
 
