@@ -37,5 +37,5 @@ if settings.LOCAL_DEV:
         {'document_root':  settings.MEDIA_ROOT}),
     )
 
-urlherlper.remove_duplicate_urls(urlpatterns, [])
+urlhelper.remove_duplicate_urls(urlpatterns, [])
 
