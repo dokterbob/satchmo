@@ -973,6 +973,7 @@ class OrderItem(models.Model):
     class Meta:
         verbose_name = _("Order Line Item")
         verbose_name_plural = _("Order Line Items")
+        ordering = ('id',)
 
 class OrderItemDetail(models.Model):
     """
@@ -1064,6 +1065,7 @@ class OrderStatus(models.Model):
     class Meta:
         verbose_name = _("Order Status")
         verbose_name_plural = _("Order Statuses")
+        ordering = ('time_stamp',)
 
 class OrderPayment(models.Model):
     order = models.ForeignKey(Order, related_name="payments")
@@ -1137,6 +1139,7 @@ class OrderTaxDetail(models.Model):
     class Meta:        
         verbose_name = _('Order tax detail')
         verbose_name_plural = _('Order tax details')
+        ordering = ('id',)
 
 def _remove_order_on_cart_update(request=None, cart=None, **kwargs):
     if request:
