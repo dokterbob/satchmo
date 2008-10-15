@@ -19,6 +19,9 @@ def product_rating_form(request, product, form):
 register.inclusion_tag('comments/product_rating_form.html')(product_rating_form)
 
 def product_ratings(context):
+    """
+    Display the ratings for a specific product.
+    """
     shop = context['shop']
     rendered = ''
     if config_value('SHOP', 'RATINGS'):
@@ -28,12 +31,14 @@ def product_ratings(context):
 
 register.inclusion_tag('_render_product_ratings.html', takes_context=True)(product_ratings)
         
-def product_rating_average_string(product):    
+def product_rating_average_string(product): 
+    """Get the average product rating as a string, for use in templates"""   
     return get_product_rating_string(product)
 
 register.filter("product_rating_average_string", product_rating_average_string)
 
-def product_rating_average(product):    
+def product_rating_average(product):  
+    """Get the average product rating as a number"""  
     return get_product_rating(product)
 
 register.filter("product_rating_average", product_rating_average)
