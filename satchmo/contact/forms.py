@@ -33,6 +33,7 @@ class ContactInfoForm(forms.Form):
     ship_city = forms.CharField(max_length=30, required=False, label=_('City'))
     ship_state = forms.CharField(max_length=30, required=False, label=_('State'))
     ship_postal_code = forms.CharField(max_length=10, required=False, label=_('ZIP code/Postcode'))
+    next = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput())
 
     def __init__(self, shop, contact, *args, **kwargs):
         self.shippable = True

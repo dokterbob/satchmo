@@ -1,4 +1,5 @@
 from django import http
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required
 from django.core import urlresolvers
 from django.shortcuts import render_to_response
@@ -54,8 +55,11 @@ def update(request):
                 contact = Contact(user=request.user)
             custID = form.save(contact=contact)
             request.session[CUSTOMER_ID] = custID
-            url = urlresolvers.reverse('satchmo_account_info')
-            return http.HttpResponseRedirect(url)
+            redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
+            if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
+                redirect_to = urlresolvers.reverse('satchmo_account_info')
+                
+            return http.HttpResponseRedirect(redirect_to)
         else:
             signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
 
