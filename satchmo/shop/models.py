@@ -677,8 +677,11 @@ class Order(models.Model):
         return None
     credit_card = property(_credit_card)
 
-    def _full_bill_street(self, delim="<br/>"):
-        """Return both billing street entries separated by delim."""
+    def _full_bill_street(self, delim="\n"):
+        """
+        Return both billing street entries separated by delim.
+        Note - Use linebreaksbr filter to convert to html in templates.
+        """
         if self.bill_street2:
             address = self.bill_street1 + delim + self.bill_street2
         else:
@@ -686,8 +689,11 @@ class Order(models.Model):
         return mark_safe(address)
     full_bill_street = property(_full_bill_street)
 
-    def _full_ship_street(self, delim="<br/>"):
-        """Return both shipping street entries separated by delim."""
+    def _full_ship_street(self, delim="\n"):
+        """
+        Return both shipping street entries separated by delim.
+        Note - Use linebreaksbr filterto convert to html in templates.
+        """
         if self.ship_street2:
             address = self.ship_street1 + delim + self.ship_street2
         else:

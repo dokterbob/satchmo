@@ -17,7 +17,7 @@
 {{ order.contact.primary_phone.phone }}<br/>
 
 <h4>{% trans "Billing Information" %}</h4>
-{{ order.full_bill_street }}<br/>
+{{ order.full_bill_street|linebreaksbr }}<br/>
 {{ order.bill_city }}<br/>
 {{ order.bill_state }}<br/>
 {{ order.bill_postal_code }}<br/>
@@ -25,7 +25,7 @@
 
 {% if order.is_shippable %}
 <h4>{% trans "Shipping Address" %}</h4>
-{{ order.full_ship_street }}<br/>
+{{ order.full_ship_street|linebreaksbr }}<br/>
 {{ order.ship_city }}<br/>
 {{ order.ship_state }}<br/>
 {{ order.ship_postal_code }}<br/>
