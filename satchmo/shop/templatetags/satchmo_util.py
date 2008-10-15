@@ -65,9 +65,12 @@ def remove_tags(value):
     Returns the text with all tags removed
     This can fail if give invalid input. This is only intended to be used on safe HTML markup. It should not be used to 
     clean unsafe input data.
-    For example, this will fail:
-    >> remove_tags('<<> <test></test>')
-        '<test></test>'
+    For example, this will fail.
+    
+    Example::
+    
+        >> remove_tags('<<> <test></test>')
+            '<test></test>'
     """
     i = value.find('<')
     last = -1
@@ -133,6 +136,9 @@ def more_than(value, args=""):
 register.filter('more_than', more_than)
 
 def product_upsell(product):
+    """
+    Display the list of products that are upsell candidates for currently viewed product.
+    """
     goals = None
     try:
         if product.upselltargets.count() > 0:
@@ -145,6 +151,9 @@ def product_upsell(product):
 register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(product_upsell)
 
 def satchmo_category_search_form(category=None):
+    """
+    Display the form for customer to specifiy categoyr to search.
+    """
     cats = Category.objects.root_categories()
     return {
         'categories' : cats,
@@ -153,6 +162,9 @@ def satchmo_category_search_form(category=None):
 register.inclusion_tag("_search.html", takes_context=False)(satchmo_category_search_form)
 
 def satchmo_search_form():
+    """
+    Display the search form.
+    """
     return {
         'categories' : None,
     }

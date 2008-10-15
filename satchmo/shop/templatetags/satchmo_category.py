@@ -31,19 +31,22 @@ def recurse_for_children(current_node, parent_node, active_cat, show_empty=True)
 
 def category_tree(id=None):
     """
-    Creates an unnumbered list of the categories.  For example:
-    <ul>
-        <li>Books
-            <ul>
-            <li>Science Fiction
+    Creates an unnumbered list of the categories.  
+    
+    Example::
+    
+        <ul>
+            <li>Books
                 <ul>
-                <li>Space stories</li>
-                <li>Robot stories</li>
+                <li>Science Fiction
+                    <ul>
+                    <li>Space stories</li>
+                    <li>Robot stories</li>
+                    </ul>
+                </li>
+                <li>Non-fiction</li>
                 </ul>
-            </li>
-            <li>Non-fiction</li>
-            </ul>
-    </ul>
+        </ul>
     """
     active_cat = None
     if id:
