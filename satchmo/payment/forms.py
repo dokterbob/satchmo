@@ -98,11 +98,11 @@ class PaymentMethodForm(forms.Form):
                 cart=cart,
                 order=order
                 )
-        self.fields['paymentmethod'].choices = payment_choices
         if len(payment_choices) == 1:
             self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : payment_choices[0][0]})
         else:
             self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
+        self.fields['paymentmethod'].choices = payment_choices
 
 class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
                                         
