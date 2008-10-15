@@ -23,13 +23,6 @@ satchmo.update_ship_copy = function(elt) {
     satchmo.ship_form_toggler(state);
 }
 
-$(function() {
-    $('#id_copy_address').click(function() {
-        satchmo.update_ship_copy(this);
-    });
-    satchmo.update_ship_copy('#id_copy_address');
-});
-
 name_change = function() {
     var first_name = $('#id_first_name').attr('value');
     var last_name = $('#id_last_name').attr('value');
@@ -40,7 +33,12 @@ name_change = function() {
 };
 
 $(document).ready(function() {
+    satchmo.update_ship_copy('#id_copy_address');
     name_change();
+
+    $('#id_copy_address').click(function() {
+        satchmo.update_ship_copy(this);
+    });
     $('#id_first_name').bind("change", {}, name_change);
     $('#id_last_name').bind("change", {}, name_change);
     $('#id_addressee').bind("change", function() {
