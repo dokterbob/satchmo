@@ -51,3 +51,7 @@ def replace_urlpattern(urlpatterns, replacement):
             ix += 1
             
     return found
+    
+def replace_urlpatterns(urlpatterns, replacelist):
+    for replace in replacelist:
+        replace_urlpattern(urlpatterns, replace)

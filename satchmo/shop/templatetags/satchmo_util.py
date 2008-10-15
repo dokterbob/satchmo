@@ -1,3 +1,4 @@
+from django import forms
 from django import template
 from django.utils.safestring import mark_safe
 from satchmo.product.models import Category
@@ -40,6 +41,13 @@ def truncate_decimal(val, places=2):
     return trunc_decimal(val, places)
     
 register.filter('truncate_decimal', truncate_decimal)
+
+def tag_attr(obj, arg1):
+    att, value = arg1.split("=")
+    obj.field.widget.attrs[att] = value
+    return obj
+
+register.filter('tag_attr', tag_attr)
 
 def shuffle(l):
     """
