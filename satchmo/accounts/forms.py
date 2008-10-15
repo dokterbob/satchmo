@@ -14,6 +14,7 @@ log = logging.getLogger('newsletter.forms')
 
 class RegistrationForm(forms.Form):
     """The basic account registration form."""
+    title = forms.CharField(max_length=30, label=_('Title'), required=False)
     email = forms.EmailField(label=_('Email address'),
         max_length=30, required=True)
     password2 = forms.CharField(label=_('Password (again)'),
@@ -87,6 +88,7 @@ class RegistrationForm(forms.Form):
         contact.last_name = last_name
         contact.email = email
         contact.role = 'Customer'
+        contact.title = data.get('title', '')
         contact.save()
 
         if 'newsletter' not in data:
