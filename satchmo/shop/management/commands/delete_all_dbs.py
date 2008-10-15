@@ -1,5 +1,6 @@
 from django.core.management.base import NoArgsCommand
 import os
+import string
 
 def module_to_dict(module, omittable=lambda k: k.startswith('_')):
     "Converts a module namespace to a Python dictionary. Used by get_settings_diff."
@@ -19,7 +20,11 @@ class Command(NoArgsCommand):
         db_pass = settings.DATABASE_PASSWORD 
         db_name = settings.DATABASE_NAME 
         db_user = settings.DATABASE_USER 
-
+        
+        response_erase_all = string.lower(raw_input("Type 'yes' to erase ALL of the data in your %s db named %s: " % (engine,db_name)))
+        if response_erase_all != 'yes':
+            print "Aborting..."
+            return None
         if engine == 'sqlite3':
             try:
                 os.unlink(db_name)

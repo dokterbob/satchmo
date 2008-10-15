@@ -14,6 +14,8 @@ class Command(NoArgsCommand):
             print "Template directory exists. You must manually copy the files you need."
         else:
             shutil.copytree(template_src, template_dest)
-            shutil.rmtree(os.path.join(template_dest,'.svn'), True)
+            for root, dirs, files in os.walk(template_dest):
+                if '.svn' in dirs:
+                    shutil.rmtree(os.path.join(root,'.svn'), True)
             print "Copied %s to %s" % (template_src, template_dest)
 
