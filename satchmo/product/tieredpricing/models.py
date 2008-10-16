@@ -36,7 +36,7 @@ class PricingTier(models.Model):
     group = models.OneToOneField(Group, help_text=_('The user group that will receive the discount'))
     title = models.CharField(_('Title'), max_length=50)
     discount_percent = models.DecimalField(_("Discount Percent"), null=True, blank=True,
-        max_digits=3, decimal_places=2,
+        max_digits=5, decimal_places=2,
         help_text=_("This is the discount that will be applied to every product if no explicit Tiered Price exists for that product.  Leave as 0 if you don't want any automatic discount in that case."))
         
     objects = PricingTierManager()
