@@ -109,8 +109,11 @@ INSTALLED_APPS = (
     'satchmo.shop',
     'satchmo.contact',
     'satchmo.product',
-    # to use brands, uncomment this line, and also add the brand url in your satchmo_urls setting
-    # usually in local_settings.py
+    # ****
+    # * Optional feature, product brands
+    # * Uncomment below, and add the brand url in your satchmo_urls setting
+    # * usually in local_settings.py
+    # ****
     #'satchmo.product.brand'
     'satchmo.shipping',
     'satchmo.payment',
@@ -124,12 +127,27 @@ INSTALLED_APPS = (
     'satchmo.wishlist',
     'satchmo.upsell',
     'satchmo.productratings',
-    # enable tiered to activate the "tiered" shipping module
-    # select it in the site settings, then configure it in the
-    # admin/tiered section
+    # ****
+    # * Optional Feature, Tiered shipping
+    # * uncomment below to make that shipping module available in your live site
+    # * settings page. enable it there, then configure it in the
+    # * admin/tiered section of the main admin page.
+    # ****
     #'satchmo.shipping.modules.tiered'
+    # ****
+    # * Optional feature newsletter
+    # ****
     #'satchmo.newsletter',
+    # ****
+    # * Optional feature product feeds
+    # * These are usually for googlebase
+    # ****
     #'satchmo.feeds',
+    # ****
+    # * Optional feature, tiered pricing
+    # * uncomment below, then set up in your main admin page.
+    # ****
+    #'satchmo.product.tieredpricing',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -137,6 +155,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+AUTH_PROFILE_MODULE='contact.Contact'
 LOGIN_REDIRECT_URL = '/accounts/'
 
 # Load the local settings
