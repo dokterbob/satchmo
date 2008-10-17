@@ -465,6 +465,7 @@ class CartItem(models.Model):
     class Meta:
         verbose_name = _("Cart Item")
         verbose_name_plural = _("Cart Items")
+        ordering = ('id',)
 
 class CartItemDetails(models.Model):
     """
