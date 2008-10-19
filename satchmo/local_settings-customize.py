@@ -43,46 +43,6 @@ SITE_NAME = "My Site"
 
 from django.conf.urls.defaults import *
 
-SATCHMO_SETTINGS = {
-    # this will override any urls set in the store url modules
-    #'SHOP_URLS' : patterns('satchmo.shop.views',
-    #    (r'^checkout/pay/$', 'paypal.checkout_step2.pay_ship_info', {'SSL': False}, 'satchmo_checkout-step2'),
-    #    (r'^checkout/confirm/$', 'paypal.checkout_step3.confirm_info', {'SSL': False}, 'satchmo_checkout-step3'),
-    #   if you have satchmo.feeds, make sure to include its URL
-    #    (r'^feed/', include('satchmo.feeds.urls')),
-    #   likewise with newsletters
-    #    (r'^newsletter/', include('satchmo.newsletter.urls'))
-    #   enable brands here
-    #    (r'^brand/', include('satchmo.product.brand.urls'))
-    #}
-    
-    # This is the base url for the shop.  Only include a leading slash
-    # examples: '/shop' or '/mystore'
-    # If you want the shop at the root directory, set SHOP_BASE to ''
-    'SHOP_BASE' : '/store',
-    
-    # Set this to true if you want to use the multi-shop features
-    # of satchmo.  It requires the "threaded_multihost" application
-    # to be on your pythonpath.
-    'MULTISHOP' : False,
-    
-    # register custom external newsletter modules by listing their modules here
-    # 'CUSTOM_NEWSLETTER_MODULES' : ['client.newsletter.autoresponder',]
-    'CUSTOM_NEWSLETTER_MODULES' : [],
-
-    # register custom external payment modules by listing their modules here
-    # ex: 'CUSTOM_PAYMENT_MODULES' : ['client.payment.wondercharge',]
-    'CUSTOM_PAYMENT_MODULES' : [],
-
-    # register custom external shipping modules by listing their modules here
-    # ex: 'CUSTOM_SHIPPING_MODULES' : ['client.shipping.fancyshipping',]
-    'CUSTOM_SHIPPING_MODULES' : [],
-
-    # register custom external product modules by listing their modules here
-    # ex: 'CUSTOM_PRODUCT_MODULES' : ['client.product.myproducttype',]
-    'CUSTOM_PRODUCT_MODULES' : [],
-}
-
 # These can override or add to the default URLs
 from django.conf.urls.defaults import *
 URLS = patterns('',

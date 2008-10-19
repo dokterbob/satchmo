@@ -7,9 +7,9 @@ from satchmo.product.models import Category, CategoryTranslation, CategoryImage,
 from django.contrib import admin
 from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
+from satchmo.shop import get_satchmo_setting
 from satchmo.thumbnail.field import ImageWithThumbnailField
 from satchmo.thumbnail.widgets import AdminImageWithThumbnailWidget
-from satchmo.configuration import config_value
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -104,7 +104,7 @@ class CategoryOptions(admin.ModelAdmin):
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryImage_Inline]
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm    
@@ -114,14 +114,14 @@ class CategoryImageOptions(admin.ModelAdmin):
 
 class OptionGroupOptions(admin.ModelAdmin):
     inlines = [Option_Inline]
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(OptionGroupTranslation_Inline)
 
     list_display = ['site', 'name']
 
 class OptionOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
@@ -136,7 +136,7 @@ class ProductOptions(admin.ModelAdmin):
             (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(ProductTranslation_Inline)
     filter_horizontal = ('category',)
     
@@ -154,7 +154,7 @@ class CustomProductOptions(admin.ModelAdmin):
 
 class CustomTextFieldOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(CustomTextFieldTranslation_Inline)
 
 class SubscriptionProductOptions(admin.ModelAdmin):
@@ -165,7 +165,7 @@ class ProductVariationOptions(admin.ModelAdmin):
 
 class ProductImageOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE', 'ALLOW_PRODUCT_TRANSLATIONS'):
+    if get_satchmo_setting('ALLOW_PRODUCT_TRANSLATIONS'):
         inlines.append(ProductImageTranslation_Inline)
 
 admin.site.register(Category, CategoryOptions)

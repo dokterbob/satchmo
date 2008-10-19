@@ -18,6 +18,7 @@ satchmo_settings_defaults = {
     'CUSTOM_SHIPPING_MODULES' : [],
     'CUSTOM_PRODUCT_MODULES' : [],
     'CUSTOM_TAX_MODULES' : [],
+    'ALLOW_PRODUCT_TRANSLATIONS' : True,
     }
 
 
