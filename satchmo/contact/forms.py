@@ -107,6 +107,8 @@ class ContactInfoForm(forms.Form):
             country = self._default_country
         else:
             country = self.fields['country'].clean(self.data.get('country'))
+            if country == None:
+                raise forms.ValidationError(_('This field is required.'))
         if country.adminarea_set.filter(active=True).count() > 0 and not self._billing_data_optional:
             if not data or data == selection:
                 raise forms.ValidationError(

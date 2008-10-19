@@ -2,6 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 from satchmo.payment.forms import CreditPayShipForm, MONTHS
+from satchmo.payment.modules.protx.config import REQUIRES_ISSUE_NUMBER
 import logging
 
 log = logging.getLogger('payment.protx.forms')
@@ -70,6 +71,9 @@ class ProtxPayShipForm(CreditPayShipForm):
 
     def clean_month_start(self):
         data = self.cleaned_data
+        
+        self._maybe_require(data, 'month_start', _('You must provide a starting month when using this type of card.'))
+
         if data['month_start']:
             try:
                 v = int(self.cleaned_data['month_start'])
@@ -81,6 +85,8 @@ class ProtxPayShipForm(CreditPayShipForm):
             
     def clean_year_start(self):
         data = self.cleaned_data
+        self._maybe_require(data, 'credit_type', _('You must provide a starting year when using this type of card.'))
+        
         if data['year_start']:
             try:
                 v = int(self.cleaned_data['year_start'])
@@ -92,5 +98,9 @@ class ProtxPayShipForm(CreditPayShipForm):
 
     def clean_issue_num(self):
         data = self.cleaned_data
-        if not (data['issue_num'] or data['month_start'] or data['year_start']):
-            raise forms.ValidationError(_('You must provide an issue number or a start date'))
+        self._maybe_require(data, 'issue_num', _('You must provide an issue number when using this type of card.'))
+
+    def _maybe_require(self, data, field, message):
+        if data['credit_type'] in REQUIRES_ISSUE_NUMBER and not (data[field]):
+            raise forms.ValidationError(message)
+        

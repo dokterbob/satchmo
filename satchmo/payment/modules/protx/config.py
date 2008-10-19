@@ -5,6 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 gettext = lambda s: s
 _strings = (gettext('CreditCard'), gettext('Credit Card'), gettext('Prot/X Secure Payments'))
 
+# These cards require the issue number and start date fields filled in.
+REQUIRES_ISSUE_NUMBER = ('SWITCH', 'SOLO')
+
 PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
 PAYMENT_MODULES.add_choice(('PAYMENT_PROTX', 'Prot/X VSP Direct'))
 
