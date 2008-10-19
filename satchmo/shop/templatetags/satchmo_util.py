@@ -1,3 +1,4 @@
+from django.conf import settings
 from django import forms
 from django import template
 from django.utils.safestring import mark_safe
@@ -36,6 +37,14 @@ def as_json(value):
     return mark_safe(json_encode(value))
     
 register.filter('as_json', as_json)
+
+def blackbird_logging():
+    return {
+        'debug' : settings.DEBUG,
+        'media_url' : settings.MEDIA_URL
+        }
+
+register.inclusion_tag('shop/_blackbird_logging.html')(blackbird_logging)
 
 def truncate_decimal(val, places=2):
     return trunc_decimal(val, places)

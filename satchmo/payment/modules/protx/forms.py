@@ -22,6 +22,8 @@ class ProtxPayShipForm(CreditPayShipForm):
             user = request.user
             if user.contact_set.count() > 0:
                 cf.initial = self.tempContact.full_name
+        self.requires_issue_number = REQUIRES_ISSUE_NUMBER
+        self.fields['year_start'].choices = self.fields['year_expires'].choices
 
     def save(self, request, cart, contact, payment_module):
         """Save the order and the credit card details."""

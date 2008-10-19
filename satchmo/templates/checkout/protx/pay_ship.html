@@ -1,6 +1,18 @@
 {% extends "checkout/base_pay_ship.html" %}
-{% load i18n %}
+{% load i18n satchmo_util %}
 {# credit card pay_ship version - we just need to collect CC info #}
+
+{% block extra-head %}
+{{ block.super }}
+<script type="text/javascript" src="{{ media_url }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ media_url }}js/jquery.form.js"></script>
+{% blackbird_logging %}
+<script type="text/javascript" src="{{ media_url }}js/satchmo_pay_ship.js"></script>
+<script type="text/javascript"><!--
+$(function() {satchmo.setup_issue_fields({{ form.requires_issue_number|as_json }})});
+-->
+</script>
+{% endblock %}
 
 {% block payment_table %}
     <tr><td><h4>{% trans "Payment Information" %}</h4></td></tr>
@@ -17,10 +29,10 @@
     <tr><td><label for="id_credit_number">{% trans "Credit card number" %}</label></td><td> {{ form.credit_number }}</td></tr>
     {% if form.credit_number.errors %}<tr><td></td><td>*** {{ form.credit_number.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_issue_num">{% trans "Issue number" %}</label></td><td> {{ form.issue_num }}</td></tr>
+    <tr class="issue"><td><label for="id_issue_num">{% trans "Issue number" %}</label></td><td> {{ form.issue_num }}</td></tr>
     {% if form.issue_num.errors %}<tr><td></td><td>*** {{ form.issue_num.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_year_start">{% trans "Issue date" %}</label><label for="id_year_start"></label></td><td> {{ form.month_start}} {{ form.year_start }}</td></tr>
+    <tr class="issue"><td><label for="id_year_start">{% trans "Issue date" %}</label><label for="id_year_start"></label></td><td> {{ form.month_start}} {{ form.year_start }}</td></tr>
     {% if form.year_start.errors %}<tr><td></td><td>*** {{ form.year_start.errors|join:", " }}</td></tr>{% endif %}
     {% if form.month_start.errors %}<tr><td></td><td>*** {{ form.month_start.errors|join:", " }}</td></tr>{% endif %}
 
