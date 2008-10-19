@@ -6,7 +6,7 @@ gettext = lambda s: s
 _strings = (gettext('CreditCard'), gettext('Credit Card'), gettext('Prot/X Secure Payments'))
 
 # These cards require the issue number and start date fields filled in.
-REQUIRES_ISSUE_NUMBER = ('SWITCH', 'SOLO')
+REQUIRES_ISSUE_NUMBER = ('MAESTRO', 'SOLO')
 
 PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
 PAYMENT_MODULES.add_choice(('PAYMENT_PROTX', 'Prot/X VSP Direct'))
@@ -80,7 +80,7 @@ config_register_list(
                 #(('AMEX','American Express')),  # not always available
                 #(('DC','Diners Club')), # not always available
                 (('MC','Mastercard')),
-                (('SWITCH','UK Maestro')),
+                (('MAESTRO','UK Maestro')),
                 (('SOLO','Solo')),
                 (('JCB','JCB')),
             ),

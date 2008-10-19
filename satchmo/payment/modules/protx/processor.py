@@ -84,7 +84,7 @@ class PaymentProcessor(object):
             self.packet['Amount'] = balance
             self.packet['Description'] = 'Online purchase'
             self.packet['CardType'] = cc.credit_type
-            self.packet['card_holder'] = cc.card_holder
+            self.packet['CardHolder'] = cc.card_holder
             self.packet['CardNumber'] = cc.decryptedCC
             self.packet['ExpiryDate'] = '%02d%s' % (cc.expire_month, str(cc.expire_year)[2:])
             if cc.start_month is not None:
