@@ -20,7 +20,7 @@ class ProtxPayShipForm(CreditPayShipForm):
         cf = self.fields['card_holder']
         if (not cf.initial) or cf.initial == "":
             user = request.user
-            if user.contact_set.count() > 0:
+            if user and user.is_authenticated() and user.contact_set.count() > 0:
                 cf.initial = self.tempContact.full_name
         self.requires_issue_number = REQUIRES_ISSUE_NUMBER
         self.fields['year_start'].choices = self.fields['year_expires'].choices
