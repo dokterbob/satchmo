@@ -182,7 +182,7 @@ SATCHMO_SETTINGS = {
     'MULTISHOP' : False,
     
     # This will turn on/off product translations in the admin for products
-    'ALLOW_PRODUCT_TRANSLATIONS' : TRUE,
+    'ALLOW_PRODUCT_TRANSLATIONS' : True,
     
     # register custom external newsletter modules by listing their modules here
     # 'CUSTOM_NEWSLETTER_MODULES' : ['client.newsletter.autoresponder',]
