@@ -15,10 +15,12 @@ Satchmo support many payment modules including:
     - Google checkout
     - Cybersource
     - Paypal
+    - Protx
 
 Satchmo has flexible shipping options and allows you to create your own. Satchmo includes:
     - UPS integration
     - Fedex integration
+    - USPS integration
     - Flat rate shipping
     - Multi-tiered shipping
     
@@ -34,6 +36,7 @@ All products offer you the opportunity to have:
     - Automatice thumbnail creation for the images
     - Unlimited categories and sub categories
     - Support for multiple pricing and discounting tiers based on volume
+    - Support for tiered/group pricing
     - Inventory tracking including SKU's and preventing users from ordering out of stock items
     - Meta data support for SEO
     - Featured items
@@ -64,6 +67,7 @@ Satchmo includes extensive Internationalization and translation support:
     - Multiple translations are included:
         - French
         - German
+        - Italian
         - Spanish
         - Swedish
         - Bulgarian

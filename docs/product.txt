@@ -337,3 +337,7 @@ Here is a quick step by step overview for adding something to your store.  Hopef
 You've now created all the Product Variants for the Satchmo Developer
 Handbook.  If you want to tweak specific ProductVariants you can but you
 don't have to. 
+
+The product variation manager contains a set of helper functions for managing product variations.
+It is accessed at /product/admin/variations/ and provides a streamlined process for managing all of 
+your configurable products.

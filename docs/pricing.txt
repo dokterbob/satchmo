@@ -34,3 +34,34 @@ On the product variations, the price can have an expiration date and/or a quanti
 If either of these fields are set then that price is only effective for orders placed before that date, or >= that quantity. 
 The most specific of these gets highest priority (IE: the soonest expiration date, and the highest applicable quantity). 
 This useful for running temporary promotions that automatically expire.
+
+.. index::
+   single: Price tiers
+   
+Pricing Tiers
+-------------
+
+Satchmo supports setting different price and discount tiers based on user groups. The most
+common reason a store owner may need this is if they want to offer different discounts or prices
+for a class of user. For instance, a user with a "Gold" membership may automatically get a 
+percentage discount. Another common usage is for wholesale versus retail pricing.
+
+This feature is optional and can be enabled by following these steps:
+Using it is quite simple:
+
+    1. Add 'satchmo.product.tieredpricing' to your INSTALLED_APPS
+    2. Create a user group for your desired tier.
+    3. Add users to that group using the group management in the admin.
+    4. Make a PricingTier, associating the group to the tier, and setting any default percentage discount.
+    5. If you want specific tiered pricing for a product, then edit the product. You'll see a new section, "Tiered Prices", where you can set prices by tier.
+    
+The price resolution process is straightforward.
+
+1. If the user is anonymous or has no groups, use the non-tiered price.
+2. If the user has a group and that group has a tier:
+
+  2a. Look for explicit prices (see #5 above) for that product.  If found, return it.
+  
+  2b. Else return the non-tiered price reduced by the default tier discount percent.
+  
+3. If the user has multiple tiers, return the lowest amount found in 2a & 2b.
