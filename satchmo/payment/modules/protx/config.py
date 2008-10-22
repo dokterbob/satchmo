@@ -89,7 +89,14 @@ config_register_list(
     StringValue(PAYMENT_GROUP, 
         'VENDOR', 
         description=_('Your Vendor Name'),
-        default=""),
+        default="",
+        help_text= _("This is used for Live and Test transactions.  Make sure to add your server IP address to VSP, or it won't work.")),
+
+    StringValue(PAYMENT_GROUP, 
+        'VENDOR_SIMULATOR', 
+        description=_('Simulator Vendor Name'),
+        default="",
+        help_text= _("This is used for Live and Test transactions.  Make sure to activate the VSP Simulator (you have to directly request it) and add your server IP address to the VSP Simulator, or it won't work.")),
             
     StringValue(PAYMENT_GROUP, 
         'CURRENCY_CODE',

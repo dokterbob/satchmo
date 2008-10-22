@@ -24,7 +24,7 @@ PROTOCOL = "2.22"
 PROTX_DEFAULT_URLS = {
     'LIVE_CONNECTION' : 'https://ukvps.protx.com/vspgateway/service/vspdirect-register.vsp',
     'LIVE_CALLBACK' : 'https://ukvps.protx.com/vspgateway/service/direct3dcallback.vsp',
-    'TEST_CONNECTION' : 'http://ukvpstest.protx.com/vspgateway/service/vspdirect-register.vsp',
+    'TEST_CONNECTION' : 'https://ukvpstest.protx.com/vspgateway/service/vspdirect-register.vsp',
     'TEST_CALLBACK' : 'https://ukvpstest.protx.com/vspgateway/service/direct3dcallback.vsp',
     'SIMULATOR_CONNECTION' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectGateway.asp',
     'SIMULATOR_CALLBACK' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectCallback.asp'
@@ -38,12 +38,19 @@ class PaymentProcessor(object):
     
     def __init__(self, settings):
         self.settings = settings
-        if settings.VENDOR.value == "":
+        vendor = settings.VENDOR.value
+        if vendor == "":
             log.warn('Prot/X Vendor is not set, please configure in your site configuration.')
+        if settings.SIMULATOR.value:
+            vendor = settings.VENDOR_SIMULATOR.value
+            if not vendor:
+                log.warn("You are trying to use the Prot/X VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
+                vendor = settings.VENDOR.value
+        
         self.packet = {
             'VPSProtocol': PROTOCOL,
             'TxType': settings.CAPTURE.value,
-            'Vendor': settings.VENDOR.value,
+            'Vendor': vendor,
             'Currency': settings.CURRENCY_CODE.value,
             }
         self.valid = False
