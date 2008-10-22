@@ -110,6 +110,10 @@ class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
             super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
             
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
+            
+        def save(self, *args, **kwargs):
+            super(PaymentContactInfoForm, self).save(*args, **kwargs)
+            signals.form_save.send(PaymentContactInfoForm, form=self)
 
 class SimplePayShipForm(forms.Form):
     shipping = forms.ChoiceField(widget=forms.RadioSelect(), required=False)
@@ -171,6 +175,7 @@ class SimplePayShipForm(forms.Form):
     def save(self, request, cart, contact, payment_module):
         self.order = get_or_create_order(request, cart, contact, self.cleaned_data)
         self.orderpayment = create_pending_payment(self.order, payment_module)
+        signals.form_save.send(SimplePayShipForm, form=self)
 
 
 class CreditPayShipForm(SimplePayShipForm):
@@ -246,3 +251,4 @@ class CreditPayShipForm(SimplePayShipForm):
         # set ccv into cache
         cc.ccv = data['ccv']
         self.cc = cc
+        signals.form_save.send(CreditPayShipForm, form=self)
