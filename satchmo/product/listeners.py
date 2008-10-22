@@ -25,6 +25,8 @@ def default_product_search_listener(sender, request=None, category=None, keyword
             | Q(description__icontains=keyword)
             | Q(meta__icontains=keyword)
             | Q(sku__iexact=keyword))
+        if category:
+            products = products.filter(category__in=categories)
     clist = list(categories)
     plist = [p for p in products if not p.has_variants]
     results.update({
