@@ -58,7 +58,7 @@ $(document).ready(function(){
 {% if original %}
 <fieldset class="module">
 <h2>{% trans "Helpers" %}</h2>
-<ul><li><a href="{% url satchmo_admin_variation_manager original.slug %}">{% trans "Variation Manager" %}</a></li></ul>
+<ul><li><a href="{% url satchmo_admin_variation_manager original %}">{% trans "Variation Manager" %}</a></li></ul>
 </fieldset>
 {% endif %}
 {{ block.super }}
