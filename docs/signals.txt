@@ -1,0 +1,88 @@
+.. _signals:
+
+Signals in Satchmo
+==================
+
+Signals are a very powerful tool available in Django that allows you to decouple
+aspects of your application. The `Django Signals Documentation`_, has this summary:
+   
+    "In a nutshell, signals allow certain senders to notify a set of receivers that some
+    signals: action has taken place."
+
+In addition to the built in Django signals, Satchmo has a number of signals. By using these signals, 
+you can add very unique customizations to your store without modifying the Satchmo code.
+
+Signal Descriptions
+--------------------
+
+satchmo.configuration.signals
++++++++++++++++++++++++++++++
+
+    * configuration_value_changed
+        Sent after a value from the configuration application has been updated.
+
+satchmo.shop.signals
+++++++++++++++++++++     
+
+    * satchmo_cart_add_complete
+        Sent after an item has been successfully added to the cart.
+    
+    * order_success
+        Sent when an order is complete and the balance goes to zero during a save.
+    
+    * satchmo_cart_changed
+        Sent whenever the status of the cart has changed.
+    
+    * satchmo_cart_item_price_query
+        Sent by the pricing system to allow price overrides when displaying line item prices.
+    
+    * satchmo_search
+        Sent by search_view to ask all listeners to add search results.
+    
+satchmo.contact.signals
++++++++++++++++++++++++
+
+    * satchmo_contact_view
+    
+    * satchmo_contact_location_changed
+    
+    * form_save
+    
+satchmo.newsletter.signals
+++++++++++++++++++++++++++
+
+    * newsletter_subscription_updated
+    
+satchmo.payment.signals
++++++++++++++++++++++++
+
+    * confirm_sanity_check
+    
+    * payment_form_init
+    
+    * payment_methods_query
+    
+    * form_save
+    
+satchmo.product.signals
++++++++++++++++++++++++
+
+    * index_prerender
+    
+    * satchmo_price_query
+    
+    * subtype_order_success
+    
+    
+Example Usage
+-------------
+   
+    Usage::
+    
+        from satchmo.shop.signals import satchmo_cart_add_complete
+        import myviews
+        
+        satchmo_cart_add_complete.connect(myviews.cart_add_listener, sender=None)
+
+
+.. _Django Signals Documentation: http://docs.djangoproject.com/en/dev/topics/signals/
