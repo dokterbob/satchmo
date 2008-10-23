@@ -41,17 +41,25 @@ def product_images(product, args=""):
 register.filter('product_images', product_images)
 
 def smart_attr(product, key):
-    """Run the smart_attr function on the spec'd product
+    """
+    Run the smart_attr function on the spec'd product
     """
     return product.smart_attr(key)
 
 register.filter('smart_attr', smart_attr)
 
 def product_sort_by_price(products):
-    """Sort a product list by unit price"""
+    """
+    Sort a product list by unit price
     
-    fast = [(product.unit_price, product) for product in products]
-    fast.sort()
-    return zip(*fast)[1]
+    Example::
+        
+        {% for product in products|product_sort_by_price %} 
+    """
+    
+    if products:
+        fast = [(product.unit_price, product) for product in products]
+        fast.sort()
+        return zip(*fast)[1]
     
 register.filter('product_sort_by_price', product_sort_by_price)
