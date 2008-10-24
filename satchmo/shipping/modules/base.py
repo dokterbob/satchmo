@@ -3,6 +3,7 @@ class BaseShipper(object):
         self._calculated = False
         self.cart = cart
         self.contact = contact 
+        self._calculated = False
         
         if cart or contact:
             self.calculate(cart, contact)
