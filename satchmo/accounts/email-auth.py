@@ -19,11 +19,10 @@ class EmailBackend(ModelBackend):
     def authenticate(self, username=None, password=None):
         #If username is an email address, then try to pull it up
         if email_re.search(username):
-            try:
-                user = User.objects.get(email=username)
-                if user.check_password(password):
-                    return user
-            except User.DoesNotExist:
-                pass
+            user = User.objects.filter(email=username)
+            if user.count() > 0:
+                user = user[0]
+            if user.check_password(password):
+                return user
         return None
             
