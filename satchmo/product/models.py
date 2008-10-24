@@ -14,7 +14,6 @@ import os.path
 
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db import models
 from django.db.models import Q
@@ -26,7 +25,7 @@ from satchmo.shop import get_satchmo_setting
 from satchmo.shop.signals import satchmo_search
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-from satchmo.utils import cross_list, normalize_dir, url_join
+from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list
 from satchmo.utils.unique_id import slugify
 from django.utils.encoding import smart_str
 
@@ -62,20 +61,47 @@ def default_weight_unit():
 
 class CategoryManager(models.Manager):
     
-    def by_site(self, site=None):
+    def by_site(self, site=None, **kwargs):
         """Get all categories for this site"""
         if not site:
             site = Site.objects.get_current()
         
         site = site.id
 
-        return self.filter(site__id__exact = site)
+        return self.filter(site__id__exact = site, **kwargs)
         
-    def root_categories(self, site=None):
+    def root_categories(self, site=None, **kwargs):
+        """Get all root categories."""
+        
         if not site:
             site = Site.objects.get_current()
         
-        return self.filter(parent__isnull=True, site=site)
+        return self.filter(parent__isnull=True, site=site, **kwargs)
+        
+    def search_by_site(self, keyword, site=None, include_children=False):
+        """Search for categories by keyword. 
+        Note, this does not return a queryset."""
+        
+        if not site:
+            site = Site.objects.get_current()
+        
+        cats = self.filter(
+            Q(name__icontains=keyword) |
+            Q(meta__icontains=keyword) |
+            Q(description__icontains=keyword),
+            site=site)
+        
+        if include_children:
+            # get all the children of the categories found
+            cats = [cat.get_active_children(include_self=True) for cat in cats]
+            
+        # sort properly
+        if cats:
+            fastsort = [(c.ordering, c.name, c) for c in get_flat_list(cats)]
+            fastsort.sort()
+            # extract the cat list
+            cats = zip(*fastsort)[2]            
+        return cats
 
 class Category(models.Model):
     """
@@ -209,16 +235,17 @@ class Category(models.Model):
         children = []
         children.append(node)
         for child in node.child.all():
-            if child != self and ((not only_active) or node.active_products().count() > 0):
-                children_list = self._recurse_for_children(child, only_active=only_active)
-                children.append(children_list)
+            if child != self:
+                if (not only_active) or child.active_products().count() > 0:
+                    children_list = self._recurse_for_children(child, only_active=only_active)
+                    children.append(children_list)
         return children
 
-    def get_active_children(self):
+    def get_active_children(self, include_self=False):
         """
         Gets a list of all of the children categories which have active products.
         """
-        return self.get_all_children(only_active=True)
+        return self.get_all_children(only_active=True, include_self=include_self)
 
     def get_all_children(self, only_active=False, include_self=False):
         """
