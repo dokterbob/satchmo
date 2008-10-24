@@ -116,8 +116,17 @@ class Category(models.Model):
 
     main_image = property(_get_mainImage)
 
-    def active_products(self):
-        return self.product_set.filter(site=self.site, active=True)
+    def active_products(self, variations=True, include_children=False, **kwargs):
+        if not include_children:
+            qry = self.product_set.all()
+        else:
+            cats = self.get_all_children(include_self=True)
+            qry = Product.objects.filter(category__in=cats)
+            
+        if variations:
+            return qry.filter(site=self.site, active=True, **kwargs)
+        else:
+            return qry.filter(site=self.site, active=True, productvariation__parent__isnull=True, **kwargs)
 
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -211,12 +220,16 @@ class Category(models.Model):
         """
         return self.get_all_children(only_active=True)
 
-    def get_all_children(self, only_active=False):
+    def get_all_children(self, only_active=False, include_self=False):
         """
         Gets a list of all of the children categories.
         """
         children_list = self._recurse_for_children(self, only_active=only_active)
-        flat_list = self._flatten(children_list[1:])
+        if include_self:
+            ix = 0
+        else:
+            ix = 1
+        flat_list = self._flatten(children_list[ix:])
         return flat_list
         
     class Meta:
@@ -417,8 +430,11 @@ class ProductManager(models.Manager):
     def active(self, **kwargs):
         return self.filter(active=True, **kwargs)
 
-    def active_by_site(self, **kwargs):
-        return self.by_site(active=True, **kwargs)
+    def active_by_site(self, variations=True, **kwargs):
+        if variations:
+            return self.by_site(active=True, **kwargs)
+        else:
+            return self.by_site(active=True, productvariation__parent__isnull=True)        
 
     def by_site(self, site=None, **kwargs):
         if not site:

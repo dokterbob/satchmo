@@ -3,8 +3,9 @@ from django.conf import settings
 from django.core import urlresolvers
 from django.template import Context, Template
 from django.utils.translation import get_language, ugettext_lazy as _
+from satchmo import caching
 from satchmo.configuration import config_value
-from satchmo.product.models import Category
+from satchmo.product.models import Category, Product
 from satchmo.shop.templatetags import get_filter_args
 
 register = template.Library()
@@ -17,6 +18,27 @@ def is_producttype(product, ptype):
         return False
 
 register.filter('is_producttype', is_producttype)
+
+def product_count(category, args=''):
+    """Get a count of products for the base object.
+    
+    If `category` is None, then count everything.
+    If it is a `Category` object then count everything in the category and subcategories.
+    """
+    args, kwargs = get_filter_args(args, boolargs=('variations'))
+    variations = kwargs.get('variations', False)
+    try:
+        ct = caching.cache_get('product_count', category, variations)
+    except caching.NotCachedError:
+        if not category:
+            ct = Product.objects.active_by_site(variations=variations).count()
+        else:
+            ct = category.active_products(include_children=True, variations=variations).count()
+            
+        caching.cache_set('product_count', category, args, value=ct)
+    return ct
+    
+register.filter('product_count', product_count)
 
 def product_images(product, args=""):
     args, kwargs = get_filter_args(args,
@@ -47,6 +69,7 @@ def smart_attr(product, key):
     return product.smart_attr(key)
 
 register.filter('smart_attr', smart_attr)
+
 
 def product_sort_by_price(products):
     """
