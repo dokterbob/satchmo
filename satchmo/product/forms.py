@@ -3,10 +3,12 @@ try:
 except ImportError:
     from StringIO import StringIO
 from django import forms
+from django.db import transaction
 from django.conf import settings
 from django.core import serializers, urlresolvers
 from django.core.management.base import CommandError
 from django.core.management.color import no_style
+from django.contrib.sites.models import Site
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
@@ -387,6 +389,8 @@ class InventoryForm(forms.Form):
                     prod.save()
 
 class VariationManagerForm(forms.Form):
+    dirty = forms.CharField(widget=forms.HiddenInput(), required=False)
+    
     def __init__(self, *args, **kwargs):
         self.optionkeys = []
         self.variationkeys = []
@@ -418,6 +422,7 @@ class VariationManagerForm(forms.Form):
                 self.optionkeys.append(key)
                 self.optiondict[grp.id] = []
                 
+            configurableproduct.setup_variation_cache()
             for opts in configurableproduct.get_all_options():
                 variation = configurableproduct.get_product_from_options(opts)
                 optnames = [opt.value for opt in opts]
@@ -472,41 +477,69 @@ class VariationManagerForm(forms.Form):
                 self.fields[slugkey] = sf
                 self.slugdict[key] = slugkey
 
-    def save(self, request):
+    def _save(self, request):
         self.full_clean()
-        configurableproduct = self.product.configurableproduct;
-        for name, value in self.cleaned_data.items():
-            if '__' in name:
-                parts = name.split('__')
-                opt = parts[0]
-                ids = [part.split('_') for part in parts[1:]]
-                
-                if opt == "pv":
-                    if value:
-                        opts = _get_options_for_ids(ids)
-                        if opts:
-                            namekey = "name" + name[2:]
-                            nameval = self.cleaned_data[namekey]
-                            skukey = "sku" + name[2:]
-                            skuval = self.cleaned_data[skukey]
-                            slugkey = "slug" + name[2:]
-                            slugval = self.cleaned_data[slugkey]
-                            log.debug("Got name=%s, sku=%s, slug=%s", nameval, skuval, slugval)
-                            
-                            configurableproduct.create_variation(opts, name=nameval, sku=skuval, slug=slugval)
-                            
-                    else:
-                        opts = _get_options_for_ids(ids)
-                        if opts:
-                            variation = configurableproduct.get_product_from_options(opts)
-                            if variation:
-                                log.info("Deleting variation for [%s] %s", self.product.slug, opts)
-                                variation.delete()
-            
-def _get_options_for_ids(ids):
+        data = self.cleaned_data
+        optiondict = _get_optiondict()
+        
+        #dirty is a comma delimited list of groupid__optionid strings
+        dirty = self.cleaned_data['dirty'].split(',')
+        if dirty:
+            for key in dirty:
+                # this is the keep/create checkbox field
+                try:
+                    keep = data["pv__" + key]
+                    opts = _get_options_for_key(key, optiondict)
+                    if opts:
+                        if keep:
+                            self._create_variation(opts, key, data, request)
+                        else:
+                            self._delete_variation(opts, request)
+                except KeyError:
+                    pass
+                    
+    save = transaction.commit_on_success(_save)
+                           
+    def _create_variation(self, opts, key, data, request):
+        namekey = "name__" + key
+        nameval = data[namekey]
+        skukey = "sku__" + key
+        skuval = data[skukey]
+        slugkey = "slug__" + key
+        slugval = data[slugkey]
+        log.debug("Got name=%s, sku=%s, slug=%s", nameval, skuval, slugval)
+        v = self.product.configurableproduct.create_variation(
+            opts, 
+            name=nameval, 
+            sku=skuval, 
+            slug=slugval)
+        log.info('Updated variation %s', v)
+        request.user.message_set.create(message='Created %s' % v)
+        return v
+        
+    def _delete_variation(self, opts, request):
+        variation = self.product.configurableproduct.get_product_from_options(opts)
+        if variation:
+            log.info("Deleting variation for [%s] %s", self.product.slug, opts)
+            request.user.message_set.create(message='Deleted %s' % variation)
+            variation.delete()
+ 
+def _get_optiondict():
+    site = Site.objects.get_current()       
+    opts = Option.objects.filter(option_group__site__id = site.id)
+    d = {}
+    for opt in opts:
+        d.setdefault(opt.option_group.id, {})[opt.id] = opt
+    return d
+    
+def _get_options_for_key(key, optiondict):    
+    ids = key.split('__')
     opts = []
-    for grpid, optid in ids:
-        option = Option.objects.get(option_group__id = grpid, id = optid)
-        opts.append(option)
+    for work in ids:
+        grpid, optid = work.split('_')
+        try:
+            opts.append(optiondict[int(grpid)][int(optid)])
+        except KeyError:
+            log.warn('Could not find option for group id=%s, option id=%s', grpid, optid)
     return opts
     

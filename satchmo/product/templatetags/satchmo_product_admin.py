@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from django.core import urlresolvers
 from django.template import Context, Template
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo.configuration import config_value
@@ -36,6 +37,8 @@ def edit_subtypes(product):
         is_config = "ConfigurableProduct" in subtypes
         if subtype in subtypes:
             output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.pk) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
+            if is_config or subtype=="ProductVariation":
+                output += '<li><a href="/product/admin/%s/variations/">Variation Manager</a></li>' % (product.slug)
         else:
             if not(is_config and subtype=="ProductVariation"):
                 output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'

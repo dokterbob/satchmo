@@ -8,7 +8,15 @@
 </div>
 {% endif %}{% endblock %}
 
-{% block extrahead %}{{ block.super }}
+{% block extrahead %}
+	<style type="text/css">
+	form td { padding: 1px;	}
+	form th, form h2 { margin:0; padding:2px 2px 3px 2px; font-size:11px; text-align:left; font-weight:bold; background-color:#7CA0C7; color:white;}
+	#variation_options ul {	margin-left: 5px; padding: 0 4px;}
+	#variation_options li {	list-style: none; }
+	</style>
+	{% blackbird_logging %}
+    <script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
     <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
     <script type="text/javascript">
     var satchmo = satchmo || {};
@@ -99,11 +107,53 @@
         return satchmo.cross_list(opts);
     };
 
+	satchmo.submit_dirty_variations = function() {
+		var ct = 0;
+		var dirty = {};
+		var dirty_ids = []
+		$('form #variation_products input').each(
+			function() {
+				if (this.id != 'id_dirty') {
+					var parts = this.id.split("__");
+		            var key = parts[1] + "__" + parts[2];
+					if (!dirty[key]) {
+						var oldval = satchmo.initial_vals[this.id];
+						if ($(this).is('input[@type=text]')) {
+							var newval = $(this).fieldValue();
+							var changed = (oldval + "" != newval + "");
+						}
+						else {
+							var newval = this.checked;
+							var changed = (oldval != newval);
+						}
+						if (changed) {
+							log.debug('Dirty ' + key);		            
+							dirty[key] = true;
+							dirty_ids.push(key);
+						}
+					}
+				}
+			}
+		);
+		
+		if (dirty_ids.length == 0) {
+			alert('nothing has been changed');
+			return false;
+		}
+		else {
+			$('#id_dirty').attr('value', dirty_ids.join(','));
+		}
+		
+		return true;
+	};
+
     satchmo.show_all = function() {
         $('tr.optionrow').each(function() {
             $(this).show();
         });
-    }
+    };
+
+    satchmo.initial_vals = {};
 
     $(function() {
         // make a list of the optiongroups and associated checkbox keys for easier lookup later
@@ -111,6 +161,19 @@
         for (var i=0; i<satchmo.optionkeys.length; i++) {
             satchmo.optiongroups[satchmo.optionkeys[i]] = [];
         }
+
+		// Get initial values
+		$('form #variation_products input').each(
+			function() {
+				if ($(this).is('input[@type=text]')) {
+					val = $(this).fieldValue();
+				}
+				else {
+					val = this.checked;
+				}
+				satchmo.initial_vals[this.id] = val;
+			}
+		)
         
         $('#variation_options .checkbox input').each(function() {
             var parts = this.id.split("__");
@@ -154,6 +217,10 @@
             satchmo.hide_inactive();
             return false;
         });
+
+		$('#id_submit').click(function() {
+			satchmo.submit_dirty_variations();
+		})
         
     });
     </script>
@@ -178,18 +245,18 @@
     {% endblocktrans %}
 </div>
 <form name="variations" action="{% url satchmo_admin_variation_manager product.slug %}" method="POST">
+	{{ form.dirty }}
 <div style="float:left;">
-    <table id="variation_options">
+    <table id="variation_options" style="border-right: 1px solid #999; margin-right: 3px;">
     <tr>
-        <th>{% trans "Option Group" %}</th>
-        <th>{% trans "Choices" %}</th>
+        <th>{% trans "Options" %}</th>
     </tr>
     {% for grp in form.optionkeys %}
     {% with form|lookup:grp as field %}
+	<tr>
+		<th>{{ field.label_tag }}</th>
+	</tr>
     <tr>
-        <td>
-            {{ field.label_tag }}
-        </td>
         <td class="checkbox">
             {{ field }}
             {% if field.errors %}
@@ -201,30 +268,40 @@
     {% endwith %}
     {% endfor %}
     <tr>
-        <th colspan="2">
+        <th>
             {% trans "Helper Links" %}
         </th>
     </tr>
     <tr>
-        <td colspan="2">
-        <a href="#" id="select_these">{% trans 'Select These Options' %}</a>
-        <br/>
-        <a href="#" id="select_only_these">{% trans 'Select Only These Options' %}</a>
-        <br/>
-        <a href="#" id="select_all">{% trans 'Select All' %}</a>
-        <br/>
-        <a href="#" id="deselect_these">{% trans 'Deselect These Options' %}</a>
-        <br/>
-        <a href="#" id="deselect_all">{% trans 'Deselect All' %}</a>
-        <br/>
-        <a href="#" id="show_all">{% trans 'Show All' %}</a>
-        <br/>
-        <a href="#" id="hide_inactive">{% trans 'Hide Inactive Rows' %}</a>
-        </td>
+		<td>
+			<ul>
+				<li>
+					<a href="#" id="select_these" name="select_these">{% trans 'Select These Options' %}</a>
+				</li>
+				<li>
+					<a href="#" id="select_only_these" name="select_only_these">{% trans 'Select Only These Options' %}</a>
+				</li>
+				<li>
+					<a href="#" id="select_all" name="select_all">{% trans 'Select All' %}</a>
+				</li>
+				<li>
+					<a href="#" id="deselect_these" name="deselect_these">{% trans 'Deselect These Options' %}</a>
+				</li>
+				<li>
+					<a href="#" id="deselect_all" name="deselect_all">{% trans 'Deselect All' %}</a>
+				</li>
+				<li>
+					<a href="#" id="show_all" name="show_all">{% trans 'Show All' %}</a>
+				</li>
+				<li>
+					<a href="#" id="hide_inactive" name="hide_inactive">{% trans 'Hide Inactive Rows' %}</a>
+				</li>
+			</ul>
+		</td>
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="{% trans "Update Variations" %}" />
+            <input id="id_submit" type="submit" value="{% trans "Update Variations" %}" />
             <input type="reset" value="{% trans "Reset Form" %}" />
         </td>
     </tr>

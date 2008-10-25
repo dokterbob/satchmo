@@ -981,6 +981,10 @@ class ConfigurableProduct(models.Model):
     option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
 
+    def __init__self(*args, **kwargs):
+        self._variation_cache = None
+        super(ConfigurableProduct, self).__init__(*args, **kwargs)
+
     def _get_subtype(self):
         return 'ConfigurableProduct'
 
@@ -1103,9 +1107,17 @@ class ConfigurableProduct(models.Model):
         Returns the product that matches or None
         """
         options = self._ensure_option_set(options)
-        for member in self.productvariation_set.all():
-            if member.option_values == options:
-                return member.product
+        pv = None
+        if self._variation_cache:
+            optkeys = tuple(options)
+            pv =  self._variation_cache.get(optkeys, None)
+        else:
+            for member in self.productvariation_set.all():
+                if member.option_values == options:
+                    pv = member
+                    break
+        if pv:
+            return pv.product        
         return None
 
     def get_variations_for_options(self, options):
@@ -1146,6 +1158,12 @@ class ConfigurableProduct(models.Model):
 
     def get_absolute_url(self):
         return self.product.get_absolute_url()
+        
+    def setup_variation_cache(self):
+        self._variation_cache = {}
+        for member in self.productvariation_set.all():        
+            key = tuple(member.option_values)
+            self._variation_cache[key] = member
 
     class Meta:
         verbose_name = _("Configurable Product")
