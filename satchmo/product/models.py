@@ -127,7 +127,7 @@ class Category(models.Model):
         if self.images.count() > 0:
             img = self.images.order_by('sort')[0]
         else:
-            if self.parent_id:
+            if self.parent_id and self.parent != self:
                 img = self.parent.main_image
 
         if not img:
@@ -1380,6 +1380,11 @@ class ProductVariation(models.Model):
         return price_delta
 
     def save(self, force_insert=False, force_update=False):
+        # don't save if the product is a configurableproduct
+        if "ConfigurableProduct" in self.product.get_subtypes():
+            log.warn("cannot add a productvariation subtype to a product which already is a configurableproduct. Aborting")
+            return
+            
         pvs = ProductVariation.objects.filter(parent=self.parent)
         pvs = pvs.exclude(product=self.product)
         for pv in pvs:
