@@ -101,30 +101,31 @@ def tiered_price_listener(product, price, **kwargs):
     Requires threaded_multihost.ThreadLocalMiddleware to be installed so
     that it can determine the current user."""
     
-    user = get_current_user()
-    if user and not user.is_anonymous():
-        try:
-            tiers = PricingTier.objects.by_user(user)
-            best = None
-            for tier in tiers:
-                candidate = None
-                try:
-                    tp = TieredPrice.objects.by_product_qty(tier, product, price.quantity)
-                    log.debug("Found a Tiered Price for %s qty %s = %s", product.slug, price.quantity, tp.price)
-                    candidate = tp.price
-                except TieredPrice.DoesNotExist:
-                    pcnt = tier.discount_percent
-                    if pcnt != 0:
-                        candidate = price.price * (100-pcnt)/100
+    if product.is_discountable:
+        user = get_current_user()
+        if user and not user.is_anonymous():
+            try:
+                tiers = PricingTier.objects.by_user(user)
+                best = None
+                for tier in tiers:
+                    candidate = None
+                    try:
+                        tp = TieredPrice.objects.by_product_qty(tier, product, price.quantity)
+                        log.debug("Found a Tiered Price for %s qty %s = %s", product.slug, price.quantity, tp.price)
+                        candidate = tp.price
+                    except TieredPrice.DoesNotExist:
+                        pcnt = tier.discount_percent
+                        if pcnt != 0:
+                            candidate = price.price * (100-pcnt)/100
                         
-                if best is None or (candidate and candidate < best):
-                    best = candidate
+                    if best is None or (candidate and candidate < best):
+                        best = candidate
                     
-                    log.debug('best = %s', best)
+                        log.debug('best = %s', best)
                 
-            if best is not None:
-                price.price = best
-        except PricingTier.DoesNotExist:
-            pass
+                if best is not None:
+                    price.price = best
+            except PricingTier.DoesNotExist:
+                pass
 
 signals.satchmo_price_query.connect(tiered_price_listener)
