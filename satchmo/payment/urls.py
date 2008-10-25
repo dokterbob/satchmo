@@ -24,7 +24,7 @@ def make_urlpatterns():
         cfg = config_get(key, 'MODULE')
         modulename = cfg.editor_value
         urlmodule = "%s.urls" % modulename
-        patterns.append(url(config_value(key, 'URL_BASE'), [urlmodule]))
+        patterns.append(url(config_value(key, 'URL_BASE'), [urlmodule]))    
     return tuple(patterns)
     
 urlpatterns += make_urlpatterns()

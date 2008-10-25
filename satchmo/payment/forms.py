@@ -22,7 +22,6 @@ import calendar
 import datetime
 import sys
 
-
 MONTHS = [(month,'%02d'%month) for month in range(1,13)]
 
 def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_tax=False):
@@ -112,8 +111,9 @@ class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
             
         def save(self, *args, **kwargs):
-            super(PaymentContactInfoForm, self).save(*args, **kwargs)
+            contactid = super(PaymentContactInfoForm, self).save(*args, **kwargs)
             signals.form_save.send(PaymentContactInfoForm, form=self)
+            return contactid
 
 class SimplePayShipForm(forms.Form):
     shipping = forms.ChoiceField(widget=forms.RadioSelect(), required=False)

@@ -4,6 +4,7 @@ from satchmo.configuration import *
 from satchmo.shop import get_satchmo_setting
 from satchmo.utils import is_string_like, load_module
 import logging
+import signals
 
 _ = ugettext_lazy
 
@@ -129,6 +130,7 @@ def labelled_payment_choices():
         label = config_value(module, 'LABEL', default = module_name)
         choices.append((module, label))
     
+    signals.payment_choices.send(None, choices=choices)
     return choices
 
 

@@ -30,6 +30,7 @@ def pay_ship_info_verify(request, payment_module):
     try:
         contact = Contact.objects.from_request(request, create=False)
     except Contact.DoesNotExist:
+        log.debug('No contact, returning to step 1 of checkout')
         url = lookup_url(payment_module, 'satchmo_checkout-step1')
         return (False, http.HttpResponseRedirect(url))
 
