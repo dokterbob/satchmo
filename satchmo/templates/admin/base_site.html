@@ -1,9 +1,25 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n satchmo_util %}
 
 {% block extrahead %}
+{% blackbird_logging %}
 {{ block.super }}
     <script src="{{media_url}}js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript"><!--
+	var satchmo = satchmo || {};
+	satchmo.select_if_one = function(selector, label) {
+		var elt = $(selector);
+		if (elt && elt.length>0 && elt[0].options.length == 2) {
+			log.debug('selecting default ' + label);
+			elt[0].options[1].selected = true;
+		}
+	}
+    $(function() {
+		satchmo.select_if_one('#id_site', 'site');
+		satchmo.select_if_one('.languagecode select', 'language');
+	});
+	-->
+	</script>
 {% endblock %}
 
 {% block extrastyle %}
