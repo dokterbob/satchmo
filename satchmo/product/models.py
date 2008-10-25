@@ -982,7 +982,6 @@ class ConfigurableProduct(models.Model):
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
 
     def __init__self(*args, **kwargs):
-        self._variation_cache = None
         super(ConfigurableProduct, self).__init__(*args, **kwargs)
 
     def _get_subtype(self):
@@ -1108,7 +1107,7 @@ class ConfigurableProduct(models.Model):
         """
         options = self._ensure_option_set(options)
         pv = None
-        if self._variation_cache:
+        if hasattr(self, '_variation_cache'):
             optkeys = tuple(options)
             pv =  self._variation_cache.get(optkeys, None)
         else:
