@@ -30,12 +30,15 @@ register.simple_tag(js_make_select_readonly)
 
 def edit_subtypes(product):
     output = '<ul>'
+    subtypes = product.get_subtypes()
     for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
         app, subtype = key.split("::")
-        if subtype in product.get_subtypes():
+        is_config = "ConfigurableProduct" in subtypes
+        if subtype in subtypes:
             output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.pk) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
         else:
-            output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'
+            if not(is_config and subtype=="ProductVariation"):
+                output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'
 
     output += '</ul>'
     return output
