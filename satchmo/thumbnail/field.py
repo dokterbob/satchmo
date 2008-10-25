@@ -11,7 +11,11 @@ log = logging.getLogger('thumbnail.fields')
 
 def _delete(sender, instance=None, **kwargs):
     if instance:
-        remove_model_thumbnails(instance)
+        if hasattr(instance,'picture'):
+            if os.path.isfile(instance.picture.path):
+                remove_model_thumbnails(instance)
+        else:
+            remove_model_thumbnails(instance)
         
 def upload_dir(instance, filename):
     raw = "images/"
