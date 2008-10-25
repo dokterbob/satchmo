@@ -23,7 +23,8 @@ The following documentation improvements were made:
     - Multiple fixes and clarifications
     
 The following payment modules were added or updated:
-
+    - New Protx payment module
+    - Purchase order module
 
 
 The following translations were updated or added:

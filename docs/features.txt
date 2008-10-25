@@ -16,6 +16,7 @@ Satchmo support many payment modules including:
     - Cybersource
     - Paypal
     - Protx
+    - Purchase orders
 
 Satchmo has flexible shipping options and allows you to create your own. Satchmo includes:
     - UPS integration
