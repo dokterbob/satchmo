@@ -21,3 +21,13 @@ def option_price(option_item):
     return output
 
 register.simple_tag(option_price)
+
+def option_total_price(product, option_item):
+    """
+    Returns the price as (+$1.00)
+    or (-$1.00) depending on the sign of the price change
+    The currency symbol is set in the settings.py file
+    """
+    return moneyfmt(product.unit_price + option_item.price_change)
+
+register.simple_tag(option_total_price)
