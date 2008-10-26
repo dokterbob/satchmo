@@ -115,7 +115,7 @@ def tiered_price_listener(product, price, **kwargs):
                         candidate = tp.price
                     except TieredPrice.DoesNotExist:
                         pcnt = tier.discount_percent
-                        if pcnt != 0:
+                        if pcnt is not None and pcnt != 0:
                             candidate = price.price * (100-pcnt)/100
                         
                     if best is None or (candidate and candidate < best):
