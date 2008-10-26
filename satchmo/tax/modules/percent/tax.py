@@ -40,12 +40,15 @@ class Processor(object):
     def get_rate(self, *args, **kwargs):
         return self.get_rate_percent/100
         
-    def shipping(self):
-        if self.order:
-            s = self.order.shipping_sub_total
+    def shipping(self, subtotal=None):
+        if subtotal is None and self.order:
+            subtotal = self.order.shipping_sub_total
+
+        if subtotal:
+            subtotal = self.order.shipping_sub_total
             if config_value('TAX','TAX_SHIPPING'):
                 percent = config_value('TAX','PERCENT')
-                t = s * (percent/100)
+                t = subtotal * (percent/100)
             else:
                 t = Decimal("0.00")
         else:

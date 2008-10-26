@@ -138,9 +138,11 @@ class Processor(object):
         else:
             return Decimal("0.00")
 
-    def shipping(self):
-        if self.order:
-            s = self.order.shipping_sub_total
+    def shipping(self, subtotal=None):
+        if subtotal is None and self.order:
+            subtotal = self.order.shipping_sub_total
+
+        if subtotal:
             rate = None
             if config_value('TAX','TAX_SHIPPING'):
                 try:
@@ -150,7 +152,7 @@ class Processor(object):
                     log.error("'Shipping' TaxClass doesn't exist.")
 
             if rate:
-                t = rate * s
+                t = rate * subtotal
             else:
                 t = Decimal("0.00")
             
