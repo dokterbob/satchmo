@@ -38,6 +38,4 @@ def purchaseorder_process_form(request, contact, working_cart, payment_module):
         log.debug('new form')
         form = PurchaseorderPayShipForm(request, payment_module)
 
-    log.debug(form)
-
     return (False, form)
