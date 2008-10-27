@@ -246,6 +246,20 @@ Satchmo also includes a full set of unit tests. After you get your system instal
 
         python manage.py test
 		
+Advanced Configuration
+++++++++++++++++++++++
+
+The steps described above are the quickest and simplest method for getting a Satchmo store up and running
+quickly. However, there are some downsides to the approach described in these steps:
+
+    - Integration with other Django apps is not as straightforward
+    - Keeping templates up to date with Satchmo is more challenging
+
+After you get your store running and are comfortable with the basic functions of Satchmo and Django, we recommend that your review 
+`this blog post <http://gosatchmo.com/starting-a-new-store-real-world-project-layout>`_
+for a more robust project layout. It will take a little bit more effort but is much more sustainable for
+future upgrades.
+
 Useful Links
 ++++++++++++++++++++++++++
 
