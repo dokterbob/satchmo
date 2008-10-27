@@ -115,7 +115,8 @@
 			function() {
 				if (this.id != 'id_dirty') {
 					var parts = this.id.split("__");
-		            var key = parts[1] + "__" + parts[2];
+					parts.shift();
+		            var key = parts.join("__");
 					if (!dirty[key]) {
 						var oldval = satchmo.initial_vals[this.id];
 						if ($(this).is('input[@type=text]')) {
