@@ -45,6 +45,12 @@ dimension_units = (('cm','cm'), ('in','in'))
 
 weight_units = (('kg','kg'), ('lb','lb'))
 
+SHIP_CLASS_CHOICES = (
+    ('DEFAULT', _('Default')),
+    ('YES', _('Shippable')),
+    ('NO', _('Not Shippable'))
+)
+
 def default_dimension_unit():
     val = config_value_safe('SHOP','MEASUREMENT_SYSTEM', (None, None))[0]
     if val == 'metric':
@@ -528,6 +534,8 @@ class Product(models.Model):
     total_sold = models.IntegerField(_("Total sold"), default=0)
     taxable = models.BooleanField(_("Taxable"), default=False)
     taxClass = models.ForeignKey(TaxClass, verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
+    shipclass = models.CharField(_('Shipping'), choices=SHIP_CLASS_CHOICES, default="DEFAULT", max_length=10,
+        help_text=_("If this is 'Default', then we'll use the product type to determine if it is shippable."))
 
     objects = ProductManager()
 
@@ -789,10 +797,16 @@ class Product(models.Model):
         shippable, then consider the product not shippable.
         If it is downloadable, then we don't ship it either.
         """
-        subtype = self.get_subtype_with_attr('is_shippable')
-        if subtype and not subtype.is_shippable:
+        if self.shipclass=="DEFAULT":
+            subtype = self.get_subtype_with_attr('is_shippable')
+            if subtype and not subtype.is_shippable:
+                return False
+            return True
+        elif self.shipclass=="YES":
+            return True
+        else:
             return False
-        return True
+            
     is_shippable = property(_get_shippable)
 
     def add_template_context(self, context, *args, **kwargs):
@@ -1040,6 +1054,7 @@ class ConfigurableProduct(models.Model):
                 site = self.product.site
             else:
                 site = self.site
+                
             variant = Product(site=site, items_in_stock=0, name=name)
             optnames = [opt.value for opt in options]
             if not slug:
@@ -1385,7 +1400,15 @@ class ProductVariation(models.Model):
             pricelist = [(qty, price+price_delta) for qty, price in prices]
 
         return pricelist
+        
+    def _is_shippable(self):
+        product = self.product
+        parent = self.parent.product
+        return ((product.shipclass == "DEFAULT" and parent.shipclass == "DEFAULT")
+                or product.shipclass == 'YES')
 
+    is_shippable = property(fget=_is_shippable)
+    
     def isValidOption(self, field_data, all_data):
         raise validators.ValidationError(_("Two options from the same option group cannot be applied to an item."))
 
