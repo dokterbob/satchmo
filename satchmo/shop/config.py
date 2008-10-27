@@ -62,6 +62,13 @@ LOGO_URI = config_register(
     help_text = _(("For example http://www.example.com/images/logo.jpg or "
                    "file:///var/www/html/images/logo.jpg")),
     default = default_icon_url))
+    
+ENFORCE_STATE = config_register(
+    BooleanValue(SHOP_GROUP,
+    'ENFORCE_STATE',
+    description = _('State required?'),
+    help_text = _("Require a state during registration/checkout for countries that have states?"),
+    default = True))
 
 #### Google Group ####
 

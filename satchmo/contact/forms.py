@@ -49,8 +49,9 @@ class ContactInfoForm(forms.Form):
             areas = [(area.abbrev or area.name, area.name) for area in areas]
             billing_state = (contact and getattr(contact.billing_address, 'state', None)) or selection
             shipping_state = (contact and getattr(contact.shipping_address, 'state', None)) or selection
-            self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
-            self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
+            if config_value('SHOP','ENFORCE_STATE'):
+                self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
+                self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
         
         self._default_country = shop.sales_country
         billing_country = (contact and getattr(contact.billing_address, 'country', None)) or self._default_country
@@ -69,6 +70,21 @@ class ContactInfoForm(forms.Form):
             if fld.required:
                 fld.label = (fld.label or f) + '*'
 
+    def _check_state(self, data, country):
+        if country and config_value('SHOP','ENFORCE_STATE') and country.adminarea_set.filter(active=True).count() > 0:
+            if not data or data == selection:
+                raise forms.ValidationError(
+                    self._local_only and _('This field is required.') \
+                               or _('State is required for your country.'))
+            if (country.adminarea_set
+                    .filter(active=True)
+                    .filter(Q(name=data)
+                        |Q(abbrev=data)
+                        |Q(name=data.capitalize())
+                        |Q(abbrev=data.upper())).count() != 1):
+                raise forms.ValidationError(_('Invalid state or province.'))
+        
+                
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
         email = self.cleaned_data.get('email', None)
@@ -109,13 +125,7 @@ class ContactInfoForm(forms.Form):
             country = self.fields['country'].clean(self.data.get('country'))
             if country == None:
                 raise forms.ValidationError(_('This field is required.'))
-        if country.adminarea_set.filter(active=True).count() > 0 and not self._billing_data_optional:
-            if not data or data == selection:
-                raise forms.ValidationError(
-                    self._local_only and _('This field is required.') \
-                               or _('State is required for your country.'))
-            if country.adminarea_set.filter(active=True).filter(Q(name=data)|Q(abbrev=data)|Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
-                raise forms.ValidationError(_('Invalid state or province.'))
+        self._check_state(data, country)
         return data
 
     def clean_addressee(self):
@@ -200,6 +210,7 @@ class ContactInfoForm(forms.Form):
         
     def clean_ship_state(self):
         data = self.cleaned_data.get('ship_state')
+        
         if self.cleaned_data.get('copy_address'):
             if 'state' in self.cleaned_data:
                 self.cleaned_data['ship_state'] = self.cleaned_data['state']
@@ -209,13 +220,8 @@ class ContactInfoForm(forms.Form):
             country = self._default_country
         else:
             country = self.ship_charfield_clean('country')
-        if country and country.adminarea_set.filter(active=True).count() > 0:
-            if not data or data == selection:
-                raise forms.ValidationError(
-                    self._local_only and _('This field is required.') \
-                               or _('State is required for your country.'))
-            if country.adminarea_set.filter(active=True).filter(Q(name=data)|Q(abbrev=data)|Q(name=data.capitalize())|Q(abbrev=data.upper())).count() != 1:
-                raise forms.ValidationError(_('Invalid state or province.'))
+
+        self._check_state(data, country)
         return data
     
     def save(self, contact=None, update_newsletter=True):
