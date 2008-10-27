@@ -13,7 +13,7 @@ from satchmo.payment import signals
 from satchmo.payment.config import labelled_payment_choices
 from satchmo.payment.models import CreditCardDetail
 from satchmo.payment.utils import create_pending_payment, get_or_create_order, pay_ship_save
-from satchmo.shipping.config import shipping_methods
+from satchmo.shipping.config import shipping_methods, shipping_method_by_key
 from satchmo.shop.models import Cart
 from satchmo.shop.views.utils import CreditCard
 from satchmo.tax.templatetags.satchmo_tax import _get_taxprocessor
@@ -33,7 +33,12 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
     shipping_options = []
     shipping_dict = {}
     
-    for method in shipping_methods():
+    if not cart.is_shippable:
+        methods = [shipping_method_by_key('NoShipping'),]
+    else:
+        methods = shipping_methods()
+    
+    for method in methods:
         method.calculate(cart, contact)
         if method.valid():
             template = lookup_template(paymentmodule, 'shipping_options.html')

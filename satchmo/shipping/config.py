@@ -51,7 +51,7 @@ def shipping_methods():
     return methods
     
 def shipping_method_by_key(key):
-    if key:
+    if key and key != "NoShipping":
         for method in shipping_methods():
             if method.id == key:
                 return method

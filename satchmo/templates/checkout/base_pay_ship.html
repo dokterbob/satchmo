@@ -35,7 +35,6 @@
 	{% if sale %}{% include "discount/checkout_form.html" %}{% endif %}
     {% endblock %}
 
-{% if cart.is_shippable %}
     <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
     </table>
     {% block shipping_table %}
@@ -44,7 +43,6 @@
     {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
     </div>
     {% endblock %}
-{% else %}
     </table>
 {% endif %}
 
