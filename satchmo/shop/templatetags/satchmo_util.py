@@ -9,6 +9,14 @@ import math
 
 register = template.Library()
 
+def debug_mode(value):
+    """Return true if site is in debug mode"""
+    if settings.DEBUG:
+        return "true"
+    return ""
+
+register.filter('debug_mode', debug_mode)
+
 def template_range(value):
     """Return a range 1..value"""
     return range(1, value + 1)
@@ -38,13 +46,15 @@ def as_json(value):
     
 register.filter('as_json', as_json)
 
-def blackbird_logging():
+def blackbird_logging(context):
+    form = context.get('form', None)
     return {
         'debug' : settings.DEBUG,
-        'media_url' : settings.MEDIA_URL
+        'media_url' : settings.MEDIA_URL,
+        'form' : form,
         }
 
-register.inclusion_tag('shop/_blackbird_logging.html')(blackbird_logging)
+register.inclusion_tag('shop/_blackbird_logging.html', takes_context=True)(blackbird_logging)
 
 def truncate_decimal(val, places=2):
     return trunc_decimal(val, places)

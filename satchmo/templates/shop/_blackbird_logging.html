@@ -1,7 +1,14 @@
+{% load satchmo_util %}
 {% if debug %}
 <link rel="stylesheet" href="{{ media_url }}css/blackbird.css" />
 <script type="text/javascript" src="{{ media_url }}js/satchmo_core.js"></script>
 <script type="text/javascript" src="{{ media_url }}js/blackbird.js"></script>
+{% if form %}
+<script type="text/javascript">
+	{% for key in form.errors %}log.debug("Form Error: {{ key }} : {{ form.errors|lookup:key|striptags|escape }}");
+	{% endfor %}
+</script>
+{% endif %}
 {% else %}
 <script type="text/javascript" src="{{ media_url }}js/satchmo_core.js"></script>
 {% endif %}
