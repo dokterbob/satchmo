@@ -9,6 +9,7 @@ urlpatterns = patterns('satchmo.product.views',
         'get_price_detail', {}, 'satchmo_product_price_detail'),
     (r'^category/(?P<parent_slugs>[-\w]+/)*(?P<slug>[-\w]+)/$', 
         'category_view', {}, 'satchmo_category'),
+    (r'^category/$', 'category_index', {}, 'satchmo_category_index'),
 )
 
 urlpatterns += patterns('satchmo.product.filterviews',

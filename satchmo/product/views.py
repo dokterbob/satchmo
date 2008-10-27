@@ -47,6 +47,18 @@ def optionset_from_post(configurableproduct, POST):
     return chosen_options
 
 # ---- Views ----
+def category_index(request, template="product/category_index.html", root_only=True):
+    """Display all categories.
+    
+    Parameters:
+    - root_only: If true, then only show root categories.
+    """
+    cats = Category.objects.root_categories()
+    ctx = {
+        'categorylist' : cats,
+    }
+    return render_to_response(template, RequestContext(request, ctx))
+
 def category_view(request, slug, parent_slugs='', template='base_category.html'):
     """Display the category, its child categories, and its products.
 
