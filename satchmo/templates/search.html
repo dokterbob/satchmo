@@ -19,7 +19,7 @@
 			<h4>{% trans "Categories" %}</h4>
 			<ul>
 		    {% for category in results.categories %}
-		        <li><a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a></li>
+		        {% ifchanged %}<li><a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a></li>{% endifchanged %}
 		    {% endfor %}
 			</ul>
 		{% endif %}
@@ -30,7 +30,7 @@
 		{% endif %}
 		<ul>
 		{% for product in results.products %}
-	        <li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product.unit_price|currency}}</li>
+	        {% ifchanged %}<li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product.unit_price|currency}}</li>{% endifchanged %}
 	    {% endfor %}
 		</ul>
 	{% else %}
