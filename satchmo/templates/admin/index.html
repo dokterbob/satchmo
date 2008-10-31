@@ -38,12 +38,12 @@ satchmo.toggle_module = function(elt) {
 	if (satchmo.module_status[pid]) {
 		content.slideUp('fast');
 		span.text(satchmo.l10n.show);
-		status = false;
+		var status = false;
 	}
 	else {
 		content.slideDown('fast');
 		span.text(satchmo.l10n.hide);
-		status = true;
+		var status = true;
 	}
 	satchmo.module_status[pid] = status;
 };
