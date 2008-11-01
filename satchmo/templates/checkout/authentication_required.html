@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% load i18n %} 
+ 
+{% block navbar %} 
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li> 
+   <li>{% trans "Checkout" %}</li> 
+{% endblock %} 
+ 
+{% block content %} 
+<h3>{% trans "Authentication required" %}</h3> 
+<div id="checkoutprogress"> 
+<ul> 
+    <li class="first">{% trans "Ship/Bill" %}</li> 
+    <li>{% trans "Payment" %}</li> 
+    <li>{% trans "Confirmation" %}</li> 
+</ul> 
+</div> 
+<form method="post" action="{% if is_secure %}{% url auth_secure_login %}{% else %}{{ login_url }}{% endif %}"> 
+<input type="hidden" name="next" value="{% url satchmo_checkout-step1 %}" /> 
+<table> 
+                <tr> 
+                        <td colspan="2"> 
+                                In order to have access to your products and order history, please log in. 
+                                After that you may continue to checkout with your current cart. 
+                        </td> 
+                </tr> 
+                <tr><td><label for="id_username">Username or email:</label></td><td><input type="text" id="id_username" class="vTextField required" name="username" size="15" value="" maxlength="30" /></td></tr> 
+                <tr><td><label for="id_password">Password:</label></td><td><input type="password" id="id_password" class="vPasswordField required" name="password" size="15" value="" maxlength="30" /></td></tr> 
+                <tr><td>&nbsp;</td><td><input type="submit" value="{% trans "Login" %}" /></td></tr> 
+</table> 
+</form> 
+ 
+<p>{% trans "If you do not have an account, please" %} <a href="{% url registration_register %}">{% trans "click here" %}</a>.</p> 
+<p>{% trans "If you do not remember your password, please" %} <a href="{% url auth_password_reset %}">{% trans "click here</a> to have it reset." %}</p> 
+{% endblock %} 

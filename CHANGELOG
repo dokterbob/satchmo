@@ -34,6 +34,7 @@ Trunk
  * New most popular, best sellers and recently added views
  * New tiered shipping module based on quantity
  * New Fedex shipping module
+ * New configuration option to force login for checkout
 
 
 Version 0.7, May 26, 2008

@@ -16,6 +16,7 @@ Satchmo Trunk includes many new features and improvements. Some of the highlight
     - Migrated to newforms admin which fixed some bugs and provides a much more solid base for future changes
     - Added multi-shop capability
     - Multiple price tier support
+    - Option to require login before checkout
 
 The following documentation improvements were made:
     - Addition of upsell documentation
