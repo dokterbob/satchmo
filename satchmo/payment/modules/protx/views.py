@@ -14,7 +14,7 @@ def confirm_info(request, template='checkout/protx/confirm.html', extra_context=
     payment_module = config_get_group('PAYMENT_PROTX')
     controller = confirm.ConfirmController(request, payment_module)
     controller.templates['CONFIRM'] = template
-    controller.extraContext = extra_context
+    controller.extra_context = extra_context
     controller.onForm = secure3d_form_handler
     controller.confirm()
     return controller.response

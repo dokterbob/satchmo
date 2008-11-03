@@ -34,7 +34,7 @@ class ConfirmController(object):
         self.viewTax = config_value('TAX', 'DEFAULT_VIEW_TAX')
         self.order = None
         self.cart = None
-        self.extraContext = {}
+        self.extra_context = {}
                 
         #to override the form_handler, set this
         #otherwise it will use the built-in `_onForm`
@@ -120,8 +120,8 @@ class ConfirmController(object):
             'order': controller.order,
             'errors': controller.processorMessage,
             'checkout_step2': controller.lookup_url('satchmo_checkout-step2')}
-        if controller.extraContext:
-            base_env.update(controller.extraContext)
+        if controller.extra_context:
+            base_env.update(controller.extra_context)
             
         context = RequestContext(self.request, base_env)
         return render_to_response(template, context)

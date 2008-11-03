@@ -47,17 +47,18 @@ def pay_ship_info(request):
         giftcert_pay_ship_process_form,
         template="checkout/giftcertificate/pay_ship.html")
     
-def confirm_info(request):
+def confirm_info(request, template="checkout/giftcertificate/confirm.html"):
     try:
         order = Order.objects.get(id=request.session['orderID'])
         giftcert = GiftCertificate.objects.from_order(order)
     except (Order.DoesNotExist, GiftCertificate.DoesNotExist):
         giftcert = None
-                
-    return confirm.credit_confirm_info(request, 
-        gc,
-        confirm_template="checkout/giftcertificate/confirm.html", 
-        extra_context={'giftcert' : giftcert})
+           
+    controller = confirm.ConfirmController(request, gc)
+    controller.templates['CONFIRM'] = template
+    controller.extra_context={'giftcert' : giftcert}
+    controller.confirm()
+    return controller.response
 
 def check_balance(request):
     if request.method == "GET":        
