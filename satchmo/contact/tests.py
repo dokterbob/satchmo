@@ -5,10 +5,11 @@ from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
 import datetime
 
-US = Country.objects.get(iso2_code__iexact="US")
-
 class ContactTest(TestCase):
     fixtures = ['l10n-data.yaml', 'test-config.yaml']
+    
+    def setUp(self):
+        self.US = Country.objects.get(iso2_code__iexact="US")
     
     def test_base_contact(self):
         """Test creating a contact"""
@@ -33,7 +34,7 @@ class ContactTest(TestCase):
         #Add an address & make sure it is default billing and shipping
         add1 = AddressBook.objects.create(contact=contact1, description="Home Address",
             street1="56 Cool Lane", city="Niftyville", state="IA", postal_code="12344",
-            country=US)
+            country=self.US)
         self.assert_(contact1.billing_address)
         self.assertEqual(contact1.billing_address, add1)
         self.assertEqual(contact1.billing_address.description, "Home Address")
@@ -44,7 +45,7 @@ class ContactTest(TestCase):
 
         #Add a new shipping address
         add2 = AddressBook(description="Work Address", street1="56 Industry Way", city="Niftytown", 
-            state="IA", postal_code="12366", country=US, is_default_shipping=True)
+            state="IA", postal_code="12366", country=self.US, is_default_shipping=True)
         add2.contact = contact1
         add2.save()
         contact1.save()

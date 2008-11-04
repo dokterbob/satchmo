@@ -31,7 +31,12 @@ function setOptions(data){
 function getOptions(){
     parent_tag = $("*#id_parent");
     parent_id = parent_tag.attr("value");
-    $.get("../../configurableproduct/" + parent_id + "/getoptions/", setOptions );
+	if (parent_id) {
+		var url = "{% url satchmo_admin_configurableproduct 999999999 %}";
+		url = url.replace('/999999999/', '/' + parent_id + '/');
+	    //$.get("../../configurableproduct/" + parent_id + "/getoptions/", setOptions );
+	    $.get(url, setOptions );
+	}
 }
 
 $(document).ready(function(){

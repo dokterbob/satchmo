@@ -743,7 +743,8 @@ class Order(models.Model):
         super(Order, self).save(force_insert=force_insert, force_update=force_update) # Call the "real" save() method.
 
     def invoice(self):
-        return mark_safe(u'<a href="/admin/print/invoice/%s/">%s</a>' % (self.id, ugettext('View'))) 
+        url = urlresolvers.reverse('satchmo_print_shipping', None, None, {'doc' : 'invoice', 'id' : self.id})
+        return mark_safe(u'<a href="%s">%s</a>' % (url, ugettext('View'))) 
     invoice.allow_tags = True
 
     def _item_discount(self):
@@ -752,7 +753,8 @@ class Order(models.Model):
     item_discount = property(_item_discount)
 
     def packingslip(self):
-        return mark_safe(u'<a href="/admin/print/packingslip/%s/">%s</a>' % (self.id, ugettext('View')))
+        url = urlresolvers.reverse('satchmo_print_shipping', None, None, {'doc' : 'packingslip', 'id' : self.id})
+        return mark_safe(u'<a href="%s">%s</a>' % (url, ugettext('View')))
     packingslip.allow_tags = True
 
     def recalculate_total(self, save=True):
@@ -827,7 +829,8 @@ class Order(models.Model):
             self.save()
 
     def shippinglabel(self):
-        return mark_safe(u'<a href="/admin/print/shippinglabel/%s/">%s</a>' % (self.id, ugettext('View')))
+        url = urlresolvers.reverse('satchmo_print_shipping', None, None, {'doc' : 'shippinglabel', 'id' : self.id})
+        return mark_safe(u'<a href="%s">%s</a>' % (url, ugettext('View')))
     shippinglabel.allow_tags = True
 
     def _order_total(self):

@@ -82,7 +82,8 @@ class BrandTranslation(models.Model):
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
         name_field="_filename",
-        null=True, blank=True) #Media root is automatically prepended
+        null=True, blank=True,
+        max_length=200) #Media root is automatically prepended
     
     def _get_filename(self):
         if self.brand:
@@ -159,7 +160,8 @@ class BrandCategoryTranslation(models.Model):
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
         name_field="_filename",
-        null=True, blank=True) #Media root is automatically prepended
+        null=True, blank=True,
+        max_length=200) #Media root is automatically prepended
     
     def _get_filename(self):
         if self.brandcategory:

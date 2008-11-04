@@ -299,7 +299,8 @@ class CategoryImage(models.Model):
         related_name="images")
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
-        name_field="_filename") #Media root is automatically prepended
+        name_field="_filename",
+        max_length=200) #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
     sort = models.IntegerField(_("Sort Order"), )
@@ -1542,7 +1543,8 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True)
     picture = ImageWithThumbnailField(verbose_name=_('Picture'),
         upload_to="__DYNAMIC__",
-        name_field="_filename") #Media root is automatically prepended
+        name_field="_filename",
+        max_length=200) #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
     sort = models.IntegerField(_("Sort Order"), )

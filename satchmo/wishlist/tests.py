@@ -18,23 +18,23 @@ prefix = get_satchmo_setting('SHOP_BASE')
 if prefix == '/':
     prefix = ''
 
-US = Country.objects.get(iso2_code__iexact='US')
-
-checkout_step1_post_data = {
-    'email': 'sometester@example.com',
-    'first_name': 'Teddy',
-    'last_name' : 'Tester',
-    'phone': '456-123-5555',
-    'street1': '8299 Some Street',
-    'city': 'Springfield',
-    'state': 'MO',
-    'postal_code': '81122',
-    'country': US.pk,
-    'ship_street1': '1011 Some Other Street',
-    'ship_city': 'Springfield',
-    'ship_state': 'MO',
-    'ship_postal_code': '81123',
-    'paymentmethod': 'DUMMY'}
+def get_step1_post_data(US):
+    return {
+        'email': 'sometester@example.com',
+        'first_name': 'Teddy',
+        'last_name' : 'Tester',
+        'phone': '456-123-5555',
+        'street1': '8299 Some Street',
+        'city': 'Springfield',
+        'state': 'MO',
+        'postal_code': '81122',
+        'country': US.pk,
+        'ship_street1': '1011 Some Other Street',
+        'ship_city': 'Springfield',
+        'ship_state': 'MO',
+        'ship_postal_code': '81123',
+        'paymentmethod': 'DUMMY'
+    }
 
 class WishTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']

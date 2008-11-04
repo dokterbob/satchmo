@@ -45,24 +45,24 @@ prefix = get_satchmo_setting('SHOP_BASE')
 if prefix == '/':
     prefix = ''
 
-US = Country.objects.get(iso2_code__iexact = "US")
-
-checkout_step1_post_data = {
-    'email': 'sometester@example.com',
-    'first_name': 'Teddy',
-    'last_name' : 'Tester',
-    'phone': '456-123-5555',
-    'street1': '8299 Some Street',
-    'city': 'Springfield',
-    'state': 'MO',
-    'postal_code': '81122',
-    'country': US.pk,
-    'ship_street1': '1011 Some Other Street',
-    'ship_city': 'Springfield',
-    'ship_state': 'MO',
-    'ship_postal_code': '81123',
-    'paymentmethod': 'PAYMENT_DUMMY',
-    'copy_address' : True}
+def get_step1_post_data(US):
+    return {
+        'email': 'sometester@example.com',
+        'first_name': 'Teddy',
+        'last_name' : 'Tester',
+        'phone': '456-123-5555',
+        'street1': '8299 Some Street',
+        'city': 'Springfield',
+        'state': 'MO',
+        'postal_code': '81122',
+        'country': US.pk,
+        'ship_street1': '1011 Some Other Street',
+        'ship_city': 'Springfield',
+        'ship_state': 'MO',
+        'ship_postal_code': '81123',
+        'paymentmethod': 'PAYMENT_DUMMY',
+        'copy_address' : True
+        }
 
 class ShopTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
@@ -70,6 +70,7 @@ class ShopTest(TestCase):
     def setUp(self):
         # Every test needs a client
         self.client = Client()
+        self.US = Country.objects.get(iso2_code__iexact = "US")
         
     def tearDown(self):
         cache_delete()
@@ -249,7 +250,7 @@ class ShopTest(TestCase):
         shp.update(False)
 
         self.test_cart_adding()
-        response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
+        response = self.client.post(url('satchmo_checkout-step1'), get_step1_post_data(self.US))
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
             status_code=302, target_status_code=200)
         data = {
@@ -303,7 +304,7 @@ class ShopTest(TestCase):
         the existing Contact will be attached to the User.
         """
         self.test_cart_adding()
-        response = self.client.post(prefix + '/checkout/', checkout_step1_post_data)
+        response = self.client.post(prefix + '/checkout/', get_step1_post_data(self.US))
         self.assert_(self.client.session.get(CUSTOMER_ID) is not None)
         response = self.client.get('/accounts/register/')
         self.assertContains(response, "Teddy", status_code=200)
@@ -350,7 +351,7 @@ class ShopTest(TestCase):
             'city': 'Littleton',
             'state': 'MA',
             'postal_code': '01229',
-            'country': US.pk,
+            'country': self.US.pk,
             'ship_street1': '11 Easy Street',
             'ship_city': 'Littleton',
             'ship_state': 'MA',
@@ -371,7 +372,7 @@ class ShopTest(TestCase):
         self.assertEqual(user.contact_set.count(), 0)
         self.client.login(username='teddy', password='guz90tyc')
         self.test_cart_adding()
-        response = self.client.post(prefix + '/checkout/', checkout_step1_post_data)
+        response = self.client.post(prefix + '/checkout/', get_step1_post_data(self.US))
         self.assertEqual(user.contact_set.count(), 1)
 
     def test_logout(self):
@@ -383,7 +384,7 @@ class ShopTest(TestCase):
         response = self.client.get('/accounts/') # test logged in status
         self.assertContains(response, "the user you've logged in as doesn't have any contact information.", status_code=200)
         self.test_cart_adding()
-        self.client.post(prefix + '/checkout/', checkout_step1_post_data)
+        self.client.post(prefix + '/checkout/', get_step1_post_data(self.US))
         self.assert_(self.client.session.get(CUSTOMER_ID) is not None)
         response = self.client.get('/accounts/logout/')
         self.assertRedirects(response, prefix + '/',
@@ -433,7 +434,7 @@ class ShopTest(TestCase):
         self.assertContains(response, smart_str("Monogram: CBM  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
         self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('SHOP', 'CURRENCY')), count=1)
         self.assertContains(response, smart_str("Memory - Internal RAM: 1.5 GB  %s25.00" % config_value('SHOP', 'CURRENCY')), count=1)
-        response = self.client.post(url('satchmo_checkout-step1'), checkout_step1_post_data)
+        response = self.client.post(url('satchmo_checkout-step1'), get_step1_post_data(self.US))
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
             status_code=302, target_status_code=200)
         data = {
@@ -612,12 +613,13 @@ class OrderTest(TestCase):
     
     def setUp(self):
         caching.cache_delete()
+        self.US = Country.objects.get(iso2_code__iexact='US')
 
     def tearDown(self):
         cache_delete()
 
     def testBalanceMethods(self):
-        order = make_test_order(US, '', include_non_taxed=True)
+        order = make_test_order(self.US, '', include_non_taxed=True)
         order.recalculate_total(save=False)
         price = order.total
         subtotal = order.sub_total
@@ -643,7 +645,7 @@ class OrderTest(TestCase):
         self.assert_(order.paid_in_full)
 
     def testSmallPayment(self):
-        order = make_test_order(US, '', include_non_taxed=True)
+        order = make_test_order(self.US, '', include_non_taxed=True)
         order.recalculate_total(save=False)
         price = order.total
         subtotal = order.sub_total
@@ -663,6 +665,7 @@ class SignalTest(TestCase):
     def setUp(self):
         caching.cache_delete()
         signals.satchmo_cart_add_verify.connect(vetoAllListener)
+        self.US = Country.objects.get(iso2_code__iexact='US')
 
     def tearDown(self):
         cache_delete()
@@ -676,7 +679,7 @@ class SignalTest(TestCase):
             cart.save()
             p = Product.objects.get(slug='dj-rocks-s-b')
             cart.add_item(p, 1)
-            order = make_test_order(US, '', include_non_taxed=True)
+            order = make_test_order(self.US, '', include_non_taxed=True)
             self.fail('Should have thrown a CartAddProhibited error')
             
         except CartAddProhibited, cap:

@@ -50,7 +50,7 @@ urlpatterns += patterns('django.views.generic',
 )
 
 # Make sure thumbnails and images are served up properly when using the dev server.
-if settings.LOCAL_DEV:
+if getattr(settings, 'LOCAL_DEV', False):
     urlpatterns += patterns('',
         (r'^site_media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
