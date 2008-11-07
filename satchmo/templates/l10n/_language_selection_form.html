@@ -1,0 +1,13 @@
+{# snippet used by satchmo_language_selection_form #}
+{% if enabled %}
+{% load i18n %}
+<form action="{{ set_language_url }}" method="post">
+<p> {% trans "Change language" %} </p>
+    <select name="language">
+        {% for lang in languages %}
+            <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+        {% endfor %}
+    </select>
+<input type="submit" value="{% trans 'Change' %}" />
+</form>
+{% endif %}

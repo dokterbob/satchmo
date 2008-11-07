@@ -69,6 +69,7 @@ class ShopTest(TestCase):
 
     def setUp(self):
         # Every test needs a client
+        cache_delete()
         self.client = Client()
         self.US = Country.objects.get(iso2_code__iexact = "US")
         

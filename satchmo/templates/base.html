@@ -1,108 +1,110 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
-{% load i18n satchmo_category satchmo_google satchmo_util %}
-{% if "recentlist"|app_enabled %}{% load satchmo_recentlist %}{% endif %}
+
+{% load i18n satchmo_category satchmo_google satchmo_util satchmo_currency %}
 <head>
     {% block extra-head %}{% endblock %}
     <link rel="stylesheet" href="{{ media_url }}css/style.css" />
-    <title>{% block title %}{{ shop_name }}{% endblock %}</title>
+    <title>{% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}{% endif %}{% endblock %}</title>
 </head>
-<body>
+{% block body %}
+<body{% if bodyid %} id="{{ bodyid }}"{% endif %}{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
     <div id="container">
+	    <div id="top">
+	        <h1>{{ shop_name }}</h1>
+	    </div>
 
-    <div id="top">
-        <h1>{{ shop_name }}</h1>
-    </div>
-
-    <div id="navbar">
-    <ul>
-    {% block navbar %}
-       Breadcrumbs here
-   {% endblock %}
-   </ul>
+	    <div id="navbar">
+	    <ul>
+	    	{% block navbar %}Breadcrumbs here{% endblock %}
+	   	</ul>
     </div>
 
     <div id="leftnav">
-	<div>
-		{% satchmo_search_form %}
+		{% block leftnav %}
+		<div>
+			{% satchmo_search_form %}
+		</div>
+		<div>
+			{% block sidebar %}
+			<h3>{% trans "Shop Categories" %}</h3>
+			<div id="menu_container">
+				{% category_tree %}
+			</div>
+			{% endblock %}
+		</div>
+		{% endblock leftnav %}
 	</div>
-	<div>
-            {% block sidebar %}
-            <h3>{% trans "Shop Categories" %}</h3>
-            <div id="menu_container">
-                {% category_tree %}
-            </div>
-            {% endblock %}
-        </div>
-     </div>
 
-        <div id="rightnav">
-			<h3>{% trans "Quick Links" %}</h3>
-			<a href="{% url satchmo_product_recently_added %}">{% trans "Recently Added" %}</a><br/>
-			{% if shop.options.SHOP.RATINGS.value %}
-			<a href="{% url satchmo_product_best_rated %}">{% trans "Most Popular" %}</a><br/>
-			{% endif %}
-			<a href="{% url satchmo_product_best_selling %}">{% trans "Best Sellers" %}</a>
-	
-            <h3>{% trans "Account Information" %}</h3>
-            {% if user.is_staff %}
-			    <a href="/admin" target="blank">{% trans "Admin" %}</a><br/>
-			{% endif %}
-            {% if user.is_authenticated %}
-                <a href="{% url satchmo_account_info %}" target="blank">{% trans "Account Details" %}</a><br/>
-                <a href="{{ logout_url }}">{% trans "Log out" %}</a><br/>
-            {% else %}
-                <a href="{{ login_url }}?next={{request.path}}">{% trans "Log in" %}</a><br/>
-            {% endif %}
+	<div id="rightnav">
+		{% block rightnav %}
+		<h3>{% trans "Quick Links" %}</h3>
+		{% url satchmo_product_recently_added as recenturl %}
+		{% if recenturl %}<a href="{{ recenturl }}">{% trans "Recently Added" %}</a><br/>{% endif %}
+		{% if shop.options.SHOP.RATINGS.value %}
+		{% url satchmo_product_best_rated as besturl %}
+		{% if besturl %}<a href="{{ besturl }}">{% trans "Most Popular" %}</a><br/>{% endif %}
+		{% endif %}
+		{% url satchmo_product_best_selling as popularurl %}
+		{% if popularurl %}<a href="{{ popularurl }}">{% trans "Best Sellers" %}</a>{% endif %}
 
-            {% load satchmo_currency %}
-            <a href="{% url satchmo_cart %}">{% trans "Cart" %}</a>
+	    <h3>{% trans "Account Information" %}</h3>
+	    {% if user.is_staff %}
+		<a href="/admin" target="blank">{% trans "Admin" %}</a><br/>
+		{% endif %}
+	    {% if user.is_authenticated %}
+		{% url satchmo_account_info as accounturl %}
+        {% if accounturl %}<a href="{{ accounturl }}" target="blank">{% trans "Account Details" %}</a><br/>{% endif %}
+        <a href="{{ logout_url }}">{% trans "Log out" %}</a><br/>
+	    {% else %}
+        <a href="{{ login_url }}?next={{request.path}}">{% trans "Log in" %}</a><br/>
+	    {% endif %}
 
-            {% if cart_count %}
-                ({{ cart_count }} - {% spaceless %}{% if shop.options.TAX.DEFAULT_VIEW_TAX.value %}
-                {% load satchmo_tax %}{% cart_taxed_total cart 1 %}{% else %}{{ cart.total|currency }}
-                {% endif %}){% endspaceless %}<br/>
-                <a href="{% url satchmo_checkout-step1 %}">{% trans "Check out" %}</a>
-            {% endif %}
-            
-            {% if "wishlist"|app_enabled and user.is_authenticated %}
-            <p class="wishlist"><a href="{% url satchmo_wishlist_view %}" />{% trans 'Wishlist' %}</a></p>
-            {% endif %}            
+		{% url satchmo_cart as carturl %}
+	    {% if carturl %}<a href="{{ carturl }}">{% trans "Cart" %}</a>{% endif %}
 
-            <p><a href="{% url satchmo_contact %}">{% trans "Contact Us" %}</a></p>
-            
-            {% if shop.options.LANGUAGE.ALLOW_TRANSLATION.value %}
-            <form action="{{shop_base}}/i18n/setlang/" method="post">
-            <p> {% trans "Change language" %} </p>
-                <select name="language">
-                    {% for lang in shop.options.LANGUAGE.LANGUAGES_AVAILABLE.choice_values %}
-                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-                    {% endfor %}
-                </select>
-            <input type="submit" value="{% trans 'Change' %}" />
-            </form>
-            {% endif %}
-            {% block recentview %}
-            {% if recent_products %}
-            {% if "recentlist"|app_enabled %}{% recentlyviewed recent_products %}{% endif %}
-            {% endif %}
-            {% endblock %}
-        </div>
+	    {% if cart_count %}
+        ({{ cart_count }} - {% spaceless %}{% if shop.options.TAX.DEFAULT_VIEW_TAX.value %}
+        {% load satchmo_tax %}{% cart_taxed_total cart 1 %}{% else %}{{ cart.total|currency }}
+        {% endif %}){% endspaceless %}<br/>
+		{% url satchmo_checkout-step1 as checkouturl %}
+        {% if checkouturl %}<a href="{{ checkouturl }}">{% trans "Check out" %}</a>{% endif %}
+	    {% endif %}
+    
+	    {% if user.is_authenticated and "wishlist"|app_enabled %}
+		{% url satchmo_wishlist_view as wishlist_url %}
+	    {% if wishlist_url %}<p class="wishlist"><a href="{{ wishlist_url }}" />{% trans 'Wishlist' %}</a></p>{% endif %}
+	    {% endif %}            
 
-        <div id="content">
-            {% block content %}{% endblock %}
-        </div>
+		{% url satchmo_contact as contact_url %}
+	    {% if contact_url %}<p><a href="{{ contact_url }}">{% trans "Contact Us" %}</a></p>{% endif %}
 
-        <div id="footer">
-            {% blocktrans %}Powered by <a href="http://www.satchmoproject.com">Satchmo</a>.{% endblocktrans %}
-        </div>
+		{% satchmo_language_selection_form %}
+
+	    {% block recentview %}
+		{% if recent_list %}{% recentlyviewed recent_list %}{% endif %}
+	    {% endblock recentview %}
+		{% endblock rightnav%}
+	</div>
+
+	<div id="content">
+	    {% block content %}{% endblock %}
+	</div>
+
+	<div id="footer">
+		{% block footer %}
+		{% blocktrans %}Powered by <a href="http://www.satchmoproject.com">Satchmo</a>.{% endblocktrans %}
+		{% endblock %}
+	</div>
 
     </div>
+	{% block page-close %}
     {% block google-tracker %}
     {% if shop.options.GOOGLE.ANALYTICS.value %}
         {% show_tracker is_secure %}
     {% endif %}
     {% endblock %}
+	{% endblock %}
 </body>
+{% endblock %}
 </html>

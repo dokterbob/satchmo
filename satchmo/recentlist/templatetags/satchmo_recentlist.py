@@ -1,15 +1,11 @@
 from django.template import Node, NodeList
 from django.template import TemplateSyntaxError
 from django.template import Library
-from logging import getLogger
 from satchmo.product.models import Product
 from satchmo.configuration import config_value
 
-log = getLogger('satchmo_sss')
-
 register = Library()
 
-@register.inclusion_tag('recentlist/_recently_viewed.html')
 def recentlyviewed(recent, slug=""):
     """Build a list of recent products, skipping the current one if given."""
     if slug:
@@ -21,3 +17,4 @@ def recentlyviewed(recent, slug=""):
     return {
         'recent_products' : recent,
     }
+register.inclusion_tag('recentlist/_recently_viewed.html', takes_context=False)(recentlyviewed)

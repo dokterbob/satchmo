@@ -1,11 +1,16 @@
-from django.conf import settings
 from django import forms
 from django import template
+from django.conf import settings
+from django.core import urlresolvers
 from django.utils.safestring import mark_safe
+from satchmo.configuration import config_value, config_choice_values
 from satchmo.product.models import Category
 from satchmo.utils import app_enabled, trunc_decimal
 from satchmo.utils.json import json_encode
+import logging
 import math
+
+log = logging.getLogger('shop.templatetags.satchmo_util')
 
 register = template.Library()
 
@@ -171,20 +176,66 @@ register.inclusion_tag("upsell/product_upsell.html", takes_context=False)(produc
 
 def satchmo_category_search_form(category=None):
     """
-    Display the form for customer to specifiy categoyr to search.
+    Display the form for customer to specify category to search.
     """
+    try:
+        url = urlresolvers.reverse('satchmo_search')
+    except urlresolvers.NoReverseMatch:
+        url = ""
+        log.warning('No url found for satchmo_search (OK if running tests)')
+    
     cats = Category.objects.root_categories()
     return {
+        'satchmo_search_url' : url,
         'categories' : cats,
         'category' : category,
     }
 register.inclusion_tag("_search.html", takes_context=False)(satchmo_category_search_form)
 
+def satchmo_language_selection_form():
+    """
+    Display the set language form, if enabled in shop settings.
+    """
+    enabled = config_value('LANGUAGE', 'ALLOW_TRANSLATION')
+    languages = []
+    if enabled:
+        try:
+            url = urlresolvers.reverse('satchmo_set_language')
+            languages = config_choice_values('LANGUAGE', 'LANGUAGES_AVAILABLE')
+            
+        except urlresolvers.NoReverseMatch:
+            url = ""
+            log.warning('No url found for satchmo_set_language (OK if running tests)')
+
+    else:
+        url = ""
+        
+    return {
+        'enabled' : enabled,
+        'set_language_url' : url,
+        'languages' : languages,
+    }
+register.inclusion_tag("l10n/_language_selection_form.html", takes_context=False)(satchmo_language_selection_form)
+
+try:
+    from satchmo.recentlist.templatetags import recentlyviewed
+except ImportError:
+    def recentlyviewed(recent, slug=""):
+        return ""    
+    register.simple_tag(recentlyviewed)
+
 def satchmo_search_form():
     """
     Display the search form.
     """
+    try:
+        url = urlresolvers.reverse('satchmo_search')
+    except urlresolvers.NoReverseMatch:
+        url = ""
+        log.warning('No url found for satchmo_search (OK if running tests)')
+        
     return {
+        'satchmo_search_url' : url,
         'categories' : None,
     }
 register.inclusion_tag("_search.html", takes_context=False)(satchmo_search_form)

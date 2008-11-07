@@ -28,10 +28,7 @@ urlpatterns += patterns('satchmo.shop.views',
     # URLs if you aren't using ratings.
     #(r'^comments/post/$', 'comments.post_rating', {'maxcomments': 1 }, 'satchmo_rating_post'),
     (r'^comments/', include('django.contrib.comments.urls')),
-
-    # Used to set the default language.
-    (r'^i18n/', include('django.conf.urls.i18n')),
-
+    
     # Used for downloadable products.
     (r'^download/process/(?P<download_key>\w+)/$', 'download.process', {}, 'satchmo_download_process'),
     (r'^download/send/(?P<download_key>\w+)/$', 'download.send_file', {}, 'satchmo_download_send'),
@@ -39,6 +36,12 @@ urlpatterns += patterns('satchmo.shop.views',
 
 # here we add product patterns directly into the root url
 urlpatterns += productpatterns
+
+if app_enabled('l10n'):
+    urlpatterns += patterns('',
+        # Used to set the default language.
+        (r'^i18n/', include('satchmo.l10n.urls'))
+    )
 
 if app_enabled('wishlist'):
     urlpatterns += patterns('',

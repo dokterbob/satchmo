@@ -1,6 +1,6 @@
 {% load i18n %}
 <h3>{% trans "Search" %}</h3>
-<form id="search" action="{% url satchmo_search %}" method="get">
+<form id="search" action="{{ satchmo_search_url }}" method="get">
 	{% if categories %}
 	<select name="category">
 	 	<option value="" selected="selected">{% trans "All Products" %}</option>

@@ -2,6 +2,8 @@ from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from satchmo.utils import url_join
 from django.contrib.sites.models import Site
+import logging
+log = logging.getLogger('satchmo.utils')
 
 def lookup_template(settings, template):
     """Return a template name, which may have been overridden in the settings."""
@@ -30,13 +32,18 @@ def lookup_url(settings, name, include_server=False, ssl=False):
 
     if not url:
         try:
-            url = urlresolvers.reverse(settings.KEY.value + "_" + name)
+            possible = settings.KEY.value + "_" + name
+            url = urlresolvers.reverse(possible)
         except urlresolvers.NoReverseMatch:
-            pass
+            log.debug('No url found for %s', possible)
 
     if not url:
-        url = urlresolvers.reverse(name)
-
+        try:
+            url = urlresolvers.reverse(name)
+        except urlresolvers.NoReverseMatch:
+            log.error('Could not find any url for %s', name)
+            raise
+            
     if include_server:
         if ssl:
             method = "https://"
