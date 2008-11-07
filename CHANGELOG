@@ -35,6 +35,7 @@ Trunk
  * New tiered shipping module based on quantity
  * New Fedex shipping module
  * New configuration option to force login for checkout
+ * Refactored base template layout to be more extensible
 
 
 Version 0.7, May 26, 2008
