@@ -51,7 +51,7 @@ def confirm_info(request, template="checkout/giftcertificate/confirm.html"):
     try:
         order = Order.objects.get(id=request.session['orderID'])
         giftcert = GiftCertificate.objects.from_order(order)
-    except (Order.DoesNotExist, GiftCertificate.DoesNotExist):
+    except (Order.DoesNotExist, GiftCertificate.DoesNotExist, KeyError):
         giftcert = None
            
     controller = confirm.ConfirmController(request, gc)
