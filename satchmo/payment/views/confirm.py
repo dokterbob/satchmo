@@ -170,7 +170,7 @@ class ConfirmController(object):
 
         try:
             self.cart = Cart.objects.from_request(self.request)
-            if self.cart.numItems == 0 and not order.is_partially_paid:
+            if self.cart.numItems == 0 and not self.order.is_partially_paid:
                 template = self.lookup_template('EMPTY_CART')
                 self.invalidate(render_to_response(template, RequestContext(request)))
                 return False
