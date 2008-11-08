@@ -22212,7 +22212,7 @@
     </object>
     <object pk="2004" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">101</field>
-        <field type="CharField" name="name">Pondicherry</field>
+        <field type="CharField" name="name">Puducherry</field>
         <field type="CharField" name="abbrev"></field>
         <field type="BooleanField" name="active">1</field>
     </object>
