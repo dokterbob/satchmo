@@ -199,7 +199,7 @@ class Carrier(models.Model):
         return u"Carrier: %s" % self.name
         
     class Meta:
-        pass
+        ordering = ('ordering',)
         
 class CarrierTranslation(models.Model):
     carrier = models.ForeignKey('Carrier', related_name='translations')
@@ -208,6 +208,9 @@ class CarrierTranslation(models.Model):
     description = models.CharField(_('Description'), max_length=200)
     method = models.CharField(_('Method'), help_text=_("i.e. US Mail"), max_length=200)
     delivery = models.CharField(_('Delivery Days'), max_length=200)
+    
+    class Meta:
+        ordering=('languagecode','name')
 
 class ShippingTier(models.Model):
     carrier = models.ForeignKey('Carrier', related_name='tiers')
@@ -221,6 +224,6 @@ class ShippingTier(models.Model):
         return u"ShippingTier: %s @ %s" % (self.price, self.min_total)
     
     class Meta:
-        pass
+        ordering = ('carrier','price')
 
 import config

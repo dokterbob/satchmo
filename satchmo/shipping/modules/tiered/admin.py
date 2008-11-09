@@ -9,6 +9,7 @@ class ShippingTier_Inline(admin.TabularInline):
 
 class CarrierTranslation_Inline(admin.TabularInline):
     model = CarrierTranslation
+    ordering = ('carrier',)
     extra = 1
 
 class CarrierOptions(admin.ModelAdmin):
