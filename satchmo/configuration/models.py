@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.db.models import loading
 from django.utils.translation import ugettext_lazy as _
-from satchmo.caching import cache_key, cache_get, NotCachedError
+from satchmo.caching import cache_key, cache_get, cache_set, NotCachedError
 from satchmo.caching.models import CachedObjectMixin
 from django.contrib.sites.models import Site
 import logging
@@ -19,7 +19,7 @@ def _safe_get_siteid(site):
             site = Site.objects.get_current()
         except:
             transaction.rollback()
-        if site:
+        if site and site.id:
             siteid = site.id
         else:
             siteid = settings.SITE_ID
@@ -40,31 +40,30 @@ def find_setting(group, key, site=None):
     try:
         setting = cache_get(ck)
 
-    except NotCachedError:
+    except NotCachedError, nce:
         if loading.app_cache_ready():
             try:
                 setting = Setting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
-                setting.cache_set()
 
             except Setting.DoesNotExist:
                 # maybe it is a "long setting"
                 try:
                     setting = LongSetting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
-                    setting.cache_set()
            
                 except LongSetting.DoesNotExist:
                     pass
+            
+            cache_set(ck, value=setting)
                 
     if not setting:
-        raise SettingNotSet(key)
+        raise SettingNotSet(key, cachekey=ck)
         
     return setting
 
-
 class SettingNotSet(Exception):    
-    def __init__(self, k):
+    def __init__(self, k, cachekey=None):
         self.key = k
-
+        self.cachekey = cachekey
 
 class SettingManager(models.Manager):
     def get_query_set(self):

@@ -8,6 +8,7 @@ from django.utils import simplejson
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _
+from satchmo.caching import cache_set
 from satchmo.configuration.models import find_setting, LongSetting, Setting, SettingNotSet
 from satchmo.utils import load_module, is_string_like, is_list_or_tuple
 from django.contrib.sites.models import Site
@@ -254,26 +255,18 @@ class Value(object):
     def _value(self):            
         try:
             val = self.setting.value
-        except SettingNotSet:
+            
+        except SettingNotSet, sns:
             if self.use_default:
                 val = self.default
             else:
                 val = NOTSET
-                
+                                
         except AttributeError, ae:
             log.error("Attribute error: %s", ae)
             log.error("%s: Could not get _value of %s", self.key, self.setting)
             raise(ae)
             
-        # except sites.MultihostNotReady:
-        #     if not _WARN.has_key('multihost'):
-        #         log.warn('Multihost Error: Loading setting %s.%s from database, OK if you are in syncdb', self.group.key, self.key)
-        #         _WARN['multihost'] = True
-        #         
-        #     if self.use_default:
-        #         val = self.default
-        #     else:
-        #         raise ImproperlyConfigured("All settings used in startup must have defaults, %s.%s does not", self.group.key, self.key)
         except Exception, e:
             global _WARN
             log.error(e)
@@ -592,7 +585,6 @@ class ModuleValue(Value):
             v = {}            
         else:
             v = load_module(value)
-        #log.debug("Returning module [%s]: %s", value, str(v))
         return v
             
     def to_editor(self, value):
