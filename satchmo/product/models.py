@@ -1547,8 +1547,18 @@ class ProductPriceLookupManager(models.Manager):
             obj.delete()
         
     def rebuild_all(self, site=None):
+        if not site:
+            site = Site.objects.get_current()
+
+        for lookup in self.filter(siteid=site.id):
+            lookup.delete()
+
+        ct = 0
+        log.debug('ProductPriceLookup rebuilding all pricing')
         for p in Product.objects.active_by_site(site=site, variations=False):
-            self.smart_create_for_product(p)
+            prices = self.smart_create_for_product(p)
+            ct += len(prices)
+        log.info('ProductPriceLookup built %i prices', ct)
             
     def smart_create_for_product(self, product):
         subtypes = product.get_subtypes()

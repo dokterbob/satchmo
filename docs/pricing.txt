@@ -39,7 +39,12 @@ Expiring Pricing
 ----------------
 If you are using expiring dates for prices, please note that you must run a daily update of the pricing lookup table.  To do this, you need to run "./manage.py satchmo_rebuild_pricing"
 
-The easiest way to run this automatically is to add a line to your crontab::
+The easiest way to run this automatically is to use the excellent "Django_Extensions_" app.  We've already added a daily job to rebuild prices, so all you need to do is to ensure that the daily job is getting run via crontab::
+
+    # run every morning at 2:22 am
+    22 2 * * * /usr/bin/python /path/to/site/manage.py runjobs daily >/dev/null 2>&1
+
+Alternatively you can directly execute the command via crontab::
 
     # run every morning at 2:22 am
     22 2 * * * /usr/bin/python /path/to/site/manage.py satchmo_rebuild_pricing >/dev/null 2>&1
@@ -72,3 +77,4 @@ The price resolution process is straightforward.
   
 3. If the user has multiple tiers, return the lowest amount found in 2a & 2b.
 
+.. _Django_Extensions: http://code.google.com/p/django-command-extensions/

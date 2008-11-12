@@ -148,6 +148,14 @@ INSTALLED_APPS = (
     # * uncomment below, then set up in your main admin page.
     # ****
     #'satchmo.product.tieredpricing',
+    # ****
+    # * Highly recommended app - use this to have access to the great
+    # * "Jobs" system.  See http://code.google.com/p/django-command-extensions/
+    # * Make sure to set up your crontab to run the daily, hourly and monthly
+    # * jobs.
+    # ****
+    #'django_extensions',
+    
 )
 
 AUTHENTICATION_BACKENDS = (
