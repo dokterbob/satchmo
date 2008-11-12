@@ -3,7 +3,7 @@
 Signals:
  - `newsletter_subscription_updated`: Usage::
     
-    Usage: satchmo_price_query.send(sender, old_state=bool, new_state=bool, contact=contact) 
+    Usage: newsletter_subscription_updated.send(sender, old_state=bool, new_state=bool, contact=contact) 
  
 """
 
