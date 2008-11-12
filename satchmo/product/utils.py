@@ -1,7 +1,11 @@
-from satchmo.tax.utils import get_tax_processor
+from satchmo.configuration import config_value
 from satchmo.l10n.utils import moneyfmt
-from satchmo.product.models import ProductVariation
+from satchmo.product.models import ProductVariation, Option, split_option_unique_id, ProductPriceLookup
 from satchmo.shop.models import Config
+from satchmo.tax.utils import get_tax_processor
+import logging
+
+log = logging.getLogger('product.utils')
 
 def get_taxprocessor(user):
     if user.is_authenticated():
@@ -38,42 +42,44 @@ def productvariation_details(product, include_tax, user):
         tax_class = product.taxClass
 
     details = {}
+    
+    curr = config_value('SHOP', 'CURRENCY')
+    curr = curr.replace("_", " ")
 
-    for p in ProductVariation.objects.by_parent(product):
-
-        detail = {}
-
-        prod = p.product
-        detail['SLUG'] = prod.slug
-
-        if not prod.active:
-            qty = -1
-        elif ignore_stock:
-            qty = 10000
+    variations = ProductPriceLookup.objects.filter(parentid=product.id)
+    if variations.count() == 0:
+        log.warning('You must run satchmo_rebuild_pricing and add it to a cron-job to run every day, or else the product details will not work for product detail pages.')
+    for detl in variations:
+        key = detl.key
+        if details.has_key(key):
+            detail = details[key]
         else:
-            qty = prod.items_in_stock
+            detail = {}
+            detail['SLUG'] = detl.productslug
 
-        detail['QTY'] = qty
+            if not detl.active:
+                qty = -1
+            elif ignore_stock:
+                qty = 10000
+            else:
+                qty = detl.items_in_stock
 
-        base = {}
-        if include_tax:
-            taxed = {}
+            detail['QTY'] = qty
 
-        for qty, price in p.get_qty_price_list():
-            base[qty] = moneyfmt(price)
+            detail['PRICE'] = {}
             if include_tax:
-                tax_price = taxer.by_price(tax_class, price) + price
-                taxed[qty] = moneyfmt(tax_price)
-
-        detail['PRICE'] = base
+                detail['TAXED'] = {}
+                
+            details[key] = detail
+        
+        price = detl.dynamic_price
+        
+        detail['PRICE'][detl.quantity] = moneyfmt(price, curr=curr)
+        
         if include_tax:
-            detail['TAXED'] = taxed
-
-        # build option map
-        opts = [(opt.id, opt.value) for opt in p.options.order_by('option_group')]
-        optkey = "::".join([opt[1] for opt in opts])
-        details[optkey] = detail
-
+            tax_price = taxer.by_price(tax_class, price) + price
+            detail['TAXED'][detl.quantity] = moneyfmt(tax_price, curr=curr)
+                
     return details
 
 def serialize_options(product, selected_options=set()):
@@ -101,21 +107,41 @@ def serialize_options(product, selected_options=set()):
     color and size, and you have a yellow/large, a yellow/small, and a
     white/small, but you have no white/large - the customer will still see
     the options white and large.
-    """
-    d = {}
-
+    """    
     all_options = product.get_valid_options()
 
+    # first get all objects
+    # right now we only have a list of option.unique_ids, and there are
+    # probably a lot of dupes, so first list them uniquely
+    vals = {}
+    groups = {}
+    opts = {}
     for options in all_options:
         for option in options:
-            if not d.has_key(option.option_group_id):
-                d[option.option_group.id] = {
-                    'name': option.option_group.translated_name(),
-                    'id': option.option_group.id,
-                    'items': [],
-                }
-            if not option in d[option.option_group_id]['items']:
-                d[option.option_group_id]['items'] += [option]
-                option.selected = option.unique_id in selected_options
+            if not opts.has_key(option):
+                k, v = split_option_unique_id(option)
+                vals[v] = False
+                groups[k] = False
+                opts[option] = None
+        
+    for option in Option.objects.filter(option_group__id__in = groups.keys(), value__in = vals.keys()):
+        uid = option.unique_id
+        if opts.has_key(uid):
+            opts[uid] = option
 
-    return d.values()
+    # now we have all the objects in our "opts" dictionary, so build the serialization dict
+
+    serialized = {}
+
+    for option in opts.values():
+        if not serialized.has_key(option.option_group_id):
+            serialized[option.option_group.id] = {
+                'name': option.option_group.translated_name(),
+                'id': option.option_group.id,
+                'items': [],
+            }
+        if not option in serialized[option.option_group_id]['items']:
+            serialized[option.option_group_id]['items'] += [option]
+            option.selected = option.unique_id in selected_options
+
+    return serialized.values()

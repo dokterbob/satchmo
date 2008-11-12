@@ -134,15 +134,17 @@ def get_product(request, product_slug, selected_options=set(),
     subtype_names = product.get_subtypes()
 
     if 'ProductVariation' in subtype_names:
-        selected_options = product.productvariation.option_values
+        selected_options = product.productvariation.unique_option_ids
         #Display the ConfigurableProduct that this ProductVariation belongs to.
         product = product.productvariation.parent.product
         subtype_names = product.get_subtypes()
 
+    best_discount = find_best_auto_discount(product)
+    
     extra_context = {
         'product': product,
         'default_view_tax': default_view_tax,
-        'sale': find_best_auto_discount(product),
+        'sale': best_discount,
     }
 
     # Get the template context from the Product.

@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from satchmo.product.models import Product, Price
 from satchmo.product import signals
-from threaded_multihost.threadlocals import get_current_user
+from threaded_multihost import threadlocals
 import datetime
 import logging
 
@@ -18,17 +18,27 @@ class PricingTierManager(models.Manager):
     
     def by_user(self, user):
         """Get the pricing tiers for a user"""
-        groups = user.groups.all()
-        if groups:            
-            q = self.all()
-            for group in groups:
-                log.debug('group=%s', group)
-                q = q.filter(group=group)
-            # todo: cache
-            if q.count() > 0:
-                return q
+        key = 'TIER_%i' % user.id
+        current = threadlocals.get_thread_variable(key)
+        
+        if current is None:
+            groups = user.groups.all()
+            if groups:            
+                q = self.all()
+                for group in groups:
+                    q = q.filter(group=group)
+                if q.count() > 0:
+                    current = list(q)
+                    
+            if current is None:
+                current = "no"
+                
+            threadlocals.set_thread_variable(key, current)
 
-        raise PricingTier.DoesNotExist
+        if current == "no":
+            raise PricingTier.DoesNotExist
+        
+        return current
 
 class PricingTier(models.Model):
     """A specific pricing tier, such as "trade customers"
@@ -70,7 +80,7 @@ class TieredPrice(models.Model):
     
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
-        signals.satchmo_price_query.send(self, product=self.product, price=self)
+        signals.satchmo_price_query.send(self, price=self)
         return self.price
 
     dynamic_price = property(fget=_dynamic_price)
@@ -94,20 +104,27 @@ class TieredPrice(models.Model):
         verbose_name_plural = _("Tiered Prices")
         unique_together = (("pricingtier", "product", "quantity", "expires"),)
         
-def tiered_price_listener(product, price, **kwargs):
+def tiered_price_listener(price, **kwargs):
     """Listens for satchmo_price_query signals, and returns a tiered price instead of the
     default price.  
 
     Requires threaded_multihost.ThreadLocalMiddleware to be installed so
     that it can determine the current user."""
     
-    if product.is_discountable:
-        user = get_current_user()
+    if kwargs.has_key('discountable'):
+        discountable = kwargs['discountable']
+    else:
+        discountable = price.product.is_discountable
+    
+    if discountable:
+        user = threadlocals.get_current_user()
         if user and not user.is_anonymous():
             try:
                 tiers = PricingTier.objects.by_user(user)
                 best = None
+                besttier = None
                 for tier in tiers:
+                    product = price.product
                     candidate = None
                     try:
                         tp = TieredPrice.objects.by_product_qty(tier, product, price.quantity)
@@ -120,11 +137,17 @@ def tiered_price_listener(product, price, **kwargs):
                         
                     if best is None or (candidate and candidate < best):
                         best = candidate
+                        besttier = tier
                     
                         log.debug('best = %s', best)
                 
                 if best is not None:
+                    delta = price.price - best
                     price.price = best
+                    if not hasattr(price, 'discounts'):
+                        price.discounts = []
+                    price.discounts.append((_('Tiered Pricing for %(tier)s' % { 'tier': besttier.group.name}), delta))
+        
             except PricingTier.DoesNotExist:
                 pass
 

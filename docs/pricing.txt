@@ -4,8 +4,8 @@ Pricing
 Satchmo has flexible pricing that allows you to price at multiple levels.
 
 .. index::
-   single: Price overview
-   
+   single: Price overview   
+
 Pricing at the Item Level
 -------------------------
 
@@ -35,8 +35,14 @@ If either of these fields are set then that price is only effective for orders p
 The most specific of these gets highest priority (IE: the soonest expiration date, and the highest applicable quantity). 
 This useful for running temporary promotions that automatically expire.
 
-.. index::
-   single: Price tiers
+Expiring Pricing
+----------------
+If you are using expiring dates for prices, please note that you must run a daily update of the pricing lookup table.  To do this, you need to run "./manage.py satchmo_rebuild_pricing"
+
+The easiest way to run this automatically is to add a line to your crontab::
+
+    # run every morning at 2:22 am
+    22 2 * * * /usr/bin/python /path/to/site/manage.py satchmo_rebuild_pricing >/dev/null 2>&1
    
 Pricing Tiers
 -------------
@@ -65,3 +71,4 @@ The price resolution process is straightforward.
   2b. Else return the non-tiered price reduced by the default tier discount percent.
   
 3. If the user has multiple tiers, return the lowest amount found in 2a & 2b.
+

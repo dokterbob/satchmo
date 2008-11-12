@@ -25,7 +25,7 @@ from satchmo.shop import get_satchmo_setting
 from satchmo.shop.signals import satchmo_search
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list
+from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list, set_from_list
 from satchmo.utils.unique_id import slugify
 from django.utils.encoding import smart_str
 
@@ -402,7 +402,7 @@ class OptionGroupTranslation(models.Model):
 
 class OptionManager(models.Manager):
     def from_unique_id(self, unique_id):
-        (group_id, option_value) = unique_id.split('-')
+        group_id, option_value = split_option_unique_id(unique_id)
         group = OptionGroup.objects.get(id=group_id)
         return Option.objects.get(option_group=group_id, value=option_value)
 
@@ -430,8 +430,7 @@ class Option(models.Model):
         verbose_name_plural = _("Option Items")
 
     def _get_unique_id(self):
-        return '%s-%s' % (str(self.option_group.id), str(self.value),)
-    # option_group.id-value
+        return make_option_unique_id(self.option_group_id, self.value)
     unique_id = property(_get_unique_id)
 
     def __repr__(self):
@@ -461,26 +460,25 @@ class OptionTranslation(models.Model):
 
 class ProductManager(models.Manager):
     
-    def active(self, **kwargs):
-        return self.filter(active=True, **kwargs)
+    def active(self, variations=True, **kwargs):
+        return self.filter(active=True, variations=variations, **kwargs)
 
     def active_by_site(self, variations=True, **kwargs):
-        if variations:
-            return self.by_site(active=True, **kwargs)
-        else:
-            return self.by_site(active=True, productvariation__parent__isnull=True)        
+        return self.by_site(active=True, variations=variations, **kwargs)
 
-    def by_site(self, site=None, **kwargs):
+    def by_site(self, site=None, variations=True, **kwargs):
         if not site:
             site = Site.objects.get_current()
         
         site = site.id
 
         log.debug("by_site: site=%s", site)
+        if not variations:
+            kwargs['productvariation__parent__isnull'] = True
         return self.filter(site__id__exact=site, **kwargs)
 
-    def featured_by_site(self, site=None):
-        return self.by_site(site=site, active=True, featured=True)
+    def featured_by_site(self, site=None, **kwargs):
+        return self.by_site(site=site, active=True, featured=True, **kwargs)
 
     def get_by_site(self, site=None, **kwargs):
         products = self.by_site(site=site, **kwargs)
@@ -489,8 +487,8 @@ class ProductManager(models.Manager):
         else:
             return products[0]
             
-    def recent_by_site(self):
-        query = self.active_by_site(productvariation__parent__isnull=True)
+    def recent_by_site(self, **kwargs):
+        query = self.active_by_site(**kwargs)
         if query.count() == 0:
             query = self.active_by_site()
             
@@ -632,9 +630,14 @@ class Product(models.Model):
                 price = self._get_fullPrice()
 
         return price
+        
     def get_qty_price_list(self):
         """Return a list of tuples (qty, price)"""
-        prices = Price.objects.filter(product__id=self.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
+        prices = Price.objects.filter(
+            product__id=self.id).exclude(
+            expires__isnull=False, 
+            expires__lt=datetime.date.today()
+        ).select_related()
         return [(price.quantity, price.dynamic_price) for price in prices]
 
     def in_stock(self):
@@ -685,6 +688,7 @@ class Product(models.Model):
         if not self.sku:
             self.sku = self.slug
         super(Product, self).save(force_insert=force_insert, force_update=force_update)
+        ProductPriceLookup.objects.smart_create_for_product(self)
 
     def get_subtypes(self):
         types = []
@@ -816,7 +820,9 @@ class Product(models.Model):
         Call the add_template_context method of each subtype and return the
         combined context.
         """
-        for subtype_name in self.get_subtypes():
+        subtypes = self.get_subtypes()
+        logging.debug('subtypes = %s', subtypes)
+        for subtype_name in subtypes:
             subtype = getattr(self, subtype_name.lower())
             if hasattr(subtype, 'add_template_context'):
                 context = subtype.add_template_context(context, *args, **kwargs)
@@ -844,7 +850,7 @@ class ProductTranslation(models.Model):
     def __unicode__(self):
         return u"ProductTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.product, self.name)
 
-def get_all_options(obj):
+def get_all_options(obj, ids_only=False):
     """
     Returns all possible combinations of options for this products OptionGroups as a List of Lists.
     Ex:
@@ -855,9 +861,12 @@ def get_all_options(obj):
     sublist = []
     masterlist = []
     #Create a list of all the options & create all combos of the options
-    for opt in obj.option_group.all():
+    for opt in obj.option_group.select_related().all():
         for value in opt.option_set.all():
-            sublist.append(value)
+            if ids_only:
+                sublist.append(value.unique_id)
+            else:
+                sublist.append(value)
         masterlist.append(sublist)
         sublist = []
     results = cross_list(masterlist)
@@ -935,7 +944,7 @@ class CustomProduct(models.Model):
         """
         Returns all of the valid options
         """
-        return get_all_options(self)
+        return get_all_options(self, ids_only=True)
 
     class Meta:
         verbose_name = _('Custom Product')
@@ -1025,14 +1034,9 @@ class ConfigurableProduct(models.Model):
         Returns the same output as get_all_options(), but filters out Options that this
         ConfigurableProduct doesn't have a ProductVariation for.
         """
-
-        # Note by Bruce Kroeze: Sorry this is so dense and possibly confusing.
-        # The old version took approx. 60 seconds to run on my laptop with 81 variants
-        # this one runs in .3 seconds.  I think a 200x speed improvement is worth some
-        # dense code.  List comprehensions (and avoiding hitting the database many times
-        # for the same data) *rule*.
-        active_options = [v.option_values for v in self.productvariation_set.filter(product__active='1')]
-        return [opt for opt in get_all_options(self) if self._ensure_option_set(opt) in active_options]
+        variations = self.productvariation_set.filter(product__active='1')
+        active_options = [v.unique_option_ids for v in variations]
+        return [opt for opt in get_all_options(self, ids_only=True) if set_from_list(opt) in active_options]
 
     def create_all_variations(self):
         """
@@ -1108,7 +1112,7 @@ class ConfigurableProduct(models.Model):
         Takes an iterable of Options (or str(Option)) and outputs a Set of
         str(Option) suitable for comparing to a productvariation.option_values
         """
-        if not isinstance(options, set):
+        if options and (not isinstance(options, set) and isinstance(options[0], Option)):
             optionSet = set()
             for opt in options:
                 optionSet.add(opt.unique_id)
@@ -1120,15 +1124,14 @@ class ConfigurableProduct(models.Model):
         """
         Accepts an iterable of either Option object or str(Option) objects
         Returns the product that matches or None
-        """
+        """    
         options = self._ensure_option_set(options)
         pv = None
         if hasattr(self, '_variation_cache'):
-            optkeys = tuple(options)
-            pv =  self._variation_cache.get(optkeys, None)
+            pv =  self._variation_cache.get(options, None)
         else:
             for member in self.productvariation_set.all():
-                if member.option_values == options:
+                if member.unique_option_ids == options:
                     pv = member
                     break
         if pv:
@@ -1155,7 +1158,7 @@ class ConfigurableProduct(models.Model):
         context['options'] = serialize_options(self, selected_options)
         context['details'] = productvariation_details(self.product, include_tax,
             request.user)
-
+                    
         return context
 
     def save(self, force_insert=False, force_update=False):
@@ -1177,7 +1180,7 @@ class ConfigurableProduct(models.Model):
     def setup_variation_cache(self):
         self._variation_cache = {}
         for member in self.productvariation_set.all():        
-            key = tuple(member.option_values)
+            key = member.unique_option_ids
             self._variation_cache[key] = member
 
     class Meta:
@@ -1351,16 +1354,20 @@ class ProductVariation(models.Model):
         return output
     full_name = property(_get_optionName)
 
-    def _get_optionValues(self):
+    def _optionkey(self):
+        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group')]
+        return "::".join(optkeys)
+    optionkey = property(fget=_optionkey)
+
+    def _get_option_ids(self):
         """
-        Return a set of all the valid options for this variant.
-        A set makes sure we don't have to worry about ordering.
+        Return a sorted list of all the valid options for this variant.
         """
-        output = set()
-        for option in self.options.all():
-            output.add(option.unique_id)
-        return(output)
-    option_values = property(_get_optionValues)
+        ret = set()
+        for v in self.options.values_list('option_group__id', 'value'):
+            ret.add(make_option_unique_id(*v))
+        return ret
+    unique_option_ids = property(_get_option_ids)
 
     def _get_subtype(self):
         return 'ProductVariation'
@@ -1429,7 +1436,7 @@ class ProductVariation(models.Model):
         pvs = ProductVariation.objects.filter(parent=self.parent)
         pvs = pvs.exclude(product=self.product)
         for pv in pvs:
-            if pv.option_values == self.option_values:
+            if pv.unique_option_ids == self.unique_option_ids:
                 return # Don't allow duplicates
 
         if not self.product.name:
@@ -1474,6 +1481,112 @@ class ProductVariation(models.Model):
 
     def __unicode__(self):
         return self.product.slug
+        
+
+class ProductPriceLookupManager(models.Manager):
+    
+    def by_product(self, product):
+        return self.get(productslug=product.slug)
+    
+    def delete_expired(self):
+        for p in self.filter(expires__lt=datetime.date.today()):
+            p.delete()
+    
+    def create_for_product(self, product):
+        """Create a set of lookup objects for all priced quantities of the Product"""
+
+        self.delete_for_product(product)
+        pricelist = product.get_qty_price_list()
+            
+        objs = []
+        for qty, price in pricelist:
+            obj = ProductPriceLookup(productslug=product.slug, 
+                siteid=product.site_id,
+                active=product.active,
+                price=price, 
+                quantity=qty, 
+                discountable=product.is_discountable,
+                items_in_stock=product.items_in_stock)
+            obj.save()
+            objs.append(obj)
+        return objs
+        
+    def create_for_configurableproduct(self, configproduct):
+        """Create a set of lookup objects for all variations of this product"""
+
+        objs = self.create_for_product(configproduct)
+        for pv in configproduct.configurableproduct.productvariation_set.filter(product__active='1'):
+            objs.extend(self.create_for_variation(pv, configproduct))
+        
+        return objs
+        
+    def create_for_variation(self, variation, parent):
+        
+        product = variation.product
+        
+        self.delete_for_product(product)
+        pricelist = variation.get_qty_price_list()
+            
+        objs = []
+        for qty, price in pricelist:
+            obj = ProductPriceLookup(productslug=product.slug, 
+                parentid=parent.id,
+                siteid=product.site_id,
+                active=product.active,
+                price=price, 
+                quantity=qty, 
+                key=variation.optionkey, 
+                discountable=product.is_discountable,
+                items_in_stock=product.items_in_stock)
+            obj.save()
+            objs.append(obj)
+        return objs
+        
+    def delete_for_product(self, product):
+        for obj in self.filter(productslug=product.slug):
+            obj.delete()
+        
+    def rebuild_all(self, site=None):
+        for p in Product.objects.active_by_site(site=site, variations=False):
+            self.smart_create_for_product(p)
+            
+    def smart_create_for_product(self, product):
+        subtypes = product.get_subtypes()
+        if 'ConfigurableProduct' in subtypes:
+            return self.create_for_configurableproduct(product)
+        elif 'ProductVariation' in subtypes:
+            return self.create_for_variation(product.productvariation, product.productvariation.product)
+        else:
+            return self.create_for_product(product)
+    
+class ProductPriceLookup(models.Model):
+    """
+    A denormalized object, used to quickly provide
+    details needed for productvariation display, without way too many database hits.
+    """
+    siteid = models.IntegerField()
+    key = models.CharField(max_length=60, null=True)
+    parentid = models.IntegerField(null=True)
+    productslug = models.CharField(max_length=80)
+    price = models.DecimalField(max_digits=14, decimal_places=6, )
+    quantity = models.IntegerField()
+    active = models.BooleanField()
+    discountable = models.BooleanField()
+    items_in_stock = models.IntegerField()
+
+    objects = ProductPriceLookupManager()
+    
+    def _product(self):
+        return Product.objects.get(slug=self.productslug)
+        
+    product = property(fget=_product)    
+    
+    def _dynamic_price(self):
+        """Get the current price as modified by all listeners."""
+        signals.satchmo_price_query.send(self, price=self, slug=self.productslug, discountable=self.discountable)
+        return self.price
+
+    dynamic_price = property(fget=_dynamic_price)
 
 class ProductAttribute(models.Model):
     """
@@ -1510,7 +1623,7 @@ class Price(models.Model):
 
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
-        signals.satchmo_price_query.send(self, product=self.product, price=self)
+        signals.satchmo_price_query.send(self, price=self)
         return self.price
 
     dynamic_price = property(fget=_dynamic_price)
@@ -1528,6 +1641,7 @@ class Price(models.Model):
             return #Duplicate Price
 
         super(Price, self).save(force_insert=force_insert, force_update=force_update)
+        ProductPriceLookup.objects.smart_create_for_product(self.product)
 
     class Meta:
         ordering = ['expires', '-quantity']
@@ -1685,6 +1799,16 @@ def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=Non
         if parent:
             return get_product_quantity_price(parent, qty, delta=delta)
         return None
+
+def make_option_unique_id(groupid, value):
+    return '%s-%s' % (str(groupid), str(value),)
+
+def split_option_unique_id(uid):
+    "reverse of make_option_unique_id"
+
+    parts = uid.split('-')
+    return (parts[0], '-'.join(parts[1:]))
+
 
 import listeners
 satchmo_search.connect(listeners.default_product_search_listener, Product)

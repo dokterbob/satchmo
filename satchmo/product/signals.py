@@ -7,7 +7,7 @@ Signals:
    
  - `satchmo_price_query`: Usage::
     
-    Usage: satchmo_price_query.send(self, product=product, price=price) 
+    Usage: satchmo_price_query.send(self, price=price) 
     
  - `satchmo_order_success`
 """
