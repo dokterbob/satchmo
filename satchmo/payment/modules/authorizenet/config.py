@@ -92,6 +92,29 @@ for test transactions if you do not have a cpdev or cnpdev.
         'CAPTURE',
         description=_('Capture Payment?'),
         default=True,
-        help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.'))
-         
+        help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.')),
 )
+
+ARB_ENABLED = config_register(    
+    BooleanValue(PAYMENT_GROUP,
+        'ARB',
+        description=_('Enable ARB?'),
+        default=False,
+        help_text=_('Enable ARB processing for setting up subscriptions.  You must have this enabled in your Authorize account for it to work.')))
+
+config_register(
+    StringValue(PAYMENT_GROUP, 
+        'ARB_CONNECTION',
+        description=_("Submit to URL (ARB)"),
+        help_text=_("""This is the address to submit live transactions for ARB."""),
+        requires=ARB_ENABLED,
+        default='https://api.authorize.net/xml/v1/request.api'))
+
+config_register(    
+    StringValue(PAYMENT_GROUP, 
+        'ARB_CONNECTION_TEST',
+        description=_("Submit to Test URL (ARB)"),
+        help_text=_("""This is the address to submit test transactions for ARB."""),
+        requires=ARB_ENABLED,
+        default='https://apitest.authorize.net/xml/v1/request.api'))
+

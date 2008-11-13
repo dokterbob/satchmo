@@ -5,6 +5,7 @@ except:
 
 from django.conf import settings
 from django.db import models
+import datetime
 import logging
 import os
 import random
@@ -12,6 +13,16 @@ import sys
 import types
 
 log = logging.getLogger('shop.utils')
+
+def add_month(date, n=1):
+    """add n+1 months to date then subtract 1 day
+    to get eom, last day of target month"""
+    oneday = datetime.timedelta(days=1)
+    q,r = divmod(date.month+n, 12)
+    eom = datetime.date(date.year+q, r+1, 1) - oneday
+    if date.month != (date+oneday).month or date.day >= eom.day:
+        return eom
+    return eom.replace(day=date.day)
 
 def app_enabled(appname):
     """Check the app list to see if a named app is installed."""

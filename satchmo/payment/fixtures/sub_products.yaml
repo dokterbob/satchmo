@@ -1,7 +1,7 @@
-- fields: {expire_days: 21, is_shippable: 0, recurring: 'True', recurring_times: null}
+- fields: {expire_length: 21, expire_unit: 'DAY', is_shippable: 0, recurring: 'True', recurring_times: null}
   model: product.subscriptionproduct
   pk: 1
-- fields: {expire_days: 30, is_shippable: 0, recurring: 'True', recurring_times: null}
+- fields: {expire_length: 30, expire_unit: 'DAY', is_shippable: 0, recurring: 'True', recurring_times: null}
   model: product.subscriptionproduct
   pk: 2
 - fields:
@@ -70,6 +70,6 @@
     product: null, sort: 1}
   model: product.productimage
   pk: 1
-- fields: {expire_days: 7, price: '2.00', subscription: 2}
+- fields: {expire_length: 7, price: '2.00', subscription: 2}
   model: product.trial
   pk: 1

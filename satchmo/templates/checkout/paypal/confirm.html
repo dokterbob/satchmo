@@ -27,17 +27,17 @@
 <input type="hidden" name="bn" value="PP-SubscriptionsBF">
 {% if subscription.trial1 %}
 <input type="hidden" name="a1" value="{{ subscription.trial1.price }}">
-<input type="hidden" name="p1" value="{{ subscription.trial1.expire_days }}">
-<input type="hidden" name="t1" value="D">
+<input type="hidden" name="p1" value="{{ subscription.trial1.expire_length }}">
+<input type="hidden" name="t1" value="{{ subscription.trial1.expire_unit }}">
 {% endif %}
 {% if subscription.product.trial2_price %}
-<input type="hidden" name="a2" value="{{ subscription.product.trial2_price }}">
-<input type="hidden" name="p2" value="{{ subscription.product.trial2_expire_days }}">
-<input type="hidden" name="t2" value="D">
+<input type="hidden" name="a2" value="{{ subscription.product.trial2.price }}">
+<input type="hidden" name="p2" value="{{ subscription.product.trial2.expire_length }}">
+<input type="hidden" name="t2" value="{{ subscription.product.trial2.expire_unit}}">
 {% endif %}
 <input type="hidden" name="a3" value="{{ subscription.price }}">
-<input type="hidden" name="p3" value="{{ subscription.product.subscriptionproduct.expire_days }}">
-<input type="hidden" name="t3" value="D">
+<input type="hidden" name="p3" value="{{ subscription.product.subscriptionproduct.expire_length }}">
+<input type="hidden" name="t3" value="{{ subscription.product.subscriptionproduct.expire_length|first }}">
 {% if subscription.product.recurring %}
 <input type="hidden" name="src" value="1">
 {% endif %}

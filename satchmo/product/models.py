@@ -25,7 +25,7 @@ from satchmo.shop import get_satchmo_setting
 from satchmo.shop.signals import satchmo_search
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list, set_from_list
+from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list, set_from_list, add_month
 from satchmo.utils.unique_id import slugify
 from django.utils.encoding import smart_str
 
@@ -1232,7 +1232,12 @@ class SubscriptionProduct(models.Model):
     product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
     recurring = models.BooleanField(_("Recurring Billing"), help_text=_("Customer will be charged the regular product price on a periodic basis."), default=False)
     recurring_times = models.IntegerField(_("Recurring Times"), help_text=_("Number of payments which will occur at the regular rate.  (optional)"), null=True, blank=True)
-    expire_days = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle (days)"), null=True, blank=True)
+    expire_length = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle (days)"), null=True, blank=True)
+    SUBSCRIPTION_UNITS = (
+        ('DAY', _('Days')),
+        ('MONTH', _('Months'))
+    )
+    expire_unit = models.CharField(_("Expire Unit"), max_length=5, choices=SUBSCRIPTION_UNITS, default="DAY", null=False)
     SHIPPING_CHOICES = (
         ('0', _('No Shipping Charges')),
         ('1', _('Pay Shipping Once')),
@@ -1258,6 +1263,16 @@ class SubscriptionProduct(models.Model):
                 return self.trial_set.all().order_by('id')[trial]
             except IndexError:
                 return None
+                
+    def calc_expire_date(self, date=None):
+        if date is None:
+            date = datetime.datetime.now()
+        if self.expire_unit == "DAY":
+            expiredate = date + datetime.timedelta(days=self.expire_length)
+        else:
+            expiredate = add_month(date, n=self.expire_length)
+        
+        return expiredate
 
     class Meta:
         verbose_name = _("Subscription Product")
@@ -1275,10 +1290,27 @@ class Trial(models.Model):
     """
     subscription = models.ForeignKey(SubscriptionProduct)
     price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, )
-    expire_days = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle (days).  Leave empty if product does not have a trial."), null=True, blank=True)
+    expire_length = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle.  Leave empty if product does not have a trial."), null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.price)
+        
+    def _occurrences(self):
+        if self.expire_length:
+            return int(self.expire_length/subscription.expire_length)
+        else:
+            return 0
+    occurrences = property(fget=_occurrences)
+
+    def calc_expire_date(self, date=None):
+        if date is None:
+            date = datetime.datetime.now()
+        if self.subscription.expire_unit == "DAY":
+            expiredate = date + timedelta(days=self.expire_length)
+        else:
+            expiredate = add_month(date, n=self.expire_length)
+        
+        return expiredate
 
     class Meta:
         ordering = ['-id']

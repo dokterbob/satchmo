@@ -35,15 +35,15 @@ def cron_rebill(request=None):
                 if item.id == OrderItem.objects.filter(product=item.product, order=item.order).order_by('-id')[0].id:
                     #bill => add orderitem, recalculate total, porocess card
                     new_order_item = OrderItem(order=item.order, product=item.product, quantity=item.quantity, unit_price=item.unit_price, line_item_price=item.line_item_price)
-                    #if product is recuring, set subscription end
+                    #if product is recurring, set subscription end
                     if item.product.subscriptionproduct.recurring:
-                        new_order_item.expire_date = datetime.now() + timedelta(days=item.product.subscriptionproduct.expire_days)
+                        new_order_item.expire_date = item.product.subscriptionproduct.calc_expire_date()
                     #check if product has 2 or more trial periods and if the last one paid was a trial or a regular payment.
                     ordercount = item.order.orderitem_set.all().count()
                     if item.product.subscriptionproduct.get_trial_terms().count() > 1 and item.unit_price == item.product.subscriptionproduct.get_trial_terms(ordercount - 1).price:
                         new_order_item.unit_price = item.product.subscriptionproduct.get_trial.terms(ordercount).price
                         new_order_item.line_item_price = new_order_item.quantity * new_order_item.unit_price
-                        new_order_item.expire_date = datetime.datetime.now() + datetime.timedelta(days=item.product.subscriptionproduct.get_trial_terms(ordercount).expire_days)
+                        new_order_item.expire_date = item.product.subscriptionproduct.get_trial_terms(ordercount).calc_expire_date()
                     new_order_item.save()
                     item.order.recalculate_total()
 #                    if new_order_item.product.subscriptionproduct.is_shippable == 3:

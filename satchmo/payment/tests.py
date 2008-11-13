@@ -38,7 +38,7 @@ class TestRecurringBilling(TestCase):
         import datetime
         site = Site.objects.get_current()
         for product in Product.objects.all():
-            price, expire_days = self.getTerms(product)
+            price, expire_length = self.getTerms(product)
             if price is None:
                 continue
             order = Order.objects.create(contact=self.customer, shipping_cost=0, site=site)
@@ -47,7 +47,7 @@ class TestRecurringBilling(TestCase):
                 quantity=1,
                 unit_price=price,
                 line_item_price=price,
-                expire_date=datetime.datetime.now() + datetime.timedelta(days=expire_days),
+                expire_date=datetime.datetime.now() + datetime.timedelta(days=expire_length),
                 completed=True
             )
             order.recalculate_total()
@@ -60,21 +60,21 @@ class TestRecurringBilling(TestCase):
     def testProductType(self):
         product1 = Product.objects.get(slug='membership-p1')
         product2 = Product.objects.get(slug='membership-p2')
-        self.assertEqual(product1.subscriptionproduct.expire_days, 21)
+        self.assertEqual(product1.subscriptionproduct.expire_length, 21)
         self.assertEqual(product1.subscriptionproduct.recurring, True)
         self.assertEqual(product1.subscriptionproduct.recurring, True)
         self.assertEqual(product1.price_set.all()[0].price, Decimal('3.95'))
-        self.assertEqual(product2.subscriptionproduct.get_trial_terms(0).expire_days, 7)
+        self.assertEqual(product2.subscriptionproduct.get_trial_terms(0).expire_length, 7)
 
     def testCheckout(self):
        pass 
         
     def testCronRebill(self):
         for order in OrderItem.objects.all():
-            price, expire_days = self.getTerms(order.product)
+            price, expire_length = self.getTerms(order.product)
             if price is None:
                 continue
-            self.assertEqual(order.expire_date, datetime.date.today() + datetime.timedelta(days=expire_days))
+            self.assertEqual(order.expire_date, datetime.date.today() + datetime.timedelta(days=expire_length))
             #set expire date to today for upcoming cron test
             order.expire_date = datetime.date.today()
             order.save()
@@ -91,21 +91,21 @@ class TestRecurringBilling(TestCase):
         self.assert_(order_count < OrderItem.objects.count())
         self.assertEqual(order_count, OrderItem.objects.count()/2.0)
         for order in OrderItem.objects.filter(expire_date__gt=datetime.datetime.now()):
-            price, expire_days = self.getTerms(order.product, ignore_trial=True)
+            price, expire_length = self.getTerms(order.product, ignore_trial=True)
             if price is None:
                 continue
-            self.assertEqual(order.expire_date, datetime.date.today() + datetime.timedelta(days=expire_days))
+            self.assertEqual(order.expire_date, datetime.date.today() + datetime.timedelta(days=expire_length))
             self.assertEqual(order.order.balance, Decimal('0.00'))
         
     def getTerms(self, object, ignore_trial=False):
         if object.subscriptionproduct.get_trial_terms().count() and ignore_trial is False:
             price = object.subscriptionproduct.get_trial_terms(0).price
-            expire_days = object.subscriptionproduct.get_trial_terms(0).expire_days
-            return price, expire_days
+            expire_length = object.subscriptionproduct.get_trial_terms(0).expire_length
+            return price, expire_length
         elif object.is_subscription or ignore_trial is True:
             price = object.price_set.all()[0].price
-            expire_days = object.subscriptionproduct.expire_days
-            return price, expire_days
+            expire_length = object.subscriptionproduct.expire_length
+            return price, expire_length
         else:
             return None, None #it's not a recurring object so no test will be done
 

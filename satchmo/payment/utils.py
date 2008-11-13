@@ -14,7 +14,6 @@ log = logging.getLogger('payment.utils')
 
 NOTSET = object()
 
-
 def create_pending_payment(order, config, amount=NOTSET):
     """Create a placeholder payment entry for the order.  
     This is done by step 2 of the payment process."""
@@ -138,21 +137,25 @@ def update_orderitem_for_subscription(new_order_item, item):
     """Update orderitem subscription details, if any.
     """
     #if product is recurring, set subscription end
-    #if item.product.expire_days:
-    if item.product.is_subscription and item.product.subscriptionproduct.expire_days:
-        new_order_item.expire_date = datetime.now() + timedelta(days=item.product.subscriptionproduct.expire_days)
+    #if item.product.expire_length:
+    if item.product.is_subscription:
+        subscription = item.product.subscriptionproduct
+        if subscription.expire_length:
+            new_order_item.expire_date = subscription.calc_expire_date()
+    else:
+        subscription = None
 
     #if product has trial price, set it here and update expire_date with trial period.
     trial = None
 
-    if item.product.is_subscription:
-        trial = item.product.subscriptionproduct.get_trial_terms()
+    if subscription:
+        trial = subscription.get_trial_terms()
 
     if trial:
         trial1 = trial[0]
         new_order_item.unit_price = trial1.price
         new_order_item.line_item_price = new_order_item.quantity * new_order_item.unit_price
-        new_order_item.expire_date = datetime.now() + timedelta(days=trial1.expire_days)
+        new_order_item.expire_date = trial1.calc_expire_date()
 
     new_order_item.save()
 
