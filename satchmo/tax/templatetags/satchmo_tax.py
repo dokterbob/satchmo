@@ -83,7 +83,7 @@ class CartTaxedTotalNode(template.Node):
         try:
             cart = template.resolve_variable(self.cart, context)
         except template.VariableDoesNotExist:
-            raise tempalte.TemplateSyntaxError("No such variable: %s", self.cart)
+            raise template.TemplateSyntaxError("No such variable: %s", self.cart)
 
         total = Decimal('0.00')
         for item in cart:
