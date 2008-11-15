@@ -177,10 +177,10 @@ class ProductImportForm(forms.Form):
     def import_from(self, infile, maxsize=10000000):
         errors = []
         results = []
-        
-        filetype = infile['content-type']   
-        filename = infile['filename']  
-        raw = infile['content']
+
+        filetype = infile.content_type
+        filename = infile.name 
+        raw = infile.read()
         
         # filelen = len(raw)
         # if filelen > maxsize:
@@ -242,12 +242,11 @@ class ProductImportForm(forms.Form):
         
         else:
             raw = StringIO(str(raw))
-            
+
         if not format in serializers.get_serializer_formats():
             errors.append(_('Unknown file format: %s') % format)
             
         if not errors:
-            serializer = serializers.get_serializer(format)
             
             from django.db import connection, transaction
             
@@ -256,10 +255,11 @@ class ProductImportForm(forms.Form):
             transaction.managed(True)
         
             try:
-                objects = serializers.deserialize(format, raw)
+
                 ct = 0
                 models = set()
-                for obj in objects:
+
+                for obj in serializers.deserialize(format, raw):
                     obj.save()
                     models.add(obj.object.__class__)
                     ct += 1
@@ -542,4 +542,3 @@ def _get_options_for_key(key, optiondict):
         except KeyError:
             log.warn('Could not find option for group id=%s, option id=%s', grpid, optid)
     return opts
-    
