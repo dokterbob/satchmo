@@ -22,7 +22,7 @@ class EmailBackend(ModelBackend):
             user = User.objects.filter(email=username)
             if user.count() > 0:
                 user = user[0]
-            if user.check_password(password):
-                return user
+                if user.check_password(password):
+                    return user
         return None
             
