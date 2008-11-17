@@ -1,5 +1,5 @@
 """
-Handle a cash-on-delivery payment.
+Handle a Purchase Order payments.
 """
 from django.utils.translation import ugettext as _
 from satchmo.payment.utils import record_payment
