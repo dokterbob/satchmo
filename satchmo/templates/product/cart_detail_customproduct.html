@@ -1,0 +1,17 @@
+{% if is_custom %}{% with cartitem.product.customproduct as custom %}
+{% load i18n satchmo_currency %}
+<tr>
+    <td>&nbsp;</td>
+    <td colspan="2">
+        {% ifnotequal custom.discount 100 %}
+            {% trans 'Base Price: ' %}{{ custom.full_price|currency }}<br/>
+            <i>{% trans 'price at right is your deposit, you will receive a bill for the remainder when your item is ready.' %}</i><br/>
+        {% endifnotequal %}
+        {% for detail in cartitem.details.all %}
+            {% if not forloop.first %}<br />{% endif %}
+            {{ detail.name }}: {{ detail.value }} {% if detail.price_change %} {{ detail.price_change|currency}} {% endif %}
+        {% endfor %}
+    </td>
+    <td>&nbsp;</td>
+</tr>
+{% endwith %}{% endif %}

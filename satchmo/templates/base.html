@@ -64,9 +64,9 @@
 	    {% if carturl %}<a href="{{ carturl }}">{% trans "Cart" %}</a>{% endif %}
 
 	    {% if cart_count %}
-        ({{ cart_count }} - {% spaceless %}{% if shop.options.TAX.DEFAULT_VIEW_TAX.value %}
+        ({{ cart_count }}{% if cart.total %} - {% spaceless %}{% if shop.options.TAX.DEFAULT_VIEW_TAX.value %}
         {% load satchmo_tax %}{% cart_taxed_total cart 1 %}{% else %}{{ cart.total|currency }}
-        {% endif %}){% endspaceless %}<br/>
+        {% endif %}{% endspaceless %}{% endif %})<br/>
 		{% url satchmo_checkout-step1 as checkouturl %}
         {% if checkouturl %}<a href="{{ checkouturl }}">{% trans "Check out" %}</a>{% endif %}
 	    {% endif %}

@@ -472,7 +472,7 @@ class ProductManager(models.Manager):
         
         site = site.id
 
-        log.debug("by_site: site=%s", site)
+        #log.debug("by_site: site=%s", site)
         if not variations:
             kwargs['productvariation__parent__isnull'] = True
         return self.filter(site__id__exact=site, **kwargs)
@@ -1232,7 +1232,7 @@ class SubscriptionProduct(models.Model):
     product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
     recurring = models.BooleanField(_("Recurring Billing"), help_text=_("Customer will be charged the regular product price on a periodic basis."), default=False)
     recurring_times = models.IntegerField(_("Recurring Times"), help_text=_("Number of payments which will occur at the regular rate.  (optional)"), null=True, blank=True)
-    expire_length = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle (days)"), null=True, blank=True)
+    expire_length = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle"), null=True, blank=True)
     SUBSCRIPTION_UNITS = (
         ('DAY', _('Days')),
         ('MONTH', _('Months'))
@@ -1252,6 +1252,44 @@ class SubscriptionProduct(models.Model):
 
     def __unicode__(self):
         return self.product.slug
+
+    def _get_fullPrice(self):
+        """
+        returns price as a Decimal
+        """
+        return self.get_qty_price(1)
+
+    unit_price = property(_get_fullPrice)
+
+    def get_qty_price(self, qty, show_trial=True):
+        """
+        If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
+        the specified qty.  Otherwise, return the unit_price
+        returns price as a Decimal
+        
+        Note: If a subscription has a trial, then we'll return the first trial price, otherwise the checkout won't
+        balance and it will look like there are items to be paid on the order.
+        """
+        if show_trial:
+            trial = self.get_trial_terms(0)
+        else:
+            trial = None
+            
+        if trial:
+            price = trial.price * qty
+        else:
+            price = get_product_quantity_price(self.product, qty)
+            if not price and qty == 1:      # Prevent a recursive loop.
+                price = Decimal("0.00")
+            elif not price:      
+                price = self.product._get_fullPrice()
+        return price
+
+    def recurring_price(self):
+        """
+        Get the non-trial price.
+        """
+        return self.get_qty_price(1, show_trial=False)
 
     # use order_success() and DownloadableProduct.create_key() to add user to group and perform other tasks
     def get_trial_terms(self, trial=None):

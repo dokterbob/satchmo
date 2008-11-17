@@ -1,9 +1,9 @@
 {% extends "base_satchmo.html" %}
 {% load i18n %}
+{% load satchmo_cart %}
 {% load satchmo_currency %}
 {% load satchmo_util %}
 {% load satchmo_product %}
-{% if default_view_tax %}{% load satchmo_tax %}{% endif %}
 
 {% block navbar %}
     <li class="first"><a href="{{shop_base}}/">{% trans "Home" %}</a></li>
@@ -40,27 +40,13 @@
                 </form>
             </td>
             <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>
-            <td align="center">{% if default_view_tax %}{% cartitem_line_taxed_total cartitem 1 %}{% else %}{{ cartitem.line_total|currency }}{% endif %}</td>
+            <td align="center">{% cartitem_total cartitem default_view_tax %}</td>
         </tr>
-        {% if cartitem.product|is_producttype:"CustomProduct" %}{% with cartitem.product.customproduct as custom %}
-        <tr>
-            <td>&nbsp;</td>
-            <td colspan="2">
-                {% ifnotequal custom.discount 100 %}
-                    {% trans 'Base Price: ' %}{{ custom.full_price|currency }}<br/>
-                    <i>{% trans 'price at right is your deposit, you will receive a bill for the remainder when your item is ready.' %}</i><br/>
-                {% endifnotequal %}
-                {% for detail in cartitem.details.all %}
-                    {% if not forloop.first %}<br />{% endif %}
-                    {{ detail.name }}: {{ detail.value }} {% if detail.price_change %} {{ detail.price_change|currency}} {% endif %}
-                {% endfor %}
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        {% endwith %}{% endif %}
+		{% cartitem_custom_details cartitem %}
+		{% cartitem_subscription_details cartitem %}
     {% endfor %}
     <tr><td colspan="3" align="right">{% trans "Cart Total" %}:</td>
-        <td>{% if default_view_tax %}{% cart_taxed_total cart 1 %}{% else %}{{cart.total|currency}}{% endif %}</td></tr>
+        <td>{% cart_total cart default_view_tax %}</td></tr>
     </table>
     {% if sale %}
 	{% include "discount/some_eligible.html" %}

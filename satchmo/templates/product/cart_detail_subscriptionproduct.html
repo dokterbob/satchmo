@@ -1,0 +1,18 @@
+{% if is_subscription %}{% with cartitem.product.subscriptionproduct as subscription %}
+{% load i18n satchmo_currency %}
+<tr>
+    <td>&nbsp;</td>
+    <td colspan="2">
+		{% with cartitem.product.get_absolute_url as url %}{% if subscription.trial_set.count %}
+			{% with subscription.get_trial_terms.0 as trial %}{% if trial.price %}
+				{% blocktrans %}This is the trial price to be charged today, see <a href="{{ url }}">the product description</a> for full pricing details.{% endblocktrans %}
+			{% else %}
+				{% blocktrans %}Free trial, see <a href="{{ url }}">the product description</a> for full pricing details.{% endblocktrans %}
+			{% endif %}{% endwith %}
+		{% else %}
+			{% blocktrans %}For full pricing details, see <a href="{{ url }}">the product description</a>.{% endblocktrans %}
+		{% endif %}{% endwith %}
+    </td>
+    <td>&nbsp;</td>
+</tr>
+{% endwith %}{% endif %}
