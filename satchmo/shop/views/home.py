@@ -10,6 +10,8 @@ def home(request, template="base_index.html"):
     
     if request.method == "GET":
         currpage = request.GET.get('page', 1)
+    else:
+        currpage = 1
         
     featured = display_featured()
     
