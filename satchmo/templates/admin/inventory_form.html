@@ -47,11 +47,11 @@ tr.ConfigurableProduct {
         if (v == '0') {
             dest = dest + '__';
             var id = '#' + elt.id.replace(/qty__/, dest);
-            console.log('disabling: ' + id);
+            //console.log('disabling: ' + id);
             $(id)[0].checked = false;
         }
         else {
-            console.log("not disabling " + elt.id + " = " + v);
+            //console.log("not disabling " + elt.id + " = " + v);
         }
     }
     </script>

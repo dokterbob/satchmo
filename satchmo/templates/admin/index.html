@@ -30,9 +30,9 @@ satchmo.setup_toggle = function(elt) {
 }
 
 satchmo.toggle_module = function(elt) {
-	console.log('toggle: ' + elt);
+	//console.log('toggle: ' + elt);
 	var pid = $(elt).parent().attr('id');
-	console.log('pid: ' + pid);
+	//console.log('pid: ' + pid);
 	var content = $('#' + pid + ' .module-content');
 	var span = $('#' + pid + ' h2 .status');
 	if (satchmo.module_status[pid]) {

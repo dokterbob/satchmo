@@ -1335,7 +1335,7 @@ class Trial(models.Model):
         
     def _occurrences(self):
         if self.expire_length:
-            return int(self.expire_length/subscription.expire_length)
+            return int(self.expire_length/self.subscription.expire_length)
         else:
             return 0
     occurrences = property(fget=_occurrences)
@@ -1344,7 +1344,7 @@ class Trial(models.Model):
         if date is None:
             date = datetime.datetime.now()
         if self.subscription.expire_unit == "DAY":
-            expiredate = date + timedelta(days=self.expire_length)
+            expiredate = date + datetime.timedelta(days=self.expire_length)
         else:
             expiredate = add_month(date, n=self.expire_length)
         

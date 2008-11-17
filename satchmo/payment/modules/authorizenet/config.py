@@ -42,9 +42,15 @@ for test transactions if you do not have a cpdev or cnpdev.
     BooleanValue(PAYMENT_GROUP, 
         'LIVE', 
         description=_("Accept real payments"),
-        help_text=_("False if you want to be in test mode"),
+        help_text=_("False if you want to submit to the test urls."),
         default=False),
-    
+
+    BooleanValue(PAYMENT_GROUP, 
+        'SIMULATE', 
+        description=_("Force a test post?"),
+        help_text=_("True if you want to submit to the live url using a test flag, which won't be accepted."),
+        default=False),
+
     ModuleValue(PAYMENT_GROUP,
         'MODULE',
         description=_('Implementation module'),
@@ -93,6 +99,13 @@ for test transactions if you do not have a cpdev or cnpdev.
         description=_('Capture Payment?'),
         default=True,
         help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.')),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
+        
 )
 
 ARB_ENABLED = config_register(    

@@ -22,6 +22,25 @@ class BasePaymentProcessor(object):
     def can_recur_bill(self):
         return True
     
+    def get_recurring_orderitems(self):
+        """Iterate through the order and get all recurring billing items"""
+        subscriptions = []
+        for orderitem in self.order.orderitem_set.all():
+            product = orderitem.product
+            if product.is_subscription:
+                self.log_extra('Found subscription product: %s', product.slug)
+                if product.subscriptionproduct.recurring:
+                    self.log_extra('Subscription is recurring: %s', product.slug)
+                    subscriptions.append(orderitem)
+                elif product.subscriptionproduct.trial_set.count() > 0:
+                    self.log_extra('Not recurring, but it has a trial: %s', product.slug)
+                    subscriptions.append(orderitem)
+                else:
+                    self.log_extra('Not a recurring product: %s ', product.slug)
+            else:
+                self.log_extra('Not a subscription product: %s', product.slug)
+        return subscriptions
+    
     def is_live(self):
         return self.settings.LIVE.value
     

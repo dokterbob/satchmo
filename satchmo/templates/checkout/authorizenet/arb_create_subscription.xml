@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ARBCreateSubscriptionRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+	<merchantAuthentication>
+		<name>{{ config.merchantID }}</name>
+		<transactionKey>{{ config.transactionKey }}</transactionKey>
+	</merchantAuthentication>
+	<refId>{{ subscription.id }}</refId>
+	<subscription>
+		<name>{{ product.translated_name }}</name>
+		<paymentSchedule>
+			<interval>
+				<length>{{ product.subscriptionproduct.expire_length }}</length>
+				<unit>{% ifequal product.subscriptionproduct.expire_unit "DAY" %}days{% else %}months{% endifequal %}</unit>
+			</interval>
+			<startDate>{% now "Y-m-d" %}</startDate>
+			<totalOccurrences>{{ occurrences }}</totalOccurrences>{% if trial %}
+			<trialOccurrences>{{ trial_occurrences }}</trialOccurrences>{% endif %}
+		</paymentSchedule>
+		<amount>{{ amount }}</amount>{% if trial %}
+		<trialAmount>{{ trial_amount }}</trialAmount>{% endif %}
+		<payment>
+			<creditCard>
+				<cardNumber>{% if redact %}REDACTED{% else %}{{ order.credit_card.decryptedCC }}{% endif %}</cardNumber>
+				<expirationDate>{{ card_expiration }}</expirationDate>
+			</creditCard>
+		</payment>
+		<order>
+			<invoiceNumber>{{ order.id }}</invoiceNumber>
+			<description>{{ config.shop_name }} subscription for {{ subscription.product.translated_name }}</description>
+		</order>
+		<customer>
+			<id>{{ order.contact.id }}</id>
+			<email>{{ order.contact.email }}</email>
+			<phoneNumber>{{ order.contact.primary_phone.phone }}</phoneNumber>
+		</customer>
+		<billTo>
+			<firstName>{{ order.contact.first_name }}</firstName>
+			<lastName>{{ order.contact.last_name }}</lastName>
+		</billTo>
+	</subscription>
+</ARBCreateSubscriptionRequest>
