@@ -7,7 +7,7 @@ from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product import signals
-from satchmo.product.models import Category, Product, ConfigurableProduct
+from satchmo.product.models import Category, Product, ConfigurableProduct, sorted_tuple
 from satchmo.product.signals import index_prerender
 from satchmo.product.utils import get_tax
 from satchmo.shop.views.utils import bad_or_missing
@@ -16,11 +16,6 @@ from satchmo.utils.json import json_encode
 import datetime
 import logging
 import random
-
-try:
-    set
-except NameError:
-    from sets import Set as set     # Python 2.3 fallback.
     
 log = logging.getLogger('product.views')
 
@@ -37,14 +32,14 @@ def find_product_template(product, producttypes=None):
     templates.append('base_product.html')
     return select_template(templates)
     
-def optionset_from_post(configurableproduct, POST):
+def optionids_from_post(configurableproduct, POST):
     """Reads through the POST dictionary and tries to match keys to possible `OptionGroup` ids
     from the passed `ConfigurableProduct`"""
-    chosen_options = set()
+    chosen_options = []
     for opt_grp in configurableproduct.option_group.all():
         if POST.has_key(str(opt_grp.id)):
-            chosen_options.add('%s-%s' % (opt_grp.id, POST[str(opt_grp.id)]))
-    return chosen_options
+            chosen_options.append('%s-%s' % (opt_grp.id, POST[str(opt_grp.id)]))
+    return sorted_tuple(chosen_options)
 
 # ---- Views ----
 def category_index(request, template="product/category_index.html", root_only=True):
@@ -111,7 +106,7 @@ def get_configurable_product_options(request, id):
     return http.HttpResponse(options, mimetype="text/html")
 
 
-def get_product(request, product_slug, selected_options=set(), 
+def get_product(request, product_slug, selected_options=(), 
     include_tax=NOTSET, default_view_tax=NOTSET):
     """Basic product view"""
     try:
@@ -178,7 +173,7 @@ def get_price(request, product_slug):
 
     if 'ConfigurableProduct' in product.get_subtypes():
         cp = product.configurableproduct
-        chosen_options = optionset_from_post(cp, request.POST)
+        chosen_options = optionids_from_post(cp, request.POST)
         pvp = cp.get_product_from_options(chosen_options)
 
         if not pvp:
@@ -220,7 +215,7 @@ def get_price_detail(request, product_slug):
 
         if 'ConfigurableProduct' in product.get_subtypes():
             cp = product.configurableproduct
-            chosen_options = optionset_from_post(cp, reqdata)
+            chosen_options = optionids_from_post(cp, reqdata)
             product = cp.get_product_from_options(chosen_options)
 
         if product:

@@ -25,7 +25,7 @@ from satchmo.shop import get_satchmo_setting
 from satchmo.shop.signals import satchmo_search
 from satchmo.tax.models import TaxClass
 from satchmo.thumbnail.field import ImageWithThumbnailField
-from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list, set_from_list, add_month
+from satchmo.utils import cross_list, normalize_dir, url_join, get_flat_list, add_month
 from satchmo.utils.unique_id import slugify
 from django.utils.encoding import smart_str
 
@@ -33,11 +33,6 @@ try:
     from decimal import Decimal
 except:
     from django.utils._decimal import Decimal
-
-try:
-    set
-except NameError:
-    from sets import Set as set  # Python 2.3 fallback
 
 log = logging.getLogger('product.models')
 
@@ -1031,12 +1026,13 @@ class ConfigurableProduct(models.Model):
 
     def get_valid_options(self):
         """
-        Returns the same output as get_all_options(), but filters out Options that this
+        Returns unique_ids from get_all_options(), but filters out Options that this
         ConfigurableProduct doesn't have a ProductVariation for.
         """
         variations = self.productvariation_set.filter(product__active='1')
         active_options = [v.unique_option_ids for v in variations]
-        return [opt for opt in get_all_options(self, ids_only=True) if set_from_list(opt) in active_options]
+        all_options = get_all_options(self, ids_only=True)
+        return [opt for opt in all_options if self._unique_ids_from_options(opt) in active_options]
 
     def create_all_variations(self):
         """
@@ -1107,25 +1103,26 @@ class ConfigurableProduct(models.Model):
 
         return variant
 
-    def _ensure_option_set(self, options):
+    def _unique_ids_from_options(self, options):
         """
-        Takes an iterable of Options (or str(Option)) and outputs a Set of
-        str(Option) suitable for comparing to a productvariation.option_values
+        Takes an iterable of Options (or str(Option)) and outputs a sorted tuple of
+        option unique ids suitable for comparing to a productvariation.option_values
         """
-        if options and (not isinstance(options, set) and isinstance(options[0], Option)):
-            optionSet = set()
-            for opt in options:
-                optionSet.add(opt.unique_id)
-            return optionSet
-        else:
-            return options
+        optionlist = []
+        for opt in options:
+            if isinstance(options[0], Option):
+                opt = opt.unique_id
+            optionlist.append(opt)
+            
+        return sorted_tuple(optionlist)
 
     def get_product_from_options(self, options):
         """
-        Accepts an iterable of either Option object or str(Option) objects
+        Accepts an iterable of either Option object or a sorted tuple of
+        options ids.
         Returns the product that matches or None
         """    
-        options = self._ensure_option_set(options)
+        options = self._unique_ids_from_options(options)
         pv = None
         if hasattr(self, '_variation_cache'):
             pv =  self._variation_cache.get(options, None)
@@ -1155,6 +1152,7 @@ class ConfigurableProduct(models.Model):
         """
         from satchmo.product.utils import productvariation_details, serialize_options
 
+        selected_options = self._unique_ids_from_options(selected_options)
         context['options'] = serialize_options(self, selected_options)
         context['details'] = productvariation_details(self.product, include_tax,
             request.user)
@@ -1431,12 +1429,12 @@ class ProductVariation(models.Model):
 
     def _get_option_ids(self):
         """
-        Return a sorted list of all the valid options for this variant.
+        Return a sorted tuple of all the valid options for this variant.
         """
-        ret = set()
-        for v in self.options.values_list('option_group__id', 'value'):
-            ret.add(make_option_unique_id(*v))
-        return ret
+        qry = self.options.values_list('option_group__id', 'value').order_by('option_group')
+        ret = [make_option_unique_id(*v) for v in qry]
+        return sorted_tuple(ret)
+        
     unique_option_ids = property(_get_option_ids)
 
     def _get_subtype(self):
@@ -1882,6 +1880,14 @@ def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=Non
 
 def make_option_unique_id(groupid, value):
     return '%s-%s' % (str(groupid), str(value),)
+
+def sorted_tuple(lst):
+    ret = []
+    for x in lst:
+        if not x in ret:
+            ret.append(x)
+    ret.sort()
+    return tuple(ret)
 
 def split_option_unique_id(uid):
     "reverse of make_option_unique_id"

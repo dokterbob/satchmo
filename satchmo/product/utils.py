@@ -82,7 +82,7 @@ def productvariation_details(product, include_tax, user):
                 
     return details
 
-def serialize_options(product, selected_options=set()):
+def serialize_options(product, selected_options=()):
     """
     Return a list of optiongroups and options for display to the customer.
     Only returns options that are actually used by members of this product.

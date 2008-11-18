@@ -17,7 +17,7 @@ from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
 from satchmo.product.models import Product, OptionManager
-from satchmo.product.views import find_product_template, optionset_from_post
+from satchmo.product.views import find_product_template, optionids_from_post
 from satchmo.shop import CartAddProhibited
 from satchmo.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
@@ -337,7 +337,7 @@ def product_from_post(productslug, formdata):
     if 'ConfigurableProduct' in p_types:
         # This happens when productname cannot be updated by javascript.
         cp = product.configurableproduct
-        chosenOptions = optionset_from_post(cp, formdata)
+        chosenOptions = optionids_from_post(cp, formdata)
         product = cp.get_product_from_options(chosenOptions)
 
     if 'CustomProduct' in p_types:
@@ -353,7 +353,7 @@ def product_from_post(productslug, formdata):
                      'price_change': price_change }
             details.append(data)
             data = {}
-        chosenOptions = optionset_from_post(cp, formdata)
+        chosenOptions = optionids_from_post(cp, formdata)
         manager = OptionManager()
         for choice in chosenOptions:
             result = manager.from_unique_id(choice)
