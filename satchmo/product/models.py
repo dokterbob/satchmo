@@ -1080,26 +1080,29 @@ class ConfigurableProduct(models.Model):
             pv.save()
 
         else:
-            log.debug("Existing variant")
             variant = variations[0].product
+            log.debug("Existing variant: %s", variant)
             dirty = False
-            if name != variant.name:
+            if name and name != variant.name:
                 log.debug("Updating name: %s --> %s", self, name)
                 variant.name = name
                 dirty = True
-            if sku != variant.sku:
+            if sku and sku != variant.sku:
                 variant.sku = sku
                 log.debug("Updating sku: %s --> %s", self, sku)
                 dirty = True
             if slug:
                 # just in case
                 slug = slugify(slug)
-            if slug != variant.slug:
+            if slug and slug != variant.slug:
                 variant.slug = slug
                 log.debug("Updating slug: %s --> %s", self, slug)
                 dirty = True
             if dirty:
+                log.debug("Changed existing variant, saving: %s", variant)
                 variant.save()
+            else:
+                log.debug("No change to variant, skipping save: %s", variant)
 
         return variant
 
