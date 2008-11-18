@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext, Context
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from satchmo.shop import get_satchmo_setting
 from satchmo.shop.models import Config
 from socket import error as SocketError
