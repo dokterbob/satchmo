@@ -9,7 +9,7 @@ PAYMENT_MODULES.add_choice(('PAYMENT_PURCHASEORDER', _('Purchase Order')))
 log.debug('added purchase order payments')
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PURCHASEORDER', 
-    _('Payment Auto Success Module Settings'), 
+    _('Purchase Order Module Settings'), 
     requires=PAYMENT_MODULES,
     ordering = 100)
 
