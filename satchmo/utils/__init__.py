@@ -143,13 +143,7 @@ def request_is_secure(request):
         return request.META['HTTP_X_FORWARDED_SSL'] == 'on'
 
     return False
-    
-def set_from_list(lst):
-    ret = set()
-    for elt in lst:
-        ret.add(elt)
-    return ret
-        
+            
 def trunc_decimal(val, places):
     roundfmt = "0."
     if places > 1:

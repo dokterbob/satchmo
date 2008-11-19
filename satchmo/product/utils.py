@@ -144,4 +144,17 @@ def serialize_options(product, selected_options=()):
             serialized[option.option_group_id]['items'] += [option]
             option.selected = option.unique_id in selected_options
 
-    return serialized.values()
+    values = serialized.values()
+    #now go back and make sure items are sorted properly.
+    for v in values:
+        v['items'] = _sort_options(v['items'])
+
+    log.debug('Serialized Options %s: %s', product.product.slug, values)
+    return values
+
+
+def _sort_options(lst):
+    work = [(opt.sort_order, opt) for opt in lst] 
+    work.sort()
+    return zip(*work)[1]
+    
