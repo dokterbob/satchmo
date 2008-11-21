@@ -47,7 +47,7 @@ def update(request):
 
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = ExtendedContactInfoForm(shop, contact, new_data, shippable=True,
+        form = ExtendedContactInfoForm(new_data, shop=shop, contact=contact, shippable=True,
             initial=init_data)
 
         if form.is_valid():
@@ -78,7 +78,7 @@ def update(request):
                 init_data['phone'] = contact.primary_phone.phone
             
         signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
-        form = ExtendedContactInfoForm(shop, contact, shippable=True, initial=init_data)
+        form = ExtendedContactInfoForm(shop=shop, contact=contact, shippable=True, initial=init_data)
 
     init_data['form'] = form
     if shop.in_country_only:

@@ -17,6 +17,9 @@
 <h5>{% trans "Your profile" %}</h5>
 <ul class="profile">
     <li>{% trans 'Email:' %} {{ user_data.email }}</li>
+	{% if user_data.organization %}
+	<li>{% trans 'Organization:' %} {{ user_data.organization.name }}</li>
+	{% endif %}
     <li>{% trans 'Birthday:' %} {{ user_data.dob|default_if_none:"--" }}</li>
     {% if show_newsletter %}
     <li>{% trans 'Newsletter:' %} {% if newsletter %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</li>

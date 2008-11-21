@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.configuration import config_value, config_get_group, SettingNotSet, SHOP_GROUP
-from satchmo.contact.models import Contact, AddressBook, PhoneNumber
+from satchmo.contact.models import Contact, AddressBook, PhoneNumber, Organization
 from satchmo.l10n.models import Country
 from satchmo.shop.models import Config
 import datetime
@@ -21,6 +21,7 @@ class ContactInfoForm(forms.Form):
     last_name = forms.CharField(max_length=30, label=_('Last Name'))
     phone = forms.CharField(max_length=30, label=_('Phone'))
     addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
+    company = forms.CharField(max_length=50, required=False, label=_('Company'))
     street1 = forms.CharField(max_length=30, label=_('Street'))
     street2 = forms.CharField(max_length=30, required=False)
     city = forms.CharField(max_length=30, label=_('City'))
@@ -35,13 +36,23 @@ class ContactInfoForm(forms.Form):
     ship_postal_code = forms.CharField(max_length=10, required=False, label=_('ZIP code/Postcode'))
     next = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput())
 
-    def __init__(self, shop, contact, *args, **kwargs):
-        self.shippable = True
-        if kwargs.has_key('shippable'):
-            self.shippable = kwargs['shippable']
-            del(kwargs['shippable'])
+    def __init__(self, *args, **kwargs):
+        
+        if kwargs:
+            data = kwargs.copy()
+        else:
+            data = {}
+
+        shop = data.pop('shop', None)
+        contact = data.pop('contact', None)
+        self.shippable = data.pop('shippable', True)
+        
+        if not shop:
+            shop = Config.objects.get_current()            
+
+        super(ContactInfoForm, self).__init__(*args, **data)   
+
         self._billing_data_optional = config_value(SHOP_GROUP, 'BILLING_DATA_OPTIONAL')
-        super(ContactInfoForm, self).__init__(*args, **kwargs)   
         
         self._local_only = shop.in_country_only
         areas = shop.areas()
@@ -224,11 +235,11 @@ class ContactInfoForm(forms.Form):
         self._check_state(data, country)
         return data
     
-    def save(self, contact=None, update_newsletter=True):
+    def save(self, contact=None, update_newsletter=True, **kwargs):
         """Save the contact info into the database.
         Checks to see if contact exists. If not, creates a contact
         and copies in the address and phone number."""
-
+        
         if not contact:
             customer = Contact()
         else:
@@ -248,6 +259,11 @@ class ContactInfoForm(forms.Form):
             data['ship_country'] = shipcountry
         
         data['ship_country_id'] = shipcountry.id
+        
+        companyname = data.pop('company', None)
+        if companyname:
+            org = Organization.objects.by_name(companyname, create=True)            
+            customer.organization = org
         
         for field in customer.__dict__.keys():
             try:

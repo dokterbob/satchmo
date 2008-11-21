@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core import urlresolvers
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
+from satchmo.configuration import config_get_group
 from satchmo.l10n.models import Country
 from satchmo.contact import CUSTOMER_ID
 import datetime
@@ -30,7 +31,25 @@ ORGANIZATION_ROLE_CHOICES = (
     ('Supplier', _('Supplier')),
     ('Distributor', _('Distributor')),
     ('Manufacturer', _('Manufacturer')),
+    ('Customer', _('Customer')),
 )
+
+class OrganizationManager(models.Manager):
+    def by_name(self, name, create=False, role='Customer', orgtype='Company'):        
+        org = None
+        orgs = self.filter(name=name, role=role, type=orgtype)
+        if orgs.count() > 0:
+            org = orgs[0]
+            
+        if not org:
+            if not create:
+                raise Organization.DoesNotExist()
+            else:
+                log.debug('Creating organization: %s', name)
+                org = Organization(name=name, role=role, type=orgtype)
+                org.save()
+        
+        return org
 
 class Organization(models.Model):
     """
@@ -44,6 +63,8 @@ class Organization(models.Model):
     create_date = models.DateField(_("Creation Date"))
     notes = models.TextField(_("Notes"), max_length=200, blank=True, null=True)
 
+    objects = OrganizationManager()
+    
     def __unicode__(self):
         return self.name
 
