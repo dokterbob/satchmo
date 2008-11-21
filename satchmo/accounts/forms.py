@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo.accounts.mail import send_welcome_email
 from satchmo.configuration import config_value
-from satchmo.contact.models import Contact
+from satchmo.contact.forms import ContactInfoForm
+from satchmo.contact.models import AddressBook, PhoneNumber, Contact
+from satchmo.l10n.models import Country
 from satchmo.utils.unique_id import generate_id
 
 import logging
@@ -25,6 +27,10 @@ class RegistrationForm(forms.Form):
         max_length=30, required=True)
     last_name = forms.CharField(label=_('Last name'),
         max_length=30, required=True)
+
+    def __init__(self, *args, **kwargs):
+        self._saved=False
+        super(RegistrationForm, self).__init__(*args, **kwargs)
 
     newsletter = forms.BooleanField(label=_('Newsletter'),
         widget=forms.CheckboxInput(), required=False)
@@ -50,11 +56,14 @@ class RegistrationForm(forms.Form):
 
         return email
 
-    def save(self, request):
+    def save(self, request, **kwargs):
         """Create the contact and user described on the form.  Returns the
         `contact`.
         """
+        if not self._saved:
+            return self.save_contact(request)
 
+    def save_contact(self, request):
         data = self.cleaned_data
         password = data['password1']
         email = data['email']
@@ -104,5 +113,20 @@ class RegistrationForm(forms.Form):
             send_welcome_email(email, first_name, last_name)
             signals.satchmo_registration_verified.send(self, contact=contact)
 
+        self._saved = True
+
         return contact
 
+class RegistrationAddressForm(RegistrationForm, ContactInfoForm):
+    """Registration form which also requires address information."""
+    
+    def __init__(self, *args, **kwargs):
+        super(RegistrationAddressForm, self).__init__(*args, **kwargs)
+
+    def save(self, request, **kwargs):
+        contact = self.save_contact(request)
+        kwargs['contact'] = contact
+        
+        super(RegistrationAddressForm, self).save(request, **kwargs)
+                
+        return contact
