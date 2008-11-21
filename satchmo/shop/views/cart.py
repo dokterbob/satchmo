@@ -96,7 +96,7 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
         })
     return render_to_response('base_cart.html', context)
 
-def add(request, id=0):
+def add(request, id=0, redirect_to='satchmo_cart'):
     """Add an item to the cart."""
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
@@ -144,7 +144,7 @@ def add(request, id=0):
     satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, product=product, request=request, form=formdata)
     satchmo_cart_changed.send(cart, cart=cart, request=request)
 
-    url = urlresolvers.reverse('satchmo_cart')
+    url = urlresolvers.reverse(redirect_to)
     return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="json.html"):
