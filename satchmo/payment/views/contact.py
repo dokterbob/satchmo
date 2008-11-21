@@ -33,7 +33,8 @@ def contact_info(request, **kwargs):
 
     if not request.user.is_authenticated() and config_value(SHOP_GROUP, 'AUTHENTICATION_REQUIRED'):
         url = urlresolvers.reverse('satchmo_checkout_auth_required')
-        return http.HttpResponseRedirect(url)
+        thisurl = urlresolvers.reverse('satchmo_checkout-step1')
+        return http.HttpResponseRedirect(url + "?next=" + thisurl)
 
     init_data = {}
     shop = Config.objects.get_current()
@@ -53,7 +54,7 @@ def contact_info(request, **kwargs):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(shop, contact, new_data, shippable=tempCart.is_shippable, 
+        form = PaymentContactInfoForm(new_data, shop=shop, contact=contact, shippable=tempCart.is_shippable, 
             initial=init_data, cart=tempCart)
 
         if form.is_valid():
@@ -86,7 +87,13 @@ def contact_info(request, **kwargs):
         else:
             # Allow them to login from this page.
             request.session.set_test_cookie()
-        form = PaymentContactInfoForm(shop, contact, shippable=tempCart.is_shippable, initial=init_data, cart=tempCart)
+
+        form = PaymentContactInfoForm(
+            shop=shop, 
+            contact=contact, 
+            shippable=tempCart.is_shippable, 
+            initial=init_data, 
+            cart=tempCart)
 
     if shop.in_country_only:
         only_country = shop.sales_country
