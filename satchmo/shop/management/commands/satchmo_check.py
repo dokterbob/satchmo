@@ -54,6 +54,8 @@ class Command(NoArgsCommand):
             errors.append("""
             Locale is not set correctly.  Try 
             Unix: sudo locale-gen en_US  
+            If the above does not work, try
+            sudo localedef -i en_US -f ISO-8859-1 en_US
             Windows: set LANGUAGE_CODE in settings.py to LANGUAGE_CODE = 'us'
             """)
         try:
