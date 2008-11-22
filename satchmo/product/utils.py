@@ -1,6 +1,6 @@
 from satchmo.configuration import config_value
 from satchmo.l10n.utils import moneyfmt
-from satchmo.product.models import ProductVariation, Option, split_option_unique_id, ProductPriceLookup
+from satchmo.product.models import ProductVariation, Option, split_option_unique_id, ProductPriceLookup, OptionGroup
 from satchmo.shop.models import Config
 from satchmo.tax.utils import get_tax_processor
 import logging
@@ -19,7 +19,7 @@ def get_tax(user, product, quantity):
     taxer = get_taxprocessor(user)
     return taxer.by_product(product, quantity)
 
-def productvariation_details(product, include_tax, user):
+def productvariation_details(product, include_tax, user, create=False):
     """Build the product variation details, for conversion to javascript.
 
     Returns variation detail dictionary built like so:
@@ -48,7 +48,12 @@ def productvariation_details(product, include_tax, user):
 
     variations = ProductPriceLookup.objects.filter(parentid=product.id)
     if variations.count() == 0:
-        log.warning('You must run satchmo_rebuild_pricing and add it to a cron-job to run every day, or else the product details will not work for product detail pages.')
+        if create:
+            log.debug('Creating price lookup for %s', product)
+            ProductPriceLookup.objects.smart_create_for_product(product)
+            variations = ProductPriceLookup.objects.filter(parentid=product.id)
+        else:
+            log.warning('You must run satchmo_rebuild_pricing and add it to a cron-job to run every day, or else the product details will not work for product detail pages.')
     for detl in variations:
         key = detl.key
         if details.has_key(key):
@@ -109,6 +114,7 @@ def serialize_options(product, selected_options=()):
     the options white and large.
     """    
     all_options = product.get_valid_options()
+    group_sortmap = OptionGroup.objects.get_sortmap()
 
     # first get all objects
     # right now we only have a list of option.unique_ids, and there are
@@ -144,8 +150,17 @@ def serialize_options(product, selected_options=()):
             serialized[option.option_group_id]['items'] += [option]
             option.selected = option.unique_id in selected_options
 
-    values = serialized.values()
-    #now go back and make sure items are sorted properly.
+    # first sort the option groups
+    values = []
+    for k, v in serialized.items():
+        values.append((group_sortmap[k], v))
+        
+    values.sort()
+    values = zip(*values)[1]
+    
+    log.debug('serialized: %s', values)
+    
+    #now go back and make sure option items are sorted properly.
     for v in values:
         v['items'] = _sort_options(v['items'])
 

@@ -10,17 +10,13 @@
 <script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
 <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
 <script type="text/javascript" src="{{media_url}}js/satchmo_product.js"></script>
+{% blackbird_logging %}
 <script type="text/javascript">{# Javascript which is generated uniquely for each page #}
 satchmo.default_view_tax = {% if default_view_tax %}true{% else %}false{% endif %};
+
 satchmo.variations = {{ details|as_json }};
 
-satchmo.make_optionkey = function() {
-    var k = Array({{options.count}});
-    {% for option_group in options %}
-    k[{{forloop.counter0}}] = $('#{{ option_group.id }}').fieldValue()[0];
-    {% endfor %}
-    return k.join('::');
-};
+satchmo.set_option_ids([{% for option_group in options %}{{ option_group.id }}{% if not forloop.last %},{% endif %}{% endfor %}]);
 
 $(function() {
     satchmo.update_price();

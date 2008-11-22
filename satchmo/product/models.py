@@ -343,6 +343,16 @@ class CategoryImageTranslation(models.Model):
     def __unicode__(self):
         return u"CategoryImageTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.categoryimage, self.name)
 
+class OptionGroupManager(models.Manager):
+    def get_sortmap(self):
+        """Returns a dictionary mapping ids to sort order"""
+        
+        work = {}
+        for uid, order in self.values_list('id', 'sort_order'):
+            work[uid] = order
+
+        return work
+
 class OptionGroup(models.Model):
     """
     A set of options that can be applied to an item.
@@ -356,6 +366,8 @@ class OptionGroup(models.Model):
         help_text=_("Further description of this group (i.e. shirt size vs shoe size)."))
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
+
+    objects = OptionGroupManager()
 
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -1428,7 +1440,8 @@ class ProductVariation(models.Model):
     full_name = property(_get_optionName)
 
     def _optionkey(self):
-        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group')]
+        #todo: verify ordering
+        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
         return "::".join(optkeys)
     optionkey = property(fget=_optionkey)
 

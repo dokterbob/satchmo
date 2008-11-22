@@ -74,13 +74,14 @@ True
 <django.http.HttpResponse object at ...>
 """
 
+#from django.core.validators import ValidationError
 from django.conf import settings
 from django.contrib.sites.models import Site
-#from django.core.validators import ValidationError
 from django.db.models import Model
 from django.test import TestCase
 from satchmo import caching
-from satchmo.product.models import Category, ConfigurableProduct, Option, Product, Price
+from satchmo.product.models import Category, ConfigurableProduct, ProductVariation, Option, OptionGroup, Product, Price
+from satchmo.product.utils import serialize_options, productvariation_details
 from satchmo.shop import get_satchmo_setting
 
 try:
@@ -289,6 +290,47 @@ class ConfigurableProductTest(TestCase):
         self.assertEqual([variation.pk for variation in
             dj_rocks.get_variations_for_options([])],
             [6, 7, 8, 9, 10, 11, 12, 13, 14])
+
+class OptionUtilsTest(TestCase):
+    """Test the utilities used for serialization of options and selected option details."""
+    fixtures = ['products.yaml']
+    
+    def test_base_sort_order(self):
+        p = Product.objects.get(slug='dj-rocks')
+        serialized = serialize_options(p.configurableproduct)
+        self.assert_(len(serialized), 2)
+        self.assertEqual(serialized[0]['id'], 1)
+        got_vals = [opt.value for opt in serialized[0]['items']]
+        self.assertEqual(got_vals, ['S','M','L'])
+        self.assertEqual(serialized[1]['id'], 2)
+
+    def test_reordered(self):
+        p = Product.objects.get(slug='dj-rocks')
+        
+        pv = p.configurableproduct.productvariation_set.all()[0]
+        orig_key = pv.optionkey
+        orig_detl = productvariation_details(p, False, None, create=True)
+        
+        sizegroup = OptionGroup.objects.get(name="sizes")
+        sizegroup.sort_order = 100
+        sizegroup.save()
+        
+        # reverse ordering
+        for opt in sizegroup.option_set.all():
+            opt.sort_order = 100-opt.sort_order
+            opt.save()
+        
+        serialized = serialize_options(p.configurableproduct)
+        self.assert_(len(serialized), 2)
+        self.assertEqual(serialized[1]['id'], 1)
+        got_vals = [opt.value for opt in serialized[1]['items']]
+        self.assertEqual(got_vals, ['L','M','S'])
+        
+        pv2 = ProductVariation.objects.get(pk=pv.pk)
+        self.assertEqual(orig_key, pv2.optionkey)
+        reorder_detl = productvariation_details(p, False, None)
+        self.assertEqual(orig_detl, reorder_detl)
+        
 
 if __name__ == "__main__":
     import doctest

@@ -22,10 +22,32 @@ satchmo.get_current_price = function(detail, qty, taxed) {
         return ""
     }
 };
+
+satchmo.make_optionkey = function() {
+    var work = Array(satchmo.option_ids.length);
+    for (var ix=0; ix<satchmo.option_ids.length; ix++) {
+        var k = "#" + satchmo.option_ids[ix];
+        var v = $(k).fieldValue()[0];
+        work[ix] = v;
+    }
+    return work.join('::');
+};
+        
+// used for sorting numerically
+satchmo.numeric_compare = function(a, b) {
+    return a-b;
+};
+   
+satchmo.option_ids = "";
         
 // Update the product name
 satchmo.set_name = function(name) {
     $("#productname").attr('value', name);
+};
+
+satchmo.set_option_ids = function(arr) {
+    arr.sort(satchmo.numeric_compare);
+    satchmo.option_ids = arr;
 };
 
 // Update the product price
