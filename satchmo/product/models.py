@@ -1174,6 +1174,8 @@ class ConfigurableProduct(models.Model):
             self.create_all_variations()
             self.create_subs = False
             super(ConfigurableProduct, self).save(force_insert=force_insert, force_update=force_update)
+            
+        ProductPriceLookup.objects.smart_create_for_product(self.product)
 
     def get_absolute_url(self):
         return self.product.get_absolute_url()
@@ -1515,6 +1517,7 @@ class ProductVariation(models.Model):
             self.name = ""
 
         super(ProductVariation, self).save(force_insert=force_insert, force_update=force_update)
+        ProductPriceLookup.objects.smart_create_for_product(self.product)
 
     def _set_name(self, name):
         if not name:
