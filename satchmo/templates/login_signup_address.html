@@ -106,7 +106,7 @@ $(document).ready(function() {
         {% if createform.last_name.errors %}<tr><td>&nbsp;</td><td class="warn">*** {{ createform.last_name.errors|join:", " }}</td></tr>{% endif %}
 
         <tr><td class="label"><label for="id_password">Password:</label></td><td class="text"> {{ createform.password1 }}</td></tr>
-        {% if createform.password.errors %}<tr><td>&nbsp;</td><td class="warn">*** {{ createform.password1.errors|join:", " }}</td></tr>{% endif %}
+        {% if createform.password1.errors %}<tr><td>&nbsp;</td><td class="warn">*** {{ createform.password1.errors|join:", " }}</td></tr>{% endif %}
 
         <tr><td class="label"><label for="id_password2">Password (again):</label></td><td class="text"> {{ createform.password2 }}</td></tr>
         {% if createform.password2.errors %}<tr><td>&nbsp;</td><td class="warn">*** {{ createform.password2.errors|join:", " }}</td></tr>{% endif %}

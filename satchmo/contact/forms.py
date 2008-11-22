@@ -236,14 +236,19 @@ class ContactInfoForm(forms.Form):
         return data
     
     def save(self, contact=None, update_newsletter=True, **kwargs):
+        return self.save_info(contact=contact, update_newsletter=update_newsletter, **kwargs)
+    
+    def save_info(self, contact=None, update_newsletter=True, **kwargs):
         """Save the contact info into the database.
         Checks to see if contact exists. If not, creates a contact
         and copies in the address and phone number."""
         
         if not contact:
             customer = Contact()
+            log.debug('creating new contact')
         else:
             customer = contact
+            log.debug('Saving contact info for %s', contact)
 
         data = self.cleaned_data.copy()
 

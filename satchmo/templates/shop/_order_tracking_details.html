@@ -46,7 +46,3 @@
 {{ order.ship_country }}<br/>
 {% endif %}
 </div>
-{% if "giftcertificate"|app_enabled %}
-{% load satchmo_giftcertificate %}
-{% giftcertificate_order_summary order %}
-{% endif %}

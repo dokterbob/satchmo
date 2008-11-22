@@ -12,7 +12,7 @@ from satchmo.utils.unique_id import generate_id
 import logging
 import signals
 
-log = logging.getLogger('newsletter.forms')
+log = logging.getLogger('accounts.forms')
 
 class RegistrationForm(forms.Form):
     """The basic account registration form."""
@@ -29,7 +29,7 @@ class RegistrationForm(forms.Form):
         max_length=30, required=True)
 
     def __init__(self, *args, **kwargs):
-        self._saved=False
+        self.contact = None
         super(RegistrationForm, self).__init__(*args, **kwargs)
 
     newsletter = forms.BooleanField(label=_('Newsletter'),
@@ -56,14 +56,18 @@ class RegistrationForm(forms.Form):
 
         return email
 
-    def save(self, request, **kwargs):
+    def save(self, request=None, **kwargs):
         """Create the contact and user described on the form.  Returns the
         `contact`.
         """
-        if not self._saved:
-            return self.save_contact(request)
+        if self.contact:
+            log.debug('skipping save, already done')
+        else:
+            self.save_contact(request)
+        return self.contact
 
     def save_contact(self, request):
+        log.debug("Saving contact")
         data = self.cleaned_data
         password = data['password1']
         email = data['email']
@@ -113,7 +117,7 @@ class RegistrationForm(forms.Form):
             send_welcome_email(email, first_name, last_name)
             signals.satchmo_registration_verified.send(self, contact=contact)
 
-        self._saved = True
+        self.contact = contact
 
         return contact
 
@@ -123,10 +127,11 @@ class RegistrationAddressForm(RegistrationForm, ContactInfoForm):
     def __init__(self, *args, **kwargs):
         super(RegistrationAddressForm, self).__init__(*args, **kwargs)
 
-    def save(self, request, **kwargs):
+    def save(self, request=None, **kwargs):
         contact = self.save_contact(request)
         kwargs['contact'] = contact
         
-        super(RegistrationAddressForm, self).save(request, **kwargs)
+        log.debug('Saving address for %s', contact)
+        self.save_info(**kwargs)
                 
         return contact
