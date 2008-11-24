@@ -23,6 +23,7 @@
 
 {% block extrastyle %}
 {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/base.css" />
 <style type="text/css">
 #content-related { float:right; width:29em; position:relative; margin-right: -30em;}
 #content-related .module h2 { cursor: default; }

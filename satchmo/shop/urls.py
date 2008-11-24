@@ -51,9 +51,3 @@ if app_enabled('wishlist'):
 urlpatterns += patterns('django.views.generic',
     (r'^contact/thankyou/$','simple.direct_to_template',{'template':'thanks.html'},'satchmo_contact_thanks'),
 )
-
-# Make sure thumbnails and images are served up properly when using the dev server.
-if getattr(settings, 'LOCAL_DEV', False):
-    urlpatterns += patterns('',
-        (r'^site_media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    )
