@@ -22,6 +22,6 @@ class OutOfStockError(CartAddProhibited):
                 'product': product.translated_name()
                 }
         
-        super(OutOfStockError, self).__init__(product, msg)
+        CartAddProhibited.__init__(self, product, msg)
         self.have = have
         self.need = need
