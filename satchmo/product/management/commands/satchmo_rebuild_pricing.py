@@ -4,12 +4,6 @@ from optparse import make_option
 from satchmo.product.models import Product, ProductPriceLookup
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option('--verbosity', action='store', dest='verbosity', default='1',
-            type='choice', choices=['0', '1', '2'],
-            help='Verbosity level; 0=minimal output, 1=normal output, 2=all output'),
-    )
-
     help = "Builds Satcho Product pricing lookup tables."
     args = ['sitename...']
 
