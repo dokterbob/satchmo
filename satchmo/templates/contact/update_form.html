@@ -58,7 +58,7 @@ $(document).ready(function() {
     <tr><td><label for="id_last_name">{% trans "Last name" %}*</label></td><td> {{ form.last_name }}</td></tr>
     {% if form.last_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.last_name.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_company">{% trans "Company" %}*</label></td><td> {{ form.company }}</td></tr>
+    <tr><td><label for="id_company">{% trans "Company" %}</label></td><td> {{ form.company }}</td></tr>
     {% if form.company.errors %}<tr><td>&nbsp;</td><td>*** {{ form.company.errors|join:", " }}</td></tr>{% endif %}
 
 
