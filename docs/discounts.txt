@@ -78,7 +78,7 @@ Automatic discounts are how you do store wide sales.
 
 2. Make an "automatic" discount, so that it is available to the automatic discount template tags. Do not enter a new price in the admin for the products.
 
-3. In the template where you want to show the auto discount, load the ``{% satchmo_discount %}`` (Visit `Satchmo Templates`_ documentation for details on Satchmo filters) filter library.
+3. In the template where you want to show the auto discount, load the ``{% satchmo_discounts %}`` (Visit `Satchmo Templates`_ documentation for details on Satchmo filters) filter library.
 
 4. You can now add some markup to your template, similar to below::
 
