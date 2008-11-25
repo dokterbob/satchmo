@@ -343,6 +343,7 @@ def load_US_tax_table():
         stateTax.save()        
     
 if __name__ == '__main__': 
+    print "NOTE - This script has been deprecated. Please use the appropriate manage.py commands instead."
     response_erase_all = string.lower(raw_input("Type 'yes' to erase ALL data and reinstall ALL models: "))
     if response_erase_all == 'yes':
         eraseDB(all=True)

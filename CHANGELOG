@@ -2,8 +2,8 @@
 Satchmo Change Log
 ==================
 
-Trunk
------
+Version 0.8, November 25, 2008
+-----------------------------
  * Add USPS shipping module
  * Converted to using newforms admin
  * Made country validation of post code and territories/states more robust
@@ -36,6 +36,11 @@ Trunk
  * New Fedex shipping module
  * New configuration option to force login for checkout
  * Refactored base template layout to be more extensible
+ * Refactored the login and signup code to make it more extensible
+ * Improved performance of price lookups
+ * Recurring billing support for Authorize.net
+ * New Purchase Order payment module
+ 
 
 
 Version 0.7, May 26, 2008
