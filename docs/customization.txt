@@ -38,12 +38,9 @@ elements are accessible via css or template changes. Before making any template
 changes, it would be useful to understand Django templates in general.  
 The `Django Template Author Guide`_ is the best place to start.
 
-Once you are ready to make template changes, the best option is to copy the 
-entire templates directory (and its contents) to a new location::
-
-    cp -rp /path/to/satchmo/templates /my/new/templates
-
-
+Once you are ready to make template changes, the best option is to copy any of the
+templates that you wish to overried to a new location.
+ 
 Next, modify settings.py to point to your new templates directory::
 
     TEMPLATE_DIRS = (
@@ -52,7 +49,7 @@ Next, modify settings.py to point to your new templates directory::
         "/my/new/templates",)
 
 
-Now, go ahead and make all the changes to your templates.  Don't forget, this is
+Now, make the changes to the templates that you have to.  Don't forget, this is
 also the place where you can change the email messages sent to users as well as
 the pdf documents created by the admin interface.  The amount of power and flexibility
 here is much higher than just about any "shopping cart" application out there!

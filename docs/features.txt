@@ -76,6 +76,7 @@ Satchmo includes extensive Internationalization and translation support:
         - Korean
         - Hebrew
         - Turkish
+        
     - Full country specific information
     - Translation support for all products and categories
     - Support for date and currency formating based on locale

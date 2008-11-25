@@ -48,6 +48,7 @@ Modifying A Store
    custom-product
    translation
    templates
+   signals
 
 Optional Modules
 ================

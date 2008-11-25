@@ -1,49 +1,13 @@
 Satchmo Migrations and Upgrades
 ===============================
 
-This guide is intended to outline the steps required to migrate an existing Satchmo shop to a newer version.  These steps will work for most stock stores but if you have made significant changes to the models, you will be required to incorporate those changes into this guide.  The latest list of backwards incompatible changes can always be found here-
+The latest list of backwards incompatible changes can always be found here-
 http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChanges
 
-The ideal way to migrate would be to dump all of your existing store data, remove all of your old tables, synch the new models and reload the data.  If this process is not practical, then follow the individual steps outlined below.
+The ideal way to migrate would be to dump all of your existing store data, remove all of your old tables, synch the new models and reload the data.  
+If this process is not practical, then follow the individual steps outlined below.
 
-Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration on a test server before attempting on a production server.
+Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration 
+on a test server before attempting on a production server.
 
-Version 0.5 -> 0.6
-------------------
-
-Model Changes
-+++++++++++++
-
-Several changes have been made to the underlying models.  The following sql statements will need to be executed in order to ensure your tables are in synch with this version.
-
- - Add the enable_ratings field::
-
-        alter table shop_config add enable_ratings tinyint(1) default '1';
-
- - Add a new product ordering field::
-
-        alter table product_product add ordering int(11) default '0';
-
- - Increased the size of the fields in the state tables::
-
-        ALTER TABLE `contact_addressbook` CHANGE `state` `state` VARCHAR( 50 )
-        ALTER TABLE `contact_order` CHANGE `bill_state` `bill_state` VARCHAR( 50 )
-        ALTER TABLE `contact_order` CHANGE `ship_state` `ship_state` VARCHAR( 50 )
-
- - Addition of new l10n models to replace the i18n models.  Ensure satchmo.l10n is added to your settings and execute syncdb.
-
-Additional Dependencies
-+++++++++++++++++++++++
-
-`Comment utils`_ is now required to add product comments.  Follow the instructions on its site to download and install it.
-
-Other Changes
-+++++++++++++
-
-As mentioned earlier in this document, the old satchmo i18n models have been deprecated.  New l10n models are now used to store country related information.  You must ensure that your settings are updated to include satchmo.l10n.
-
-The new configuration model requires that a cache back end be installed.  Memcached, file or DB are acceptable options.
-
-Other changes have been made to the way credit card payment charges are captured.
-
-.. _Comment utils: http://code.google.com/p/django-comment-utils/
+We hope to add a more automated migration feature in future versions of Satchmo.

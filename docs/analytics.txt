@@ -13,16 +13,7 @@ support for using `Google Analytics`_.
 
 In order to use Google analytics, you must have an analytics id, which you can get
 for free for registering with Google.  Once you get this tracking code, you must 
-enable it in the store.
-
-*Note:* After [758], you use the Site Settings page to enter your Google information.
-Ignore the part below about your local_settings.py file.
-
-make 2 changes to your local_settings.py file::
-
-    GOOGLE_ANALYTICS = True
-    # If google is enabled, enter the full google code here - Example "UA-abcd-1"
-    GOOGLE_ANALYTICS_CODE = "UA-xxxx-x"
+enable it in the store by modifying the Site Setting to include the google code.
 
 Now, all of your pages will be tracked via google analytics.  Satchmo also includes
 the additional ecommerce tracking codes so that purchases from your store can be

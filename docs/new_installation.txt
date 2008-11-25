@@ -9,7 +9,7 @@ This guide assumes you are working on a unix variant and that you are installing
 you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
 
 .. warning::
-   You must have Django 1.0 properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
+   You must have Django 1.0.x properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
    
 The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
 one simple method to install the dependencies. You may manually install them if you wish.
@@ -28,8 +28,7 @@ Installing Dependencies
         easy_install PyYAML
         
 .. warning::
-	Not all dependencies are available via ``easy_install``. ``comment_utils`` is required but you will have to manually download and install (this is also very easy to do) into your $PYTHONPATH.
-	For download and installation instructions, see the `Django Comment Utils`_ page.
+	Not all dependencies are available via ``easy_install``.
 
 3. Install Python Imaging Library. There are multiple options for installing this application. Please use 1 of the options below::
     
@@ -62,7 +61,7 @@ Installing Satchmo into your path
 
 2. Checkout the latest Satchmo svn release into (/home/user/src) ::
 
-        svn co svn://satchmoproject.com/satchmo/trunk/ satchmo-trunk
+        svn co svn://satchmoproject.com/satchmo/tags/0.8 satchmo-rel
 
 3. Install satchmo into your site-packages directory::
 

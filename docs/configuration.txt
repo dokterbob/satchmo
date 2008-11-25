@@ -77,6 +77,9 @@ Each payment module will have it's own configuration items. These items apply un
 .. Note::
     If you add a new payment module, you will need to save the changes in order for the new payment module configuration items to appear.
     
+.. Note::
+    After saving changes to your payment processor, you will need to restart your server for the changes to take effect.
+        
 .. index::
    single: Product types; enabling
 

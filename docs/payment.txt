@@ -56,3 +56,9 @@ More details needed here.
 Google Checkout
 ---------------
 More details needed here.
+
+.. index:: Protx
+
+Protx
+-----
+This processor is included in the default Satchmo store.
