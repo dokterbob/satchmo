@@ -61,7 +61,7 @@ Installing Satchmo into your path
 
 2. Checkout the latest Satchmo svn release into (/home/user/src) ::
 
-        svn co svn://satchmoproject.com/satchmo/tags/0.8 satchmo-rel
+        svn co svn://satchmoproject.com/satchmo/trunk satchmo-trunk
 
 3. Install satchmo into your site-packages directory::
 
