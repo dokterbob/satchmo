@@ -73,7 +73,7 @@ class RegistrationForm(forms.Form):
         email = data['email']
         first_name = data['first_name']
         last_name = data['last_name']
-        username = generate_id(first_name, last_name)
+        username = generate_id(first_name, last_name, email)
 
         verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 
