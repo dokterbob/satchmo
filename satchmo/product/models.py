@@ -468,7 +468,9 @@ class OptionTranslation(models.Model):
 class ProductManager(models.Manager):
     
     def active(self, variations=True, **kwargs):
-        return self.filter(active=True, variations=variations, **kwargs)
+        if not variations:
+            kwargs['productvariation__parent__isnull'] = True
+        return self.filter(active=True, **kwargs)
 
     def active_by_site(self, variations=True, **kwargs):
         return self.by_site(active=True, variations=variations, **kwargs)
