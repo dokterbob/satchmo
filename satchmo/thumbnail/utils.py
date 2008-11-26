@@ -269,7 +269,7 @@ def rename_by_field(file_path, req_name, add_path=None):
         dest_path = path
 
     if not os.path.isdir(os.path.join(media_root, dest_path)):
-        os.mkdir(os.path.join(media_root, dest_path))
+        os.makedirs(os.path.join(media_root, dest_path))
 
     dest_path = os.path.join(dest_path, new_name)
 

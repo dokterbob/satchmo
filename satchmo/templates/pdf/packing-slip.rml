@@ -126,7 +126,7 @@
 	</tr>
     {% for item in order.orderitem_set.all %}
     <tr>
-        <td><para>{{ item }}</para></td>
+        <td><para>{{ item.product.name|fix_ampersands }}</para></td>
         <td>{{ item.quantity }} </td>
     </tr>
     {% endfor %}
