@@ -177,7 +177,7 @@ class Discount(models.Model):
 
     def valid_for_product(self, product):
         """Tests if discount is valid for a single product"""
-        if not p.is_discountable:
+        if not product.is_discountable:
             return False
         p = self.validProducts.filter(id__exact = product.id)
         return p.count() > 0
