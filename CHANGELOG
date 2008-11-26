@@ -2,6 +2,11 @@
 Satchmo Change Log
 ==================
 
+Trunk
+-----
+ * Fix user name generator to handle unicode chars more robustly
+ * Fix handling of ampersands in PDF generation
+
 Version 0.8, November 25, 2008
 -----------------------------
  * Add USPS shipping module
