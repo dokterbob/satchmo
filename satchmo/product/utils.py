@@ -119,51 +119,53 @@ def serialize_options(product, selected_options=()):
     # first get all objects
     # right now we only have a list of option.unique_ids, and there are
     # probably a lot of dupes, so first list them uniquely
-    vals = {}
-    groups = {}
-    opts = {}
-    for options in all_options:
-        for option in options:
-            if not opts.has_key(option):
-                k, v = split_option_unique_id(option)
-                vals[v] = False
-                groups[k] = False
-                opts[option] = None
-        
-    for option in Option.objects.filter(option_group__id__in = groups.keys(), value__in = vals.keys()):
-        uid = option.unique_id
-        if opts.has_key(uid):
-            opts[uid] = option
-
-    # now we have all the objects in our "opts" dictionary, so build the serialization dict
-
-    serialized = {}
-
-    for option in opts.values():
-        if not serialized.has_key(option.option_group_id):
-            serialized[option.option_group.id] = {
-                'name': option.option_group.translated_name(),
-                'id': option.option_group.id,
-                'items': [],
-            }
-        if not option in serialized[option.option_group_id]['items']:
-            serialized[option.option_group_id]['items'] += [option]
-            option.selected = option.unique_id in selected_options
-
-    # first sort the option groups
     values = []
-    for k, v in serialized.items():
-        values.append((group_sortmap[k], v))
+    
+    if all_options != [[]]:
+        vals = {}
+        groups = {}
+        opts = {}
+        serialized = {}
         
-    values.sort()
-    values = zip(*values)[1]
+        for options in all_options:
+            for option in options:
+                if not opts.has_key(option):
+                    k, v = split_option_unique_id(option)
+                    vals[v] = False
+                    groups[k] = False
+                    opts[option] = None
+        
+        for option in Option.objects.filter(option_group__id__in = groups.keys(), value__in = vals.keys()):
+            uid = option.unique_id
+            if opts.has_key(uid):
+                opts[uid] = option
+
+        # now we have all the objects in our "opts" dictionary, so build the serialization dict
+
+        for option in opts.values():
+            if not serialized.has_key(option.option_group_id):
+                serialized[option.option_group.id] = {
+                    'name': option.option_group.translated_name(),
+                    'id': option.option_group.id,
+                    'items': [],
+                }
+            if not option in serialized[option.option_group_id]['items']:
+                serialized[option.option_group_id]['items'] += [option]
+                option.selected = option.unique_id in selected_options
+
+        # first sort the option groups
+        for k, v in serialized.items():
+            values.append((group_sortmap[k], v))
+        
+        values.sort()
+        values = zip(*values)[1]
+
+        #now go back and make sure option items are sorted properly.
+        for v in values:
+            v['items'] = _sort_options(v['items'])
     
     log.debug('serialized: %s', values)
     
-    #now go back and make sure option items are sorted properly.
-    for v in values:
-        v['items'] = _sort_options(v['items'])
-
     log.debug('Serialized Options %s: %s', product.product.slug, values)
     return values
 
