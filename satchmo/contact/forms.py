@@ -9,6 +9,7 @@ from satchmo.shop.models import Config
 import datetime
 import logging
 import signals
+from django.forms.extras.widgets import SelectDateWidget
 
 log = logging.getLogger('satchmo.contact.forms')
 
@@ -375,5 +376,5 @@ class DateTextInput(forms.TextInput):
 
 class ExtendedContactInfoForm(ContactInfoForm):
     """Contact form which includes birthday and newsletter."""
-    dob = forms.DateField(required=False)
+    dob = forms.DateField(widget=SelectDateWidget, required=False)
     newsletter = forms.BooleanField(label=_('Newsletter'), widget=forms.CheckboxInput(), required=False)
