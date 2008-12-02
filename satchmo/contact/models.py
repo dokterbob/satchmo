@@ -127,7 +127,7 @@ class Contact(models.Model):
         choices=CONTACT_CHOICES)
     organization = models.ForeignKey(Organization, verbose_name=_("Organization"), blank=True, null=True)
     dob = models.DateField(_("Date of birth"), blank=True, null=True)
-    email = models.EmailField(_("Email"), blank=True)
+    email = models.EmailField(_("Email"), blank=True, max_length=75)
     notes = models.TextField(_("Notes"), max_length=500, blank=True)
     create_date = models.DateField(_("Creation date"))
 

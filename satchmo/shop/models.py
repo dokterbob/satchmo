@@ -83,7 +83,7 @@ class Config(models.Model):
     site = models.OneToOneField(Site, verbose_name=_("Site"), primary_key=True)
     store_name = models.CharField(_("Store Name"),max_length=100, unique=True)
     store_description = models.TextField(_("Description"), blank=True, null=True)
-    store_email = models.EmailField(_("Email"), blank=True, null=True)
+    store_email = models.EmailField(_("Email"), blank=True, null=True, max_length=75)
     street1=models.CharField(_("Street"),max_length=50, blank=True, null=True)
     street2=models.CharField(_("Street"), max_length=50, blank=True, null=True)
     city=models.CharField(_("City"), max_length=50, blank=True, null=True)

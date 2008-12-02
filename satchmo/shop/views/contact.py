@@ -22,7 +22,7 @@ email_choices = (
 
 class ContactForm(forms.Form):
     name = forms.CharField(label=_("Name"), max_length=100)
-    sender = forms.EmailField(label=_("Email address"))
+    sender = forms.EmailField(label=_("Email address"), max_length=75)
     subject = forms.CharField(label=_("Subject"))
     inquiry = forms.ChoiceField(label=_("Inquiry"), choices=email_choices)
     contents = forms.CharField(label=_("Contents"), widget=

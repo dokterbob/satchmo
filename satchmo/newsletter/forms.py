@@ -14,7 +14,7 @@ class OptionalBoolean(forms.BooleanField):
 
 class NewsletterForm(forms.Form):
     full_name = forms.CharField(label=_('Full Name'), max_length=100, required=False)
-    email = forms.EmailField(label=_('Email address'), max_length=50, required=True)
+    email = forms.EmailField(label=_('Email address'), max_length=75, required=True)
     subscribed = OptionalBoolean(label=_('Subscribe'), required=False, initial=True)
 
     def get_contact(self):

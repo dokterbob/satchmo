@@ -18,7 +18,7 @@ class RegistrationForm(forms.Form):
     """The basic account registration form."""
     title = forms.CharField(max_length=30, label=_('Title'), required=False)
     email = forms.EmailField(label=_('Email address'),
-        max_length=30, required=True)
+        max_length=75, required=True)
     password2 = forms.CharField(label=_('Password (again)'),
         max_length=30, widget=forms.PasswordInput(), required=True)
     password1 = forms.CharField(label=_('Password'),

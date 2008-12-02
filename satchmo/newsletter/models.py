@@ -32,7 +32,7 @@ class Subscription(models.Model):
     """A newsletter subscription."""
 
     subscribed = models.BooleanField(_('Subscribed'), default=True)
-    email = models.EmailField(_('Email'))
+    email = models.EmailField(_('Email'), max_length=75)
     create_date = models.DateField(_("Creation Date"))
     update_date = models.DateField(_("Update Date"))
 

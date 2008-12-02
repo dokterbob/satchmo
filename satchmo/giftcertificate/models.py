@@ -41,7 +41,7 @@ class GiftCertificate(models.Model):
     date_added = models.DateField(_("Date added"), null=True, blank=True)
     valid = models.BooleanField(_('Valid'), default=True)
     message = models.TextField(_('Message'), blank=True)
-    recipient_email = models.EmailField(_("Email"), blank=True)
+    recipient_email = models.EmailField(_("Email"), blank=True, max_length=75)
     start_balance = models.DecimalField(_("Starting Balance"), decimal_places=2,
         max_digits=8)
 
