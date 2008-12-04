@@ -11,7 +11,7 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category %}
 {% load satchmo_ratings %}
-{% load satchmo_util %}
+{% load satchmo_util satchmo_discounts %}
 {% if "recentlist"|app_enabled %}{% load satchmo_recentlist %}{% endif %}
 
 {% block extra-head %}
@@ -50,7 +50,10 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
 {% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}:
-<h3 id="price">{% if default_view_tax %}{{ price_with_tax|currency }}{% else %}{{ product.unit_price|currency }}{% endif %}</h3>
+<h3>
+	{% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+	<span id="price">{{ product|discount_price:sale|currency }}</span>
+</h3>
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}

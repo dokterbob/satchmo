@@ -7,34 +7,24 @@ from django import template
 from satchmo.l10n.utils import moneyfmt
 from satchmo.shop.templatetags import get_filter_args
 from satchmo.tax.utils import get_tax_processor
+from threaded_multihost.threadlocals import get_thread_variable, set_thread_variable, get_current_user
 import logging
 
 log = logging.getLogger('satchmo.tax.templatetags')
 
-try:
-    from threading import local
-except ImportError:
-    log.warn('getting threadlocal support from django')
-    from django.utils._threading_local import local
-
-_threadlocals = local()
-
-def set_thread_variable(key, var):
-    setattr(_threadlocals, key, var)
-    
-def get_thread_variable(key, default):
-    return getattr(_threadlocals, key, None)
-
 register = template.Library()
 
-def _get_taxprocessor(request):
+def _get_taxprocessor(request=None):
     taxprocessor = get_thread_variable('taxer', None)
     if not taxprocessor:
-        user = request.user
-        if user.is_authenticated():
-            user = user
+        if request:            
+            user = request.user
+            if user.is_authenticated():
+                user = user
+            else:
+                user = None
         else:
-            user = None
+            user = get_current_user()
 
         taxprocessor = get_tax_processor(user=user)    
         set_thread_variable('taxer', taxprocessor)
@@ -205,6 +195,10 @@ def taxed_price(parser, token):
 
     return TaxedPriceNode(price, currency, taxclass)
 
+
+def with_tax(product):
+    """Returns the product unit price with tax"""
+    return taxed
     
 
 register.tag('cartitem_line_taxed_total', cartitem_line_taxed_total)

@@ -4,6 +4,7 @@
 {% load satchmo_currency %}
 {% load satchmo_util %}
 {% load satchmo_product %}
+{% load satchmo_discounts %}
 
 {% block navbar %}
     <li class="first"><a href="{{shop_base}}/">{% trans "Home" %}</a></li>
@@ -22,6 +23,12 @@
     <table><tr><th></th>
     <th align="left">{% trans "Quantity" %}</th>
     <th>{% trans "Item" %}</th>
+    {% if sale %}
+		<th>{% trans "Regular Price" %}</th>
+		<th>{% trans "Sale Price" %}
+	{% else %}
+		<th>{% trans "Price" %}</th>
+	{% endif %}
     <th align="center">{% if default_view_tax %}{% trans "Total<br/>(incl.&nbsp;tax)" %}{% else %}{% trans "Total" %}{% endif %}</th>
     </tr>
 
@@ -40,13 +47,15 @@
                 </form>
             </td>
             <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>
-            <td align="center">{% cartitem_total cartitem default_view_tax %}</td>
+			{% if sale %}<td align="center">{{ cartitem.product.unit_price|currency }}</td>{% endif %}
+			<td align="center">{{ cartitem.product|discount_price:sale|currency }}</td>
+            <td align="center">{{ cartitem|discount_line_total:sale|currency }}</td>
         </tr>
 		{% cartitem_custom_details cartitem %}
 		{% cartitem_subscription_details cartitem %}
     {% endfor %}
-    <tr><td colspan="3" align="right">{% trans "Cart Total" %}:</td>
-        <td>{% cart_total cart default_view_tax %}</td></tr>
+    <tr><td colspan="{% if sale %}5{% else %}4{% endif %}" align="right">{% trans "Cart Total" %}:</td>
+        <td>{{ cart|discount_cart_total:sale|currency }}</td></tr>
     </table>
     {% if sale %}
 	{% include "discount/some_eligible.html" %}

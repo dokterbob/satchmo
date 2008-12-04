@@ -5,6 +5,7 @@
 {% load satchmo_util %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_ratings %}
+{% load satchmo_discounts satchmo_tax %}
 {% block extra-head %}
 
 <script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
@@ -28,7 +29,11 @@ $(function() {
 {% block productdetail %}
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
-{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
+{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3>{% spaceless %}
+	{% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
+	<span id="price">{{ product|discount_price:sale|currency }}</span>
+	{% endspaceless %}</h3>
+
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}

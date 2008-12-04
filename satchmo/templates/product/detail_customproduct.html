@@ -1,15 +1,16 @@
 {% extends "base_product.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load satchmo_thumbnail satchmo_discounts %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_ratings %}
 {% load satchmo_util %}
+{% load satchmo_discounts %}
 
 {% block productdetail %}
 <h4>{% blocktrans with product.translated_name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
 <p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
-{% trans "Price" %}: <h3 id="price">{{ product.unit_price|currency }}</h3>
+{% trans "Price" %}: <h3>{% if sale %}<strike id="fullprice">{{ product|discount_price:""|currency }}</strike><br/>{% endif %}<span id="price">{{ product|discount_price:sale|currency }}</span></h3>
 {% for pic in product.productimage_set.all %}
     <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
 {% endfor %}

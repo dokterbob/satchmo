@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-{% load i18n satchmo_category satchmo_google satchmo_util satchmo_currency %}
+{% load i18n satchmo_category satchmo_google satchmo_util satchmo_currency satchmo_discounts %}
 <head>
     {% block extra-head %}{% endblock %}
     <link rel="stylesheet" href="{{ media_url }}css/style.css" />
@@ -64,9 +64,7 @@
 	    {% if carturl %}<a href="{{ carturl }}">{% trans "Cart" %}</a>{% endif %}
 
 	    {% if cart_count %}
-        ({{ cart_count }}{% if cart.total %} - {% spaceless %}{% if shop.options.TAX.DEFAULT_VIEW_TAX.value %}
-        {% load satchmo_tax %}{% cart_taxed_total cart 1 %}{% else %}{{ cart.total|currency }}
-        {% endif %}{% endspaceless %}{% endif %})<br/>
+        ({{ cart_count }}{% if cart.total %} - {{ cart|discount_cart_total:sale|currency }}{% endif %})<br/>
 		{% url satchmo_checkout-step1 as checkouturl %}
         {% if checkouturl %}<a href="{{ checkouturl }}">{% trans "Check out" %}</a>{% endif %}
 	    {% endif %}

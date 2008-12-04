@@ -1,6 +1,6 @@
 {% extends "base_satchmo.html" %}
 {% load i18n %}
-{% load satchmo_currency %}
+{% load satchmo_currency satchmo_discounts %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
@@ -30,7 +30,7 @@
 		{% endif %}
 		<ul>
 		{% for product in results.products %}
-	        {% ifchanged %}<li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product.unit_price|currency}}</li>{% endifchanged %}
+	        {% ifchanged %}<li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product|discount_price:sale|currency}}</li>{% endifchanged %}
 	    {% endfor %}
 		</ul>
 	{% else %}

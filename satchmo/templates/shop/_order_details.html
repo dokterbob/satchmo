@@ -5,9 +5,9 @@
 {% if default_view_tax %}{% load satchmo_tax %}{% endif %}
 {% for item in order.orderitem_set.all %}
 {% if default_view_tax %}
-{{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity}} = {{item.total_with_tax|currency}}<br/>
+{{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.total_with_tax|currency}}<br/>
 {% else %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}<br/>
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
 {% endif %}
 {% endfor %}
 

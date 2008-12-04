@@ -1,9 +1,19 @@
 var satchmo = satchmo || {};
 
-// Get the current selected product price.  If taxed is true, then
-// return the price inclusive of taxes.
-satchmo.get_current_price = function(detail, qty, taxed) {
-    var k = taxed ? "TAXED" : "PRICE";
+satchmo.use_sale_prices = true;
+
+// Get the current selected product price.
+satchmo.get_current_price = function(detail, qty, use_sale) {
+    var taxed = satchmo.default_view_tax,
+        k, prices;
+            
+    if (use_sale) {
+        k = taxed ? "TAXED_SALE" : "SALE";
+    }
+    else {
+        k = taxed ? "TAXED" : "PRICE";
+    }
+    
     var prices = detail[k];
     if (prices) {
         var best = prices['1'];
@@ -74,14 +84,35 @@ satchmo.show_error = function(msg) {
     
 // update name and price based on the current selections
 satchmo.update_price = function() {
-    var key = satchmo.make_optionkey();
-    var detail = satchmo.variations[key];
-    var msg = "";
+    var key = satchmo.make_optionkey(),
+        detail = satchmo.variations[key],
+        msg = "",
+        use_sale, sale_price, full_price;
+        
     if (detail) {
         var qty = parseInt($('#quantity').fieldValue()[0]);
         satchmo.set_name(detail['SLUG']);
-        var price = satchmo.get_current_price(detail, qty, satchmo.default_view_tax);
-        satchmo.set_price(price);
+        
+        if (!satchmo.variations['SALE']) {
+            use_sale = false;
+        }
+        else {
+            use_sale = satchmo.use_sale_prices;
+        }
+
+        if (use_sale) {
+            full_price = satchmo.get_current_price(detail, qty, false);
+            $('#fullprice').text(full_price);
+
+            sale_price = satchmo.get_current_price(detail, qty, true);
+        }
+        else {
+            sale_price = satchmo.get_current_price(detail, qty, false);
+            $('#fullprice').hide();
+        }
+
+        satchmo.set_price(sale_price);
+
         if (qty && qty > detail['QTY']) {
             if (detail['QTY'] == -1) {
                 msg = "Sorry, we are out of stock on that combination.";

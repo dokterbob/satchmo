@@ -1,4 +1,5 @@
 from satchmo.configuration import config_value
+from satchmo.discount.utils import calc_by_percentage, find_best_auto_discount
 from satchmo.l10n.utils import moneyfmt
 from satchmo.product.models import ProductVariation, Option, split_option_unique_id, ProductPriceLookup, OptionGroup
 from satchmo.shop.models import Config
@@ -27,6 +28,7 @@ def productvariation_details(product, include_tax, user, create=False):
         "OPTION_KEY" : {
             "SLUG": "Variation Slug",
             "PRICE" : {"qty" : "$price", [...]},
+            "SALE" : {"qty" : "$price", [...]},
             "TAXED" : "$taxed price",   # omitted if no taxed price requested
             "QTY" : 1
         },
@@ -36,12 +38,14 @@ def productvariation_details(product, include_tax, user, create=False):
 
     config = Config.objects.get_current()
     ignore_stock = config.no_stock_checkout
+    discount = find_best_auto_discount(product)
+    use_discount = discount and discount.percentage > 0
 
     if include_tax:
         taxer = get_taxprocessor(user)
         tax_class = product.taxClass
 
-    details = {}
+    details = {'SALE' : use_discount}
     
     curr = config_value('SHOP', 'CURRENCY')
     curr = curr.replace("_", " ")
@@ -72,18 +76,27 @@ def productvariation_details(product, include_tax, user, create=False):
             detail['QTY'] = qty
 
             detail['PRICE'] = {}
+            
+            if use_discount:
+                detail['SALE'] = {}
+                
             if include_tax:
                 detail['TAXED'] = {}
+                if use_discount:
+                    detail['TAXED_SALE'] = {}
                 
             details[key] = detail
         
         price = detl.dynamic_price
         
         detail['PRICE'][detl.quantity] = moneyfmt(price, curr=curr)
+        if use_discount:
+            detail['SALE'][detl.quantity] = moneyfmt(calc_by_percentage(price, discount.percentage), curr=curr)
         
         if include_tax:
             tax_price = taxer.by_price(tax_class, price) + price
             detail['TAXED'][detl.quantity] = moneyfmt(tax_price, curr=curr)
+            detail['TAXED_SALE'][detl.quantity] = moneyfmt(calc_by_percentage(tax_price, discount.percentage), curr=curr)
                 
     return details
 

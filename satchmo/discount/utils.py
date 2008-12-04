@@ -19,7 +19,7 @@ def calc_by_percentage(price, percentage):
     cents = Decimal("0.01")
     return work.quantize(cents)
 
-def find_discount_for_code(code):
+def find_discount_for_code(code, raises=False):
     discount = None
 
     if code:
@@ -29,7 +29,10 @@ def find_discount_for_code(code):
         except Discount.DoesNotExist:
             pass
 
+    
     if not discount:
+        if raises:
+            raise Discount.DoesNotExist()
         discount = NullDiscount()
 
     return discount

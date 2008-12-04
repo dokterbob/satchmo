@@ -2,7 +2,7 @@
 <tr class="saleprice"><td>&nbsp;</td>
 <td>
 {% with sale.percentage_text as pct %}{% with sale.code as code %}{% with sale.description as desc %}{% with sale.endDate|date:"y-M-d" as enddate %}
-{% blocktrans %}<p>Some of the products in your cart are eligible to receive a discount of {{ pct }} when you enter the code "{{ code }}" during our {{ desc }} which ends on {{ enddate }}.</p>
+{% blocktrans %}<p>Products in your cart are eligible to receive a discount of {{ pct }} when you enter the code "{{ code }}" during our {{ desc }} which ends on {{ enddate }}.</p>
 {% endblocktrans %}
 {% endwith %}{% endwith %}{% endwith %}{% endwith %}
 </td></tr>

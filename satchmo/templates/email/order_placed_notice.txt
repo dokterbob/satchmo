@@ -1,11 +1,11 @@
-{% load i18n %}{% load satchmo_currency %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}
+{% load i18n satchmo_currency satchmo_discounts %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}
 
 {% with order.contact.email as email %}{% with order.contact.full_name as customer %}{% blocktrans %}Order placed on {{ shop_name }} by {{ customer }}<{{ email }}>.{% endblocktrans %}{% endwith %}{% endwith %}
 
 {% trans "Items Ordered" %}
 --------------
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}} = {{item.sub_total|currency}}
+{{ item }} - {{item.product|discount_price:sale|currency }} x {{item.quantity}} = {{item|discount_line_total:sale|currency}}
 {% endfor %}
 
 {% trans "Contact Information" %}

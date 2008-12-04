@@ -34,3 +34,6 @@ satchmo_cart_details_query=django.dispatch.Signal()
 satchmo_post_copy_item_to_order=django.dispatch.Signal()
 
 satchmo_search = django.dispatch.Signal()
+
+satchmo_context = django.dispatch.Signal()
+

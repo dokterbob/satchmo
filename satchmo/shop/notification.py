@@ -10,6 +10,8 @@ from django.core.mail import EmailMessage
 from django.template import loader, Context
 from django.utils.translation import ugettext as _
 from satchmo.configuration import config_value
+from satchmo.discount.models import Discount
+from satchmo.discount.utils import find_discount_for_code
 
 log = logging.getLogger('contact.notifications')
 
@@ -28,7 +30,12 @@ def send_order_confirmation(new_order, template='email/order_complete.txt'):
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
     t = loader.get_template(template)
-    c = Context({'order': new_order, 'shop_name': shop_name})
+    try:
+        sale = find_discount_for_code(new_order.discount_code, raises=True)
+    except Discount.DoesNotExist:
+        sale = None
+        
+    c = Context({'order': new_order, 'shop_name': shop_name, 'sale' : sale})
     subject = _("Thank you for your order from %(shop_name)s") % {'shop_name' : shop_name}
 
     try:
