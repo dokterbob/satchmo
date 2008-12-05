@@ -124,7 +124,7 @@ class Discount(models.Model):
         for lineitem in order.orderitem_set.all():
             lid = lineitem.id
             price = lineitem.line_item_price
-            if lineitem.product.is_discountable and (allvalid or lineitem.product.id in validproducts):
+            if lineitem.product.is_discountable and (allvalid or lineitem.product.slug in validproducts):
                 discounted[lid] = price 
 
         if self.includeShipping and not self.freeShipping:
