@@ -16,8 +16,8 @@ import datetime
 import logging
 import operator
 
+Q = models.Q
 log = logging.getLogger('Discount.models')
-
 
 class NullDiscount(object):
 
@@ -97,20 +97,20 @@ class Discount(models.Model):
         if self.validProducts.count() == 0:
             validItems = True
         else:
-            validItems = len(self._valid_cart_products(cart))
+            validItems = len(self._valid_products(cart.cartitem_set))
 
         if validItems:
             return (True, ugettext('Valid.'))
         else:
             return (False, ugettext('This discount cannot be applied to the products in your cart.'))
 
-    def _valid_cart_products(self, cart):
+    def _valid_products(self, item_query):
         validslugs = self.validProducts.values_list('slug', flat=True)
-        cartslugs = cart.cartitem_set.values_list('product__slug', flat=True)
+        itemslugs = item_query.values_list('product__slug', flat=True)
         return ProductPriceLookup.objects.filter(
-            discountable=True,
-            productslug__in=validslugs, 
-            productslug__in=cartslugs
+            Q(discountable=True)
+            &Q(productslug__in=validslugs)
+            &Q(productslug__in=itemslugs)
             ).values_list('productslug', flat=True)
 
     def calc(self, order):
@@ -119,7 +119,8 @@ class Discount(models.Model):
         if self.validProducts.count() == 0:
             allvalid = True
         else:
-            validproducts = self._valid_cart_products(cart)
+            allvalid = False
+            validproducts = self._valid_products(order.orderitem_set)
 
         for lineitem in order.orderitem_set.all():
             lid = lineitem.id
