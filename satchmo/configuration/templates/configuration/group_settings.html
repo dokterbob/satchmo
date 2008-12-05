@@ -1,6 +1,11 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_modify config_tags %}
 
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/base.css" />
+{% endblock %}
+
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}

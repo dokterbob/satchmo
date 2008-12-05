@@ -11,7 +11,7 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo.l10n.utils import moneyfmt
-from satchmo.product.models import Product
+from satchmo.product.models import Product, ProductPriceLookup
 import datetime
 import logging
 import operator
@@ -94,32 +94,32 @@ class Discount(models.Model):
             return (False, ugettext('This discount only applies to orders of at least %s.' % moneyfmt(minOrder)))
 
         validItems = False
-        validproducts = self._get_valid_product_dict()
-        if validproducts:
-            for cart_item in cart.cartitem_set.all():
-                if cart_item.product.id in validproducts:
-                    validItems = True
-                    break   #Once we have 1 valid item, we exit
-        else:
+        if self.validProducts.count() == 0:
             validItems = True
+        else:
+            validItems = len(self._valid_cart_products(cart))
 
         if validItems:
             return (True, ugettext('Valid.'))
         else:
             return (False, ugettext('This discount cannot be applied to the products in your cart.'))
 
-    def _get_valid_product_dict(self):
-        vd = {}
-        for p in self.validProducts.all():
-            if p.is_discountable:
-                vd[p.id] = p
-        return vd
+    def _valid_cart_products(self, cart):
+        validslugs = self.validProducts.values_list('slug', flat=True)
+        cartslugs = cart.cartitem_set.values_list('product__slug', flat=True)
+        return ProductPriceLookup.objects.filter(
+            discountable=True,
+            productslug__in=validslugs, 
+            productslug__in=cartslugs
+            ).values_list('productslug', flat=True)
 
     def calc(self, order):
         # Use the order details and the discount specifics to calculate the actual discount
         discounted = {}
-        validproducts = self._get_valid_product_dict()
-        allvalid = len(validproducts) == 0
+        if self.validProducts.count() == 0:
+            allvalid = True
+        else:
+            validproducts = self._valid_cart_products(cart)
 
         for lineitem in order.orderitem_set.all():
             lid = lineitem.id

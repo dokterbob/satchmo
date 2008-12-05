@@ -9,6 +9,7 @@
 {% endblock %}
 {% block extrastyle %}
 {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/base.css" />
 <style type="text/css">
 ul.fieldref { margin: 0; padding: 0; font-size: 9px; }
 ul.fieldref li { float: left; margin: 0 10px 0 0; list-style: none; }
