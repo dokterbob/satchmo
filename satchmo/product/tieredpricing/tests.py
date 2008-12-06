@@ -26,16 +26,21 @@ class TieredTest(TestCase):
         tieruser.groups.add(tiergroup)
         self.tier = PricingTier(group=tiergroup, title="Test Tier", discount_percent=Decimal('10.0'))
         self.tier.save()
-        set_current_user(tieruser)
 
     def tearDown(self):
-        caching.cache_delete()
+        keyedcache.cache_delete()
 
     def test_simple_tier(self):
-        """Check quantity price for a standard product using the default pricing tier"""
-
+        """Check quantity price for a standard product using the default price"""
         product = Product.objects.get(slug='PY-Rocks')
-        # 10% discount from 19.50
+        set_current_user(None)
+        self.assertEqual(product.unit_price, Decimal("19.50"))
+    
+    def test_tiered_user(self):
+        """Test that a tiered user gets the tiered price"""
+        product = Product.objects.get(slug='PY-Rocks')
+        set_current_user(self.tieruser)
+        # 10% discount from 19.50        
         self.assertEqual(product.unit_price, Decimal("17.550"))
         
     def test_no_tier_user(self):
@@ -49,6 +54,8 @@ class TieredTest(TestCase):
         product = Product.objects.get(slug='PY-Rocks')
         tp = TieredPrice(product=product, pricingtier=self.tier, quantity=1, price=Decimal('10.00'))
         tp.save()
+        set_current_user(self.tieruser)
+        # should be the new explicit price
         self.assertEqual(product.unit_price, Decimal("10.00"))        
 
     def test_tieredprice_no_tier_user(self):
@@ -58,4 +65,3 @@ class TieredTest(TestCase):
         tp.save()
         set_current_user(self.stduser)
         self.assertEqual(product.unit_price, Decimal("19.50"))
-    

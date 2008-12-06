@@ -62,7 +62,13 @@ def send_order_notice(new_order, template='email/order_placed_notice.txt'):
         shop_email = shop_config.store_email
         shop_name = shop_config.store_name
         t = loader.get_template(template)
-        c = Context({'order': new_order, 'shop_name': shop_name})
+        
+        try:
+            sale = find_discount_for_code(new_order.discount_code, raises=True)
+        except Discount.DoesNotExist:
+            sale = None
+        
+        c = Context({'order': new_order, 'shop_name': shop_name, 'sale' : sale})
         subject = _("New order on %(shop_name)s") % {'shop_name' : shop_name}
         
         eddresses = [shop_email, ]
