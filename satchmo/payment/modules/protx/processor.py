@@ -107,6 +107,15 @@ class PaymentProcessor(object):
             log.error('preparing data, got error: %s\nData: %s', e, data)
             self.valid = False
             return
+            
+        # handle pesky unicode chars in names
+        for key, value in self.packet.items():
+            try:
+                value = value.encode('utf-8')
+                self.packet[key] = value
+            except AttributeError:
+                pass
+            
         self.postString = urlencode(self.packet)
         self.url = self.connection
         self.order = data
