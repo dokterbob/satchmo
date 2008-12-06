@@ -5,7 +5,7 @@
 {% trans "Items Ordered" %}
 --------------
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.product|discount_price:sale|currency }} x {{item.quantity}} = {{item|discount_line_total:sale|currency}}
+{{ item }} - {{item.product|discount_price:sale|currency }} x {{item.quantity}} = {{item.sub_total|currency}}
 {% endfor %}
 
 {% trans "Contact Information" %}
