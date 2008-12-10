@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.decorators.cache import never_cache
 from satchmo.configuration import config_get_group
 from satchmo.payment.utils import pay_ship_save, record_payment
 from satchmo.shop.models import Cart
@@ -40,4 +41,4 @@ def one_step(request):
     tempCart.empty()
     success = lookup_url(payment_module, 'satchmo_checkout-success')
     return HttpResponseRedirect(success)
-
+one_step = never_cache(one_step)

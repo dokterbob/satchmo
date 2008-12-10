@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.http import urlencode
 from django.utils.translation import ugettext as _
+from django.views.decorators.cache import never_cache
 from sys import exc_info
 from traceback import format_exception
 
@@ -25,6 +26,7 @@ def pay_ship_info(request):
     return payship.base_pay_ship_info(request,
         config_get_group('PAYMENT_PAYPAL'), payship.simple_pay_ship_process_form,
         'checkout/paypal/pay_ship.html')
+pay_ship_info = never_cache(pay_ship_info)
 
 
 def confirm_info(request):
@@ -96,6 +98,7 @@ def confirm_info(request):
     })
 
     return render_to_response(template, ctx)
+confirm_info = never_cache(confirm_info)
 
 def ipn(request):
     """PayPal IPN (Instant Payment Notification)

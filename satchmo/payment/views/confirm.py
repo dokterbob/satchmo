@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.views.decorators.cache import never_cache
 from satchmo.configuration import config_value
 from satchmo.shop.models import Order
 from satchmo.payment.config import payment_live
@@ -199,4 +200,4 @@ def credit_confirm_info(request, payment_module, template=None):
         controller.templates['CONFIRM'] = template
     controller.confirm()
     return controller.response
-    
+credit_confirm_info = never_cache(credit_confirm_info)

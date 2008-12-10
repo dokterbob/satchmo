@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import get_template
 from django.utils.translation import ugettext as _
+from django.views.decorators.cache import never_cache
 from satchmo.configuration import config_get_group
 from satchmo.shop.models import Order
 from satchmo.configuration import config_value 
@@ -55,6 +56,7 @@ class GoogleCart(object):
 
 def pay_ship_info(request):
     return payship.simple_pay_ship_info(request, config_get_group('PAYMENT_GOOGLE'), 'checkout/google/pay_ship.html')
+pay_ship_info = never_cache(pay_ship_info)
 
 def confirm_info(request):
     payment_module = config_get_group('PAYMENT_GOOGLE')
@@ -104,4 +106,4 @@ def confirm_info(request):
     })
 
     return render_to_response(template, ctx)
-
+confirm_info = never_cache(confirm_info)

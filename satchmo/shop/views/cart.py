@@ -13,6 +13,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
+from django.views.decorators.cache import never_cache
 
 from satchmo.configuration import config_value
 from satchmo.discount.utils import find_best_auto_discount
@@ -95,6 +96,7 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
         'sale' : sale,
         })
     return render_to_response('base_cart.html', context)
+display = never_cache(display)
 
 def add(request, id=0, redirect_to='satchmo_cart'):
     """Add an item to the cart."""
