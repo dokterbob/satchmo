@@ -211,7 +211,7 @@ View the Demo Store
         
 17.  In order to see your sample store, point your browser to::
     
-        http://127.0.0.1:8000/shop
+        http://127.0.0.1:8000/store
 
 19.  If you want to see the admin interface, point your browser to::
 
