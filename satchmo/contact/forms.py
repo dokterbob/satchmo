@@ -376,5 +376,6 @@ class DateTextInput(forms.TextInput):
 
 class ExtendedContactInfoForm(ContactInfoForm):
     """Contact form which includes birthday and newsletter."""
-    dob = forms.DateField(widget=SelectDateWidget, required=False)
+    years_to_display = range(datetime.datetime.now().year-100,datetime.datetime.now().year+1)
+    dob = forms.DateField(widget=SelectDateWidget(years=years_to_display), required=False)
     newsletter = forms.BooleanField(label=_('Newsletter'), widget=forms.CheckboxInput(), required=False)
