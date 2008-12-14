@@ -21,7 +21,7 @@ msgstr ""
 
 #: local_settings-customize.py:112
 msgid "English"
-msgstr "Italiano"
+msgstr "Inglese"
 
 #: accounts/forms.py:17 newsletter/forms.py:17 shop/views/contact.py:25
 #: templates/checkout/form.html:60 templates/contact/update_form.html:51
@@ -274,7 +274,7 @@ msgstr "Sarà richiesto agli utenti di autenticarsi (e creare un account se nece
 # translated = "Numero di telefono"
 #: contact/config.py:17
 msgid "Billing data is optional"
-msgstr "Le informazioni per la fatturazione sono opzionali"
+msgstr "Le informazioni per le ricevute/fatture sono opzionali"
 
 #: contact/config.py:19
 msgid ""
@@ -283,7 +283,7 @@ msgid ""
 "(all required contact data will have already been provided in registration "
 "form). Otherwise be careful, as this may leave you orders with almost no "
 "customer data!"
-msgstr "Gli utenti non dovranno inserire l'indirizzo di fatturazione ed il numero di telefono. Se viene richiesta l'autenticazione prima del checkout, questo permette l'acquisto istantaneo (tutti i dati di contatti richiesti sono già stati forniti nel form di registrazione). Altrimenti stai attento, dal momento che questa opzione può lasciare i tuoi ordini con quasi nessun dato dei clienti!"
+msgstr "Gli utenti non dovranno inserire l'indirizzo per le ricevute/fatture ed il numero di telefono. Se viene richiesta l'autenticazione prima del checkout, questo permette l'acquisto istantaneo (tutti i dati di contatti richiesti sono già stati forniti nel form di registrazione). Altrimenti stai attento, dal momento che questa opzione può lasciare i tuoi ordini con quasi nessun dato dei clienti!"
 
 #: contact/config.py:31
 msgid "Account Verification"
@@ -352,7 +352,7 @@ msgstr "Città"
 #: contact/forms.py:25 contact/forms.py:33 contact/models.py:234
 #: l10n/models.py:41 shop/models.py:89 shop/models.py:530 shop/models.py:537
 msgid "State"
-msgstr "Stato"
+msgstr "Provincia"
 
 #: contact/forms.py:26 contact/forms.py:35 contact/models.py:237
 #: l10n/models.py:63 shop/models.py:91 shop/models.py:532 shop/models.py:539
@@ -360,7 +360,7 @@ msgstr "Stato"
 #: templates/contact/update_form.html:100
 #: templates/contact/update_form.html:134
 msgid "Country"
-msgstr "Stato"
+msgstr "Paese"
 
 # translated = "Stato / Provincia"
 #: contact/forms.py:27 contact/forms.py:34 templates/checkout/form.html:95
@@ -373,7 +373,7 @@ msgstr "CAP"
 #: contact/forms.py:28 templates/checkout/form.html:106
 #: templates/contact/update_form.html:106
 msgid "Shipping same as billing?"
-msgstr "L'indirizzo di consegna e' lo stesso di fatturazione"
+msgstr "L'indirizzo di consegna e' lo stesso delle ricevute/fatture"
 
 #: contact/forms.py:111 contact/forms.py:134 contact/forms.py:160
 #: contact/forms.py:173 payment/common/forms.py:122
@@ -386,7 +386,7 @@ msgstr "E' necessario indicare lo Stato per il tuo paese."
 
 #: contact/forms.py:177
 msgid "Shipping and Billing countries must match"
-msgstr "Il Paese della Consegna e quello della Fatturazione devono coincidere"
+msgstr "Il Paese della Consegna e quello della ricevuta/fattura devono coincidere"
 
 #: contact/models.py:18 shop/models.py:264
 msgid "Customer"
@@ -753,7 +753,7 @@ msgstr "Modulo di implementazione"
 #: payment/modules/protx/config.py:60
 #: payment/modules/trustcommerce/config.py:56
 msgid "English name for this group on the checkout screens"
-msgstr "Nome inglese per questo gruppo sul schermi di checkout"
+msgstr "Nome inglese per questo gruppo nelle schermate di checkout"
 
 #: giftcertificate/config.py:48 payment/modules/authorizenet/config.py:64
 #: payment/modules/autosuccess/config.py:35 payment/modules/cod/config.py:44
@@ -1370,15 +1370,15 @@ msgstr "Cron passkey"
 msgid "Enter an authentication passkey to secure your recurring billing cron url."
 msgstr ""
 "Inserisci una passkey di autenticazione per mettere in sicurezza l'url cron "
-"per la fatturazione ricorrente (di abbonamenti)"
+"per i pagamenti in abbonamento"
 
 #: payment/config.py:25
 msgid "Allow URL Access to Cron for subscription rebills"
-msgstr "Permetti l'accesso URL a Cron per fatturazioni in abbonamento"
+msgstr "Permetti l'accesso URL a Cron per pagamenti in abbonamento"
 
 #: payment/config.py:26
 msgid "Do you want to allow remote url calls for subscription billing?"
-msgstr "Vuoi permettere chiamate url remote per fatturazioni in abbonamento?"
+msgstr "Vuoi permettere chiamate url remote per pagamenti in abbonamento?"
 
 #: payment/config.py:34
 msgid ""
@@ -1416,7 +1416,7 @@ msgid ""
 "billing."
 msgstr ""
 "Se Vero i clienti non potranno utilizzare paesi diversi per consegna e "
-"fatturazione."
+"ricevuta o fattura."
 
 #: payment/config.py:65
 msgid "Enable payment modules"
@@ -1962,7 +1962,7 @@ msgstr "Dimensioni del prodotto"
 #: templates/shop/_order_details.html:66
 #: templates/shop/_order_tracking_details.html:34
 msgid "Tax"
-msgstr "Iva"
+msgstr "Tasse"
 
 #: product/admin.py:116
 msgid "Related Products"
@@ -2255,7 +2255,7 @@ msgstr "Valore memorizzato"
 
 #: product/models.py:370 product/models.py:895 shop/models.py:967
 msgid "Price Change"
-msgstr "Cambio"
+msgstr "Differenza di Prezzo"
 
 #: product/models.py:372
 msgid "This is the price differential for this option."
@@ -2263,11 +2263,11 @@ msgstr "La differenza di prezzi per questa opzione."
 
 #: product/models.py:381
 msgid "Option Item"
-msgstr "Opzione"
+msgstr "Opzione Prodotto"
 
 #: product/models.py:382
 msgid "Option Items"
-msgstr "Opzioni"
+msgstr "Opzioni Prodotto"
 
 #: product/models.py:401
 msgid "Translated Option Name"
@@ -2535,7 +2535,7 @@ msgstr "Prodotti scaricabili"
 
 #: product/models.py:1151
 msgid "Recurring Billing"
-msgstr "Fatturazione Ricorrente"
+msgstr "Pagamento in Abbonamento"
 
 #: product/models.py:1151
 msgid "Customer will be charged the regular product price on a periodic basis."
@@ -2695,11 +2695,11 @@ msgstr "Marche"
 
 #: product/brand/admin.py:66 product/brand/models.py:141
 msgid "Brand Category"
-msgstr "Categoria di Marche"
+msgstr "Categoria della Marca"
 
 #: product/brand/admin.py:67
 msgid "Brand Categories"
-msgstr "Categorie di Marche"
+msgstr "Categorie della Marca"
 
 # translated = "Problema durante l'installazione della correzione '%(filename)s': %(error_msg)s\n"
 #: product/brand/models.py:27 product/brand/models.py:107
@@ -3137,7 +3137,7 @@ msgstr "Indirizzo di Consegna"
 #: shop/admin.py:60 templates/pdf/invoice.rml:24
 #: templates/pdf/packing-slip.rml:24
 msgid "Billing Address"
-msgstr "Indirizzo di Fatturazione"
+msgstr "Indirizzo del cliente"
 
 #: shop/admin.py:61
 msgid "Totals"
@@ -3343,7 +3343,7 @@ msgstr "In esecuzione"
 
 #: shop/models.py:479
 msgid "Billed"
-msgstr "Fatturato"
+msgstr "Pagato"
 
 #: shop/models.py:480 supplier/models.py:72
 msgid "Shipped"
@@ -3771,7 +3771,7 @@ msgstr "Stati Ordine Fornitore"
 # translated = "% Di tasse per questo settore e del tipo"
 #: tax/admin.py:14
 msgid "You must choose a zone or a country."
-msgstr "Devi scegliere una zona o un paese."
+msgstr "Devi scegliere una zona oppure un paese."
 
 # translated = "Ordine fornitore status"
 #: tax/config.py:7
@@ -4127,7 +4127,7 @@ msgstr "per"
 #: templates/shipping_options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
-msgstr "Spedito tramite %(method)s arrivo previsto per %(expected_delivery)s."
+msgstr "Spedito tramite %(method)s arrivo previsto in %(expected_delivery)s."
 
 #: templates/thanks.html:12
 msgid "Thank you for contacting us."
@@ -4606,13 +4606,13 @@ msgid ""
 "To complete this order, you need to pay the %(orderbalance)s balance "
 "remaining on this order."
 msgstr ""
-"Per completare questo ordine è necessario pagare il saldo di %(orderbalance)"
-"s   che rimane."
+"Per completare questo ordine è necessario pagare il saldo di %(orderbalance)s"
+"che rimane."
 
 #: templates/checkout/balance_remaining.html:22
 #: templates/checkout/form.html:55
 msgid "How do you want to pay?"
-msgstr "Quanto vuoi pagare?"
+msgstr "Come vuoi pagare?"
 
 # translated = "Come desideri pagare?"
 #: templates/checkout/balance_remaining.html:26
@@ -4624,7 +4624,7 @@ msgstr "Procedi con l'ordine"
 #: templates/checkout/base_confirm.html:15
 #: templates/checkout/base_pay_ship.html:13 templates/checkout/form.html:22
 msgid "Ship/Bill"
-msgstr "Consegna/Fatturazione"
+msgstr "Consegna/Pagamento"
 
 # translated = "Nave / Bill"
 #: templates/checkout/base_confirm.html:17
@@ -4747,11 +4747,11 @@ msgstr "Numero di telefono"
 #: templates/email/order_placed_notice.txt:17
 #: templates/shop/_order_details.html:19
 msgid "Billing Information"
-msgstr "Informazioni per la fatturazione"
+msgstr "Informazioni del cliente"
 
 #: templates/checkout/form.html:74 templates/contact/update_form.html:75
 msgid "Bill To"
-msgstr "Fattura a"
+msgstr "Ricevuta/fattura a"
 
 #: templates/checkout/form.html:74 templates/checkout/form.html.py:109
 #: templates/contact/update_form.html:75
@@ -4855,7 +4855,7 @@ msgstr "E' necessario inserire almeno i campi contrassegnati con *"
 # translated = "Devi compilare almeno i campi con un *"
 #: templates/contact/update_form.html:60
 msgid "Birthday"
-msgstr "Compleanno"
+msgstr "Data di Nascita"
 
 # translated = ""
 #: templates/contact/update_form.html:139
@@ -4897,7 +4897,7 @@ msgstr "Newsletter:"
 # translated = "Newsletter:"
 #: templates/contact/view_profile.html:24
 msgid "Billing Address:"
-msgstr "Indirizzo di fatturazione:"
+msgstr "Indirizzo dell'acquirente:"
 
 # translated = "Indirizzo di fatturazione:"
 #: templates/contact/view_profile.html:25
@@ -4913,7 +4913,7 @@ msgstr "Opzioni"
 
 #: templates/contact/view_profile.html:29
 msgid "Update your profile"
-msgstr "Aggiorna il tuo profilo"
+msgstr "Modifica il tuo profilo"
 
 # translated = "Aggiorna il tuo profilo"
 #: templates/contact/view_profile.html:31
@@ -4926,13 +4926,13 @@ msgstr "Modifica la tua password"
 #: templates/contact/view_profile.html:33 templates/shop/order_history.html:9
 #: templates/shop/order_history.html:14
 msgid "Order History"
-msgstr "Storia dell'Ordine"
+msgstr "Storico degli Ordini"
 
 # translated = "Cambiare la password"
 #: templates/contact/view_profile.html:38
 msgid "Sorry, the user you've logged in as doesn't have any contact information."
 msgstr ""
-"Spiacenti, l'utente con il quale hai effettuato l'accesso non ha nessuna "
+"L'utente con il quale hai effettuato l'accesso non ha nessuna "
 "informazione di contatto"
 
 # translated = ""
@@ -4940,7 +4940,7 @@ msgstr ""
 msgid "Probably because you are an admin."
 msgstr "Probabilmente perché tu sei un amministratore"
 
-# translated = "Probabilmente perch� si e' un amministratore &"
+# translated = "Probabilmente perché si e' un amministratore &"
 #: templates/contact/view_profile.html:42
 msgid "Set up contact information"
 msgstr "Modifica le informazioni di contatto"
@@ -5076,11 +5076,11 @@ msgstr "Ordine di magazzino"
 #: templates/pdf/invoice.rml:14 templates/pdf/invoice.rml.py:56
 #: templates/pdf/packing-slip.rml:14 templates/pdf/packing-slip.rml.py:56
 msgid "Invoice #"
-msgstr "Fattura #"
+msgstr "Ordine #"
 
 #: templates/pdf/invoice.rml:21 templates/pdf/invoice.rml.py:63
 msgid "INVOICE"
-msgstr "FATTURA"
+msgstr "ORDINE"
 
 # translated = "Medio"
 #: templates/pdf/invoice.rml:63 templates/pdf/packing-slip.rml:63
@@ -5118,7 +5118,7 @@ msgstr ""
 
 #: templates/pdf/invoice.rml:215
 msgid "This invoice has been paid in full. Thank you for your business!"
-msgstr "Questa fattura è stata pagata totalmente. Grazie per il tuo affare!"
+msgstr "Questo ordine è stato pagato totalmente, grazie!"
 
 #: templates/pdf/packing-slip.rml:21 templates/pdf/packing-slip.rml.py:63
 msgid "PACKING SLIP"
@@ -5145,7 +5145,7 @@ msgstr "I prodotti più venduti"
 # translated = "Grazie per il tuo business!"
 #: templates/product/detail_configurableproduct.html:51
 msgid "Please choose your options"
-msgstr "Scegli le tue opzioni"
+msgstr "Scegli le opzioni de"
 
 #: templates/product/detail_customproduct.html:10
 #, python-format
@@ -5504,7 +5504,7 @@ msgstr "Rimuovi dalla lista dei desideri"
 msgid ""
 "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
 "wishlist."
-msgstr "Spiacenti, devi essere <a href=\"%(login_url)s\">loggato</a> per accedere alla tua lista dei desideri."
+msgstr "Devi essere <a href=\"%(login_url)s\">autenticato</a> per accedere alla tua lista dei desideri."
 
 # translated = "Ordine fornitore status"
 #: thumbnail/config.py:4
