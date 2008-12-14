@@ -730,7 +730,8 @@ class Order(models.Model):
 
     def payments_completed(self):
         q = self.payments.exclude(transaction_id__isnull = False, transaction_id = "PENDING")
-        return q.exclude(amount=Decimal("0.0000000000"))
+        result = [p for p in q if p.amount]
+        return result
 
     def save(self, force_insert=False, force_update=False):
         """
