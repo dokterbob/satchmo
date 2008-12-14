@@ -6,6 +6,11 @@ Trunk
 -----
  * Fix user name generator to handle unicode chars more robustly
  * Fix handling of ampersands in PDF generation
+ * Update Italian translation
+ * Update DOB widget
+ * Added neve cache decorator to several views
+ * Code speedups for discount checking
+ 
 
 Version 0.8, November 25, 2008
 -----------------------------

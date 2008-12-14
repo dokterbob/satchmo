@@ -22,7 +22,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo import caching
 from satchmo import tax
-from satchmo.configuration import ConfigurationSettings, config_value, config_choice_values
+from satchmo.configuration import ConfigurationSettings, config_value, config_choice_values, config_get_group
 from satchmo.contact.models import Contact
 from satchmo.contact.signals import satchmo_contact_location_changed
 from satchmo.l10n.models import Country
@@ -1110,6 +1110,10 @@ class OrderPayment(models.Model):
             self.time_stamp = datetime.datetime.now()
 
         super(OrderPayment, self).save(force_insert=force_insert, force_update=force_update)
+
+    def getPaymentMethodConfig(self):
+        payment_method = self.payment.encode()
+        return config_get_group('PAYMENT_' + payment_method)
 
     class Meta:
         verbose_name = _("Order Payment")
