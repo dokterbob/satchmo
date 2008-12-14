@@ -218,6 +218,14 @@ The nice thing about this file is that it allows you to easily plug in the views
 you need and rename the urls to whatever form you need.  Just make sure to
 maintain the naming convention for the urls as shown above.
 
+Enabling the new module
+-----------------------
+Once the new payment module has been written and placed in the payments/modules folder, 
+you need to inform satchmo about the new module that you have written. To do this, 
+edit your settings.py file and add your new module to the CUSTOM_PAYMENT_MODULES variable.
+After this is done, you can see your new payment module ready to work in settings 
+page of admin area. 
+
 Conclusion
 ----------
 
