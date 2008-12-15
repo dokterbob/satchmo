@@ -1619,7 +1619,7 @@ class ProductPriceLookupManager(models.Manager):
         objs = []
         for qty, price in pricelist:
             obj = ProductPriceLookup(productslug=product.slug, 
-                parentid=parent.id,
+                parentid=parent.pk,
                 siteid=product.site_id,
                 active=product.active,
                 price=price, 
@@ -1654,7 +1654,7 @@ class ProductPriceLookupManager(models.Manager):
         if 'ConfigurableProduct' in subtypes:
             return self.create_for_configurableproduct(product)
         elif 'ProductVariation' in subtypes:
-            return self.create_for_variation(product.productvariation, product.productvariation.product)
+            return self.create_for_variation(product.productvariation, product.productvariation.parent)
         else:
             return self.create_for_product(product)
     
