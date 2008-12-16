@@ -2,8 +2,8 @@
 Satchmo Change Log
 ==================
 
-Trunk
------
+Version 0.8.1, December 14, 2008
+--------------------------------
  * Fix user name generator to handle unicode chars more robustly
  * Fix handling of ampersands in PDF generation
  * Update Italian translation

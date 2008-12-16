@@ -18,7 +18,7 @@ under the BSD license.
 
 Current Development Status
 --------------------------
-With the release of version 0.5, Satchmo entered beta status.  The most recent release is 0.8 and
+With the release of version 0.5, Satchmo entered beta status.  The most recent release is 0.8.1 and
 includes many improvements and fixes over 0.7.  All users are encouraged to use this latest version.
 All the basic functionalities required to run the store are present.  Many advanced functions are also available. 
 Please refer to this document for the backwards incompatible changes - http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChanges

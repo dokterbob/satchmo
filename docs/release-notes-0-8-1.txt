@@ -1,0 +1,17 @@
+Satchmo 0.8.1 Release
+=====================
+
+Welcome to Satchmo 0.8.1. This release is a minor bug fix release after 0.8. The main
+purpose of this release is to provide a stable checkpoint before some backwards
+incompatible (but very useful) reorganization is going to hit trunk.
+
+Changes
+-------
+
+ * Fix user name generator to handle unicode chars more robustly
+ * Fix handling of ampersands in PDF generation
+ * Update Italian translation
+ * Update DOB widget
+ * Added neve cache decorator to several views
+ * Code speedups for discount checking
+
