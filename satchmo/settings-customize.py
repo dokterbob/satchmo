@@ -112,7 +112,7 @@ INSTALLED_APPS = (
     # * Uncomment below, and add the brand url in your satchmo_urls setting
     # * usually in local_settings.py
     # ****
-    #'satchmo.product.brand'
+    #'satchmo.product.brand',
     'satchmo.shipping',
     'satchmo.payment',
     'satchmo.discount',
@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     # * settings page. enable it there, then configure it in the
     # * admin/tiered section of the main admin page.
     # ****
-    #'satchmo.shipping.modules.tiered'
+    #'satchmo.shipping.modules.tiered',
     # ****
     # * Optional feature newsletter
     # ****
