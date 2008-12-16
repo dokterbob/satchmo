@@ -61,11 +61,11 @@ Installing Satchmo into your path
 
 2. Checkout the latest Satchmo release into (/home/user/src) ::
 
-        svn co svn://satchmoproject.com/satchmo/tags/0.8.1/ satchmo-rel
+        svn co svn://satchmoproject.com/satchmo/trunk/ satchmo-trunk
 
 3. Install satchmo into your site-packages directory::
 
-        cd /home/user/src/satchmo-rel
+        cd /home/user/src/satchmo-trunk
         sudo python setup.py install
 
 4. Once the above step is completed, you should be able to import both django and satchmo::
@@ -143,7 +143,7 @@ working properly before trying to add any pieces of satchmo.
         
 6. Copy the local_settings file to mystore::
 
-        cp /home/user/src/satchmo-rel/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
+        cp /home/user/src/satchmo-trunk/satchmo/local_settings-customize.py /home/user/src/mystore/local_settings.py
         
 7. You will need to verify the values assigned to the following items in local_settings.py::
 
