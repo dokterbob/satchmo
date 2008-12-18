@@ -171,7 +171,8 @@ def serialize_options(product, selected_options=()):
             values.append((group_sortmap[k], v))
         
         values.sort()
-        values = zip(*values)[1]
+        if values:
+            values = zip(*values)[1]
 
         #now go back and make sure option items are sorted properly.
         for v in values:
