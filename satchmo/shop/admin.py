@@ -1,4 +1,5 @@
 from satchmo.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderVariable, OrderTaxDetail
+from satchmo.utils.admin import AutocompleteAdmin
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
 
@@ -53,7 +54,7 @@ class OrderTaxDetail_Inline(admin.TabularInline):
     model = OrderTaxDetail
     extra = 1
 
-class OrderOptions(admin.ModelAdmin):
+class OrderOptions(AutocompleteAdmin):
     fieldsets = (
         (None, {'fields': ('site', 'contact', 'method', 'status', 'discount_code', 'notes')}), (_('Shipping Method'), {'fields':
             ('shipping_method', 'shipping_description')}), (_('Shipping Address'), {'classes': ('collapse',), 'fields':
@@ -61,8 +62,10 @@ class OrderOptions(admin.ModelAdmin):
             ('bill_street1', 'bill_street2', 'bill_city', 'bill_state', 'bill_postal_code', 'bill_country')}), (_('Totals'), {'fields':
             ('sub_total', 'shipping_cost', 'shipping_discount', 'tax', 'discount', 'total', 'time_stamp')}))
     list_display = ('contact', 'time_stamp', 'order_total', 'balance_forward', 'status', 'invoice', 'packingslip', 'shippinglabel')
-    list_filter = ['time_stamp', 'contact', 'status']
-    date_hierarchy = 'time_stamp' 
+    list_filter = ['time_stamp', 'status']
+    date_hierarchy = 'time_stamp'
+    related_search_fields = {'contact': ('first_name', 'last_name', 'email')}
+    related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, OrderTaxDetail_Inline]
 
 class OrderItemOptions(admin.ModelAdmin):
