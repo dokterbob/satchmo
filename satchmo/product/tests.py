@@ -83,6 +83,7 @@ from satchmo import caching
 from satchmo.product.models import Category, ConfigurableProduct, ProductVariation, Option, OptionGroup, Product, Price
 from satchmo.product.utils import serialize_options, productvariation_details
 from satchmo.shop import get_satchmo_setting
+import datetime
 
 try:
     from decimal import Decimal
@@ -222,6 +223,25 @@ class ProductTest(TestCase):
         self.assertEqual(product.get_qty_price(1), Decimal("19.50"))
         self.assertEqual(product.get_qty_price(2), Decimal("19.50"))
         self.assertEqual(product.get_qty_price(10), Decimal("10.00"))
+        
+    def test_expiring_price(self):
+        """Test whether a price with an expiration date is used in preference to a non-expiring price."""
+        product = Product.objects.get(slug='PY-Rocks')
+        self.assertEqual(product.unit_price, Decimal("19.50"))
+
+        today = datetime.datetime.now()
+        aweek = datetime.timedelta(days=7)
+        lastwk = today - aweek
+        nextwk = today + aweek
+
+        # new price should override the old one
+        price = Price.objects.create(product=product, quantity=1, price=Decimal("10.00"), expires=nextwk)
+        self.assertEqual(product.unit_price, Decimal("10.00"))
+        
+        # but not if it is expired
+        price.expires = lastwk
+        price.save()
+        self.assertEqual(product.unit_price, Decimal("19.50"))
 
     def test_quantity_price_productvariation(self):
         """Check quantity price for a productvariation"""
@@ -240,6 +260,35 @@ class ProductTest(TestCase):
         product = Product.objects.get(slug='dj-rocks-l-bl')
         self.assertEqual(product.unit_price, Decimal("23.00"))
         self.assertEqual(product.unit_price, product.get_qty_price(1))
+        
+    def test_quantity_price_productvariation_expiring(self):
+        """Check expiring quantity price for a productvariation"""
+
+        # base product
+        product = Product.objects.get(slug='dj-rocks')
+        self.assertEqual(product.unit_price, Decimal("20.00"))
+        self.assertEqual(product.unit_price, product.get_qty_price(1))
+
+        today = datetime.datetime.now()
+        aweek = datetime.timedelta(days=7)
+        lastwk = today - aweek
+        nextwk = today + aweek
+
+        # new price should override the old one
+        price = Price.objects.create(product=product, quantity=1, price=Decimal("10.00"), expires=nextwk)
+        self.assertEqual(product.unit_price, Decimal("10.00"))
+
+        # product with no price delta
+        product = Product.objects.get(slug='dj-rocks-s-b')
+        self.assertEqual(product.unit_price, Decimal("10.00"))
+
+        # product which costs more due to details
+        product = Product.objects.get(slug='dj-rocks-l-bl')
+        self.assertEqual(product.unit_price, Decimal("13.00"))
+
+        # now test explicit expiring price on a product variation
+        pvprice = Price.objects.create(product=product, quantity=1, price=Decimal("5.00"), expires=nextwk)
+        self.assertEqual(product.unit_price, Decimal("5.00"))
 
     def test_smart_attr(self):
         p = Product.objects.get(slug__iexact='dj-rocks')
