@@ -30,7 +30,7 @@ class ForeignKeySearchInput(forms.HiddenInput):
         }
         js = (
             'js/jquery.js',
-            'js/jquery.bgiframe.min.js',
+            'js/jquery.bgiframe.js',
             'js/jquery.ajaxQueue.js',
             'js/jquery.autocomplete.js'
         )

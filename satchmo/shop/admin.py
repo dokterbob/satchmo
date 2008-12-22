@@ -76,6 +76,7 @@ class OrderPaymentOptions(admin.ModelAdmin):
     list_display = ['id', 'order', 'payment', 'amount_total', 'time_stamp']
     fieldsets = (
         (None, {'fields': ('order', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
+    raw_id_fields = ['order']
 
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)
