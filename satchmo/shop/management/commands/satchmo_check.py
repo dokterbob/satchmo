@@ -65,6 +65,8 @@ class Command(NoArgsCommand):
 
         if 'satchmo.shop.SSLMiddleware.SSLRedirect' not in settings.MIDDLEWARE_CLASSES:
             errors.append("You must have satchmo.shop.SSLMiddleware.SSLRedirect in your MIDDLEWARE_CLASSES.")
+        if 'threaded_multihost.middleware.ThreadLocalMiddleware' not in settings.MIDDLEWARE_CLASSES:
+            errors.append("You must install django threaded multihost \n and place threaded_multihost.middleware.ThreadLocalMiddleware in your MIDDLEWARE_CLASSES.")
         if 'satchmo.shop.context_processors.settings' not in settings.TEMPLATE_CONTEXT_PROCESSORS:
             errors.append("You must have satchmo.shop.context_processors.settings in your TEMPLATE_CONTEXT_PROCESSORS.")
         if 'satchmo.accounts.email-auth.EmailBackend' not in settings.AUTHENTICATION_BACKENDS:
