@@ -19,7 +19,7 @@ class ConfigOptions(admin.ModelAdmin):
             'site', 'store_name', 'store_description', 'no_stock_checkout')
             }),
         (_('Store Contact'), {'fields' : (
-            'store_email', 'street1', 'street2',
+            'store_email', 'phone', 'street1', 'street2',
             'city', 'state', 'postal_code', 'country',) 
             }),
         (_('Shipping Countries'), {'fields' : (
