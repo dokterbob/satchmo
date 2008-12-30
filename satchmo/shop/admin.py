@@ -72,7 +72,7 @@ class OrderItemOptions(admin.ModelAdmin):
     inlines = [OrderItemDetail_Inline]
 
 class OrderPaymentOptions(admin.ModelAdmin):
-    list_filter = ['order', 'payment']
+    list_filter = ['payment']
     list_display = ['id', 'order', 'payment', 'amount_total', 'time_stamp']
     fieldsets = (
         (None, {'fields': ('order', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
