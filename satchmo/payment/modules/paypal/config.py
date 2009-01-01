@@ -45,7 +45,7 @@ StringValue(PAYMENT_GROUP,
     'RETURN_ADDRESS',
     description=_('Return URL'),
     help_text=_('Where Paypal will return the customer after the purchase is complete.  This can be a named url and defaults to the standard checkout success.'),
-    default="PAYPAL_satchmo_checkout-success"),
+    default="satchmo_checkout-success"),
     
 BooleanValue(PAYMENT_GROUP, 
     'SSL', 
