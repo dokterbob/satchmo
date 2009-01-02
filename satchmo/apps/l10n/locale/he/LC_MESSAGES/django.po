@@ -1,0 +1,220 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: models.py:41
+msgid "State"
+msgstr "מחוז"
+
+#: models.py:63
+msgid "Country"
+msgstr "מדינה"
+
+#: models.py:6
+msgid "Africa"
+msgstr "אפריקה"
+
+#: models.py:7
+msgid "North America"
+msgstr "צפון אמריקה"
+
+#: models.py:8
+msgid "Europe"
+msgstr "אירופה"
+
+#: models.py:9
+msgid "Asia"
+msgstr "אסיה"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "אוקיאניה"
+
+#: models.py:11
+msgid "South America"
+msgstr "דרום אמריקה"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "אנטרטיקה"
+
+#: models.py:16
+msgid "Another"
+msgstr "אחר"
+
+#: models.py:17
+msgid "Island"
+msgstr "אי"
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr "מחוז"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "אטול"
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr "אי אוטונומי"
+
+#: models.py:21
+msgid "Canton"
+msgstr "קנטון"
+
+#: models.py:22
+msgid "Commune"
+msgstr "קומונה"
+
+#: models.py:23
+msgid "County"
+msgstr "מחוז"
+
+#: models.py:24
+msgid "Department"
+msgstr "מחלקה"
+
+#: models.py:25
+msgid "Dependency"
+msgstr "תלות"
+
+#: models.py:26
+msgid "District"
+msgstr "אזור"
+
+#: models.py:27
+msgid "Division"
+msgstr "מחלקה"
+
+#: models.py:28
+msgid "Emirate"
+msgstr "אמירות"
+
+#: models.py:29
+msgid "Governorate"
+msgstr "ממשל"
+
+#: models.py:30
+msgid "Island council"
+msgstr "מועצת אי"
+
+#: models.py:31
+msgid "Island group"
+msgstr "קבוצת איים"
+
+#: models.py:32
+msgid "Island region"
+msgstr "אזור אי"
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "ממלכה"
+
+#: models.py:34
+msgid "Municipality"
+msgstr "ערייה"
+
+#: models.py:35
+msgid "Parish"
+msgstr "קהילה"
+
+#: models.py:36
+msgid "Prefecture"
+msgstr "תחום שיפוט הנציב"
+
+#: models.py:37
+msgid "Province"
+msgstr "מושבה"
+
+#: models.py:38
+msgid "Region"
+msgstr "איזור"
+
+#: models.py:39
+msgid "Republic"
+msgstr "רפובליקה"
+
+#: models.py:40
+msgid "Sheading"
+msgstr "ממשל מקומי"
+
+#: models.py:42
+msgid "Subdivision"
+msgstr "תת מחלקה"
+
+#: models.py:43
+msgid "Subject"
+msgstr "נושא"
+
+#: models.py:44
+msgid "Territory"
+msgstr "שטח"
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr ""
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "שם רשמי"
+
+#: models.py:55
+msgid "Country name"
+msgstr "שם מדינה"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr ""
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr ""
+
+#: models.py:58
+msgid "Country is active"
+msgstr "מדינה פעילה"
+
+#: models.py:59
+msgid "Continent"
+msgstr "יבשת"
+
+#: models.py:60
+#: models.py:87
+msgid "Administrative Area"
+msgstr "אזור אדמיניסטרטיבי"
+
+#: models.py:64
+msgid "Countries"
+msgstr "מדינות"
+
+#: models.py:82
+msgid "Admin Area name"
+msgstr "שם איזור ניהול"
+
+#: models.py:83
+msgid "Postal Abbreviation"
+msgstr "קיצור דואר"
+
+#: models.py:84
+msgid "Area is active"
+msgstr "איזור פעיל"
+
+#: models.py:88
+msgid "Administrative Areas"
+msgstr "אזורים אדמיניסטרטיביים"
+

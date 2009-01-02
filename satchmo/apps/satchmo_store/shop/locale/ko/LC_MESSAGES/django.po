@@ -1,0 +1,1111 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views/contact.py:24
+#: templates/shop/checkout/form.html:51
+msgid "Email address"
+msgstr "이 메일"
+
+#: templates/shop/checkout/form.html:34
+msgid "Password"
+msgstr "패스워드"
+
+#: templates/shop/checkout/form.html:54
+msgid "First name"
+msgstr "성"
+
+#: templates/shop/checkout/form.html:57
+msgid "Last name"
+msgstr "이름"
+
+#: models.py:49
+#: templates/shop/pdf/invoice.rml:99
+#: templates/shop/pdf/packing-slip.rml:99
+msgid "Email"
+msgstr "이메일"
+
+#: views/contact.py:23
+#: templates/shop/checkout/form.html:33
+msgid "Name"
+msgstr "이름"
+
+#: models.py:205
+msgid "Creation Date"
+msgstr "생성 날짜"
+
+#: templates/shop/templates/404.html:5
+#: templates/shop/500.html:5
+#: templates/shop/cart.html:7
+#: templates/shop/index.html:7
+#: templates/shop/contact_form.html:5
+#: templates/shop/download.html:5
+#: templates/shop/search.html:6
+#: templates/shop/404.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/admin/inventory_form.html:66
+#: templates/shop/checkout/balance_remaining.html:6
+#: templates/shop/checkout/base_confirm.html:7
+#: templates/shop/checkout/base_pay_ship.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/empty_cart.html:5
+#: templates/shop/checkout/form.html:5
+#: templates/shop/checkout/success.html:7
+#: templates/shop/checkout/cod/confirm.html:9
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
+msgid "Home"
+msgstr "홈"
+
+#: templates/shop/pdf/invoice.rml:98
+#: templates/shop/pdf/packing-slip.rml:98
+msgid "Phone"
+msgstr "전화"
+
+#: models.py:48
+#: models.py:204
+#: templates/shop/pdf/invoice.rml:114
+#: templates/shop/pdf/packing-slip.rml:114
+msgid "Description"
+msgstr "설명"
+
+#: models.py:56
+msgid "Phone Number"
+msgstr "전화 번호"
+
+#: models.py:50
+#: models.py:51
+#: templates/shop/checkout/form.html:65
+#: templates/shop/checkout/form.html.py:68
+#: templates/shop/checkout/form.html:97
+#: templates/shop/checkout/form.html.py:100
+msgid "Street"
+msgstr "거리"
+
+#: models.py:53
+msgid "State"
+msgstr "주"
+
+#: models.py:52
+#: templates/shop/checkout/form.html:71
+#: templates/shop/checkout/form.html.py:103
+msgid "City"
+msgstr "시"
+
+#: models.py:54
+msgid "Zip Code"
+msgstr "우편 번호"
+
+#: templates/shop/checkout/form.html:87
+msgid "Country"
+msgstr "나라"
+
+#: templates/shop/pdf/invoice.rml:136
+#: templates/shop/pdf/packing-slip.rml:136
+msgid "Subtotal"
+msgstr "소계"
+
+#: templates/shop/cart.html:22
+#: templates/shop/order_history.html:23
+#: templates/shop/email/order_complete.txt:45
+#: templates/shop/email/order_complete.txt:54
+#: templates/shop/pdf/invoice.rml:117
+#: templates/shop/pdf/invoice.rml.py:147
+#: templates/shop/pdf/packing-slip.rml:117
+#: templates/shop/pdf/packing-slip.rml.py:147
+msgid "Total"
+msgstr "합계"
+
+#: templates/shop/email/order_complete.txt:38
+msgid "Shipping Method"
+msgstr "배송 방법"
+
+#: templates/shop/email/order_complete.txt:52
+#: templates/shop/pdf/invoice.rml:144
+#: templates/shop/pdf/packing-slip.rml:144
+msgid "Tax"
+msgstr "세금"
+
+#: templates/shop/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "시간"
+
+#: templates/shop/order_history.html:20
+msgid "Status"
+msgstr "상태"
+
+#: templates/shop/email/order_complete.txt:28
+#: templates/shop/pdf/invoice.rml:25
+#: templates/shop/pdf/packing-slip.rml:25
+msgid "Shipping Address"
+msgstr "배송지"
+
+#: templates/shop/pdf/invoice.rml:24
+#: templates/shop/pdf/packing-slip.rml:24
+msgid "Billing Address"
+msgstr "청구 주소"
+
+#: models.py:286
+#: templates/shop/cart.html:20
+#: templates/shop/pdf/invoice.rml:115
+#: templates/shop/pdf/packing-slip.rml:115
+msgid "Quantity"
+msgstr "양"
+
+#: models.py:337
+msgid "Sort Order"
+msgstr "주문 정렬"
+
+#: models.py:338
+msgid "The display order for this group."
+msgstr "이 그룹에 대한 주문 표시"
+
+#: templates/shop/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "거래 아이디"
+
+#: templates/shop/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "주문 지불"
+
+#: templates/shop/email/order_complete.txt:48
+msgid "Discount"
+msgstr "할인"
+
+#: templates/shop/checkout/base_pay_ship.html:32
+msgid "Discounts"
+msgstr "할인"
+
+#: views/cart.py:189
+msgid "Success"
+msgstr "성공"
+
+#: templates/shop/checkout/balance_remaining.html:7
+#: templates/shop/checkout/base_confirm.html:8
+#: templates/shop/checkout/base_confirm.html:12
+#: templates/shop/checkout/base_pay_ship.html:6
+#: templates/shop/checkout/base_pay_ship.html:10
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/empty_cart.html:6
+#: templates/shop/checkout/empty_cart.html:10
+#: templates/shop/checkout/form.html:6
+#: templates/shop/checkout/form.html.py:10
+#: templates/shop/checkout/success.html:8
+#: templates/shop/checkout/cod/confirm.html:10
+msgid "Checkout"
+msgstr "계산"
+
+#: templates/shop/admin/_orderpayment_list.html:8
+#: templates/shop/checkout/base_confirm.html:16
+#: templates/shop/checkout/base_pay_ship.html:14
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/form.html:14
+#: templates/shop/checkout/cod/confirm.html:14
+#: templates/shop/checkout/google/confirm.html:6
+#: templates/shop/checkout/google/confirm.html:9
+#: templates/shop/checkout/paypal/confirm.html:5
+#: templates/shop/checkout/paypal/confirm.html:8
+#: templates/shop/email/order_complete.txt:56
+msgid "Payment"
+msgstr "지불"
+
+#: templates/shop/checkout/pay_ship.html:6
+msgid "Payment Information"
+msgstr "지불 정보"
+
+#: templates/base.html:30
+msgid "Shop Categories"
+msgstr "카테고리"
+
+#: views/contact.py:25
+msgid "Subject"
+msgstr "제목"
+
+#: templates/shop/checkout/pay_ship.html:20
+msgid "CCV"
+msgstr "CCV"
+
+#: templates/shop/checkout/balance_remaining.html:23
+#: templates/shop/checkout/form.html:47
+msgid "Payment method"
+msgstr "지불 수단"
+
+#: views/cart.py:129
+#: views/cart.py:170
+msgid "The product you have requested does not exist."
+msgstr "당신이 요청하신 제품은 존재하지 않습니다."
+
+#: templates/shop/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "방법"
+
+#: config.py:9
+msgid "Default currency symbol"
+msgstr "기본 통화 기호"
+
+#: config.py:10
+msgid "Use a '_' character to force a space."
+msgstr "띄워쓰기를 하실려면 '_'을 쓰세요"
+
+#: config.py:16
+msgid "Enable product ratings"
+msgstr "제품 평가 가능"
+
+#: config.py:22
+msgid "Enable random display of featured products on home page"
+msgstr "홈 페이지의 특별 상품 표시를 무작위로 하기"
+
+#: config.py:28
+msgid "Number of featured items to display"
+msgstr "특별 상품 갯수"
+
+#: config.py:38
+msgid "Enable Analytics"
+msgstr "웹로그 분석 가능"
+
+#: config.py:45
+msgid "Use Urchin?"
+msgstr "Urchin 사용?"
+
+#: config.py:46
+msgid ""
+"Use the old-style, urchin javascript?.  This is not needed unless your "
+"analytics account hasn't been updated yet."
+msgstr ""
+"오래된 스타일의 Urchin 자바스크립트 사용하실 것입니까?. 이것은 필요하지 않습니다."
+"당신의 로그분석 계정이 아직 업데이트 되지 않았다면"
+
+#: config.py:54
+msgid "Analytics Code"
+msgstr "웹분석 코드"
+
+#: config.py:62
+msgid "Enable Conversion Tracking"
+msgstr "전환 트래킹 사용"
+
+#: config.py:69
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Adwords 아이디 (예: UA-abcd-1)"
+
+#: config.py:79
+msgid "Allow user to choose from available translations"
+msgstr "사용자가 가용한 언아 중에서 선택할 수 있게함"
+
+#: config.py:87
+msgid "Available languages"
+msgstr "가용 언어"
+
+#: config.py:88
+msgid "Languages that have valid translations"
+msgstr "유효한 언어"
+
+#: config.py:89
+msgid "English"
+msgstr "영어"
+
+#: config.py:90
+msgid "French"
+msgstr "프랑스어"
+
+#: config.py:91
+msgid "German"
+msgstr "독일어"
+
+#: config.py:92
+msgid "Spanish"
+msgstr "스페인어"
+
+#: config.py:93
+msgid "Swedish"
+msgstr "스웨덴어"
+
+#: models.py:26
+msgid "Test Store"
+msgstr "테스트 상점"
+
+#: models.py:47
+msgid "Store Name"
+msgstr "상점 이름"
+
+#: models.py:57
+msgid "Purchase item not in stock?"
+msgstr "제고없는 아이템에 대한 구매?"
+
+#: models.py:58
+msgid "Only sell to in-country customers?"
+msgstr "해당국가 고객에게만 판매?"
+
+#: models.py:61
+msgid "Default country for customers"
+msgstr "고객에대한 기본 국가"
+
+#: models.py:62
+msgid "Shipping Countries"
+msgstr "배송 국가"
+
+#: models.py:88
+msgid "Store Configuration"
+msgstr "상점"
+
+#: models.py:89
+msgid "Store Configurations"
+msgstr "상점 설정"
+
+#: models.py:277
+msgid "Shopping Cart"
+msgstr "장바구니"
+
+#: models.py:278
+msgid "Shopping Carts"
+msgstr "장바구니"
+
+#: models.py:334
+msgid "detail"
+msgstr "상세"
+
+#: models.py:335
+msgid "name"
+msgstr "이름"
+
+#: models.py:336
+msgid "Item Detail Price Change"
+msgstr "아이템 "
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "이 필드 중 단지 하나민 입력하세요."
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "관리자 화면"
+
+#: views/cart.py:30
+msgid "No cart to update."
+msgstr "업데이트할 장바구니가 없습니다."
+
+#: views/cart.py:38
+msgid "Bad quantity."
+msgstr "잘못딘 수량"
+
+#: views/cart.py:45
+msgid "Bad item number."
+msgstr "잘못된 아이템 수량"
+
+#: views/cart.py:50
+msgid "No such item in your cart."
+msgstr "그러한 아이템은 장바구니에 없습니다."
+
+#: views/cart.py:136
+msgid "Please enter a whole number."
+msgstr "전체 번호늘 입력해 주세요"
+
+#: views/cart.py:143
+msgid "Please enter a positive number."
+msgstr "양수만 입력해 주세요"
+
+#: views/cart.py:179
+msgid "Choose a quantity."
+msgstr "수량선택"
+
+#: views/cart.py:182
+msgid "Choose a whole number."
+msgstr "전체수량 선택"
+
+#: views/cart.py:191
+#: templates/shop/templates/404.html:10
+#: templates/shop/500.html:10
+#: templates/shop/404.html:10
+msgid "Error"
+msgstr "에러"
+
+#: views/cart.py:208
+msgid "You must accept the terms and conditions."
+msgstr "계약서에 동의 하셔야 합니다."
+
+#: views/cart.py:224
+#: views/cart.py:258
+msgid "Internal error: please submit as a POST"
+msgstr "내부에러: POST로 전송하기 바람"
+
+#: views/category.py:12
+msgid "The category you have requested does not exist."
+msgstr "요청하신 카테고리는 존재하지 않습니다."
+
+#: views/comments.py:26
+msgid "One or more of the required fields wasn't submitted"
+msgstr "하나 또는 그 이상의 요청 필드가 전송되지 않았습니다."
+
+#: views/comments.py:33
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "잘못된 내용 타입: %s"
+
+#: views/contact.py:18
+msgid "General question"
+msgstr "일반 요청"
+
+#: views/contact.py:19
+msgid "Order problem"
+msgstr "주문 문제"
+
+#: views/contact.py:26
+msgid "Inquiry"
+msgstr "요청"
+
+#: views/contact.py:27
+msgid "Contents"
+msgstr "내용"
+
+#: views/download.py:19
+#: views/download.py:24
+msgid "The download key is invalid."
+msgstr "다운로드 키가 유효하지 않습니다."
+
+#: views/utils.py:71
+msgid "Card type does not match card number."
+msgstr "카드 타입과 카드 번화가 일치하지 않습니다."
+
+#: views/utils.py:73
+msgid "Invalid credit card number."
+msgstr "유효하지 않은 카드 번호"
+
+#: templates/shop/email/order_complete.txt:50
+msgid "Shipping"
+msgstr "배송"
+
+#: templates/shop/templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "찾으시는 페이지를 찾을수 없습니다."
+
+#: templates/shop/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "상점에러 발생 관리자에게 통보되었습니다."
+
+#: templates/base.html:24
+#: templates/base.html.py:27
+msgid "Search"
+msgstr "검색"
+
+#: templates/base.html:38
+msgid "Account Information"
+msgstr "계정 정보"
+
+#: templates/base.html:40
+msgid "Account Details"
+msgstr "계정 상세 정보"
+
+#: templates/base.html:41
+#: templates/shop/admin/inventory_form.html:63
+msgid "Log out"
+msgstr "로그 아웃"
+
+#: templates/base.html:43
+msgid "Log in"
+msgstr "로그인"
+
+#: templates/base.html:47
+msgid "Cart"
+msgstr "장바구니"
+
+#: templates/base.html:51
+#: templates/shop/cart.html:67
+msgid "Check out"
+msgstr "결재"
+
+#: templates/base.html:54
+#: templates/shop/contact_form.html:6
+#: templates/shop/contact_thanks.html:6
+msgid "Contact Us"
+msgstr "연락처"
+
+#: templates/base.html:58
+msgid "Change language"
+msgstr "언어 변경"
+
+#: templates/base.html:64
+#: templates/shop/admin/index.html:104
+msgid "Change"
+msgstr "변경"
+
+#: templates/base.html:74
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr ""
+
+#: templates/shop/cart.html:16
+msgid "Your cart is empty."
+msgstr "장바구니가 비어있습니다."
+
+#: templates/shop/cart.html:18
+msgid "Your Cart"
+msgstr "고객님의 장바구니"
+
+#: templates/shop/cart.html:21
+msgid "Item"
+msgstr "아이템"
+
+#: templates/shop/cart.html:29
+msgid "Remove"
+msgstr "제거"
+
+#: templates/shop/cart.html:40
+msgid "update amount"
+msgstr "수량 업데이트"
+
+#: templates/shop/cart.html:51
+msgid "Base Price: "
+msgstr "최고 가격"
+
+#: templates/shop/cart.html:52
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+"오른쪽에 있는 금액은 적립금입니다. 나머지 금액에 대해서만 금액이 청구될 것입니다."
+
+#: templates/shop/cart.html:63
+msgid "Cart Total"
+msgstr "장바구니 총계"
+
+#: templates/shop/index.html:11
+msgid "Welcome to the shop."
+msgstr "쇼핑몰에 방문해 주셔서 감사드립니다."
+
+#: templates/shop/index.html:14
+msgid "Featured Items"
+msgstr "특별 품목"
+
+#: templates/shop/index.html:31
+#: templates/shop/index.html.py:33
+msgid "Previous"
+msgstr "이전"
+
+#: templates/shop/index.html:43
+#: templates/shop/index.html.py:45
+msgid "Next"
+msgstr "다음"
+
+#: templates/shop/contact_form.html:10
+#: templates/shop/contact_thanks.html:10
+#: templates/shop/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "연락처 정보"
+
+#: templates/shop/contact_form.html:13
+#: templates/shop/checkout/base_pay_ship.html:21
+#: templates/shop/checkout/form.html:20
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/shop/contact_form.html:19
+msgid "Send Email"
+msgstr "이메일 발송"
+
+#: templates/shop/download.html:13
+msgid "Downloading of"
+msgstr "다운로드"
+
+#: templates/shop/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "아래의 림크를 클릭 후 시작:"
+
+#: templates/shop/download.html:15
+msgid ""
+"Once you click the link, the download will be counted.  If you have trouble "
+"with the download, please refresh yourbrowser and try the download again"
+msgstr ""
+"일단 링크를 클릭후에는 다운로드 횟수가 기록될 것입니다. 만약 다운로드에 문제가 있으시면, "
+"보라우즈를 다시 읿기 하신 후 다시 다운로드 받으세요."
+
+#: templates/shop/search.html:12
+msgid "Nothing found"
+msgstr "찾은 결과 없음"
+
+#: templates/shop/contact_thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "문의해 주셔서 감사드립니다."
+
+#: templates/shop/contact_thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "48시간 안에 연락드리도록 하겠습니다."
+
+#: templates/shop/admin/_customorder_management.html:8
+msgid "Fully charged"
+msgstr "전체 금액에 대해서 부과"
+
+#: templates/shop/admin/_customorder_management.html:10
+msgid "Charge remaining amount"
+msgstr "남은 금액에 대해서만 부과"
+
+#: templates/shop/admin/_customorder_management.html:13
+msgid "Product Details"
+msgstr "제품 상세"
+
+#: templates/shop/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "총"
+
+#: templates/shop/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "미지불"
+
+#: templates/shop/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "지불 완료"
+
+#: templates/shop/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "남은 금액:"
+
+#: templates/admin/base_site.html:4
+#: templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "Satchmo 관리자 사이트"
+
+#: templates/shop/admin/inventory_form.html:74
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Documentation"
+msgstr "문서"
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Change password"
+msgstr "패스워드 변경"
+
+#: templates/shop/admin/inventory_form.html:67
+msgid "Inventory Management"
+msgstr "인벤토리 관리"
+
+#: templates/shop/admin/inventory_form.html:112
+msgid "Helpers"
+msgstr "도움말"
+
+#: templates/shop/admin/inventory_form.html:113
+msgid "Mark all featured"
+msgstr "모든 상품 특별 상품으라 마크"
+
+#: templates/shop/admin/inventory_form.html:114
+msgid "Clear all featured"
+msgstr "모든 특별 상폼 지우기"
+
+#: templates/shop/admin/inventory_form.html:115
+msgid "Disable all Products with 0 quantity."
+msgstr "모든 상품을 0 수량으로 비활성화"
+
+#: templates/shop/admin/inventory_form.html:116
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "수량이 0인 제품변경 비활성화"
+
+#: templates/shop/admin/inventory_form.html:120
+msgid "No inventory items."
+msgstr "재고 품목 없음"
+
+#: templates/shop/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "새로운 주문"
+
+#: templates/shop/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "진행중인 주문"
+
+#: templates/shop/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "모든 주문 보기"
+
+#: templates/shop/admin/index.html:33
+msgid "Switch to Shop View"
+msgstr "상점 보기로 전환"
+
+#: templates/shop/admin/index.html:38
+#: templates/shop/admin/index.html.py:125
+msgid "Switch to Legacy View"
+msgstr "예전 보기로 전환"
+
+#: templates/shop/admin/index.html:87
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "%(name)s에서 가용한 모델 "
+
+#: templates/shop/admin/index.html:88
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/shop/admin/index.html:98
+msgid "Add"
+msgstr "추가"
+
+#: templates/shop/admin/index.html:121
+msgid "Edit Shop Options"
+msgstr "상점 옵션 변경"
+
+#: templates/shop/admin/index.html:122
+msgid "Edit Inventory"
+msgstr "재고 수정"
+
+#: templates/shop/admin/index.html:123
+msgid "Export Product Defs"
+msgstr "제품 정의 이출"
+
+#: templates/shop/admin/index.html:124
+msgid "Cache Status"
+msgstr "캐쉬 상태"
+
+#: templates/shop/checkout/balance_remaining.html:12
+msgid "Order Balance"
+msgstr "주문 잔고"
+
+#: templates/shop/checkout/balance_remaining.html:17
+#, python-format
+msgid ""
+"To complete this order, you need to pay the %(orderbalance)s balance "
+"remaining on this order."
+msgstr ""
+"주문을 완료하기 위해서는 %(orderbalance)s 잔고가 필요합니다."
+
+#: templates/shop/checkout/balance_remaining.html:22
+#: templates/shop/checkout/form.html:46
+msgid "How do you want to pay?"
+msgstr "지볼 방법"
+
+#: templates/shop/checkout/balance_remaining.html:26
+#: templates/shop/checkout/form.html:119
+msgid "Continue Checkout"
+msgstr "결재"
+
+#: templates/shop/checkout/base_confirm.html:15
+#: templates/shop/checkout/base_pay_ship.html:13
+#: templates/shop/checkout/form.html:13
+msgid "Ship/Bill"
+msgstr "배송/계산"
+
+#: templates/shop/checkout/base_confirm.html:17
+#: templates/shop/checkout/base_pay_ship.html:15
+#: templates/shop/checkout/form.html:15
+msgid "Confirmation"
+msgstr "확인"
+
+#: templates/shop/checkout/base_confirm.html:22
+msgid ""
+"The following error was returned while trying to process your payment. "
+"Please correct and resubmit."
+msgstr ""
+"지불 정보를 처리하는 동안 다음 에러가 발생했습니다."
+"수정하신 후 다신 전송해 주세요"
+
+#: templates/shop/checkout/base_confirm.html:25
+msgid "Please validate the following information, then submit your order."
+msgstr "다음 정보를 확인하신 후 다신 보내주세요"
+
+#: templates/shop/checkout/base_confirm.html:29
+#: templates/shop/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "주문한 품목"
+
+#: templates/shop/checkout/base_confirm.html:40
+#: templates/shop/checkout/paypal/confirm.html:35
+msgid "Purchase Items"
+msgstr "구매한 품목"
+
+#: templates/shop/checkout/base_pay_ship.html:18
+#: templates/shop/checkout/form.html:18
+msgid ""
+"Please complete the following information in order to submit your order."
+msgstr ""
+"주문을 전송하기 위해서는 다음 정보를 완료해 주세요"
+
+#: templates/shop/checkout/base_pay_ship.html:33
+msgid "Discount code"
+msgstr "할인 코드"
+
+#: templates/shop/checkout/base_pay_ship.html:38
+#: templates/shop/checkout/form.html:92
+msgid "Shipping Information"
+msgstr "배송 정보"
+
+#: templates/shop/checkout/base_pay_ship.html:42
+msgid "Please choose your preferred shipping method"
+msgstr "선호하는 배송 방법을 선택해 주세요"
+
+#: templates/shop/checkout/base_pay_ship.html:50
+msgid "Confirm"
+msgstr "확인"
+
+#: templates/shop/checkout/confirm.html:19
+#: templates/shop/email/order_complete.txt:61
+#, python-format
+msgid ""
+"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+"charged %(order_total)s."
+msgstr ""
+"%(credit_card_type)s 고객님의 카드 %(credit_card_number)s에서 %(order_total)s원이 부과될 것입니다."
+""
+
+#: templates/shop/checkout/empty_cart.html:12
+msgid ""
+"Your cart is empty. Please add some items to your cart, then complete the "
+"checkout process."
+msgstr ""
+"장바구니가 비어있습니다. 장바구니에 물건을 추가해 주세요."
+"그리고 난 후 결재 절차를 완료해 주세요."
+
+#: templates/shop/checkout/form.html:29
+msgid ""
+"If you already have an account, you can login now to fill in most of the "
+"information below."
+msgstr ""
+"이미 계정을 가지고 계시다면, 로그인 하시면 아래의 대부분의 정보가 채워질 것입니다."
+
+#: templates/shop/checkout/form.html:30
+msgid "This is just a convenience, no account is required!"
+msgstr "단지 편의를 위해서 입니다. 계정이 꼭 필요한 것은 아닙니다."
+
+#: templates/shop/checkout/form.html:35
+msgid "Login"
+msgstr "로그인"
+
+#: templates/shop/checkout/form.html:42
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "적어도 *로 시작하는 필드는 입력하셔야 합니다."
+
+#: templates/shop/checkout/form.html:50
+msgid "Basic Information"
+msgstr "기본 정보"
+
+#: templates/shop/checkout/form.html:60
+msgid "Phone number"
+msgstr "전화 번호"
+
+#: templates/shop/checkout/form.html:63
+#: templates/shop/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "계산서 정보"
+
+#: templates/shop/checkout/form.html:79
+#: templates/shop/checkout/form.html.py:111
+msgid "State/Province"
+msgstr "시/군"
+
+#: templates/shop/checkout/form.html:83
+#: templates/shop/checkout/form.html.py:115
+msgid "Zipcode/Postcode"
+msgstr "우편번호"
+
+#: templates/shop/checkout/form.html:94
+msgid "Shipping same as billing?"
+msgstr "배송지 주소를 계선서 주소와 일치"
+
+#: templates/shop/checkout/pay_ship.html:11
+msgid "Type of credit card"
+msgstr "신용카드 타입"
+
+#: templates/shop/checkout/pay_ship.html:14
+msgid "Credit card number"
+msgstr "신용카드 번호"
+
+#: templates/shop/checkout/pay_ship.html:17
+msgid "Expiration date"
+msgstr "만기일"
+
+#: templates/shop/checkout/success.html:13
+msgid "Thank you for your order!"
+msgstr "주문해 주셔서 감사합니다."
+
+#: templates/shop/checkout/success.html:14
+msgid ""
+"Please print out this page as a receipt.  You will also receive an email "
+"with this information."
+msgstr ""
+"영수증에 이 페이지를 프린터해 주세요. 이 정보를 포함한 이 메일도 받으실 것입니다."
+
+#: templates/shop/checkout/cod/confirm.html:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "이 주문은 %(order_total)s에 대한 COD가 될 것입니다."
+
+#: templates/shop/checkout/google/confirm.html:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "고객님의 지불은 구글 체크 아웃을 통하여 처리될 것입니다."
+
+#: templates/shop/checkout/google/confirm.html:18
+msgid "Fast checkout through Google"
+msgstr "구글을 통한 빠른 체크아웃"
+
+#: templates/shop/checkout/paypal/confirm.html:10
+msgid "Your payment will be processed through PayPal."
+msgstr "고객님의 지불은 PayPal을 통하여 처리될 것입니다."
+
+#: templates/shop/order_history.html:19
+msgid "Order #"
+msgstr "주문 #"
+
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
+msgid "Account"
+msgstr "계정"
+
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
+msgid "Order History"
+msgstr "주문 기록"
+
+#: templates/shop/order_history.html:21
+#: templates/shop/pdf/invoice.rml:15
+#: templates/shop/pdf/invoice.rml.py:51
+#: templates/shop/pdf/packing-slip.rml:15
+#: templates/shop/pdf/packing-slip.rml.py:51
+msgid "Date"
+msgstr "날짜"
+
+#: templates/shop/order_history.html:22
+msgid "Items"
+msgstr "품목"
+
+#: templates/shop/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "아직 어떤 주문도 하지 않으셨습니다."
+
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "주몬 추적"
+
+#: templates/shop/email/contact_us.txt:1
+#, python-format
+msgid ""
+"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
+"contact form."
+msgstr ""
+"웹 컨택트 폼을 통해서 %(name)s ( %(email)s )이 보내신 %(request_type)s 입니다."
+
+#: templates/shop/email/order_complete.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "%(first_name)s %(last_name)s 님께"
+
+#: templates/shop/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "주문에 감사드립니다. %(shop_name)s"
+
+#: templates/shop/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "고객님의 주문은 아래와 같이 요약되었습니다."
+
+#: templates/shop/email/order_complete.txt:67
+msgid "Your order contains products that can be downloaded"
+msgstr "고객님의 주문에 있는 상품은 다운로드 받으실 수 있습니다."
+
+#: templates/shop/email/order_complete.txt:68
+msgid "Please click the link to being the download"
+msgstr "다운로드 받으시려면 링크를 클릭 하세요"
+
+#: templates/shop/email/order_complete.txt:74
+msgid "Regards"
+msgstr ""
+
+#: templates/shop/email/order_complete.txt:76
+msgid "Store Management"
+msgstr "상점 관리"
+
+#: templates/shop/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "상점 송장"
+
+#: templates/shop/pdf/invoice.rml:14
+#: templates/shop/pdf/invoice.rml.py:50
+#: templates/shop/pdf/packing-slip.rml:14
+#: templates/shop/pdf/packing-slip.rml.py:50
+msgid "Invoice #"
+msgstr "송장 #"
+
+#: templates/shop/pdf/invoice.rml:21
+#: templates/shop/pdf/invoice.rml.py:57
+msgid "INVOICE"
+msgstr "송장"
+
+#: templates/shop/pdf/invoice.rml:57
+#: templates/shop/pdf/packing-slip.rml:57
+msgid "Page"
+msgstr "페이지"
+
+#: templates/shop/pdf/invoice.rml:116
+#: templates/shop/pdf/packing-slip.rml:116
+msgid "Unit Price"
+msgstr "개당 가격"
+
+#: templates/shop/pdf/invoice.rml:153
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "지불 금액 합계 %(order_total)s"
+
+#: templates/shop/pdf/invoice.rml:158
+msgid "Accounts Receivable"
+msgstr ""
+
+#: templates/shop/pdf/packing-slip.rml:21
+#: templates/shop/pdf/packing-slip.rml.py:57
+msgid "PACKING SLIP"
+msgstr ""
+
+#: templates/shop/pdf/packing-slip.rml:156
+#, python-format
+msgid ""
+"%(order_total)s was charged to your %(credit_card_type)s card (x%"
+"(credit_card_number)s) on %(order_date)s."
+msgstr ""
+
+#: templates/shop/pdf/packing-slip.rml:162
+msgid "Thank you for your business!"
+msgstr "고객님의 거래에 감사드립니다."
+

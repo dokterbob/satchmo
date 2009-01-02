@@ -1,0 +1,67 @@
+{% extends "shop/base.html" %}
+{% comment %}
+-------------------------------------------------------------------
+This is the base product detail page.
+To modify the templates of specific types of products, such as
+ProductVariations or CustomProducts, look for product/detail_xxx.html
+-------------------------------------------------------------------
+{% endcomment %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_currency satchmo_category %}
+{% load satchmo_util satchmo_discounts %}
+{% load app_plugins %}
+
+{% block extra-head %}
+{% if product.meta %}
+    <meta name="description" content="{{product.meta}}">
+{% endif %}
+{% endblock %}
+
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+{% for name, url in product.category.all.0.get_url_name %}
+    <li><a href="{{ url }}">{{ name }}</a></li>
+{% endfor %}
+<li>{{ product.translated_name }}</li>
+{% endblock %}
+
+{% block sidebar-categories %}
+    <div id="menu_container">
+    {% if product.get_category %}
+        {% category_tree product.get_category.id %}
+    {% else %}
+        {% category_tree %}
+    {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+{% block productdetail %}
+<h4>{{ product.translated_name }}</h4>
+<p>{{ product.translated_description }}</p>
+{% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}:
+<h3>
+	{% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+	<span id="price">{{ product|discount_price:sale|currency }}</span>
+</h3>
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_smart_add %}" method="post">
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" />
+{% plugin_point "product_add_buttons" %}
+{% plugin_point "product_form" %}
+</form>
+{% endblock %}
+
+{% block productfooter %}
+{% if sale %}{% include "product/product_discount_eligible.html" %}{% endif %}
+{% plugin_point "product_footer" %}
+{% endblock %}
+{% endblock %}

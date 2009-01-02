@@ -1,0 +1,42 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Selin Çuhadar <selincuhadar@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2008-06-09 18:18+0200\n"
+"Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
+"Language-Team: Turkish <selincuhadar@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: templates/keyedcache/delete.html:6
+#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr "Ev"
+
+#: templates/keyedcache/delete.html:7
+#: templates/keyedcache/view.html:7
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/keyedcache/delete.html:8
+msgid "Cache Delete"
+msgstr "Cache'yi Sil"
+
+#: templates/keyedcache/stats.html:7
+msgid "Cache Stats"
+msgstr "Cache İstatistikleri"
+
+#: templates/keyedcache/view.html:8
+msgid "Cache View"
+msgstr "Cache'yi Göster"
+

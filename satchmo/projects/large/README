@@ -1,0 +1,9 @@
+This is a very basic example of a "large" Satchmo store.  Basically it has all the satchmo apps loaded, plus flatpages (built-in to Django) and Testimonials (from http://gosatchmo.com/apps/django-testimonials/)
+
+It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
+
+Admin is:
+
+Username: admin
+Password: large
+

@@ -1,0 +1,27 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_currency satchmo_order %}
+{# this is the gift certificate confirmation template #}
+
+{% block errorheader %}We got an error while trying to charge your gift certificate{% endblock %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
+{% trans "Checkout" %}
+{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+{% if not PAYMENT_LIVE %}<b>PAYMENT TEST MODE</b><br/>{% endif %}
+{% with order|giftcertificate as giftcert %}
+{% with giftcert.code as giftcode %}
+{% with giftcert.balance|currency as certbalance %}
+{% with order.balance as orderbalance %}
+<p>{% blocktrans %}Order total: {{ orderbalance }}{% endblocktrans %}</p>
+<p>{% blocktrans %}You are about to use Gift certificate #{{ giftcode }} which has {{ certbalance }} total available to pay for your order.{% endblocktrans %}</p>
+<p>{% blocktrans %}If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate.{% endblocktrans %}</p>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endblock %}

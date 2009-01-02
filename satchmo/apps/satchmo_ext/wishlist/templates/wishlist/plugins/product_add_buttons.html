@@ -1,0 +1,3 @@
+{% if user.is_authenticated %}{% load i18n %}
+<input type="submit" name="addwish" value="{% trans "Add to wishlist" %}" />
+{% endif %}

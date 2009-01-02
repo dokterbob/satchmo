@@ -1,0 +1,51 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "שינוי"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "כרגע"
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr "הגדרות Thumbnail"
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr "איכות Thumbnail"
+
+#: thumbnail/config.py:10
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+"השתמש בערך בין 1 ל- 100 אשר ישנה את איכות ה- JPG thumbnails הנוצרים עבור "
+"מוצרים וקטגוריות."
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr "שנה שם תמונת מוצר?"
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr "האם לשנות אוטומטית את שם התמונה למוצר לאחר העלאה?"
+

@@ -1,0 +1,352 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: modules/tiered/models.py:208
+#: modules/tieredquantity/models.py:205
+msgid "Description"
+msgstr "Description"
+
+#: modules/tiered/models.py:97
+#: modules/tieredquantity/models.py:91
+msgid "Active"
+msgstr "Actif"
+
+#: modules/fedex/config.py:76
+#: modules/ups/config.py:80
+msgid "Submit to URL"
+msgstr "Soumettre à l'URL"
+
+#: modules/tieredquantity/models.py:90
+msgid "Ordering"
+msgstr "Commande"
+
+#: modules/tiered/models.py:206
+#: modules/tieredquantity/models.py:203
+msgid "language"
+msgstr "langue"
+
+#: modules/tiered/models.py:218
+#: modules/tieredquantity/models.py:217
+msgid "Expires"
+msgstr "Expire"
+
+#: config.py:7
+msgid "Shipping Settings"
+msgstr "Paramètres d'expédition"
+
+#: config.py:11
+msgid "Active shipping modules"
+msgstr "Modules d'expédition activés"
+
+#: config.py:12
+msgid "Select the active shipping modules, save and reload to set any module-specific shipping settings."
+msgstr "Sélectionnez les modules d'expédition actifs, sauvez et recharger pour activer les paramètres spécifiques du module."
+
+#: config.py:14
+msgid "Per piece"
+msgstr "Par pièce"
+
+#: modules/dummy/shipper.py:32
+msgid "Dummy Flat Rate Shipping"
+msgstr "Livraison à taux standard bidon"
+
+#: modules/dummy/shipper.py:45
+msgid "US Mail"
+msgstr "US Mail"
+
+#: modules/dummy/shipper.py:51
+msgid "3 - 4 business days"
+msgstr "3 - 4 jours ouvrables"
+
+#: modules/fedex/config.py:10
+msgid "FedEx Shipping Settings"
+msgstr "Paramètres d'expédition FedEx"
+
+#: modules/fedex/config.py:20
+msgid "FedEx Meter Number"
+msgstr "Numéro Meter FedEx"
+
+#: modules/fedex/config.py:21
+msgid "Meter Number provided by FedEx."
+msgstr "Numéro fourni par FedEx."
+
+#: modules/fedex/config.py:26
+msgid "FedEx Account Number"
+msgstr "Numéro de compte FedEx"
+
+#: modules/fedex/config.py:27
+msgid "FedEx Account Number."
+msgstr "Numéro de compte FedEx."
+
+#: modules/fedex/config.py:32
+msgid "FedEx Shipping Choices Available to customers."
+msgstr "Choix des modes d'expédition FedEx disponibles pour les clients."
+
+#: modules/fedex/config.py:56
+msgid "Type of container/package used to ship product."
+msgstr "Type d'emballage pour expédier ce produit."
+
+#: modules/fedex/config.py:70
+msgid "Access production FedEx server"
+msgstr "Accès au serveur de production FedEx"
+
+#: modules/fedex/config.py:71
+#: modules/ups/config.py:75
+msgid "Use this when your store is in production."
+msgstr "Utilisez ceci lorsque votre boutique sera en mode production."
+
+#: modules/fedex/config.py:77
+#: modules/ups/config.py:81
+msgid "Address to submit live transactions."
+msgstr "Adresse pour soumettre les transactions réelles."
+
+#: modules/fedex/config.py:82
+#: modules/ups/config.py:86
+msgid "Submit to TestURL"
+msgstr "Soumette à l'URL de Test"
+
+#: modules/fedex/config.py:83
+#: modules/ups/config.py:87
+msgid "Address to submit test transactions."
+msgstr "Adresse pour soumettre des transactions de test."
+
+#: modules/fedex/config.py:88
+msgid "Single Box?"
+msgstr "Emballage groupé?"
+
+#: modules/fedex/config.py:89
+msgid "Use just one box and ship by weight?  If no then every item will be sent in its own box."
+msgstr "Utiliser un seul emballage - prix au poids? Si non, chaque article est envoyé dans une boite distincte."
+
+#: modules/fedex/config.py:94
+#: modules/ups/config.py:92
+msgid "Verbose logs"
+msgstr "Logs des événements détaillés"
+
+#: modules/fedex/config.py:95
+msgid "Send the entire request and response to the log - for debugging help when setting up FedEx."
+msgstr "Envoyer les requètes et réponses dans le log. Utile pour la mise au point du module FedEx."
+
+#: modules/fedex/shipper.py:69
+#, python-format
+msgid "FedEx - %s"
+msgstr "FedEx - %s"
+
+#: modules/fedex/shipper.py:85
+msgid "FedEx"
+msgstr "FedEx"
+
+#: modules/fedex/shipper.py:94
+#: modules/ups/shipper.py:81
+msgid "%s business days"
+msgstr "%s jours ouvrables"
+
+#: modules/fedex/shipper.py:96
+#: modules/ups/shipper.py:83
+msgid "%s business day"
+msgstr "%s jour ouvrable"
+
+#: modules/fedex/shipper.py:150
+#: modules/ups/shipper.py:113
+msgid "3 - 4"
+msgstr "3 - 4"
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "Taux plancher"
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "Expédition standard"
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "Service d'expédition standard"
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr "Service d'expédition ayant un taux standard"
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr "Délai de livraison standard en jour"
+
+#: modules/flat/shipper.py:27
+msgid "Flat Rate Shipping"
+msgstr "Taux d'expédition standard"
+
+#: modules/no/shipper.py:26
+#: modules/no/shipper.py:38
+msgid "No Shipping"
+msgstr "Pas de livraison"
+
+#: modules/no/shipper.py:44
+msgid "immediately"
+msgstr "immédiatement"
+
+#: modules/per/config.py:15
+msgid "Per item price"
+msgstr "Prix par article"
+
+#: modules/per/config.py:22
+msgid "Per Item Shipping Service"
+msgstr "Service d'expédition par article"
+
+#: modules/per/config.py:23
+msgid "Shipping service used with per item shipping"
+msgstr "Service d'expédition avec expédition par article"
+
+#: modules/per/config.py:30
+msgid "Per Item Delivery Days"
+msgstr "Délai de livraison en jours par article"
+
+#: modules/per/shipper.py:27
+msgid "Per Item shipping"
+msgstr "Frais de port par article"
+
+#: modules/tiered/config.py:7
+msgid "Tiered Shipping"
+msgstr "Expédition 'tiered'"
+
+#: modules/tiered/models.py:95
+#: modules/tieredquantity/models.py:89
+msgid "Key"
+msgstr "Clé"
+
+#: modules/tiered/models.py:207
+#: modules/tieredquantity/models.py:204
+msgid "Carrier"
+msgstr "Transporteur"
+
+#: modules/tiered/models.py:209
+#: modules/tieredquantity/models.py:206
+msgid "Method"
+msgstr "Méthode"
+
+#: modules/tiered/models.py:209
+#: modules/tieredquantity/models.py:206
+msgid "i.e. US Mail"
+msgstr "cad US Mail"
+
+#: modules/tiered/models.py:210
+#: modules/tieredquantity/models.py:207
+msgid "Delivery Days"
+msgstr "Délai en jours"
+
+#: modules/tiered/models.py:214
+msgid "Min Price"
+msgstr "Prix minimum"
+
+#: modules/tiered/models.py:215
+msgid "The minumum price for this tier to apply"
+msgstr "Prix minimum pour appliquer ce 'tier'"
+
+#: modules/tiered/models.py:217
+msgid "Shipping Price"
+msgstr "Prix du transport"
+
+#: modules/tieredquantity/config.py:4
+msgid "Tiered Quantity"
+msgstr "Quantité 'tiered'"
+
+#: modules/tieredquantity/models.py:211
+msgid "Min Quantity"
+msgstr "Quantité Min"
+
+#: modules/tieredquantity/models.py:212
+msgid "Minimum qty in order for this to apply?"
+msgstr "Qté minimum pour appliquer ceci"
+
+#: modules/tieredquantity/models.py:213
+msgid "Handling Price"
+msgstr "Prix de traitement"
+
+#: modules/tieredquantity/models.py:215
+msgid "Shipping Per Item"
+msgstr "Transport par article"
+
+#: modules/ups/config.py:8
+msgid "UPS Shipping Settings"
+msgstr "Paramètres d'expédition par UPS"
+
+#: modules/ups/config.py:16
+msgid "UPS XML Access Key"
+msgstr "Clé d'accès UPS XML"
+
+#: modules/ups/config.py:17
+msgid "XML Access Key Provided by UPS"
+msgstr "Clé d'accès XML fournie par UPS"
+
+#: modules/ups/config.py:22
+msgid "UPS User ID"
+msgstr "Identifiant utilisateur chez UPS"
+
+#: modules/ups/config.py:23
+msgid "User ID provided by UPS site."
+msgstr "Identifiant de l'utilisateur fourni par le site Web UPS"
+
+#: modules/ups/config.py:28
+msgid "UPS Account Number"
+msgstr "Numéro de compte UPS"
+
+#: modules/ups/config.py:29
+msgid "UPS Account Number."
+msgstr "Numéro de compte UPS."
+
+#: modules/ups/config.py:34
+msgid "UPS User Password"
+msgstr "Mot de passe de l'utilisateur chez UPS"
+
+#: modules/ups/config.py:35
+msgid "User password provided by UPS site."
+msgstr "Mot de passe fourni à l'utilisateur par le site Web UPS"
+
+#: modules/ups/config.py:40
+msgid "UPS Shipping Choices Available to customers."
+msgstr "Choix des modes d'expédition UPS disponibles pour les clients."
+
+#: modules/ups/config.py:53
+msgid "Type of container used to ship product."
+msgstr "Type de container utilisé pour expédier ce produit."
+
+#: modules/ups/config.py:63
+msgid "UPS Pickup option."
+msgstr "Option enlèvement d'UPS."
+
+#: modules/ups/config.py:74
+msgid "Access production UPS server"
+msgstr "Accès au serveur de production UPS"
+
+#: modules/ups/config.py:93
+msgid "Send the entire request and response to the log - for debugging help when setting up UPS."
+msgstr "Envoyer les requètes et réponses dans le log. Utile pour la mise au point du module UPS."
+
+#: modules/ups/shipper.py:61
+#, python-format
+msgid "UPS - %s"
+msgstr "UPS - %s"
+
+#: modules/ups/shipper.py:74
+msgid "UPS"
+msgstr "UPS"
+
+#: templates/shipping/shipping_options.html.py:6
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr "L'envoi via %(method)s arrive approximativement en %(expected_delivery)s jours."
+

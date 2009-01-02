@@ -1,0 +1,195 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Selin Çuhadar <selincuhadar@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2008-06-09 18:18+0200\n"
+"Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
+"Language-Team: Turkish <selincuhadar@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: views.py:15
+#: templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "Email adresi"
+
+#: models.py:33
+msgid "Email"
+msgstr "Email"
+
+#: models.py:34
+msgid "Creation Date"
+msgstr "Üretim Tarihi"
+
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Ev"
+
+#: config.py:6
+msgid "Newsletter Settings"
+msgstr "Bülten Ayarları"
+
+#: config.py:10
+msgid "Active newsletter module"
+msgstr "Aktif bülten modülü"
+
+#: config.py:11
+msgid "Select a newsletter, save and reload to set any module-specific newsletter settings."
+msgstr "Bir bülten seç, kaydet ve modül tayin edilen bülten ayarlarını yeniden yükle."
+
+#: config.py:13
+msgid "No newsletter"
+msgstr "Bülten yok"
+
+#: config.py:14
+msgid "Simple list"
+msgstr "Basit liste"
+
+#: config.py:15
+msgid "Mailman"
+msgstr "Mailman"
+
+#: config.py:20
+msgid "Name of Newsletter"
+msgstr "Bültenin İsmi"
+
+#: config.py:21
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr ""
+
+#: mailman.py:24
+#: simple.py:18
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr ""
+
+#: mailman.py:26
+#: simple.py:20
+#, python-format
+msgid "Already removed %(email)s."
+msgstr ""
+
+#: mailman.py:35
+#: mailman.py:71
+#: simple.py:29
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr ""
+
+#: mailman.py:38
+#: simple.py:31
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr ""
+
+#: mailman.py:63
+#, fuzzy, python-format
+msgid "Already Subscribed: %s"
+msgstr "Sisteme kayıtlı: %s"
+
+#: mailman.py:74
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "Bu email adresi sisteme kayıtlıdır:  %(email)s"
+
+#: mailman.py:78
+msgid "Bad/Invalid email address: blank line"
+msgstr "Hatalı/Geçersiz email adresi: boşluk çizgisi"
+
+#: mailman.py:80
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "Hatalı/Geçersiz email adresi: %(email)s "
+
+#: mailman.py:83
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "Yabancı adres (geçersiz karakterler): %(email)s"
+
+#: models.py:32
+#, fuzzy
+msgid "Subscribed"
+msgstr "Kayıt Edildi"
+
+#: models.py:35
+msgid "Update Date"
+msgstr "Tarihi Güncelle"
+
+#: views.py:14
+msgid "Full Name"
+msgstr "Tam İsim"
+
+#: views.py:16
+#: templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+#, fuzzy
+msgid "Subscribe"
+msgstr "Kayıt Et"
+
+#: views.py:53
+msgid "Error, not valid."
+msgstr "Hata, geçerli değil."
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+msgid "Newsletter Subscription"
+msgstr "Bülten Aboneliği"
+
+#: templates/newsletter/subscribe_form.html:18
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+msgid "Your name"
+msgstr "İsminiz"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+msgid "Newsletter Unsubscribe"
+msgstr "Bülten Üyeliğinden Ayrıl"
+
+#: templates/newsletter/unsubscribe_form.html:22
+msgid "Remove Me"
+msgstr ""
+

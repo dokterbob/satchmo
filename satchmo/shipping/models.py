@@ -1,1 +1,0 @@
-import satchmo.shipping.config

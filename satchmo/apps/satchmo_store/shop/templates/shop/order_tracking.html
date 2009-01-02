@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+{% load satchmo_order %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li><a href="{% url satchmo_account_info %}">{% trans "Account" %}</a></li>
+   <li>{% trans "Order Tracking" %}</li>
+{% endblock %}
+
+{% block content %}
+<div id="ordertracking">
+    <h3>{% trans "Order Tracking" %}</h3>
+    {% order_tracking_details order "true" default_view_tax%}
+</div>
+{% endblock %}
+

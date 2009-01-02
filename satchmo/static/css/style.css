@@ -36,21 +36,21 @@ margin: 0;
 padding: 0;
 }
 
-#leftnav {
+#sidebar-secondary {
 float: left;
 width: 160px;
 margin: 0;
 padding: 1em;
 }
 
-#leftnav h3, #rightnav h3 {
+#sidebar-secondary h3, #sidebar-primary h3 {
 	font-size: 110%;
 	font-weight: bold;
 	margin-bottom: 0.1em;
 	margin-top: 1em;	
 }
 
-#rightnav {
+#sidebar-primary {
 float: right;
 width: 160px;
 margin: 0;
@@ -60,7 +60,7 @@ border-left: 1px solid silver;
 border-bottom: 1px solid silver;
 }
 
-#rightnav .wishlist {
+#sidebar-primary .wishlist {
 	padding-top: 10px;
 }
 
@@ -135,7 +135,7 @@ background-color: #ddd;
 border-top: 1px solid gray;
 }
 
-#leftnav p, #rightnav p { margin: 0 0 1em 0; }
+#sidebar-secondary p, #sidebar-primary p { margin: 0 0 1em 0; }
 #content h2 { margin: 0 0 .5em 0; }
 
 .brandcategories {

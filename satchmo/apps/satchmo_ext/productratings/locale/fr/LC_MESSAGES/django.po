@@ -1,0 +1,56 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: utils.py:54
+msgid "Not Rated"
+msgstr "Non évalué"
+
+#: config.py:9
+msgid "Enable Akismet ratings"
+msgstr "Activer les appréciations Akismet"
+
+#: config.py:15
+msgid "Akismet API Key"
+msgstr "Clé pour l'API Akismet"
+
+#: models.py:9
+#: templates/productratings/_product_ratings.html.py:17
+msgid "Rating"
+msgstr "Evaluation"
+
+#: templates/productratings/_product_ratings.html.py:4
+msgid "Product Reviews"
+msgstr "Avis sur les produits"
+
+#: templates/productratings/_product_ratings.html.py:8
+msgid "Be the first to review it!"
+msgstr "Soyez le premier à donner votre avis sur ce produit!"
+
+#: templates/productratings/_product_ratings.html.py:12
+#, python-format
+msgid "Average rating %(rating)s"
+msgstr "Evaluation moyenne %(rating)s"
+
+#: templates/productratings/_product_ratings.html.py:24
+msgid "Review this product"
+msgstr "Donner son avis sur ce produit"
+
+#: templates/productratings/_product_ratings.html.py:28
+msgid "Please login to review this product."
+msgstr "Veuillez vous authentifier pour donner votre avis sur ce produit."
+

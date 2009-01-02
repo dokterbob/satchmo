@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_util %}
+
+{% block navbar %}
+   <li class="first">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block content %}
+{% trans "Welcome to the shop." %}
+
+{% if all_products_list %}
+    <h4>{% trans "Featured Items" %}</h4>
+    {% for product in all_products_list %} 
+            <div class = "productImage">    
+           {% if product.main_image %}
+              <center>
+              <a href="{{ product.get_absolute_url }}"><img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+              </center>
+           {% endif %}     
+            <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+        </div>
+    {% endfor %}
+{% endif %}
+
+    {% if is_paginated %}
+    <div id = "pagination">
+    <ul>
+        {% if page_obj.has_previous %}
+            <li> <a href="{{shop_base}}/?page={{page_obj.previous_page_number}}">{% trans "Previous" %}</a> </li>
+        {% else %}
+            <li> {% trans "Previous" %} </li>
+        {% endif %}
+        {% for page_number in paginator.num_pages|template_range %}
+            {% ifequal page_number page_obj.number %}
+                <li class="currentpage">{{page_number}}</li>
+            {% else %}
+                <li> <a href="{{shop_base}}/?page={{page_number}}">{{page_number}}</a> </li>
+            {% endifequal %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li> <a href="{{shop_base}}/?page={{page_obj.next_page_number}}">{% trans "Next" %}</a></li>
+        {% else %}
+            <li> {% trans "Next" %} </li>
+        {% endif %}
+    </ul>
+    </div>
+    {% endif %}
+
+{% endblock %}

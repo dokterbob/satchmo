@@ -1,0 +1,9 @@
+This is a very basic example of a "simple" Satchmo store.
+
+It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
+
+Admin is:
+
+Username: admin
+Password: simple
+

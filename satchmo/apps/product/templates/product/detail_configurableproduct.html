@@ -1,0 +1,74 @@
+{% extends "product/product.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_util %}
+{% load satchmo_currency satchmo_category%}
+{% load satchmo_discounts satchmo_tax %}
+{% load app_plugins %}
+
+{% block extra-head %}
+
+<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
+<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+<script type="text/javascript" src="{{media_url}}js/satchmo_product.js"></script>
+{% blackbird_logging %}
+<script type="text/javascript">{# Javascript which is generated uniquely for each page #}
+satchmo.default_view_tax = {% if default_view_tax %}true{% else %}false{% endif %};
+
+satchmo.variations = {{ details|as_json }};
+
+satchmo.set_option_ids([{% for option_group in options %}{{ option_group.id }}{% if not forloop.last %},{% endif %}{% endfor %}]);
+
+$(function() {
+    satchmo.update_price();
+    $('.priced').change(function() { satchmo.update_price() });
+});
+</script>
+{% endblock %}
+
+{% block productdetail %}
+<h4>{{ product.translated_name }}</h4>
+<p>{{ product.translated_description }}</p>
+{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3>{% spaceless %}
+	{% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
+	<span id="price">{{ product|discount_price:sale|currency }}</span>
+	{% endspaceless %}</h3>
+
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+
+{% with product.translated_attributes as atts %}{% if atts %}
+<p class="productattributes">
+{% for att in product.translated_attributes %}
+{{ att.name }}: {{ att.value }}<br/>
+{% endfor %}
+</p>
+{% endif %}{% endwith %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_smart_add %}" method="post">
+{% if options %}
+<p>{% trans "Please choose your options" %}:</p>
+{% endif %}
+
+{% for option_group in options %}
+ {{ option_group.name }}
+    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+    {% for choice in option_group.items %}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
+        {% if choice.price_change %}
+            {% option_price choice %}
+        {% endif %}
+     </option>
+    {% endfor %}
+      </select>
+{% endfor %}
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input id="addcart" type="submit" name="addcart" value="{% trans "Add to cart" %}" />
+{% plugin_point "product_add_buttons" %}
+{% plugin_point "product_form" %}
+</form>
+{% endblock %}

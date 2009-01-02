@@ -1,0 +1,97 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/livesettings/group_settings.html:10
+#: templates/livesettings/site_settings.html:25
+msgid "Home"
+msgstr "Strona startowa"
+
+#: models.py:76
+#: models.py:115
+msgid "Site"
+msgstr "Strona"
+
+#: values.py:93
+msgid "Base Settings"
+msgstr "Ustawienia podstawowe"
+
+#: values.py:199
+msgid "Default value: \"\""
+msgstr "Domyślna wartość: \"\""
+
+#: values.py:206
+msgid "Default value: "
+msgstr "Domyślna wartość: "
+
+#: values.py:209
+#, python-format
+msgid "Default value: %s"
+msgstr "Domyślna wartość: %s"
+
+#: templates/livesettings/group_settings.html:7
+#: templates/livesettings/site_settings.html:22
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+#: templates/livesettings/group_settings.html:7
+#: templates/livesettings/site_settings.html:22
+msgid "Change password"
+msgstr "Zmiana hasła"
+
+#: templates/livesettings/group_settings.html:7
+#: templates/livesettings/site_settings.html:22
+msgid "Log out"
+msgstr "Wyloguj"
+
+#: templates/livesettings/group_settings.html:11
+msgid "Edit Group Settings"
+msgstr "Edycja Ustawień dla Grupy"
+
+#: templates/livesettings/group_settings.html:18
+#: templates/livesettings/site_settings.html:43
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Proszę poprawić poniższy błąd."
+msgstr[1] "Proszę poprawić poniższe błędy."
+
+#: templates/livesettings/group_settings.html:24
+#, python-format
+msgid "Settings included in %(name)s."
+msgstr "Ustawienia w %(name)s."
+
+#: templates/livesettings/group_settings.html:49
+#: templates/livesettings/site_settings.html:89
+msgid "You don't have permission to edit values."
+msgstr "Nie masz uprawnień do zmiany tych wartości."
+
+#: templates/livesettings/site_settings.html:26
+msgid "Edit Site Settings"
+msgstr "Edytuj ustawienia serwisu"
+
+#: templates/livesettings/site_settings.html:59
+#, python-format
+msgid "Group settings: %(name)s"
+msgstr "Ustawienia grupy: %(name)s"
+
+#: templates/livesettings/site_settings.html:86
+msgid "Uncollapse all"
+msgstr "Rozwiń wszystko"
+
+#: templates/livesettings/_admin_site_views.html:5
+msgid "Sites"
+msgstr "Strony"
+

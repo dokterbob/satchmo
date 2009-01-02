@@ -1,0 +1,69 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_util %}
+{# this is the Paypal confirm template #}
+
+{% block payment_step %}<a href="{% url PAYPAL_satchmo_checkout-step2 %}">{% trans "Payment" %}</a>{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+{% if not PAYMENT_LIVE %}<b>PAYMENT TEST MODE</b><br/>{% endif %}
+{% trans "Your payment will be processed through PayPal." %}
+{% endblock %}
+
+{% block payment_form %}
+<form action="{{ post_url }}" method="post">
+<input type="hidden" name="business" value="{{ business }}" />
+<input type="hidden" name="currency_code" value="{{ currency_code }}" />
+<input type="hidden" name="return" value="{{ return_address }}" />
+{% if subscription %}
+<input type="hidden" name="cmd" value="_xclick-subscriptions">
+<input type="hidden" name="item_name" value="{{ subscription.product.name }}">
+<input type="hidden" name="item_number" value="{{ invoice }}">
+<input type="hidden" name="invoice" value="{{ invoice }}" />
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="bn" value="PP-SubscriptionsBF">
+{% if subscription.trial1 %}
+<input type="hidden" name="a1" value="{{ subscription.trial1.price }}">
+<input type="hidden" name="p1" value="{{ subscription.trial1.expire_length }}">
+<input type="hidden" name="t1" value="{{ subscription.trial1.expire_unit }}">
+{% endif %}
+{% if subscription.product.trial2_price %}
+<input type="hidden" name="a2" value="{{ subscription.product.trial2.price }}">
+<input type="hidden" name="p2" value="{{ subscription.product.trial2.expire_length }}">
+<input type="hidden" name="t2" value="{{ subscription.product.trial2.expire_unit}}">
+{% endif %}
+<input type="hidden" name="a3" value="{{ subscription.price }}">
+<input type="hidden" name="p3" value="{{ subscription.product.subscriptionproduct.expire_length }}">
+<input type="hidden" name="t3" value="{{ subscription.product.subscriptionproduct.expire_length|first }}">
+{% if subscription.product.recurring %}
+<input type="hidden" name="src" value="1">
+{% endif %}
+<input type="hidden" name="sra" value="1">
+<input type="hidden" name="srt" value="{{ recuring.recurring_times }}">
+{% else %}
+<input type="hidden" name="cmd" value="_cart" />
+<input type="hidden" name="upload" value="1" />
+<input type="hidden" name="no_shipping" value="1" />
+<input type="hidden" name="invoice" value="{{ invoice }}" />
+{% if order.partially_paid %}
+<input type="hidden" name="item_name_1" value="Remaining Balance for order {{ order.id }}" />
+<input type="hidden" name="amount_1" value="{{order.balance|truncate_decimal:2}}" />
+<input type="hidden" name="quantity_1" value="1" />
+{% else %}
+{% for item in order.orderitem_set.all %}
+<input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
+<input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price|truncate_decimal:2}}" />
+<input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity}}" />
+{% endfor %}
+{# LEAVE THE HANDLING CHARGE ALONE!  PAYPAL SHIPPING WILL INEVITABLY BE MESSED UP IF YOU USE THEIR SHIPPING METHODS #}
+{# To work around their bizarre system, we are telling Paypal "no shipping" and adding all shipping charges as handling #}
+<input type="hidden" name="handling_cart" value="{{order.shipping_sub_total|truncate_decimal:2}}" />
+<input type="hidden" name="tax_cart" value="{{order.tax|truncate_decimal:2}}" />
+{% endif %}
+{% endif %}
+<input type="submit" value="{% trans "Purchase Items" %}" />
+</form>
+{% endblock %}

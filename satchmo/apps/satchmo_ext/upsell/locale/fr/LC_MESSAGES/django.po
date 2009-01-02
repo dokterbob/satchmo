@@ -1,0 +1,82 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: models.py:41
+msgid "Creation Date"
+msgstr "Date de création"
+
+#: models.py:46
+msgid "Notes"
+msgstr "Notes"
+
+#: models.py:132
+msgid "Description"
+msgstr "Description"
+
+#: models.py:130
+msgid "language"
+msgstr "langue"
+
+#: templates/upsell/product_upsell.html.py:18
+msgid "Quantity"
+msgstr "Quantité"
+
+#: templates/upsell/product_upsell.html.py:15
+msgid "Add"
+msgstr "Ajouter"
+
+#: models.py:25
+msgid "Checkbox to add 1"
+msgstr "Case à cocher pour ajouter 1"
+
+#: models.py:26
+msgid "Checkbox to add 1, checked by default"
+msgstr "Case à cocher pour ajouter 1, cochée par défaut"
+
+#: models.py:27
+msgid "Checkbox to match quantity"
+msgstr "Cochez la quantité voulue."
+
+#: models.py:28
+msgid "Checkbox to match quantity, checked by default"
+msgstr "Case à cocher pour la quantité, cochée par défaut"
+
+#: models.py:29
+msgid "Form with 0 quantity"
+msgstr "Document avec quantité nulle"
+
+#: models.py:34
+msgid "Target Product"
+msgstr "Produit cible"
+
+#: models.py:36
+msgid "The products for which you want to show this goal product as an Upsell."
+msgstr "Les produits pour lesquels vous voulez afficher le produit visé comme upsell"
+
+#: models.py:38
+msgid "Goal Product"
+msgstr "Produit voulu"
+
+#: models.py:43
+msgid "Upsell Style"
+msgstr "Style Upsell"
+
+#: models.py:47
+msgid "Internal notes"
+msgstr "Notes internes"
+

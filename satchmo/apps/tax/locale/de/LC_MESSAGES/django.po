@@ -1,0 +1,111 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:19
+msgid "Description"
+msgstr "Beschreibung"
+
+#: models.py:26
+#: models.py:40
+msgid "Tax Class"
+msgstr "Steuerklasse"
+
+#: config.py:6
+msgid "Tax Settings"
+msgstr ""
+
+#: config.py:12
+msgid "Active tax module"
+msgstr ""
+
+#: config.py:13
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr ""
+
+#: config.py:15
+msgid "No Tax"
+msgstr "Ohne Mehrwertsteuer"
+
+#: config.py:21
+msgid "Show with tax included"
+msgstr ""
+
+#: config.py:22
+msgid "If yes, then all products and the cart will display with tax included."
+msgstr ""
+
+#: models.py:17
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:18
+msgid "Displayed title of this tax."
+msgstr "Titel dieser Steuer anzeigen."
+
+#: models.py:20
+msgid "Description of products that would be taxed."
+msgstr "Beschreibung der zu versteuernden Produkte."
+
+#: models.py:27
+msgid "Tax Classes"
+msgstr "Steuerklassen"
+
+#: models.py:43
+msgid "Tax Zone"
+msgstr "Steuerzone"
+
+#: models.py:46
+msgid "Tax Country"
+msgstr "Steuerland"
+
+#: models.py:47
+#: models.py:59
+msgid "Percentage"
+msgstr "Prozentsatz"
+
+#: models.py:48
+msgid "% tax for this area and type"
+msgstr "% Steuer für dieses Gebiet und Typ"
+
+#: models.py:72
+msgid "You must choose a zone or a country."
+msgstr "Sie müssen eine Zone oder ein Land wählen."
+
+#: models.py:78
+msgid "Tax Rate"
+msgstr "Steuersatz"
+
+#: models.py:79
+msgid "Tax Rates"
+msgstr "Steuersätze"
+
+#: modules/area/config.py:5
+msgid "By Country/Area"
+msgstr "Nach Land"
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "Prozentsatz"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "Prozentsatz"
+
+#: modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr "Steuer auf Lieferkosten?"
+

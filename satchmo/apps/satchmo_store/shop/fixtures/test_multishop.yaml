@@ -1,0 +1,38 @@
+- fields: {domain: localhost, name: Sample Shop}
+  model: sites.site
+  pk: 2
+- fields: {domain: testmo.dev, name: Testmo}
+  model: sites.site
+  pk: 1
+- fields:
+    city: ''
+    country: 231
+    in_country_only: true
+    phone: null
+    postal_code: ''
+    sales_country: 231
+    shipping_countries: []
+    state: ''
+    store_description: ''
+    store_email: ''
+    store_name: Testmo
+    street1: ''
+    street2: ''
+  model: shop.config
+  pk: 1
+- fields:
+    city: ''
+    country: 231
+    in_country_only: true
+    phone: null
+    postal_code: ''
+    sales_country: 231
+    shipping_countries: []
+    state: ''
+    store_description: ''
+    store_email: ''
+    store_name: Sample Shop
+    street1: ''
+    street2: ''
+  model: shop.config
+  pk: 2

@@ -1,0 +1,42 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+{% load satchmo_category %}
+{% load satchmo_thumbnail %}
+
+{% block navbar %}
+    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+    <li>{% trans "Wishlist" %}</li>
+{% endblock %}
+
+{% block content %}
+{% if wishlist_message %}
+<div class="message">
+{{ wishlist_message }}
+</div>
+{% endif %}
+<div id="wishlist">
+<h3>{% trans "Wishlist" %}</h3>
+    {% for wish in wishlist %} 
+    {% with wish.product as product %}
+        {% if forloop.first %} <ul>  {% endif %}
+            <li>
+                <div class="wishproduct">
+                    <a class="wishimage" href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+                    <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> 
+                    <span class="date">{% blocktrans with wish.create_date|date:"y-M-d" as create_date %}added on {{ create_date }}{% endblocktrans %}</span>
+                </div>
+                <form name="addform" action="{% url satchmo_wishlist_move_to_cart %}" method="POST">
+                    <input type="hidden" name="id" value="{{ wish.id }}" />
+                    <input type="submit" value="{% trans 'Add to cart' %}" />
+                </form>
+                <form name="addform" action="{% url satchmo_wishlist_remove %}" method="POST">
+                    <input type="hidden" name="id" value="{{ wish.id }}" />
+                    <input type="submit" value="{% trans 'Remove from wishlist' %}" />
+                </form>
+            </li>
+        {% if forloop.last %} </ul> {% endif %}
+    {% endwith %}
+    {% endfor %}
+</div>
+{% endblock %}

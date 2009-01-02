@@ -1,0 +1,1626 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: views/contact.py:25
+msgid "Email address"
+msgstr "Adresse de messagerie "
+
+#: templates/shop/checkout/form.html.py:94
+msgid "Password"
+msgstr "Mot de passe "
+
+#: templates/shop/checkout/form.html.py:114
+msgid "First name"
+msgstr "Prénom"
+
+#: templates/shop/checkout/form.html.py:117
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: templates/shop/templates/404.html.py:5
+#: templates/shop/templates/500.html.py:5
+#: templates/shop/cart.html.py:9
+#: templates/shop/index.html.py:7
+#: templates/shop/contact_form.html.py:5
+#: templates/shop/download.html.py:5
+#: templates/shop/search.html.py:6
+#: templates/shop/404.html.py:5
+#: templates/shop/contact_thanks.html.py:5
+#: templates/shop/admin/inventory_form.html.py:65
+#: templates/shop/checkout/balance_remaining.html.py:6
+#: templates/shop/checkout/base_confirm.html.py:7
+#: templates/shop/checkout/base_pay_ship.html.py:5
+#: templates/shop/checkout/confirm.html.py:9
+#: templates/shop/checkout/empty_cart.html.py:5
+#: templates/shop/checkout/form.html.py:65
+#: templates/shop/checkout/success.html.py:7
+#: templates/shop/checkout/cod/confirm.html.py:9
+#: templates/shop/checkout/protx/confirm.html.py:9
+#: templates/shop/order_history.html.py:7
+#: templates/shop/order_tracking.html.py:6
+msgid "Home"
+msgstr "Accueil"
+
+#: models.py:83
+#: models.py:262
+#: models.py:530
+msgid "Site"
+msgstr "Site"
+
+#: templates/shop/admin/inventory_form.html.py:62
+msgid "Documentation"
+msgstr "Documentation"
+
+#: templates/shop/admin/inventory_form.html.py:62
+msgid "Change password"
+msgstr "Modifier le mot de passe"
+
+#: templates/base.html.py:58
+#: templates/shop/admin/inventory_form.html.py:62
+msgid "Log out"
+msgstr "Se déconnecter"
+
+#: templates/shop/admin/inventory_form.html.py:73
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Veuillez corriger l'erreur ci-dessous:"
+msgstr[1] "Veuillez corriger les erreurs ci-dessous:"
+
+#: templates/admin/index.html.py:125
+#: templates/shop/admin/index.html.py:122
+msgid "Edit Site Settings"
+msgstr "Editer les paramètres du site"
+
+#: models.py:86
+#: templates/shop/pdf/invoice.rml.py:112
+#: templates/shop/pdf/packing-slip.rml.py:102
+msgid "Email"
+msgstr "Courriel"
+
+#: templates/shop/pdf/invoice.rml.py:111
+#: templates/shop/pdf/packing-slip.rml.py:101
+msgid "Phone"
+msgstr "Téléphone"
+
+#: models.py:532
+#: models.py:539
+msgid "Addressee"
+msgstr "Carnet d'adresse "
+
+#: models.py:87
+#: models.py:88
+#: models.py:533
+#: models.py:534
+#: models.py:540
+#: models.py:541
+#: templates/shop/checkout/form.html.py:128
+#: templates/shop/checkout/form.html.py:131
+#: templates/shop/checkout/form.html.py:163
+#: templates/shop/checkout/form.html.py:166
+msgid "Street"
+msgstr "Rue"
+
+#: models.py:89
+#: models.py:535
+#: models.py:542
+#: templates/shop/checkout/form.html.py:134
+#: templates/shop/checkout/form.html.py:169
+msgid "City"
+msgstr "Ville"
+
+#: models.py:90
+#: models.py:536
+#: models.py:543
+msgid "State"
+msgstr "Département/Province"
+
+#: models.py:92
+#: models.py:538
+#: models.py:545
+#: templates/shop/checkout/form.html.py:150
+#: templates/shop/checkout/form.html.py:185
+msgid "Country"
+msgstr "Pays"
+
+#: templates/shop/checkout/form.html.py:146
+#: templates/shop/checkout/form.html.py:181
+msgid "Zipcode/Postcode"
+msgstr "Code postal"
+
+#: templates/shop/checkout/form.html.py:157
+msgid "Shipping same as billing?"
+msgstr "Adresse de livraison = adresse de facturation?"
+
+#: models.py:265
+msgid "Customer"
+msgstr "Client"
+
+#: models.py:965
+#: views/contact.py:24
+#: templates/shop/admin/inventory_form.html.py:81
+#: templates/shop/checkout/form.html.py:93
+msgid "Name"
+msgstr "Nom"
+
+#: models.py:264
+msgid "Creation Date"
+msgstr "Date de création"
+
+#: models.py:546
+#: models.py:1036
+msgid "Notes"
+msgstr "Notes"
+
+#: models.py:531
+msgid "Contact"
+msgstr "Contact"
+
+#: models.py:477
+msgid "In Person"
+msgstr "En personne"
+
+#: models.py:85
+#: models.py:263
+#: models.py:1110
+#: templates/shop/pdf/invoice.rml.py:130
+#: templates/shop/pdf/packing-slip.rml.py:124
+msgid "Description"
+msgstr "Description"
+
+#: models.py:93
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: models.py:91
+#: models.py:537
+#: models.py:544
+msgid "Zip Code"
+msgstr "Code Postal"
+
+#: notification.py:32
+msgid "Thank you for your order from %(shop_name)s"
+msgstr "Merci de votre commande à %(shop_name)s"
+
+#: notification.py:59
+msgid "New order on %(shop_name)s"
+msgstr "Nouvelle commande à  %(shop_name)s"
+
+#: models.py:551
+msgid "Discount Code"
+msgstr "Code de la promotion"
+
+#: models.py:552
+msgid "Coupon Code"
+msgstr "Code du coupon de promotion"
+
+#: models.py:985
+#: templates/shop/admin/inventory_form.html.py:84
+msgid "Active"
+msgstr "Actif"
+
+#: templates/shop/email/order_complete.txt.py:50
+#: templates/shop/email/order_placed_notice.txt.py:46
+#: templates/shop/pdf/invoice.rml.py:133
+#: templates/shop/pdf/invoice.rml.py:159
+#: templates/shop/_order_details.html.py:53
+#: templates/shop/_order_tracking_details.html.py:30
+msgid "Discount"
+msgstr "Promotion"
+
+#: templates/shop/checkout/base_pay_ship.html.py:32
+msgid "Discounts"
+msgstr "Promotions"
+
+#: models.py:899
+#: models.py:981
+#: models.py:1033
+msgid "Order"
+msgstr "Commande"
+
+#: models.py:1086
+msgid "Order Payment"
+msgstr "Paiement de commande"
+
+#: models.py:389
+#: models.py:900
+msgid "Product"
+msgstr "Produit"
+
+#: views/cart.py:208
+msgid "Success"
+msgstr "Succes"
+
+#: templates/shop/checkout/balance_remaining.html.py:7
+#: templates/shop/checkout/base_confirm.html.py:8
+#: templates/shop/checkout/base_confirm.html.py:12
+#: templates/shop/checkout/base_pay_ship.html.py:6
+#: templates/shop/checkout/base_pay_ship.html.py:10
+#: templates/shop/checkout/confirm.html.py:10
+#: templates/shop/checkout/empty_cart.html.py:6
+#: templates/shop/checkout/empty_cart.html.py:10
+#: templates/shop/checkout/form.html.py:66
+#: templates/shop/checkout/form.html.py:70
+#: templates/shop/checkout/success.html.py:8
+#: templates/shop/checkout/cod/confirm.html.py:10
+#: templates/shop/checkout/protx/confirm.html.py:10
+msgid "Checkout"
+msgstr "Validation de la commande"
+
+#: templates/shop/admin/_orderpayment_list.html.py:8
+#: templates/shop/checkout/base_confirm.html.py:16
+#: templates/shop/checkout/base_pay_ship.html.py:14
+#: templates/shop/checkout/confirm.html.py:14
+#: templates/shop/checkout/form.html.py:74
+#: templates/shop/checkout/cod/confirm.html.py:14
+#: templates/shop/checkout/google/confirm.html.py:6
+#: templates/shop/checkout/google/confirm.html.py:9
+#: templates/shop/checkout/paypal/confirm.html.py:6
+#: templates/shop/checkout/paypal/confirm.html.py:9
+#: templates/shop/checkout/protx/confirm.html.py:14
+#: templates/shop/email/order_complete.txt.py:58
+#: templates/shop/email/order_placed_notice.txt.py:54
+msgid "Payment"
+msgstr "Paiement"
+
+#: templates/shop/checkout/pay_ship.html.py:6
+msgid "Payment Information"
+msgstr "Information sur le paiement"
+
+#: views/contact.py:26
+msgid "Subject"
+msgstr "Sujet"
+
+#: models.py:966
+msgid "Value"
+msgstr "Valeur"
+
+#: models.py:466
+#: models.py:968
+msgid "Sort Order"
+msgstr "Ordre de tri"
+
+#: templates/shop/checkout/balance_remaining.html.py:23
+#: templates/shop/checkout/form.html.py:107
+msgid "Payment method"
+msgstr "Méthode de paiement"
+
+#: models.py:567
+#: models.py:1111
+#: templates/shop/email/order_complete.txt.py:54
+#: templates/shop/email/order_placed_notice.txt.py:50
+#: templates/shop/pdf/invoice.rml.py:174
+#: templates/shop/_order_details.html.py:66
+#: templates/shop/_order_tracking_details.html.py:34
+msgid "Tax"
+msgstr "Taxe"
+
+#: views/cart.py:115
+msgid "The product you have requested does not exist."
+msgstr "Le produit demandé n'existe pas."
+
+#: templates/shop/search.html.py:15
+msgid "Categories"
+msgstr "Catégories"
+
+#: models.py:467
+#: models.py:969
+msgid "The display order for this group."
+msgstr "Ordre d'affichage de ce groupe"
+
+#: models.py:967
+msgid "Price Change"
+msgstr "Changement de prix"
+
+#: templates/shop/search.html.py:24
+msgid "Products"
+msgstr "Produits"
+
+#: models.py:982
+msgid "Key"
+msgstr "Clé"
+
+#: templates/shop/admin/_orderpayment_list.html.py:10
+msgid "Method"
+msgstr "Méthode"
+
+#: admin.py:20
+msgid "Store Contact"
+msgstr "Enregistrer le contact"
+
+#: admin.py:24
+#: models.py:99
+msgid "Shipping Countries"
+msgstr "Pays pour expédition"
+
+#: admin.py:58
+#: models.py:559
+#: templates/shop/email/order_complete.txt.py:40
+#: templates/shop/email/order_placed_notice.txt.py:36
+#: templates/shop/_order_details.html.py:36
+#: templates/shop/_order_tracking_details.html.py:22
+msgid "Shipping Method"
+msgstr "Moyen de livraison"
+
+#: admin.py:59
+#: templates/shop/email/order_complete.txt.py:29
+#: templates/shop/email/order_placed_notice.txt.py:26
+#: templates/shop/pdf/invoice.rml.py:25
+#: templates/shop/pdf/packing-slip.rml.py:25
+#: templates/shop/_order_details.html.py:27
+msgid "Shipping Address"
+msgstr "Adresse de livraison"
+
+#: admin.py:60
+#: templates/shop/pdf/invoice.rml.py:24
+#: templates/shop/pdf/packing-slip.rml.py:24
+msgid "Billing Address"
+msgstr "Adresse de facturation"
+
+#: admin.py:61
+msgid "Totals"
+msgstr "Totaux"
+
+#: config.py:22
+msgid "Default currency symbol"
+msgstr "Symbole monétaire par défaut"
+
+#: config.py:23
+msgid "Use a '_' character to force a space."
+msgstr "Utilisez un '_' pour forcer un espace."
+
+#: config.py:29
+msgid "Enable product ratings"
+msgstr "Activer les appréciations des produits"
+
+#: config.py:35
+msgid "Enable random display of featured products on home page"
+msgstr "Activer l'affichage aléatoire des produits mis en valeur sur la première page"
+
+#: config.py:41
+msgid "Total number of featured items to display"
+msgstr "Nombre total d'articles mis en valeur à afficher"
+
+#: config.py:47
+msgid "Number of featured items to display on each page"
+msgstr "Nombre d'articles mis en valeur à afficher sur chaque page"
+
+#: config.py:53
+msgid "Measurement system to use in store"
+msgstr "Système de mesure utilisé dans la boutique"
+
+#: config.py:54
+msgid "Metric"
+msgstr "Métrique"
+
+#: config.py:55
+msgid "Imperial"
+msgstr "Impérial"
+
+#: config.py:61
+msgid "URI to the logo for the store"
+msgstr "URI vers le logo de la boutique"
+
+#: config.py:68
+msgid "Google Settings"
+msgstr "Paramètres Google"
+
+#: config.py:73
+msgid "Enable Analytics"
+msgstr "Activer Analitics"
+
+#: config.py:80
+msgid "Use Urchin?"
+msgstr "Utiliser Urchin?"
+
+#: config.py:81
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
+msgstr "Utiliser les javascripts à l'ancien format urchin? Ceci n'est nécessaire que si votre compte Analitics n'a pas été mis à jour."
+
+#: config.py:89
+msgid "Analytics Code"
+msgstr "Code Analytics"
+
+#: config.py:97
+msgid "Enable Conversion Tracking"
+msgstr "Activer le suivi des conversions"
+
+#: config.py:104
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Identifiant Adwords (ex: UA-abcd-1)"
+
+#: config.py:109
+msgid "Language Settings"
+msgstr "Paramètres linguistiques"
+
+#: config.py:114
+msgid "Allow user to choose from available translations"
+msgstr "Permettre à l'utilisateur de choisir es traductions disponibles"
+
+#: config.py:122
+msgid "Available languages"
+msgstr "Langues disponibles"
+
+#: config.py:123
+msgid "Languages that have valid translations"
+msgstr "Langues disposant de traductions valides."
+
+#: models.py:43
+msgid "Test Store"
+msgstr "Boutique de Test"
+
+#: models.py:84
+msgid "Store Name"
+msgstr "Nom de la boutique"
+
+#: models.py:94
+msgid "Purchase item not in stock?"
+msgstr "Autoriser l'achat d'articles non en stock ?"
+
+#: models.py:95
+msgid "Only sell to in-country customers?"
+msgstr "Vendre uniquement aux clients du pays?"
+
+#: models.py:98
+msgid "Default country for customers"
+msgstr "Pays par défaut pour les clients"
+
+#: models.py:145
+msgid "Store Configuration"
+msgstr "Configuration de la boutique"
+
+#: models.py:146
+msgid "Store Configurations"
+msgstr "Configurations de la boutique"
+
+#: models.py:375
+msgid "Shopping Cart"
+msgstr "Panier"
+
+#: models.py:376
+msgid "Shopping Carts"
+msgstr "Paniers"
+
+#: models.py:388
+#: templates/base.html.py:64
+#: templates/shop/cart.html.py:10
+msgid "Cart"
+msgstr "Panier"
+
+#: models.py:390
+#: models.py:901
+#: templates/shop/cart.html.py:23
+#: templates/shop/pdf/packing-slip.rml.py:125
+msgid "Quantity"
+msgstr "Quantité"
+
+#: models.py:455
+msgid "Cart Item"
+msgstr "Article du panier"
+
+#: models.py:456
+msgid "Cart Items"
+msgstr "Articles du panier"
+
+#: models.py:463
+msgid "detail"
+msgstr "détail"
+
+#: models.py:464
+msgid "name"
+msgstr "nom"
+
+#: models.py:465
+msgid "Item Detail Price Change"
+msgstr "Modifier le prix de détail de l'article"
+
+#: models.py:471
+msgid "Cart Item Detail"
+msgstr "Détail d'un article du panier"
+
+#: models.py:472
+msgid "Cart Item Details"
+msgstr "Détails d'un article du panier"
+
+#: models.py:476
+msgid "Online"
+msgstr "En ligne"
+
+#: models.py:478
+msgid "Show"
+msgstr "Afficher"
+
+#: models.py:482
+msgid "Temp"
+msgstr "Temporaire"
+
+#: models.py:483
+msgid "Pending"
+msgstr "En attente"
+
+#: models.py:484
+msgid "In Process"
+msgstr "Commande en préparation"
+
+#: models.py:485
+msgid "Billed"
+msgstr "Facturé"
+
+#: models.py:486
+msgid "Shipped"
+msgstr "Envoyé"
+
+#: models.py:547
+#: templates/shop/pdf/invoice.rml.py:154
+#: templates/shop/_order_details.html.py:47
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#: models.py:549
+#: templates/shop/cart.html.py:25
+#: templates/shop/email/order_complete.txt.py:47
+#: templates/shop/email/order_complete.txt.py:56
+#: templates/shop/email/order_placed_notice.txt.py:43
+#: templates/shop/email/order_placed_notice.txt.py:52
+#: templates/shop/pdf/invoice.rml.py:134
+#: templates/shop/pdf/invoice.rml.py:177
+#: templates/shop/_order_details.html.py:46
+#: templates/shop/_order_details.html.py:68
+#: templates/shop/_order_tracking_details.html.py:28
+#: templates/shop/_order_tracking_details.html.py:36
+#: templates/shop/order_history.html.py:23
+msgid "Total"
+msgstr "Total"
+
+#: models.py:553
+msgid "Discount amount"
+msgstr "Montant de la remise"
+
+#: models.py:555
+msgid "Order method"
+msgstr "Méthode de commande"
+
+#: models.py:557
+msgid "Shipping Description"
+msgstr "Description du moyen de livraison"
+
+#: models.py:561
+msgid "Shipping Models"
+msgstr "Modèle de livraison"
+
+#: models.py:563
+msgid "Shipping Cost"
+msgstr "Coût de la livraison"
+
+#: models.py:565
+#: templates/shop/pdf/invoice.rml.py:169
+#: templates/shop/_order_details.html.py:57
+msgid "Shipping Discount"
+msgstr "Remise sur frais de transport"
+
+#: models.py:569
+#: models.py:1037
+#: templates/shop/admin/_orderpayment_list.html.py:11
+msgid "Timestamp"
+msgstr "Date et heure"
+
+#: models.py:570
+#: models.py:1034
+#: templates/shop/_order_tracking_details.html.py:9
+#: templates/shop/order_history.html.py:20
+msgid "Status"
+msgstr "État"
+
+#: models.py:571
+msgid "This is set automatically."
+msgstr "Ceci est rempli de manière automatique"
+
+#: models.py:726
+#: models.py:735
+#: models.py:810
+msgid "View"
+msgstr "Afficher"
+
+#: models.py:826
+msgid "Order immediately available for download"
+msgstr "Commande à télécharger disponible immédiatement "
+
+#: models.py:892
+msgid "Product Order"
+msgstr "Commande de produit"
+
+#: models.py:893
+msgid "Product Orders"
+msgstr "Commandes de produit"
+
+#: models.py:902
+msgid "Unit price"
+msgstr "Prix à l'unité"
+
+#: models.py:904
+msgid "Unit tax"
+msgstr "Taxe unitaire"
+
+#: models.py:906
+msgid "Line item price"
+msgstr "Prix de la ligne"
+
+#: models.py:908
+msgid "Line item tax"
+msgstr "Taxe de l'article de la ligne"
+
+#: models.py:910
+msgid "Subscription End"
+msgstr "Fin de souscription"
+
+#: models.py:910
+msgid "Subscription expiration date."
+msgstr "Date d'expiration de la souscription."
+
+#: models.py:911
+msgid "Completed"
+msgstr "Terminé"
+
+#: models.py:912
+msgid "Line item discount"
+msgstr "Remise de la ligne"
+
+#: models.py:957
+msgid "Order Line Item"
+msgstr "Ligne d'une commande"
+
+#: models.py:958
+msgid "Order Line Items"
+msgstr "Lignes d'une commande"
+
+#: models.py:964
+msgid "Order Item"
+msgstr "Article d'une commande"
+
+#: models.py:975
+msgid "Order Item Detail"
+msgstr "Détail de l'article"
+
+#: models.py:976
+msgid "Order Item Details"
+msgstr "Détails de l'article"
+
+#: models.py:980
+msgid "Downloadable product"
+msgstr "Produit téléchargeable"
+
+#: models.py:983
+msgid "Number of attempts"
+msgstr "Nombre d'essais possibles"
+
+#: models.py:984
+msgid "Time stamp"
+msgstr "Date et heure"
+
+#: models.py:994
+msgid "This download is no longer active"
+msgstr "Ce lien de téléchargement n'est plus actif"
+
+#: models.py:996
+msgid "You have exceeded the number of allowed downloads."
+msgstr "Vous avez dépassé le nombre de téléchargements permis."
+
+#: models.py:999
+msgid "This download link has expired."
+msgstr "Ce lien de téléchrgement a expiré."
+
+#: models.py:1026
+msgid "Download Link"
+msgstr "Lien de téléchargement"
+
+#: models.py:1027
+msgid "Download Links"
+msgstr "Liens de téléchargement"
+
+#: models.py:1048
+msgid "Order Status"
+msgstr "Statut de la commande"
+
+#: models.py:1049
+msgid "Order Statuses"
+msgstr "Statuts des commandes"
+
+#: models.py:1053
+msgid "Payment Method"
+msgstr "Méthode de paiement"
+
+#: models.py:1055
+msgid "amount"
+msgstr "montant"
+
+#: models.py:1057
+msgid "timestamp"
+msgstr "date et heure"
+
+#: models.py:1058
+#: templates/shop/admin/_orderpayment_list.html.py:12
+msgid "Transaction ID"
+msgstr "N° de la transaction"
+
+#: models.py:1087
+#: templates/shop/admin/_orderpayment_list.html.py:3
+msgid "Order Payments"
+msgstr "Paiements de  commande"
+
+#: models.py:1091
+msgid "key"
+msgstr "clé"
+
+#: models.py:1092
+msgid "value"
+msgstr "valeur"
+
+#: models.py:1096
+msgid "Order variable"
+msgstr "Commande variable"
+
+#: models.py:1097
+msgid "Order variables"
+msgstr "Variables de commande"
+
+#: models.py:1109
+msgid "Model"
+msgstr "Modèle"
+
+#: models.py:1121
+msgid "Order tax detail"
+msgstr "Détail de taxe de la commande"
+
+#: models.py:1122
+msgid "Order tax details"
+msgstr "Détails de taxe de la commande"
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Merci de ne remplir qu'un et un seul de ces champs."
+
+#: utils/validators.py:15
+msgid "These fields can not be the same."
+msgstr "Ces champs ne peuvent être identiques."
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "Administration du site"
+
+#: views/cart.py:37
+msgid "No cart to update."
+msgstr "Pas de panier à mettre à jour"
+
+#: views/cart.py:45
+msgid "Bad quantity."
+msgstr "Quantité erronée"
+
+#: views/cart.py:52
+msgid "Bad item number."
+msgstr "Mauvais numéro d'article"
+
+#: views/cart.py:57
+msgid "No such item in your cart."
+msgstr "Cet article n'est pas dans le panier."
+
+#: views/cart.py:69
+msgid "Not enough items of '%s' in stock."
+msgstr "Pas assez d'articles '%s' en stock."
+
+#: views/cart.py:111
+#: views/cart.py:174
+msgid "That product is not available at the moment."
+msgstr "Ce produit n'est pas disponible actuellement."
+
+#: views/cart.py:121
+msgid "Please enter a whole number."
+msgstr "Entrez un nombre entier SVP."
+
+#: views/cart.py:125
+msgid "Please enter a positive number."
+msgstr "Entrez un nombre positif SVP."
+
+#: views/cart.py:141
+#: views/cart.py:221
+#, python-format
+msgid "'%s' is out of stock."
+msgstr "'%s' n'est pas en stock."
+
+#: views/cart.py:143
+#: views/cart.py:223
+#, python-format
+msgid "Only %(amount)i of '%(product)s' in stock."
+msgstr "Il ne reste que %(amount)i pièces de '%(product)s' en stock."
+
+#: views/cart.py:158
+msgid "No product requested"
+msgstr "Pas de produit demandé"
+
+#: views/cart.py:188
+msgid "Choose a quantity."
+msgstr "Choisissez une quantité."
+
+#: views/cart.py:191
+msgid "Choose a whole number."
+msgstr "Choisissez un nombre entier."
+
+#: views/cart.py:219
+#: views/cart.py:226
+#: templates/shop/templates/404.html.py:10
+#: templates/shop/templates/500.html.py:10
+#: templates/shop/404.html.py:10
+msgid "Error"
+msgstr "Erreur"
+
+#: views/cart.py:244
+msgid "You must accept the terms and conditions."
+msgstr "Vous devez accepter les conditions générales."
+
+#: views/cart.py:260
+#: views/cart.py:298
+msgid "Internal error: please submit as a POST"
+msgstr "Erreur interne: Envoyez un POST svp"
+
+#: views/category.py:21
+msgid "The category you have requested does not exist."
+msgstr "La catégorie demandée n'existe pas."
+
+#: views/comments.py:20
+#: views/comments.py:31
+msgid "One or more of the required fields wasn't submitted"
+msgstr "Un ou plusieurs des champs requis n'ont pas été complétés"
+
+#: views/comments.py:38
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "Tpe de contenu incorrect: %s"
+
+#: views/contact.py:19
+msgid "General question"
+msgstr "Question générale"
+
+#: views/contact.py:20
+msgid "Order problem"
+msgstr "Problème relatif à la commande"
+
+#: views/contact.py:27
+msgid "Inquiry"
+msgstr "Devis"
+
+#: views/contact.py:28
+msgid "Contents"
+msgstr "Contenu"
+
+#: views/download.py:23
+#: views/download.py:28
+msgid "The download key is invalid."
+msgstr "La clé de téléchargement est invalide"
+
+#: views/home.py:34
+msgid "Invalid page number"
+msgstr "Numéro de page invalide"
+
+#: views/orders.py:40
+msgid "The order you have requested doesn't exist, or you don't have access to it."
+msgstr "La commande demandée n'existe pas ou ne vous est pas accessible."
+
+#: views/utils.py:103
+msgid "Card type does not match card number."
+msgstr "Le type de carte ne correspond pas au numéro de carte."
+
+#: views/utils.py:105
+msgid "Invalid credit card number."
+msgstr "Numéro de carte de crédit invalide."
+
+#: templates/shop/admin/inventory_form.html.py:82
+msgid "Inventory"
+msgstr "Inventaire"
+
+#: templates/shop/email/order_complete.txt.py:52
+#: templates/shop/email/order_placed_notice.txt.py:48
+#: templates/shop/_order_details.html.py:60
+#: templates/shop/_order_tracking_details.html.py:32
+msgid "Shipping"
+msgstr "Livraison"
+
+#: templates/shop/pdf/invoice.rml.py:15
+#: templates/shop/pdf/invoice.rml.py:57
+#: templates/shop/pdf/packing-slip.rml.py:15
+#: templates/shop/pdf/packing-slip.rml.py:57
+#: templates/shop/order_history.html.py:21
+msgid "Date"
+msgstr "Date"
+
+#: templates/shop/templates/404.html.py:11
+msgid "Could not find the page you were looking for."
+msgstr "Ne peut pas trouver la page recherchée."
+
+#: templates/shop/templates/500.html.py:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "Il y a eu une erreur avec la boutique. L'admin  été avisé."
+
+#: templates/base.html.py:28
+#: templates/base.html.py:31
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/base.html.py:36
+msgid "Shop Categories"
+msgstr "Catégories de la boutique"
+
+#: templates/base.html.py:45
+msgid "Quick Links"
+msgstr "Liens rapides"
+
+#: templates/base.html.py:46
+msgid "Recently Added"
+msgstr "Ajouté récemment"
+
+#: templates/base.html.py:48
+msgid "Most Popular"
+msgstr "Les plus populaires"
+
+#: templates/base.html.py:50
+msgid "Best Sellers"
+msgstr "Meilleures ventes"
+
+#: templates/base.html.py:52
+msgid "Account Information"
+msgstr "Information sur le compte"
+
+#: templates/base.html.py:54
+msgid "Admin"
+msgstr "Administrateur"
+
+#: templates/base.html.py:57
+msgid "Account Details"
+msgstr "Détails du compte"
+
+#: templates/base.html.py:60
+msgid "Log in"
+msgstr "Se connecter"
+
+#: templates/base.html.py:70
+#: templates/shop/cart.html.py:69
+msgid "Check out"
+msgstr "Validation"
+
+#: templates/base.html.py:74
+msgid "Wishlist"
+msgstr "Liste de souhaits"
+
+#: templates/base.html.py:77
+#: templates/shop/contact_form.html.py:6
+#: templates/shop/contact_thanks.html.py:6
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+#: templates/base.html.py:81
+msgid "Change language"
+msgstr "Changer de langue"
+
+#: templates/base.html.py:87
+#: templates/admin/index.html.py:83
+#: templates/shop/admin/index.html.py:105
+msgid "Change"
+msgstr "Modifier"
+
+#: templates/base.html.py:102
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr "Réalisé avec <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+
+#: templates/shop/cart.html.py:19
+msgid "Your cart is empty."
+msgstr "Votre panier est vide."
+
+#: templates/shop/cart.html.py:21
+msgid "Your Cart"
+msgstr "Votre panier"
+
+#: templates/shop/cart.html.py:24
+msgid "Item"
+msgstr "Article"
+
+#: templates/shop/cart.html.py:25
+msgid "Total<br/>(incl.&nbsp;tax)"
+msgstr "Total<br/>(incl.&nbsp;tax)"
+
+#: templates/shop/cart.html.py:32
+msgid "Remove"
+msgstr "Supprimer"
+
+#: templates/shop/cart.html.py:39
+msgid "update amount"
+msgstr "Mettre à jour le montant"
+
+#: templates/shop/cart.html.py:50
+msgid "Base Price: "
+msgstr "Prix de base:"
+
+#: templates/shop/cart.html.py:51
+msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+msgstr "le prix à droite est votre avance. Vous recevrez une note pour le solde lorsque votre article sera prêt."
+
+#: templates/shop/cart.html.py:62
+msgid "Cart Total"
+msgstr "Total du panier"
+
+#: templates/shop/index.html.py:11
+msgid "Welcome to the shop."
+msgstr "Bienvenue dans la boutique."
+
+#: templates/shop/index.html.py:14
+msgid "Featured Items"
+msgstr "Articles mis en valeur"
+
+#: templates/shop/index.html.py:31
+#: templates/shop/index.html.py:33
+msgid "Previous"
+msgstr "Précédent"
+
+#: templates/shop/index.html.py:43
+#: templates/shop/index.html.py:45
+msgid "Next"
+msgstr "Suivant"
+
+#: templates/shop/contact_form.html.py:10
+#: templates/shop/contact_thanks.html.py:10
+#: templates/shop/email/order_complete.txt.py:13
+#: templates/shop/email/order_placed_notice.txt.py:11
+#: templates/shop/_order_details.html.py:14
+msgid "Contact Information"
+msgstr "Information sur le contact"
+
+#: templates/shop/contact_form.html.py:13
+#: templates/shop/checkout/base_pay_ship.html.py:21
+#: templates/shop/checkout/form.html.py:80
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Veuillez corriger l'erreur suivante:"
+msgstr[1] "Veuillez corriger les erreurs suivantes:"
+
+#: templates/shop/contact_form.html.py:19
+msgid "Send Email"
+msgstr "Envoyer un email"
+
+#: templates/shop/download.html.py:13
+msgid "Downloading of"
+msgstr "Téléchargement de "
+
+#: templates/shop/download.html.py:13
+msgid "will commence after clicking the link below:"
+msgstr "va démarrer après avoir cliqué le lien ci-dessous:"
+
+#: templates/shop/download.html.py:15
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh yourbrowser and try the download again"
+msgstr "Dès que vous cliquez le lien, le téléchargement est pris en compte. Si vous avez un problème, réactualisez la page de votre navigateur et relancez le téléchargement."
+
+#: templates/shop/search.html.py:12
+msgid "Nothing found"
+msgstr "Rien trouvé"
+
+#: templates/shop/search.html.py:27
+msgid "for"
+msgstr "pour"
+
+#: templates/shop/contact_thanks.html.py:12
+msgid "Thank you for contacting us."
+msgstr "Merci de nous avoir contacté"
+
+#: templates/shop/contact_thanks.html.py:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "Nous allons tenter d'être de nouveau à vous dans les 48 heures."
+
+#: templates/shop/admin/_customorder_management.html.py:3
+msgid "Custom Order Management"
+msgstr "Gestion des commandes clients"
+
+#: templates/shop/admin/_customorder_management.html.py:8
+msgid "Fully charged"
+msgstr "Totalement débité"
+
+#: templates/shop/admin/_customorder_management.html.py:10
+msgid "Charge remaining amount"
+msgstr "Solde restant dû"
+
+#: templates/shop/admin/_customorder_management.html.py:13
+msgid "Product Details"
+msgstr "Détails du produit"
+
+#: templates/shop/admin/_ordercount_list.html.py:7
+msgid "on"
+msgstr "actif"
+
+#: templates/shop/admin/_orderpayment_list.html.py:9
+msgid "Amount"
+msgstr "Montant"
+
+#: templates/shop/admin/_orderpayment_list.html.py:35
+msgid "No payments."
+msgstr "Pas de paiements."
+
+#: templates/shop/admin/_orderpayment_list.html.py:40
+msgid "Paid in full"
+msgstr "Payé entièrement"
+
+#: templates/shop/admin/_orderpayment_list.html.py:42
+msgid "Balance on order:"
+msgstr "Balance des commandes:"
+
+#: templates/admin/base_site.html.py:17
+#: templates/admin/base_site.html.py:20
+msgid "Satchmo Site Administration"
+msgstr "Administration du site Satchmo"
+
+#: templates/admin/index.html.py:20
+msgid "(show)"
+msgstr "(montrer)"
+
+#: templates/admin/index.html.py:21
+msgid "(hide)"
+msgstr "(cacher)"
+
+#: templates/admin/index.html.py:66
+#: templates/shop/admin/index.html.py:88
+msgid "Models available in the %(name)s application."
+msgstr "Modèles disponibles dans l'application %(name)s."
+
+#: templates/admin/index.html.py:67
+#: templates/shop/admin/index.html.py:89
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: templates/admin/index.html.py:77
+#: templates/shop/admin/index.html.py:99
+msgid "Add"
+msgstr "Ajouter"
+
+#: templates/admin/index.html.py:93
+msgid "You don't have permission to edit anything."
+msgstr "Vous n'avez pas le droit d'éditer les valeurs. "
+
+#: templates/admin/index.html.py:101
+msgid "Recent Actions"
+msgstr "Actions récentes"
+
+#: templates/admin/index.html.py:103
+msgid "My Actions"
+msgstr "Mes actions"
+
+#: templates/admin/index.html.py:107
+msgid "None available"
+msgstr "Non disponible"
+
+#: templates/admin/index.html.py:121
+msgid "Admin Tools"
+msgstr "Outils d'administration"
+
+#: templates/admin/index.html.py:129
+#: templates/shop/admin/index.html.py:124
+msgid "Export Products as CSV"
+msgstr "Exporter les produits en CSV"
+
+#: templates/admin/index.html.py:133
+#: templates/shop/admin/index.html.py:126
+msgid "Edit Inventory"
+msgstr "Editer l'inventaire"
+
+#: templates/admin/index.html.py:136
+#: templates/shop/admin/index.html.py:127
+msgid "Export Product Defs"
+msgstr "Exporter les définitions de produits"
+
+#: templates/admin/index.html.py:139
+#: templates/shop/admin/index.html.py:128
+msgid "Product Variation Manager"
+msgstr "Gestionnaire de variante de produit"
+
+#: templates/admin/index.html.py:142
+#: templates/shop/admin/index.html.py:129
+msgid "Cache Status"
+msgstr "État du cache"
+
+#: templates/shop/admin/inventory_form.html.py:66
+msgid "Inventory Management"
+msgstr "Gestion de l'inventaire"
+
+#: templates/shop/admin/inventory_form.html.py:83
+#: templates/shop/pdf/invoice.rml.py:132
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#: templates/shop/admin/inventory_form.html.py:85
+msgid "Featured"
+msgstr "Mis en valeur"
+
+#: templates/shop/admin/inventory_form.html.py:111
+msgid "Helpers"
+msgstr "Aides"
+
+#: templates/shop/admin/inventory_form.html.py:112
+msgid "Mark all featured"
+msgstr "Marquer tout comme 'mis en valeur'"
+
+#: templates/shop/admin/inventory_form.html.py:113
+msgid "Clear all featured"
+msgstr "Effacer les attributs 'mis en valeur'"
+
+#: templates/shop/admin/inventory_form.html.py:114
+msgid "Disable all Products with 0 quantity."
+msgstr "Désactiver tous les produits ayant une quantité nulle."
+
+#: templates/shop/admin/inventory_form.html.py:115
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Désactiver les variantes de produit à quantité nulle"
+
+#: templates/shop/admin/inventory_form.html.py:119
+msgid "No inventory items."
+msgstr "Pas d'articles à l'inventaire."
+
+#: templates/shop/admin/order_sidebar.html.py:4
+msgid "Satchmo Orders"
+msgstr "Commandes Satchmo"
+
+#: templates/shop/admin/order_sidebar.html.py:6
+msgid "New Orders"
+msgstr "Nouvelles commandes"
+
+#: templates/shop/admin/order_sidebar.html.py:8
+msgid "Orders in Process"
+msgstr "Commandes en préparation"
+
+#: templates/shop/admin/order_sidebar.html.py:10
+msgid "View all Orders"
+msgstr "Voir toutes les commandes"
+
+#: templates/shop/admin/index.html.py:34
+msgid "Switch to Shop View"
+msgstr "Basculer vers la vue boutique"
+
+#: templates/shop/admin/index.html.py:39
+#: templates/shop/admin/index.html.py:130
+msgid "Switch to Legacy View"
+msgstr "Aller à l'affichage classique"
+
+#: templates/shop/checkout/balance_remaining.html.py:12
+msgid "Order Balance"
+msgstr "Balance des commandes"
+
+#: templates/shop/checkout/balance_remaining.html.py:17
+#, python-format
+msgid "To complete this order, you need to pay the %(orderbalance)s balance remaining on this order."
+msgstr "Pour terminer cette commande, vous devez payer le solde de %(orderbalance)s restant sur cette commande."
+
+#: templates/shop/checkout/balance_remaining.html.py:22
+#: templates/shop/checkout/form.html.py:106
+msgid "How do you want to pay?"
+msgstr "Comment voulez-vous payer?"
+
+#: templates/shop/checkout/balance_remaining.html.py:26
+#: templates/shop/checkout/form.html.py:191
+msgid "Continue Checkout"
+msgstr "Continuer la validation"
+
+#: templates/shop/checkout/base_confirm.html.py:15
+#: templates/shop/checkout/base_pay_ship.html.py:13
+#: templates/shop/checkout/form.html.py:73
+msgid "Ship/Bill"
+msgstr "Expédié/Facturé"
+
+#: templates/shop/checkout/base_confirm.html.py:17
+#: templates/shop/checkout/base_pay_ship.html.py:15
+#: templates/shop/checkout/form.html.py:75
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: templates/shop/checkout/base_confirm.html.py:22
+msgid "The following error was returned while trying to process your payment. Please correct and resubmit."
+msgstr "L'erreur suivante est survenue lors du traitement de votre paiement. Veuillez corriger et soumettre à nouveau."
+
+#: templates/shop/checkout/base_confirm.html.py:25
+msgid "Please validate the following information, then submit your order."
+msgstr "Veillez valider l'information suivante, puis soumettre à nouveau votre commande."
+
+#: templates/shop/checkout/base_confirm.html.py:29
+#: templates/shop/email/order_complete.txt.py:7
+#: templates/shop/email/order_placed_notice.txt.py:5
+#: templates/shop/_order_tracking_details.html.py:16
+msgid "Items Ordered"
+msgstr "Articles commandés"
+
+#: templates/shop/checkout/base_confirm.html.py:40
+#: templates/shop/checkout/paypal/confirm.html.py:67
+msgid "Purchase Items"
+msgstr "Articles achetés"
+
+#: templates/shop/checkout/base_pay_ship.html.py:18
+#: templates/shop/checkout/form.html.py:78
+msgid "Please complete the following information in order to submit your order."
+msgstr "Veuillez compléter l'information suivante afin de soumettre votre commande."
+
+#: templates/shop/checkout/base_pay_ship.html.py:33
+msgid "Discount code"
+msgstr "Code de la promotion"
+
+#: templates/shop/checkout/base_pay_ship.html.py:39
+#: templates/shop/checkout/form.html.py:155
+msgid "Shipping Information"
+msgstr "Information d'expédition"
+
+#: templates/shop/checkout/base_pay_ship.html.py:43
+msgid "Please choose your preferred shipping method"
+msgstr "Veuillez choisir votre méthode d'expédition préférée"
+
+#: templates/shop/checkout/base_pay_ship.html.py:51
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: templates/shop/checkout/confirm.html.py:6
+#: templates/shop/checkout/cod/confirm.html.py:6
+#: templates/shop/checkout/protx/confirm.html.py:6
+msgid "The following error was returned while trying to process your card.  Please correct and resubmit"
+msgstr "L'erreur suivante est survenue lors du traitement de votre panier. Veuillez corriger et soumettre à nouveau."
+
+#: templates/shop/checkout/confirm.html.py:19
+#: templates/shop/checkout/protx/confirm.html.py:19
+#: templates/shop/email/order_complete.txt.py:63
+msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "Votre carte de crédit %(credit_card_type)s dont le numéro se termine par %(credit_card_number)s sera débitée de %(order_total)s €."
+
+#: templates/shop/checkout/empty_cart.html.py:12
+msgid "Your cart is empty. Please add some items to your cart, then complete the checkout process."
+msgstr "Votre panier est vide. Veuillez y ajouter quelques articles, puis compléter la procédure de validation."
+
+#: templates/shop/checkout/form.html.py:89
+msgid "If you already have an account, you can login now to fill in most of the information below."
+msgstr "Si vous avez déjà un compte, vous pouvez connecter maintenant et remplir les informations ci-dessous."
+
+#: templates/shop/checkout/form.html.py:90
+msgid "This is just a convenience, no account is required!"
+msgstr "Ceci est juste une facilité. Aucun compte n'est requis."
+
+#: templates/shop/checkout/form.html.py:95
+msgid "Login"
+msgstr "Se connecter"
+
+#: templates/shop/checkout/form.html.py:102
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "Il vous faudra au moins remplir tous les champs marqués avec un *"
+
+#: templates/shop/checkout/form.html.py:110
+msgid "Basic Information"
+msgstr "Information de base"
+
+#: templates/shop/checkout/form.html.py:120
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+#: templates/shop/checkout/form.html.py:123
+#: templates/shop/email/order_complete.txt.py:19
+#: templates/shop/email/order_placed_notice.txt.py:17
+#: templates/shop/_order_details.html.py:19
+msgid "Billing Information"
+msgstr "Information de facturation"
+
+#: templates/shop/checkout/form.html.py:125
+msgid "Bill To"
+msgstr "Facturé à"
+
+#: templates/shop/checkout/form.html.py:125
+#: templates/shop/checkout/form.html.py:160
+msgid "If different from the first and last names above"
+msgstr "Si différent des nom et prénom ci-dessus"
+
+#: templates/shop/checkout/form.html.py:142
+#: templates/shop/checkout/form.html.py:177
+msgid "State/Province"
+msgstr "Département/Province"
+
+#: templates/shop/checkout/form.html.py:160
+msgid "Ship To"
+msgstr "Expédié à "
+
+#: templates/shop/checkout/pay_ship.html.py:11
+msgid "Type of credit card"
+msgstr "Type de carte de crédit"
+
+#: templates/shop/checkout/pay_ship.html.py:14
+msgid "Credit card number"
+msgstr "Numéro de carte de crédit"
+
+#: templates/shop/checkout/pay_ship.html.py:17
+msgid "Expiration date"
+msgstr "Date d'expiration"
+
+#: templates/shop/checkout/pay_ship.html.py:20
+msgid "CCV"
+msgstr "CCV"
+
+#: templates/shop/checkout/success.html.py:13
+msgid "Thank you for your order!"
+msgstr "Merci pour votre commande!"
+
+#: templates/shop/checkout/success.html.py:14
+msgid "Please print out this page as a receipt.  You will also receive an email with this information."
+msgstr "Imprimez cette page comme reçu. Vous recevrez aussi un email avec ces informations."
+
+#: templates/shop/checkout/cod/confirm.html.py:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "Votre commande s'élève à %(order_total)s €."
+
+#: templates/shop/checkout/google/confirm.html.py:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "Votre paiement va être traité via la validation Google."
+
+#: templates/shop/checkout/google/confirm.html.py:18
+msgid "Fast checkout through Google"
+msgstr "Validation rapide via Google"
+
+#: templates/shop/checkout/paypal/confirm.html.py:11
+msgid "Your payment will be processed through PayPal."
+msgstr "Votre paiement va être traité via la validation Paypal."
+
+#: templates/shop/_order_details.html.py:56
+msgid "Base Shipping"
+msgstr "Frais de transport debase"
+
+#: templates/shop/_order_details.html.py:58
+msgid "Shipping (incl. Tax)"
+msgstr "Transport (TTC)"
+
+#: templates/shop/_order_details.html.py:64
+msgid "Tax included"
+msgstr "Taxes comprises"
+
+#: templates/shop/_order_tracking_details.html.py:8
+#: templates/shop/order_history.html.py:19
+msgid "Order #"
+msgstr "Commande N°"
+
+#: templates/shop/_order_tracking_details.html.py:41
+msgid "Shipping To"
+msgstr "Expédié à"
+
+#: templates/shop/order_history.html.py:8
+#: templates/shop/order_tracking.html.py:7
+msgid "Account"
+msgstr "Compte"
+
+#: templates/shop/order_history.html.py:9
+#: templates/shop/order_history.html.py:14
+msgid "Order History"
+msgstr "Historique des commandes"
+
+#: templates/shop/order_history.html.py:22
+msgid "Items"
+msgstr "Articles"
+
+#: templates/shop/order_history.html.py:52
+msgid "You haven't made any orders yet."
+msgstr "Vous n'avez pas encore fait de commande."
+
+#: templates/shop/order_tracking.html.py:8
+#: templates/shop/order_tracking.html.py:13
+msgid "Order Tracking"
+msgstr "Suivi de la commande"
+
+#: templates/shop/email/contact_us.txt.py:1
+#, python-format
+msgid "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web contact form."
+msgstr "Voici un(e) %(request_type)s de %(name)s ( %(email)s ) envoyé(e) via le formulaire de contact."
+
+#: templates/shop/email/order_complete.txt.py:1
+#: templates/shop/email/order_placed_notice.txt.py:1
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Cher(ère) %(first_name)s %(last_name)s,"
+
+#: templates/shop/email/order_complete.txt.py:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "Merci de commander via %(shop_name)s."
+
+#: templates/shop/email/order_complete.txt.py:5
+msgid "Your order is summarized below:"
+msgstr "Votre commande est résumée ci-dessous:"
+
+#: templates/shop/email/order_complete.txt.py:69
+msgid "Your order contains products that can be downloaded"
+msgstr "Votre commande contient des produits à télécharger"
+
+#: templates/shop/email/order_complete.txt.py:70
+msgid "Please click the link to begin the download"
+msgstr "Cliquez sur le lien pour commencer le téléchargement"
+
+#: templates/shop/email/order_complete.txt.py:76
+msgid "Regards"
+msgstr "Salutations"
+
+#: templates/shop/email/order_complete.txt.py:78
+msgid "Store Management"
+msgstr "Gestion de la boutique"
+
+#: templates/shop/email/order_placed_notice.txt.py:3
+#, python-format
+msgid "Order placed on %(shop_name)s by %(customer)s<%(email)s>."
+msgstr "Commande placée à %(shop_name)s par %(customer)s <%(email)s>."
+
+#: templates/shop/email/order_placed_notice.txt.py:59
+#, python-format
+msgid "%(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "Votre carte de crédit %(credit_card_type)s dont le numéro se termine par %(credit_card_number)s sera débitée de %(order_total)s €. "
+
+#: templates/shop/email/order_placed_notice.txt.py:65
+msgid "This is a downloadable product"
+msgstr "Ceci est un produit téléchargeable"
+
+#: templates/shop/pdf/invoice.rml.py:5
+msgid "Store Invoice"
+msgstr "Facture"
+
+#: templates/shop/pdf/invoice.rml.py:14
+#: templates/shop/pdf/invoice.rml.py:56
+#: templates/shop/pdf/packing-slip.rml.py:14
+#: templates/shop/pdf/packing-slip.rml.py:56
+msgid "Invoice #"
+msgstr "Facture N°"
+
+#: templates/shop/pdf/invoice.rml.py:21
+#: templates/shop/pdf/invoice.rml.py:63
+msgid "INVOICE"
+msgstr "FACTURE"
+
+#: templates/shop/pdf/invoice.rml.py:63
+#: templates/shop/pdf/packing-slip.rml.py:63
+msgid "Page"
+msgstr "Page"
+
+#: templates/shop/pdf/invoice.rml.py:181
+msgid "Payments Made"
+msgstr "Paiements effectués"
+
+#: templates/shop/pdf/invoice.rml.py:185
+msgid "Balance Due"
+msgstr "Solde restant dû"
+
+#: templates/shop/pdf/invoice.rml.py:192
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "Paiement total de %(order_total)s du par:"
+
+#: templates/shop/pdf/invoice.rml.py:197
+msgid "Accounts Receivable"
+msgstr "Facturation clients"
+
+#: templates/shop/pdf/invoice.rml.py:212
+#, python-format
+msgid "%(order_total)s was charged to your %(credit_card_type)s card (x%(credit_card_number)s) on %(order_date)s."
+msgstr "%(order_total)s sera débité de votre carte de crédit %(credit_card_type)s de numéro se terminant par (x%(credit_card_number)s) le %(order_date)s."
+
+#: templates/shop/pdf/invoice.rml.py:215
+msgid "This invoice has been paid in full. Thank you for your business!"
+msgstr "Cette facture a été complètement payée. Merci de votre commande!"
+
+#: templates/shop/pdf/packing-slip.rml.py:21
+#: templates/shop/pdf/packing-slip.rml.py:63
+msgid "PACKING SLIP"
+msgstr "NOTE D'ENVOI"
+
+#: templates/shop/pdf/packing-slip.rml.py:138
+msgid "Thank you for your business!"
+msgstr "Merci pour votre commande!"
+

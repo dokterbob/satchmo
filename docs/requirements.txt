@@ -20,6 +20,7 @@ features in Satchmo.
 - `ReportLab`_
 - `Tiny RML2PDF`_ (`download link`_)
 - `Django Threaded Multihost`_
+- `Django App Plugins`_
 
 There are also a number of other Django packages (mentioned below) that you will require
 
@@ -56,3 +57,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _Docutils: http://docutils.sourceforge.net/
 .. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
+.. _`Django App Plugins`: http://code.google.com/p/django-app-plugins/

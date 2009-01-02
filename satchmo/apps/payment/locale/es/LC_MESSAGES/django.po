@@ -1,0 +1,94 @@
+# Spanish translation for the Satchmo project.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Christian Hoeppner <hoeppner@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 0.5-pre\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-14 00:00+0100\n"
+"PO-Revision-Date: 2007-08-06 00:00+0000\n"
+"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:30
+msgid "Description"
+msgstr "Descripción"
+
+#: models.py:75
+msgid "Credit Card"
+msgstr "Tarjeta de Crédito"
+
+#: models.py:31
+msgid "Active"
+msgstr "Activo"
+
+#: models.py:15
+msgid "CreditCard"
+msgstr "Tarjeta de Crédito"
+
+#: models.py:19
+msgid "Visa"
+msgstr "Visa"
+
+#: models.py:20
+msgid "Mastercard"
+msgstr "Mastercard"
+
+#: models.py:21
+msgid "Discover"
+msgstr "Discover"
+
+#: models.py:31
+msgid "Should this be displayed as an option for the user?"
+msgstr "¿Debe ésto mostrarse como opción al usuario?"
+
+#: models.py:32
+msgid "Option Name"
+msgstr "Nombre de la forma de pago"
+
+#: models.py:32
+msgid "The class name as defined in payment.py"
+msgstr "Nombre de la clase definida en payment.py"
+
+#: models.py:33
+msgid "Sort Order"
+msgstr "Órden"
+
+#: models.py:48
+msgid "Credit Card Type"
+msgstr "Tipo de Tarjeta de Crédito"
+
+#: models.py:49
+msgid "CC Number(Last 4 digits)"
+msgstr "Número de CC (4 últimas cifras)"
+
+#: models.py:50
+msgid "Encrypted Credit Card"
+msgstr "Número de CC encriptado"
+
+#: models.py:51
+msgid "Expiration Month"
+msgstr "Mes de Caducidad"
+
+#: models.py:52
+msgid "Expiration Year"
+msgstr "Año de Caducidad"
+
+#: models.py:53
+msgid "CCV"
+msgstr "CCV"
+
+#: models.py:76
+msgid "Credit Cards"
+msgstr "Tarjetas de Crédito"
+
+#: modules/dummy.py:22
+msgid "Success"
+msgstr "Éxito"
+

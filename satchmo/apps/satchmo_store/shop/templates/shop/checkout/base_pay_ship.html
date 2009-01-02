@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Checkout" %}</h3>
+<div id="checkoutprogress">
+<ul>
+    <li class="first"><a href="{% url satchmo_checkout-step1 %}">{% trans "Ship/Bill" %}</a></li>
+    <li class="active">{% trans "Payment" %}</li>
+    <li>{% trans "Confirmation" %}</li>
+</ul>
+</div>
+<h4>{% trans "Please complete the following information in order to submit your order." %}</h4>
+
+{% if form.errors %}
+    <h2>{% blocktrans count form.errors|length as count %}Please correct the following error:{% plural %}Please correct the following errors:{% endblocktrans %}</h2>
+{% endif %}
+
+<table>
+<form method="post" action=".">
+
+    {% block payment_table %}
+    {# put your payment module specific rows here.  For example, CC number. #}
+    {% endblock %}
+    
+    {% block discount_table %}
+    <tr><td><h4>{% trans "Discounts" %}</h4></td></tr>
+    <tr><td><label for="id_discount">{% trans "Discount code" %}</label></td><td> {{ form.discount }}</td></tr>
+    <tr><td></td><td>{% if form.discount.errors %}*** {{ form.discount.errors|join:", " }}{% endif %}</td></tr>
+	{% if sale %}{% include "product/sale_details.html" %}{% endif %}
+    {% endblock %}
+
+    <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
+    </table>
+    {% block shipping_table %}
+    <div id="shipping">
+    <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>{{ form.shipping}}
+    {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
+    </div>
+    {% endblock %}
+    </table>
+
+    <input type="submit" value="{% trans "Confirm" %}"/>
+</form>
+
+{% endblock %}

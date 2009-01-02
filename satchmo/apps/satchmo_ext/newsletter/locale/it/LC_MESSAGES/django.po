@@ -1,0 +1,208 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: forms.py:17
+#: templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "Indirizzo email"
+
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Pagina iniziale"
+
+#: models.py:35
+msgid "Email"
+msgstr "e-mail"
+
+#: models.py:36
+msgid "Creation Date"
+msgstr "Data di creazione"
+
+#: config.py:7
+msgid "Newsletter Settings"
+msgstr "Impostazioni della newsletter"
+
+#: config.py:11
+msgid "Active newsletter module"
+msgstr "Attiva il modulo newsletter"
+
+#: config.py:12
+msgid ""
+"Select a newsletter, save and reload to set any module-specific newsletter "
+"settings."
+msgstr ""
+"Seleziona una newsletter, salva e ricarica per modificare qualsiasi "
+"impostazione della newsletter."
+
+#: config.py:14
+msgid "No newsletter"
+msgstr "Nessuna newsletter"
+
+#: config.py:15
+msgid "Simple list"
+msgstr "Lista semplice"
+
+#: config.py:16
+msgid "Mailman"
+msgstr "Mailman"
+
+#: config.py:21
+msgid "Name of Newsletter"
+msgstr "Nome della Newsletter"
+
+#: config.py:22
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr "Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
+
+#: forms.py:16
+msgid "Full Name"
+msgstr "Nome completo"
+
+#: forms.py:18
+#: templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+msgid "Subscribe"
+msgstr "Iscriviti"
+
+#: mailman.py:44
+#: simple.py:35
+#, python-format
+msgid "Updated subscription for %(email)s."
+msgstr "Aggiornata l'iscrizione per %(email)s"
+
+#: mailman.py:46
+#: simple.py:37
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "L'email %(email)s risulta già iscritta."
+
+#: mailman.py:48
+#: simple.py:40
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "L'email %(email)s risulta già cancellata."
+
+#: mailman.py:58
+#: mailman.py:95
+#: simple.py:50
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "Iscritto: %(email)s"
+
+#: mailman.py:61
+#: simple.py:52
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "Cancellazione: %(email)s"
+
+#: mailman.py:87
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "Già iscritto: %s"
+
+#: mailman.py:98
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "Già membro:%(email)s"
+
+#: mailman.py:102
+msgid "Bad/Invalid email address: blank line"
+msgstr "Indirizzo e-mail non valido: riga vuota"
+
+#: mailman.py:104
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "Indirizzo e-mail non valido: %(email)s"
+
+#: mailman.py:107
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "Indirizzo non valido (caratteri non consentiti):%(email)s"
+
+#: models.py:34
+msgid "Subscribed"
+msgstr "Iscritto"
+
+#: models.py:37
+msgid "Update Date"
+msgstr "Data di aggiornamento"
+
+#: models.py:99
+# translated = "Due opzioni dello stesso gruppo di opzione non puo' essere applicata a un oggetto."
+msgid "Attribute Name"
+msgstr "Nome dell'attributo"
+
+#: models.py:100
+msgid "Value"
+msgstr "Valore"
+
+#: models.py:103
+msgid "Subscription Attribute"
+msgstr "Attributo Iscrizione"
+
+#: models.py:104
+msgid "Subscription Attributes"
+msgstr "Attributi Iscrizione"
+
+#: views.py:40
+msgid "Error, not valid."
+msgstr "Errore, non valido."
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Per piacere correggi questo errore:"
+msgstr[1] "Per piacere correggi questi errori:"
+
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+msgid "Newsletter Subscription"
+msgstr "Iscrizione alla Newsletter"
+
+#: templates/newsletter/subscribe_form.html:18
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+# translated = "Iscriviti alla newsletter"
+msgid "Your name"
+msgstr "Il tuo nome"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+# translated = "Il tuo nome"
+msgid "Newsletter Unsubscribe"
+msgstr "Rimozione dalla Newsletter"
+
+#: templates/newsletter/unsubscribe_form.html:22
+# translated = ""
+msgid "Remove Me"
+msgstr "Rimuovimi"
+

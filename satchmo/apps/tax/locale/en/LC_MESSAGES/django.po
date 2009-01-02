@@ -1,0 +1,93 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:19
+msgid "Description"
+msgstr ""
+
+#: models.py:26
+msgid "Tax Class"
+msgstr ""
+
+#: config.py:6
+msgid "Tax Settings"
+msgstr ""
+
+#: config.py:10
+msgid "Active tax module"
+msgstr ""
+
+#: config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr ""
+
+#: config.py:13
+msgid "No Tax"
+msgstr ""
+
+#: models.py:17
+msgid "Title"
+msgstr ""
+
+#: models.py:18
+msgid "Displayed title of this tax."
+msgstr ""
+
+#: models.py:20
+msgid "Description of products that would be taxed."
+msgstr ""
+
+#: models.py:27
+msgid "Tax Classes"
+msgstr ""
+
+#: models.py:45
+msgid "Percentage"
+msgstr ""
+
+#: models.py:46
+msgid "% tax for this area and type"
+msgstr ""
+
+#: models.py:68
+msgid "You must choose a zone or a country."
+msgstr ""
+
+#: models.py:74
+msgid "Tax Rate"
+msgstr ""
+
+#: models.py:75
+msgid "Tax Rates"
+msgstr ""
+
+#: modules/area/config.py:5
+msgid "By Country/Area"
+msgstr ""
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr ""
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr ""
+
+#: modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr ""
+

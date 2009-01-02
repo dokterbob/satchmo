@@ -1,0 +1,157 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Selin Çuhadar <selincuhadar@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2008-06-09 18:18+0200\n"
+"Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
+"Language-Team: Turkish <selincuhadar@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: modules/tiered/models.py:203
+msgid "Description"
+msgstr "Tanıtım"
+
+#: modules/tiered/models.py:93
+msgid "Active"
+msgstr "Aktif"
+
+#: modules/tiered/models.py:92
+msgid "Ordering"
+msgstr "Sipariş verme"
+
+#: modules/tiered/models.py:201
+msgid "language"
+msgstr "dil"
+
+#: config.py:6
+msgid "Shipping Settings"
+msgstr "Kargo Ayarları"
+
+#: config.py:10
+msgid "Active shipping modules"
+msgstr "aktif kargo modülü"
+
+#: config.py:11
+msgid "Select the active shipping modules, save and reload to set any module-specific shipping settings."
+msgstr "Aktif kargo modülünü seç,  kaydet ve modul tayin edilen kargo ayarını yeniden yukle."
+
+#: config.py:13
+msgid "Per piece"
+msgstr ""
+
+#: modules/dummy/shipper.py:28
+msgid "Dummy Flat Rate Shipping"
+msgstr ""
+
+#: modules/dummy/shipper.py:41
+msgid "US Mail"
+msgstr "US Mail"
+
+#: modules/dummy/shipper.py:47
+msgid "3 - 4 business days"
+msgstr "3 - 4 İş günü"
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr ""
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr ""
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr ""
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr ""
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr ""
+
+#: modules/flat/shipper.py:23
+msgid "Flat Rate Shipping"
+msgstr ""
+
+#: modules/no/shipper.py:22
+#: modules/no/shipper.py:34
+msgid "No Shipping"
+msgstr "Kargo Yok"
+
+#: modules/no/shipper.py:40
+msgid "immediately"
+msgstr ""
+
+#: modules/per/config.py:14
+msgid "Per item price"
+msgstr ""
+
+#: modules/per/config.py:21
+msgid "Per Item Shipping Service"
+msgstr ""
+
+#: modules/per/config.py:22
+msgid "Shipping service used with per item shipping"
+msgstr ""
+
+#: modules/per/config.py:29
+msgid "Per Item Delivery Days"
+msgstr ""
+
+#: modules/per/shipper.py:23
+msgid "Per Item shipping"
+msgstr ""
+
+#: modules/tiered/config.py:5
+msgid "Tiered Shipping"
+msgstr ""
+
+#: modules/tiered/models.py:91
+msgid "Key"
+msgstr "Anahtar"
+
+#: modules/tiered/models.py:202
+msgid "Carrier"
+msgstr ""
+
+#: modules/tiered/models.py:204
+msgid "Method"
+msgstr ""
+
+#: modules/tiered/models.py:204
+msgid "i.e. US Mail"
+msgstr "i.e. PTT"
+
+#: modules/tiered/models.py:205
+msgid "Delivery Days"
+msgstr ""
+
+#: modules/tiered/models.py:209
+msgid "Min Price"
+msgstr "Min Ücret"
+
+#: modules/tiered/models.py:210
+msgid "The minumum price for this tier to apply"
+msgstr ""
+
+#: modules/tiered/models.py:212
+msgid "Shipping Price"
+msgstr "Kargo Ücreti"
+
+#: templates/shipping/shipping_options.html:5
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr ""
+

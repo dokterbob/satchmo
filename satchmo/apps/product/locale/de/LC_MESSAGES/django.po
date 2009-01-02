@@ -1,0 +1,1097 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:69
+#: templates/product/admin/product_export_form.html:81
+msgid "Name"
+msgstr ""
+
+#: templates/product/category.html:12
+#: templates/product/product.html.html:24
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/detail_configurableproduct.html:86
+#: templates/product/detail_customproduct.html:15
+#: templates/product/detail_subscriptionproduct.html:15
+msgid "Home"
+msgstr "Start"
+
+#: models.py:52
+#: models.py:76
+msgid "Description"
+msgstr "Beschreibung"
+
+#: models.py:53
+msgid "Discount Code"
+msgstr "Rabattcode"
+
+#: models.py:54
+msgid "Coupon Code"
+msgstr "Gutscheincode"
+
+#: models.py:554
+msgid "Tax"
+msgstr "Mehrwertsteuer"
+
+#: models.py:561
+#: models.py:700
+msgid "Product"
+msgstr "Produkt"
+
+#: templates/product/product.html.html:48
+#: templates/product/detail_configurableproduct.html:135
+#: templates/product/detail_customproduct.html:60
+#: templates/product/detail_subscriptionproduct.html:61
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: models.py:1197
+msgid "Value"
+msgstr "Wert"
+
+#: models.py:341
+#: models.py:770
+msgid "Price Change"
+msgstr "Preisänderung"
+
+#: models.py:223
+#: models.py:281
+#: models.py:768
+#: models.py:1251
+msgid "Sort Order"
+msgstr "Sortierreihenfolge"
+
+#: models.py:282
+#: models.py:769
+msgid "The display order for this group."
+msgstr ""
+
+#: models.py:70
+msgid "Active"
+msgstr "aktiv"
+
+#: models.py:39
+msgid "No Discount"
+msgstr "Kein Rabatt"
+
+#: models.py:55
+msgid "Discount Amount"
+msgstr "Rabattbetrag"
+
+#: models.py:57
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Geben Sie den absoluten Rabattbetrag ODER Prozentsatz ein."
+
+#: models.py:58
+msgid "Discount Percentage"
+msgstr "Rabatt Prozentsatz"
+
+#: models.py:61
+msgid ""
+"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr ""
+"Geben Sie den absoluten Rabattbetrag ODER Prozentsatz ein.  "
+"Prozentsatzbespiel: \"0.10\"."
+
+#: models.py:62
+msgid "Number of allowed uses"
+msgstr "Anzahl erlaubter Anwendung"
+
+#: models.py:63
+#: models.py:65
+msgid "Not implemented."
+msgstr "Nicht implementiert."
+
+#: models.py:64
+msgid "Number of times already used"
+msgstr "Anzahl bereits angewendet"
+
+#: models.py:66
+msgid "Minimum order value"
+msgstr "Mindestbestellmenge"
+
+#: models.py:68
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: models.py:69
+msgid "End Date"
+msgstr "Endedatum"
+
+#: models.py:71
+msgid "Free shipping"
+msgstr "versandkostenfrei"
+
+#: models.py:72
+msgid "Should this discount remove all shipping costs?"
+msgstr "Soll dieser Rabatt alle Versandkosten einschliessen?"
+
+#: models.py:73
+msgid "Include shipping"
+msgstr "inklusive Versand"
+
+#: models.py:74
+msgid "Should shipping be included in the discount calculation?"
+msgstr "Sollen die Versandkosten in die Rabattberechnung einfliessen?"
+
+#: models.py:75
+msgid "Valid Products"
+msgstr "gültige Produkte"
+
+#: models.py:90
+msgid "This coupon is disabled."
+msgstr "Dieser Gutschein is deaktiviert."
+
+#: models.py:92
+msgid "This coupon is not active yet."
+msgstr "Dieser Gutschein ist bisher nicht aktiviert."
+
+#: models.py:94
+msgid "This coupon has expired."
+msgstr "Dieser Gutschein ist abgelaufen."
+
+#: models.py:96
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Dieser Rabatt überschreitet die erlaubte Anzahl."
+
+#: models.py:98
+#: models.py:114
+msgid "Valid."
+msgstr "Gültig."
+
+#: models.py:102
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Dieser Rabatt gilt nur bei Bestellungen von Mindestens %s."
+
+#: models.py:116
+msgid "This discount cannot be applied to the products in your cart."
+msgstr ""
+"Dieser Rabatt kann nicht auf die Artikel in Ihrem Warenkorb angewendet "
+"werden."
+
+#: models.py:174
+msgid "Discount"
+msgstr "Rabatt"
+
+#: models.py:175
+msgid "Discounts"
+msgstr "Rabatte"
+
+#: models.py:402
+msgid "Date added"
+msgstr "angelegt am"
+
+#: templates/product/category.html:23
+#: templates/product/product.html.html:32
+#: templates/product/detail_configurableproduct.html:95
+#: templates/product/detail_customproduct.html:24
+#: templates/product/detail_subscriptionproduct.html:24
+msgid "Shop Categories"
+msgstr "Shop Kategorien"
+
+#: models.py:1021
+#: models.py:1212
+#: models.py:1236
+#: templates/product/product.html.html:41
+#: templates/product/detail_configurableproduct.html:104
+#: templates/product/detail_customproduct.html:33
+msgid "Price"
+msgstr "Preis"
+
+#: templates/product/product.html.html:50
+#: templates/product/detail_configurableproduct.html:137
+#: templates/product/detail_customproduct.html:62
+#: templates/product/detail_subscriptionproduct.html:63
+msgid "Add to cart"
+msgstr "Zum Warenkorb hinzufügen"
+
+#: models.py:394
+#: models.py:653
+msgid "Full Name"
+msgstr "Name"
+
+#: adminviews.py:27
+msgid "Inventory Editor"
+msgstr "Bestandseditor"
+
+#: adminviews.py:47
+msgid "Product Import/Export"
+msgstr "Produkt Import/Export"
+
+#: adminviews.py:70
+msgid "No upload file found"
+msgstr ""
+
+#: config.py:6
+msgid "Product Settings"
+msgstr "Produkteinstellungen"
+
+#: config.py:10
+msgid "Product Model Options"
+msgstr "Produktmodelloptionen"
+
+#: config.py:12
+#: models.py:938
+msgid "Configurable Product"
+msgstr "Individuelle Produkte"
+
+#: config.py:13
+msgid "Product Variation"
+msgstr "Produktvariationen"
+
+#: config.py:14
+msgid "Custom Order"
+msgstr "Kundebestellung"
+
+#: config.py:15
+msgid "Subscription Product"
+msgstr "Subskriptionsprodukt"
+
+#: config.py:16
+msgid "Downloable Product"
+msgstr "Downloadbares Produkt"
+
+#: config.py:23
+msgid "Upload Image Dir"
+msgstr ""
+
+#: config.py:24
+msgid ""
+"Directory name for storing uploaded images.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+
+#: config.py:31
+msgid "Rename product images?"
+msgstr "Produktbilder umbenennen?"
+
+#: config.py:32
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: config.py:37
+msgid "Protected dir"
+msgstr "geschütztes Verzeichnis"
+
+#: config.py:38
+msgid ""
+"This is only used if you use Downloadable Products.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+
+#: forms.py:32
+msgid "export format"
+msgstr ""
+
+#: forms.py:33
+msgid "Include Images"
+msgstr "inklusive Bilder"
+
+#: forms.py:34
+msgid "Include Categories"
+msgstr "inklusive Kategorien"
+
+#: forms.py:166
+msgid "File to import"
+msgstr "Datei für Import"
+
+#: forms.py:184
+#: forms.py:227
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr ""
+
+#: forms.py:202
+msgid "Bad VARS file in import zipfile."
+msgstr ""
+
+#: forms.py:232
+msgid "Missing VARS in import zipfile."
+msgstr ""
+
+#: forms.py:238
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "Unbekanntes Dateiformat: %s"
+
+#: forms.py:265
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr ""
+
+#: forms.py:270
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr ""
+
+#: models.py:58
+msgid "A unit of measure must be entered for the length"
+msgstr ""
+
+#: models.py:59
+msgid "A unit of measure must be entered for the width"
+msgstr ""
+
+#: models.py:60
+msgid "A unit of measure must be entered for the height"
+msgstr ""
+
+#: models.py:61
+msgid "A unit of measure must be entered for the weight"
+msgstr ""
+
+#: models.py:63
+msgid "The product and parent fields can not be the same."
+msgstr ""
+
+#: models.py:71
+msgid "Used for URLs"
+msgstr "für URLs"
+
+#: models.py:74
+#: models.py:401
+msgid "Meta Description"
+msgstr "Metabeschreibung"
+
+#: models.py:75
+msgid "Meta description for this category"
+msgstr "Metabeschreibung für diese Kategorie"
+
+#: models.py:78
+#: models.py:405
+msgid "Ordering"
+msgstr "Reihenfolge"
+
+#: models.py:78
+#: models.py:405
+msgid "Override alphabetical order in category display"
+msgstr "Überschreibt alphabetische Reihenfolge in Kategorieanzeige"
+
+#: models.py:154
+msgid "You must not save a category in itself!"
+msgstr "Sie können keine Kategorie in sich selbst speichern!"
+
+#: models.py:188
+#: models.py:399
+msgid "Category"
+msgstr "Kategorie"
+
+#: models.py:189
+msgid "Categories"
+msgstr "Kategorien"
+
+#: models.py:196
+#: models.py:257
+#: models.py:309
+#: models.py:371
+#: models.py:652
+#: models.py:783
+#: models.py:1195
+#: models.py:1285
+msgid "language"
+msgstr "Sprache"
+
+#: models.py:197
+#: models.py:372
+msgid "Translated Category Name"
+msgstr "übersetzter Kategoriename"
+
+#: models.py:198
+msgid "Description of category"
+msgstr "Beschreibung der Kategorie"
+
+#: models.py:199
+#: models.py:259
+#: models.py:312
+#: models.py:373
+#: models.py:656
+#: models.py:785
+#: models.py:1287
+msgid "version"
+msgstr "Version"
+
+#: models.py:200
+#: models.py:260
+#: models.py:313
+#: models.py:374
+#: models.py:657
+#: models.py:786
+#: models.py:1288
+msgid "active"
+msgstr "aktiv"
+
+#: models.py:203
+msgid "Category Translation"
+msgstr "Kategorie Übersetzung"
+
+#: models.py:204
+msgid "Category Translations"
+msgstr "Kategorie Übersetzungen"
+
+#: models.py:219
+#: models.py:1247
+msgid "Picture"
+msgstr "Bild"
+
+#: models.py:221
+#: models.py:1249
+msgid "Optional caption"
+msgstr "optionale Beschriftung"
+
+#: models.py:246
+msgid "Category Image"
+msgstr "Kategoriebild"
+
+#: models.py:247
+msgid "Category Images"
+msgstr "Kategorienbilder"
+
+#: models.py:258
+#: models.py:1286
+msgid "Translated Caption"
+msgstr "übersetzte Überschrift"
+
+#: models.py:263
+msgid "Category Image Translation"
+msgstr "Kategoriebild Übersetzung"
+
+#: models.py:264
+msgid "Category Image Translations"
+msgstr "Kategoriebild Übersetzungen"
+
+#: models.py:276
+msgid "Name of Option Group"
+msgstr "Name der Optionsgruppe"
+
+#: models.py:277
+msgid "This will be the text displayed on the product page."
+msgstr "Dies ist der Text für die Produktseite."
+
+#: models.py:278
+msgid "Detailed Description"
+msgstr "ausführliche Beschreibung"
+
+#: models.py:280
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr ""
+"weitere Beschreibung dieser Gruppe (z.B. T-Shirtgröße oder Schuhgröße)."
+
+#: models.py:301
+#: models.py:705
+msgid "Option Group"
+msgstr "Optionsgruppe"
+
+#: models.py:302
+msgid "Option Groups"
+msgstr "Optionsgruppen"
+
+#: models.py:310
+msgid "Translated OptionGroup Name"
+msgstr "übersetzter Optionsgruppenname"
+
+#: models.py:311
+msgid "Description of OptionGroup"
+msgstr "Beschreibung der Optionsgruppe"
+
+#: models.py:316
+msgid "Option Group Translation"
+msgstr "Optionsgruppenübersetzung"
+
+#: models.py:317
+#, fuzzy
+msgid "Option Groups Translations"
+msgstr "Optionsgruppenübersetzungen"
+
+#: models.py:339
+msgid "Display value"
+msgstr "angezeigter Wert"
+
+#: models.py:340
+msgid "Stored value"
+msgstr "gespeicherter Wert"
+
+#: models.py:343
+msgid "This is the price differential for this option."
+msgstr "Dies ist ein Preisdelta für diese Option."
+
+#: models.py:344
+msgid "Display Order"
+msgstr "Anzeigereihenfolge"
+
+#: models.py:352
+msgid "Option Item"
+msgstr "Optionsartikel"
+
+#: models.py:353
+msgid "Option Items"
+msgstr "Optionsartikel"
+
+#: models.py:377
+msgid "Option Translation"
+msgstr "Optionsübersetzung"
+
+#: models.py:378
+msgid "Option Translations"
+msgstr "Optionsübersetzungen"
+
+#: models.py:394
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+
+#: models.py:395
+msgid "Slug Name"
+msgstr ""
+
+#: models.py:396
+msgid "SKU"
+msgstr ""
+
+#: models.py:396
+msgid "Defaults to slug if left blank"
+msgstr ""
+
+#: models.py:397
+#: models.py:654
+msgid "Short description of product"
+msgstr "kurze Beschreibung des Produkts"
+
+#: models.py:397
+#, fuzzy
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr "Ein oder zwei-zeilige Beschreibung bei der Anzeige des Produktes"
+
+#: models.py:398
+#: models.py:655
+msgid "Description of product"
+msgstr "Beschreibung des Produkts"
+
+#: models.py:398
+#, fuzzy
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr ""
+"Dieses Feld kann HTML enthalten und sollte in wenigen Absätzen den "
+"Hintergrund des Produktes erläutern."
+
+#: models.py:400
+msgid "Number in stock"
+msgstr "Anzahl auf Lager"
+
+#: models.py:401
+msgid "Meta description for this product"
+msgstr "Metabeschreibung für dieses Produkt"
+
+#: models.py:403
+msgid "Is product active?"
+msgstr "Ist dieses Produkt aktiv?"
+
+#: models.py:403
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Dies entscheidet ob ein Produkt auf der Seite sichtbar ist oder nicht"
+
+#: models.py:404
+msgid "Featured Item"
+msgstr "Sonderartikel"
+
+#: models.py:404
+msgid "Featured items will show on the front page"
+msgstr "Sonderartikel erscheinen auf der Titelseite"
+
+#: models.py:406
+msgid "Weight"
+msgstr "Gewicht"
+
+#: models.py:407
+msgid "Weight units"
+msgstr "Gewichtseinheit"
+
+#: models.py:408
+msgid "Length"
+msgstr "Länge"
+
+#: models.py:409
+msgid "Length units"
+msgstr "Längeneinheit"
+
+#: models.py:410
+msgid "Width"
+msgstr "Breite"
+
+#: models.py:411
+msgid "Width units"
+msgstr "Breiteneinheit"
+
+#: models.py:412
+msgid "Height"
+msgstr "Höhe"
+
+#: models.py:413
+msgid "Height units"
+msgstr "Höheneinheit"
+
+#: models.py:414
+msgid "Related Items"
+msgstr "verwandte Artikel"
+
+#: models.py:415
+msgid "Previously Purchased"
+msgstr "zuletzt gekauft"
+
+#: models.py:416
+msgid "Total sold"
+msgstr "Verkauf gesamt"
+
+#: models.py:417
+msgid "Taxable"
+msgstr "versteuerbar"
+
+#: models.py:418
+msgid "Tax Class"
+msgstr "Steuerklasse"
+
+#: models.py:418
+msgid "If it is taxable, what kind of tax?"
+msgstr "Wenn es versteuert wird, mit welcher Art von Steuer?"
+
+#: models.py:552
+msgid "Meta Data"
+msgstr "Metadaten"
+
+#: models.py:553
+msgid "Item Dimensions"
+msgstr ""
+
+#: models.py:555
+msgid "Related Products"
+msgstr "verwandte Produkte"
+
+#: models.py:562
+msgid "Products"
+msgstr "Produkte"
+
+#: models.py:654
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr "Ein oder zwei-zeilige Beschreibung bei der Anzeige des Produktes"
+
+#: models.py:655
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr ""
+"Dieses Feld kann HTML enthalten und sollte in wenigen Absätzen den "
+"Hintergrund des Produktes erläutern."
+
+#: models.py:660
+msgid "Product Translation"
+msgstr "Produktübersetzung"
+
+#: models.py:661
+msgid "Product Translations"
+msgstr "Produktübersetzungen"
+
+#: models.py:701
+#, fuzzy
+msgid "Percent Downpayment"
+msgstr "Prozentsatz"
+
+#: models.py:702
+#, fuzzy
+msgid "Deferred Shipping"
+msgstr "versandkostenfrei"
+
+#: models.py:703
+msgid "Do not charge shipping at checkout for this item."
+msgstr ""
+
+#: models.py:756
+msgid "Custom Product"
+msgstr "Kundenprodukt"
+
+#: models.py:757
+msgid "Custom Products"
+msgstr "Kundenprodukte"
+
+#: models.py:764
+msgid "Custom field name"
+msgstr "Kundenfeldname"
+
+#: models.py:766
+msgid "Custom Fields"
+msgstr "Kundenfelder"
+
+#: models.py:784
+msgid "Translated Custom Text Field Name"
+msgstr ""
+
+#: models.py:789
+msgid "CustomTextField Translation"
+msgstr ""
+
+#: models.py:790
+msgid "CustomTextField Translations"
+msgstr ""
+
+#: models.py:806
+msgid "Create Variations"
+msgstr "Erzeuge Variationen"
+
+#: models.py:806
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+
+#: models.py:939
+msgid "Configurable Products"
+msgstr "Individuelle Produkte"
+
+#: models.py:950
+msgid "Number of times link can be accessed."
+msgstr "Anzahl bereits angewendet"
+
+#: models.py:951
+msgid "Number of minutes the link should remain active."
+msgstr ""
+
+#: models.py:952
+msgid "Is this download currently active?"
+msgstr ""
+
+#: models.py:973
+msgid "Downloadable Product"
+msgstr "Individuelles Produkt"
+
+#: models.py:974
+msgid "Downloadable Products"
+msgstr "Downloadbare Produkte"
+
+#: models.py:981
+msgid "Recurring Billing"
+msgstr ""
+
+#: models.py:981
+msgid "Customer will be charged the regular product price on a periodic basis."
+msgstr ""
+
+#: models.py:982
+msgid "Recurring Times"
+msgstr ""
+
+#: models.py:982
+msgid "Number of payments which will occur at the regular rate.  (optional)"
+msgstr ""
+
+#: models.py:983
+msgid "Duration"
+msgstr "Dauer"
+
+#: models.py:983
+msgid "Length of each billing cycle (days)"
+msgstr ""
+
+#: models.py:985
+msgid "No Shipping Charges"
+msgstr "Keine Versandkosten"
+
+#: models.py:986
+msgid "Pay Shipping Once"
+msgstr "einmalige Versandkosten"
+
+#: models.py:987
+msgid "Pay Shipping Each Billing Cycle"
+msgstr "Versandkosten je Rechnungsbeleg"
+
+#: models.py:989
+msgid "Shippable?"
+msgstr "lieferbar?"
+
+#: models.py:989
+msgid "Is this product shippable?"
+msgstr "Ist dieses Produkt lieferbar?"
+
+#: models.py:1021
+msgid ""
+"Set to 0 for a free trial.  Leave empty if product does not have a trial."
+msgstr ""
+
+#: models.py:1022
+#, fuzzy
+msgid "Trial Duration"
+msgstr ""
+
+#: models.py:1022
+msgid ""
+"Length of trial billing cycle (days).  Leave empty if product does not have "
+"a trial."
+msgstr ""
+
+#: models.py:1029
+#: models.py:1030
+msgid "Trial Terms"
+msgstr ""
+
+#: models.py:1147
+msgid "Two options from the same option group can not be applied to an item."
+msgstr ""
+"Zwei Optionen von der gleichen Optionsgruppe können nicht mit einem Artikel "
+"verbunden werden."
+
+#: models.py:1181
+msgid "Product variation"
+msgstr "Produktvariation"
+
+#: models.py:1182
+msgid "Product variations"
+msgstr "Produktvariationen"
+
+#: models.py:1196
+msgid "Attribute Name"
+msgstr "Attributename"
+
+#: models.py:1200
+msgid "Product Attribute"
+msgstr "Produktattribut"
+
+#: models.py:1201
+msgid "Product Attributes"
+msgstr "Produktattribute"
+
+#: models.py:1213
+msgid "Discount Quantity"
+msgstr ""
+
+#: models.py:1213
+msgid "Use this price only for this quantity or higher"
+msgstr "Dieser Preis gilt nur für diese Anzahl oder mehr"
+
+#: models.py:1237
+msgid "Prices"
+msgstr "Preise"
+
+#: models.py:1274
+msgid "Product Image"
+msgstr "Produktbild"
+
+#: models.py:1275
+msgid "Product Images"
+msgstr "Produktbilder"
+
+#: models.py:1291
+msgid "Product Image Translation"
+msgstr "Produktbild Übersetzung"
+
+#: models.py:1292
+msgid "Product Image Translations"
+msgstr "Produktbild Übersetzungen"
+
+#: views.py:75
+msgid "The product you have requested does not exist."
+msgstr "Das ausgewählte Produkt existiert nicht."
+
+#: views.py:140
+#: views.py:153
+#: views.py:160
+#: views.py:167
+msgid "not available"
+msgstr "nicht verfügbar"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "Abmelden"
+
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+#, fuzzy
+msgid "Documentation"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: templates/product/admin/product_export_form.html:52
+#, fuzzy
+msgid "Inventory Management"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:111
+msgid "Helpers"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:57
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:109
+msgid "Export"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:80
+msgid "Slug"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include images?"
+msgstr "inklusive Bilder?"
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Include categories?"
+msgstr "inklusive Kategorien?"
+
+#: templates/product/admin/product_export_form.html:108
+msgid "Format?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:110
+msgid "Reset"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Check all"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:113
+msgid "Uncheck all"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:116
+msgid "No products."
+msgstr "Keine Produkte."
+
+#: templates/product/admin/product_import_result.html:12
+#, fuzzy
+msgid "Product import/export"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "Fehler"
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr ""
+
+#: templates/admin/product/configurableproduct/change_form.html:17
+msgid "Variations"
+msgstr "Variationen"
+
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Produktsubtypen"
+
+#: templates/product/detail_configurableproduct.html:104
+msgid "(incl. tax)"
+msgstr "(inkl. MwSt.)"
+
+#: templates/product/detail_configurableproduct.html:120
+msgid "Please choose your options"
+msgstr "Bitte wählen Sie aus den Optionen"
+
+#: templates/product/detail_customproduct.html:31
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "Kundenbestellung für %(name)s"
+
+#: templates/product/detail_customproduct.html:56
+msgid "more"
+msgstr "mehr"
+
+#: templates/product/detail_subscriptionproduct.html:31
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr "Subskriptionsprodukt %(name)s"
+
+#: templates/product/detail_subscriptionproduct.html:33
+msgid "Only "
+msgstr "Nur "
+
+#: templates/product/detail_subscriptionproduct.html:33
+msgid "easy payments of:"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:40
+msgid "This product has trial subscription pricing "
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:41
+msgid "for trial period of "
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:41
+msgid "days"
+msgstr "Tage"
+

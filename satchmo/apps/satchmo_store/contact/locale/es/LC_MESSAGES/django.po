@@ -1,0 +1,428 @@
+# Spanish translation for the Satchmo project.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Christian Hoeppner <hoeppner@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 0.5-pre\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-14 00:00+0100\n"
+"PO-Revision-Date: 2007-08-06 00:00+0000\n"
+"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:125
+#: models.py:142
+#: models.py:160
+#: supplier/models.py:17
+msgid "Description"
+msgstr "Descripción"
+
+#: models.py:164
+#: models.py:235
+#: models.py:241
+msgid "State"
+msgstr "Estado"
+
+#: models.py:62
+#: models.py:112
+msgid "Email"
+msgstr "Correo"
+
+#: models.py:161
+#: models.py:162
+#: models.py:232
+#: models.py:233
+#: models.py:238
+#: models.py:239
+msgid "Street"
+msgstr "Calle"
+
+#: models.py:163
+#: models.py:234
+#: models.py:240
+msgid "City"
+msgstr "Ciudad"
+
+#: models.py:165
+#: models.py:236
+#: models.py:242
+msgid "Zip Code"
+msgstr "Código Postal"
+
+#: models.py:347
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: models.py:12
+msgid "Customer"
+msgstr "Cliente"
+
+#: models.py:13
+#: models.py:24
+msgid "Supplier"
+msgstr "Proveedor"
+
+#: models.py:14
+#: models.py:25
+msgid "Distributor"
+msgstr "Distribuidor"
+
+#: models.py:18
+msgid "Company"
+msgstr "Empresa"
+
+#: models.py:19
+msgid "Government"
+msgstr "Gobierno"
+
+#: models.py:20
+msgid "Non-profit"
+msgstr "ONG"
+
+#: models.py:26
+msgid "Manufacturer"
+msgstr "Fabricante"
+
+#: models.py:34
+msgid "Name"
+msgstr "Nombre"
+
+#: models.py:35
+#: models.py:123
+msgid "Type"
+msgstr "Tipo"
+
+#: models.py:36
+#: models.py:59
+msgid "Role"
+msgstr "Cargo"
+
+#: models.py:37
+#: models.py:64
+msgid "Creation Date"
+msgstr "Fecha de Creación"
+
+#: models.py:38
+#: models.py:63
+#: models.py:364
+#: supplier/models.py:41
+#: supplier/models.py:87
+msgid "Notes"
+msgstr "Notas"
+
+#: models.py:48
+msgid "Organization"
+msgstr "Organización"
+
+#: models.py:49
+msgid "Organizations"
+msgstr "Organizaciones"
+
+#: models.py:55
+msgid "First Name"
+msgstr "Nombre"
+
+#: models.py:56
+msgid "Last Name"
+msgstr "Apellido(s)"
+
+#: models.py:61
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#: models.py:101
+msgid "Contact"
+msgstr "Contacto"
+
+#: models.py:102
+msgid "Contacts"
+msgstr "Contactos"
+
+#: models.py:105
+msgid "Work"
+msgstr "Trabajo"
+
+#: models.py:106
+msgid "Home"
+msgstr "Domicilio"
+
+#: models.py:107
+msgid "Fax"
+msgstr "Fax"
+
+#: models.py:108
+msgid "Mobile"
+msgstr "Móvil"
+
+#: models.py:113
+msgid "Phone"
+msgstr "Teléfono"
+
+#: models.py:114
+msgid "In-person"
+msgstr "En Persona"
+
+#: models.py:124
+msgid "Date and Time"
+msgstr "Fecha y Hora"
+
+#: models.py:134
+msgid "Interaction"
+msgstr "Interacción"
+
+#: models.py:135
+msgid "Interactions"
+msgstr "Interacciones"
+
+#: models.py:143
+#: models.py:152
+msgid "Phone Number"
+msgstr "Número de Teléfono"
+
+#: models.py:144
+msgid "Primary"
+msgstr "Principal"
+
+#: models.py:153
+msgid "Phone Numbers"
+msgstr "Números de Teléfono"
+
+#: models.py:160
+msgid "Description of address - Home,Relative, Office, Warehouse ,etc."
+msgstr "Descripción de la Dirección - Domicilio, Oficina, Almacén, etc."
+
+#: models.py:166
+#: models.py:237
+#: models.py:243
+msgid "Country"
+msgstr "País"
+
+#: models.py:167
+msgid "Default Shipping Address"
+msgstr "Drección de Envío predeterminada"
+
+#: models.py:168
+msgid "Default Billing Address"
+msgstr "Dirección de Facturación predeterminada"
+
+#: models.py:203
+msgid "Address Book"
+msgstr "Libreta de Direcciones"
+
+#: models.py:204
+msgid "Address Books"
+msgstr "Libretas de Direcciones"
+
+#: models.py:208
+msgid "Online"
+msgstr "Internet"
+
+#: models.py:209
+msgid "In Person"
+msgstr "En Persona"
+
+#: models.py:210
+msgid "Show"
+msgstr "Mostrar"
+
+#: models.py:214
+msgid "Temp"
+msgstr "Temporal"
+
+#: models.py:215
+msgid "Pending"
+msgstr "Pendiente"
+
+#: models.py:216
+msgid "In Process"
+msgstr "En Proceso"
+
+#: models.py:217
+#: supplier/models.py:74
+msgid "Shipped"
+msgstr "Enviado"
+
+#: models.py:221
+msgid "Cash"
+msgstr "Efectivo"
+
+#: models.py:222
+msgid "Credit Card"
+msgstr "Tarjeta de Crédito"
+
+#: models.py:223
+msgid "Check"
+msgstr "Cheque"
+
+#: models.py:244
+msgid "Sub total"
+msgstr "Subtotal"
+
+#: models.py:245
+#: supplier/models.py:42
+msgid "Total"
+msgstr "Total"
+
+#: models.py:246
+msgid "Discount"
+msgstr "Promoción"
+
+#: models.py:247
+msgid "Payment"
+msgstr "Pago"
+
+#: models.py:248
+msgid "Payment method"
+msgstr "Método de Pago"
+
+#: models.py:249
+msgid "Shipping Description"
+msgstr "Descripción del Envío"
+
+#: models.py:250
+#: models.py:328
+msgid "Shipping Method"
+msgstr "Método de Envío"
+
+#: models.py:251
+msgid "Shipping Models"
+msgstr "Modelos de Envío"
+
+#: models.py:252
+msgid "Shipping Cost"
+msgstr "Gastos de Envío"
+
+#: models.py:253
+#: supplier/models.py:40
+msgid "Tax"
+msgstr "Impuestos"
+
+#: models.py:254
+#: models.py:365
+msgid "Time Stamp"
+msgstr "Fecha y Hora"
+
+#: models.py:255
+#: models.py:363
+#: supplier/models.py:86
+msgid "Status"
+msgstr "Estado"
+
+#: models.py:255
+msgid "This is automatically set"
+msgstr "Ésto se rellenará automáticamente"
+
+#: models.py:329
+msgid "Shipping Address"
+msgstr "Dirección de Envío"
+
+#: models.py:330
+msgid "Billing Address"
+msgstr "Dirección de Facturación"
+
+#: models.py:331
+msgid "Totals"
+msgstr "Totales"
+
+#: models.py:338
+msgid "Product Order"
+msgstr "Pedido de Producto"
+
+#: models.py:339
+msgid "Product Orders"
+msgstr "Pedidos de Producto"
+
+#: models.py:348
+msgid "Unit price"
+msgstr "Precio Unitario"
+
+#: models.py:349
+msgid "Line item price"
+msgstr "Precio de la Línea"
+
+#: models.py:355
+msgid "Order Line Item"
+msgstr "Línea de Pedido"
+
+#: models.py:356
+msgid "Order Line Items"
+msgstr "Líneas de Pedido"
+
+#: models.py:376
+msgid "Order Status"
+msgstr "Estado de Pedido"
+
+#: models.py:377
+msgid "Order statuses"
+msgstr "Estados de Pedido"
+
+#: supplier/models.py:16
+msgid "Supplier ID"
+msgstr "Identificador de Proveedor"
+
+#: supplier/models.py:18
+msgid "Unit Cost"
+msgstr "Coste Unitario"
+
+#: supplier/models.py:19
+msgid "Inventory"
+msgstr "Inventario"
+
+#: supplier/models.py:29
+msgid "Raw Item"
+msgstr "Objecto Bruto"
+
+#: supplier/models.py:30
+msgid "Raw Items"
+msgstr "Objecto Bruto"
+
+#: supplier/models.py:37
+msgid "Date Created"
+msgstr "Fecha de Creación"
+
+#: supplier/models.py:38
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: supplier/models.py:39
+msgid "Shipping"
+msgstr "Envío"
+
+#: supplier/models.py:57
+msgid "Supplier Order"
+msgstr "Pedido a Proveedor"
+
+#: supplier/models.py:58
+msgid "Supplier Orders"
+msgstr "Pedidos a Proveedor"
+
+#: supplier/models.py:66
+msgid "Line Item Quantity"
+msgstr "Cantidad asociada a la Línea"
+
+#: supplier/models.py:67
+msgid "Line Item Total"
+msgstr "Precio total de la Línea"
+
+#: supplier/models.py:73
+msgid "Sent in"
+msgstr "Envío Cursado"
+
+#: supplier/models.py:75
+msgid "Received"
+msgstr "Recibido"
+
+#: supplier/models.py:94
+msgid "Supplier Order Status"
+msgstr "Estado de Pedido a Proveedor"
+
+#: supplier/models.py:95
+msgid "Supplier Order Statuses"
+msgstr "Estados de Pedidos a Proveedor"
+

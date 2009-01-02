@@ -1,0 +1,124 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: models.py:19
+msgid "Description"
+msgstr "תיאור"
+
+#: models.py:26
+#: models.py:40
+msgid "Tax Class"
+msgstr "סוג מס"
+
+#: config.py:6
+msgid "Tax Settings"
+msgstr "הגדרות מס"
+
+#: config.py:12
+msgid "Active tax module"
+msgstr "אפנון מס פעיל"
+
+#: config.py:13
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr ""
+"בחר אפנון, שמור אותו והטען מחדש על מנת לקבוע הגדרות ייחודיות לאפנון זה."
+
+#: config.py:15
+msgid "No Tax"
+msgstr "ללא מס"
+
+#: config.py:21
+msgid "Show with tax included"
+msgstr "הצג כולל מס"
+
+#: config.py:22
+msgid "If yes, then all products and the cart will display with tax included."
+msgstr "אם כן, כל המוצרים בעגלה יוצגו כולל מס."
+
+#: models.py:17
+msgid "Title"
+msgstr "כותרת"
+
+#: models.py:18
+msgid "Displayed title of this tax."
+msgstr "כותרת מוצגת של המס הזה."
+
+#: models.py:20
+msgid "Description of products that would be taxed."
+msgstr "תיאור הפריטים החייבים במס."
+
+#: models.py:27
+msgid "Tax Classes"
+msgstr "סוגי מס"
+
+#: models.py:43
+msgid "Tax Zone"
+msgstr "אזור מס"
+
+#: models.py:46
+msgid "Tax Country"
+msgstr "מדינת מס"
+
+#: models.py:47
+#: models.py:59
+msgid "Percentage"
+msgstr "אחוזים"
+
+#: models.py:48
+msgid "% tax for this area and type"
+msgstr "% מס עבור האזור והסוג"
+
+#: models.py:72
+msgid "You must choose a zone or a country."
+msgstr "חובה עליך לבחור אזור או מדינה."
+
+#: models.py:78
+msgid "Tax Rate"
+msgstr "תעריף מס"
+
+#: models.py:79
+msgid "Tax Rates"
+msgstr "תעריפי מס"
+
+#: modules/area/config.py:11
+msgid "By Country/Area"
+msgstr "לפי מדינה / אזור"
+
+#: modules/area/config.py:39
+#: modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr "משלוח מס?"
+
+#: modules/area/config.py:46
+#, fuzzy
+msgid "TaxClass for shipping"
+msgstr "משלוח בדמי בסיס"
+
+#: modules/area/config.py:47
+msgid "Select a TaxClass that should be applied for shipments."
+msgstr "בחר סוג מס החל על משלוחים."
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "אחוזי מס"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "אחוזי מס"
+

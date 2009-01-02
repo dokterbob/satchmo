@@ -1,0 +1,175 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:15
+#: templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "Adres email"
+
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Strona startowa"
+
+#: models.py:32
+msgid "Email"
+msgstr "Email"
+
+#: models.py:33
+msgid "Creation Date"
+msgstr "Data utworzenia"
+
+#: config.py:7
+msgid "Newsletter Settings"
+msgstr "Ustawienia Informatora"
+
+#: config.py:11
+msgid "Active newsletter module"
+msgstr "Aktywny moduł informatora"
+
+#: config.py:12
+msgid "Select a newsletter, save and reload to set any module-specific newsletter settings."
+msgstr "Wybierz biuletyn, zapisz i przeładuj aby ustawić ustawienia szczegółowe."
+
+#: config.py:14
+msgid "No newsletter"
+msgstr "Brak biuletynu"
+
+#: config.py:15
+msgid "Simple list"
+msgstr "Prosta lista"
+
+#: config.py:16
+msgid "Mailman"
+msgstr "Mailman"
+
+#: config.py:21
+msgid "Name of Newsletter"
+msgstr "Nazwa biuletynu"
+
+#: config.py:22
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr "Podaj dokładnie taką samą nazwę, jak nazwa listy w Mailman."
+
+#: mailman.py:27
+#: simple.py:18
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "Już zapisany %(email)s."
+
+#: mailman.py:29
+#: simple.py:20
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "Już usunięty %(email)s."
+
+#: mailman.py:38
+#: mailman.py:74
+#: simple.py:29
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "%(email)s dodany do subskrypcji."
+
+#: mailman.py:41
+#: simple.py:31
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "%(email)s usunięty z subskrypcji."
+
+#: mailman.py:66
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "Subskrypcja istnieje: %s"
+
+#: mailman.py:77
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "Już dodany: %(email)s"
+
+#: mailman.py:81
+msgid "Bad/Invalid email address: blank line"
+msgstr "Błędny adres email: pusta linia"
+
+#: mailman.py:83
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "Błędny adres email: %(email)s"
+
+#: mailman.py:86
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "Groźny adres (niedozwolone znaki): %(email)s"
+
+#: models.py:31
+msgid "Subscribed"
+msgstr "Subskrybowany"
+
+#: models.py:34
+msgid "Update Date"
+msgstr "Data aktualizacji"
+
+#: views.py:14
+msgid "Full Name"
+msgstr "Pełna nazwa"
+
+#: views.py:16
+#: templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+msgid "Subscribe"
+msgstr "Subskrybuj"
+
+#: views.py:53
+msgid "Error, not valid."
+msgstr "Błąd, niepoprawne."
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Popraw poniższy błąd:"
+msgstr[1] "Popraw poniższe błędy:"
+
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+msgid "Newsletter Subscription"
+msgstr "Subskrypcja informatora"
+
+#: templates/newsletter/subscribe_form.html:18
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+msgid "Your name"
+msgstr "Twoje imię"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+msgid "Newsletter Unsubscribe"
+msgstr "Anulowanie subskrypcji biuletynu"
+
+#: templates/newsletter/unsubscribe_form.html:22
+msgid "Remove Me"
+msgstr "Usuń mnie"
+

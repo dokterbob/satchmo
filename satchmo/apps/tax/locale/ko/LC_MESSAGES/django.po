@@ -1,0 +1,93 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:19
+msgid "Description"
+msgstr "설명"
+
+#: models.py:26
+msgid "Tax Class"
+msgstr "세금 등급"
+
+#: config.py:6
+msgid "Tax Settings"
+msgstr "세금 설정"
+
+#: config.py:10
+msgid "Active tax module"
+msgstr "세금 모듈 화성화"
+
+#: config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr "어떤 특정 모듈 설정을 저장하기 위해서는 모듈을 선택하세요."
+
+#: config.py:13
+msgid "No Tax"
+msgstr "비과세"
+
+#: models.py:17
+msgid "Title"
+msgstr "제목"
+
+#: models.py:18
+msgid "Displayed title of this tax."
+msgstr "이 세금의 제목"
+
+#: models.py:20
+msgid "Description of products that would be taxed."
+msgstr "세금 설명"
+
+#: models.py:27
+msgid "Tax Classes"
+msgstr "세금 등급"
+
+#: models.py:45
+msgid "Percentage"
+msgstr "퍼센티지"
+
+#: models.py:46
+msgid "% tax for this area and type"
+msgstr "% 이 영역과 형태에 대한 세금"
+
+#: models.py:68
+msgid "You must choose a zone or a country."
+msgstr "지역이나 나라늘 선택해 주세요"
+
+#: models.py:74
+msgid "Tax Rate"
+msgstr "세금율"
+
+#: models.py:75
+msgid "Tax Rates"
+msgstr "세금율"
+
+#: modules/area/config.py:5
+msgid "By Country/Area"
+msgstr "나라 지역에 따라"
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "세금 퍼센트"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "세금 퍼센트"
+
+#: modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr "배송 세금?"
+

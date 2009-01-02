@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Newsletter Subscription" %}</li>
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Newsletter Subscription" %}</h3>
+
+<p>{{ result }}</p>
+
+{% endblock %}

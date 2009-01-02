@@ -1,0 +1,191 @@
+- fields:
+    city: ''
+    country: 231
+    in_country_only: false
+    phone: ''
+    postal_code: ''
+    sales_country: 231
+    shipping_countries: [81, 210, 231]
+    state: ''
+    store_description: ''
+    store_email: ''
+    store_name: Testmo
+    street1: ''
+    street2: ''
+  model: shop.config
+  pk: 1
+- fields: {customer: null, date_time_created: !!timestamp '2007-12-17 16:54:20.198576',
+    desc: null, site: 1}
+  model: shop.cart
+  pk: 1
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 1}
+  model: area.taxrate
+  pk: 1
+- fields: {percentage: '0', taxClass: 1, taxCountry: null, taxZone: 2}
+  model: area.taxrate
+  pk: 2
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 4}
+  model: area.taxrate
+  pk: 3
+- fields: {percentage: '0.04625', taxClass: 1, taxCountry: null, taxZone: 5}
+  model: area.taxrate
+  pk: 4
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 12}
+  model: area.taxrate
+  pk: 5
+- fields: {percentage: '0.03', taxClass: 1, taxCountry: null, taxZone: 13}
+  model: area.taxrate
+  pk: 6
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 14}
+  model: area.taxrate
+  pk: 7
+- fields: {percentage: '0', taxClass: 1, taxCountry: null, taxZone: 15}
+  model: area.taxrate
+  pk: 8
+- fields: {percentage: '0.0575', taxClass: 1, taxCountry: null, taxZone: 16}
+  model: area.taxrate
+  pk: 9
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 18}
+  model: area.taxrate
+  pk: 10
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 19}
+  model: area.taxrate
+  pk: 11
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 21}
+  model: area.taxrate
+  pk: 12
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 22}
+  model: area.taxrate
+  pk: 13
+- fields: {percentage: '0.0625', taxClass: 1, taxCountry: null, taxZone: 23}
+  model: area.taxrate
+  pk: 14
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 24}
+  model: area.taxrate
+  pk: 15
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 25}
+  model: area.taxrate
+  pk: 16
+- fields: {percentage: '0.049', taxClass: 1, taxCountry: null, taxZone: 26}
+  model: area.taxrate
+  pk: 17
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 27}
+  model: area.taxrate
+  pk: 18
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 28}
+  model: area.taxrate
+  pk: 19
+- fields: {percentage: '0.055', taxClass: 1, taxCountry: null, taxZone: 29}
+  model: area.taxrate
+  pk: 20
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 31}
+  model: area.taxrate
+  pk: 21
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 32}
+  model: area.taxrate
+  pk: 22
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 33}
+  model: area.taxrate
+  pk: 23
+- fields: {percentage: '0.065', taxClass: 1, taxCountry: null, taxZone: 34}
+  model: area.taxrate
+  pk: 24
+- fields: {percentage: '0.07', taxClass: 1, taxCountry: null, taxZone: 35}
+  model: area.taxrate
+  pk: 25
+- fields: {percentage: '0.04225', taxClass: 1, taxCountry: null, taxZone: 33}
+  model: area.taxrate
+  pk: 26
+- fields: {percentage: '0', taxClass: 1, taxCountry: null, taxZone: 36}
+  model: area.taxrate
+  pk: 27
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 38}
+  model: area.taxrate
+  pk: 28
+- fields: {percentage: '0.065', taxClass: 1, taxCountry: null, taxZone: 39}
+  model: area.taxrate
+  pk: 29
+- fields: {percentage: '0', taxClass: 1, taxCountry: null, taxZone: 40}
+  model: area.taxrate
+  pk: 30
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 41}
+  model: area.taxrate
+  pk: 31
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 42}
+  model: area.taxrate
+  pk: 32
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 43}
+  model: area.taxrate
+  pk: 33
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 44}
+  model: area.taxrate
+  pk: 34
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 45}
+  model: area.taxrate
+  pk: 35
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 47}
+  model: area.taxrate
+  pk: 36
+- fields: {percentage: '0.045', taxClass: 1, taxCountry: null, taxZone: 48}
+  model: area.taxrate
+  pk: 37
+- fields: {percentage: '0', taxClass: 1, taxCountry: null, taxZone: 49}
+  model: area.taxrate
+  pk: 38
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 51}
+  model: area.taxrate
+  pk: 39
+- fields: {percentage: '0.07', taxClass: 1, taxCountry: null, taxZone: 53}
+  model: area.taxrate
+  pk: 40
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 54}
+  model: area.taxrate
+  pk: 41
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 55}
+  model: area.taxrate
+  pk: 42
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 56}
+  model: area.taxrate
+  pk: 43
+- fields: {percentage: '0.0625', taxClass: 1, taxCountry: null, taxZone: 57}
+  model: area.taxrate
+  pk: 44
+- fields: {percentage: '0.0475', taxClass: 1, taxCountry: null, taxZone: 58}
+  model: area.taxrate
+  pk: 45
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 59}
+  model: area.taxrate
+  pk: 46
+- fields: {percentage: '0.035', taxClass: 1, taxCountry: null, taxZone: 61}
+  model: area.taxrate
+  pk: 47
+- fields: {percentage: '0.065', taxClass: 1, taxCountry: null, taxZone: 62}
+  model: area.taxrate
+  pk: 48
+- fields: {percentage: '0.06', taxClass: 1, taxCountry: null, taxZone: 63}
+  model: area.taxrate
+  pk: 49
+- fields: {percentage: '0.05', taxClass: 1, taxCountry: null, taxZone: 64}
+  model: area.taxrate
+  pk: 50
+- fields: {percentage: '0.04', taxClass: 1, taxCountry: null, taxZone: 65}
+  model: area.taxrate
+  pk: 51
+- fields: {percentage: '0.2', taxClass: 1, taxCountry: 81, taxZone: null}
+  model: area.taxrate
+  pk: 52
+- fields: {percentage: '0.16', taxClass: 1, taxCountry: 211, taxZone: null}
+  model: area.taxrate
+  pk: 53
+- fields: {percentage: '0.20', taxClass: 1, taxCountry: null, taxZone: 1414}
+  model: area.taxrate
+  pk: 54
+- fields: {percentage: '0.10', taxClass: 1, taxCountry: null, taxZone: 2146}
+  model: area.taxrate
+  pk: 55
+- fields: {description: Shipping, title: Shipping}
+  model: product.taxclass
+  pk: 2
+- fields: {description: Default, title: Default}
+  model: product.taxclass
+  pk: 1

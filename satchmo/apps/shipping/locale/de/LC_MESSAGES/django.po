@@ -1,0 +1,254 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: modules/tiered/models.py:203
+msgid "Description"
+msgstr "Beschreibung"
+
+#: modules/tiered/models.py:91
+msgid "Key"
+msgstr "Schlüssel"
+
+#: modules/tiered/models.py:93
+msgid "Active"
+msgstr "aktiv"
+
+#: modules/ups/config.py:81
+msgid "Submit to URL"
+msgstr ""
+
+#: modules/tiered/models.py:92
+msgid "Ordering"
+msgstr "Reihenfolge"
+
+#: modules/tiered/models.py:201
+msgid "language"
+msgstr "Sprache"
+
+#: config.py:6
+msgid "Shipping Settings"
+msgstr "Versandeinstellung"
+
+#: config.py:10
+msgid "Active shipping modules"
+msgstr "aktive Versandmodule"
+
+#: config.py:11
+msgid ""
+"Select the active shipping modules, save and reload to set any module-"
+"specific shipping settings."
+msgstr ""
+
+#: config.py:13
+msgid "Per piece"
+msgstr "pro Stück"
+
+#: modules/dummy/shipper.py:28
+msgid "Dummy Flat Rate Shipping"
+msgstr ""
+
+#: modules/dummy/shipper.py:41
+msgid "US Mail"
+msgstr ""
+
+#: modules/dummy/shipper.py:47
+msgid "3 - 4 business days"
+msgstr "3 - 4 Werktage"
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "Pauschalkosten"
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "pauschale Versandkosten"
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "pauschale Versandkosten"
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr ""
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr ""
+
+#: modules/flat/shipper.py:23
+msgid "Flat Rate Shipping"
+msgstr "pauschale Versandkosten"
+
+#: modules/no/shipper.py:22
+#: modules/no/shipper.py:34
+msgid "No Shipping"
+msgstr "Keine Lieferung"
+
+#: modules/no/shipper.py:40
+msgid "immediately"
+msgstr "sofort"
+
+#: modules/per/config.py:14
+msgid "Per item price"
+msgstr "Einzelpostenpreis"
+
+#: modules/per/config.py:21
+msgid "Per Item Shipping Service"
+msgstr "pro Versandartikel"
+
+#: modules/per/config.py:22
+msgid "Shipping service used with per item shipping"
+msgstr ""
+
+#: modules/per/config.py:29
+msgid "Per Item Delivery Days"
+msgstr ""
+
+#: modules/per/shipper.py:23
+msgid "Per Item shipping"
+msgstr "pro Versandartikel"
+
+#: modules/tiered/config.py:5
+#, fuzzy
+msgid "Tiered Shipping"
+msgstr ""
+
+#: modules/tiered/models.py:202
+#, fuzzy
+msgid "Carrier"
+msgstr ""
+
+#: modules/tiered/models.py:204
+msgid "Method"
+msgstr "Methode"
+
+#: modules/tiered/models.py:204
+msgid "i.e. US Mail"
+msgstr ""
+
+#: modules/tiered/models.py:205
+msgid "Delivery Days"
+msgstr ""
+
+#: modules/tiered/models.py:209
+msgid "Min Price"
+msgstr "Mindestpreis"
+
+#: modules/tiered/models.py:210
+msgid "The minumum price for this tier to apply"
+msgstr ""
+
+#: modules/tiered/models.py:212
+msgid "Shipping Price"
+msgstr "Versandkosten"
+
+#: modules/ups/config.py:8
+msgid "UPS Shipping Settings"
+msgstr "UPS Versandeinstellungen"
+
+#: modules/ups/config.py:17
+msgid "UPS XML Access Key"
+msgstr ""
+
+#: modules/ups/config.py:18
+msgid "XML Access Key Provided by UPS"
+msgstr ""
+
+#: modules/ups/config.py:23
+msgid "UPS User ID"
+msgstr ""
+
+#: modules/ups/config.py:24
+msgid "User ID provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:29
+msgid "UPS Account Number"
+msgstr "UPS Account Nummer"
+
+#: modules/ups/config.py:30
+msgid "UPS Account Number."
+msgstr "UPS Account Nummer."
+
+#: modules/ups/config.py:35
+msgid "UPS User Password"
+msgstr "UPS Benutzerpasswort"
+
+#: modules/ups/config.py:36
+msgid "User password provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:41
+msgid "UPS Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/ups/config.py:54
+msgid "Type of container used to ship product."
+msgstr ""
+
+#: modules/ups/config.py:64
+msgid "UPS Pickup option."
+msgstr ""
+
+#: modules/ups/config.py:75
+msgid "Access production UPS server"
+msgstr ""
+
+#: modules/ups/config.py:76
+msgid "Use this when your store is in production."
+msgstr ""
+
+#: modules/ups/config.py:82
+msgid "Address to submit live transactions."
+msgstr ""
+
+#: modules/ups/config.py:87
+msgid "Submit to TestURL"
+msgstr ""
+
+#: modules/ups/config.py:88
+msgid "Address to submit test transactions."
+msgstr ""
+
+#: modules/ups/shipper.py:56
+#, python-format
+msgid "UPS - %s"
+msgstr ""
+
+#: modules/ups/shipper.py:69
+msgid "UPS"
+msgstr ""
+
+#: modules/ups/shipper.py:76
+#, python-format
+msgid "%s business days"
+msgstr "%s Werktage"
+
+#: modules/ups/shipper.py:78
+#, python-format
+msgid "%s business day"
+msgstr "%s Werktag"
+
+#: modules/ups/shipper.py:106
+msgid "3 - 4"
+msgstr "3 - 4"
+
+#: templates/shipping/shipping_options.html:6
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr ""
+

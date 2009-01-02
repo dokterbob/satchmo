@@ -1,7 +1,0 @@
-- fields: {description: Default, title: Default}
-  model: tax.taxclass
-  pk: 1
-- fields: {description: Shipping, title: Shipping}
-  model: tax.taxclass
-  pk: 2
-

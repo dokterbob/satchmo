@@ -1,0 +1,81 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:41
+msgid "Creation Date"
+msgstr "Data utworzenia"
+
+#: models.py:46
+msgid "Notes"
+msgstr "Notatki"
+
+#: models.py:132
+msgid "Description"
+msgstr "Opis"
+
+#: models.py:130
+msgid "language"
+msgstr "język"
+
+#: templates/upsell/product_upsell.html:18
+msgid "Quantity"
+msgstr "Ilość"
+
+#: templates/upsell/product_upsell.html:15
+msgid "Add"
+msgstr "Dodaj"
+
+#: models.py:25
+msgid "Checkbox to add 1"
+msgstr ""
+
+#: models.py:26
+msgid "Checkbox to add 1, checked by default"
+msgstr ""
+
+#: models.py:27
+msgid "Checkbox to match quantity"
+msgstr ""
+
+#: models.py:28
+msgid "Checkbox to match quantity, checked by default"
+msgstr ""
+
+#: models.py:29
+msgid "Form with 0 quantity"
+msgstr ""
+
+#: models.py:34
+msgid "Target Product"
+msgstr ""
+
+#: models.py:36
+msgid "The products for which you want to show this goal product as an Upsell."
+msgstr ""
+
+#: models.py:38
+msgid "Goal Product"
+msgstr ""
+
+#: models.py:43
+msgid "Upsell Style"
+msgstr ""
+
+#: models.py:47
+msgid "Internal notes"
+msgstr ""
+

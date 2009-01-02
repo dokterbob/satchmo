@@ -1,0 +1,62 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Zmień"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Obecnie"
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr "Ustawienia dla miniatur"
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr "Jakość miniatur"
+
+#: thumbnail/config.py:10
+msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
+msgstr "Użyj wartości od 1 do 100 do określenia jakości miniaturki JPG utworzonej dla zdjęć produktów i kategorii."
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr "Zmień nazwy dla zdjęć produktów?"
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr "Automatycznie zmień nazwy zdjęć produktów przy ich załadowaniu?"
+
+#: thumbnail/widgets.py:21
+msgid "Change:"
+msgstr "Zmień:"
+
+#: validators.py:12
+msgid "Please enter one and only one of those fields."
+msgstr "Wprowadź jedno i tylko jedno z tych pól."
+
+#: validators.py:22
+msgid "These fields can not be the same."
+msgstr "Te pola nie mogą być jednakowe."
+
+#: validators.py:34
+#: validators.py:42
+msgid "Please enter both fields or leave them both empty."
+msgstr "Prosimy wprowadzić oba pola, lub oba pozostawić puste."
+

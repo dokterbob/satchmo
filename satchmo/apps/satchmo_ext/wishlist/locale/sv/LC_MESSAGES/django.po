@@ -1,0 +1,111 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# N.L. <kotorinl@yahoo.co.uk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"PO-Revision-Date: 2008-04-30 23:35+0100\n"
+"Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
+"Language-Team: Group\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: models.py:29
+msgid "Creation Date"
+msgstr "Skapat datum"
+
+#: models.py:26
+msgid "Contact"
+msgstr "Kontakt"
+
+#: templates/wishlist/index.html:7
+#: templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr "Hem"
+
+#: models.py:27
+msgid "Product"
+msgstr "Produkt"
+
+#: views.py:92
+msgid "Success"
+msgstr "Lyckades"
+
+#: templates/wishlist/index.html:12
+#: templates/wishlist/login_required.html:9
+msgid "Shop Categories"
+msgstr "Butikskategorier"
+
+#: templates/wishlist/index.html:38
+msgid "Add to cart"
+msgstr "Lägg till i kundvagn"
+
+#: views.py:63
+#: views.py:84
+msgid "The product you have requested does not exist."
+msgstr "Produkten du efterfrågade finns inte."
+
+#: views.py:107
+#, python-format
+msgid "Not enough items of '%s' in stock."
+msgstr "Inte tillräckligt många av '%s' i lager."
+
+#: views.py:94
+msgid "Error"
+msgstr "Fel"
+
+#: templates/wishlist/index.html:8
+#: templates/wishlist/index.html.py:25
+#: templates/wishlist/login_required.html:5
+msgid "Wishlist"
+msgstr "Önskelista"
+
+#: templates/wishlist/index.html:34
+#, python-format
+msgid "added on %(create_date)s"
+msgstr "tillagd %(create_date)s"
+
+#: templates/wishlist/index.html:42
+msgid "Remove from wishlist"
+msgstr "Ta bort från önskelista"
+
+#: templates/wishlist/login_required.html:16
+#, python-format
+msgid ""
+"Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
+"wishlist."
+msgstr ""
+"Ledsen, du måste <a href=\"%(login_url)s\">logga in</a> för att komma åt din "
+"önskelista."
+
+#: models.py:28
+msgid "Details"
+msgstr "Detaljer"
+
+#: models.py:58
+msgid "Product Wish"
+msgstr "Produktönskemål"
+
+#: models.py:59
+msgid "Product Wishes"
+msgstr "Produktönskemål"
+
+#: views.py:147
+#: views.py:158
+#: views.py:160
+msgid "No such wishlist item."
+msgstr "Ingen sådan vara på önskelistan."
+
+#: views.py:153
+msgid "You must be logged in to do that."
+msgstr "Du måste logga in för att göra det."
+

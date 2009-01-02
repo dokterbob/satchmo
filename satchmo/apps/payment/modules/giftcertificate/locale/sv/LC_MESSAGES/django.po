@@ -1,0 +1,312 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# N.L. <kotorinl@yahoo.co.uk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"PO-Revision-Date: 2008-04-30 23:35+0100\n"
+"Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
+"Language-Team: Group\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: models.py:41
+msgid "Email"
+msgstr "E-post"
+
+#: models.py:102
+msgid "Notes"
+msgstr "Anteckningar"
+
+#: templates/checkout/confirm.html:9
+#: templates/checkout/giftcertificate/confirm.html:9
+#: templates/giftcertificate/balance.html:5
+#: templates/product/detail_giftcertificateproduct.html:15
+msgid "Home"
+msgstr "Hem"
+
+#: models.py:33
+msgid "Order"
+msgstr "Order"
+
+#: models.py:124
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:105
+msgid "Order Payment"
+msgstr "Orderbetalning"
+
+#: config.py:8
+#: models.py:96
+#: templates/giftcertificate/_order_summary.html:7
+#: templates/giftcertificate/balance.html:13
+#: templates/product/detail_giftcertificateproduct.html:30
+msgid "Gift Certificate"
+msgstr "Presentkort"
+
+#: config.py:11
+msgid "Gift Certificate Settings"
+msgstr "Presentkortsinställningar"
+
+#: config.py:18
+msgid "Use SSL for the checkout pages?"
+msgstr "Använd SSL för utcheckningssidor?"
+
+#: config.py:23
+msgid "Character Set"
+msgstr "Teckenuppsättning"
+
+#: config.py:25
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
+msgstr ""
+"Bokstäverna som tillåts i slumpmässigt skapade presentkortskoder. Inga "
+"vokaler innebär inga olämpliga ord."
+
+#: config.py:29
+msgid "Module key"
+msgstr "Modulnyckel"
+
+#: config.py:35
+msgid "Code format"
+msgstr "Kodformat"
+
+#: config.py:37
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
+msgstr ""
+"Ange formatet på dina presentkortskoder. Använd '^' där det ska hamna en "
+"slumpmässigt genererad bokstav."
+
+#: config.py:41
+msgid "Implementation module"
+msgstr "Implementationsmodul"
+
+#: config.py:47
+msgid "English name for this group on the checkout screens"
+msgstr "Svenskt namn för denna grupp på utcheckningssidorna."
+
+#: config.py:49
+msgid "This will be passed to the translation utility"
+msgstr "Detta kommer att skickas till översättningsverktyget"
+
+#: config.py:53
+msgid ""
+"The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+"Bas-URL:en som används för att bygga urlpatterns som kommer att använda den "
+"här modulen"
+
+#: forms.py:6
+msgid "Code"
+msgstr "Kod"
+
+#: models.py:32
+msgid "Site"
+msgstr "Sajt"
+
+#: models.py:34
+msgid "Certificate Code"
+msgstr "Presentkortskod"
+
+#: models.py:36
+msgid "Purchased by"
+msgstr "Köpt av"
+
+#: models.py:38
+msgid "Date added"
+msgstr "Skapad datum"
+
+#: models.py:39
+msgid "Valid"
+msgstr "Giltig"
+
+#: models.py:40
+msgid "Message"
+msgstr "Meddelande"
+
+#: models.py:42
+msgid "Starting Balance"
+msgstr "Ursprungsvärde"
+
+#: models.py:97
+#: templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "Presentkort"
+
+#: models.py:101
+msgid "Date of usage"
+msgstr "Användningsdatum"
+
+#: models.py:103
+msgid "Amount Used"
+msgstr "Använt belopp"
+
+#: models.py:106
+msgid "Used by"
+msgstr "Använt av"
+
+#: models.py:159
+msgid "Gift certificate product"
+msgstr "Presentkortsprodukt"
+
+#: models.py:160
+msgid "Gift certificate products"
+msgstr "Presentkortsprodukter"
+
+#: processor.py:24
+msgid "No balance to pay"
+msgstr "Ingen summa att betala"
+
+#: processor.py:33
+msgid "No such Gift Certificate"
+msgstr "Det finns inget sådant presentkort."
+
+#: processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "Ogiltigt presentkort"
+
+#: processor.py:43
+msgid "Success"
+msgstr "Lyckades"
+
+#: processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "%s kvarstår efter att presentkortet använts"
+
+#: templates/checkout/confirm.html:10
+#: templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "Utcheckning"
+
+#: templates/checkout/confirm.html:14
+#: templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "Betalning"
+
+#: templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "Totalt: %(orderbalance)s"
+
+#: templates/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"Du kommer att använda ett presentkort, #%(giftcode)s, som innehåller %"
+"(certbalance)s för att betala för din beställning."
+
+#: templates/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+"Om det inte finns tillräckligt mycket kvar för att betala för hela ordern "
+"kommer du att kunna ange en ytterligare form av betalning efter att du "
+"använt detta presentkort."
+
+#: templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "Observera:"
+
+#: templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+"Ditt presentkort, %(giftcode)s, som innehåller %(balance)s kommer att "
+"användas."
+
+#: templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Betalningsinformation"
+
+#: templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "Presentkortskod"
+
+#: templates/giftcertificate/_order_summary.html:5
+msgid "Gift Certificate Codes"
+msgstr "Presentkortskoder"
+
+#: templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "Till: %(recipient)s"
+
+#: templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "Ursprungligt saldo: %(start_balance)s"
+
+#: templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "Kod: %(code)s"
+
+#: templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "Meddelande: %(message)s"
+
+#: templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "Köpt den:"
+
+#: templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "Ursprungligt saldo:"
+
+#: templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "Aktuellt värde:"
+
+#: templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "Kunde ej hitta något sådant presentkort."
+
+#: templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "Visa saldo"
+
+#: templates/product/detail_giftcertificateproduct.html:23
+msgid "Shop Categories"
+msgstr "Butikskategorier"
+
+#: templates/product/detail_giftcertificateproduct.html:32
+msgid "Price"
+msgstr "Pris"
+
+#: templates/product/detail_giftcertificateproduct.html:41
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr ""
+
+#: templates/product/detail_giftcertificateproduct.html:44
+msgid "Recipient Email (optional):"
+msgstr "Mottagarens E-post (frivilligt):"
+
+#: templates/product/detail_giftcertificateproduct.html:45
+msgid "Message (optional):"
+msgstr "Meddelande (frivilligt):"
+
+#: templates/product/detail_giftcertificateproduct.html:50
+msgid "Add to cart"
+msgstr "Lägg till i kundvagn"
+

@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+{% load satchmo_google %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Registration Complete" %}</li>
+{% endblock %}
+
+{% block content %}
+
+<h3>{% trans "Account Activation" %}</h3>
+
+{% if account %}
+    <p>{% with account.email as email %}
+    {% trans "Thanks for signing up! You are now logged in." %}
+    {% blocktrans %}In the future, you can log in using your email address ({{ email }}).{% endblocktrans %}
+    {% endwith %}
+    </p>
+{% else %}
+    <p>{% blocktrans %}Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for {{ expiration_days }} days after registration.{% endblocktrans %}</p>
+{% endif %}
+
+{% endblock %}

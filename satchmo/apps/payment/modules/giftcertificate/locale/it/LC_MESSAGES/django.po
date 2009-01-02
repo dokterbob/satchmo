@@ -1,0 +1,317 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: templates/checkout/confirm.html:9
+#: templates/checkout/giftcertificate/confirm.html:9
+#: templates/giftcertificate/balance.html:5
+msgid "Home"
+msgstr "Pagina iniziale"
+
+#: models.py:35
+msgid "Site"
+msgstr "Sito"
+
+#: models.py:44
+msgid "Email"
+msgstr "e-mail"
+
+#: models.py:104
+msgid "Notes"
+msgstr "Annotazioni"
+
+#: config.py:8
+#: models.py:98
+#: templates/giftcertificate/_order_summary.html:7
+#: templates/giftcertificate/balance.html:13
+#: templates/product/detail_giftcertificateproduct.html:9
+msgid "Gift Certificate"
+msgstr "Certificato regalo"
+
+#: config.py:11
+msgid "Gift Certificate Settings"
+msgstr "Buono regalo Impostazioni"
+
+#: config.py:17
+msgid "Use SSL for the checkout pages?"
+msgstr "Usa SSL per le pagine di checkout?"
+
+#: config.py:22
+msgid "Character Set"
+msgstr "Set di caratteri"
+
+#: config.py:24
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
+msgstr ""
+"I caratteri ammissibili nei codici dei certificati generati casualmente. "
+"Nessuna vocale significa nessuna parola sfortunata."
+
+#: config.py:28
+msgid "Module key"
+msgstr "Chiave del modulo"
+
+#: config.py:34
+msgid "Code format"
+msgstr "Codice formato "
+
+#: config.py:36
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
+msgstr ""
+"Immettere il formato per il tuo codice di certificazione. Utilizzare un '^' "
+"per la posizione di un carattere casuale."
+
+#: config.py:40
+msgid "Implementation module"
+msgstr "Modulo di implementazione"
+
+#: config.py:46
+msgid "English name for this group on the checkout screens"
+msgstr "Nome inglese per questo gruppo sul schermi di checkout"
+
+#: config.py:48
+msgid "This will be passed to the translation utility"
+msgstr "Verrà inoltrato al servizio di traduzione"
+
+#: config.py:52
+msgid "Accept real payments"
+msgstr "Accetta pagamenti reali"
+
+#: config.py:53
+msgid "False if you want to be in test mode"
+msgstr "False se si vuole essere in modalità di prova"
+
+#: config.py:58
+msgid "The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+"Gli url di base utilizzati per la costruzione di urlpatterns utilizzati in "
+"questo modulo"
+
+#: forms.py:6
+msgid "Code"
+msgstr "Codice"
+
+#: models.py:36
+msgid "Order"
+msgstr "Ordine"
+
+#: models.py:37
+msgid "Certificate Code"
+msgstr "Codice del Certificato"
+
+#: models.py:39
+msgid "Purchased by"
+msgstr "Acquistato da"
+
+#: models.py:41
+msgid "Date added"
+msgstr "Data di inserimento"
+
+#: models.py:42
+msgid "Valid"
+msgstr "Valido"
+
+#: models.py:43
+msgid "Message"
+msgstr "Messaggio"
+
+#: models.py:45
+msgid "Starting Balance"
+msgstr "Saldo di partenza"
+
+#: models.py:99
+#: templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "Certificati Regalo"
+
+#: models.py:103
+msgid "Date of usage"
+msgstr "Data di utilizzo"
+
+#: models.py:105
+msgid "Amount Used"
+msgstr "Totale Usato"
+
+#: models.py:107
+msgid "Order Payment"
+msgstr "Pagamento dell'Ordine"
+
+#: models.py:108
+msgid "Used by"
+msgstr "Utilizzato da"
+
+#: models.py:125
+msgid "Product"
+msgstr "Prodotto"
+
+#: models.py:158
+msgid "Gift certificate product"
+msgstr "Prodotto Certificato regalo"
+
+#: models.py:159
+msgid "Gift certificate products"
+msgstr "Prodotti Certificati regalo"
+
+#: processor.py:24
+msgid "No balance to pay"
+msgstr "Nessun saldo da pagare"
+
+#: processor.py:33
+msgid "No such Gift Certificate"
+msgstr "Nessun certificato regalo di questo tipo"
+
+#: processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "Certificato Regalo Sbagliato"
+
+#: processor.py:43
+msgid "Success"
+msgstr "Successo"
+
+#: processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "%s saldo rimanente dopo che e' stato applicato il codice del pacco"
+
+#: templates/checkout/confirm.html:10
+#: templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "Alla Cassa"
+
+#: templates/checkout/confirm.html:14
+#: templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "Pagamento"
+
+#: templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "Totale Ordine: %(orderbalance)s"
+
+#: templates/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"Stai per per usare il certificato regalo#%(giftcode)s per un saldo totale di%"
+"(certbalance)s per il tuo ordine"
+
+#: templates/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+"Se non è disponibile la quantità necessaria per pagare l'intero ordine, "
+"avrai la possibilità di selezionare un'altra forma di pagamento per "
+"completare il saldo dopo aver utilizzato questo certificato regalo."
+
+#: templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "Nota Bene:"
+
+#: templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+"Stai per utilizzare il tuo certificato: %(giftcode)s, che ha un saldo di %"
+"(balance)s."
+
+#: templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Informazioni sui pagamenti"
+
+#: templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "Codice del certificato Regalo"
+
+#: templates/giftcertificate/_order_summary.html:5
+msgid "Gift Certificate Codes"
+msgstr "Codici Certificato Regalo"
+
+#: templates/giftcertificate/_order_summary.html:10
+# translated = "Codice buono regalo"
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "A: %(recipient)s"
+
+#: templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "Saldo Iniziale:%(start_balance)s"
+
+#: templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "Codice: %(code)s"
+
+#: templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "Messaggio: %(message)s"
+
+#: templates/giftcertificate/balance.html:15
+# translated = "Buoni regalo"
+msgid "Purchased on:"
+msgstr "Acquistato il:"
+
+#: templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "Saldo iniziale:"
+
+#: templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "Saldo attuale:"
+
+#: templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "Questo certificato non esiste."
+
+#: templates/giftcertificate/balance.html:30
+# translated = "Assenza di tale dono certificato trovato."
+msgid "Look up balance"
+msgstr "Controlla il saldo"
+
+#: templates/product/detail_giftcertificateproduct.html:11
+msgid "Price"
+msgstr "Prezzo"
+
+#: templates/product/detail_giftcertificateproduct.html:20
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "Quantità ( moltiplica il certificato regalo per questa quantità)"
+
+#: templates/product/detail_giftcertificateproduct.html:23
+# translated = "Quantita' (moltiplicare il dono certificato di tale importo)"
+msgid "Recipient Email (optional):"
+msgstr "Destinatario E-mail (facoltativo):"
+
+#: templates/product/detail_giftcertificateproduct.html:24
+msgid "Message (optional):"
+msgstr "Messaggio (facoltativo):"
+
+#: templates/product/detail_giftcertificateproduct.html:29
+msgid "Add to cart"
+msgstr "Aggiungi al carrello"
+

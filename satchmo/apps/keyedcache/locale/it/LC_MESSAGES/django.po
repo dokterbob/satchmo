@@ -1,0 +1,68 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: views.py:16
+msgid "Yes"
+msgstr "Si"
+
+#: views.py:17
+msgid "No"
+msgstr "No"
+
+#: views.py:21
+msgid "Key to delete"
+msgstr "Chiave da eliminare"
+
+#: views.py:22
+# translated = "Slug"
+msgid "Include Children?"
+msgstr "Includi i figli?"
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr "Elimina tutte le chiavi?"
+
+#: templates/keyedcache/delete.html:6
+#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr "Pagina iniziale"
+
+#: templates/keyedcache/delete.html:7
+#: templates/keyedcache/view.html:7
+# translated = "Prodotto sottotipi"
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/keyedcache/delete.html:8
+# translated = "Cache"
+msgid "Cache Delete"
+msgstr "Elimina Cache"
+
+#: templates/keyedcache/stats.html:7
+# translated = "Elimina cache"
+msgid "Cache Stats"
+msgstr "Statistiche Cache"
+
+#: templates/keyedcache/view.html:8
+# translated = "Statistiche di cache"
+msgid "Cache View"
+msgstr "Viste Cache"
+

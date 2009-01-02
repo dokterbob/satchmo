@@ -1,0 +1,60 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:16
+msgid "Yes"
+msgstr "Tak"
+
+#: views.py:17
+msgid "No"
+msgstr "Nie"
+
+#: views.py:21
+msgid "Key to delete"
+msgstr "Identyfikator do usunięcia"
+
+#: views.py:22
+msgid "Include Children?"
+msgstr "Czy razem z dziećmi?"
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr "Usunąć wszystkie identyfikatory?"
+
+#: templates/keyedcache/delete.html:6
+#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr "Strona startowa"
+
+#: templates/keyedcache/delete.html:7
+#: templates/keyedcache/view.html:7
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/keyedcache/delete.html:8
+msgid "Cache Delete"
+msgstr "Wyczyść pamięć podręczną"
+
+#: templates/keyedcache/stats.html:7
+msgid "Cache Stats"
+msgstr "Statystyka pamięci podręcznej"
+
+#: templates/keyedcache/view.html:8
+msgid "Cache View"
+msgstr "Podgląd pamięci podręcznej"
+

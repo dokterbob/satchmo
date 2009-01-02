@@ -1,0 +1,59 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: config.py:9
+msgid "Enable Akismet ratings"
+msgstr "Abilita Askismet nelle valutazioni"
+
+#: config.py:15
+msgid "Akismet API Key"
+msgstr "Chiave API di Akismet"
+
+#: models.py:9
+#: templates/productratings/_product_ratings.html:17
+msgid "Rating"
+msgstr "Valutazione"
+
+#: utils.py:54
+# translated = "Gruppo di impostazioni:% (nome) s"
+msgid "Not Rated"
+msgstr "Non Valutato"
+
+#: templates/productratings/_product_ratings.html:4
+msgid "Product Reviews"
+msgstr "Recensioni sul prodotto"
+
+#: templates/productratings/_product_ratings.html:8
+msgid "Be the first to review it!"
+msgstr "Scrivi la prima recensione!"
+
+#: templates/productratings/_product_ratings.html:12
+#, python-format
+msgid "Average rating %(rating)s"
+msgstr "Valutazione media %(rating)s"
+
+#: templates/productratings/_product_ratings.html:24
+msgid "Review this product"
+msgstr "Recensisci questo prodotto"
+
+#: templates/productratings/_product_ratings.html:28
+msgid "Please login to review this product."
+msgstr "Per recensire un prodotto è necessario fare il login."
+

@@ -1,0 +1,218 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:41
+msgid "State"
+msgstr "Województwo/Stan"
+
+#: models.py:63
+msgid "Country"
+msgstr "Kraj"
+
+#: models.py:6
+msgid "Africa"
+msgstr "Afryka"
+
+#: models.py:7
+msgid "North America"
+msgstr "Ameryka Północna"
+
+#: models.py:8
+msgid "Europe"
+msgstr "Europa"
+
+#: models.py:9
+msgid "Asia"
+msgstr "Azja"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "Oceania"
+
+#: models.py:11
+msgid "South America"
+msgstr "Południowa Ameryka"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "Antarktyka"
+
+#: models.py:16
+msgid "Another"
+msgstr "Inne"
+
+#: models.py:17
+msgid "Island"
+msgstr "Islandia"
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr "Departament"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "Atol"
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr "Wyspa autonomiczna"
+
+#: models.py:21
+msgid "Canton"
+msgstr "Kanton"
+
+#: models.py:22
+msgid "Commune"
+msgstr "Gmina"
+
+#: models.py:23
+msgid "County"
+msgstr "Hrabstwo"
+
+#: models.py:24
+msgid "Department"
+msgstr "Dzielnica"
+
+#: models.py:25
+msgid "Dependency"
+msgstr "Zależność"
+
+#: models.py:26
+msgid "District"
+msgstr "Województwo"
+
+#: models.py:27
+msgid "Division"
+msgstr "Wydział"
+
+#: models.py:28
+msgid "Emirate"
+msgstr "Emirat"
+
+#: models.py:29
+msgid "Governorate"
+msgstr "Guwernat"
+
+#: models.py:30
+msgid "Island council"
+msgstr "Stowarzyszenie wysp"
+
+#: models.py:31
+msgid "Island group"
+msgstr "Grupa wysp"
+
+#: models.py:32
+msgid "Island region"
+msgstr "Rejon wyspy"
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "Królestwo"
+
+#: models.py:34
+msgid "Municipality"
+msgstr "Magistrat"
+
+#: models.py:35
+msgid "Parish"
+msgstr "Probostwo"
+
+#: models.py:36
+msgid "Prefecture"
+msgstr "Prefektura"
+
+#: models.py:37
+msgid "Province"
+msgstr "Województwo"
+
+#: models.py:38
+msgid "Region"
+msgstr "Region"
+
+#: models.py:39
+msgid "Republic"
+msgstr "Republika"
+
+#: models.py:40
+msgid "Sheading"
+msgstr "Dział Wyspy"
+
+#: models.py:42
+msgid "Subdivision"
+msgstr "Pod-department"
+
+#: models.py:43
+msgid "Subject"
+msgstr "Temat"
+
+#: models.py:44
+msgid "Territory"
+msgstr "Terytorium"
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr "2-znakowy kod ISO"
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "Oficjana nazwa (DUŻE LITERY)"
+
+#: models.py:55
+msgid "Country name"
+msgstr "Nazwa kraju"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr "3-znakowy kod ISO"
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr "Numeryczny kod ISO"
+
+#: models.py:58
+msgid "Country is active"
+msgstr "Kraj nieaktywny"
+
+#: models.py:59
+msgid "Continent"
+msgstr "Kontynent"
+
+#: models.py:60
+#: models.py:81
+msgid "Administrative Area"
+msgstr "Obszar administracyjny"
+
+#: models.py:64
+msgid "Countries"
+msgstr "Kraje"
+
+#: models.py:76
+msgid "Admin Area name"
+msgstr "Nazwa obszaru administracyjnego"
+
+#: models.py:77
+msgid "Postal Abbreviation"
+msgstr "Skrót pocztowy"
+
+#: models.py:78
+msgid "Area is active"
+msgstr "Obszar aktywny"
+
+#: models.py:82
+msgid "Administrative Areas"
+msgstr "Obszar administracyjny"
+

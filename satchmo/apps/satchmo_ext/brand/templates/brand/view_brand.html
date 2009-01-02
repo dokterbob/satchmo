@@ -1,0 +1,70 @@
+{% extends "shop/base.html" %}
+{% load satchmo_thumbnail i18n %}
+{% block pagename %}{{ brand.name }}{% endblock %}
+
+{% block extra-head %}
+{% if category.meta %}
+    <meta name="description" content="{{brand.name}}">
+{% endif %}
+{% endblock %}
+
+{% block navbar %}
+<li><a href="{{shop_base}}">{% trans 'Home' %}</a></li>
+{% if brand.brand %}<li><a href="{{ brand.brand.get_absolute_url }}">{{ brand.brand.translation.name }}</a></li>{% endif %}
+<li>{{ brand.translation.name }}</li>
+{% endblock %}
+
+{% block content %}
+{% with brand.translation as translated %}
+<div id="product_category" class="brand">
+	<div class="brand_description">
+		<h3>{{ translated.name }}</h3>
+	    {% if translated.picture %}
+	    <img src="{{ translated.picture.url|thumbnail:"width=85" }}" alt="{{ translated.name }}" />
+	    {% endif %}
+		{% if translated.description %}
+		<div class="description">
+			{{ translated.description|safe }}
+        </div>
+		{% endif %}
+		{% if user.is_staff or user.is_superuser %}
+            <p><a href="/admin/brand/brand/{{ brand.id }}/">Edit this brand</a></p>
+        {% endif %}
+	</div>
+
+    {% if brand.has_content %}
+    	{% if brand.has_products %}
+		<div class="brandproducts">
+		{% for product in products %} 
+			<div class="productImage{% if forloop.first %} first{% endif %}">	
+		        <a href="{{ product.get_absolute_url }}">
+		        	<img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" />
+				</a>
+				<br/>
+		        <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+	         </div>
+	    {% endfor %}
+		</div>
+		{% endif %}
+
+		{% if brand.has_categories %}
+		<div class="brandcategories">
+			<h4>{% trans 'View more products in these categories' %}</h4>
+      	    {% for cat in brand.active_categories %}{% with cat.translation as translatedcat %}
+			<div class="brandImage">
+            	<a href="{{ cat.get_absolute_url }}">
+            		<img src="{{ translatedcat.picture.url|thumbnail:"width=85" }}" width="85" /> 
+				</a>
+				<br/>
+            	<a href="{{ cat.get_absolute_url }}">{{ translatedcat.name }}</a>
+			</div>
+	        {% endwith %}{% endfor %}
+		</div>
+		{% endif %}
+	{% endif %}
+	{% if sale %}
+	{% include "product/some_discount_eligible.html" %}
+	{% endif %}
+</div>
+{% endwith %}
+{% endblock %}

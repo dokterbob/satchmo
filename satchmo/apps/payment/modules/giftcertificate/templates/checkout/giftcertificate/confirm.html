@@ -1,0 +1,25 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_currency %}
+{# this is the credit-card confirm template #}
+
+{% block errorheader %}{% trans 'Please Note:' %}{% endblock %}
+
+{% block navbar %}
+<a href="{{ shop_base }}/">{% trans "Home" %}</a> ::
+{% trans "Checkout" %}
+{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+{% if not PAYMENT_LIVE %}<b>PAYMENT TEST MODE</b><br/>{% endif %}
+{% if giftcert %}
+{% with giftcert.code as giftcode %}
+{% with giftcert.balance|currency as balance %}
+{% blocktrans %}About to use your gift certificate: {{ giftcode }}, which has a balance of {{ balance }}.{% endblocktrans %}
+{% endwith %}
+{% endwith %}
+{% else %}
+{% trans 'About to use INVALID gift certificate' %}
+{% endif %}
+{% endblock %}

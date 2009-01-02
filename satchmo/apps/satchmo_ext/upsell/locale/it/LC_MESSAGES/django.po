@@ -1,0 +1,90 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: models.py:41
+msgid "Creation Date"
+msgstr "Data di creazione"
+
+#: models.py:46
+msgid "Notes"
+msgstr "Annotazioni"
+
+#: models.py:132
+msgid "Description"
+msgstr "Descrizione"
+
+#: models.py:130
+msgid "language"
+msgstr "lingua"
+
+#: templates/upsell/product_upsell.html:18
+msgid "Quantity"
+msgstr "Quantità"
+
+#: templates/upsell/product_upsell.html:15
+# translated = "% (nome) s"
+msgid "Add"
+msgstr "Aggiungi"
+
+#: models.py:25
+msgid "Checkbox to add 1"
+msgstr "Checkbox Aggiungi 1"
+
+#: models.py:26
+msgid "Checkbox to add 1, checked by default"
+msgstr "Checkbox Aggiungi 1, selezionato di default"
+
+#: models.py:27
+msgid "Checkbox to match quantity"
+msgstr "Checkbox Quantità"
+
+#: models.py:28
+msgid "Checkbox to match quantity, checked by default"
+msgstr "Checkbox Quantità, selezionato di default"
+
+#: models.py:29
+msgid "Form with 0 quantity"
+msgstr "Form con quantità 0"
+
+#: models.py:34
+msgid "Target Product"
+msgstr "Prodotti Target"
+
+#: models.py:36
+msgid "The products for which you want to show this goal product as an Upsell."
+msgstr "I prodotti per i quali vuoi mostrare questo prodotto target come Upsell"
+
+#: models.py:38
+msgid "Goal Product"
+msgstr "Prodotti Obiettivo"
+
+#: models.py:43
+msgid "Upsell Style"
+msgstr "Stile Upsell"
+
+#: models.py:47
+msgid "Internal notes"
+msgstr "Note Interne"
+
+#: views.py:63
+#, python-format
+msgid "'%(product)s' couldn't be added to the cart. %(details)s"
+msgstr "Non è stato possibile aggiungere '%(product)s' al carrello. %(details)s"
+

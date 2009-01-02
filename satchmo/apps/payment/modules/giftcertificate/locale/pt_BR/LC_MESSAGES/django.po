@@ -1,0 +1,290 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"PO-Revision-Date: 2008-09-05 23:51-0300\n"
+"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/checkout/confirm.html:9
+#: templates/checkout/giftcertificate/confirm.html:9
+#: templates/giftcertificate/balance.html:5
+msgid "Home"
+msgstr "Inicial"
+
+#: models.py:35
+#, fuzzy
+msgid "Site"
+msgstr "Estado"
+
+#: models.py:44
+msgid "Email"
+msgstr "Email"
+
+#: models.py:104
+msgid "Notes"
+msgstr "Notas"
+
+#: config.py:8
+#: models.py:98
+#: templates/giftcertificate/_order_summary.html:7
+#: templates/giftcertificate/balance.html:13
+#: templates/product/detail_giftcertificateproduct.html:9
+msgid "Gift Certificate"
+msgstr "Vale Presente"
+
+#: config.py:11
+msgid "Gift Certificate Settings"
+msgstr "Configuração do Vale Presente"
+
+#: config.py:17
+msgid "Use SSL for the checkout pages?"
+msgstr "Usar SSL para as páginas de checkout?"
+
+#: config.py:22
+msgid "Character Set"
+msgstr "Definição de Caracteres"
+
+#: config.py:24
+msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
+msgstr "Os caracteres permissíveis para seu código de vale presente gerados randomicamente. Ausência de vogais não significa palavra ruim."
+
+#: config.py:28
+msgid "Module key"
+msgstr "Módulo chave"
+
+#: config.py:34
+msgid "Code format"
+msgstr "Formato do código"
+
+#: config.py:36
+msgid "Enter the format for your cert code.  Use a '^' for the location of a randomly generated character."
+msgstr "Entre o formato para seu código de vale. Use um '^' para a localização de um caractere gerado. "
+
+#: config.py:40
+msgid "Implementation module"
+msgstr "Módulo Implementação"
+
+#: config.py:46
+msgid "English name for this group on the checkout screens"
+msgstr "Nome em inglês para esse grupo nas telas de checkout"
+
+#: config.py:48
+msgid "This will be passed to the translation utility"
+msgstr "Isto será passado para o utulitário de tradução"
+
+#: config.py:52
+msgid "Accept real payments"
+msgstr "Aceite pagamentos de verdade"
+
+#: config.py:53
+msgid "False if you want to be in test mode"
+msgstr "Falso se você quer estar no modo de teste"
+
+#: config.py:58
+msgid "The url base used for constructing urlpatterns which will use this module"
+msgstr "A base url usada para construir padrões url que vão usar este módulo"
+
+#: forms.py:6
+msgid "Code"
+msgstr "Código"
+
+#: models.py:36
+msgid "Order"
+msgstr "Pedido"
+
+#: models.py:37
+msgid "Certificate Code"
+msgstr "Código do Certificado"
+
+#: models.py:39
+msgid "Purchased by"
+msgstr "Comprado por"
+
+#: models.py:41
+msgid "Date added"
+msgstr "Data adicionada"
+
+#: models.py:42
+msgid "Valid"
+msgstr "Válido"
+
+#: models.py:43
+msgid "Message"
+msgstr "Mensagem"
+
+#: models.py:45
+msgid "Starting Balance"
+msgstr "Iniciando verificação de saldo"
+
+#: models.py:99
+#: templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "Vales Presentes"
+
+#: models.py:103
+msgid "Date of usage"
+msgstr "Data de uso"
+
+#: models.py:105
+msgid "Amount Used"
+msgstr "Total usado"
+
+#: models.py:107
+msgid "Order Payment"
+msgstr "Pagamento de Pedido"
+
+#: models.py:108
+msgid "Used by"
+msgstr "Usado por"
+
+#: models.py:125
+msgid "Product"
+msgstr "Produto"
+
+#: models.py:158
+#, fuzzy
+msgid "Gift certificate product"
+msgstr "Código do Vale Presente"
+
+#: models.py:159
+#, fuzzy
+msgid "Gift certificate products"
+msgstr "Código do Vale Presente"
+
+#: processor.py:24
+msgid "No balance to pay"
+msgstr "Sem saldo a pagar"
+
+#: processor.py:33
+msgid "No such Gift Certificate"
+msgstr "Esse Vale Presente não existe"
+
+#: processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "Vale Presente inválido"
+
+#: processor.py:43
+msgid "Success"
+msgstr "Sucesso"
+
+#: processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "%s de saldo restando depois de aplicado o Vale Presente"
+
+#: templates/checkout/confirm.html:10
+#: templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "Caixa"
+
+#: templates/checkout/confirm.html:14
+#: templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "Pagamento"
+
+#: templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "Total do pedido:%(orderbalance)s"
+
+#: templates/checkout/confirm.html:21
+#, python-format
+msgid "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)s total available to pay for your order."
+msgstr "Você está prestes a usar o Vale Presente #%(giftcode)s que tem o total de %(certbalance)s disponível para o pagamento do seu pedido."
+
+#: templates/checkout/confirm.html:22
+msgid "If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate."
+msgstr "Se não há crédito suficiente para pagar pelo pedido inteiro, você poderá escolher outra forma de pagamento para o saldo depois de usar o vale presente."
+
+#: templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "Nota:"
+
+#: templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid "About to use your gift certificate: %(giftcode)s, which has a balance of %(balance)s."
+msgstr "Prestes a utilizar seu vale presente: %(giftcode)s, que tem um saldo de %(balance)s."
+
+#: templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Informações de Pagamento"
+
+#: templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "Código do Vale Presente"
+
+#: templates/giftcertificate/_order_summary.html:5
+#, fuzzy
+msgid "Gift Certificate Codes"
+msgstr "Código do Vale Presente"
+
+#: templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "Para:%(recipient)s"
+
+#: templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "Iniciando cálculo de saldo: %(start_balance)s"
+
+#: templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "Código: %(code)s"
+
+#: templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "Mensagem: %(message)s"
+
+#: templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "Data da compra:"
+
+#: templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "Saldo Inicial:"
+
+#: templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "Saldo Atual:"
+
+#: templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "Vale Compra não encontrado."
+
+#: templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "Checar saldo"
+
+#: templates/product/detail_giftcertificateproduct.html:11
+msgid "Price"
+msgstr "Preço"
+
+#: templates/product/detail_giftcertificateproduct.html:20
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "Quantidade (multiplique o vale presente por esta quantia)"
+
+#: templates/product/detail_giftcertificateproduct.html:23
+msgid "Recipient Email (optional):"
+msgstr "E-mail do destinatário (opcional)"
+
+#: templates/product/detail_giftcertificateproduct.html:24
+msgid "Message (optional):"
+msgstr "Menssagem (opicional):"
+
+#: templates/product/detail_giftcertificateproduct.html:29
+msgid "Add to cart"
+msgstr "Adicionar ao carrinho"
+

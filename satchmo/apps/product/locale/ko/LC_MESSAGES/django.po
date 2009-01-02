@@ -1,0 +1,907 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:48
+#: templates/product/admin/product_export_form.html:81
+msgid "Name"
+msgstr "이름"
+
+#: templates/product/category.html:13
+#: templates/product/product.html.html:23
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/detail_configurableproduct.html:60
+#: templates/product/detail_customproduct.html:14
+msgid "Home"
+msgstr "홈"
+
+#: models.py:52
+#: models.py:55
+msgid "Description"
+msgstr "설명"
+
+#: models.py:53
+msgid "Discount Code"
+msgstr "할인 번호"
+
+#: models.py:54
+msgid "Coupon Code"
+msgstr "쿠폰 번호"
+
+#: models.py:506
+msgid "Tax"
+msgstr "세금"
+
+#: models.py:513
+msgid "Product"
+msgstr "제품"
+
+#: templates/product/product.html.html:47
+#: templates/product/detail_configurableproduct.html:108
+#: templates/product/detail_customproduct.html:58
+msgid "Quantity"
+msgstr "양"
+
+#: models.py:1039
+msgid "Value"
+msgstr "가치"
+
+#: models.py:318
+#: models.py:705
+msgid "Price Change"
+msgstr "가격 변경"
+
+#: models.py:199
+#: models.py:257
+#: models.py:703
+#: models.py:1093
+msgid "Sort Order"
+msgstr "주문 정렬"
+
+#: models.py:258
+#: models.py:704
+msgid "The display order for this group."
+msgstr "이 그룹에 대한 주문 표시"
+
+#: models.py:39
+msgid "No Discount"
+msgstr "할인 불가"
+
+#: models.py:55
+msgid "Discount Amount"
+msgstr "할인 총액"
+
+#: models.py:57
+msgid "Enter absolute discount amount OR percentage."
+msgstr "절대 할인 가격 또는 할인 율을 입력하세요"
+
+#: models.py:58
+msgid "Discount Percentage"
+msgstr "할인율"
+
+#: models.py:61
+msgid ""
+"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr ""
+"절대 할인 가격 또는 할인율을 입력하세요. 할인율 예시: \"0.10\"."
+
+#: models.py:62
+msgid "Number of allowed uses"
+msgstr "허가된 사용자 수"
+
+#: models.py:63
+#: models.py:65
+msgid "Not implemented."
+msgstr "실행되지 않음"
+
+#: models.py:64
+msgid "Number of times already used"
+msgstr "이미 사용된 횟수"
+
+#: models.py:66
+msgid "Minimum order value"
+msgstr "최소 주문 가격"
+
+#: models.py:68
+msgid "Start Date"
+msgstr "시작일"
+
+#: models.py:69
+msgid "End Date"
+msgstr "종료일"
+
+#: models.py:70
+msgid "Active"
+msgstr "활성"
+
+#: models.py:71
+msgid "Free shipping"
+msgstr "무료 배송"
+
+#: models.py:72
+msgid "Should this discount remove all shipping costs?"
+msgstr "이 할인 금액은 배송료에서 제거되어야 합니까?"
+
+#: models.py:73
+msgid "Include shipping"
+msgstr "배송료 포함"
+
+#: models.py:74
+msgid "Should shipping be included in the discount calculation?"
+msgstr "배송료가 할인 계산에 포함되어야 합니까?"
+
+#: models.py:75
+msgid "Valid Products"
+msgstr "유효한 제품"
+
+#: models.py:90
+msgid "This coupon is disabled."
+msgstr "이 쿠폰은 사용하실수 없습니다."
+
+#: models.py:92
+msgid "This coupon is not active yet."
+msgstr "이 쿠폰은 아직 활성화 되지 않았습니다."
+
+#: models.py:94
+msgid "This coupon has expired."
+msgstr "이 쿠폰은 만료되었습니다."
+
+#: models.py:96
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "이 쿠폰은 할당된 사용자 수를 초과 하였습니다."
+
+#: models.py:98
+#: models.py:114
+msgid "Valid."
+msgstr "유효함"
+
+#: models.py:102
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "이 할인은 적어도 %s 주문에 적용될 수 있습니다."
+
+#: models.py:116
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "이 할인은 장바구니 제품에 적용될 수 없습니다."
+
+#: models.py:174
+msgid "Discount"
+msgstr "할인"
+
+#: models.py:175
+msgid "Discounts"
+msgstr "할인"
+
+#: models.py:378
+msgid "Date added"
+msgstr "등록일"
+
+#: templates/product/category.html:21
+#: templates/product/product.html.html:31
+#: templates/product/detail_configurableproduct.html:68
+#: templates/product/detail_customproduct.html:22
+msgid "Shop Categories"
+msgstr "카테고리"
+
+#: models.py:1054
+#: models.py:1078
+#: templates/product/product.html.html:40
+#: templates/product/detail_configurableproduct.html:77
+#: templates/product/detail_customproduct.html:31
+msgid "Price"
+msgstr "금액"
+
+#: templates/product/product.html.html:49
+#: templates/product/detail_configurableproduct.html:110
+#: templates/product/detail_customproduct.html:60
+msgid "Add to cart"
+msgstr "장바구니 담기"
+
+#: models.py:371
+#: models.py:592
+msgid "Full Name"
+msgstr "이름"
+
+#: adminviews.py:27
+msgid "Inventory Editor"
+msgstr "인벤토리 에디터"
+
+#: adminviews.py:47
+msgid "Product Import/Export"
+msgstr "제품 입력/출력"
+
+#: adminviews.py:70
+msgid "No upload file found"
+msgstr "업로드 파일을 찾지 못했습니다."
+
+#: config.py:6
+msgid "Product Settings"
+msgstr "제품 세팅"
+
+#: config.py:10
+msgid "Product Model Options"
+msgstr "제품 모델 옵션"
+
+#: config.py:12
+msgid "Configurable Product"
+msgstr "제품 설정"
+
+#: config.py:13
+msgid "Product Variation"
+msgstr "제품 변동"
+
+#: config.py:14
+msgid "Custom Order"
+msgstr "고객 주문"
+
+#: config.py:15
+msgid "Downloable Product"
+msgstr "다운로드 가능 제품"
+
+#: config.py:22
+msgid "Upload Image Dir"
+msgstr "업로드 이미지 디렉토리"
+
+#: config.py:23
+msgid ""
+"Directory name for storing uploaded images.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"업로드 이미지를 저장하기 위한 디렉토리 이름. \n"
+"이 값은 MEDIA_ROOT에 추가 될 것입니다. 슬래쉬에 대해서는 걱정하지 마세요. \n"
+"프로그램이 알아서 처리할 것입니다."
+
+#: config.py:30
+msgid "Rename product images?"
+msgstr "제품 이미지 이름 다시 설정?"
+
+#: config.py:31
+msgid "Automatically rename product images on upload?"
+msgstr "자동 제품 이미지 이름 설정?"
+
+#: config.py:36
+msgid "Protected dir"
+msgstr "보호된 디렉토리"
+
+#: config.py:37
+msgid ""
+"This is only used if you use Downloadable Products.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"당신이 다운로드 가능한 제품을 사용할 때에만 이것은 사용될 것입니다."
+"이 값은 MEDIA_ROOT에 추가 될 것입니다. 슬래쉬에 대해서는 걱정하지 마세요. \n"
+"프로그램이 알아서 처리할 것입니다."
+
+#: forms.py:32
+msgid "export format"
+msgstr "출력 포맷"
+
+#: forms.py:33
+msgid "Include Images"
+msgstr "이미지 포함"
+
+#: forms.py:136
+msgid "File to import"
+msgstr "임포트할 파일"
+
+#: forms.py:154
+#: forms.py:197
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "파싱할 수 없는 파일 포맷: %s"
+
+#: forms.py:172
+msgid "Bad VARS file in import zipfile."
+msgstr "압축 파일을 임포트 하는데 있어서 잘못된 VARS 파일"
+
+#: forms.py:202
+msgid "Missing VARS in import zipfile."
+msgstr "압축 파일을 임포트 하는데 있어서 VAR 잃어버림"
+
+#: forms.py:208
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "알려지지 않은 파일 포맷: %s"
+
+#: forms.py:235
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr "%(filename)s에서 %(count)i의 객체 추가"
+
+#: forms.py:239
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr "fixture 설치중 문제 발생 '%(filename)s': %(error_msg)s\n"
+
+#: models.py:50
+msgid "Used for URLs"
+msgstr "URL에 대한 사용"
+
+#: models.py:53
+#: models.py:377
+msgid "Meta Description"
+msgstr "메타 상세 설명"
+
+#: models.py:54
+msgid "Meta description for this category"
+msgstr "이 카테고리에 대한 메타 상세 설명"
+
+#: models.py:57
+#: models.py:381
+msgid "Ordering"
+msgstr "순서"
+
+#: models.py:57
+#: models.py:381
+msgid "Override alphabetical order in category display"
+msgstr "알파벳순 카테고리 정렬"
+
+#: models.py:130
+msgid "You must not save a category in itself!"
+msgstr "카테고리 자체를 저장하셔야 합니다."
+
+#: models.py:164
+#: models.py:375
+msgid "Category"
+msgstr "카테고리"
+
+#: models.py:165
+msgid "Categories"
+msgstr "카테고리"
+
+#: models.py:172
+#: models.py:233
+#: models.py:285
+#: models.py:348
+#: models.py:591
+#: models.py:718
+#: models.py:1037
+#: models.py:1127
+msgid "language"
+msgstr "언어"
+
+#: models.py:173
+#: models.py:349
+msgid "Translated Category Name"
+msgstr "번역된 카테고리 이름"
+
+#: models.py:174
+msgid "Description of category"
+msgstr "카테고리 상세 설명"
+
+#: models.py:175
+#: models.py:235
+#: models.py:288
+#: models.py:350
+#: models.py:595
+#: models.py:720
+#: models.py:1129
+msgid "version"
+msgstr "버전"
+
+#: models.py:176
+#: models.py:236
+#: models.py:289
+#: models.py:351
+#: models.py:596
+#: models.py:721
+#: models.py:1130
+msgid "active"
+msgstr "활성"
+
+#: models.py:179
+msgid "Category Translation"
+msgstr "카테고리 번역"
+
+#: models.py:180
+msgid "Category Translations"
+msgstr "카테고리 번역"
+
+#: models.py:195
+#: models.py:1089
+msgid "Picture"
+msgstr "사진"
+
+#: models.py:197
+#: models.py:1091
+msgid "Optional caption"
+msgstr "선택 머릿말"
+
+#: models.py:222
+msgid "Category Image"
+msgstr "카테고리 이미지"
+
+#: models.py:223
+msgid "Category Images"
+msgstr "카테고리 이미지"
+
+#: models.py:234
+#: models.py:1128
+msgid "Translated Caption"
+msgstr "번역된 자막"
+
+#: models.py:239
+msgid "Category Image Translation"
+msgstr "카테고리 이미지 번역"
+
+#: models.py:240
+msgid "Category Image Translations"
+msgstr "카테고리 이미지 번역"
+
+#: models.py:252
+msgid "Name of Option Group"
+msgstr "선택 그룹 이름"
+
+#: models.py:253
+msgid "This will be the text displayed on the product page."
+msgstr "이것은 제품 페이지에 텍스트로 보여질 것입니다."
+
+#: models.py:254
+msgid "Detailed Description"
+msgstr "상세 설명"
+
+#: models.py:256
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "이 그룹에 대한 더 자세한 설명( 예를 들면 셔츠 사이즈 , 신발 사이즈 )."
+
+#: models.py:277
+msgid "Option Group"
+msgstr "옵션 그룹"
+
+#: models.py:278
+msgid "Option Groups"
+msgstr "옵션 그룹"
+
+#: models.py:286
+msgid "Translated OptionGroup Name"
+msgstr "번역된 오션그룹 이름"
+
+#: models.py:287
+msgid "Description of OptionGroup"
+msgstr "옵션 그룹 설명"
+
+#: models.py:292
+msgid "Option Group Translation"
+msgstr "옵션 그룹 번역"
+
+#: models.py:293
+msgid "Option Groups Translations"
+msgstr "옵션 그롭 번역"
+
+#: models.py:315
+msgid "Display value"
+msgstr "표시 값"
+
+#: models.py:316
+msgid "Stored value"
+msgstr "저장된 값"
+
+#: models.py:320
+msgid "This is the price differential for this option."
+msgstr "이 옵션에 대해 다른 가격"
+
+#: models.py:321
+msgid "Display Order"
+msgstr "정렬 순서"
+
+#: models.py:329
+msgid "Option Item"
+msgstr "선택 아이템"
+
+#: models.py:330
+msgid "Option Items"
+msgstr "선택 아이템"
+
+#: models.py:354
+msgid "Option Translation"
+msgstr "선택 번역"
+
+#: models.py:355
+msgid "Option Translations"
+msgstr "선택 번역"
+
+#: models.py:371
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+"이곳은 기본 사이트 언어에서 제품이 보여질 것 입니다."
+"다른 기본 언어로 추가 하기 위해서는 아래 섹션의 제품 번역을 사용하세요."
+
+#: models.py:372
+msgid "Slug Name"
+msgstr "Slug 이름"
+
+#: models.py:373
+#: models.py:593
+msgid "Short description of product"
+msgstr "제품에 대한 짦은 설명"
+
+#: models.py:373
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr ""
+"제품 리스팅 화면에 사용하기 위해서는 한 두줄의 잛은 설명을 써 주세요."
+
+#: models.py:374
+#: models.py:594
+msgid "Description of product"
+msgstr "제품 설명"
+
+#: models.py:374
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr ""
+"이 필드는 HTML을 포함할 수 있습니다. 그리고 몇 문단으로 사이트 기본 언어로 제품에 대한"
+"배경에 대해서 설명하며, 고객이 이 제품 구매에 도움을 줄 수 있는 어떤 정보도 이 곳에 쓸"
+"수 있습니다."
+
+#: models.py:376
+msgid "Number in stock"
+msgstr "제고 수"
+
+#: models.py:377
+msgid "Meta description for this product"
+msgstr "이 제품에 대한 메타 설명"
+
+#: models.py:379
+msgid "Is product active?"
+msgstr "이 제품이 활성화 상태인가요?"
+
+#: models.py:379
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "이 것은 이 제품이 사이트에 보일지 말지를 결정합니다."
+
+#: models.py:380
+msgid "Featured Item"
+msgstr "특별 아이템"
+
+#: models.py:380
+msgid "Featured items will show on the front page"
+msgstr "특별 아이템은 첫 페이지에 나타날 것입니다."
+
+#: models.py:382
+msgid "Weight"
+msgstr "무게"
+
+#: models.py:383
+msgid "Length"
+msgstr "길이"
+
+#: models.py:384
+msgid "Width"
+msgstr "폭"
+
+#: models.py:385
+msgid "Height"
+msgstr "높이"
+
+#: models.py:386
+msgid "Related Items"
+msgstr "관련 이이템"
+
+#: models.py:387
+msgid "Previously Purchased"
+msgstr "이전 구매"
+
+#: models.py:388
+msgid "Taxable"
+msgstr "세금"
+
+#: models.py:389
+msgid "Tax Class"
+msgstr "세금 등급"
+
+#: models.py:389
+msgid "If it is taxable, what kind of tax?"
+msgstr "만약 세금 부과 항목이면, 어떤 세금인가?"
+
+#: models.py:504
+msgid "Meta Data"
+msgstr "메타 데이타"
+
+#: models.py:505
+msgid "Item Dimensions"
+msgstr "아이템 치수"
+
+#: models.py:507
+msgid "Related Products"
+msgstr "관련 제품"
+
+#: models.py:514
+msgid "Products"
+msgstr "제품"
+
+#: models.py:593
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr ""
+"제품 리스트 화면에 사용하기 위해서는 한 두줄 정도의 설명이어야 합니다."
+
+#: models.py:594
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr ""
+"이 필드는 HTML을 포함할 수 있으며, 제품의 배경 설명을 할 수 있는 몇 문단으로 구성할 수 있습니다."
+"그리고, 고객들에게 그들의 구매에 도움을 줄 수 있는 어떤 정보도 포함할 수 있습니다."
+
+#: models.py:599
+msgid "Product Translation"
+msgstr "제품 번역"
+
+#: models.py:600
+msgid "Product Translations"
+msgstr "제품 번역"
+
+#: models.py:640
+msgid "Percent Downpayment"
+msgstr "다운로드한 퍼센트"
+
+#: models.py:641
+msgid "Deferred Shipping"
+msgstr "배송지연"
+
+#: models.py:642
+msgid "Do not charge shipping at checkout for this item."
+msgstr "이 아이템의 결제에 대해서는 배송비를 부과하지 마시오"
+
+#: models.py:699
+msgid "Custom field name"
+msgstr "사용자 필드 이름"
+
+#: models.py:701
+msgid "Custom Fields"
+msgstr "사용자 필드"
+
+#: models.py:719
+msgid "Translated Custom Text Field Name"
+msgstr "번역한 사용자 텍스트 필드 이름"
+
+#: models.py:724
+msgid "CustomTextField Translation"
+msgstr "번역된 사용자 텍스트 필드 이름"
+
+#: models.py:725
+msgid "CustomTextField Translations"
+msgstr "번역된 사용자 텍스트 필드 이름"
+
+#: models.py:741
+msgid "Create Variations"
+msgstr "변동 생성"
+
+#: models.py:741
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+"모든 이 제품의 옵션에 대해서 제품 변동을 만드세요. 이것을 사용하기 위해서는, "
+"먼저 옵션을 추가하셔야 합니다. 그리고 이 페이지로 돌아오신 후 이 옵션을 선택하세요."
+
+#: models.py:881
+msgid "Number of times link can be accessed."
+msgstr "접근될 수 있는 아이템 링크 갯수"
+
+#: models.py:882
+msgid "Number of minutes the link should remain active."
+msgstr "링크가 활성화 상태로 남아 있어야할 시간(분)"
+
+#: models.py:883
+msgid "Is this download currently active?"
+msgstr "이 다운로드가 현재 활성화 되어있나요?"
+
+#: models.py:1000
+msgid "Two options from the same option group can not be applied to an item."
+msgstr "같은 옵션의 두 옵션은 한 아이템에 같이 적용될 수 없습니다."
+
+#: models.py:1038
+msgid "Attribute Name"
+msgstr "속성 이름"
+
+#: models.py:1042
+msgid "Product Attribute"
+msgstr "제품 속성"
+
+#: models.py:1043
+msgid "Product Attributes"
+msgstr "제품 속성"
+
+#: models.py:1055
+msgid "Discount Quantity"
+msgstr "할인 수"
+
+#: models.py:1055
+msgid "Use this price only for this quantity or higher"
+msgstr "이 가격은 이 양 또는 이보다 많을때 사용하세요."
+
+#: models.py:1079
+msgid "Prices"
+msgstr "기격"
+
+#: models.py:1116
+msgid "Product Image"
+msgstr "제품 이미지"
+
+#: models.py:1117
+msgid "Product Images"
+msgstr "제품 이미지"
+
+#: models.py:1133
+msgid "Product Image Translation"
+msgstr "제품 이미지 번역"
+
+#: models.py:1134
+msgid "Product Image Translations"
+msgstr "제품 이미지 번역"
+
+#: views.py:71
+msgid "The product you have requested does not exist."
+msgstr "당신이 요청하신 제품은 존재하지 않습니다."
+
+#: views.py:116
+#: views.py:129
+#: views.py:136
+#: views.py:143
+msgid "not available"
+msgstr "가용하지 않음"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "로그 아웃"
+
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "문서"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "패스워드 변경"
+
+#: templates/product/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "인벤토리 관리"
+
+#: templates/product/admin/product_export_form.html:110
+msgid "Helpers"
+msgstr "도움말"
+
+#: templates/product/admin/product_export_form.html:57
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+"경고 이 함수는 여전히 실험상태입니다. 실 모드에서는 사용하지 마세요"
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr "임포트"
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr "고정 파일에서 임포트:"
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:108
+msgid "Export"
+msgstr "엑스포트"
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr "엑스포트?"
+
+#: templates/product/admin/product_export_form.html:80
+msgid "Slug"
+msgstr "슬러그"
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include images?"
+msgstr "이미지 포함?"
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Format?"
+msgstr "포맷?"
+
+#: templates/product/admin/product_export_form.html:109
+msgid "Reset"
+msgstr "리셑"
+
+#: templates/product/admin/product_export_form.html:111
+msgid "Check all"
+msgstr "모두 체크"
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Uncheck all"
+msgstr "모두 체크 하지 않음"
+
+#: templates/product/admin/product_export_form.html:115
+msgid "No products."
+msgstr "제품 없음"
+
+#: templates/product/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr "제품 임포트/엑스포트"
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr "결과"
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr "임포트 결과"
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "에러"
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr "결과"
+
+#: templates/admin/product/configurableproduct/change_form.html:17
+msgid "Variations"
+msgstr "변이"
+
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "제품 하위 타입"
+
+#: templates/product/detail_configurableproduct.html:93
+msgid "Please choose your options"
+msgstr "당신의 옵션을 선택하세요"
+
+#: templates/product/detail_customproduct.html:29
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "%(name)s 님의 주문"
+
+#: templates/product/detail_customproduct.html:54
+msgid "more"
+msgstr ""
+

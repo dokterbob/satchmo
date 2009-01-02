@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% load messaging_tags i18n %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;      
+     <a href="{% url keyedcache_view %}">{% trans "Cache" %}</a> &rsaquo; 
+     {% trans "Cache View" %}
+</div>
+{% endif %}{% endblock %}
+
+{% block content %}
+{% show_messages %}
+<p>[<a href="{% url keyedcache_stats %}">Cache Stats</a>] [<a href="{% url keyedcache_delete %}">Delete from Cache</a>]
+<h1>Cache Keys</h1>
+<p style="font-size:82%;">{% for key in cached_keys %}{{ key }}, {% endfor %}
+</p>
+{% endblock %}

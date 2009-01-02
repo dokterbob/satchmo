@@ -1,0 +1,219 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: models.py:41
+msgid "State"
+msgstr "Département/Province"
+
+#: models.py:63
+msgid "Country"
+msgstr "Pays"
+
+#: models.py:6
+msgid "Africa"
+msgstr "Afrique"
+
+#: models.py:7
+msgid "North America"
+msgstr "Amérique du Nord"
+
+#: models.py:8
+msgid "Europe"
+msgstr "Europe"
+
+#: models.py:9
+msgid "Asia"
+msgstr "Asie"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "Océanie"
+
+#: models.py:11
+msgid "South America"
+msgstr "Amérique du Sud"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "Antartique"
+
+#: models.py:16
+msgid "Another"
+msgstr "Autre"
+
+#: models.py:17
+msgid "Island"
+msgstr "Île"
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr "Arrondissement"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "Atoll"
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr "Île autonome"
+
+#: models.py:21
+msgid "Canton"
+msgstr "Canton"
+
+#: models.py:22
+msgid "Commune"
+msgstr "Commune"
+
+#: models.py:23
+msgid "County"
+msgstr "Comté"
+
+#: models.py:24
+msgid "Department"
+msgstr "Département"
+
+#: models.py:25
+msgid "Dependency"
+msgstr "Dépendance"
+
+#: models.py:26
+msgid "District"
+msgstr "District"
+
+#: models.py:27
+msgid "Division"
+msgstr "Division"
+
+#: models.py:28
+msgid "Emirate"
+msgstr "Emirat"
+
+#: models.py:29
+msgid "Governorate"
+msgstr "Gouvernemental"
+
+#: models.py:30
+msgid "Island council"
+msgstr "Island council"
+
+#: models.py:31
+msgid "Island group"
+msgstr "Archipel"
+
+#: models.py:32
+msgid "Island region"
+msgstr "Région insulaire"
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "Royaume"
+
+#: models.py:34
+msgid "Municipality"
+msgstr "Municipalité"
+
+#: models.py:35
+msgid "Parish"
+msgstr "Paroisse"
+
+#: models.py:36
+msgid "Prefecture"
+msgstr "Préfécture"
+
+#: models.py:37
+msgid "Province"
+msgstr "Province"
+
+#: models.py:38
+msgid "Region"
+msgstr "Région"
+
+#: models.py:39
+msgid "Republic"
+msgstr "République"
+
+#: models.py:40
+msgid "Sheading"
+msgstr "Sheading"
+
+#: models.py:42
+msgid "Subdivision"
+msgstr "Subdivision"
+
+#: models.py:43
+msgid "Subject"
+msgstr "Sujet"
+
+#: models.py:44
+msgid "Territory"
+msgstr "Territoire"
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr "ISO alpha-2"
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "Nom officiel (CAPS)"
+
+#: models.py:55
+msgid "Country name"
+msgstr "Nom du pays"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr "ISO alpha-3"
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr "ISO numeric"
+
+#: models.py:58
+msgid "Country is active"
+msgstr "pays actif"
+
+#: models.py:59
+msgid "Continent"
+msgstr "Continent"
+
+#: models.py:60
+#: models.py:81
+msgid "Administrative Area"
+msgstr "Zone administrative"
+
+#: models.py:64
+msgid "Countries"
+msgstr "Pays"
+
+#: models.py:76
+msgid "Admin Area name"
+msgstr "Nom de la zone d'administration"
+
+#: models.py:77
+msgid "Postal Abbreviation"
+msgstr "Abbréviation postale"
+
+#: models.py:78
+msgid "Area is active"
+msgstr "La zone est active"
+
+#: models.py:82
+msgid "Administrative Areas"
+msgstr "Zones administratives"
+

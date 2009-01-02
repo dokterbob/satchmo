@@ -1,0 +1,23 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_currency %}
+{# this is the credit-card confirm template #}
+
+{% block errorheader %}{% trans "The following error was returned while trying to process your card.  Please correct and resubmit" %}{% endblock %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
+{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+{% if not PAYMENT_LIVE %}<b>PAYMENT TEST MODE</b><br/>{% endif %}
+{% with order.credit_card.credit_type as credit_card_type %}
+{% with order.credit_card.display_cc as credit_card_number %}
+{% with order.balance|currency as order_total %}
+{% blocktrans %}Your {{ credit_card_type }} card ending in {{ credit_card_number }} will be charged {{ order_total }}.{% endblocktrans %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,85 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"PO-Revision-Date: 2008-09-05 23:51-0300\n"
+"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:41
+msgid "Creation Date"
+msgstr "Data de criação"
+
+#: models.py:46
+msgid "Notes"
+msgstr "Notas"
+
+#: models.py:132
+msgid "Description"
+msgstr "Descrição"
+
+#: models.py:130
+msgid "language"
+msgstr "Idioma"
+
+#: templates/upsell/product_upsell.html:18
+msgid "Quantity"
+msgstr "Quantidade"
+
+#: templates/upsell/product_upsell.html:15
+msgid "Add"
+msgstr "Adicionar"
+
+#: models.py:25
+msgid "Checkbox to add 1"
+msgstr "Checkbox para adicionar 1"
+
+#: models.py:26
+msgid "Checkbox to add 1, checked by default"
+msgstr "Checkbox para adicionar 1, marcado por padrão"
+
+#: models.py:27
+#, fuzzy
+msgid "Checkbox to match quantity"
+msgstr "Escolha uma quantidade."
+
+#: models.py:28
+msgid "Checkbox to match quantity, checked by default"
+msgstr "Checkbox para igualar a quantidade, marcado por padrão"
+
+#: models.py:29
+msgid "Form with 0 quantity"
+msgstr "Formulário com quantidade 0"
+
+#: models.py:34
+#, fuzzy
+msgid "Target Product"
+msgstr "Produto"
+
+#: models.py:36
+msgid "The products for which you want to show this goal product as an Upsell."
+msgstr ""
+
+#: models.py:38
+#, fuzzy
+msgid "Goal Product"
+msgstr "Produtos válidos"
+
+#: models.py:43
+msgid "Upsell Style"
+msgstr ""
+
+#: models.py:47
+#, fuzzy
+msgid "Internal notes"
+msgstr "Interações"
+

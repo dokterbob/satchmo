@@ -1,0 +1,32 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>{% trans "Your email address and password didn't match. Please try again." %}</p>
+{% endif %}
+
+<form method="post" action=".">
+<table>
+<tr><td><label for="id_username">{% trans 'Email address' %}:</label></td><td>{{ form.username }}</td></tr>
+<tr><td><label for="id_password">{% trans 'Password' %}:</label></td><td>{{ form.password }}</td></tr>
+</table>
+
+<input type="submit" value="{% trans 'Login' %}" />
+<input type="hidden" name="next"
+{% if next %}
+    value={{ next }} />
+{% else %}
+    value="{% url satchmo_account_info %}" />
+{% endif %}
+</form>
+
+<p>{% trans "If you do not have an account, please" %} <a href="{% url registration_register %}">{% trans "click here" %}</a>.</p>
+<p>{% trans "If you do not remember your password, please" %} <a href="{% url auth_password_reset %}">{% trans "click here</a> to have it reset." %}</p>
+
+{% endblock %}

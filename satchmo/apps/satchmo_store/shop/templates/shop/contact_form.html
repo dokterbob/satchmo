@@ -1,0 +1,23 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Contact Us" %}</li>
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Contact Information" %}</h3>
+
+{% if form.errors %}
+<h3>{% blocktrans count form.errors|length as count %}Please correct the following error:{% plural %}Please correct the following errors:{% endblocktrans %}</h3>
+{% endif %}
+
+<table>
+<form method="post" action=".">
+    {{ form.as_table }}
+<tr><td></td><td><input type="submit" value="{% trans "Send Email" %}"/></td></tr>
+</form>
+</table>
+
+{% endblock %}

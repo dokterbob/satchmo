@@ -1,0 +1,11 @@
+{% extends "shop/checkout/base_pay_ship.html" %}
+{% load i18n %}
+{% block payment_table %}
+<tr><td><h4>Payment Information</h4></td></tr>
+{% if not PAYMENT_LIVE %}
+<tr><td colspan="2"><b>TEST MODE</b></td></tr>
+{% endif %}
+
+<tr><td><label for="id_po_number">{% trans "Purchase Order #" %}</label></td> <td>{{ form.po_number }}</td></tr>
+{% if form.po_number.errors %}<tr><td></td><td>*** {{ form.po_number.errors|join:", " }}</td></tr>{% endif %}
+{% endblock %}

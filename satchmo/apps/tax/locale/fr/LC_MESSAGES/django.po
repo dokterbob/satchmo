@@ -1,0 +1,121 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: models.py:16
+msgid "Description"
+msgstr "Description"
+
+#: models.py:23
+#: models.py:30
+msgid "Tax Class"
+msgstr "Type de taxe"
+
+#: config.py:7
+msgid "Tax Settings"
+msgstr "Paramètres de taxation"
+
+#: config.py:10
+msgid "Active tax module"
+msgstr "Activer le module de taxation"
+
+#: config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr "Sélectionnez un module, sauvez et recharger pour activer les paramètres spécifiques à ce module."
+
+#: config.py:13
+msgid "No Tax"
+msgstr "Pas de taxe"
+
+#: config.py:18
+msgid "Show with tax included"
+msgstr "Montrer avec la taxe incluse"
+
+#: config.py:19
+msgid "If yes, then all products and the cart will display with tax included."
+msgstr "Si oui, alors tous les produits et le panier seront affichés taxes comprises."
+
+#: models.py:14
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:15
+msgid "Displayed title of this tax."
+msgstr "Titre affiché pour cette taxe"
+
+#: models.py:17
+msgid "Description of products that would be taxed."
+msgstr "Description des produits taxés."
+
+#: models.py:24
+msgid "Tax Classes"
+msgstr "Types de taxe"
+
+#: models.py:33
+msgid "Tax Zone"
+msgstr "Zone de taxation"
+
+#: models.py:36
+msgid "Tax Country"
+msgstr "Pays de taxation"
+
+#: models.py:37
+#: models.py:49
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: models.py:38
+msgid "% tax for this area and type"
+msgstr "pourcentage de taxe pour cette zone et ce type"
+
+#: models.py:62
+msgid "You must choose a zone or a country."
+msgstr "Vous devez choisir une zone ou un pays."
+
+#: models.py:65
+msgid "Tax Rate"
+msgstr "Taux de taxe"
+
+#: models.py:66
+msgid "Tax Rates"
+msgstr "Taux de taxe"
+
+#: modules/area/config.py:11
+msgid "By Country/Area"
+msgstr "Par pays/zone"
+
+#: modules/area/config.py:33
+#: modules/percent/config.py:19
+msgid "Tax Shipping?"
+msgstr "Frais de port taxés?"
+
+#: modules/area/config.py:42
+msgid "TaxClass for shipping"
+msgstr "Classe de taxation pour l'expédition"
+
+#: modules/area/config.py:43
+msgid "Select a TaxClass that should be applied for shipments."
+msgstr "Sélectionnez une classe de taxation qui sera appliquée pour les frais d'expédition."
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "Pourcentage de taxation"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "Pourcentage de taxation"
+

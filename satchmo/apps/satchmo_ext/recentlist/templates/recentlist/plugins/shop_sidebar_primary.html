@@ -1,0 +1,7 @@
+{% if recent_products %}{% load satchmo_recentlist %}
+{% if product %}
+{% recentlyviewed recent_products product.slug %}
+{% else %}
+{% recentlyviewed recent_products %}
+{% endif %}
+{% endif %}

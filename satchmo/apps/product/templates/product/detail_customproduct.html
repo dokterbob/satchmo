@@ -1,0 +1,46 @@
+{% extends "product/product.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail satchmo_discounts %}
+{% load satchmo_price %}
+{% load satchmo_currency satchmo_category%}
+{% load satchmo_util %}
+{% load satchmo_discounts %}
+{% load app_plugins %}
+
+{% block productdetail %}
+<h4>{% blocktrans with product.translated_name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
+<p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
+{% trans "Price" %}: <h3>{% if sale %}<strike id="fullprice">{{ product|discount_price:""|currency }}</strike><br/>{% endif %}<span id="price">{{ product|discount_price:sale|currency }}</span></h3>
+{% for pic in product.productimage_set.all %}
+    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+{% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form id="options" action="{% url satchmo_smart_add %}" method="post">
+
+{% for option_group in options %}
+ {{ option_group.name}}
+    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+    {% for choice in option_group.items %}
+     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
+        {% if choice.price_change %}
+            {% option_price choice %}
+        {% endif %}
+     </option>
+    {% endfor %}
+      </select><br/>
+{% endfor %}
+
+{% for custom in product.customproduct.custom_text_fields.all %}
+<div>
+{{ custom.translated_name }} {% if custom.price_change %} ({{ custom.price_change|currency }} {% trans "more" %}){%endif%}<br/>
+<textarea name="custom_{{ custom.slug }}" rows="3" cols="40"></textarea>
+</div>
+{% endfor %}
+{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
+{% plugin_point "product_add_buttons" %}
+{% plugin_point "product_form" %}
+</form>
+{% endblock %}

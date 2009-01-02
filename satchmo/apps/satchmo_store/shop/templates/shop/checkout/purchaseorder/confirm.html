@@ -1,0 +1,17 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_currency %}
+{# this is the purchaseorder confirm template #}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
+{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+
+{% with order.total|currency as order_total %}
+{% blocktrans %}This order will be charged on your account for {{ order_total }}.{% endblocktrans %}
+{% endwith %}
+{% endblock %}

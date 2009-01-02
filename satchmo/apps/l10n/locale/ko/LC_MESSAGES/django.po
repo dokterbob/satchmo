@@ -1,0 +1,218 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:41
+msgid "State"
+msgstr "주"
+
+#: models.py:63
+msgid "Country"
+msgstr "나라"
+
+#: models.py:6
+msgid "Africa"
+msgstr "아프리카"
+
+#: models.py:7
+msgid "North America"
+msgstr "북 아메리카"
+
+#: models.py:8
+msgid "Europe"
+msgstr "유럽"
+
+#: models.py:9
+msgid "Asia"
+msgstr "아시아"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "오세아니아"
+
+#: models.py:11
+msgid "South America"
+msgstr "남 아메리카"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "안타르시아"
+
+#: models.py:16
+msgid "Another"
+msgstr "이 외의 다른 지역"
+
+#: models.py:17
+msgid "Island"
+msgstr "섬"
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr "구"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "산호섬"
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr "자율통치 섬"
+
+#: models.py:21
+msgid "Canton"
+msgstr "군"
+
+#: models.py:22
+msgid "Commune"
+msgstr "동"
+
+#: models.py:23
+msgid "County"
+msgstr "군"
+
+#: models.py:24
+msgid "Department"
+msgstr "부문"
+
+#: models.py:25
+msgid "Dependency"
+msgstr "부속"
+
+#: models.py:26
+msgid "District"
+msgstr "지역"
+
+#: models.py:27
+msgid "Division"
+msgstr "부"
+
+#: models.py:28
+msgid "Emirate"
+msgstr "관할 구역"
+
+#: models.py:29
+msgid "Governorate"
+msgstr "정부"
+
+#: models.py:30
+msgid "Island council"
+msgstr "섬 의회 "
+
+#: models.py:31
+msgid "Island group"
+msgstr "섬 그룹"
+
+#: models.py:32
+msgid "Island region"
+msgstr "섬 지역"
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "왕국"
+
+#: models.py:34
+msgid "Municipality"
+msgstr "지방 자치제"
+
+#: models.py:35
+msgid "Parish"
+msgstr "교구"
+
+#: models.py:36
+msgid "Prefecture"
+msgstr "도"
+
+#: models.py:37
+msgid "Province"
+msgstr "지방"
+
+#: models.py:38
+msgid "Region"
+msgstr "지역"
+
+#: models.py:39
+msgid "Republic"
+msgstr "공화국"
+
+#: models.py:40
+msgid "Sheading"
+msgstr "차고"
+
+#: models.py:42
+msgid "Subdivision"
+msgstr "세분"
+
+#: models.py:43
+msgid "Subject"
+msgstr "제목"
+
+#: models.py:44
+msgid "Territory"
+msgstr "지역"
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr ""
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "공식 이름(CAPS)"
+
+#: models.py:55
+msgid "Country name"
+msgstr "지역 이름"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr ""
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr "ISO 숫자"
+
+#: models.py:58
+msgid "Country is active"
+msgstr "지역은 활성 상태입니다."
+
+#: models.py:59
+msgid "Continent"
+msgstr "대륙"
+
+#: models.py:60
+#: models.py:87
+msgid "Administrative Area"
+msgstr "관리자 영역"
+
+#: models.py:64
+msgid "Countries"
+msgstr "지역들"
+
+#: models.py:82
+msgid "Admin Area name"
+msgstr "관리자 영역 이름"
+
+#: models.py:83
+msgid "Postal Abbreviation"
+msgstr "우편 번호"
+
+#: models.py:84
+msgid "Area is active"
+msgstr "지역 활성화"
+
+#: models.py:88
+msgid "Administrative Areas"
+msgstr "관리자 영역"
+

@@ -1,0 +1,29 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Newsletter Subscription" %}</li>
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Newsletter Subscription" %}</h3>
+
+{% if form.errors %}
+<h3>{% blocktrans count form.errors|length as count %}Please correct the following error:{% plural %}Please correct the following errors:{% endblocktrans %}</h3>
+{% endif %}
+
+<form method="post" action="{% url newsletter_update %}">
+	<table>
+	<tr><td><label for="id_full_name">{% trans 'Your name' %}:</label></td><td>{{ form.full_name }}</td></tr>
+	{% if form.full_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.full_name.errors|join:", " }}</td></tr>{% endif %}
+	<tr><td><label for="id_email">{% trans 'Email address' %}:</label></td><td>{{ form.email }}</td></tr>
+	{% if form.email.errors %}<tr><td>&nbsp;</td><td>*** {{ form.email.errors|join:", " }}</td></tr>{% endif %}
+	<tr><td><label for="id_subscribed">{% trans 'Subscribe' %}:</label></td><td>{{ form.subscribed }}</td></tr>
+	{% if form.subscribed.errors %}<tr><td>&nbsp;</td><td>*** {{ form.subscribed.errors|join:", " }}</td></tr>{% endif %}
+	<tr><td></td><td><input type="submit" value="{% trans "Subscribe" %}"/></td></tr>
+
+	</table>
+</form>
+
+{% endblock %}

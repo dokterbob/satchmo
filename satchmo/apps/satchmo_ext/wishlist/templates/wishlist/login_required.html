@@ -1,0 +1,10 @@
+{% extends "shop/base.html" %}
+{% load i18n satchmo_category %}
+{% block navbar %}
+    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+    <li>{% trans "Wishlist" %}</li>
+{% endblock %}
+
+{% block content %}
+{% blocktrans %}Sorry, you must be <a href="{{ login_url }}">logged-in</a> to access your wishlist.{% endblocktrans %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
+{% endblock %}
+
+{% block content %}
+<h3>{% trans "Checkout" %}</h3>
+
+<p>{% trans "Your cart is empty. Please add some items to your cart, then complete the checkout process." %}</p>
+
+{% endblock %}

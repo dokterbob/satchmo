@@ -1,0 +1,1159 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: templates/contact/update_form.html:27
+#: templates/registration/login.html:16
+msgid "Email address"
+msgstr "כתובת אימייל"
+
+#: templates/registration/login.html:17
+msgid "Password"
+msgstr "סיסמה"
+
+#: models.py:128
+#: templates/contact/update_form.html:30
+msgid "First name"
+msgstr "שם פרטי"
+
+#: models.py:129
+#: templates/contact/update_form.html:33
+msgid "Last name"
+msgstr "שם משפחה"
+
+#: forms.py:266
+#: templates/contact/update_form.html:43
+msgid "Newsletter"
+msgstr "עלון מידע"
+
+#: forms.py:67
+msgid "That email address is already in use."
+msgstr "כתובת האימייל כבר נמצאת בשימוש."
+
+#: templates/contact/view_profile.html:22
+msgid "Yes"
+msgstr "כן"
+
+#: templates/contact/view_profile.html:22
+msgid "No"
+msgstr "לא"
+
+#: models.py:196
+#: templates/contact/update_form.html:5
+#: templates/contact/view_profile.html:6
+#: templates/registration/account_info.html:5
+#: templates/registration/activate.html:6
+#: templates/registration/login.html:5
+#: templates/registration/logout.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_form.html:5
+#: templates/registration/repeat_activation.html:5
+msgid "Home"
+msgstr "בית"
+
+#: templates/registration/password_change_form.html:36
+msgid "Change password"
+msgstr "שינוי ססמא"
+
+#: common.py:5
+msgid "Please Select"
+msgstr "בחר"
+
+#: config.py:9
+msgid "Account Verification"
+msgstr "אימות משתמש"
+
+#: config.py:10
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
+msgstr "בחר סוג אימות משתמש. \"מידי\" אינו מצריך אימות משתמש."
+
+#: config.py:12
+msgid "Immediate"
+msgstr "מידי"
+
+#: config.py:13
+#: models.py:137
+#: models.py:202
+msgid "Email"
+msgstr "אימייל"
+
+#: config.py:20
+msgid "Days to verify account"
+msgstr "ימים לאימות משתמש"
+
+#: forms.py:84
+#: forms.py:108
+#: forms.py:117
+#: forms.py:130
+msgid "This field is required."
+msgstr "שדה לא חובה."
+
+#: forms.py:85
+#: forms.py:109
+msgid "State is required for your country."
+msgstr "מחוז לא חובה עבור המדינה שלך."
+
+#: forms.py:134
+msgid "Shipping and Billing countries must match"
+msgstr "מדינת המשלוח ומדינת החיוב לא תואמות"
+
+#: models.py:41
+msgid "Customer"
+msgstr "לקוח"
+
+#: models.py:42
+#: models.py:53
+#: supplier/models.py:16
+#: supplier/models.py:37
+msgid "Supplier"
+msgstr "ספק"
+
+#: models.py:43
+#: models.py:54
+msgid "Distributor"
+msgstr "מפיץ"
+
+#: models.py:47
+msgid "Company"
+msgstr "חברה"
+
+#: models.py:48
+msgid "Government"
+msgstr "ממשלה"
+
+#: models.py:49
+msgid "Non-profit"
+msgstr "ללא כוונת רווח"
+
+#: models.py:55
+msgid "Manufacturer"
+msgstr "יצרן"
+
+#: models.py:62
+#: models.py:800
+msgid "Name"
+msgstr "שם"
+
+#: models.py:63
+#: models.py:213
+msgid "Type"
+msgstr "סוג"
+
+#: models.py:65
+#: models.py:133
+msgid "Role"
+msgstr "תפקיד"
+
+#: models.py:67
+msgid "Creation Date"
+msgstr "תאריך יצירה"
+
+#: models.py:68
+#: models.py:138
+#: models.py:380
+#: models.py:874
+#: supplier/models.py:42
+#: supplier/models.py:93
+msgid "Notes"
+msgstr "הערות"
+
+#: models.py:84
+#: models.py:135
+msgid "Organization"
+msgstr "ארגון"
+
+#: models.py:85
+msgid "Organizations"
+msgstr "ארגונים"
+
+#: models.py:136
+msgid "Date of birth"
+msgstr "תאריך לידה"
+
+#: models.py:139
+msgid "Creation date"
+msgstr "תאריך יצירה"
+
+#: models.py:191
+#: models.py:212
+#: models.py:367
+msgid "Contact"
+msgstr "איש קשר"
+
+#: models.py:192
+msgid "Contacts"
+msgstr "אנשי קשר"
+
+#: models.py:195
+msgid "Work"
+msgstr "עבודה"
+
+#: models.py:197
+msgid "Fax"
+msgstr "פקס"
+
+#: models.py:198
+msgid "Mobile"
+msgstr "נייד"
+
+#: models.py:203
+msgid "Phone"
+msgstr "טלפון"
+
+#: models.py:204
+#: models.py:314
+msgid "In Person"
+msgstr "אישית"
+
+#: models.py:214
+msgid "Date and Time"
+msgstr "תאריך ושעה"
+
+#: models.py:215
+#: models.py:233
+#: models.py:268
+#: models.py:955
+#: supplier/models.py:18
+msgid "Description"
+msgstr "תיאור"
+
+#: models.py:224
+msgid "Interaction"
+msgstr "אינטראקציה"
+
+#: models.py:225
+msgid "Interactions"
+msgstr "אינטראקציות"
+
+#: models.py:235
+#: models.py:259
+msgid "Phone Number"
+msgstr "מספר טלפון"
+
+#: models.py:237
+msgid "Primary"
+msgstr "ראשי"
+
+#: models.py:260
+msgid "Phone Numbers"
+msgstr "מספרי טלפון"
+
+#: models.py:269
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "תאור כתובת - בית, משרד, מחסן וכו."
+
+#: models.py:270
+#: models.py:271
+#: models.py:368
+#: models.py:369
+#: models.py:374
+#: models.py:375
+#: templates/contact/update_form.html:51
+#: templates/contact/update_form.html:54
+#: templates/contact/update_form.html:82
+#: templates/contact/update_form.html:85
+msgid "Street"
+msgstr "רחוב"
+
+#: models.py:272
+#: models.py:371
+#: models.py:377
+msgid "State"
+msgstr "מחוז"
+
+#: models.py:273
+#: models.py:370
+#: models.py:376
+#: templates/contact/update_form.html:57
+#: templates/contact/update_form.html:88
+msgid "City"
+msgstr "עיר"
+
+#: models.py:274
+#: models.py:372
+#: models.py:378
+msgid "Zip Code"
+msgstr "מיקוד"
+
+#: models.py:275
+#: models.py:373
+#: models.py:379
+#: templates/contact/update_form.html:73
+#: templates/contact/update_form.html:104
+msgid "Country"
+msgstr "מדינה"
+
+#: models.py:276
+msgid "Default Shipping Address"
+msgstr "כתובת ראשית למשלוח"
+
+#: models.py:278
+msgid "Default Billing Address"
+msgstr "כתובת ראשית לחיוב"
+
+#: models.py:309
+msgid "Address Book"
+msgstr "פנקס כתובות"
+
+#: models.py:310
+msgid "Address Books"
+msgstr "ספרי כתובות"
+
+#: models.py:313
+msgid "Online"
+msgstr "אונליין"
+
+#: models.py:315
+msgid "Show"
+msgstr "הצג"
+
+#: models.py:319
+msgid "Temp"
+msgstr "זמני"
+
+#: models.py:320
+msgid "Pending"
+msgstr "ממתין"
+
+#: models.py:321
+msgid "In Process"
+msgstr "בתהליך"
+
+#: models.py:322
+msgid "Billed"
+msgstr "חוייב"
+
+#: models.py:323
+#: supplier/models.py:82
+msgid "Shipped"
+msgstr "נשלח"
+
+#: models.py:381
+#: supplier/models.py:39
+#: templates/contact/_order_details.html:47
+msgid "Subtotal"
+msgstr "סיכום ביניים"
+
+#: models.py:383
+#: supplier/models.py:43
+#: templates/contact/_order_details.html:46
+#: templates/contact/_order_details.html:68
+#: templates/contact/_order_tracking_details.html:28
+#: templates/contact/_order_tracking_details.html:36
+msgid "Total"
+msgstr "סה\"כ"
+
+#: models.py:385
+msgid "Discount Code"
+msgstr "קוד הנחה"
+
+#: models.py:386
+msgid "Coupon Code"
+msgstr "קוד קופון"
+
+#: models.py:387
+msgid "Discount amount"
+msgstr "סכום הנחה"
+
+#: models.py:389
+msgid "Order method"
+msgstr "שיטת הזמנה"
+
+#: models.py:391
+msgid "Shipping Description"
+msgstr "תאור משלוח"
+
+#: models.py:393
+#: models.py:718
+#: templates/contact/_order_details.html:36
+#: templates/contact/_order_tracking_details.html:22
+msgid "Shipping Method"
+msgstr "שיטת משלוח"
+
+#: models.py:395
+msgid "Shipping Models"
+msgstr "מודלי משלוח"
+
+#: models.py:397
+msgid "Shipping Cost"
+msgstr "עלות משלוח"
+
+#: models.py:399
+#: templates/contact/_order_details.html:57
+msgid "Shipping Discount"
+msgstr "הנחת משלוח"
+
+#: models.py:401
+#: models.py:956
+#: supplier/models.py:41
+#: templates/contact/_order_details.html:66
+#: templates/contact/_order_tracking_details.html:34
+msgid "Tax"
+msgstr "מס"
+
+#: models.py:403
+#: models.py:875
+msgid "Timestamp"
+msgstr "תאריך"
+
+#: models.py:404
+#: models.py:872
+#: supplier/models.py:92
+#: templates/contact/_order_tracking_details.html:9
+msgid "Status"
+msgstr "סטטוס"
+
+#: models.py:405
+msgid "This is set automatically."
+msgstr "מכוון אוטומטית"
+
+#: models.py:551
+#: models.py:560
+#: models.py:633
+msgid "View"
+msgstr "תצוגה"
+
+#: models.py:649
+msgid "Order immediately available for download"
+msgstr "ההזמה זמינה להורדה מיידית"
+
+#: models.py:720
+#: templates/contact/_order_details.html:27
+#: templates/contact/update_form.html:77
+msgid "Shipping Address"
+msgstr "כתובת משלוח"
+
+#: models.py:723
+msgid "Billing Address"
+msgstr "כתובת חיוב"
+
+#: models.py:726
+msgid "Totals"
+msgstr "סיכומים"
+
+#: models.py:735
+msgid "Product Order"
+msgstr "סדר מוצר"
+
+#: models.py:736
+msgid "Product Orders"
+msgstr "סדרי מוצר"
+
+#: models.py:742
+#: models.py:816
+#: models.py:871
+msgid "Order"
+msgstr "סדר"
+
+#: models.py:743
+msgid "Product"
+msgstr "מוצר"
+
+#: models.py:744
+msgid "Quantity"
+msgstr "כמות"
+
+#: models.py:745
+msgid "Unit price"
+msgstr "מחיר יחידה"
+
+#: models.py:747
+msgid "Unit tax"
+msgstr "מס ליחידה"
+
+#: models.py:749
+msgid "Line item price"
+msgstr "מחיר קו מוצר"
+
+#: models.py:751
+msgid "Line item tax"
+msgstr "מס קו מוצרים"
+
+#: models.py:753
+#, fuzzy
+msgid "Subscription End"
+msgstr "תיאור"
+
+#: models.py:753
+msgid "Subscription expiration date."
+msgstr "תאריך תפוגת מנוי."
+
+#: models.py:754
+msgid "Completed"
+msgstr "הסתיים"
+
+#: models.py:755
+msgid "Line item discount"
+msgstr "הנחת קו מוצר"
+
+#: models.py:792
+msgid "Order Line Item"
+msgstr "סדר קו מוצר"
+
+#: models.py:793
+msgid "Order Line Items"
+msgstr "סדר קווי מוצרים"
+
+#: models.py:799
+msgid "Order Item"
+msgstr "סדר פריט"
+
+#: models.py:801
+msgid "Value"
+msgstr "ערך"
+
+#: models.py:802
+msgid "Price Change"
+msgstr "שינוי מחיר"
+
+#: models.py:803
+msgid "Sort Order"
+msgstr "סדר מיון"
+
+#: models.py:804
+msgid "The display order for this group."
+msgstr "סדר הצגה עבור קבוצה זו."
+
+#: models.py:810
+msgid "Order Item Detail"
+msgstr "פרטי פריט הזמנה"
+
+#: models.py:811
+msgid "Order Item Details"
+msgstr "פרטי פריט הזמנה"
+
+#: models.py:815
+msgid "Downloadable product"
+msgstr "מוצר ניתן להורדה"
+
+#: models.py:817
+msgid "Key"
+msgstr "מפתח"
+
+#: models.py:818
+msgid "Number of attempts"
+msgstr "מספר נסיונות"
+
+#: models.py:819
+msgid "Time stamp"
+msgstr "תאריך"
+
+#: models.py:820
+msgid "Active"
+msgstr "פעיל"
+
+#: models.py:829
+msgid "This download is no longer active"
+msgstr "ההורדה לא פעילה יותר"
+
+#: models.py:831
+msgid "You have exceeded the number of allowed downloads."
+msgstr "עברת את מספר ההורדות המותר"
+
+#: models.py:834
+msgid "This download link has expired."
+msgstr "הקישור להורדה פג תוקף"
+
+#: models.py:864
+msgid "Download Link"
+msgstr "קישור להורדה"
+
+#: models.py:865
+msgid "Download Links"
+msgstr "קישורים להורדה"
+
+#: models.py:886
+msgid "Order Status"
+msgstr "סטטוס הזמנה"
+
+#: models.py:887
+msgid "Order Statuses"
+msgstr "סטטוס הזמנות"
+
+#: models.py:891
+msgid "Payment Method"
+msgstr "צורת תשלום"
+
+#: models.py:893
+msgid "amount"
+msgstr "כמות"
+
+#: models.py:895
+msgid "timestamp"
+msgstr "תאריך"
+
+#: models.py:896
+msgid "Transaction ID"
+msgstr "מספר עסקה"
+
+#: models.py:931
+msgid "Order Payment"
+msgstr "תשלום הזמנה"
+
+#: models.py:932
+msgid "Order Payments"
+msgstr "תשלומי הזמנה"
+
+#: models.py:936
+msgid "key"
+msgstr "מפתח"
+
+#: models.py:937
+msgid "value"
+msgstr "ערך"
+
+#: models.py:941
+msgid "Order variable"
+msgstr "משתנה הזמנה"
+
+#: models.py:942
+msgid "Order variables"
+msgstr "משתני הזמנה"
+
+#: models.py:954
+msgid "Model"
+msgstr "מודל"
+
+#: models.py:966
+msgid "Order tax detail"
+msgstr "פרטי מס בהזמנה"
+
+#: models.py:967
+msgid "Order tax details"
+msgstr "פרטי מס בהזמנה"
+
+#: views.py:134
+msgid ""
+"The order you have requested doesn't exist, or you don't have access to it."
+msgstr "ההזמנה שביקשת לא קיימת או שאין לך הרשאה לצפות בה"
+
+#: templates/contact/_order_details.html:53
+#: templates/contact/_order_tracking_details.html:30
+msgid "Discount"
+msgstr "הנחה"
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "זיהוי ספק"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "מחיר ליחידה"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "מלאי"
+
+#: supplier/models.py:30
+msgid "Raw Item"
+msgstr "פריט גולמי"
+
+#: supplier/models.py:31
+msgid "Raw Items"
+msgstr "פריטים גולמיים"
+
+#: supplier/models.py:38
+msgid "Date Created"
+msgstr "תאריך ייצור"
+
+#: supplier/models.py:40
+#: templates/contact/_order_details.html:60
+#: templates/contact/_order_tracking_details.html:32
+msgid "Shipping"
+msgstr "משלוח"
+
+#: supplier/models.py:65
+msgid "Supplier Order"
+msgstr "הזמנת ספק"
+
+#: supplier/models.py:66
+msgid "Supplier Orders"
+msgstr "הזמנות ספק"
+
+#: supplier/models.py:73
+msgid "Line Item"
+msgstr "דמי עלות"
+
+#: supplier/models.py:74
+msgid "Line Item Quantity"
+msgstr "כמות דמי עלות"
+
+#: supplier/models.py:75
+msgid "Line Item Total"
+msgstr "סך כל דמי עלות"
+
+#: supplier/models.py:81
+msgid "Sent in"
+msgstr "נשלח"
+
+#: supplier/models.py:83
+msgid "Received"
+msgstr "התקבל"
+
+#: supplier/models.py:94
+msgid "Date"
+msgstr "תאריך"
+
+#: supplier/models.py:100
+msgid "Supplier Order Status"
+msgstr "מצב הזמנת ספק"
+
+#: supplier/models.py:101
+msgid "Supplier Order Statuses"
+msgstr "מצבי הזמנת ספק"
+
+#: templates/contact/_order_details.html:14
+msgid "Contact Information"
+msgstr "פרטי קשר"
+
+#: templates/contact/update_form.html:19
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "אנא תקן את השגיאות:"
+msgstr[1] ""
+
+#: templates/contact/_order_tracking_details.html:16
+msgid "Items Ordered"
+msgstr "פריטים שהוזמנו"
+
+#: templates/registration/login.html:20
+msgid "Login"
+msgstr "כניסה"
+
+#: templates/contact/update_form.html:26
+msgid "Basic Information"
+msgstr "מידע בסיסי"
+
+#: templates/contact/update_form.html:39
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+#: templates/contact/_order_details.html:19
+#: templates/contact/update_form.html:49
+msgid "Billing Information"
+msgstr "פרטי חיוב"
+
+#: templates/contact/update_form.html:65
+#: templates/contact/update_form.html:96
+msgid "State/Province"
+msgstr "מדינה / מחוז"
+
+#: templates/contact/update_form.html:69
+#: templates/contact/update_form.html:100
+msgid "Zipcode/Postcode"
+msgstr "מיקוד"
+
+#: templates/contact/update_form.html:79
+msgid "Shipping same as billing?"
+msgstr "האם כתובת המשלוח זהה לכתובת החיוב?"
+
+#: templates/comments/form.html:7
+#: templates/comments/form.html.py:9
+msgid "Username:"
+msgstr "שם משתמש:"
+
+#: templates/comments/form.html:9
+msgid "Password:"
+msgstr "ססמא:"
+
+#: templates/comments/form.html:9
+msgid "Forgotten your password?"
+msgstr "שכחת את הססמא?"
+
+#: templates/comments/form.html:25
+msgid "Post a photo"
+msgstr "שלח תמונה"
+
+#: templates/comments/form.html:25
+msgid "Required"
+msgstr "חובה"
+
+#: templates/comments/form.html:25
+msgid "Optional"
+msgstr "לא חובה"
+
+#: templates/comments/form.html:30
+msgid "Review:"
+msgstr "ביקורת:"
+
+#: templates/comments/form.html:39
+msgid "Send review"
+msgstr "שלח ביקורת"
+
+#: templates/contact/_addressblock.html:11
+msgid "Not set"
+msgstr "לא הוגדר"
+
+#: templates/contact/_order_details.html:56
+msgid "Base Shipping"
+msgstr "משלוח בסיס"
+
+#: templates/contact/_order_details.html:58
+msgid "Shipping (incl. Tax)"
+msgstr "משלוח (כולל מס)"
+
+#: templates/contact/_order_details.html:64
+msgid "Tax included"
+msgstr "כולל מס"
+
+#: templates/contact/_order_tracking_details.html:8
+msgid "Order #"
+msgstr "הזמנה #"
+
+#: templates/contact/_order_tracking_details.html:41
+msgid "Shipping To"
+msgstr "משלוח אל"
+
+#: templates/contact/update_form.html:6
+#: templates/contact/view_profile.html:7
+#: templates/registration/password_change_done.html:6
+#: templates/registration/password_change_form.html:6
+msgid "Account"
+msgstr "חשבון"
+
+#: templates/contact/view_profile.html:33
+msgid "Order History"
+msgstr "הסטוריה של ההזמנה"
+
+#: templates/contact/update_form.html:7
+msgid "Update Profile"
+msgstr "עדכן פרופיל"
+
+#: templates/contact/update_form.html:17
+msgid "Your Profile"
+msgstr "הפרופיל שלך"
+
+#: templates/contact/update_form.html:24
+msgid "You&apos;ll need to fill out at least the fields with a *"
+msgstr "*עליך למלא לפחות את השדות המסומנים ב"
+
+#: templates/contact/update_form.html:36
+msgid "Birthday"
+msgstr "יום הולדת"
+
+#: templates/contact/update_form.html:109
+msgid "Update"
+msgstr "עדכן"
+
+#: templates/contact/view_profile.html:11
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "פרטי החשבון שלך"
+
+#: templates/contact/view_profile.html:14
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "ברוכ/ה הבא/ה %(full_name)s."
+
+#: templates/contact/view_profile.html:17
+msgid "Your profile"
+msgstr "הפרופיל שלך"
+
+#: templates/contact/view_profile.html:19
+msgid "Email:"
+msgstr "דואר אלקטרוני:"
+
+#: templates/contact/view_profile.html:20
+msgid "Birthday:"
+msgstr "יום הולדת:"
+
+#: templates/contact/view_profile.html:22
+msgid "Newsletter:"
+msgstr "אגרת מידע:"
+
+#: templates/contact/view_profile.html:24
+msgid "Billing Address:"
+msgstr "כתובת חיוב:"
+
+#: templates/contact/view_profile.html:25
+msgid "Shipping Address:"
+msgstr "כתובת משלוח:"
+
+#: templates/contact/view_profile.html:27
+#: templates/contact/view_profile.html:40
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "אפשרויות בחשבון"
+
+#: templates/contact/view_profile.html:29
+msgid "Update your profile"
+msgstr "עדכן את הפרופיל שלך"
+
+#: templates/contact/view_profile.html:31
+#: templates/contact/view_profile.html:44
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:11
+msgid "Change your password"
+msgstr "שינוי ססמא אישית"
+
+#: templates/contact/view_profile.html:38
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
+msgstr "מצטערים, אין פרטי תקשורת עבור שם המשתמש שלך"
+
+#: templates/contact/view_profile.html:38
+msgid "Probably because you are an admin."
+msgstr "כנראה מפנה שאתה חלק מההנהלה."
+
+#: templates/contact/view_profile.html:42
+msgid "Set up contact information"
+msgstr "הכנס פרטי תקשורת"
+
+#: templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "%(first_name)s %(last_name)s יקר/ה,"
+
+#: templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "בברכה"
+
+#: templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "הנהלת החנות"
+
+#: templates/registration/activate.html:7
+msgid "Registration Complete"
+msgstr "ההרשמה הושלמה"
+
+#: templates/registration/activate.html:12
+#: templates/registration/repeat_activation.html:11
+msgid "Account Activation"
+msgstr "הפעלת חשבון"
+
+#: templates/registration/activate.html:16
+msgid "Thanks for signing up! You are now logged in."
+msgstr "תודה שנרשמת! כעת נכנסת."
+
+#: templates/registration/activate.html:17
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr "בעתיד, ניתן להכנס בעזרת כתובת האימייל שלך (%(email)s)."
+
+#: templates/registration/activate.html:21
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr ""
+"לינק ההפעלה שלך שגוי, או שפג תוקף מפתח ההפעלה עבור חשבונך. מפתחות הפעלה "
+"פעילים רק למשך %(expiration_days)s יום לאחר ההרשמה."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr ""
+"מישהו, בתקוה את(ה) נרשם לאתר %(site)s ונתן את כתובת האימייל הזו. אם זה את"
+"(ה), וברצונך להפעיל את חשבון המשתמש שלך, לחץ על הקישור למטה או העתק והדבק "
+"אותו לתוך שורת הכתובת בדפדפן שלך."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr ""
+"אם לא ביקשת זאת, אין צורך לעשות כלום. לא תקבל הודעות נוספות מאתנו, וחשבון "
+"המשתמש יפקע אוטומטית בעוד %(expiration_days)s ימים."
+
+#: templates/registration/login.html:11
+msgid "Your email address and password didn't match. Please try again."
+msgstr "האימייל והסיסמה לא תואמים. נסה שנית."
+
+#: templates/registration/login.html:29
+msgid "If you do not have an account, please"
+msgstr "אם אין לך שם משתמש, בבקשה"
+
+#: templates/registration/login.html:29
+msgid "click here"
+msgstr "לחץ כאן"
+
+#: templates/registration/login.html:30
+msgid "If you do not remember your password, please"
+msgstr "אם את(ה) לא זוכר(ת) את הסיסמה שלך, בבקשה"
+
+#: templates/registration/login.html:30
+msgid "click here</a> to have it reset."
+msgstr "לחץ כאן</a> כדי לאפס אותה"
+
+#: templates/registration/logout.html:9
+msgid "You have been successfully logged out."
+msgstr "הצלחת לצאת מהמערכת בהצלחה."
+
+#: templates/registration/password_change_done.html:7
+msgid "Password Change Done"
+msgstr "שינוי סיסמה הסתיים"
+
+#: templates/registration/password_change_done.html:12
+msgid "Password change successful"
+msgstr "סיסמה שונתה בהצלחה"
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password change has been completed."
+msgstr "שינוי הסיסמה שלך הסתיים."
+
+#: templates/registration/password_change_form.html:7
+msgid "Password Change"
+msgstr "שינוי סיסמה"
+
+#: templates/registration/password_change_form.html:12
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr ""
+"מטעמי אבטחת מידע, הכנס את הסיסמה הישנה, ואז הכנס פעמיים את הסיסמה החדשה."
+
+#: templates/registration/password_change_form.html:19
+msgid "Old password"
+msgstr "סיסמה ישנה"
+
+#: templates/registration/password_change_form.html:26
+msgid "New password"
+msgstr "סיסמה חדשה "
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm new password"
+msgstr "סיסמה חדשה (שוב)"
+
+#: templates/registration/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s"
+msgstr ""
+"אימייל זה נשלח אליך בגלל שביקשת לבצע איפוס סיסמה של חשבון המשתמש שלך ב- %"
+"(site_name)s"
+
+#: templates/registration/password_reset.txt:3
+msgid "Your new password is"
+msgstr "הסיסמה החדשה שלך היא"
+
+#: templates/registration/password_reset.txt:5
+msgid "Feel free to change this password by going to this page"
+msgstr "אתה יכול לשנות סיסמה זו על ידי מעבר לדף זה"
+
+#: templates/registration/password_reset.txt:7
+#, python-format
+msgid ""
+"You can log in using your email address (%(email)s) or your username (%"
+"(username)s)."
+msgstr ""
+"אתה יכול להכנס למערכת באמצעות כתובת האימייל (%(email)s) אובאמצעות שם המשתמש "
+"שלך %(username)s)."
+
+#: templates/registration/password_reset.txt:9
+msgid "Thanks for using our site!"
+msgstr "תודה שהשתמשת באתר שלנו!"
+
+#: templates/registration/password_reset.txt:11
+#, python-format
+msgid "The %(site_name)s team "
+msgstr "צוות %(site_name)s"
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "איפוס סיסמה הושלם בהצלחה"
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr ""
+"שלחנו אימייל המכיל את הסיסמה החדשה לכתובת שמסרת. אתה אמור לקבל אותו בקרוב."
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "אפס סיסמה"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr "שכחת את הסיסמה? הכנס את כתובת האימייל שלך למטה, ונשלח לך סיסמה חדשה."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "כתובת אימייל"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr "וודא שהכתובת זהה לכתובת האימייל שבאמצעותה נרשמת לאתר."
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "איפוס סיסמה"
+
+#: templates/registration/registration_complete.html:7
+#: templates/registration/registration_complete.html:11
+msgid "Account Creation"
+msgstr "יצירת משתמש"
+
+#: templates/registration/registration_complete.html:12
+msgid "Thank you for signing up."
+msgstr "תודה שנרשמת."
+
+#: templates/registration/registration_complete.html:14
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr ""
+"קישור הפעלת משתמש נשלח לכתובת האימייל שרשמת, וכמו כן הוראות איך להפעיל את "
+"החשבון שלך."
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "רישום"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "אהא הכנס פרטי משתמש"
+
+#: templates/registration/registration_form.html:37
+msgid "Create Account"
+msgstr "צור משתמש"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "חזור על תהליך הפעלת משתמש"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(company_name)s."
+msgstr "תודה שנרשמת ב %(company_name)s."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr "שם המשתמש החדש שלך הוא כתובת האימייל זו, ואת(ה) יכול להכנס למערכת ב"
+

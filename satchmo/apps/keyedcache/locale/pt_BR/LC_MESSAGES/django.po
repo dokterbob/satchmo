@@ -1,0 +1,61 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"PO-Revision-Date: 2008-09-05 23:51-0300\n"
+"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:16
+msgid "Yes"
+msgstr "Sim"
+
+#: views.py:17
+msgid "No"
+msgstr "Não"
+
+#: views.py:21
+msgid "Key to delete"
+msgstr "Chave para apagar"
+
+#: views.py:22
+#, fuzzy
+msgid "Include Children?"
+msgstr "Incluir imagens?"
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr "Apagar todas as chaves?"
+
+#: templates/keyedcache/delete.html:6
+#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr "Inicial"
+
+#: templates/keyedcache/delete.html:7
+#: templates/keyedcache/view.html:7
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/keyedcache/delete.html:8
+msgid "Cache Delete"
+msgstr "Apagar cache"
+
+#: templates/keyedcache/stats.html:7
+msgid "Cache Stats"
+msgstr "Estatísticas de cache"
+
+#: templates/keyedcache/view.html:8
+msgid "Cache View"
+msgstr "Exibição de cache"
+

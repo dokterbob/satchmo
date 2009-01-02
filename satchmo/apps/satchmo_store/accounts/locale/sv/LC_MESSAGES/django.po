@@ -1,0 +1,70 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# N.L. <kotorinl@yahoo.co.uk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"PO-Revision-Date: 2008-04-30 23:35+0100\n"
+"Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
+"Language-Team: Group\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: forms.py:18
+msgid "Email address"
+msgstr "E-postadress"
+
+#: forms.py:20
+msgid "Password (again)"
+msgstr "Lösenord (igen)"
+
+#: forms.py:22
+msgid "Password"
+msgstr "Lösenord"
+
+#: forms.py:24
+msgid "First name"
+msgstr "Förnamn"
+
+#: forms.py:26
+msgid "Last name"
+msgstr "Efternamn"
+
+#: forms.py:29
+msgid "Newsletter"
+msgstr "Nyhetsbrev"
+
+#: forms.py:38
+msgid "The two passwords do not match."
+msgstr "De två lösenorden överensstämmer inte."
+
+#: forms.py:49
+msgid "That email address is already in use."
+msgstr "Den e-postadressen är redan upptagen."
+
+#: mail.py:20
+#, python-format
+msgid "Welcome to %s"
+msgstr "Välkommen till %s"
+
+#: views.py:19
+msgid "Yes"
+msgstr "Ja"
+
+#: views.py:20
+msgid "No"
+msgstr "Nej"
+
+#: views.py:85
+msgid "Registration Form"
+msgstr "Registreringsformulär"
+

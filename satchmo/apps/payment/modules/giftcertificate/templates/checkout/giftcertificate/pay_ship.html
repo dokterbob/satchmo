@@ -1,0 +1,13 @@
+{% extends "shop/checkout/base_pay_ship.html" %}
+{% load i18n %}
+{# gift cert pay_ship version #}
+
+{% block payment_table %}
+    <tr><td><h4>{% trans "Payment Information" %}</h4></td></tr>
+    {% if not PAYMENT_LIVE %}
+    <tr><td colspan="2" valign="top"><b>TEST MODE</b></td></tr>
+    {% endif %}
+
+    <tr><td><label for="id_giftcode">{% trans "Gift Certificate Code" %}</label></td> <td>{{ form.giftcode }}</td></tr>
+    <tr><td></td><td>{% if form.giftcode.errors %}*** {{ form.giftcode.errors|join:", " }}{% endif %}</td></tr>
+{% endblock %}

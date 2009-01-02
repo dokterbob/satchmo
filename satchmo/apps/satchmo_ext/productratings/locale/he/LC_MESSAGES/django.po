@@ -1,0 +1,44 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: templates/productratings/_product_ratings.html:4
+msgid "Product Reviews"
+msgstr "ביקורות מוצר"
+
+#: templates/productratings/_product_ratings.html:8
+msgid "Be the first to review it!"
+msgstr "הכנס ביקורת מוצר ראשונה!"
+
+#: templates/productratings/_product_ratings.html:12
+#, python-format
+msgid "Average rating %(rating)s"
+msgstr "דירוג ממוצע %(rating)s"
+
+#: templates/productratings/_product_ratings.html:17
+msgid "Rating"
+msgstr "דירוג"
+
+#: templates/productratings/_product_ratings.html:24
+msgid "Review this product"
+msgstr "כתוב ביקורת על מוצר זה"
+
+#: templates/productratings/_product_ratings.html:27
+msgid "Please login to review this product."
+msgstr "על מנת לכתוב ביקורת למוצר זה, אנא כנס למערכת"
+

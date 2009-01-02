@@ -1,0 +1,221 @@
+# Spanish translation for the Satchmo project.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Christian Hoeppner <hoeppner@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 0.5-pre\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-14 00:00+0100\n"
+"PO-Revision-Date: 2007-08-06 00:00+0000\n"
+"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:21
+#: models.py:48
+msgid "Description"
+msgstr "Descripción"
+
+#: templates/shop/admin/index.html:114
+msgid "Tax Classes"
+msgstr "Tipos de impuestos"
+
+#: templates/shop/admin/index.html:119
+msgid "Tax Rates"
+msgstr "Impuestos"
+
+#: models.py:26
+msgid "State"
+msgstr "Estado"
+
+#: models.py:20
+msgid "Store Name"
+msgstr "Nombre de la Tienda"
+
+#: models.py:22
+msgid "Email"
+msgstr "Correo"
+
+#: models.py:23
+#: models.py:24
+msgid "Street"
+msgstr "Calle"
+
+#: models.py:25
+msgid "City"
+msgstr "Ciudad"
+
+#: models.py:27
+msgid "Zip Code"
+msgstr "Código Postal"
+
+#: models.py:30
+msgid "Purchase item not in stock?"
+msgstr "¿Permitir la compra de artículos fuera de stock?"
+
+#: models.py:39
+#: templates/shop/admin/index.html:22
+#: templates/shop/admin/index.html.py:23
+msgid "Store Configuration"
+msgstr "Configuración de la Tienda"
+
+#: models.py:40
+msgid "Store Configurations"
+msgstr "Configuraciones de la Tienda"
+
+#: models.py:93
+msgid "Shopping Cart"
+msgstr "Carrito"
+
+#: models.py:94
+msgid "Shopping Carts"
+msgstr "Carritos"
+
+#: models.py:102
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "Administración del Sitio"
+
+#: views/checkout-step1.py:26
+msgid "Select a valid choice."
+msgstr "Seleccione una opción válida."
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Por favor, introduzca uno y sólo uno de los siguientes campos."
+
+#: templates/shop/admin/index.html:77
+msgid "Organizations"
+msgstr "Organizaciones"
+
+#: templates/shop/admin/index.html:67
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/shop/admin/index.html:64
+#: templates/shop/admin/index.html.py:65
+msgid "Contacts"
+msgstr "Contactos"
+
+#: templates/shop/admin/index.html:87
+msgid "Discount"
+msgstr "Promoción"
+
+#: templates/shop/admin/index.html:46
+msgid "Master Products"
+msgstr "Productos Canónicos"
+
+#: templates/shop/admin/index.html:56
+msgid "Individual Products"
+msgstr "Productos Físicos"
+
+#: templates/admin/base_site.html:4
+#: templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "Administración del Sitio de Satchmo"
+
+#: templates/shop/admin/index.html:19
+msgid "Switch to Legacy View"
+msgstr "Ir a vista clásica"
+
+#: templates/shop/admin/index.html:25
+msgid "Store Details"
+msgstr "Detalles de la Tienda"
+
+#: templates/shop/admin/index.html:26
+#: templates/shop/admin/index.html.py:31
+#: templates/shop/admin/index.html:42
+#: templates/shop/admin/index.html.py:47
+#: templates/shop/admin/index.html:52
+#: templates/shop/admin/index.html.py:57
+#: templates/shop/admin/index.html:68
+#: templates/shop/admin/index.html.py:73
+#: templates/shop/admin/index.html:78
+#: templates/shop/admin/index.html.py:88
+#: templates/shop/admin/index.html:99
+#: templates/shop/admin/index.html.py:104
+#: templates/shop/admin/index.html:115
+#: templates/shop/admin/index.html.py:120
+msgid "Add"
+msgstr "Añadir"
+
+#: templates/shop/admin/index.html:27
+#: templates/shop/admin/index.html.py:32
+#: templates/shop/admin/index.html:43
+#: templates/shop/admin/index.html.py:48
+#: templates/shop/admin/index.html:53
+#: templates/shop/admin/index.html.py:58
+#: templates/shop/admin/index.html:69
+#: templates/shop/admin/index.html.py:74
+#: templates/shop/admin/index.html:79
+#: templates/shop/admin/index.html.py:89
+#: templates/shop/admin/index.html:100
+#: templates/shop/admin/index.html.py:105
+#: templates/shop/admin/index.html:116
+#: templates/shop/admin/index.html.py:121
+msgid "Change"
+msgstr "Modificar"
+
+#: templates/shop/admin/index.html:30
+msgid "Store Web Site"
+msgstr "Sitio de la Tienda"
+
+#: templates/shop/admin/index.html:38
+#: templates/shop/admin/index.html.py:39
+msgid "Product Configuration"
+msgstr "Configuración de la Tienda"
+
+#: templates/shop/admin/index.html:41
+msgid "Product Categories"
+msgstr "Categorías de Productos"
+
+#: templates/shop/admin/index.html:51
+msgid "Product Options"
+msgstr "Opciones de Producto"
+
+#: templates/shop/admin/index.html:72
+msgid "Contact Interactions"
+msgstr "Interacciones con los Contactos"
+
+#: templates/shop/admin/index.html:84
+#: templates/shop/admin/index.html.py:85
+msgid "Discounts"
+msgstr "Promociones"
+
+#: templates/shop/admin/index.html:95
+#: templates/shop/admin/index.html.py:96
+msgid "International Information"
+msgstr "Información Internacional"
+
+#: templates/shop/admin/index.html:98
+msgid "Areas"
+msgstr "Zonas"
+
+#: templates/shop/admin/index.html:103
+msgid "Countries"
+msgstr "Paises"
+
+#: templates/shop/admin/index.html:111
+msgid "Taxes"
+msgstr "Impuestos"
+
+#: templates/shop/admin/index.html:112
+msgid "Tax Information"
+msgstr "Información de Impuestos"
+
+#: templates/shop/admin/index.html:133
+msgid "New Orders"
+msgstr "Nuevos Pedidos"
+
+#: templates/shop/admin/index.html:144
+msgid "Orders in Process"
+msgstr "Pedidos en Proceso"
+

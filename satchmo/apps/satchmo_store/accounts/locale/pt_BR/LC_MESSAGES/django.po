@@ -1,0 +1,66 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"PO-Revision-Date: 2008-09-05 23:51-0300\n"
+"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:17
+msgid "Email address"
+msgstr "Endereço de Email"
+
+#: forms.py:19
+msgid "Password (again)"
+msgstr "Senha (novamente)"
+
+#: forms.py:21
+msgid "Password"
+msgstr "Senha"
+
+#: forms.py:23
+msgid "First name"
+msgstr "Primeiro nome"
+
+#: forms.py:25
+msgid "Last name"
+msgstr "Último nome"
+
+#: forms.py:28
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: forms.py:37
+msgid "The two passwords do not match."
+msgstr "As duas senhas não são iguais."
+
+#: forms.py:48
+msgid "That email address is already in use."
+msgstr "Este endereço de email já está em uso."
+
+#: mail.py:20
+#, python-format
+msgid "Welcome to %s"
+msgstr "Bem vindo a %s"
+
+#: views.py:20
+msgid "Yes"
+msgstr "Sim"
+
+#: views.py:21
+msgid "No"
+msgstr "Não"
+
+#: views.py:86
+msgid "Registration Form"
+msgstr "Formulário de Cadastro"
+

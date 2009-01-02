@@ -1,0 +1,58 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# Jacques Moulin <jacques@tpi.be>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"PO-Revision-Date: 2008-11-02 17:51+0100\n"
+"Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Merci de ne remplir qu'un et un seul de ces champs."
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr "Ces champs ne peuvent être identiques."
+
+#: thumbnail/templates/widget/file.html.py:4
+msgid "Change"
+msgstr "Modifier"
+
+#: thumbnail/templates/widget/file.html.py:3
+msgid "Currently"
+msgstr "Actuellement"
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr "Paramètres des miniatures"
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr "Qualité miniatures"
+
+#: thumbnail/config.py:10
+msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
+msgstr "Utilisez une valeur entre 1 et 100 pour changer la qualité des miniatures créées pour les produits et catégories."
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr "Renommer les images du produit?"
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr "Renommer automatiquement les images de produit lors de l'upload?"
+
+#: thumbnail/widgets.py:21
+msgid "Change:"
+msgstr "Modifier:"
+

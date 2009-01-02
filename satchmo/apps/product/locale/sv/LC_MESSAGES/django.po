@@ -1,0 +1,1283 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# N.L. <kotorinl@yahoo.co.uk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"PO-Revision-Date: 2008-04-30 23:35+0100\n"
+"Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
+"Language-Team: Group\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: models.py:67
+#: templates/product/admin/product_export_form.html:81
+#: templates/product/admin/variation_manager.html:240
+msgid "Name"
+msgstr "Namn"
+
+#: templates/product/category.html:12
+#: templates/product/product.html.html:26
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/admin/variation_manager.html:6
+#: templates/product/admin/variation_manager_list.html:6
+msgid "Home"
+msgstr "Hem"
+
+#: models.py:55
+#: models.py:73
+msgid "Description"
+msgstr "Beskrivning"
+
+#: models.py:56
+msgid "Discount Code"
+msgstr "Rabattkod"
+
+#: models.py:57
+msgid "Coupon Code"
+msgstr "Rabattkod"
+
+#: models.py:575
+msgid "Tax"
+msgstr "Moms"
+
+#: models.py:582
+#: models.py:757
+#: models.py:869
+#: models.py:1042
+#: models.py:1077
+#: models.py:1159
+msgid "Product"
+msgstr "Produkt"
+
+#: templates/product/product.html.html:57
+#: templates/product/detail_configurableproduct.html:68
+#: templates/product/detail_customproduct.html:39
+#: templates/product/detail_subscriptionproduct.html:40
+msgid "Quantity"
+msgstr "Antal"
+
+#: models.py:1326
+msgid "Value"
+msgstr "Värde"
+
+#: models.py:346
+#: models.py:830
+msgid "Price Change"
+msgstr "Prisförändring"
+
+#: models.py:228
+#: models.py:286
+#: models.py:828
+#: models.py:1380
+msgid "Sort Order"
+msgstr "Sorteringsordning"
+
+#: models.py:287
+#: models.py:829
+msgid "The display order for this group."
+msgstr "Visningsordningen för denna grupp."
+
+#: models.py:73
+#: models.py:1046
+msgid "Active"
+msgstr "Aktiverad"
+
+#: models.py:42
+msgid "No Discount"
+msgstr "Ingen prisnedsättning"
+
+#: models.py:58
+msgid "Discount Amount"
+msgstr "Prisnedsättning"
+
+#: models.py:60
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Ange prisnedsättning i form av belopp ELLER procent"
+
+#: models.py:61
+msgid "Discount Percentage"
+msgstr "Prisnedsättning procent"
+
+#: models.py:64
+msgid ""
+"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr ""
+"Ange prisnedsättning i form av belopp ELLER procent. Procentexempel: \"0.10"
+"\"."
+
+#: models.py:65
+msgid "Number of allowed uses"
+msgstr "Antal tillåtna användningar"
+
+#: models.py:66
+#: models.py:68
+msgid "Not implemented."
+msgstr "Ej implementerat."
+
+#: models.py:67
+msgid "Number of times already used"
+msgstr "Antal gånger redan använt"
+
+#: models.py:69
+msgid "Minimum order value"
+msgstr "Minsta ordervärde"
+
+#: models.py:71
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: models.py:72
+msgid "End Date"
+msgstr "Slutdatum"
+
+#: models.py:74
+msgid "Free shipping"
+msgstr "Gratis frakt"
+
+#: models.py:75
+msgid "Should this discount remove all shipping costs?"
+msgstr "Ska den här rabatten ta bort alla fraktkostnader?"
+
+#: models.py:76
+msgid "Include shipping"
+msgstr "Inkludera frakt"
+
+#: models.py:77
+msgid "Should shipping be included in the discount calculation?"
+msgstr "Ska frakt inkluderas i beräkningen av prisnedsättningen?"
+
+#: models.py:78
+msgid "Valid Products"
+msgstr "Giltig för produkterna"
+
+#: models.py:93
+msgid "This coupon is disabled."
+msgstr "Denna kupong är inaktiverad."
+
+#: models.py:95
+msgid "This coupon is not active yet."
+msgstr "Denna kupong är ännu inte aktiv."
+
+#: models.py:97
+msgid "This coupon has expired."
+msgstr "Denna kupong har gått ut."
+
+#: models.py:99
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Denna kupong har nått över max antal tillåtna användningar."
+
+#: models.py:101
+#: models.py:118
+msgid "Valid."
+msgstr "Giltig."
+
+#: models.py:105
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Denna rabatt är endast giltig för beställningar på minst %s."
+
+#: models.py:120
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "Denna rabatt kan inte användas för produkterna i din kundvagn."
+
+#: models.py:178
+msgid "Discount"
+msgstr "Prisnedsättning"
+
+#: models.py:179
+msgid "Discounts"
+msgstr "Prisnedsättningar"
+
+#: models.py:413
+msgid "Date added"
+msgstr "Skapad datum"
+
+#: templates/product/category.html:23
+#: templates/product/product.html.html:34
+msgid "Shop Categories"
+msgstr "Butikskategorier"
+
+#: models.py:1125
+#: models.py:1341
+#: models.py:1365
+#: templates/product/product.html.html:49
+#: templates/product/detail_configurableproduct.html:37
+#: templates/product/detail_customproduct.html:12
+msgid "Price"
+msgstr "Pris"
+
+#: templates/product/product.html.html:59
+#: templates/product/detail_configurableproduct.html:70
+#: templates/product/detail_customproduct.html:41
+#: templates/product/detail_subscriptionproduct.html:42
+msgid "Add to cart"
+msgstr "Lägg till i kundvagn"
+
+#: models.py:402
+#: models.py:717
+msgid "Full Name"
+msgstr "Fullständigt namn"
+
+#: adminviews.py:28
+msgid "Inventory Editor"
+msgstr "Lager-editor"
+
+#: adminviews.py:49
+msgid "Product Import/Export"
+msgstr "Produkt import/export"
+
+#: adminviews.py:73
+msgid "No upload file found"
+msgstr "Ingen uppladda fil funnen"
+
+#: adminviews.py:119
+msgid "The product you have requested is not a Configurable Product."
+msgstr "Produkten du efterfrågade är inte en Konfigurerbar Produkt."
+
+#: adminviews.py:122
+#: views.py:79
+msgid "The product you have requested does not exist."
+msgstr "Produkten du efterfrågade finns inte."
+
+#: config.py:6
+msgid "Product Settings"
+msgstr "Produktinställningar"
+
+#: config.py:10
+msgid "Product Model Options"
+msgstr "Produktmodell-alternativ"
+
+#: config.py:12
+#: models.py:1032
+msgid "Configurable Product"
+msgstr "Konfigurerbar produkt"
+
+#: config.py:13
+msgid "Product Variation"
+msgstr "Produktvariant"
+
+#: config.py:14
+msgid "Custom Order"
+msgstr "Anpassad order"
+
+#: config.py:15
+#: models.py:1111
+msgid "Subscription Product"
+msgstr "Prenumerationsprodukt"
+
+#: config.py:16
+msgid "Downloable Product"
+msgstr "Nedladdningsbar produkt"
+
+#: config.py:23
+msgid "Upload Image Dir"
+msgstr "Uppladdningsmapp för bilder"
+
+#: config.py:24
+msgid ""
+"Directory name for storing uploaded images.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"Mappnamn för lagring av uppladdade bilder.  \n"
+"Detta värde kommer att konkateneras med MEDIA_ROOT. Bekymra dig inte om "
+"snedstreck. \n"
+"Vi kan hantera det i båda fallen."
+
+#: config.py:31
+msgid "Rename product images?"
+msgstr "Döp om produktbilder?"
+
+#: config.py:32
+msgid "Automatically rename product images on upload?"
+msgstr "Döp automatiskt om produktbilder då de laddas upp?"
+
+#: config.py:37
+msgid "Protected dir"
+msgstr "Skyddad mapp"
+
+#: config.py:38
+msgid ""
+"This is only used if you use Downloadable Products.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"Denna används endast om du använder nedladdningsbara produkter. \n"
+"Detta värde kommer att konkateneras med MEDIA_ROOT. Du behöver inte tänka på "
+"snedstreck. \n"
+"Vi kan hantera det i vilket fall som."
+
+#: forms.py:37
+msgid "export format"
+msgstr "exportformat"
+
+#: forms.py:38
+msgid "Include Images"
+msgstr "Inkludera bilder"
+
+#: forms.py:39
+msgid "Include Categories"
+msgstr "Inkludera kategorier"
+
+#: forms.py:171
+msgid "File to import"
+msgstr "Fil att importera"
+
+#: forms.py:189
+#: forms.py:232
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "Kunde inte utläsa format från filnamn: %s"
+
+#: forms.py:207
+msgid "Bad VARS file in import zipfile."
+msgstr "Ogiltig VARS-fil i import av zip-fil."
+
+#: forms.py:237
+msgid "Missing VARS in import zipfile."
+msgstr "Saknar VARS i import av zip-fil."
+
+#: forms.py:243
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "Okänt filformat: %s"
+
+#: forms.py:270
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr "Lade till %(count)i objekt från %(filename)s"
+
+#: forms.py:275
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr "Problem vid installation av testdata '%(filename)s': %(error_msg)s\n"
+
+#: models.py:56
+msgid "A unit of measure must be entered for the length"
+msgstr "En enhet måste anges för längden."
+
+#: models.py:57
+msgid "A unit of measure must be entered for the width"
+msgstr "En enhet måste anges för bredden."
+
+#: models.py:58
+msgid "A unit of measure must be entered for the height"
+msgstr "En enhet måste anges för höjden."
+
+#: models.py:59
+msgid "A unit of measure must be entered for the weight"
+msgstr "En enhet måste anges för vikten."
+
+#: models.py:61
+msgid "The product and parent fields can not be the same."
+msgstr "Produkten och dess föräldrafält får inte vara samma."
+
+#: models.py:68
+#: models.py:825
+#: templates/product/admin/product_export_form.html:80
+#: templates/product/admin/variation_manager.html:242
+msgid "Slug"
+msgstr "Slug"
+
+#: models.py:68
+#: models.py:405
+msgid "Used for URLs, auto-generated from name if blank"
+msgstr ""
+
+#: models.py:71
+#: models.py:412
+msgid "Meta Description"
+msgstr "Metabeskrivning"
+
+#: models.py:72
+msgid "Meta description for this category"
+msgstr "Metabeskrivning av den här kategorin"
+
+#: models.py:75
+#: models.py:416
+msgid "Ordering"
+msgstr "Ordning"
+
+#: models.py:75
+#: models.py:416
+msgid "Override alphabetical order in category display"
+msgstr "Åsidosätt alfabetisk ordning vid visning av kategorier"
+
+#: models.py:151
+#: models.py:155
+msgid "You must not save a category in itself!"
+msgstr "Du kan inte spara en kategori i sig själv!"
+
+#: models.py:193
+#: models.py:410
+msgid "Category"
+msgstr "Kategori"
+
+#: models.py:194
+msgid "Categories"
+msgstr "Kategorier"
+
+#: models.py:201
+#: models.py:262
+#: models.py:314
+#: models.py:379
+#: models.py:716
+#: models.py:848
+#: models.py:1324
+#: models.py:1414
+msgid "language"
+msgstr "språk"
+
+#: models.py:202
+msgid "Translated Category Name"
+msgstr "Översatt kategorinamn"
+
+#: models.py:203
+msgid "Description of category"
+msgstr "Kategoribeskrivning"
+
+#: models.py:204
+#: models.py:264
+#: models.py:317
+#: models.py:381
+#: models.py:720
+#: models.py:850
+#: models.py:1416
+msgid "version"
+msgstr "version"
+
+#: models.py:205
+#: models.py:265
+#: models.py:318
+#: models.py:382
+#: models.py:721
+#: models.py:851
+#: models.py:1417
+msgid "active"
+msgstr "aktiverad"
+
+#: models.py:208
+msgid "Category Translation"
+msgstr "Kategoriöversättning"
+
+#: models.py:209
+msgid "Category Translations"
+msgstr "Kategoriöversättningar"
+
+#: models.py:224
+#: models.py:1376
+msgid "Picture"
+msgstr "Bild"
+
+#: models.py:226
+#: models.py:1378
+msgid "Optional caption"
+msgstr "Valfri rubrik"
+
+#: models.py:251
+msgid "Category Image"
+msgstr "Kategoribild"
+
+#: models.py:252
+msgid "Category Images"
+msgstr "Kategoribilder"
+
+#: models.py:263
+#: models.py:1415
+msgid "Translated Caption"
+msgstr "Översatt rubrik"
+
+#: models.py:268
+msgid "Category Image Translation"
+msgstr "Kategoribildsöversättning"
+
+#: models.py:269
+msgid "Category Image Translations"
+msgstr "Kategoribildsöversättningar"
+
+#: models.py:281
+msgid "Name of Option Group"
+msgstr "Namn på valgrupp"
+
+#: models.py:282
+msgid "This will be the text displayed on the product page."
+msgstr "Detta är texten som visas på produktsidan."
+
+#: models.py:283
+msgid "Detailed Description"
+msgstr "Detaljerad beskrivning"
+
+#: models.py:285
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr ""
+"Ytterligare beskrivning av denna grupp (t ex. tröjstorlek vs skostorlek)."
+
+#: models.py:306
+#: models.py:762
+#: models.py:870
+#: templates/product/admin/variation_manager.html:185
+msgid "Option Group"
+msgstr "Valmöjlighetsgrupp"
+
+#: models.py:307
+msgid "Option Groups"
+msgstr "Valmöjlighetsgrupper"
+
+#: models.py:315
+msgid "Translated OptionGroup Name"
+msgstr "Översatt valmöjlighetsnamn"
+
+#: models.py:316
+msgid "Description of OptionGroup"
+msgstr "Beskrivning av valmöjlighetsgrupp"
+
+#: models.py:321
+msgid "Option Group Translation"
+msgstr "Översättning av valmöjlighetsgrupp"
+
+#: models.py:322
+msgid "Option Groups Translations"
+msgstr "Översättningar av valmöjlighetsgrupp"
+
+#: models.py:344
+msgid "Display value"
+msgstr "Visat värde"
+
+#: models.py:345
+msgid "Stored value"
+msgstr "Lagrat värde"
+
+#: models.py:348
+msgid "This is the price differential for this option."
+msgstr "Det här är prisförändringen för denna valmöjlighet."
+
+#: models.py:349
+msgid "Display Order"
+msgstr "Visningsordning"
+
+#: models.py:357
+msgid "Option Item"
+msgstr "Valmöjlighet"
+
+#: models.py:358
+msgid "Option Items"
+msgstr "Valmöjligheter"
+
+#: models.py:380
+msgid "Translated Option Name"
+msgstr "Översatt valmöjlighetsnamn"
+
+#: models.py:385
+msgid "Option Translation"
+msgstr "Översättning av valmöjlighet"
+
+#: models.py:386
+msgid "Option Translations"
+msgstr "Översättningar av valmöjlighet"
+
+#: models.py:403
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+"Detta är vad produkten kommer att heta på sajtens förvalda språk. För att "
+"lägga till ytterligare översättningar, använd "
+"produktöversättningsavdelningen nedan."
+
+#: models.py:404
+msgid "Slug Name"
+msgstr "Slug-namn"
+
+#: models.py:406
+#: templates/product/admin/variation_manager.html:241
+msgid "SKU"
+msgstr "SKU (Stock Keeping Unit)"
+
+#: models.py:407
+msgid "Defaults to slug if left blank"
+msgstr "Som default används slug-fältet om detta ej fylls i."
+
+#: models.py:408
+#: models.py:718
+msgid "Short description of product"
+msgstr "Kort produktbeskrivning"
+
+#: models.py:408
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr ""
+"Detta ska vara en 1-2 raders beskrivning på sajtens förvalda språk för "
+"användning i produktlistor."
+
+#: models.py:409
+#: models.py:719
+msgid "Description of product"
+msgstr "Produktbeskrivning"
+
+#: models.py:409
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr ""
+"Detta fält kan innehålla HTML och bör bestå av några stycken på sajtens "
+"förvalda språk som förklarar produktens bakgrund och allt som skulle kunna "
+"hjälpa en potentiell köpare."
+
+#: models.py:411
+msgid "Number in stock"
+msgstr "Antal i lager"
+
+#: models.py:412
+msgid "Meta description for this product"
+msgstr "Metabeskrivning av denna produkt"
+
+#: models.py:414
+msgid "Is product active?"
+msgstr "Är produkten aktiv?"
+
+#: models.py:414
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Detta bestämmer huruvida produkten visas på sajten eller ej."
+
+#: models.py:415
+msgid "Featured Item"
+msgstr "Utvald artikel"
+
+#: models.py:415
+msgid "Featured items will show on the front page"
+msgstr "Utvalda artiklar kommer att visas på huvudsidan."
+
+#: models.py:417
+msgid "Weight"
+msgstr "Vikt"
+
+#: models.py:418
+msgid "Weight units"
+msgstr "Viktenhet"
+
+#: models.py:419
+msgid "Length"
+msgstr "Längd"
+
+#: models.py:420
+msgid "Length units"
+msgstr "Längdenhet"
+
+#: models.py:421
+msgid "Width"
+msgstr "Bredd"
+
+#: models.py:422
+msgid "Width units"
+msgstr "Breddenhet"
+
+#: models.py:423
+msgid "Height"
+msgstr "Höjd"
+
+#: models.py:424
+msgid "Height units"
+msgstr "Höjdenhet"
+
+#: models.py:425
+msgid "Related Items"
+msgstr "Relaterade varor"
+
+#: models.py:426
+msgid "Previously Purchased"
+msgstr "Tidigare köpt"
+
+#: models.py:427
+msgid "Total sold"
+msgstr "Antal sålda"
+
+#: models.py:428
+msgid "Taxable"
+msgstr "Moms ska läggas på"
+
+#: models.py:429
+msgid "Tax Class"
+msgstr "Momstyp"
+
+#: models.py:429
+msgid "If it is taxable, what kind of tax?"
+msgstr "Om den ska momsbeläggas, vilken typ av moms?"
+
+#: models.py:573
+msgid "Meta Data"
+msgstr "Metadata"
+
+#: models.py:574
+msgid "Item Dimensions"
+msgstr "Produktdimensioner"
+
+#: models.py:576
+msgid "Related Products"
+msgstr "Relaterade produkter"
+
+#: models.py:583
+msgid "Products"
+msgstr "Produkter"
+
+#: models.py:611
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Produktundertyper"
+
+#: models.py:718
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr ""
+"Detta ska vara en 1-2 raders beskrivning för användning i produktlistor."
+
+#: models.py:719
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr ""
+"Detta fält kan innehålla HTML och bör bestå av några stycken som förklarar "
+"produktens bakgrund och allt som skulle kunna hjälpa en potentiell köpare."
+
+#: models.py:724
+msgid "Product Translation"
+msgstr "Produktöversättning"
+
+#: models.py:725
+msgid "Product Translations"
+msgstr "Produktöversättningar"
+
+#: models.py:758
+msgid "Percent Downpayment"
+msgstr "Handpenning procent"
+
+#: models.py:759
+msgid "Deferred Shipping"
+msgstr "Uppskjuten betalning"
+
+#: models.py:760
+msgid "Do not charge shipping at checkout for this item."
+msgstr "Ta inte betalt för frakt vid utcheckning av denna vara."
+
+#: models.py:816
+msgid "Custom Product"
+msgstr "Anpassad produkt"
+
+#: models.py:817
+msgid "Custom Products"
+msgstr "Anpassade produkter"
+
+#: models.py:824
+msgid "Custom field name"
+msgstr "Anpassat fältnamn"
+
+#: models.py:825
+msgid "Auto-generated from name if blank"
+msgstr ""
+
+#: models.py:826
+msgid "Custom Fields"
+msgstr "Anpassade fält"
+
+#: models.py:849
+msgid "Translated Custom Text Field Name"
+msgstr "Översättning av anpassat fältnamn"
+
+#: models.py:854
+msgid "CustomTextField Translation"
+msgstr "Översättning av anpassat fältnamn"
+
+#: models.py:855
+msgid "CustomTextField Translations"
+msgstr "Översättningar av anpassade fältnamn"
+
+#: models.py:871
+msgid "Create Variations"
+msgstr "Skapa varianter:"
+
+#: models.py:871
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+"Skapa produktvarianter för alla denna produkts valmöjligheter. För att "
+"använda detta måste du först lägga till en valmöjlighet, spara, och sedan "
+"återvända till denna sida."
+
+#: models.py:1033
+msgid "Configurable Products"
+msgstr "Konfigurerbar produkt"
+
+#: models.py:1043
+msgid "File"
+msgstr "Fil"
+
+#: models.py:1044
+msgid "Num allowed downloads"
+msgstr "Antal tillåtna nedladdningar"
+
+#: models.py:1044
+msgid "Number of times link can be accessed."
+msgstr "Antal gånger som länken kan användas."
+
+#: models.py:1045
+msgid "Expire minutes"
+msgstr "Giltighetstid (minuter)"
+
+#: models.py:1045
+msgid "Number of minutes the link should remain active."
+msgstr "Antal minuter som länken ska förbli aktiv."
+
+#: models.py:1046
+msgid "Is this download currently active?"
+msgstr "Är den här nedladdningen för närvarande aktiv?"
+
+#: models.py:1070
+msgid "Downloadable Product"
+msgstr "Nedladdningsbar produkt"
+
+#: models.py:1071
+msgid "Downloadable Products"
+msgstr "Nedladdningsbara produkter"
+
+#: models.py:1078
+msgid "Recurring Billing"
+msgstr "Periodisk betalning"
+
+#: models.py:1078
+msgid "Customer will be charged the regular product price on a periodic basis."
+msgstr ""
+"Kunden kommer att debiteras det vanliga produktpriset på periodisk basis."
+
+#: models.py:1079
+msgid "Recurring Times"
+msgstr "Antal perioder"
+
+#: models.py:1079
+msgid "Number of payments which will occur at the regular rate.  (optional)"
+msgstr "Antal betalningar som kommer att ske på periodsbasis. (frivilligt)"
+
+#: models.py:1080
+msgid "Duration"
+msgstr "Längd"
+
+#: models.py:1080
+msgid "Length of each billing cycle (days)"
+msgstr "Längden på varje period (antal dagar)"
+
+#: models.py:1082
+msgid "No Shipping Charges"
+msgstr "Ingen fraktkostnad"
+
+#: models.py:1083
+msgid "Pay Shipping Once"
+msgstr "Betala frakten en gång"
+
+#: models.py:1084
+msgid "Pay Shipping Each Billing Cycle"
+msgstr "Betala frakten varje debiteringsperiod"
+
+#: models.py:1086
+msgid "Shippable?"
+msgstr "Fraktbar?"
+
+#: models.py:1086
+msgid "Is this product shippable?"
+msgstr "Kräver den här produkten frakt?"
+
+#: models.py:1112
+msgid "Subscription Products"
+msgstr "Prenumerationsprodukter"
+
+#: models.py:1125
+msgid ""
+"Set to 0 for a free trial.  Leave empty if product does not have a trial."
+msgstr ""
+"Ange 0 för ett gratis prov. Lämna tomt ifall produkten inte har någon "
+"provperiod."
+
+#: models.py:1126
+msgid "Trial Duration"
+msgstr "Provperiodslängd"
+
+#: models.py:1126
+msgid ""
+"Length of trial billing cycle (days).  Leave empty if product does not have "
+"a trial."
+msgstr ""
+"Längden på provperioden (dagar). Lämna tomt om produkten inte har en "
+"provperiod."
+
+#: models.py:1133
+#: models.py:1134
+msgid "Trial Terms"
+msgstr "Provtid"
+
+#: models.py:1160
+msgid "Options"
+msgstr "Valmöjligheter"
+
+#: models.py:1161
+msgid "Parent"
+msgstr "Förälder"
+
+#: models.py:1254
+msgid "Two options from the same option group can not be applied to an item."
+msgstr ""
+"Två valmöjligheter från samma valmöjlighetsgrupp kan inte användas på en "
+"artikel."
+
+#: models.py:1310
+msgid "Product variation"
+msgstr "Produktvariant"
+
+#: models.py:1311
+msgid "Product variations"
+msgstr "Produktvarianter"
+
+#: models.py:1325
+msgid "Attribute Name"
+msgstr "Attributnamn"
+
+#: models.py:1329
+msgid "Product Attribute"
+msgstr "Produktattribut"
+
+#: models.py:1330
+msgid "Product Attributes"
+msgstr "Produktattribut"
+
+#: models.py:1342
+msgid "Discount Quantity"
+msgstr "Antal för prisnedsättning"
+
+#: models.py:1342
+msgid "Use this price only for this quantity or higher"
+msgstr "Använd detta pris endast för detta antal eller högre"
+
+#: models.py:1343
+msgid "Expires"
+msgstr "Utgångsdatum"
+
+#: models.py:1366
+msgid "Prices"
+msgstr "Priser"
+
+#: models.py:1403
+msgid "Product Image"
+msgstr "Produktbild"
+
+#: models.py:1404
+msgid "Product Images"
+msgstr "Produktbilder"
+
+#: models.py:1420
+msgid "Product Image Translation"
+msgstr "Produktbildsöversättning"
+
+#: models.py:1421
+msgid "Product Image Translations"
+msgstr "Produktbildsöversättningar"
+
+#: views.py:144
+#: views.py:157
+#: views.py:164
+#: views.py:171
+msgid "not available"
+msgstr "ej tillgänglig"
+
+#: templatetags/satchmo_product_admin.py:36
+#, python-format
+msgid "Edit %(subtype)s"
+msgstr "Ändra %(subtype)s"
+
+#: templatetags/satchmo_product_admin.py:38
+#, python-format
+msgid "Add %(subtype)s"
+msgstr "Lägg till %(subtype)s"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "Logga ut"
+
+#: templates/product/product.html.html:49
+#: templates/product/detail_configurableproduct.html:37
+msgid "(incl. tax)"
+msgstr "(inkl. moms)"
+
+#: templates/product/product.html.html:61
+#: templates/product/detail_configurableproduct.html:72
+#: templates/product/detail_customproduct.html:43
+#: templates/product/detail_subscriptionproduct.html:44
+msgid "Add to wishlist"
+msgstr "Lägg till önskelistan"
+
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#: templates/product/admin/variation_manager.html:166
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Var god rätta till felet nedan."
+msgstr[1] "Var god rätta till felen nedan."
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "Byt lösenord"
+
+#: templates/product/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "Lagerhantering"
+
+#: templates/product/admin/product_export_form.html:111
+#: templates/admin/product/configurableproduct/change_form.html:17
+#: templates/admin/product/productvariation/change_form.html:60
+msgid "Helpers"
+msgstr "Hjälpmedel"
+
+#: templates/product/admin/variation_manager.html:7
+#: templates/product/admin/variation_manager_list.html:7
+msgid "Product Variation Manager"
+msgstr "Produktvarianthanterare"
+
+#: templates/product/admin/product_export_form.html:57
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+"WARNING: den här funktionen är fortfarande experimentell. Använd den inte i "
+"produktion."
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr "Importera"
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr "Importera från testfixturfil:"
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:109
+msgid "Export"
+msgstr "Exportera"
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr "Exportera?"
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include images?"
+msgstr "Inkludera bilder?"
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Include categories?"
+msgstr "Inkludera kategorier?"
+
+#: templates/product/admin/product_export_form.html:108
+msgid "Format?"
+msgstr "Format?"
+
+#: templates/product/admin/product_export_form.html:110
+msgid "Reset"
+msgstr "Nollställ"
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Check all"
+msgstr "Markera alla"
+
+#: templates/product/admin/product_export_form.html:113
+msgid "Uncheck all"
+msgstr "Avmarkera alla"
+
+#: templates/product/admin/product_export_form.html:116
+msgid "No products."
+msgstr "Inga produkter."
+
+#: templates/product/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr "Produkt import/export"
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr "Resultat"
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr "Importresultat"
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "Fel"
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr "resultat"
+
+#: templates/admin/product/configurableproduct/change_form.html:18
+#: templates/admin/product/productvariation/change_form.html:61
+msgid "Variation Manager"
+msgstr "Varianthanterare"
+
+#: templates/admin/product/configurableproduct/change_form.html:21
+#: templates/product/admin/variation_manager.html:170
+msgid "Variations"
+msgstr "Varianter"
+
+#: templates/product/admin/variation_manager.html:163
+#, python-format
+msgid "Variation Manager for %(product_name)s"
+msgstr "Varianthanterare för %(product_name)s"
+
+#: templates/product/admin/variation_manager.html:172
+msgid ""
+"\n"
+"    <p>The Variation Manager helps create the exact set of variations you "
+"need for your Configurable Product</p>\n"
+"    <p>Make choices from the Option Groups below, and then click one of the "
+"helper links \n"
+"    below them to select or deselect variations which have those options.</"
+"p>\n"
+"    <p>Fine tune the active variations by putting a checkmark next to those "
+"that you want to keep or \n"
+"    create, then then click <b>Update Variations</b>.\n"
+"    </p>\n"
+"    "
+msgstr ""
+"\n"
+"    <p>Varianthanteraren hjälper dig att skapa just de varianter du behöver "
+"av din Konfigurerbara Produkt</p>\n"
+"    <p>Välj från valmöjligheterna nedan, och klicka på en av snabblänkarna \n"
+"    nedanför dem för att markera eller avmarkera varianter som har de "
+"alternativen.</p>\n"
+"    <p>Finjustera de aktiva variationerna genom att bocka i kryssrutan för "
+"de du vill skapa eller \n"
+"    behålla. Klicka sedan på <b>Uppdatera varianter</b>.\n"
+"    </p>\n"
+"    "
+
+#: templates/product/admin/variation_manager.html:186
+msgid "Choices"
+msgstr "Alternativ"
+
+#: templates/product/admin/variation_manager.html:206
+msgid "Helper Links"
+msgstr "Snabblänkar"
+
+#: templates/product/admin/variation_manager.html:211
+msgid "Select These Options"
+msgstr "Markera dessa alternativ"
+
+#: templates/product/admin/variation_manager.html:213
+msgid "Select Only These Options"
+msgstr "Markera endast dessa alternativ"
+
+#: templates/product/admin/variation_manager.html:215
+msgid "Select All"
+msgstr "Markera alla"
+
+#: templates/product/admin/variation_manager.html:217
+msgid "Deselect These Options"
+msgstr "Avmarkera dessa alternativ"
+
+#: templates/product/admin/variation_manager.html:219
+msgid "Deselect All"
+msgstr "Avmarkera alla"
+
+#: templates/product/admin/variation_manager.html:221
+msgid "Show All"
+msgstr "Visa alla"
+
+#: templates/product/admin/variation_manager.html:223
+msgid "Hide Inactive Rows"
+msgstr "Göm inaktiva rader"
+
+#: templates/product/admin/variation_manager.html:228
+msgid "Update Variations"
+msgstr "Uppdatera varianter"
+
+#: templates/product/admin/variation_manager.html:229
+msgid "Reset Form"
+msgstr "Återställ formuläret"
+
+#: templates/product/admin/variation_manager.html:237
+msgid "Variation"
+msgstr "Variant"
+
+#: templates/product/admin/variation_manager.html:238
+msgid "Exists"
+msgstr "Finns"
+
+#: templates/product/admin/variation_manager.html:239
+msgid "Create/Keep"
+msgstr "Skapa/Behåll"
+
+#: templates/product/admin/variation_manager.html:255
+msgid "yes"
+msgstr "ja"
+
+#: templates/product/admin/variation_manager.html:255
+msgid "no"
+msgstr "nej"
+
+#: templates/product/admin/variation_manager_list.html:12
+msgid "Select the Configurable Product to manage."
+msgstr "Välj den Konfigurerbara Produkt du vill hantera"
+
+#: templates/product/detail_configurableproduct.html:53
+msgid "Please choose your options"
+msgstr "Var god gör dina val"
+
+#: templates/product/detail_customproduct.html:10
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "Anpassad order för %(name)s"
+
+#: templates/product/detail_customproduct.html:35
+msgid "more"
+msgstr "mer"
+
+#: templates/product/detail_subscriptionproduct.html:10
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr "Prenumeration på %(name)s"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "Only "
+msgstr "Endast "
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "easy payments of:"
+msgstr "enkla betalningar á:"
+
+#: templates/product/detail_subscriptionproduct.html:19
+msgid "This product has trial subscription pricing "
+msgstr "I den här produkten ingår en provperiod i priset"
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "for trial period of "
+msgstr "för en provperiod av"
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "days"
+msgstr "dagar"
+

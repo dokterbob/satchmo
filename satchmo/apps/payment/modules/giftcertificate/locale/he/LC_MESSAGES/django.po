@@ -1,0 +1,307 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: templates/checkout/confirm.html:9
+#: templates/checkout/giftcertificate/confirm.html:9
+#: templates/giftcertificate/balance.html:5
+msgid "Home"
+msgstr "בית"
+
+#: models.py:41
+msgid "Email"
+msgstr "אימייל"
+
+#: models.py:108
+msgid "Notes"
+msgstr "הערות"
+
+#: models.py:33
+msgid "Order"
+msgstr "סדר"
+
+#: models.py:130
+msgid "Product"
+msgstr "מוצר"
+
+#: models.py:111
+msgid "Order Payment"
+msgstr "תשלום הזמנה"
+
+#: config.py:8
+#: models.py:102
+#: templates/giftcertificate/_order_summary.html:7
+#: templates/giftcertificate/balance.html:13
+#: templates/product/detail_giftcertificateproduct.html:9
+msgid "Gift Certificate"
+msgstr "אישור מתנה"
+
+#: config.py:11
+msgid "Gift Certificate Settings"
+msgstr "אפשרויות אישור מתנה"
+
+#: config.py:18
+msgid "Use SSL for the checkout pages?"
+msgstr "האם להשתמש ב SSL עבור דפי סיום ההזמנה?"
+
+#: config.py:23
+msgid "Character Set"
+msgstr "מערך תווים"
+
+#: config.py:25
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
+msgstr "תווים אפשריים בקוד אישור המיוצר אוטומטית."
+
+#: config.py:29
+msgid "Module key"
+msgstr "מפתח מודול"
+
+#: config.py:35
+msgid "Code format"
+msgstr "פורמט קוד"
+
+#: config.py:37
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
+msgstr ""
+"הכנס פורמט עבור קוד אישור. השתמש ב '^' לציין מיקום של תו המיוצר באופן "
+"רנדומלי."
+
+#: config.py:41
+msgid "Implementation module"
+msgstr "מודול מימוש"
+
+#: config.py:47
+msgid "English name for this group on the checkout screens"
+msgstr "שם באנגלית עבור הקבוצה בדפי סיום הזמנה"
+
+#: config.py:49
+msgid "This will be passed to the translation utility"
+msgstr "זה יועבר לתוכנית התרגום"
+
+#: config.py:53
+msgid "Accept real payments"
+msgstr "קבל תשלומים אמיתיים"
+
+#: config.py:54
+msgid "False if you want to be in test mode"
+msgstr "שלילי אם את(ה) רוצה להיות במצב בדיקה"
+
+#: config.py:59
+msgid ""
+"The url base used for constructing urlpatterns which will use this module"
+msgstr "כתובת הבסיס לצורך בנית תבניות כתובת עבור המודול"
+
+#: forms.py:6
+msgid "Code"
+msgstr "קוד"
+
+#: models.py:32
+msgid "Site"
+msgstr "אתר"
+
+#: models.py:34
+msgid "Certificate Code"
+msgstr "קוד אישור"
+
+#: models.py:36
+msgid "Purchased by"
+msgstr "נקנה על ידי"
+
+#: models.py:38
+msgid "Date added"
+msgstr "תאריך הוספה"
+
+#: models.py:39
+msgid "Valid"
+msgstr "בתוקף"
+
+#: models.py:40
+msgid "Message"
+msgstr "הודעה"
+
+#: models.py:42
+msgid "Starting Balance"
+msgstr "יתרת התחלה"
+
+#: models.py:103
+#: templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "אישור מתנה"
+
+#: models.py:107
+msgid "Date of usage"
+msgstr "תאריך שימוש"
+
+#: models.py:109
+msgid "Amount Used"
+msgstr "כמות בשימוש"
+
+#: models.py:112
+msgid "Used by"
+msgstr "נעשה שימוש על ידי"
+
+#: models.py:165
+msgid "Gift certificate product"
+msgstr "מוצר אישור מתנה"
+
+#: models.py:166
+msgid "Gift certificate products"
+msgstr "מוצרי אישור מתנה"
+
+#: processor.py:24
+msgid "No balance to pay"
+msgstr "אין יתרה לתשלום"
+
+#: processor.py:33
+msgid "No such Gift Certificate"
+msgstr "אין כזה אישור מתנה"
+
+#: processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "אישור מתנה לא תקין"
+
+#: processor.py:43
+msgid "Success"
+msgstr "הצלחה"
+
+#: processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "נשארו %s ביתרה אחרי שימוש באישור מתנה"
+
+#: templates/checkout/confirm.html:10
+#: templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "לקופה"
+
+#: templates/checkout/confirm.html:14
+#: templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "תשלום"
+
+#: templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "סה\"כ להזמנה: %(orderbalance)s"
+
+#: templates/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"את(ה) עומד להשתמש באישור מתנה # %(giftcode)s המכיל %(certbalance)s אשר "
+"יכולים לשמש כתשלום עבור ההזמנה."
+
+#: templates/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+"אם אין מספיק כדי לשלם על כל ההזמנה, תוכל(י) לבחור אמצעי תשלום אחר לתשלום "
+"היתרה אחרי השימוש באישור המתנה."
+
+#: templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "לתשומת לבך:"
+
+#: templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr "עומד להשתמש באישור מתנה: %(giftcode)s, בעל ערך של %(balance)s."
+
+#: templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "פרטי תשלום"
+
+#: templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "קוד אישור מתנה"
+
+#: templates/giftcertificate/_order_summary.html:5
+#, fuzzy
+msgid "Gift Certificate Codes"
+msgstr "קוד אישור מתנה"
+
+#: templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "אל: %(recipient)s"
+
+#: templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "יתרה התחלתית: %(start_balance)s"
+
+#: templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "קוד: %(code)s"
+
+#: templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "הודעה: %(message)s"
+
+#: templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "נרכש ב:"
+
+#: templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "יתרה התחלתית:"
+
+#: templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "יתרה נוכחית:"
+
+#: templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "אישור מתנה לא נמצא."
+
+#: templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "יתרה"
+
+#: templates/product/detail_giftcertificateproduct.html:11
+msgid "Price"
+msgstr "מחיר"
+
+#: templates/product/detail_giftcertificateproduct.html:20
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "כמות (יש להכפיל את אישור המתנה בכמות זו)"
+
+#: templates/product/detail_giftcertificateproduct.html:23
+msgid "Recipient Email (optional):"
+msgstr "אימייל מקבל (אופציונלי)"
+
+#: templates/product/detail_giftcertificateproduct.html:24
+msgid "Message (optional):"
+msgstr "הודעה (אופציונלי)"
+
+#: templates/product/detail_giftcertificateproduct.html:29
+msgid "Add to cart"
+msgstr "הוסף לעגלה"
+

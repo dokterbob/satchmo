@@ -1,0 +1,141 @@
+# translation of django.po to Italiano
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+#
+# costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
+# Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"PO-Revision-Date: 2008-09-30 13:13+0200\n"
+"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
+"Language-Team: Italiano <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+
+#: models.py:17
+msgid "Description"
+msgstr "Descrizione"
+
+#: models.py:24
+#: models.py:31
+msgid "Tax Class"
+msgstr "Classe di Tassa"
+
+#: admin.py:14
+# translated = "% Di tasse per questo settore e del tipo"
+msgid "You must choose a zone or a country."
+msgstr "Devi scegliere una zona o un paese."
+
+#: config.py:7
+# translated = "Ordine fornitore status"
+msgid "Tax Settings"
+msgstr "Impostazioni tasse"
+
+#: config.py:10
+# translated = "Imposta Impostazioni"
+msgid "Active tax module"
+msgstr "Modulo di tasse attivo"
+
+#: config.py:11
+# translated = "Attiva modulo fiscale"
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr ""
+"Seleziona un modulo, salva e ricarica per modificare eventuali impostazioni "
+"specifiche del modulo."
+
+#: config.py:13
+# translated = "Seleziona un modulo, salvare e ricaricare per impostare qualsiasi modulo impostazioni specifiche &"
+msgid "No Tax"
+msgstr "Nessuna Tassa"
+
+#: config.py:18
+msgid "Show with tax included"
+msgstr "Mostra con le tasse incluse"
+
+#: config.py:19
+msgid "If yes, then all products and the cart will display with tax included."
+msgstr ""
+"Se sì, allora tutti i prodotti ed il carrello verranno mostrati con le tasse "
+"incluse."
+
+#: models.py:15
+# translated = "No tax"
+msgid "Title"
+msgstr "Titolo"
+
+#: models.py:16
+msgid "Displayed title of this tax."
+msgstr "Titolo visualizzato per questa tassa."
+
+#: models.py:18
+msgid "Description of products that would be taxed."
+msgstr "Descrizione dei prodotti tassabili"
+
+#: models.py:25
+# translated = "Descrizione dei prodotti che potrebbero essere tassati."
+msgid "Tax Classes"
+msgstr "Classi di tassa"
+
+#: models.py:33
+msgid "Tax Zone"
+msgstr "Zona della Tassa"
+
+#: models.py:35
+msgid "Tax Country"
+msgstr "Paese della Tassa"
+
+#: models.py:36
+#: models.py:48
+# translated = "Classi fiscale"
+msgid "Percentage"
+msgstr "Percentuale"
+
+#: models.py:37
+msgid "% tax for this area and type"
+msgstr "% tasse per questa area e tipo"
+
+#: models.py:57
+# translated = "Devi scegliere una zona o di un paese &"
+msgid "Tax Rate"
+msgstr "Aliquota di tasse"
+
+#: models.py:58
+# translated = ""
+msgid "Tax Rates"
+msgstr "Aliquote di tasse"
+
+#: modules/area/config.py:11
+# translated = "Le aliquote fiscali"
+msgid "By Country/Area"
+msgstr "Per Paese/Area"
+
+#: modules/area/config.py:33
+#: modules/percent/config.py:19
+# translated = ""
+msgid "Tax Shipping?"
+msgstr "Tasse Spedizione?"
+
+#: modules/area/config.py:42
+msgid "TaxClass for shipping"
+msgstr "Classe di Tassa per la consegna"
+
+#: modules/area/config.py:43
+msgid "Select a TaxClass that should be applied for shipments."
+msgstr "Seleziona una Classe di Tassa da applicare alle consegne."
+
+#: modules/percent/config.py:5
+# translated = "Di Paese / Zona"
+msgid "Percent Tax"
+msgstr "Percentuali Tasse"
+
+#: modules/percent/config.py:11
+# translated = ""
+msgid "Percent tax"
+msgstr "Percentuali tasse"
+

@@ -1,0 +1,274 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:37
+msgid "Email"
+msgstr "이메일"
+
+#: models.py:92
+msgid "Notes"
+msgstr "노트"
+
+#: templates/checkout/confirm.html:9
+#: templates/checkout/giftcertificate/confirm.html:9
+#: templates/giftcertificate/balance.html:5
+#: templates/product/detail_giftcertificateproduct.html:14
+msgid "Home"
+msgstr "홈"
+
+#: config.py:8
+#: templates/giftcertificate/_order_summary.html:7
+#: templates/giftcertificate/balance.html:13
+#: templates/product/detail_giftcertificateproduct.html:29
+msgid "Gift Certificate"
+msgstr "선물 인즘"
+
+#: config.py:11
+msgid "Gift Certificate Settings"
+msgstr "선물 인증 세팅"
+
+#: config.py:18
+msgid "Use SSL for the checkout pages?"
+msgstr "결재 페이지를 사용하기 위해서는 SSL 을 사용하세요"
+
+#: config.py:23
+msgid "Character Set"
+msgstr "문자 셑"
+
+#: config.py:25
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
+msgstr ""
+"문자들은 무작위로 생성된 인증 코드"
+""
+
+#: config.py:29
+msgid "Module key"
+msgstr "모듈 키"
+
+#: config.py:35
+msgid "Code format"
+msgstr "코드 포맷"
+
+#: config.py:37
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
+msgstr ""
+"인증 코드 포맷을 입력하세요. 무작위로 생성된 글자의 위치에 '^'를 사용하세요"
+""
+
+#: config.py:41
+msgid "Implementation module"
+msgstr "실행 모듈"
+
+#: config.py:47
+msgid "English name for this group on the checkout screens"
+msgstr "결재 화면에서 이 그룹에 대한 영문 이름"
+
+#: config.py:49
+msgid "This will be passed to the translation utility"
+msgstr "이 부분은 번역되어질 것입니다."
+
+#: config.py:53
+msgid ""
+"The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+"url 패턴을 만들기 위한 url 베이스는 이 모듈을 사용할 것입니다."
+
+#: forms.py:6
+msgid "Code"
+msgstr "코드"
+
+#: models.py:30
+msgid "Certificate Code"
+msgstr "인증 코드"
+
+#: models.py:32
+msgid "Purchased by"
+msgstr "구매자"
+
+#: models.py:34
+msgid "Date added"
+msgstr "등록일"
+
+#: models.py:35
+msgid "Valid"
+msgstr "유효성"
+
+#: models.py:36
+msgid "Message"
+msgstr "메세지"
+
+#: models.py:38
+msgid "Starting Balance"
+msgstr "잔액"
+
+#: models.py:91
+msgid "Date of usage"
+msgstr "사용일"
+
+#: models.py:93
+msgid "Amount Used"
+msgstr "총사용액"
+
+#: models.py:96
+msgid "Used by"
+msgstr "사용자"
+
+#: processor.py:24
+msgid "No balance to pay"
+msgstr "잔액 없음"
+
+#: processor.py:33
+msgid "No such Gift Certificate"
+msgstr "요청하신 상품 인증은 않습니다.존"
+
+#: processor.py:38
+msgid "Bad Gift Certificate"
+msgstr "잘못된 상품 인증입니다."
+
+#: processor.py:43
+msgid "Success"
+msgstr "성공"
+
+#: processor.py:47
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "%s 잔액이 남았습니다. 선물 적용 후 "
+
+#: templates/checkout/confirm.html:10
+#: templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "계산"
+
+#: templates/checkout/confirm.html:14
+#: templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "지불"
+
+#: templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "주문 합계: %(orderbalance)s"
+
+#: templates/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"당신은 지금 총 %(certbalance)s 만큼을 선물 코드 #%(giftcode)s로 사용 할것입나디. "
+
+#: templates/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+"만약 남은 금액이 충분하지 않다면, 당신은 다음 입력 창에서 남은 금액을 결재하실 수 있습니다."
+""
+
+#: templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "남기실 말씀"
+
+#: templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+"선물 인즘 코드: %(giftcode)s , 남은 금액 :%(balance)s"
+
+#: templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "지불 정보"
+
+#: templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "선물 인증 코드"
+
+#: templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "받는 사람: %(recipient)s "
+
+#: templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "시작 금액: %(start_balance)s"
+
+#: templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "코드: %(code)s"
+
+#: templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "메세지: %(message)s"
+
+#: templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "선물 인즘"
+
+#: templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "구매 품목:"
+
+#: templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "금액초"
+
+#: templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "현재 금액"
+
+#: templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "요청하신 선물 코드는 없습니다."
+
+#: templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "남은 금액을 체크하세요."
+
+#: templates/product/detail_giftcertificateproduct.html:22
+msgid "Shop Categories"
+msgstr "카테고리"
+
+#: templates/product/detail_giftcertificateproduct.html:31
+msgid "Price"
+msgstr "금액"
+
+#: templates/product/detail_giftcertificateproduct.html:40
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "수량"
+
+#: templates/product/detail_giftcertificateproduct.html:43
+msgid "Recipient Email (optional):"
+msgstr "수령자 이메일 (선택 사항입니다.)"
+
+#: templates/product/detail_giftcertificateproduct.html:44
+msgid "Message (optional):"
+msgstr "메세지 (선택 사항입니다.)"
+
+#: templates/product/detail_giftcertificateproduct.html:49
+msgid "Add to cart"
+msgstr "장바구니 담기"
+

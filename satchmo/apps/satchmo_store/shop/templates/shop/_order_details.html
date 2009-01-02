@@ -1,0 +1,73 @@
+{% load satchmo_currency %}
+{% load satchmo_checkout %}
+{% load satchmo_util %}
+{% load app_plugins %}
+{% load i18n %}
+{% if default_view_tax %}{% load satchmo_tax %}{% endif %}
+{% for item in order.orderitem_set.all %}
+{% if default_view_tax %}
+{{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.total_with_tax|currency}}<br/>
+{% else %}
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
+{% endif %}
+{% endfor %}
+
+<h4>{% trans "Contact Information" %}</h4>
+{{ order.contact.full_name }}<br/>
+{{ order.contact.email }}<br/>
+{{ order.contact.primary_phone.phone }}<br/>
+
+<h4>{% trans "Billing Information" %}</h4>
+{{ order.full_bill_street|linebreaksbr }}<br/>
+{{ order.bill_city }}<br/>
+{{ order.bill_state }}<br/>
+{{ order.bill_postal_code }}<br/>
+{{ order.bill_country }}<br/>
+
+{% if order.is_shippable %}
+<h4>{% trans "Shipping Address" %}</h4>
+{{ order.full_ship_street|linebreaksbr }}<br/>
+{{ order.ship_city }}<br/>
+{{ order.ship_state }}<br/>
+{{ order.ship_postal_code }}<br/>
+{{ order.ship_country }}<br/>
+{% endif %}
+
+{% if order.shipping_method %}
+<h4>{% trans "Shipping Method" %}</h4>
+{{ order.shipping_description }}<br/>
+{{ order.shipping_method }}<br/>
+{% if default_view_tax %}
+{{ order.shipping_with_tax|currency }}
+{% else %}
+{{ order.shipping_sub_total|currency }}
+{% endif %}<br/>
+{% endif %}
+
+<h4>{% trans "Total" %}</h4>
+{% trans "Subtotal" %} = {% if default_view_tax %}
+{{ order.sub_total_with_tax|currency }}
+{% else %}
+{{ order.sub_total|currency }}
+{% endif %}<br/>
+{% if order.discount %}
+    {% trans "Discount" %} - {{order.item_discount|currency}}<br/>
+{% endif %}
+{% if order.shipping_discount %}
+{% trans "Base Shipping" %} + {{order.shipping_cost|currency}}<br/>
+{% trans "Shipping Discount" %} - {{order.shipping_discount|currency}}<br/>
+{% if order.shipping_tax and default_view_tax %}{% trans "Shipping (incl. Tax)" %}{{ order.shipping_with_tax|currency}}{% endif %}
+{% endif %}
+{% trans "Shipping" %} + {% if default_view_tax %}{{ order.shipping_with_tax|currency }}{% else %}{{order.shipping_sub_total|currency}}
+{% endif %}<br/>
+{% if order.tax %}
+    {% if default_view_tax %}
+    {% trans "Tax included" %} 
+    {% else %}
+    {% trans "Tax" %} + {% endif %}{{order.tax|currency}}<br/>
+{% endif %}
+{% trans "Total" %} = {{order.total|currency}}<br/>
+
+{% order_payment_summary order %}
+
+{% plugin_point "order_details" %}

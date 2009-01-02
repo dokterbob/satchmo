@@ -1,0 +1,32 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Selin Çuhadar <selincuhadar@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2008-06-09 18:18+0200\n"
+"Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
+"Language-Team: Turkish <selincuhadar@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: templates/productratings/_product_ratings.html:3
+#, fuzzy
+msgid "Product Reviews"
+msgstr "Ürün Görüntüleri"
+
+#: templates/productratings/_product_ratings.html:7
+msgid "Be the first to review it!"
+msgstr "İlk gören siz olun!"
+
+#: templates/productratings/_product_ratings.html:23
+msgid "Please login to review this product."
+msgstr "Bu ürünü görmek için lütfen oturum açın."
+

@@ -5,6 +5,8 @@ Satchmo Change Log
 Trunk
 -----
 
+* Module Reorganization - major branch merge.  Reorganized/refactored project directory structure.  Merged Discount into Product app.  Split locales into app-specific locales.  Moved templates into correct app directories.
+
 Version 0.8.1, December 14, 2008
 --------------------------------
  * Fix user name generator to handle unicode chars more robustly

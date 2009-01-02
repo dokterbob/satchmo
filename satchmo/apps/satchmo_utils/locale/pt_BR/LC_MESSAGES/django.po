@@ -1,0 +1,59 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"PO-Revision-Date: 2008-09-05 23:51-0300\n"
+"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Troco"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Atualmente"
+
+#: thumbnail/config.py:4
+#, fuzzy
+msgid "Thumbnail Settings"
+msgstr "Configurações de impostos"
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr "Qualidade da miniatura"
+
+#: thumbnail/config.py:10
+msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
+msgstr "Use um valor de 1 a 100 aqui, o qual vai mudar a qualidade das miniaturas JPG criadas para produtos e categorias."
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr "Renomear imagens dos produtos?"
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr "Automaticamente renomear as imagens dos produtos no upload?"
+
+#: thumbnail/widgets.py:21
+#, fuzzy
+msgid "Change:"
+msgstr "Troco"
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Entre um, somente um daqueles campos."
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr "Estes campos não podem ser os mesmos"
+

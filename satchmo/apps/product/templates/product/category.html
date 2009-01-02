@@ -1,0 +1,49 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+{% load satchmo_thumbnail satchmo_category %}
+
+{% block extra-head %}
+{% if category.meta %}
+    <meta name="description" content="{{ category.meta|escape }}">
+{% endif %}
+{% endblock %}
+
+{% block navbar %}
+    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+	{% for parent in category.parents %}<li><a href="{{ parent.get_absolute_url }}">{{ parent.translated_name }}</a></li>{% endfor %}
+	<li>{{ category.translated_name }}</li>
+{% endblock %}
+
+{% block sidebar-categories %}
+    <div id="menu_container">
+    {% category_tree category.id %}
+    </div>
+{% endblock %}
+
+{% block content %}
+<div id="product_category">
+<h3>{{ category.translated_name }}</h3>
+    {% for product in products %} 
+        {% if forloop.first %} <ul>  {% endif %}
+            <li><a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+            <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></li>
+        {% if forloop.last %} </ul> {% endif %}
+    {% endfor %}
+{% if child_categories %}
+        {% for cat in child_categories %}
+            <h4>{{cat.translated_name}}</h4>
+            {% for product in cat.active_products %}
+                {% if forloop.first %} <ul>  {% endif %}
+                <li><a href="{{ product.get_absolute_url }}">
+                <img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+                <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></li>
+                {% if forloop.last %} </ul> {% endif %}
+            {% endfor %}
+        {% endfor %}
+{% endif %}
+{% if sale %}
+{% include "product/some_discount_eligible.html" %}
+{% endif %}
+</div>
+{% endblock %}

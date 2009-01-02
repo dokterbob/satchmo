@@ -1,0 +1,422 @@
+# Spanish translation for the Satchmo project.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Christian Hoeppner <hoeppner@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 0.5-pre\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-14 00:00+0100\n"
+"PO-Revision-Date: 2007-08-06 00:00+0000\n"
+"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:9
+msgid "Africa"
+msgstr "África"
+
+#: models.py:10
+msgid "America"
+msgstr "América"
+
+#: models.py:11
+msgid "Europe"
+msgstr "Europa"
+
+#: models.py:12
+msgid "Asia"
+msgstr "Asia"
+
+#: models.py:13
+msgid "Oceania"
+msgstr "Oceanía"
+
+#: models.py:17
+msgid "Eastern Africa"
+msgstr "África del Este"
+
+#: models.py:18
+msgid "Middle Africa"
+msgstr "África Central"
+
+#: models.py:19
+msgid "Northern Africa"
+msgstr "África del Norte"
+
+#: models.py:20
+msgid "Southern Africa"
+msgstr "África del Sur"
+
+#: models.py:21
+msgid "Western Africa"
+msgstr "África del Oeste"
+
+#: models.py:22
+msgid "Caribbean"
+msgstr "Caribe"
+
+#: models.py:23
+msgid "Central America"
+msgstr "Centroamérica"
+
+#: models.py:24
+msgid "South America"
+msgstr "América del Sur"
+
+#: models.py:25
+msgid "Northern America"
+msgstr "América del Norte"
+
+#: models.py:26
+msgid "Central Asia"
+msgstr "Asia Central"
+
+#: models.py:27
+msgid "Eastern Asia"
+msgstr "Asia del Este"
+
+#: models.py:28
+msgid "Southern Asia"
+msgstr "Asia del Sur"
+
+#: models.py:29
+msgid "South-Eastern Asia"
+msgstr "Asia del Sur-Este"
+
+#: models.py:30
+msgid "Western Asia"
+msgstr "Asia del Oeste"
+
+#: models.py:31
+msgid "Eastern Europe"
+msgstr "Europa del Este"
+
+#: models.py:32
+msgid "Northern Europe"
+msgstr "Europa del Norte"
+
+#: models.py:33
+msgid "Southern Europe"
+msgstr "Europa del Sur"
+
+#: models.py:34
+msgid "Western Europe"
+msgstr "Europa del Oeste"
+
+#: models.py:35
+msgid "Australia and New Zealand"
+msgstr "Australia y Nueva-Zelanda"
+
+#: models.py:36
+msgid "Melanesia"
+msgstr "Melanesia"
+
+#: models.py:37
+msgid "Micronesia"
+msgstr "Micronesia"
+
+#: models.py:38
+msgid "Polynesia"
+msgstr "Polinesia"
+
+#: models.py:42
+msgid "Another"
+msgstr "Otro"
+
+#: models.py:43
+msgid "Island"
+msgstr "Isla"
+
+#: models.py:44
+msgid "Arrondissement"
+msgstr "Asentamiento"
+
+#: models.py:45
+msgid "Atoll"
+msgstr "Arrecife"
+
+#: models.py:46
+msgid "Autonomous island"
+msgstr "Isla Autónoma"
+
+#: models.py:47
+msgid "Canton"
+msgstr "Cantón"
+
+#: models.py:48
+msgid "Commune"
+msgstr "Comunidad"
+
+#: models.py:49
+msgid "County"
+msgstr "País"
+
+#: models.py:50
+msgid "Department"
+msgstr "Departamento"
+
+#: models.py:51
+msgid "Dependency"
+msgstr "Dependencia"
+
+#: models.py:52
+msgid "District"
+msgstr "Distrito"
+
+#: models.py:53
+msgid "Division"
+msgstr "División"
+
+#: models.py:54
+msgid "Emirate"
+msgstr "Emirato"
+
+#: models.py:55
+msgid "Governorate"
+msgstr ""
+
+#: models.py:56
+msgid "Island council"
+msgstr ""
+
+#: models.py:57
+msgid "Island group"
+msgstr "Archipiélago"
+
+#: models.py:58
+msgid "Island region"
+msgstr "Región Insular"
+
+#: models.py:59
+msgid "Kingdom"
+msgstr "Reino"
+
+#: models.py:60
+msgid "Municipality"
+msgstr "Municipio"
+
+#: models.py:61
+msgid "Parish"
+msgstr "Parroquia"
+
+#: models.py:62
+msgid "Prefecture"
+msgstr "Prefectura"
+
+#: models.py:63
+msgid "Province"
+msgstr "Provincia"
+
+#: models.py:64
+msgid "Region"
+msgstr "Región"
+
+#: models.py:65
+msgid "Republic"
+msgstr "República"
+
+#: models.py:66
+msgid "Sheading"
+msgstr ""
+
+#: models.py:67
+msgid "State"
+msgstr "Estado"
+
+#: models.py:68
+msgid "Subdivision"
+msgstr ""
+
+#: models.py:69
+msgid "Subject"
+msgstr "Sujeto"
+
+#: models.py:70
+msgid "Territory"
+msgstr "Territorio"
+
+#: models.py:74
+msgid "official"
+msgstr "oficial"
+
+#: models.py:75
+msgid "national"
+msgstr "nacional"
+
+#: models.py:76
+msgid "regional"
+msgstr "regional"
+
+#: models.py:77
+msgid "de facto"
+msgstr "de facto"
+
+#: models.py:78
+msgid "de jure"
+msgstr ""
+
+#: models.py:79
+msgid "legislative"
+msgstr "legislativo"
+
+#: models.py:80
+msgid "business"
+msgstr "negocio"
+
+#: models.py:90
+msgid "language name"
+msgstr "Nombre de la lengua"
+
+#: models.py:92
+#: models.py:120
+msgid "alpha-3 ISO code"
+msgstr "Código ISO alfa-3"
+
+#: models.py:94
+#: models.py:122
+msgid "alpha-2 ISO code"
+msgstr "Código ISO alfa-2"
+
+#: models.py:95
+msgid "language synonym"
+msgstr ""
+
+#: models.py:96
+#: models.py:129
+msgid "display"
+msgstr "Mostrar"
+
+#: models.py:97
+msgid "Designates whether the language is shown."
+msgstr "Determina si la lengua será mostrada"
+
+#: models.py:100
+msgid "language"
+msgstr "lengua"
+
+#: models.py:101
+msgid "languages"
+msgstr "lenguas"
+
+#: models.py:118
+msgid "country name"
+msgstr "nombre del país"
+
+#: models.py:124
+msgid "geographical region"
+msgstr "región geográfica"
+
+#: models.py:126
+msgid "territory of"
+msgstr "territorio de"
+
+#: models.py:127
+msgid "administrative area"
+msgstr "zona administrativa"
+
+#: models.py:130
+msgid "Designates whether the country is shown."
+msgstr "Determina si el país será mostrado."
+
+#: models.py:133
+msgid "country"
+msgstr "país"
+
+#: models.py:134
+msgid "countries"
+msgstr "paises"
+
+#: models.py:163
+msgid "language type"
+msgstr "tipo de idioma"
+
+#: models.py:165
+msgid "identifier"
+msgstr "identificador"
+
+#: models.py:169
+msgid "country & language"
+msgstr "país e idioma"
+
+#: models.py:170
+msgid "countries & languages"
+msgstr "paises e idiomas"
+
+#: models.py:191
+msgid "name identifier"
+msgstr "nombre del identificador"
+
+#: models.py:193
+msgid "area name"
+msgstr "nombre de la zona"
+
+#: models.py:194
+msgid "area alternate name"
+msgstr "nombre alternativo de la zona"
+
+#: models.py:195
+msgid "postal abbreviation"
+msgstr "abreviación postal"
+
+#: models.py:196
+msgid "regional administrative area"
+msgstr "zona administrativa regional"
+
+#: models.py:200
+msgid "area"
+msgstr "zona"
+
+#: models.py:201
+msgid "areas"
+msgstr "zonas"
+
+#: models.py:220
+#: models.py:224
+msgid "time zone"
+msgstr "zona horaria"
+
+#: models.py:221
+msgid "comment"
+msgstr "comentario"
+
+#: models.py:225
+msgid "time zones"
+msgstr "zonas horarias"
+
+#: models.py:240
+msgid "country code"
+msgstr "identificativo del país"
+
+#: models.py:241
+msgid "length of area code"
+msgstr "longitud del código de área"
+
+#: models.py:242
+msgid "length of subscriber number (SN)"
+msgstr "longitud del número de abonado"
+
+#: models.py:244
+msgid "length of area code and SN"
+msgstr "longitud del código de área y número de abonado"
+
+#: models.py:246
+msgid "national prefix"
+msgstr "prefijo nacional"
+
+#: models.py:247
+msgid "international prefix"
+msgstr "prefijo internacional"
+
+#: models.py:250
+msgid "phone"
+msgstr "teléfono"
+
+#: models.py:251
+msgid "phones"
+msgstr "teléfonos"
+

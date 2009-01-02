@@ -1,0 +1,374 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: modules/tiered/models.py:211
+#: modules/tieredquantity/models.py:205
+msgid "Description"
+msgstr "תיאור"
+
+#: modules/tiered/models.py:95
+#: modules/tieredquantity/models.py:89
+msgid "Key"
+msgstr "מפתח"
+
+#: modules/tiered/models.py:97
+#: modules/tieredquantity/models.py:91
+msgid "Active"
+msgstr "פעיל"
+
+#: modules/fedex/config.py:76
+#: modules/ups/config.py:81
+msgid "Submit to URL"
+msgstr "שלח לכתובת"
+
+#: modules/tiered/models.py:96
+#: modules/tieredquantity/models.py:90
+msgid "Ordering"
+msgstr "סידור"
+
+#: modules/tiered/models.py:209
+#: modules/tieredquantity/models.py:203
+msgid "language"
+msgstr "שפה"
+
+#: modules/tiered/models.py:221
+#: modules/tieredquantity/models.py:218
+#, fuzzy
+msgid "Expires"
+msgstr "יצוא"
+
+#: config.py:6
+msgid "Shipping Settings"
+msgstr "הגדרות משלוח"
+
+#: config.py:10
+msgid "Active shipping modules"
+msgstr "אופני משלוח פעילים"
+
+#: config.py:11
+msgid ""
+"Select the active shipping modules, save and reload to set any module-"
+"specific shipping settings."
+msgstr ""
+"בחר באופני משלוח פעילים, שמור והטען מחדש על מנת לקבוע הגדרות מיוחדות לאופן "
+"משלוח"
+
+#: config.py:13
+msgid "Per piece"
+msgstr "לכל יחידה"
+
+#: modules/dummy/shipper.py:32
+msgid "Dummy Flat Rate Shipping"
+msgstr "משלוח דמה במחיר בסיס"
+
+#: modules/dummy/shipper.py:45
+msgid "US Mail"
+msgstr "דואר ארה\"ב"
+
+#: modules/dummy/shipper.py:51
+msgid "3 - 4 business days"
+msgstr "3-4 ימי עסקים"
+
+#: modules/fedex/config.py:10
+#, fuzzy
+msgid "FedEx Shipping Settings"
+msgstr "הגדרות משלוח"
+
+#: modules/fedex/config.py:20
+msgid "FedEx Meter Number"
+msgstr ""
+
+#: modules/fedex/config.py:21
+msgid "Meter Number provided by FedEx."
+msgstr ""
+
+#: modules/fedex/config.py:26
+msgid "FedEx Account Number"
+msgstr ""
+
+#: modules/fedex/config.py:27
+msgid "FedEx Account Number."
+msgstr ""
+
+#: modules/fedex/config.py:32
+msgid "FedEx Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/fedex/config.py:56
+msgid "Type of container/package used to ship product."
+msgstr "סוג המיכל או האריזה בתוכם יישלח המוצר. "
+
+#: modules/fedex/config.py:70
+msgid "Access production FedEx server"
+msgstr ""
+
+#: modules/fedex/config.py:71
+#: modules/ups/config.py:76
+msgid "Use this when your store is in production."
+msgstr "השתמש בזה כאשר החנות שלך פעילה במצב אמת. "
+
+#: modules/fedex/config.py:77
+#: modules/ups/config.py:82
+msgid "Address to submit live transactions."
+msgstr "כתובת למשלוח עסקאות בזמן אמת."
+
+#: modules/fedex/config.py:82
+#: modules/ups/config.py:87
+msgid "Submit to TestURL"
+msgstr "נסיוני URL שלח אל"
+
+#: modules/fedex/config.py:83
+#: modules/ups/config.py:88
+msgid "Address to submit test transactions."
+msgstr "כתובת למשלוח עסקאות נסיון."
+
+#: modules/fedex/config.py:88
+msgid "Single Box?"
+msgstr "קופסה אחת?"
+
+#: modules/fedex/config.py:89
+msgid ""
+"Use just one box and ship by weight?  If no then every item will be sent in "
+"its own box."
+msgstr "השתמש רק בקופסה אחת ושלח לפי משקל? אם לא אז כל פריט ישלח בקופסה נפרדת."
+
+#: modules/fedex/config.py:94
+#: modules/ups/config.py:93
+msgid "Verbose logs"
+msgstr "לוג מילולי"
+
+#: modules/fedex/config.py:95
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up FedEx."
+msgstr ""
+
+#: modules/fedex/shipper.py:69
+#, python-format
+msgid "FedEx - %s"
+msgstr ""
+
+#: modules/fedex/shipper.py:85
+msgid "FedEx"
+msgstr ""
+
+#: modules/fedex/shipper.py:94
+#: modules/ups/shipper.py:81
+#, python-format
+msgid "%s business days"
+msgstr "ימי עבודה %s"
+
+#: modules/fedex/shipper.py:96
+#: modules/ups/shipper.py:83
+#, python-format
+msgid "%s business day"
+msgstr "יום עבודה %s"
+
+#: modules/fedex/shipper.py:150
+#: modules/ups/shipper.py:113
+msgid "3 - 4"
+msgstr "3 - 4"
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "מחיר בסיס"
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "משלוח בדמי בסיס"
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "שירות משלוח בדמי בסיס"
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr "שירות משלוח בשימוש עם משלוח בדמי בסיס"
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr "ימי משלוח בסיס"
+
+#: modules/flat/shipper.py:27
+msgid "Flat Rate Shipping"
+msgstr "משלוח בדמי בסיס"
+
+#: modules/no/shipper.py:26
+#: modules/no/shipper.py:38
+msgid "No Shipping"
+msgstr "ללא משלוח"
+
+#: modules/no/shipper.py:44
+msgid "immediately"
+msgstr "מיד"
+
+#: modules/per/config.py:14
+msgid "Per item price"
+msgstr "מחיר לכל פריט"
+
+#: modules/per/config.py:21
+msgid "Per Item Shipping Service"
+msgstr "שירות משלוח לכל פריט"
+
+#: modules/per/config.py:22
+msgid "Shipping service used with per item shipping"
+msgstr "שירות משלוח בשימוש עם משלוח לכל פריט"
+
+#: modules/per/config.py:29
+msgid "Per Item Delivery Days"
+msgstr "ימי משלוח לכל פריט"
+
+#: modules/per/shipper.py:27
+msgid "Per Item shipping"
+msgstr "משלוח לכל פריט"
+
+#: modules/tiered/config.py:5
+msgid "Tiered Shipping"
+msgstr "משלוח מחולק"
+
+#: modules/tiered/models.py:210
+#: modules/tieredquantity/models.py:204
+msgid "Carrier"
+msgstr "חברת משלוח"
+
+#: modules/tiered/models.py:212
+#: modules/tieredquantity/models.py:206
+msgid "Method"
+msgstr "שיטה"
+
+#: modules/tiered/models.py:212
+#: modules/tieredquantity/models.py:206
+msgid "i.e. US Mail"
+msgstr "כלומר, דואר ארה\"ב"
+
+#: modules/tiered/models.py:213
+#: modules/tieredquantity/models.py:207
+msgid "Delivery Days"
+msgstr "ימי משלוח"
+
+#: modules/tiered/models.py:217
+msgid "Min Price"
+msgstr "מחיר מינימום"
+
+#: modules/tiered/models.py:218
+msgid "The minumum price for this tier to apply"
+msgstr "לגלגל לגלגלג"
+
+#: modules/tiered/models.py:220
+msgid "Shipping Price"
+msgstr "מחיר משלוח"
+
+#: modules/tieredquantity/config.py:5
+#, fuzzy
+msgid "Tiered Quantity"
+msgstr "כמות דמי עלות"
+
+#: modules/tieredquantity/models.py:212
+#, fuzzy
+msgid "Min Quantity"
+msgstr "כמות"
+
+#: modules/tieredquantity/models.py:213
+#, fuzzy
+msgid "Minimum qty in order for this to apply?"
+msgstr "לגלגל לגלגלג"
+
+#: modules/tieredquantity/models.py:214
+#, fuzzy
+msgid "Handling Price"
+msgstr "מחיר מינימום"
+
+#: modules/tieredquantity/models.py:216
+#, fuzzy
+msgid "Shipping Per Item"
+msgstr "מחיר משלוח"
+
+#: modules/ups/config.py:8
+msgid "UPS Shipping Settings"
+msgstr "הגדרות משלוח של UPS"
+
+#: modules/ups/config.py:17
+msgid "UPS XML Access Key"
+msgstr "מפתח גישה XML של UPS"
+
+#: modules/ups/config.py:18
+msgid "XML Access Key Provided by UPS"
+msgstr "מפתח גישה XML מסופק על ידי UPS"
+
+#: modules/ups/config.py:23
+msgid "UPS User ID"
+msgstr "זיהוי משתמש של UPS"
+
+#: modules/ups/config.py:24
+msgid "User ID provided by UPS site."
+msgstr "זיהוי משתמש מטעם האתר של UPS"
+
+#: modules/ups/config.py:29
+msgid "UPS Account Number"
+msgstr "מספר חשבון UPS"
+
+#: modules/ups/config.py:30
+msgid "UPS Account Number."
+msgstr "מספר חשבון UPS."
+
+#: modules/ups/config.py:35
+msgid "UPS User Password"
+msgstr "ססמת משתמש UPS"
+
+#: modules/ups/config.py:36
+msgid "User password provided by UPS site."
+msgstr "ססמת משתמש המסופקת על ידי אתר UPS."
+
+#: modules/ups/config.py:41
+msgid "UPS Shipping Choices Available to customers."
+msgstr "אפשרויות משלוח באמצעות UPS הזמינים ללקוחות."
+
+#: modules/ups/config.py:54
+msgid "Type of container used to ship product."
+msgstr "סוג המיכל בתוכו יישלח המוצר. "
+
+#: modules/ups/config.py:64
+msgid "UPS Pickup option."
+msgstr "אפשרות איסוף של UPS."
+
+#: modules/ups/config.py:75
+msgid "Access production UPS server"
+msgstr "הפקת גישה לשרת UPS"
+
+#: modules/ups/config.py:94
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up UPS."
+msgstr ""
+"שלח את ה- REQUEST וה- RESPONSE ללוג כדי לעזור באיתור תקלות בזמן כיוון UPS."
+
+#: modules/ups/shipper.py:61
+#, python-format
+msgid "UPS - %s"
+msgstr "UPS - %s"
+
+#: modules/ups/shipper.py:74
+msgid "UPS"
+msgstr "UPS"
+
+#: templates/shipping/shipping_options.html:6
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr "נשלח באמצעות %(method)s ויגיע בערך תוך %(expected_delivery)s."
+

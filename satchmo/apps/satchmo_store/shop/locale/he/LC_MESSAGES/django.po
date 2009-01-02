@@ -1,0 +1,1242 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: views/contact.py:24
+#: templates/shop/checkout/form.html:92
+msgid "Email address"
+msgstr "כתובת אימייל"
+
+#: templates/shop/checkout/form.html:75
+msgid "Password"
+msgstr "סיסמה"
+
+#: templates/shop/checkout/form.html:95
+msgid "First name"
+msgstr "שם פרטי"
+
+#: templates/shop/checkout/form.html:98
+msgid "Last name"
+msgstr "שם משפחה"
+
+#: templates/shop/templates/404.html:5
+#: templates/shop/500.html:5
+#: templates/shop/cart.html:9
+#: templates/shop/index.html:7
+#: templates/shop/contact_form.html:5
+#: templates/shop/download.html:5
+#: templates/shop/search.html:6
+#: templates/shop/404.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/admin/inventory_form.html:66
+#: templates/shop/checkout/balance_remaining.html:6
+#: templates/shop/checkout/base_confirm.html:7
+#: templates/shop/checkout/base_pay_ship.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/empty_cart.html:5
+#: templates/shop/checkout/form.html:46
+#: templates/shop/checkout/success.html:7
+#: templates/shop/checkout/cod/confirm.html:9
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
+msgid "Home"
+msgstr "בית"
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Documentation"
+msgstr "תיעוד"
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Change password"
+msgstr "שינוי ססמא"
+
+#: templates/base.html:55
+#: templates/shop/admin/inventory_form.html:63
+msgid "Log out"
+msgstr "יציאה "
+
+#: templates/shop/admin/inventory_form.html:74
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "אנא תקן את השגיאה למטה."
+msgstr[1] ""
+
+#: templates/shop/admin/index.html:122
+msgid "Edit Site Settings"
+msgstr "ערוך הגדרות אתר"
+
+#: models.py:58
+#: templates/shop/pdf/invoice.rml:112
+#: templates/shop/pdf/packing-slip.rml:98
+msgid "Email"
+msgstr "אימייל"
+
+#: models.py:223
+msgid "Customer"
+msgstr "לקוח"
+
+#: views/contact.py:23
+#: templates/shop/admin/inventory_form.html:82
+#: templates/shop/checkout/form.html:74
+msgid "Name"
+msgstr "שם"
+
+#: models.py:222
+msgid "Creation Date"
+msgstr "תאריך יצירה"
+
+#: templates/shop/pdf/invoice.rml:111
+#: templates/shop/pdf/packing-slip.rml:97
+msgid "Phone"
+msgstr "טלפון"
+
+#: models.py:57
+#: models.py:221
+#: templates/shop/pdf/invoice.rml:130
+#: templates/shop/pdf/packing-slip.rml:116
+msgid "Description"
+msgstr "תיאור"
+
+#: models.py:65
+msgid "Phone Number"
+msgstr "מספר טלפון"
+
+#: models.py:59
+#: models.py:60
+#: templates/shop/checkout/form.html:106
+#: templates/shop/checkout/form.html.py:109
+#: templates/shop/checkout/form.html:138
+#: templates/shop/checkout/form.html.py:141
+msgid "Street"
+msgstr "רחוב"
+
+#: models.py:62
+msgid "State"
+msgstr "מחוז"
+
+#: models.py:61
+#: templates/shop/checkout/form.html:112
+#: templates/shop/checkout/form.html.py:144
+msgid "City"
+msgstr "עיר"
+
+#: models.py:63
+msgid "Zip Code"
+msgstr "מיקוד"
+
+#: models.py:64
+#: templates/shop/checkout/form.html:128
+#: templates/shop/checkout/form.html.py:160
+msgid "Country"
+msgstr "מדינה"
+
+#: templates/shop/pdf/invoice.rml:154
+msgid "Subtotal"
+msgstr "סיכום ביניים"
+
+#: templates/shop/cart.html:25
+#: templates/shop/order_history.html:23
+#: templates/shop/email/order_complete.txt:45
+#: templates/shop/email/order_complete.txt:54
+#: templates/shop/pdf/invoice.rml:134
+#: templates/shop/pdf/invoice.rml.py:177
+msgid "Total"
+msgstr "סה\"כ"
+
+#: templates/shop/email/order_complete.txt:38
+msgid "Shipping Method"
+msgstr "שיטת משלוח"
+
+#: templates/shop/pdf/invoice.rml:169
+msgid "Shipping Discount"
+msgstr "הנחת משלוח"
+
+#: templates/shop/email/order_complete.txt:52
+#: templates/shop/pdf/invoice.rml:174
+msgid "Tax"
+msgstr "מס"
+
+#: templates/shop/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "תאריך"
+
+#: templates/shop/order_history.html:20
+msgid "Status"
+msgstr "סטטוס"
+
+#: templates/shop/email/order_complete.txt:28
+#: templates/shop/pdf/invoice.rml:25
+#: templates/shop/pdf/packing-slip.rml:25
+msgid "Shipping Address"
+msgstr "כתובת משלוח"
+
+#: templates/shop/pdf/invoice.rml:24
+#: templates/shop/pdf/packing-slip.rml:24
+msgid "Billing Address"
+msgstr "כתובת חיוב"
+
+#: models.py:320
+msgid "Product"
+msgstr "מוצר"
+
+#: models.py:321
+#: templates/shop/cart.html:23
+#: templates/shop/pdf/invoice.rml:131
+#: templates/shop/pdf/packing-slip.rml:117
+msgid "Quantity"
+msgstr "כמות"
+
+#: models.py:396
+msgid "Sort Order"
+msgstr "סדר מיון"
+
+#: models.py:397
+msgid "The display order for this group."
+msgstr "סדר הצגה עבור קבוצה זו."
+
+#: templates/shop/admin/inventory_form.html:85
+msgid "Active"
+msgstr "פעיל"
+
+#: templates/shop/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "מספר עסקה"
+
+#: templates/shop/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "תשלומי הזמנה"
+
+#: templates/shop/email/order_complete.txt:48
+#: templates/shop/pdf/invoice.rml:133
+#: templates/shop/pdf/invoice.rml.py:159
+msgid "Discount"
+msgstr "הנחה"
+
+#: templates/shop/checkout/base_pay_ship.html:32
+msgid "Discounts"
+msgstr "הנחות"
+
+#: models.py:55
+msgid "Site"
+msgstr "אתר"
+
+#: views/cart.py:189
+msgid "Success"
+msgstr "הצלחה"
+
+#: templates/shop/checkout/balance_remaining.html:7
+#: templates/shop/checkout/base_confirm.html:8
+#: templates/shop/checkout/base_confirm.html:12
+#: templates/shop/checkout/base_pay_ship.html:6
+#: templates/shop/checkout/base_pay_ship.html:10
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/empty_cart.html:6
+#: templates/shop/checkout/empty_cart.html:10
+#: templates/shop/checkout/form.html:47
+#: templates/shop/checkout/form.html.py:51
+#: templates/shop/checkout/success.html:8
+#: templates/shop/checkout/cod/confirm.html:10
+msgid "Checkout"
+msgstr "לקופה"
+
+#: templates/shop/admin/_orderpayment_list.html:8
+#: templates/shop/checkout/base_confirm.html:16
+#: templates/shop/checkout/base_pay_ship.html:14
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/form.html:55
+#: templates/shop/checkout/cod/confirm.html:14
+#: templates/shop/checkout/google/confirm.html:6
+#: templates/shop/checkout/google/confirm.html:9
+#: templates/shop/checkout/paypal/confirm.html:6
+#: templates/shop/checkout/paypal/confirm.html:9
+#: templates/shop/email/order_complete.txt:56
+msgid "Payment"
+msgstr "תשלום"
+
+#: templates/shop/checkout/pay_ship.html:6
+msgid "Payment Information"
+msgstr "פרטי תשלום"
+
+#: views/contact.py:25
+msgid "Subject"
+msgstr "נושא"
+
+#: templates/shop/checkout/balance_remaining.html:23
+#: templates/shop/checkout/form.html:88
+msgid "Payment method"
+msgstr "צורת תשלום"
+
+#: views/cart.py:119
+#: views/cart.py:161
+msgid "The product you have requested does not exist."
+msgstr "המוצר שביקשת אינו קיים. "
+
+#: templates/shop/admin/inventory_form.html:81
+msgid "Slug"
+msgstr "שורת סדר"
+
+#: templates/shop/search.html:15
+msgid "Categories"
+msgstr "קטגוריות"
+
+#: templates/shop/search.html:24
+msgid "Products"
+msgstr "מוצרים"
+
+#: templates/shop/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "שיטה"
+
+#: config.py:22
+msgid "Default currency symbol"
+msgstr "סימול ברירת מחדל של מטבע"
+
+#: config.py:23
+msgid "Use a '_' character to force a space."
+msgstr "השתמש בתו '_' על מנת ליצור רווח. "
+
+#: config.py:29
+msgid "Enable product ratings"
+msgstr "אפשר הערכת מוצר"
+
+#: config.py:35
+msgid "Enable random display of featured products on home page"
+msgstr "אפשר הצגה אקראית של מוצרים קיימים על דף הבית"
+
+#: config.py:41
+#, fuzzy
+msgid "Total number of featured items to display"
+msgstr "מספר המוצרים הקיימים להצגה"
+
+#: config.py:47
+#, fuzzy
+msgid "Number of featured items to display on each page"
+msgstr "מספר המוצרים הקיימים להצגה"
+
+#: config.py:53
+msgid "Measurement system to use in store"
+msgstr "שיטת המידה בשימוש בחנות"
+
+#: config.py:54
+msgid "Metric"
+msgstr "מטרית"
+
+#: config.py:55
+msgid "Imperial"
+msgstr "בריטית"
+
+#: config.py:61
+msgid "URI to the logo for the store"
+msgstr "URI ללוגו של החנות"
+
+#: config.py:69
+#, fuzzy
+msgid "Google Settings"
+msgstr "תצורה בסיסית"
+
+#: config.py:74
+msgid "Enable Analytics"
+msgstr "אפשר אנליטיקה"
+
+#: config.py:81
+msgid "Use Urchin?"
+msgstr "השתמש ב- Urchin?"
+
+#: config.py:82
+msgid ""
+"Use the old-style, urchin javascript?.  This is not needed unless your "
+"analytics account hasn't been updated yet."
+msgstr ""
+"בסגנון הישן? אלא אם כן חשבון האנליטיקה שלך עדיין לא עודכן. Urchin javascript "
+"השתמש ב"
+
+#: config.py:90
+msgid "Analytics Code"
+msgstr "קוד אנליטיקה"
+
+#: config.py:98
+msgid "Enable Conversion Tracking"
+msgstr "אפשר מעקב אחרי המרה"
+
+#: config.py:105
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "זיהוי )ex: UA-abcd-1) Adwords "
+
+#: config.py:110
+#, fuzzy
+msgid "Language Settings"
+msgstr "תצורה בסיסית"
+
+#: config.py:115
+msgid "Allow user to choose from available translations"
+msgstr "אפשר למשתמש לבחור מבין תרגומים זמינים"
+
+#: config.py:123
+msgid "Available languages"
+msgstr "שפות זמינות"
+
+#: config.py:124
+msgid "Languages that have valid translations"
+msgstr "שפות עם תרגומים ברי-תוקף"
+
+#: models.py:35
+msgid "Test Store"
+msgstr "חנות נסיון"
+
+#: models.py:56
+msgid "Store Name"
+msgstr "שם חנות"
+
+#: models.py:66
+msgid "Purchase item not in stock?"
+msgstr "מוצר הרכש אינו מצוי במלאי?"
+
+#: models.py:67
+msgid "Only sell to in-country customers?"
+msgstr "למכירה רק ללקוחות מתוך המדינה?"
+
+#: models.py:70
+msgid "Default country for customers"
+msgstr "ברירת מחדל למדינה בה נמצאים הלקוחות"
+
+#: models.py:71
+msgid "Shipping Countries"
+msgstr "מדינות אליהן יש משלוח"
+
+#: models.py:105
+msgid "Store Configuration"
+msgstr "תצורת חנות"
+
+#: models.py:106
+msgid "Store Configurations"
+msgstr "תצורות חנות"
+
+#: models.py:312
+msgid "Shopping Cart"
+msgstr "עגלת קניות"
+
+#: models.py:313
+msgid "Shopping Carts"
+msgstr "עגלות קניות"
+
+#: models.py:319
+#: templates/base.html:61
+#: templates/shop/cart.html:10
+msgid "Cart"
+msgstr "עגלה"
+
+#: models.py:385
+msgid "Cart Item"
+msgstr "פריט בעגלה"
+
+#: models.py:386
+msgid "Cart Items"
+msgstr "פריטים בעגלה"
+
+#: models.py:393
+msgid "detail"
+msgstr "פרט"
+
+#: models.py:394
+msgid "name"
+msgstr "שם"
+
+#: models.py:395
+msgid "Item Detail Price Change"
+msgstr "שינוי פרט בתמחור פריט"
+
+#: models.py:401
+msgid "Cart Item Detail"
+msgstr "פרט על פריט בעגלה"
+
+#: models.py:402
+msgid "Cart Item Details"
+msgstr "פרטים על פריט בעגלה"
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "נא מלא רק אחד מהשדות הללו."
+
+#: utils/validators.py:15
+msgid "These fields can not be the same."
+msgstr "השדות לא יכולים להיות זהים."
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "הנהלת אתר"
+
+#: views/cart.py:43
+msgid "No cart to update."
+msgstr "אין עגלה לעדכן."
+
+#: views/cart.py:51
+msgid "Bad quantity."
+msgstr "כמות שגויה."
+
+#: views/cart.py:58
+msgid "Bad item number."
+msgstr "מספר פריט שגוי."
+
+#: views/cart.py:63
+msgid "No such item in your cart."
+msgstr "אין פריט כזה בעגלה שלך."
+
+#: views/cart.py:73
+#: views/cart.py:134
+#: views/cart.py:192
+#, python-format
+msgid "Not enough items of '%s' in stock."
+msgstr "אין מספיק פריטים של '%s' במלאי."
+
+#: views/cart.py:115
+#: views/cart.py:165
+msgid "That product is not available at the moment."
+msgstr "המוצר לא זמין כרגע."
+
+#: views/cart.py:125
+msgid "Please enter a whole number."
+msgstr "נא הכנס מספר שלם."
+
+#: views/cart.py:129
+msgid "Please enter a positive number."
+msgstr "נא הכנס מספר חיובי."
+
+#: views/cart.py:149
+#, fuzzy
+msgid "No product requested"
+msgstr "אין מוצרים."
+
+#: views/cart.py:179
+msgid "Choose a quantity."
+msgstr "בחר כמות."
+
+#: views/cart.py:182
+msgid "Choose a whole number."
+msgstr "בחר מספר שלם."
+
+#: views/cart.py:191
+#: views/cart.py:194
+#: templates/shop/templates/404.html:10
+#: templates/shop/500.html:10
+#: templates/shop/404.html:10
+msgid "Error"
+msgstr "שגיאה"
+
+#: views/cart.py:212
+msgid "You must accept the terms and conditions."
+msgstr "עליך לקבל את התנאים."
+
+#: views/cart.py:228
+#: views/cart.py:262
+msgid "Internal error: please submit as a POST"
+msgstr "שגיאה פנימית: נא הגיש בצורת POST "
+
+#: views/category.py:16
+msgid "The category you have requested does not exist."
+msgstr "הקטגוריה שביקשת אינה קיימת."
+
+#: views/comments.py:18
+#: views/comments.py:29
+msgid "One or more of the required fields wasn't submitted"
+msgstr "אחד או יותר מהשדות הנדרשים לא מולא."
+
+#: views/comments.py:36
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "סוג תוכן שגוי: %s"
+
+#: views/contact.py:18
+msgid "General question"
+msgstr "שאלה כללית"
+
+#: views/contact.py:19
+msgid "Order problem"
+msgstr "בעיה בהזמנה"
+
+#: views/contact.py:26
+msgid "Inquiry"
+msgstr "שאילתא"
+
+#: views/contact.py:27
+msgid "Contents"
+msgstr "תוכן"
+
+#: views/download.py:19
+#: views/download.py:24
+msgid "The download key is invalid."
+msgstr "מפתח ההורדה אינו תקף."
+
+#: views/utils.py:71
+msgid "Card type does not match card number."
+msgstr "סוג הכרטיס אינו מתאים למספר הכרטיס."
+
+#: views/utils.py:73
+msgid "Invalid credit card number."
+msgstr "מספר כרטיס אינו תקף."
+
+#: templates/shop/admin/inventory_form.html:83
+msgid "Inventory"
+msgstr "מלאי"
+
+#: templates/shop/email/order_complete.txt:50
+msgid "Shipping"
+msgstr "משלוח"
+
+#: templates/shop/order_history.html:21
+#: templates/shop/pdf/invoice.rml:15
+#: templates/shop/pdf/invoice.rml.py:57
+#: templates/shop/pdf/packing-slip.rml:15
+#: templates/shop/pdf/packing-slip.rml.py:57
+msgid "Date"
+msgstr "תאריך"
+
+#: templates/shop/templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "לא נמצא הדף אותו חיפשת."
+
+#: templates/shop/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "היתה שגיאה בעגלה. נשלחה הודעה להנהלה."
+
+#: templates/base.html:28
+#: templates/base.html.py:31
+msgid "Search"
+msgstr "חיפוש"
+
+#: templates/base.html:36
+msgid "Shop Categories"
+msgstr "קטגוריות חנות"
+
+#: templates/base.html:45
+msgid "Quick Links"
+msgstr "קישורים מהירים"
+
+#: templates/base.html:46
+msgid "Recently Added"
+msgstr "הוספו לאחרונה"
+
+#: templates/base.html:48
+msgid "Most Popular"
+msgstr "פופלריים ביותר"
+
+#: templates/base.html:50
+msgid "Best Sellers"
+msgstr "רבי מכר"
+
+#: templates/base.html:52
+msgid "Account Information"
+msgstr "מידע על החשבון"
+
+#: templates/base.html:54
+msgid "Account Details"
+msgstr "פרטי החשבון"
+
+#: templates/base.html:57
+msgid "Log in"
+msgstr "כניסה"
+
+#: templates/base.html:67
+#: templates/shop/cart.html:69
+msgid "Check out"
+msgstr "קופה"
+
+#: templates/base.html:71
+msgid "Wishlist"
+msgstr "רשימה אישית"
+
+#: templates/base.html:74
+#: templates/shop/contact_form.html:6
+#: templates/shop/contact_thanks.html:6
+msgid "Contact Us"
+msgstr "צור קשר"
+
+#: templates/base.html:78
+msgid "Change language"
+msgstr "שינוי שפה"
+
+#: templates/base.html:84
+#: templates/shop/admin/index.html:105
+msgid "Change"
+msgstr "שינוי"
+
+#: templates/base.html:99
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr "מופעל על ידי <a href=\"http://www.satchmoproject.com\">Satchmo</a>"
+
+#: templates/shop/cart.html:19
+msgid "Your cart is empty."
+msgstr "העגלה שלך ריקה."
+
+#: templates/shop/cart.html:21
+msgid "Your Cart"
+msgstr "העגלה שלך"
+
+#: templates/shop/cart.html:24
+msgid "Item"
+msgstr "פריט"
+
+#: templates/shop/cart.html:25
+msgid "Total<br/>(incl.&nbsp;tax)"
+msgstr "סך הכל<br/>(כולל מס)"
+
+#: templates/shop/cart.html:32
+msgid "Remove"
+msgstr "הסר"
+
+#: templates/shop/cart.html:39
+msgid "update amount"
+msgstr "עדכן כמות"
+
+#: templates/shop/cart.html:50
+msgid "Base Price: "
+msgstr "מחיר בסיס:"
+
+#: templates/shop/cart.html:51
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+"המחיר מימין הוא הפקדון שלך, ישלח אליך חשבון עבור יתרת הסכום כאשר הפריט יהיה "
+"מוכן."
+
+#: templates/shop/cart.html:62
+msgid "Cart Total"
+msgstr "סך כל העגלה"
+
+#: templates/shop/index.html:11
+msgid "Welcome to the shop."
+msgstr "ברוך הבא לחנות."
+
+#: templates/shop/index.html:14
+msgid "Featured Items"
+msgstr "פריטים מוצגים"
+
+#: templates/shop/index.html:31
+#: templates/shop/index.html.py:33
+msgid "Previous"
+msgstr "הקודם"
+
+#: templates/shop/index.html:43
+#: templates/shop/index.html.py:45
+msgid "Next"
+msgstr "הבא"
+
+#: templates/shop/contact_form.html:10
+#: templates/shop/contact_thanks.html:10
+#: templates/shop/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "פרטי קשר"
+
+#: templates/shop/contact_form.html:13
+#: templates/shop/checkout/base_pay_ship.html:21
+#: templates/shop/checkout/form.html:61
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "אנא תקן את השגיאות:"
+msgstr[1] ""
+
+#: templates/shop/contact_form.html:19
+msgid "Send Email"
+msgstr "שלח דואר אלקטרוני"
+
+#: templates/shop/download.html:13
+msgid "Downloading of"
+msgstr "הורדה של"
+
+#: templates/shop/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "תתחיל לאחר הקלקת הלינק להלן:"
+
+#: templates/shop/download.html:15
+msgid ""
+"Once you click the link, the download will be counted.  If you have trouble "
+"with the download, please refresh yourbrowser and try the download again"
+msgstr ""
+"מרגע שתלחץ על הלינק, ההורדה תיחשב. אם יש בעיה בהורדה, נא עדכן את דף הדפדפן "
+"שלך ונסה שוב."
+
+#: templates/shop/search.html:12
+msgid "Nothing found"
+msgstr "לא נמצא דבר"
+
+#: templates/shop/search.html:27
+msgid "for"
+msgstr ""
+
+#: templates/shop/contact_thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "תודה שיצרת עמנו קשר."
+
+#: templates/shop/contact_thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "נשתדל לחזור אליך תוך 48 שעות."
+
+#: templates/shop/admin/_customorder_management.html:3
+#, fuzzy
+msgid "Custom Order Management"
+msgstr "הנהלת החנות"
+
+#: templates/shop/admin/_customorder_management.html:8
+msgid "Fully charged"
+msgstr "חוייב במלואו"
+
+#: templates/shop/admin/_customorder_management.html:10
+msgid "Charge remaining amount"
+msgstr "חייב עבור יתרת הסכום"
+
+#: templates/shop/admin/_customorder_management.html:13
+msgid "Product Details"
+msgstr "פרטי מוצר"
+
+#: templates/shop/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "סכום"
+
+#: templates/shop/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "אין תשלומים."
+
+#: templates/shop/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "שולם במלואו"
+
+#: templates/shop/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "מאזן ההזמנה:"
+
+#: templates/admin/base_site.html:4
+#: templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "הנהלת אתר Satchmo"
+
+#: templates/shop/admin/inventory_form.html:67
+msgid "Inventory Management"
+msgstr "ניהול מלאי"
+
+#: templates/shop/admin/inventory_form.html:84
+#: templates/shop/pdf/invoice.rml:132
+msgid "Unit Price"
+msgstr "מחיר יחידה"
+
+#: templates/shop/admin/inventory_form.html:86
+#, fuzzy
+msgid "Featured"
+msgstr "פריט מובלט"
+
+#: templates/shop/admin/inventory_form.html:112
+msgid "Helpers"
+msgstr "עוזרים"
+
+#: templates/shop/admin/inventory_form.html:113
+msgid "Mark all featured"
+msgstr "סמן את כל מה שמוצג"
+
+#: templates/shop/admin/inventory_form.html:114
+msgid "Clear all featured"
+msgstr "מחק את כל מה שמוצג"
+
+#: templates/shop/admin/inventory_form.html:115
+msgid "Disable all Products with 0 quantity."
+msgstr "חסום את כל המוצרים עם כמות 0."
+
+#: templates/shop/admin/inventory_form.html:116
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "חסום וריאציות מוצר עם כמות 0."
+
+#: templates/shop/admin/inventory_form.html:120
+msgid "No inventory items."
+msgstr "אין פריטי מלאי."
+
+#: templates/shop/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "הזמנות חדשות"
+
+#: templates/shop/admin/order_sidebar.html:8
+#: templates/shop/admin/order_sidebar.html:19
+msgid "on"
+msgstr "דלוק"
+
+#: templates/shop/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "הזמנה בטיפול"
+
+#: templates/shop/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "הצג את כל ההזמנות"
+
+#: templates/shop/admin/index.html:34
+msgid "Switch to Shop View"
+msgstr "עבור לתצוגת חנות"
+
+#: templates/shop/admin/index.html:39
+#: templates/shop/admin/index.html.py:130
+msgid "Switch to Legacy View"
+msgstr "עבור לתצוגת Legacy"
+
+#: templates/shop/admin/index.html:88
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "מודלים זמינים ביישום %(name)s"
+
+#: templates/shop/admin/index.html:89
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: templates/shop/admin/index.html:99
+msgid "Add"
+msgstr "הוסף"
+
+#: templates/shop/admin/index.html:124
+#, fuzzy
+msgid "Export Products as CSV"
+msgstr "יצוא הגדרות מוצר"
+
+#: templates/shop/admin/index.html:126
+msgid "Edit Inventory"
+msgstr "ערוך מלאי"
+
+#: templates/shop/admin/index.html:127
+msgid "Export Product Defs"
+msgstr "יצוא הגדרות מוצר"
+
+#: templates/shop/admin/index.html:128
+msgid "Product Variation Manager"
+msgstr "וריאציית מוצר"
+
+#: templates/shop/admin/index.html:129
+msgid "Cache Status"
+msgstr "מצב זכרון מטמון"
+
+#: templates/shop/checkout/balance_remaining.html:12
+msgid "Order Balance"
+msgstr "מאזן הזמנה"
+
+#: templates/shop/checkout/balance_remaining.html:17
+#, python-format
+msgid ""
+"To complete this order, you need to pay the %(orderbalance)s balance "
+"remaining on this order."
+msgstr "על מנ להשלים את ההזמנה, יש לשלם את המאזן הנותר על סך %(orderbalance)s."
+
+#: templates/shop/checkout/balance_remaining.html:22
+#: templates/shop/checkout/form.html:87
+msgid "How do you want to pay?"
+msgstr "כיצד ברצונך לשלם?"
+
+#: templates/shop/checkout/balance_remaining.html:26
+#: templates/shop/checkout/form.html:166
+msgid "Continue Checkout"
+msgstr "המשך בתשלום"
+
+#: templates/shop/checkout/base_confirm.html:15
+#: templates/shop/checkout/base_pay_ship.html:13
+#: templates/shop/checkout/form.html:54
+msgid "Ship/Bill"
+msgstr "משלוח / חשבון"
+
+#: templates/shop/checkout/base_confirm.html:17
+#: templates/shop/checkout/base_pay_ship.html:15
+#: templates/shop/checkout/form.html:56
+msgid "Confirmation"
+msgstr "אישור"
+
+#: templates/shop/checkout/base_confirm.html:22
+msgid ""
+"The following error was returned while trying to process your payment. "
+"Please correct and resubmit."
+msgstr "השגיאה להלן חזרה בעת הטיפול בהזמנתך. נא תקן ונסה שוב."
+
+#: templates/shop/checkout/base_confirm.html:25
+msgid "Please validate the following information, then submit your order."
+msgstr "נא אשר את המידע להלן, ואז שלח את ההזמנה שלך."
+
+#: templates/shop/checkout/base_confirm.html:29
+#: templates/shop/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "פריטים שהוזמנו"
+
+#: templates/shop/checkout/base_confirm.html:40
+#: templates/shop/checkout/paypal/confirm.html:65
+msgid "Purchase Items"
+msgstr "פריטי רכש"
+
+#: templates/shop/checkout/base_pay_ship.html:18
+#: templates/shop/checkout/form.html:59
+msgid ""
+"Please complete the following information in order to submit your order."
+msgstr "נא מלא את המידע להלן על מנת לשלוח את הזמנתך"
+
+#: templates/shop/checkout/base_pay_ship.html:33
+msgid "Discount code"
+msgstr "קוד הנחה"
+
+#: templates/shop/checkout/base_pay_ship.html:39
+#: templates/shop/checkout/form.html:133
+msgid "Shipping Information"
+msgstr "מידע על משלוח"
+
+#: templates/shop/checkout/base_pay_ship.html:43
+msgid "Please choose your preferred shipping method"
+msgstr "נא בחר בשיטת המשלוח המועדפת עליך"
+
+#: templates/shop/checkout/base_pay_ship.html:51
+msgid "Confirm"
+msgstr "אישור"
+
+#: templates/shop/checkout/confirm.html:6
+#: templates/shop/checkout/cod/confirm.html:6
+#, fuzzy
+msgid ""
+"The following error was returned while trying to process your card.  Please "
+"correct and resubmit"
+msgstr "השגיאה להלן חזרה בעת הטיפול בהזמנתך. נא תקן ונסה שוב."
+
+#: templates/shop/checkout/confirm.html:19
+#: templates/shop/email/order_complete.txt:61
+#, python-format
+msgid ""
+"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+"charged %(order_total)s."
+msgstr ""
+"כרטיס האשראי שלך מסוג %(credit_card_type)s המסתיים בספרות %"
+"(credit_card_number)s יחויבעל סך %(order_total)s."
+
+#: templates/shop/checkout/empty_cart.html:12
+msgid ""
+"Your cart is empty. Please add some items to your cart, then complete the "
+"checkout process."
+msgstr "העגלה שלך ריקה. נא הוסף פריטים לעגלה ואז המשך לקופה."
+
+#: templates/shop/checkout/form.html:70
+msgid ""
+"If you already have an account, you can login now to fill in most of the "
+"information below."
+msgstr ""
+"אם כבר יש לך חשבון, ניתן להכנס אליו עכשיו על מנת למלא את מרבית המידע להלן."
+
+#: templates/shop/checkout/form.html:71
+msgid "This is just a convenience, no account is required!"
+msgstr "זה רק מטעמי נוחות, אין צורך בפתיחת חשבון!"
+
+#: templates/shop/checkout/form.html:76
+msgid "Login"
+msgstr "כניסה"
+
+#: templates/shop/checkout/form.html:83
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "* יש למלא את השדות המסומנים עם "
+
+#: templates/shop/checkout/form.html:91
+msgid "Basic Information"
+msgstr "מידע בסיסי"
+
+#: templates/shop/checkout/form.html:101
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+#: templates/shop/checkout/form.html:104
+#: templates/shop/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "פרטי חיוב"
+
+#: templates/shop/checkout/form.html:120
+#: templates/shop/checkout/form.html.py:152
+msgid "State/Province"
+msgstr "מדינה / מחוז"
+
+#: templates/shop/checkout/form.html:124
+#: templates/shop/checkout/form.html.py:156
+msgid "Zipcode/Postcode"
+msgstr "מיקוד"
+
+#: templates/shop/checkout/form.html:135
+msgid "Shipping same as billing?"
+msgstr "האם כתובת המשלוח זהה לכתובת החיוב?"
+
+#: templates/shop/checkout/pay_ship.html:11
+msgid "Type of credit card"
+msgstr "סוג כרטיס אשראי"
+
+#: templates/shop/checkout/pay_ship.html:14
+msgid "Credit card number"
+msgstr "מספר כרטיס אשראי"
+
+#: templates/shop/checkout/pay_ship.html:17
+msgid "Expiration date"
+msgstr "תאריך תפוגה"
+
+#: templates/shop/checkout/pay_ship.html:20
+msgid "CCV"
+msgstr "המספר שמודפס בגב הכרטיס"
+
+#: templates/shop/checkout/success.html:13
+msgid "Thank you for your order!"
+msgstr "תודה שהזמנת אצלנו!"
+
+#: templates/shop/checkout/success.html:14
+msgid ""
+"Please print out this page as a receipt.  You will also receive an email "
+"with this information."
+msgstr "נא הדפס דף זה בתור קבלה. בנוסף, ישלח אליך דואר אלקטרוני עם המידע הזה."
+
+#: templates/shop/checkout/cod/confirm.html:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "הזמנה זו תחויב בעת הקבלה עבור %(order_total)s."
+
+#: templates/shop/checkout/google/confirm.html:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "התשלום שלך יטופל באמצעות Google checkout"
+
+#: templates/shop/checkout/google/confirm.html:18
+msgid "Fast checkout through Google"
+msgstr "קופה מהירה באמצעות Google "
+
+#: templates/shop/checkout/paypal/confirm.html:11
+msgid "Your payment will be processed through PayPal."
+msgstr "התשלום שלך יטופל באמצעות Paypal "
+
+#: templates/shop/order_history.html:19
+msgid "Order #"
+msgstr "הזמנה #"
+
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
+msgid "Account"
+msgstr "חשבון"
+
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
+msgid "Order History"
+msgstr "הסטוריה של ההזמנה"
+
+#: templates/shop/order_history.html:22
+msgid "Items"
+msgstr "פריטים"
+
+#: templates/shop/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "לא ביצעת עדיין אף הזמנה."
+
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "מעקב אחרי הזמנות"
+
+#: templates/shop/email/contact_us.txt:1
+#, python-format
+msgid ""
+"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
+"contact form."
+msgstr "הנה %(request_type)s מאת %(name)s ( %(email)s ) שנשלחה דרך האינטרנט."
+
+#: templates/shop/email/order_complete.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "%(first_name)s %(last_name)s יקר/ה,"
+
+#: templates/shop/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "תודה שהזמנת מאת %(shop_name)s."
+
+#: templates/shop/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "סיכום ההזמנה שלך מופיע להלן:"
+
+#: templates/shop/email/order_complete.txt:67
+msgid "Your order contains products that can be downloaded"
+msgstr "בהזמנה שלך יש פריטים שניתן להוריד דרך האינטרנט"
+
+#: templates/shop/email/order_complete.txt:68
+#, fuzzy
+msgid "Please click the link to begin the download"
+msgstr "נא ללחוץ על הלינק לאתחל הורדה"
+
+#: templates/shop/email/order_complete.txt:74
+msgid "Regards"
+msgstr "בברכה"
+
+#: templates/shop/email/order_complete.txt:76
+msgid "Store Management"
+msgstr "הנהלת החנות"
+
+#: templates/shop/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "חשבונית מס"
+
+#: templates/shop/pdf/invoice.rml:14
+#: templates/shop/pdf/invoice.rml.py:56
+#: templates/shop/pdf/packing-slip.rml:14
+#: templates/shop/pdf/packing-slip.rml.py:56
+msgid "Invoice #"
+msgstr "חשבונית מס #"
+
+#: templates/shop/pdf/invoice.rml:21
+#: templates/shop/pdf/invoice.rml.py:63
+msgid "INVOICE"
+msgstr "חשבונית מס"
+
+#: templates/shop/pdf/invoice.rml:63
+#: templates/shop/pdf/packing-slip.rml:63
+msgid "Page"
+msgstr "עמוד"
+
+#: templates/shop/pdf/invoice.rml:181
+#, fuzzy
+msgid "Payments Made"
+msgstr "מודול בדיקת תשלום"
+
+#: templates/shop/pdf/invoice.rml:185
+#, fuzzy
+msgid "Balance Due"
+msgstr "מאזן ההזמנה:"
+
+#: templates/shop/pdf/invoice.rml:192
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "תשלום על סך %(order_total)s עבור:"
+
+#: templates/shop/pdf/invoice.rml:197
+msgid "Accounts Receivable"
+msgstr "חשבונות לתשלום"
+
+#: templates/shop/pdf/invoice.rml:212
+#, python-format
+msgid ""
+"%(order_total)s was charged to your %(credit_card_type)s card (x%"
+"(credit_card_number)s) on %(order_date)s."
+msgstr ""
+"כרסיסך מסוג %(credit_card_type)s ומספר (x%(credit_card_number)s) חויב עבור "
+"הזמנתך על סך%(order_total)s בתאריך %(order_date)s."
+
+#: templates/shop/pdf/invoice.rml:215
+#, fuzzy
+msgid "This invoice has been paid in full. Thank you for your business!"
+msgstr "תודה שעשית עסקים איתנו!"
+
+#: templates/shop/pdf/packing-slip.rml:21
+#: templates/shop/pdf/packing-slip.rml.py:63
+msgid "PACKING SLIP"
+msgstr "תלוש אריזה"
+
+#: templates/shop/pdf/packing-slip.rml:130
+msgid "Thank you for your business!"
+msgstr "תודה שעשית עסקים איתנו!"
+

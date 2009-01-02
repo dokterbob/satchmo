@@ -1,0 +1,40 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/keyedcache/delete.html:6
+#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr "홈"
+
+#: templates/keyedcache/delete.html:7
+#: templates/keyedcache/view.html:7
+msgid "Cache"
+msgstr "캐쉬"
+
+#: templates/keyedcache/delete.html:8
+msgid "Cache Delete"
+msgstr "캐쉬 삭제"
+
+#: templates/keyedcache/stats.html:7
+msgid "Cache Stats"
+msgstr "캐쉬 상태"
+
+#: templates/keyedcache/view.html:8
+msgid "Cache View"
+msgstr "캐쉬 보기"
+

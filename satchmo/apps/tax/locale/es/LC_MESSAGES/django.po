@@ -1,0 +1,70 @@
+# Spanish translation for the Satchmo project.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Christian Hoeppner <hoeppner@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 0.5-pre\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-14 00:00+0100\n"
+"PO-Revision-Date: 2007-08-06 00:00+0000\n"
+"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:16
+msgid "Title"
+msgstr "Título"
+
+#: models.py:16
+msgid "Displayed title of this tax"
+msgstr "Título mostrado de éste impuesto"
+
+#: models.py:17
+msgid "Description"
+msgstr "Descripción"
+
+#: models.py:17
+msgid "Description of products that would be taxed"
+msgstr "Descripción de los productos que conllevarían impuestos"
+
+#: models.py:23
+msgid "Tax Class"
+msgstr "Tipo de impuesto"
+
+#: models.py:24
+msgid "Tax Classes"
+msgstr "Tipos de impuestos"
+
+#: models.py:37
+msgid "tax class"
+msgstr "Tipo de impuesto"
+
+#: models.py:39
+msgid "tax zone"
+msgstr "zona administrativa"
+
+#: models.py:42
+msgid "tax country"
+msgstr "país"
+
+#: models.py:44
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#: models.py:44
+msgid "% tax for this area and type"
+msgstr "Porcentaje para ésta zona y éste tipo"
+
+#: models.py:61
+msgid "Tax Rate"
+msgstr "Impuesto"
+
+#: models.py:62
+msgid "Tax Rates"
+msgstr "Impuestos"
+

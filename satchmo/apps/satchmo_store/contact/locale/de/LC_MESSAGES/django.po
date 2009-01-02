@@ -1,0 +1,1181 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/contact/update_form.html:27
+#: templates/registration/login.html:16
+msgid "Email address"
+msgstr "eMailadresse"
+
+#: templates/registration/login.html:17
+msgid "Password"
+msgstr "Passwort"
+
+#: models.py:123
+#: templates/contact/update_form.html:30
+msgid "First name"
+msgstr "Vorname"
+
+#: models.py:124
+#: templates/contact/update_form.html:33
+msgid "Last name"
+msgstr "Nachname"
+
+#: forms.py:243
+#: templates/contact/update_form.html:43
+msgid "Newsletter"
+msgstr ""
+
+#: forms.py:62
+msgid "That email address is already in use."
+msgstr "Diese eMailadresse wird bereits benutzt."
+
+#: templates/contact/view_profile.html:22
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/contact/view_profile.html:22
+msgid "No"
+msgstr "Nein"
+
+#: common.py:5
+msgid "Please Select"
+msgstr "Bitte wählen"
+
+#: config.py:9
+msgid "Account Verification"
+msgstr "Account Überprüfung"
+
+#: config.py:10
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
+msgstr ""
+
+#: config.py:12
+msgid "Immediate"
+msgstr "Sofort"
+
+#: config.py:13
+#: models.py:132
+#: models.py:197
+msgid "Email"
+msgstr "eMail"
+
+#: config.py:20
+msgid "Days to verify account"
+msgstr ""
+
+#: forms.py:75
+#: forms.py:95
+msgid "This field is required."
+msgstr "Dieses Feld ist erforderlich."
+
+#: forms.py:76
+#: forms.py:96
+msgid "State is required for your country."
+msgstr "Bundesland is notwändig für Ihr Land."
+
+#: forms.py:111
+msgid "Shipping and Billing countries must match"
+msgstr "Lieferland und Rechnungsland müssen übereinstimmen"
+
+#: models.py:36
+msgid "Customer"
+msgstr "Kunde"
+
+#: models.py:37
+#: models.py:48
+#: supplier/models.py:16
+#: supplier/models.py:37
+msgid "Supplier"
+msgstr "Lieferant"
+
+#: models.py:38
+#: models.py:49
+msgid "Distributor"
+msgstr "Großhändler"
+
+#: models.py:42
+msgid "Company"
+msgstr "Firma"
+
+#: models.py:43
+msgid "Government"
+msgstr "Regierung"
+
+#: models.py:44
+msgid "Non-profit"
+msgstr "gemeinnützig"
+
+#: models.py:50
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: models.py:57
+#: models.py:765
+msgid "Name"
+msgstr ""
+
+#: models.py:58
+#: models.py:208
+msgid "Type"
+msgstr "Typ"
+
+#: models.py:60
+#: models.py:128
+msgid "Role"
+msgstr "Rolle"
+
+#: models.py:62
+msgid "Creation Date"
+msgstr "erstellt am"
+
+#: models.py:63
+#: models.py:133
+#: models.py:375
+#: models.py:835
+#: supplier/models.py:42
+#: supplier/models.py:93
+msgid "Notes"
+msgstr "Notizen"
+
+#: models.py:79
+#: models.py:130
+msgid "Organization"
+msgstr "Organisation"
+
+#: models.py:80
+msgid "Organizations"
+msgstr "Organisationen"
+
+#: models.py:131
+msgid "Date of birth"
+msgstr "Geburtsdatum"
+
+#: models.py:134
+msgid "Creation date"
+msgstr "angelegt am"
+
+#: models.py:186
+#: models.py:207
+#: models.py:362
+msgid "Contact"
+msgstr "Kontakt"
+
+#: models.py:187
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: models.py:190
+msgid "Work"
+msgstr "dienstl."
+
+#: models.py:191
+#: templates/contact/update_form.html:5
+#: templates/contact/view_profile.html:6
+#: templates/registration/account_info.html:5
+#: templates/registration/activate.html:6
+#: templates/registration/login.html:5
+#: templates/registration/logout.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_form.html:5
+#: templates/registration/repeat_activation.html:5
+msgid "Home"
+msgstr "Start"
+
+#: models.py:192
+msgid "Fax"
+msgstr ""
+
+#: models.py:193
+msgid "Mobile"
+msgstr "mobil"
+
+#: models.py:198
+msgid "Phone"
+msgstr "Telefon"
+
+#: models.py:199
+#: models.py:309
+msgid "In Person"
+msgstr "persönlich"
+
+#: models.py:209
+msgid "Date and Time"
+msgstr "Datum und Uhrzeit"
+
+#: models.py:210
+#: models.py:228
+#: models.py:263
+#: models.py:916
+#: supplier/models.py:18
+msgid "Description"
+msgstr "Beschreibung"
+
+#: models.py:219
+msgid "Interaction"
+msgstr "Interaktion"
+
+#: models.py:220
+msgid "Interactions"
+msgstr "Interaktionen"
+
+#: models.py:230
+#: models.py:254
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+#: models.py:232
+msgid "Primary"
+msgstr "primär"
+
+#: models.py:255
+msgid "Phone Numbers"
+msgstr "Telefonnummern"
+
+#: models.py:264
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "Beschreibung der Adresse - privat, geschäftl., postlagernd, usw."
+
+#: models.py:265
+#: models.py:266
+#: models.py:363
+#: models.py:364
+#: models.py:369
+#: models.py:370
+#: templates/contact/update_form.html:51
+#: templates/contact/update_form.html:54
+#: templates/contact/update_form.html:82
+#: templates/contact/update_form.html:85
+msgid "Street"
+msgstr "Straße"
+
+#: models.py:267
+#: models.py:366
+#: models.py:372
+msgid "State"
+msgstr "Bundesland"
+
+#: models.py:268
+#: models.py:365
+#: models.py:371
+#: templates/contact/update_form.html:57
+#: templates/contact/update_form.html:88
+msgid "City"
+msgstr "Stadt"
+
+#: models.py:269
+#: models.py:367
+#: models.py:373
+msgid "Zip Code"
+msgstr "Postleitzahl"
+
+#: models.py:270
+#: models.py:368
+#: models.py:374
+#: templates/contact/update_form.html:73
+#: templates/contact/update_form.html:104
+msgid "Country"
+msgstr "Land"
+
+#: models.py:271
+msgid "Default Shipping Address"
+msgstr "Standardlieferadresse"
+
+#: models.py:273
+msgid "Default Billing Address"
+msgstr "Standardrechnungsadresse"
+
+#: models.py:304
+msgid "Address Book"
+msgstr "Adressbuch"
+
+#: models.py:305
+msgid "Address Books"
+msgstr "Adressbücher"
+
+#: models.py:308
+msgid "Online"
+msgstr ""
+
+#: models.py:310
+msgid "Show"
+msgstr "zeige"
+
+#: models.py:314
+msgid "Temp"
+msgstr "temporär"
+
+#: models.py:315
+msgid "Pending"
+msgstr "wartend"
+
+#: models.py:316
+msgid "In Process"
+msgstr "In Bearbeitung"
+
+#: models.py:317
+msgid "Billed"
+msgstr "berechnet"
+
+#: models.py:318
+#: supplier/models.py:82
+msgid "Shipped"
+msgstr "geliefert"
+
+#: models.py:376
+#: supplier/models.py:39
+#: templates/contact/_order_details.html:48
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#: models.py:378
+#: supplier/models.py:43
+#: templates/contact/_order_details.html:47
+#: templates/contact/_order_details.html:69
+#: templates/contact/_order_tracking_details.html:29
+#: templates/contact/_order_tracking_details.html:37
+msgid "Total"
+msgstr "Gesamt"
+
+#: models.py:380
+msgid "Discount Code"
+msgstr "Rabattcode"
+
+#: models.py:381
+msgid "Coupon Code"
+msgstr "Gutscheincode"
+
+#: models.py:382
+msgid "Discount amount"
+msgstr "Rabattbetrag"
+
+#: models.py:384
+msgid "Order method"
+msgstr "Zahlungsmethode"
+
+#: models.py:386
+msgid "Shipping Description"
+msgstr "Versandbeschreibung"
+
+#: models.py:388
+#: models.py:683
+#: templates/contact/_order_details.html:37
+#: templates/contact/_order_tracking_details.html:23
+msgid "Shipping Method"
+msgstr "Liefermethode"
+
+#: models.py:390
+msgid "Shipping Models"
+msgstr "Versandmodelle"
+
+#: models.py:392
+msgid "Shipping Cost"
+msgstr "Versandkosten"
+
+#: models.py:394
+#: templates/contact/_order_details.html:58
+msgid "Shipping Discount"
+msgstr "Versandrabatt"
+
+#: models.py:396
+#: models.py:917
+#: supplier/models.py:41
+#: templates/contact/_order_details.html:67
+#: templates/contact/_order_tracking_details.html:35
+msgid "Tax"
+msgstr "Mehrwertsteuer"
+
+#: models.py:398
+#: models.py:836
+msgid "Timestamp"
+msgstr "Zeitstempel"
+
+#: models.py:399
+#: models.py:833
+#: supplier/models.py:92
+msgid "Status"
+msgstr "Status"
+
+#: models.py:400
+msgid "This is set automatically."
+msgstr "Dies wird automatisch gesetzt."
+
+#: models.py:685
+#: templates/contact/_order_details.html:28
+#: templates/contact/update_form.html:77
+msgid "Shipping Address"
+msgstr "Lieferadresse"
+
+#: models.py:688
+msgid "Billing Address"
+msgstr "Rechnungsadresse"
+
+#: models.py:691
+msgid "Totals"
+msgstr "Gesamtsummen"
+
+#: models.py:700
+msgid "Product Order"
+msgstr "Produktbestellung"
+
+#: models.py:701
+msgid "Product Orders"
+msgstr "Produktbestellungen"
+
+#: models.py:707
+#: models.py:781
+#: models.py:832
+msgid "Order"
+msgstr "Bestellung"
+
+#: models.py:708
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:709
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: models.py:710
+msgid "Unit price"
+msgstr "Stückpreis"
+
+#: models.py:712
+msgid "Unit tax"
+msgstr "Steuer je Stück"
+
+#: models.py:714
+msgid "Line item price"
+msgstr "Einzelpostenpreis"
+
+#: models.py:716
+msgid "Line item tax"
+msgstr "Steuer je Einzelposten"
+
+#: models.py:718
+msgid "Subscription End"
+msgstr "Subskriptionsende"
+
+#: models.py:718
+msgid "Subscription expiration date."
+msgstr "Subskription endet am"
+
+#: models.py:720
+msgid "Line item discount"
+msgstr "Einzelpostenrabatt"
+
+#: models.py:757
+msgid "Order Line Item"
+msgstr "besteller Einzelposten"
+
+#: models.py:758
+msgid "Order Line Items"
+msgstr "bestellte Einzelposten"
+
+#: models.py:764
+msgid "Order Item"
+msgstr "Bestellposition"
+
+#: models.py:766
+msgid "Value"
+msgstr "Wert"
+
+#: models.py:767
+msgid "Price Change"
+msgstr "Preisänderung"
+
+#: models.py:768
+msgid "Sort Order"
+msgstr "Sortierreihenfolge"
+
+#: models.py:769
+msgid "The display order for this group."
+msgstr ""
+
+#: models.py:775
+msgid "Order Item Detail"
+msgstr "Bestellpositionsdetail"
+
+#: models.py:776
+msgid "Order Item Details"
+msgstr "Bestellpositionsdetails"
+
+#: models.py:780
+msgid "Downloadable product"
+msgstr "Downloadbares Produkt"
+
+#: models.py:782
+msgid "Key"
+msgstr "Schlüssel"
+
+#: models.py:783
+msgid "Number of attempts"
+msgstr "Anzahl erlaubter Versuche"
+
+#: models.py:784
+msgid "Time stamp"
+msgstr "Zeitstempel"
+
+#: models.py:785
+msgid "Active"
+msgstr "aktiv"
+
+#: models.py:790
+#, fuzzy
+msgid "This download is no longer active"
+msgstr "Dieser Gutschein ist bisher nicht aktiviert."
+
+#: models.py:792
+#, fuzzy
+msgid "You have exceeded the number of allowed downloads."
+msgstr "Dieser Rabatt überschreitet die erlaubte Anzahl."
+
+#: models.py:795
+#, fuzzy
+msgid "This download link has expired."
+msgstr "Dieser Gutschein ist abgelaufen."
+
+#: models.py:825
+msgid "Download Link"
+msgstr ""
+
+#: models.py:826
+msgid "Download Links"
+msgstr ""
+
+#: models.py:847
+msgid "Order Status"
+msgstr "Bestellstatus"
+
+#: models.py:848
+msgid "Order Statuses"
+msgstr "Bestellstati"
+
+#: models.py:852
+msgid "Payment Method"
+msgstr "Zahlungsmethode"
+
+#: models.py:854
+msgid "amount"
+msgstr "Betrag"
+
+#: models.py:856
+msgid "timestamp"
+msgstr "Zeitstempel"
+
+#: models.py:857
+msgid "Transaction ID"
+msgstr "Transaktions ID"
+
+#: models.py:892
+msgid "Order Payment"
+msgstr "Bezahlung"
+
+#: models.py:893
+msgid "Order Payments"
+msgstr "Bezahlungen"
+
+#: models.py:897
+msgid "key"
+msgstr "Schlüssel"
+
+#: models.py:898
+msgid "value"
+msgstr "Wert"
+
+#: models.py:902
+msgid "Order variable"
+msgstr "Bestellvariable"
+
+#: models.py:903
+msgid "Order variables"
+msgstr "Bestellvariablen"
+
+#: models.py:915
+msgid "Model"
+msgstr "Modell"
+
+#: models.py:927
+msgid "Order tax detail"
+msgstr "Bestellsteuerdetail"
+
+#: models.py:928
+msgid "Order tax details"
+msgstr "Bestellsteuerdetails"
+
+#: views.py:131
+msgid ""
+"The order you have requested doesn't exist, or you don't have access to it."
+msgstr "Das ausgewählte Produkt existiert nicht."
+
+#: templates/contact/_order_details.html:54
+#: templates/contact/_order_tracking_details.html:31
+msgid "Discount"
+msgstr "Rabatt"
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "Lieferant ID"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "Stückpreis"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "Bestand"
+
+#: supplier/models.py:30
+msgid "Raw Item"
+msgstr "Orginalartikel"
+
+#: supplier/models.py:31
+msgid "Raw Items"
+msgstr "Orginalartikel"
+
+#: supplier/models.py:38
+msgid "Date Created"
+msgstr "angelegt am"
+
+#: supplier/models.py:40
+#: templates/contact/_order_details.html:61
+#: templates/contact/_order_tracking_details.html:33
+msgid "Shipping"
+msgstr "Lieferung"
+
+#: supplier/models.py:65
+msgid "Supplier Order"
+msgstr "Lieferantenbestellung"
+
+#: supplier/models.py:66
+msgid "Supplier Orders"
+msgstr "Lieferantenbestellungen"
+
+#: supplier/models.py:73
+msgid "Line Item"
+msgstr "Einzelposten"
+
+#: supplier/models.py:74
+msgid "Line Item Quantity"
+msgstr "Einzelposten Anzahl"
+
+#: supplier/models.py:75
+msgid "Line Item Total"
+msgstr "Einzelposten Summe"
+
+#: supplier/models.py:81
+msgid "Sent in"
+msgstr "verschickt"
+
+#: supplier/models.py:83
+msgid "Received"
+msgstr "empfangen"
+
+#: supplier/models.py:94
+msgid "Date"
+msgstr "Datum"
+
+#: supplier/models.py:100
+msgid "Supplier Order Status"
+msgstr ""
+
+#: supplier/models.py:101
+msgid "Supplier Order Statuses"
+msgstr ""
+
+#: templates/contact/_order_details.html:15
+msgid "Contact Information"
+msgstr "Kontaktinformation"
+
+#: templates/contact/update_form.html:19
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[1] ""
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+
+#: templates/registration/password_change_form.html:36
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: templates/contact/_order_tracking_details.html:17
+msgid "Items Ordered"
+msgstr "bestellte Artikel"
+
+#: templates/registration/login.html:20
+msgid "Login"
+msgstr "Anmeldung"
+
+#: templates/contact/update_form.html:26
+msgid "Basic Information"
+msgstr "Basis Informationen"
+
+#: templates/contact/update_form.html:39
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: templates/contact/_order_details.html:20
+#: templates/contact/update_form.html:49
+msgid "Billing Information"
+msgstr "Rechnungsinformation"
+
+#: templates/contact/update_form.html:65
+#: templates/contact/update_form.html:96
+#, fuzzy
+msgid "State/Province"
+msgstr "Provinz"
+
+#: templates/contact/update_form.html:69
+#: templates/contact/update_form.html:100
+msgid "Zipcode/Postcode"
+msgstr "Postleitzahl"
+
+#: templates/contact/update_form.html:79
+msgid "Shipping same as billing?"
+msgstr "Lieferanschrift wie Rechnungsanschrift?"
+
+#: templates/comments/form.html:7
+#: templates/comments/form.html.py:9
+msgid "Username:"
+msgstr ""
+
+#: templates/comments/form.html:9
+msgid "Password:"
+msgstr "Passwort:"
+
+#: templates/comments/form.html:9
+msgid "Forgotten your password?"
+msgstr "Passwort vergessen?"
+
+#: templates/comments/form.html:25
+msgid "Post a photo"
+msgstr ""
+
+#: templates/comments/form.html:25
+msgid "Required"
+msgstr "notwendig"
+
+#: templates/comments/form.html:25
+msgid "Optional"
+msgstr "optional"
+
+#: templates/comments/form.html:30
+msgid "Review:"
+msgstr "Bewertung:"
+
+#: templates/comments/form.html:39
+msgid "Send review"
+msgstr ""
+
+#: templates/contact/_addressblock.html:11
+msgid "Not set"
+msgstr "nicht gesetzt"
+
+#: templates/contact/_order_details.html:57
+msgid "Base Shipping"
+msgstr ""
+
+#: templates/contact/_order_details.html:59
+msgid "Shipping (incl. Tax)"
+msgstr ""
+
+#: templates/contact/_order_details.html:65
+msgid "Tax included"
+msgstr ""
+
+#: templates/contact/_order_tracking_details.html:9
+msgid "Order #"
+msgstr "Bestellung Nr."
+
+#: templates/contact/_order_tracking_details.html:42
+msgid "Shipping To"
+msgstr "Lieferadresse"
+
+#: templates/contact/update_form.html:6
+#: templates/contact/view_profile.html:7
+#: templates/registration/password_change_done.html:6
+#: templates/registration/password_change_form.html:6
+msgid "Account"
+msgstr ""
+
+#: templates/contact/view_profile.html:33
+#, fuzzy
+msgid "Order History"
+msgstr ""
+
+#: templates/contact/update_form.html:7
+msgid "Update Profile"
+msgstr "geändert am"
+
+#: templates/contact/update_form.html:17
+msgid "Your Profile"
+msgstr ""
+
+#: templates/contact/update_form.html:24
+#, fuzzy
+msgid "You&apos;ll need to fill out at least the fields with a *"
+msgstr "Sie müssen mindestens die Felder mit * ausfüllen"
+
+#: templates/contact/update_form.html:36
+msgid "Birthday"
+msgstr ""
+
+#: templates/contact/update_form.html:109
+#, fuzzy
+msgid "Update"
+msgstr "geändert am"
+
+#: templates/contact/view_profile.html:11
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "Ihre Account Informationen"
+
+#: templates/contact/view_profile.html:14
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "Willkommen, %(full_name)s."
+
+#: templates/contact/view_profile.html:17
+msgid "Your profile"
+msgstr ""
+
+#: templates/contact/view_profile.html:19
+msgid "Email:"
+msgstr "eMail:"
+
+#: templates/contact/view_profile.html:20
+msgid "Birthday:"
+msgstr ""
+
+#: templates/contact/view_profile.html:22
+#, fuzzy
+msgid "Newsletter:"
+msgstr "Newsletter abmelden"
+
+#: templates/contact/view_profile.html:24
+#, fuzzy
+msgid "Billing Address:"
+msgstr "Rechnungsadresse"
+
+#: templates/contact/view_profile.html:25
+#, fuzzy
+msgid "Shipping Address:"
+msgstr "Lieferadresse"
+
+#: templates/contact/view_profile.html:27
+#: templates/contact/view_profile.html:40
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "Account Optionen"
+
+#: templates/contact/view_profile.html:29
+msgid "Update your profile"
+msgstr ""
+
+#: templates/contact/view_profile.html:31
+#: templates/contact/view_profile.html:44
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:11
+msgid "Change your password"
+msgstr "Ändern Sie Ihr Passwort"
+
+#: templates/contact/view_profile.html:38
+#, fuzzy
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
+msgstr ""
+"Unter dieser Anmeldung gibt es keinen Account. Bitte erstellen Sie einen."
+
+#: templates/contact/view_profile.html:38
+msgid "Probably because you are an admin."
+msgstr ""
+
+#: templates/contact/view_profile.html:42
+#, fuzzy
+msgid "Set up contact information"
+msgstr "Kontaktinformation"
+
+#: templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Sehr geehrte(r) %(first_name)s %(last_name)s."
+
+#: templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "Mit freundlichen Grüßen"
+
+#: templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "WebShop Leitung"
+
+#: templates/registration/activate.html:7
+msgid "Registration Complete"
+msgstr "Registrierung komplett"
+
+#: templates/registration/activate.html:12
+#: templates/registration/repeat_activation.html:11
+msgid "Account Activation"
+msgstr "Account aktivieren"
+
+#: templates/registration/activate.html:16
+msgid "Thanks for signing up! You are now logged in."
+msgstr "Danke für Ihre Anmeldedaten! Sie sind nun angemeldet."
+
+#: templates/registration/activate.html:17
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr ""
+"In Zukunft können Sie sich mit Ihrer eMailadresse (%(email)s) anmelden."
+
+#: templates/registration/activate.html:21
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr ""
+"Entweder war Ihr Aktivierungslink falsch, oder der Aktivierungsschlüssel für "
+"Ihren Account ist abgelaufen. Aktivierungsschlüssel sind nur für %"
+"(expiration_days)s Tage nach Registrierung gültig."
+
+#: templates/registration/activation_email.txt:1
+#, fuzzy, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr ""
+"Jemand, hoffentlich Sie, hat sich mit Ihrer eMailadresse bei %(site_url)s "
+"registriert. Falls Sie den den Account nun aktivieren möchten klicken Sie "
+"bitte auf den Link unten oder kopieren ihn in die Zwischenablage und fügen "
+"ihn anschliessend in Ihrem Web Browser in die Adresszeile ein."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr ""
+"Falls Sie diese Anfrage nicht gestellt haben müssen Sie nichts weiter tun; "
+"Sie werden von uns keine weiteren eMails erhalten, und der Account verfällt "
+"automatisch in %(expiration_days)s Tagen."
+
+#: templates/registration/login.html:11
+msgid "Your email address and password didn't match. Please try again."
+msgstr ""
+"Ihre eMailadresse und Ihr Passwort passen nicht. Bitte probieren Sie es "
+"nochmal."
+
+#: templates/registration/login.html:29
+msgid "If you do not have an account, please"
+msgstr "Falls Sie noch keinen Account haben, bitte"
+
+#: templates/registration/login.html:29
+msgid "click here"
+msgstr "klicken Sie hier"
+
+#: templates/registration/login.html:30
+msgid "If you do not remember your password, please"
+msgstr "Falls Sie Ihre Passwort vergessen haben, bitte"
+
+#: templates/registration/login.html:30
+msgid "click here</a> to have it reset."
+msgstr "klicken Sie hier</a> um es zurückzusetzen."
+
+#: templates/registration/logout.html:9
+msgid "You have been successfully logged out."
+msgstr "Sie wurden erfolgreich abgemeldet."
+
+#: templates/registration/password_change_done.html:7
+msgid "Password Change Done"
+msgstr "Passwortänderung erfolgreich"
+
+#: templates/registration/password_change_done.html:12
+msgid "Password change successful"
+msgstr "Passwortänderung erfolgreich"
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password change has been completed."
+msgstr "Ihre Passwortänderung wurde durchgeführt."
+
+#: templates/registration/password_change_form.html:7
+msgid "Password Change"
+msgstr "Passwort (nochmal)"
+
+#: templates/registration/password_change_form.html:12
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr ""
+"Zur Sicherheit geben Sie bitte Ihr altes Passwort und anschliessen 2x mal "
+"Ihr neues Passwort ein."
+
+#: templates/registration/password_change_form.html:19
+msgid "Old password"
+msgstr "altes Passwort"
+
+#: templates/registration/password_change_form.html:26
+msgid "New password"
+msgstr "neues Passwort"
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm new password"
+msgstr "neues Passwort (nochmal)"
+
+#: templates/registration/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s"
+msgstr ""
+"Sie erhalten diese eMail, weil Sie ein neues Passwort für Ihren "
+"Benutzeraccount bei %(site_name)s angefordert haben"
+
+#: templates/registration/password_reset.txt:3
+msgid "Your new password is"
+msgstr "Ihr neues Passwort lautet"
+
+#: templates/registration/password_reset.txt:5
+msgid "Feel free to change this password by going to this page"
+msgstr "Sie können Ihre Passwort auf dieser Seite ändern"
+
+#: templates/registration/password_reset.txt:7
+#, python-format
+msgid ""
+"You can log in using your email address (%(email)s) or your username (%"
+"(username)s)."
+msgstr ""
+"Sie können zum Anmelden Ihre eMailadresse (%(email)s) oder Ihren "
+"Benuternamen (%(username)s) verwenden."
+
+#: templates/registration/password_reset.txt:9
+msgid "Thanks for using our site!"
+msgstr "Danke für Ihr Interesse an unserem WebShop!"
+
+#: templates/registration/password_reset.txt:11
+#, python-format
+msgid "The %(site_name)s team "
+msgstr "Ihr %(site_name)s Team "
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "Passwort erfolgreich zurückgesetzt"
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr ""
+"Wir haben Ihnen ein neues Passwort an Ihre eMailadresse gesandt. Sie werden "
+"diese in Kürze erhalten."
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "Ihre Passwort zurücksetzen"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr ""
+"Passwort vergessen? Geben Sie Ihre eMailadresse ein und wir werden Ihnen ein "
+"neues Passwort zusenden."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "eMailadresse"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr ""
+"Bitte stellen Sie sicher, das Sie die eMailadresse Ihrer Registrierung "
+"verwenden."
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/registration/registration_complete.html:7
+#: templates/registration/registration_complete.html:11
+msgid "Account Creation"
+msgstr "Account erstellt"
+
+#: templates/registration/registration_complete.html:12
+msgid "Thank you for signing up."
+msgstr "Danke für Ihre Anmeldedaten."
+
+#: templates/registration/registration_complete.html:14
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr ""
+"Ein Aktivierungslink wurde an die angegeben eMailadresse gesendet. Sie "
+"entählt auch Anweisungen zur Aktivierung Ihres Accounts."
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "Registrierung"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "Bitte geben Sie Ihre Accountinformationen ein"
+
+#: templates/registration/registration_form.html:37
+msgid "Create Account"
+msgstr "Account erstellen"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "Aktivierung wiederholen"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "Dieser Account wurde bereits aktiviert. Bitte melden Sie sich an."
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(company_name)s."
+msgstr "Danke das Sie sich mit %(company_name)s angemeldet haben."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr ""
+"Ihre neuer Benutzername ist Ihre eMailadresse und Sie können sich anmelden"
+

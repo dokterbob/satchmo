@@ -1,0 +1,1199 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# N.L. <kotorinl@yahoo.co.uk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"PO-Revision-Date: 2008-04-30 23:35+0100\n"
+"Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
+"Language-Team: Group\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Swedish\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: SWEDEN\n"
+
+#: views/contact.py:24
+#: templates/shop/checkout/form.html:92
+msgid "Email address"
+msgstr "E-postadress"
+
+#: templates/shop/checkout/form.html:75
+msgid "Password"
+msgstr "Lösenord"
+
+#: templates/shop/checkout/form.html:95
+msgid "First name"
+msgstr "Förnamn"
+
+#: templates/shop/checkout/form.html:98
+msgid "Last name"
+msgstr "Efternamn"
+
+#: models.py:55
+#: templates/shop/pdf/invoice.rml:99
+#: templates/shop/pdf/packing-slip.rml:99
+msgid "Email"
+msgstr "E-post"
+
+#: models.py:220
+msgid "Customer"
+msgstr "Kund"
+
+#: views/contact.py:23
+#: templates/shop/admin/inventory_form.html:82
+#: templates/shop/checkout/form.html:74
+msgid "Name"
+msgstr "Namn"
+
+#: models.py:219
+msgid "Creation Date"
+msgstr "Skapat datum"
+
+#: templates/shop/templates/404.html:5
+#: templates/shop/500.html:5
+#: templates/shop/cart.html:9
+#: templates/shop/index.html:7
+#: templates/shop/contact_form.html:5
+#: templates/shop/download.html:5
+#: templates/shop/search.html:6
+#: templates/shop/404.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/admin/inventory_form.html:66
+#: templates/shop/checkout/balance_remaining.html:6
+#: templates/shop/checkout/base_confirm.html:7
+#: templates/shop/checkout/base_pay_ship.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/empty_cart.html:5
+#: templates/shop/checkout/form.html:46
+#: templates/shop/checkout/success.html:7
+#: templates/shop/checkout/cod/confirm.html:9
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
+msgid "Home"
+msgstr "Hem"
+
+#: templates/shop/pdf/invoice.rml:98
+#: templates/shop/pdf/packing-slip.rml:98
+msgid "Phone"
+msgstr "Telefon"
+
+#: models.py:54
+#: models.py:218
+#: templates/shop/pdf/invoice.rml:114
+#: templates/shop/pdf/packing-slip.rml:114
+msgid "Description"
+msgstr "Beskrivning"
+
+#: models.py:62
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+#: models.py:56
+#: models.py:57
+#: templates/shop/checkout/form.html:106
+#: templates/shop/checkout/form.html.py:109
+#: templates/shop/checkout/form.html:138
+#: templates/shop/checkout/form.html.py:141
+msgid "Street"
+msgstr "Gata"
+
+#: models.py:59
+msgid "State"
+msgstr "Delstat"
+
+#: models.py:58
+#: templates/shop/checkout/form.html:112
+#: templates/shop/checkout/form.html.py:144
+msgid "City"
+msgstr "Ort"
+
+#: models.py:60
+msgid "Zip Code"
+msgstr "Postnummer"
+
+#: models.py:61
+#: templates/shop/checkout/form.html:128
+#: templates/shop/checkout/form.html.py:160
+msgid "Country"
+msgstr "Land"
+
+#: templates/shop/pdf/invoice.rml:136
+#: templates/shop/pdf/packing-slip.rml:136
+msgid "Subtotal"
+msgstr "Delsumma"
+
+#: templates/shop/cart.html:25
+#: templates/shop/order_history.html:23
+#: templates/shop/email/order_complete.txt:45
+#: templates/shop/email/order_complete.txt:54
+#: templates/shop/pdf/invoice.rml:117
+#: templates/shop/pdf/invoice.rml.py:147
+#: templates/shop/pdf/packing-slip.rml:117
+#: templates/shop/pdf/packing-slip.rml.py:147
+msgid "Total"
+msgstr "Totalt"
+
+#: templates/shop/email/order_complete.txt:38
+msgid "Shipping Method"
+msgstr "Fraktsätt"
+
+#: templates/shop/email/order_complete.txt:52
+#: templates/shop/pdf/invoice.rml:144
+#: templates/shop/pdf/packing-slip.rml:144
+msgid "Tax"
+msgstr "Moms"
+
+#: templates/shop/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "Tidsmärke"
+
+#: templates/shop/order_history.html:20
+msgid "Status"
+msgstr "Status"
+
+#: templates/shop/email/order_complete.txt:28
+#: templates/shop/pdf/invoice.rml:25
+#: templates/shop/pdf/packing-slip.rml:25
+msgid "Shipping Address"
+msgstr "Leveransadress"
+
+#: templates/shop/pdf/invoice.rml:24
+#: templates/shop/pdf/packing-slip.rml:24
+msgid "Billing Address"
+msgstr "Fakturaadress"
+
+#: models.py:306
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:307
+#: templates/shop/cart.html:23
+#: templates/shop/pdf/invoice.rml:115
+#: templates/shop/pdf/packing-slip.rml:115
+msgid "Quantity"
+msgstr "Antal"
+
+#: models.py:362
+msgid "Sort Order"
+msgstr "Sorteringsordning"
+
+#: models.py:363
+msgid "The display order for this group."
+msgstr "Visningsordningen för denna grupp."
+
+#: templates/shop/admin/inventory_form.html:85
+msgid "Active"
+msgstr "Aktiverad"
+
+#: templates/shop/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "Transaktions-ID"
+
+#: templates/shop/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "Orderbetalningar"
+
+#: templates/shop/email/order_complete.txt:48
+msgid "Discount"
+msgstr "Prisnedsättning"
+
+#: templates/shop/checkout/base_pay_ship.html:32
+msgid "Discounts"
+msgstr "Prisnedsättningar"
+
+#: models.py:52
+msgid "Site"
+msgstr "Sajt"
+
+#: views/cart.py:170
+msgid "Success"
+msgstr "Lyckades"
+
+#: templates/shop/checkout/balance_remaining.html:7
+#: templates/shop/checkout/base_confirm.html:8
+#: templates/shop/checkout/base_confirm.html:12
+#: templates/shop/checkout/base_pay_ship.html:6
+#: templates/shop/checkout/base_pay_ship.html:10
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/empty_cart.html:6
+#: templates/shop/checkout/empty_cart.html:10
+#: templates/shop/checkout/form.html:47
+#: templates/shop/checkout/form.html.py:51
+#: templates/shop/checkout/success.html:8
+#: templates/shop/checkout/cod/confirm.html:10
+msgid "Checkout"
+msgstr "Utcheckning"
+
+#: templates/shop/admin/_orderpayment_list.html:8
+#: templates/shop/checkout/base_confirm.html:16
+#: templates/shop/checkout/base_pay_ship.html:14
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/form.html:55
+#: templates/shop/checkout/cod/confirm.html:14
+#: templates/shop/checkout/google/confirm.html:6
+#: templates/shop/checkout/google/confirm.html:9
+#: templates/shop/checkout/paypal/confirm.html:6
+#: templates/shop/checkout/paypal/confirm.html:9
+#: templates/shop/email/order_complete.txt:56
+msgid "Payment"
+msgstr "Betalning"
+
+#: templates/shop/checkout/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Betalningsinformation"
+
+#: templates/base.html:36
+msgid "Shop Categories"
+msgstr "Butikskategorier"
+
+#: views/contact.py:25
+msgid "Subject"
+msgstr "Ämne"
+
+#: templates/shop/checkout/balance_remaining.html:23
+#: templates/shop/checkout/form.html:88
+msgid "Payment method"
+msgstr "Betalningsmetod"
+
+#: views/cart.py:108
+#: views/cart.py:151
+msgid "The product you have requested does not exist."
+msgstr "Produkten du efterfrågade finns inte."
+
+#: templates/shop/admin/inventory_form.html:81
+msgid "Slug"
+msgstr "Slug"
+
+#: templates/shop/search.html:15
+msgid "Categories"
+msgstr "Kategorier"
+
+#: templates/shop/search.html:24
+msgid "Products"
+msgstr "Produkter"
+
+#: templates/shop/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "Metod"
+
+#: config.py:11
+msgid "Default currency symbol"
+msgstr "Förvald valutasymbol"
+
+#: config.py:12
+msgid "Use a '_' character to force a space."
+msgstr "Använd bokstaven '_' för att få ett hårt mellanslag."
+
+#: config.py:18
+msgid "Enable product ratings"
+msgstr "Aktivera produktbetyg"
+
+#: config.py:24
+msgid "Enable random display of featured products on home page"
+msgstr "Aktivera slumpad visning av utvalda produkter på hemsidan"
+
+#: config.py:30
+msgid "Number of featured items to display"
+msgstr "Antal utvalda produkter att visa"
+
+#: config.py:36
+msgid "Measurement system to use in store"
+msgstr "Webbshoppens måttsystem "
+
+#: config.py:37
+msgid "Metric"
+msgstr "Metrisk"
+
+#: config.py:38
+msgid "Imperial"
+msgstr "Brittiska/amerikanska"
+
+#: config.py:42
+msgid "Google Settings"
+msgstr "Google-inställningar"
+
+#: config.py:47
+msgid "Enable Analytics"
+msgstr "Aktivera Analytics"
+
+#: config.py:54
+msgid "Use Urchin?"
+msgstr "Använd Urchin?"
+
+#: config.py:55
+msgid ""
+"Use the old-style, urchin javascript?.  This is not needed unless your "
+"analytics account hasn't been updated yet."
+msgstr ""
+"Använd det gammaldags urchin med javascript? Detta behövs inte annat än om "
+"ditt analytics-konto inte har uppdaterats än."
+
+#: config.py:63
+msgid "Analytics Code"
+msgstr "Analytics-kod"
+
+#: config.py:71
+msgid "Enable Conversion Tracking"
+msgstr ""
+
+#: config.py:78
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Adwords-ID (t ex.: UA-abcd-1)"
+
+#: config.py:83
+msgid "Language Settings"
+msgstr "Språkinställningar"
+
+#: config.py:88
+msgid "Allow user to choose from available translations"
+msgstr "Låt användare välja mellan tillgängliga översättningar"
+
+#: config.py:96
+msgid "Available languages"
+msgstr "Tillgängliga språk"
+
+#: config.py:97
+msgid "Languages that have valid translations"
+msgstr "Språk som har giltiga översättningar"
+
+#: models.py:32
+msgid "Test Store"
+msgstr "Testbutik"
+
+#: models.py:53
+msgid "Store Name"
+msgstr "Butiknamn"
+
+#: models.py:63
+msgid "Purchase item not in stock?"
+msgstr "Köp vara som inte finns i lager?"
+
+#: models.py:64
+msgid "Only sell to in-country customers?"
+msgstr "Sälj endast till kunder inom landet?"
+
+#: models.py:67
+msgid "Default country for customers"
+msgstr "Förvalt land för kunder"
+
+#: models.py:68
+msgid "Shipping Countries"
+msgstr "Leveransländer"
+
+#: models.py:102
+msgid "Store Configuration"
+msgstr "Butikinställning"
+
+#: models.py:103
+msgid "Store Configurations"
+msgstr "Butiksinställningar"
+
+#: models.py:298
+msgid "Shopping Cart"
+msgstr "Kundvagn"
+
+#: models.py:299
+msgid "Shopping Carts"
+msgstr "Kundvagnar"
+
+#: models.py:305
+#: templates/base.html:54
+#: templates/shop/cart.html:10
+msgid "Cart"
+msgstr "Kundvagn"
+
+#: models.py:351
+msgid "Cart Item"
+msgstr "Kundvagnsvara"
+
+#: models.py:352
+msgid "Cart Items"
+msgstr "Kundvagnsvaror"
+
+#: models.py:359
+msgid "detail"
+msgstr "detalj"
+
+#: models.py:360
+msgid "name"
+msgstr "namn"
+
+#: models.py:361
+msgid "Item Detail Price Change"
+msgstr "Prisförändring för orderdetalj"
+
+#: models.py:367
+msgid "Cart Item Detail"
+msgstr "Kundvagnsvarudetalj"
+
+#: models.py:368
+msgid "Cart Item Details"
+msgstr "Kundvagnsvarudetaljer"
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Var god ange endast ett av fälten."
+
+#: utils/validators.py:15
+msgid "These fields can not be the same."
+msgstr "Dessa fält får inte vara lika."
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr "Sajtadministration"
+
+#: views/cart.py:40
+msgid "No cart to update."
+msgstr "Ingen kundvagn att uppdatera."
+
+#: views/cart.py:48
+msgid "Bad quantity."
+msgstr "Ogiltigt antal."
+
+#: views/cart.py:55
+msgid "Bad item number."
+msgstr "Ogiltigt artikelnummer."
+
+#: views/cart.py:60
+msgid "No such item in your cart."
+msgstr "Ingen sådan vara i din kundvagn."
+
+#: views/cart.py:70
+#: views/cart.py:129
+#: views/cart.py:173
+#, python-format
+msgid "Not enough items of '%s' in stock."
+msgstr "Inte tillräckligt många av '%s' i lager."
+
+#: views/cart.py:115
+msgid "Please enter a whole number."
+msgstr "Var god ange ett heltal."
+
+#: views/cart.py:122
+msgid "Please enter a positive number."
+msgstr "Var god ange ett tal större än eller lika med 1."
+
+#: views/cart.py:160
+msgid "Choose a quantity."
+msgstr "Välj antal."
+
+#: views/cart.py:163
+msgid "Choose a whole number."
+msgstr "Välj ett heltal."
+
+#: views/cart.py:172
+#: views/cart.py:175
+#: templates/shop/templates/404.html:10
+#: templates/shop/500.html:10
+#: templates/shop/404.html:10
+msgid "Error"
+msgstr "Fel"
+
+#: views/cart.py:193
+msgid "You must accept the terms and conditions."
+msgstr "Du måste godkänna användarvillkoren."
+
+#: views/cart.py:209
+#: views/cart.py:243
+msgid "Internal error: please submit as a POST"
+msgstr "Internt fel: var god skicka som POST"
+
+#: views/category.py:12
+msgid "The category you have requested does not exist."
+msgstr "Kategorin du efterfrågade finns inte."
+
+#: views/comments.py:26
+msgid "One or more of the required fields wasn't submitted"
+msgstr "Ett eller flera av de obligatoriska fälten skickades inte"
+
+#: views/comments.py:33
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "Ogiltig ContentType: %s"
+
+#: views/contact.py:18
+msgid "General question"
+msgstr "Allmän fråga"
+
+#: views/contact.py:19
+msgid "Order problem"
+msgstr "Beställningsproblem"
+
+#: views/contact.py:26
+msgid "Inquiry"
+msgstr "Fråga"
+
+#: views/contact.py:27
+msgid "Contents"
+msgstr "Text"
+
+#: views/download.py:19
+#: views/download.py:24
+msgid "The download key is invalid."
+msgstr "Den här nedladdningsnyckeln är ogiltig."
+
+#: views/utils.py:71
+msgid "Card type does not match card number."
+msgstr "Korttypen stämmer inte överens med kortnumret."
+
+#: views/utils.py:73
+msgid "Invalid credit card number."
+msgstr "Ogiltigt kreditkortsnummer."
+
+#: templates/shop/admin/inventory_form.html:83
+msgid "Inventory"
+msgstr "I lager"
+
+#: templates/shop/email/order_complete.txt:50
+msgid "Shipping"
+msgstr "Frakt"
+
+#: templates/shop/order_history.html:21
+#: templates/shop/pdf/invoice.rml:15
+#: templates/shop/pdf/invoice.rml.py:51
+#: templates/shop/pdf/packing-slip.rml:15
+#: templates/shop/pdf/packing-slip.rml.py:51
+msgid "Date"
+msgstr "Datum"
+
+#: templates/shop/templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "Kunde inte hitta sidan du sökte efter."
+
+#: templates/shop/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "Det inträffade ett fel i webbutiken. Administratören har underrättats."
+
+#: templates/base.html:28
+#: templates/base.html.py:31
+msgid "Search"
+msgstr "Sök"
+
+#: templates/base.html:45
+msgid "Account Information"
+msgstr "Kontoinformation"
+
+#: templates/base.html:47
+msgid "Account Details"
+msgstr "Konto"
+
+#: templates/base.html:48
+#: templates/shop/admin/inventory_form.html:63
+msgid "Log out"
+msgstr "Logga ut"
+
+#: templates/base.html:50
+msgid "Log in"
+msgstr "Logga in"
+
+#: templates/base.html:60
+#: templates/shop/cart.html:70
+msgid "Check out"
+msgstr "Till kassan"
+
+#: templates/base.html:64
+msgid "Wishlist"
+msgstr "Önskelista"
+
+#: templates/base.html:67
+#: templates/shop/contact_form.html:6
+#: templates/shop/contact_thanks.html:6
+msgid "Contact Us"
+msgstr "Kontakta oss"
+
+#: templates/base.html:71
+msgid "Change language"
+msgstr "Byt språk"
+
+#: templates/base.html:77
+#: templates/shop/admin/index.html:105
+msgid "Change"
+msgstr "Ändra"
+
+#: templates/base.html:92
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr ""
+
+#: templates/shop/cart.html:19
+msgid "Your cart is empty."
+msgstr "Din kundvagn är tom."
+
+#: templates/shop/cart.html:21
+msgid "Your Cart"
+msgstr "Din kundvagn"
+
+#: templates/shop/cart.html:24
+msgid "Item"
+msgstr "Vara"
+
+#: templates/shop/cart.html:25
+msgid "Total<br/>(incl.&nbsp;tax)"
+msgstr "Totalt<br/>(inkl.&nbsp;moms)"
+
+#: templates/shop/cart.html:32
+msgid "Remove"
+msgstr "Ta bort"
+
+#: templates/shop/cart.html:43
+msgid "update amount"
+msgstr "uppdatera antal"
+
+#: templates/shop/cart.html:54
+msgid "Base Price: "
+msgstr "Grundpris:"
+
+#: templates/shop/cart.html:55
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+"beloppet till höger är din handpenning, du kommer att få en räkning på "
+"resterande belopp när din vara är klar."
+
+#: templates/shop/cart.html:66
+msgid "Cart Total"
+msgstr "Totalt"
+
+#: templates/shop/index.html:11
+msgid "Welcome to the shop."
+msgstr "Välkommen till butiken."
+
+#: templates/shop/index.html:14
+msgid "Featured Items"
+msgstr "Utvalda produkter"
+
+#: templates/shop/index.html:31
+#: templates/shop/index.html.py:33
+msgid "Previous"
+msgstr "Föregående"
+
+#: templates/shop/index.html:43
+#: templates/shop/index.html.py:45
+msgid "Next"
+msgstr "Nästa"
+
+#: templates/shop/contact_form.html:10
+#: templates/shop/contact_thanks.html:10
+#: templates/shop/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "Kontaktinformation"
+
+#: templates/shop/contact_form.html:13
+#: templates/shop/checkout/base_pay_ship.html:21
+#: templates/shop/checkout/form.html:61
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Var god rätta till felet nedan."
+msgstr[1] ""
+
+#: templates/shop/contact_form.html:19
+msgid "Send Email"
+msgstr "Skicka e-post"
+
+#: templates/shop/download.html:13
+msgid "Downloading of"
+msgstr "Nedladdning av"
+
+#: templates/shop/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "kommer att påbörjas efter att du klickat på länken nedan:"
+
+#: templates/shop/download.html:15
+msgid ""
+"Once you click the link, the download will be counted.  If you have trouble "
+"with the download, please refresh yourbrowser and try the download again"
+msgstr ""
+"När du klickar på länken kommer nedladdningen att räknas. Om du får några "
+"problem med nedladdningen, var god ladda om sidan i din browser och försök "
+"igen."
+
+#: templates/shop/search.html:12
+msgid "Nothing found"
+msgstr "Hittade ingenting"
+
+#: templates/shop/search.html:27
+msgid "for"
+msgstr "för"
+
+#: templates/shop/contact_thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "Tack för att du kontaktade oss."
+
+#: templates/shop/contact_thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "Vi kommer att försöka återkomma till dig inom 48 timmar."
+
+#: templates/shop/admin/_customorder_management.html:3
+msgid "Custom Order Management"
+msgstr "Anpassad Orderhantering"
+
+#: templates/shop/admin/_customorder_management.html:8
+msgid "Fully charged"
+msgstr "Helt betalad"
+
+#: templates/shop/admin/_customorder_management.html:10
+msgid "Charge remaining amount"
+msgstr "Kvarstående belopp"
+
+#: templates/shop/admin/_customorder_management.html:13
+msgid "Product Details"
+msgstr "Produktdetaljer"
+
+#: templates/shop/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "Belopp"
+
+#: templates/shop/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "Inga betalningar."
+
+#: templates/shop/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "Fullt betald."
+
+#: templates/shop/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "Ordersaldo:"
+
+#: templates/admin/base_site.html:4
+#: templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "Satchmo Sajtadministration"
+
+#: templates/shop/admin/inventory_form.html:74
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Var god rätta till felet nedan."
+msgstr[1] "Var god rätta till felen nedan."
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Change password"
+msgstr "Byt lösenord"
+
+#: templates/shop/admin/inventory_form.html:67
+msgid "Inventory Management"
+msgstr "Lagerhantering"
+
+#: templates/shop/admin/inventory_form.html:84
+#: templates/shop/pdf/invoice.rml:116
+#: templates/shop/pdf/packing-slip.rml:116
+msgid "Unit Price"
+msgstr "Pris per styck"
+
+#: templates/shop/admin/inventory_form.html:86
+msgid "Featured"
+msgstr "Utvald"
+
+#: templates/shop/admin/inventory_form.html:112
+msgid "Helpers"
+msgstr "Hjälpmedel"
+
+#: templates/shop/admin/inventory_form.html:113
+msgid "Mark all featured"
+msgstr "Markera alla utvalda"
+
+#: templates/shop/admin/inventory_form.html:114
+msgid "Clear all featured"
+msgstr "Avmarkera alla utvalda"
+
+#: templates/shop/admin/inventory_form.html:115
+msgid "Disable all Products with 0 quantity."
+msgstr "Inaktivera alla produkter med antal 0"
+
+#: templates/shop/admin/inventory_form.html:116
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Inaktivera ProductVarianter med antal 0."
+
+#: templates/shop/admin/inventory_form.html:120
+msgid "No inventory items."
+msgstr "Inga lagerartiklar."
+
+#: templates/shop/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "Nya beställningar"
+
+#: templates/shop/admin/order_sidebar.html:8
+#: templates/shop/admin/order_sidebar.html:19
+msgid "on"
+msgstr "den"
+
+#: templates/shop/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "Beställningar under behandling"
+
+#: templates/shop/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "Visa alla beställningar"
+
+#: templates/shop/admin/index.html:34
+msgid "Switch to Shop View"
+msgstr "Växla till butiksvy"
+
+#: templates/shop/admin/index.html:39
+#: templates/shop/admin/index.html.py:130
+msgid "Switch to Legacy View"
+msgstr "Växla till gammal vy"
+
+#: templates/shop/admin/index.html:88
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "Tillgängliga modeller i applikationen %(name)s."
+
+#: templates/shop/admin/index.html:89
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: templates/shop/admin/index.html:99
+msgid "Add"
+msgstr "Lägg till"
+
+#: templates/shop/admin/index.html:122
+msgid "Edit Site Settings"
+msgstr "Ändra sajtinställningar"
+
+#: templates/shop/admin/index.html:124
+msgid "Export Products as CSV"
+msgstr "Exportera produkter i CSV-format"
+
+#: templates/shop/admin/index.html:126
+msgid "Edit Inventory"
+msgstr "Ändra lager"
+
+#: templates/shop/admin/index.html:127
+msgid "Export Product Defs"
+msgstr "Exportera produktdefinitioner"
+
+#: templates/shop/admin/index.html:128
+msgid "Product Variation Manager"
+msgstr "Produktvarianthanterare"
+
+#: templates/shop/admin/index.html:129
+msgid "Cache Status"
+msgstr "Cache-status"
+
+#: templates/shop/checkout/balance_remaining.html:12
+msgid "Order Balance"
+msgstr "Ordersaldo"
+
+#: templates/shop/checkout/balance_remaining.html:17
+#, python-format
+msgid ""
+"To complete this order, you need to pay the %(orderbalance)s balance "
+"remaining on this order."
+msgstr ""
+"För att slutföra beställningen behöver du betala de resterande %"
+"(orderbalance)s på den här beställningen."
+
+#: templates/shop/checkout/balance_remaining.html:22
+#: templates/shop/checkout/form.html:87
+msgid "How do you want to pay?"
+msgstr "Hur vill du betala?"
+
+#: templates/shop/checkout/balance_remaining.html:26
+#: templates/shop/checkout/form.html:166
+msgid "Continue Checkout"
+msgstr "Fortsätt till kassan"
+
+#: templates/shop/checkout/base_confirm.html:15
+#: templates/shop/checkout/base_pay_ship.html:13
+#: templates/shop/checkout/form.html:54
+msgid "Ship/Bill"
+msgstr "Frakt/Faktura"
+
+#: templates/shop/checkout/base_confirm.html:17
+#: templates/shop/checkout/base_pay_ship.html:15
+#: templates/shop/checkout/form.html:56
+msgid "Confirmation"
+msgstr "Bekräftelse"
+
+#: templates/shop/checkout/base_confirm.html:22
+msgid ""
+"The following error was returned while trying to process your payment. "
+"Please correct and resubmit."
+msgstr ""
+"Följande fel inträffade då din betalning skulle behandlas. Var vänlig rätta "
+"till och skicka igen."
+
+#: templates/shop/checkout/base_confirm.html:25
+msgid "Please validate the following information, then submit your order."
+msgstr ""
+"Var god bekräfta följande information och skicka sedan din beställning."
+
+#: templates/shop/checkout/base_confirm.html:29
+#: templates/shop/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "Beställda varor"
+
+#: templates/shop/checkout/base_confirm.html:40
+#: templates/shop/checkout/paypal/confirm.html:65
+msgid "Purchase Items"
+msgstr "Köp varor"
+
+#: templates/shop/checkout/base_pay_ship.html:18
+#: templates/shop/checkout/form.html:59
+msgid ""
+"Please complete the following information in order to submit your order."
+msgstr "Var god fyll i följande information för att kunna lägga din order."
+
+#: templates/shop/checkout/base_pay_ship.html:33
+msgid "Discount code"
+msgstr "Rabattkod"
+
+#: templates/shop/checkout/base_pay_ship.html:38
+#: templates/shop/checkout/form.html:133
+msgid "Shipping Information"
+msgstr "Leveransinformation"
+
+#: templates/shop/checkout/base_pay_ship.html:42
+msgid "Please choose your preferred shipping method"
+msgstr "Var god ange fraktmetod"
+
+#: templates/shop/checkout/base_pay_ship.html:50
+msgid "Confirm"
+msgstr "Bekräfta"
+
+#: templates/shop/checkout/confirm.html:6
+#: templates/shop/checkout/cod/confirm.html:6
+msgid ""
+"The following error was returned while trying to process your card.  Please "
+"correct and resubmit"
+msgstr ""
+"Följande fel inträffade då din kortbetalning skulle behandlas. Var vänlig "
+"rätta till och skicka igen."
+
+#: templates/shop/checkout/confirm.html:19
+#: templates/shop/email/order_complete.txt:61
+#, python-format
+msgid ""
+"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+"charged %(order_total)s."
+msgstr ""
+"%(order_total)s kommer att dras från ditt %(credit_card_type)s-kort som "
+"slutar med %(credit_card_number)s."
+
+#: templates/shop/checkout/empty_cart.html:12
+msgid ""
+"Your cart is empty. Please add some items to your cart, then complete the "
+"checkout process."
+msgstr ""
+"Din kundvagn är tom. Lägg till några produkter i den och gå sedan till "
+"kassan."
+
+#: templates/shop/checkout/form.html:70
+msgid ""
+"If you already have an account, you can login now to fill in most of the "
+"information below."
+msgstr ""
+"Om du redan har ett konto kan du nu logga in för att fylla i den mesta av "
+"informationen nedan."
+
+#: templates/shop/checkout/form.html:71
+msgid "This is just a convenience, no account is required!"
+msgstr "Det här är bara för bekvämlighets skull, inget konto behövs!"
+
+#: templates/shop/checkout/form.html:76
+msgid "Login"
+msgstr "Logga in"
+
+#: templates/shop/checkout/form.html:83
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "Du behöver fylla i åtminstone fälten markerade med *"
+
+#: templates/shop/checkout/form.html:91
+msgid "Basic Information"
+msgstr "Allmän information"
+
+#: templates/shop/checkout/form.html:101
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: templates/shop/checkout/form.html:104
+#: templates/shop/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "Fakturainformation"
+
+#: templates/shop/checkout/form.html:120
+#: templates/shop/checkout/form.html.py:152
+msgid "State/Province"
+msgstr "Delstat/landsdel"
+
+#: templates/shop/checkout/form.html:124
+#: templates/shop/checkout/form.html.py:156
+msgid "Zipcode/Postcode"
+msgstr "Postnummer"
+
+#: templates/shop/checkout/form.html:135
+msgid "Shipping same as billing?"
+msgstr "Leveransadress samma som fakturaadress?"
+
+#: templates/shop/checkout/pay_ship.html:11
+msgid "Type of credit card"
+msgstr "Typ av kreditkort"
+
+#: templates/shop/checkout/pay_ship.html:14
+msgid "Credit card number"
+msgstr "Kreditkortsnummer"
+
+#: templates/shop/checkout/pay_ship.html:17
+msgid "Expiration date"
+msgstr "Utgångsdatum"
+
+#: templates/shop/checkout/pay_ship.html:20
+msgid "CCV"
+msgstr "CCV"
+
+#: templates/shop/checkout/success.html:13
+msgid "Thank you for your order!"
+msgstr "Tack för din beställning!"
+
+#: templates/shop/checkout/success.html:14
+msgid ""
+"Please print out this page as a receipt.  You will also receive an email "
+"with this information."
+msgstr ""
+"Skriv gärna ut denna sida som kvitto.  Du kommer också att få e-brev med den "
+"här informationen."
+
+#: templates/shop/checkout/cod/confirm.html:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "Den här ordern skickas mot postförskott på %(order_total)s."
+
+#: templates/shop/checkout/google/confirm.html:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "Din betalning kommer att behandlas av Google Checkout."
+
+#: templates/shop/checkout/google/confirm.html:18
+msgid "Fast checkout through Google"
+msgstr "Snabb utcheckning med Google"
+
+#: templates/shop/checkout/paypal/confirm.html:11
+msgid "Your payment will be processed through PayPal."
+msgstr "Din betalning kommer att behandlas av PayPal."
+
+#: templates/shop/order_history.html:19
+msgid "Order #"
+msgstr "Order #"
+
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
+msgid "Account"
+msgstr "Konto"
+
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
+msgid "Order History"
+msgstr "Orderhistorik"
+
+#: templates/shop/order_history.html:22
+msgid "Items"
+msgstr "Artiklar"
+
+#: templates/shop/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "Du har inte lagt några beställningar än."
+
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "Orderspårning"
+
+#: templates/shop/email/contact_us.txt:1
+#, python-format
+msgid ""
+"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
+"contact form."
+msgstr ""
+"Här är en/ett %(request_type)s från %(name)s ( %(email)s ) sänt via "
+"kontaktformuläret."
+
+#: templates/shop/email/order_complete.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Hej %(first_name)s %(last_name)s,"
+
+#: templates/shop/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "Tack för din beställning hos %(shop_name)s"
+
+#: templates/shop/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "Innehållet av din beställning sammanfattas nedan:"
+
+#: templates/shop/email/order_complete.txt:67
+msgid "Your order contains products that can be downloaded"
+msgstr "Din beställnings innehåller produkter som kan laddas ned."
+
+#: templates/shop/email/order_complete.txt:68
+msgid "Please click the link to being the download"
+msgstr "Klicka på länken för att påbörja nedladdningen"
+
+#: templates/shop/email/order_complete.txt:74
+msgid "Regards"
+msgstr "Vänliga hälsningar"
+
+#: templates/shop/email/order_complete.txt:76
+msgid "Store Management"
+msgstr "Butikshantering"
+
+#: templates/shop/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "Faktura"
+
+#: templates/shop/pdf/invoice.rml:14
+#: templates/shop/pdf/invoice.rml.py:50
+#: templates/shop/pdf/packing-slip.rml:14
+#: templates/shop/pdf/packing-slip.rml.py:50
+msgid "Invoice #"
+msgstr "Faktura nr. "
+
+#: templates/shop/pdf/invoice.rml:21
+#: templates/shop/pdf/invoice.rml.py:57
+msgid "INVOICE"
+msgstr "FAKTURA"
+
+#: templates/shop/pdf/invoice.rml:57
+#: templates/shop/pdf/packing-slip.rml:57
+msgid "Page"
+msgstr "Sida"
+
+#: templates/shop/pdf/invoice.rml:153
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "Summan %(order_total)s att betalas till:"
+
+#: templates/shop/pdf/invoice.rml:158
+msgid "Accounts Receivable"
+msgstr ""
+
+#: templates/shop/pdf/packing-slip.rml:21
+#: templates/shop/pdf/packing-slip.rml.py:57
+msgid "PACKING SLIP"
+msgstr "FÖLJESEDEL"
+
+#: templates/shop/pdf/packing-slip.rml:156
+#, python-format
+msgid ""
+"%(order_total)s was charged to your %(credit_card_type)s card (x%"
+"(credit_card_number)s) on %(order_date)s."
+msgstr ""
+"%(order_total)s drogs från ditt %(credit_card_type)s-kort (x%"
+"(credit_card_number)s) den %(order_date)s."
+
+#: templates/shop/pdf/packing-slip.rml:162
+msgid "Thank you for your business!"
+msgstr "Tack för din beställning!"
+

@@ -1,0 +1,225 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# Selin Çuhadar <selincuhadar@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2008-06-09 18:18+0200\n"
+"Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
+"Language-Team: Turkish <selincuhadar@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: models.py:41
+msgid "State"
+msgstr "Eyalet"
+
+#: models.py:63
+msgid "Country"
+msgstr "Ülke"
+
+#: models.py:6
+msgid "Africa"
+msgstr "Afrika"
+
+#: models.py:7
+msgid "North America"
+msgstr "Kuzey Amerika"
+
+#: models.py:8
+msgid "Europe"
+msgstr "Avrupa"
+
+#: models.py:9
+msgid "Asia"
+msgstr "Asya"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "Okyanusya"
+
+#: models.py:11
+msgid "South America"
+msgstr "Güney Amerika"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "Antartika"
+
+#: models.py:16
+msgid "Another"
+msgstr "Diğer"
+
+#: models.py:17
+msgid "Island"
+msgstr "Ada"
+
+#: models.py:18
+#, fuzzy
+msgid "Arrondissement"
+msgstr "İlçe"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "Atol"
+
+#: models.py:20
+#, fuzzy
+msgid "Autonomous island"
+msgstr "Bağımsız Ada"
+
+#: models.py:21
+#, fuzzy
+msgid "Canton"
+msgstr "Kanton"
+
+#: models.py:22
+msgid "Commune"
+msgstr ""
+
+#: models.py:23
+msgid "County"
+msgstr ""
+
+#: models.py:24
+msgid "Department"
+msgstr "Bölüm"
+
+#: models.py:25
+#, fuzzy
+msgid "Dependency"
+msgstr "Sömürge"
+
+#: models.py:26
+#, fuzzy
+msgid "District"
+msgstr "Bölge"
+
+#: models.py:27
+msgid "Division"
+msgstr ""
+
+#: models.py:28
+msgid "Emirate"
+msgstr "Emirlik"
+
+#: models.py:29
+msgid "Governorate"
+msgstr ""
+
+#: models.py:30
+msgid "Island council"
+msgstr ""
+
+#: models.py:31
+msgid "Island group"
+msgstr ""
+
+#: models.py:32
+msgid "Island region"
+msgstr ""
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "Krallık"
+
+#: models.py:34
+msgid "Municipality"
+msgstr ""
+
+#: models.py:35
+msgid "Parish"
+msgstr ""
+
+#: models.py:36
+msgid "Prefecture"
+msgstr ""
+
+#: models.py:37
+msgid "Province"
+msgstr ""
+
+#: models.py:38
+msgid "Region"
+msgstr "Bölge"
+
+#: models.py:39
+msgid "Republic"
+msgstr "Cumhuriyet"
+
+#: models.py:40
+msgid "Sheading"
+msgstr ""
+
+#: models.py:42
+msgid "Subdivision"
+msgstr ""
+
+#: models.py:43
+msgid "Subject"
+msgstr "Konu"
+
+#: models.py:44
+msgid "Territory"
+msgstr ""
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr "ISO alpha-2"
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "Resmi adı"
+
+#: models.py:55
+msgid "Country name"
+msgstr "Ülke adı"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr "ISO alpha-3"
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr "ISO numerik"
+
+#: models.py:58
+msgid "Country is active"
+msgstr "Ülke aktif"
+
+#: models.py:59
+msgid "Continent"
+msgstr ""
+
+#: models.py:60
+#: models.py:87
+msgid "Administrative Area"
+msgstr "Yönetici Alanı"
+
+#: models.py:64
+msgid "Countries"
+msgstr "Ülkeler"
+
+#: models.py:82
+msgid "Admin Area name"
+msgstr ""
+
+#: models.py:83
+msgid "Postal Abbreviation"
+msgstr ""
+
+#: models.py:84
+msgid "Area is active"
+msgstr "Alan aktif"
+
+#: models.py:88
+msgid "Administrative Areas"
+msgstr "Yönetimsel Alanlar"
+

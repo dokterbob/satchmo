@@ -1,0 +1,636 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <jerzyk@jerzyk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/admin/charge_remaining_confirm.html:7
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Proszę poprawić poniższy błąd."
+msgstr[1] "Proszę poprawić poniższe błędy."
+
+#: common/views/payship.py:23
+msgid "Please Select"
+msgstr "Proszę wybrać"
+
+#: common/forms.py:117
+msgid "This field is required."
+msgstr "To pole jest wymagane."
+
+#: views.py:27
+#: templates/admin/charge_remaining_confirm.html:16
+msgid "Notes"
+msgstr "Notatki"
+
+#: models.py:31
+msgid "Description"
+msgstr "Opis"
+
+#: models.py:32
+msgid "Active"
+msgstr "Aktywny"
+
+#: modules/authorizenet/config.py:43
+#: modules/cybersource/config.py:36
+#: modules/trustcommerce/config.py:34
+msgid "Use SSL for the checkout pages?"
+msgstr "Czy użyć SSL dla stron zamówień?"
+
+#: modules/authorizenet/config.py:60
+#: modules/autosuccess/config.py:30
+#: modules/cod/config.py:40
+#: modules/cybersource/config.py:53
+#: modules/dummy/config.py:40
+#: modules/google/config.py:97
+#: modules/paypal/config.py:72
+#: modules/trustcommerce/config.py:22
+msgid "Module key"
+msgstr "Klucz modułu"
+
+#: modules/authorizenet/config.py:54
+#: modules/autosuccess/config.py:24
+#: modules/cod/config.py:34
+#: modules/cybersource/config.py:47
+#: modules/dummy/config.py:34
+#: modules/google/config.py:91
+#: modules/paypal/config.py:66
+#: modules/trustcommerce/config.py:28
+msgid "Implementation module"
+msgstr "Moduł implementacji"
+
+#: modules/authorizenet/config.py:66
+#: modules/autosuccess/config.py:36
+#: modules/cod/config.py:46
+#: modules/cybersource/config.py:59
+#: modules/dummy/config.py:46
+#: modules/google/config.py:103
+#: modules/paypal/config.py:78
+#: modules/trustcommerce/config.py:59
+msgid "English name for this group on the checkout screens"
+msgstr "Angielska nazwa dla tej grupy na ekranach zamówienia"
+
+#: modules/authorizenet/config.py:68
+#: modules/autosuccess/config.py:38
+#: modules/cod/config.py:48
+#: modules/cybersource/config.py:61
+#: modules/dummy/config.py:48
+#: modules/google/config.py:105
+#: modules/paypal/config.py:80
+#: modules/trustcommerce/config.py:61
+msgid "This will be passed to the translation utility"
+msgstr "Zostanie przekazane do modułu tłumaczeń"
+
+#: config.py:32
+#: modules/authorizenet/config.py:48
+#: modules/autosuccess/config.py:18
+#: modules/cod/config.py:27
+#: modules/cybersource/config.py:41
+#: modules/dummy/config.py:28
+#: modules/google/config.py:85
+#: modules/paypal/config.py:60
+#: modules/trustcommerce/config.py:44
+msgid "Accept real payments"
+msgstr "Akceptuj prawdziwe płatności"
+
+#: modules/authorizenet/config.py:49
+#: modules/autosuccess/config.py:19
+#: modules/cod/config.py:28
+#: modules/cybersource/config.py:42
+#: modules/dummy/config.py:29
+#: modules/google/config.py:86
+#: modules/paypal/config.py:61
+#: modules/trustcommerce/config.py:45
+msgid "False if you want to be in test mode"
+msgstr "Fałsz - jeżeli tryb testowy"
+
+#: modules/authorizenet/config.py:72
+#: modules/autosuccess/config.py:42
+#: modules/cod/config.py:52
+#: modules/cybersource/config.py:71
+#: modules/dummy/config.py:52
+#: modules/google/config.py:109
+#: modules/paypal/config.py:84
+#: modules/trustcommerce/config.py:65
+msgid "The url base used for constructing urlpatterns which will use this module"
+msgstr "Bazowy URL, który będzie użyty do skonstruowania wzorca adresów w tym module"
+
+#: models.py:78
+msgid "Order Payment"
+msgstr "Płatność za zamówienie"
+
+#: modules/cod/processor.py:21
+#: modules/dummy/processor.py:38
+msgid "Success"
+msgstr "Sukces"
+
+#: config.py:11
+msgid "Payment Settings"
+msgstr "Ustawienia płatności"
+
+#: config.py:16
+msgid "Cron Passkey"
+msgstr "Hasło cron-a"
+
+#: config.py:17
+msgid "Enter an authentication passkey to secure your recurring billing cron url."
+msgstr "Wprowadź hasło aby zabezpieczyć URL do cyklicznych naliczeń z crona."
+
+#: config.py:24
+msgid "Allow URL Access to Cron for subscription rebills"
+msgstr "Pozwól na dostęp do URL w celu ponownego naliczania subskrypcji (z crona)"
+
+#: config.py:25
+msgid "Do you want to allow remote url calls for subscription billing?"
+msgstr "Czy zezwala się na zewnętrzne wywołania URL dla płacenia za subskrypcje?"
+
+#: config.py:33
+msgid "False if you want to be in test mode.  This is the master switch, turn it off to force all payments into test mode."
+msgstr "Fałsz jeżeli ma działać w trybie testowym. To jest główny przełącznik, wyłącz go by wymusić aby wszystkie płatności odbywały się w trybie testowym."
+
+#: config.py:40
+msgid "Email owner?"
+msgstr "Wyślij email do właściciela?"
+
+#: config.py:41
+msgid "True if you want to email the owner on order"
+msgstr "Zaznacz, jeśli chcesz wysyłać email z potwierdzniem do właściciela zamówienia."
+
+#: config.py:48
+msgid "Extra order emails?"
+msgstr "Dodatkowe emaile dla zamówienia?"
+
+#: config.py:50
+msgid "Put all email addresses you want to email in addition to the owner when an order is placed."
+msgstr "Podaj dodatkowe adresy email, które mają być powiadamiane oprócz właściciela zamówienia."
+
+#: config.py:58
+msgid "Country match required?"
+msgstr "Wymagna zgodność krajów?"
+
+#: config.py:59
+msgid "If True, then customers may not have different countries for shipping and billing."
+msgstr "Włącz, aby klienci nie mogli wybrać różnych krajów dla dostawy i rachunku."
+
+#: config.py:64
+msgid "Enable payment modules"
+msgstr "Włącz moduł płatności"
+
+#: config.py:65
+msgid ""
+"Select the payment modules you want to use with your shop.  \n"
+"    If you are adding a new one, you should save and come back to this page, \n"
+"    as it may have enabled a new configuration section."
+msgstr "Wybierz które moduły płatności będą aktywne. Po zaznaczeniu nowych zapisz i przeładuj stronę aby uzyskać dostęp do ustawień szczegółowych."
+
+#: config.py:72
+msgid "Enable SSL"
+msgstr "Włącz SSL"
+
+#: config.py:73
+msgid ""
+"This enables for generic pages like contact information capturing.  \n"
+"    It does not set SSL for individual modules. \n"
+"    You must enable SSL for each payment module individually."
+msgstr "Opcja ta włącza SSL dla stron gdzie zbierane są np. informacje kontaktowe. Opcja nie dotyczy poszczególnych modułów płatności - dla nich musisz ustawić opcje osobno."
+
+#: models.py:33
+msgid "Should this be displayed as an option for the user?"
+msgstr "Czy to powinno być wyświetlone jako opcja dla użytkownika?"
+
+#: models.py:34
+msgid "Option Name"
+msgstr "Nazwa opcji"
+
+#: models.py:36
+msgid "The class name as defined in payment.py"
+msgstr "Nazwa klasy - jak zdefiniowane w payment.py"
+
+#: models.py:37
+msgid "Sort Order"
+msgstr "Porządek sortowania"
+
+#: models.py:40
+msgid "Payment Option"
+msgstr "Opcja płatności"
+
+#: models.py:41
+msgid "Payment Options"
+msgstr "Opcje płatności"
+
+#: models.py:45
+msgid "Payment Method"
+msgstr "Matoda płatności"
+
+#: models.py:47
+msgid "amount"
+msgstr "kwota"
+
+#: models.py:49
+msgid "timestamp"
+msgstr "data i czas"
+
+#: models.py:50
+msgid "Transaction ID"
+msgstr "ID transakcji"
+
+#: models.py:79
+msgid "Order Payments"
+msgstr "Płatności za zamówienia"
+
+#: models.py:89
+msgid "Credit Card Type"
+msgstr "Typ karty kredytowej"
+
+#: models.py:90
+msgid "CC Number (Last 4 digits)"
+msgstr "Numer karty (ostatnie 4 cyfry)"
+
+#: models.py:92
+msgid "Encrypted Credit Card"
+msgstr "Zakodowane informacje o karcie kredytowej."
+
+#: models.py:94
+msgid "Expiration Month"
+msgstr "Miesiąc ważności"
+
+#: models.py:95
+msgid "Expiration Year"
+msgstr "Rok ważności"
+
+#: models.py:139
+#: modules/authorizenet/config.py:10
+#: modules/cybersource/config.py:9
+#: modules/trustcommerce/config.py:8
+msgid "Credit Card"
+msgstr "Karta kredytowa"
+
+#: models.py:140
+msgid "Credit Cards"
+msgstr "Karty kredytowe"
+
+#: views.py:25
+msgid "New price"
+msgstr "Nowa cena"
+
+#: views.py:26
+msgid "Shipping adjustment"
+msgstr "Korekta kwoty wysyłki"
+
+#: views.py:41
+msgid "Feature is not enabled."
+msgstr "Funkcja nie jest aktywna."
+
+#: views.py:151
+#: views.py:175
+msgid "The orderitem you have requested doesn't exist, or you don't have access to it."
+msgstr "Żądana pozycja zamówienia nie istnieje lub nie masz do niej dostępu."
+
+#: views.py:165
+msgid "No form found in request."
+msgstr "Brak danych w żądaniu."
+
+#: common/forms.py:64
+#: common/forms.py:77
+msgid "Payment method"
+msgstr "Metoda płatności"
+
+#: common/forms.py:127
+msgid "Invalid discount."
+msgstr "Niepoprawny rabat."
+
+#: common/forms.py:179
+msgid "Your card has expired."
+msgstr "Kata jest nieważna."
+
+#: common/forms.py:188
+msgid "Invalid ccv."
+msgstr "Niepoprawny kod ccv."
+
+#: common/views/checkout.py:14
+msgid "Your order has already been processed."
+msgstr "Twoje zamówienie już jest w realizacji."
+
+#: common/views/checkout.py:16
+msgid "Order successfully submitted."
+msgstr "Zamówienie zostało przyjęte."
+
+#: common/views/confirm.py:41
+#: modules/google/views.py:79
+#: modules/paypal/views.py:48
+msgid "Your order is no longer valid."
+msgstr "Twoje zamówienie jest już niepoprawne."
+
+#: modules/authorizenet/config.py:10
+#: modules/cybersource/config.py:9
+#: modules/trustcommerce/config.py:8
+msgid "CreditCard"
+msgstr "Karta kredytowa"
+
+#: modules/authorizenet/config.py:16
+msgid "Authorize.net Payment Settings"
+msgstr "Ustawienia modułu płatności Authorize.net"
+
+#: modules/authorizenet/config.py:24
+msgid "Submit to URL"
+msgstr "URL produkcyjny"
+
+#: modules/authorizenet/config.py:25
+#: modules/cybersource/config.py:25
+msgid "This is the address to submit live transactions."
+msgstr "Adres, gdzie będą przesyłane transakcje"
+
+#: modules/authorizenet/config.py:30
+msgid "Submit to Test URL"
+msgstr "URL do testów"
+
+#: modules/authorizenet/config.py:77
+#: modules/cybersource/config.py:76
+#: modules/dummy/config.py:57
+#: modules/trustcommerce/config.py:70
+msgid "Available credit cards"
+msgstr "Dostępne karty kredytowe"
+
+#: modules/authorizenet/config.py:87
+msgid "Your authorize.net transaction login"
+msgstr "Twój login do authorize.net"
+
+#: modules/authorizenet/config.py:92
+msgid "Your authorize.net transaction key"
+msgstr "Twój klucz do authorize.net"
+
+#: modules/authorizenet/config.py:97
+msgid "Capture Payment?"
+msgstr "Potwierdzać płatność?"
+
+#: modules/authorizenet/config.py:99
+msgid "IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment."
+msgstr "WAŻNE: Jeżeli nie ustawisz tej flagi, każda transakcja będzie musiała być recznie potwierdzona przy pomocy panelu na stronie authorize.net. Pusta opcja oznacza, że tylko autoryzujesz karty bez potwierdzenia płatności."
+
+#: modules/autosuccess/config.py:8
+msgid "Auto Success Module"
+msgstr "Moduł AutoSuccess"
+
+#: modules/autosuccess/config.py:11
+msgid "Payment Auto Success Module Settings"
+msgstr "Ustawienia dla modułu AutoSuccess"
+
+#: modules/cod/config.py:12
+msgid "COD"
+msgstr "Płatność przy odbiorze"
+
+#: modules/cod/config.py:15
+msgid "COD Payment Module Settings"
+msgstr "Ustawienia modułu Płatność przy odbiorze"
+
+#: modules/cod/config.py:22
+#: modules/dummy/config.py:23
+#: modules/google/config.py:80
+#: modules/paypal/config.py:55
+msgid "Use SSL for the module checkout pages?"
+msgstr "Użyć SSL dla stron zakupów?"
+
+#: modules/cybersource/config.py:16
+msgid "Cybersource.net Payment Settings"
+msgstr "Ustawienia modułu płatności Cybersource.net"
+
+#: modules/cybersource/config.py:24
+msgid "WSDL URL"
+msgstr "URL WSDL"
+
+#: modules/cybersource/config.py:30
+msgid "Submit to Test WSDL URL"
+msgstr "URl WSDL testowy "
+
+#: modules/cybersource/config.py:65
+#: modules/google/config.py:28
+#: modules/paypal/config.py:19
+msgid "Currency Code"
+msgstr "Kod waluty"
+
+#: modules/cybersource/config.py:66
+msgid "Currency code for Cybersource transactions."
+msgstr "Kod waluty dla transakcji Cybersource"
+
+#: modules/cybersource/config.py:86
+msgid "Your Cybersource merchant ID"
+msgstr "Twój numer ID Cybersource"
+
+#: modules/cybersource/config.py:91
+msgid "Your Cybersource transaction key"
+msgstr "Klucz tansakcji Cybersource"
+
+#: modules/dummy/config.py:13
+msgid "Payment Test Module"
+msgstr "Testowy Moduł Płatności"
+
+#: modules/dummy/config.py:16
+msgid "Payment Test Module Settings"
+msgstr "Ustawienia Testowego Modułu Płatności"
+
+#: modules/google/config.py:11
+msgid "Google Checkout Module"
+msgstr "Moduł płatności Google Checkout"
+
+#: modules/google/config.py:14
+msgid "Google Checkout Module Settings"
+msgstr "Ustawienia modułu płatności Google Checkout"
+
+#: modules/google/config.py:22
+msgid "XML Template"
+msgstr "Szablon XML"
+
+#: modules/google/config.py:23
+msgid "The XML template to use when submitting to Google. Probably you should not change this."
+msgstr "Szablon XML używany przy przesyłaniu danych do Gogle. Prawdopodobnie nie powinieneś tego zmieniać."
+
+#: modules/google/config.py:29
+msgid "Currency code for Google Checkout transactions."
+msgstr "Kod waluty dla transakcji Google Checkout"
+
+#: modules/google/config.py:34
+msgid "Checkout Button URL"
+msgstr "UTL do przycisku \"Zapłać\""
+
+#: modules/google/config.py:39
+msgid "Checkout Button Size"
+msgstr "Rozmiar przycisku \"Zapłać\""
+
+#: modules/google/config.py:41
+msgid "Small"
+msgstr "Mały"
+
+#: modules/google/config.py:42
+msgid "Medium"
+msgstr "Średni"
+
+#: modules/google/config.py:43
+msgid "Large"
+msgstr "Duży"
+
+#: modules/google/config.py:48
+#: modules/google/config.py:54
+#: modules/paypal/config.py:25
+#: modules/paypal/config.py:31
+msgid "Post URL"
+msgstr "URL do przesłania danych"
+
+#: modules/google/config.py:49
+msgid "The Google URL for real transaction posting."
+msgstr "URL dla przesłania prawdziwych transakcji"
+
+#: modules/google/config.py:55
+msgid "The Google URL for test transaction posting."
+msgstr "URL dla przesłania transakcji testowych"
+
+#: modules/google/config.py:60
+msgid "Merchant ID"
+msgstr "Identyfikator Sprzedawcy (Merchant ID)"
+
+#: modules/google/config.py:65
+msgid "Merchant Key"
+msgstr "Klucz Sprzedawcy (Merchant Key)"
+
+#: modules/google/config.py:70
+msgid "Merchant Test ID"
+msgstr "Testowy Identyfikator Sprzedawcy (Merchant Test ID)"
+
+#: modules/google/config.py:75
+msgid "Merchant Test Key"
+msgstr "Testowy Klucz Sprzedawcy (Merchant Test Key)"
+
+#: modules/paypal/config.py:8
+msgid "Paypal Payment Settings"
+msgstr "Ustawienia płatności PayPal"
+
+#: modules/paypal/config.py:11
+msgid "Paypal Payment Module Settings"
+msgstr "Ustawienia modułu płatności PayPal"
+
+#: modules/paypal/config.py:20
+msgid "Currency code for Paypal transactions."
+msgstr "Kod waluty dla transakcji PayPal"
+
+#: modules/paypal/config.py:26
+msgid "The Paypal URL for real transaction posting."
+msgstr "URL dla prawdziwych transakcji"
+
+#: modules/paypal/config.py:32
+msgid "The Paypal URL for test transaction posting."
+msgstr "URL dla transakcji testowych"
+
+#: modules/paypal/config.py:37
+msgid "Paypal account email"
+msgstr "email dla konta PayPal"
+
+#: modules/paypal/config.py:38
+msgid "The email address for your paypal account"
+msgstr "Adres email, na jaki zarejestrowane jest konto PayPal"
+
+#: modules/paypal/config.py:43
+msgid "Paypal test account email"
+msgstr "email konta testowego PayPal"
+
+#: modules/paypal/config.py:44
+msgid "The email address for testing your paypal account"
+msgstr "Adres email, na jaki zarejestrowane jest konto testowe PayPal"
+
+#: modules/paypal/config.py:49
+msgid "Return URL"
+msgstr "Powrotny URL"
+
+#: modules/paypal/config.py:50
+msgid "Where Paypal will return the customer after the purchase is complete.  This can be a named url and defaults to the standard checkout success."
+msgstr "Gdzie powróci klient po zakończeniu transakcji. Może to być nazwa URL w Django. Domyślnie kieruje na standardową stronę poprawnego zakończenia płatności."
+
+#: modules/paypal/views.py:135
+msgid "Paid through PayPal."
+msgstr "Zapłacone przez PayPal."
+
+#: modules/paypal/views.py:145
+msgid "---Comment via Paypal IPN---"
+msgstr "---Komentarz z PayPal---"
+
+#: modules/trustcommerce/config.py:14
+msgid "TrustCommerce Payment Settings"
+msgstr "Ustawienia płatności TrustCommerce"
+
+#: modules/trustcommerce/config.py:39
+msgid "Use Address Verification System (AVS)?"
+msgstr "Czy użyć AVD (System Weryfikacji Adresu)?"
+
+#: modules/trustcommerce/config.py:50
+msgid "Type of authorization to perform."
+msgstr "Jaką autoryzację przeprowadzić."
+
+#: modules/trustcommerce/config.py:51
+msgid "Refer to manual for details on the different types."
+msgstr "Sprawdź w podręczniku jakie są dostępne opcje"
+
+#: modules/trustcommerce/config.py:53
+msgid "Sale"
+msgstr "Sprzedaż"
+
+#: modules/trustcommerce/config.py:54
+msgid "Preauth"
+msgstr "Pre-autoryzacja"
+
+#: modules/trustcommerce/config.py:80
+msgid "Your TrustCommerce login"
+msgstr "Login do TrustCommerce"
+
+#: modules/trustcommerce/config.py:85
+msgid "Your TrustCommerce password"
+msgstr "Hasło do TrustCommerce"
+
+#: modules/trustcommerce/processor.py:81
+#, python-format
+msgid "Transaction was declined.  Reason: %s"
+msgstr "Transakcja odrzucona. Przyczyna: %s"
+
+#: modules/trustcommerce/processor.py:84
+#, python-format
+msgid "Improperly formatted data. Offending fields: %s"
+msgstr "Niepoprawne dane. Błędne pola: %s"
+
+#: modules/trustcommerce/processor.py:87
+#, python-format
+msgid "An error occurred: %s"
+msgstr "Wystąpił błąd: %s"
+
+#: templates/admin/charge_remaining_confirm.html:4
+msgid "Custom Charge"
+msgstr ""
+
+#: templates/admin/charge_remaining_confirm.html:12
+msgid "New amount"
+msgstr "Nowa kwota"
+
+#: templates/admin/charge_remaining_confirm.html:14
+msgid "Extra Shipping"
+msgstr "Dodatkowe koszty transportu."
+
+#: templates/payment/_order_payment_summary.html:6
+msgid "Paid"
+msgstr "Zapłacono"
+
+#: templates/payment/_order_payment_summary.html:11
+#, python-format
+msgid "Balance = %(balance)s "
+msgstr "Saldo = %(balance)s"
+
+#: templates/payment/_order_payment_summary.html:15
+msgid "Pay remaining balance"
+msgstr "Ureguluj pozostałą kwotę"
+

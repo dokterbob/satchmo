@@ -1,0 +1,68 @@
+# translation of Satchmo
+# Copyright (C) 2008 The Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+#
+# Aviv Greenberg <avivgr@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: forms.py:18
+msgid "Email address"
+msgstr "כתובת אימייל"
+
+#: forms.py:20
+msgid "Password (again)"
+msgstr "סיסמה (שוב)"
+
+#: forms.py:22
+msgid "Password"
+msgstr "סיסמה"
+
+#: forms.py:24
+msgid "First name"
+msgstr "שם פרטי"
+
+#: forms.py:26
+msgid "Last name"
+msgstr "שם משפחה"
+
+#: forms.py:29
+msgid "Newsletter"
+msgstr "עלון מידע"
+
+#: forms.py:38
+msgid "The two passwords do not match."
+msgstr "שתי הסיסמאות לא תואמות."
+
+#: forms.py:49
+msgid "That email address is already in use."
+msgstr "כתובת האימייל כבר נמצאת בשימוש."
+
+#: mail.py:20
+#, python-format
+msgid "Welcome to %s"
+msgstr "ברוך הבא ל%s"
+
+#: views.py:19
+msgid "Yes"
+msgstr "כן"
+
+#: views.py:20
+msgid "No"
+msgstr "לא"
+
+#: views.py:85
+msgid "Registration Form"
+msgstr "טופס רישום"
+
