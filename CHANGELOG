@@ -13,7 +13,7 @@ Version 0.8.1, December 14, 2008
  * Fix handling of ampersands in PDF generation
  * Update Italian translation
  * Update DOB widget
- * Added neve cache decorator to several views
+ * Added never_cache decorator to several views
  * Code speedups for discount checking
  
 
