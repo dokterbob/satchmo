@@ -29,7 +29,8 @@ setup(name = "Satchmo",
       long_description = "Satchmo is an ecommerce framework created using Django.",
       include_package_data = True,
       package_dir = {
-      '' : 'satchmo/apps'
+      '' : 'satchmo/apps',
+      'static' : 'satchmo/static'
       },
       packages = packages,
       classifiers = [
