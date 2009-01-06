@@ -65,11 +65,11 @@ def secure3d_form_handler(controller):
     
     if controller.processorReasonCode == '3DAUTH':
         log.debug('caught secure 3D request for order #%i, putting 3D into session as %s', 
-            controller.order.id, controller.processorResponse)
+            controller.order.id, controller.processorReasonCode)
             
         redirectUrl = controller.lookup_url('satchmo_checkout-secure3d')
         processor.response['TermUrl'] = redirectUrl
-        request.session['3D'] = processor.last_response
+        request.session['3D'] = controller.processorReasonCode
         return http.HttpResponseRedirect(redirectUrl)
     
     return controller._onForm(controller)
