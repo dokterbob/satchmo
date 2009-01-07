@@ -1,6 +1,6 @@
 {% extends "product/product.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_util %}
 {% load satchmo_currency satchmo_category%}
@@ -36,7 +36,8 @@ $(function() {
 	{% endspaceless %}</h3>
 
 {% for pic in product.productimage_set.all %}
-    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+    {% thumbnail pic.picture 280x280 as image %}
+    <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 {% endfor %}
 
 {% with product.translated_attributes as atts %}{% if atts %}

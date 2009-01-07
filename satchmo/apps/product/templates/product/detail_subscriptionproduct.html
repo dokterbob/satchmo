@@ -1,6 +1,6 @@
 {% extends "product/product.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_util %}
@@ -13,7 +13,8 @@
 <h3 id="price">{{ product.subscriptionproduct.recurring_price|currency }} </h3>
 
 {% for pic in product.productimage_set.all %}
-    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+    {% thumbnail pic.picture 280x280 as image %}
+    <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 {% endfor %}
  {% for trial in product.subscriptionproduct.get_trial_terms %}
     {% if forloop.first %} <p> {% blocktrans %}This product has trial subscription pricing {% endblocktrans %}</p><ul> {% endif %}

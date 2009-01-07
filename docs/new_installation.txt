@@ -58,7 +58,15 @@ Installing Dependencies
        cd /path/to/your/site-packages/dir
        ln -s /path/to/django-app-plugins-read-only/app_plugins .
 
-6. Optional dependencies::
+6. Install sorl-thumbnail::
+
+   - Check out from source::
+
+       svn checkout http://sorl-thumbnail.googlecode.com/svn/trunk/sorl/
+       cd /path/to/your/site-packages/dir
+       ln -s /path/to/sorl .
+
+7. Optional dependencies::
 
     easy_install elementtree
     easy_install docutils

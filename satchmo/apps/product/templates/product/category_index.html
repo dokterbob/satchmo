@@ -1,6 +1,6 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load thumbnail %}
 {% load satchmo_util %}
 
 {% block navbar %}
@@ -15,7 +15,8 @@
     <div class = "productImage">    
    		{% if category.main_image %}
       	<center>
-      		<a href="{{ category.get_absolute_url }}"><img src="{{ category.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+            {% thumbnail category.main_image.picture 85x85 as image %}
+            <a href="{{ category.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
       	</center>
    		{% endif %}     
     	<p><a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a><br/>

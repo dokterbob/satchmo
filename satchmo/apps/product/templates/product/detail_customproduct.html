@@ -1,6 +1,7 @@
 {% extends "product/product.html" %}
 {% load i18n %}
-{% load satchmo_thumbnail satchmo_discounts %}
+{% load thumbnail %}
+{% load satchmo_discounts %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_util %}
@@ -12,7 +13,8 @@
 <p>{% autoescape off %}{{ product.translated_description }}{% endautoescape %}</p>
 {% trans "Price" %}: <h3>{% if sale %}<strike id="fullprice">{{ product|discount_price:""|currency }}</strike><br/>{% endif %}<span id="price">{{ product|discount_price:sale|currency }}</span></h3>
 {% for pic in product.productimage_set.all %}
-    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+    {% thumbnail pic.picture 280x280 as image %}
+    <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 {% endfor %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

@@ -1,7 +1,7 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
+{% load thumbnail %}
 {% load satchmo_category %}
-{% load satchmo_thumbnail %}
 
 {% block navbar %}
     <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
@@ -21,8 +21,8 @@
         {% if forloop.first %} <ul>  {% endif %}
             <li>
                 <div class="wishproduct">
-                    <a class="wishimage" href="{{ product.get_absolute_url }}">
-                    <img src="{{ product.main_image.picture.url|thumbnail:"width=85" }}" width="85" /> </a>
+                {% thumbnail product.main_image.picture 85x85 as image %}
+                <a class="wishimage" href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
                     <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> 
                     <span class="date">{% blocktrans with wish.create_date|date:"y-M-d" as create_date %}added on {{ create_date }}{% endblocktrans %}</span>
                 </div>

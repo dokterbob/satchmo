@@ -7,7 +7,7 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 -------------------------------------------------------------------
 {% endcomment %}
 {% load i18n %}
-{% load satchmo_thumbnail %}
+{% load thumbnail %}
 {% load satchmo_price %}
 {% load satchmo_currency satchmo_category %}
 {% load satchmo_util satchmo_discounts %}
@@ -47,7 +47,8 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 	<span id="price">{{ product|discount_price:sale|currency }}</span>
 </h3>
 {% for pic in product.productimage_set.all %}
-    <img src="{{ pic.picture.url|thumbnail:"width=280" }}" width="280" />
+    {% thumbnail pic.picture 280x280 as image %}
+    <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 {% endfor %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

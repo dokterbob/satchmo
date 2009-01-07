@@ -1,5 +1,6 @@
 {% extends "shop/base.html" %}
-{% load satchmo_thumbnail i18n %}
+{% load thumbnail %}
+{% load i18n %}
 {% block pagename %}{% trans 'Brands' %}{% endblock %}
 
 {% block navbar %}
@@ -13,9 +14,8 @@
 <div id="product_category" class="brand">
 	{% for brand in brands %}{% with brand.translation as translated %}
 	<div class="brandImage">
-       	<a href="{{ brand.get_absolute_url }}">
-       		<img src="{{ translated.picture.url|thumbnail:"width=85" }}" width="85" /> 
-		</a>
+        {% thumbnail translated.picture 85x85 as image %}
+        <a href="{{ brand.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
 		<br/>
        	<a href="{{ brand.get_absolute_url }}">{{ translated.name }}</a>
 	</div>
