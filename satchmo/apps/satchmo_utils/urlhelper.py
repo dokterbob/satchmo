@@ -1,3 +1,25 @@
+def delete_named_urlpattern(urlpatterns, name):
+    """Delete the named urlpattern.
+    """
+
+    found = False
+    ix = 0
+
+    while not found and ix < len(urlpatterns):
+        pattern = urlpatterns[ix]
+        if hasattr(pattern, 'url_patterns'):
+            found = delete_named_urlpattern(pattern.url_patterns, name)
+        else:
+            if name and hasattr(pattern, 'name'):
+                if pattern.name == name:
+                    del urlpatterns[ix]
+                    found = True
+
+        if not found:
+            ix += 1
+
+    return found
+
 def remove_duplicate_urls(urls, names):
     """Remove any URLs whose names are already in use."""
     for pattern in urls:
