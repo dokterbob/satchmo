@@ -1000,8 +1000,20 @@ class Product(models.Model):
                     val = getattr(subtype, attr)
                     if val is not None:
                         break
+                        
+    def smart_relation(self, relation):
+        """Retrieve a relation, or its parent's relation if the relation count is 0"""
+        q = getattr(self, relation)
+        if q.count() > 0:
+            return q
+        
+        for subtype_name in self.get_subtypes():
+            subtype = getattr(self, subtype_name.lower())
 
-        return val
+            if hasattr(subtype, 'parent'):
+                subtype = subtype.parent.product
+
+                return getattr(subtype, relation)
 
     def _has_variants(self):
         subtype = self.get_subtype_with_attr('has_variants')
