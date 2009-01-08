@@ -63,7 +63,7 @@ def send_order_notice(new_order, template='shop/email/order_placed_notice.txt'):
         t = loader.get_template(template)
         
         try:
-            sale = find_discount_for_code(new_order.discount_code, raises=True)
+            sale = Discount.objects.by_code(new_order.discount_code, raises=True)
         except Discount.DoesNotExist:
             sale = None
         

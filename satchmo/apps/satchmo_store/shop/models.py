@@ -967,6 +967,10 @@ class OrderItem(models.Model):
         return self.product.translated_name()
     description = property(_get_description)
 
+    def _get_line_total(self):
+        return self.unit_price * self.quantity
+    line_total = property(_get_line_total)
+    
     def save(self, force_insert=False, force_update=False):
         self.update_tax()
         super(OrderItem, self).save(force_insert=force_insert, force_update=force_update)
