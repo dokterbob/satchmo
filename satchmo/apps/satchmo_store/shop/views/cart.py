@@ -341,7 +341,12 @@ def product_from_post(productslug, formdata):
         # This happens when productname cannot be updated by javascript.
         cp = product.configurableproduct
         chosenOptions = optionids_from_post(cp, formdata)
-        product = cp.get_product_from_options(chosenOptions)
+        optproduct = cp.get_product_from_options(chosenOptions)
+        if not optproduct:
+            log.debug('Could not find a product for: %s [%s]', product, chosenOptions)
+            raise Product.DoesNotExist()
+        else:
+            product = optproduct
 
     if 'CustomProduct' in p_types:
         cp = product.customproduct
