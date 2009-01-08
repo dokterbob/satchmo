@@ -21,6 +21,7 @@ features in Satchmo.
 - `Tiny RML2PDF`_ (`download link`_)
 - `Django Threaded Multihost`_
 - `Django App Plugins`_
+- `Sorl Thumbnails`_
 
 There are also a number of other Django packages (mentioned below) that you will require
 
@@ -58,3 +59,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
 .. _`Django App Plugins`: http://code.google.com/p/django-app-plugins/
+.. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/

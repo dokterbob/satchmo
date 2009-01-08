@@ -50,7 +50,7 @@ Installing Dependencies
 
        sudo python setup.py install
 
-5. Install django-app-plugins::
+5. Install django-app-plugins:
 
    - Check out from source::
 
@@ -58,7 +58,7 @@ Installing Dependencies
        cd /path/to/your/site-packages/dir
        ln -s /path/to/django-app-plugins-read-only/app_plugins .
 
-6. Install sorl-thumbnail::
+6. Install sorl-thumbnail:
 
    - Check out from source::
 
