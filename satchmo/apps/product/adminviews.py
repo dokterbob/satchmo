@@ -116,6 +116,6 @@ def variation_manager(request, product_slug = ""):
         'product' : product,
         'form' : form,
     })
-    return render_to_response('product/admin/configurableproduct/variation_manager.html', ctx)
+    return render_to_response('product/admin/variation_manager.html', ctx)
     
 variation_manager = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(variation_manager)    
