@@ -11,7 +11,7 @@ from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact
 from payment.decorators import cart_has_minimum_order
 from payment.forms import PaymentContactInfoForm
-from satchmo_store.shop.models import Cart, Config
+from satchmo_store.shop.models import Cart, Config, Order
 from satchmo_utils.dynamic import lookup_url
 
 import logging
@@ -62,6 +62,12 @@ def contact_info(request, **kwargs):
                 contact = Contact(user=request.user)
             custID = form.save(contact=contact)
             request.session[CUSTOMER_ID] = custID
+            
+            #Ensure that if we have an existing order the address for the order gets updated 
+            exist_order = Order.objects.from_request(request) 
+            if exist_order: 
+                exist_order.copy_addresses() 
+                exist_order.save()
             #TODO - Create an order here and associate it with a session
             modulename = new_data['paymentmethod']
             if not modulename.startswith('PAYMENT_'):
