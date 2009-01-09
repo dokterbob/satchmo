@@ -1,8 +1,8 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_modify %}
 
-{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
 {% block extrastyle %}
+{% load adminmedia %}{% admin_media_prefix %}css/forms.css
 <style type="text/css">
 form#inventoryform input.text {
     width: 6em;

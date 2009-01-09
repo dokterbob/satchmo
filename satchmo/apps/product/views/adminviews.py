@@ -4,13 +4,33 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from product import forms
+from product.forms import VariationManagerForm, InventoryForm
 from product.models import Product
-from product.forms import VariationManagerForm
 from satchmo_utils.views import bad_or_missing
 import logging
 
 log = logging.getLogger('product.adminviews')
+
+def edit_inventory(request):
+    """A quick inventory price, qty update form"""
+    if request.method == "POST":
+        new_data = request.POST.copy()
+        form = InventoryForm(new_data)
+        if form.is_valid():
+            form.save(request)
+            url = urlresolvers.reverse('satchmo_admin_edit_inventory')
+            return HttpResponseRedirect(url)
+    else:
+        form = InventoryForm()
+
+    ctx = RequestContext(request, {
+        'title' : _('Inventory Editor'),
+        'form' : form
+        })
+
+    return render_to_response('product/admin/inventory_form.html', ctx)
+
+edit_inventory = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(edit_inventory)
 
 def export_products(request, template='product/admin/product_export_form.html'):
     """A product export tool"""

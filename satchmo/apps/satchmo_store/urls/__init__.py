@@ -42,6 +42,6 @@ else:
         (shopregex, include('satchmo_store.shop.urls')),
     )
 
-urlpatterns = basepatterns + defaultpatterns + shoppatterns
+urlpatterns = basepatterns + shoppatterns + defaultpatterns
 
 urlhelper.remove_duplicate_urls(urlpatterns, [])

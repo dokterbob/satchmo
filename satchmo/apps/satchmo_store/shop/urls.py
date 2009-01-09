@@ -42,10 +42,5 @@ urlpatterns += patterns('',
     
 )
 
-urlpatterns += patterns('satchmo_store.shop.adminviews',
-    (r'^admin/inventory/edit/$', 
-        'edit_inventory', {}, 'satchmo_admin_edit_inventory'),
-)
-
 # here we are sending a signal to add patterns to the base of the shop.
 collect_urls.send(sender=shop, patterns=urlpatterns)
