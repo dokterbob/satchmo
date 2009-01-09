@@ -64,10 +64,15 @@ def contact_info(request, **kwargs):
             request.session[CUSTOMER_ID] = custID
             
             #Ensure that if we have an existing order the address for the order gets updated 
-            exist_order = Order.objects.from_request(request) 
+            try:
+                exist_order = Order.objects.from_request(request) 
+            except Order.DoesNotExist:
+                exist_order = None
+            
             if exist_order: 
                 exist_order.copy_addresses() 
                 exist_order.save()
+                
             #TODO - Create an order here and associate it with a session
             modulename = new_data['paymentmethod']
             if not modulename.startswith('PAYMENT_'):

@@ -502,7 +502,7 @@ class OrderManager(models.Manager):
         """Get the order from the session
 
         Returns:
-        - Order object or None
+        - Order object
         """
         order = None
         if 'orderID' in request.session:
