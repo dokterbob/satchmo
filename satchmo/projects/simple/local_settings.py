@@ -10,7 +10,7 @@ TEMPLATE_DEBUG = DEBUG
 if LOCAL_DEV:
     INTERNAL_IPS = ('127.0.0.1',)
 
-DIRNAME = os.path.dirname(__file__)
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 # trick to get the two-levels up directory, which for the "simple" project should be the satchmo dir
 # for most "normal" projects, you should directly set the SATCHMO_DIRNAME, and skip the trick
@@ -64,7 +64,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 #Configure logging
 LOGFILE = "satchmo.log"
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%a, %d %b %Y %H:%M:%S')
 

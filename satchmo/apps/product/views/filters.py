@@ -7,7 +7,7 @@ from product.models import Product
 from product.queries import bestsellers
 import logging
         
-log = logging.getLogger('product.filterviews')
+log = logging.getLogger('product.views.filters')
     
 def display_bestsellers(request, count=0, template='product/best_sellers.html'):
     """Display a list of the products which have sold the most"""

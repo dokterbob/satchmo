@@ -11,7 +11,7 @@ urlpatterns = patterns('product.views',
         'get_price_detail', {}, 'satchmo_product_price_detail'),
 )
 
-urlpatterns += patterns('product.filterviews',
+urlpatterns += patterns('product.views.filters',
     (r'^view/recent/$', 
         'display_recent', {}, 'satchmo_product_recently_added'),
     (r'^view/bestsellers/$', 
