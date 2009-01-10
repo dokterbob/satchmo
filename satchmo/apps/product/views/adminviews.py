@@ -9,7 +9,7 @@ from product.models import Product
 from satchmo_utils.views import bad_or_missing
 import logging
 
-log = logging.getLogger('product.adminviews')
+log = logging.getLogger('product.views.adminviews')
 
 def edit_inventory(request):
     """A quick inventory price, qty update form"""

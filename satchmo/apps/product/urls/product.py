@@ -18,7 +18,7 @@ urlpatterns += patterns('product.filterviews',
         'display_bestsellers', {}, 'satchmo_product_best_selling'),
 )
 
-urlpatterns += patterns('product.adminviews',
+urlpatterns += patterns('product.views.adminviews',
     (r'^inventory/export/$',
         'export_products', {}, 'satchmo_admin_product_export'),
     (r'^inventory/import/$', 
