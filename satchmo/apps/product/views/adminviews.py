@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from product.forms import VariationManagerForm, InventoryForm
+from product.forms import VariationManagerForm, InventoryForm, ProductExportForm, ProductImportForm
 from product.models import Product
 from satchmo_utils.views import bad_or_missing
 import logging
@@ -36,12 +36,12 @@ def export_products(request, template='product/admin/product_export_form.html'):
     """A product export tool"""
     if request.method == 'POST':
         new_data = request.POST.copy()
-        form = forms.ProductExportForm(new_data)
+        form = ProductExportForm(new_data)
         if form.is_valid():
             return form.export(request)
     else:
-        form = forms.ProductExportForm()
-        fileform = forms.ProductImportForm()  
+        form = ProductExportForm()
+        fileform = ProductImportForm()  
         
 
     ctx = RequestContext(request, {
@@ -64,7 +64,7 @@ def import_products(request, maxsize=10000000):
         results = []
         if 'upload' in request.FILES:  
             infile = request.FILES['upload']              
-            form = forms.ProductImportForm()
+            form = ProductImportForm()
             results, errors = form.import_from(infile, maxsize=maxsize)
                        
         else:
