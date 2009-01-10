@@ -60,6 +60,8 @@ CACHE_BACKEND = "locmem:///"
 CACHE_TIMEOUT = 60*5
 CACHE_PREFIX = "S"
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
 #Configure logging
 LOGFILE = "satchmo.log"
 logging.basicConfig(level=logging.INFO,

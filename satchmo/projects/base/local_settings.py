@@ -52,6 +52,8 @@ SITE_NAME = "My Site"
 #CACHE_BACKEND = "file:///var/tmp/django_cache"
 CACHE_TIMEOUT = 60*5
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
 # modify the cache_prefix if you have multiple concurrent stores.
 CACHE_PREFIX = "STORE"
 
