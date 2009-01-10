@@ -78,8 +78,8 @@ We can handle it any which way."""),
     
     BooleanValue(PRODUCT_GROUP,
         'NO_STOCK_CHECKOUT',
-        description=_("Enforce inventory levels?"),
-        help_text=_("If no, then customers can buy even if your inventory is 0 for a product."),
+        description=_("Allow checkout with 0 inventory?"),
+        help_text=_("If yes, then customers can buy even if your inventory is 0 for a product."),
         default=True
     ),
     
