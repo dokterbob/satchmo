@@ -92,6 +92,12 @@ Installing Satchmo into your path
         cd /home/user/src/satchmo-trunk
         sudo python setup.py install
 
+.. note::
+   An alternative to running the install is ensuring that /path/to/satchmo/apps is on your python path.
+   You may do this by placing a symbolic link to the source, adding a .pth file that points to your /satchmo/apps
+   location or modifying your PYTHONPATH environment variable.
+
+
 4. Once the above step is completed, you should be able to import both django and satchmo::
 
         $ python
@@ -99,8 +105,9 @@ Installing Satchmo into your path
         [GCC 4.2.3 (Ubuntu 4.2.3-2ubuntu4)] on linux2
         Type "help", "copyright", "credits" or "license" for more information.
         >>> import django
-        >>> import satchmo
-        >>> 
+        >>> import satchmo_store
+        >>> satchmo_store.get_version()
+        u'0.9-pre-SVN-XXXX'
 
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
@@ -108,12 +115,27 @@ Installing Satchmo into your path
    
 Customizing the settings
 ++++++++++++++++++++++++
+Now that Satchmo is installed on your PYTHONPATH, you will need to create a new project or integrate Satchmo
+into an existing project. Before proceeding with the next steps, please familiarize yourself with the 
+sample projects that are available in /satchmo/projects/.
 
-Now, you need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file called settings.py is available in the projects/base directory to act as a template. You may choose
-to copy this file and use as a template for settings.py or use the notes below to configure your existing one. Please remember to ensure that your Django database connections and settings are 
-working properly before trying to add any pieces of satchmo.
+There are 3 example projects stored here:
 
-5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations (in addition to the defaults and your other app needs)::
+ - base
+ - large
+ - simple
+
+Each of these projects show examples of how to configure Satchmo and integrate it with other Django applications.
+Once you are familiar with these examples, you can configure your project based on the notes below.
+
+You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file 
+called settings.py is available in the projects/base directory to act as a template. You may choose
+to copy this file and use as a template for settings.py or use the notes below to configure your existing one. 
+Please remember to ensure that your Django database connections and settings are working properly before trying 
+to add any pieces of satchmo.
+
+5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations 
+(in addition to the defaults and your other app needs)::
 
         import os
         DIRNAME = os.path.abspath(os.path.dirname(__file__))
@@ -185,25 +207,33 @@ working properly before trying to add any pieces of satchmo.
         LOGDIR
         LOGFILE
         
-Copy the rest of the required files
-+++++++++++++++++++++++++++++++++++
+Configure the rest of the required files
+++++++++++++++++++++++++++++++++++++++++
 
-8. Next, you need to configure your urls.py file::
+8. Next, you need to configure your urls.py file. The most simple urls.py file would look like this::
 
-        python manage.py satchmo_copy_urls
+        from django.conf.urls.defaults import *
 
-9. You will need to set up a base urls file.  Look at the sample projects "simple" and "large" to see how to do this.  Make sure to import the satchmo urls, or your store won't work.
+        from satchmo_store.urls import urlpatterns
+
+
+9. If you have additional urls you would like to add to your project, it would look like this::
+
+        from django.conf.urls.defaults import *
+
+        from satchmo_store.urls import urlpatterns
+        
+        urlpatterns += patterns('',
+            (r'test/', include('simple.localsite.urls'))
+        )
+
         
 10. Copy over the static directory::
 
         python manage.py satchmo_copy_static
         
-11. Copy over the default templates::
-
-        *note, this does not work on head at the moment*
-        python manage.py satchmo_copy_templates
-
-        instead of copying all the files, we suggest you copy only the templates you want to modify.  This makes updating the system much easier.
+11. Ensure that you have a template directory setup. You only need to place templates in the directory if you are
+overriding existing templates.
 
 Test and Install the Data
 +++++++++++++++++++++++++
