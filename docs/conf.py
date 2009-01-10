@@ -36,7 +36,7 @@ master_doc = 'index'
 
 # General substitutions.
 project = 'Satchmo'
-copyright = '2008, Chris Moffitt'
+copyright = '2009, Chris Moffitt'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
