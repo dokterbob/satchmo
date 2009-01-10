@@ -7,7 +7,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         import satchmo_store
-        static_src = os.path.join(satchmo_store.__path__[0],'static')
+        static_src = os.path.join(satchmo_store.__path__[0],'../../static')
         static_dest = os.path.join(os.getcwd(), 'static')
         if os.path.exists(static_dest):
             print "Static directory exists. You must manually copy the files you need."
