@@ -9,13 +9,14 @@ from django.http import HttpResponseRedirect, QueryDict
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from forms import RegistrationAddressForm, RegistrationForm
+from django.views.decorators.cache import never_cache
+from forms import RegistrationAddressForm, RegistrationForm, EmailAuthenticationForm
+from l10n.models import Country
+from livesettings import config_get_group, config_value
 from mail import send_welcome_email
 from satchmo_store.accounts import signals
-from livesettings import config_get_group, config_value
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact
-from l10n.models import Country
 from satchmo_store.shop.models import Config
 import logging
 import signals
@@ -27,7 +28,33 @@ YESNO = (
     (0, _('No'))
 )
 
-# ---- Helpers 
+def emaillogin(request, template_name='registration/login.html', 
+    auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
+    "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
+    redirect_to = request.REQUEST.get(redirect_field_name, '')
+    if request.method == "POST":
+        form = auth_form(data=request.POST)
+        if form.is_valid():
+            # Light security check -- make sure redirect_to isn't garbage.
+            if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
+                redirect_to = settings.LOGIN_REDIRECT_URL
+            login(request, form.get_user())
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
+            return HttpResponseRedirect(redirect_to)
+    else:
+        form = auth_form(request)
+    request.session.set_test_cookie()
+    if Site._meta.installed:
+        current_site = Site.objects.get_current()
+    else:
+        current_site = RequestSite(request)
+    return render_to_response(template_name, {
+        'form': form,
+        redirect_field_name: redirect_to,
+        'site_name': current_site.name,
+    }, context_instance=RequestContext(request))
+emaillogin = never_cache(emaillogin)
 
 def _login(request, redirect_to):
     """"Altered version of the default login, intended to be called by `combined_login`.
@@ -36,13 +63,12 @@ def _login(request, redirect_to):
     - success
     - redirect (success) or form (on failure)
     """
-    form = AuthenticationForm(data=request.POST)
+    form = EmailAuthenticationForm(data=request.POST)
     if request.method == 'POST':
         if form.is_valid():
             # Light security check -- make sure redirect_to isn't garbage.
             if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
                 redirect_to = settings.LOGIN_REDIRECT_URL
-            from django.contrib.auth import login
             login(request, form.get_user())
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
@@ -171,7 +197,7 @@ def activate(request, activation_key):
         # when the login form is posted, user = authenticate(username=data['username'], password=data['password'])
         # ...but we cannot authenticate without password... so we work-around authentication
         account.backend = settings.AUTHENTICATION_BACKENDS[0]
-        login(request, account)
+        _login(request, account)
         contact = Contact.objects.get(user=account)
         request.session[CUSTOMER_ID] = contact.id
         send_welcome_email(contact.email, contact.first_name, contact.last_name)

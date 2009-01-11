@@ -10,7 +10,7 @@ log = logging.getLogger('payment.protx.forms')
 class ProtxPayShipForm(CreditPayShipForm):
     """Adds fields required by Prot/X to the Credit form."""
     
-    card_holder = forms.CharField(max_length=30, required=False)
+    card_holder = forms.CharField(max_length=75, required=False)
     month_start = forms.ChoiceField(choices=[(1, '--')]+MONTHS, required=False)
     year_start = forms.ChoiceField(required=False)
     issue_num = forms.CharField(max_length=2, required=False)

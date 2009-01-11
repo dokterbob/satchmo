@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo_store.accounts.mail import send_welcome_email
@@ -13,6 +14,16 @@ import logging
 import signals
 
 log = logging.getLogger('accounts.forms')
+
+class EmailAuthenticationForm(AuthenticationForm):
+    """Authentication form with a longer username field."""
+    
+    def __init__(self, *args, **kwargs):
+        
+        super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
+        username = self.fields['username']
+        username.max_length = 75
+        username.widget.attrs['maxlength'] = 75
 
 class RegistrationForm(forms.Form):
     """The basic account registration form."""

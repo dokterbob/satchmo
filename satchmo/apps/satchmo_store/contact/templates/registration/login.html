@@ -7,14 +7,17 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>{% trans "Your email address and password didn't match. Please try again." %}</p>
+{% if form.non_field_errors %}
+<p class="error">{% for err in form.non_field_errors %}{{ err }}{% if not forloop.last %}<br/>{% endif %}
+{% endfor %}</p>
 {% endif %}
 
 <form method="post" action=".">
 <table>
 <tr><td><label for="id_username">{% trans 'Email address' %}:</label></td><td>{{ form.username }}</td></tr>
+{% if form.username.errors %}<tr><td colspan="2">{{ loginform.username.errors|join:", " }}</td></tr>{% endif %}
 <tr><td><label for="id_password">{% trans 'Password' %}:</label></td><td>{{ form.password }}</td></tr>
+{% if form.password.errors %}<tr><td colspan="2">{{ loginform.password.errors|join:", " }}</td></tr>{% endif %}
 </table>
 
 <input type="submit" value="{% trans 'Login' %}" />
