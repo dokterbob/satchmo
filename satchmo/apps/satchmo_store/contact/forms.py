@@ -59,6 +59,7 @@ class ContactInfoForm(forms.Form):
         areas = shop.areas()
         if shop.in_country_only and areas and areas.count()>0:
             areas = [(area.abbrev or area.name, area.name) for area in areas]
+            areas.insert(0,(_("---Please Select---"),_("---Please Select---")))
             billing_state = (contact and getattr(contact.billing_address, 'state', None)) or selection
             shipping_state = (contact and getattr(contact.shipping_address, 'state', None)) or selection
             if config_value('SHOP','ENFORCE_STATE'):
