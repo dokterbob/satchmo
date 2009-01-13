@@ -27,7 +27,7 @@ credit_confirm_info = never_cache(credit_confirm_info)
     then do that before calling `confirm`.
     """
 
-    def __init__(self, request, payment_module):
+    def __init__(self, request, payment_module, extra_context={}):
         self.request = request
         self.paymentModule = payment_module
         processor_module = payment_module.MODULE.load_module('processor')
@@ -35,7 +35,7 @@ credit_confirm_info = never_cache(credit_confirm_info)
         self.viewTax = config_value('TAX', 'DEFAULT_VIEW_TAX')
         self.order = None
         self.cart = None
-        self.extra_context = {}
+        self.extra_context = extra_context
                 
         #to override the form_handler, set this
         #otherwise it will use the built-in `_onForm`
