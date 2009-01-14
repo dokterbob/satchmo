@@ -106,7 +106,7 @@ INSTALLED_APPS = (
     'shipping.modules.tiered',
     'satchmo_ext.newsletter',
     'satchmo_ext.recentlist',
-    'testimonials',
+    #'testimonials',
     'product',
     'satchmo_ext.product_feeds',
     'satchmo_ext.brand',
