@@ -11,7 +11,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from livesettings import config_value
 from payment.utils import record_payment
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import trunc_decimal
 from urllib import urlencode
 import forms
 import logging

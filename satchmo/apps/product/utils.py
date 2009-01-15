@@ -1,11 +1,18 @@
+from django.contrib.sites.models import Site
 from livesettings import config_value
 from l10n.utils import moneyfmt
 from product.models import ProductVariation, Option, split_option_unique_id, \
                                    ProductPriceLookup, OptionGroup, Discount, \
-                                   NullDiscount
+                                   NullDiscount, Product
+from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 import datetime
 import logging
 import types
+
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 log = logging.getLogger('product.utils')
 
@@ -74,18 +81,19 @@ def productvariation_details(product, include_tax, user, create=False):
         key = detl.key
         if details.has_key(key):
             detail = details[key]
+            qty = detl.quantity
         else:
             detail = {}
             detail['SLUG'] = detl.productslug
 
             if not detl.active:
-                qty = -1
+                qty = round_decimal('-1.0')
             elif ignore_stock:
-                qty = 10000
+                qty = round_decimal('10000.0')
             else:
-                qty = detl.items_in_stock
+                qty = round_decimal(detl.items_in_stock)
 
-            detail['QTY'] = qty
+            detail['QTY'] = round_decimal(qty)
 
             detail['PRICE'] = {}
             
@@ -98,19 +106,37 @@ def productvariation_details(product, include_tax, user, create=False):
                     detail['TAXED_SALE'] = {}
                 
             details[key] = detail
+
+        qtykey = "%d" % detl.quantity
         
         price = detl.dynamic_price
         
-        detail['PRICE'][detl.quantity] = moneyfmt(price, curr=curr)
+        detail['PRICE'][qtykey] = moneyfmt(price, curr=curr)
         if use_discount:
-            detail['SALE'][detl.quantity] = moneyfmt(calc_discounted_by_percentage(price, discount.percentage), curr=curr)
+            detail['SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(price, discount.percentage), curr=curr)
         
         if include_tax:
             tax_price = taxer.by_price(tax_class, price) + price
-            detail['TAXED'][detl.quantity] = moneyfmt(tax_price, curr=curr)
-            detail['TAXED_SALE'][detl.quantity] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage), curr=curr)
+            detail['TAXED'][qtykey] = moneyfmt(tax_price, curr=curr)
+            detail['TAXED_SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage), curr=curr)
                 
     return details
+    
+def rebuild_pricing():
+    site = Site.objects.get_current()
+    for lookup in ProductPriceLookup.objects.filter(siteid=site.id):
+        lookup.delete()
+    
+    products = Product.objects.active_by_site(site=site, variations=False)
+    
+    productct = products.count()
+    pricect = 0
+    
+    for product in products:        
+        prices = ProductPriceLookup.objects.smart_create_for_product(product)
+        pricect += len(prices)
+    
+    return productct, pricect
 
 def serialize_options(product, selected_options=()):
     """

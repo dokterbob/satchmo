@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import get_language, to_locale
 from livesettings import config_value
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import trunc_decimal
 import locale
 import logging
 

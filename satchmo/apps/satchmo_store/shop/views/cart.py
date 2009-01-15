@@ -6,7 +6,7 @@ except:
 import logging
 
 from django.core import urlresolvers
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.datastructures import MultiValueDictKeyError
@@ -23,7 +23,7 @@ from satchmo_store.shop import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo_store.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
 from satchmo_utils.views import bad_or_missing
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 
 log = logging.getLogger('shop.views.cart')
 
@@ -36,16 +36,19 @@ def _set_quantity(request, force_delete=False):
     cart = Cart.objects.from_request(request, create=False)
     if isinstance(cart, NullCart):
         return (False, None, None, _("No cart to update."))
-
+    
+    cartplaces = config_value('SHOP', 'CART_PRECISION')
     if force_delete:
-        qty = 0
+        qty = Decimal('0')
     else:
         try:
-            qty = int(request.POST.get('quantity'))
-        except (TypeError, ValueError):
+            roundfactor = config_value('SHOP', 'CART_ROUNDING')
+            qty = round_decimal(request.POST.get('quantity', 0), places=cartplaces, roundfactor=roundfactor, normalize=True)
+        except RoundedDecimalError, P:
             return (False, cart, None, _("Bad quantity."))
-        if qty < 0:
-            qty = 0
+            
+        if qty < Decimal('0'):
+            qty = Decimal('0')
 
     try:
         itemid = int(request.POST.get('cartitem'))
@@ -57,7 +60,7 @@ def _set_quantity(request, force_delete=False):
     except CartItem.DoesNotExist:
         return (False, cart, None, _("No such item in your cart."))
 
-    if qty == 0:
+    if qty == Decimal('0'):
         cartitem.delete()
         cartitem = NullCartItem(itemid)
     else:
@@ -65,10 +68,11 @@ def _set_quantity(request, force_delete=False):
         config = Config.objects.get_current()
         if config_value('PRODUCT','NO_STOCK_CHECKOUT') == False:
             stock = cartitem.product.items_in_stock
-            log.debug('checking stock quantity.  Have %i, need %i', stock, qty)
+            log.debug('checking stock quantity.  Have %d, need %d', stock, qty)
             if stock < qty:
                 return (False, cart, cartitem, _("Not enough items of '%s' in stock.") % cartitem.product.translated_name())
-        cartitem.quantity = qty
+
+        cartitem.quantity = round_decimal(qty, places=cartplaces)
         cartitem.save()
 
     satchmo_cart_changed.send(cart, cart=cart, request=request)
@@ -104,26 +108,33 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
-
+    
+    cartplaces = config_value('SHOP', 'CART_PRECISION')
+    roundfactor = config_value('SHOP', 'CART_ROUNDING')    
+    
+    
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
         product, details = product_from_post(productslug, formdata)
+
         if not (product and product.active):
-            return _product_error(request, product,
-                _("That product is not available at the moment."))
+            log.debug("product %s is not active" % productslug)
+            return bad_or_missing(request, _("That product is not available at the moment."))
+        else:
+            log.debug("product %s is active" % productslug)
 
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
-
+    
     try:
-        quantity = int(formdata['quantity'])
-    except ValueError:
+        quantity = round_decimal(formdata['quantity'], places=cartplaces, roundfactor=roundfactor)
+    except RoundedDecimalError, P:
         return _product_error(request, product,
-            _("Please enter a whole number."))
+            _("Invalid quantity."))
 
-    if quantity < 1:
+    if quantity <= Decimal('0'):
         return _product_error(request, product,
             _("Please enter a positive number."))
 
@@ -148,9 +159,13 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     satchmo_cart_changed.send(cart, cart=cart, request=request)
 
     url = urlresolvers.reverse(redirect_to)
+    print "got to end"
     return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="shop/json.html"):
+    cartplaces = config_value('SHOP', 'CART_PRECISION')
+    roundfactor = config_value('SHOP', 'CART_ROUNDING')    
+    
     data = {'errors': []}
     product = None
     formdata = request.POST.copy()
@@ -178,17 +193,18 @@ def add_ajax(request, id=0, template="shop/json.html"):
                 data['name'] = product.translated_name()
 
                 if not formdata.has_key('quantity'):
-                    quantity = -1
+                    quantity = Decimal('-1')
                 else:
                     quantity = formdata['quantity']
 
                 try:
-                    quantity = int(quantity)
-                    if quantity < 0:
+                    quantity = round_decimal(quantity, places=cartplaces, roundfactor=roundfactor)
+
+                    if quantity < Decimal('0'):
                         data['errors'].append(('quantity', _('Choose a quantity.')))
 
-                except (TypeError, ValueError):
-                    data['errors'].append(('quantity', _('Choose a whole number.')))
+                except RoundedDecimalError:
+                    data['errors'].append(('quantity', _('Invalid quantity.')))
 
     tempCart = Cart.objects.from_request(request, create=True)
 
@@ -303,11 +319,11 @@ def set_quantity_ajax(request, template="shop/json.html"):
 
         # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
         if cart:
-            carttotal = str(trunc_decimal(cart.total, 2))
+            carttotal = str(round_decimal(cart.total, 2))
             cartqty = cart.numItems
         else:
             carttotal = "0.00"
-            cartqty = 0
+            cartqty = Decimal('0')
 
         data['cart_total'] = carttotal
         data['cart_count'] = cartqty
@@ -315,10 +331,10 @@ def set_quantity_ajax(request, template="shop/json.html"):
         if cartitem:
             itemid = cartitem.id
             itemqty = cartitem.quantity
-            price = str(trunc_decimal(cartitem.line_total, 2))
+            price = str(round_decimal(cartitem.line_total, 2))
         else:
             itemid = -1
-            itemqty = 0
+            itemqty = Decimal('0')
             price = "0.00"
 
         data['item_id'] = itemid
@@ -394,9 +410,6 @@ def product_from_post(productslug, formdata):
     return product, details
 
 def _product_error(request, product, msg):
-    template = find_product_template(product)
-    context = RequestContext(request, {
-        'product': product,
-        'error_message': msg})
-    return HttpResponse(template.render(context))
+    request.session['ERRORS'] = msg
+    return HttpResponseRedirect(product.get_absolute_url())
 

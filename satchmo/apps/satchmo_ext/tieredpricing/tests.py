@@ -53,7 +53,7 @@ class TieredTest(TestCase):
     def test_tieredprice(self):
         """Test setting an explicit tieredprice on a product"""
         product = Product.objects.get(slug='PY-Rocks')
-        tp = TieredPrice(product=product, pricingtier=self.tier, quantity=1, price=Decimal('10.00'))
+        tp = TieredPrice(product=product, pricingtier=self.tier, quantity='1', price=Decimal('10.00'))
         tp.save()
         set_current_user(self.tieruser)
         # should be the new explicit price
@@ -62,7 +62,7 @@ class TieredTest(TestCase):
     def test_tieredprice_no_tier_user(self):
         """Test setting an explicit tieredprice on a product, but no tier for user"""
         product = Product.objects.get(slug='PY-Rocks')
-        tp = TieredPrice(product=product, pricingtier=self.tier, quantity=1, price=Decimal('5.00'))
+        tp = TieredPrice(product=product, pricingtier=self.tier, quantity='1', price=Decimal('5.00'))
         tp.save()
         set_current_user(self.stduser)
         self.assertEqual(product.unit_price, Decimal("19.50"))

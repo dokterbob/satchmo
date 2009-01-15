@@ -60,10 +60,10 @@
     site: 1
   model: product.product
   pk: 2
-- fields: {expires: null, price: '3.950000', product: 1, quantity: 1}
+- fields: {expires: null, price: '3.950000', product: 1, quantity: '1.000000'}
   model: product.price
   pk: 1
-- fields: {expires: null, price: '9.950000', product: 2, quantity: 1}
+- fields: {expires: null, price: '9.950000', product: 2, quantity: '1.000000'}
   model: product.price
   pk: 2
 - fields: {caption: Photo Not Available, picture: images/productimage-picture-default.jpg,

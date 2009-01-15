@@ -3,17 +3,23 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.template.loader import select_template
 from django.utils.translation import ugettext as _
-from livesettings import config_value
 from l10n.utils import moneyfmt
+from livesettings import config_value
 from product import signals
 from product.models import Category, Product, ConfigurableProduct, sorted_tuple
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
-from satchmo_utils.views import bad_or_missing
+from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.json import json_encode
+from satchmo_utils.views import bad_or_missing
 import datetime
 import logging
 import random
+
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
     
 log = logging.getLogger('product.views')
 
@@ -107,6 +113,8 @@ def get_configurable_product_options(request, id):
 def get_product(request, product_slug=None, selected_options=(), 
     default_view_tax=NOTSET):
     """Basic product view"""
+    
+    errors = request.session.get('ERRORS', None)
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -129,6 +137,7 @@ def get_product(request, product_slug=None, selected_options=(),
         'product': product,
         'default_view_tax': default_view_tax,
         'sale': best_discount,
+        'error_message' : errors,
     }
 
     # Get the template context from the Product.
@@ -143,7 +152,7 @@ def get_product(request, product_slug=None, selected_options=(),
 
 def get_price(request, product_slug):
     """Get base price for a product, returning the answer encoded as JSON."""
-    quantity = 1
+    quantity = Decimal('1')
 
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
@@ -153,7 +162,11 @@ def get_price(request, product_slug):
     prod_slug = product.slug
 
     if request.method == "POST" and request.POST.has_key('quantity'):
-        quantity = int(request.POST['quantity'])
+        try:
+            quantity = round_decimal(request.POST['quantity'], places=2, roundfactor=.25)
+        except RoundedDecimalError:
+            quantity = Decimal('1.0')
+            log.warn("Could not parse a decimal from '%s', returning '1.0'", request.POST['quantity'])
 
     if 'ConfigurableProduct' in product.get_subtypes():
         cp = product.configurableproduct
@@ -193,9 +206,13 @@ def get_price_detail(request, product_slug):
         prod_slug = product.slug
 
         if reqdata.has_key('quantity'):
-            quantity = int(reqdata['quantity'])
+            try:
+                quantity = round_decimal(reqdata['quantity'], places=2, roundfactor=.25)
+            except RoundedDecimalError:
+                quantity = Decimal('1.0')
+                log.warn("Could not parse a decimal from '%s', returning '1.0'", reqdata['quantity'])
         else:
-            quantity = 1
+            quantity = Decimal('1.0')
 
         if 'ConfigurableProduct' in product.get_subtypes():
             cp = product.configurableproduct

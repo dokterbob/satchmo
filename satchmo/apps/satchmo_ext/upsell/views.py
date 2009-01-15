@@ -1,5 +1,10 @@
-import logging
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 from satchmo_store.shop import CartAddProhibited
+import logging
 
 log = logging.getLogger('upsell.views')
 
@@ -29,11 +34,11 @@ def cart_add_listener(cart=None, product=None, form=None, request=None, **kwargs
     return results
             
 def _add_upsell(form, cart, i):
-    field_include = "upsell_include_%i" % i
-    field_qty = "upsell_qty_%i" % i
-    field_slug = "upsell_slug_%i" % i
+    field_include = "upsell_include_%s" % i
+    field_qty = "upsell_qty_%s" % i
+    field_slug = "upsell_slug_%s" % i
     slug = ""
-    qty = 0
+    qty = Decimal('0')
     
     if form.get(field_include, "false") == "true":
         slug = form.get(field_slug, "")
@@ -41,12 +46,12 @@ def _add_upsell(form, cart, i):
             try:
                 rawqty = form.get(field_qty, 0)
                 if rawqty == "MATCH":
-                    qty = int(form['quantity'])
+                    qty = Decimal(form['quantity'])
                 else:
-                    qty = int(rawqty)
+                    qty = Decimal(rawqty)
             except ValueError:
-                log.debug('Bad upsell qty=%s', rawqty)
-                qty = 0
+                log.debug('Bad upsell qty=%d', rawqty)
+                qty = Decimal('0')
 
         if qty > 0:
             from product.models import Product
@@ -55,7 +60,7 @@ def _add_upsell(form, cart, i):
                 
                 try:
                     cart.add_item(product, number_added=qty)
-                    log.info('Added upsell item: %s qty=%i', product.slug, qty)
+                    log.info('Added upsell item: %s qty=%d', product.slug, qty)
                     return (True, product)
                                         
                 except CartAddProhibited, cap:

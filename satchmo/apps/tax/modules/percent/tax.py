@@ -29,7 +29,7 @@ class Processor(object):
         p = price * (percent/100)
         return p
         
-    def by_product(self, product, quantity=1):
+    def by_product(self, product, quantity=Decimal('1')):
         price = product.get_qty_price(quantity)
         taxclass = product.taxClass
         return self.by_price(taxclass, price)

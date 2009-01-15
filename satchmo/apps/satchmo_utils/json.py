@@ -26,7 +26,7 @@ def json_encode(data):
             ret = _dict(data)
         elif isinstance(data, Decimal):
             # json.dumps() cant handle Decimal
-            ret = str(data)
+            ret = "%d" % data
         elif isinstance(data, models.query.QuerySet):
             # Actually its the same as a list ...
             ret = _list(data)

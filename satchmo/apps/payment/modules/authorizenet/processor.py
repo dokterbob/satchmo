@@ -9,7 +9,7 @@ from payment.modules.base import BasePaymentProcessor
 from payment.utils import record_payment
 from satchmo_store.shop.models import Config
 from tax.utils import get_tax_processor
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import trunc_decimal
 from urllib import urlencode
 from xml.dom import minidom
 import logging

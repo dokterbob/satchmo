@@ -1,5 +1,5 @@
 {# used by status_ordercounts templatetags #}
-{% load satchmo_currency i18n %}
+{% load satchmo_currency i18n normalize_decimal %}
 <ul>
 {% for order in orders %}
 	<li>
@@ -8,7 +8,7 @@
 	    <ul>
 	        {% for item in order.orderitem_set.all %}
 	            <li>
-					{{ item }} x {{ item.quantity }}
+					{{ item }} x {{ item.quantity|normalize_decimal }}
 				</li>
 	        {% endfor %}
 	    </ul>

@@ -1,15 +1,3 @@
-r"""
->>> from satchmo_utils import trunc_decimal
-
-# Test trunc_decimal's rounding behavior.
->>> trunc_decimal("0.004", 2)
-Decimal("0.00")
->>> trunc_decimal("0.005", 2)
-Decimal("0.01")
->>> trunc_decimal("0.009", 2)
-Decimal("0.01")
-"""
-
 try:
     from decimal import Decimal
 except:
@@ -25,19 +13,20 @@ from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 
 from django.contrib.sites.models import Site
-import keyedcache
 from keyedcache import cache_delete
+from l10n.models import Country
 from livesettings import config_get, config_value
+from product.models import Product
+from product.utils import rebuild_pricing
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact, AddressBook
-from l10n.models import Country
-from product.models import Product
 from satchmo_store.shop import get_satchmo_setting, CartAddProhibited
+from satchmo_store.shop import signals
 from satchmo_store.shop.models import *
 from satchmo_utils.templatetags import get_filter_args
+from threaded_multihost.threadlocals import get_current_request
 
-from satchmo_store.shop import signals
-
+import keyedcache
 import datetime
 
 domain = 'http://example.com'
@@ -72,6 +61,7 @@ class ShopTest(TestCase):
         cache_delete()
         self.client = Client()
         self.US = Country.objects.get(iso2_code__iexact = "US")
+        rebuild_pricing()
         
     def tearDown(self):
         cache_delete()
@@ -145,7 +135,7 @@ class ShopTest(TestCase):
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, "Django Rocks shirt (Large/Blue)", count=1, status_code=200)
 
-    def test_cart_adding_errors(self):
+    def test_cart_adding_errors_nonexistent(self):
         """
         Test proper error reporting when attempting to add items to the cart.
         """
@@ -155,30 +145,46 @@ class ShopTest(TestCase):
             {'productname': 'nonexistent-product', 'quantity': '1'})
         self.assertContains(response, "The product you have requested does not exist.", count=1, status_code=404)
 
+    def test_cart_adding_errors_inactive(self):
         # You should not be able to add a product that is inactive.
         py_shirt = Product.objects.get(slug='PY-Rocks')
         py_shirt.active = False
         py_shirt.save()
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'PY-Rocks', 'quantity': '1'})
-        self.assertContains(response, "That product is not available at the moment.", count=1, status_code=200)
+        self.assertContains(response, "That product is not available at the moment.", count=1, status_code=404)
 
-        # You should not be able to add a product with a non-integer quantity.
+    def test_cart_adding_errors_invalid_qty(self):
+        # You should not be able to add a product with a non-valid decimal quantity.
         response = self.client.post(prefix + '/cart/add/',
-            {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5'})
-        self.assertContains(response, "Please enter a whole number.", count=1, status_code=200)
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5a'})
+        url = prefix + '/product/neat-book-soft/'
+        self.assertRedirects(response, url, status_code=302, target_status_code=200)
 
-        # You should not be able to add a product with a quantity less than one.
+        response = self.client.get(url)
+        self.assertContains(response, "Invalid quantity.", count=1, status_code=200)
+
+    def test_cart_adding_errors_less_zero(self):
+        # You should not be able to add a product with a quantity less than zero.
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'neat-book', '3': 'soft', 'quantity': '0'})
+        url = prefix + '/product/neat-book-soft/'
+        self.assertRedirects(response, url, status_code=302, target_status_code=200)
+
+        response = self.client.get(url)
         self.assertContains(response, "Please enter a positive number.", count=1, status_code=200)
 
+    def test_cart_adding_errors_out_of_stock(self):
         # If no_stock_checkout is False, you should not be able to order a
         # product that is out of stock.
         setting = config_get('PRODUCT','NO_STOCK_CHECKOUT')
         setting.update(False)
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'neat-book', '3': 'soft', 'quantity': '1'})
+        url = prefix + '/product/neat-book-soft/'
+        self.assertRedirects(response, url, status_code=302, target_status_code=200)
+
+        response = self.client.get(url)            
         self.assertContains(response, "&#39;A really neat book (Soft cover)&#39; is out of stock.", count=1, status_code=200)
 
     def test_product(self):
@@ -209,7 +215,7 @@ class ShopTest(TestCase):
         # makes sure we get a good productname back for the ProductVariation
         response = self.client.post(prefix+'/product/dj-rocks/prices/', {"1" : "S",
                                                       "2" : "B",
-                                                      "quantity" : 1})
+                                                      "quantity" : '1'})
         content = response.content.split(',')
         self.assertEquals(content[0], '["dj-rocks-s-b"')
         self.assert_(content[1].endswith('20.00"]'))
@@ -217,7 +223,7 @@ class ShopTest(TestCase):
         # This tests the option price_change feature, and again the productname
         response = self.client.post(prefix+'/product/dj-rocks/prices/', {"1" : "L",
                                                       "2" : "BL",
-                                                      "quantity" : 2})
+                                                      "quantity" : '2'})
         content = response.content.split(',')
         self.assertEqual(content[0], '["dj-rocks-l-bl"')
         self.assert_(content[1].endswith('23.00"]'))
@@ -424,7 +430,7 @@ class ShopTest(TestCase):
                                                       "5" : "1.5gb",
                                                       "6" : "mid",
                                                       "custom_monogram": "CBM",
-                                                      "quantity" : 1})
+                                                      "quantity" : '1'})
         self.assertRedirects(response, prefix + '/cart/',
             status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
@@ -544,6 +550,7 @@ class CartTest(TestCase):
 
     def tearDown(self):
         cache_delete()
+        rebuild_pricing()
 
     def test_line_cost(self):
         p = Product.objects.get(slug__iexact='dj-rocks')
@@ -598,17 +605,17 @@ class DiscountAmountTest(TestCase):
 
         p = Product.objects.get(slug='neat-book-soft')
         price = p.unit_price
-        item1 = OrderItem(order=o, product=p, quantity=1,
+        item1 = OrderItem(order=o, product=p, quantity='1',
             unit_price=price, line_item_price=price)
         item1.save()
 
-        item1s = OrderItem(order=small, product=p, quantity=1,
+        item1s = OrderItem(order=small, product=p, quantity='1',
             unit_price=price, line_item_price=price)
         item1s.save()
 
         p = Product.objects.get(slug='neat-book-hard')
         price = p.unit_price
-        item2 = OrderItem(order=o, product=p, quantity=1,
+        item2 = OrderItem(order=o, product=p, quantity='1',
             unit_price=price, line_item_price=price)
         item2.save()
         self.order = o
@@ -839,14 +846,14 @@ def make_test_order(country, state, include_non_taxed=False, site=None):
     
     p = Product.objects.get(slug='dj-rocks-s-b')
     price = p.unit_price
-    item1 = OrderItem(order=o, product=p, quantity=5,
+    item1 = OrderItem(order=o, product=p, quantity='5',
         unit_price=price, line_item_price=price*5)
     item1.save()
     
     if include_non_taxed:
         p = Product.objects.get(slug='neat-book-hard')
         price = p.unit_price
-        item2 = OrderItem(order=o, product=p, quantity=1,
+        item2 = OrderItem(order=o, product=p, quantity='1',
             unit_price=price, line_item_price=price)
         item2.save()
     

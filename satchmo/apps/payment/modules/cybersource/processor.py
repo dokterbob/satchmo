@@ -1,6 +1,6 @@
 from django.template import Context, loader
 from payment.utils import record_payment
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import trunc_decimal
 
 import urllib2
 try:

@@ -4,7 +4,14 @@ import os
 import urlparse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_register, BooleanValue, StringValue, MultipleStringValue, ConfigurationGroup, PositiveIntegerValue
+from livesettings import config_register, BooleanValue, StringValue, \
+    MultipleStringValue, ConfigurationGroup, PositiveIntegerValue, \
+    DecimalValue
+    
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 SHOP_GROUP = ConfigurationGroup('SHOP', _('Satchmo Shop Settings'), ordering=0)
 
@@ -32,6 +39,23 @@ ENFORCE_STATE = config_register(
     description = _('State required?'),
     help_text = _("Require a state during registration/checkout for countries that have states?"),
     default = True))
+    
+config_register(DecimalValue(
+    SHOP_GROUP,
+        'CART_ROUNDING',
+        description = _('Cart Quantity Rounding Factor'),
+        help_text = _("What to round cart adds/deletes by, a '1' here means to round up to a whole number.  Must be -1 to 1."),
+        default = Decimal('1')
+    ))
+
+config_register(PositiveIntegerValue(
+    SHOP_GROUP,
+        'CART_PRECISION',
+        description = _('Cart Quantity Decimal Places'),
+        help_text = _("How many places to assume for cart quantities, use 0 unless you are selling products in fractional quantities."),
+        default = 0
+    ))
+
 
 #### Google Group ####
 

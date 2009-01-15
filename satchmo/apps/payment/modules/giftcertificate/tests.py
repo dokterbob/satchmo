@@ -38,7 +38,7 @@ def make_test_order(country, state):
     p = Product.objects.get(slug='GIFT10')
     price = p.unit_price
     log.debug("creating with price: %s", price)
-    item1 = OrderItem(order=o, product=p, quantity=2,
+    item1 = OrderItem(order=o, product=p, quantity='2.0',
         unit_price=price, line_item_price=price*2)
     item1.save()
 

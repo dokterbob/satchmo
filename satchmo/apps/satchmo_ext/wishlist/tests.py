@@ -8,6 +8,7 @@ from keyedcache import cache_delete
 from l10n.models import Country
 from livesettings import config_value, config_get
 from product.models import Product
+from product.utils import rebuild_pricing
 from satchmo_ext.wishlist.models import *
 from satchmo_store.contact.models import Contact
 from satchmo_utils.templatetags import get_filter_args
@@ -38,6 +39,7 @@ class WishTest(TestCase):
     def setUp(self):
         # Every test needs a client
         self.client = Client()
+        rebuild_pricing()
 
     def tearDown(self):
         cache_delete()
@@ -79,6 +81,7 @@ class WishTestLoggedIn(TestCase):
         self.contact = Contact.objects.create(user=user, first_name="Wish",
             last_name="Tester")
         self.client.login(username='wisher', password='passwd')
+        rebuild_pricing()
         
     def tearDown(self):
         cache_delete()

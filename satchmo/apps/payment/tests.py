@@ -38,7 +38,7 @@ class TestRecurringBilling(TestCase):
             order = Order.objects.create(contact=self.customer, shipping_cost=0, site=site)
             order.orderitem_set.create(
                 product=product, 
-                quantity=1,
+                quantity=Decimal('1'),
                 unit_price=price,
                 line_item_price=price,
                 expire_date=datetime.datetime.now() + datetime.timedelta(days=expire_length),
@@ -212,7 +212,7 @@ class TestMinimumOrder(TestCase):
         response = self.client.post(cartadd, { "productname" : "dj-rocks",
                                                       "1" : "L",
                                                       "2" : "BL",
-                                                      "quantity" : 2})
+                                                      "quantity" : '2'})
         carturl = urlresolvers.reverse('satchmo_cart')                                              
         self.assertRedirects(response, carturl,
             status_code=302, target_status_code=200)
@@ -230,7 +230,7 @@ class TestMinimumOrder(TestCase):
         response = self.client.post(cartadd, { "productname" : "dj-rocks",
                                                       "1" : "L",
                                                       "2" : "BL",
-                                                      "quantity" : 10})
+                                                      "quantity" : '10'})
         self.assertRedirects(response, carturl,
             status_code=302, target_status_code=200)
         response = self.client.get(url('satchmo_checkout-step1'))

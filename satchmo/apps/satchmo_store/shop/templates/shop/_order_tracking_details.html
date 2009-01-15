@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load satchmo_currency %}
 {% load satchmo_checkout %}
-{% load satchmo_util %}
+{% load satchmo_util normalize_decimal %}
 
 <div class="orderdetails">
 <h4>{% trans 'Order #' %} {{ order.id }}</h4>
@@ -15,7 +15,7 @@
 
 <h4>{% trans "Items Ordered" %}</h4>
 {% for item in order.orderitem_set.all %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity|normalize_decimal}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
 {% endfor %}
 
 {% if order.shipping_method %}

@@ -17,7 +17,7 @@ class RawItem(models.Model):
     supplier_num = models.CharField(_("Supplier ID"), max_length=50)
     description = models.CharField(_("Description"), max_length=200)
     unit_cost = models.DecimalField(_("Unit Cost"), max_digits=6, decimal_places=2)
-    inventory = models.IntegerField(_("Inventory"))
+    inventory = models.DecimalField(_("Inventory"),  max_digits=18,  decimal_places=6)
     
     def __unicode__(self):
         return self.description

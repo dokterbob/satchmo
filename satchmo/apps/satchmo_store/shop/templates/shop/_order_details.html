@@ -1,14 +1,14 @@
 {% load satchmo_currency %}
 {% load satchmo_checkout %}
 {% load satchmo_util %}
-{% load app_plugins %}
+{% load app_plugins normalize_decimal %}
 {% load i18n %}
 {% if default_view_tax %}{% load satchmo_tax %}{% endif %}
 {% for item in order.orderitem_set.all %}
 {% if default_view_tax %}
-{{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.total_with_tax|currency}}<br/>
+{{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity|normalize_decimal}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.total_with_tax|currency}}<br/>
 {% else %}
-{{ item }} - {{item.unit_price|currency}} x {{item.quantity}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
+{{ item }} - {{item.unit_price|currency}} x {{item.quantity|normalize_decimal}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.sub_total|currency}}<br/>
 {% endif %}
 {% endfor %}
 

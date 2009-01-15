@@ -1,7 +1,7 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
 {% load satchmo_currency %}
-{% load satchmo_order %}
+{% load satchmo_order normalize_decimal %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
@@ -38,7 +38,7 @@
                 <td class="orderitems">
                     {% for item in order.orderitem_set.all %}
                     {% if not forloop.first %}<br/>{% endif %}
-                    <span class="orderitemqty">{{item.quantity}}</span> <span class="orderitem">{{ item }}<span> 
+                    <span class="orderitemqty">{{ item.quantity|normalize_decimal }}</span> <span class="orderitem">{{ item }}<span> 
                     {% endfor %}
                 </td>
                 <td class="ordertototal">

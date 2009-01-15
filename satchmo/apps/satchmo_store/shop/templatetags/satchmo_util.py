@@ -5,7 +5,7 @@ from django.core import urlresolvers
 from django.utils.safestring import mark_safe
 from livesettings import config_value, config_choice_values
 from product.models import Category
-from satchmo_utils import trunc_decimal
+from satchmo_utils.numbers import trunc_decimal
 from satchmo_utils.json import json_encode
 import logging
 import math

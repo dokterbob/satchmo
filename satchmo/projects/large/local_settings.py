@@ -64,7 +64,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 #Configure logging
 LOGFILE = "satchmo.log"
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%a, %d %b %Y %H:%M:%S')
 

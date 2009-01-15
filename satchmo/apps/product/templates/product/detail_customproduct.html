@@ -39,7 +39,7 @@
 <textarea name="custom_{{ custom.slug }}" rows="3" cols="40"></textarea>
 </div>
 {% endfor %}
-{% trans "Quantity" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+{% trans "Quantity" %} <input type="text", size="5", name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
 <input type="submit" name="addcart" value="{% trans "Add to cart" %}" /> 
 {% plugin_point "product_add_buttons" %}

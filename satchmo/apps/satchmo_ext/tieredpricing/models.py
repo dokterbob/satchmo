@@ -56,7 +56,7 @@ class PricingTier(models.Model):
     
 class TieredPriceManager(models.Manager):
     
-    def by_product_qty(self, tier, product, qty=1):
+    def by_product_qty(self, tier, product, qty=Decimal('1')):
         """Get the tiered price for the specified product and quantity."""
         
         qty_discounts = product.tieredprices.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty, pricingtier=tier)
@@ -73,7 +73,7 @@ class TieredPrice(models.Model):
     pricingtier = models.ForeignKey(PricingTier, related_name="tieredprices")
     product = models.ForeignKey(Product, related_name="tieredprices")
     price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, )
-    quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
+    quantity = models.DecimalField(_("Discount Quantity"), max_digits=18, decimal_places=6,  default='1', help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(_("Expires"), null=True, blank=True)
     
     objects = TieredPriceManager()
@@ -128,7 +128,7 @@ def tiered_price_listener(price, **kwargs):
                     candidate = None
                     try:
                         tp = TieredPrice.objects.by_product_qty(tier, product, price.quantity)
-                        log.debug("Found a Tiered Price for %s qty %s = %s", product.slug, price.quantity, tp.price)
+                        log.debug("Found a Tiered Price for %s qty %d = %s", product.slug, price.quantity, tp.price)
                         candidate = tp.price
                     except TieredPrice.DoesNotExist:
                         pcnt = tier.discount_percent

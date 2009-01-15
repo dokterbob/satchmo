@@ -26,6 +26,11 @@ try:
 except NameError:
     from sets import Set as set   # Python 2.3 fallback
 
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+
 log = logging.getLogger('product.forms')
 
 def export_choices():
@@ -53,8 +58,8 @@ class InventoryForm(forms.Form):
             'initial' : product.items_in_stock,
             'widget' : forms.TextInput(attrs={'class': qtyclasses}) }
 
-            qty = forms.IntegerField(**kw)
-            self.fields['qty__%s' % product.slug] = qty
+            qty = forms.DecimalField(**kw)
+            self.fields['qty__%d' % product.slug] = qty
             qty.slug = product.slug
             qty.product_id = product.id
             qty.subtypes = " ".join(subtypes)
@@ -94,7 +99,7 @@ class InventoryForm(forms.Form):
             if opt=='qty':
                 if value != prod.items_in_stock:
                     request.user.message_set.create(message='Updated %s stock to %s' % (key, value))
-                    log.debug('Saving new qty=%i for %s' % (value, key))
+                    log.debug('Saving new qty=%d for %s' % (value, key))
                     prod.items_in_stock = value
                     prod.save()
 
@@ -108,9 +113,9 @@ class InventoryForm(forms.Form):
                     request.user.message_set.create(message='Updated %s unit price to %s' % (key, value))
                     log.debug('Saving new price %s for %s' % (value, key))
                     try:
-                        price = Price.objects.get(product=prod, quantity=1)
+                        price = Price.objects.get(product=prod, quantity='1')
                     except Price.DoesNotExist:
-                        price = Price(product=prod, quantity=1)
+                        price = Price(product=prod, quantity='1')
                     price.price = value
                     price.save()
 

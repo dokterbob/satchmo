@@ -9,9 +9,9 @@ import notification
 import signals
 
 try:
-    from decimal import Decimal
+    from decimal import Decimal, ROUND_CEILING
 except:
-    from django.utils._decimal import Decimal
+    from django.utils._decimal import Decimal, ROUND_CEILING
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -308,9 +308,9 @@ class Cart(models.Model):
         alreadyInCart = False
         # Custom Products will not be added, they will each get their own line item
         if 'CustomProduct' in chosen_item.get_subtypes():
-            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
+            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=Decimal('0'))
         else:
-            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=0)
+            item_to_modify = CartItem(cart=self, product=chosen_item, quantity=Decimal('0'))
             for similarItem in self.cartitem_set.filter(product__id = chosen_item.id):
                 looksTheSame = len(details) == similarItem.details.count()
                 if looksTheSame:
@@ -377,7 +377,8 @@ class Cart(models.Model):
         for cartitem in self.cartitem_set.all():
             if cartitem.is_shippable:
                 p = cartitem.product
-                for single in range(0,cartitem.quantity):
+                q =  int(cartitem.quantity.quantize(Decimal('0'), ROUND_CEILING))
+                for single in range(0, q):
                     items.append(p)
         return items
 
@@ -388,7 +389,7 @@ class Cart(models.Model):
 class NullCartItem(object):
     def __init__(self, itemid):
         self.id = itemid
-        self.quantity = 0
+        self.quantity = Decimal('0')
         self.line_total = 0
 
 class CartItem(models.Model):
@@ -397,7 +398,7 @@ class CartItem(models.Model):
     """
     cart = models.ForeignKey(Cart, verbose_name=_('Cart'))
     product = models.ForeignKey(Product, verbose_name=_('Product'))
-    quantity = models.IntegerField(_("Quantity"), )
+    quantity = models.DecimalField(_("Quantity"),  max_digits=18,  decimal_places=6)
 
     def _get_line_unitprice(self):
         # Get the qty discount price as the unit price for the line.
@@ -922,7 +923,7 @@ class OrderItem(models.Model):
     """
     order = models.ForeignKey(Order, verbose_name=_("Order"))
     product = models.ForeignKey(Product, verbose_name=_("Product"))
-    quantity = models.IntegerField(_("Quantity"), )
+    quantity = models.DecimalField(_("Quantity"),  max_digits=18,  decimal_places=6)
     unit_price = models.DecimalField(_("Unit price"),
         max_digits=18, decimal_places=10)
     unit_tax = models.DecimalField(_("Unit tax"),

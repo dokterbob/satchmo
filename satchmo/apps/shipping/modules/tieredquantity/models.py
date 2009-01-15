@@ -44,7 +44,7 @@ class Shipper(BaseShipper):
         Complex calculations can be done here as long as the return value is a dollar figure
         """
         assert(self._calculated)
-        qty = 0
+        qty = Decimal('0')
         for cartitem in self.cart.cartitem_set.all():
             if cartitem.product.is_shippable:
                 qty += cartitem.quantity
@@ -69,9 +69,9 @@ class Shipper(BaseShipper):
         if order:
             quants = [item.quantity for item in order.orderitem_set.all() if item.product.is_shippable]
             if quants:
-                qty = reduce(operator.add, itemprices)
+                qty = reduce(operator.add, quants)
             else:
-                qty = 0
+                qty = Decimal('0')
                                                 
         elif self.cart:
             qty = self.cart.numItems
@@ -185,7 +185,7 @@ class Carrier(models.Model):
             return Decimal(prices.order_by('-quantity')[0].calculate_price(qty))
 
         else:
-            log.debug("No quantity tier found for %s: qty=%s", self, qty)
+            log.debug("No quantity tier found for %s: qty=%d", self, qty)
             raise TieredPriceException('No price available')
             
             
@@ -208,7 +208,7 @@ class CarrierTranslation(models.Model):
 
 class QuantityTier(models.Model):
     carrier = models.ForeignKey('Carrier', related_name='tiers')
-    quantity = models.IntegerField(_("Min Quantity"), 
+    quantity = models.DecimalField(_("Min Quantity"), max_digits=18,  decimal_places=6,
         help_text=_('Minimum qty in order for this to apply?'), )
     handling = models.DecimalField(_("Handling Price"), max_digits=10, 
         decimal_places=2, )

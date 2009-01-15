@@ -12,7 +12,7 @@ def make_tiers(carrier, prices, expires=None):
         t = QuantityTier(carrier=carrier, 
             handling=Decimal("%i.00" % handling),
             price=Decimal("%i.00" % price),
-            quantity=qty,
+            quantity=Decimal(qty),
             expires=expires
         )
         t.save()
@@ -25,7 +25,7 @@ class TieredCarrierSimpleTest(TestCase):
         c = Carrier(key="test", active=True)
         c.save()
         t = QuantityTier(carrier=c, 
-            quantity=1,
+            quantity=Decimal('1'),
             handling=Decimal("10.00"),
             price=Decimal("0.00"),
             )
@@ -41,7 +41,7 @@ class TieredCarrierPricingTest(TestCase):
         self.carrier = Carrier(name="pricing", active=True)
         self.carrier.save()
         t = QuantityTier(carrier=self.carrier, 
-            quantity=1,
+            quantity=Decimal('1'),
             handling=Decimal("10.00"),
             price=Decimal("0.00"),
             )
@@ -54,7 +54,7 @@ class TieredCarrierPricingTest(TestCase):
         
     def test2Prices(self):
         t = QuantityTier(carrier=self.carrier, 
-            quantity=10,
+            quantity=Decimal('10'),
             handling=Decimal("100.00"),
             price=Decimal("1.00"),
             )

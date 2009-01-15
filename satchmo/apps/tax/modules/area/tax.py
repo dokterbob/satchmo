@@ -125,7 +125,7 @@ class Processor(object):
 
         return t
 
-    def by_product(self, product, quantity=1):
+    def by_product(self, product, quantity=Decimal('1')):
         """Get the tax for a given product"""
         price = product.get_qty_price(quantity)
         tc = product.taxClass

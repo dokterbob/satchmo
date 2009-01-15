@@ -3,7 +3,6 @@ from django.utils.safestring import mark_safe
 from livesettings import config_value
 from l10n.utils import moneyfmt
 from tax.templatetags.satchmo_tax import CartitemLineTaxedTotalNode, CartTaxedTotalNode
-from satchmo_utils import trunc_decimal
 import logging
 import math
 

@@ -759,7 +759,7 @@ class Product(models.Model):
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
     description = models.TextField(_("Description of product"), help_text=_("This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."), default='', blank=True)
     category = models.ManyToManyField(Category, blank=True, verbose_name=_("Category"))
-    items_in_stock = models.IntegerField(_("Number in stock"), default=0)
+    items_in_stock = models.DecimalField(_("Number in stock"),  max_digits=18, decimal_places=6, default='0')
     meta = models.TextField(_("Meta Description"), max_length=200, blank=True, null=True, help_text=_("Meta description for this product"))
     date_added = models.DateField(_("Date added"), null=True, blank=True)
     active = models.BooleanField(_("Is product active?"), default=True, help_text=_("This will determine whether or not this product will appear on the site"))
@@ -779,7 +779,7 @@ class Product(models.Model):
     #, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
-    total_sold = models.IntegerField(_("Total sold"), default=0)
+    total_sold = models.DecimalField(_("Total sold"),  max_digits=6, decimal_places=2, default='0')
     taxable = models.BooleanField(_("Taxable"), default=False)
     taxClass = models.ForeignKey('TaxClass', verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
     shipclass = models.CharField(_('Shipping'), choices=SHIP_CLASS_CHOICES, default="DEFAULT", max_length=10,
@@ -855,7 +855,7 @@ class Product(models.Model):
         if subtype:
             price = subtype.unit_price
         else:
-            price = get_product_quantity_price(self, 1)
+            price = get_product_quantity_price(self, Decimal('1'))
 
         if not price:
             price = Decimal("0.00")
@@ -1000,6 +1000,7 @@ class Product(models.Model):
                     val = getattr(subtype, attr)
                     if val is not None:
                         break
+        return val
                         
     def smart_relation(self, relation):
         """Retrieve a relation, or its parent's relation if the relation count is 0"""
@@ -1152,7 +1153,7 @@ class CustomProduct(models.Model):
         """
         returns price as a Decimal
         """
-        return self.get_qty_price(1)
+        return self.get_qty_price(Decimal('1'))
 
     unit_price = property(_get_fullPrice)
 
@@ -1174,14 +1175,14 @@ class CustomProduct(models.Model):
         returns price as a Decimal
         """
         price = get_product_quantity_price(self.product, qty)
-        if not price and qty == 1:      # Prevent a recursive loop.
+        if not price and qty == Decimal('1'): # Prevent a recursive loop.
             price = Decimal("0.00")
         elif not price:      
             price = self.product._get_fullPrice()
 
         return price * self.downpayment / 100
 
-    def get_full_price(self, qty=1):
+    def get_full_price(self, qty=Decimal('1')):
         """
         Return the full price, ignoring the deposit.
         """
@@ -1547,7 +1548,7 @@ class SubscriptionProduct(models.Model):
             price = trial.price * qty
         else:
             price = get_product_quantity_price(self.product, qty)
-            if not price and qty == 1:      # Prevent a recursive loop.
+            if not price and qty == Decimal('1'):      # Prevent a recursive loop.
                 price = Decimal("0.00")
             elif not price:      
                 price = self.product._get_fullPrice()
@@ -1557,7 +1558,7 @@ class SubscriptionProduct(models.Model):
         """
         Get the non-trial price.
         """
-        return self.get_qty_price(1, show_trial=False)
+        return self.get_qty_price(Decimal('1'), show_trial=False)
 
     # use order_success() and DownloadableProduct.create_key() to add user to group and perform other tasks
     def get_trial_terms(self, trial=None):
@@ -1918,11 +1919,11 @@ class ProductPriceLookup(models.Model):
     key = models.CharField(max_length=60, null=True)
     parentid = models.IntegerField(null=True)
     productslug = models.CharField(max_length=80)
-    price = models.DecimalField(max_digits=14, decimal_places=6, )
-    quantity = models.IntegerField()
+    price = models.DecimalField(max_digits=14, decimal_places=6)
+    quantity = models.DecimalField(max_digits=18, decimal_places=6)
     active = models.BooleanField()
     discountable = models.BooleanField()
-    items_in_stock = models.IntegerField()
+    items_in_stock = models.DecimalField(max_digits=18, decimal_places=6)
 
     objects = ProductPriceLookupManager()
     
@@ -1964,7 +1965,9 @@ class Price(models.Model):
     """
     product = models.ForeignKey(Product)
     price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, )
-    quantity = models.IntegerField(_("Discount Quantity"), default=1, help_text=_("Use this price only for this quantity or higher"))
+    quantity = models.DecimalField(_("Discount Quantity"), max_digits=18, 
+        decimal_places=6, default='1.0', 
+        help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(_("Expires"), null=True, blank=True)
     #TODO: add fields here for locale/currency specific pricing
 
@@ -2149,7 +2152,7 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
 
     return mark_safe(val)
 
-def get_product_quantity_price(product, qty=1, delta=Decimal("0.00"), parent=None):
+def get_product_quantity_price(product, qty=Decimal('1'), delta=Decimal("0.00"), parent=None):
     """
     Returns price as a Decimal else None.
     First checks the product, if none, then checks the parent.

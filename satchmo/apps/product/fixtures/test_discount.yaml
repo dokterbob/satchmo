@@ -707,16 +707,16 @@
     product: null, sort: 1}
   model: product.productimage
   pk: 1
-- fields: {expires: null, price: '20', product: 1, quantity: 1}
+- fields: {expires: null, price: '20', product: 1, quantity: '1'}
   model: product.price
   pk: 1
-- fields: {expires: null, price: '19.5', product: 2, quantity: 1}
+- fields: {expires: null, price: '19.5', product: 2, quantity: '1'}
   model: product.price
   pk: 2
-- fields: {expires: null, price: '5', product: 3, quantity: 1}
+- fields: {expires: null, price: '5', product: 3, quantity: '1'}
   model: product.price
   pk: 3
-- fields: {expires: null, price: '7.99', product: 4, quantity: 1}
+- fields: {expires: null, price: '7.99', product: 4, quantity: '1'}
   model: product.price
   pk: 4
 

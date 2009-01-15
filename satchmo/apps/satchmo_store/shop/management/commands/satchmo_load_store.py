@@ -212,7 +212,7 @@ class Command(NoArgsCommand):
         #set prices for full and upgrade versions of neat-software, this is an alternative to using the price_change in options, it allows for more flexability when required.
     #    pv1 = pg5.get_product_from_options([optItem4a])
     #    Price(product=pv1, price='5.00').save()
-    #    Price(product=pv1, price='2.00', quantity=50).save()
+    #    Price(product=pv1, price='2.00', quantity='50.00').save()
     #    DownloadableProduct(product=pv1).save()
 
     #    pv2 = pg5.get_product_from_options([optItem4b])

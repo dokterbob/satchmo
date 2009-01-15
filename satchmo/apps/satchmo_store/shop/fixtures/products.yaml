@@ -111,7 +111,7 @@
     featured: true
     name: Django Rocks shirt
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks
@@ -133,7 +133,7 @@
     featured: false
     name: Django Rocks shirt (Large/Black)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-l-b
@@ -155,7 +155,7 @@
     featured: false
     name: Django Rocks shirt (Large/Blue)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-l-bl
@@ -177,7 +177,7 @@
     featured: false
     name: Django Rocks shirt (Large/White)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-l-w
@@ -199,7 +199,7 @@
     featured: false
     name: Django Rocks shirt (Medium/Black)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-m-b
@@ -221,7 +221,7 @@
     featured: false
     name: Django Rocks shirt (Medium/Blue)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-m-bl
@@ -243,7 +243,7 @@
     featured: false
     name: Django Rocks shirt (Medium/White)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-m-w
@@ -265,7 +265,7 @@
     featured: false
     name: Django Rocks shirt (Small/Black)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-s-b
@@ -287,7 +287,7 @@
     featured: false
     name: Django Rocks shirt (Small/Blue)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-s-bl
@@ -309,7 +309,7 @@
     featured: false
     name: Django Rocks shirt (Small/White)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: dj-rocks-s-w
@@ -331,7 +331,7 @@
     featured: true
     name: A really neat book
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-book
@@ -353,7 +353,7 @@
     featured: false
     name: A really neat book (Hard cover)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-book-hard
@@ -375,7 +375,7 @@
     featured: false
     name: A really neat book (Soft cover)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-book-soft
@@ -397,7 +397,7 @@
     featured: false
     name: A really neat book (On tape)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-book-tape
@@ -418,7 +418,7 @@
 #    featured: true
 #    name: Really Neat Software
 #    height: null
-#    items_in_stock: !!python/long '0'
+#    items_in_stock: '0'
 #    length: null
 #    meta: null
 #    slug: neat-software
@@ -440,7 +440,7 @@
     featured: false
     name: Really Neat Software (Full Version)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-software-full
@@ -462,7 +462,7 @@
     featured: false
     name: Really Neat Software (Upgrade Version)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: neat-software-upgrade
@@ -484,7 +484,7 @@
     featured: true
     name: Python Rocks shirt
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: PY-Rocks
@@ -506,7 +506,7 @@
     featured: true
     name: Robots Attack!
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: robot-attack
@@ -528,7 +528,7 @@
     featured: false
     name: Robots Attack! (Hard cover)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: robot-attack-hard
@@ -550,7 +550,7 @@
     featured: false
     name: Robots Attack! (Soft cover)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: robot-attack-soft
@@ -572,7 +572,7 @@
     featured: false
     name: Robots Attack! (On tape)
     height: null
-    items_in_stock: !!python/long '0'
+    items_in_stock: '0'
     length: null
     meta: null
     slug: robot-attack-tape

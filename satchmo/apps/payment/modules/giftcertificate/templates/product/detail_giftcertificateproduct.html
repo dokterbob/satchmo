@@ -18,7 +18,7 @@
 <form id="options" action="{% url satchmo_smart_add %}" method="post">
 
 <div>
-{% trans "Quantity (multiply the gift certificate by this amount)" %} <input type="text", size="2", name="quantity" id="quantity" value="1" class="priced" />
+{% trans "Quantity (multiply the gift certificate by this amount)" %} <input type="text", size="4", name="quantity" id="quantity" value="1" class="priced" />
 </div>
 <div>
 {% trans 'Recipient Email (optional):' %} <input type="text" maxlength="100" name="custom_email" /><br/>

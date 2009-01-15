@@ -15,7 +15,7 @@ class Processor(object):
         """
         pass
 
-    def by_product(self, product, quantity=1):
+    def by_product(self, product, quantity=Decimal('1')):
         return Decimal("0.0")
         
     def by_orderitem(self, orderitem):

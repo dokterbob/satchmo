@@ -144,23 +144,6 @@ def request_is_secure(request):
 
     return False
             
-def trunc_decimal(val, places):
-    roundfmt = "0."
-    if places > 1:
-        zeros = "0" * (places-1)
-        roundfmt += zeros
-    if places > 0:
-        roundfmt += "1"
-    if val is None:
-        val = Decimal('0.00000000')
-    if type(val) != Decimal:
-        try:
-            val = Decimal(val)
-        except InvalidOperation:
-            log.warn("invalid operation trying to convert '%s' to decimal, returning raw", val)
-            return val
-    return val.quantize(Decimal(roundfmt), ROUND_HALF_UP)
-
 def url_join(*args):
     """Join any arbitrary strings into a forward-slash delimited string.
     Do not strip leading / from first element, nor trailing / from last element.
