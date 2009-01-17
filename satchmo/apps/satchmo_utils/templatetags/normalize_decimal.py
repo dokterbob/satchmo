@@ -4,7 +4,7 @@ __author__="gary paulson"
 __date__ ="$Jan 4, 2009 12:55:44 PM$"
 
 from django import template
-from satchmo.shop.templatetags import get_filter_args
+from satchmo_utils.templatetags import get_filter_args
 from satchmo_utils.numbers import round_decimal, RoundedDecimalError
 
 try:
