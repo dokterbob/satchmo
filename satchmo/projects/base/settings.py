@@ -195,7 +195,7 @@ SATCHMO_SETTINGS = {
         #     {'SSL': False}, 'satchmo_checkout-step2'),
         # (r'^checkout/confirm/$', 'paypal.checkout_step3.confirm_info', 
         #     {'SSL': False}, 'satchmo_checkout-step3'),                
-    )
+    ),
     
     # This is the base url for the shop.  Only include a leading slash
     # examples: '/shop' or '/mystore'
