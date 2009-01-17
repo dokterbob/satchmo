@@ -210,8 +210,8 @@ class Shipper(BaseShipper):
         # calculate the weight of the entire order
         weight = Decimal('0.0')
         for item in cart.cartitem_set.all():
-            if item.product.weight:
-                weight += item.product.weight * item.quantity
+            if item.product.smart_attr('weight'):
+                weight += item.product.smart_attr('weight') * item.quantity
         self.verbose_log('WEIGHT: %s' % weight)
 
         # I don't know why USPS made this one API different this way...
