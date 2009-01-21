@@ -159,7 +159,6 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     satchmo_cart_changed.send(cart, cart=cart, request=request)
 
     url = urlresolvers.reverse(redirect_to)
-    print "got to end"
     return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="shop/json.html"):
