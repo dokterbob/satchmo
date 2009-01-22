@@ -49,7 +49,7 @@ class Shipper(BaseShipper):
         for cartitem in self.cart.cartitem_set.all():
             p = cartitem.product
             if p.is_shippable:
-                total += self.carrier.price(p)
+                total += self.carrier.price(p) * cartitem.quantity
         return total
 
     def method(self):
