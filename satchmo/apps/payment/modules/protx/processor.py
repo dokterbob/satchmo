@@ -10,14 +10,12 @@ will fall back to the defaults for any not specified in your dictionary.
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from livesettings import config_value
+from payment.base import BasePaymentProcessor
 from payment.utils import record_payment
 from satchmo_utils.numbers import trunc_decimal
 from urllib import urlencode
 import forms
-import logging
 import urllib2
-
-log = logging.getLogger('protx.processor')
 
 PROTOCOL = "2.22"
 
@@ -32,19 +30,20 @@ PROTX_DEFAULT_URLS = {
 
 FORM = forms.ProtxPayShipForm
 
-class PaymentProcessor(object):
+class PaymentProcessor(BasePaymentProcessor):
     packet = {}
     response = {}
     
     def __init__(self, settings):
-        self.settings = settings
+        super(PaymentProcessor, self).__init__(self, 'Protx', settings)
+
         vendor = settings.VENDOR.value
         if vendor == "":
-            log.warn('Prot/X Vendor is not set, please configure in your site configuration.')
+            self.log.warn('Prot/X Vendor is not set, please configure in your site configuration.')
         if settings.SIMULATOR.value:
             vendor = settings.VENDOR_SIMULATOR.value
             if not vendor:
-                log.warn("You are trying to use the Prot/X VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
+                self.log.warn("You are trying to use the Prot/X VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
                 vendor = settings.VENDOR.value
         
         self.packet = {
@@ -78,11 +77,7 @@ class PaymentProcessor(object):
         return self._url('CALLBACK')
 
     callback = property(fget=_callback)
-    
-    def log_extra(self, msg, *args):
-        if self.settings.EXTRA_LOGGING.value:
-            log.info("(Extra logging) " + msg, *args)
-    
+        
     def prepareData(self, data):
         try:
             cc = data.credit_card
@@ -104,7 +99,7 @@ class PaymentProcessor(object):
             self.packet['BillingAddress'] = ', '.join(addr)
             self.packet['BillingPostCode'] = data.bill_postal_code
         except Exception, e:
-            log.error('preparing data, got error: %s\nData: %s', e, data)
+            self.log.error('preparing data, got error: %s\nData: %s', e, data)
             self.valid = False
             return
             
@@ -130,10 +125,10 @@ class PaymentProcessor(object):
         self.valid = True
         
     def process(self):
-        # Execute the post to protx VSP DIRECT        
+        """Execute the post to protx VSP DIRECT"""
         if self.valid:
             if self.settings.SKIP_POST.value:
-                log.info("TESTING MODE - Skipping post to server.  Would have posted %s?%s", self.url, self.postString)
+                self.log.info("TESTING MODE - Skipping post to server.  Would have posted %s?%s", self.url, self.postString)
                 record_payment(self.order, self.settings, amount=self.order.balance, transaction_id="TESTING")
                 return (True, 'OK', "TESTING MODE")
 
@@ -145,8 +140,7 @@ class PaymentProcessor(object):
                     result = f.read()
                     self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
                 except urllib2.URLError, ue:
-                    log.error("error opening %s\n%s", self.url, ue)
-                    print ue
+                    self.log.error("error opening %s\n%s", self.url, ue)
                     return (False, 'ERROR', 'Could not talk to Protx gateway')
                 try:
                     self.response = dict([row.split('=', 1) for row in result.splitlines()])
@@ -154,11 +148,11 @@ class PaymentProcessor(object):
                     success = (status == 'OK')
                     detail = self.response['StatusDetail']
                     if success:
-                        log.info('Success on order #%i, recording payment', self.order.id)
+                        self.log.info('Success on order #%i, recording payment', self.order.id)
                         record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
                     return (success, status, detail)
                 except Exception, e:
-                    log.info('Error submitting payment: %s', e)
+                    self.log.info('Error submitting payment: %s', e)
                     return (False, 'ERROR', 'Invalid response from payment gateway')
         else:
             return (False, 'ERROR', 'Error processing payment.')
