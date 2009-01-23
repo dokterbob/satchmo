@@ -61,7 +61,7 @@ The ``config.py`` file tells Satchmo about your product model. Replace
 
 
     from django.utils.translation import ugettext_lazy as _
-    from satchmo.configuration import config_get
+    from livesettings import config_get
 
     PRODUCT_TYPES = config_get('PRODUCT', 'PRODUCT_TYPES')
 
