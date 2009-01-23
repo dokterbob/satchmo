@@ -19,14 +19,9 @@ class CategoryImage_Inline(admin.TabularInline):
     model = CategoryImage
     extra = 3
     
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        # This method will turn all TextFields into giant TextFields
-        if isinstance(db_field, ImageWithThumbnailField):
-            kwargs['widget'] = AdminImageWithThumbnailWidget
-            return db_field.formfield(**kwargs)
-            
-        return super(CategoryImage_Inline, self).formfield_for_dbfield(db_field, **kwargs)
-    
+    formfield_overrides = {
+        ImageWithThumbnailField : {'widget' : AdminImageWithThumbnailWidget},
+    }
 
 class CategoryImageTranslation_Inline(admin.StackedInline):
     model = CategoryImageTranslation
@@ -73,13 +68,9 @@ class ProductImage_Inline(admin.StackedInline):
     model = ProductImage
     extra = 3
     
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        # This method will turn all TextFields into giant TextFields
-        if isinstance(db_field, ImageWithThumbnailField):
-            kwargs['widget'] = AdminImageWithThumbnailWidget
-            return db_field.formfield(**kwargs)
-            
-        return super(ProductImage_Inline, self).formfield_for_dbfield(db_field, **kwargs)
+    formfield_overrides = {
+        ImageWithThumbnailField : {'widget' : AdminImageWithThumbnailWidget},
+    }
  
 class ProductTranslation_Inline(admin.TabularInline): 
     model = ProductTranslation 
