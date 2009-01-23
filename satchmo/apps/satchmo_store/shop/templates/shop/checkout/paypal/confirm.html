@@ -64,6 +64,7 @@
 <input type="hidden" name="tax_cart" value="{{order.tax|truncate_decimal:2}}" />
 {% endif %}
 {% endif %}
+<input type="hidden" name="notify_url" value="{% url PAYPAL_satchmo_checkout-ipn %}" />
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>
 {% endblock %}
