@@ -153,7 +153,7 @@ to add any pieces of satchmo.
         "satchmo_store.shop.SSLMiddleware.SSLRedirect")
 
         TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
-        TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo.shop.context_processors.settings',
+        TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo_store.shop.context_processors.settings',
                                          'django.core.context_processors.auth',
                                          'satchmo_ext.recentlist.context_processors.recent_products',
                                          )
@@ -171,7 +171,7 @@ to add any pieces of satchmo.
                 'keyedcache',
                 'livesettings',
                 'l10n',
-                'satchmo_utils.thumbnail',
+                'sorl.thumbnail',
                 'satchmo_store.contact',
                 'tax',
                 'tax.modules.no',
@@ -189,7 +189,15 @@ to add any pieces of satchmo.
             'satchmo_store.accounts.email-auth.EmailBackend',
             'django.contrib.auth.backends.ModelBackend'
             )
-
+        
+        #### Satchmo unique variables ####
+        #from django.conf.urls.defaults import patterns, include
+        SATCHMO_SETTINGS = {
+                            'SHOP_BASE' : '',
+                            'MULTISHOP' : False,
+                            #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
+                            }
+        
         # Load the local settings
         from local_settings import *
         

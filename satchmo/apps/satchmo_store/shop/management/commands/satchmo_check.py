@@ -48,6 +48,10 @@ class Command(NoArgsCommand):
         except ImportError:
             errors.append("YAML is not installed.")
         try:
+            import sorl
+        except ImportError:
+            errors.append("Sorl imaging library is not installed.")
+        try:
              from l10n.utils import get_locale_conv
              get_locale_conv()
         except:
@@ -62,7 +66,7 @@ class Command(NoArgsCommand):
             cache_avail = settings.CACHE_BACKEND
         except AttributeError:
             errors.append("A CACHE_BACKEND must be configured.")
-
+        
         if 'satchmo_store.shop.SSLMiddleware.SSLRedirect' not in settings.MIDDLEWARE_CLASSES:
             errors.append("You must have satchmo_store.shop.SSLMiddleware.SSLRedirect in your MIDDLEWARE_CLASSES.")
         if 'satchmo_store.shop.context_processors.settings' not in settings.TEMPLATE_CONTEXT_PROCESSORS:
