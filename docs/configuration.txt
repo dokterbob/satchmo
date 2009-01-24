@@ -122,6 +122,8 @@ Satchmo allows different tax configurations. This section allows you to choose t
 .. index::
    single: Newsletters; enabling
 
+.. _newsletter:
+
 Newsletters
 +++++++++++
 

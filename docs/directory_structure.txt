@@ -1,0 +1,125 @@
+Directory Structure
+===================
+
+Before proceeding too far with the Satchmo installation process, it is
+useful to get a basic understanding of the way Satchmo is laid out.
+
+The base Satchmo directory should look like this::
+
+    docs
+    satchmo
+     |
+     ---- apps
+     ---- projects
+     ---- static
+     
+The docs directory should be self explanatory. 
+
+Satchmo Apps
+------------
+
+The core Satchmo application is included in the apps directory and is laid out like this::
+
+    apps
+     |
+     ---- keyedcache
+     ---- l10n
+     ---- livesettings
+     ---- payment
+     ---- product
+     ---- satchmo_ext
+     ---- satchmo_store
+     ---- satchmo_utils
+     ---- shipping
+     ---- tax
+
+The directories are created in this fashion so that we can accomplish a couple of goals:
+
+    1. Decouple portions of Satchmo so that others may use and improve upon them
+    2. Bundle the required portions together so that installation is as simple as possible
+    3. Allow store owners flexibility in installing only the portions they need
+    4. Allow developers to extend Satchmo to provide the custom portions they require
+    
+Here's a brief description of the various applications.
+
+    **keyedcache (required)**
+        A specialized cache used in various places in Satchmo to speed up and
+        improve the overall useability of the application.
+        
+    **l10n (required)**
+        A collection of models and data used to Internationalize Satchmo. This data
+        includes all of the country information as well as tools to present information
+        correctly depending on the user's location.
+        
+    **livesettings (required)**
+        A sophisticated configuration tool that allows us to set reasonable defaults
+        for an application but offer users a streamlined way of changing them through
+        the admin interface.
+        
+    **payment (required)**
+        The various payment modules, forms and views used to allow checking out of a store.
+        
+    **product (required)**
+        The models and views used to store and present product information
+        
+    **satchmo_ext (optional)**
+        A collection of Satchmo modules that provide optional features that may or may not 
+        be needed for your store. Additional information on these are described below.
+        
+    **satchmo_store (required)**
+        The core models, views and urls used for a store. This application includes account
+        information, contact information and the base tools for running a store.
+        
+    **satchmo_utils (required)**
+        A collection of helper utilities used throughout Satchmo.
+        
+    **shipping (required)**
+        The various modules used to determine shipping costs for orders.
+        
+    **tax (optional)**
+        Modules for calculating tax based on various criteria.
+    
+    
+Satchmo_ext
++++++++++++
+
+As described above, the satchmo_ext module includes many smaller applications that you
+may wish to include in your site.
+
+    **brand**
+        This application is useful if you have different brands of products that you want to use to 
+        categorize and display your products.
+        
+    **contrib**
+        This application contains one small helper function that modifies the price 
+        calculation to count all items in the cart when figuring quantity discounts.
+    
+    **metrics**
+        The metrics app has a Log Middleware which you can add to your middleware and capture
+        items that are being viewed.
+    
+    **newsletter**
+        Satchmo has two basic options for handling newsletter configurations. You can use a simple 
+        database list or interface with mailman. See :ref:`newsletter`.
+    
+    **product_feeds**
+        Provides support for atom or csv feeds of the products in the store. For more info on using
+        with Google base, see :ref:`feeds`.
+        
+    **productratings**
+        Product ratings allows your store users to rate and review the products in the store.
+    
+    **recentlist**
+        Allows you to display recently viewed products on your site.
+    
+    **tieredpricing**
+        This application provides improved flexibility for charging different prices
+        to different customers. It is useful for membership or other tiered price structures.
+    
+    **upsell**
+        Present options to customers to purchase other items based on their current items. See :ref:`upsell`
+    
+    **wishlist**
+        The wishlist allows shoppers to add items from the store to a list that they might
+        want to purchase from in the future.
+

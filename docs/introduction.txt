@@ -4,11 +4,13 @@ Satchmo Introduction
 History
 -------
 Like most Open Source projects, Satchmo was started to "scratch an itch."  This
-particular itch was to create a framework for developing shopping cart software
-using the Django framework.  After a little bit of discussion on the Django list, 
+particular itch was to create a framework for developing a python based shopping 
+cart framework software using Django.  After a little bit of discussion on the Django list, 
 we created our own project in April 2006.
 
 In August 2007, we released the first public release of Satchmo - version 0.5.
+We have had several releases since then and are continually improving the features and functions
+included in Satchmo.
 
 Project Mission
 ---------------

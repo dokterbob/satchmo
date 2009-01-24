@@ -1,6 +1,8 @@
 .. index::
    single: Google; Base
 
+.. _feeds:
+
 ===========
 Google Base
 ===========
@@ -23,14 +25,8 @@ Installing
 
 On your site:
 
-    * Add "satchmo.feeds" to your settings.py INSTALLED_APPS
-    * In local_settings.py, add the feeds to the site urls::
-    
-                    URLS = patterns('', 
-                        # your other url overrides here
-                        (r'^feed/', include('satchmo.feeds.urls')),
-                    )
-                    
+    * Add "satchmo_ext.product_feeds" to your settings.py INSTALLED_APPS
+
 On Google:
     
     Review the `Google Installation Steps`_

@@ -11,33 +11,55 @@ trunk.
 
 Satchmo requires Python 2.3 or later and a database supported by Django.
 
+There is always a challenge in deciding how many dependencies to include in a project. With
+Satchmo, we strongly believe in avoiding "Not Invented Here" syndrome and using the power
+of the rich set of python tools available on the web to make Satchmo as flexible and powerful
+as possible.
+
 There are a number of other Python packages that are required for usage of all the
 features in Satchmo.
 
-- `Python Imaging Library`_
-- `Elementtree`_ (included in Python 2.5+)
-- `Python cryptography toolkit`_ (`Windows binary`_)
-- `ReportLab`_
-- `Tiny RML2PDF`_ (`download link`_)
-- `Django Threaded Multihost`_
-- `Django App Plugins`_
-- `Sorl Thumbnails`_
+- Satchmo's thumbnail capability is very robust and utilizes the following packages:
+  
+    - `Python Imaging Library`_
+    - `Sorl Thumbnails`_
 
-There are also a number of other Django packages (mentioned below) that you will require
+- In order to securely store sensitive information, you will need:
+
+    - `Python cryptography toolkit`_ (`Windows binary`_)
+
+- Satchmo creates PDF output for shipping and invoicing using:
+
+    - `ReportLab`_
+    - `Tiny RML2PDF`_ (`download link`_)
+
+- In order to manage hierarchical data and use XML in shipping and payment modules, we use:
+
+    - `Elementtree`_ (included in Python 2.5+)
+
+There are also a number of other Django packages (mentioned below) that you will need to install.
+
+To support multi store configurations:
+
+    - `Django Threaded Multihost`_
+
+For flexibility in defining template plugin points:
+
+    - `Django App Plugins`_
 
 For the account registration process, you will need:
 
-- `Django Registration`_
+    - `Django Registration`_
 
 A valid Django cache backend (file, memcached or DB) is required for the config settings.
 
 The following package is required to load the initial data and run the unit tests:
 
-- `PyYaml`_
+    - `PyYaml`_
 
 Docutils is useful for auto generating some documentation:
 
-- `Docutils`_
+    - `Docutils`_
 
 Detailed steps for installing these dependencies is included in the installation_ section.
 

@@ -73,6 +73,8 @@ MIDDLEWARE_CLASSES = (
 
 #this is used to add additional config variables to each request
 # NOTE: overridden in local_settings.py
+# NOTE: If you enable the recent_products context_processor, you MUST have the
+# 'satchmo_ext.recentlist' app installed.
 TEMPLATE_CONTEXT_PROCESSORS = ('satchmo_store.shop.context_processors.settings',
                                'django.core.context_processors.auth',
                                #'satchmo_ext.recentlist.context_processors.recent_products',

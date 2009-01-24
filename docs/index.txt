@@ -12,6 +12,7 @@ Overview
    introduction
    features
    requirements
+   directory_structure
 
 Installation
 ============
