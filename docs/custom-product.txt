@@ -25,7 +25,7 @@ A basic ``models.py`` file with a custom product model looks like this::
 
     from django.db import models
     from django.utils.translation import ugettext_lazy as _
-    from satchmo.product.models import Product
+    from product.models import Product
 
     class MyNewProduct(models.Model):
         product = models.OneToOneField(Product, verbose_name=_('Product'),
@@ -51,7 +51,7 @@ with the name of your app::
 
 
     from django.contrib import admin
-    from my_app.models import MyNewProduct # TODO: Replace app name!
+    from models import MyNewProduct # TODO: Replace app name!
 
     admin.site.register(MyNewProduct)
 
