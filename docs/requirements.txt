@@ -5,9 +5,9 @@ Satchmo is based on the Django framework, therefore you do need a fully function
 Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
-It is recommended that you use the latest stable Django 1.0 series. As of this
-release Django 1.0 is the minimum version but 1.0.2 is recommended because it
-has the latest bug fixes and enhancements.
+It is recommended that you use Django 1.1 series. At this time, Django 1.1 has not been 
+released so Django trunk is recommended because portions of the Satchmo admin depend on the recent changes in
+trunk.
 
 Satchmo requires Python 2.3 or later and a database supported by Django.
 

@@ -9,7 +9,7 @@ This guide assumes you are working on a unix variant and that you are installing
 you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
 
 .. warning::
-   You must have Django 1.0.x properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
+   You must have Django 1.1.x (Django trunk) properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
    
 The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
 one simple method to install the dependencies. You may manually install them if you wish.
@@ -135,7 +135,7 @@ Please remember to ensure that your Django database connections and settings are
 to add any pieces of satchmo.
 
 5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations 
-(in addition to the defaults and your other app needs)::
+   (in addition to the defaults and your other app needs)::
 
         import os
         DIRNAME = os.path.abspath(os.path.dirname(__file__))
@@ -201,6 +201,9 @@ to add any pieces of satchmo.
         # Load the local settings
         from local_settings import *
         
+.. note::
+    In order for the admin site to work properly, you must have satchmo_store.shop placed before django.contrib.admin
+   
 6. Copy the local_settings file to mystore::
 
         cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py /home/user/src/mystore/local_settings.py
@@ -211,7 +214,6 @@ to add any pieces of satchmo.
         CACHE_BACKEND
         CACHE_TIMEOUT
         SITE_DOMAIN
-        SHOP_BASE
         LOGDIR
         LOGFILE
         
