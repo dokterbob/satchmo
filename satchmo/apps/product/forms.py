@@ -59,7 +59,7 @@ class InventoryForm(forms.Form):
             'widget' : forms.TextInput(attrs={'class': qtyclasses}) }
 
             qty = forms.DecimalField(**kw)
-            self.fields['qty__%d' % product.slug] = qty
+            self.fields['qty__%s' % product.slug] = qty
             qty.slug = product.slug
             qty.product_id = product.id
             qty.subtypes = " ".join(subtypes)
