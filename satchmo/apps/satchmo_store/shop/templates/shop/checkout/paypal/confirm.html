@@ -56,7 +56,7 @@
 {% for item in order.orderitem_set.all %}
 <input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
 <input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price|truncate_decimal:2}}" />
-<input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity}}" />
+<input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity|truncate_decimal:0}}" />
 {% endfor %}
 {# LEAVE THE HANDLING CHARGE ALONE!  PAYPAL SHIPPING WILL INEVITABLY BE MESSED UP IF YOU USE THEIR SHIPPING METHODS #}
 {# To work around their bizarre system, we are telling Paypal "no shipping" and adding all shipping charges as handling #}
