@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.doc.XViewMiddleware",
     "threaded_multihost.middleware.ThreadLocalMiddleware",
     "satchmo_store.shop.SSLMiddleware.SSLRedirect",
-    "satchmo_ext.recentlist.middleware.RecentProductMiddleware",
+#    "satchmo_ext.recentlist.middleware.RecentProductMiddleware",
 )
 
 #this is used to add additional config variables to each request
