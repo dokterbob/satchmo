@@ -117,7 +117,7 @@ def labelled_payment_choices():
 
     choices = []
     for module, module_name in active_payment_modules:
-        label = config_value(module, 'LABEL', default = module_name)
+        label = _(config_value(module, 'LABEL', default = module_name))
         choices.append((module, label))
     
     signals.payment_choices.send(None, choices=choices)
