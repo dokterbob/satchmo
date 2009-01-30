@@ -721,8 +721,7 @@ class Order(models.Model):
 
     def _is_partially_paid(self):
         if self.total:
-            balance = self.balance
-            return float(balance) > 0.0 and self.balance != self.balance_paid
+            return float(self.balance_paid) > 0.0 and self.balance != self.balance_paid
         else:
             return False
 
