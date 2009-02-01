@@ -297,7 +297,7 @@ class CategoryImage(models.Model):
         max_length=200) #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
-    sort = models.IntegerField(_("Sort Order"), )
+    sort = models.IntegerField(_("Sort Order"), default=0)
 
     def translated_caption(self, language_code=None):
         return lookup_translation(self, 'caption', language_code)
@@ -605,7 +605,7 @@ class OptionGroup(models.Model):
         blank=True,
         help_text=_("Further description of this group (i.e. shirt size vs shoe size)."))
     sort_order = models.IntegerField(_("Sort Order"),
-        help_text=_("The display order for this group."))
+        help_text=_("The display order for this group."), default=0)
 
     objects = OptionGroupManager()
 
@@ -665,7 +665,7 @@ class Option(models.Model):
     price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
         max_digits=14, decimal_places=6,
         help_text=_("This is the price differential for this option."))
-    sort_order = models.IntegerField(_("Sort Order"))
+    sort_order = models.IntegerField(_("Sort Order"), default=0)
 
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
@@ -1223,7 +1223,7 @@ class CustomTextField(models.Model):
     products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'), 
         related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
-        help_text=_("The display order for this group."))
+        help_text=_("The display order for this group."), default=0)
     price_change = models.DecimalField(_("Price Change"), max_digits=14, 
         decimal_places=6, blank=True, null=True)
 
@@ -2014,7 +2014,7 @@ class ProductImage(models.Model):
         max_length=200) #Media root is automatically prepended
     caption = models.CharField(_("Optional caption"), max_length=100,
         null=True, blank=True)
-    sort = models.IntegerField(_("Sort Order"), )
+    sort = models.IntegerField(_("Sort Order"), default=0)
 
     def translated_caption(self, language_code=None):
         return lookup_translation(self, 'caption', language_code)
