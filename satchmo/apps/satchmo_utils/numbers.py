@@ -79,7 +79,10 @@ def round_decimal(val='0', places=None, roundfactor='0', normalize=True):
         # if the number has decimal places (i.e. 3.20), normalize the number (to 3.2)
         # This check is necesary because normalizing a number which trails in zeros (i.e. 200 or 200.00) normalizes to
         # scientific notation (2E+2)
-        decval = decval.quantize(Decimal('1')) if decval==decval.to_integral() else decval.normalize()
+        if decval==decval.to_integral():
+            decval = decval.quantize(Decimal('1'))
+        else:
+            decval.normalize()
     
     return decval
     
