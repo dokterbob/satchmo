@@ -3,6 +3,7 @@
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
 from satchmo_utils import load_module
+from satchmo_store.shop import get_satchmo_setting
 
 PRODUCT_GROUP = ConfigurationGroup('PRODUCT', _('Product Settings'))
 
@@ -90,3 +91,13 @@ We can handle it any which way."""),
         default=False
     ),
 )
+
+# --- Load any extra product modules. ---
+extra_product = get_satchmo_setting('CUSTOM_PRODUCT_MODULES')
+
+for extra in extra_product:
+    try:
+        load_module("%s.config" % extra)
+    except ImportError:
+        log.warn('Could not load product module configuration: %s' % extra)
+

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy, ugettext
 from livesettings import *
+from satchmo_store.shop import get_satchmo_setting
 from satchmo_utils import is_string_like, load_module
 import logging
 import signals
@@ -91,6 +92,15 @@ for module in _default_modules:
         load_module("payment.modules.%s.config" % module)
     except ImportError:
         log.debug('Could not load default payment module configuration: %s', module)
+
+# --- Load any extra payment modules. ---
+extra_payment = get_satchmo_setting('CUSTOM_PAYMENT_MODULES')
+
+for extra in extra_payment:
+    try:
+        load_module("%s.config" % extra)
+    except ImportError:
+        log.warn('Could not load payment module configuration: %s' % extra)
 
 # --- helper functions ---
 

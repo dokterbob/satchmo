@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
+from satchmo_store.shop import get_satchmo_setting
 from satchmo_utils import is_string_like, load_module
 
 SHIPPING_GROUP = ConfigurationGroup('SHIPPING', _('Shipping Settings'))
@@ -25,6 +26,15 @@ for module in _default_modules:
     	load_module("shipping.modules.%s.config" % module)
     except ImportError:
         log.debug('Could not load default shipping module configuration: %s', module)
+
+# --- Load any extra shipping modules. ---
+extra_shipping = get_satchmo_setting('CUSTOM_SHIPPING_MODULES')
+
+for extra in extra_shipping:
+    try:
+        load_module("%s.config" % extra)
+    except ImportError:
+        log.warn('Could not load shipping module configuration: %s' % extra)
 
 class ShippingModuleNotFound(Exception):
     def __init__(key):
