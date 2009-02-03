@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
-from livesettings import config_value
 from product.urls import urlpatterns as productpatterns
 from satchmo_store import shop
 from satchmo_store.shop.views.sitemaps import sitemaps

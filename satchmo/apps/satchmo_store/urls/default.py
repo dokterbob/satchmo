@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
-from django.contrib import admin
 import logging
 log = logging.getLogger('satchmo_store.urls')
 

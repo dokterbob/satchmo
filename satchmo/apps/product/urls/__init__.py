@@ -11,8 +11,6 @@ prodbase = r'^' + config_value('PRODUCT','PRODUCT_SLUG') + '/'
 urlpatterns = patterns('',
     (prodbase, include('product.urls.product')),
     (catbase, include('product.urls.category')),
-    (r'^admin/inventory/edit/$', 
-        'product.views.adminviews.edit_inventory', {}, 'satchmo_admin_edit_inventory'),
 )
 
 collect_urls.send(product, section="__init__", patterns = urlpatterns)
