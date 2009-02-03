@@ -53,7 +53,7 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_smart_add %}" method="post">
-{% trans "Quantity" %} <input type="text", size="5", name="quantity" id="quantity" value="1" class="priced" />
+{% trans "Quantity" %} <input type="text" size="5" name="quantity" id="quantity" value="1" class="priced" />
 <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
 <input type="submit" name="addcart" value="{% trans "Add to cart" %}" />
 {% plugin_point "product_add_buttons" %}
