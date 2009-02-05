@@ -1,0 +1,55 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load satchmo_price %}
+{% load satchmo_currency %}
+{% load satchmo_util satchmo_discounts %}
+{% load app_plugins %}
+
+{% block navbar %}
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+<li>{% trans "Quick Order Form" %}</li>
+{% endblock %}
+
+{% block content %}
+<h4>Quick Order Form</h4>
+<form name="quickorder" method="post" action="{% url satchmo_quick_order %}">
+<table>
+	<table id="quickOrder" cellspacing="0">
+		<tr class="head">
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+			<th>Price</th>
+			<th>Qty</th>
+		</tr>
+		{% for field in form %}{% with field.field.product as product %}
+		{% thumbnail product.main_image.picture 84x84 as image %}
+		<tr {% if forloop.first %} class="first"{% else %}{% if forloop.last %} class="last"{% endif %}{% endif %}>
+			<td>
+				<img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ product.short_description }}"/>
+			</td>
+			<td class="productDetail">
+				<h3>{{ product.name }}</h3>
+				<p>
+					{{ product.description }}
+				</p>
+			</td>
+			<td class="price">
+				{% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+				<span id="price">{{ product|discount_price:sale|currency }}</span>
+			</td>
+			<td class="qty">
+				{{ field }}
+			</td>
+		</tr>
+		{% if field.errors %}<tr>
+			<td>&nbsp;</td>
+			<td colspan="3" class="error">{{ field.errors }}</td>
+		</tr>{% endif %}
+		{% endwith %}{% endfor %}
+		<tr>
+			<td colspan="3">&nbsp;</td>
+			<td><input type="submit" value='{% trans "Add to Cart" %}' /></td>
+		</tr>
+	</table>
+{% endblock content %}

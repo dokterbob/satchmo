@@ -20,6 +20,7 @@ from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
 from product.views import find_product_template, optionids_from_post
 from satchmo_store.shop import CartAddProhibited
+from satchmo_store.shop import forms
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo_store.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
 from satchmo_utils.views import bad_or_missing
@@ -246,6 +247,26 @@ def add_ajax(request, id=0, template="shop/json.html"):
 
     satchmo_cart_changed.send(tempCart, cart=tempCart, request=request)
     return render_to_response(template, {'json' : encoded})
+
+def add_multiple(request, redirect_to='satchmo_cart', products=None, template="shop/multiple_product_form.html"):
+    """Add multiple items to the cart.
+    """    
+    if request.method == "POST":
+        log.debug('FORM: %s', request.POST)
+        formdata = request.POST.copy()
+        form = forms.MultipleProductForm(formdata, products=products)
+        
+        if form.is_valid():
+            cart = Cart.objects.from_request(request, create=True)
+            form.save(cart, request)
+            satchmo_cart_changed.send(cart, cart=cart, request=request)
+
+            url = urlresolvers.reverse(redirect_to)
+            return HttpResponseRedirect(url)            
+    else:
+        form = forms.MultipleProductForm(products=products)
+
+    return render_to_response(template, RequestContext(request, {'form' : form}))
 
 def agree_terms(request):
     """Agree to terms"""

@@ -21,6 +21,7 @@ urlpatterns += patterns('satchmo_store.shop.views',
     (r'^checkout/', include('payment.urls')),
     (r'^contact/$', 'contact.form', {}, 'satchmo_contact'),
     (r'^history/$', 'orders.order_history', {}, 'satchmo_order_history'),
+    (r'^quickorder/$', 'cart.add_multiple', {}, 'satchmo_quick_order'),
     (r'^tracking/(?P<order_id>\d+)/$', 'orders.order_tracking', {}, 'satchmo_order_tracking'),
     (r'^search/$', 'search.search_view', {}, 'satchmo_search'),
     

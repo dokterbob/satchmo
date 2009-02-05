@@ -906,6 +906,42 @@ class OrderTest(TestCase):
         pmt.save()
     
         self.assert_(order.is_partially_paid)
+        
+class QuickOrderTest(TestCase):
+    """Test quickorder sheet."""
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+
+    def setUp(self):
+        keyedcache.cache_delete()
+        self.US = Country.objects.get(iso2_code__iexact='US')
+
+    def tearDown(self):
+        cache_delete()
+
+    def testQuickOrderAdd(self):
+        """Test adding multiple products at once to cart."""
+        response = self.client.get(url('satchmo_quick_order'))
+        self.assertContains(response, "Django Rocks shirt (Large/Black)", status_code=200)
+        self.assertContains(response, "Python Rocks shirt", status_code=200)
+        response = self.client.post(url('satchmo_quick_order'), { 
+            "qty__dj-rocks-l-b" : "2",
+            "qty__PY-Rocks" : "1",
+        })
+        print response
+        self.assertRedirects(response, url('satchmo_cart'),
+            status_code=302, target_status_code=200)
+        response = self.client.get(prefix+'/cart/')
+        self.assertContains(response, "Django Rocks shirt (Large/Black)" , status_code=200)
+        self.assertContains(response, "Python Rocks shirt")
+        cart = Cart.objects.latest('id')
+        self.assertEqual(cart.numItems, 3)
+        products = [(item.product.slug, item.quantity) for item in cart.cartitem_set.all()]
+        products.sort()
+        self.assertEqual(len(products), 2)
+        self.assertEqual(products[0][0], 'PY-Rocks')
+        self.assertEqual(products[0][1], Decimal(1))
+        self.assertEqual(products[1][0], 'dj-rocks-l-b')
+        self.assertEqual(products[1][1], Decimal(2))
 
 def vetoAllListener(sender, vetoes={}, **kwargs):
     raise CartAddProhibited(None, "No")
