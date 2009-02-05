@@ -61,7 +61,7 @@ class RegistrationForm(forms.Form):
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
         email = self.cleaned_data.get('email', None)
-        if email and User.objects.filter(email=email).count() > 0:
+        if email and User.objects.filter(email__iexact=email).count() > 0:
             raise forms.ValidationError(
                 ugettext("That email address is already in use."))
 
