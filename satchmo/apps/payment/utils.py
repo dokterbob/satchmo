@@ -48,17 +48,20 @@ def get_or_create_order(request, working_cart, contact, data):
     
     try:
         newOrder = Order.objects.from_request(request)
-        pay_ship_save(newOrder, working_cart, contact,
-            shipping=shipping, discount=discount, update=True)
-        
+        if newOrder.status != '':
+            # This order is being processed. We should not touch it!
+            newOrder = None
     except Order.DoesNotExist:
+        newOrder = None
+
+    update = bool(newOrder)
+    if not newOrder:
         # Create a new order.
         newOrder = Order(contact=contact)
-        pay_ship_save(newOrder, working_cart, contact,
-            shipping=shipping, discount=discount)
-            
-        request.session['orderID'] = newOrder.id
-    
+
+    pay_ship_save(newOrder, working_cart, contact,
+        shipping=shipping, discount=discount, update=update)
+    request.session['orderID'] = newOrder.id
     return newOrder
 
 
