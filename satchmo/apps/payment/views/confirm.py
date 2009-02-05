@@ -20,7 +20,6 @@ log = logging.getLogger('payment.views')
 
 class ConfirmController(object):
     """Centralizes and manages data used by the confirm views.
-credit_confirm_info = never_cache(credit_confirm_info)
     Generally, this is used by initializing, then calling
     `confirm`.  If defaults need to be overridden, such as
     by setting different templates, or by overriding `viewTax`,
@@ -200,4 +199,5 @@ def credit_confirm_info(request, payment_module, template=None):
         controller.templates['CONFIRM'] = template
     controller.confirm()
     return controller.response
+credit_confirm_info = never_cache(credit_confirm_info)
     
