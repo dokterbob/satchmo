@@ -14,6 +14,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Message
 from django.http import HttpResponse, HttpResponseNotFound
 from django.utils.encoding import smart_str
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.text import truncate_words
 
@@ -24,6 +25,9 @@ class ForeignKeySearchInput(forms.HiddenInput):
     A Widget for displaying ForeignKeys in an autocomplete search input 
     instead in a <select> box.
     """
+
+    to_string_function = lambda s: truncate_words(s, 14)
+
     class Media:
         css = {
             'all': ('css/jquery.autocomplete.css',)
@@ -38,11 +42,12 @@ class ForeignKeySearchInput(forms.HiddenInput):
     def label_for_value(self, value):
         key = self.rel.get_related_field().name
         obj = self.rel.to._default_manager.get(**{key: value})
-        return truncate_words(obj, 14)
+        return self.to_string_function(obj)
 
-    def __init__(self, rel, search_fields, attrs=None):
+    def __init__(self, rel, search_fields, to_string_function, attrs=None):
         self.rel = rel
         self.search_fields = search_fields
+        if to_string_function: self.to_string_function = to_string_function
         super(ForeignKeySearchInput, self).__init__(attrs)
 
     def render(self, name, value, attrs=None):
@@ -70,10 +75,13 @@ class ForeignKeySearchInput(forms.HiddenInput):
 <img src="%(admin_media_prefix)simg/admin/icon_deletelink.gif" />
 </a>
 <script type="text/javascript">
-            if ($('#lookup_%(name)s').val()) {
+            var lookup = $('#lookup_%(name)s')
+            if (lookup.val()) {
                 $('#del_%(name)s').show()
             }
-            $('#lookup_%(name)s').autocomplete('../search/', {
+            lookup.attr('size', Math.max(10, lookup.attr('value').length))
+            lookup.autocomplete('../search/', {
+                formatResult: function(data){ return $('<div />').html(data[0]).text(); },
                 extraParams: {
                     search_fields: '%(search_fields)s',
                     app_label: '%(app_label)s',
@@ -171,6 +179,9 @@ class AutocompleteAdmin(admin.ModelAdmin):
         """
         if isinstance(db_field, models.ForeignKey) and \
                 db_field.name in self.related_search_fields:
-            kwargs['widget'] = ForeignKeySearchInput(db_field.rel,
-                                    self.related_search_fields[db_field.name])
+            kwargs['widget'] = ForeignKeySearchInput(
+                    db_field.rel,
+                    self.related_search_fields[db_field.name],
+                    self.related_string_functions.get(db_field.name)
+                    )
         return super(AutocompleteAdmin, self).formfield_for_dbfield(db_field, **kwargs)
