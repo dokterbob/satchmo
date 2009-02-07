@@ -77,6 +77,40 @@ Arguments sent with this signal:
     ``form``
         The POST data for the form used to add the item to the cart
 
+satchmo_cart_add_verify
+***********************
+
+Sent before an item is added to the cart.
+
+Arguments sent with this signal:
+
+    ``sender``
+        The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it
+    
+    ``cart``
+        The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it (Note: this argument is the same as ``sender``)
+        
+    ``cartitem``
+        An instance of ``product.models.Product`` that is being added to the cart
+        
+    ``added_quantity``
+        The number of ``cartitem`` items being added to the cart
+        
+    ``details``
+         A list of dictionaries containing additonal details about the item if the item is a custom product or a gift certificate product. Each dictionaries will contain the following information:
+
+            ``name``
+                The name of the detail
+
+            ``value``
+                The value of the detail
+
+            ``sort_order``
+                The order the detail should be listed in displays
+
+            ``price_change``
+                The price change of the detail, default of zero
+
 
 satchmo_cart_changed
 ********************
