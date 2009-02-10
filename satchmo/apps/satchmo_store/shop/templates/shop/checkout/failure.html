@@ -1,0 +1,16 @@
+{% extends "shop/base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+   <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+   <li>{% trans "Checkout" %}</li>
+{% endblock %}
+
+{% block content %}
+<div id="orderfailure">
+<h4>{% trans "Failed payment" %}</h4>
+<p>{% trans 'We are sorry, but the payment process finished with a failure.' %}</p>
+<p>{% trans 'You may' %} <a href="{% url satchmo_cart %}">{% trans 'proceed to the cart' %}</a> {% trans 'and check out again, using other payment method.' %}</p>
+
+</div>
+{% endblock %}

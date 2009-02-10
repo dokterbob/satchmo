@@ -25,3 +25,10 @@ def success(request):
     context = RequestContext(request, {'order': order})
     return render_to_response('shop/checkout/success.html', context)
 success = never_cache(success)
+
+def failure(request):
+	return render_to_response(
+			'shop/checkout/failure.html',
+			{},
+			context_instance=RequestContext(request)
+			)

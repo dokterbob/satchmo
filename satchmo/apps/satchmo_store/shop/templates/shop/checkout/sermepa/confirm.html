@@ -1,0 +1,39 @@
+{% extends "shop/checkout/base_confirm.html" %}
+{% load i18n %}
+{% load satchmo_product %}
+{% load satchmo_util %}
+
+{% block payment_step %}<a href="{% url SERMEPA_satchmo_checkout-step2 %}">{% trans "Payment" %}</a>{% endblock %}
+
+{% block payment_display %}
+<h4>{% trans "Payment" %}</h4>
+{% if not live %}<strong>PAYMENT TEST MODE</strong>{% endif %}
+{% trans "Your payment will be processed through Sermepa." %}
+{% endblock %}
+
+{% block payment_form %}
+<form action="{{ post_url }}" method="post">
+<input type="hidden" name="Ds_Merchant_Currency" value="{{MERCHANT_CURRENCY}}" />
+<input type="hidden" name="Ds_Merchant_Titular" value="{{MERCHANT_TITULAR}}" />
+<input type="hidden" name="Ds_Merchant_Terminal" value="{{terminal}}" />
+<input type="hidden" name="Ds_Merchant_MerchantCode" value="{{MERCHANT_FUC}}" />
+<input type="hidden" name="Ds_Merchant_MerchantURL" value="{{url_callback}}" />
+<input type="hidden" name="Ds_Merchant_UrlOK" value="{{url_ok}}" />
+<input type="hidden" name="Ds_Merchant_UrlKO" value="{{url_ko}}" />
+<input type="hidden" name="Ds_Merchant_TransactionType" value="0" />	{# Autorizacion #}
+<input type="hidden" name="Ds_Merchant_ConsumerLanguage" value="2" />	{# English #}
+
+{% if order.partially_paid %}
+	<input type="hidden" name="Ds_Merchant_ProductDescription" value="Remaining Balance for order {{order.id}}" />
+{% else %}
+	<input type="hidden" name="Ds_Merchant_ProductDescription" value="Order {{order.id}}" />
+{% endif %}
+
+<input type="hidden" name="Ds_Merchant_Amount" value="{{amount}}" />
+<input type="hidden" name="Ds_Merchant_Order" value="{{xchg_order_id}}" />
+
+<input type="hidden" name="Ds_Merchant_MerchantSignature" value="{{signature}}" />
+
+<input class="large glossy button" type="submit" value="{% trans "Purchase Items" %}" />
+</form>
+{% endblock %}
