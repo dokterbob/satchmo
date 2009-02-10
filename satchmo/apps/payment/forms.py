@@ -92,7 +92,12 @@ class PaymentMethodForm(forms.Form):
             del kwargs['order']
         except KeyError:
             order = None
-        super(forms.Form, self).__init__(*args, **kwargs)
+        try:
+            contact = kwargs['contact']
+            del kwargs['contact']
+        except KeyError:
+            contact = None
+        super(PaymentMethodForm, self).__init__(*args, **kwargs)
         # Send a signal to perform additional filtering of available payment methods.
         # Receivers have cart/order passed in variables to check the contents and modify methods
         # list if neccessary.
@@ -101,7 +106,8 @@ class PaymentMethodForm(forms.Form):
                 PaymentMethodForm,
                 methods=payment_choices,
                 cart=cart,
-                order=order
+                order=order,
+                contact=contact
                 )
         if len(payment_choices) == 1:
             self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : payment_choices[0][0]})
@@ -109,11 +115,10 @@ class PaymentMethodForm(forms.Form):
             self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
         self.fields['paymentmethod'].choices = payment_choices
 
-class PaymentContactInfoForm(ContactInfoForm, PaymentMethodForm):
+class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
                                         
         def __init__(self, *args, **kwargs):
             super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
-            
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
             
         def save(self, *args, **kwargs):

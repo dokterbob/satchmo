@@ -488,6 +488,9 @@ Arguments sent with this signal:
     
     ``order``
         An instance of ``satchmo_store.shop.models.Order`` representing the current order
+    
+    ``contact``
+        An instance of ``satchmo_store.contact.models.Contact`` representing the current customer (if authenticated, so it may be None).
 
 form_save
 *********
