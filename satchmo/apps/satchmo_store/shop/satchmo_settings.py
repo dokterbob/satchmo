@@ -19,6 +19,7 @@ satchmo_settings_defaults = {
     'CUSTOM_PRODUCT_MODULES' : [],
     'CUSTOM_TAX_MODULES' : [],
     'ALLOW_PRODUCT_TRANSLATIONS' : True,
+    'COOKIE_MAX_SECONDS' : 60*60*24*30, #one month
     }
 
 

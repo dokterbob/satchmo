@@ -44,7 +44,7 @@
 		</tr>
 		{% if field.errors %}<tr>
 			<td>&nbsp;</td>
-			<td colspan="3" class="error">{{ field.errors }}</td>
+			<td colspan="3" class="error">{{ field.errors|join:"," }}</td>
 		</tr>{% endif %}
 		{% endwith %}{% endfor %}
 		<tr>

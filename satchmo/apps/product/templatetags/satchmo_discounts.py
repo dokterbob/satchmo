@@ -14,8 +14,6 @@ from tax.templatetags import satchmo_tax
 
 register = template.Library()
 
-register = template.Library()
-
 def sale_price(product):
     """Returns the sale price, including tax if that is the default."""
     if config_value('TAX', 'DEFAULT_VIEW_TAX'):
