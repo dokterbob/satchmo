@@ -56,7 +56,7 @@ SITE_DOMAIN = "localhost"
 SITE_NAME = "Simple Satchmo"
 
 # not suitable for deployment, for testing only, for deployment strongly consider memcached.
-CACHE_BACKEND = "memcached://127.0.0.1:11211/"
+CACHE_BACKEND = "locmem:///"
 CACHE_TIMEOUT = 60*5
 CACHE_PREFIX = "Z"
 
