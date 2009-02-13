@@ -101,11 +101,11 @@ class Carrier(models.Model):
             pos = language_code.find('-')
             if pos>-1:
                 short_code = language_code[:pos]
-                log.debug("%s: Trying to find root language content for: [%s]", self, short_code)
+                log.debug("%s: Trying to find root language content for: [%s]", self.id, short_code)
                 c = self.translations.filter(languagecode__exact = short_code)
                 ct = c.count()
                 if ct>0:
-                    log.debug("%s: Found root language content for: [%s]", self, short_code)
+                    log.debug("%s: Found root language content for: [%s]", self.id, short_code)
 
         if not c or ct == 0:
             #log.debug("Trying to find default language content for: %s", self)
@@ -185,7 +185,7 @@ class Carrier(models.Model):
             return Decimal(prices.order_by('-quantity')[0].calculate_price(qty))
 
         else:
-            log.debug("No quantity tier found for %s: qty=%d", self, qty)
+            log.debug("No quantity tier found for %s: qty=%d", self.id, qty)
             raise TieredPriceException('No price available')
             
             
