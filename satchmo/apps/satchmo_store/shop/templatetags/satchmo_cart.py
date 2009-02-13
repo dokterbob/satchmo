@@ -99,13 +99,15 @@ cartitem_total = register.tag(cartitem_total)
 class CartTotalNode(template.Node):
     """Show the total for the cart"""
     
-    def __init__(self, cart, show_currency, show_tax):
+    def __init__(self, cart, show_currency, show_tax, show_discount):
         self.cart = template.Variable(cart)
         self.raw_cart = cart
         self.show_currency = template.Variable(show_currency)
         self.raw_currency = show_currency
         self.show_tax = template.Variable(show_tax)
         self.raw_tax = show_tax
+        self.show_discount = template.Variable(show_discount)
+        self.raw_show_discount = show_discount
     
     def render(self, context):
         
@@ -129,6 +131,16 @@ class CartTotalNode(template.Node):
         except template.VariableDoesNotExist:
             show_currency = self.raw_currency
             
+        try:
+            show_discount = self.show_discount.resolve(context)
+        except template.VariableDoesNotExist:
+            show_discount = self.raw_show_discount
+            
+        if show_discount:
+            total = cart.total_undiscounted
+        else:
+            total = cart.total
+            
         if show_currency:
             return moneyfmt(cart.total)
         else:
@@ -140,7 +152,7 @@ def cart_total(parser, token):
 
     Example::
 
-        {% cart_total cart [show_tax] [currency] %}
+        {% cart_total cart [show_tax] [currency] [discounted] %}
     """
 
     tokens = token.contents.split()
@@ -154,12 +166,16 @@ def cart_total(parser, token):
     else:
         show_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
         
-    if len(tokens) >3:
+    if len(tokens) > 3:
         show_currency = tokens[3]
     else:
-        show_currency = 'True'
+        show_currency = True
+        
+    if len(tokens) > 4:
+        show_discount = tokens[4]
+    else:
+        show_discount = False
         
     return CartTotalNode(cart, show_currency, show_tax)
 
 cart_total = register.tag(cart_total)
-

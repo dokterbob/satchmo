@@ -864,7 +864,7 @@ class Product(models.Model):
 
     unit_price = property(_get_fullPrice)
 
-    def get_qty_price(self, qty):
+    def get_qty_price(self, qty, include_discount=True):
         """
         If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
         the specified qty.  Otherwise, return the unit_price
@@ -872,10 +872,17 @@ class Product(models.Model):
         """
         subtype = self.get_subtype_with_attr('get_qty_price')
         if subtype:
-            price = subtype.get_qty_price(qty)
+            price = subtype.get_qty_price(qty, include_discount=include_discount)
 
         else:
-            price = get_product_quantity_price(self, qty)
+            if include_discount:
+                price = get_product_quantity_price(self, qty)
+            else:
+                adjustment = get_product_quantity_adjustments(self, qty)
+                if adjustment.price is not None:
+                    price = adjustment.price.price
+                else:
+                    price = None
             if not price:
                 price = self._get_fullPrice()
 
@@ -1169,13 +1176,21 @@ class CustomProduct(models.Model):
 
         return context
 
-    def get_qty_price(self, qty):
+    def get_qty_price(self, qty, include_discount=True):
         """
         If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
         the specified qty.  Otherwise, return the unit_price
         returns price as a Decimal
         """
-        price = get_product_quantity_price(self.product, qty)
+        if include_discount:
+            price = get_product_quantity_price(self.product, qty)
+        else:
+            adjustment = get_product_quantity_adjustments(self, qty)
+            if adjustment.price is not None:
+                price = adjustment.price.price
+            else:
+                price = None
+
         if not price and qty == Decimal('1'): # Prevent a recursive loop.
             price = Decimal("0.00")
         elif not price:      
@@ -1531,7 +1546,7 @@ class SubscriptionProduct(models.Model):
 
     unit_price = property(_get_fullPrice)
 
-    def get_qty_price(self, qty, show_trial=True):
+    def get_qty_price(self, qty, show_trial=True, include_discount=True):
         """
         If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
         the specified qty.  Otherwise, return the unit_price
@@ -1548,7 +1563,15 @@ class SubscriptionProduct(models.Model):
         if trial:
             price = trial.price * qty
         else:
-            price = get_product_quantity_price(self.product, qty)
+            if include_discount:
+                price = get_product_quantity_price(self.product, qty)
+            else:
+                adjustment = get_product_quantity_adjustments(self, qty)
+                if adjustment.price is not None:
+                    price = adjustment.price.price
+                else:
+                    price = None
+
             if not price and qty == Decimal('1'):      # Prevent a recursive loop.
                 price = Decimal("0.00")
             elif not price:      
@@ -1733,8 +1756,20 @@ class ProductVariation(models.Model):
                 groupList.append(option.option_group.id)
         return(False)
 
-    def get_qty_price(self, qty):
-        return get_product_quantity_price(self.product, qty, delta=self.price_delta(), parent=self.parent.product)
+    def get_qty_price(self, qty, include_discount=True):
+        if include_discount:
+            price = get_product_quantity_price(
+                self.product, qty, 
+                delta=self.price_delta(False), 
+                parent=self.parent.product)
+        else:
+            adjustment = get_product_quantity_adjustments(self, qty, parent=self.parent.product)
+            if adjustment.price is not None:
+                price = adjustment.price.price + self.price_delta(True)
+            else:
+                price = None
+
+        return price
 
     def get_qty_price_list(self):
         """Return a list of tuples (qty, price)"""
@@ -1761,7 +1796,8 @@ class ProductVariation(models.Model):
     def isValidOption(self, field_data, all_data):
         raise validators.ValidationError(_("Two options from the same option group cannot be applied to an item."))
 
-    def price_delta(self):
+    def price_delta(self, include_discount=True):
+        # TODO: deltas aren't taken into account by satchmo_price_query
         price_delta = Decimal("0.00")
         for option in self.options.all():
             if option.price_change:

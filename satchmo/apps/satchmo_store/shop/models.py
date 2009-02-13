@@ -287,14 +287,27 @@ class Cart(models.Model):
             itemCount += item.quantity
         return (itemCount)
     numItems = property(_get_count)
+    
+    def _get_discount(self):
+        return self.undiscounted_total - self.total
+        
+    discount = property(_get_discount)
 
-    def _get_total(self):
+    def _get_total(self, include_discount=True):
         total = Decimal("0")
         for item in self.cartitem_set.all():
-            total += item.line_total
+            if include_discount:
+                total += item.line_total
+            else:
+                total += item.undiscounted_line_total
         return(total)
     total = property(_get_total)
-
+    
+    def _get_undiscounted_total(self):
+        return self._get_total(False)
+        
+    undiscounted_total = property(_get_undiscounted_total)
+    
     def __iter__(self):
         return iter(self.cartitem_set.all())
 
@@ -402,13 +415,14 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, verbose_name=_('Product'))
     quantity = models.DecimalField(_("Quantity"),  max_digits=18,  decimal_places=6)
 
-    def _get_line_unitprice(self):
+    def _get_line_unitprice(self, include_discount=True):
         # Get the qty discount price as the unit price for the line.
 
-        self.qty_price = self.get_qty_price(self.quantity)
+        self.qty_price = self.get_qty_price(self.quantity, include_discount=include_discount)
         self.detail_price = self.get_detail_price()
         #send signal to possibly adjust the unitprice
-        signals.satchmo_cartitem_price_query.send(self, cartitem=self)
+        if include_discount:
+            signals.satchmo_cartitem_price_query.send(self, cartitem=self)
         price = self.qty_price + self.detail_price
 
         #clean up temp vars
@@ -418,7 +432,12 @@ class CartItem(models.Model):
         return price
 
     unit_price = property(_get_line_unitprice)
-
+    
+    def _get_undiscounted_unitprice(self):
+        return self._get_line_unitprice(include_discount=False)
+        
+    undiscounted_unit_price = property(_get_undiscounted_unitprice)
+    
     def get_detail_price(self):
         """Get the delta price based on detail modifications"""
         delta = Decimal("0")
@@ -428,13 +447,18 @@ class CartItem(models.Model):
                     delta += detail.price_change
         return delta
 
-    def get_qty_price(self, qty):
+    def get_qty_price(self, qty, include_discount=True):
         """Get the price for for each unit before any detail modifications"""
-        return self.product.get_qty_price(qty)
+        return self.product.get_qty_price(qty, include_discount=include_discount)
 
     def _get_line_total(self):
         return self.unit_price * self.quantity
     line_total = property(_get_line_total)
+    
+    def _get_undiscounted_line_total(self):
+        return self.undiscounted_unit_price * self.quantity
+        
+    undiscounted_line_total = property(_get_undiscounted_line_total)
 
     def _get_description(self):
         return self.product.translated_name()

@@ -59,7 +59,7 @@ def untaxed_discount_cart_total(cart, discount):
         total = Decimal('0.00')
     
         for item in cart:
-            total += discount_line_total(item, discount)
+            total += untaxed_discount_line_total(item, discount)
     else:
         total = cart.total
         
