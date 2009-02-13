@@ -23,6 +23,7 @@ from django.db.models.fields.files import FileField
 from django.utils.encoding import smart_str
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
+from l10n.utils import moneyfmt
 from livesettings import config_value, SettingNotSet, config_value_safe
 from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, add_month
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
@@ -1934,7 +1935,10 @@ class ProductPriceLookup(models.Model):
     
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
-        signals.satchmo_price_query.send(self, price=self, slug=self.productslug, discountable=self.discountable)
+        adjust = PriceAdjustmentCalc(self)
+        signals.satchmo_price_query.send(self, adjustment=adjust, 
+            slug=self.productslug, discountable=self.discountable)
+        self.price = adjust.final_price()
         return self.price
 
     dynamic_price = property(fget=_dynamic_price)
@@ -1973,11 +1977,21 @@ class Price(models.Model):
 
     def __unicode__(self):
         return unicode(self.price)
+        
+    def adjustments(self):
+        """Get a list of price adjustments, in the form of a PriceAdjustmentCalc object.
+        """
+        
+        adjust = PriceAdjustmentCalc(self)
+        signals.satchmo_price_query.send(self, adjustment=adjust, 
+            slug=self.product.slug, discountable=self.product.is_discountable)
+        return adjust
 
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
-        signals.satchmo_price_query.send(self, price=self)
-        return self.price
+        
+        adjustment = self.adjustments()
+        return adjustment.final_price()
 
     dynamic_price = property(fget=_dynamic_price)
 
@@ -2152,26 +2166,36 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
 
     return mark_safe(val)
 
+def get_product_quantity_adjustments(product, qty=1, parent=None):
+    """Gets a list of adjustments for the price found for a product/qty"""
+
+    qty_discounts = product.price_set.exclude(
+        expires__isnull=False,
+        expires__lt=datetime.date.today()).filter(quantity__lte=qty)
+
+    adjustments = None
+
+    if qty_discounts.count() > 0:
+        # Get the price with the quantity closest to the one specified without going over
+        adjustments = qty_discounts.order_by('-quantity')[0].adjustments()
+
+    elif parent:
+        adjustments = get_product_quantity_adjustments(parent, qty=qty)
+
+    if not adjustments:
+        adjustments = PriceAdjustmentCalc(None)
+        
+    return adjustments
+
 def get_product_quantity_price(product, qty=Decimal('1'), delta=Decimal("0.00"), parent=None):
     """
     Returns price as a Decimal else None.
     First checks the product, if none, then checks the parent.
     """
 
-    qty_discounts = product.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty)
-    if qty_discounts.count() > 0:
-        # Get the price with the quantity closest to the one specified without going over
-        val = qty_discounts.order_by('-quantity')[0].dynamic_price
-        try:
-            if not type(val) is Decimal:
-                val = Decimal(val)
-            return val+delta
-        except TypeError:
-            return val+delta
-    else:
-        if parent:
-            return get_product_quantity_price(parent, qty, delta=delta)
-        return None
+    adjustments = get_product_quantity_adjustments(product, qty=qty, parent=parent)
+    
+    return adjustments.final_price()+delta
 
 def make_option_unique_id(groupid, value):
     return '%s-%s' % (str(groupid), str(value),)
@@ -2194,3 +2218,56 @@ def split_option_unique_id(uid):
 
     parts = uid.split('-')
     return (parts[0], '-'.join(parts[1:]))
+
+# -------------------------------------------
+# helper objects - not Django model objects
+
+class PriceAdjustmentCalc(object):
+    """Helper class to handle adding up product pricing adjustments"""
+    
+    def __init__(self, price, product=None):
+        self.price = price
+        self.base_product = product
+        self.adjustments = []
+        
+    def __add__(self, adjustment):
+        self.adjustments.append(adjustment)
+        return self
+        
+    def total_adjustment(self):
+        total = Decimal(0)
+        for adj in self.adjustments:
+            total += adj.amount
+        return total
+        
+    def _product(self):
+        """Lazy product dereference"""
+        if self.base_product:
+            product = self.base_product
+        else:
+            product = self.price.product
+        return product
+        
+    product = property(fget=_product)
+    
+    def final_price(self):
+        total = Decimal(0)
+        if self.price:
+            total = self.price.price
+        return total - self.total_adjustment()
+    
+class PriceAdjustment(object):
+    """A single product pricing adjustment"""
+    
+    def __init__(self, key, label=None, amount=None):
+        if label is None:
+            label = key.capitalize()
+        if amount is None:
+            amount = Decimal(0)
+        self.key = key
+        self.label = label
+        self.amount = amount
+
+    def __unicode__(self):
+        return u"%s: %s=%s" % (_('Price Adjustment'), self.label, moneyfmt(self.amount))
+        

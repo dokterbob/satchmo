@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from product.models import Product, Price
+from product.models import Product, Price, PriceAdjustment
 from product import signals
 from threaded_multihost import threadlocals
 import datetime
@@ -80,8 +80,10 @@ class TieredPrice(models.Model):
     
     def _dynamic_price(self):
         """Get the current price as modified by all listeners."""
-        signals.satchmo_price_query.send(self, price=self)
-        return self.price
+        adjust = PriceAdjustmentCalc(self)
+        signals.satchmo_price_query.send(self, adjustment=adjust,
+            slug=self.product.slug, discountable=self.product.is_discountable)
+        return adjust.final_price()
 
     dynamic_price = property(fget=_dynamic_price)
     
@@ -104,7 +106,7 @@ class TieredPrice(models.Model):
         verbose_name_plural = _("Tiered Prices")
         unique_together = (("pricingtier", "product", "quantity", "expires"),)
         
-def tiered_price_listener(price, **kwargs):
+def tiered_price_listener(signal, adjustment=None, **kwargs):
     """Listens for satchmo_price_query signals, and returns a tiered price instead of the
     default price.  
 
@@ -114,26 +116,29 @@ def tiered_price_listener(price, **kwargs):
     if kwargs.has_key('discountable'):
         discountable = kwargs['discountable']
     else:
-        discountable = price.product.is_discountable
+        discountable = adjustment.product.is_discountable
     
     if discountable:
+        product = adjustment.product
         user = threadlocals.get_current_user()
         if user and not user.is_anonymous():
             try:
                 tiers = PricingTier.objects.by_user(user)
+                log.debug('got tiers: %s', tiers)
                 best = None
                 besttier = None
+                currentprice = adjustment.final_price()
+                qty = adjustment.price.quantity
                 for tier in tiers:
-                    product = price.product
                     candidate = None
                     try:
-                        tp = TieredPrice.objects.by_product_qty(tier, product, price.quantity)
-                        log.debug("Found a Tiered Price for %s qty %d = %s", product.slug, price.quantity, tp.price)
+                        tp = TieredPrice.objects.by_product_qty(tier, product, qty)
+                        log.debug("Found a Tiered Price for %s qty %d = %s", product.slug, qty, tp.price)
                         candidate = tp.price
                     except TieredPrice.DoesNotExist:
                         pcnt = tier.discount_percent
                         if pcnt is not None and pcnt != 0:
-                            candidate = price.price * (100-pcnt)/100
+                            candidate = currentprice * (100-pcnt)/100
                         
                     if best is None or (candidate and candidate < best):
                         best = candidate
@@ -142,11 +147,11 @@ def tiered_price_listener(price, **kwargs):
                         log.debug('best = %s', best)
                 
                 if best is not None:
-                    delta = price.price - best
-                    price.price = best
-                    if not hasattr(price, 'discounts'):
-                        price.discounts = []
-                    price.discounts.append((_('Tiered Pricing for %(tier)s' % { 'tier': besttier.group.name}), delta))
+                    delta = currentprice - best
+                    adjustment += PriceAdjustment(
+                        'tieredpricing', 
+                        _('Tiered Pricing for %(tier)s' % { 'tier': besttier.group.name}), 
+                        delta)
         
             except PricingTier.DoesNotExist:
                 pass

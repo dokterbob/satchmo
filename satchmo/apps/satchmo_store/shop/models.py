@@ -27,7 +27,7 @@ from livesettings import ConfigurationSettings, config_value, config_choice_valu
 from payment.fields import PaymentChoiceCharField
 from product import signals as product_signals
 from product.listeners import default_product_search_listener
-from product.models import Discount, Product, DownloadableProduct
+from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price
 from satchmo_store.contact.models import Contact
 from satchmo_store.contact.signals import satchmo_contact_location_changed
 from shipping.fields import ShippingChoiceCharField
@@ -723,7 +723,11 @@ class Order(models.Model):
 
     def _is_partially_paid(self):
         if self.total:
-            return float(self.balance_paid) > 0.0 and self.balance != self.balance_paid
+            return (
+                float(self.balance) > 0.0 
+                and float(self.balance_paid) > 0.0 
+                and self.balance != self.balance_paid
+                )
         else:
             return False
 
@@ -787,10 +791,14 @@ class Order(models.Model):
             itemprices.append(lineitem.sub_total)
             fullprices.append(lineitem.line_item_price)
 
+        shipprice = Price()
+        shipprice.price = self.shipping_cost
+        shipadjust = PriceAdjustmentCalc(shipprice)
         if 'Shipping' in discounts:
-            self.shipping_discount = discounts['Shipping']
-        else:
-            self.shipping_discount = zero
+            shipadjust += PriceAdjustment('discount', _('Discount'), discounts['Shipping'])
+
+        signals.satchmo_shipping_price_query.send(self, adjustment=shipadjust)    
+        self.shipping_discount = shipadjust.total_adjustment()
 
         if itemprices:
             item_sub_total = reduce(operator.add, itemprices)

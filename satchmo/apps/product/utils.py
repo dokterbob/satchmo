@@ -8,6 +8,7 @@ from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 import datetime
 import logging
 import types
+from decimal import Decimal
 
 try:
     from decimal import Decimal
@@ -17,6 +18,8 @@ except:
 log = logging.getLogger('product.utils')
 
 def calc_discounted_by_percentage(price, percentage):
+    if not percentage:
+        return price
     if percentage > 1:
         log.warn("Correcting discount percentage, should be less than 1, is %s", percentage)
         percentage = percentage/100

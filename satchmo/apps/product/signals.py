@@ -1,14 +1,14 @@
 """Satchmo product signals
 
 Signals:
- - `index_prerender`
+ - `index_prerender`: Usage::
 
-   Usage: index_prerender.send(Sender, request=request, context=ctx, object_list=somelist)
+      index_prerender.send(Sender, request=request, context=ctx, object_list=somelist)
    
  - `satchmo_price_query`: Usage::
-    
-    Usage: satchmo_price_query.send(self, price=price) 
-    
+ 
+      satchmo_price_query.send(self, adjustment=PriceAdjustmentCalc) 
+
  - `satchmo_order_success`
 """
 

@@ -10,6 +10,7 @@ from product.models import *
 from product.models import Category, ConfigurableProduct, Discount, ProductVariation, Option, OptionGroup, Product, Price
 from product.utils import serialize_options, productvariation_details
 from StringIO import StringIO
+import signals
 import zipfile
 
 import keyedcache
@@ -546,7 +547,41 @@ class OptionUtilsTest(TestCase):
         self.assertEqual(orig_key, pv2.optionkey)
         reorder_detl = productvariation_details(p, False, None)
         self.assertEqual(orig_detl, reorder_detl)
+
+class PriceAdjustmentTest(TestCase):
+    fixtures = ['products.yaml']
+    
+    def setUp(self):
+        self.product = Product.objects.get(slug="dj-rocks")
+        self.price = self.product.price_set.get(quantity=1)
         
+    def tearDown(self):
+        keyedcache.cache_delete()
+            
+    def test_basic(self):
+        pcalc = PriceAdjustmentCalc(self.price)
+        p = PriceAdjustment('test', amount=Decimal(1))
+        pcalc += p
+        pcalc += p
+        p = PriceAdjustment('test2', amount=Decimal(10))
+        pcalc += p
+        self.assertEqual(pcalc.total_adjustment(), Decimal(12))
+        
+    def test_product_adjustments(self):
+        p1 = self.product.unit_price
+        self.assertEqual(p1, Decimal('20.00'))
+        signals.satchmo_price_query.connect(five_off)
+        p2 = self.product.unit_price
+        self.assertEqual(p2, Decimal('15.00'))
+        adj = get_product_quantity_adjustments(self.product, qty=1)
+        self.assertEqual(len(adj.adjustments), 1)
+        a = adj.adjustments[0]
+        self.assertEqual(a.key, 'half')
+        self.assertEqual(a.amount, Decimal(5))
+        signals.satchmo_price_query.disconnect(five_off)
+
+def five_off(sender, adjustment=None, **kwargs):
+    adjustment += PriceAdjustment('half', 'Half', amount=Decimal(5))
 
 if __name__ == "__main__":
     import doctest
