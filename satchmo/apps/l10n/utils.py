@@ -19,7 +19,7 @@ def get_locale_conv(loc=None):
 
     try:
         #log.debug('setting locale: %s', loc.encode('utf-8'))
-        locale.setlocale(locale.LC_ALL, locale.normalize(loc))
+        locale.setlocale(locale.LC_ALL, (loc,'utf-8'))
         return locale.localeconv()
     except (locale.Error, ValueError):
         # darn, try a different path
