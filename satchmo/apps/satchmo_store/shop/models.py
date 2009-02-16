@@ -519,7 +519,9 @@ ORDER_CHOICES = (
 ORDER_STATUS = (
     ('Temp', _('Temp')),
     ('Pending', _('Pending')),
+    ('Blocked', _('Blocked')),
     ('In Process', _('In Process')),
+    ('Authorized', _('Authorized')),
     ('Billed', _('Billed')),
     ('Shipped', _('Shipped')),
 )
