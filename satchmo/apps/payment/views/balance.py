@@ -43,7 +43,7 @@ def balance_remaining(request):
 
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = PaymentMethodForm(new_data, order=order)
+        form = PaymentMethodForm(data=new_data, order=order)
         if form.is_valid():
             data = form.cleaned_data
             modulename = data['paymentmethod']

@@ -47,7 +47,7 @@ def update(request):
 
     if request.method == "POST":
         new_data = request.POST.copy()
-        form = ExtendedContactInfoForm(new_data, shop=shop, contact=contact, shippable=True,
+        form = ExtendedContactInfoForm(data=new_data, shop=shop, contact=contact, shippable=True,
             initial=init_data)
 
         if form.is_valid():

@@ -168,8 +168,8 @@ class ContactInfoForm(ProxyContactForm):
             return self.cleaned_data.get('country')
         if self._local_only:
             return self._default_country
-        if not self.shippable:
-            return self.cleaned_data.get['country']
+        if not self._shippable:
+            return self.cleaned_data.get('country')
         shipcountry = self.cleaned_data.get('ship_country')
         if not shipcountry:
             raise forms.ValidationError(_('This field is required.'))

@@ -83,7 +83,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'company' : 'Testers Anonymous',
             }
         shop = Config.objects.get_current()
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         print "ERR: %s" % form.errors
         self.assertEqual(True, form.is_valid())
         contactid = form.save(contact)
@@ -105,7 +105,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(True, form.is_valid())
         
         # bad state
@@ -115,7 +115,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "ON", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "ON", 'ship_postal_code': "12366", 'ship_country': 231
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(False, form.is_valid())
         
         # Canada
@@ -128,7 +128,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "ON", 'postal_code': "M5V 2T6", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "ON", 'ship_postal_code': "M5V 2T6", 'ship_country': 39
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(True, form.is_valid())
         
         # bad province
@@ -138,7 +138,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "NY", 'postal_code': "M5V 2T6", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "NY", 'ship_postal_code': "M5V 2T6", 'ship_country': 39
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(False, form.is_valid())
         
         # bad postal code
@@ -148,7 +148,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "ON", 'postal_code': "M5V 2TA", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "ON", 'ship_postal_code': "M5V 2TA", 'ship_country': 39
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(False, form.is_valid())
         
         # Australia
@@ -161,7 +161,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "2000", 'ship_country': 14
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(True, form.is_valid())
         
         # bad state
@@ -171,7 +171,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NY", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NY", 'ship_postal_code': "2000", 'ship_country': 14
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(False, form.is_valid())
         
         # bad postal code
@@ -181,6 +181,6 @@ class ContactInfoFormLANGUAGETest(TestCase):
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "200A", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "200A", 'ship_country': 14
             }
-        form = ContactInfoForm(data, shop=shop, contact=contact)
+        form = ContactInfoForm(data=data, shop=shop, contact=contact)
         self.assertEqual(False, form.is_valid())
 

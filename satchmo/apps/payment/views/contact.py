@@ -54,7 +54,7 @@ def contact_info(request, **kwargs):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(new_data, shop=shop, contact=contact, shippable=tempCart.is_shippable, 
+        form = PaymentContactInfoForm(data=new_data, shop=shop, contact=contact, shippable=tempCart.is_shippable, 
             initial=init_data, cart=tempCart)
 
         if form.is_valid():
