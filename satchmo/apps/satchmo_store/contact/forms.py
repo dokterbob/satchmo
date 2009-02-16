@@ -15,7 +15,12 @@ log = logging.getLogger('satchmo_store.contact.forms')
 
 selection = ''
 
-class ContactInfoForm(forms.Form):
+class ProxyContactForm(forms.Form):
+    def __init__(self, contact=None, *args, **kwargs):
+        super(ProxyContactForm, self).__init__(*args, **kwargs)
+        self._contact = contact
+
+class ContactInfoForm(ProxyContactForm):
     email = forms.EmailField(max_length=75, label=_('Email'))
     title = forms.CharField(max_length=30, label=_('Title'), required=False)
     first_name = forms.CharField(max_length=30, label=_('First Name'))
@@ -37,42 +42,32 @@ class ContactInfoForm(forms.Form):
     ship_postal_code = forms.CharField(max_length=10, required=False, label=_('ZIP code/Postcode'))
     next = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput())
 
-    def __init__(self, *args, **kwargs):
-        
-        if kwargs:
-            data = kwargs.copy()
-        else:
-            data = {}
-
-        shop = data.pop('shop', None)
-        contact = data.pop('contact', None)
-        self.shippable = data.pop('shippable', True)
-        
+    def __init__(self, shop=None, shippable=None, *args, **kwargs):
+        super(ContactInfoForm, self).__init__(*args, **kwargs)
         if not shop:
-            shop = Config.objects.get_current()            
-
-        super(ContactInfoForm, self).__init__(*args, **data)   
+            shop = Config.objects.get_current()
+        self._shop = shop
+        self._shippable = shippable
 
         self._billing_data_optional = config_value('SHOP', 'BILLING_DATA_OPTIONAL')
-        
         self._local_only = shop.in_country_only
         areas = shop.areas()
+
         if shop.in_country_only and areas and areas.count()>0:
             areas = [(area.abbrev or area.name, area.name) for area in areas]
             areas.insert(0,(_("---Please Select---"),_("---Please Select---")))
-            billing_state = (contact and getattr(contact.billing_address, 'state', None)) or selection
-            shipping_state = (contact and getattr(contact.shipping_address, 'state', None)) or selection
+            billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
+            shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
             if config_value('SHOP','ENFORCE_STATE'):
                 self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
                 self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
         
         self._default_country = shop.sales_country
-        billing_country = (contact and getattr(contact.billing_address, 'country', None)) or self._default_country
-        shipping_country = (contact and getattr(contact.shipping_address, 'country', None)) or self._default_country
+        billing_country = (self._contact and getattr(self._contact.billing_address, 'country', None)) or self._default_country
+        shipping_country = (self._contact and getattr(self._contact.shipping_address, 'country', None)) or self._default_country
         self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
         self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
         
-        self.contact = contact
         if self._billing_data_optional:
             for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code', 'title'):
                 self.fields[fname].required = False
@@ -101,13 +96,13 @@ class ContactInfoForm(forms.Form):
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
         email = self.cleaned_data.get('email', None)
-        if self.contact:
-            if self.contact.email and self.contact.email == email:
+        if self._contact:
+            if self._contact.email and self._contact.email == email:
                 return email
             users_with_email = Contact.objects.filter(email=email)
             if len(users_with_email) == 0:
                 return email
-            if len(users_with_email) > 1 or users_with_email[0].id != self.contact.id:
+            if len(users_with_email) > 1 or users_with_email[0].id != self._contact.id:
                 raise forms.ValidationError(
                     ugettext("That email address is already in use."))
         return email

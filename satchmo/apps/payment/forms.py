@@ -4,7 +4,7 @@ from django.template import loader
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from livesettings import config_value, config_choice_values
-from satchmo_store.contact.forms import ContactInfoForm
+from satchmo_store.contact.forms import ProxyContactForm, ContactInfoForm
 from satchmo_store.contact.models import Contact
 from l10n.utils import moneyfmt
 from payment import signals
@@ -73,7 +73,7 @@ class CustomChargeForm(forms.Form):
     notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
     
      
-class PaymentMethodForm(forms.Form):
+class PaymentMethodForm(ProxyContactForm):
     paymentmethod = forms.ChoiceField(
             label=_('Payment method'),
             choices=labelled_payment_choices(),
@@ -81,22 +81,7 @@ class PaymentMethodForm(forms.Form):
             required=True
             )
 
-    def __init__(self, *args, **kwargs):
-        try:
-            cart = kwargs['cart']
-            del kwargs['cart']
-        except KeyError:
-            cart = None
-        try:
-            order = kwargs['order']
-            del kwargs['order']
-        except KeyError:
-            order = None
-        try:
-            contact = kwargs['contact']
-            del kwargs['contact']
-        except KeyError:
-            contact = None
+    def __init__(self, cart=None, order=None, *args, **kwargs):
         super(PaymentMethodForm, self).__init__(*args, **kwargs)
         # Send a signal to perform additional filtering of available payment methods.
         # Receivers have cart/order passed in variables to check the contents and modify methods
@@ -107,7 +92,7 @@ class PaymentMethodForm(forms.Form):
                 methods=payment_choices,
                 cart=cart,
                 order=order,
-                contact=contact
+                contact=self._contact
                 )
         if len(payment_choices) == 1:
             self.fields['paymentmethod'].widget = forms.HiddenInput(attrs={'value' : payment_choices[0][0]})
@@ -115,7 +100,7 @@ class PaymentMethodForm(forms.Form):
             self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
         self.fields['paymentmethod'].choices = payment_choices
 
-class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):                                        
+class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
         def __init__(self, *args, **kwargs):
             super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
