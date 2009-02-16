@@ -22,19 +22,22 @@ def get_locale_conv(loc=None):
         locale.setlocale(locale.LC_ALL, (loc,'utf-8'))
         return locale.localeconv()
     except (locale.Error, ValueError):
-        # darn, try a different path
-        pos = loc.find('_')
-        if pos > -1:
-            loc = loc[:pos]
-            return get_locale_conv(loc)
-        else:
-            loc = to_locale(settings.LANGUAGE_CODE)
-            if loc != startloc and loc[:loc.find('_')] != startloc:
-                log.warn(u"Cannot set locale to '%s'. Using default locale '%s'.", startloc.encode('utf-8'), loc.encode('utf-8'))
+        try:
+            locale.setlocale(locale.LC_ALL, (loc))
+        except (locale.Error, ValueError):
+            # darn, try a different path
+            pos = loc.find('_')
+            if pos > -1:
+                loc = loc[:pos]
                 return get_locale_conv(loc)
             else:
-                log.fatal(u"Cannot set locale to default locale '%s'. Something is misconfigured.", loc.encode('utf-8'))
-                raise ImproperlyConfigured("bad settings.LANGUAGE_CODE")
+                loc = to_locale(settings.LANGUAGE_CODE)
+                if loc != startloc and loc[:loc.find('_')] != startloc and loc[:loc.find('-')] != startloc:
+                    log.warn(u"Cannot set locale to '%s'. Using default locale '%s'.", startloc.encode('utf-8'), loc.encode('utf-8'))
+                    return get_locale_conv(loc)
+                else:
+                    log.fatal(u"Cannot set locale to default locale '%s'. Something is misconfigured.", loc.encode('utf-8'))
+                    raise ImproperlyConfigured("bad settings.LANGUAGE_CODE")
 
 #backport from python2.5
 ### Number formatting APIs
