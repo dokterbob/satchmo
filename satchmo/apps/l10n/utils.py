@@ -8,36 +8,44 @@ import logging
 
 log = logging.getLogger('l10n.utils')
 
-def get_locale_conv(loc=None):
+def get_locale_conv(loc=None, tried=[], possibles=[]):
     if loc is None:
         loc = to_locale(get_language())
-    startloc = loc
 
-    # '-' is a language delimiter, not a locale, but people often mess that up
-    if loc.find('-') > -1:
-        loc = to_locale(loc)
+    else:
+        if loc.find('-') > -1:
+            loc = to_locale(loc)
 
-    try:
-        #log.debug('setting locale: %s', loc.encode('utf-8'))
-        locale.setlocale(locale.LC_ALL, (loc,'utf-8'))
-        return locale.localeconv()
-    except (locale.Error, ValueError):
+    if not possibles:
+        possibles = [(loc, 'utf-8'), loc]
+        pos = loc.find('_')
+        if pos > -1:
+            possibles.append((loc[:pos], 'utf-8'))
+            possibles.append(loc[:pos])
+        loc = to_locale(settings.LANGUAGE_CODE)
+        possibles.append((loc, 'utf-8'))
+        possibles.append(loc)
+
+    loc = None
+    for possible in possibles:
+        if not possible in tried:
+            loc = possible
+            break
+
+    if loc:
         try:
-            locale.setlocale(locale.LC_ALL, (loc))
+            log.debug('setting locale: %s', str(loc).encode('utf-8'))
+            locale.setlocale(locale.LC_ALL, loc)
+            return locale.localeconv()
+
         except (locale.Error, ValueError):
-            # darn, try a different path
-            pos = loc.find('_')
-            if pos > -1:
-                loc = loc[:pos]
-                return get_locale_conv(loc)
-            else:
-                loc = to_locale(settings.LANGUAGE_CODE)
-                if loc != startloc and loc[:loc.find('_')] != startloc and loc[:loc.find('-')] != startloc:
-                    log.warn(u"Cannot set locale to '%s'. Using default locale '%s'.", startloc.encode('utf-8'), loc.encode('utf-8'))
-                    return get_locale_conv(loc)
-                else:
-                    log.fatal(u"Cannot set locale to default locale '%s'. Something is misconfigured.", loc.encode('utf-8'))
-                    raise ImproperlyConfigured("bad settings.LANGUAGE_CODE")
+            tried.append(loc)
+            return get_locale_conv(loc=loc[0], tried=tried, possibles=possibles)
+
+    locs = ", ".join([str(x).encode('utf-8') for x in tried])
+    log.fatal(u"Cannot set locale to any of these locales [%s]. Something is misconfigured.", locs)
+    raise ImproperlyConfigured("bad locale")
+
 
 #backport from python2.5
 ### Number formatting APIs
