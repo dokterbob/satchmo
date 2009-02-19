@@ -66,10 +66,19 @@ def send_file(request, download_key):
     For lighttpd, allow-x-send-file must be enabled
     
     Also, you must ensure that the directory where the file is stored is protected
-    from users.  In lighttpd.conf:
+    from users.  
+    
+    In lighttpd.conf:
     $HTTP["url"] =~ "^/static/protected/" {
     url.access-deny = ("")
     }
+    
+    In Nginx:
+    location /protected/{
+             internal;
+             root /usr/local/www/website/static;
+        }
+    
     """
     if not request.session.get('download_key', False):
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': download_key})
@@ -83,7 +92,11 @@ def send_file(request, download_key):
     dl_product.save()
     del request.session['download_key']
     response = HttpResponse()
+    # For Nginx
+    response['X-Accel-Redirect'] = dl_product.downloadable_product.file.path
+    # For Apache
     response['X-Sendfile'] = dl_product.downloadable_product.file.path
+    # For Lighttpd
     response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
     response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
