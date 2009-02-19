@@ -217,6 +217,16 @@ to add any pieces of satchmo.
         LOGDIR
         LOGFILE
         
+.. note::
+    Satchmo requires that your database be able to support utf-8 characters. This is
+    especially important for MySQL. If you are using MySQL, you may want to use the 
+    following statement in your settings file to enforce utf-8 collation::
+    
+        DATABASE_OPTIONS = {
+           'init_command' : 'SET NAMES "utf8"',
+           }    
+   
+        
 Configure the rest of the required files
 ++++++++++++++++++++++++++++++++++++++++
 
