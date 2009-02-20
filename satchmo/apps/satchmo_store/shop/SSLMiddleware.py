@@ -54,6 +54,7 @@ from django.http import HttpResponseRedirect, get_host
 from satchmo_store.shop.models import Config
 from satchmo_utils import request_is_secure
 
+SSLPORT=getattr(settings, 'SSL_PORT', None)
 SSL = 'SSL'
 
 class SSLRedirect:
@@ -74,7 +75,11 @@ class SSLRedirect:
 Please structure your views so that redirects only occur during GETs.""")
 
         protocol = secure and "https" or "http"
+        host = "%s://%s" % (protocol, get_host(request))
+
+        if secure and sslport:
+            host = "%s:%s" % (host, sslport)
             
-        newurl = "%s://%s%s" % (protocol,get_host(request),request.get_full_path())
+        newurl = "%s%s" % (host, request.get_full_path())
 
         return HttpResponseRedirect(newurl)
