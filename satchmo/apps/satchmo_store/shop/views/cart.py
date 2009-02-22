@@ -379,7 +379,7 @@ def product_from_post(productslug, formdata):
         chosenOptions = optionids_from_post(cp, formdata)
         optproduct = cp.get_product_from_options(chosenOptions)
         if not optproduct:
-            log.debug('Could not find a product for: %s [%s]', product, chosenOptions)
+            log.debug('Could not fully configure a ConfigurableProduct [%s] with [%s]', product, chosenOptions)
             raise Product.DoesNotExist()
         else:
             product = optproduct
