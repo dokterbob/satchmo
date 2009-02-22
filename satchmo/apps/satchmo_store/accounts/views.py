@@ -251,7 +251,7 @@ def login_signup(request, template_name="contact/login_signup.html", registratio
                 loginform = todo
 
         request.POST = QueryDict("")
-        request.method = ""
+        
 
     else:
         request.session.set_test_cookie()
