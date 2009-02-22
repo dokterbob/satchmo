@@ -626,7 +626,6 @@ class Order(models.Model):
 
         orderstatus.status = status
         orderstatus.notes = notes
-        orderstatus.time_stamp = datetime.datetime.now()
         orderstatus.order = self
         orderstatus.save()
 
@@ -934,6 +933,13 @@ class Order(models.Model):
 
     def sub_total_with_tax(self):
         return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
+        
+    def update_status(self, status):
+        oldstatus = self.status
+        self.status = status
+        if (oldstatus != self.status):
+            signals.satchmo_order_status_changed.send(self, oldstatus=oldstatus, newstatus=status, order=self)
+        self.save()
 
     def validate(self, request):
         """
@@ -1106,9 +1112,10 @@ class OrderStatus(models.Model):
         return self.status
 
     def save(self, force_insert=False, force_update=False):
+        if not self.pk and not self.time_stamp:
+            self.time_stamp = datetime.datetime.now()
         super(OrderStatus, self).save(force_insert=force_insert, force_update=force_update)
-        self.order.status = self.status
-        self.order.save()
+        self.order.update_status(self.status)
 
     class Meta:
         verbose_name = _("Order Status")

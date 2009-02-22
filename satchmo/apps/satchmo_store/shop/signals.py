@@ -11,6 +11,7 @@ Signals:
  
  Usage satchmo_search.send(Sender, request=request, category=category, keywords=keywords, results={})
 
+ - `satchmo_order_status_changed`: sent by the order when its status has changed
  - `satchmo_context`: sent by context_processor to optionally add more to the store context
  - `cart_add_view`: sent by 'views.smart_add` to allow listeners to optionally change the responding function
  - `satchmo_shipping_price_query`: Usage::
@@ -34,6 +35,9 @@ satchmo_cartitem_price_query=django.dispatch.Signal()
 
 #satchmo_cart_details_query.send(cart, product=product, quantity=quantity, details=details, request=request, formdata=formdata)
 satchmo_cart_details_query=django.dispatch.Signal()
+
+#satchmo_order_status_changed.send(self.order, oldstatus=oldstatus, newstatus=status, order=order)
+satchmo_order_status_changed=django.dispatch.Signal()
 
 #satchmo_post_copy_item_to_order.send(cart, cartitem=cartitem, order=order, orderitem=orderitem)
 satchmo_post_copy_item_to_order=django.dispatch.Signal()
