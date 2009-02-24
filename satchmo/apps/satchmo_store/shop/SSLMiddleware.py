@@ -77,8 +77,8 @@ Please structure your views so that redirects only occur during GETs.""")
         protocol = secure and "https" or "http"
         host = "%s://%s" % (protocol, get_host(request))
 
-        if secure and sslport:
-            host = "%s:%s" % (host, sslport)
+        if secure and SSLPORT:
+            host = "%s:%s" % (host, SSLPORT)
             
         newurl = "%s%s" % (host, request.get_full_path())
 
