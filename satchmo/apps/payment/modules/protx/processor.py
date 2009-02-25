@@ -8,10 +8,9 @@ your store.  You only need to override the specific urls that have changed, the 
 will fall back to the defaults for any not specified in your dictionary.
 """
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from livesettings import config_value
-from payment.base import BasePaymentProcessor
-from payment.utils import record_payment
+from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_utils.numbers import trunc_decimal
 from urllib import urlencode
 import forms
@@ -78,7 +77,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
     callback = property(fget=_callback)
         
-    def prepareData(self, data):
+    def prepare_post(self, data, amount):
         try:
             cc = data.credit_card
             balance = trunc_decimal(data.balance, 2)
@@ -113,10 +112,9 @@ class PaymentProcessor(BasePaymentProcessor):
         
         self.postString = urlencode(self.packet)
         self.url = self.connection
-        self.order = data
         self.valid = True
     
-    def prepareData3d(self, md, pares):
+    def prepare_data3d(self, md, pares):
         self.packet = {}
         self.packet['MD'] = md
         self.packet['PARes'] = pares
@@ -124,14 +122,24 @@ class PaymentProcessor(BasePaymentProcessor):
         self.url = self.callback
         self.valid = True
         
-    def process(self):
+    def capture_payment(self, testing=False, order=None, amount=NOTSET):
         """Execute the post to protx VSP DIRECT"""
+        if not order:
+            order = self.order
+
+        if amount == NOTSET:
+            amount = order.balance
+
+        self.prepare_post(order, amount)
+        
         if self.valid:
             if self.settings.SKIP_POST.value:
                 self.log.info("TESTING MODE - Skipping post to server.  Would have posted %s?%s", self.url, self.postString)
-                record_payment(self.order, self.settings, amount=self.order.balance, transaction_id="TESTING")
-                return (True, 'OK', "TESTING MODE")
+                payment = self.record_payment(order=order, amount=amount, 
+                    transaction_id="TESTING", reason_code='0')
 
+                return ProcessorResult(self.key, True, _('TESTING MODE'), payment=payment)
+                
             else:
                 self.log_extra("About to post to server: %s?%s", self.url, self.postString)
                 conn = urllib2.Request(self.url, data=self.postString)
@@ -139,20 +147,27 @@ class PaymentProcessor(BasePaymentProcessor):
                     f = urllib2.urlopen(conn)
                     result = f.read()
                     self.log_extra('Process: url=%s\nPacket=%s\nResult=%s', self.url, self.packet, result)
+
                 except urllib2.URLError, ue:
                     self.log.error("error opening %s\n%s", self.url, ue)
                     return (False, 'ERROR', 'Could not talk to Protx gateway')
+
                 try:
                     self.response = dict([row.split('=', 1) for row in result.splitlines()])
                     status = self.response['Status']
                     success = (status == 'OK')
                     detail = self.response['StatusDetail']
+                    
+                    payment = None
                     if success:
                         self.log.info('Success on order #%i, recording payment', self.order.id)
-                        record_payment(self.order, self.settings, amount=self.order.balance) #, transaction_id=transaction_id)
-                    return (success, status, detail)
+                        payment = self.record_payment(order=order, amount=amount, 
+                            transaction_id=transaction_id, reason_code=status)
+
+                    return ProcessorResult(self.key, success, detail, payment=payment)
+
                 except Exception, e:
                     self.log.info('Error submitting payment: %s', e)
-                    return (False, 'ERROR', 'Invalid response from payment gateway')
+                    return ProcessorResult(self.key, False, _('Invalid response from payment gateway'))
         else:
-            return (False, 'ERROR', 'Error processing payment.')
+            return ProcessorResult(self.key, False, _('Error processing payment.'))

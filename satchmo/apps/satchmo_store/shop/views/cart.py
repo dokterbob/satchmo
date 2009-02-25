@@ -19,8 +19,8 @@ from livesettings import config_value
 from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
 from product.views import find_product_template, optionids_from_post
-from satchmo_store.shop import CartAddProhibited
 from satchmo_store.shop import forms
+from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo_store.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
 from satchmo_utils.views import bad_or_missing

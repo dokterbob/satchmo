@@ -6,20 +6,27 @@ interface.
 See the authorizenet module for the reference implementation
 """
 from django.utils.translation import ugettext as _
-from payment.utils import record_payment
+from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 
-class PaymentProcessor(object):
+class PaymentProcessor(BasePaymentProcessor):
 
     def __init__(self, settings):
-        self.settings = settings
+        super(PaymentProcessor, self).__init__('dummy', settings)
 
-    def prepareData(self, order):
-        self.order = order
-
-    def process(self):
+    def authorize_payment(self, testing=False, amount=NOTSET):
         """
-        Process the transaction and return a tuple:
-            (success/failure, reason code, response text)
+        Make an authorization for an order.  This payment will then be captured when the order
+        is set marked 'shipped'.
+        """
+        orderauth = self.record_authorization(amount=amount, reason_code="0")
+        return ProcessorResult(self.key, True, _('Success'), orderauth)
+
+    def can_authorize(self):
+        return True
+
+    def capture_payment(self, testing=False, amount=NOTSET):
+        """
+        Process the transaction and return a ProcessorResult:
 
         Example:
         >>> from django.conf import settings
@@ -27,15 +34,22 @@ class PaymentProcessor(object):
         >>> processor = PaymentProcessor(settings)
         # If using a normal payment module, data should be an Order object.
         >>> data = {}
-        >>> processor.prepareData(data)
+        >>> processor.prepare_data(data)
         >>> processor.process()
-        (True, '0', u'Success')
+        ProcessorResult: DUMMY [Success] Success
         """
         
-        orderpayment = record_payment(self.order, self.settings, amount=self.order.balance)
+        orderpayment = self.record_payment(amount=amount, reason_code="0")
+        return ProcessorResult(self.key, True, _('Success'), orderpayment)
 
-        reason_code = "0"
-        response_text = _("Success")
+    def capture_authorized_payment(self, authorization, amount=NOTSET):
+        """
+        Given a prior authorization, capture remaining amount not yet captured.
+        """
+        if amount == NOTSET:
+            amount = authorization.remaining()
 
-        return (True, reason_code, response_text)
-
+        orderpayment = self.record_payment(amount=amount, reason_code="0", 
+            transaction_id="dummy", authorization=authorization)
+        
+        return ProcessorResult(self.key, True, _('Success'), orderpayment)

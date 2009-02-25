@@ -47,4 +47,10 @@ config_register_list(
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
         default = '^cod/'),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
 )

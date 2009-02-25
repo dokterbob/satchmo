@@ -163,4 +163,10 @@ config_register_list(
         default=False,
         ordering=330
         ),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
     )

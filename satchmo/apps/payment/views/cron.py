@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from django.http import HttpResponse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from livesettings import config_get_group, config_value
 from satchmo_store.shop.models import Order, OrderItem, OrderPayment
 from satchmo_utils.views import bad_or_missing
@@ -59,18 +59,28 @@ def cron_rebill(request=None):
                         payment_module = config_get_group('PAYMENT_%s' % payments.payment)
                         credit_processor = payment_module.MODULE.load_module('processor')
                         processor = credit_processor.PaymentProcessor(payment_module)
-                        processor.prepareData(item.order)
-                        results, reason_code, msg = processor.process()
+                        processor.prepare_data(item.order)
+                        result = processor.process()
         
+                        if result.payment:
+                            reason_code = result.payment.reason_code
+                        else:
+                            reason_code = "unknown"
                         log.info("""Processing %s recurring transaction with %s
                             Order #%i
                             Results=%s
                             Response=%s
-                            Reason=%s""", payment_module.LABEL.value, payment_module.KEY.value, item.order.id, results, reason_code, msg)
+                            Reason=%s""",
+                            payment_module.LABEL.value,
+                            payment_module.KEY.value,
+                            item.order.id,
+                            result.success,
+                            reason_code,
+                            result.message)
 
-                        if results:
+                        if result.success:
                             #success handler
-                            item.order.add_status(status='Pending', notes = "Subscription Renewal Order successfully submitted")
+                            item.order.add_status(status='New', notes = ugettext("Subscription Renewal Order successfully submitted"))
                             new_order_item.completed = True
                             new_order_item.save()
                             orderpayment = OrderPayment(order=item.order, amount=item.order.balance, payment=unicode(payment_module.KEY.value))

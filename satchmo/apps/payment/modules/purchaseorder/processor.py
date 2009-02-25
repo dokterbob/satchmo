@@ -2,8 +2,7 @@
 Handle a Purchase Order payments.
 """
 from django.utils.translation import ugettext as _
-from payment.utils import record_payment
-from payment.modules.base import BasePaymentProcessor
+from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 
 class PaymentProcessor(BasePaymentProcessor):
 
@@ -13,18 +12,21 @@ class PaymentProcessor(BasePaymentProcessor):
     def can_refund(self):
         return True
 
-    def prepareData(self, order):
-        super(PaymentProcessor, self).prepareData(order)
+    def prepare_data(self, order):
+        super(PaymentProcessor, self).prepare_data(order)
 
-    def process(self):
+    def capture_payment(self, testing=False, order=None, amount=NOTSET):
         """
         Purchase Orders are always successful.
         """
+        if not order:
+            order = self.order
 
-        reason_code = "0"
-        response_text = _("Success")
-        
-        record_payment(self.order, self.settings, amount=self.order.balance)
-        
-        return (True, reason_code, response_text)
+        if amount == NOTSET:
+            amount = order.balance
+
+        payment = self.record_payment(order=order, amount=amount, 
+            transaction_id="PO", reason_code='0')
+
+        return ProcessorResult(self.key, True, _('Success'), payment)
 

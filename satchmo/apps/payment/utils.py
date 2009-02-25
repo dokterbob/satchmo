@@ -4,41 +4,23 @@ except:
     from django.utils._decimal import Decimal
 
 from datetime import datetime, timedelta
+from livesettings import config_get_group
+from payment.config import active_modules
 from shipping.utils import update_shipping
-from satchmo_store.shop.models import Order, OrderItem, OrderItemDetail, OrderPayment
+from satchmo_store.shop.models import Order, OrderAuthorization, OrderItem, OrderItemDetail, OrderPayment, OrderPendingPayment
 from satchmo_store.shop.signals import satchmo_post_copy_item_to_order
 from socket import error as SocketError
 import logging
 
 log = logging.getLogger('payment.utils')
 
-NOTSET = object()
-
-def create_pending_payment(order, config, amount=NOTSET):
-    """Create a placeholder payment entry for the order.  
-    This is done by step 2 of the payment process."""
-    key = unicode(config.KEY.value)
-    if amount == NOTSET:
-        amount = Decimal("0.00")
-
-    # kill old pending payments
-    payments = order.payments.filter(transaction_id__exact="PENDING", 
-        payment__exact=key)
-    ct = payments.count()
-    if ct > 0:
-        log.debug("Deleting %i expired pending payment entries for order #%i", ct, order.id)
-
-        for pending in payments:
-            pending.delete()
-        
-    log.debug("Creating pending %s payment for %s", key, order)
-
-    orderpayment = OrderPayment(order=order, amount=amount, payment=key, 
-        transaction_id="PENDING")
-    orderpayment.save()
-
-    return orderpayment
-
+def capture_authorizations(order):
+    """Capture all outstanding authorizations on this order"""
+    if order.authorized_remaining > Decimal('0'):
+        for key, payment_module in active_modules():
+            processor_module = payment_module.MODULE.load_module('processor')
+            processor = processor_module.PaymentProcessor(payment_module)
+            processor.capture_authorized_payments(order)
 
 def get_or_create_order(request, working_cart, contact, data):
     """Get the existing order from the session, else create using 
@@ -65,8 +47,14 @@ def get_or_create_order(request, working_cart, contact, data):
     return newOrder
 
 
+def get_processor_by_key(key):
+    payment_module = config_get_group(key)
+    processor_module = payment_module.MODULE.load_module('processor')
+    return processor_module.PaymentProcessor(payment_module)
+
 def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
-    """Save the order details, first removing all items if this is an update.
+    """
+    Save the order details, first removing all items if this is an update.
     """
     update_shipping(new_order, shipping, contact, cart)
 
@@ -83,41 +71,6 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
         new_order.discount_code = ""
 
     update_orderitems(new_order, cart, update=update)
-
-
-def record_payment(order, config, amount=NOTSET, transaction_id=""):
-    """Convert a pending payment into a real payment."""
-    key = unicode(config.KEY.value)
-    if amount == NOTSET:
-        amount = order.balance
-        
-    log.debug("Recording %s payment of %s for %s", key, amount, order)
-    payments = order.payments.filter(transaction_id__exact="PENDING", 
-        payment__exact=key)
-    ct = payments.count()
-    if ct == 0:
-        log.debug("No pending %s payments for %s", key, order)
-        orderpayment = OrderPayment(order=order, amount=amount, payment=key,
-            transaction_id=transaction_id)
-    
-    else:
-        orderpayment = payments[0]
-        orderpayment.amount = amount
-        orderpayment.transaction_id = transaction_id
-
-        if ct > 1:
-            for payment in payments[1:len(payments)]:
-                payment.transaction_id="ABORTED"
-                payment.save()
-            
-    orderpayment.time_stamp = datetime.now()
-    orderpayment.save()
-    
-    if order.paid_in_full:
-        order.order_success()
-    
-    return orderpayment
-
 
 def update_orderitem_details(new_order_item, item):
     """Update orderitem details, if any.

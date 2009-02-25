@@ -96,16 +96,15 @@ for test transactions if you do not have a cpdev or cnpdev.
         
     BooleanValue(PAYMENT_GROUP,
         'CAPTURE',
-        description=_('Capture Payment?'),
+        description=_('Capture Payment immediately?'),
         default=True,
-        help_text=_('IMPORTANT: If false, you will need to manually go to your authorize.net merchant account and capture payments.  Setting this to false means you are authorizing the card only, not capturing payment.')),
+        help_text=_('IMPORTANT: If false, a capture attempt will be made when the order is marked as shipped."')),
         
     BooleanValue(PAYMENT_GROUP,
         'EXTRA_LOGGING',
         description=_("Verbose logs"),
         help_text=_("Add extensive logs during post."),
         default=False)
-        
 )
 
 ARB_ENABLED = config_register(    

@@ -2,25 +2,26 @@
 Handle a cash-on-delivery payment.
 """
 from django.utils.translation import ugettext as _
-from payment.utils import record_payment
+from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 
-class PaymentProcessor(object):
+class PaymentProcessor(BasePaymentProcessor):
+    """COD Payment Processor"""
 
     def __init__(self, settings):
-        self.settings = settings
+        super(PaymentProcessor, self).__init__('cod', settings)
 
-    def prepareData(self, order):
-        self.order = order
-
-    def process(self):
+    def capture_payment(self, testing=False, order=None, amount=NOTSET):
         """
         COD is always successful.
         """
+        if not order:
+            order = self.order
 
-        reason_code = "0"
-        response_text = _("Success")
-        
-        record_payment(self.order, self.settings, amount=self.order.balance)
-        
-        return (True, reason_code, response_text)
+        if amount == NOTSET:
+            amount = order.balance
+
+        payment = self.record_payment(order=order, amount=amount, 
+            transaction_id="COD", reason_code='0')
+
+        return ProcessorResult(self.key, True, _('Success'), payment)
 

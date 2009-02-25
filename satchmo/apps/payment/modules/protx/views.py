@@ -49,8 +49,8 @@ def confirm_secure3d(request, secure3d_template='shop/checkout/secure3d_form.htm
             
             elif returnMD == auth3d['MD']:
                 pares = request.POST.get('PaRes', None)
-                controller.processor.prepareData(controller.order)
-                controller.processor.prepareData3d(returnMD, pares)
+                controller.processor.prepare_data(controller.order)
+                controller.processor.prepare_data3d(returnMD, pares)
                 if controller.process():
                     return controller.onSuccess(controller)
                 else:

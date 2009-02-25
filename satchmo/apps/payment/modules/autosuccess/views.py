@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 from livesettings import config_get_group
-from payment.utils import pay_ship_save, record_payment
+from payment.utils import pay_ship_save, get_processor_by_key
 from satchmo_store.shop.models import Cart
 from satchmo_store.shop.models import Order, Contact, OrderPayment
 from satchmo_utils.dynamic import lookup_url, lookup_template
@@ -33,11 +34,11 @@ def one_step(request):
         shipping="", discount="")
         
     request.session['orderID'] = newOrder.id
-        
-    newOrder.add_status(status='Pending', notes = "Order successfully submitted")
-
-    record_payment(newOrder, payment_module, amount=newOrder.balance)
     
+    processor = get_processor_by_key('PAYMENT_AUTOSUCCESS')
+    processor.prepare_data(newOrder)
+    payment = processor.process(newOrder)
+        
     tempCart.empty()
     success = lookup_url(payment_module, 'satchmo_checkout-success')
     return HttpResponseRedirect(success)

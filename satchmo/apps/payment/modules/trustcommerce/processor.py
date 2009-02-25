@@ -5,10 +5,10 @@ http://www.trustcommerce.com/tclink.html
 """
 
 from django.utils.translation import ugettext_lazy as _
-from payment.utils import record_payment
+from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 import tclink
 
-class PaymentProcessor(object):
+class PaymentProcessor(BasePaymentProcessor):
     # TrustCommerce payment processing module
     # You must have an account (or a test/trial account) in order to use this module
     # note that although this can be done using a url post like AuthorizeNet, 
@@ -17,9 +17,9 @@ class PaymentProcessor(object):
     # see TC for details.
     
     def __init__(self, settings):
+        super(PaymentProcessor, self).__init__('trustcommerce', settings)
         self.demo = 'y'
         self.AVS = 'n'
-        self.settings = settings 
         self.custid = settings.LOGIN.value
         self.password = settings.PASSWORD.value
         if settings.LIVE.value:
@@ -29,11 +29,10 @@ class PaymentProcessor(object):
         self.auth = settings.AUTH_TYPE.value
         self.tclink_version = tclink.getVersion()
 
-    def prepareData(self, data):
-        self.order = data
+    def prepare_post(self, data, amount):
         # See tclink developer's guide for additional fields and info
         # convert amount to cents, no decimal point
-        amount = unicode((data.balance * 100).to_integral()) 
+        amount = unicode((amount * 100).to_integral()) 
 
         # convert exp date to mmyy from mm/yy or mm/yyyy
         cc = data.credit_card 
@@ -70,23 +69,37 @@ class PaymentProcessor(object):
             if isinstance(value, unicode): 
                 self.transactionData[key] = value.encode('utf7',"ignore") 
         
-    def process(self):
-        # process the transaction through tclink
+    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+        """process the transaction through tclink"""
+        if not order:
+            order = self.order
+
+        if amount == NOTSET:
+            amount = order.balance
+
+        self.prepare_post(order, amount)
+
         result = tclink.send(self.transactionData)
         status = result ['status']
+        payment = None
+        success = False
+        
         if status == 'approved':
-            record_payment(self.order, self.settings, amount=self.order.balance)
-            return (True, status, result)
+            payment = self.record_payment(order=order, amount=amount, 
+                transaction_id="", reason_code=status)
+            success = True
+            msg = unicode(result)
+
         if status == 'decline':
             msg = _(u'Transaction was declined.  Reason: %s' % result['declinetype'])
-            return (False, status, msg)
+
         if status == 'baddata':
             msg = _(u'Improperly formatted data. Offending fields: %s' % result['offenders'])
-            return (False, status, msg)
+
         else:
             msg = _(u'An error occurred: %s' % result['errortype'])
-            return (False, status, msg)
-  
+
+        return ProcessorResult(self.key, success, msg, payment=payment)
         
 if __name__ == "__main__":
     #####
@@ -137,7 +150,7 @@ if __name__ == "__main__":
     trustcommerce_settings = config_get_group('PAYMENT_TRUSTCOMMERCE')
 
     processor = PaymentProcessor (trustcommerce_settings)
-    processor.prepareData(sampleOrder)
-    results, reason_code, msg = processor.process()
-    print results, "::", smart_str(msg)
+    processor.prepare_data(sampleOrder)
+    results = processor.process()
+    print results
 

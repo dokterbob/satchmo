@@ -1,4 +1,4 @@
-from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderVariable, OrderTaxDetail
+from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderAuthorization, OrderVariable, OrderTaxDetail
 from satchmo_utils.admin import AutocompleteAdmin
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -80,6 +80,11 @@ class OrderPaymentOptions(admin.ModelAdmin):
         (None, {'fields': ('order', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
     raw_id_fields = ['order']
 
+class OrderAuthorizationOptions(OrderPaymentOptions):
+    list_display = ['id', 'order', 'capture', 'payment', 'amount_total', 'time_stamp']
+    fieldsets = (
+        (None, {'fields': ('order', 'capture', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
+
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)
 admin.site.register(Config, ConfigOptions)
@@ -87,3 +92,4 @@ admin.site.register(DownloadLink)
 admin.site.register(Order, OrderOptions)
 admin.site.register(OrderItem, OrderItemOptions)
 admin.site.register(OrderPayment, OrderPaymentOptions)
+admin.site.register(OrderAuthorization, OrderAuthorizationOptions)

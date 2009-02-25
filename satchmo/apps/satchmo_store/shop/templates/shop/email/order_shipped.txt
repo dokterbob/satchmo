@@ -1,0 +1,16 @@
+{% load i18n %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}
+
+{% blocktrans %}Thank you for ordering with {{ shop_name }}.{% endblocktrans %}
+
+{% with order.id as orderid %}{% with order.shipping_method as shippingmethod %}{% blocktrans %}Your order #{{orderid}} has shipped today via {{ shippingmethod }}.{% endblocktrans %}{% endwith %}{% endwith %}
+
+{% trans "Shipping Address" %}
+----------------
+{{ order.full_ship_street }}
+{{ order.ship_city }}
+{{ order.ship_state }}
+{{ order.ship_postal_code }}
+{{ order.ship_country }}
+
+{% blocktrans %}This completes your order.{% endblocktrans %}
+

@@ -77,7 +77,7 @@ class ConfirmController(object):
         status = False
 
         if self.request.method == "POST":
-            self.processor.prepareData(self.order)
+            self.processor.prepare_data(self.order)
         
             if self.process():
                 self.response = self.onSuccess(self)
@@ -135,7 +135,7 @@ class ConfirmController(object):
                     item.completed = True
                     item.save()
             if not controller.order.status:
-                controller.order.add_status(status='Pending', notes = "Order successfully submitted")
+                controller.order.add_status(status='New', notes = "Order successfully submitted")
 
             #Redirect to the success page
             url = controller.lookup_url('satchmo_checkout-success')
@@ -148,7 +148,14 @@ class ConfirmController(object):
 
     def process(self):
         """Process a prepared payment"""
-        self.processorResults, self.processorReasonCode, self.processorMessage = self.processor.process()
+        result = self.processor.process()
+        self.processorResults = result.success
+        if result.payment:
+            reason_code = result.payment.reason_code
+        else:
+            reason_code = ""
+        self.processorReasonCode = reason_code
+        self.processorMessage = result.message
 
         log.info("""Processing %s transaction with %s
         Order %i

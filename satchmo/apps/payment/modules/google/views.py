@@ -16,6 +16,8 @@ import hmac
 import logging
 import sha
 
+# TODO: This module doesn't seem to actually record any payments.
+
 log = logging.getLogger("payment.modules.google.processor")
 
 class GoogleCart(object):

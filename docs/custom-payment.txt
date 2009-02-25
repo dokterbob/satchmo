@@ -38,8 +38,9 @@ does 4 things:
 
  - Sets up its configuration for the service (``__init__``)
  - Takes order data and formats it in the appropriate manner (``prepareData``)
- - Sends the data to the processing server/url (``process``)
- - Returns the results (``process``)
+ - Sends the data to the processing server/url (``authorize_payment``, ``capture_payment``, ``capture_authorized_payment``) and returns the results.
+
+Of them, only ``capture_payment`` is required.  If the processor can both authorize and process, then you need to add a function "can_authorize", which returns True, and implement the other two methods.  See the ``dummy`` module for an example.
 
 Optionally, the processor can include include test code so that it is easy to verify from
 the command line.
@@ -47,24 +48,22 @@ the command line.
 Here is a stub you can use to create your own processor::
 
 
-    class PaymentProcessor(object):
+	from payment.modules.base imort BasePaymentProcessor, ProcessorResult
+	
+    class PaymentProcessor(BasePaymentProcessor):
+
 
         def __init__(self, settings):
             # Set up your configuration for items like
             # Test server, url, various flags and settings
+        	super(PaymentProcessor, self).__init__('example', settings)
 
-        def prepareData(self, data):
-            # data will contain an order object
-            # use this data to create the unique string that will
-            # be sent to the payment processor
-
-        def process(self):
-            # Send the data via the appropriate manner
-            # and False if not.  Include an error message to display if it fails
-            # Be sure to return True if successful
+        def capture_payment(self):
+            # Send the data via the appropriate manner and return a ProcessorResult
+            # object.
 
 
-Refer to the authorize.net, cybersource or trustcommerce modules for various examples to
+Refer to the dummy, authorize.net, cybersource or trustcommerce modules for various examples to
 help you through the process.
 
 Configuration
@@ -137,24 +136,26 @@ Now register the settings you need::
                 (('Discover','Discover'))),
             default = ('Visa', 'Mastercard', 'Discover')),
 
-
         StringValue(PAYMENT_GROUP,
             'PASSWORD',
             description=_('Your Processor password'),
-            default="")
+            default=""),
+
+
+        BooleanValue(PAYMENT_GROUP,
+            'EXTRA_LOGGING',
+            description=_("Verbose logs"),
+            help_text=_("Add extensive logs during post."),
+            default=False)
 
     ])
 
 All of these settings can be accessed in your ``__init__`` method (shown above).
 For example, the LIVE value above can be accessed by using ``settings.LIVE.value``
 
-In order to enable your new payment processor, you must add it to the CUSTOM_PAYMENT_MODULES variable
-in your local_settings.py::
-
-    # register custom external payment modules by listing their modules here
-    # ex: CUSTOM_NEWSLETTER_MODULES = ['client.payment.wondercharge',]
-    CUSTOM_PAYMENT_MODULES = ['custom.payment.mynewprocessor']
-
+In order to enable your new payment processor, you must add it to your INSTALLED_APPS setting in your settings.py, 
+and ensure that the module adds itself to the PAYMENT_MODULES in the module's config.py file.  See the first part 
+of this section for an example.
 
 Views
 -----

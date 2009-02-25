@@ -5,7 +5,6 @@ Also contains shopping cart and related classes.
 import datetime
 import logging
 import operator
-import notification
 import signals
 
 try:
@@ -25,11 +24,9 @@ from l10n.models import Country
 from l10n.utils import moneyfmt
 from livesettings import ConfigurationSettings, config_value, config_choice_values
 from payment.fields import PaymentChoiceCharField
-from product import signals as product_signals
-from product.listeners import default_product_search_listener
 from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price
 from satchmo_store.contact.models import Contact
-from satchmo_store.contact.signals import satchmo_contact_location_changed
+from satchmo_utils.numbers import trunc_decimal
 from shipping.fields import ShippingChoiceCharField
 from tax.utils import get_tax_processor
 import keyedcache
@@ -518,12 +515,12 @@ ORDER_CHOICES = (
 
 ORDER_STATUS = (
     ('Temp', _('Temp')),
-    ('Pending', _('Pending')),
+    ('New', _('New')),
     ('Blocked', _('Blocked')),
     ('In Process', _('In Process')),
-    ('Authorized', _('Authorized')),
     ('Billed', _('Billed')),
     ('Shipped', _('Shipped')),
+    ('Complete', _('Complete')),
 )
 
 class OrderManager(models.Manager):
@@ -615,14 +612,14 @@ class Order(models.Model):
     def __unicode__(self):
         return "Order #%s: %s" % (self.id, self.contact.full_name)
 
-    def add_status(self, status=None, notes=None):
+    def add_status(self, status=None, notes=""):
         orderstatus = OrderStatus()
         if not status:
             if self.orderstatus_set.count() > 0:
                 curr_status = self.orderstatus_set.all().order_by('-time_stamp')[0]
                 status = curr_status.status
             else:
-                status = 'Pending'
+                status = 'New'
 
         orderstatus.status = status
         orderstatus.notes = notes
@@ -637,6 +634,17 @@ class Order(models.Model):
         except OrderVariable.DoesNotExist:
             v = OrderVariable(order=self, key=key, value=value)
         v.save()
+        
+    def _authorized_remaining(self):
+        auths = [p.amount for p in self.authorizations.filter(complete=False)]
+        if auths:
+            amount = reduce(operator.add, auths)
+        else:
+            amount = Decimal('0.00')
+            
+        return amount
+
+    authorized_remaining = property(fget=_authorized_remaining)
 
     def get_variable(self, key, default=None):
         qry = self.variables.filter(key__exact=key)
@@ -688,9 +696,11 @@ class Order(models.Model):
     def _balance_paid(self):
         payments = [p.amount for p in self.payments.all()]
         if payments:
-            return reduce(operator.add, payments)
+            paid = reduce(operator.add, payments)
         else:
-            return Decimal("0.0000000000")
+            paid = Decimal("0.0000000000")
+            
+        return paid + self.authorized_remaining
 
     balance_paid = property(_balance_paid)
 
@@ -878,8 +888,7 @@ class Order(models.Model):
             subtype = orderitem.product.get_subtype_with_attr('order_success')
             if subtype:
                 subtype.order_success(self, orderitem)
-        if self.is_downloadable:
-            self.add_status('Shipped', ugettext("Order immediately available for download"))
+
         signals.order_success.send(self, order=self)
 
     def _paid_in_full(self):
@@ -1122,14 +1131,15 @@ class OrderStatus(models.Model):
         verbose_name_plural = _("Order Statuses")
         ordering = ('time_stamp',)
 
-class OrderPayment(models.Model):
-    order = models.ForeignKey(Order, related_name="payments")
+class OrderPaymentBase(models.Model):
     payment = PaymentChoiceCharField(_("Payment Method"),
         max_length=25, blank=True)
     amount = models.DecimalField(_("amount"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
     time_stamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
+    details = models.CharField(_("Details"), max_length=255, blank=True, null=True)
+    reason_code = models.CharField(_('Reason Code'),  max_length=255, blank=True, null=True)
 
     def _credit_card(self):
         """Return the credit card associated with this payment."""
@@ -1144,21 +1154,102 @@ class OrderPayment(models.Model):
 
     amount_total = property(fget=_amount_total)
 
-    def __unicode__(self):
-        if self.id is not None:
-            return u"Order payment #%i" % self.id
-        else:
-            return u"Order payment (unsaved)"
-
     def save(self, force_insert=False, force_update=False):
         if not self.pk:
             self.time_stamp = datetime.datetime.now()
 
-        super(OrderPayment, self).save(force_insert=force_insert, force_update=force_update)
+        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+
+    class Meta:
+        abstract = True
+
+class OrderAuthorization(OrderPaymentBase):
+    order = models.ForeignKey(Order, related_name="authorizations")
+    capture = models.ForeignKey('OrderPayment', related_name="authorizations")
+    complete = models.BooleanField(_('Complete'), default=False)
+
+    def __unicode__(self):
+        if self.id is not None:
+            return u"Order Authorization #%i" % self.id
+        else:
+            return u"Order Authorization (unsaved)"
+
+    def remaining(self):
+        payments = [p.amount for p in self.order.payments.all()]
+        if payments:
+            amount = reduce(operator.add, payments)
+        else:
+            amount = Decimal('0.00')
+        
+        remaining = self.order.total - amount
+        if remaining > self.amount:
+            remaining = self.amount
+            
+        return trunc_decimal(remaining, 2)
+
+    def save(self, force_insert=False, force_update=False):
+        # create linked payment
+        try:
+            capture = self.capture
+        except OrderPayment.DoesNotExist:
+            log.debug('Payment Authorization - creating linked payment')
+            log.debug('order is: %s', self.order)
+            self.capture = OrderPayment.objects.create_linked(self)
+        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+
+    class Meta:
+        verbose_name = _("Order Payment Authorization")
+        verbose_name_plural = _("Order Payment Authorizations")
+
+class OrderPaymentManager(models.Manager):
+    def create_linked(self, other):
+        linked = OrderPayment(
+                order = other.order,
+                payment = other.payment,
+                amount=Decimal('0.00'),
+                transaction_id="LINKED",
+                details=other.details,
+                reason_code="")
+        linked.save()
+        return linked
+
+class OrderPayment(OrderPaymentBase):
+    order = models.ForeignKey(Order, related_name="payments")
+
+    objects = OrderPaymentManager()
+
+    def __unicode__(self):
+        if self.id is not None:
+            return u"Order Payment #%i" % self.id
+        else:
+            return u"Order Payment (unsaved)"
 
     class Meta:
         verbose_name = _("Order Payment")
         verbose_name_plural = _("Order Payments")
+
+class OrderPendingPayment(OrderPaymentBase):
+    order = models.ForeignKey(Order, related_name="pendingpayments")
+    capture = models.ForeignKey('OrderPayment', related_name="pendingpayments")
+    
+    def __unicode__(self):
+        if self.id is not None:
+            return u"Order Pending Payment #%i" % self.id
+        else:
+            return u"Order Pending Payment (unsaved)"
+
+    def save(self, force_insert=False, force_update=False):
+        # create linked payment
+        try:
+            capture = self.capture
+        except OrderPayment.DoesNotExist:
+            log.debug('Pending Payment - creating linked payment')
+            self.capture = OrderPayment.objects.create_linked(self)
+        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+
+    class Meta:
+        verbose_name = _("Order Pending Payment")
+        verbose_name_plural = _("Order Pending Payments")
 
 class OrderVariable(models.Model):
     order = models.ForeignKey(Order, related_name="variables")
@@ -1196,31 +1287,7 @@ class OrderTaxDetail(models.Model):
         verbose_name_plural = _('Order tax details')
         ordering = ('id',)
 
-def _remove_order_on_cart_update(request=None, cart=None, **kwargs):
-    if request:
-        log.debug("caught cart changed signal - remove_order_on_cart_update")
-        Order.objects.remove_partial_order(request)
-
-def _recalc_total_on_contact_change(contact=None, **kwargs):
-    #TODO: pull just the current order once we start using threadlocal middleware
-    log.debug("Recalculating all contact orders not in process")
-    orders = Order.objects.filter(contact=contact, status="")
-    log.debug("Found %i orders to recalc", orders.count())
-    for order in orders:
-        order.copy_addresses()
-        order.recalculate_total()
-        
-def _create_download_link(product=None, order=None, subtype=None, **kwargs):
-    if product and order and subtype == "download":        
-        new_link = DownloadLink(downloadable_product=product, order=order, key=product.create_key(), num_attempts=0)
-        new_link.save()
-    else:
-        log.debug("ignoring subtype_order_success signal, looking for download product, got %s", subtype)
-
-product_signals.subtype_order_success.connect(_create_download_link, sender=None)
-satchmo_contact_location_changed.connect(_recalc_total_on_contact_change, sender=None)
-signals.order_success.connect(notification.order_success_listener, sender=None)
-signals.satchmo_cart_changed.connect(_remove_order_on_cart_update, sender=None)
-signals.satchmo_search.connect(default_product_search_listener, sender=Product)
-
 import config
+
+import listeners
+listeners.start_default_listening()

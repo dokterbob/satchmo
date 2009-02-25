@@ -11,7 +11,7 @@ from satchmo_store.contact.models import Contact
 from satchmo_store.shop.signals import order_success
 from product.models import Product
 from product.views import find_product_template
-from satchmo_store.shop import CartAddProhibited
+from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, Order
 from satchmo_store.shop.signals import satchmo_cart_changed
 from satchmo_store.shop.views.cart import product_from_post

@@ -73,4 +73,5 @@ logging.basicConfig(level=logging.DEBUG,
 # add the handler to the root logger
 #logging.getLogger('').addHandler(fileLog)
 logging.getLogger('keyedcache').setLevel(logging.INFO)
+logging.getLogger('l10n').setLevel(logging.INFO)
 logging.info("Satchmo Started")

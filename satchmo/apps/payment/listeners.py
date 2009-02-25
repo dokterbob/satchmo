@@ -1,7 +1,8 @@
-from django.core import urlresolvers
 from django import forms
-import logging
+from django.core import urlresolvers
 from django.utils.translation import ugettext, ugettext_lazy as _
+from payment.utils import capture_authorizations
+import logging
 
 log = logging.getLogger('payment.listeners')
 
@@ -30,4 +31,10 @@ def shipping_hide_if_one(sender, form=None, **kwargs):
         form.shipping_description = choices[0][1]
     else:
         form.shipping_hidden = False
-        
+
+def capture_on_ship_listener(sender, oldstatus="", newstatus="", order=None, **kwargs):
+    """Listen for a transition to 'shipped', and capture authorizations."""
+
+    log.debug('heard satchmo_order_status_changed, %s=%s', oldstatus, newstatus)
+    if oldstatus != 'Shipped' and newstatus == 'Shipped':
+        capture_authorizations(order)

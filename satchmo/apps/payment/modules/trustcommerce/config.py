@@ -80,5 +80,11 @@ config_register_list(
     StringValue(PAYMENT_GROUP, 
         'PASSWORD', 
         description=_('Your TrustCommerce password'),
-        default="")  
+        default=""),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
 )

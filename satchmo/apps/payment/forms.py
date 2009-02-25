@@ -10,7 +10,7 @@ from l10n.utils import moneyfmt
 from payment import signals
 from payment.config import labelled_payment_choices
 from payment.models import CreditCardDetail
-from payment.utils import create_pending_payment, get_or_create_order, pay_ship_save
+from payment.utils import get_or_create_order, pay_ship_save
 from product.models import Discount
 from product.utils import find_best_auto_discount
 from shipping.config import shipping_methods, shipping_method_by_key
@@ -169,7 +169,9 @@ class SimplePayShipForm(forms.Form):
 
     def save(self, request, cart, contact, payment_module):
         self.order = get_or_create_order(request, cart, contact, self.cleaned_data)
-        self.orderpayment = create_pending_payment(self.order, payment_module)
+        processor_module = payment_module.MODULE.load_module('processor')
+        processor = processor_module.PaymentProcessor(payment_module)
+        self.orderpayment = processor.create_pending_payment(order=self.order)
         signals.form_save.send(SimplePayShipForm, form=self)
 
 
@@ -222,7 +224,7 @@ class CreditPayShipForm(SimplePayShipForm):
         if datetime.date.today() > datetime.date(year=year, month=month, day=max_day):
             raise forms.ValidationError(_('Your card has expired.'))
         return year
-    
+
     def clean_ccv(self):
         """ Validate a proper CCV is entered. Remember it can have a leading 0 so don't convert to int and return it"""
         try:
@@ -235,14 +237,16 @@ class CreditPayShipForm(SimplePayShipForm):
         """Save the order and the credit card information for this orderpayment"""
         super(CreditPayShipForm, self).save(request, cart, contact, payment_module)
         data = self.cleaned_data
-        cc = CreditCardDetail(orderpayment=self.orderpayment,
+        op = self.orderpayment.capture
+
+        cc = CreditCardDetail(orderpayment=op,
             expire_month=data['month_expires'],
             expire_year=data['year_expires'],
             credit_type=data['credit_type'])
-            
+
         cc.storeCC(data['credit_number'])
         cc.save()
-        
+
         # set ccv into cache
         cc.ccv = data['ccv']
         self.cc = cc

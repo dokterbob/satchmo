@@ -104,6 +104,12 @@ for extra in extra_payment:
 
 # --- helper functions ---
 
+def active_modules():
+    """Get a list of activated payment modules, in the form of
+    [(key), (config group),...]
+    """
+    return [(module, config_get_group(module)) for module in config_value('PAYMENT', 'MODULES')]
+
 def credit_choices(settings=None, include_module_if_no_choices=False):
     choices = []
     keys = []

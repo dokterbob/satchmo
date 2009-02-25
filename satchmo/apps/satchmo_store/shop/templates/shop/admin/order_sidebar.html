@@ -3,7 +3,7 @@
     <div class="module" id="Orders">
 		<h2 class="module-title">{% trans "Satchmo Orders" %}</h2>
 		<div class="module-content">
-        	<h2><a href="/admin/shop/order/?status__exact=Pending">{% trans "New Orders" %}</a></h2>
+        	<h2><a href="/admin/shop/order/?status__exact=New">{% trans "New Orders" %}</a></h2>
 			{% pending_order_list %}
 	        <h2><a href="/admin/shop/order/?status__exact=In%20Process">{% trans "Orders in Process" %}</a></h2>
 			{% inprocess_order_list %}

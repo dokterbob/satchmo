@@ -86,5 +86,11 @@ config_register_list(
     LongStringValue(PAYMENT_GROUP, 
         'TRANKEY', 
         description=_('Your Cybersource transaction key'),
-        default="")  
+        default=""),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
 )

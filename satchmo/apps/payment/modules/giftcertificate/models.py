@@ -5,16 +5,16 @@ except:
     from django.utils._decimal import Decimal
 
 from django.contrib.sites.models import Site
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_value, config_get_group
+from l10n.utils import moneyfmt
+from livesettings import config_value
+from payment.modules.giftcertificate.utils import generate_certificate_code
+from payment.utils import get_processor_by_key
+from product.models import Product
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import OrderPayment, Order
-from payment.modules.giftcertificate.utils import generate_certificate_code
-from l10n.utils import moneyfmt
-from payment.utils import record_payment
-from product.models import Product
-from django.contrib.sites.models import Site
 import logging
 
 GIFTCODE_KEY = 'GIFTCODE'
@@ -69,8 +69,10 @@ class GiftCertificate(models.Model):
             moneyfmt(self.balance), 
             order.id, 
             moneyfmt(order.balance))
-        config = config_get_group('PAYMENT_GIFTCERTIFICATE')
-        orderpayment = record_payment(order, config, amount)
+            
+        processor = get_processor_by_key('PAYMENT_GIFTCERTIFICATE')
+        orderpayment = processor.record_payment(order=order, amount=amount)
+        self.orderpayment = orderpayment
         return self.use(amount, orderpayment=orderpayment)
 
     def use(self, amount, notes="", orderpayment=None):

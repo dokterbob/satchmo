@@ -55,5 +55,17 @@ config_register_list(
             (('Mastercard','Mastercard')),
             (('Discover','Discover')),
             (('American Express', 'American Express'))),
-        default = ('Visa', 'Mastercard', 'Discover', 'American Express'))
+        default = ('Visa', 'Mastercard', 'Discover', 'American Express')),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'CAPTURE',
+        description=_('Capture Payment immediately?'),
+        default=True,
+        help_text=_('IMPORTANT: If false, a capture attempt will be made when the order is marked as shipped."')),
+
+    BooleanValue(PAYMENT_GROUP,
+        'EXTRA_LOGGING',
+        description=_("Verbose logs"),
+        help_text=_("Add extensive logs during post."),
+        default=False)
 )

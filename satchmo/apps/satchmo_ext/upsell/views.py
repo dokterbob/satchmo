@@ -3,7 +3,7 @@ try:
 except:
     from django.utils._decimal import Decimal
 
-from satchmo_store.shop import CartAddProhibited
+from satchmo_store.shop.exceptions import CartAddProhibited
 import logging
 
 log = logging.getLogger('upsell.views')

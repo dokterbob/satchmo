@@ -11,10 +11,9 @@ from django.views.decorators.cache import never_cache
 from sys import exc_info
 from traceback import format_exception
 
-from livesettings import config_get_group
-from livesettings import config_value 
+from livesettings import config_get_group, config_value 
 from satchmo_store.shop.models import Order, OrderPayment
-from payment.utils import record_payment, create_pending_payment
+from payment.utils import get_processor_by_key
 from payment.views import payship
 from payment.config import payment_live
 from satchmo_store.shop.models import Cart
@@ -63,8 +62,10 @@ def confirm_info(request):
             payment_module.RETURN_ADDRESS.value, include_server=True)
     except urlresolvers.NoReverseMatch:
         address = payment_module.RETURN_ADDRESS.value
-        
-    create_pending_payment(order, payment_module)
+    
+    processor_module = payment_module.MODULE.load_module('processor')
+    processor = processor_module.PaymentProcessor(payment_module)
+    processor.create_pending_payment(order=order)
     default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX') 
   
     recurring = None
@@ -138,9 +139,9 @@ def ipn(request):
             # If the payment hasn't already been processed:
             order = Order.objects.get(pk=invoice)
             
-            order.add_status(status='Pending', notes=_("Paid through PayPal."))
-            payment_module = config_get_group('PAYMENT_PAYPAL')
-            record_payment(order, payment_module, amount=gross, transaction_id=txn_id)
+            order.add_status(status='New', notes=_("Paid through PayPal."))
+            processor = get_processor_by_key('PAYMENT_PAYPAL')
+            payment = processor.record_payment(order=order, amount=gross, transaction_id=txn_id)
             
             if 'memo' in data:
                 if order.notes:

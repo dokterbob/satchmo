@@ -79,7 +79,13 @@ StringValue(PAYMENT_GROUP,
 StringValue(PAYMENT_GROUP,
     'URL_BASE',
     description=_('The url base used for constructing urlpatterns which will use this module'),
-    default = '^paypal/')
+    default = '^paypal/'),
+    
+BooleanValue(PAYMENT_GROUP,
+    'EXTRA_LOGGING',
+    description=_("Verbose logs"),
+    help_text=_("Add extensive logs during post."),
+    default=False)
 )
 
 PAYMENT_GROUP['TEMPLATE_OVERRIDES'] = {

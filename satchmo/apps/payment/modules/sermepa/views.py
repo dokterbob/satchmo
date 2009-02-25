@@ -16,7 +16,7 @@ from django.shortcuts import render_to_response
 from django.views.decorators.cache import never_cache
 from django.template import RequestContext
 from livesettings import config_get_group, config_value 
-from payment.utils import record_payment
+from payment.utils import get_processor_by_key
 from payment.views import payship
 from satchmo_store.shop.models import Order, Cart
 from satchmo_utils.dynamic import lookup_url, lookup_template
@@ -187,11 +187,12 @@ def notify_callback(request):
         log.error("Received incomplete SERMEPA transaction data")
         return HttpResponseBadRequest("Incomplete data")
     # success
-    order.add_status(status='Pending', notes=u"Paid through SERMEPA.")
-    record_payment(
-        order, payment_module, amount=amount,
-        transaction_id=data['Ds_AuthorisationCode']
-        )
+    order.add_status(status='New', notes=u"Paid through SERMEPA.")
+    processor = get_processor_by_key('PAYMENT_SERMEPA')
+    payment = processor.record_payment(
+        order=order, 
+        amount=amount, 
+        transaction_id=data['Ds_AuthorisationCode'])
     # empty customer's carts
     for cart in Cart.objects.filter(customer=order.contact):
         cart.empty()
