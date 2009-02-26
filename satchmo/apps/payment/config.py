@@ -81,7 +81,13 @@ config_register_list(
         'MINIMUM_ORDER',
         description=_("Minimum Order"),
         help_text=_("""The minimum cart total before checkout is allowed."""),
-        default="0.00")
+        default="0.00"),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'STORE_CREDIT_NUMBERS',
+        description=_("Save Credit Card Numbers"),
+        help_text=_("If False, then the credit card will never be written to disk.  For PCI compliance, this is required unless you have your database server on a separate server not connected to the internet."),
+        default=False)
 )
 
 # --- Load default payment modules.  Ignore import errors, user may have deleted them. ---

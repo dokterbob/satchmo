@@ -62,15 +62,15 @@ class CreditCardDetail(models.Model):
     
     def storeCC(self, ccnum):
         """Take as input a valid cc, encrypt it and store the last 4 digits in a visible form"""
-        # Must remember to save it after calling!
-        secret_key = settings.SECRET_KEY
-        encryption_object = Blowfish.new(secret_key)
-        # block cipher length must be a multiple of 8
-        padding = ''
-        if (len(ccnum) % 8) <> 0:
-            padding = 'X' * (8 - (len(ccnum) % 8))
-        self.encrypted_cc = base64.b64encode(encryption_object.encrypt(ccnum + padding))
         self.display_cc = ccnum[-4:]
+        encrypted_cc = _encrypt_code(ccnum)
+        if config_value('PAYMENT', 'STORE_CREDIT_NUMBERS'):
+            self.encrypted_cc = encrypted_cc
+        else:
+            standin = "%s%i%i%i" % (self.display_cc, self.expire_month, self.expire_year, self.orderpayment.id)
+            self.encrypted_cc = _encrypt_code(standin)
+            key = _encrypt_code(standin + '-card')
+            keyedcache.cache_set(key, skiplog=True, length=60*60, value=encrypted_cc)
     
     def setCCV(self, ccv):
         """Put the CCV in the cache, don't save it for security/legal reasons."""
@@ -90,11 +90,16 @@ class CreditCardDetail(models.Model):
     ccv = property(fget=getCCV, fset=setCCV)
     
     def _decryptCC(self):
-        secret_key = settings.SECRET_KEY
-        encryption_object = Blowfish.new(secret_key)
-        # strip padding from decrypted credit card number
-        ccnum = encryption_object.decrypt(base64.b64decode(self.encrypted_cc)).rstrip('X')
-        return (ccnum)
+        ccnum = _decrypt_code(self.encrypted_cc)
+        if not config_value('PAYMENT', 'STORE_CREDIT_NUMBERS'):
+            try:
+                key = _encrypt_code(ccnum + '-card')
+                encrypted_ccnum = keyedcache.cache_get(key)
+                ccnum = _decrypt_code(encrypted_ccnum)
+            except keyedcache.NotCachedError:
+                ccnum = ""
+        return ccnum
+                
     decryptedCC = property(_decryptCC) 
 
     def _expireDate(self):
@@ -104,3 +109,20 @@ class CreditCardDetail(models.Model):
     class Meta:
         verbose_name = _("Credit Card")
         verbose_name_plural = _("Credit Cards")
+
+def _decrypt_code(code):
+    """Decrypt code encrypted by _encrypt_code"""
+    secret_key = settings.SECRET_KEY
+    encryption_object = Blowfish.new(secret_key)
+    # strip padding from decrypted credit card number
+    return encryption_object.decrypt(base64.b64decode(code)).rstrip('X')
+
+def _encrypt_code(code):
+    """Quick encrypter for CC codes or code fragments"""
+    secret_key = settings.SECRET_KEY
+    encryption_object = Blowfish.new(secret_key)
+    # block cipher length must be a multiple of 8
+    padding = ''
+    if (len(code) % 8) <> 0:
+        padding = 'X' * (8 - (len(code) % 8))
+    return base64.b64encode(encryption_object.encrypt(code + padding))
