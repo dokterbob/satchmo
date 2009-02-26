@@ -944,6 +944,8 @@ class Order(models.Model):
         return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
         
     def update_status(self, status):
+        """WARNING: To just change order status, use Order.add_status().
+        This method is called back when OrderStatus is saved and does not create required object."""
         oldstatus = self.status
         self.status = status
         if (oldstatus != self.status):
