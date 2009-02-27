@@ -197,7 +197,7 @@ class PaymentRecorder(object):
             self.orderpayment.capture = self.pending.capture
             
             if amount == NOTSET:
-                self.amount = self.pending.amount
+                self.set_amount_from_pending()
             
         else:
             log.debug("No pending %s authorizations for %s", self.key, self.order)
@@ -229,7 +229,7 @@ class PaymentRecorder(object):
             log.debug("Using linked payment: %s", self.orderpayment)
 
             if amount == NOTSET:
-                self.amount = self.pending.amount
+                self.set_amount_from_pending()
 
         else:
             log.debug("No pending %s payments for %s", self.key, self.order)
@@ -289,11 +289,21 @@ class PaymentRecorder(object):
                     pending.capture.delete()
                 pending.delete()
         
-        log.debug("Creating pending %s payment for %s", self.key, self.order)
+        log.debug("Creating pending %s payment of %s for %s", self.key, amount, self.order)
 
         self.pending = OrderPendingPayment.objects.create(order=self.order, amount=amount, payment=self.key)
         return self.pending
 
+    def set_amount_from_pending(self):
+        """Try to figure out how much to charge. If it is set on the "pending" charge use that
+        otherwise use the order balance."""
+        amount = self.pending.amount
+                
+        # otherwise use the order balance.
+        if amount == Decimal('0.00'):
+            amount = self.order.balance
+                    
+        self.amount = amount
 
 class ProcessorResult(object):
     """The result from a processor.process call"""
