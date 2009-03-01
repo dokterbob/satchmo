@@ -11,6 +11,7 @@
 
 <table>
 <form method="post" action=".">
+    {{ form.next }}
 
     <tr><td>{{ form.email.label_tag }}:</td><td>{{ form.email }}</td></tr>
     <tr><td></td><td>{% if form.email.errors %}*** {{ form.email.errors|join:", " }}{% endif %}</td></tr>

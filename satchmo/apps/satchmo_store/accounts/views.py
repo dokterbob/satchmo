@@ -155,9 +155,14 @@ def register_handle_form(request, redirect=None):
         if form.is_valid():
             contact = form.save(request)
 
-            if not redirect:
-                redirect = urlresolvers.reverse('registration_complete')
-            return (True, http.HttpResponseRedirect(redirect))
+            # look for explicit "next"
+            next = request.POST.get('next', '')
+            if not next:
+                if redirect:
+                    next = redirect
+                else:
+                    next = urlresolvers.reverse('registration_complete')
+            return (True, http.HttpResponseRedirect(next))
 
     else:
         initial_data = {}
@@ -166,10 +171,13 @@ def register_handle_form(request, redirect=None):
             initial_data = {
                 'email': contact.email,
                 'first_name': contact.first_name,
-                'last_name': contact.last_name }
+                'last_name': contact.last_name,
+            }
         except Contact.DoesNotExist:
             log.debug("No contact in request")
             contact = None
+            
+        initial_data['next'] = request.GET.get('next', '') 
 
         signals.satchmo_registration_initialdata.send(contact,
             contact=contact,
