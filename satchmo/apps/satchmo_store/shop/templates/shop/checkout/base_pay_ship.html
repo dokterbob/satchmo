@@ -35,7 +35,10 @@
 	{% if sale %}{% include "product/sale_details.html" %}{% endif %}
     {% endblock %}
 
-    <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
+	{% if form.shipping_hidden %}
+	{{ form.shipping }}
+	{% else %}
+	<tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
     </table>
     {% block shipping_table %}
     <div id="shipping">
@@ -43,6 +46,7 @@
     {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
     </div>
     {% endblock %}
+	{% endif %}
     </table>
 
     <input type="submit" value="{% trans "Confirm" %}"/>
