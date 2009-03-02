@@ -30,11 +30,12 @@ def create_download_link(product=None, order=None, subtype=None, **kwargs):
         new_link = DownloadLink(downloadable_product=product, order=order, 
             key=product.create_key(), num_attempts=0)
         new_link.save()
-        #TODO: fix this so that it only sets shipped if all items were Downloads
-        # if not order.status == 'Shipped'
-        #     order.add_status('Shipped', ugettext("Order immediately available for download"))
     else:
         log.debug("ignoring subtype_order_success signal, looking for download product, got %s", subtype)
+
+def ship_downloadable_order(order=None, **kwargs):
+    if order.is_downloadable and not order.status == 'Shipped':
+        order.add_status('Shipped', ugettext("Order immediately available for download"))
 
 def recalc_total_on_contact_change(contact=None, **kwargs):
     """If the contact has changed, recalculate the order total to ensure all current triggers are hit."""
@@ -68,6 +69,7 @@ def start_default_listening():
     product_signals.subtype_order_success.connect(create_download_link, sender=None)
     contact_signals.satchmo_contact_location_changed.connect(recalc_total_on_contact_change, sender=None)
     signals.order_success.connect(notification.order_success_listener, sender=None)
+    signals.order_success.connect(ship_downloadable_order, sender=None)
     signals.satchmo_cart_changed.connect(remove_order_on_cart_update, sender=None)
     signals.satchmo_search.connect(default_product_search_listener, sender=Product)
     signals.satchmo_order_status_changed.connect(capture_on_ship_listener)
