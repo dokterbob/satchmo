@@ -21,26 +21,26 @@ class ProxyContactForm(forms.Form):
         self._contact = contact
 
 class ContactInfoForm(ProxyContactForm):
-    email = forms.EmailField(max_length=75, label=_('Email'))
+    email = forms.EmailField(max_length=75, label=_('Email'), required=False)
     title = forms.CharField(max_length=30, label=_('Title'), required=False)
-    first_name = forms.CharField(max_length=30, label=_('First Name'))
-    last_name = forms.CharField(max_length=30, label=_('Last Name'))
-    phone = forms.CharField(max_length=30, label=_('Phone'))
-    addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
-    company = forms.CharField(max_length=50, required=False, label=_('Company'))
-    street1 = forms.CharField(max_length=30, label=_('Street'))
+    first_name = forms.CharField(max_length=30, label=_('First Name'), required=False)
+    last_name = forms.CharField(max_length=30, label=_('Last Name'), required=False)
+    phone = forms.CharField(max_length=30, label=_('Phone'), required=False)
+    addressee = forms.CharField(max_length=61, label=_('Addressee'), required=False)
+    company = forms.CharField(max_length=50, label=_('Company'), required=False)
+    street1 = forms.CharField(max_length=30, label=_('Street'), required=False)
     street2 = forms.CharField(max_length=30, required=False)
-    city = forms.CharField(max_length=30, label=_('City'))
-    state = forms.CharField(max_length=30, required=False, label=_('State'))
-    postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'))
-    copy_address = forms.BooleanField(required=False, label=_('Shipping same as billing?'))
-    ship_addressee = forms.CharField(max_length=61, required=False, label=_('Addressee'))
-    ship_street1 = forms.CharField(max_length=30, required=False, label=_('Street'))
+    city = forms.CharField(max_length=30, label=_('City'), required=False)
+    state = forms.CharField(max_length=30, label=_('State'), required=False)
+    postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'), required=False)
+    copy_address = forms.BooleanField(label=_('Shipping same as billing?'), required=False)
+    ship_addressee = forms.CharField(max_length=61, label=_('Addressee'), required=False)
+    ship_street1 = forms.CharField(max_length=30, label=_('Street'), required=False)
     ship_street2 = forms.CharField(max_length=30, required=False)
-    ship_city = forms.CharField(max_length=30, required=False, label=_('City'))
-    ship_state = forms.CharField(max_length=30, required=False, label=_('State'))
-    ship_postal_code = forms.CharField(max_length=10, required=False, label=_('ZIP code/Postcode'))
-    next = forms.CharField(max_length=40, required=False, widget=forms.HiddenInput())
+    ship_city = forms.CharField(max_length=30, label=_('City'), required=False)
+    ship_state = forms.CharField(max_length=30, label=_('State'), required=False)
+    ship_postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'), required=False)
+    next = forms.CharField(max_length=40, widget=forms.HiddenInput(), required=False)
 
     def __init__(self, shop=None, shippable=None, *args, **kwargs):
         super(ContactInfoForm, self).__init__(*args, **kwargs)
@@ -49,16 +49,17 @@ class ContactInfoForm(ProxyContactForm):
         self._shop = shop
         self._shippable = shippable
 
-        self._billing_data_optional = config_value('SHOP', 'BILLING_DATA_OPTIONAL')
+        self.required_billing_data = config_value('SHOP', 'REQUIRED_BILLING_DATA')
         self._local_only = shop.in_country_only
         areas = shop.areas()
+        self.enforce_state = config_value('SHOP','ENFORCE_STATE')
 
         if shop.in_country_only and areas and areas.count()>0:
             areas = [(area.abbrev or area.name, area.name) for area in areas]
-            areas.insert(0,(_("---Please Select---"),_("---Please Select---")))
+            areas.insert(0,('',_("---Please Select---")))
             billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
             shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
-            if config_value('SHOP','ENFORCE_STATE'):
+            if self.enforce_state:
                 self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
                 self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
         
@@ -68,9 +69,8 @@ class ContactInfoForm(ProxyContactForm):
         self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
         self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
         
-        if self._billing_data_optional:
-            for fname in ('phone', 'street1', 'street2', 'city', 'state', 'country', 'postal_code', 'title'):
-                self.fields[fname].required = False
+        for fname in self.required_billing_data:
+            self.fields[fname].required = True
                 
         # slap a star on the required fields
         for f in self.fields:
@@ -79,7 +79,7 @@ class ContactInfoForm(ProxyContactForm):
                 fld.label = (fld.label or f) + '*'
 
     def _check_state(self, data, country):
-        if country and config_value('SHOP','ENFORCE_STATE') and country.adminarea_set.filter(active=True).count() > 0:
+        if country and self.enforce_state and country.adminarea_set.filter(active=True).count() > 0:
             if not data or data == selection:
                 raise forms.ValidationError(
                     self._local_only and _('This field is required.') \
@@ -109,6 +109,8 @@ class ContactInfoForm(ProxyContactForm):
     
     def clean_postal_code(self):
         postcode = self.cleaned_data.get('postal_code')
+        if not postcode and 'postal_code' not in self.required_billing_data:
+            return postcode
         country = None
         
         if self._local_only:
