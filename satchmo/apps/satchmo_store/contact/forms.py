@@ -70,6 +70,8 @@ class ContactInfoForm(ProxyContactForm):
         self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
         
         for fname in self.required_billing_data:
+            if fname == 'country' and self._local_only:
+                continue
             self.fields[fname].required = True
                 
         # slap a star on the required fields

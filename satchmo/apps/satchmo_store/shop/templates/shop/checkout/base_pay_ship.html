@@ -29,7 +29,9 @@
     {% endblock %}
     
     {% block discount_table %}
-    {% if form.discount.is_hidden %}{{form.discount}}{% else %}
+    {% if form.discount.is_hidden %}
+    {{ form.discount }}
+    {% else %}
     <tr><td><h4>{% trans "Discounts" %}</h4></td></tr>
     <tr><td><label for="id_discount">{% trans "Discount code" %}</label></td><td> {{ form.discount }}</td></tr>
     <tr><td></td><td>{% if form.discount.errors %}*** {{ form.discount.errors|join:", " }}{% endif %}</td></tr>
@@ -37,8 +39,10 @@
     {% if sale %}{% include "product/sale_details.html" %}{% endif %}
     {% endblock %}
 
-    {% if form.shipping.is_hidden %}
+    {% if form.shipping_hidden %}
     {{ form.shipping }}
+    {% else %}
+    <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
     </table>
     {% block shipping_table %}
     <div id="shipping">
@@ -46,9 +50,8 @@
     {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
     </div>
     {% endblock %}
-	{% endif %}
-    </table>
     {% endif %}
+    </table>
 
     <input type="submit" value="{% trans "Confirm" %}"/>
 </form>

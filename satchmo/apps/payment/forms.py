@@ -167,8 +167,6 @@ class SimplePayShipForm(forms.Form):
             
         shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
         if len(shipping_choices) == 1:
-            self.fields['shipping'].widget = forms.HiddenInput(attrs={'value' : shipping_choices[0][0]})
-        else:
             self.fields['shipping'].widget = forms.RadioSelect(attrs={'value' : shipping_choices[0][0]})
         self.fields['shipping'].choices = shipping_choices
         self.shipping_dict = shipping_dict

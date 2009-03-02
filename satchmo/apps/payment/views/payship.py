@@ -87,15 +87,17 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
         if form.is_valid():
             form.save(request, working_cart, contact, payment_module)
     else:
-        if working_cart.is_shippable or config_value('PAYMENT','USE_DISCOUNTS'):
-            form = SimplePayShipForm(request, payment_module)
+        form = SimplePayShipForm(request, payment_module)
+        if config_value('PAYMENT','USE_DISCOUNTS') or not form.shipping_hidden:
             return (False, form)
         else:
-            # No discounts, no shipping.
-            # We would show an empty page, so go on to the next step with defaults.
-            # TODO: Also do this if order is shippable, there are no discounts,
-            # and only one shipping method is available (put it into the dict below).
-            order = get_or_create_order(request, working_cart, contact, {'shipping': '', 'discount': ''})
+            # No discounts, no shipping choice = skip this step
+            order = get_or_create_order(
+                    request,
+                    working_cart,
+                    contact,
+                    {'shipping': form.fields['shipping'].initial, 'discount': ''}
+                    )
             processor_module = payment_module.MODULE.load_module('processor')
             processor = processor_module.PaymentProcessor(payment_module)
             orderpayment = processor.create_pending_payment(order=order)
