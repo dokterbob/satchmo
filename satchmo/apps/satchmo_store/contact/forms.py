@@ -187,7 +187,13 @@ class ContactInfoForm(ProxyContactForm):
         if self.cleaned_data.get('copy_address'):
             self.cleaned_data['ship_' + field_name] = self.fields[field_name].clean(self.data.get(field_name))
             return self.cleaned_data['ship_' + field_name]
-        return self.fields['ship_' + field_name].clean(self.data.get('ship_' + field_name))
+        else:
+            log.info('not copy address')
+            val = self.fields['ship_' + field_name].clean(self.data.get('ship_' + field_name))
+            log.info('val=====%s', val)
+            if (not val) and field_name in ('street1', 'city', 'state', 'postal_code'):
+                raise forms.ValidationError(_('This field is required.'))
+            return val
 
     def clean_ship_street1(self):
         return self.ship_charfield_clean('street1')
