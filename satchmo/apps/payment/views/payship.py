@@ -118,7 +118,6 @@ def pay_ship_render_form(request, form, template, payment_module, cart):
         'form': form,
         'sale' : sale,
         'PAYMENT_LIVE': payment_live(payment_module),
-        'USE_DISCOUNTS': config_value('PAYMENT','USE_DISCOUNTS'),
         })
     return render_to_response(template, ctx)
 
