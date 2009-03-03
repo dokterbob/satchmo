@@ -39,7 +39,7 @@
     {% if sale %}{% include "product/sale_details.html" %}{% endif %}
     {% endblock %}
 
-    {% if form.shipping_hidden %}
+    {% if form.shipping_hidden or form.shipping.field.choices|length_is:0 %}
     {{ form.shipping }}
     {% else %}
     <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
