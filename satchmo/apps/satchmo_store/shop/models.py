@@ -948,9 +948,9 @@ class Order(models.Model):
         This method is called back when OrderStatus is saved and does not create required object."""
         oldstatus = self.status
         self.status = status
+        self.save()
         if (oldstatus != self.status):
             signals.satchmo_order_status_changed.send(self, oldstatus=oldstatus, newstatus=status, order=self)
-        self.save()
 
     def validate(self, request):
         """
