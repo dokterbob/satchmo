@@ -46,7 +46,12 @@
     </table>
     {% block shipping_table %}
     <div id="shipping">
-    <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>{{ form.shipping}}
+    {% if form.shipping.field.choices|length_is:1 %}
+    <label for="id_shipping">{% trans "The following shipping method will be used" %}:</label>
+    {% else %}
+    <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>
+    {% endif %}
+    {{ form.shipping}}
     {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
     </div>
     {% endblock %}
