@@ -1,13 +1,17 @@
 """Sends mail related to accounts."""
 
 from django.conf import settings
-from django.core.mail import send_mail
 from django.template import Context
 from django.template import loader
 from django.utils.translation import ugettext
 from satchmo_store.shop.models import Config
 from socket import error as SocketError
 import logging
+
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail
+else:
+    from django.core.mail import send_mail
 
 log = logging.getLogger('satchmo_store.accounts.mail')
 

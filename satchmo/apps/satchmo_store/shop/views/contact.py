@@ -1,7 +1,7 @@
 from django import forms
 from django import http
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core import urlresolvers
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext, Context
@@ -10,7 +10,11 @@ from satchmo_store.shop import get_satchmo_setting
 from satchmo_store.shop.models import Config
 from socket import error as SocketError
 import logging
-from django.core import urlresolvers
+
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail
+else:
+    from django.core.mail import send_mail
 
 log = logging.getLogger('satchmo_store.shop.views')
 

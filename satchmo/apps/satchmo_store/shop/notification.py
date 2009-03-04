@@ -5,12 +5,16 @@ except:
 
 import logging
 from django.conf import settings
-from django.core.mail import EmailMessage
 from django.template import loader, Context
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Discount
 from socket import error as SocketError
+
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail
+else:
+    from django.core.mail import send_mail
 
 log = logging.getLogger('contact.notifications')
 
@@ -47,8 +51,7 @@ def send_order_confirmation(order, template='shop/email/order_complete.txt'):
     try:
         customer_email = order.contact.email
         body = t.render(c)
-        message = EmailMessage(subject, body, shop_email, [customer_email])
-        message.send()
+        send_mail(subject, body, shop_email, [customer_email])
 
     except SocketError, e:
         if settings.DEBUG:
@@ -92,8 +95,7 @@ def send_order_notice(order, template='shop/email/order_placed_notice.txt'):
 
         try:
             body = t.render(c)
-            message = EmailMessage(subject, body, shop_email, eddresses)
-            message.send()
+            send_mail(subject, body, shop_email, eddresses)
 
         except SocketError, e:
             if settings.DEBUG:
@@ -121,8 +123,7 @@ def send_ship_notice(order, template='shop/email/order_shipped.txt'):
     try:
         customer_email = order.contact.email
         body = t.render(c)
-        message = EmailMessage(subject, body, shop_email, [customer_email])
-        message.send()
+        send_mail(subject, body, shop_email, [customer_email])
 
     except SocketError, e:
         if settings.DEBUG:
