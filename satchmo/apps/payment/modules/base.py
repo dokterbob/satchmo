@@ -265,16 +265,17 @@ class PaymentRecorder(object):
         order = self.orderpayment.order
 
         if order.paid_in_full:
-            try:
-                curr_status = order.orderstatus_set.latest()
-                status = curr_status.status
-            except OrderStatus.DoesNotExist:
-                status = ''
+            def _latest_status(order):
+                    try:
+                        curr_status = order.orderstatus_set.latest()
+                        return curr_status.status
+                    except OrderStatus.DoesNotExist:
+                        return ''
 
-            if status in ('', 'New'):
+            if _latest_status(order) in ('', 'New'):
                 order.order_success()
-
-                if status == '':
+                # order_success listeners or product methods could have modified the status. reload it.
+                if _latest_status(order) == '':
                     order.add_status('New')
                 
     def create_pending(self, amount=NOTSET):
