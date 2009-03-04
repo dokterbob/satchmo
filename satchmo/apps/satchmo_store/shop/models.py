@@ -829,19 +829,20 @@ class Order(models.Model):
                 lineitem.discount = zero
             # now double check against other discounts, such as tiered discounts
             adjustment = get_product_quantity_adjustments(lineitem.product, qty=lineitem.quantity)
-            baseprice = adjustment.price.price
-            finalprice = adjustment.final_price()
-            if baseprice > finalprice or baseprice != lineitem.unit_price:
-                unitdiscount = (lineitem.discount/lineitem.quantity) + baseprice-finalprice
-                unitdiscount = trunc_decimal(unitdiscount, 2)
-                linediscount = unitdiscount * lineitem.quantity
-                total_discount += linediscount
-                fullydiscounted = (baseprice - unitdiscount) * lineitem.quantity
-                lineitem.unit_price = baseprice
-                lineitem.discount = linediscount
-                lineitem.line_item_price = baseprice * lineitem.quantity
-                log.debug('Adjusting lineitem unit price for %s. Full price=%s, discount=%s.  Final price for qty %d is %s', 
-                    lineitem.product.slug, baseprice, unitdiscount, lineitem.quantity, fullydiscounted)
+            if adjustment and adjustment.price:
+                baseprice = adjustment.price.price
+                finalprice = adjustment.final_price()
+                if baseprice > finalprice or baseprice != lineitem.unit_price:
+                    unitdiscount = (lineitem.discount/lineitem.quantity) + baseprice-finalprice
+                    unitdiscount = trunc_decimal(unitdiscount, 2)
+                    linediscount = unitdiscount * lineitem.quantity
+                    total_discount += linediscount
+                    fullydiscounted = (baseprice - unitdiscount) * lineitem.quantity
+                    lineitem.unit_price = baseprice
+                    lineitem.discount = linediscount
+                    lineitem.line_item_price = baseprice * lineitem.quantity
+                    log.debug('Adjusting lineitem unit price for %s. Full price=%s, discount=%s.  Final price for qty %d is %s', 
+                        lineitem.product.slug, baseprice, unitdiscount, lineitem.quantity, fullydiscounted)
             if save:
                 lineitem.save()
 
