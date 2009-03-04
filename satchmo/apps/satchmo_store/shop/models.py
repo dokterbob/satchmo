@@ -24,7 +24,7 @@ from l10n.models import Country
 from l10n.utils import moneyfmt
 from livesettings import ConfigurationSettings, config_value, config_choice_values
 from payment.fields import PaymentChoiceCharField
-from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price
+from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price, get_product_quantity_adjustments
 from satchmo_store.contact.models import Contact
 from satchmo_utils.numbers import trunc_decimal
 from shipping.fields import ShippingChoiceCharField
@@ -747,6 +747,11 @@ class Order(models.Model):
         return Country.objects.get(iso2_code=self.bill_country).name 
     bill_country_name = property(_bill_country_name) 
     
+    def _discounted_sub_total(self):
+        return self.sub_total - self.item_discount
+    
+    discounted_sub_total = property(_discounted_sub_total)
+    
     def _get_balance_remaining_url(self):
         return ('satchmo_balance_remaining_order', None, {'order_id' : self.id})
     get_balance_remaining_url = models.permalink(_get_balance_remaining_url)
@@ -808,9 +813,11 @@ class Order(models.Model):
     def force_recalculate_total(self, save=True):
         """Calculates sub_total, taxes and total."""
         zero = Decimal("0.0000000000")
+        total_discount = Decimal("0.0000000000")
+
         discount = Discount.objects.by_code(self.discount_code)
         discount.calc(self)
-        self.discount = discount.total
+
         discounts = discount.item_discounts
         itemprices = []
         fullprices = []
@@ -820,6 +827,21 @@ class Order(models.Model):
                 lineitem.discount = discounts[lid]
             else:
                 lineitem.discount = zero
+            # now double check against other discounts, such as tiered discounts
+            adjustment = get_product_quantity_adjustments(lineitem.product, qty=lineitem.quantity)
+            baseprice = adjustment.price.price
+            finalprice = adjustment.final_price()
+            if baseprice > finalprice or baseprice != lineitem.unit_price:
+                unitdiscount = (lineitem.discount/lineitem.quantity) + baseprice-finalprice
+                unitdiscount = trunc_decimal(unitdiscount, 2)
+                linediscount = unitdiscount * lineitem.quantity
+                total_discount += linediscount
+                fullydiscounted = (baseprice - unitdiscount) * lineitem.quantity
+                lineitem.unit_price = baseprice
+                lineitem.discount = linediscount
+                lineitem.line_item_price = baseprice * lineitem.quantity
+                log.debug('Adjusting lineitem unit price for %s. Full price=%s, discount=%s.  Final price for qty %d is %s', 
+                    lineitem.product.slug, baseprice, unitdiscount, lineitem.quantity, fullydiscounted)
             if save:
                 lineitem.save()
 
@@ -833,7 +855,11 @@ class Order(models.Model):
             shipadjust += PriceAdjustment('discount', _('Discount'), discounts['Shipping'])
 
         signals.satchmo_shipping_price_query.send(self, adjustment=shipadjust)    
-        self.shipping_discount = shipadjust.total_adjustment()
+        shipdiscount = shipadjust.total_adjustment()
+        self.shipping_discount = shipdiscount
+        total_discount += shipdiscount
+
+        self.discount = total_discount
 
         if itemprices:
             item_sub_total = reduce(operator.add, itemprices)
