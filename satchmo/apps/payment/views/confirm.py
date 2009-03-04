@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from livesettings import config_value
-from satchmo_store.shop.models import Order
+from satchmo_store.shop.models import Order, OrderStatus
 from payment.config import payment_live
 from satchmo_utils.dynamic import lookup_url, lookup_template
 from satchmo_store.shop.models import Cart
@@ -134,8 +134,17 @@ class ConfirmController(object):
                 if item.product.is_subscription:
                     item.completed = True
                     item.save()
-            if not controller.order.status:
+            try:
+                curr_status = controller.order.orderstatus_set.latest()  
+            except OrderStatus.DoesNotExist:
+                curr_status = None
+                
+            if (curr_status is None) or (curr_status.notes and curr_status.status == "New"):
                 controller.order.add_status(status='New', notes = "Order successfully submitted")
+            else:
+                # otherwise just update and save
+                curr_status.notes = "Order successfully submitted"
+                curr_status.save()                
 
             #Redirect to the success page
             url = controller.lookup_url('satchmo_checkout-success')

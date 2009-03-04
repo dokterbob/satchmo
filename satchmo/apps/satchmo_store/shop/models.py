@@ -615,10 +615,10 @@ class Order(models.Model):
     def add_status(self, status=None, notes=""):
         orderstatus = OrderStatus()
         if not status:
-            if self.orderstatus_set.count() > 0:
-                curr_status = self.orderstatus_set.all().order_by('-time_stamp')[0]
+            try:
+                curr_status = self.orderstatus_set.latest()
                 status = curr_status.status
-            else:
+            except OrderStatus.DoesNotExist:
                 status = 'New'
 
         orderstatus.status = status
@@ -1132,6 +1132,7 @@ class OrderStatus(models.Model):
         verbose_name = _("Order Status")
         verbose_name_plural = _("Order Statuses")
         ordering = ('time_stamp',)
+        get_latest_by = 'time_stamp'
 
 class OrderPaymentBase(models.Model):
     payment = PaymentChoiceCharField(_("Payment Method"),

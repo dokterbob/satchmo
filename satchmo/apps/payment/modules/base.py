@@ -5,7 +5,7 @@ except:
 
 from datetime import datetime
 from livesettings import config_get_group
-from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPendingPayment
+from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPendingPayment, OrderStatus
 import logging
 
 log = logging.getLogger('payment.modules.base')
@@ -265,11 +265,17 @@ class PaymentRecorder(object):
         order = self.orderpayment.order
 
         if order.paid_in_full:
-            if order.status in ('', 'New'):
+            try:
+                curr_status = order.orderstatus_set.latest()
+                status = curr_status.status
+            except OrderStatus.DoesNotExist:
+                status = ''
+
+            if status in ('', 'New'):
                 order.order_success()
 
-            if order.status == '':
-                order.add_status('New')
+                if status == '':
+                    order.add_status('New')
                 
     def create_pending(self, amount=NOTSET):
         """Create a placeholder payment entry for the order.  
