@@ -183,6 +183,7 @@ def confirm_ipn_data(data, PP_URL):
         log.info("PayPal IPN data verification was successful.")
     else:
         log.info("PayPal IPN data verification failed.")
+        log.debug("HTTP code %s, response text: '%s'" % (fo.code, ret))
         return False
 
     return True
