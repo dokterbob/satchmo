@@ -331,7 +331,7 @@ class PaymentProcessor(BasePaymentProcessor):
             if success:
                 if not testing:
                     payment = self.record_payment(order=self.order, amount=recur['charged_today'], transaction_id=subscription_id, reason_code=reason)
-                    results.append(ProcessorResult(self.key, success, response_text, payment=payment, payment=payment))
+                    results.append(ProcessorResult(self.key, success, response_text, payment=payment))
             else:
                 self.log.info("Failed to process recurring subscription, %s: %s", reason, response)
                 break
