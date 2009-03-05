@@ -100,11 +100,19 @@ class PaymentMethodForm(ProxyContactForm):
             self.fields['paymentmethod'].widget = forms.RadioSelect(attrs={'value' : payment_choices[0][0]})
         self.fields['paymentmethod'].choices = payment_choices
 
+    def clean(self):
+        # allow additional validation
+        signals.payment_form_validation.send(PaymentMethodForm, form=self)
+        return self.cleaned_data
+
 class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
+        payment_required_fields = None
+
         def __init__(self, *args, **kwargs):
             super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
+            self.payment_required_fields = {}
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
-            
+
         def save(self, *args, **kwargs):
             contactid = super(PaymentContactInfoForm, self).save(*args, **kwargs)
             signals.form_save.send(PaymentContactInfoForm, form=self)
@@ -116,12 +124,7 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
             except KeyError:
                 self._errors['paymentmethod'] = forms.util.ErrorList([_('This field is required')])
                 return self.cleaned_data
-            payment_module = config_get_group(paymentmethod)
-            try:
-                required_fields = payment_module.REQUIRED_BILLING_DATA.value
-            except AttributeError:
-                # This payment module has no requirements regarding billing data
-                return self.cleaned_data
+            required_fields = self.payment_required_fields.get(paymentmethod, [])
             msg = _('Selected payment method requires this field to be filled')
             for fld in required_fields:
                 if not (self.cleaned_data.has_key(fld) and self.cleaned_data[fld]):
@@ -132,6 +135,7 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
                         self._check_state(self.cleaned_data['state'], self.cleaned_data['country'])
                     except forms.ValidationError, e:
                         self._errors[fld] = e.messages
+            super(PaymentContactInfoForm, self).clean()
             return self.cleaned_data
 
 class SimplePayShipForm(forms.Form):
