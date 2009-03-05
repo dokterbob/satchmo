@@ -14,6 +14,7 @@ from django.template import loader, Context
 from django.core.cache import cache
 
 from shipping.modules.base import BaseShipper
+from shipping import signals
 from livesettings import config_get_group
 
 import urllib2
@@ -215,14 +216,19 @@ class Shipper(BaseShipper):
                 log.debug("Total box weight too small, defaulting to 0.1")
                 box_weight = Decimal("0.1")
                 
-            c = Context({
+            shippingdata = {
                 'config': configuration,
                 'box_price': '%.2f' % box_price,
                 'box_weight' : '%.1f' % box_weight,
                 'box_weight_units' : box_weight_units.upper(),
                 'contact': contact,
-            })
-    
+                'shipping_address' : shop_details.shop_address,
+                'shipping_phone' : shop_details.phone,
+                'shipping_country_code' : shop_details.country.iso2_code
+            }
+            signals.shipping_data_query.send(Shipper, shipper=self, cart=cart, shippingdata=shippingdata)
+
+            c = Context(shippingdata)
             t = loader.get_template('shipping/fedex/request.xml')
             request = t.render(c)
 

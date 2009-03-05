@@ -12,19 +12,21 @@ It is recommended that you refer to the UPS shipper developer documents
 unique needs.
 """
 
+from django.core.cache import cache
+from django.template import Context, loader
+from django.utils.translation import ugettext as _
+from livesettings import config_get_group, config_value
+from shipping import signals
+from shipping.modules.base import BaseShipper
+import logging
+import urllib2
+
 # Note, make sure you use decimal math everywhere!
 try:
     from decimal import Decimal
 except:
     from django.utils._decimal import Decimal
 
-from django.utils.translation import ugettext as _
-from shipping.modules.base import BaseShipper
-from django.template import Context, loader
-from livesettings import config_get_group, config_value
-import urllib2
-from django.core.cache import cache
-import logging
 try:
     from xml.etree.ElementTree import fromstring, tostring
 except ImportError:
@@ -122,11 +124,16 @@ class Shipper(BaseShipper):
             'ship_type': self.service_type_code,
             'shop_details':shop_details,
         }
-        c = Context({
+        shippingdata = {
                 'config': configuration,
                 'cart': cart,
-                'contact': contact
-            })
+                'contact': contact,
+                'shipping_address' : shop_details.shop_address,
+                'shipping_phone' : shop_details.phone,
+                'shipping_country_code' : shop_details.country.iso2_code
+        }
+        signals.shipping_data_query.send(Shipper, shipper=self, cart=cart, shippingdata=shippingdata)
+        c = Context(shippingdata)
         t = loader.get_template('shipping/ups/request.xml')
         request = t.render(c)
         self.is_valid = False

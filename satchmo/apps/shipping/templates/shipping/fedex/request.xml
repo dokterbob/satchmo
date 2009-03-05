@@ -14,9 +14,9 @@
     <Weight>{{ box_weight }}</Weight>
 
     <OriginAddress>
-      <StateOrProvinceCode>{{ config.shop_details.state }}</StateOrProvinceCode>
-      <PostalCode>{{ config.shop_details.postal_code|cut:" " }}</PostalCode>
-      <CountryCode>{{ config.shop_details.country.iso2_code }}</CountryCode>
+      <StateOrProvinceCode>{{ shipping_address.state }}</StateOrProvinceCode>
+      <PostalCode>{{ shipping_address.postal_code|cut:" " }}</PostalCode>
+      <CountryCode>{{ shipping_country_code }}</CountryCode>
     </OriginAddress>
 
     <DestinationAddress>

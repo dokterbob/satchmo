@@ -22,15 +22,15 @@
     	<Description>Rate Description</Description>
     <Shipper>
       <Name>{{config.shop_details.store_name}}</Name>
-      <PhoneNumber>{{config.shop_details.phone|cut:"-"}}</PhoneNumber>
+      <PhoneNumber>{{shipping_phone|cut:"-"}}</PhoneNumber>
       <ShipperNumber>{{config.account}}</ShipperNumber>
       <Address>
-        <AddressLine1>{{config.shop_details.street1}}</AddressLine1>
-        {% if config.shop_details.street2 %} <AddressLine2>{{config.shop_details.street2}}</AddressLine2> {% endif %}
-        <City>{{config.shop_details.city}}</City>
-        <StateProvinceCode>{{config.shop_details.state}}</StateProvinceCode>
-        <PostalCode>{{config.shop_details.postal_code}}</PostalCode>
-        <CountryCode>{{config.shop_details.country.iso2_code}}</CountryCode>
+        <AddressLine1>{{shipping_address.street1}}</AddressLine1>
+        {% if address.street2 %} <AddressLine2>{{shipping_address.street2}}</AddressLine2> {% endif %}
+        <City>{{shipping_address.city}}</City>
+        <StateProvinceCode>{{shipping_address.state}}</StateProvinceCode>
+        <PostalCode>{{shipping_address.postal_code}}</PostalCode>
+        <CountryCode>{{shipping_country_code}}</CountryCode>
       </Address>
     </Shipper>
     <ShipTo>
@@ -47,15 +47,15 @@
     </ShipTo>
     <ShipFrom>
       <CompanyName>{{config.shop_details.store_name}}</CompanyName>
-      <PhoneNumber>{{config.shop_details.phone|cut:"-"}}</PhoneNumber>
+      <PhoneNumber>{{shipping_address.phone|cut:"-"}}</PhoneNumber>
       <ShipperNumber>{{config.account}}</ShipperNumber>
       <Address>
-        <AddressLine1>{{config.shop_details.street1}}</AddressLine1>
-        {% if config.shop_details.street2 %} <AddressLine2>{{config.shop_details.street2}}</AddressLine2> {% endif %}
-        <City>{{config.shop_details.city}}</City>
-        <StateProvinceCode>{{config.shop_details.state}}</StateProvinceCode>
-        <PostalCode>{{config.shop_details.postal_code}}</PostalCode>
-        <CountryCode>{{config.shop_details.country.iso2_code}}</CountryCode>
+        <AddressLine1>{{shipping_address.street1}}</AddressLine1>
+        {% if address.street2 %} <AddressLine2>{{shipping_address.street2}}</AddressLine2> {% endif %}
+        <City>{{shipping_address.city}}</City>
+        <StateProvinceCode>{{shipping_address.state}}</StateProvinceCode>
+        <PostalCode>{{shipping_address.postal_code}}</PostalCode>
+        <CountryCode>{{shipping_country_code}}</CountryCode>
       </Address>
     </ShipFrom>
   	<PaymentInformation>
