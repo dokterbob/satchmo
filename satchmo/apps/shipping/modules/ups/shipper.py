@@ -128,7 +128,7 @@ class Shipper(BaseShipper):
                 'config': configuration,
                 'cart': cart,
                 'contact': contact,
-                'shipping_address' : shop_details.shop_address,
+                'shipping_address' : shop_details,
                 'shipping_phone' : shop_details.phone,
                 'shipping_country_code' : shop_details.country.iso2_code
         }

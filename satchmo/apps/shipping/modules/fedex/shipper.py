@@ -222,7 +222,7 @@ class Shipper(BaseShipper):
                 'box_weight' : '%.1f' % box_weight,
                 'box_weight_units' : box_weight_units.upper(),
                 'contact': contact,
-                'shipping_address' : shop_details.shop_address,
+                'shipping_address' : shop_details,
                 'shipping_phone' : shop_details.phone,
                 'shipping_country_code' : shop_details.country.iso2_code
             }
