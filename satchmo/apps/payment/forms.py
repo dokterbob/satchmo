@@ -111,6 +111,12 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
         def __init__(self, *args, **kwargs):
             super(PaymentContactInfoForm, self).__init__(*args, **kwargs)
             self.payment_required_fields = {}
+            # Listeners of the payment_form_init signal (below) may modify the dict of
+            # payment_required_fields. For example, if your CUSTOM_PAYMENT requires
+            # customer's city, put the following code in the listener:
+            #
+            #   form.payment_required_fields['CUSTOM_PAYMENT'] = ['city']
+            #
             signals.payment_form_init.send(PaymentContactInfoForm, form=self)
 
         def save(self, *args, **kwargs):

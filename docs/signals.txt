@@ -492,6 +492,22 @@ Arguments sent with this signal:
     ``contact``
         An instance of ``satchmo_store.contact.models.Contact`` representing the current customer (if authenticated, so it may be None).
 
+payment_form_validation
+***********************
+
+Sent at the end of clean() method of:
+
+    - ``payment.forms.PaymentMethodForm``
+    - ``payment.forms.PaymentContactInfoForm``
+
+Arguments sent with this signal:
+
+    ``sender``
+        - The model of the form that is finishing validation
+
+    ``form``
+        - The instance of the form whose type is that of ``sender``
+
 form_save
 *********
 
