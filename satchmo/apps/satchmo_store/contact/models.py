@@ -169,10 +169,26 @@ class Contact(models.Model):
         """Ensure we have a create_date before saving the first time."""
         if not self.pk:
             self.create_date = datetime.date.today()
-        # Validate the email is in synch between
-        if self.user and self.user.email != self.email:
-            self.user.email = self.email
-            self.user.save()
+        # Validate contact to user sync
+        if self.user:
+            dirty = False
+            user = self.user
+            if user.email != self.email:
+                user.email = self.email
+                dirty = True
+            
+            if user.first_name != self.first_name:
+                user.first_name = self.first_name
+                dirty = True
+
+            if user.last_name != self.last_name:
+                user.last_name = self.last_name
+                dirty = True
+                
+            if dirty:
+                self.user = user
+                self.user.save()
+
         super(Contact, self).save(force_insert=force_insert, force_update=force_update)
 
     class Meta:
