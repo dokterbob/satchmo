@@ -207,6 +207,8 @@ class ContactInfoForm(ProxyContactForm):
 
     def clean_ship_postal_code(self):
         code = self.ship_charfield_clean('postal_code')
+        if not self._shippable:
+            return code
 
         country = None
         
