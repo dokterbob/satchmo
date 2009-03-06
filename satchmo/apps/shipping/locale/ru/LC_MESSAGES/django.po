@@ -1,0 +1,149 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2009-03-05 03:01+0300\n"
+"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+
+#: modules/tiered/models.py:203
+msgid "Description"
+msgstr "Описание"
+
+#: modules/tiered/models.py:93
+#: modules/tiered/models.py:92
+msgid "Ordering"
+msgstr "Порядок сортировки"
+
+#: modules/tiered/models.py:201
+msgid "language"
+msgstr "язык"
+
+#: config.py:6
+msgid "Shipping Settings"
+msgstr "Настройки доставки"
+
+#: config.py:10
+msgid "Active shipping modules"
+msgstr "Активные модули доставки"
+
+#: config.py:11
+msgid "Select the active shipping modules, save and reload to set any module-specific shipping settings."
+msgstr "Выберите активные модули доставки, сохраните и перезагрузите страницу, чтобы изменить настройки доставки для выбранных модулей."
+
+#: config.py:13
+msgid "Per piece"
+msgstr "По цене"
+
+#: modules/dummy/shipper.py:28
+msgid "Dummy Flat Rate Shipping"
+msgstr "Искусственная фиксированная ставка доставки"
+
+#: modules/dummy/shipper.py:41
+msgid "US Mail"
+msgstr ""
+
+#: modules/dummy/shipper.py:47
+msgid "3 - 4 business days"
+msgstr "3-4 рабочих дня"
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "Фиксированная ставка"
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "Фиксированная стоимость доставки"
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "Сервис доставки с фиксированной стоимостью"
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr "Сервис доставки, использующий фиксированную ставку стоимости доставки"
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr "Дней на доставку по фиксированной ставке"
+
+#: modules/flat/shipper.py:23
+msgid "Flat Rate Shipping"
+msgstr "Фиксированная ставка стоимости доставки"
+
+#: modules/no/shipper.py:22
+#: modules/no/shipper.py:34
+msgid "No Shipping"
+msgstr "Доставка с фиксированной стоимостью"
+
+#: modules/no/shipper.py:40
+msgid "immediately"
+msgstr "немедленно"
+
+#: modules/per/config.py:14
+msgid "Per item price"
+msgstr "Цена за штуку"
+
+#: modules/per/config.py:21
+msgid "Per Item Shipping Service"
+msgstr "Сервис доставки со стоимостью по количеству"
+
+#: modules/per/config.py:22
+msgid "Shipping service used with per item shipping"
+msgstr "Сервис доставки со стоимостью доставки по количеству"
+
+#: modules/per/config.py:29
+msgid "Per Item Delivery Days"
+msgstr "Дней на доставку по количеству"
+
+#: modules/per/shipper.py:23
+msgid "Per Item shipping"
+msgstr "Стоимость доставки за штуку"
+
+#: modules/tiered/config.py:5
+msgid "Tiered Shipping"
+msgstr "Многоуровневая доставка"
+
+#: modules/tiered/models.py:91
+msgid "Key"
+msgstr "Ключ"
+
+#: modules/tiered/models.py:202
+msgid "Carrier"
+msgstr "Служба доставки"
+
+#: modules/tiered/models.py:204
+msgid "Method"
+msgstr "Метод"
+
+#: modules/tiered/models.py:204
+msgid "i.e. US Mail"
+msgstr "например, US Mail"
+
+#: modules/tiered/models.py:205
+msgid "Delivery Days"
+msgstr "Дней на доставку"
+
+#: modules/tiered/models.py:209
+msgid "Min Price"
+msgstr "Минимальная цена"
+
+#: modules/tiered/models.py:210
+msgid "The minumum price for this tier to apply"
+msgstr "Минимальная цена для данного уровня"
+
+#: modules/tiered/models.py:212
+#: templates/shipping/shipping_options.html:5
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr "Отправлено через %(method)s, прибудет приблизительно %(expected_delivery)s."
+

@@ -1,0 +1,868 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2009-03-06 12:21+0300\n"
+"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+
+#: models.py:48
+#: templates/product/admin/product_export_form.html:81
+msgid "Name"
+msgstr "Название"
+
+# templates/admin/charge_remaining_confirm.html:16
+#: views.py:23
+msgid "Notes"
+msgstr "Примечания"
+
+#: templates/product/category.html:13
+#: templates/product/product.html.html:23
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/detail_configurableproduct.html:60
+#: templates/product/detail_customproduct.html:14
+msgid "Home"
+msgstr ""
+
+#: models.py:52
+#: models.py:55
+msgid "Description"
+msgstr "Описание"
+
+#: models.py:53
+msgid "Discount Code"
+msgstr "Код на скидку"
+
+#: models.py:54
+msgid "Coupon Code"
+msgstr "Код купона"
+
+#: models.py:506
+msgid "Tax"
+msgstr "Налог"
+
+#: models.py:513
+msgid "Product"
+msgstr "Продукт"
+
+#: templates/product/product.html.html:47
+#: templates/product/detail_configurableproduct.html:108
+#: templates/product/detail_customproduct.html:58
+msgid "Quantity"
+msgstr "Количество"
+
+#: models.py:1039
+msgid "Value"
+msgstr "Значение"
+
+#: models.py:318
+#: models.py:705
+msgid "Price Change"
+msgstr "Разница в цене"
+
+#: models.py:199
+#: models.py:257
+#: models.py:703
+#: models.py:1093
+msgid "Sort Order"
+msgstr "Порядок сортировки"
+
+#: models.py:258
+#: models.py:704
+msgid "The display order for this group."
+msgstr "Порядок отображения для этой группы."
+
+#: models.py:39
+msgid "No Discount"
+msgstr "Нет скидки"
+
+#: models.py:55
+msgid "Discount Amount"
+msgstr "Размер скидки"
+
+#: models.py:57
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Введите абсолютную величину скидки ИЛИ процент."
+
+#: models.py:58
+msgid "Discount Percentage"
+msgstr "Скидка в процентах"
+
+#: models.py:61
+msgid "Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr "Введите Введите абсолютную величину скидки ИЛИ процент.  Пример процента: \"0.10\"."
+
+#: models.py:62
+msgid "Number of allowed uses"
+msgstr "Допустимое количество использований"
+
+#: models.py:63
+#: models.py:65
+msgid "Not implemented."
+msgstr "Не реализовано."
+
+#: models.py:64
+msgid "Number of times already used"
+msgstr "Текущее число использований."
+
+#: models.py:66
+msgid "Minimum order value"
+msgstr "Минимальный размер заказа"
+
+#: models.py:68
+msgid "Start Date"
+msgstr "Дата начала"
+
+#: models.py:69
+msgid "End Date"
+msgstr "Дата окончания"
+
+#: models.py:70
+msgid "Active"
+msgstr "Активно"
+
+#: models.py:71
+msgid "Free shipping"
+msgstr "Бесплатная доставка"
+
+#: models.py:72
+msgid "Should this discount remove all shipping costs?"
+msgstr "Должна ли эта скидка снять все расходы на доставку?"
+
+#: models.py:73
+msgid "Include shipping"
+msgstr "Включая доставку"
+
+#: models.py:74
+msgid "Should shipping be included in the discount calculation?"
+msgstr "Должна ли доставка быть включена при расчете скидки?"
+
+#: models.py:75
+msgid "Valid Products"
+msgstr "Действующие продукты"
+
+#: models.py:90
+msgid "This coupon is disabled."
+msgstr "Этот купон заблокирован."
+
+#: models.py:92
+msgid "This coupon is not active yet."
+msgstr "Этот купон пока не активирован."
+
+#: models.py:94
+msgid "This coupon has expired."
+msgstr "Срок действия этого купона истек."
+
+#: models.py:96
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Эту скидку уже использовали максимальное количество раз."
+
+#: models.py:98
+#: models.py:114
+msgid "Valid."
+msgstr "Действительно."
+
+#: models.py:102
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Эта скидка применяется только к заказам от %s."
+
+#: models.py:116
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "Эта скидка не может быть применена к продукции из вашей корзины."
+
+#: models.py:174
+msgid "Discount"
+msgstr "Скидка"
+
+#: models.py:175
+msgid "Discounts"
+msgstr "Скидки"
+
+#: models.py:378
+msgid "Date added"
+msgstr "Дата добавления"
+
+#: templates/product/category.html:21
+#: templates/product/product.html.html:31
+#: templates/product/detail_configurableproduct.html:68
+#: templates/product/detail_customproduct.html:22
+msgid "Shop Categories"
+msgstr "Разделы магазина"
+
+#: models.py:1054
+#: models.py:1078
+#: templates/product/product.html.html:40
+#: templates/product/detail_configurableproduct.html:77
+#: templates/product/detail_customproduct.html:31
+msgid "Price"
+msgstr "Цена"
+
+#: templates/product/product.html.html:49
+#: templates/product/detail_configurableproduct.html:110
+#: templates/product/detail_customproduct.html:60
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: models.py:371
+#: models.py:592
+msgid "Full Name"
+msgstr "Полное имя"
+
+#: adminviews.py:27
+msgid "Inventory Editor"
+msgstr "Редактор товаров"
+
+#: adminviews.py:47
+msgid "Product Import/Export"
+msgstr "Импорт/экспорт продукции"
+
+#: adminviews.py:70
+msgid "No upload file found"
+msgstr "Закачанный файл не найден"
+
+#: config.py:6
+msgid "Product Settings"
+msgstr "Настройки продукции"
+
+#: config.py:10
+msgid "Product Model Options"
+msgstr "Варианты модели продукта"
+
+#: config.py:12
+msgid "Configurable Product"
+msgstr "Конфигурируемый продукт"
+
+#: config.py:13
+msgid "Product Variation"
+msgstr "Варьируемый продукт"
+
+#: config.py:14
+msgid "Custom Order"
+msgstr "Особый заказ"
+
+#: config.py:15
+msgid "Downloable Product"
+msgstr "Скачиваемый продукт"
+
+#: config.py:22
+msgid "Upload Image Dir"
+msgstr "Каталог закачки изображений"
+
+#: config.py:23
+msgid ""
+"Directory name for storing uploaded images.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"We can handle it any which way."
+msgstr ""
+"Имя каталога для сохранения закачиваемых изображений.  \n"
+"Это значение будет соединено с MEDIA_ROOT.  Не беспокойтись насчет слешей.  \n"
+"Путь будет действительным в любом случае."
+
+#: config.py:30
+msgid "Rename product images?"
+msgstr "Переименовывать изображения продукции?"
+
+#: config.py:31
+msgid "Automatically rename product images on upload?"
+msgstr "Переименовывать изображения продукции автоматически при закачке?"
+
+#: config.py:36
+msgid "Protected dir"
+msgstr "Защищенный каталог"
+
+#: config.py:37
+msgid ""
+"Будет использоваться только для \"Скачиваемых продуктов\".  \n"
+"Это значение будет соединено с MEDIA_ROOT.  Не беспокойтись насчет слешей.  \n"
+"We can handle it any which way."
+msgstr ""
+"This is only used if you use Downloadable Products.  \n"
+"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.  \n"
+"Путь будет действительным в любом случае."
+
+#: forms.py:32
+msgid "export format"
+msgstr "формат экспорта"
+
+#: forms.py:33
+msgid "Include Images"
+msgstr "Включать изображения"
+
+#: forms.py:136
+msgid "File to import"
+msgstr "Файл для импорта"
+
+#: forms.py:154
+#: forms.py:197
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "Не удалось разобрать формат в файле: %s"
+
+#: forms.py:172
+msgid "Bad VARS file in import zipfile."
+msgstr "Неправильный файл VARS в импортируемом ZIP-архиве."
+
+#: forms.py:202
+msgid "Missing VARS in import zipfile."
+msgstr "Файл VARS не найден в импортируемом ZIP-архиве."
+
+#: forms.py:208
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "Неизвестный формат файла: %s"
+
+#: forms.py:235
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr "Добавлено %(count)i объектов из %(filename)s"
+
+#: forms.py:239
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr "Проблема при установке данных из файла '%(filename)s': %(error_msg)s\n"
+
+#: models.py:50
+msgid "Used for URLs"
+msgstr "Используется для URL"
+
+#: models.py:53
+#: models.py:377
+msgid "Meta Description"
+msgstr "Meta-описание"
+
+#: models.py:54
+msgid "Meta description for this category"
+msgstr "Meta-описание для этого раздела"
+
+#: models.py:57
+#: models.py:381
+msgid "Ordering"
+msgstr "Порядок сортировки"
+
+#: models.py:57
+#: models.py:381
+msgid "Override alphabetical order in category display"
+msgstr "Переопределяет алфавитный порядок при отображении разделов"
+
+#: models.py:130
+msgid "You must not save a category in itself!"
+msgstr "Вы не должны сохранять раздел внутри него самого!"
+
+#: models.py:164
+#: models.py:375
+msgid "Category"
+msgstr "Раздел"
+
+#: models.py:165
+msgid "Categories"
+msgstr "Разделы"
+
+#: models.py:172
+#: models.py:233
+#: models.py:285
+#: models.py:348
+#: models.py:591
+#: models.py:718
+#: models.py:1037
+#: models.py:1127
+msgid "language"
+msgstr "язык"
+
+#: models.py:173
+#: models.py:349
+msgid "Translated Category Name"
+msgstr "Переведенное название раздела"
+
+#: models.py:174
+msgid "Description of category"
+msgstr "Описание раздела"
+
+#: models.py:175
+#: models.py:235
+#: models.py:288
+#: models.py:350
+#: models.py:595
+#: models.py:720
+#: models.py:1129
+msgid "version"
+msgstr "версия"
+
+#: models.py:176
+#: models.py:236
+#: models.py:289
+#: models.py:351
+#: models.py:596
+#: models.py:721
+#: models.py:1130
+msgid "active"
+msgstr "активно"
+
+#: models.py:179
+msgid "Category Translation"
+msgstr "Перевод разделов"
+
+#: models.py:180
+msgid "Category Translations"
+msgstr "Переводы разделов"
+
+#: models.py:195
+#: models.py:1089
+msgid "Picture"
+msgstr "Изображение"
+
+#: models.py:197
+#: models.py:1091
+msgid "Optional caption"
+msgstr "Необязательный заголовок"
+
+#: models.py:222
+msgid "Category Image"
+msgstr "Изображение разделов"
+
+#: models.py:223
+msgid "Category Images"
+msgstr "Изображения разделов"
+
+#: models.py:234
+#: models.py:1128
+msgid "Translated Caption"
+msgstr "Переведенный заголовк"
+
+#: models.py:239
+msgid "Category Image Translation"
+msgstr "Перевод изображения разделов"
+
+#: models.py:240
+msgid "Category Image Translations"
+msgstr "Перевод изображений разделов"
+
+#: models.py:252
+msgid "Name of Option Group"
+msgstr "Название группы опций"
+
+#: models.py:253
+msgid "This will be the text displayed on the product page."
+msgstr "Это будет текст, отображаемый на странице продукта."
+
+#: models.py:254
+msgid "Detailed Description"
+msgstr "Детализированное описание"
+
+#: models.py:256
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "Более подробное описание этой группы (например, размер майки или размер обуви)."
+
+#: models.py:277
+msgid "Option Group"
+msgstr "Группа опций"
+
+#: models.py:278
+msgid "Option Groups"
+msgstr "Группы опций"
+
+#: models.py:286
+msgid "Translated OptionGroup Name"
+msgstr "Переведенное название группы опций"
+
+#: models.py:287
+msgid "Description of OptionGroup"
+msgstr "Описание группы опций"
+
+#: models.py:292
+msgid "Option Group Translation"
+msgstr "Перевод групп опций"
+
+#: models.py:293
+msgid "Option Groups Translations"
+msgstr "Переводы групп опций"
+
+#: models.py:315
+msgid "Display value"
+msgstr "Отображаемое значение"
+
+#: models.py:316
+msgid "Stored value"
+msgstr "Сохраняемое значение"
+
+#: models.py:320
+msgid "This is the price differential for this option."
+msgstr "Это - разница в цене для данной опции"
+
+#: models.py:321
+msgid "Display Order"
+msgstr "Отображаемый порядок"
+
+#: models.py:329
+msgid "Option Item"
+msgstr "Элемент опции"
+
+#: models.py:330
+msgid "Option Items"
+msgstr "Элементы опции"
+
+#: models.py:354
+msgid "Option Translation"
+msgstr "Перевод опции"
+
+#: models.py:355
+msgid "Option Translations"
+msgstr "Переводы опций"
+
+#: models.py:371
+msgid "This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."
+msgstr "Так будет называться продукт на языке сайта по умолчанию. Чтобы добавить переводы, отличные от языка по умолчанию, используйте раздел \"Перевод продуктов\" ниже."
+
+#: models.py:372
+msgid "Slug Name"
+msgstr "Короткое имя для URL"
+
+#: models.py:373
+#: models.py:593
+msgid "Short description of product"
+msgstr "Короткое описание продукта"
+
+#: models.py:373
+msgid "This should be a 1 or 2 line description in the default site language for use in product listing screens"
+msgstr "Это должно быть описание в 1 или 2 строки на языке сайта по умолчанию для использования при отображении списка продуктов"
+
+#: models.py:374
+#: models.py:594
+msgid "Description of product"
+msgstr "Описание продукта"
+
+#: models.py:374
+msgid "This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "Это поле может содержать HTML-текст длиной в несколько параграфов на языке сайта по умолчанию, описывающий продукт и все, что может помочь потенциальному покупателю осуществить заказ."
+
+#: models.py:376
+msgid "Number in stock"
+msgstr "Количество на складе"
+
+#: models.py:377
+msgid "Meta description for this product"
+msgstr "Meta-описание данного продукта"
+
+#: models.py:379
+msgid "Is product active?"
+msgstr "Продукт является активным?"
+
+#: models.py:379
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Характеризует, будет ли отображаться продукт на сайте или нет"
+
+#: models.py:380
+msgid "Featured Item"
+msgstr "Специальное предложение"
+
+#: models.py:380
+msgid "Featured items will show on the front page"
+msgstr "Специальное предложение будет отображаться на главной странице"
+
+#: models.py:382
+msgid "Weight"
+msgstr "Вес"
+
+#: models.py:383
+msgid "Length"
+msgstr "Длина"
+
+#: models.py:384
+msgid "Width"
+msgstr "Ширина"
+
+#: models.py:385
+msgid "Height"
+msgstr "Высота"
+
+#: models.py:386
+msgid "Related Items"
+msgstr "Связанные товары"
+
+#: models.py:387
+msgid "Previously Purchased"
+msgstr "Купленное ранее"
+
+#: models.py:388
+msgid "Taxable"
+msgstr "Облагается налогом"
+
+#: models.py:389
+msgid "Tax Class"
+msgstr "Тип налога"
+
+#: models.py:389
+msgid "If it is taxable, what kind of tax?"
+msgstr "Если облагается налогом, то какой тип налога?"
+
+#: models.py:504
+msgid "Meta Data"
+msgstr "Метаданные"
+
+#: models.py:505
+msgid "Item Dimensions"
+msgstr "Размеры товара"
+
+#: models.py:507
+msgid "Related Products"
+msgstr "Связанные продукты"
+
+#: models.py:514
+msgid "Products"
+msgstr "Продукты"
+
+#: models.py:593
+msgid "This should be a 1 or 2 line description for use in product listing screens"
+msgstr "Должно быть описанием в 1 или 2 строки для использования при отображении списка продуктов"
+
+#: models.py:594
+msgid "This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "Это поле может содержать HTML-текст длиной в несколько параграфов, описывающий продукт и все, что может помочь потенциальному покупателю осуществить заказ."
+
+#: models.py:599
+msgid "Product Translation"
+msgstr "Перевод продуктов"
+
+#: models.py:600
+msgid "Product Translations"
+msgstr "Переводы продуктов"
+
+#: models.py:640
+msgid "Percent Downpayment"
+msgstr "Процент предоплаты"
+
+#: models.py:641
+msgid "Deferred Shipping"
+msgstr "Отложенная доставка"
+
+#: models.py:642
+msgid "Do not charge shipping at checkout for this item."
+msgstr "Не снимать за доставку этого продукта при оформлении заказа."
+
+#: models.py:699
+msgid "Custom field name"
+msgstr "Название особого поля"
+
+#: models.py:701
+msgid "Custom Fields"
+msgstr "Особые поля"
+
+#: models.py:719
+msgid "Translated Custom Text Field Name"
+msgstr "Переведенное имя особого текстового поля"
+
+#: models.py:724
+msgid "CustomTextField Translation"
+msgstr "Перевод особых текстовых полей"
+
+#: models.py:725
+msgid "CustomTextField Translations"
+msgstr "Переводы особых текстовых полей"
+
+#: models.py:741
+msgid "Create Variations"
+msgstr "Создать вариации"
+
+#: models.py:741
+msgid "Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."
+msgstr "Создать вариации продукта для всех опций продукта. Чтобы использовать их, вы должны вначале добавить опцию, сохранить, затем вернуться к этой странице и выбрать эту опцию."
+
+#: models.py:881
+msgid "Number of times link can be accessed."
+msgstr "Какое количество раз ссылка должнать быть доступной."
+
+#: models.py:882
+msgid "Number of minutes the link should remain active."
+msgstr "Количество минут, на протяжении которых ссылка должна оставаться активной."
+
+#: models.py:883
+msgid "Is this download currently active?"
+msgstr "Является ли эта скачка активной на данный момент?"
+
+#: models.py:1000
+msgid "Two options from the same option group can not be applied to an item."
+msgstr "Две опции из одной и той же группы опций не могут быть применены к товару."
+
+#: models.py:1038
+msgid "Attribute Name"
+msgstr "Название атрибута"
+
+#: models.py:1042
+msgid "Product Attribute"
+msgstr "Атрибут продукции"
+
+#: models.py:1043
+msgid "Product Attributes"
+msgstr "Атрибуты продукции"
+
+#: models.py:1055
+msgid "Discount Quantity"
+msgstr "Количество для скидки"
+
+#: models.py:1055
+msgid "Use this price only for this quantity or higher"
+msgstr "Использовать эту цену только для данного количества и выше"
+
+#: models.py:1079
+msgid "Prices"
+msgstr "Цены"
+
+#: models.py:1116
+msgid "Product Image"
+msgstr "Изображение продукции"
+
+#: models.py:1117
+msgid "Product Images"
+msgstr "Изображения продукции"
+
+#: models.py:1133
+msgid "Product Image Translation"
+msgstr "Перевод изображений продукции"
+
+#: models.py:1134
+msgid "Product Image Translations"
+msgstr "Переводы изображений продукции"
+
+#: views.py:71
+msgid "The product you have requested does not exist."
+msgstr "Продукт, запрошенный вами, не существует."
+
+#: views.py:116
+#: views.py:129
+#: views.py:136
+#: views.py:143
+msgid "not available"
+msgstr "не доступно"
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "Управление товарами"
+
+#: templates/product/admin/product_export_form.html:110
+msgid "Helpers"
+msgstr "Помощники"
+
+#: templates/product/admin/product_export_form.html:57
+msgid "WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr "ВНИМАНИЕ: ЭТА ФУНКЦИЯ НАХОДИТСЯ ЕЩЕ НА ЭКСПЕРИМЕНТАЛЬНОЙ СТАДИИ. НЕ ИСПОЛЬЗУЙТЕ НА РАБОЧЕМ САЙТЕ."
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr "Импорт"
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr "Импорт из файла данных:"
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:108
+msgid "Export"
+msgstr "Экспорт"
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr "Экспортировать?"
+
+#: templates/product/admin/product_export_form.html:80
+msgid "Slug"
+msgstr "Короткое имя"
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include images?"
+msgstr "Включать изображения?"
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Format?"
+msgstr "Форматировать?"
+
+#: templates/product/admin/product_export_form.html:109
+msgid "Reset"
+msgstr "Сброс"
+
+#: templates/product/admin/product_export_form.html:111
+msgid "Check all"
+msgstr "Отметить все"
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Uncheck all"
+msgstr "Снять отметку со всего"
+
+#: templates/product/admin/product_export_form.html:115
+msgid "No products."
+msgstr "Нет продуктов."
+
+#: templates/product/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr "Импорт/экспеорт продуктов"
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr "Результаты"
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr "Импорт результатов"
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "Ошибки"
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr "результаты"
+
+#: templates/admin/product/configurableproduct/change_form.html:17
+msgid "Variations"
+msgstr "Вариации"
+
+#: templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Подтипы продукта"
+
+#: templates/product/detail_configurableproduct.html:93
+msgid "Please choose your options"
+msgstr "Пожалуйств, выберите желаемые опции"
+
+#: templates/product/detail_customproduct.html:29
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "Особый заказ для %(name)s"
+
+#: templates/product/detail_customproduct.html:54
+msgid "more"
+msgstr "больше"
+

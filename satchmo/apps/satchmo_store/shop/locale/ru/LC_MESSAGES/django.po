@@ -1,0 +1,1042 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2009-03-06 13:04+0300\n"
+"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+
+#: views/contact.py:24
+#: templates/shop/checkout/form.html:51
+msgid "Email address"
+msgstr "Адрес электронной почты"
+
+#: templates/shop/checkout/form.html:34
+msgid "Password"
+msgstr ""
+
+#: templates/shop/checkout/form.html:54
+msgid "First name"
+msgstr "Имя"
+
+#: templates/shop/checkout/form.html:57
+msgid "Last name"
+msgstr "Фамилия"
+
+#: models.py:49
+#: templates/shop/pdf/invoice.rml:99
+#: templates/shop/pdf/packing-slip.rml:99
+msgid "Email"
+msgstr "Электронная почта"
+
+#: views/contact.py:23
+#: templates/shop/checkout/form.html:33
+msgid "Name"
+msgstr "Полное имя"
+
+#: models.py:205
+msgid "Creation Date"
+msgstr "Дата создания"
+
+#: templates/shop/templates/404.html:5
+#: templates/shop/500.html:5
+#: templates/shop/cart.html:7
+#: templates/shop/index.html:7
+#: templates/shop/contact_form.html:5
+#: templates/shop/download.html:5
+#: templates/shop/search.html:6
+#: templates/shop/404.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/admin/inventory_form.html:66
+#: templates/shop/checkout/balance_remaining.html:6
+#: templates/shop/checkout/base_confirm.html:7
+#: templates/shop/checkout/base_pay_ship.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/empty_cart.html:5
+#: templates/shop/checkout/form.html:5
+#: templates/shop/checkout/success.html:7
+#: templates/shop/checkout/cod/confirm.html:9
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
+msgid "Home"
+msgstr ""
+
+#: templates/shop/pdf/invoice.rml:98
+#: templates/shop/pdf/packing-slip.rml:98
+msgid "Phone"
+msgstr "Телефон"
+
+#: models.py:48
+#: models.py:204
+#: templates/shop/pdf/invoice.rml:114
+#: templates/shop/pdf/packing-slip.rml:114
+msgid "Description"
+msgstr "Описание"
+
+#: models.py:56
+msgid "Phone Number"
+msgstr "Телефонный номер"
+
+#: models.py:50
+#: models.py:51
+#: templates/shop/checkout/form.html:65
+#: templates/shop/checkout/form.html.py:68
+#: templates/shop/checkout/form.html:97
+#: templates/shop/checkout/form.html.py:100
+msgid "Street"
+msgstr "Улица"
+
+#: models.py:53
+msgid "State"
+msgstr "Область (штат, регион)"
+
+#: models.py:52
+#: templates/shop/checkout/form.html:71
+#: templates/shop/checkout/form.html.py:103
+msgid "City"
+msgstr "Город"
+
+#: models.py:54
+msgid "Zip Code"
+msgstr "Почтовый индекс"
+
+#: templates/shop/checkout/form.html:87
+msgid "Country"
+msgstr "Страна"
+
+#: templates/shop/pdf/invoice.rml:136
+#: templates/shop/pdf/packing-slip.rml:136
+msgid "Subtotal"
+msgstr "Подытог"
+
+#: templates/shop/cart.html:22
+#: templates/shop/order_history.html:23
+#: templates/shop/email/order_complete.txt:45
+#: templates/shop/email/order_complete.txt:54
+#: templates/shop/pdf/invoice.rml:117
+#: templates/shop/pdf/invoice.rml.py:147
+#: templates/shop/pdf/packing-slip.rml:117
+#: templates/shop/pdf/packing-slip.rml.py:147
+msgid "Total"
+msgstr "Итого"
+
+#: templates/shop/email/order_complete.txt:38
+msgid "Shipping Method"
+msgstr "Способ доставки"
+
+#: templates/shop/email/order_complete.txt:52
+#: templates/shop/pdf/invoice.rml:144
+#: templates/shop/pdf/packing-slip.rml:144
+msgid "Tax"
+msgstr "Налог"
+
+#: templates/shop/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "Время"
+
+#: templates/shop/order_history.html:20
+msgid "Status"
+msgstr "Статус"
+
+#: templates/shop/email/order_complete.txt:28
+#: templates/shop/pdf/invoice.rml:25
+#: templates/shop/pdf/packing-slip.rml:25
+msgid "Shipping Address"
+msgstr "Адрес доставки"
+
+#: templates/shop/pdf/invoice.rml:24
+#: templates/shop/pdf/packing-slip.rml:24
+msgid "Billing Address"
+msgstr ""
+
+#: models.py:286
+#: templates/shop/cart.html:20
+#: templates/shop/pdf/invoice.rml:115
+#: templates/shop/pdf/packing-slip.rml:115
+msgid "Quantity"
+msgstr "Платежный адрес"
+
+#: models.py:337
+msgid "Sort Order"
+msgstr "Порядок сортировки"
+
+#: models.py:338
+msgid "The display order for this group."
+msgstr "Порядок отображения для этой группы."
+
+#: templates/shop/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "ID транзакци"
+
+#: templates/shop/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "Оплата заказов"
+
+#: templates/shop/email/order_complete.txt:48
+msgid "Discount"
+msgstr "Скидка"
+
+#: templates/shop/checkout/base_pay_ship.html:32
+msgid "Discounts"
+msgstr "Скидки"
+
+#: views/cart.py:189
+msgid "Success"
+msgstr "Успешно"
+
+#: templates/shop/checkout/balance_remaining.html:7
+#: templates/shop/checkout/base_confirm.html:8
+#: templates/shop/checkout/base_confirm.html:12
+#: templates/shop/checkout/base_pay_ship.html:6
+#: templates/shop/checkout/base_pay_ship.html:10
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/empty_cart.html:6
+#: templates/shop/checkout/empty_cart.html:10
+#: templates/shop/checkout/form.html:6
+#: templates/shop/checkout/form.html.py:10
+#: templates/shop/checkout/success.html:8
+#: templates/shop/checkout/cod/confirm.html:10
+msgid "Checkout"
+msgstr "Оформить заказ"
+
+#: templates/shop/admin/_orderpayment_list.html:8
+#: templates/shop/checkout/base_confirm.html:16
+#: templates/shop/checkout/base_pay_ship.html:14
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/form.html:14
+#: templates/shop/checkout/cod/confirm.html:14
+#: templates/shop/checkout/google/confirm.html:6
+#: templates/shop/checkout/google/confirm.html:9
+#: templates/shop/checkout/paypal/confirm.html:5
+#: templates/shop/checkout/paypal/confirm.html:8
+#: templates/shop/email/order_complete.txt:56
+msgid "Payment"
+msgstr "Платеж"
+
+#: templates/shop/checkout/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Платежная информация"
+
+#: templates/base.html:30
+msgid "Shop Categories"
+msgstr "Разделы магазина"
+
+#: views/contact.py:25
+msgid "Subject"
+msgstr "Тема"
+
+#: templates/shop/checkout/pay_ship.html:20
+msgid "CCV"
+msgstr ""
+
+#: templates/shop/checkout/balance_remaining.html:23
+#: templates/shop/checkout/form.html:47
+msgid "Payment method"
+msgstr "Способ оплаты"
+
+#: views/cart.py:129
+#: views/cart.py:170
+msgid "The product you have requested does not exist."
+msgstr "Запрошенный продукт не существует."
+
+#: templates/shop/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "Способ"
+
+#: config.py:9
+msgid "Default currency symbol"
+msgstr "Обозначение валюты по умолчанию"
+
+#: config.py:10
+msgid "Use a '_' character to force a space."
+msgstr "Используйте символ '_' для задания пробела."
+
+#: config.py:16
+msgid "Enable product ratings"
+msgstr "Разрешить оценку продуктов"
+
+#: config.py:22
+msgid "Enable random display of featured products on home page"
+msgstr "Разрешить случайное отображение продуктов из специального предложения на главной"
+
+#: config.py:28
+msgid "Number of featured items to display"
+msgstr "Количество продуктов из специального предложения для отображения"
+
+#: config.py:38
+msgid "Enable Analytics"
+msgstr "Разрешить Analytics"
+
+#: config.py:45
+msgid "Use Urchin?"
+msgstr "Использовать Urchin?"
+
+#: config.py:46
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
+msgstr "Использовать устарешний код Urchin? Это не требуется, если ваша учетная запись в Analytics уже обновлена."
+
+#: config.py:54
+msgid "Analytics Code"
+msgstr "Код Analytics"
+
+#: config.py:62
+msgid "Enable Conversion Tracking"
+msgstr "Разрешить отслеживание конверсии"
+
+#: config.py:69
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Adwords ID (например: UA-abcd-1)"
+
+#: config.py:79
+msgid "Allow user to choose from available translations"
+msgstr "Позволять пользователям выбирать из доступных переводов"
+
+#: config.py:87
+msgid "Available languages"
+msgstr "Допустимые языки"
+
+#: config.py:88
+msgid "Languages that have valid translations"
+msgstr "Языки, имеющие существующие переводы"
+
+#: config.py:89
+msgid "English"
+msgstr "Английский"
+
+#: config.py:90
+msgid "French"
+msgstr "Французский"
+
+#: config.py:91
+msgid "German"
+msgstr "Немецкий"
+
+#: config.py:92
+msgid "Spanish"
+msgstr "Испанский"
+
+#: config.py:93
+msgid "Swedish"
+msgstr "Шведски"
+
+#: models.py:26
+msgid "Test Store"
+msgstr "Тестовый магазин"
+
+#: models.py:47
+msgid "Store Name"
+msgstr "Название магазина"
+
+#: models.py:57
+msgid "Purchase item not in stock?"
+msgstr "Приобретаемый товар не на складе?"
+
+#: models.py:58
+msgid "Only sell to in-country customers?"
+msgstr "Продавать только покупателям внутри страны?"
+
+#: models.py:61
+msgid "Default country for customers"
+msgstr "Страна по умолчанию для покупателей"
+
+#: models.py:62
+msgid "Shipping Countries"
+msgstr "Страны, в которые возможна доставка"
+
+#: models.py:88
+msgid "Store Configuration"
+msgstr "Конфигурация магазина"
+
+#: models.py:89
+msgid "Store Configurations"
+msgstr "Конфигурации магазина"
+
+#: models.py:277
+msgid "Shopping Cart"
+msgstr "Корзина"
+
+#: models.py:278
+msgid "Shopping Carts"
+msgstr "Корзины"
+
+#: models.py:334
+msgid "detail"
+msgstr "детализация"
+
+#: models.py:335
+msgid "name"
+msgstr "наименование"
+
+#: models.py:336
+msgid "Item Detail Price Change"
+msgstr "Изменение цены для наименования"
+
+#: utils/validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Пожалуйста, введите одно единственное из этих полей."
+
+#: views/admin-portal.py:10
+msgid "Site Administration"
+msgstr ""
+
+#: views/cart.py:30
+msgid "No cart to update."
+msgstr "Нет корзины для обновления."
+
+#: views/cart.py:38
+msgid "Bad quantity."
+msgstr "Неправильное количество."
+
+#: views/cart.py:45
+msgid "Bad item number."
+msgstr "Неправильный номер товара."
+
+#: views/cart.py:50
+msgid "No such item in your cart."
+msgstr "Нет такого товара в вашей корзине."
+
+#: views/cart.py:136
+msgid "Please enter a whole number."
+msgstr "Пожалуйста, введите целое число."
+
+#: views/cart.py:143
+msgid "Please enter a positive number."
+msgstr "Пожалуйста, введите положительное число."
+
+#: views/cart.py:179
+msgid "Choose a quantity."
+msgstr "Выберите количество."
+
+#: views/cart.py:182
+msgid "Choose a whole number."
+msgstr "Выберите целое число."
+
+#: views/cart.py:191
+#: templates/shop/templates/404.html:10
+#: templates/shop/500.html:10
+#: templates/shop/404.html:10
+msgid "Error"
+msgstr "Ошибка"
+
+#: views/cart.py:208
+msgid "You must accept the terms and conditions."
+msgstr "Вы должны принять условия и соглашения."
+
+#: views/cart.py:224
+#: views/cart.py:258
+msgid "Internal error: please submit as a POST"
+msgstr "Внутренняя ошибка: пожалуйста, отправьте данные по POST"
+
+#: views/category.py:12
+msgid "The category you have requested does not exist."
+msgstr "Раздел, который вы запросили не существует."
+
+#: views/comments.py:26
+msgid "One or more of the required fields wasn't submitted"
+msgstr "Одно или более требуемых полей не было заполнено"
+
+#: views/comments.py:33
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "Неправильный тип содержимого: %s"
+
+#: views/contact.py:18
+msgid "General question"
+msgstr "Общий вопрос"
+
+#: views/contact.py:19
+msgid "Order problem"
+msgstr "Проблемы с заказом"
+
+#: views/contact.py:26
+msgid "Inquiry"
+msgstr "Вопрос"
+
+#: views/contact.py:27
+msgid "Contents"
+msgstr "Содержимое"
+
+#: views/download.py:19
+#: views/download.py:24
+msgid "The download key is invalid."
+msgstr "Неверный ключ для скачивания."
+
+#: views/utils.py:71
+msgid "Card type does not match card number."
+msgstr "Тип карты не соответствует номеру карты."
+
+#: views/utils.py:73
+msgid "Invalid credit card number."
+msgstr "Неправильный номер кредитной карты."
+
+#: templates/shop/email/order_complete.txt:50
+msgid "Shipping"
+msgstr "Доставка"
+
+#: templates/shop/templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "Не удалось найти запрашиваемую вами страницу."
+
+#: templates/shop/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "Произошла ошибка в магазине. Администратор будет уведомлен."
+
+#: templates/base.html:24
+#: templates/base.html.py:27
+msgid "Search"
+msgstr "Поиск"
+
+#: templates/base.html:38
+msgid "Account Information"
+msgstr "Учетная запись"
+
+#: templates/base.html:40
+msgid "Account Details"
+msgstr "Подробности"
+
+#: templates/base.html:41
+#: templates/shop/admin/inventory_form.html:63
+msgid "Log out"
+msgstr "Выход"
+
+#: templates/base.html:43
+msgid "Log in"
+msgstr "Войти"
+
+#: templates/base.html:47
+msgid "Cart"
+msgstr "Корзина"
+
+#: templates/base.html:51
+#: templates/shop/cart.html:67
+msgid "Check out"
+msgstr "Оформить заказ"
+
+#: templates/base.html:54
+#: templates/shop/contact_form.html:6
+#: templates/shop/contact_thanks.html:6
+msgid "Contact Us"
+msgstr "Написать нам"
+
+#: templates/base.html:58
+msgid "Change language"
+msgstr "Изменить язык"
+
+#: templates/base.html:64
+#: templates/shop/admin/index.html:104
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/base.html:74
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr "Технология <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+
+#: templates/shop/cart.html:16
+msgid "Your cart is empty."
+msgstr "Ваша корзина пуста."
+
+#: templates/shop/cart.html:18
+msgid "Your Cart"
+msgstr "Ваша корзина"
+
+#: templates/shop/cart.html:21
+msgid "Item"
+msgstr "Наименование"
+
+#: templates/shop/cart.html:29
+msgid "Remove"
+msgstr "Убрать"
+
+#: templates/shop/cart.html:40
+msgid "update amount"
+msgstr "обновить количество"
+
+#: templates/shop/cart.html:51
+msgid "Base Price: "
+msgstr "Базовая цена: "
+
+#: templates/shop/cart.html:52
+msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+msgstr "число справа - это ваша предоплата, вы получите счет на оставщуюся сумму, когда товар будет готов."
+
+#: templates/shop/cart.html:63
+msgid "Cart Total"
+msgstr "Итого в корзине"
+
+#: templates/shop/index.html:11
+msgid "Welcome to the shop."
+msgstr "Добро пожаловать в магазин."
+
+#: templates/shop/index.html:14
+msgid "Featured Items"
+msgstr "Специальное предложение"
+
+#: templates/shop/index.html:31
+#: templates/shop/index.html.py:33
+msgid "Previous"
+msgstr "Предыдущее"
+
+#: templates/shop/index.html:43
+#: templates/shop/index.html.py:45
+msgid "Next"
+msgstr "Следующее"
+
+#: templates/shop/contact_form.html:10
+#: templates/shop/contact_thanks.html:10
+#: templates/shop/email/order_complete.txt:13
+msgid "Contact Information"
+msgstr "Контактные данные"
+
+#: templates/shop/contact_form.html:13
+#: templates/shop/checkout/base_pay_ship.html:21
+#: templates/shop/checkout/form.html:20
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/shop/contact_form.html:19
+msgid "Send Email"
+msgstr "Отправить сообщение"
+
+#: templates/shop/download.html:13
+msgid "Downloading of"
+msgstr "Скачивание файла"
+
+#: templates/shop/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "начнется после нажатия на ссылку ниже:"
+
+#: templates/shop/download.html:15
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh yourbrowser and try the download again"
+msgstr "Как только вы кликните по ссылке, начнется скачивание. Если у вас возникнут проблемы со скачиванием, пожалуйста, обновите ваш браузре и попробуйте скачать снова."
+
+#: templates/shop/search.html:12
+msgid "Nothing found"
+msgstr "Ничего не найдено"
+
+#: templates/shop/contact_thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "Спасибо за то, что написали нам."
+
+#: templates/shop/contact_thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "Мы постараемся ответить вам в течение 48 часов."
+
+#: templates/shop/admin/_customorder_management.html:8
+msgid "Fully charged"
+msgstr "Полностью оплачено"
+
+#: templates/shop/admin/_customorder_management.html:10
+msgid "Charge remaining amount"
+msgstr "Неоплаченный остаток"
+
+#: templates/shop/admin/_customorder_management.html:13
+msgid "Product Details"
+msgstr "Подробности о продукции"
+
+#: templates/shop/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "Количество"
+
+#: templates/shop/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "Нет платежей."
+
+#: templates/shop/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "Все полностью оплачено"
+
+#: templates/shop/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "Остаток на счете:"
+
+#: templates/admin/base_site.html:4
+#: templates/admin/base_site.html.py:7
+msgid "Satchmo Site Administration"
+msgstr "Администрирование сайта Satchmo"
+
+#: templates/shop/admin/inventory_form.html:74
+#, fuzzy
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Documentation"
+msgstr ""
+
+#: templates/shop/admin/inventory_form.html:63
+msgid "Change password"
+msgstr ""
+
+#: templates/shop/admin/inventory_form.html:67
+msgid "Inventory Management"
+msgstr "Управление товарами"
+
+#: templates/shop/admin/inventory_form.html:112
+msgid "Helpers"
+msgstr "Помощники"
+
+#: templates/shop/admin/inventory_form.html:113
+msgid "Mark all featured"
+msgstr "Отметить все как специальное предложение"
+
+#: templates/shop/admin/inventory_form.html:114
+msgid "Clear all featured"
+msgstr "Снять пометку как специальное предложение со всего"
+
+#: templates/shop/admin/inventory_form.html:115
+msgid "Disable all Products with 0 quantity."
+msgstr "Деактивировать все продукты с нулевым количеством."
+
+#: templates/shop/admin/inventory_form.html:116
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Деактивировать вариации продуктов с нулевым количеством."
+
+#: templates/shop/admin/inventory_form.html:120
+msgid "No inventory items."
+msgstr "Нет товаров."
+
+#: templates/shop/admin/order_sidebar.html:5
+msgid "New Orders"
+msgstr "Новые заказы"
+
+#: templates/shop/admin/order_sidebar.html:16
+msgid "Orders in Process"
+msgstr "Заказы в процессе"
+
+#: templates/shop/admin/order_sidebar.html:27
+msgid "View all Orders"
+msgstr "Показать все заказы"
+
+#: templates/shop/admin/index.html:33
+msgid "Switch to Shop View"
+msgstr "Переключиться в магазинный вид"
+
+#: templates/shop/admin/index.html:38
+#: templates/shop/admin/index.html.py:125
+msgid "Switch to Legacy View"
+msgstr "Переключиться в традиционный вид"
+
+#: templates/shop/admin/index.html:87
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "Модели, доступные в приложении %(name)s."
+
+#: templates/shop/admin/index.html:88
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/shop/admin/index.html:98
+msgid "Add"
+msgstr ""
+
+#: templates/shop/admin/index.html:121
+msgid "Edit Shop Options"
+msgstr "Изменить настройки магазина"
+
+#: templates/shop/admin/index.html:122
+msgid "Edit Inventory"
+msgstr "Изменить товары"
+
+#: templates/shop/admin/index.html:123
+msgid "Export Product Defs"
+msgstr "Экспорт продукции"
+
+#: templates/shop/admin/index.html:124
+msgid "Cache Status"
+msgstr "Статус кеша"
+
+#: templates/shop/checkout/balance_remaining.html:12
+msgid "Order Balance"
+msgstr "Баланс оплаты заказа"
+
+#: templates/shop/checkout/balance_remaining.html:17
+#, python-format
+msgid "To complete this order, you need to pay the %(orderbalance)s balance remaining on this order."
+msgstr "Чтобы завершить ваш заказ, вам нужно погасить неоплаченный остаток в %(orderbalance)s за этот заказ."
+
+#: templates/shop/checkout/balance_remaining.html:22
+#: templates/shop/checkout/form.html:46
+msgid "How do you want to pay?"
+msgstr "Как бы хотели оплатить?"
+
+#: templates/shop/checkout/balance_remaining.html:26
+#: templates/shop/checkout/form.html:119
+msgid "Continue Checkout"
+msgstr "Продолжить оформление заказа"
+
+#: templates/shop/checkout/base_confirm.html:15
+#: templates/shop/checkout/base_pay_ship.html:13
+#: templates/shop/checkout/form.html:13
+msgid "Ship/Bill"
+msgstr "Доставка/оплата"
+
+#: templates/shop/checkout/base_confirm.html:17
+#: templates/shop/checkout/base_pay_ship.html:15
+#: templates/shop/checkout/form.html:15
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+#: templates/shop/checkout/base_confirm.html:22
+msgid "The following error was returned while trying to process your payment. Please correct and resubmit."
+msgstr "Во время обработки вашего платежа произошла следующая ошибка. Пожалуйста, исправьте и повторите попытку."
+
+#: templates/shop/checkout/base_confirm.html:25
+msgid "Please validate the following information, then submit your order."
+msgstr "Пожалуйста, проверьте следующую информацию и отправьте данные о вашем заказе."
+
+#: templates/shop/checkout/base_confirm.html:29
+#: templates/shop/email/order_complete.txt:7
+msgid "Items Ordered"
+msgstr "Заказанные товары"
+
+#: templates/shop/checkout/base_confirm.html:40
+#: templates/shop/checkout/paypal/confirm.html:35
+msgid "Purchase Items"
+msgstr "Оплатить товары"
+
+#: templates/shop/checkout/base_pay_ship.html:18
+#: templates/shop/checkout/form.html:18
+msgid "Please complete the following information in order to submit your order."
+msgstr "Пожалуйста, дополните следующую информацию для того, что отправить данные о вашем заказе."
+
+#: templates/shop/checkout/base_pay_ship.html:33
+msgid "Discount code"
+msgstr "Код скидки"
+
+#: templates/shop/checkout/base_pay_ship.html:38
+#: templates/shop/checkout/form.html:92
+msgid "Shipping Information"
+msgstr "Информация о доставке"
+
+#: templates/shop/checkout/base_pay_ship.html:42
+msgid "Please choose your preferred shipping method"
+msgstr "Пожалуйста, выберите предпочитаемый способ доставки"
+
+#: templates/shop/checkout/base_pay_ship.html:50
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: templates/shop/checkout/confirm.html:19
+#: templates/shop/email/order_complete.txt:61
+#, python-format
+msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "С вашей карты %(credit_card_type)s, заканчивающейся на %(credit_card_number)s будет списано %(order_total)s."
+
+#: templates/shop/checkout/empty_cart.html:12
+msgid "Your cart is empty. Please add some items to your cart, then complete the checkout process."
+msgstr "Ваша корзина пуста. Пожалуйста, добавьте товаров в корзину, а затем совершите процедуру оформления заказа."
+
+#: templates/shop/checkout/form.html:29
+msgid "If you already have an account, you can login now to fill in most of the information below."
+msgstr "Если вы уже имеете учетную запись, то вы можете войти, предоставив нужную для этого информацию ниже."
+
+#: templates/shop/checkout/form.html:30
+msgid "This is just a convenience, no account is required!"
+msgstr "Это лишь для вашего удобства, никакой учетной записи не требуется!"
+
+#: templates/shop/checkout/form.html:35
+msgid "Login"
+msgstr "Войти"
+
+#: templates/shop/checkout/form.html:42
+msgid "You'll need to fill out at least the fields with a *"
+msgstr "Вам необходимо заполнить хотя бы поля, отмеченные звездочкой (*)"
+
+#: templates/shop/checkout/form.html:50
+msgid "Basic Information"
+msgstr "Основная информация"
+
+#: templates/shop/checkout/form.html:60
+msgid "Phone number"
+msgstr "Телефонный номер"
+
+#: templates/shop/checkout/form.html:63
+#: templates/shop/email/order_complete.txt:19
+msgid "Billing Information"
+msgstr "Платежная информация"
+
+#: templates/shop/checkout/form.html:79
+#: templates/shop/checkout/form.html.py:111
+msgid "State/Province"
+msgstr "Область/штат/регион"
+
+#: templates/shop/checkout/form.html:83
+#: templates/shop/checkout/form.html.py:115
+msgid "Zipcode/Postcode"
+msgstr "Почтовый индекс"
+
+#: templates/shop/checkout/form.html:94
+msgid "Shipping same as billing?"
+msgstr "Информация о доставке такая же, как и об оплате?"
+
+#: templates/shop/checkout/pay_ship.html:11
+msgid "Type of credit card"
+msgstr "Тип кредитной карты"
+
+#: templates/shop/checkout/pay_ship.html:14
+msgid "Credit card number"
+msgstr "Номер кредитной карты"
+
+#: templates/shop/checkout/pay_ship.html:17
+msgid "Expiration date"
+msgstr "Дата завершения действия"
+
+#: templates/shop/checkout/success.html:13
+msgid "Thank you for your order!"
+msgstr "Спасибо за ваш заказ!"
+
+#: templates/shop/checkout/success.html:14
+msgid "Please print out this page as a receipt.  You will also receive an email with this information."
+msgstr "Пожалуйста, распечатайте эту страницу в качестве квитанции об оплате. Вы также получите электронное письмо с этой информацией."
+
+#: templates/shop/checkout/cod/confirm.html:17
+#, python-format
+msgid "This order will be COD for %(order_total)s."
+msgstr "Этот заказ будет оплачен в системе COD на сумму %(order_total)s."
+
+#: templates/shop/checkout/google/confirm.html:11
+msgid "Your payment will be processed through Google Checkout."
+msgstr "Ваш платеж будет обработан через Google Checkout."
+
+#: templates/shop/checkout/google/confirm.html:18
+msgid "Fast checkout through Google"
+msgstr "Быстрое оформление заказа через Google"
+
+#: templates/shop/checkout/paypal/confirm.html:10
+msgid "Your payment will be processed through PayPal."
+msgstr "Ваш платеж будет обработан через PayPal."
+
+#: templates/shop/order_history.html:19
+msgid "Order #"
+msgstr "Заказ №"
+
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
+msgid "Account"
+msgstr "Учетная запись"
+
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
+msgid "Order History"
+msgstr "История заказов"
+
+#: templates/shop/order_history.html:21
+#: templates/shop/pdf/invoice.rml:15
+#: templates/shop/pdf/invoice.rml.py:51
+#: templates/shop/pdf/packing-slip.rml:15
+#: templates/shop/pdf/packing-slip.rml.py:51
+msgid "Date"
+msgstr "Дата"
+
+#: templates/shop/order_history.html:22
+msgid "Items"
+msgstr "Товары"
+
+#: templates/shop/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "Вы пока не совершили заказов."
+
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "Отслеживание заказов"
+
+#: templates/shop/email/contact_us.txt:1
+#, python-format
+msgid "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web contact form."
+msgstr "Сообщение типа \"%(request_type)s\" от %(name)s ( %(email)s ) было отправлено через веб-форму обратной связи."
+
+#: templates/shop/email/order_complete.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Уважаемый %(first_name)s %(last_name)s,"
+
+#: templates/shop/email/order_complete.txt:3
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "Спасибо за ваш заказ в %(shop_name)s."
+
+#: templates/shop/email/order_complete.txt:5
+msgid "Your order is summarized below:"
+msgstr "Ваш заказ приведен ниже:"
+
+#: templates/shop/email/order_complete.txt:67
+msgid "Your order contains products that can be downloaded"
+msgstr "Ваш заказ содержит продукцию, которая может быть скачана"
+
+#: templates/shop/email/order_complete.txt:68
+msgid "Please click the link to being the download"
+msgstr "Пожалуйста, кликните по ссылке, чтобы начать скачивание"
+
+#: templates/shop/email/order_complete.txt:74
+msgid "Regards"
+msgstr "С уважением"
+
+#: templates/shop/email/order_complete.txt:76
+msgid "Store Management"
+msgstr "Администрация магазина"
+
+#: templates/shop/pdf/invoice.rml:5
+msgid "Store Invoice"
+msgstr "Счет-фактура"
+
+#: templates/shop/pdf/invoice.rml:14
+#: templates/shop/pdf/invoice.rml.py:50
+#: templates/shop/pdf/packing-slip.rml:14
+#: templates/shop/pdf/packing-slip.rml.py:50
+msgid "Invoice #"
+msgstr "Счет-фактура №"
+
+#: templates/shop/pdf/invoice.rml:21
+#: templates/shop/pdf/invoice.rml.py:57
+msgid "INVOICE"
+msgstr "СЧЕТ-ФАКТУРА"
+
+#: templates/shop/pdf/invoice.rml:57
+#: templates/shop/pdf/packing-slip.rml:57
+msgid "Page"
+msgstr "Страница"
+
+#: templates/shop/pdf/invoice.rml:116
+#: templates/shop/pdf/packing-slip.rml:116
+msgid "Unit Price"
+msgstr "Цена за единицу"
+
+#: templates/shop/pdf/invoice.rml:153
+#, python-format
+msgid "Payment total %(order_total)s due to:"
+msgstr "Всего оплачено %(order_total)s:"
+
+#: templates/shop/pdf/invoice.rml:158
+msgid "Accounts Receivable"
+msgstr "Получатели"
+
+#: templates/shop/pdf/packing-slip.rml:21
+#: templates/shop/pdf/packing-slip.rml.py:57
+msgid "PACKING SLIP"
+msgstr "УПАКОВОЧНЫЙ ЛИСТ"
+
+#: templates/shop/pdf/packing-slip.rml:156
+#, python-format
+msgid "%(order_total)s was charged to your %(credit_card_type)s card (x%(credit_card_number)s) on %(order_date)s."
+msgstr "%(order_total)s было снято с вашей карты %(credit_card_type)s (x%(credit_card_number)s) %(order_date)s."
+
+#: templates/shop/pdf/packing-slip.rml:162
+msgid "Thank you for your business!"
+msgstr "Спасибо за то, что работаете с нами!"
+

@@ -1,0 +1,218 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2009-03-02 21:36+0300\n"
+"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+
+#: models.py:41
+msgid "State"
+msgstr "Штат"
+
+#: models.py:63
+msgid "Country"
+msgstr "Страна"
+
+#: models.py:6
+msgid "Africa"
+msgstr "Африка"
+
+#: models.py:7
+msgid "North America"
+msgstr "Северная Америка"
+
+#: models.py:8
+msgid "Europe"
+msgstr "Европа"
+
+#: models.py:9
+msgid "Asia"
+msgstr "Азия"
+
+#: models.py:10
+msgid "Oceania"
+msgstr "Океания"
+
+#: models.py:11
+msgid "South America"
+msgstr "Южная Америка"
+
+#: models.py:12
+msgid "Antarctica"
+msgstr "Антарктида"
+
+#: models.py:16
+msgid "Another"
+msgstr "Другое"
+
+#: models.py:17
+msgid "Island"
+msgstr "Остров"
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr "Арондисман"
+
+#: models.py:19
+msgid "Atoll"
+msgstr "Атолл"
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr "Автономный остров"
+
+#: models.py:21
+msgid "Canton"
+msgstr "Кантон"
+
+#: models.py:22
+msgid "Commune"
+msgstr "Коммуна"
+
+#: models.py:23
+msgid "County"
+msgstr "Графство"
+
+#: models.py:24
+msgid "Department"
+msgstr "Департамент"
+
+#: models.py:25
+msgid "Dependency"
+msgstr "Колония"
+
+#: models.py:26
+msgid "District"
+msgstr "Дистрикт"
+
+#: models.py:27
+msgid "Division"
+msgstr "Округ"
+
+#: models.py:28
+msgid "Emirate"
+msgstr "Эмират"
+
+#: models.py:29
+msgid "Governorate"
+msgstr "Административный округ"
+
+#: models.py:30
+msgid "Island council"
+msgstr "Островной округ"
+
+#: models.py:31
+msgid "Island group"
+msgstr "Группа островов"
+
+#: models.py:32
+msgid "Island region"
+msgstr "Островной регион (в Папуа — Новая Гвинея)"
+
+#: models.py:33
+msgid "Kingdom"
+msgstr "Королевство"
+
+#: models.py:34
+msgid "Municipality"
+msgstr "Муниципалитет"
+
+#: models.py:35
+msgid "Parish"
+msgstr "Уезд (в Луизиане)"
+
+#: models.py:36
+msgid "Prefecture"
+msgstr "Префектура"
+
+#: models.py:37
+msgid "Province"
+msgstr "Провинция"
+
+#: models.py:38
+msgid "Region"
+msgstr "Регион"
+
+#: models.py:39
+msgid "Republic"
+msgstr "Республика"
+
+#: models.py:40
+msgid "Sheading"
+msgstr "Уезд (на о-ве Мэн)"
+
+#: models.py:42
+msgid "Subdivision"
+msgstr "Подразделение"
+
+#: models.py:43
+msgid "Subject"
+msgstr "Субьект"
+
+#: models.py:44
+msgid "Territory"
+msgstr "Территория"
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr "Двухбуквенный код ISO"
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr "Официальное название (англ., ЗАГЛАВНЫЕ)"
+
+#: models.py:55
+msgid "Country name"
+msgstr "Название страны"
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr "Трехбуквенный код ISO"
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr "Числовой код ISO"
+
+#: models.py:58
+msgid "Country is active"
+msgstr "Страна активна"
+
+#: models.py:59
+msgid "Continent"
+msgstr "Континент"
+
+#: models.py:60
+#: models.py:87
+msgid "Administrative Area"
+msgstr "Административная зона"
+
+#: models.py:64
+msgid "Countries"
+msgstr "Страны"
+
+#: models.py:82
+msgid "Admin Area name"
+msgstr "Название административной зоны"
+
+#: models.py:83
+msgid "Postal Abbreviation"
+msgstr "Почтовое обозначение"
+
+#: models.py:84
+msgid "Area is active"
+msgstr "Зона активна"
+
+#: models.py:88
+msgid "Administrative Areas"
+msgstr "Административные зоны"
+

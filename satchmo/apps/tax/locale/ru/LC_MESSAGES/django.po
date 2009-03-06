@@ -1,0 +1,93 @@
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"PO-Revision-Date: 2009-03-05 01:44+0300\n"
+"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+
+#: models.py:19
+msgid "Description"
+msgstr "Описание"
+
+#: models.py:26
+msgid "Tax Class"
+msgstr "Тип налога"
+
+#: config.py:6
+msgid "Tax Settings"
+msgstr "Настройки налогообложения"
+
+#: config.py:10
+msgid "Active tax module"
+msgstr "Активные модули налогообложения"
+
+#: config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr "Выберите модуль, сохраните и обновите страницу, чтобы изменить настройки определенных модулей."
+
+#: config.py:13
+msgid "No Tax"
+msgstr "Без налогов"
+
+#: models.py:17
+msgid "Title"
+msgstr "Заголовок"
+
+#: models.py:18
+msgid "Displayed title of this tax."
+msgstr "Отображаемый заголовок данного налога."
+
+#: models.py:20
+msgid "Description of products that would be taxed."
+msgstr "Описание продуктов, которые могут быть обложены налогом."
+
+#: models.py:27
+msgid "Tax Classes"
+msgstr "Типы налогов"
+
+#: models.py:45
+msgid "Percentage"
+msgstr "Процент"
+
+#: models.py:46
+msgid "% tax for this area and type"
+msgstr "% налога для данной зоны и типа"
+
+#: models.py:68
+msgid "You must choose a zone or a country."
+msgstr "Вы должны выбрать зону или страну."
+
+#: models.py:74
+msgid "Tax Rate"
+msgstr "Ставка налогов"
+
+#: models.py:75
+msgid "Tax Rates"
+msgstr "Ставки налогов"
+
+#: modules/area/config.py:5
+msgid "By Country/Area"
+msgstr "По стране/зоне"
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "Процент налога"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "Процент налога"
+
+#: modules/percent/config.py:17
+msgid "Tax Shipping?"
+msgstr "Облагать налогом стоимость доставки?"
+
