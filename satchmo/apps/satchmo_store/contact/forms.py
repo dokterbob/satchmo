@@ -87,13 +87,12 @@ class ContactInfoForm(ProxyContactForm):
                     self._local_only and _('This field is required.') \
                                or _('State is required for your country.'))
             if (country.adminarea_set
-                    .filter(active=True)
-                    .filter(Q(name=data)
-                        |Q(abbrev=data)
-                        |Q(name=data.capitalize())
-                        |Q(abbrev=data.upper())).count() != 1):
+                        .filter(active=True)
+                        .filter(Q(name__iexact=data)|Q(abbrev__iexact=data))
+                        .count() != 1):
                 raise forms.ValidationError(_('Invalid state or province.'))
-        
+        return data
+
                 
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
