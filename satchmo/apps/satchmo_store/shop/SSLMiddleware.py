@@ -43,6 +43,15 @@ views pass through the middleware you can specify the only secure paths and the
 remaining paths can be assumed to be unsecure and handled by the middleware.
 
 This package is inspired by Antonio Cavedoni's SSL Middleware
+
+Satchmo notes:
+This package has also merged the main concepts of Antonio Cavedoni's SSL Middleware, 
+to allow for better integration with other sites, and to easily allow admin pages to
+be secured.
+
+Lastly, we've added an optional "SSL_PORT" to be specified in the settings, for
+unusual server configurations.  If specified, the port will be sent with the
+SSL redirect.
 """
 
 __license__ = "Python"
@@ -54,8 +63,9 @@ from django.http import HttpResponseRedirect, get_host
 from satchmo_store.shop.models import Config
 from satchmo_utils import request_is_secure
 
-SSLPORT=getattr(settings, 'SSL_PORT', None)
+HTTPS_PATHS = getattr(settings, "HTTPS_PATHS", [])
 SSL = 'SSL'
+SSLPORT=getattr(settings, 'SSL_PORT', None)
 
 class SSLRedirect:
     def process_view(self, request, view_func, view_args, view_kwargs):
@@ -64,6 +74,12 @@ class SSLRedirect:
             del view_kwargs[SSL]
         else:
             secure = False
+            
+        if not secure:
+            for path in HTTPS_PATHS:
+                if request.path.startswith("/%s" % path):
+                    secure = True
+                    break
 
         if not secure == request_is_secure(request):
             return self._redirect(request, secure)
