@@ -1,9 +1,8 @@
+from django.db import transaction, DatabaseError
 from django.utils.translation import ugettext_lazy as _
 from livesettings import * 
-import logging
-from django.db import transaction, DatabaseError
+from tax.config import TAX_MODULE
 
-TAX_MODULE = config_get('TAX', 'MODULE')
 TAX_MODULE.add_choice(('tax.modules.area', _('By Country/Area')))
 TAX_GROUP = config_get_group('TAX')
         

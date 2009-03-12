@@ -9,7 +9,7 @@ TWOPLACES = decimal.Decimal('0.01')
 
 def get_tax_processor(order=None, user=None):
     modulename = config_value('TAX','MODULE')
-    mod = load_module(modulename + u'.tax')
+    mod = load_module(modulename + u'.processor')
     return mod.Processor(order=order,user=user)
     
 def round_cents(x):

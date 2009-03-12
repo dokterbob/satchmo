@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
+from tax.config import TAX_MODULE
 
-TAX_MODULE = config_get('TAX', 'MODULE')
 TAX_MODULE.add_choice(('tax.modules.percent', _('Percent Tax')))
 TAX_GROUP = config_get_group('TAX')
 
