@@ -3,6 +3,8 @@
 Signals:
 
  - `order_success`: sent when the balance goes to zero during a save.
+ - `order_cancel_query`: sent to check if an order can be cancelled
+ - `order_cancelled`: sent when order is cancelled (e.g. payment gateway cancels payment)
  - `satchmo_cart_add_complete`: sent when an item has been added to the cart.
  - `satchmo_cart_changed`: sent whenever the cart changes.
  - `satchmo_cartitem_price_query`: sent by the pricing system to allow price
@@ -21,6 +23,8 @@ Signals:
 import django.dispatch
 
 order_success = django.dispatch.Signal()
+order_cancel_query = django.dispatch.Signal()
+order_cancelled = django.dispatch.Signal()
 
 #satchmo_cart_add_complete.send(cart, cart=cart, cartitem=cartitem, form=form, request=request)
 satchmo_cart_add_complete=django.dispatch.Signal()

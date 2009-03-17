@@ -52,6 +52,40 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was successful (Note: this argument is the same as ``sender``)
 
+order_cancel_query
+******************
+
+Sent when an order is about to be cancelled and asks listeners if they allow to do so.
+
+By default, orders in states 'Shipped', 'Completed' and 'Cancelled' are not allowed to be
+cancelled. The default verdict is stored in ``order.is_cancellable`` flag. Listeners can
+modify this flag, according to their needs.
+
+Arguments sent with this signal:
+
+    ``sender``
+        The instance of ``satchmo_store.shop.models.Order`` that is about to be canceleld
+        
+    ``order``
+        The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
+
+order_success
+**************
+
+Sent when an order has been cancelled (it's status already reflects it and has been saved
+to the database).
+
+Arguments sent with this signal:
+
+    ``sender``
+        The instance of ``satchmo_store.shop.models.Order`` that was cancelled
+        
+    ``order``
+        The instance of ``satchmo_store.shop.models.Order`` that was cancelled (Note: this argument is the same as ``sender``)
+
+order_cancel_query
+******************
+
 satchmo_cart_add_complete
 *************************
 

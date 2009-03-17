@@ -521,6 +521,7 @@ ORDER_STATUS = (
     ('Billed', _('Billed')),
     ('Shipped', _('Shipped')),
     ('Complete', _('Complete')),
+    ('Cancelled', _('Cancelled')),
 )
 
 class OrderManager(models.Manager):
@@ -917,6 +918,17 @@ class Order(models.Model):
                 subtype.order_success(self, orderitem)
 
         signals.order_success.send(self, order=self)
+
+    def order_cancel(self):
+        """Ask if the order can be cancelled. By default, do not cancel shipped, completed and
+        already cancelled orders."""
+        self.is_cancellable = self.status not in ('Shipped', 'Completed', 'Cancelled')
+        # listeners can override default flag setting and (dis)allow cancellation
+        signals.order_cancel_query.send(self, order=self)
+        if self.is_cancellable:
+           self.add_status('Cancelled')
+           signals.order_cancelled.send(self, order=self)
+        return self.is_cancellable
 
     def _paid_in_full(self):
         """True if total has been paid"""
