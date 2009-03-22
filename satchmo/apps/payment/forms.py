@@ -1,8 +1,8 @@
 from django import forms
 from django.conf import settings
 from django.template import loader
+from django.utils.translation import ugettext_lazy as _
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 from livesettings import config_value, config_value_safe, config_choice_values, config_get_group
 from satchmo_store.contact.forms import ProxyContactForm, ContactInfoForm
 from satchmo_store.contact.models import Contact
