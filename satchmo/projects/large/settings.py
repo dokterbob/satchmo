@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     'shipping.modules.tieredquantity',
     #'django_extensions',
     'satchmo_ext.tieredpricing',
-    'typogrify',
+    #'typogrify',
     #'debug_toolbar',
     'app_plugins',
     'large.localsite',
