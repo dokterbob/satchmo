@@ -37,7 +37,7 @@
 {% endif %}
 <input type="hidden" name="a3" value="{{ subscription.price }}">
 <input type="hidden" name="p3" value="{{ subscription.product.subscriptionproduct.expire_length }}">
-<input type="hidden" name="t3" value="{{ subscription.product.subscriptionproduct.expire_length|first }}">
+<input type="hidden" name="t3" value="{{ subscription.product.subscriptionproduct.expire_unit }}">
 {% if subscription.product.recurring %}
 <input type="hidden" name="src" value="1">
 {% endif %}
