@@ -833,6 +833,9 @@ class Order(models.Model):
             if adjustment and adjustment.price:
                 baseprice = adjustment.price.price
                 finalprice = adjustment.final_price()
+                #We need to add in any OrderItemDetail price adjustments before we do anything else 
+                baseprice += lineitem.get_detail_price() 
+                finalprice += lineitem.get_detail_price() 
                 if baseprice > finalprice or baseprice != lineitem.unit_price:
                     unitdiscount = (lineitem.discount/lineitem.quantity) + baseprice-finalprice
                     unitdiscount = trunc_decimal(unitdiscount, 2)
@@ -1040,6 +1043,21 @@ class OrderItem(models.Model):
         return self.product.is_shippable
         
     is_shippable = property(fget=_is_shippable)
+    
+    def _has_details(self):
+        """Determine if this specific item has more detail"""
+        return (self.orderitemdetail_set.count() > 0)
+    
+    has_details = property(_has_details)
+
+    def get_detail_price(self):
+        """Get the delta price based on detail modifications"""
+        delta = Decimal("0.000000")
+        if self.has_details:
+            for detail in self.orderitemdetail_set.all():
+                if detail.price_change and detail.value:
+                    delta += detail.price_change
+        return delta
 
     def _sub_total(self):
         if self.discount:
