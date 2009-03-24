@@ -10,7 +10,7 @@
 	satchmo.select_if_one = function(selector, label) {
 		var elt = $(selector);
 		if (elt && elt.length>0 && elt[0].options.length == 2) {
-			log.debug('selecting default ' + label);
+			try { log.debug('selecting default ' + label); } catch(err) {};
 			elt[0].options[1].selected = true;
 		}
 	}

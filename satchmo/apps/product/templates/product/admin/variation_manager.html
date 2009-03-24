@@ -128,7 +128,7 @@
 							var changed = (oldval != newval);
 						}
 						if (changed) {
-							log.debug('Dirty ' + key);		            
+							try { log.debug('Dirty ' + key); } catch(err) {};		            
 							dirty[key] = true;
 							dirty_ids.push(key);
 						}
