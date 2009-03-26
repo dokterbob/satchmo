@@ -754,7 +754,7 @@ class Product(models.Model):
     name = models.CharField(_("Full Name"), max_length=255, blank=False,
         help_text=_("This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."))
     slug = models.SlugField(_("Slug Name"), blank=True,
-        help_text=_("Used for URLs, auto-generated from name if blank"), max_length=80)
+        help_text=_("Used for URLs, auto-generated from name if blank"), max_length=255)
     sku = models.CharField(_("SKU"), max_length=255, blank=True, null=True,
         help_text=_("Defaults to slug if left blank"))
     short_description = models.TextField(_("Short description of product"), help_text=_("This should be a 1 or 2 line description in the default site language for use in product listing screens"), max_length=200, default='', blank=True)
@@ -1955,7 +1955,7 @@ class ProductPriceLookup(models.Model):
     siteid = models.IntegerField()
     key = models.CharField(max_length=60, null=True)
     parentid = models.IntegerField(null=True)
-    productslug = models.CharField(max_length=80)
+    productslug = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=14, decimal_places=6)
     quantity = models.DecimalField(max_digits=18, decimal_places=6)
     active = models.BooleanField()
