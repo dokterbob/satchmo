@@ -155,7 +155,6 @@ to add any pieces of satchmo.
         TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
         TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo_store.shop.context_processors.settings',
                                          'django.core.context_processors.auth',
-                                         'satchmo_ext.recentlist.context_processors.recent_products',
                                          )
 
         INSTALLED_APPS = (
