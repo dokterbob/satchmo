@@ -90,6 +90,14 @@ We can handle it any which way."""),
         help_text= _("Enable random display of featured products on home page"),
         default=False
     ),
+
+    BooleanValue(PRODUCT_GROUP,
+        'TRACK_INVENTORY',
+        description=_("Track inventory levels?"),
+        help_text=_("If no, then inventory will not be tracked for products sold."),
+        default=True
+    ),
+
 )
 
 # --- Load any extra product modules. ---
