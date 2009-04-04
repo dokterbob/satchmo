@@ -8,14 +8,15 @@ from datetime import datetime
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-import keyedcache
 from livesettings import config_value, config_choice_values, SettingNotSet
-from satchmo_store.contact.models import Contact
 from payment.fields import PaymentChoiceCharField, CreditChoiceCharField
+from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import OrderPayment
-import config
 import base64
+import config
+import keyedcache
 import logging
+import satchmo_utils.sslurllib
 
 try:
     from decimal import Decimal
