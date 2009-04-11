@@ -143,9 +143,9 @@ def taxed_discount_price(product, discount):
     
     Ex: product|discount_price:sale
     """
-    price = discount_price(product, discount)
+    price = Untaxed_discount_price(product, discount)
     taxer = satchmo_tax._get_taxprocessor()
-    price = price + taxer.by_price(product.taxClass, price)
+    return price + taxer.by_price(product.taxClass, price)
 
 register.filter('taxed_discount_price', discount_price)
 
