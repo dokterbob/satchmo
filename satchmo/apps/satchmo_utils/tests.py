@@ -1,5 +1,10 @@
 from django.test import TestCase
 from satchmo_utils.numbers import round_decimal, RoundedDecimalError, trunc_decimal
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
+    
 
 class TestRoundedDecimals(TestCase):
     
