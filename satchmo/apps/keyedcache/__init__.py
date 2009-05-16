@@ -4,7 +4,10 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import smart_str
 import cPickle as pickle
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    import md5
 import types
 import logging
 from satchmo_utils import is_string_like, is_list_or_tuple

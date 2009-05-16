@@ -8,7 +8,10 @@ import config
 import datetime
 import logging
 import random
-import sha
+try:
+    from hashlib import sha1 as sha
+except ImportError:
+    import sha
 import signals
 import operator
 import os.path
