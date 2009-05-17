@@ -115,6 +115,8 @@ def get_product(request, product_slug=None, selected_options=(),
     """Basic product view"""
     
     errors = request.session.get('ERRORS', None)
+    if errors is not None:
+        del(request.session['ERRORS'])
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
     except Product.DoesNotExist:
