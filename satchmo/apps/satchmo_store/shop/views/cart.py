@@ -302,7 +302,7 @@ def remove_ajax(request, template="shop/json.html"):
         # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
         if cart and cartitem:
             data['cart_total'] = str(cart.total)
-            data['cart_count'] = str(round_decimal(tempCart.numItems, 2)) 
+            data['cart_count'] = str(round_decimal(cart.numItems, 2)) 
             data['item_id'] = cartitem.id
 
         return render_to_response(template, {'json': JSONEncoder().encode(data)})
