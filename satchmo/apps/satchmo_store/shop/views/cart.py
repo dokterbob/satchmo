@@ -346,7 +346,7 @@ def set_quantity_ajax(request, template="shop/json.html"):
             cartqty = Decimal('0')
 
         data['cart_total'] = carttotal
-        data['cart_count'] = cartqty
+        data['cart_count'] = str(round_decimal(cartqty, 2))
 
         if cartitem:
             itemid = cartitem.id
@@ -358,7 +358,7 @@ def set_quantity_ajax(request, template="shop/json.html"):
             price = "0.00"
 
         data['item_id'] = itemid
-        data['item_qty'] = itemqty
+        data['item_qty'] = str(round_decimal(itemqty, 2))
         data['item_price'] = price
 
     encoded = JSONEncoder().encode(data)
