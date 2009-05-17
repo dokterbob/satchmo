@@ -2,7 +2,7 @@
 <Service>{{ config.ship_type }}</Service>
 {% ifequal config.ship_type "FIRST CLASS" %}<FirstClassMailType>{{ type }}</FirstClassMailType>{% endifequal %}
 <ZipOrigination>{{ config.shop_details.postal_code}}</ZipOrigination>
-<ZipDestination>{{ contact.shipping_address.postal_code}}</ZipDestination>
+<ZipDestination>{{ contact.shipping_address.postal_code|slice:":5"}}</ZipDestination>
 <Pounds>{{ weight|pounds }}</Pounds>
 <Ounces>{{ weight|ounces }}</Ounces>
 <Container>{{ configcontainer }}</Container>
