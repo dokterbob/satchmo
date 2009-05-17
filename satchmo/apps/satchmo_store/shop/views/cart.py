@@ -305,7 +305,7 @@ def remove_ajax(request, template="shop/json.html"):
             data['cart_count'] = str(round_decimal(cart.numItems, 2)) 
             data['item_id'] = cartitem.id
 
-        return render_to_response(template, {'json': JSONEncoder().encode(data)})
+    return render_to_response(template, {'json': JSONEncoder().encode(data)})
 
 def set_quantity(request):
     """Set the quantity for a cart item.
