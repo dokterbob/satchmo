@@ -157,21 +157,21 @@ class ShopTest(TestCase):
         # You should not be able to add a product with a non-valid decimal quantity.
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5a'})
+
+        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-
-        response = self.client.get(url)
-        self.assertContains(response, "Invalid quantity.", count=1, status_code=200)
+        self.assertEqual(err, "Invalid quantity.")
 
     def test_cart_adding_errors_less_zero(self):
         # You should not be able to add a product with a quantity less than zero.
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'neat-book', '3': 'soft', 'quantity': '0'})
+
+        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-
-        response = self.client.get(url)
-        self.assertContains(response, "Please enter a positive number.", count=1, status_code=200)
+        self.assertEqual(err, "Please enter a positive number.")
 
     def test_cart_adding_errors_out_of_stock(self):
         # If no_stock_checkout is False, you should not be able to order a
@@ -180,11 +180,11 @@ class ShopTest(TestCase):
         setting.update(False)
         response = self.client.post(prefix + '/cart/add/',
             {'productname': 'neat-book', '3': 'soft', 'quantity': '1'})
+
+        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-
-        response = self.client.get(url)            
-        self.assertContains(response, "&#39;A really neat book (Soft cover)&#39; is out of stock.", count=1, status_code=200)
+        self.assertEqual(err, "'A really neat book (Soft cover)' is out of stock.")
 
     def test_product(self):
         # Test for an easily missed reversion. When you lookup a productvariation product then
@@ -726,11 +726,13 @@ class DiscountAmountTest(TestCase):
         shipcost = self.order.shipping_cost
         shiptotal = self.order.shipping_sub_total
         discount = self.order.discount
+        ship_discount = self.order.shipping_discount
 
         self.assertEqual(sub_total, Decimal('11.00'))
         self.assertEqual(price, Decimal('1.00'))
         self.assertEqual(shipcost, Decimal('6.00'))
         self.assertEqual(shiptotal, Decimal('0.00'))
+        self.assertEqual(ship_discount, Decimal('6.00'))
         self.assertEqual(discount, Decimal('16.00'))
 
     def testApplySmallAmountFreeShip(self):
@@ -826,7 +828,18 @@ class DiscountAmountTest(TestCase):
         self.assertEqual(shiptotal, Decimal('0.00'))
         self.assertEqual(discount, Decimal('7.20'))
 
-def make_test_order(country, state, include_non_taxed=False, site=None):
+def make_order_payment(order, paytype=None, amount=None):
+    if not paytype:
+        paytype = config_value('PAYMENT', 'MODULES')[0]
+    
+    if not amount:
+        amount = order.balance
+    
+    pmt = OrderPayment(order=order, payment=paytype, amount=amount)
+    pmt.save()
+    return pmt
+
+def make_test_order(country, state, include_non_taxed=False, site=None, price=None, quantity=5):
     if not site:
         site = Site.objects.get_current()
     c = Contact(first_name="Tax", last_name="Tester", 
@@ -844,9 +857,10 @@ def make_test_order(country, state, include_non_taxed=False, site=None):
     o.save()
     
     p = Product.objects.get(slug='dj-rocks-s-b')
-    price = p.unit_price
-    item1 = OrderItem(order=o, product=p, quantity='5',
-        unit_price=price, line_item_price=price*5)
+    if not price:
+        price = p.unit_price
+    item1 = OrderItem(order=o, product=p, quantity=quantity,
+        unit_price=price, line_item_price=price*quantity)
     item1.save()
     
     if include_non_taxed:

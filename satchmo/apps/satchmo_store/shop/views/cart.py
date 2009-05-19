@@ -431,5 +431,6 @@ def product_from_post(productslug, formdata):
 
 def _product_error(request, product, msg):
     request.session['ERRORS'] = msg
+    log.debug('Product Error: %s', msg)
     return HttpResponseRedirect(product.get_absolute_url())
 

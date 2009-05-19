@@ -125,4 +125,8 @@ def round_decimal(val='0', places=None, roundfactor='0', normalize=True):
     
 def trunc_decimal(val, places):
     """Legacy compatibility, rounds the way the old satchmo 0.8.1 used to round."""
-    return round_decimal(val=val, places=places, roundfactor='0.01', normalize=True)
+    if val < 0:
+        roundfactor = "-0.01"
+    else:
+        roundfactor = "0.01"
+    return round_decimal(val=val, places=places, roundfactor=roundfactor, normalize=True)

@@ -10,8 +10,22 @@ from keyedcache import cache_delete
 from livesettings import config_get
 from satchmo_store.contact.models import AddressBook, Contact
 from product.models import Product
-from satchmo_store.shop.models import Order, OrderItem
-from satchmo_store.shop.tests import make_test_order
+from satchmo_store.shop.models import Order, OrderItem, OrderPayment
+from satchmo_store.shop.tests import make_test_order, make_order_payment
+import logging
+log = logging.getLogger('tax.test')
+
+def _set_percent_taxer(percent):
+    
+    cache_delete()
+    tax = config_get('TAX','MODULE')
+    tax.update('tax.modules.percent')
+    pcnt = config_get('TAX', 'PERCENT')
+    pcnt.update(percent)
+    shp = config_get('TAX', 'TAX_SHIPPING')
+    shp.update(False)
+    
+    return shp
 
 class TaxTest(TestCase):
     
@@ -113,14 +127,7 @@ class TaxTest(TestCase):
 
     def testPercent(self):
         """Test percent tax without shipping"""
-        cache_delete()
-        tax = config_get('TAX','MODULE')
-        tax.update('tax.modules.percent')
-        pcnt = config_get('TAX', 'PERCENT')
-        pcnt.update('10')
-        shp = config_get('TAX', 'TAX_SHIPPING')
-        shp.update(False)
-        
+        shp = _set_percent_taxer('10')
         order = make_test_order('US', 'TX')
         
         order.recalculate_total(save=False)
@@ -141,12 +148,7 @@ class TaxTest(TestCase):
         
     def testPercentShipping(self):
         """Test percent tax with shipping"""
-        cache_delete()
-        tax = config_get('TAX','MODULE')
-        tax.update('tax.modules.percent')
-        pcnt = config_get('TAX', 'PERCENT')
-        pcnt.update('10')
-        shp = config_get('TAX', 'TAX_SHIPPING')
+        shp = _set_percent_taxer('10')
         shp.update(False)
 
         order = make_test_order('US', 'TX')
@@ -176,5 +178,40 @@ class TaxTest(TestCase):
         self.assertEqual(tship.tax, Decimal('1.00'))
         self.assertEqual(tship.description, 'Shipping')
         
+    def testFractionalPercentShipping(self):
+        """Test proper handling of taxes when using a fractional percent tax.  This can cause
+        situations where the total is xx.xxxxx, the payment processor charges xx.xx, 
+        leaving 00.00xxxx remaining."""
         
+        log.debug('fractionalpercent')        
+        shp = _set_percent_taxer('12.254')
+        log.debug('making order')
+        order = make_test_order('US', 'TX')
+        order.recalculate_total(save=False)
+        price = order.total
+        tax = order.tax
+        
+        self.assertEqual(tax, Decimal('12.254'))
+        self.assertEqual(order.balance, Decimal('122.26'))
+        
+        make_order_payment(order, amount=Decimal('122.26'))
+        
+        self.assertEqual(order.balance, Decimal("0.00"))
+        self.assert_(order.paid_in_full)
+
+        # try with a known bad case - from email
+        shp = _set_percent_taxer('12.25')
+        order = make_test_order('US', 'TX', price=Decimal('209.90'), quantity=1)
+        order.recalculate_total(save=False)
+        price = order.total
+        tax = order.tax
+        
+        self.assertEqual(tax, Decimal('25.71275'))
+        self.assertEqual(order.total, Decimal('245.61275'))
+        self.assertEqual(order.balance, Decimal('245.62'))
+        
+        make_order_payment(order, amount=Decimal('245.62'))
+        
+        #self.assertEqual(order.balance, Decimal("0.00"))
+        self.assert_(order.paid_in_full)
         

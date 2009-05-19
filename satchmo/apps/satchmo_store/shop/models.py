@@ -26,6 +26,7 @@ from livesettings import ConfigurationSettings, config_value, config_choice_valu
 from payment.fields import PaymentChoiceCharField
 from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price, get_product_quantity_adjustments
 from satchmo_store.contact.models import Contact
+from satchmo_utils.fields import CurrencyField
 from satchmo_utils.numbers import trunc_decimal
 from shipping.fields import ShippingChoiceCharField
 from tax.utils import get_tax_processor
@@ -497,7 +498,8 @@ class CartItemDetails(models.Model):
     cartitem = models.ForeignKey(CartItem, related_name='details', )
     value = models.TextField(_('detail'))
     name = models.CharField(_('name'), max_length=100)
-    price_change = models.DecimalField(_("Item Detail Price Change"), max_digits=6, decimal_places=2, blank=True, null=True)
+    price_change = CurrencyField(_("Item Detail Price Change"), max_digits=6, 
+        decimal_places=2, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
 
@@ -582,13 +584,13 @@ class Order(models.Model):
     bill_postal_code = models.CharField(_("Zip Code"), max_length=30, blank=True)
     bill_country = models.CharField(_("Country"), max_length=2, blank=True)
     notes = models.TextField(_("Notes"), blank=True, null=True)
-    sub_total = models.DecimalField(_("Subtotal"),
-        max_digits=18, decimal_places=10, blank=True, null=True)
-    total = models.DecimalField(_("Total"),
-        max_digits=18, decimal_places=10, blank=True, null=True)
+    sub_total = CurrencyField(_("Subtotal"),
+        max_digits=18, decimal_places=10, blank=True, null=True, display_decimal=4)
+    total = CurrencyField(_("Total"),
+        max_digits=18, decimal_places=10, blank=True, null=True, display_decimal=4)
     discount_code = models.CharField(_("Discount Code"), max_length=20, blank=True, null=True,
         help_text=_("Coupon Code"))
-    discount = models.DecimalField(_("Discount amount"),
+    discount = CurrencyField(_("Discount amount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
     method = models.CharField(_("Order method"),
         choices=ORDER_CHOICES, max_length=50, blank=True)
@@ -598,11 +600,11 @@ class Order(models.Model):
         max_length=50, blank=True, null=True)
     shipping_model = ShippingChoiceCharField(_("Shipping Models"),
         max_length=30, blank=True, null=True)
-    shipping_cost = models.DecimalField(_("Shipping Cost"),
+    shipping_cost = CurrencyField(_("Shipping Cost"),
         max_digits=18, decimal_places=10, blank=True, null=True)
-    shipping_discount = models.DecimalField(_("Shipping Discount"),
+    shipping_discount = CurrencyField(_("Shipping Discount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
-    tax = models.DecimalField(_("Tax"),
+    tax = CurrencyField(_("Tax"),
         max_digits=18, decimal_places=10, blank=True, null=True)
     time_stamp = models.DateTimeField(_("Timestamp"), blank=True, null=True)
     status = models.CharField(_("Status"), max_length=20, choices=ORDER_STATUS,
@@ -685,7 +687,7 @@ class Order(models.Model):
     def _balance(self):
         if self.total is None:
             self.force_recalculate_total(save=True)
-        return self.total-self.balance_paid
+        return trunc_decimal(self.total-self.balance_paid, 2)
 
     balance = property(fget=_balance)
 
@@ -826,6 +828,8 @@ class Order(models.Model):
             lid = lineitem.id
             if lid in discounts:
                 lineitem.discount = discounts[lid]
+                total_discount += lineitem.discount
+                #log.debug('total_discount (calc): %s', total_discount)
             else:
                 lineitem.discount = zero
             # now double check against other discounts, such as tiered discounts
@@ -841,6 +845,7 @@ class Order(models.Model):
                     unitdiscount = trunc_decimal(unitdiscount, 2)
                     linediscount = unitdiscount * lineitem.quantity
                     total_discount += linediscount
+                    #log.debug('total_discount (line): %s', total_discount)
                     fullydiscounted = (baseprice - unitdiscount) * lineitem.quantity
                     lineitem.unit_price = baseprice
                     lineitem.discount = linediscount
@@ -863,6 +868,7 @@ class Order(models.Model):
         shipdiscount = shipadjust.total_adjustment()
         self.shipping_discount = shipdiscount
         total_discount += shipdiscount
+        #log.debug('total_discount (+ship): %s', total_discount)
 
         self.discount = total_discount
 
@@ -935,7 +941,7 @@ class Order(models.Model):
 
     def _paid_in_full(self):
         """True if total has been paid"""
-        return self.balance <= 0
+        return self.balance == Decimal('0.00')
     paid_in_full = property(fget=_paid_in_full)
 
     def _has_downloads(self):
@@ -1019,17 +1025,17 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, verbose_name=_("Order"))
     product = models.ForeignKey(Product, verbose_name=_("Product"))
     quantity = models.DecimalField(_("Quantity"),  max_digits=18,  decimal_places=6)
-    unit_price = models.DecimalField(_("Unit price"),
+    unit_price = CurrencyField(_("Unit price"),
         max_digits=18, decimal_places=10)
-    unit_tax = models.DecimalField(_("Unit tax"),
+    unit_tax = CurrencyField(_("Unit tax"),
         max_digits=18, decimal_places=10, null=True)
-    line_item_price = models.DecimalField(_("Line item price"),
+    line_item_price = CurrencyField(_("Line item price"),
         max_digits=18, decimal_places=10)
-    tax = models.DecimalField(_("Line item tax"),
+    tax = CurrencyField(_("Line item tax"),
         max_digits=18, decimal_places=10, null=True)
     expire_date = models.DateField(_("Subscription End"), help_text=_("Subscription expiration date."), blank=True, null=True)
     completed = models.BooleanField(_("Completed"), default=False)
-    discount = models.DecimalField(_("Line item discount"),
+    discount = CurrencyField(_("Line item discount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
 
     def __unicode__(self):
@@ -1104,7 +1110,7 @@ class OrderItemDetail(models.Model):
     item = models.ForeignKey(OrderItem, verbose_name=_("Order Item"), )
     name = models.CharField(_('Name'), max_length=100)
     value = models.CharField(_('Value'), max_length=255)
-    price_change = models.DecimalField(_("Price Change"), max_digits=18, decimal_places=10, blank=True, null=True)
+    price_change = CurrencyField(_("Price Change"), max_digits=18, decimal_places=10, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
 
@@ -1194,7 +1200,7 @@ class OrderStatus(models.Model):
 class OrderPaymentBase(models.Model):
     payment = PaymentChoiceCharField(_("Payment Method"),
         max_length=25, blank=True)
-    amount = models.DecimalField(_("amount"), 
+    amount = CurrencyField(_("amount"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
     time_stamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
@@ -1333,7 +1339,7 @@ class OrderTaxDetail(models.Model):
     order = models.ForeignKey(Order, related_name="taxes")
     method = models.CharField(_("Model"), max_length=50, )
     description = models.CharField(_("Description"), max_length=50, blank=True)
-    tax = models.DecimalField(_("Tax"), 
+    tax = CurrencyField(_("Tax"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
 
     def __unicode__(self):

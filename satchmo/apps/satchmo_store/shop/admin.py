@@ -1,7 +1,8 @@
 from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderAuthorization, OrderVariable, OrderTaxDetail
-from satchmo_utils.admin import AutocompleteAdmin
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
+from satchmo_utils.admin import AutocompleteAdmin
+from satchmo_utils.fields import CurrencyField
 
 class CartItem_Inline(admin.TabularInline):
     model = CartItem
@@ -41,6 +42,7 @@ class OrderItem_Inline(admin.TabularInline):
 class OrderItemDetail_Inline(admin.TabularInline):
     model = OrderItemDetail
     extra = 3
+        
 
 class OrderStatus_Inline(admin.StackedInline):
     model = OrderStatus
@@ -69,6 +71,7 @@ class OrderOptions(AutocompleteAdmin):
     related_search_fields = {'contact': ('first_name', 'last_name', 'email')} 
     related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, OrderTaxDetail_Inline]
+    
 
 class OrderItemOptions(admin.ModelAdmin):
     inlines = [OrderItemDetail_Inline]
@@ -79,6 +82,7 @@ class OrderPaymentOptions(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('order', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
     raw_id_fields = ['order']
+    
 
 class OrderAuthorizationOptions(OrderPaymentOptions):
     list_display = ['id', 'order', 'capture', 'payment', 'amount_total', 'time_stamp']

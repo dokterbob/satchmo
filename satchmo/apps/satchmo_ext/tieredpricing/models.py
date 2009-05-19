@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from product.models import Product, Price, PriceAdjustment
 from product import signals
+from satchmo_utils.fields import CurrencyField
 from threaded_multihost import threadlocals
 import datetime
 import logging
@@ -72,7 +73,7 @@ class TieredPrice(models.Model):
     """
     pricingtier = models.ForeignKey(PricingTier, related_name="tieredprices")
     product = models.ForeignKey(Product, related_name="tieredprices")
-    price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, )
+    price = CurrencyField(_("Price"), max_digits=14, decimal_places=6, )
     quantity = models.DecimalField(_("Discount Quantity"), max_digits=18, decimal_places=6,  default='1', help_text=_("Use this price only for this quantity or higher"))
     expires = models.DateField(_("Expires"), null=True, blank=True)
     

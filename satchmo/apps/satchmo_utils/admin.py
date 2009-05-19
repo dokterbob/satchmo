@@ -184,4 +184,5 @@ class AutocompleteAdmin(admin.ModelAdmin):
                     self.related_search_fields[db_field.name],
                     self.related_string_functions.get(db_field.name)
                     )
-        return super(AutocompleteAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        field = super(AutocompleteAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        return field

@@ -29,6 +29,7 @@ from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 from l10n.utils import moneyfmt
 from livesettings import config_value, SettingNotSet, config_value_safe
 from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, add_month
+from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
 
@@ -397,7 +398,7 @@ class Discount(models.Model):
     description = models.CharField(_("Description"), max_length=100)
     code = models.CharField(_("Discount Code"), max_length=20, unique=True,
         help_text=_("Coupon Code"))
-    amount = models.DecimalField(_("Discount Amount"), decimal_places=2,
+    amount = CurrencyField(_("Discount Amount"), decimal_places=2,
         max_digits=4, blank=True, null=True, 
         #validator_list=[amount_validator],
         help_text=_("Enter absolute discount amount OR percentage."))
@@ -411,7 +412,7 @@ class Discount(models.Model):
         blank=True, null=True, help_text=_('Not implemented.'))
     numUses = models.IntegerField(_("Number of times already used"),
         blank=True, null=True, help_text=_('Not implemented.'))
-    minOrder = models.DecimalField(_("Minimum order value"),
+    minOrder = CurrencyField(_("Minimum order value"),
         decimal_places=2, max_digits=6, blank=True, null=True)
     startDate = models.DateField(_("Start Date"))
     endDate = models.DateField(_("End Date"))
@@ -666,7 +667,7 @@ class Option(models.Model):
     option_group = models.ForeignKey(OptionGroup)
     name = models.CharField(_("Display value"), max_length=50, )
     value = models.CharField(_("Stored value"), max_length=50)
-    price_change = models.DecimalField(_("Price Change"), null=True, blank=True,
+    price_change = CurrencyField(_("Price Change"), null=True, blank=True,
         max_digits=14, decimal_places=6,
         help_text=_("This is the price differential for this option."))
     sort_order = models.IntegerField(_("Sort Order"), default=0)
@@ -1243,7 +1244,7 @@ class CustomTextField(models.Model):
         related_name='custom_text_fields')
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."), default=0)
-    price_change = models.DecimalField(_("Price Change"), max_digits=14, 
+    price_change = CurrencyField(_("Price Change"), max_digits=14, 
         decimal_places=6, blank=True, null=True)
 
     def save(self, force_insert=False, force_update=False):
@@ -1623,7 +1624,7 @@ class Trial(models.Model):
     billing periods as you wish.
     """
     subscription = models.ForeignKey(SubscriptionProduct)
-    price = models.DecimalField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, )
+    price = CurrencyField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, )
     expire_length = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle.  Leave empty if product does not have a trial."), null=True, blank=True)
 
     def __unicode__(self):
@@ -2007,7 +2008,7 @@ class Price(models.Model):
     that's still below the user specified (IE: ordered) quantity, that matches a given product.
     """
     product = models.ForeignKey(Product)
-    price = models.DecimalField(_("Price"), max_digits=14, decimal_places=6, )
+    price = CurrencyField(_("Price"), max_digits=14, decimal_places=6, )
     quantity = models.DecimalField(_("Discount Quantity"), max_digits=18, 
         decimal_places=6, default='1.0', 
         help_text=_("Use this price only for this quantity or higher"))
