@@ -7,7 +7,9 @@ import cPickle as pickle
 try:
     from hashlib import md5
 except ImportError:
-    import md5
+    import md5 as md5_old
+    md5 = md5_old.new
+
 import types
 import logging
 from satchmo_utils import is_string_like, is_list_or_tuple
@@ -260,7 +262,7 @@ def cache_key(*keys, **pairs):
     
 def md5_hash(obj):
     pickled = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
-    return md5.new(pickled).hexdigest()
+    return md5(pickled).hexdigest()
 
 
 def is_memcached_backend():
