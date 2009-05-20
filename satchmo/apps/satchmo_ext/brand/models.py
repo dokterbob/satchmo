@@ -57,7 +57,7 @@ class Brand(models.Model, TranslatedObjectMixin):
         return self.has_products() or self.has_categories()
 
     def has_products(self):
-        return self.active_products().count > 0
+        return self.active_products().count() > 0
             
     def __unicode__(self):
         return u"%s" % self.slug
