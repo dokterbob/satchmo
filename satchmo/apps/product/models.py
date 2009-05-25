@@ -1287,7 +1287,7 @@ class ConfigurableProduct(models.Model):
     option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
     create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
 
-    def __init__self(*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(ConfigurableProduct, self).__init__(*args, **kwargs)
 
     def _get_subtype(self):
