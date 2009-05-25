@@ -6,7 +6,7 @@ from django.template import RequestContext
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.signals import order_success
 from product.models import Product
@@ -71,12 +71,19 @@ def wishlist_add_ajax(request, template="shop/json.html"):
         product, details = product_from_post(productslug, formdata)
 
     except (Product.DoesNotExist, MultiValueDictKeyError):
-        log.warn("Could not find product: %s", productname)
+        log.warn("Could not find product: %s", productslug)
         product = None
 
     if not product:
         data['errors'].append(('product', _('The product you have requested does not exist.')))
 
+        try:
+            contact = Contact.objects.from_request(request)
+        except Contact.DoesNotExist:
+            log.warn("Could not find contact")
+        
+        if not contact:
+            data['errors'].append(('contact', _('The contact associated with this request does not exist.')))
     else:
         data['id'] = product.id
         data['name'] = product.translated_name()
@@ -87,7 +94,7 @@ def wishlist_add_ajax(request, template="shop/json.html"):
     else:
        data['results'] = _('Error')
 
-    encoded = simplejson.dumps(data)
+    encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     log.debug('WISHLIST AJAX: %s', data)
     
@@ -128,7 +135,7 @@ def wishlist_remove_ajax(request, template="shop/json.html"):
         'success' : success,
         'wishlist_message' : msg
     }
-    encoded = simplejson.dumps(data)
+    encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)
     
     return render_to_response(template, {'json' : encoded})
