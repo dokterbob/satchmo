@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from product.models import Product, Price, PriceAdjustment
+from product.models import Product, Price, PriceAdjustment, PriceAdjustmentCalc
 from product import signals
 from satchmo_utils.fields import CurrencyField
 from threaded_multihost import threadlocals
