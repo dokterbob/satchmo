@@ -1203,7 +1203,7 @@ class OrderPaymentBase(models.Model):
     amount = CurrencyField(_("amount"), 
         max_digits=18, decimal_places=10, blank=True, null=True)
     time_stamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
-    transaction_id = models.CharField(_("Transaction ID"), max_length=25, blank=True, null=True)
+    transaction_id = models.CharField(_("Transaction ID"), max_length=45, blank=True, null=True)
     details = models.CharField(_("Details"), max_length=255, blank=True, null=True)
     reason_code = models.CharField(_('Reason Code'),  max_length=255, blank=True, null=True)
 
