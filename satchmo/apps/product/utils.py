@@ -64,7 +64,7 @@ def productvariation_details(product, include_tax, user, create=False):
 
     if include_tax:
         from tax.utils import get_tax_processor
-        taxer = get_tax_processor(user)
+        taxer = get_tax_processor(user=user)
         tax_class = product.taxClass
 
     details = {'SALE' : use_discount}
@@ -121,7 +121,8 @@ def productvariation_details(product, include_tax, user, create=False):
         if include_tax:
             tax_price = taxer.by_price(tax_class, price) + price
             detail['TAXED'][qtykey] = moneyfmt(tax_price, curr=curr)
-            detail['TAXED_SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage), curr=curr)
+            if use_discount:
+                detail['TAXED_SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage), curr=curr)
                 
     return details
     
