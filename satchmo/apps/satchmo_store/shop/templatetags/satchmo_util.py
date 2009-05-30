@@ -172,7 +172,7 @@ def satchmo_category_search_form(category=None):
     }
 register.inclusion_tag("shop/_search.html", takes_context=False)(satchmo_category_search_form)
 
-def satchmo_language_selection_form():
+def satchmo_language_selection_form(context):
     """
     Display the set language form, if enabled in shop settings.
     """
@@ -189,13 +189,15 @@ def satchmo_language_selection_form():
 
     else:
         url = ""
-        
+    
+    media_url = context.get('media_url', None)    
     return {
         'enabled' : enabled,
         'set_language_url' : url,
         'languages' : languages,
+        'media_url' : media_url,
     }
-register.inclusion_tag("l10n/_language_selection_form.html", takes_context=False)(satchmo_language_selection_form)
+register.inclusion_tag("l10n/_language_selection_form.html", takes_context=True)(satchmo_language_selection_form)
 
 def satchmo_search_form():
     """
