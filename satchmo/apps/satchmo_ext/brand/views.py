@@ -52,7 +52,7 @@ def brand_category_page(request, brandname, catname):
         raise Http404(_('Brand "%s" does not exist') % brandname)
         
     except BrandCategory.DoesNotExist:
-        raise Http404(_('No category "%s" in brand "%s"') % (catname, brandname))
+        raise Http404(_('No category "%{category}s" in brand "%{brand}s"').format(category=catname, brand=brandname))
         
     products = list(cat.active_products())
     sale = find_best_auto_discount(products)
