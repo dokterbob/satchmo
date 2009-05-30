@@ -997,11 +997,11 @@ class Product(models.Model):
         return None
 
     def smart_attr(self, attr):
-        """Retrieve an attribute, or its parent's attribute if it is null.
+        """Retrieve an attribute, or its parent's attribute if it is null or blank.
         Ex: to get a weight.  obj.smart_attr('weight')"""
 
         val = getattr(self, attr)
-        if val is None:
+        if val is None or val == "":
             for subtype_name in self.get_subtypes():
                 subtype = getattr(self, subtype_name.lower())
 
