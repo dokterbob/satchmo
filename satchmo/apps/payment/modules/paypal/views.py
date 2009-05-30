@@ -10,6 +10,10 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from sys import exc_info
 from traceback import format_exception
+try:
+    from decimal import Decimal
+except:
+    from django.utils._decimal import Decimal
 
 from livesettings import config_get_group, config_value 
 from satchmo_store.shop.models import Order, OrderPayment
@@ -72,7 +76,7 @@ def confirm_info(request):
     order_items = order.orderitem_set.all()
     for item in order_items:
         if item.product.is_subscription:
-            recurring = {'product':item.product, 'price':item.product.price_set.all()[0].price,}
+            recurring = {'product':item.product, 'price':item.product.price_set.all()[0].price.quantize(Decimal('.01')),}
             trial0 = recurring['product'].subscriptionproduct.get_trial_terms(0)
             if len(order_items) > 1 or trial0 is not None or recurring['price'] < order.balance:
                 recurring['trial1'] = {'price': order.balance,}
