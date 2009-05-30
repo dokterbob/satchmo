@@ -33,7 +33,7 @@ def untaxed_sale_price(product):
     
     return price
 
-register.filter('untaxed_sale_price', sale_price)
+register.filter('untaxed_sale_price', untaxed_sale_price)
 
 def taxed_sale_price(product):
     """Returns the product unit price with the best auto discount applied and taxes included."""
@@ -42,7 +42,7 @@ def taxed_sale_price(product):
     price = price + taxer.by_price(product.taxClass, price)
     return price
 
-register.filter('taxed_sale_price', sale_price)
+register.filter('taxed_sale_price', taxed_sale_price)
 
 def discount_cart_total(cart, discount):
     """Returns the discounted total for this cart, with tax if that is the default."""
@@ -61,7 +61,7 @@ def untaxed_discount_cart_total(cart, discount):
         total += untaxed_discount_line_total(item, discount)
     return total
         
-register.filter('untaxed_discount_cart_total', discount_cart_total)
+register.filter('untaxed_discount_cart_total', untaxed_discount_cart_total)
 
 def taxed_discount_cart_total(cart, discount):
     """Returns the discounted total for this cart with taxes included"""
@@ -72,7 +72,7 @@ def taxed_discount_cart_total(cart, discount):
         
     return total
         
-register.filter('taxed_discount_cart_total', discount_cart_total)
+register.filter('taxed_discount_cart_total', taxed_discount_cart_total)
 
 def discount_line_total(cartitem, discount):
     """Returns the discounted line total for this cart item, including tax if that is the default."""
@@ -92,7 +92,7 @@ def untaxed_discount_line_total(cartitem, discount):
     
     return price
         
-register.filter('untaxed_discount_line_total', discount_line_total)
+register.filter('untaxed_discount_line_total', untaxed_discount_line_total)
 
 def taxed_discount_line_total(cartitem, discount):
     """Returns the discounted line total for this cart item with taxes included."""
@@ -102,7 +102,7 @@ def taxed_discount_line_total(cartitem, discount):
     
     return price
         
-register.filter('taxed_discount_line_total', discount_line_total)
+register.filter('taxed_discount_line_total', taxed_discount_line_total)
 
 def discount_price(product, discount):
     """Returns the product price with the discount applied, including tax if that is the default.
@@ -129,7 +129,7 @@ def untaxed_discount_price(product, discount):
     else:
         return up
 
-register.filter('untaxed_discount_price', discount_price)
+register.filter('untaxed_discount_price', untaxed_discount_price)
 
 def taxed_discount_price(product, discount):
     """Returns the product price with the discount applied, and taxes included.
@@ -140,7 +140,7 @@ def taxed_discount_price(product, discount):
     taxer = satchmo_tax._get_taxprocessor()
     return price + taxer.by_price(product.taxClass, price)
 
-register.filter('taxed_discount_price', discount_price)
+register.filter('taxed_discount_price', taxed_discount_price)
 
 def discount_ratio(discount):
     """Returns the discount as a ratio, making sure that the percent is under 1"""
@@ -174,7 +174,7 @@ def untaxed_discount_saved(product, discount):
     else:
         return Decimal('0.00')
 
-register.filter('untaxed_discount_saved', discount_saved)
+register.filter('untaxed_discount_saved', untaxed_discount_saved)
 
 def taxed_discount_saved(product, discount):
     """Returns the amount saved by the discount, after applying taxes."""
@@ -188,4 +188,4 @@ def taxed_discount_saved(product, discount):
     else:
         return Decimal('0.00')
 
-register.filter('taxed_discount_saved', discount_saved)
+register.filter('taxed_discount_saved', taxed_discount_saved)
