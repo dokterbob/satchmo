@@ -34,27 +34,27 @@ class Processor(object):
             country = self.order.ship_country
             area = self.order.ship_state
         
+            if country:
+                try:
+                    country = Country.objects.get(iso2_code__exact=country)
+                except Country.DoesNotExist:
+                    log.info("Couldn't find Country from string: %s", country)
+                    country = None
+        
         elif self.user and self.user.is_authenticated():
             try:
                 contact = Contact.objects.get(user=self.user)
                 try:
-                    area = contact.state
+                    area = contact.shipping_address.state
                 except AttributeError:
                     pass
                 try:
-                    country = contact.country
+                    country = contact.shipping_address.country
                 except AttributeError:
                     pass
 
             except Contact.DoesNotExist:
                 pass
-        
-        if country:
-            try:
-                country = Country.objects.get(iso2_code__exact=country)
-            except Country.DoesNotExist:
-                log.info("Couldn't find Country from string: %s", country)
-                country = None
 
         if not country:
             from satchmo_store.shop.models import Config
