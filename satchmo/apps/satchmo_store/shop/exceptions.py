@@ -9,7 +9,11 @@ class CartAddProhibited(Exception):
     """
     
     def __init__(self, product, message):
-        self.product, self.message = product, message
+        self.product, self._message = product, message
+        
+    def _get_message(self):
+        return self._message
+    message = property(_get_message)
 
 class OutOfStockError(CartAddProhibited):
 
