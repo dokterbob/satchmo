@@ -11,7 +11,7 @@
 #   could be probably used for SubscriptionProducts. This module doesn't support it.
 #
 from django.core import urlresolvers
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.views.decorators.cache import never_cache
 from django.template import RequestContext
