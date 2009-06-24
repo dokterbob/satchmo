@@ -6,10 +6,10 @@ from l10n.utils import moneyfmt
 from models import GiftCertificate
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 
-class PaymentProcessor(object):
+class PaymentProcessor(BasePaymentProcessor):
 
     def __init__(self, settings):
-        super(PaymentProcessor, self).__init__(self, 'giftcertificate', settings)
+        super(PaymentProcessor, self).__init__('giftcertificate', settings)
 
     def capture_payment(self, testing=False, order=None, amount=NOTSET):
         """

@@ -34,7 +34,7 @@ class PaymentProcessor(BasePaymentProcessor):
     response = {}
     
     def __init__(self, settings):
-        super(PaymentProcessor, self).__init__(self, 'Protx', settings)
+        super(PaymentProcessor, self).__init__('Protx', settings)
 
         vendor = settings.VENDOR.value
         if vendor == "":
