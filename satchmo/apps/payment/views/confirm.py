@@ -143,7 +143,8 @@ class ConfirmController(object):
                 controller.order.add_status(status='New', notes = "Order successfully submitted")
             else:
                 # otherwise just update and save
-                curr_status.notes = "Order successfully submitted"
+                if not curr_status.notes:
+                    curr_status.notes = "Order successfully submitted"
                 curr_status.save()                
 
             #Redirect to the success page
