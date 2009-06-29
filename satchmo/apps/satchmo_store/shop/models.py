@@ -1095,8 +1095,10 @@ class OrderItem(models.Model):
     def update_tax(self):
         taxclass = self.product.taxClass
         processor = get_tax_processor(order=self.order)
-        self.unit_tax = processor.by_price(taxclass, self.unit_price)
-        self.tax = processor.by_orderitem(self)
+
+        if self.product.taxable:
+            self.unit_tax = processor.by_price(taxclass, self.unit_price)
+            self.tax = processor.by_orderitem(self)
 
     class Meta:
         verbose_name = _("Order Line Item")
