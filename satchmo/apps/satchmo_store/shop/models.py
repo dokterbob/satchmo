@@ -1027,12 +1027,12 @@ class OrderItem(models.Model):
     quantity = models.DecimalField(_("Quantity"),  max_digits=18,  decimal_places=6)
     unit_price = CurrencyField(_("Unit price"),
         max_digits=18, decimal_places=10)
-    unit_tax = CurrencyField(_("Unit tax"),
-        max_digits=18, decimal_places=10, null=True)
+    unit_tax = CurrencyField(_("Unit tax"), default=Decimal('0.00'),
+        max_digits=18, decimal_places=10)
     line_item_price = CurrencyField(_("Line item price"),
         max_digits=18, decimal_places=10)
-    tax = CurrencyField(_("Line item tax"),
-        max_digits=18, decimal_places=10, null=True)
+    tax = CurrencyField(_("Line item tax"), default=Decimal('0.00'),
+        max_digits=18, decimal_places=10)
     expire_date = models.DateField(_("Subscription End"), help_text=_("Subscription expiration date."), blank=True, null=True)
     completed = models.BooleanField(_("Completed"), default=False)
     discount = CurrencyField(_("Line item discount"),
