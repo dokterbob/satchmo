@@ -85,8 +85,8 @@ class ForeignKeySearchInput(forms.HiddenInput):
                 extraParams: {
                     search_fields: '%(search_fields)s',
                     app_label: '%(app_label)s',
-                    model_name: '%(model_name)s',
-                },
+                    model_name: '%(model_name)s'
+                }
             }).result(function(event, data, formatted) {
                 if (data) {
                     $('#id_%(name)s').val(data[1]);
