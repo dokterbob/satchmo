@@ -735,11 +735,10 @@ class ProductManager(models.Manager):
         return self.by_site(site=site, active=True, featured=True, **kwargs)
 
     def get_by_site(self, site=None, **kwargs):
-        products = self.by_site(site=site, **kwargs)
-        if len(products) == 0:
-            raise Product.DoesNotExist
-        else:
-            return products[0]
+        if not site:
+            site = Site.objects.get_current()
+        return self.get(site = site, **kwargs)
+
             
     def recent_by_site(self, **kwargs):
         query = self.active_by_site(**kwargs)
