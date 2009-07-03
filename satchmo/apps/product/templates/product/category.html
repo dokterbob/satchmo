@@ -24,6 +24,7 @@
 {% block content %}
 <div id="product_category">
 <h3>{{ category.translated_name }}</h3>
+{% if category.description %}<p class="product_category_description">{{ category.description }}</p>{% endif %}
     {% for product in products %} 
         {% if forloop.first %} <ul>  {% endif %}
             <li>{% thumbnail product.main_image.picture 85x85 as image %}
@@ -34,6 +35,7 @@
 {% if child_categories %}
         {% for cat in child_categories %}
             <h4>{{cat.translated_name}}</h4>
+            {% if cat.description %}<p class="product_category_description">{{ cat.description }}</p>{% endif %}
             {% for product in cat.active_products %}
                 {% if forloop.first %} <ul>  {% endif %}
                     <li>{% thumbnail product.main_image.picture 85x85 as image %}
