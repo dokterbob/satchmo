@@ -735,11 +735,10 @@ class ProductManager(models.Manager):
         return self.by_site(site=site, active=True, featured=True, **kwargs)
 
     def get_by_site(self, site=None, **kwargs):
-        products = self.by_site(site=site, **kwargs)
-        if len(products) == 0:
-            raise Product.DoesNotExist
-        else:
-            return products[0]
+        if not site:
+            site = Site.objects.get_current()
+        return self.get(site = site, **kwargs)
+
             
     def recent_by_site(self, **kwargs):
         query = self.active_by_site(**kwargs)
@@ -2217,7 +2216,7 @@ def get_product_quantity_adjustments(product, qty=1, parent=None):
 
     if qty_discounts.count() > 0:
         # Get the price with the quantity closest to the one specified without going over
-        adjustments = qty_discounts.order_by('-quantity')[0].adjustments()
+        adjustments = qty_discounts.order_by('-quantity', 'expires')[0].adjustments()
 
     elif parent:
         adjustments = get_product_quantity_adjustments(parent, qty=qty)
