@@ -72,12 +72,12 @@ def productvariation_details(product, include_tax, user, create=False):
     curr = config_value('LANGUAGE','CURRENCY')
     curr = curr.replace("_", " ")
 
-    variations = ProductPriceLookup.objects.filter(parentid=product.id)
+    variations = ProductPriceLookup.objects.filter(parentid=product.id).order_by("-price")
     if variations.count() == 0:
         if create:
             log.debug('Creating price lookup for %s', product)
             ProductPriceLookup.objects.smart_create_for_product(product)
-            variations = ProductPriceLookup.objects.filter(parentid=product.id)
+            variations = ProductPriceLookup.objects.filter(parentid=product.id).order_by("-price")
         else:
             log.warning('You must run satchmo_rebuild_pricing and add it to a cron-job to run every day, or else the product details will not work for product detail pages.')
     for detl in variations:
