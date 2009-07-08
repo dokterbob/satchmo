@@ -75,6 +75,11 @@ class CategoryManager(models.Manager):
 
         return self.filter(site__id__exact = site, **kwargs)
         
+    def get_by_site(self, site=None, **kwargs):
+        if not site:
+            site = Site.objects.get_current()
+        return self.get(site = site, **kwargs)
+    
     def root_categories(self, site=None, **kwargs):
         """Get all root categories."""
         
@@ -268,6 +273,7 @@ class Category(models.Model):
         ordering = ['site', 'parent__id', 'ordering', 'name']
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+        unique_together = ('site', 'slug')
 
 class CategoryTranslation(models.Model):
     """A specific language translation for a `Category`.  This is intended for all descriptions which are not the
