@@ -4,7 +4,6 @@ except:
     from django.utils._decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 
 from django.conf import settings
-from django.db import models
 import datetime
 import logging
 import os
@@ -26,6 +25,8 @@ def add_month(date, n=1):
 
 def app_enabled(appname):
     """Check the app list to see if a named app is installed."""
+    from django.db import models
+    
     all_apps = {}
     for app in models.get_apps():
         n = app.__name__.split('.')[-2]
