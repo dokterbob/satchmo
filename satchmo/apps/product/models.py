@@ -1044,7 +1044,7 @@ class Product(models.Model):
         Return the primary category associated with this product
         """
         subtype = self.get_subtype_with_attr('get_category')
-        if subtype:
+        if subtype and subtype is not self:
             return subtype.get_category
 
         try:
@@ -1071,7 +1071,7 @@ class Product(models.Model):
         for prod_type in self.get_subtypes():
             subtype = getattr(self, prod_type.lower())
             if hasattr(subtype, 'is_subscription'):
-                return True
+                return subtype.is_subscription
         return False
     is_subscription = property(_get_subscription)
 
@@ -1083,7 +1083,7 @@ class Product(models.Model):
         """
         if self.shipclass=="DEFAULT":
             subtype = self.get_subtype_with_attr('is_shippable')
-            if subtype and not subtype.is_shippable:
+            if subtype and subtype is not self and not subtype.is_shippable:
                 return False
             return True
         elif self.shipclass=="YES":
@@ -1103,6 +1103,8 @@ class Product(models.Model):
         logging.debug('subtypes = %s', subtypes)
         for subtype_name in subtypes:
             subtype = getattr(self, subtype_name.lower())
+            if subtype == self:
+                continue
             if hasattr(subtype, 'add_template_context'):
                 context = subtype.add_template_context(context, *args, **kwargs)
 
