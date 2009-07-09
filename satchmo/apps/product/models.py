@@ -75,6 +75,11 @@ class CategoryManager(models.Manager):
 
         return self.filter(site__id__exact = site, **kwargs)
         
+    def get_by_site(self, site=None, **kwargs):
+        if not site:
+            site = Site.objects.get_current()
+        return self.get(site = site, **kwargs)
+    
     def root_categories(self, site=None, **kwargs):
         """Get all root categories."""
         
@@ -268,6 +273,7 @@ class Category(models.Model):
         ordering = ['site', 'parent__id', 'ordering', 'name']
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+        unique_together = ('site', 'slug')
 
 class CategoryTranslation(models.Model):
     """A specific language translation for a `Category`.  This is intended for all descriptions which are not the
@@ -856,7 +862,7 @@ class Product(models.Model):
 
         subtype = self.get_subtype_with_attr('unit_price')
 
-        if subtype:
+        if subtype and subtype is not self:
             price = subtype.unit_price
         else:
             price = get_product_quantity_price(self, Decimal('1'))
@@ -874,7 +880,7 @@ class Product(models.Model):
         returns price as a Decimal
         """
         subtype = self.get_subtype_with_attr('get_qty_price')
-        if subtype:
+        if subtype and subtype is not self:
             price = subtype.get_qty_price(qty, include_discount=include_discount)
 
         else:
@@ -902,7 +908,7 @@ class Product(models.Model):
 
     def in_stock(self):
         subtype = self.get_subtype_with_attr('in_stock')
-        if subtype:
+        if subtype and subtype is not self:
             return subtype.in_stock
 
         return self.items_in_stock > 0
@@ -1038,7 +1044,7 @@ class Product(models.Model):
         Return the primary category associated with this product
         """
         subtype = self.get_subtype_with_attr('get_category')
-        if subtype:
+        if subtype and subtype is not self:
             return subtype.get_category
 
         try:
@@ -1065,7 +1071,7 @@ class Product(models.Model):
         for prod_type in self.get_subtypes():
             subtype = getattr(self, prod_type.lower())
             if hasattr(subtype, 'is_subscription'):
-                return True
+                return subtype.is_subscription
         return False
     is_subscription = property(_get_subscription)
 
@@ -1077,7 +1083,7 @@ class Product(models.Model):
         """
         if self.shipclass=="DEFAULT":
             subtype = self.get_subtype_with_attr('is_shippable')
-            if subtype and not subtype.is_shippable:
+            if subtype and subtype is not self and not subtype.is_shippable:
                 return False
             return True
         elif self.shipclass=="YES":
@@ -1097,6 +1103,8 @@ class Product(models.Model):
         logging.debug('subtypes = %s', subtypes)
         for subtype_name in subtypes:
             subtype = getattr(self, subtype_name.lower())
+            if subtype == self:
+                continue
             if hasattr(subtype, 'add_template_context'):
                 context = subtype.add_template_context(context, *args, **kwargs)
 

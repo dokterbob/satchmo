@@ -116,6 +116,11 @@ local_settings.py file.
 The shipping module does rely on the weight and dimension data you have entered for your products. If you have not
 entered the weight, then the module will not display any choices.
 
+One important note to remember with the UPS module is that when a user has multiple products in the cart, the UPS request
+will quote this as if each product is shipped in a separate package. For example, two 3 pound packages will cost more to ship than
+one 6 pound package. If your shop has a different method of shipping, you will need to override the 
+/apps/shipping/templates/shipping/ups/request.xml file to group products together into one package.
+
 .. index::
    single: Fedex;
 
@@ -164,3 +169,13 @@ To enable in Satchmo:
 
  1. In your site settings, make sure that the USPS module is active
  2. Configure the password and package settings
+
+Hide Shipping if One Module
++++++++++++++++++++++++++++
+If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. You could 
+modify the templates to try to hide the option but there is a simpler method using signals. You can use the shipping_hide_if_one 
+listener to hide the shipping choices. Place the following code in your sites models.py file::
+
+    from payment import signals, listeners, forms
+    signals.payment_form_init.connect(listeners.shipping_hide_if_one, 
+                                  sender=forms.SimplePayShipForm)

@@ -66,7 +66,7 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
      - parent_slugs: ignored    
     """
     try:
-        category = Category.objects.get(slug=slug)
+        category =  Category.objects.get_by_site(slug=slug)
         products = list(category.active_products())
         sale = find_best_auto_discount(products)
 
