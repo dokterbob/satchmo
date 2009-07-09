@@ -862,7 +862,7 @@ class Product(models.Model):
 
         subtype = self.get_subtype_with_attr('unit_price')
 
-        if subtype:
+        if subtype and subtype is not self:
             price = subtype.unit_price
         else:
             price = get_product_quantity_price(self, Decimal('1'))
@@ -880,7 +880,7 @@ class Product(models.Model):
         returns price as a Decimal
         """
         subtype = self.get_subtype_with_attr('get_qty_price')
-        if subtype:
+        if subtype and subtype is not self:
             price = subtype.get_qty_price(qty, include_discount=include_discount)
 
         else:
@@ -908,7 +908,7 @@ class Product(models.Model):
 
     def in_stock(self):
         subtype = self.get_subtype_with_attr('in_stock')
-        if subtype:
+        if subtype and subtype is not self:
             return subtype.in_stock
 
         return self.items_in_stock > 0
