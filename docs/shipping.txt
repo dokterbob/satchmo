@@ -169,3 +169,13 @@ To enable in Satchmo:
 
  1. In your site settings, make sure that the USPS module is active
  2. Configure the password and package settings
+
+Hide Shipping if One Module
++++++++++++++++++++++++++++
+If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. You could 
+modify the templates to try to hide the option but there is a simpler method using signals. You can use the shipping_hide_if_one 
+listener to hide the shipping choices. Place the following code in your sites models.py file::
+
+    from payment import signals, listeners, forms
+    signals.payment_form_init.connect(listeners.shipping_hide_if_one, 
+                                  sender=forms.SimplePayShipForm)
