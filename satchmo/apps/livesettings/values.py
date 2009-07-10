@@ -3,6 +3,7 @@
 http://code.google.com/p/django-values/
 """
 from django import forms
+from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
 from django.utils import simplejson
 from django.utils.datastructures import SortedDict
@@ -10,8 +11,8 @@ from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _
 from keyedcache import cache_set
 from livesettings.models import find_setting, LongSetting, Setting, SettingNotSet
+from livesettings.overrides import get_overrides
 from satchmo_utils import load_module, is_string_like, is_list_or_tuple
-from django.contrib.sites.models import Site
 import datetime
 import logging
 import signals
@@ -288,29 +289,35 @@ class Value(object):
         return val
 
     def update(self, value):    
-        current_value = self.value
+        use_db, overrides = get_overrides()
+        
+        if use_db:
+            current_value = self.value
 
-        new_value = self.to_python(value)
-        if current_value != new_value:        
-            db_value = self.get_db_prep_save(value)
-            try:
-                s = self.setting
-                s.value = db_value
+            new_value = self.to_python(value)
+            if current_value != new_value:        
+                db_value = self.get_db_prep_save(value)
+                try:
+                    s = self.setting
+                    s.value = db_value
                 
-            except SettingNotSet:
-                s = self.make_setting(db_value)
+                except SettingNotSet:
+                    s = self.make_setting(db_value)
 
-            if self.use_default and self.default == new_value:
-                if s.id:
-                    log.info("Deleted setting %s.%s", self.group.key, self.key)
-                    s.delete()
-            else:
-                log.info("Updated setting %s.%s = %s", self.group.key, self.key, value)
-                s.save()
+                if self.use_default and self.default == new_value:
+                    if s.id:
+                        log.info("Deleted setting %s.%s", self.group.key, self.key)
+                        s.delete()
+                else:
+                    log.info("Updated setting %s.%s = %s", self.group.key, self.key, value)
+                    s.save()
                 
-            signals.configuration_value_changed.send(self, old_value=current_value, new_value=new_value, setting=self)
+                signals.configuration_value_changed.send(self, old_value=current_value, new_value=new_value, setting=self)
             
-            return True
+                return True
+        else:
+            log.debug('not updating setting %s.%s - livesettings db is disabled',self.group.key, self.key)
+            
         return False
 
     def value(self):

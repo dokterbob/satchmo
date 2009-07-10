@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
+from django.db import transaction
 from django.db.models import loading
 from django.utils.translation import ugettext_lazy as _
 from keyedcache import cache_key, cache_get, cache_set, NotCachedError
 from keyedcache.models import CachedObjectMixin
-from django.contrib.sites.models import Site
+from livesettings.overrides import get_overrides
 import logging
-from django.db import transaction
 
 log = logging.getLogger('configuration.models')
 
@@ -34,30 +34,40 @@ def find_setting(group, key, site=None):
     """Get a setting or longsetting by group and key, cache and return it."""
        
     siteid = _safe_get_siteid(site)
-       
-    ck = cache_key('Setting', siteid, group, key)
     setting = None
-    try:
-        setting = cache_get(ck)
+    
+    use_db, overrides = get_overrides(siteid)
+    ck = cache_key('Setting', siteid, group, key)
+    
+    if use_db:
+        try:
+            setting = cache_get(ck)
 
-    except NotCachedError, nce:
-        if loading.app_cache_ready():
-            try:
-                setting = Setting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
-
-            except Setting.DoesNotExist:
-                # maybe it is a "long setting"
+        except NotCachedError, nce:
+            if loading.app_cache_ready():
                 try:
-                    setting = LongSetting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
+                    setting = Setting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
+
+                except Setting.DoesNotExist:
+                    # maybe it is a "long setting"
+                    try:
+                        setting = LongSetting.objects.get(site__id__exact=siteid, key__exact=key, group__exact=group)
            
-                except LongSetting.DoesNotExist:
-                    pass
+                    except LongSetting.DoesNotExist:
+                        pass
             
-            cache_set(ck, value=setting)
+                cache_set(ck, value=setting)
+
+    else:
+        grp = overrides.get(group, None)
+        if grp and grp.has_key(key):
+            val = grp[key]
+            setting = ImmutableSetting(key=key, group=group, value=val)
+            log.debug('Returning overridden: %s', setting)
                 
     if not setting:
         raise SettingNotSet(key, cachekey=ck)
-        
+
     return setting
 
 class SettingNotSet(Exception):    
@@ -70,6 +80,28 @@ class SettingManager(models.Manager):
         all = super(SettingManager, self).get_query_set()
         siteid = _safe_get_siteid(None)
         return all.filter(site__id__exact=siteid)
+
+
+class ImmutableSetting(object):
+    
+    def __init__(self, group="", key="", value="", site=1):
+        self.site = site
+        self.group = group
+        self.key = key
+        self.value = value
+        
+    def cache_key(self, *args, **kwargs):
+        return cache_key('OverrideSetting', self.site, self.group, self.key)
+        
+    def delete(self):
+        pass
+        
+    def save(self, *args, **kwargs):
+        pass
+        
+    def __repr__(self):
+        return "ImmutableSetting: %s.%s=%s" % (self.group, self.key, self.value)
+
 
 class Setting(models.Model, CachedObjectMixin):
     site = models.ForeignKey(Site, verbose_name=_('Site'))

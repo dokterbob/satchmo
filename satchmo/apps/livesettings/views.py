@@ -3,12 +3,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.admin.views.decorators import staff_member_required
 from livesettings import ConfigurationSettings, forms
+from livesettings.overrides import get_overrides
 import logging
 
 log = logging.getLogger('configuration.views')
 
 def group_settings(request, group, template='livesettings/group_settings.html'):
     # Determine what set of settings this editor is used for
+    
+    use_db, overrides = get_overrides();
+    
     mgr = ConfigurationSettings()
     if group is None:
         settings = mgr
@@ -18,33 +22,37 @@ def group_settings(request, group, template='livesettings/group_settings.html'):
         title = settings.name
         log.debug('title: %s', title)
 
-    # Create an editor customized for the current user
-    #editor = forms.customized_editor(settings)
+    if use_db:
+        # Create an editor customized for the current user
+        #editor = forms.customized_editor(settings)
 
-    if request.method == 'POST':
-        # Populate the form with user-submitted data
-        data = request.POST.copy()
-        form = forms.SettingsEditor(data, settings=settings)
-        if form.is_valid():
-            form.full_clean()
-            for name, value in form.cleaned_data.items():
-                group, key = name.split('__')
-                cfg = mgr.get_config(group, key)
-                if cfg.update(value):
+        if request.method == 'POST':
+            # Populate the form with user-submitted data
+            data = request.POST.copy()
+            form = forms.SettingsEditor(data, settings=settings)
+            if form.is_valid():
+                form.full_clean()
+                for name, value in form.cleaned_data.items():
+                    group, key = name.split('__')
+                    cfg = mgr.get_config(group, key)
+                    if cfg.update(value):
 
-                    # Give user feedback as to which settings were changed
-                    request.user.message_set.create(message='Updated %s on %s' % (cfg.key, cfg.group.key))
+                        # Give user feedback as to which settings were changed
+                        request.user.message_set.create(message='Updated %s on %s' % (cfg.key, cfg.group.key))
 
-            return HttpResponseRedirect(request.path)
+                return HttpResponseRedirect(request.path)
+        else:
+            # Leave the form populated with current setting values
+            #form = editor()
+            form = forms.SettingsEditor(settings=settings)
     else:
-        # Leave the form populated with current setting values
-        #form = editor()
-        form = forms.SettingsEditor(settings=settings)
-
+        form = None
+        
     return render_to_response(template, {
         'title': title,
         'group' : group,
         'form': form,
+        'use_db' : use_db
     }, context_instance=RequestContext(request))
 group_settings = staff_member_required(group_settings)
 

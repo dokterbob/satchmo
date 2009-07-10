@@ -1,3 +1,4 @@
+from django.conf import settings as djangosettings
 from django.contrib.sites.models import Site
 from django.http import Http404
 from django.test import TestCase
@@ -482,3 +483,57 @@ class LongSettingTest(TestCase):
             self.fail("Should be deletec")
         except LongSetting.DoesNotExist:
             pass
+            
+class OverrideTest(TestCase):
+    """Test settings overrides"""
+    def setUp(self):
+        # clear out cache from previous runs
+        keyedcache.cache_delete()
+    
+        djangosettings.LIVESETTINGS_OPTIONS = {
+            1 : {
+                'DB' : False,
+                'SETTINGS' : {
+                        'overgroup' : {
+                            's2' : '100',
+                            'choices' : '["one","two","three"]'
+                        }
+                    }
+                }
+            }
+    
+        g = ConfigurationGroup('overgroup','Override Group')
+        self.g = g
+        config_register(StringValue(g, 's1'))
+        config_register(IntegerValue(g, 's2', default=10))
+        config_register(IntegerValue(g, 's3', default=10))
+        config_register(MultipleStringValue(g, 'choices'))
+
+    def testOverriddenSetting(self):
+        """Accessing an overridden setting should give the override value."""
+        c = config_get('overgroup', 's2')
+        self.assertEquals(c.value, 100)    
+
+    def testCantChangeSetting(self):
+        """When overridden, setting a value should not work, should get the overridden value"""
+        c = config_get('overgroup', 's2')
+        c.update(1)
+
+        c = config_get('overgroup', 's2')
+        self.assertEquals(c.value, 100)
+        
+    def testNotOverriddenSetting(self):
+        """Settings which are not overridden should return their defaults"""
+        c = config_get('overgroup', 's3')
+        
+        self.assertEquals(c.value, 10)
+        
+    def testOverriddenListSetting(self):
+        """Make sure lists work when overridden"""
+        
+        c = config_get('overgroup', 'choices')
+        v = c.value
+        self.assertEqual(len(v), 3)
+        self.assertEqual(v[0], "one")
+        self.assertEqual(v[1], "two")
+        self.assertEqual(v[2], "three")

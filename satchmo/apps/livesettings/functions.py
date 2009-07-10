@@ -1,4 +1,4 @@
-from django.conf import settings
+from django.conf import settings as djangosettings
 from django.utils.translation import ugettext
 from livesettings import values
 from livesettings.models import SettingNotSet
