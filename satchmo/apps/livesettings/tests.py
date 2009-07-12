@@ -191,6 +191,9 @@ class TestMultipleValues(TestCase):
     def testChoiceValues(self):
         self.g1c1.update([1,2])
         
+        self.assertEqual(self.g1c1.value, [1,2])
+        self.assertEqual(self.g1c1.choice_values, [(1, 'one'),(2, 'two')])
+        
         choices = config_choice_values('m1', 'c1')
         self.assertEqual(choices, [(1, 'one'),(2, 'two')])
             
@@ -508,6 +511,9 @@ class OverrideTest(TestCase):
         config_register(IntegerValue(g, 's2', default=10))
         config_register(IntegerValue(g, 's3', default=10))
         config_register(MultipleStringValue(g, 'choices'))
+        
+    def tearDown(self):
+        djangosettings.LIVESETTINGS_OPTIONS = {}
 
     def testOverriddenSetting(self):
         """Accessing an overridden setting should give the override value."""
