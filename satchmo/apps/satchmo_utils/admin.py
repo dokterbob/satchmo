@@ -126,15 +126,30 @@ class AutocompleteAdmin(admin.ModelAdmin):
     related_string_functions = {}
 
     def __call__(self, request, url):
+        # This is deprecated interface and will be dropped in Django 1.3.
+        # Since the version 1.1, Django uses get_urls() method below.
         if url is None:
             pass
         elif url == 'search':
             return self.search(request)
         return super(AutocompleteAdmin, self).__call__(request, url)
 
+    def get_urls(self):
+        from django.conf.urls.defaults import url
+        patterns = super(AutocompleteAdmin, self).get_urls()
+        patterns.insert(
+                -1,     # insert just before (.+) rule (see django.contrib.admin.options.ModelAdmin.get_urls)
+                url(
+                    r'^search/$',
+                    self.search,
+                    name='%sadmin_shop_order_autocomplete' % self.admin_site.name
+                    )
+                )
+        return patterns
+
     def search(self, request):
         """
-        Searches in the fields of the given related model and returns the 
+        Searches in the fields of the given related model and returns the
         result as a simple string to be used by the jQuery Autocomplete plugin
         """
         query = request.GET.get('q', None)
