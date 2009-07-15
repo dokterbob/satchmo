@@ -91,6 +91,7 @@ div.fieldcontainer { float: left; margin-right: 0; }
 	<br class="clear:both;" />
 	<input type="submit" value="Save" class="default" />
 	<p><a onclick="javascript:CollapsedFieldsets.uncollapse_all(); return false;" href="#">{% trans 'Uncollapse all' %}</a></p>
+	<p><a href="{% url settings_export %}">Export</a></p>
 	</form>
 	{% else %}
 	    <p>{% trans "You don't have permission to edit values." %}</p>

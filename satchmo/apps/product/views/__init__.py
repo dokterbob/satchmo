@@ -34,6 +34,7 @@ def find_product_template(product, producttypes=None):
 
     templates = ["product/detail_%s.html" % x.lower() for x in producttypes]
     templates.append('product/product.html')
+    log.debug("finding product template: %s", templates)
     return select_template(templates)
     
 def optionids_from_post(configurableproduct, POST):
