@@ -69,7 +69,7 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
 
-order_success
+order_cancelled
 **************
 
 Sent when an order has been cancelled (it's status already reflects it and has been saved
@@ -82,9 +82,6 @@ Arguments sent with this signal:
         
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was cancelled (Note: this argument is the same as ``sender``)
-
-order_cancel_query
-******************
 
 satchmo_cart_add_complete
 *************************
