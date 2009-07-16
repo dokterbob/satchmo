@@ -35,7 +35,7 @@ def _id_generator(first_name, last_name, email):
     if len(id) >= _ID_MIN_LENGTH:
         yield id[:_ID_MAX_LENGTH]
     while True:
-        yield _alnum('%s_%s' % (id, random_string(_ID_MIN_LENGTH, True)))[:_ID_MAX_LENGTH]
+        yield _alnum('%s_%s' % (id[:_ID_MIN_LENGTH], random_string(_ID_MIN_LENGTH, True)))[:_ID_MAX_LENGTH]
 
 def generate_id(first_name='', last_name='', email=''):
     valid_id = False
