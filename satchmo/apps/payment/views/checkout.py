@@ -20,8 +20,8 @@ def success(request):
 success = never_cache(success)
 
 def failure(request):
-	return render_to_response(
-			'shop/checkout/failure.html',
-			{},
-			context_instance=RequestContext(request)
-			)
+    return render_to_response(
+        'shop/checkout/failure.html',
+        {},
+        context_instance=RequestContext(request)
+    )
