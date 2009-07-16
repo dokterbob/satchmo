@@ -9,9 +9,9 @@ import datetime
 import logging
 import random
 try:
-    from hashlib import sha1 as sha
+    from hashlib import sha1 as mksha
 except ImportError:
-    import sha
+    import sha.new as mksha
 import signals
 import operator
 import os.path
@@ -1510,8 +1510,8 @@ class DownloadableProduct(models.Model):
         return 'DownloadableProduct'
 
     def create_key(self):
-        salt = sha.new(str(random.random())).hexdigest()[:5]
-        download_key = sha.new(salt+smart_str(self.product.name)).hexdigest()
+        salt = mksha(str(random.random())).hexdigest()[:5]
+        download_key = mksha(salt+smart_str(self.product.name)).hexdigest()
         return download_key
 
     def order_success(self, order, order_item):
