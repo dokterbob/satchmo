@@ -129,6 +129,8 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
     """Formats val according to the currency settings in the current locale.
     Ported-and-modified from Python 2.5
     """
+    if val is None or val == '':
+       return val
     conv = get_locale_conv(current_locale)
 
     if places < 0:
