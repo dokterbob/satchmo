@@ -137,14 +137,16 @@ class AutocompleteAdmin(admin.ModelAdmin):
     def get_urls(self):
         from django.conf.urls.defaults import url
         patterns = super(AutocompleteAdmin, self).get_urls()
+        info = self.admin_site.name, self.model._meta.app_label, self.model._meta.module_name
         patterns.insert(
                 -1,     # insert just before (.+) rule (see django.contrib.admin.options.ModelAdmin.get_urls)
                 url(
                     r'^search/$',
                     self.search,
-                    name='%sadmin_shop_order_autocomplete' % self.admin_site.name
+                    name='%sadmin_%s_%s_search' % info
                     )
                 )
+        print patterns
         return patterns
 
     def search(self, request):
