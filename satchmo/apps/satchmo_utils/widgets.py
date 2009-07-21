@@ -54,7 +54,8 @@ class BaseCurrencyWidget(forms.TextInput):
 class CurrencyWidget(BaseCurrencyWidget):
     
     def render(self, name, value, attrs=None):
-        value = _render_decimal(value, places=8)
+        if value != '':
+            value = _render_decimal(value, places=8)
         rendered = super(CurrencyWidget, self).render(name, value, attrs)
         curr = config_value('LANGUAGE','CURRENCY')
         curr = curr.replace("_", "&nbsp;")
