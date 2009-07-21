@@ -146,7 +146,6 @@ class AutocompleteAdmin(admin.ModelAdmin):
                     name='%sadmin_%s_%s_search' % info
                     )
                 )
-        print patterns
         return patterns
 
     def search(self, request):
