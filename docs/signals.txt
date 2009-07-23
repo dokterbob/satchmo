@@ -70,7 +70,7 @@ Arguments sent with this signal:
         The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
 
 order_cancelled
-**************
+***************
 
 Sent when an order has been cancelled (it's status already reflects it and has been saved
 to the database).
