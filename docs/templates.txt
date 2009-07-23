@@ -1,0 +1,230 @@
+==================
+Satchmo Templates 
+==================
+
+One of the powerful options available to all Satchmo stores is the 
+availability of the robust Django templating language to control all of the
+visual elements of this store. There are over 140 templates used within
+Satchmo. This section of the document describes where they are and the
+high level overview of what they are used for. Until more details are included
+in this section, the best way to learn more about these templates is to
+browse through and review the ones you are interested in.
+
+Payment
++++++++
+These templates control some of the payment specific display elements.
+
+.. describe:: payment/templates/payment/admin/charge_remaining_confirm.html
+
+   Used in the admin to support paying any remaining balance on an order.
+    
+.. describe:: payment/templates/payment/_order_payment_summary.html
+
+   Used in the checkout process to show a summary of all the payments that have been
+   applied to an order.
+
+
+Payment/modules/
+================
+Templates in this directory are used to modify the behavior of the giftcertificate
+payment process. They are useful for understanding how to further modify the checkout
+process.
+
+.. describe:: giftcertificate/templates/shop/checkout/giftcertificate/pay_ship.html
+.. describe:: giftcertificate/templates/shop/checkout/giftcertificate/confirm.html
+.. describe:: giftcertificate/templates/shop/checkout/confirm.html
+.. describe:: giftcertificate/templates/giftcertificate/balance.html
+.. describe:: giftcertificate/templates/giftcertificate/_order_summary.html
+.. describe:: giftcertificate/templates/product/detail_giftcertificateproduct.html
+.. describe:: giftcertificate/templates/plugins/order_details.html
+
+L10n 
++++++
+L10n is used for localizing Satchmo.
+
+.. describe:: l10n/templates/l10n/_language_selection_form.html
+
+   Displays the language selection form that can be enabled through the admin.
+   
+Satchmo_ext
++++++++++++
+Satchmo externals contains several useful applications that you may optionally
+enable for your store.
+
+wishlist
+========
+
+.. describe:: wishlist/templates/wishlist/login_required.html
+.. describe:: wishlist/templates/wishlist/plugins/product_add_buttons.html
+.. describe:: wishlist/templates/wishlist/plugins/shop_sidebar_actions.html
+.. describe:: wishlist/templates/wishlist/index.html
+
+upsell
+======
+.. describe:: upsell/templates/upsell/plugins/product_form.html
+.. describe:: upsell/templates/upsell/product_upsell.html
+
+recentlist
+==========
+.. describe:: recentlist/templates/recentlist/_recently_viewed.html
+.. describe:: recentlist/templates/recentlist/plugins/shop_sidebar_primary.html
+
+productratings
+==============
+.. describe:: satchmo_ext/productratings/templates/productratings/_product_ratings.html
+.. describe:: satchmo_ext/productratings/templates/productratings/plugins/sidebar_links.html
+.. describe:: satchmo_ext/productratings/templates/productratings/plugins/product_footer.html
+.. describe:: satchmo_ext/productratings/templates/productratings/product_rating_form.html
+.. describe:: satchmo_ext/productratings/templates/productratings/_render_product_ratings.html
+
+productfeeds
+============
+.. describe:: satchmo_ext/product_feeds/templates/product_feeds/plugins/admin_tools.html
+
+newsletter
+==========
+
+.. describe:: satchmo_ext/newsletter/templates/newsletter/update_form.html
+.. describe:: satchmo_ext/newsletter/templates/newsletter/update_results.html
+.. describe:: satchmo_ext/newsletter/templates/newsletter/unsubscribe_form.html
+.. describe:: satchmo_ext/newsletter/templates/newsletter/ajah.html
+.. describe:: satchmo_ext/newsletter/templates/newsletter/subscribe_form.html
+
+brand
+=====
+
+.. describe:: satchmo_ext/brand/templates/brand/view_brand.html
+.. describe:: satchmo_ext/brand/templates/brand/index.html
+
+Product
++++++++
+The product templates are used to display all aspects of products in 
+your store. The admin templates are used to manage various portions of
+Satchmo's custom admin interface.
+
+.. describe:: product/templates/product/detail_configurableproduct.html
+.. describe:: product/templates/product/category_index.html
+.. describe:: product/templates/product/minimum_order.html
+.. describe:: product/templates/product/cart_detail_customproduct.html
+.. describe:: product/templates/product/detail_customproduct.html
+.. describe:: product/templates/product/product.html
+.. describe:: product/templates/product/best_sellers.html
+.. describe:: product/templates/product/category.html
+.. describe:: product/templates/product/recently_added.html
+.. describe:: product/templates/product/some_discount_eligible.html
+.. describe:: product/templates/product/product_discount_eligible.html
+.. describe:: product/templates/product/cart_detail_subscriptionproduct.html
+.. describe:: product/templates/product/sale_details.html
+.. describe:: product/templates/product/detail_subscriptionproduct.html
+.. describe:: product/templates/product/best_ratings.html
+
+admin
+=====
+.. describe:: product/templates/product/admin/inventory_form.html
+.. describe:: product/templates/product/admin/product_export_form.html
+.. describe:: product/templates/product/admin/variation_manager.html
+.. describe:: product/templates/product/admin/product_import_result.html
+.. describe:: product/templates/product/admin/variation_manager_list.html
+.. describe:: product/templates/admin/product/productvariation/change_form.html
+.. describe:: product/templates/admin/product/product/change_form.html
+.. describe:: product/templates/admin/product/configurableproduct/change_form.html
+.. describe:: product/templates/admin/product/change_form.html
+
+Keyedcache
+++++++++++
+
+.. describe:: keyedcache/templates/keyedcache/view.html
+.. describe:: keyedcache/templates/keyedcache/stats.html
+.. describe:: keyedcache/templates/keyedcache/delete.html
+
+Satchmo_Store
++++++++++++++
+
+.. describe:: satchmo_store/shop/templates/404.html
+.. describe:: satchmo_store/shop/templates/500.html
+.. describe:: satchmo_store/shop/templates/base.html
+.. describe:: satchmo_store/shop/templates/shop/json.html
+.. describe:: satchmo_store/shop/templates/shop/order_tracking.html
+.. describe:: satchmo_store/shop/templates/shop/google-analytics/receipt.html
+.. describe:: satchmo_store/shop/templates/shop/google-analytics/signup.html
+.. describe:: satchmo_store/shop/templates/shop/google-analytics/tracker.html
+.. describe:: satchmo_store/shop/templates/shop/google-analytics/adwords_conversion.html
+.. describe:: satchmo_store/shop/templates/shop/_messages.html
+.. describe:: satchmo_store/shop/templates/shop/contact_form.html
+.. describe:: satchmo_store/shop/templates/shop/404.html
+.. describe:: satchmo_store/shop/templates/shop/contact_thanks.html
+.. describe:: satchmo_store/shop/templates/shop/base.html
+.. describe:: satchmo_store/shop/templates/shop/order_history.html
+.. describe:: satchmo_store/shop/templates/shop/admin/_orderpayment_list.html
+.. describe:: satchmo_store/shop/templates/shop/admin/_ordercount_list.html
+.. describe:: satchmo_store/shop/templates/shop/admin/order_sidebar.html
+.. describe:: satchmo_store/shop/templates/shop/admin/_customorder_management.html
+.. describe:: satchmo_store/shop/templates/shop/_search.html
+.. describe:: satchmo_store/shop/templates/shop/download.html
+.. describe:: satchmo_store/shop/templates/shop/_order_details.html
+.. describe:: satchmo_store/shop/templates/shop/_order_tracking_details.html
+.. describe:: satchmo_store/shop/templates/shop/multiple_product_form.html
+.. describe:: satchmo_store/shop/templates/shop/_blackbird_logging.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/failure.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/form.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/purchaseorder/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/purchaseorder/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/base_confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/authentication_required.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/success.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/cod/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/cod/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/paypal/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/paypal/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/protx/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/protx/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/sermepa/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/sermepa/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/google/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/google/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/balance_remaining.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/empty_cart.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/confirm.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/base_pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/checkout/auto/pay_ship.html
+.. describe:: satchmo_store/shop/templates/shop/search.html
+.. describe:: satchmo_store/shop/templates/shop/index.html
+.. describe:: satchmo_store/shop/templates/shop/cart.html
+.. describe:: satchmo_store/shop/templates/admin/base_site.html
+.. describe:: satchmo_store/shop/templates/admin/index.html
+.. describe:: satchmo_store/contact/templates/comments/form.html
+.. describe:: satchmo_store/contact/templates/comments/preview.html
+.. describe:: satchmo_store/contact/templates/comments/posted.html
+.. describe:: satchmo_store/contact/templates/admin/contact/order/change_form.html
+.. describe:: satchmo_store/contact/templates/contact/view_profile.html
+.. describe:: satchmo_store/contact/templates/contact/update_form.html
+.. describe:: satchmo_store/contact/templates/contact/login_signup_address.html
+.. describe:: satchmo_store/contact/templates/contact/_country_match_script.html
+.. describe:: satchmo_store/contact/templates/contact/login_signup.html
+.. describe:: satchmo_store/contact/templates/contact/_addressblock.html
+.. describe:: satchmo_store/contact/templates/registration/registration_form.html
+.. describe:: satchmo_store/contact/templates/registration/account_info.html
+.. describe:: satchmo_store/contact/templates/registration/registration_complete.html
+.. describe:: satchmo_store/contact/templates/registration/password_reset_done.html
+.. describe:: satchmo_store/contact/templates/registration/activate.html
+.. describe:: satchmo_store/contact/templates/registration/repeat_activation.html
+.. describe:: satchmo_store/contact/templates/registration/login.html
+.. describe:: satchmo_store/contact/templates/registration/password_change_form.html
+.. describe:: satchmo_store/contact/templates/registration/password_reset_form.html
+.. describe:: satchmo_store/contact/templates/registration/logout.html
+.. describe:: satchmo_store/contact/templates/registration/password_change_done.html
+
+Livesettings
+++++++++++++
+.. describe:: livesettings/templates/livesettings/site_settings.html
+.. describe:: livesettings/templates/livesettings/group_settings.html
+.. describe:: livesettings/templates/livesettings/_admin_site_views.html
+
+Shipping
+++++++++
+.. describe:: shipping/templates/shipping/options.html
+
+Satchmo_utils
++++++++++++++
+.. describe:: satchmo_utils/thumbnail/templates/widget/file.html

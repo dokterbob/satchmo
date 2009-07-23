@@ -1,5 +1,5 @@
 ==================================
-Satchmo Template Filter and Tags
+Satchmo Template Filters and Tags
 ==================================
 
 Filters and Tags provide great flexibility when working with templates and are an important part of Django, and by association, Satchmo.

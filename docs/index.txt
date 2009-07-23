@@ -48,6 +48,7 @@ Modifying A Store
    custom-payment
    custom-product
    translation
+   templates
    template-filters-tags
    signals
 
