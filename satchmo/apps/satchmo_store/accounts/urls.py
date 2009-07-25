@@ -13,7 +13,6 @@ from livesettings import config_value
 from satchmo_store.contact.urls import urlpatterns
 from satchmo_utils.signals import collect_urls
 from satchmo_store import accounts
-from django.core.urlresolvers import reverse
 
 
 # Activation keys get matched by \w+ instead of the more specific
