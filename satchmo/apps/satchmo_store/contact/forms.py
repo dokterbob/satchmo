@@ -299,7 +299,7 @@ class ContactInfoForm(ProxyContactForm):
         changed_location = False
         address_keys = bill_address.__dict__.keys()
         for field in address_keys:
-            if (not changed_location) and field in ('state', 'country', 'city'):
+            if (not changed_location) and field in ('state', 'country_id', 'city'):
                 if getattr(bill_address, field) != data[field]:
                     changed_location = True
             try:
@@ -326,11 +326,12 @@ class ContactInfoForm(ProxyContactForm):
                 ship_address = AddressBook()
             
             for field in address_keys:
-                if (not changed_location) and field in ('state', 'country', 'city'):
-                    if getattr(ship_address, field) != data[field]:
+                ship_field = 'ship_' + field
+                if (not changed_location) and field in ('state', 'country_id', 'city'):
+                    if getattr(ship_address, field) != data[ship_field]:
                         changed_location = True
                 try:
-                    setattr(ship_address, field, data['ship_' + field])
+                    setattr(ship_address, field, data[ship_field])
                 except KeyError:
                     pass
             ship_address.is_default_shipping = True
