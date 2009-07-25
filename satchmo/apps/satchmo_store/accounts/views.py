@@ -1,6 +1,5 @@
-from django import http
 from django.conf import settings
-from django.contrib.auth import logout, login, REDIRECT_FIELD_NAME
+from django.contrib.auth import login, REDIRECT_FIELD_NAME
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site, RequestSite
@@ -13,13 +12,12 @@ from django.views.decorators.cache import never_cache
 from forms import RegistrationAddressForm, RegistrationForm, EmailAuthenticationForm
 from l10n.models import Country
 from livesettings import config_get_group, config_value
-from mail import send_welcome_email
+from satchmo_store.accounts.mail import send_welcome_email
 from satchmo_store.accounts import signals
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import Config
 import logging
-import signals
 
 log = logging.getLogger('satchmo_store.accounts.views')
 
@@ -162,7 +160,7 @@ def register_handle_form(request, redirect=None):
                     next = redirect
                 else:
                     next = urlresolvers.reverse('registration_complete')
-            return (True, http.HttpResponseRedirect(next))
+            return (True, HttpResponseRedirect(next))
 
     else:
         initial_data = {}
@@ -336,11 +334,4 @@ def register(request, redirect=None, template='registration/registration_form.ht
 
         context = RequestContext(request, ctx)
         return render_to_response(template, context)
-
-
-def shop_logout(request):
-    logout(request)
-    if CUSTOMER_ID in request.session:
-        del request.session[CUSTOMER_ID]
-    url = urlresolvers.reverse('satchmo_shop_home')
-    return http.HttpResponseRedirect(url)    
+  

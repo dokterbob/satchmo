@@ -13,6 +13,8 @@ from livesettings import config_value
 from satchmo_store.contact.urls import urlpatterns
 from satchmo_utils.signals import collect_urls
 from satchmo_store import accounts
+from django.core.urlresolvers import reverse
+
 
 # Activation keys get matched by \w+ instead of the more specific
 # [a-fA-F0-9]+ because a bad activation key should still get to the view;
@@ -21,10 +23,13 @@ from satchmo_store import accounts
 urlpatterns += patterns('satchmo_store.accounts.views',
     (r'^activate/(?P<activation_key>\w+)/$', 'activate', {}, 'registration_activate'),
     (r'^login/$', 'emaillogin', {'template_name': 'registration/login.html'}, 'auth_login'),
-    (r'^logout/$', 'shop_logout', {}, 'auth_logout'),
     (r'^register/$', 'register', {}, 'registration_register'),
     (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'registration/login.html'}, 'auth_secure_login'),    
 )
+
+urlpatterns += patterns('',
+    ('^logout/$','django.contrib.auth.views.logout', {}, 'auth_logout'),
+    )
 
 verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 

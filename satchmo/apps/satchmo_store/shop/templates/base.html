@@ -58,7 +58,7 @@
 	    {% if user.is_authenticated %}
 		{% url satchmo_account_info as accounturl %}
         {% if accounturl %}<a href="{{ accounturl }}" target="blank">{% trans "Account Details" %}</a><br/>{% endif %}
-        <a href="{{ logout_url }}">{% trans "Log out" %}</a><br/>
+        <a href="{{ logout_url }}?next={{request.path}}">{% trans "Log out" %}</a><br/>
 	    {% else %}
         <a href="{{ login_url }}?next={{request.path}}">{% trans "Log in" %}</a><br/>
 	    {% endif %}
