@@ -164,7 +164,7 @@ Sort
 Product Options
 ----------------
 
-As discussed above, a product is the central focus of your store.  For many cases, the products in your store may have several options.  For instance, if you sell t-shirts, a visitor to your store should be able to choose the size of the shirt while looking at the main item.  You may also want them to choose a color, style and/or a bunch of other different options.  The challenge with this much flexibility is building something that is easy for the user to understnad and easy for the store administrator to maintain.  Satchmo uses option groups and options to create configurable products and product variants.
+As discussed above, a product is the central focus of your store.  For many cases, the products in your store may have several options.  For instance, if you sell t-shirts, a visitor to your store should be able to choose the size of the shirt while looking at the main item.  You may also want them to choose a color, style and/or a bunch of other different options.  The challenge with this much flexibility is building something that is easy for the user to understand and easy for the store administrator to maintain.  Satchmo uses option groups and options to create configurable products and product variants.
 
 Option Groups
 +++++++++++++
