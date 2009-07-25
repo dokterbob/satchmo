@@ -92,7 +92,10 @@ Please structure your views so that redirects only occur during GETs.""")
 
         protocol = secure and "https" or "http"
         host = "%s://%s" % (protocol, get_host(request))
-
+        # In certain proxying situations, we need to strip out the 443 port
+        # in order to prevent inifinite redirects
+        if not secure:
+            host = host.replace(':443','')
         if secure and SSLPORT:
             host = "%s:%s" % (host, SSLPORT)
             

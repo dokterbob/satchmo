@@ -143,6 +143,11 @@ def request_is_secure(request):
     if 'HTTP_X_FORWARDED_SSL' in request.META:
         return request.META['HTTP_X_FORWARDED_SSL'] == 'on'
 
+    # Handle an additional case of proxying SSL requests. This is useful for Media Temple's
+    # Django container
+    if 'HTTP_X_FORWARDED_HOST' in request.META and request.META['HTTP_X_FORWARDED_HOST'].endswith('443'):
+        return True
+
     return False
             
 def url_join(*args):
