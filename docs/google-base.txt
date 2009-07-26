@@ -10,7 +10,7 @@ Google Base
 Google Base is a "free Google service that lets you publish virtually any kind of information." This module allows you to create a feed of your products and add to Google Base. It is not enabled by default.
 
 Features
-++++++++
+--------
 
     * It exports all active products into the feed.
     * It adds all the legal payment types to the feed.
@@ -21,7 +21,7 @@ Features
     * In either case, if it is not found in the base google tags, it will make a custom tag. For example. "<c:book_type:string>hardback</c:book_type:string>" 
 
 Installing
-++++++++++
+----------
 
 On your site:
 

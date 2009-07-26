@@ -67,7 +67,7 @@ Valid Products
 .. _`Auto Discounts`:
 
 Store Wide Sales
---------------------------
+----------------
 
 Automatic discounts are how you do store wide sales.
 

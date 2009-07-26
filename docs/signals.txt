@@ -15,7 +15,7 @@ Signal Descriptions
 --------------------
 
 livesettings.signals
-+++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^
 
 configuration_value_changed
 ***************************
@@ -37,7 +37,7 @@ Arguments sent with this signal:
         The instance of ``livesettings.values.Value`` that was changed (Note: this argument is the same as ``sender``)
 
 satchmo_store.shop.signals
-++++++++++++++++++++++++++     
+^^^^^^^^^^^^^^^^^^^^^^^^^^    
 
 order_success
 **************
@@ -325,7 +325,7 @@ Arguments sent with this signal:
 
 
 satchmo_store.contact.signals
-+++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 satchmo_contact_view
 ********************
@@ -394,7 +394,7 @@ Arguments sent with this signal:
     
 
 satchmo_store.accounts.signals
-++++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 satchmo_registration
 ********************
@@ -445,7 +445,7 @@ Arguments sent with this signal:
         A dicionary of initial data to populate the form with on rendering
 
 satchmo_ext.newsletter.signals
-++++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 newsletter_subscription_updated
 *******************************
@@ -470,7 +470,7 @@ Arguments sent with this signal:
         An empty dictionary. This argument is not currently used.
 
 payment.signals
-+++++++++++++++
+^^^^^^^^^^^^^^^
 
 confirm_sanity_check
 ********************
@@ -579,7 +579,7 @@ Arguments sent with this signal:
         A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
 
 product.signals
-+++++++++++++++
+^^^^^^^^^^^^^^^
 
 index_prerender
 ***************
@@ -657,7 +657,7 @@ Arguments sent with this signal:
         always the string "download"
 
 satchmo_utils.signals
-+++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^
 
 collect_urls
 ************

@@ -36,7 +36,7 @@ The majority of the store configuration is done through the admin interface. Sat
 All of the configuration settings have detailed help notes. They also default to sensible configurations so your initial store should work fine without changing any values.
 
 Base Settings
-+++++++++++++
+^^^^^^^^^^^^^
 
 These items are used for general store configuration and include:
 
@@ -51,17 +51,17 @@ These items are used for general store configuration and include:
    single: Google; adwords
 
 Google Settings
-+++++++++++++++
+^^^^^^^^^^^^^^^
 
 This section allows you to enable or disable google analytics and conversion tracking for adwords.
 
 Language Settings
-+++++++++++++++++
+^^^^^^^^^^^^^^^^^
 
 Allows the user to manually choose their language they would like to see.
 
 Payment Settings
-++++++++++++++++
+^^^^^^^^^^^^^^^^
 
 Satchmo can handle multiple ways of accepting payment.  By default, you have a dummy processor that does nothing but accept payments.  Obviously, you'll want to enable one of the other modules before going live.
 
@@ -84,7 +84,7 @@ Each payment module will have it's own configuration items. These items apply un
    single: Product types; enabling
 
 Product Settings
-++++++++++++++++
+^^^^^^^^^^^^^^^^
 
 Before you use any of the products, you need to enable them in this section. The following products are available here:
 
@@ -105,7 +105,7 @@ In this section you can also configure:
    single: Shipping; enabling
    
 Shipping Settings
-+++++++++++++++++
+^^^^^^^^^^^^^^^^^
 
 This section allows you to choose which shipping modules you want to make available to users when they check out.
 
@@ -115,7 +115,7 @@ Once you select the modules you would like to use, you will be given an option t
    single: Tax; enabling
 
 Tax Settings
-++++++++++++
+^^^^^^^^^^^^
 
 Satchmo allows different tax configurations. This section allows you to choose the active tax module and configure it for your store.
 
@@ -125,7 +125,7 @@ Satchmo allows different tax configurations. This section allows you to choose t
 .. _newsletter:
 
 Newsletters
-+++++++++++
+^^^^^^^^^^^
 
 Satchmo has two methods for handling newsletter subscriptions.  By default, you have an "ignore it" processor enabled.
 To enable handling, first add "satchmo.newsletter" to your list of installed modules in your settings file.
@@ -139,7 +139,7 @@ Next, choose the way you want to handle the subscriptions.  Currently we have tw
    single: SSL
    
 SSL
-+++
+^^^
 
 SSL Security can be set on any url in your store.  In order for SSL to work,
 make sure that it is enabled in the middleware section of your settings.py::
@@ -173,7 +173,7 @@ This may be useful if you accept both PayPal and Authorize.net payments, for exa
 to be SSL enabled, but Authorize.net should be.
 
 Disabling the Live Settings System
-++++++++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once your store is live, you may want to disable the admin ability to edit the site configuration.  To do this, edit your settings.py file and add a new entry "LIVESETTINGS_OPTIONS" with the settings you want to lock into place.
 

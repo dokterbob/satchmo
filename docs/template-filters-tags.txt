@@ -7,12 +7,12 @@ Filters and Tags provide great flexibility when working with templates and are a
 It is possible to easily create your own filters and tags (you can read the `Django Template`_ documentation for details), but Satchmo also includes several useful filters and tags already.
 
 Filter Reference
-+++++++++++++++++++++++++++++++++
+----------------
 
 To use Tags in templates, you need to use the ``load`` tag to load the custom library into the template.
 
 discount_cart_total
----------------------------------
+^^^^^^^^^^^^^^^^^^^
 
 Returns the discounted total for a given cart item.
 
@@ -24,7 +24,7 @@ Returns the discounted total for a given cart item.
 The ``discount`` argument, if omitted will only result in returning the total for the cart, not the discounted total. 
 
 discount_line_total
----------------------------------
+^^^^^^^^^^^^^^^^^^^
 
 Returns the discounted line total for this cart item.
 
@@ -34,7 +34,7 @@ Returns the discounted line total for this cart item.
 		{{ product|discount_line_total:"sale" }}
 
 discount_price
----------------------------------
+^^^^^^^^^^^^^^
 
 Returns the product price with the discount applied.
     
@@ -46,7 +46,7 @@ Returns the product price with the discount applied.
 You would replace ``product`` with your actual product template variable.
 
 discount_ratio
----------------------------------
+^^^^^^^^^^^^^^
 
 Returns the discount as a ratio, making sure that the percent is under 1.
 
@@ -56,7 +56,7 @@ Returns the discount as a ratio, making sure that the percent is under 1.
 		{{ discount|discount_ratio }}
 
 discount_saved
----------------------------------
+^^^^^^^^^^^^^^
 
 Returns the amount saved by the discount.
 
@@ -66,7 +66,7 @@ Returns the amount saved by the discount.
 		{{ product|discount_saved:"sale" }}
 
 sale_price
----------------------------------
+^^^^^^^^^^
 
 Returns the product unit price with the best auto discount applied.
 
@@ -78,12 +78,12 @@ Returns the product unit price with the best auto discount applied.
 This filter goes through all applicable `auto discounts`_, finds and then sorts them by percentage. The return value would represent the greatest discount available for a product.
 
 Tag Reference
-+++++++++++++++++++++++++++++++++
+-------------
 
 To use Tags in templates, you need to use the ``load`` tag to load the custom library into the template.
  
 filter_admin_app_list
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 Filters the list of installed applications returned by ``django.contrib.admin.templatetags.adminapplist``, excluding applications installed by Satchmo.
 
@@ -95,7 +95,7 @@ Filters the list of installed applications returned by ``django.contrib.admin.te
 In the above usage you would replace ``app_list`` with the list of applications you would like to filter, and ``varname`` with the name of the variable you want to be returned in the template context.
 
 inprocess_order_list
------------------------------
+^^^^^^^^^^^^^^^^^^^^
 
 Returns a formatted list of in-process orders.
 
@@ -107,7 +107,7 @@ Returns a formatted list of in-process orders.
 This tag renders another template (default is ``templates\admin\_ordercount_list.html``), which produces an html list, using the ``django.template.Library().inclusion_tag`` library.
 
 product_upsell
----------------------------------
+^^^^^^^^^^^^^^
 
 Allows for easy upselling or cross-selling of a product. Up-selling can imply selling something additional, or selling something that is more profitable or otherwise preferable for the seller instead of the original sale [#]_ .
 

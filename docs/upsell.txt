@@ -1,7 +1,7 @@
 .. _upsell:
 
 Upsell
-==========
+======
 
 Allows for easy upselling or cross-selling of a product. Up-selling can imply selling something additional, or selling something that is more profitable or otherwise preferable for the seller instead of the original sale [#]_ .
 

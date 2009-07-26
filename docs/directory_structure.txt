@@ -81,7 +81,7 @@ Here's a brief description of the various applications.
     
     
 Satchmo_ext
-+++++++++++
+^^^^^^^^^^^
 
 As described above, the satchmo_ext module includes many smaller applications that you
 may wish to include in your site.

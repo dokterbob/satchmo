@@ -117,7 +117,7 @@ Product Subtypes
    single: Product; attributes
 
 Product Attributes
-++++++++++++++++++
+^^^^^^^^^^^^^^^^^^
 
 In some cases, you may want to have certain product information stored in the database.  For instance, you might want to have "number of pages" or "ISBN" fields
 for all of the books in your store.  Attributes allow you to associate arbitrary data with your products via name, value pairs.
@@ -126,7 +126,7 @@ for all of the books in your store.  Attributes allow you to associate arbitrary
    single: Product; price
 
 Price
-+++++
+^^^^^
 
 The final choice you have with your products is if there is additional pricing you would like to apply for bulk or special discounts.  For instance, you may want to charge someone $10 for 1-5 shirts but only $7 if they order 6 or more.  This model allows you to do such configuration.
 
@@ -143,7 +143,7 @@ Expires
    single: Product; images
    
 Images
-++++++
+^^^^^^
 
 In addition to the information discussed above, you can add as many images as you would like to your item.  One of the nice things about the way Satchmo handles these images is that they are automatically converted to thumbnails and are cached so that the conversion process does not slow down your web site.
 
@@ -167,7 +167,7 @@ Product Options
 As discussed above, a product is the central focus of your store.  For many cases, the products in your store may have several options.  For instance, if you sell t-shirts, a visitor to your store should be able to choose the size of the shirt while looking at the main item.  You may also want them to choose a color, style and/or a bunch of other different options.  The challenge with this much flexibility is building something that is easy for the user to understand and easy for the store administrator to maintain.  Satchmo uses option groups and options to create configurable products and product variants.
 
 Option Groups
-+++++++++++++
+^^^^^^^^^^^^^
 
 Continuing on with the shirt example, you will probably end up with some similar options that you want to apply to a large number of products.  For instance, all of your shirts are going to have sizes of Small, Medium and Large.  Instead of adding all three of these to each item, you can create an option group and add that grouping to the item.  Maintenance is much easier this way.
 
@@ -183,7 +183,7 @@ Sort Order
     This helps you order the options in the way you would like them displayed.  For instance, you may want colors to show before sizes.
 
 Options
-++++++++++++
+^^^^^^^
 
 In our example, if an option group is size, then the options would be "small", "medium" or "large."  The nice thing about these options is that you can configure these to change the price of your product.  If a large shirt costs more than a small shirt, then you can assign the incremental cost to the "large" option item and the correct price will be shown in the users cart and order.
 
@@ -201,7 +201,7 @@ Price Change
    single: Configurable Product
 
 Configurable Products
-+++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^
 
 ConfigurableProduct is a modifier for a product that allows you to associate an OptionGroup with a particular Product.
 
@@ -219,7 +219,7 @@ Variations
    single: Product Variation
    
 Product Variations
-++++++++++++++++++
+^^^^^^^^^^^^^^^^^^
 
 As described above a ProductVariation can be thought of as the actual product you maintain in inventory and sell to a customer.  It is an item with all of the options applied.  In our example case, it might be a Large, White Shirt. The ProductVariation object itself only has links between a ConfigurableProduct, and a Product.
 
@@ -228,7 +228,7 @@ As described above a ProductVariation can be thought of as the actual product yo
    single: Downloadable Product
 
 Downloadable Product
-++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^
 
 A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.  In Satchmo, this is accomplished by sending a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
 
@@ -251,7 +251,8 @@ In addition to configuring the x-send-file header, you will need to ensure that 
    single: Custom Product
    
 Custom Product
-++++++++++++++
+^^^^^^^^^^^^^^
+
 A custom product is one that is typically assembled or made to order based on the customer's needs. A common situation is a computer configurator that allows a customer to tailor the computer to their needs. Once the order is submitted the store owner will then build or configure that product. 
 
 Once you have created a product as described above, you may wish to use it as a basis for a custom product. The most important additional information you need to associate with your product is the option groups or custom text fields the customer may use to create their product. The option groups are no different from the ones described above. This gives you tremendous flexibility to vary the price of the product based on the chosen options. The custom text fields are free form text fields meant to capture special notes or instructions related to the order.
@@ -267,7 +268,8 @@ The custom product does not create product variations. The downside of this is t
    single: Subscription product
 
 Subscription Product
-++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^
+
 A subscription product is a product type that can be used to manage recurring billing memberships or to add payment terms to a non-membership product.
 
 In order to use this product,make sure you have the Subscription Product type enabled in the configuration settings. Additionally, if you would like to use a url to activate the rebilling, you will need to make sure the the setting ALLOW_URL_REBILL is set to True. If you do set it to True, make sure that you add a new unique key in the CRON_KEY setting.
@@ -314,7 +316,8 @@ Alternatively, you can run the rebilling script as a shell script.  In that case
    single: Gift certificate
    
 Gift Certificate Product
-++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 A gift certificate is a special product. In order to use it, make sure it is an enabled product type and that it is a selected payment method.
 
 Once you have enabled the gift certificate product type and payment methods, you need to create a product as described above. Then, in the product subtypes section, select "Enable GiftCertificateProduct" to turn the product into a gift certificate. Now, a user has the option of purchasing a gift certificate and receiving a unique code that can be applied towards the purchase of a product at your store.

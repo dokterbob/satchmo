@@ -11,7 +11,8 @@ in this section, the best way to learn more about these templates is to
 browse through and review the ones you are interested in.
 
 Payment
-+++++++
+-------
+
 These templates control some of the payment specific display elements.
 
 .. describe:: payment/templates/payment/admin/charge_remaining_confirm.html
@@ -25,7 +26,8 @@ These templates control some of the payment specific display elements.
 
 
 Payment/modules/
-================
+----------------
+
 Templates in this directory are used to modify the behavior of the giftcertificate
 payment process. They are useful for understanding how to further modify the checkout
 process.
@@ -39,7 +41,8 @@ process.
 .. describe:: giftcertificate/templates/plugins/order_details.html
 
 L10n 
-+++++
+----
+
 L10n is used for localizing Satchmo.
 
 .. describe:: l10n/templates/l10n/_language_selection_form.html
@@ -47,12 +50,13 @@ L10n is used for localizing Satchmo.
    Displays the language selection form that can be enabled through the admin.
    
 Satchmo_ext
-+++++++++++
+-----------
+
 Satchmo externals contains several useful applications that you may optionally
 enable for your store.
 
 wishlist
-========
+^^^^^^^^
 
 .. describe:: wishlist/templates/wishlist/login_required.html
 .. describe:: wishlist/templates/wishlist/plugins/product_add_buttons.html
@@ -60,17 +64,20 @@ wishlist
 .. describe:: wishlist/templates/wishlist/index.html
 
 upsell
-======
+^^^^^^
+
 .. describe:: upsell/templates/upsell/plugins/product_form.html
 .. describe:: upsell/templates/upsell/product_upsell.html
 
 recentlist
-==========
+^^^^^^^^^^
+
 .. describe:: recentlist/templates/recentlist/_recently_viewed.html
 .. describe:: recentlist/templates/recentlist/plugins/shop_sidebar_primary.html
 
 productratings
-==============
+^^^^^^^^^^^^^^
+
 .. describe:: satchmo_ext/productratings/templates/productratings/_product_ratings.html
 .. describe:: satchmo_ext/productratings/templates/productratings/plugins/sidebar_links.html
 .. describe:: satchmo_ext/productratings/templates/productratings/plugins/product_footer.html
@@ -78,11 +85,12 @@ productratings
 .. describe:: satchmo_ext/productratings/templates/productratings/_render_product_ratings.html
 
 productfeeds
-============
+^^^^^^^^^^^^
+
 .. describe:: satchmo_ext/product_feeds/templates/product_feeds/plugins/admin_tools.html
 
 newsletter
-==========
+^^^^^^^^^^
 
 .. describe:: satchmo_ext/newsletter/templates/newsletter/update_form.html
 .. describe:: satchmo_ext/newsletter/templates/newsletter/update_results.html
@@ -91,13 +99,14 @@ newsletter
 .. describe:: satchmo_ext/newsletter/templates/newsletter/subscribe_form.html
 
 brand
-=====
+^^^^^
 
 .. describe:: satchmo_ext/brand/templates/brand/view_brand.html
 .. describe:: satchmo_ext/brand/templates/brand/index.html
 
 Product
-+++++++
+-------
+
 The product templates are used to display all aspects of products in 
 your store. The admin templates are used to manage various portions of
 Satchmo's custom admin interface.
@@ -119,7 +128,8 @@ Satchmo's custom admin interface.
 .. describe:: product/templates/product/best_ratings.html
 
 admin
-=====
+^^^^^
+
 .. describe:: product/templates/product/admin/inventory_form.html
 .. describe:: product/templates/product/admin/product_export_form.html
 .. describe:: product/templates/product/admin/variation_manager.html
@@ -131,14 +141,14 @@ admin
 .. describe:: product/templates/admin/product/change_form.html
 
 Keyedcache
-++++++++++
+----------
 
 .. describe:: keyedcache/templates/keyedcache/view.html
 .. describe:: keyedcache/templates/keyedcache/stats.html
 .. describe:: keyedcache/templates/keyedcache/delete.html
 
 Satchmo_Store
-+++++++++++++
+-------------
 
 .. describe:: satchmo_store/shop/templates/404.html
 .. describe:: satchmo_store/shop/templates/500.html
@@ -216,15 +226,18 @@ Satchmo_Store
 .. describe:: satchmo_store/contact/templates/registration/password_change_done.html
 
 Livesettings
-++++++++++++
+------------
+
 .. describe:: livesettings/templates/livesettings/site_settings.html
 .. describe:: livesettings/templates/livesettings/group_settings.html
 .. describe:: livesettings/templates/livesettings/_admin_site_views.html
 
 Shipping
-++++++++
+--------
+
 .. describe:: shipping/templates/shipping/options.html
 
 Satchmo_utils
-+++++++++++++
+-------------
+
 .. describe:: satchmo_utils/thumbnail/templates/widget/file.html

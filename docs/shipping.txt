@@ -22,28 +22,28 @@ Available Modules
 Satchmo includes several modules in the default distribution.
 
 Dummy
-+++++
+^^^^^
 
 This module is mainly included in order to demonstrate how you can create your own modules.  If
 you have an interest in creating your own, copy this module to a new directory and use the comments
 to guide you through the process.
 
 Flat
-++++
+^^^^
 
 This is a very simple module that allows you to set a flat rate for all shipments.  It's not very
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
 can be configured through your settings page.
 
 Per
-+++
+^^^
 
 This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
 multiplied by the number of items in your order.  These values are configured through your settings
 page.
 
 Tiered
-++++++
+^^^^^^
 
 This one is much more flexible than any of the prior modules, so it requires a little more configuration.
 It is not enabled by default.
@@ -73,7 +73,7 @@ For example, you can make this shipping table::
    single: UPS
 
 UPS
-+++
+^^^
 
 The UPS shipping module provides an interface to the UPS Rating and Service selection interface.  This service
 from UPS allows you to get custom real time shipping quotes based on the sending and receiving addresses
@@ -125,7 +125,8 @@ one 6 pound package. If your shop has a different method of shipping, you will n
    single: Fedex;
 
 Fedex
-+++++
+^^^^^
+
 The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
 
 One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response.
@@ -153,7 +154,8 @@ Once you've got the module installed its time to get your account set up with Fe
    single: USPS;
    
 USPS
-++++
+^^^^
+
 The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
 regarding this module:
 
@@ -171,7 +173,8 @@ To enable in Satchmo:
  2. Configure the password and package settings
 
 Hide Shipping if One Module
-+++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. You could 
 modify the templates to try to hide the option but there is a simpler method using signals. You can use the shipping_hide_if_one 
 listener to hide the shipping choices. Place the following code in your sites models.py file::

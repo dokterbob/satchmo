@@ -15,7 +15,7 @@ The easiest way to install satchmo requirements, is to use the python setuptools
 one simple method to install the dependencies. You may manually install them if you wish.
 
 Installing Dependencies
-+++++++++++++++++++++++++++++++++
+-----------------------
 
 1. Install setuputils by following the instructions on easy_install_ page. After installation, you should be able to run ``easy_install`` directly (assuming the install directory is in you $PATH).
         
@@ -76,7 +76,7 @@ Installing Dependencies
     recommended satchmo version is available via ``easy_install`` before proceeding.
 
 Installing Satchmo into your path
-+++++++++++++++++++++++++++++++++
+---------------------------------
 
 1. Use django to create your new store::
 
@@ -119,7 +119,8 @@ Installing Satchmo into your path
    
    
 Customizing the settings
-++++++++++++++++++++++++
+------------------------
+
 Now that Satchmo is installed on your PYTHONPATH, you will need to create a new project or integrate Satchmo
 into an existing project. Before proceeding with the next steps, please familiarize yourself with the 
 sample projects that are available in /satchmo/projects/.
@@ -232,7 +233,7 @@ to add any pieces of satchmo.
    
         
 Configure the rest of the required files
-++++++++++++++++++++++++++++++++++++++++
+----------------------------------------
 
 8. Next, you need to configure your urls.py file. The most simple urls.py file would look like this::
 
@@ -260,7 +261,7 @@ Configure the rest of the required files
 overriding existing templates.
 
 Test and Install the Data
-+++++++++++++++++++++++++
+-------------------------
    
 12.  Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
 
@@ -287,7 +288,7 @@ If any errors are identified, resolve them based on the error description.
         python manage.py satchmo_load_us_tax
         
 View the Demo Store
-+++++++++++++++++++
+-------------------
 
 17.  Start up the sample webserver to see your store::
 
@@ -314,7 +315,7 @@ View the Demo Store
     same machine you're developing on, the above urls should work.  If not, use the appropriate url.
 
 Additional Notes
-++++++++++++++++
+----------------
 
 Satchmo also includes a command that will erase all your tables. It is useful while devoloping but please be careful before using!
 
@@ -330,7 +331,7 @@ Satchmo also includes a full set of unit tests. After you get your system instal
         python manage.py test
         
 Advanced Configuration
-++++++++++++++++++++++
+----------------------
 
 The steps described above are the quickest and simplest method for getting a Satchmo store up and running
 quickly. However, there are some downsides to the approach described in these steps:
@@ -344,7 +345,7 @@ for a more robust project layout. It will take a little bit more effort but is m
 future upgrades.
 
 Useful Links
-++++++++++++++++++++++++++
+------------
 
 `Django installation guide`_
 
