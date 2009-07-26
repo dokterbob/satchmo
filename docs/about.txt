@@ -1,0 +1,48 @@
+About this Project
+==================
+
+This project was started by a group of individuals that were interested in using the Django framework to create a robust 
+shopping cart solution. After some discussions, we have decided to focus on building a modular framework of shopping cart 
+or eCommerce packages that can be easily put together to form a full store. Here's a bunch of questions you might be 
+asking yourself at this point. Why use Django?
+
+First off, we wanted to use Python for the project. Many of us have experience with similar PHP based projects and 
+we quickly realized that they tend to break down pretty quickly under the unwieldy syntax, lack of good OO support 
+and hackish nature of many of the projects.
+
+Once we decided on Python, there were many frameworks to evaluate. They all have tradeoffs but there are some things we 
+really liked about Django:
+
+    * Robust, scalable system that has been used on major commercial sites
+    * Clean separation of program logic from presentation
+    * Nice abstraction of SQL (but with the capability to code SQL if required)
+    * Solid documentation
+    * URL mapping capabilities will be very useful for a shopping cart solution
+    * Out of the box admin capabilities making it easy to get up and running & provide enhanced security for multiple users in a store. 
+
+This list is not exhaustive and there could be endless debate and flamewars on the choices but we've all reached 
+this decision independently and encourage you to investigate & make your own choice.
+
+Why build a shopping cart framework?
+++++++++++++++++++++++++++++++++++++
+
+Interestingly enough, there seems to be a fairly large number of "geeks" who are involved in creating web stores for 
+their wives or significant others. For various reasons mentioned above, we independently started using Django. 
+It just happens that there's the possibility for a lot of synergy here. Like most Open Source projects, we created 
+this project because we thought there was an unmet need for ourselves as well as the larger audience.
+
+Many of the current shopping carts out there were built a while ago and have not aged too gracefully. They also did not 
+have the benefits of the Django framework. Looking at the Django framework, we realized that with just a little bit of 
+additional work we could have a pretty powerful shopping cart system.
+
+We initially thought about developing a full fledged shopping cart but realized that it is very difficult to build a 
+one size fits all shopping cart package. Some people want a very simple solution and are confused by the multiple options 
+and configurations available to them. Other people have the technical capabilities to build something very robust and 
+tailored to their needs. In a similar way that Django "gets out of your way" and allows you to focus on the models 
+and rules for your application, we want to build a framework that makes it trivial to setup a simple shop and 
+relatively easy to modify it and grow as your business needs change.
+
+What license are you using?
++++++++++++++++++++++++++++
+
+We have decided to use the BSD license for this project. You can learn more about it here BSD License.

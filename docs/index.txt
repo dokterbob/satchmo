@@ -10,6 +10,7 @@ Overview
    :maxdepth: 1
 
    introduction
+   about
    features
    requirements
    directory_structure
