@@ -44,6 +44,13 @@ dimension_units = (('cm','cm'), ('in','in'))
 
 weight_units = (('kg','kg'), ('lb','lb'))
 
+DISCOUNT_SHIPPING_CHOICES = (
+    ('NONE', _('None')),
+    ('FREE', _('Free Shipping')),
+    ('FREECHEAP', _('Cheapest shipping option is free')),
+    ('APPLY', _('Apply the discount above to shipping'))
+)
+
 SHIP_CLASS_CHOICES = (
     ('DEFAULT', _('Default')),
     ('YES', _('Shippable')),
@@ -381,6 +388,7 @@ class NullDiscount(object):
     def valid_for_product(self, product):
         return False
 
+
 class DiscountManager(models.Manager):
     def by_code(self, code, raises=False):
         discount = None
@@ -394,6 +402,7 @@ class DiscountManager(models.Manager):
                     raise
                     
         return NullDiscount()
+        
 
 class Discount(models.Model):
     """
@@ -404,31 +413,31 @@ class Discount(models.Model):
     description = models.CharField(_("Description"), max_length=100)
     code = models.CharField(_("Discount Code"), max_length=20, unique=True,
         help_text=_("Coupon Code"))
+    active = models.BooleanField(_("Active"))
     amount = CurrencyField(_("Discount Amount"), decimal_places=2,
-        max_digits=4, blank=True, null=True, 
+        max_digits=8, blank=True, null=True, 
         #validator_list=[amount_validator],
         help_text=_("Enter absolute discount amount OR percentage."))
     percentage = models.DecimalField(_("Discount Percentage"), decimal_places=2,
-        max_digits=4, blank=True, null=True,
+        max_digits=5, blank=True, null=True,
         #validator_list=[percentage_validator],
-        help_text=_("Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."))
+        help_text=_("Enter absolute discount amount OR percentage.  Percents are given in whole numbers, and can be up to 100%."))
     automatic = models.NullBooleanField(_("Is this an automatic discount?"), default=False, blank=True,
         null=True, help_text=_("Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."))
     allowedUses = models.IntegerField(_("Number of allowed uses"),
-        blank=True, null=True, help_text=_('Not implemented.'))
+        blank=True, null=True, help_text=_('Set this to a number greater than 0 to have the discount expire after that many uses.'))
     numUses = models.IntegerField(_("Number of times already used"),
-        blank=True, null=True, help_text=_('Not implemented.'))
+        blank=True, null=True)
     minOrder = CurrencyField(_("Minimum order value"),
-        decimal_places=2, max_digits=6, blank=True, null=True)
+        decimal_places=2, max_digits=8, blank=True, null=True)
     startDate = models.DateField(_("Start Date"))
     endDate = models.DateField(_("End Date"))
-    active = models.BooleanField(_("Active"))
-    freeShipping = models.NullBooleanField(_("Free shipping"), blank=True, null=True,
-        help_text=_("Should this discount remove all shipping costs?"))
-    includeShipping = models.NullBooleanField(_("Include shipping"), blank=True, null=True,
-        help_text=_("Should shipping be included in the discount calculation?"))
+    shipping = models.CharField(_("Shipping"), choices=DISCOUNT_SHIPPING_CHOICES, 
+        default='NONE', blank=True, null=True, max_length=10)
+    allValid = models.BooleanField(_("All products?"), default=False, 
+        help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
     validProducts = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
-        blank=True, null=True, help_text="Make sure not to include gift certificates!")
+        blank=True, null=True)
 
     objects = DiscountManager()
         
@@ -450,7 +459,7 @@ class Discount(models.Model):
             return (False, ugettext('This coupon is not active yet.'))
         if self.endDate < datetime.date.today():
             return (False, ugettext('This coupon has expired.'))
-        if self.numUses > self.allowedUses:
+        if self.numUses and self.allowedUses and self.allowedUses > 0 and self.numUses > self.allowedUses:
             return (False, ugettext('This discount has exceeded the number of allowed uses.'))
         if not cart:
             return (True, ugettext('Valid.'))
@@ -459,13 +468,7 @@ class Discount(models.Model):
         if cart.total < minOrder:
             return (False, ugettext('This discount only applies to orders of at least %s.' % moneyfmt(minOrder)))
 
-        validItems = False
-        if self.validProducts.count() == 0:
-            validItems = True
-        else:
-            validItems = len(self._valid_products(cart.cartitem_set))
-
-        if validItems:
+        if self.allValid or (len(self._valid_products(cart.cartitem_set)) > 0):
             return (True, ugettext('Valid.'))
         else:
             return (False, ugettext('This discount cannot be applied to the products in your cart.'))
@@ -482,7 +485,7 @@ class Discount(models.Model):
     def calc(self, order):
         # Use the order details and the discount specifics to calculate the actual discount
         discounted = {}
-        if self.validProducts.count() == 0:
+        if self.allValid:
             allvalid = True
         else:
             allvalid = False
@@ -494,7 +497,11 @@ class Discount(models.Model):
             if lineitem.product.is_discountable and (allvalid or lineitem.product.slug in validproducts):
                 discounted[lid] = price
 
-        if self.includeShipping and not self.freeShipping:
+        if not self.shipping:
+            self.shipping = "NONE"
+            self.save()
+            
+        if self.shipping == "INCLUDE":
             shipcost = order.shipping_cost
             discounted['Shipping'] = shipcost
 
@@ -512,7 +519,7 @@ class Discount(models.Model):
             for key in discounted.keys():
                 discounted[key] = zero
 
-        if self.freeShipping:
+        if self.shipping in ('FREE', 'FREECHEAP'):
             shipcost = order.shipping_cost
             discounted['Shipping'] = shipcost
 
@@ -532,13 +539,7 @@ class Discount(models.Model):
 
     def _percentage_text(self):
         """Get the human readable form of the sale percentage."""
-        if self.percentage > 1:
-            pct = self.percentage
-        else:
-            pct = self.percentage*100
-        cents = Decimal("0")
-        pct = pct.quantize(cents)
-        return "%i%%" % pct
+        return "%d%%" % self.percentage
 
     percentage_text = property(_percentage_text)
 
@@ -592,12 +593,9 @@ class Discount(models.Model):
 
     def apply_percentage(cls, discounted, percentage):
         work = {}
-        if percentage > 1:
-            log.warn("Correcting discount percentage, should be less than 1, is %s", percentage)
-            percentage = percentage/100
 
         for lid, price in discounted.items():
-            work[lid] = price * percentage
+            work[lid] = price * percentage / 100
         round_cents(work)
         return work
         

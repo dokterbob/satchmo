@@ -5,7 +5,7 @@ except:
 
 from django.contrib.sites.models import Site
 from django.db.models import Q
-from product.models import Product, Category
+from product.models import Product, Category, Discount
 import logging
 log = logging.getLogger('search listener')
 
@@ -97,3 +97,19 @@ def priceband_search_listener(sender, request=None, category=None, keywords=[], 
     categories = categories.filter(product__in = priced)
     results['products'] = priced
     results['categories'] = categories
+
+def discount_used_listener(sender, order=None, **kwargs):
+    """If an order has a discount, increment numUses on it.
+    
+    satchmo_store.shop.signals.order_success listener set up in shop.listeners.
+    """
+    if order.discount_code:
+        try:
+            discount = Discount.objects.by_code(order.discount_code)
+            if discount.numUses:
+                discount.numUses += 1
+            else:
+                discount.numUses = 1
+            discount.save()
+        except Discount.DoesNotExist:
+            pass

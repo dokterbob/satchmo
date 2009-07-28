@@ -4,7 +4,7 @@ from livesettings import config_value
 from payment.listeners import capture_on_ship_listener
 from product import signals as product_signals
 from product.models import Product
-from product.listeners import default_product_search_listener
+from product.listeners import default_product_search_listener, discount_used_listener
 from satchmo_store.contact import signals as contact_signals
 from satchmo_store.shop import signals
 from satchmo_store.shop.exceptions import OutOfStockError
@@ -81,6 +81,7 @@ def start_default_listening():
     signals.order_success.connect(decrease_inventory_on_sale)
     signals.order_success.connect(notification.order_success_listener, sender=None)
     signals.order_success.connect(ship_downloadable_order, sender=None)
+    signals.order_success.connect(discount_used_listener, sender=None)
     signals.satchmo_cart_changed.connect(remove_order_on_cart_update, sender=None)
     signals.satchmo_search.connect(default_product_search_listener, sender=Product)
     signals.satchmo_order_status_changed.connect(capture_on_ship_listener)
