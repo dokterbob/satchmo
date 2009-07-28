@@ -2,6 +2,7 @@ from django import forms
 from django.core import urlresolvers
 from django.utils.translation import ugettext, ugettext_lazy as _
 from payment.utils import capture_authorizations
+from livesettings import config_value
 import logging
 
 log = logging.getLogger('payment.listeners')
@@ -23,15 +24,8 @@ def form_terms_listener(sender, form=None, **kwargs):
 def shipping_hide_if_one(sender, form=None, **kwargs):
     """Makes the widget for shipping hidden if there is only one choice."""
 
-    choices = form.fields['shipping'].choices
-    if len(choices) == 1:
-        form.fields['shipping'] = forms.CharField(max_length=30, initial=choices[0][0], 
-            widget=forms.HiddenInput(attrs={'value' : choices[0][0]}))
-        form.shipping_hidden = True
-        form.shipping_description = choices[0][1]
-    else:
-        form.shipping_hidden = False
-
+    log.warn("shipping_hide_if_one listener is deprecated, please configure this in your site settings in the shipping section.")
+    
 def capture_on_ship_listener(sender, oldstatus="", newstatus="", order=None, **kwargs):
     """Listen for a transition to 'shipped', and capture authorizations."""
 

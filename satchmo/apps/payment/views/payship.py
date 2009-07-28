@@ -86,8 +86,20 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
         form = SimplePayShipForm(request, payment_module, new_data)
         if form.is_valid():
             form.save(request, working_cart, contact, payment_module)
+        else:
+            return (False, form)
     else:
-        form = SimplePayShipForm(request, payment_module)
+        order_data = {}
+        try:
+            order = Order.objects.from_request(request)
+            if order.shipping_model:
+                order_data['shipping'] = order.shipping_model
+            if order.discount_code:
+                order_data['discount'] = order.discount_code
+        except Order.DoesNotExist:
+            pass
+
+        form = SimplePayShipForm(request, payment_module, order_data)
         if config_value('PAYMENT','USE_DISCOUNTS') or not form.shipping_hidden:
             return (False, form)
         else:

@@ -32,6 +32,7 @@ from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, ad
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
+from shipping.config import shipping_method_by_key
 
 try:
     from decimal import Decimal
@@ -448,10 +449,11 @@ class Discount(models.Model):
     def __unicode__(self):
         return self.description
 
-    def isValid(self, cart=None):
+    def isValid(self, cart=None, shipping_choices=None, shipping=None):
         """
         Make sure this discount still has available uses and is in the current date range.
         If a cart has been populated, validate that it does apply to the products we have selected.
+        If this is a "FREECHEAP" discount, then error if the cheapest shipping hasn't been chosen.
         """
         if not self.active:
             return (False, ugettext('This coupon is disabled.'))
@@ -461,6 +463,20 @@ class Discount(models.Model):
             return (False, ugettext('This coupon has expired.'))
         if self.numUses and self.allowedUses and self.allowedUses > 0 and self.numUses > self.allowedUses:
             return (False, ugettext('This discount has exceeded the number of allowed uses.'))
+            
+        if shipping_choices and self.shipping == 'FREECHEAP':
+            least = None
+            leastcost = None
+            for key, value in shipping_choices.items():
+                if leastcost is None:
+                    least = key
+                    leastcost = value
+                elif value < leastcost:
+                    least = key
+            if least != shipping:
+                method = shipping_method_by_key(least)
+                return (False, ugettext('To use this discount, you must select "%(cheap_discount)s"') % {'cheap_discount' : method.description()})
+
         if not cart:
             return (True, ugettext('Valid.'))
 
@@ -555,7 +571,6 @@ class Discount(models.Model):
         verbose_name_plural = _("Discounts")
 
     def apply_even_split(cls, discounted, amount):
-        log.debug('Apply even split on %s to: %s', amount, discounted)
         lastct = -1
         ct = len(discounted)
         split_discount = amount/ct

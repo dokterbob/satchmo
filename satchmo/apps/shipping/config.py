@@ -11,9 +11,32 @@ SHIPPING_ACTIVE = config_register(MultipleStringValue(SHIPPING_GROUP,
     description=_("Active shipping modules"),
     help_text=_("Select the active shipping modules, save and reload to set any module-specific shipping settings."),
     default=["shipping.modules.per"],
-    choices=[('shipping.modules.per', _('Per piece'))]
+    choices=[('shipping.modules.per', _('Per piece'))],
+    ordering=0
     ))
     
+config_register(
+    StringValue(SHIPPING_GROUP,
+        'HIDING',
+        description = _("Hide if one?"),
+        help_text = _("Hide shipping form fields if there is only one choice available?"),
+        default='NO',
+        ordering=10,
+        choices = (
+            ('NO', _('No')),
+            ('YES', _('Yes')),
+            ('DESCRIPTION', _('Show description only'))
+        )))
+        
+config_register(
+    BooleanValue(SHIPPING_GROUP,
+        'SELECT_CHEAPEST',
+        description = _("Select least expensive by default?"),
+        default=True,
+        ordering=15
+        ))
+
+
 # --- Load default shipping modules.  Ignore import errors, user may have deleted them. ---
 # DO NOT ADD 'tiered' or 'no' to this list.  
 # 'no' is used internally

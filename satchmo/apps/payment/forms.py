@@ -21,7 +21,10 @@ from tax.templatetags.satchmo_tax import _get_taxprocessor
 from satchmo_utils.dynamic import lookup_template
 import calendar
 import datetime
+import logging
 import sys
+
+log = logging.getLogger('payment.forms')
 
 MONTHS = [(month,'%02d'%month) for month in range(1,13)]
 
@@ -64,8 +67,8 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
             shipping_dict[method.id] = shipcost
     
     return shipping_options, shipping_dict
-    
-     
+
+
 class CustomChargeForm(forms.Form):
     orderitem = forms.IntegerField(required=True, widget=forms.HiddenInput())
     amount = forms.DecimalField(label=_('New price'), required=False)
@@ -176,12 +179,41 @@ class SimplePayShipForm(forms.Form):
             default_view_tax = config_value_safe('TAX', 'TAX_SHIPPING', False)
             
         shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
-        self.fields['shipping'].choices = shipping_choices
+        
+        # possibly hide the shipping        
+        shiphide = config_value('SHIPPING','HIDING')
+        
+        if shiphide in ('YES', 'DESCRIPTION') and len(shipping_choices) == 1:
+            self.fields['shipping'] = forms.CharField(max_length=30, initial=shipping_choices[0][0], 
+                widget=forms.HiddenInput(attrs={'value' : shipping_choices[0][0]}))
+            if shiphide == 'DESCRIPTION':
+                self.shipping_hidden = False
+                self.shipping_description = shipping_choices[0][1]
+            else:
+                self.shipping_hidden = True
+                self.shipping_description = ""
+        elif len(shipping_choices) == 0:
+            self.shipping_hidden = True
+        else:
+            self.fields['shipping'].choices = shipping_choices
+            if config_value('SHIPPING','SELECT_CHEAPEST'):
+                least = None
+                leastcost = None
+                for key, value in shipping_dict.items():
+                    if leastcost is None:
+                        least = key
+                        leastcost = value
+                    elif value < leastcost:
+                        least = key
+                if least is not None:
+                    self.fields['shipping'].initial = least
+            self.shipping_hidden = False
+
         self.shipping_dict = shipping_dict
         
         if not config_value('PAYMENT', 'USE_DISCOUNTS'):
             self.fields['discount'].widget = forms.HiddenInput()
-        
+
         signals.payment_form_init.send(SimplePayShipForm, form=self)
 
     def clean_shipping(self):
@@ -200,7 +232,7 @@ class SimplePayShipForm(forms.Form):
                 discount = Discount.objects.get(code=data, active=True)
             except Discount.DoesNotExist:
                 raise forms.ValidationError(_('Invalid discount.'))
-            valid, msg = discount.isValid(self.tempCart)
+            valid, msg = discount.isValid(self.tempCart, shipping_choices=self.shipping_dict, shipping=self.cleaned_data.get('shipping',None))
             if not valid:
                 raise forms.ValidationError(msg)
             # TODO: validate that it can work with these products
