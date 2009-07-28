@@ -390,8 +390,8 @@ class ShopTest(TestCase):
         self.test_cart_adding()
         self.client.post(prefix + '/checkout/', get_step1_post_data(self.US))
         self.assert_(self.client.session.get(CUSTOMER_ID) is not None)
-        response = self.client.get('/accounts/logout/')
-        self.assertRedirects(response, prefix + '/',
+        response = self.client.get('/accounts/logout/?next=%s' % (prefix+'/checkout/'))
+        self.assertRedirects(response, prefix + '/checkout/',
             status_code=302, target_status_code=200)
         self.assert_(self.client.session.get(CUSTOMER_ID) is None)
         response = self.client.get('/accounts/') # test logged in status
