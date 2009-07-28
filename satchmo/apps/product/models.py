@@ -2224,7 +2224,7 @@ def get_product_quantity_adjustments(product, qty=1, parent=None):
 
     if qty_discounts.count() > 0:
         # Get the price with the quantity closest to the one specified without going over
-        adjustments = qty_discounts.order_by('-quantity', 'expires')[0].adjustments()
+        adjustments = qty_discounts.order_by('price','-quantity', 'expires')[0].adjustments()
 
     elif parent:
         adjustments = get_product_quantity_adjustments(parent, qty=qty)
