@@ -9,7 +9,7 @@ It is recommended that you use Django 1.1 series. At this time, Django 1.1 has n
 released so Django trunk is recommended because portions of the Satchmo admin depend on the recent changes in
 trunk.
 
-Satchmo requires Python 2.3 or later and a database supported by Django.
+Satchmo requires Python 2.4 or later and a database supported by Django.
 
 There is always a challenge in deciding how many dependencies to include in a project. With
 Satchmo, we strongly believe in avoiding "Not Invented Here" syndrome and using the power
@@ -57,7 +57,7 @@ The following package is required to load the initial data and run the unit test
 
     - `PyYaml`_
 
-Docutils is useful for auto generating some documentation:
+Docutils is useful for auto generating some documentation but is not required:
 
     - `Docutils`_
 

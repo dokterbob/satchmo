@@ -134,5 +134,4 @@ Finally, if you create a product model that others may find useful, please
 consider contributing it to the Satchmo community.
 
 
-.. _Django ticket 7947: http://code.djangoproject.com/ticket/7947
 .. _mailing list: http://groups.google.com/group/satchmo-users
