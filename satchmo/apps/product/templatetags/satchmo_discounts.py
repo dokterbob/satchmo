@@ -28,8 +28,8 @@ def untaxed_sale_price(product):
     discount = find_best_auto_discount(product)
     price = product.unit_price
         
-    if discount and discount.valid_for_product(cartitem.product):
-        price = calc_discounted_by_percentage(price, disc.percentage)
+    if discount and discount.valid_for_product(product):
+        price = calc_discounted_by_percentage(price, discount.percentage)
     
     return price
 
