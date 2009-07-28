@@ -27,6 +27,11 @@ Installing Dependencies
         easy_install http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
         easy_install PyYAML
         
+.. note::
+    If you have Python 2.4 installed, you will need to install elementtree also::
+        
+        easy_install elementtree
+        
 .. warning::
     Not all dependencies are available via ``easy_install``.
 
@@ -68,7 +73,6 @@ Installing Dependencies
 
 7. Optional dependencies::
 
-    easy_install elementtree
     easy_install docutils
     
 .. note::

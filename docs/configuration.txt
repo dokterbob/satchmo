@@ -12,14 +12,29 @@ If you followed the installation steps, you should have a basic store to start p
 number of places you might want to configure.
 
 1. In the settings.py (or local_settings.py) file, there are a number of general Django settings.  However, there are a
-   few that are specific to Satchmo.
+   few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS`` 
+   tuple like so::
 
-    - ``SHOP_BASE`` is used as the prefix for your store.  In the default setting, your store is 
-      located at www.yourname.com/shop.  If you would like to change this setting, this is the 
-      place to do it.  If you would like your store to be at the root of the url, set
-      ``SHOP_BASE = ""``
-    - ``LOCAL_DEV`` is used to make sure static files are served properly when developing.  This must
-      be set to FALSE when you deploy your site.
+        SATCHMO_SETTINGS = {
+        SHOP_BASE: '/shop',
+        MULTISHOP: False,
+        CUSTOM_PRODUCT_MODULES: ['myshop.custom.product.model']
+        }
+
+The following settings are available to be added to the SATCHMO_SETTINGS tuple:
+    
+    - ``SHOP_BASE`` - used as the prefix for your store.  In the default setting, your store is located at www.yourname.com/shop.  If you would like to change this setting, this is the place to do it.  If you would like your store to be at the root of the url, set ``SHOP_BASE = ""``
+    - ``SHOP_URLS`` documentation needed.
+    - ``MULTISHOP`` - a boolean used to enable to disable multi store capability.
+    - ``CUSTOM_NEWSLETTER_MODULES`` - a list of custom newsletters.
+    - ``CUSTOM_PAYMENT_MODULES`` - a list of custom payment modules outside of the standard Satchmo distribution.
+    - ``CUSTOM_SHIPPING_MODULES`` - a list of custom shipping modules outside of the standard Satchmo distribution.
+    - ``CUSTOM_PRODUCT_MODULES`` - - a list of custom product modules outside of the standard Satchmo distribution.
+    - ``CUSTOM_TAX_MODULES`` - a list of custom tax modules outside of the standard Satchmo distribution.
+    - ``ALLOW_PRODUCT_TRANSLATIONS`` - a boolean used to determine if products will be translated into other languages.
+
+2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
+    
     - Make sure that your ``DATABASE_ENGINE`` variable is also set correctly.
     - You should ensure that all of your paths are setup correctly.  Key ones to look at are:
         
