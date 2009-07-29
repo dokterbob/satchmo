@@ -11,7 +11,7 @@ import random
 try:
     from hashlib import sha1 as mksha
 except ImportError:
-    import sha.new as mksha
+    from sha import new as mksha
 import signals
 import operator
 import os.path
