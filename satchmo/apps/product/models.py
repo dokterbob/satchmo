@@ -2312,6 +2312,8 @@ class PriceAdjustmentCalc(object):
         total = Decimal(0)
         if self.price:
             total = self.price.price
+            if total is None:
+                total = Decimal(0)
         return total - self.total_adjustment()
     
 class PriceAdjustment(object):
