@@ -241,8 +241,10 @@ class ContactInfoForm(ProxyContactForm):
         self._check_state(data, country)
         return data
     
-    def save(self, contact=None, **kwargs):
-        return self.save_info(contact=contact, **kwargs)
+    def save(self, **kwargs):
+        if not kwargs.has_key('contact'):
+            kwargs['contact'] = None
+        return self.save_info(**kwargs)
     
     def save_info(self, contact=None, **kwargs):
         """Save the contact info into the database.

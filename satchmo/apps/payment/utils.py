@@ -25,26 +25,32 @@ def capture_authorizations(order):
 def get_or_create_order(request, working_cart, contact, data):
     """Get the existing order from the session, else create using 
     the working_cart, contact and data"""
-    shipping = data['shipping']
-    discount = data['discount']
+    shipping = data.get('shipping', None)
+    discount = data.get('discount', None)
     
     try:
-        newOrder = Order.objects.from_request(request)
-        if newOrder.status != '':
+        order = Order.objects.from_request(request)
+        if order.status != '':
             # This order is being processed. We should not touch it!
-            newOrder = None
+            order = None
     except Order.DoesNotExist:
-        newOrder = None
+        order = None
 
-    update = bool(newOrder)
-    if not newOrder:
+    update = bool(order)
+    if order:
+        # make sure to copy/update addresses - they may have changed
+        order.copy_addresses() 
+        order.save()
+        if discount is None and order.discount_code:
+            discount = order.discount_code
+    else:
         # Create a new order.
-        newOrder = Order(contact=contact)
+        order = Order(contact=contact)
 
-    pay_ship_save(newOrder, working_cart, contact,
+    pay_ship_save(order, working_cart, contact,
         shipping=shipping, discount=discount, update=update)
-    request.session['orderID'] = newOrder.id
-    return newOrder
+    request.session['orderID'] = order.id
+    return order
 
 
 def get_processor_by_key(key):
@@ -56,7 +62,8 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
     """
     Save the order details, first removing all items if this is an update.
     """
-    update_shipping(new_order, shipping, contact, cart)
+    if shipping:
+        update_shipping(new_order, shipping, contact, cart)
 
     if not update:
         # Temp setting of the tax and total so we can save it

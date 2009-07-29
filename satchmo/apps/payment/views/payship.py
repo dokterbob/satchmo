@@ -12,7 +12,6 @@ from livesettings import config_value
 from satchmo_store.contact.models import Contact
 from payment.config import payment_live
 from payment.forms import CreditPayShipForm, SimplePayShipForm
-from payment.utils import get_or_create_order
 from product.utils import find_best_auto_discount
 from satchmo_store.shop.models import Cart
 from satchmo_store.shop.models import Order, OrderPayment
@@ -45,7 +44,7 @@ def pay_ship_info_verify(request, payment_module):
             
     return (True, contact, tempCart)
 
-def credit_pay_ship_process_form(request, contact, working_cart, payment_module, *args, **kwargs):
+def credit_pay_ship_process_form(request, contact, working_cart, payment_module, allow_skip=True, *args, **kwargs):
     """Handle the form information.
     Returns:
         (True, destination) on success
@@ -77,10 +76,17 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module,
             log.debug('Form errors: %s', form.errors)
     else:
         form = _get_form(request, payment_module, *args, **kwargs)
+        if not form.is_needed():
+            log.debug('Skipping pay ship because form is not needed, nothing to pay')
+            form.save(request, working_cart, contact, None, 
+                data={'shipping' : form.shipping_dict.values()[0]['final']})
 
+            url = lookup_url(payment_module, 'satchmo_checkout-step3')
+            return (True, http.HttpResponseRedirect(url))
+        
     return (False, form)
 
-def simple_pay_ship_process_form(request, contact, working_cart, payment_module):
+def simple_pay_ship_process_form(request, contact, working_cart, payment_module, allow_skip=True):
     if request.method == "POST":
         new_data = request.POST.copy()
         form = SimplePayShipForm(request, payment_module, new_data)
@@ -96,39 +102,37 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module)
                 order_data['shipping'] = order.shipping_model
             if order.discount_code:
                 order_data['discount'] = order.discount_code
+            ordershippable = order.is_shippable
         except Order.DoesNotExist:
             pass
 
         form = SimplePayShipForm(request, payment_module, order_data)
-        if config_value('PAYMENT','USE_DISCOUNTS') or not form.shipping_hidden:
-            return (False, form)
-        else:
-            # No discounts, no shipping choice = skip this step
-            order = get_or_create_order(
-                    request,
-                    working_cart,
-                    contact,
-                    {'shipping': form.fields['shipping'].initial, 'discount': ''}
-                    )
-            processor_module = payment_module.MODULE.load_module('processor')
-            processor = processor_module.PaymentProcessor(payment_module)
-            orderpayment = processor.create_pending_payment(order=order)
-    url = lookup_url(payment_module, 'satchmo_checkout-step3')
-    return (True, http.HttpResponseRedirect(url))
-
+        if allow_skip:
+            skipping = False
+            skipstep = form.shipping_hidden or not ordershippable or (len(form.shipping_dict) == 1)
+            if skipstep:               
+                log.debug('Skipping pay ship, nothing to select for shipping')
+                # no shipping choice = skip this step
+                form.save(request, working_cart, contact, payment_module, 
+                    data={'shipping' : form.fields['shipping'].initial})
+                skipping = True
+            elif not form.is_needed():
+                log.debug('Skipping pay ship because form is not needed, nothing to pay')
+                form.save(request, working_cart, contact, None, 
+                    data={'shipping' : form.shipping_dict.values()[0]['final']})
+                skipping = True
+            
+            if skipping:
+                url = lookup_url(payment_module, 'satchmo_checkout-step3')
+                return (True, http.HttpResponseRedirect(url))
+                
+        return (False, form)
 
 def pay_ship_render_form(request, form, template, payment_module, cart):
     template = lookup_template(payment_module, template)
-    
-    if cart.numItems > 0:
-        products = [item.product for item in cart.cartitem_set.all()]
-        sale = find_best_auto_discount(products)
-    else:
-        sale = None
-        
+            
     ctx = RequestContext(request, {
         'form': form,
-        'sale' : sale,
         'PAYMENT_LIVE': payment_live(payment_module),
         })
     return render_to_response(template, ctx)

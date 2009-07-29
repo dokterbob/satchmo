@@ -50,6 +50,13 @@ def contact_info(request, **kwargs):
         contact = Contact.objects.from_request(request, create=False)
     except Contact.DoesNotExist:
         contact = None
+        
+    try:
+        order = Order.objects.from_request(request)
+        if order.discount_code:
+            init_data['discount'] = order.discount_code
+    except Order.DoesNotExist:
+        pass
 
     if request.method == "POST":
         new_data = request.POST.copy()
@@ -61,20 +68,9 @@ def contact_info(request, **kwargs):
         if form.is_valid():
             if contact is None and request.user and request.user.is_authenticated():
                 contact = Contact(user=request.user)
-            custID = form.save(contact=contact)
+            custID = form.save(request, cart=tempCart, contact=contact)
             request.session[CUSTOMER_ID] = custID
-            
-            #Ensure that if we have an existing order the address for the order gets updated 
-            try:
-                exist_order = Order.objects.from_request(request) 
-            except Order.DoesNotExist:
-                exist_order = None
-            
-            if exist_order: 
-                exist_order.copy_addresses() 
-                exist_order.save()
-                
-            #TODO - Create an order here and associate it with a session
+                        
             modulename = new_data['paymentmethod']
             if not modulename.startswith('PAYMENT_'):
                 modulename = 'PAYMENT_' + modulename

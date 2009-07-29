@@ -153,7 +153,7 @@ class DiscountTest(TestCase):
         start = datetime.date(2006, 10, 1)
         end = datetime.date(5000, 10, 1)
         self.discount = Discount.objects.create(description="New Sale", code="BUYME", amount="5.00", allowedUses=10,
-            numUses=0, minOrder=5, active=True, startDate=start, endDate=end, freeShipping=False, site=self.site)
+            numUses=0, minOrder=5, active=True, startDate=start, endDate=end, shipping='NONE', site=self.site)
     
     def tearDown(self):
         keyedcache.cache_delete()

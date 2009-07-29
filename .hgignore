@@ -16,3 +16,5 @@ test.db
 dist
 build
 *.egg-info
+*_85x85_*
+*_84x84_*

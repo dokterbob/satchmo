@@ -53,14 +53,14 @@
     code: test10
     description: Test Amount 10
     endDate: 5000-01-01
-    freeShipping: false
-    includeShipping: false
+    shipping: 'NONE'
     minOrder: null
     numUses: null
     percentage: null
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 1
 - fields:
@@ -70,14 +70,14 @@
     code: test20
     description: Test Percent 20
     endDate: 5000-01-01
-    freeShipping: false
-    includeShipping: false
+    shipping: 'NONE'
     minOrder: null
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 2
 - fields:
@@ -87,14 +87,14 @@
     code: test10ship
     description: Test Amount 10 w/ship
     endDate: 5000-01-01
-    freeShipping: false
-    includeShipping: true
+    shipping: 'APPLY'
     minOrder: null
     numUses: null
     percentage: null
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 3
 - fields:
@@ -104,14 +104,14 @@
     code: test20ship
     description: Test Percent 20 w/ship
     endDate: 5000-01-01
-    freeShipping: false
-    includeShipping: true
+    shipping: 'APPLY'
     minOrder: null
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 4
 - fields:
@@ -121,14 +121,14 @@
     code: test10freeship
     description: Test Amount 10 Free Ship
     endDate: 5000-01-01
-    freeShipping: true
-    includeShipping: false
+    shipping: 'FREE'
     minOrder: null
     numUses: null
     percentage: null
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 5
 - fields:
@@ -138,14 +138,14 @@
     code: test20freeship
     description: Test Percent 20 Free ship
     endDate: 5000-01-01
-    freeShipping: true
-    includeShipping: false
+    shipping: 'FREE'
     minOrder: null
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
     validProducts: []
     site: 1
+    allValid: true
   model: product.discount
   pk: 6
 - fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,

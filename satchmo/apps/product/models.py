@@ -449,7 +449,7 @@ class Discount(models.Model):
     def __unicode__(self):
         return self.description
 
-    def isValid(self, cart=None, shipping_choices=None, shipping=None):
+    def isValid(self, cart=None, contact=None):
         """
         Make sure this discount still has available uses and is in the current date range.
         If a cart has been populated, validate that it does apply to the products we have selected.
@@ -464,30 +464,24 @@ class Discount(models.Model):
         if self.numUses and self.allowedUses and self.allowedUses > 0 and self.numUses > self.allowedUses:
             return (False, ugettext('This discount has exceeded the number of allowed uses.'))
             
-        if shipping_choices and self.shipping == 'FREECHEAP':
-            least = None
-            leastcost = None
-            for key, value in shipping_choices.items():
-                if leastcost is None:
-                    least = key
-                    leastcost = value
-                elif value < leastcost:
-                    least = key
-            if least != shipping:
-                method = shipping_method_by_key(least)
-                return (False, ugettext('To use this discount, you must select "%(cheap_discount)s"') % {'cheap_discount' : method.description()})
+        if cart:
+            minOrder = self.minOrder or 0
+            if cart.total < minOrder:
+                return (False, ugettext('This discount only applies to orders of at least %s.' % moneyfmt(minOrder)))
 
-        if not cart:
-            return (True, ugettext('Valid.'))
+            if not (self.allValid or (len(self._valid_products(cart.cartitem_set)) > 0)):
+                return (False, ugettext('This discount cannot be applied to the products in your cart.'))
+        
+        # last minute check to make sure discount is valid
+        success = {'valid' : True, 'message': ugettext('Valid.')}
+        signals.discount_validate.send(
+            sender=Discount, 
+            discount=self, 
+            cart=cart, 
+            contact=contact, 
+            success=success)
+        return (success['valid'], success['message'])
 
-        minOrder = self.minOrder or 0
-        if cart.total < minOrder:
-            return (False, ugettext('This discount only applies to orders of at least %s.' % moneyfmt(minOrder)))
-
-        if self.allValid or (len(self._valid_products(cart.cartitem_set)) > 0):
-            return (True, ugettext('Valid.'))
-        else:
-            return (False, ugettext('This discount cannot be applied to the products in your cart.'))
 
     def _valid_products(self, item_query):
         validslugs = self.validProducts.values_list('slug', flat=True)
@@ -517,7 +511,7 @@ class Discount(models.Model):
             self.shipping = "NONE"
             self.save()
             
-        if self.shipping == "INCLUDE":
+        if self.shipping == "APPLY":
             shipcost = order.shipping_cost
             discounted['Shipping'] = shipcost
 
@@ -573,7 +567,11 @@ class Discount(models.Model):
     def apply_even_split(cls, discounted, amount):
         lastct = -1
         ct = len(discounted)
-        split_discount = amount/ct
+        work = {}
+        if ct > 0:
+            split_discount = amount/ct
+        else:
+            split_discount = Decimal("0.00")
 
         while ct > 0:
             log.debug("Trying with ct=%i", ct)

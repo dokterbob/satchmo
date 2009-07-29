@@ -50,13 +50,15 @@
 <table>
     <tr><td colspan="2"><p>{% trans "You'll need to fill out at least the fields with a *" %}</p></td></tr>
 
-	<tr><td colspan="2">
-		{% ifequal paymentmethod_ct 1 %}{# If we only have one payment method, then the form renders it as a hidden field #}{{ form.paymentmethod }}
-		{% else %}<h4>{% trans "How do you want to pay?" %}</h4></td></tr>
+	{% ifequal paymentmethod_ct 1 %}
+	    {# If we only have one payment method, then the form renders it as a hidden field #}{{ form.paymentmethod }}
+    {% else %}
+	<tr><td colspan="2"><h4>{% trans "How do you want to pay?" %}</h4></td></tr>
 	<tr><td><label for="id_paymentmethod">{% trans "Payment method" %}*</label></td> <td>{{ form.paymentmethod }}</td></tr>
     {% if form.paymentmethod.errors %}<tr><td>&nbsp;</td><td>*** {{ form.paymentmethod.errors|join:", " }}</td></tr>{% endif %}
+    {% endifequal %}
 
-	<tr><td colspan="2">{% endifequal %}<h4>{% trans "Basic Information" %}</h4></td></tr>
+	<tr><td colspan="2"><h4>{% trans "Basic Information" %}</h4></td></tr>
     <tr><td><label for="id_email">{% trans "Email address" %}*</label></td> <td>{{ form.email }}</td></tr>
     {% if form.email.errors %}<tr><td>&nbsp;</td><td>*** {{ form.email.errors|join:", " }}</td></tr>{% endif %}
 
@@ -136,6 +138,15 @@
     {% endif %}
     
 {% endif %}
+
+{% if form.discount.is_hidden %}
+    {{ form.discount }}
+{% else %}
+    <tr><td colspan="2"><h4>{% trans "Discounts" %}</h4></td></tr>
+    <tr><td><label for="id_discount">{% trans "Discount code" %}</label></td><td>{{ form.discount }}</td></tr>
+    {% if form.discount.errors %}<tr><td></td><td>*** {{ form.discount.errors|join:", " }}</td></tr>{% endif %}
+{% endif %}
+{% if sale %}{% include "product/sale_details.html" %}{% endif %}
 
 	<tr><td></td><td><input type="submit" value="{% trans "Continue Checkout" %}"/></td></tr>
 </table>
