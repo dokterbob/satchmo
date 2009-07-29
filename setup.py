@@ -18,13 +18,7 @@ if not APPDIR in sys.path:
 version = __import__('satchmo_store').__version__
 packages = find_packages('satchmo/apps')
 packages.append('static')
-template_dirs = []
-for root, dirs, files in os.walk(APPDIR):
-    if root.endswith('templates'):
-        template_dirs.append(os.path.join(root,"*.*"))
 
-print template_dirs
-print packages
 setup(name = "Satchmo",
       version = version,
       author = "Chris Moffitt",
@@ -39,7 +33,7 @@ setup(name = "Satchmo",
       '' : 'satchmo/apps',
       'static' : 'satchmo/static'
       },
-      package_data = { '': template_dirs },
+      setup_requires=["setuptools_hg"],
       packages = packages,
       classifiers = [
       'Development Status :: 4 - Beta',
