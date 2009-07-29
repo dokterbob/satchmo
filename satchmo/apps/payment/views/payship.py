@@ -79,7 +79,7 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module,
         if not form.is_needed():
             log.debug('Skipping pay ship because form is not needed, nothing to pay')
             form.save(request, working_cart, contact, None, 
-                data={'shipping' : form.shipping_dict.values()[0]['final']})
+                data={'shipping' : form.shipping_dict.keys()[0]})
 
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
@@ -119,7 +119,7 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module,
             elif not form.is_needed():
                 log.debug('Skipping pay ship because form is not needed, nothing to pay')
                 form.save(request, working_cart, contact, None, 
-                    data={'shipping' : form.shipping_dict.values()[0]['final']})
+                    data={'shipping' : form.shipping_dict.keys()[0]})
                 skipping = True
             
             if skipping:
