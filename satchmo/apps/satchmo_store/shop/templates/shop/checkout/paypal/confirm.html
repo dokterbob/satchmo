@@ -12,6 +12,11 @@
 {% endblock %}
 
 {% block payment_form %}
+{% if order.paid_in_full %}
+<form action="{% url PAYPAL_satchmo_checkout_free-confirm %}">
+    <input type="submit" value="{% trans "Purchase Items" %}" />
+</form>
+{% else %}
 <form action="{{ post_url }}" method="post">
 <input type="hidden" name="business" value="{{ business }}" />
 <input type="hidden" name="currency_code" value="{{ currency_code }}" />
@@ -67,4 +72,5 @@
 <input type="hidden" name="notify_url" value="{% url PAYPAL_satchmo_checkout-ipn %}" />
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>
+{% endif %}
 {% endblock %}

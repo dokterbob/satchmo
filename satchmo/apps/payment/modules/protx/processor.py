@@ -127,6 +127,12 @@ class PaymentProcessor(BasePaymentProcessor):
         if not order:
             order = self.order
 
+        if order.paid_in_full:
+            self.log_extra('%s is paid in full, no authorization attempted.', order)
+            return ProcessorResult(self.key, True, _("No charge needed, paid in full."))
+
+        self.log_extra('Capturing payment for %s', order)
+
         if amount == NOTSET:
             amount = order.balance
 

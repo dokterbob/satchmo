@@ -26,17 +26,22 @@ class PaymentProcessor(BasePaymentProcessor):
         self.arb_enabled = settings.ARB.value
 
     def authorize_payment(self, order=None, amount=NOTSET, testing=False):
-        """Authorize a single payment."""
+        """Authorize a single payment.
+        
+        Returns: ProcessorResult
+        """
         if order:
             self.prepare_data(order)
         else:
             order = self.order
+            
+        if order.paid_in_full:
+            self.log_extra('%s is paid in full, no authorization attempted.', order)
+            results = ProcessorResult(self.key, True, _("No charge needed, paid in full."))
+        else:
+            self.log_extra('Authorizing payment for %s', order)
 
-        self.log_extra('Authorizing payment for %s', order)
-
-        standard = self.get_standard_charge_data(authorize=True, amount=amount)
-        results = None
-        if standard:
+            standard = self.get_standard_charge_data(authorize=True, amount=amount)
             results = self.send_post(standard, testing)
 
         return results
@@ -73,8 +78,6 @@ class PaymentProcessor(BasePaymentProcessor):
         else:
             order = self.order
 
-        self.log_extra('Capturing payment for %s', order)
-
         recurlist = self.get_recurring_charge_data()
         if recurlist:
             results = self.process_recurring_subscriptions(recurlist, testing)
@@ -82,9 +85,13 @@ class PaymentProcessor(BasePaymentProcessor):
                 self.log_extra('recur payment failed, aborting the rest of the module')
                 return results
 
-        standard = self.get_standard_charge_data(amount=amount)
-        results = None
-        if standard:
+        if order.paid_in_full:
+            self.log_extra('%s is paid in full, no authorization attempted.', order)
+            results = ProcessorResult(self.key, True, _("No charge needed, paid in full."))
+        else:
+            self.log_extra('Capturing payment for %s', order)
+            
+            standard = self.get_standard_charge_data(amount=amount)
             results = self.send_post(standard, testing)
             
         return results
@@ -233,10 +240,6 @@ class PaymentProcessor(BasePaymentProcessor):
         
     def get_standard_charge_data(self, amount=NOTSET, authorize=False):
         """Build the dictionary needed to process a credit card charge"""
-        order = self.order
-        if order.paid_in_full:
-            self.log_extra('No standard charges, order is paid in full.')
-            return None
 
         settings = self.settings
         trans = {}

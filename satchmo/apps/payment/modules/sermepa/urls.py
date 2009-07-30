@@ -26,4 +26,6 @@ urlpatterns = patterns('',
         {'SSL': config.SSL.value},
         'SERMEPA_satchmo_checkout-notify_callback'
         ),
+    (r'^confirmorder/$', 'payment.views.confirm.confirm_free_order', 
+       {'SSL' : config.SSL.value, 'key' : 'SERMEPA'}, 'SERMEPA_satchmo_checkout_free-confirm')
 )

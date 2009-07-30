@@ -14,6 +14,7 @@ from payment.config import payment_live
 from satchmo_utils.dynamic import lookup_url, lookup_template
 from satchmo_store.shop.models import Cart
 from payment import signals
+from payment.modules.base import ProcessorResult
 import logging
 
 log = logging.getLogger('payment.views')
@@ -29,8 +30,11 @@ class ConfirmController(object):
     def __init__(self, request, payment_module, extra_context={}):
         self.request = request
         self.paymentModule = payment_module
-        processor_module = payment_module.MODULE.load_module('processor')
-        self.processor = processor_module.PaymentProcessor(self.paymentModule)
+        if payment_module:
+            processor_module = payment_module.MODULE.load_module('processor')
+            self.processor = processor_module.PaymentProcessor(self.paymentModule)
+        else:
+            self.processor = None
         self.viewTax = config_value('TAX', 'DEFAULT_VIEW_TAX')
         self.order = None
         self.cart = None
@@ -62,7 +66,7 @@ class ConfirmController(object):
             }
             
                 
-    def confirm(self):
+    def confirm(self, force_post=False):
         """Handles confirming an order and processing the charges.
 
         If this is a POST, then tries to charge the order using the `payment_module`.`processor`
@@ -76,7 +80,7 @@ class ConfirmController(object):
 
         status = False
 
-        if self.request.method == "POST":
+        if force_post or self.request.method == "POST":
             self.processor.prepare_data(self.order)
         
             if self.process():
@@ -217,4 +221,44 @@ def credit_confirm_info(request, payment_module, template=None):
     controller.confirm()
     return controller.response
 credit_confirm_info = never_cache(credit_confirm_info)
+
+class FakeValue(object):
+    def __init__(self, val):
+        self.value = val
+
+class FreeProcessor(object):
+
+    def __init__(self, key):
+        self.KEY = FakeValue(key)
+        self.LABEL = FakeValue('Free Processor')
+
+    def has_key(*args):
+        return False
+
+        
+class FreeProcessorModule(object):
+    def __init__(self, key):
+        self.KEY = FakeValue(key)
+        self.LABEL = FakeValue('Free Processor Module')
+
+    def prepare_data(self, order, *args, **kwargs):
+        self.order = order
+
+    def process(self, *args, **kwargs):
+        if self.order.paid_in_full:
+            return ProcessorResult('FREE', True, _('Success'))
+        else:
+            return ProcessorResult('FREE', False, _('This order does not have a zero balance'))
+    
+
+def confirm_free_order(request, key="FREE", template=None):
+    controller = ConfirmController(request, None)
+    freeproc = FreeProcessor(key)
+    freemod = FreeProcessorModule(key)
+    controller.paymentModule = freeproc
+    controller.processor = freemod
+    if template:
+        controller.templates['CONFIRM'] = template
+    controller.confirm(force_post=True)
+    return controller.response
     
