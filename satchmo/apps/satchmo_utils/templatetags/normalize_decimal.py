@@ -61,7 +61,7 @@ def normalize_decimal(value, args=""):
 
     except RoundedDecimalError, e:
         log.error("normalize_decimal error val=%s, id-%s, msg=%s", (e.val, e.id, e.msg))
-        return val
+        return value
 
 register.filter('normalize_decimal', normalize_decimal)
 normalize_decimal.is_safe = True

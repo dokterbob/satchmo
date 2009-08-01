@@ -8,6 +8,7 @@ from models import ProductRating
 from product.models import Product
 from satchmo_utils import url_join
 import logging
+from django.conf import settings
 
 log = logging.getLogger('productratings')
 
@@ -72,7 +73,7 @@ def check_with_akismet(comment=None, request=None, **kwargs):
                                  'referrer': request.META.get('HTTP_REFERER', ""),
                                  'user_ip': comment.ip_address,
                                  'user_agent': '' }
-                if akismet_api.comment_check(smart_str(comment.comment), data=akismet_data, build_data=True):
+                if akismet.comment_check(smart_str(comment.comment), data=akismet_data, build_data=True):
                     comment.is_public=False
                     comment.save()
                     log.info("Akismet marked comment #%i as spam", comment.id)

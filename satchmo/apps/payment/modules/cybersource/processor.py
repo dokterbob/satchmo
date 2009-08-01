@@ -70,23 +70,23 @@ class PaymentProcessor(BasePaymentProcessor):
 
     def prepare_content(self, order, amount):
         self.bill_to = {
-            'firstName' : data.contact.first_name,
-            'lastName' : data.contact.last_name,
-            'street1': data.full_bill_street,
-            'city': data.bill_city,
-            'state' : data.bill_state,
-            'postalCode' : data.bill_postal_code,
-            'country': data.bill_country,
-            'email' : data.contact.email,
-            'phoneNumber' : data.contact.primary_phone,
+            'firstName' : order.contact.first_name,
+            'lastName' : order.contact.last_name,
+            'street1': order.full_bill_street,
+            'city': order.bill_city,
+            'state' : order.bill_state,
+            'postalCode' : order.bill_postal_code,
+            'country': order.bill_country,
+            'email' : order.contact.email,
+            'phoneNumber' : order.contact.primary_phone,
             # Can add additional info here if you want to but it's not required
             }
-        exp = data.credit_card.expirationDate.split('/')
+        exp = order.credit_card.expirationDate.split('/')
         self.card = {
-            'accountNumber' : data.credit_card.decryptedCC,
+            'accountNumber' : order.credit_card.decryptedCC,
             'expirationMonth' : exp[0],
             'expirationYear' : exp[1],
-            'cvNumber' : data.credit_card.ccv
+            'cvNumber' : order.credit_card.ccv
             }
         currency = self.settings.CURRENCY_CODE.value
         currency = currency.replace("_", "")

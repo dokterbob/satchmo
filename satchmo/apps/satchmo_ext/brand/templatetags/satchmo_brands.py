@@ -1,6 +1,6 @@
 """Tags for manipulating brands on templates."""
 
-from django.template import Library, Node
+from django.template import Library, Node, TemplateSyntaxError
 from satchmo_ext.brand.models import Brand
 from satchmo_utils.templatetags import get_filter_args
 
@@ -31,7 +31,7 @@ def do_brandlistnode(parser, token):
     """
     args = token.split_contents()
     if len(args) != 3:
-        raise template.TemplateSyntaxError("%r tag expecting '[slug] as varname', got: %s" % (args[0], args))
+        raise TemplateSyntaxError("%r tag expecting '[slug] as varname', got: %s" % (args[0], args))
     
     var = args[2]
     nodelist = parser.parse(('endbrand_list',))

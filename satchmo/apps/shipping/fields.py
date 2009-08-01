@@ -1,5 +1,5 @@
 from django.db import models
-from livesettings import config_value_safe
+from livesettings import config_value_safe, config_choice_values, SettingNotSet
 
 def shipping_choices():
     try:

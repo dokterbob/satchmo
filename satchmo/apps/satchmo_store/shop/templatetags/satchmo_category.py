@@ -1,4 +1,4 @@
-from django.template import Library, Node
+from django.template import Library, Node, TemplateSyntaxError
 from product.models import Category
 from satchmo_utils.templatetags import get_filter_args
 import logging
@@ -72,7 +72,7 @@ class CategoryListNode(Node):
                 cat = Category.objects.get(slug__iexact=self.slug)
                 cats = cat.child.all()
             except Category.DoesNotExist:
-                log.warn("No category found for slug: %s", slug)
+                log.warn("No category found for slug: %s", self.slug)
                 cats = []
         
         else:
@@ -100,7 +100,7 @@ def do_categorylistnode(parser, token):
     args = token.split_contents()
     ct = len(args)
     if not ct in (3,4):
-        raise template.TemplateSyntaxError("%r tag expecting '[slug] as varname', got: %s" % (args[0], args))
+        raise TemplateSyntaxError("%r tag expecting '[slug] as varname', got: %s" % (args[0], args))
     
     if ct == 3:
         slug = None

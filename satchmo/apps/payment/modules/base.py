@@ -7,6 +7,7 @@ from datetime import datetime
 from livesettings import config_get_group
 from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPendingPayment, OrderStatus
 import logging
+from django.utils.translation import ugettext_lazy as _
 
 log = logging.getLogger('payment.modules.base')
 
