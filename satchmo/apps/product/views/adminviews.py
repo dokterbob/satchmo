@@ -100,9 +100,9 @@ def variation_list(request):
     return render_to_response('product/admin/variation_manager_list.html', ctx)
 
 
-def variation_manager(request, product_slug = ""):
+def variation_manager(request, product_id = ""):
     try:
-        product = Product.objects.get(slug=product_slug)
+        product = Product.objects.get(id=product_id)
         subtypes = product.get_subtypes()
         
         if 'ProductVariation' in subtypes:
@@ -110,7 +110,7 @@ def variation_manager(request, product_slug = ""):
             product = product.productvariation.parent.product
             if 'ConfigurableProduct' in product.get_subtypes():
                 url = urlresolvers.reverse("satchmo_admin_variation_manager", 
-                    kwargs = {'product_slug' : product.slug})
+                    kwargs = {'product_id' : product.id})
                 return HttpResponseRedirect(url)
             
         if 'ConfigurableProduct' not in subtypes:
