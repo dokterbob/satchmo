@@ -241,6 +241,7 @@ class PaymentProcessor(BasePaymentProcessor):
     def get_standard_charge_data(self, amount=NOTSET, authorize=False):
         """Build the dictionary needed to process a credit card charge"""
 
+        order = self.order
         settings = self.settings
         trans = {}
         if amount == NOTSET:
