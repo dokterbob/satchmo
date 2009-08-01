@@ -62,6 +62,14 @@ Optional Modules
    google-base
    upsell
 
+Depoloying A Store
+==================
+
+.. toctree::
+   :maxdepth: 1
+   
+   deploying
+
 Additional Notes
 ================
 .. toctree::
