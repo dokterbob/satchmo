@@ -1,0 +1,37 @@
+Satchmo 0.9 Release
+=====================
+
+Welcome to Satchmo 0.9. This release is a major step forward for Satchmo.
+It includes a newly designed project layout meant to make it more modular and
+easier to integrate with the rest of your Django apps. This release also includes many
+bug fixes, improvements, new features and improved documentation. Some of the highlights
+are described below.
+
+Changes
+-------
+
+ * Improved project layout to support easier integration with other Django apps
+ * Upgrade of Authorize.net SSL version to use ssle 3.0/tls
+ * Use sorl_thumbnail
+ * Allow products with the same slug to be on multiple sites
+ * Align the logout process with the Django conventions - allowing easier redirection
+ * Multiple improvements and fixes with discount code application
+ * Improvement to the installation process to make it simpler
+ * Fully compatible with Django 1.1
+ * Migrated to using Mercurial for version control
+ * Addition of new currency display in the Admin. Improved rounding support throughout
+ * Python 2.6 compatibility changes
+ * Improved several Ajax functions to be more consistent
+ * Addition of new SSL_PORT setting
+ * Improvements to the SSL Middleware to support more hosting setups
+ * Allow discount to be entered on first page of checkout and include free shipping
+ * Multiple improvements and cleanups in the templates to make inheritance easier
+ * Added improved jquery autocomplete code to the admin
+ 
+ 
+Bug Fixes
+---------
+ * Fix inconsistent field length with gift certificates
+ * Fix many undefined variables found through pyflakes
+ * Fix IE javascript bug
+ * Fix several infinite recurison edge cases
