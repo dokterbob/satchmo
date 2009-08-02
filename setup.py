@@ -12,7 +12,7 @@ import sys
 DIRNAME = os.path.dirname(__file__)
 APPDIR = os.path.join(DIRNAME, 'satchmo/apps')
 if not APPDIR in sys.path:
-    sys.path.append(APPDIR)
+    sys.path.insert(0,APPDIR)
 
 # Dynamically calculate the version based on django.VERSION.
 version = __import__('satchmo_store').__version__
