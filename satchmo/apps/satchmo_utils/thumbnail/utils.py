@@ -11,6 +11,8 @@ from django.core.cache import get_cache
 from django.db.models.fields.files import ImageField
 from satchmo_utils.thumbnail.text import URLify
 from livesettings import config_value
+import logging
+log = logging.getLogger('satchmo_utils.thumbnail')
 
 image_cache = get_cache('locmem:///')
 

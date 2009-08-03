@@ -30,7 +30,6 @@ def order_variable(order, args):
 
     """
     args, kwargs = get_filter_args(args)
-    args = token.split_contents()
     if not len(args == 1):
         raise template.TemplateSyntaxError("%r filter expected variable, got: %s" % (args[0], args))
 

@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from livesettings import config_get_group, config_value
-from payment.forms import PaymentMethodForm
+from payment.forms import PaymentMethodForm, CustomChargeForm
 from payment.views import contact
 from satchmo_store.shop.models import Order, OrderItem, OrderPayment
 from satchmo_utils.views import bad_or_missing

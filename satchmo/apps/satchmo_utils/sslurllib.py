@@ -2,7 +2,15 @@
 
 import logging
 log = logging.getLogger('sslurllib')
+import sys
 
+# We only need this wrapper for Python versions < 2.6
+# sys.hexversion is guaranteed to always increment
+if sys.hexversion >= 0x020600F0: 
+    runningPython26 = True
+else: 
+    runningPython26 = False
+    
 try:
     import ssl
     _sane = True
@@ -10,7 +18,7 @@ except:
     log.warning('ssl is not installed, please install it from http://pypi.python.org/pypi/ssl/')
     _sane = False
     
-if _sane:
+if _sane and not runningPython26:
     import httplib, socket, urllib2
     __all__ = ['HTTPSv2Connection', 'HTTPSv2Handler']
     

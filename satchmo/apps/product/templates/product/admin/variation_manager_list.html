@@ -13,7 +13,7 @@
 <ul>
 {% for p in products %}
     <li>
-        <a href="{% url satchmo_admin_variation_manager p.slug %}">{{ p.translated_name }}</a>
+        <a href="{% url satchmo_admin_variation_manager p.id %}">{{ p.translated_name }}</a>
     </li>
 {% endfor %}
 </ul>

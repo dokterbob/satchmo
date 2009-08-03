@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from payment.config import credit_choices
 from product.models import Product, Category
 from satchmo_store.shop.models import Config
+from django.utils.translation import ugettext_lazy as _
 
 @user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')
 def admin_product_feed(request, category=None, template="product_feeds/product_feed.csv", mimetype="text/csv"):

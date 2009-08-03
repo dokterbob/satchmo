@@ -166,6 +166,9 @@ class PaymentProcessor(BasePaymentProcessor):
                     
                     payment = None
                     if success:
+                        vpstxid = self.response.get('VPSTxID', '')
+                        txauthno = self.response.get('TxAuthNo', '')
+                        transaction_id="%s,%s" % (vpstxid, txauthno)
                         self.log.info('Success on order #%i, recording payment', self.order.id)
                         payment = self.record_payment(order=order, amount=amount, 
                             transaction_id=transaction_id, reason_code=status)

@@ -5,6 +5,8 @@ except:
 
 from satchmo_store.shop.exceptions import CartAddProhibited
 import logging
+from django.utils.translation import ugettext_lazy as _
+
 
 log = logging.getLogger('upsell.views')
 

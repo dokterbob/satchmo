@@ -32,7 +32,7 @@ from shipping.fields import ShippingChoiceCharField
 from tax.utils import get_tax_processor
 import keyedcache
 import tax
-    
+
 log = logging.getLogger('satchmo_store.shop.models')
 
 class NullConfig(object):
@@ -713,7 +713,7 @@ class Order(models.Model):
             try:
                 if payment.creditcards.count() > 0:
                     return payment.creditcards.get()
-            except payments.creditcards.model.DoesNotExist:
+            except ObjectDoesNotExist:
                 pass
         return None
     credit_card = property(_credit_card)

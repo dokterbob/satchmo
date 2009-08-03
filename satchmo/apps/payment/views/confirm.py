@@ -148,7 +148,7 @@ class ConfirmController(object):
             else:
                 # otherwise just update and save
                 if not curr_status.notes:
-                    curr_status.notes = "Order successfully submitted"
+                    curr_status.notes = _("Order successfully submitted")
                 curr_status.save()                
 
             #Redirect to the success page
@@ -193,12 +193,12 @@ class ConfirmController(object):
             self.cart = Cart.objects.from_request(self.request)
             if self.cart.numItems == 0 and not self.order.is_partially_paid:
                 template = self.lookup_template('EMPTY_CART')
-                self.invalidate(render_to_response(template, RequestContext(request)))
+                self.invalidate(render_to_response(template, RequestContext(self.request)))
                 return False
                 
         except Cart.DoesNotExist:
             template = self.lookup_template('EMPTY_CART')
-            self.invalidate(render_to_response(template, RequestContext(request)))
+            self.invalidate(render_to_response(template, RequestContext(self.request)))
             return False
 
         # Check if the order is still valid
