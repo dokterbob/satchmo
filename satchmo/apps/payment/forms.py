@@ -9,15 +9,16 @@ from payment import signals
 from payment.config import labelled_payment_choices
 from payment.models import CreditCardDetail
 from payment.utils import get_or_create_order, pay_ship_save
-from product.models import Discount
-from product.models import TaxClass
+from product.models import Discount, TaxClass, Price, PriceAdjustmentCalc, PriceAdjustment
 from product.utils import find_best_auto_discount
 from satchmo_store.contact.forms import ProxyContactForm, ContactInfoForm
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import Cart, Order
+from satchmo_store.shop.signals import satchmo_shipping_price_query
 from satchmo_utils.dynamic import lookup_template
 from satchmo_utils.views import CreditCard
 from shipping.config import shipping_methods, shipping_method_by_key
+from shipping.signals import shipping_choices_query
 from shipping.utils import update_shipping
 from tax.templatetags.satchmo_tax import _get_taxprocessor
 from threaded_multihost import threadlocals
@@ -37,12 +38,11 @@ def _get_cheapest_shipping(shipping_dict):
     least = None
     leastcost = None
     for key, value in shipping_dict.items():
-        if leastcost is None:
+        current = value['cost']
+        if leastcost is None or current < leastcost:
             least = key
-            leastcost = value['cost']
-        elif value < leastcost:
-            least = key
-    
+            leastcost = current
+
     return least
 
 def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_tax=False, order=None):
@@ -90,12 +90,22 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
                 order.shipping_cost = shipcost
                 discount.calc(order)
                 shipdiscount = discount.item_discounts.get('Shipping', 0)
-                if shipdiscount:
-                    # log.debug("Found discount for shipping method %s of %s", method.id, shipdiscount)
-                    finalcost -= shipdiscount
             else:
                 shipdiscount = 0
             
+            # set up query to determine shipping price to show
+            shipprice = Price()
+            shipprice.price = shipcost
+            shipadjust = PriceAdjustmentCalc(shipprice)
+            if shipdiscount:
+                shipadjust += PriceAdjustment('discount', _('Discount'), shipdiscount)
+
+            satchmo_shipping_price_query.send(cart, adjustment=shipadjust)
+            shipdiscount = shipadjust.total_adjustment()
+
+            if shipdiscount:
+                finalcost -= shipdiscount
+
             shipping_dict[method.id] = {'cost' : shipcost, 'discount' : shipdiscount, 'final' : finalcost}
 
             taxed_shipping_price = None
@@ -122,6 +132,11 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
     
     shipping_options = [(key, rendered[key]) for cost, key in sortme]
 
+    shipping_choices_query.send(sender=cart, cart=cart, 
+        paymentmodule=paymentmodule, contact=contact, 
+        default_view_tax=default_view_tax, order=order,
+        shipping_options = shipping_options,
+        shipping_dict = shipping_dict)
     return shipping_options, shipping_dict
 
 
