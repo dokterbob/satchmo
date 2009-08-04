@@ -27,7 +27,7 @@ urlpatterns += patterns('satchmo_store.accounts.views',
 )
 
 urlpatterns += patterns('',
-    ('^logout/$','django.contrib.auth.views.logout', {}, 'auth_logout'),
+    ('^logout/$','django.contrib.auth.views.logout', {'template_name': 'registration/logout.html'}, 'auth_logout'),
     )
 
 verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')

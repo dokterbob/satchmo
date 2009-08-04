@@ -230,11 +230,11 @@ class Category(models.Model):
     def save(self, force_insert=False, force_update=False):
         if self.id:
             if self.parent and self.parent_id == self.id:
-                raise validators.ValidationError(_("You must not save a category in itself!"))
+                raise forms.ValidationError(_("You must not save a category in itself!"))
 
             for p in self._recurse_for_parents(self):
                 if self.id == p.id:
-                    raise validators.ValidationError(_("You must not save a category in itself!"))
+                    raise forms.ValidationError(_("You must not save a category in itself!"))
 
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
@@ -1816,7 +1816,7 @@ class ProductVariation(models.Model):
     is_shippable = property(fget=_is_shippable)
     
     def isValidOption(self, field_data, all_data):
-        raise validators.ValidationError(_("Two options from the same option group cannot be applied to an item."))
+        raise forms.ValidationError(_("Two options from the same option group cannot be applied to an item."))
 
     def price_delta(self, include_discount=True):
         # TODO: deltas aren't taken into account by satchmo_price_query

@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from livesettings import config_value
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_utils.numbers import trunc_decimal
-from urllib import urlencode
+from django.utils.http import urlencode
 import forms
 import urllib2
 
@@ -166,6 +166,9 @@ class PaymentProcessor(BasePaymentProcessor):
                     
                     payment = None
                     if success:
+                        vpstxid = self.response.get('VPSTxID', '')
+                        txauthno = self.response.get('TxAuthNo', '')
+                        transaction_id="%s,%s" % (vpstxid, txauthno)
                         self.log.info('Success on order #%i, recording payment', self.order.id)
                         payment = self.record_payment(order=order, amount=amount, 
                             transaction_id=transaction_id, reason_code=status)

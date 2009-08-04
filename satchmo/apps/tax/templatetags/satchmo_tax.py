@@ -195,10 +195,10 @@ def taxed_price(parser, token):
 
     return TaxedPriceNode(price, currency, taxclass)
 
-
-def with_tax(product):
-    """Returns the product unit price with tax"""
-    return taxed
+# Commenting out because I don't believe this is used anywhere now.
+#def with_tax(product):
+#    """Returns the product unit price with tax"""
+#    return taxed
     
 
 register.tag('cartitem_line_taxed_total', cartitem_line_taxed_total)

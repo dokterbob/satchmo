@@ -2,7 +2,7 @@ from django import template
 from django.utils import translation
 from livesettings import config_get_group
 from payment.modules.google import CHECKOUT_BUTTON_SIZES
-from urllib import urlencode
+from django.utils.http import urlencode
 
 register = template.Library()
 

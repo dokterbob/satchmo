@@ -1,0 +1,17 @@
+Deploying A Store
+=================
+
+Once your store has been successfully created in your testing environment, you will
+want to keep a few things in mind when deploying into production:
+
+    - Follow the notes in the `Django deployment guide <http://docs.djangoproject.com/en/dev/howto/deployment/>`_ for your server setup.
+    - Double check and make sure that you have DEBUG = False in your settings
+    - Disable your test urls for your payment modules.
+    .. Note::
+        Remember, after saving changes to your payment processor, you will need to restart your server for the changes to take effect.
+        
+    - Run a small transaction through the live store to verify payment works.
+    - Let the world know about your store by submitting it `here <http://www.satchmoproject.com/stores/all/>`_
+    
+
+        

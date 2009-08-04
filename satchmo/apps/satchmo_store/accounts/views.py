@@ -30,6 +30,11 @@ def emaillogin(request, template_name='registration/login.html',
     auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
     "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
     redirect_to = request.REQUEST.get(redirect_field_name, '')
+
+    # Avoid redirecting to logout if the user clicked on login after logout
+    if redirect_to == urlresolvers.reverse('auth_logout'):
+        redirect_to = None
+
     if request.method == "POST":
         form = auth_form(data=request.POST)
         if form.is_valid():

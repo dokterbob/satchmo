@@ -5,9 +5,7 @@ Satchmo is based on the Django framework, therefore you do need a fully function
 Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
-It is recommended that you use Django 1.1 series. At this time, Django 1.1 has not been 
-released so Django trunk is recommended because portions of the Satchmo admin depend on the recent changes in
-trunk.
+It is recommended that you use Django 1.1.
 
 Satchmo requires Python 2.4 or later and a database supported by Django.
 
@@ -31,7 +29,7 @@ features in Satchmo.
 - Satchmo creates PDF output for shipping and invoicing using:
 
     - `ReportLab`_
-    - `Tiny RML2PDF`_ (`download link`_)
+    - Tiny RML2PDF (`download link`_)
 
 - In order to manage hierarchical data and use XML in shipping and payment modules, we use:
 
@@ -75,7 +73,6 @@ Detailed steps for installing these dependencies is included in the installation
 .. _DocUtils: http://docutils.sourceforge.net/
 .. _PyYaml: http://pyyaml.org/
 .. _Authorize.net: http://www.authorize.net/
-.. _Tiny RML2PDF: http://openreport.org/index.py/static/page/trml2pdf
 .. _download link: http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
 .. _Django Registration: http://code.google.com/p/django-registration/
 .. _django-comment-utils: http://code.google.com/p/django-comment-utils/

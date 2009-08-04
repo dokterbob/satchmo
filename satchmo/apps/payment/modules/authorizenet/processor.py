@@ -9,7 +9,7 @@ from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_store.shop.models import Config
 from tax.utils import get_tax_processor
 from satchmo_utils.numbers import trunc_decimal
-from urllib import urlencode
+from django.utils.http import urlencode
 from xml.dom import minidom
 import logging
 import urllib2
@@ -80,7 +80,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
         recurlist = self.get_recurring_charge_data()
         if recurlist:
-            results = self.process_recurring_subscriptions(recurlist, testing)
+            success, results = self.process_recurring_subscriptions(recurlist, testing)
             if not success:
                 self.log_extra('recur payment failed, aborting the rest of the module')
                 return results
@@ -241,6 +241,7 @@ class PaymentProcessor(BasePaymentProcessor):
     def get_standard_charge_data(self, amount=NOTSET, authorize=False):
         """Build the dictionary needed to process a credit card charge"""
 
+        order = self.order
         settings = self.settings
         trans = {}
         if amount == NOTSET:
@@ -334,12 +335,12 @@ class PaymentProcessor(BasePaymentProcessor):
             if success:
                 if not testing:
                     payment = self.record_payment(order=self.order, amount=recur['charged_today'], transaction_id=subscription_id, reason_code=reason)
-                    results.append(ProcessorResult(self.key, success, response_text, payment=payment))
+                    results.append(ProcessorResult(self.key, success, response, payment=payment))
             else:
                 self.log.info("Failed to process recurring subscription, %s: %s", reason, response)
                 break
         
-        return results
+        return success, results
         
     def process_recurring_subscription(self, data, testing=False):
         """Post one subscription request."""

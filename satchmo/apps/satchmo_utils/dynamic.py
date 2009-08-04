@@ -42,7 +42,7 @@ def lookup_url(settings, name, include_server=False, ssl=False):
             url = urlresolvers.reverse(name)
         except urlresolvers.NoReverseMatch:
             log.error('Could not find any url for %s', name)
-            raise
+            raise urlresolvers.NoReverseMatch('No reverse for %s or %s' % (possible, name))
             
     if include_server:
         if ssl:

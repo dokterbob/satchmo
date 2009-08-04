@@ -37,7 +37,7 @@ def edit_subtypes(product):
         if subtype in subtypes:
             output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.pk) + _('Edit %(subtype)s') % {'subtype': subtype} + '</a></li>'
             if is_config or subtype=="ProductVariation":
-                 output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.slug]))
+                 output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.id]))
         else:
             if not(is_config and subtype=="ProductVariation"):
                 output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype} + '</a></li>'

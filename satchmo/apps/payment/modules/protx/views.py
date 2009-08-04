@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 from livesettings import config_get_group
 from payment.views import payship, confirm
 import logging
+from satchmo_utils.dynamic import lookup_template
 
 log = logging.getLogger('protx.views')
     
@@ -43,7 +44,7 @@ def confirm_secure3d(request, secure3d_template='shop/checkout/secure3d_form.htm
         if request.method == "POST":
             returnMD = request.POST.get('MD', None)
             if not returnMD:
-                template = payment_module.lookup_template(secure3d_template)
+                template = lookup_template(payment_module, secure3d_template)
                 ctx = RequestContext(request, {'order': controller.order, 'auth': auth3d })
                 return render_to_response(template, ctx)
             
