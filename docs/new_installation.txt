@@ -152,6 +152,7 @@ to add any pieces of satchmo.
         LOCAL_DEV = True
         
         MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
+        MEDIA_URL = '/static/'
         
         MIDDLEWARE_CLASSES = (
         "django.middleware.common.CommonMiddleware",
