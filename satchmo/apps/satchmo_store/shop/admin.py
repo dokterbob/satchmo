@@ -42,7 +42,14 @@ class OrderItem_Inline(admin.TabularInline):
 class OrderItemDetail_Inline(admin.TabularInline):
     model = OrderItemDetail
     extra = 3
-        
+    
+class OrderAuthorizationDetail_Inline(admin.TabularInline):
+    model = OrderAuthorization
+    extra = 0
+    
+class OrderPaymentDetail_Inline(admin.TabularInline):
+    model = OrderPayment
+    extra = 0
 
 class OrderStatus_Inline(admin.StackedInline):
     model = OrderStatus
@@ -70,7 +77,8 @@ class OrderOptions(AutocompleteAdmin):
     date_hierarchy = 'time_stamp' 
     related_search_fields = {'contact': ('first_name', 'last_name', 'email')} 
     related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
-    inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, OrderTaxDetail_Inline]
+    inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, 
+        OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline, OrderPaymentDetail_Inline]
     
 
 class OrderItemOptions(admin.ModelAdmin):
@@ -85,9 +93,9 @@ class OrderPaymentOptions(admin.ModelAdmin):
     
 
 class OrderAuthorizationOptions(OrderPaymentOptions):
-    list_display = ['id', 'order', 'capture', 'payment', 'amount_total', 'time_stamp']
+    list_display = ['id', 'order', 'capture', 'payment', 'amount_total', 'complete', 'time_stamp']
     fieldsets = (
-        (None, {'fields': ('order', 'capture', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
+        (None, {'fields': ('order', 'capture', 'payment', 'amount', 'transaction_id', 'complete', 'time_stamp')}), )
 
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)

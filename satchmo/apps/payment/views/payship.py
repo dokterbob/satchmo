@@ -69,7 +69,8 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module,
         
         form = _get_form(request, payment_module, new_data, *args, **kwargs)
         if form.is_valid():
-            form.save(request, working_cart, contact, payment_module)
+            data = form.cleaned_data
+            form.save(request, working_cart, contact, payment_module, data=data)
             url = lookup_url(payment_module, 'satchmo_checkout-step3')
             return (True, http.HttpResponseRedirect(url))
         else:
@@ -92,6 +93,8 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module,
         form = SimplePayShipForm(request, payment_module, new_data)
         if form.is_valid():
             form.save(request, working_cart, contact, payment_module)
+            url = lookup_url(payment_module, 'satchmo_checkout-step3')
+            return (True, http.HttpResponseRedirect(url))
         else:
             return (False, form)
     else:

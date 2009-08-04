@@ -3,15 +3,17 @@ try:
 except:
     from django.utils._decimal import Decimal
 
+from datetime import datetime
 from django.template import loader, Context
+from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_store.shop.models import Config
-from tax.utils import get_tax_processor
 from satchmo_utils.numbers import trunc_decimal
-from django.utils.http import urlencode
+from tax.utils import get_tax_processor
 from xml.dom import minidom
 import logging
+import random
 import urllib2
 
 class PaymentProcessor(BasePaymentProcessor):
@@ -39,7 +41,7 @@ class PaymentProcessor(BasePaymentProcessor):
             self.log_extra('%s is paid in full, no authorization attempted.', order)
             results = ProcessorResult(self.key, True, _("No charge needed, paid in full."))
         else:
-            self.log_extra('Authorizing payment for %s', order)
+            self.log_extra('Authorizing payment of %s for %s', amount, order)
 
             standard = self.get_standard_charge_data(authorize=True, amount=amount)
             results = self.send_post(standard, testing)
@@ -68,7 +70,7 @@ class PaymentProcessor(BasePaymentProcessor):
         results = None
         if data:
             results = self.send_post(data, testing)
-            
+        
         return results
         
     def capture_payment(self, testing=False, order=None, amount=NOTSET):
@@ -147,6 +149,52 @@ class PaymentProcessor(BasePaymentProcessor):
         self.log_extra('prior auth poststring: %s', postdata)
         trans['logPostString'] = postdata
         
+        return trans
+        
+        
+    def get_void_auth_data(self, authorization):
+        """Build the dictionary needed to process a prior auth release."""
+        settings = self.settings
+        trans = {
+            'authorization' : authorization,
+            'amount' : -1 * authorization.amount,
+        }
+
+        if self.is_live():
+            conn = settings.CONNECTION.value
+            self.log_extra('Using live connection.')
+        else:
+            testflag = 'TRUE'
+            conn = settings.CONNECTION_TEST.value
+            self.log_extra('Using test connection.')
+
+        if self.settings.SIMULATE.value:
+            testflag = 'TRUE'
+        else:
+            testflag = 'FALSE'
+
+        trans['connection'] = conn
+
+        trans['configuration'] = {
+            'x_login' : settings.LOGIN.value,
+            'x_tran_key' : settings.TRANKEY.value,
+            'x_version' : '3.1',
+            'x_relay_response' : 'FALSE',
+            'x_test_request' : testflag,
+            'x_delim_data' : 'TRUE',
+            'x_delim_char' : '|',
+            'x_type': 'VOID',
+            'x_trans_id' : authorization.transaction_id
+            }
+
+        self.log_extra('void auth configuration: %s', trans['configuration'])
+
+        postdata = urlencode(trans['configuration']) 
+        trans['postString'] = postdata
+
+        self.log_extra('void auth poststring: %s', postdata)
+        trans['logPostString'] = postdata
+
         return trans
 
     def get_recurring_charge_data(self, testing=False):
@@ -299,15 +347,18 @@ class PaymentProcessor(BasePaymentProcessor):
             }
     
         self.log_extra('standard charges configuration: %s', trans['custBillData'])
-        balance = trunc_decimal(order.balance, 2)
-        trans['amount'] = balance
+        
+        invoice = "%s" % order.id
+        if not self.is_live():
+            # add random test id to this, for testing repeatability
+            invoice = "%s_test_%s_%i" % (invoice,  datetime.now().strftime('%m%d%y'), random.randint(1,1000000))
         
         trans['transactionData'] = {
             'x_amount' : balance,
             'x_card_num' : order.credit_card.decryptedCC,
             'x_exp_date' : order.credit_card.expirationDate,
             'x_card_code' : order.credit_card.ccv,
-            'x_invoice_num' : order.id
+            'x_invoice_num' : invoice
             }
 
         part1 = urlencode(trans['configuration']) + "&"
@@ -387,7 +438,27 @@ class PaymentProcessor(BasePaymentProcessor):
             
         return success, reason, response_text, subscriptionID
         
-    def send_post(self, data, testing=False):
+        
+    def release_authorized_payment(self, order=None, auth=None, testing=False):
+        """Release a previously authorized payment."""
+        if order:
+            self.prepare_data(order)
+        else:
+            order = self.order
+
+        self.log_extra('Releasing Authorization #%i for %s', auth.id, order)
+        data = self.get_void_auth_data(auth)
+        results = None
+        if data:
+            results = self.send_post(data, testing)
+            
+        if results.success:
+            auth.complete = True
+            auth.save()
+            
+        return results
+        
+    def send_post(self, data, testing=False, amount=NOTSET):
         """Execute the post to Authorize Net.
         
         Params:
@@ -414,17 +485,22 @@ class PaymentProcessor(BasePaymentProcessor):
         response_text = parsed_results[3]
         transaction_id = parsed_results[6]
         success = response_code == '1'
+        if amount == NOTSET:
+            amount = data['amount']
 
         payment = None
         if success and not testing:
             if data.get('authorize_only', False):
                 self.log_extra('Success, recording authorization')
-                payment = self.record_authorization(order=self.order, amount=data['amount'], 
+                payment = self.record_authorization(order=self.order, amount=amount, 
                     transaction_id=transaction_id, reason_code=reason_code)
             else:
-                self.log_extra('Success, recording payment')
+                if amount < 0:
+                    self.log_extra('Success, recording refund')
+                else:
+                    self.log_extra('Success, recording payment')
                 authorization = data.get('authorization', None)
-                payment = self.record_payment(order=self.order, amount=data['amount'], 
+                payment = self.record_payment(order=self.order, amount=amount, 
                     transaction_id=transaction_id, reason_code=reason_code, authorization=authorization)
 
         self.log_extra("Returning success=%s, reason=%s, response_text=%s", success, reason_code, response_text)

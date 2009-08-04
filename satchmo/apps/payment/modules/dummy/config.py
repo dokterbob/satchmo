@@ -62,6 +62,12 @@ config_register_list(
         description=_('Capture Payment immediately?'),
         default=True,
         help_text=_('IMPORTANT: If false, a capture attempt will be made when the order is marked as shipped."')),
+        
+    BooleanValue(PAYMENT_GROUP,
+        'AUTH_EARLY',
+        description=_("Early AUTH"),
+        help_text=_("Authenticate on the card entry page, causes an immediate $.01 AUTH and release, allowing errors with the card to show on the card entry page."),
+        default=False),
 
     BooleanValue(PAYMENT_GROUP,
         'EXTRA_LOGGING',

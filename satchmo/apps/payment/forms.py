@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django import forms
 from django.conf import settings
 from django.template import loader
@@ -285,6 +286,7 @@ class SimplePayShipForm(forms.Form):
             order = None
         self.order = order
         self.orderpayment = None
+        self.paymentmodule = paymentmodule
         
         try:
             self.tempCart = Cart.objects.from_request(request)
@@ -409,13 +411,57 @@ class CreditPayShipForm(SimplePayShipForm):
         except Contact.DoesNotExist:
             self.tempContact = None
 
+    def clean(self):            
+        super(CreditPayShipForm, self).clean()
+        data = self.cleaned_data
+        early = config_value('PAYMENT', 'AUTH_EARLY')
+        
+        if early:
+            processor_module = self.paymentmodule.MODULE.load_module('processor')
+            processor = processor_module.PaymentProcessor(self.paymentmodule)
+            if processor.can_authorize():
+                log.debug('Processing early capture/release for: %s', self.order)
+                processor_module = self.paymentmodule.MODULE.load_module('processor')
+                processor = processor_module.PaymentProcessor(self.paymentmodule)                
+                if self.order:
+                    # we have to make a payment object and save the credit card data to
+                    # make an auth/release.
+                    orderpayment = processor.create_pending_payment(order=self.order, 
+                        amount=Decimal('0.01'))
+                    op = orderpayment.capture
+
+                    cc = CreditCardDetail(orderpayment=op,
+                        expire_month=data['month_expires'],
+                        expire_year=data['year_expires'],
+                        credit_type=data['credit_type'])
+
+                    cc.storeCC(data['credit_number'])
+                    cc.save()
+
+                    # set ccv into cache
+                    cc.ccv = data['ccv']
+                    self.cc = cc
+                    results = processor.authorize_and_release(order=self.order)
+                if not results.success:
+                    log.debug('Payment module error: %s', results)
+                    raise forms.ValidationError(results.message)
+                else:
+                    log.debug('Payment module capture/release success for %s', self.order)
+            else:
+                log.debug('Payment module %s cannot do credit authorizations, ignoring AUTH_EARLY setting.',
+                    self.paymentmodule.MODULE.KEY.value)
+        return data
+        
+
     def clean_credit_number(self):
         """ Check if credit card is valid. """
-        credit_number = self.cleaned_data['credit_number']
-        card = CreditCard(credit_number, self.cleaned_data['credit_type'])
+        data = self.cleaned_data
+        credit_number = data['credit_number']
+        card = CreditCard(credit_number, data['credit_type'])
         results, msg = card.verifyCardTypeandNumber()
         if not results:
             raise forms.ValidationError(msg)
+
         return credit_number
 
     def clean_month_expires(self):
@@ -440,9 +486,10 @@ class CreditPayShipForm(SimplePayShipForm):
             
     def save(self, request, cart, contact, payment_module, data=None):
         """Save the order and the credit card information for this orderpayment"""
-        super(CreditPayShipForm, self).save(request, cart, contact, payment_module, data=data)
         if data is None:
             data = self.cleaned_data
+        assert(data)
+        super(CreditPayShipForm, self).save(request, cart, contact, payment_module, data=data)
         
         if self.orderpayment:
             op = self.orderpayment.capture

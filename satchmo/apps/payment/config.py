@@ -56,6 +56,13 @@ ORDER_EMAIL_EXTRA = config_register(
 config_register_list(
 
     BooleanValue(PAYMENT_GROUP,
+        'AUTH_EARLY',
+        description=_("Early AUTH"),
+        help_text=_("Where possible, Authenticate on the card entry page.  This causes an immediate $.01 AUTH and release, allowing errors with the card to show on the card entry page instead of on the confirmation page.  Note that this is only supported for payment modules that can do Authorizations.  It will be silently ignored for any other processors."),
+        default=False),
+
+
+    BooleanValue(PAYMENT_GROUP,
         'COUNTRY_MATCH',
         description=_("Country match required?"),
         help_text=_("If True, then customers may not have different countries for shipping and billing."),

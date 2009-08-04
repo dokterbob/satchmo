@@ -13,7 +13,7 @@ class PaymentProcessor(BasePaymentProcessor):
     def __init__(self, settings):
         super(PaymentProcessor, self).__init__('dummy', settings)
 
-    def authorize_payment(self, testing=False, amount=NOTSET):
+    def authorize_payment(self, order=None, testing=False, amount=NOTSET):
         """
         Make an authorization for an order.  This payment will then be captured when the order
         is set marked 'shipped'.
@@ -42,6 +42,7 @@ class PaymentProcessor(BasePaymentProcessor):
         orderpayment = self.record_payment(amount=amount, reason_code="0")
         return ProcessorResult(self.key, True, _('Success'), orderpayment)
 
+
     def capture_authorized_payment(self, authorization, amount=NOTSET):
         """
         Given a prior authorization, capture remaining amount not yet captured.
@@ -53,3 +54,9 @@ class PaymentProcessor(BasePaymentProcessor):
             transaction_id="dummy", authorization=authorization)
         
         return ProcessorResult(self.key, True, _('Success'), orderpayment)
+        
+    def release_authorized_payment(self, order=None, auth=None, testing=False):
+        """Release a previously authorized payment."""
+        auth.complete = True
+        auth.save()
+        return ProcessorResult(self.key, True, _('Success'))
