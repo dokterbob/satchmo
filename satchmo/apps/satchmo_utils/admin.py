@@ -33,7 +33,8 @@ class ForeignKeySearchInput(forms.HiddenInput):
             'all': ('css/jquery.autocomplete.css',)
         }
         js = (
-            'js/jquery.js',
+            # The js/jquery.js script is referenced in admin/base_site.html template.
+            # Requesting it here again would reset all the plugins loaded afterwards.
             'js/jquery.bgiframe.js',
             'js/jquery.ajaxQueue.js',
             'js/jquery.autocomplete.js'
