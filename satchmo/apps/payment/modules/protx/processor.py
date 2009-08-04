@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from livesettings import config_value
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_utils.numbers import trunc_decimal
-from urllib import urlencode
+from django.utils.http import urlencode
 import forms
 import urllib2
 
