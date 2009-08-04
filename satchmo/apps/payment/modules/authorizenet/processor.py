@@ -157,7 +157,7 @@ class PaymentProcessor(BasePaymentProcessor):
         settings = self.settings
         trans = {
             'authorization' : authorization,
-            'amount' : -1 * authorization.amount,
+            'amount' : Decimal('0.00'),
         }
 
         if self.is_live():
@@ -495,7 +495,7 @@ class PaymentProcessor(BasePaymentProcessor):
                 payment = self.record_authorization(order=self.order, amount=amount, 
                     transaction_id=transaction_id, reason_code=reason_code)
             else:
-                if amount < 0:
+                if amount <= 0:
                     self.log_extra('Success, recording refund')
                 else:
                     self.log_extra('Success, recording payment')
