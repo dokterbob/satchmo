@@ -5,7 +5,7 @@ interface.
 
 See the authorizenet module for the reference implementation
 """
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 
 class PaymentProcessor(BasePaymentProcessor):
@@ -29,7 +29,8 @@ class PaymentProcessor(BasePaymentProcessor):
         Process the transaction and return a ProcessorResult:
 
         Example:
-        >>> from django.conf import settings
+        >>> from livesettings import config_get_group
+        >>> settings = config_get_group('PAYMENT_DUMMY')
         >>> from payment.modules.dummy.processor import PaymentProcessor
         >>> processor = PaymentProcessor(settings)
         # If using a normal payment module, data should be an Order object.

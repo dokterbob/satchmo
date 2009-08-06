@@ -11,6 +11,7 @@ Changes
 -------
 
  * Improved project layout to support easier integration with other Django apps
+ * Added AUTH_EARLY option to Authorize.net
  * Upgrade of Authorize.net SSL version to use ssle 3.0/tls
  * Use sorl_thumbnail
  * Allow products with the same slug to be on multiple sites

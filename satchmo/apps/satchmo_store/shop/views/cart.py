@@ -219,7 +219,7 @@ def add_ajax(request, id=0, template="shop/json.html"):
                 form=formdata
                 )
         try:
-            added_item = tempCart.add_item(product, number_added=quantity)
+            added_item = tempCart.add_item(product, number_added=quantity, details=details)
             request.session['cart'] = tempCart.id
             data['results'] = _('Success')
             if added_item:
