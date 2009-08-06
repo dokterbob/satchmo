@@ -76,6 +76,34 @@ def credit_pay_ship_process_form(request, contact, working_cart, payment_module,
         else:
             log.debug('Form errors: %s', form.errors)
     else:
+        order_data = {}
+        try:
+            order = Order.objects.from_request(request)
+            if order.shipping_model:
+                order_data['shipping'] = order.shipping_model
+            if order.credit_card:
+                cc = order.credit_card
+                val = cc.decryptedCC
+                if val:
+                    order_data['credit_number'] = val
+                val = cc.ccv
+                if val:
+                    order_data['ccv'] = val
+                val = cc.expire_month
+                if val:
+                    order_data['month_expires'] = val
+                val = cc.expire_year
+                if val:
+                    order_data['year_expires'] = val
+                val = cc.credit_type
+                if val:
+                    order_data['credit_type'] = val
+            
+            kwargs['initial'] = order_data
+            ordershippable = order.is_shippable
+        except Order.DoesNotExist:
+            pass
+        
         form = _get_form(request, payment_module, *args, **kwargs)
         if not form.is_needed():
             log.debug('Skipping pay ship because form is not needed, nothing to pay')
@@ -103,8 +131,6 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module,
             order = Order.objects.from_request(request)
             if order.shipping_model:
                 order_data['shipping'] = order.shipping_model
-            if order.discount_code:
-                order_data['discount'] = order.discount_code
             ordershippable = order.is_shippable
         except Order.DoesNotExist:
             pass
