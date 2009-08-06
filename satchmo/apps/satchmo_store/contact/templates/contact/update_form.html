@@ -44,7 +44,7 @@ $(document).ready(function() {
 <h2>{% trans "Please correct the following error:" %}</h2>
 {{ form.non_field_errors }}
 {% endif %}
-<form method="post" action="{% url satchmo_profile_update %}">
+<form method="post" action="{% url satchmo_profile_update %}{% if next %}?next={{ next }}{% endif %}">
 <table>
     <tr><td colspan="2"><p>{% trans "You&apos;ll need to fill out at least the fields with a *" %}</p></td></tr>
 

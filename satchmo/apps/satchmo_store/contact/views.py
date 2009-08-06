@@ -46,7 +46,7 @@ def update(request):
     
 
     if request.method == "POST":
-        new_data = request.POST.copy()
+        new_data = request.POST.copy()            
         form = ExtendedContactInfoForm(data=new_data, shop=shop, contact=contact, shippable=True,
             initial=init_data)
 
@@ -58,7 +58,7 @@ def update(request):
             redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
             if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
                 redirect_to = urlresolvers.reverse('satchmo_account_info')
-                
+
             return http.HttpResponseRedirect(redirect_to)
         else:
             signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
@@ -88,6 +88,8 @@ def update(request):
         if countries and countries.count() == 1:
             init_data['country'] = countries[0]
     
+    
+    init_data['next'] = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
     context = RequestContext(request, init_data)
         
     return render_to_response('contact/update_form.html', context)
