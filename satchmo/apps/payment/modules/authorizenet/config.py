@@ -42,7 +42,7 @@ for test transactions if you do not have a cpdev or cnpdev.
     BooleanValue(PAYMENT_GROUP, 
         'LIVE', 
         description=_("Accept real payments"),
-        help_text=_("False if you want to submit to the test urls."),
+        help_text=_("False if you want to submit to the test urls.  NOTE: If you are testing, then you can use the cc# 4222222222222 to force a bad credit card response.  If you use that number and a ccv of 222, that will force a bad ccv response from authorize.net"),
         default=False),
 
     BooleanValue(PAYMENT_GROUP, 
