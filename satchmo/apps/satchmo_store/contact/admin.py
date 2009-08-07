@@ -1,4 +1,4 @@
-from satchmo_store.contact.models import Organization, Contact, Interaction, PhoneNumber, AddressBook
+from satchmo_store.contact.models import Organization, Contact, Interaction, PhoneNumber, AddressBook, ContactOrganization, ContactOrganizationRole, ContactRole, ContactInteractionType
 from satchmo_utils.admin import AutocompleteAdmin
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
@@ -32,7 +32,22 @@ class ContactOptions(AutocompleteAdmin):
 class InteractionOptions(admin.ModelAdmin):
     list_filter = ['type', 'date_time']
 
+class ContactOrganizationOptions(admin.ModelAdmin):
+    pass
+    
+class ContactRoleOptions(admin.ModelAdmin):
+    pass
+    
+class ContactOrganizationRoleOptions(admin.ModelAdmin):
+    pass
+
+class ContactInteractionTypeOptions(admin.ModelAdmin):
+    pass
 
 admin.site.register(Organization, OrganizationOptions)
 admin.site.register(Contact, ContactOptions)
 admin.site.register(Interaction, InteractionOptions)
+admin.site.register(ContactOrganization, ContactOrganizationOptions)
+admin.site.register(ContactOrganizationRole, ContactOrganizationRoleOptions)
+admin.site.register(ContactRole, ContactRoleOptions)
+admin.site.register(ContactInteractionType, ContactInteractionTypeOptions)

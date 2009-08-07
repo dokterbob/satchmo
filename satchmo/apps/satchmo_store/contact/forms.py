@@ -5,7 +5,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.utils.translation import ugettext_lazy as _, ugettext
 from l10n.models import Country
 from livesettings import config_value, config_get_group, SettingNotSet
-from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber, Organization
+from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber, Organization, ContactRole
 from satchmo_store.shop.models import Config
 import datetime
 import logging
@@ -285,7 +285,7 @@ class ContactInfoForm(ProxyContactForm):
                 pass
 
         if not customer.role:
-            customer.role = "Customer"
+            customer.role = ContactRole.objects.get(pk='Customer')
 
         customer.save()
         

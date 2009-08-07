@@ -15,29 +15,44 @@ import sys
 
 log = logging.getLogger('contact.models')
 
-CONTACT_CHOICES = (
-    ('Customer', _('Customer')),
-    ('Supplier', _('Supplier')),
-    ('Distributor', _('Distributor')),
-)
+class ContactRole(models.Model):
+    key = models.CharField(_('Key'), max_length=30, unique=True, primary_key=True)
+    name = models.CharField(_('Name'), max_length=40)
 
-ORGANIZATION_CHOICES = (
-    ('Company', _('Company')),
-    ('Government', _('Government')),
-    ('Non-profit', _('Non-profit')),
-)
+    def __unicode__(self):
+        return ugettext(self.name)
 
-ORGANIZATION_ROLE_CHOICES = (
-    ('Supplier', _('Supplier')),
-    ('Distributor', _('Distributor')),
-    ('Manufacturer', _('Manufacturer')),
-    ('Customer', _('Customer')),
-)
+
+class ContactOrganization(models.Model):
+    key = models.CharField(_('Key'), max_length=30, unique=True, primary_key=True)
+    name = models.CharField(_('Name'), max_length=40)
+
+    def __unicode__(self):
+        return ugettext(self.name)
+        
+    class Meta:
+        verbose_name = _('Contact organization type')
+
+
+class ContactOrganizationRole(models.Model):
+    key = models.CharField(_('Key'), max_length=30, unique=True, primary_key=True)
+    name = models.CharField(_('Name'), max_length=40)
+
+    def __unicode__(self):
+        return ugettext(self.name)
+
+class ContactInteractionType(models.Model):
+    key = models.CharField(_('Key'), max_length=30, unique=True, primary_key=True)
+    name = models.CharField(_('Name'), max_length=40)
+
+    def __unicode__(self):
+        return ugettext(self.name)
+
 
 class OrganizationManager(models.Manager):
     def by_name(self, name, create=False, role='Customer', orgtype='Company'):        
         org = None
-        orgs = self.filter(name=name, role=role, type=orgtype)
+        orgs = self.filter(name=name, role__key=role, type__key=orgtype)
         if orgs.count() > 0:
             org = orgs[0]
             
@@ -46,6 +61,8 @@ class OrganizationManager(models.Manager):
                 raise Organization.DoesNotExist()
             else:
                 log.debug('Creating organization: %s', name)
+                role = ContactOrganizationRole.objects.get(pk=role)
+                orgtype = ContactOrganization.objects.get(pk=orgtype)
                 org = Organization(name=name, role=role, type=orgtype)
                 org.save()
         
@@ -56,10 +73,8 @@ class Organization(models.Model):
     An organization can be a company, government or any kind of group.
     """
     name = models.CharField(_("Name"), max_length=50, )
-    type = models.CharField(_("Type"), max_length=30,
-        choices=ORGANIZATION_CHOICES)
-    role = models.CharField(_("Role"), max_length=30,
-        choices=ORGANIZATION_ROLE_CHOICES)
+    type = models.ForeignKey(ContactOrganization, verbose_name=_("Type"), null=True)
+    role = models.ForeignKey(ContactOrganizationRole, verbose_name=_("Role"), null=True)    
     create_date = models.DateField(_("Creation Date"))
     notes = models.TextField(_("Notes"), max_length=200, blank=True, null=True)
 
@@ -123,8 +138,7 @@ class Contact(models.Model):
     first_name = models.CharField(_("First name"), max_length=30, )
     last_name = models.CharField(_("Last name"), max_length=30, )
     user = models.ForeignKey(User, blank=True, null=True, unique=True)
-    role = models.CharField(_("Role"), max_length=20, blank=True, null=True,
-        choices=CONTACT_CHOICES)
+    role = models.ForeignKey(ContactRole, verbose_name=_("Role"), null=True)    
     organization = models.ForeignKey(Organization, verbose_name=_("Organization"), blank=True, null=True)
     dob = models.DateField(_("Date of birth"), blank=True, null=True)
     email = models.EmailField(_("Email"), blank=True, max_length=75)
@@ -202,19 +216,13 @@ PHONE_CHOICES = (
     ('Mobile', _('Mobile')),
 )
 
-INTERACTION_CHOICES = (
-    ('Email', _('Email')),
-    ('Phone', _('Phone')),
-    ('In Person', _('In Person')),
-)
-
 class Interaction(models.Model):
     """
     A type of activity with the customer.  Useful to track emails, phone calls,
     or in-person interactions.
     """
     contact = models.ForeignKey(Contact, verbose_name=_("Contact"))
-    type = models.CharField(_("Type"), max_length=30,choices=INTERACTION_CHOICES)
+    type = models.ForeignKey(ContactInteractionType, verbose_name=_("Type"))
     date_time = models.DateTimeField(_("Date and Time"), )
     description = models.TextField(_("Description"), max_length=200)
 

@@ -18,7 +18,7 @@ from livesettings import config_get, config_value
 from product.models import Product
 from product.utils import rebuild_pricing
 from satchmo_store.contact import CUSTOMER_ID
-from satchmo_store.contact.models import Contact, AddressBook
+from satchmo_store.contact.models import *
 from satchmo_store.shop import get_satchmo_setting, signals
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import *
@@ -590,7 +590,7 @@ class DiscountAmountTest(TestCase):
         tax = config_get('TAX','MODULE')
         tax.update('tax.modules.no')
         c = Contact(first_name="Jim", last_name="Tester", 
-            role="Customer", email="Jim@JimWorld.com")
+            role=ContactRole.objects.get(pk='Customer'), email="Jim@JimWorld.com")
         c.save()
         ad = AddressBook(contact=c, description="home",
             street1 = "test", state="OR", city="Portland",
@@ -843,7 +843,7 @@ def make_test_order(country, state, include_non_taxed=False, site=None, price=No
     if not site:
         site = Site.objects.get_current()
     c = Contact(first_name="Tax", last_name="Tester", 
-        role="Customer", email="tax@example.com")
+        role=ContactRole.objects.get(pk='Customer'), email="tax@example.com")
     c.save()
     if not isinstance(country, Country):
         country = Country.objects.get(iso2_code__iexact = country)

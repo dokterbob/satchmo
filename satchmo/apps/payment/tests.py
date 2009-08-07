@@ -31,7 +31,7 @@ def make_test_order(country, state, site=None, orderitems=None):
         site = Site.objects.get_current()
         
     c = Contact(first_name="Order", last_name="Tester", 
-        role="Customer", email="order@example.com")
+        role=ContactRole.objects.get(pk='Customer'), email="order@example.com")
     c.save()
     
     if not isinstance(country, Country):

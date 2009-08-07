@@ -15,7 +15,7 @@ class ContactTest(TestCase):
         """Test creating a contact"""
 
         contact1 = Contact.objects.create(first_name="Jim", last_name="Tester", 
-            role="Customer", email="Jim@JimWorld.com")
+            role=ContactRole.objects.get(pk='Customer'), email="Jim@JimWorld.com")
             
         self.assertEqual(contact1.full_name, u'Jim Tester')
 
@@ -55,10 +55,10 @@ class ContactTest(TestCase):
         
     def test_contact_org(self):
         contact1 = Contact.objects.create(first_name="Org", last_name="Tester", 
-            role="Customer", email="org@example.com")
+            role=ContactRole.objects.get(pk='Customer'), email="org@example.com")
         org = Organization.objects.by_name('The Testers', create=True)
         self.assert_(org)
-        self.assertEqual(org.role, 'Customer')
+        self.assertEqual(org.role.name, 'Customer')
         org2 = Organization.objects.by_name('The Testers', create=True)
         self.assertEqual(org, org2)
         

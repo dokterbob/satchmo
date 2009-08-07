@@ -1,0 +1,40 @@
+- fields: {name: Customer}
+  model: contact.contactrole
+  pk: Customer
+- fields: {name: Supplier}
+  model: contact.contactrole
+  pk: Supplier
+- fields: {name: Distributor}
+  model: contact.contactrole
+  pk: Distributor
+- fields: {name: Company}
+  model: contact.contactorganization
+  pk: Company
+- fields: {name: Government}
+  model: contact.contactorganization
+  pk: Government
+- fields: {name: Non-profit}
+  model: contact.contactorganization
+  pk: Non-profit
+- fields: {name: Supplier}
+  model: contact.contactorganizationrole
+  pk: Supplier
+- fields: {name: Distributor}
+  model: contact.contactorganizationrole
+  pk: Distributor
+- fields: {name: Manufacturer}
+  model: contact.contactorganizationrole
+  pk: Manufacturer
+- fields: {name: Customer}
+  model: contact.contactorganizationrole
+  pk: Customer
+- fields: {name: Email}
+  model: contact.contactinteractiontype
+  pk: Email
+- fields: {name: Phone}
+  model: contact.contactinteractiontype
+  pk: Phone
+- fields: {name: In Person}
+  model: contact.contactinteractiontype
+  pk: In Person
+

@@ -4,7 +4,7 @@ class Command(NoArgsCommand):
     help = "Load sample store data for satchmo."
 
     def handle_noargs(self, **options):
-        from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber
+        from satchmo_store.contact.models import *
         from product.models import Product, Price, ConfigurableProduct, ProductVariation, Category, OptionGroup, Option, ProductImage#, DownloadableProduct
         from satchmo_store.contact.supplier.models import Organization
         from satchmo_store.shop.models import Config
@@ -44,11 +44,13 @@ class Command(NoArgsCommand):
         config.save()
         print "Creating Customers..."
         # Import some customers
-        c1 = Contact(first_name="Chris", last_name="Smith", email="chris@aol.com", role="Customer", notes="Really cool stuff")
+        
+        customer = ContactRole.objects.get(pk='Customer')
+        c1 = Contact(first_name="Chris", last_name="Smith", email="chris@aol.com", role=customer, notes="Really cool stuff")
         c1.save()
         p1 = PhoneNumber(contact=c1, phone="601-555-5511", type="Home",primary=True)
         p1.save()
-        c2 = Contact(first_name="John", last_name="Smith", email="abc@comcast.com", role="Customer", notes="Second user")
+        c2 = Contact(first_name="John", last_name="Smith", email="abc@comcast.com", role=customer, notes="Second user")
         c2.save()
         p2 = PhoneNumber(contact=c2, phone="999-555-5111", type="Work",primary=True)
         p2.save()
@@ -62,16 +64,22 @@ class Command(NoArgsCommand):
         a2.save()
         print "Creating Suppliers..."
         #Import some suppliers
-        org1 = Organization(name="Rhinestone Ronny", type="Company",role="Supplier")
+        
+        supplier = ContactOrganizationRole.objects.get(pk='Supplier')
+        company = ContactOrganization.objects.get(pk='Company')
+        contactsupplier = ContactRole.objects.get(pk='Supplier')
+        org1 = Organization(name="Rhinestone Ronny", type=company, role=supplier)
         org1.save()
-        c4 = Contact(first_name="Fred", last_name="Jones", email="fj@rr.com", role="Supplier", organization=org1)
+        c4 = Contact(first_name="Fred", last_name="Jones", email="fj@rr.com", 
+            role=contactsupplier, organization=org1)
         c4.save()
         p4 = PhoneNumber(contact=c4,phone="800-188-7611", type="Work", primary=True)
         p4.save()
         p5 = PhoneNumber(contact=c4,phone="755-555-1111",type="Fax")
         p5.save()
-        a3 = AddressBook(contact=c4, description="Mailing address", street1="Receiving Dept", street2="918 Funky Town St", city="Fishkill",
-                         state="NJ", country=us, postal_code="19010")
+        a3 = AddressBook(contact=c4, description="Mailing address", street1="Receiving Dept", 
+            street2="918 Funky Town St", city="Fishkill",
+             state="NJ", country=us, postal_code="19010")
         a3.save()
         #s1 = Supplier(name="Rhinestone Ronny", address1="918 Funky Town St", address2="Suite 200",
         #              city="Fishkill", state="NJ", zip="19010", phone1="800-188-7611", fax="900-110-1909", email="ron@rhinestone.com",

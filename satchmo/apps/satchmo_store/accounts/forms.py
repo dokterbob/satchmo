@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo_store.accounts.mail import send_welcome_email
 from livesettings import config_value
 from satchmo_store.contact.forms import ContactInfoForm
-from satchmo_store.contact.models import AddressBook, PhoneNumber, Contact
+from satchmo_store.contact.models import AddressBook, PhoneNumber, Contact, ContactRole
 from l10n.models import Country
 from satchmo_utils.unique_id import generate_id
 
@@ -112,7 +112,7 @@ class RegistrationForm(forms.Form):
         contact.first_name = first_name
         contact.last_name = last_name
         contact.email = email
-        contact.role = 'Customer'
+        contact.role = ContactRole.objects.get(pk='Customer')
         contact.title = data.get('title', '')
         contact.save()
 

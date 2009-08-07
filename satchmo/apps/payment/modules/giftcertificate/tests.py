@@ -8,7 +8,7 @@ from django.test import TestCase
 from models import *
 from keyedcache import cache_delete
 from livesettings import config_get_group, config_value
-from satchmo_store.contact.models import AddressBook, Contact
+from satchmo_store.contact.models import AddressBook, Contact, ContactRole
 from l10n.models import Country
 from product.models import Product
 from satchmo_store.shop.models import Order, OrderItem, OrderItemDetail
@@ -22,7 +22,7 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 def make_test_order(country, state):
     c = Contact(first_name="Gift", last_name="Tester", 
-        role="Customer", email="gift@example.com")
+        role=ContactRole.objects.get(pk='Customer'), email="gift@example.com")
     c.save()
     if not isinstance(country, Country):
         country = Country.objects.get(iso2_code__iexact = country)
