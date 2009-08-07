@@ -414,6 +414,9 @@ class CreditPayShipForm(SimplePayShipForm):
     def clean(self):            
         super(CreditPayShipForm, self).clean()
         data = self.cleaned_data
+        if not self.is_valid():
+            log.debug('form not valid, no early auth')
+            return data
         early = config_value('PAYMENT', 'AUTH_EARLY')
         
         if early:
