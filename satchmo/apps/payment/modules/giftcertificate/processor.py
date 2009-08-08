@@ -23,6 +23,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
         payment = None
 
+        valid_gc = False
         if self.order.paid_in_full:
             success = True
             reason_code = "0"
@@ -31,13 +32,14 @@ class PaymentProcessor(BasePaymentProcessor):
         else:
             try:
                 gc = GiftCertificate.objects.from_order(self.order)
+                valid_gc = gc.valid
 
             except GiftCertificate.DoesNotExist:
                 success = False
                 reason_code="1"
                 response_text = _("No such Gift Certificate")
 
-            if not gc.valid:
+            if not valid_gc:
                 success = False
                 reason_code="2"
                 response_text = _("Bad Gift Certificate")
