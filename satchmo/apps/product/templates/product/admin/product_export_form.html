@@ -2,7 +2,8 @@
 {% load i18n admin_modify %}
 
 {% block extrastyle %}
-{% load adminmedia %}{% admin_media_prefix %}css/forms.css
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/forms.css" />
 <style type="text/css">
 form#inventoryform input.text {
     width: 6em;
