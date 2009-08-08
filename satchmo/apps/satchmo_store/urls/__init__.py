@@ -6,8 +6,7 @@ To customize for your store, make an url module, and load the patterns you need.
 
 Example 1, loading a store at the root, rather than at "shop/"::
 
-    from satchmo_store.urls.baseurls import urlpatterns as basepatterns
-    from satchmo_store.urls.default import urlpatterns as defaultpatterns
+    from satchmo_store.urls import basepatterns, defaultpatterns
     from satchmo_store.shop.urls import urlpatterns as shoppatterns
 
     urlpatterns = basepatterns + defaultpatterns + shoppatterns
@@ -16,7 +15,7 @@ Example 2, loading a store, where you are calling admin.autodiscover()
 earlier in your custom urls.py file, and you want the shop at "store/"::
 
     # at the top of the file
-    from satchmo_store.urls.baseurls import urlpatterns as basepatterns
+    from satchmo_store.urls import basepatterns
 
     [ ... your code here, which includes admin.autodiscover() ... ]
     
