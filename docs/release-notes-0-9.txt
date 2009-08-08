@@ -11,6 +11,7 @@ Changes
 -------
 
  * Improved project layout to support easier integration with other Django apps
+ * Removed hard-coding of organizations types, organization roles and contact types from the contact app
  * Added AUTH_EARLY option to Authorize.net
  * Upgrade of Authorize.net SSL version to use ssle 3.0/tls
  * Use sorl_thumbnail

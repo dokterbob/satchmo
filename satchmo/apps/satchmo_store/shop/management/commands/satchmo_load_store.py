@@ -4,7 +4,7 @@ class Command(NoArgsCommand):
     help = "Load sample store data for satchmo."
 
     def handle_noargs(self, **options):
-        from satchmo_store.contact.models import *
+        from satchmo_store.contact.models import Organization, ContactRole, PhoneNumber, Contact, ContactOrganization, ContactOrganizationRole, AddressBook
         from product.models import Product, Price, ConfigurableProduct, ProductVariation, Category, OptionGroup, Option, ProductImage#, DownloadableProduct
         from satchmo_store.contact.supplier.models import Organization
         from satchmo_store.shop.models import Config
