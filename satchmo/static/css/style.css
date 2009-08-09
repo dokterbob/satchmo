@@ -353,6 +353,10 @@ div.recentlyadded {
     width: 5em;
 }
 
+#payment ul li{
+    list-style-type: none;
+}
+
 /* ============ Upsell section ============== */
 
 div.upsell {

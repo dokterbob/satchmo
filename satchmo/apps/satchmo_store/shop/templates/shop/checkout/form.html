@@ -54,7 +54,7 @@
 	    {# If we only have one payment method, then the form renders it as a hidden field #}{{ form.paymentmethod }}
     {% else %}
 	<tr><td colspan="2"><h4>{% trans "How do you want to pay?" %}</h4></td></tr>
-	<tr><td><label for="id_paymentmethod">{% trans "Payment method" %}*</label></td> <td>{{ form.paymentmethod }}</td></tr>
+	<tr><td><label for="id_paymentmethod">{% trans "Payment method" %}*</label></td> <td><div id="payment">{{ form.paymentmethod }}</div></td></tr>
     {% if form.paymentmethod.errors %}<tr><td>&nbsp;</td><td>*** {{ form.paymentmethod.errors|join:", " }}</td></tr>{% endif %}
     {% endifequal %}
 
