@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Product, Price, Option
+from satchmo_utils.unique_id import slugify
 
 import config
 import logging
@@ -451,7 +452,7 @@ class VariationManagerForm(forms.Form):
                     self.edit_urls[key] = "/admin/product/product/%i/" % variation.id
                 else:
                     basename = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
-                    slug = u'%s_%s' % (self.product.slug, u'_'.join(optnames))
+                    slug = slugify(u'%s_%s' % (self.product.slug, u'_'.join(optnames)))
                     sku = ""
 
                 pv = forms.BooleanField(**kw)

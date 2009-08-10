@@ -77,7 +77,8 @@ def slugify(s, entities=True, decimal=True, hexadecimal=True,
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore')
 
     #replace unwanted characters
-    s = re.sub(r'[^-a-z0-9]+', '-', s.lower())
+    #Added _ because this is a valid slug option
+    s = re.sub(r'[^-a-z0-9_]+', '-', s.lower())
 
     #remove redundant -
     s = re.sub('-{2,}', '-', s).strip('-')
