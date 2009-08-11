@@ -1,11 +1,11 @@
-Satchmo 0.9 Release
-=====================
+Satchmo 0.9 Release (Trunk)
+===========================
 
-Welcome to Satchmo 0.9. This release is a major step forward for Satchmo.
-It includes a newly designed project layout meant to make it more modular and
-easier to integrate with the rest of your Django apps. This release also includes many
-bug fixes, improvements, new features and improved documentation. Some of the highlights
-are described below.
+Satchmo 0.9 is not currently released. These notes are for Satchmo trunk.
+This release will be a major step forward for Satchmo. It includes a newly designed project 
+layout meant to make it more modular and easier to integrate with the rest of your Django apps. 
+This release also includes many bug fixes, improvements, new features and improved documentation. 
+Some of the highlights are described below.
 
 Changes
 -------

@@ -37,9 +37,6 @@ A basic ``models.py`` file with a custom product model looks like this::
         def __unicode__(self):
             return u"MyNewProduct: %s" % self.product.name
 
-        class Admin:
-            pass
-
         class Meta:
             verbose_name = _('My New Product')
             verbose_name_plural = _('My New Products')
@@ -129,6 +126,10 @@ Conclusion
 This document should get you started in customizing Satchmo through the product
 model. If you need help with something discussed here or with more advanced
 topics, feel free to ask the `mailing list`_.
+
+There is another possibility for extending the product model using 
+model inheritance. You can find more information in the `first installment <http://thisismedium.com/tech/satchmo-diaries-part-one/>`_
+of the Satchmo Diaries.
 
 Finally, if you create a product model that others may find useful, please
 consider contributing it to the Satchmo community.
