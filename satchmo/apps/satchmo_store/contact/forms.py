@@ -16,9 +16,9 @@ log = logging.getLogger('satchmo_store.contact.forms')
 selection = ''
 
 class ProxyContactForm(forms.Form):
-    def __init__(self, contact=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        self._contact = kwargs.pop('contact', None)
         super(ProxyContactForm, self).__init__(*args, **kwargs)
-        self._contact = contact
 
 class ContactInfoForm(ProxyContactForm):
     email = forms.EmailField(max_length=75, label=_('Email'), required=False)
@@ -42,7 +42,9 @@ class ContactInfoForm(ProxyContactForm):
     ship_postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'), required=False)
     next = forms.CharField(max_length=40, widget=forms.HiddenInput(), required=False)
 
-    def __init__(self, shop=None, shippable=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        shop = kwargs.pop('shop', None)
+        shippable = kwargs.pop('shippable', True)
         super(ContactInfoForm, self).__init__(*args, **kwargs)
         if not shop:
             shop = Config.objects.get_current()
