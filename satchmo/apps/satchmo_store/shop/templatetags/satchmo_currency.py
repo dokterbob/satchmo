@@ -1,18 +1,11 @@
-try:
-    from decimal import Decimal, InvalidOperation
-except:
-    from django.utils._decimal import Decimal, InvalidOperation
-
+from decimal import Decimal, InvalidOperation
 from django import template
 from django.conf import settings
 from django.utils.encoding import force_unicode
+from django.utils.safestring import mark_safe
+from l10n.utils import moneyfmt
 from livesettings import config_value
 from satchmo_utils.templatetags import get_filter_args
-from l10n.utils import moneyfmt
-try:
-    from django.utils.safestring import mark_safe
-except ImportError:
-    mark_safe = lambda s:s
 
 import logging
 

@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 import logging

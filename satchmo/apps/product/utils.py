@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.contrib.sites.models import Site
 from livesettings import config_value
 from l10n.utils import moneyfmt
@@ -8,12 +9,7 @@ from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 import datetime
 import logging
 import types
-from decimal import Decimal
 
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('product.utils')
 

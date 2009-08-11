@@ -1,10 +1,6 @@
+from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
-
-try:
-    from decimal import Decimal
-except ImportError:
-    from django.utils._decimal import Decimal
 
 SHIP_MODULES = config_get('SHIPPING', 'MODULES')
 SHIP_MODULES.add_choice(('shipping.modules.usps', 'USPS'))

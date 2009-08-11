@@ -1,14 +1,10 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
 from datetime import datetime, timedelta
+from decimal import Decimal
 from livesettings import config_get_group
 from payment.config import active_modules
-from shipping.utils import update_shipping
 from satchmo_store.shop.models import Order, OrderAuthorization, OrderItem, OrderItemDetail, OrderPayment, OrderPendingPayment
 from satchmo_store.shop.signals import satchmo_post_copy_item_to_order
+from shipping.utils import update_shipping
 from socket import error as SocketError
 import logging
 

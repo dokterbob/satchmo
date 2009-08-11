@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django import http
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -9,18 +10,13 @@ from product import signals
 from product.models import Category, Product, ConfigurableProduct, sorted_tuple
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
-from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.json import json_encode
+from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
 import datetime
 import logging
 import random
 
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-    
 log = logging.getLogger('product.views')
 
 NOTSET = object()

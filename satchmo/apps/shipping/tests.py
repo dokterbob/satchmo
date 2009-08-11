@@ -1,17 +1,13 @@
+from decimal import Decimal
+from django.contrib.sites.models import Site
 from django.db import models
 from django.test import TestCase
-import keyedcache
 from livesettings import config_value
 from product.models import *
+from satchmo_store.shop.models import *
 from shipping.modules.flat.shipper import Shipper as flat
 from shipping.modules.per.shipper import Shipper as per
-from satchmo_store.shop.models import *
-from django.contrib.sites.models import Site
-
-try:
-    from decimal import Decimal
-except ImportError:
-    from django.utils._decimal import Decimal
+import keyedcache
 
 class ShippingBaseTest(TestCase):
 

@@ -1,6 +1,4 @@
-import logging
-import urllib2
-
+from decimal import Decimal
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -8,20 +6,17 @@ from django.template import RequestContext
 from django.utils.http import urlencode
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
-from sys import exc_info
-from traceback import format_exception
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
 from livesettings import config_get_group, config_value 
-from satchmo_store.shop.models import Order, OrderPayment
+from payment.config import payment_live
 from payment.utils import get_processor_by_key
 from payment.views import payship
-from payment.config import payment_live
 from satchmo_store.shop.models import Cart
+from satchmo_store.shop.models import Order, OrderPayment
 from satchmo_utils.dynamic import lookup_url, lookup_template
+from sys import exc_info
+from traceback import format_exception
+import logging
+import urllib2
 
 log = logging.getLogger()
 

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from decimal import Decimal
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -8,14 +9,9 @@ from livesettings import config_get_group, config_value
 from payment.forms import PaymentMethodForm, CustomChargeForm
 from payment.views import contact
 from satchmo_store.shop.models import Order, OrderItem, OrderPayment
-from satchmo_utils.views import bad_or_missing
 from satchmo_utils.dynamic import lookup_url
+from satchmo_utils.views import bad_or_missing
 import logging
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('payment.views.balance')
 

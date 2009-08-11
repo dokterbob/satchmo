@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
-except:
-    from django.utils._decimal import Decimal, ROUND_HALF_UP, InvalidOperation
-
+from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 from django.conf import settings
 import datetime
 import logging

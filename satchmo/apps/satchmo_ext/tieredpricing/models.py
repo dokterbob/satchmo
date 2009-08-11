@@ -1,17 +1,13 @@
+from decimal import Decimal
 from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from product.models import Product, Price, PriceAdjustment, PriceAdjustmentCalc
 from product import signals
+from product.models import Product, Price, PriceAdjustment, PriceAdjustmentCalc
 from satchmo_utils.fields import CurrencyField
 from threaded_multihost import threadlocals
 import datetime
 import logging
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('tieredpricing.models')
 

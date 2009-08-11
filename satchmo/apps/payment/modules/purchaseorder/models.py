@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _

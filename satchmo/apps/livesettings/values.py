@@ -2,6 +2,7 @@
 
 http://code.google.com/p/django-values/
 """
+from decimal import Decimal
 from django import forms
 from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
@@ -16,11 +17,6 @@ from satchmo_utils import load_module, is_string_like, is_list_or_tuple
 import datetime
 import logging
 import signals
-
-try:
-    from decimal import Decimal
-except ImportError:
-    from django.utils._decimal import Decimal
 
 __all__ = ['BASE_GROUP', 'ConfigurationGroup', 'Value', 'BooleanValue', 'DecimalValue', 'DurationValue',
       'FloatValue', 'IntegerValue', 'ModuleValue', 'PercentValue', 'PositiveIntegerValue', 'SortedDotDict',

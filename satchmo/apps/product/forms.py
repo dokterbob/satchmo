@@ -3,34 +3,24 @@ try:
 except ImportError:
     from StringIO import StringIO
 
+from decimal import DecimalXX
 from django import forms
-from django.db import transaction
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core import serializers, urlresolvers
 from django.core.management.base import CommandError
 from django.core.management.color import no_style
-from django.contrib.sites.models import Site
+from django.db import transaction
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Product, Price, Option
 from satchmo_utils.unique_id import slugify
-
 import config
 import logging
 import os
 import time
 import zipfile
-
-try:
-    set
-except NameError:
-    from sets import Set as set   # Python 2.3 fallback
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('product.forms')
 

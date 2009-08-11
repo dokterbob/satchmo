@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from decimal import Decimal
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
@@ -15,11 +16,6 @@ from satchmo_store.shop.models import *
 from satchmo_utils.dynamic import lookup_template, lookup_url
 from urls import make_urlpatterns
 import keyedcache
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 

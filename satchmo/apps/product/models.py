@@ -16,6 +16,7 @@ import signals
 import operator
 import os.path
 
+from decimal import Decimal
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -33,11 +34,6 @@ from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
 from shipping.config import shipping_method_by_key
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('product.models')
 

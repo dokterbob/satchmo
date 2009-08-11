@@ -1,11 +1,7 @@
 """
 Tiered shipping models
 """ 
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.conf import settings
 from django.db import models
 from django.utils.translation import get_language, ugettext_lazy as _

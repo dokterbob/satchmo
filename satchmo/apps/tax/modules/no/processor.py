@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 
 class Processor(object):
     

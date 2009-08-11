@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal, ROUND_HALF_UP, ROUND_DOWN, InvalidOperation, getcontext
-except:
-    from django.utils._decimal import Decimal, ROUND_HALF_UP, ROUND_DOWN, InvalidOperation, getcontext
-    
+from decimal import Decimal, ROUND_HALF_UP, ROUND_DOWN, InvalidOperation, getcontext
 from django import forms
 from django.utils.translation import ugettext as _
 from livesettings import config_value

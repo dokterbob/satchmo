@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from shipping.config import shipping_method_by_key
 
 def update_shipping(order, shipping, contact, cart):

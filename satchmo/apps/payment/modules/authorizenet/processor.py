@@ -1,9 +1,5 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
 from datetime import datetime
+from decimal import Decimal
 from django.template import loader, Context
 from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _

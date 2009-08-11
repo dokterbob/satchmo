@@ -2,16 +2,13 @@
 
 import os
 import urlparse
+from decimal import Decimal
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from livesettings import config_register, BooleanValue, StringValue, \
     MultipleStringValue, ConfigurationGroup, PositiveIntegerValue, \
     DecimalValue
-    
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
+
 
 SHOP_GROUP = ConfigurationGroup('SHOP', _('Satchmo Shop Settings'), ordering=0)
 

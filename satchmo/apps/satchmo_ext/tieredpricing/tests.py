@@ -1,14 +1,10 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.contrib.auth.models import User, Group
 from django.test import TestCase
-import keyedcache
 from product.models import Product, Price
 from satchmo_ext.tieredpricing.models import *
 from threaded_multihost.threadlocals import set_current_user
+import keyedcache
 
 class TieredTest(TestCase):
     """Test Tiered Pricing"""

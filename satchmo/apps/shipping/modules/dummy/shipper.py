@@ -6,11 +6,7 @@ This dummy module can be used as a basis for creating your own
 """
 
 # Note, make sure you use decimal math everywhere!
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.utils.translation import ugettext as _
 from shipping.modules.base import BaseShipper
 

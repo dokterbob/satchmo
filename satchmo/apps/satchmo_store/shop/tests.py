@@ -1,8 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site

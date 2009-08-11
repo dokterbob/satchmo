@@ -1,15 +1,11 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
-import logging
+from decimal import Decimal
 from django.conf import settings
 from django.template import loader, Context
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Discount
 from socket import error as SocketError
+import logging
 
 if "mailer" in settings.INSTALLED_APPS:
     from mailer import send_mail

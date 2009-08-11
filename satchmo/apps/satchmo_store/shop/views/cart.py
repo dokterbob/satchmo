@@ -1,10 +1,4 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
-import logging
-
+from decimal import Decimal
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -14,7 +8,6 @@ from django.utils.safestring import mark_safe
 from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
-
 from livesettings import config_value
 from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
@@ -23,8 +16,9 @@ from satchmo_store.shop import forms
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
 from satchmo_store.shop.signals import satchmo_cart_changed, satchmo_cart_add_complete, satchmo_cart_details_query
-from satchmo_utils.views import bad_or_missing
 from satchmo_utils.numbers import RoundedDecimalError, round_decimal
+from satchmo_utils.views import bad_or_missing
+import logging
 
 log = logging.getLogger('shop.views.cart')
 

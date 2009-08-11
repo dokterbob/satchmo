@@ -1,13 +1,9 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django import template
 from django.utils.safestring import mark_safe
-from shipping.modules.tiered.models import Carrier
-from satchmo_utils.templatetags import get_filter_args
 from l10n.utils import moneyfmt
+from satchmo_utils.templatetags import get_filter_args
+from shipping.modules.tiered.models import Carrier
 
 register = template.Library()
 

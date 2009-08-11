@@ -1,16 +1,12 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
-from livesettings import config_value
-from satchmo_store.contact.models import Contact
 from l10n.models import AdminArea, Country
-from satchmo_utils import is_string_like
-from product.models import TaxClass
+from livesettings import config_value
 from models import TaxRate
+from product.models import TaxClass
+from satchmo_store.contact.models import Contact
+from satchmo_utils import is_string_like
 import logging
 
 log = logging.getLogger('tax.area')

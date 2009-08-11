@@ -8,10 +8,7 @@ import string
 import csv
 import tarfile
 import shutil
-try:
-    from decimal import Decimal
-except ImportError:
-    from django.utils._decimal import Decimal
+from decimal import Decimal
 
 if "DJANGO_SETTINGS_MODULE" not in os.environ:
     from settings import DJANGO_SETTINGS_MODULE

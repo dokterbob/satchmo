@@ -1,11 +1,7 @@
 from django.core.management.base import NoArgsCommand
 import sys
 import django
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 
 class Command(NoArgsCommand):
     help = "Check the system to see if the Satchmo components are installed correctly."

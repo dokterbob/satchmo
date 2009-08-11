@@ -7,21 +7,16 @@ Associates products to each other for upselling purposes.
 # - Implement an Upsell which would *replace* the item.  Like a "supersize" concept.
 
 from datetime import date
+from decimal import Decimal, getcontext
 from django.conf import settings
 from django.db import models
 from django.utils.translation import get_language, gettext_lazy as _
 from django.utils.translation import ugettext, ugettext_lazy as _
-import keyedcache
 from keyedcache.models import CachedObjectMixin
 from product.models import Product
 import datetime
+import keyedcache
 import logging
-
-try:
-    from decimal import Decimal, getcontext
-except:
-    from django.utils._decimal import Decimal, getcontext
-
 
 log = logging.getLogger('upsell.models')
 

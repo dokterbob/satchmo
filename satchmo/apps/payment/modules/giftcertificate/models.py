@@ -1,9 +1,4 @@
-from datetime import datetime
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.contrib.sites.models import Site
 from django.contrib.sites.models import Site
 from django.db import models

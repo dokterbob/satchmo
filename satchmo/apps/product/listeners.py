@@ -1,12 +1,9 @@
-try:
-    from decimal import Decimal, InvalidOperation
-except:
-    from django.utils._decimal import Decimal, InvalidOperation
-
+from decimal import Decimal, InvalidOperation
 from django.contrib.sites.models import Site
 from django.db.models import Q
 from product.models import Product, Category, Discount
 import logging
+
 log = logging.getLogger('search listener')
 
 def default_product_search_listener(sender, request=None, category=None, keywords=[], results={}, **kwargs):

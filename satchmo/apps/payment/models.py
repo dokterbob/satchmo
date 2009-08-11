@@ -5,6 +5,7 @@ Also stores credit card info in an encrypted format.
 
 from Crypto.Cipher import Blowfish
 from datetime import datetime
+from decimal import Decimal
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -17,11 +18,6 @@ import config
 import keyedcache
 import logging
 import satchmo_utils.sslurllib
-
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 log = logging.getLogger('payment.models')
         

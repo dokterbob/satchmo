@@ -12,6 +12,7 @@ It is recommended that you refer to the UPS shipper developer documents
 unique needs.
 """
 
+from decimal import Decimal
 from django.core.cache import cache
 from django.template import Context, loader
 from django.utils.translation import ugettext as _
@@ -20,12 +21,6 @@ from shipping import signals
 from shipping.modules.base import BaseShipper
 import logging
 import urllib2
-
-# Note, make sure you use decimal math everywhere!
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
 
 try:
     from xml.etree.ElementTree import fromstring, tostring

@@ -2,16 +2,8 @@
 Configuration items for the shop.
 Also contains shopping cart and related classes.
 """
-import datetime
-import logging
-import operator
-import signals
 
-try:
-    from decimal import Decimal, ROUND_CEILING
-except:
-    from django.utils._decimal import Decimal, ROUND_CEILING
-
+from decimal import Decimal, ROUND_CEILING
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.sites.models import Site
@@ -30,7 +22,11 @@ from satchmo_utils.fields import CurrencyField
 from satchmo_utils.numbers import trunc_decimal
 from shipping.fields import ShippingChoiceCharField
 from tax.utils import get_tax_processor
+import datetime
 import keyedcache
+import logging
+import operator
+import signals
 import tax
 
 log = logging.getLogger('satchmo_store.shop.models')

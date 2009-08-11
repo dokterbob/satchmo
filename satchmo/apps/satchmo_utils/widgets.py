@@ -1,13 +1,10 @@
+from decimal import Decimal
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
+from livesettings import config_value
 from satchmo_utils.numbers import round_decimal
 import logging
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-from livesettings import config_value
 
 log = logging.getLogger('satchmo_utils.widgets')
 

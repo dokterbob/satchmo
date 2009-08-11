@@ -1,17 +1,13 @@
-import datetime
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
 from django.test import TestCase
-from models import *
 from keyedcache import cache_delete
 from livesettings import config_get
-from satchmo_store.contact.models import AddressBook, Contact
+from models import *
 from product.models import Product
+from satchmo_store.contact.models import AddressBook, Contact
 from satchmo_store.shop.models import Order, OrderItem, OrderPayment
 from satchmo_store.shop.tests import make_test_order, make_order_payment
+import datetime
 import logging
 log = logging.getLogger('tax.test')
 

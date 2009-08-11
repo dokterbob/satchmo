@@ -1,12 +1,7 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from decimal import Decimal
+from django.utils.translation import ugettext_lazy as _
 from satchmo_store.shop.exceptions import CartAddProhibited
 import logging
-from django.utils.translation import ugettext_lazy as _
-
 
 log = logging.getLogger('upsell.views')
 

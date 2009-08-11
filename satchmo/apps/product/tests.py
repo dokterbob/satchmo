@@ -1,26 +1,20 @@
+from decimal import Decimal
 from django import db
-from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db.models import Model
+from django.http import HttpResponse
 from django.test import TestCase
 from product.forms import ProductExportForm
 from product.models import *
 from product.models import Category, ConfigurableProduct, Discount, ProductVariation, Option, OptionGroup, Product, Price
 from product.utils import serialize_options, productvariation_details
 from StringIO import StringIO
+import datetime
+import keyedcache
 import signals
 import zipfile
-
-import keyedcache
-
-import datetime
-
-try:
-    from decimal import Decimal
-except ImportError:
-    from django.utils._decimal import Decimal
 
 class OptionGroupTest(TestCase):
     

@@ -1,11 +1,7 @@
-try:
-    from decimal import Decimal
-except:
-    from django.utils._decimal import Decimal
-
+from datetime import datetime
+from decimal import Decimal
 from django.test import TestCase
 from models import Carrier, ProductShippingPrice, Shipper
-from datetime import datetime    
 from product.models import Product
 
 class ProductShippingSimpleTest(TestCase):
