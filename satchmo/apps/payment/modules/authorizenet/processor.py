@@ -349,10 +349,9 @@ class PaymentProcessor(BasePaymentProcessor):
             # add random test id to this, for testing repeatability
             invoice = "%s_test_%s_%i" % (invoice,  datetime.now().strftime('%m%d%y'), random.randint(1,1000000))
         
-        cc = order.credit_card.decryptedCC,
+        cc = order.credit_card.decryptedCC
         ccv = order.credit_card.ccv
-        if not self.is_live() and cc[0] == '4222222222222':
-            self.log_extra('ccv: %s', ccv)
+        if not self.is_live() and cc == '4222222222222':
             if ccv == '222':
                 self.log_extra('Setting a bad ccv number to force an error')
                 ccv = '1'
