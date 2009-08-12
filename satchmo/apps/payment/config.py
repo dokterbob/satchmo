@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils.translation import ugettext_lazy, ugettext
 from livesettings import *
 from satchmo_store.shop import get_satchmo_setting

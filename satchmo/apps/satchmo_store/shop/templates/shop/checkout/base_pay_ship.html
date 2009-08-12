@@ -19,6 +19,9 @@
 
 {% if form.errors %}
     <h2>{% blocktrans count form.errors|length as count %}Please correct the following error:{% plural %}Please correct the following errors:{% endblocktrans %}</h2>
+    {% if form.non_field_errors %}<p>
+    {{ form.non_field_errors }}
+    </p>{% endif %}
 {% endif %}
 
 <table>

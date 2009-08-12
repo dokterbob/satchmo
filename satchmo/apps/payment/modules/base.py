@@ -2,7 +2,7 @@ from datetime import datetime
 from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 from livesettings import config_get_group
-from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPendingPayment, OrderStatus
+from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPaymentFailure, OrderPendingPayment, OrderStatus
 import logging
 
 log = logging.getLogger('payment.modules.base')
@@ -141,6 +141,20 @@ class BasePaymentProcessor(object):
         recorder.reason_code = reason_code
         return recorder.authorize_payment(amount=amount)
 
+    def record_failure(self, amount=NOTSET, transaction_id="", reason_code="", 
+        authorization=None, order=None, details=""):
+        """
+        Add an OrderPaymentFailure record
+        """
+        log.debug('record_failure for %s', order)
+        if not order:
+            order = self.order
+
+        recorder = PaymentRecorder(order, self.settings)
+        recorder.transaction_id = transaction_id
+        recorder.reason_code = reason_code
+        recorder.record_failure(amount, details=details, authorization=authorization)
+
     def record_payment(self, amount=NOTSET, transaction_id="", reason_code="", authorization=None, order=None):
         """
         Convert a pending payment or an authorization.
@@ -263,6 +277,19 @@ class PaymentRecorder(object):
         self.cleanup()
         return self.orderpayment
         
+    def record_failure(self, amount=NOTSET, details="", authorization=None):
+        log.info('Recording a payment failure: order #%i, code %s\nmessage=%s', self.order.id, self.reason_code, details)
+        self.amount = amount
+            
+        failure = OrderPaymentFailure.objects.create(order=self.order, 
+            details=details, 
+            transaction_id=self.transaction_id,
+            amount = self.amount,
+            payment = self.key,
+            reason_code = self.reason_code
+        )
+        return failure
+    
     def cleanup(self):
         if self.pending:
             pending = self.pending

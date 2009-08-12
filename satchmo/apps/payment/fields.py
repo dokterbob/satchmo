@@ -1,5 +1,4 @@
 from django.db import models
-from livesettings import config_value_safe, config_choice_values
 from payment.config import credit_choices, labelled_payment_choices
 
 class CreditChoiceCharField(models.CharField):

@@ -387,5 +387,3 @@ class TestPaymentHandling(TestCase):
         
         self.assertEqual(order.pendingpayments.count(), 1)
         self.assertEqual(order.payments.count(), 1)
-        
-        

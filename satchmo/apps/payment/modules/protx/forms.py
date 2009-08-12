@@ -105,4 +105,3 @@ class ProtxPayShipForm(CreditPayShipForm):
     def _maybe_require(self, data, field, message):
         if data['credit_type'] in REQUIRES_ISSUE_NUMBER and not (data[field]):
             raise forms.ValidationError(message)
-        

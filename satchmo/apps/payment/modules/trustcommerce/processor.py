@@ -38,6 +38,11 @@ class PaymentProcessor(BasePaymentProcessor):
         cc = data.credit_card 
         exp = u"%.2d%.2d" % (int(cc.expire_month), (int(cc.expire_year) % 100)) 
 
+        invoice = "%s" % data.id
+        failct = data.paymentfailures.count()
+        if failct > 0:
+            invoice = "%s_%i" % (invoice, failct)
+
         self.transactionData = {
             # account data
             'custid'	: self.custid,
@@ -58,11 +63,11 @@ class PaymentProcessor(BasePaymentProcessor):
             'media'     : 'cc',
             'action'	: self.auth,  	# or 'sale', 'credit', etc - see tclink dev guide
             'amount' 	: amount,	# in cents
-            'cc'	: data.credit_card.decryptedCC,  # use '4111111111111111' for test
+            'cc'	: cc.decryptedCC,  # use '4111111111111111' for test
             'exp'	: exp, 		# 4 digits eg 0108
-            'cvv'	: data.credit_card.ccv,
+            'cvv'	: cc.ccv,
             'avs'	: self.AVS,		# address verification - see tclink dev guide
-            'ticket'	: u'Order: %s ' % data.credit_card.orderpayment_id,
+            'ticket'	: u'Order: %s ' % invoice,
             'operator'	: 'Satchmo'
             }
         for key, value in self.transactionData.items(): 
@@ -97,14 +102,23 @@ class PaymentProcessor(BasePaymentProcessor):
             success = True
             msg = unicode(result)
 
-        if status == 'decline':
-            msg = _(u'Transaction was declined.  Reason: %s' % result['declinetype'])
-
-        if status == 'baddata':
-            msg = _(u'Improperly formatted data. Offending fields: %s' % result['offenders'])
-
         else:
-            msg = _(u'An error occurred: %s' % result['errortype'])
+            if status == 'decline':
+                msg = _(u'Transaction was declined.  Reason: %s' % result['declinetype'])
+                failmsg = u'Transaction was declined.  Reason: %s' % result['declinetype']
+
+            elif status == 'baddata':
+                msg = _(u'Improperly formatted data. Offending fields: %s' % result['offenders'])
+                failmsg = u'Improperly formatted data. Offending fields: %s' % result['offenders']
+
+            else:
+                status = "error"
+                msg = _(u'An error occurred: %s' % result['errortype'])
+                failmsg = u'An error occurred: %s' % result['errortype']
+
+            payment = self.record_failure(order=order, amount=amount, 
+                transaction_id="", reason_code=status, 
+                details=failmsg)
 
         return ProcessorResult(self.key, success, msg, payment=payment)
         
@@ -115,7 +129,6 @@ if __name__ == "__main__":
     import os
     from livesettings import config_get_group 
     from decimal import Decimal
-    from django.utils.encoding import smart_str
     
     # Set up some dummy classes to mimic classes being passed through Satchmo
     class testContact(object):

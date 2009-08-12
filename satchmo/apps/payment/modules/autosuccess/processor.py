@@ -1,7 +1,5 @@
-from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
-import logging
 
 class PaymentProcessor(BasePaymentProcessor):
     """
@@ -21,4 +19,3 @@ class PaymentProcessor(BasePaymentProcessor):
             transaction_id="AUTO", reason_code='0')
 
         return ProcessorResult(self.key, True, _('Success'), payment)
-        

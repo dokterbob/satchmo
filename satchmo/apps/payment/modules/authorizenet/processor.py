@@ -8,7 +8,6 @@ from satchmo_store.shop.models import Config
 from satchmo_utils.numbers import trunc_decimal
 from tax.utils import get_tax_processor
 from xml.dom import minidom
-import logging
 import random
 import urllib2
 
@@ -346,6 +345,10 @@ class PaymentProcessor(BasePaymentProcessor):
         self.log_extra('standard charges configuration: %s', trans['custBillData'])
         
         invoice = "%s" % order.id
+        failct = order.paymentfailures.count()
+        if failct > 0:
+            invoice = "%s_%i" % (invoice, failct)
+
         if not self.is_live():
             # add random test id to this, for testing repeatability
             invoice = "%s_test_%s_%i" % (invoice,  datetime.now().strftime('%m%d%y'), random.randint(1,1000000))
@@ -376,7 +379,7 @@ class PaymentProcessor(BasePaymentProcessor):
             'x_card_num' : order.credit_card.display_cc,
             'x_exp_date' : order.credit_card.expirationDate,
             'x_card_code' : "REDACTED",
-            'x_invoice_num' : order.id
+            'x_invoice_num' : invoice
         }
         self.log_extra('standard charges transactionData: %s', redactedData)
         trans['logPostString'] = part1 + urlencode(redactedData) + part2
@@ -508,6 +511,10 @@ class PaymentProcessor(BasePaymentProcessor):
                 authorization = data.get('authorization', None)
                 payment = self.record_payment(order=self.order, amount=amount, 
                     transaction_id=transaction_id, reason_code=reason_code, authorization=authorization)
+            
+        elif not testing:
+            payment = self.record_failure(amount=amount, transaction_id=transaction_id, 
+                reason_code=reason_code, details=response_text)
 
         self.log_extra("Returning success=%s, reason=%s, response_text=%s", success, reason_code, response_text)
         return ProcessorResult(self.key, success, response_text, payment=payment)
@@ -519,7 +526,6 @@ if __name__ == "__main__":
     """
     import os
     from livesettings import config_get_group
-    import config
 
     # Set up some dummy classes to mimic classes being passed through Satchmo
     class testContact(object):

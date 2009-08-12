@@ -18,6 +18,28 @@ class PaymentProcessor(BasePaymentProcessor):
         Make an authorization for an order.  This payment will then be captured when the order
         is set marked 'shipped'.
         """
+        if order == None:
+            order = self.order
+            
+        if amount == NOTSET:
+            amount = order.balance
+        
+        cc = order.credit_card
+        if cc:
+            ccn = cc.decryptedCC
+            ccv = cc.ccv
+            if ccn == '4222222222222':
+                if ccv == '222':
+                    self.log_extra('Bad CCV forced')
+                    payment = self.record_failure(amount=amount, transaction_id='2', 
+                        reason_code='2', details='CCV error forced')                
+                    return ProcessorResult(self.key, False, _('Bad CCV - order declined'), payment)
+                else:
+                    self.log_extra('Setting a bad credit card number to force an error')
+                    payment = self.record_failure(amount=amount, transaction_id='2', 
+                        reason_code='2', details='Credit card number error forced')                
+                    return ProcessorResult(self.key, False, _('Bad credit card number - order declined'), payment)
+
         orderauth = self.record_authorization(amount=amount, reason_code="0")
         return ProcessorResult(self.key, True, _('Success'), orderauth)
 

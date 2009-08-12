@@ -1315,6 +1315,9 @@ class OrderPendingPayment(OrderPaymentBase):
         verbose_name = _("Order Pending Payment")
         verbose_name_plural = _("Order Pending Payments")
 
+class OrderPaymentFailure(OrderPaymentBase):
+    order = models.ForeignKey(Order, null=True, blank=True, related_name='paymentfailures')
+
 class OrderVariable(models.Model):
     order = models.ForeignKey(Order, related_name="variables")
     key = models.SlugField(_('key'), )

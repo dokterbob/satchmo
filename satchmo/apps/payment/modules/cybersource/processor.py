@@ -115,11 +115,16 @@ class PaymentProcessor(BasePaymentProcessor):
 
         self.prepare_content(order, amount)
         
+        invoice = "%s" % order.id
+        failct = order.paymentfailures.count()
+        if failct > 0:
+            invoice = "%s_%i" % (invoice, failct)
+        
         # XML format is very simple, using ElementTree for generation would be overkill
         t = loader.get_template('shop/checkout/cybersource/request.xml')
         c = Context({
             'config' : self.configuration,
-            'merchantReferenceCode' : self.order.id,
+            'merchantReferenceCode' : invoice,
             'billTo' : self.bill_to,
             'purchaseTotals' : self.purchase_totals,
             'card' : self.card,
@@ -149,6 +154,10 @@ class PaymentProcessor(BasePaymentProcessor):
                 transaction_id="", reason_code=reason_code)
             return ProcessorResult(self.key, True, response_text, payment=payment)
         else:
+            payment = self.record_failure(order=order, amount=amount, 
+                transaction_id="", reason_code=reason_code, 
+                details=response_text)
+            
             return ProcessorResult(self.key, False, response_text)
 
 if __name__ == "__main__":
@@ -160,7 +169,6 @@ if __name__ == "__main__":
 
     import os
     from livesettings import config_get_group
-    import config
 
     # Set up some dummy classes to mimic classes being passed through Satchmo
     class testContact(object):

@@ -1,4 +1,4 @@
-from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderAuthorization, OrderVariable, OrderTaxDetail
+from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderPaymentFailure, OrderAuthorization, OrderVariable, OrderTaxDetail
 from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo_utils.admin import AutocompleteAdmin
@@ -51,6 +51,10 @@ class OrderPaymentDetail_Inline(admin.TabularInline):
     model = OrderPayment
     extra = 0
 
+class OrderPaymentFailureDetail_Inline(admin.TabularInline):
+    model = OrderPaymentFailure
+    extra = 0
+
 class OrderStatus_Inline(admin.StackedInline):
     model = OrderStatus
     extra = 1
@@ -78,8 +82,8 @@ class OrderOptions(AutocompleteAdmin):
     related_search_fields = {'contact': ('first_name', 'last_name', 'email')} 
     related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, 
-        OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline, OrderPaymentDetail_Inline]
-    
+        OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline, 
+        OrderPaymentDetail_Inline, OrderPaymentFailureDetail_Inline]
 
 class OrderItemOptions(admin.ModelAdmin):
     inlines = [OrderItemDetail_Inline]

@@ -9,7 +9,6 @@ will fall back to the defaults for any not specified in your dictionary.
 """
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_value
 from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
 from satchmo_utils.numbers import trunc_decimal
 from django.utils.http import urlencode
@@ -78,10 +77,16 @@ class PaymentProcessor(BasePaymentProcessor):
     callback = property(fget=_callback)
         
     def prepare_post(self, data, amount):
+        
+        invoice = "%s" % data.id
+        failct = data.paymentfailures.count()
+        if failct > 0:
+            invoice = "%s_%i" % (invoice, failct)
+        
         try:
             cc = data.credit_card
             balance = trunc_decimal(data.balance, 2)
-            self.packet['VendorTxCode'] = data.id
+            self.packet['VendorTxCode'] = invoice
             self.packet['Amount'] = balance
             self.packet['Description'] = 'Online purchase'
             self.packet['CardType'] = cc.credit_type
@@ -166,6 +171,7 @@ class PaymentProcessor(BasePaymentProcessor):
                     detail = self.response['StatusDetail']
                     
                     payment = None
+                    transaction_id = ""
                     if success:
                         vpstxid = self.response.get('VPSTxID', '')
                         txauthno = self.response.get('TxAuthNo', '')
@@ -173,11 +179,20 @@ class PaymentProcessor(BasePaymentProcessor):
                         self.log.info('Success on order #%i, recording payment', self.order.id)
                         payment = self.record_payment(order=order, amount=amount, 
                             transaction_id=transaction_id, reason_code=status)
+                            
+                    else:
+                        payment = self.record_failure(order=order, amount=amount, 
+                            transaction_id=transaction_id, reason_code=status, 
+                            details=detail)
 
                     return ProcessorResult(self.key, success, detail, payment=payment)
 
                 except Exception, e:
                     self.log.info('Error submitting payment: %s', e)
+                    payment = self.record_failure(order=order, amount=amount, 
+                        transaction_id="", reason_code="error", 
+                        details='Invalid response from payment gateway')
+                    
                     return ProcessorResult(self.key, False, _('Invalid response from payment gateway'))
         else:
             return ProcessorResult(self.key, False, _('Error processing payment.'))
