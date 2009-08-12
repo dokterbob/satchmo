@@ -357,6 +357,23 @@ Arguments sent with this signal:
     ``contact``
         The instance of ``satchmo_store.contact.models.Contact`` which was updated with a new location.
 
+form_init
+*********
+
+Sent when a contact info form is initialized. Contact info forms include:
+
+    - ``contact.forms.ContactInfoForm``
+    - ``contact.forms.ExtendedContactInfoForm``
+    - ``payment.forms.PaymentContactInfoForm``
+
+Arguments sent with this signal:
+
+    ``sender``
+        The model of the form being initialized. The value of sender will be one of the models defined above.
+
+    ``form``
+        An instance of the form (whose type is defined by ``sender``) being intitialized.
+
 form_save
 *********
 
@@ -385,13 +402,12 @@ Arguments sent with this signal:
 
     ``sender``
         An instance of ``satchmo_store.contact.forms.ContactInfoForm`` which is validating it's postal codes.
-    
+
     ``postcode``
         The postal code as a string being validated
-    
+
     ``country``
         An instance of ``l10n.models.Country`` that was selected in the form (or specified in the configuration if local sales are only allowed)
-    
 
 satchmo_store.accounts.signals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

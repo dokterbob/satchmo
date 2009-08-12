@@ -81,6 +81,7 @@ class ContactInfoForm(ProxyContactForm):
             fld = self.fields[f]
             if fld.required:
                 fld.label = (fld.label or f) + '*'
+        signals.form_init.send(self.__class__, form=self)
 
     def _check_state(self, data, country):
         if country and self.enforce_state and country.adminarea_set.filter(active=True).count() > 0:
