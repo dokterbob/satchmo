@@ -61,7 +61,7 @@ class ConfirmController(object):
         
         self.templates = {
             'CONFIRM' : 'shop/checkout/confirm.html',
-            'EMPTY_CART': 'shop/checkout/empty_cart',
+            'EMPTY_CART': 'shop/checkout/empty_cart.html',
             '404': 'shop/404.html',
             }
             
