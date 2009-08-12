@@ -3,7 +3,7 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-from decimal import DecimalXX
+from decimal import Decimal
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
