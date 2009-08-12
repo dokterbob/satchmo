@@ -242,7 +242,6 @@ class PaymentRecorder(object):
     def capture_payment(self, amount=NOTSET):
         """Make a direct payment without a prior authorization, using the existing pending payment if found."""
         self.amount = amount
-        log.debug("Recording %s payment of %s for %s", self.key, amount, self.order)
 
         self._get_pending()
         
@@ -260,6 +259,7 @@ class PaymentRecorder(object):
                 order=self.order, 
                 payment=self.key)
                 
+        log.debug("Recorded %s payment of %s for %s", self.key, self.amount, self.order)
         self.cleanup()
         return self.orderpayment
         

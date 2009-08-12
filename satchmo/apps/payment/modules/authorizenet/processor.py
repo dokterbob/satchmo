@@ -84,8 +84,9 @@ class PaymentProcessor(BasePaymentProcessor):
                 return results
 
         if order.paid_in_full:
-            self.log_extra('%s is paid in full, no authorization attempted.', order)
+            self.log_extra('%s is paid in full, no capture attempted.', order)
             results = ProcessorResult(self.key, True, _("No charge needed, paid in full."))
+            self.record_payment()
         else:
             self.log_extra('Capturing payment for %s', order)
             

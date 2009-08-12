@@ -28,6 +28,7 @@ class PaymentProcessor(BasePaymentProcessor):
             success = True
             reason_code = "0"
             response_text = _("No balance to pay")
+            self.record_payment()
 
         else:
             try:
