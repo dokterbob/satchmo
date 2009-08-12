@@ -8,10 +8,6 @@ import config
 import datetime
 import logging
 import random
-try:
-    from hashlib import sha1 as mksha
-except ImportError:
-    from sha import new as mksha
 import signals
 import operator
 import os.path
@@ -25,6 +21,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.fields.files import FileField
 from django.utils.encoding import smart_str
+from django.utils.hashcompat import sha_constructor
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 from l10n.utils import moneyfmt
@@ -1517,8 +1514,8 @@ class DownloadableProduct(models.Model):
         return 'DownloadableProduct'
 
     def create_key(self):
-        salt = mksha(str(random.random())).hexdigest()[:5]
-        download_key = mksha(salt+smart_str(self.product.name)).hexdigest()
+        salt = sha_constructor(str(random.random())).hexdigest()[:5]
+        download_key = sha_constructor(salt+smart_str(self.product.name)).hexdigest()
         return download_key
 
     def order_success(self, order, order_item):

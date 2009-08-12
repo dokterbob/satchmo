@@ -3,16 +3,11 @@
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import smart_str
-import cPickle as pickle
-try:
-    from hashlib import md5
-except ImportError:
-    import md5 as md5_old
-    md5 = md5_old.new
-
-import types
-import logging
+from django.utils.hashcompat import md5_constructor
 from satchmo_utils import is_string_like, is_list_or_tuple
+import cPickle as pickle
+import logging
+import types
 
 log = logging.getLogger('keyedcache')
 
@@ -262,7 +257,7 @@ def cache_key(*keys, **pairs):
     
 def md5_hash(obj):
     pickled = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
-    return md5(pickled).hexdigest()
+    return md5_constructor(pickled).hexdigest()
 
 
 def is_memcached_backend():
