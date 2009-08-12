@@ -405,6 +405,13 @@ class CreditPayShipForm(SimplePayShipForm):
         self.fields['year_expires'].choices = [(year, year) for year in range(year_now, year_now+6)]
 
         self.tempCart = Cart.objects.from_request(request)
+        
+        initial = kwargs.get('initial', None)
+        if initial:
+            if initial.get('credit_number', None):
+                self.fields['credit_number'].widget = forms.PasswordInput()
+            if initial.get('ccv', None):
+                self.fields['ccv'].widget = forms.PasswordInput()
             
         try:
             self.tempContact = Contact.objects.from_request(request)
