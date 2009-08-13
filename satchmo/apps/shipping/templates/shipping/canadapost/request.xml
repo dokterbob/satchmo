@@ -1,0 +1,28 @@
+{% load satchmo_product %}<?xml version="1.0" encoding="UTF-8" ?>
+{% spaceless %}
+<eparcel>
+	<language>en</language>
+	<ratesAndServicesRequest>
+		<merchantCPCID>{{config.cpcid}}</merchantCPCID>
+		<fromPostalCode>{{config.shop_details.postal_code}}</fromPostalCode>
+		<turnAroundTime>{{config.turn_around_time}}</turnAroundTime>
+		<itemsPrice>{{cart.total}}</itemsPrice>
+		<lineItems>
+		{% for product in cart.get_shipment_list %}
+			<item>
+				<quantity>1</quantity>
+				<weight>{{product|smart_attr:"weight"}}</weight>
+				<length>{{product|smart_attr:"length"}}</length>
+				<width>{{product|smart_attr:"width"}}</width>
+				<height>{{product|smart_attr:"height"}}</height>
+				<description>{{product.name}}</description>
+			</item>
+		{% endfor %}
+		</lineItems>
+		<city>{{contact.shipping_address.city}}</city>
+		<provOrState>{{contact.shipping_address.state}}</provOrState>
+		<country>{{contact.shipping_address.country.iso2_code}}</country>
+		<postalCode>{{contact.shipping_address.postal_code}}</postalCode>
+	</ratesAndServicesRequest>
+</eparcel>
+{% endspaceless %}
