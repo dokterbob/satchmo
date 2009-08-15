@@ -99,7 +99,7 @@ class GiftCertificate(models.Model):
 class GiftCertificateUsage(models.Model):
     """Any usage of a Gift Cert is logged with one of these objects."""
     usage_date = models.DateField(_("Date of usage"), null=True, blank=True)
-    notes = models.TextField(_('Notes'), blank=True)
+    notes = models.TextField(_('Notes'), blank=True, null=True)
     balance_used = models.DecimalField(_("Amount Used"), decimal_places=2,
         max_digits=8, )
     orderpayment = models.ForeignKey(OrderPayment, null=True, verbose_name=_('Order Payment'))
