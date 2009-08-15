@@ -137,7 +137,7 @@ class ProductOptions(admin.ModelAdmin):
             'active', 'featured', 'items_in_stock','total_sold','ordering', 'shipclass')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), 
             (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), 
             (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), 
-            (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
+            (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':('collapse',)}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
     if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
