@@ -21,7 +21,7 @@ def product_feed(request, category=None, template="product_feeds/googlebase_atom
     shop_config = Config.objects.get_current()
     if category:
         try:
-            cat = Category.objects.get(slug=category)
+            cat = Category.objects.active().get(slug=category)
             products = cat.active_products()
         except Category.DoesNotExist:
             raise Http404, _("Bad Category: %s" % category)

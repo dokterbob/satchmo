@@ -66,6 +66,8 @@ def default_weight_unit():
         return 'lb'
 
 class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(is_active=True)
     
     def by_site(self, site=None, **kwargs):
         """Get all categories for this site"""
@@ -74,12 +76,12 @@ class CategoryManager(models.Manager):
         
         site = site.id
 
-        return self.filter(site__id__exact = site, **kwargs)
+        return self.active().filter(site__id__exact = site, **kwargs)
         
     def get_by_site(self, site=None, **kwargs):
         if not site:
             site = Site.objects.get_current()
-        return self.get(site = site, **kwargs)
+        return self.active().get(site = site, **kwargs)
     
     def root_categories(self, site=None, **kwargs):
         """Get all root categories."""
@@ -87,7 +89,7 @@ class CategoryManager(models.Manager):
         if not site:
             site = Site.objects.get_current()
         
-        return self.filter(parent__isnull=True, site=site, **kwargs)
+        return self.active().filter(parent__isnull=True, site=site, **kwargs)
         
     def search_by_site(self, keyword, site=None, include_children=False):
         """Search for categories by keyword. 
@@ -96,7 +98,7 @@ class CategoryManager(models.Manager):
         if not site:
             site = Site.objects.get_current()
         
-        cats = self.filter(
+        cats = self.active().filter(
             Q(name__icontains=keyword) |
             Q(meta__icontains=keyword) |
             Q(description__icontains=keyword),
@@ -129,6 +131,7 @@ class Category(models.Model):
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
+    is_active = models.BooleanField(default=True, blank=True)
     related_categories = models.ManyToManyField('self', blank=True, null=True, 
         verbose_name=_('Related Categories'), related_name='related_categories')
     objects = CategoryManager()
@@ -245,7 +248,7 @@ class Category(models.Model):
     def _recurse_for_children(self, node, only_active=False):
         children = []
         children.append(node)
-        for child in node.child.all():
+        for child in node.child.active():
             if child != self:
                 if (not only_active) or child.active_products().count() > 0:
                     children_list = self._recurse_for_children(child, only_active=only_active)

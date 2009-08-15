@@ -21,13 +21,13 @@ def default_product_search_listener(sender, request=None, category=None, keyword
     }
 
     if category:
-        categories = Category.objects.filter(slug=category)
+        categories = Category.objects.active().filter(slug=category)
         if categories:
             categories = categories[0].get_active_children(include_self=True)
         
         productkwargs['category__in'] = categories
     else:
-        categories = Category.objects.all()
+        categories = Category.objects.active()
 
     for keyword in keywords:
         if not category:

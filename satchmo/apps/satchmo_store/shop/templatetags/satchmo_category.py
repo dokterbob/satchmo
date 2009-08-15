@@ -13,7 +13,7 @@ except ImportError:
 register = Library()
 
 def recurse_for_children(current_node, parent_node, active_cat, show_empty=True):
-    child_count = current_node.child.count()
+    child_count = current_node.child.active().count()
 
     if show_empty or child_count > 0 or current_node.product_set.count() > 0:
         temp_parent = SubElement(parent_node, 'li')
@@ -25,7 +25,7 @@ def recurse_for_children(current_node, parent_node, active_cat, show_empty=True)
 
         if child_count > 0:
             new_parent = SubElement(temp_parent, 'ul')
-            children = current_node.child.all()
+            children = current_node.child.active()
             for child in children:
                 recurse_for_children(child, new_parent, active_cat)
 
@@ -50,7 +50,7 @@ def category_tree(id=None):
     """
     active_cat = None
     if id:
-        active_cat = Category.objects.get(id=id)
+        active_cat = Category.objects.active().get(id=id)
     root = Element("ul")
     for cats in Category.objects.root_categories():
         recurse_for_children(cats, root, active_cat)
@@ -69,7 +69,7 @@ class CategoryListNode(Node):
                    
         if self.slug:
             try:
-                cat = Category.objects.get(slug__iexact=self.slug)
+                cat = Category.objects.active().get(slug__iexact=self.slug)
                 cats = cat.child.all()
             except Category.DoesNotExist:
                 log.warn("No category found for slug: %s", self.slug)
