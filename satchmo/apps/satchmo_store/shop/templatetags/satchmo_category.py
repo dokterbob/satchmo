@@ -50,7 +50,10 @@ def category_tree(id=None):
     """
     active_cat = None
     if id:
-        active_cat = Category.objects.active().get(id=id)
+        try:
+            active_cat = Category.objects.active().get(id=id)
+        except Category.DoesNotExist:
+            pass
     root = Element("ul")
     for cats in Category.objects.root_categories():
         recurse_for_children(cats, root, active_cat)
