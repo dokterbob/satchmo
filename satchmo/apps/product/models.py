@@ -964,6 +964,10 @@ class Product(models.Model):
         ProductPriceLookup.objects.smart_create_for_product(self)
 
     def get_subtypes(self):
+        # If we've already computed it once, let's not do it again.
+        # This is a performance speedup.
+        if hasattr(self,"_sub_types"):
+            return self._sub_types
         types = []
         try:
             for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
@@ -979,7 +983,8 @@ class Product(models.Model):
         except SettingNotSet:
             log.warn("Error getting subtypes, OK if in SyncDB")
 
-        return tuple(types)
+        self._sub_types = tuple(types)
+        return self._sub_types
 
     get_subtypes.short_description = _("Product Subtypes")
 
