@@ -13,7 +13,7 @@
         <item-name>{{ orderitem.product.translated_name }}</item-name>
         <item-description>{{ orderitem.product.translated_description }}</item-description>
         <unit-price currency="{{ currency }}">{{ orderitem.unit_price|truncate_decimal:2 }}</unit-price>
-        <quantity>{{ orderitem.quantity }}</quantity>
+        <quantity>{{ orderitem.quantity|truncate_decimal:0 }}</quantity>
       </item>{% endfor %}
     </items>
   </shopping-cart>
