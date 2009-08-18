@@ -112,7 +112,7 @@ class CategoryTest(TestCase):
 #        womens_jewelry.parent = pet_jewelry
 #        self.assertRaises(ValidationError, womens_jewelry.save)
 #        Model.save(womens_jewelry)
-#        womens_jewelry = Category.objects.get(slug="womens-jewelry")
+#        womens_jewelry = Category.objects.active().get(slug="womens-jewelry")
 #        url = urlresolvers.reverse('satchmo_category', None, {'parent_slugs', 'womens-jewelry'})
 #        self.assertEqual(womens_jewelry.get_absolute_url(), url)
 
@@ -133,8 +133,8 @@ class CategoryTest(TestCase):
 
 #        # force save
 #        Model.save(womens_jewelry)
-#        pet_jewelry = Category.objects.get(slug="pet-jewelry")
-#        womens_jewelry = Category.objects.get(slug="womens-jewelry")
+#        pet_jewelry = Category.objects.active().get(slug="pet-jewelry")
+#        womens_jewelry = Category.objects.active().get(slug="womens-jewelry")
 
 #        kids = Category.objects.by_site(site=self.site).order_by('name')
 #        slugs = [cat.slug for cat in kids]

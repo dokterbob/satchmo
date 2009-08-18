@@ -36,7 +36,7 @@ class GiftCertificate(models.Model):
         blank=True, null=True, related_name='giftcertificates_purchased')
     date_added = models.DateField(_("Date added"), null=True, blank=True)
     valid = models.BooleanField(_('Valid'), default=True)
-    message = models.CharField(_('Message'), blank=True, max_length=255)
+    message = models.CharField(_('Message'), blank=True, null=True, max_length=255)
     recipient_email = models.EmailField(_("Email"), blank=True, max_length=75)
     start_balance = models.DecimalField(_("Starting Balance"), decimal_places=2,
         max_digits=8)
@@ -99,7 +99,7 @@ class GiftCertificate(models.Model):
 class GiftCertificateUsage(models.Model):
     """Any usage of a Gift Cert is logged with one of these objects."""
     usage_date = models.DateField(_("Date of usage"), null=True, blank=True)
-    notes = models.TextField(_('Notes'), blank=True)
+    notes = models.TextField(_('Notes'), blank=True, null=True)
     balance_used = models.DecimalField(_("Amount Used"), decimal_places=2,
         max_digits=8, )
     orderpayment = models.ForeignKey(OrderPayment, null=True, verbose_name=_('Order Payment'))

@@ -21,6 +21,13 @@ DEFAULT_VIEW_TAX = config_register(BooleanValue(TAX_GROUP,
     default=False
 ))
 
+PRODUCTS_TAXABLE_BY_DEFAULT = config_register(BooleanValue(TAX_GROUP,
+    'PRODUCTS_TAXABLE_BY_DEFAULT',
+    description=_("New products are automatically made taxable"),
+    help_text=_("Whether newly created products should be taxable by default."),
+    default=False
+))
+
 # --- Load any extra tax modules. ---
 extra_tax = get_satchmo_setting('CUSTOM_TAX_MODULES')
 for extra in extra_tax:

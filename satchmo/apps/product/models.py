@@ -66,6 +66,8 @@ def default_weight_unit():
         return 'lb'
 
 class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(is_active=True)
     
     def by_site(self, site=None, **kwargs):
         """Get all categories for this site"""
@@ -74,12 +76,12 @@ class CategoryManager(models.Manager):
         
         site = site.id
 
-        return self.filter(site__id__exact = site, **kwargs)
+        return self.active().filter(site__id__exact = site, **kwargs)
         
     def get_by_site(self, site=None, **kwargs):
         if not site:
             site = Site.objects.get_current()
-        return self.get(site = site, **kwargs)
+        return self.active().get(site = site, **kwargs)
     
     def root_categories(self, site=None, **kwargs):
         """Get all root categories."""
@@ -87,7 +89,7 @@ class CategoryManager(models.Manager):
         if not site:
             site = Site.objects.get_current()
         
-        return self.filter(parent__isnull=True, site=site, **kwargs)
+        return self.active().filter(parent__isnull=True, site=site, **kwargs)
         
     def search_by_site(self, keyword, site=None, include_children=False):
         """Search for categories by keyword. 
@@ -96,7 +98,7 @@ class CategoryManager(models.Manager):
         if not site:
             site = Site.objects.get_current()
         
-        cats = self.filter(
+        cats = self.active().filter(
             Q(name__icontains=keyword) |
             Q(meta__icontains=keyword) |
             Q(description__icontains=keyword),
@@ -129,6 +131,7 @@ class Category(models.Model):
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
+    is_active = models.BooleanField(default=True, blank=True)
     related_categories = models.ManyToManyField('self', blank=True, null=True, 
         verbose_name=_('Related Categories'), related_name='related_categories')
     objects = CategoryManager()
@@ -245,7 +248,7 @@ class Category(models.Model):
     def _recurse_for_children(self, node, only_active=False):
         children = []
         children.append(node)
-        for child in node.child.all():
+        for child in node.child.active():
             if child != self:
                 if (not only_active) or child.active_products().count() > 0:
                     children_list = self._recurse_for_children(child, only_active=only_active)
@@ -794,7 +797,7 @@ class Product(models.Model):
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.DecimalField(_("Total sold"),  max_digits=18, decimal_places=6, default='0')
-    taxable = models.BooleanField(_("Taxable"), default=False)
+    taxable = models.BooleanField(_("Taxable"), default=lambda: config_value('TAX', 'PRODUCTS_TAXABLE_BY_DEFAULT'))
     taxClass = models.ForeignKey('TaxClass', verbose_name=_('Tax Class'), blank=True, null=True, help_text=_("If it is taxable, what kind of tax?"))
     shipclass = models.CharField(_('Shipping'), choices=SHIP_CLASS_CHOICES, default="DEFAULT", max_length=10,
         help_text=_("If this is 'Default', then we'll use the product type to determine if it is shippable."))
@@ -961,6 +964,10 @@ class Product(models.Model):
         ProductPriceLookup.objects.smart_create_for_product(self)
 
     def get_subtypes(self):
+        # If we've already computed it once, let's not do it again.
+        # This is a performance speedup.
+        if hasattr(self,"_sub_types"):
+            return self._sub_types
         types = []
         try:
             for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
@@ -976,7 +983,8 @@ class Product(models.Model):
         except SettingNotSet:
             log.warn("Error getting subtypes, OK if in SyncDB")
 
-        return tuple(types)
+        self._sub_types = tuple(types)
+        return self._sub_types
 
     get_subtypes.short_description = _("Product Subtypes")
 

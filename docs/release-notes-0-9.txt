@@ -10,6 +10,10 @@ Some of the highlights are described below.
 Changes
 -------
 
+ * Added a new form_init signal - useful for collecting additional information at checkout
+ * Added a new object "OrderPaymentFailure" to track failures in the various payment processors
+ * New capability to enable and disable entire categories
+ * Added Canada Post shipping module
  * Improved project layout to support easier integration with other Django apps
  * Removed hard-coding of organizations types, organization roles and contact types from the contact app
  * Added AUTH_EARLY option to Authorize.net

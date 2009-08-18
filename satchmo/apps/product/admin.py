@@ -96,14 +96,22 @@ class CategoryAdminForm(models.ModelForm):
         return parent
 
 class CategoryOptions(admin.ModelAdmin):
-    list_display = ('site','name', '_parents_repr')
+    list_display = ('site','name', '_parents_repr', 'is_active')
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryImage_Inline]
     if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
-    form = CategoryAdminForm    
+    form = CategoryAdminForm
+
+    actions = ('mark_active', 'mark_inactive')
+
+    def mark_active(self, request, queryset):
+        queryset.update(is_active=True)
+
+    def mark_inactive(self, request, queryset):
+        queryset.update(is_active=False)
 
 class CategoryImageOptions(admin.ModelAdmin):
     inlines = [CategoryImageTranslation_Inline]
@@ -129,7 +137,7 @@ class ProductOptions(admin.ModelAdmin):
             'active', 'featured', 'items_in_stock','total_sold','ordering', 'shipclass')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), 
             (_('Item Dimensions'), {'fields': (('length', 'length_units','width','width_units','height','height_units'),('weight','weight_units')), 'classes': ('collapse',)}), 
             (_('Tax'), {'fields':('taxable', 'taxClass'), 'classes': ('collapse',)}), 
-            (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':'collapse'}), )
+            (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':('collapse',)}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
     if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
