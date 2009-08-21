@@ -6,6 +6,7 @@ options.
 
 import config
 import datetime
+import keyedcache
 import logging
 import random
 import signals
@@ -400,6 +401,26 @@ class DiscountManager(models.Manager):
                     
         return NullDiscount()
         
+    def get_sale(self):
+        """Get the current 'sale' discount."""
+        today = datetime.date.today()
+        sale = None
+        site = Site.objects.get_current()
+        try:
+            sale = keyedcache.cache_get('discount', 'sale', site, today)
+        except keyedcache.NotCachedError, nce:
+            discs = self.filter(automatic=True, 
+                active=True, 
+                site=site,
+                startDate__lte=today, 
+                endDate__gt=today).order_by('-percentage')
+            if discs.count() > 0:
+                sale = discs[0]
+
+            keyedcache.cache_set(nce.key, value=sale)
+            
+        if sale is None:
+            raise Discount.DoesNotExist
 
 class Discount(models.Model):
     """
@@ -531,6 +552,13 @@ class Discount(models.Model):
 
         self._item_discounts = discounted
         self._calculated = True
+
+    def save(self, force_insert=False, force_update=False):
+        if self.automatic:
+            today = datetime.date.today()
+            keyedcache.cache_delete('discount', 'sale', self.site, today)
+        super(Discount, self).save(force_insert=force_insert, force_update=force_update)
+        
 
     def _total(self):
         assert(self._calculated)

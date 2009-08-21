@@ -21,14 +21,9 @@ def settings(request):
 
     all_categories = Category.objects.by_site()
     
-    today = datetime.date.today()
-    discs = Discount.objects.filter(automatic=True, 
-        active=True, 
-        startDate__lte=today, 
-        endDate__gt=today).order_by('-percentage')
-    if discs.count() > 0:
-        sale = discs[0]
-    else:
+    try:
+        sale = Discount.objects.get_sale()
+    except Discount.DoesNotExist:
         sale = None
 
     ctx = {
