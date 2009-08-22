@@ -6,9 +6,11 @@
     {% block extra-head %}{% endblock %}
     <link rel="stylesheet" href="{{ media_url }}css/style.css" />
     <title>{% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}{% endif %}{% endblock %}</title>
+    {% plugin_point "page_head" %}
 </head>
 {% block body %}
 <body{% if bodyid %} id="{{ bodyid }}"{% endif %}{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
+    {% plugin_point "page_top" %}
     <div id="container">
 	    <div id="top">
 	        <h1>{{ shop_name }}</h1>

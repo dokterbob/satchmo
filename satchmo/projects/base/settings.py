@@ -120,6 +120,12 @@ INSTALLED_APPS = (
     'payment',
     'payment.modules.giftcertificate',
     'satchmo_store.contact.supplier',
+    # *****
+    # * Optional feature - admin toolbar for satchmo
+    # * Uncomment below to enable
+    # *
+    # *****
+    #'satchmo_ext.satchmo_toolbar',
     'satchmo_utils',
     'satchmo_utils.thumbnail',
     'l10n',

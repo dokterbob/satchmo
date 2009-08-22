@@ -1,0 +1,59 @@
+{% if user.is_staff %}
+<style type="text/css">
+#st-view {
+    position: absolute;
+    top: 0;
+    left: 0;    
+    z-index: 0;
+    background-color: #ccc;
+}
+
+body.debugtoolbar #st-view {
+    top: 40px;
+}
+body.debugtoolbar #st-panels {
+    margin-top: 32px;
+}
+#st-panels {
+    width: 100%;
+    background-color: #ccc;
+    line-height: 20px;
+    height: 20px;
+    z-index: 2;
+}
+#satchmo-toolbar .panel {
+    float: left;
+    border-right: 1px solid;
+    padding: 0 15px;
+    cursor: pointer;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+	// When jQuery is sourced, it's going to overwrite whatever might be in the
+	// '$' variable, so store a reference of it in a temporary variable...
+	var _$ = window.$;
+	if (typeof jQuery == 'undefined') {
+		var jquery_url = '{{ media_url }}js/jquery.js';
+		document.write(unescape('%3Cscript src="' + jquery_url + '" type="text/javascript"%3E%3C/script%3E'));
+	}
+</script>
+<script type="text/javascript" charset="utf-8">
+	// Now that jQuery is done loading, put the '$' variable back to what it was...
+	if (_$) var $ = _$;
+    $(function() {
+        if ($('#djDebugWindow').length > 0) {
+    		$('body').addClass('debugtoolbar');
+    	}
+    	$('body').addClass('satchmo-toolbar');
+        $('#st-view').hide();
+        $('#st-hide').click(function(elt) { 
+            $('#st-panels').hide('medium');
+            $('#st-view').show();
+        });
+        $('#st-view').click(function(elt) { 
+            $('#st-view').hide();
+            $('#st-panels').show('medium');
+        });
+    });
+</script>
+{% endif %}

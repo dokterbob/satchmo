@@ -1,0 +1,29 @@
+{% if user.is_staff %}
+{% load i18n satchmo_currency app_plugins %}
+<div id="satchmo-toolbar">
+    <div id='st-view' title="Satchmo Toolbar">&nbsp;&raquo;&nbsp;</div>
+    <div id="st-panels">
+        <div id="st-hide" class="panel">{% trans 'Satchmo' %} {{ st_satchmo_version }}</div>
+        <div class="panel">
+            <a href="/admin" target="blank">{% trans "Admin" %}</a>
+        </div>
+        <div class="panel">
+            {% blocktrans count st_new_order_ct as counter %}New order:{% plural %}New orders:{% endblocktrans %}
+            <a href="/admin/shop/order/?status__exact=New">{% blocktrans with st_new_order_total|currency as new_total %}{{ st_new_order_ct }} for {{ new_total }}{% endblocktrans %}</a>
+        </div>
+        <div class="panel">
+            {% blocktrans %}Carts in 1h/1d/7d: {{ st_cart_1h_ct }}/{{ st_cart_1d_ct }}/{{ st_cart_7d_ct }}{% endblocktrans %}
+        </div>
+        <div class="panel">
+            {% blocktrans %}Contacts: 7d/total: {{ st_contacts_7d_ct }}/{{ st_contacts_ct}}{% endblocktrans %}
+        </div>
+        {% for label, url in st_edits %}
+        <div class="panel">
+            <a href="{{ url }}">{{ label }}</a>
+        </div>
+        {% endfor %}
+        {% plugin_point "satchmo_toolbar" %}
+    </div>
+</div>
+<div style="clear: both;"></div>
+{% endif %}
