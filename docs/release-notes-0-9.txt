@@ -10,6 +10,8 @@ Some of the highlights are described below.
 Changes
 -------
 
+ * Google checkout v2 integration
+ * New feature - satchmo toolbar which displays store info to the admins
  * Added a new form_init signal - useful for collecting additional information at checkout
  * Added a new object "OrderPaymentFailure" to track failures in the various payment processors
  * New capability to enable and disable entire categories

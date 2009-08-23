@@ -4,11 +4,7 @@ Satchmo Change Log
 
 Trunk
 -----
-
-* Module Reorganization - major branch merge.  Reorganized/refactored project directory structure.  Merged Discount into Product app.  Split locales into app-specific locales.  Moved templates into correct app directories.
-* Upgraded Authorize.net to use ssl 3.0/tls
-* Multiple fixes to the ajax code helpers
-* Improvements to decimal handling in the admin
+see notes in docs/release-notes-0.9.txt
 
 Version 0.8.1, December 14, 2008
 --------------------------------
