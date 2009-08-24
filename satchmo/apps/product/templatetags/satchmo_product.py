@@ -3,12 +3,34 @@ from django.conf import settings
 from django.core import urlresolvers
 from django.template import Context, Template
 from django.utils.translation import get_language, ugettext_lazy as _
-import keyedcache
 from livesettings import config_value
 from product.models import Category, Product
+from product.queries import bestsellers
 from satchmo_utils.templatetags import get_filter_args
+import keyedcache
 
 register = template.Library()
+
+@register.filter
+def best_selling_products_list(count):
+    """Get a list of best selling products"""
+    try:
+        ct = int(count)
+    except ValueError:
+        ct = config_value('PRODUCT','NUM_PAGINATED')
+    
+    return bestsellers(ct)
+
+@register.filter
+def recent_products_list(count):
+    """Get a list of recent products"""
+    try:
+        ct = int(count)
+    except ValueError:
+        ct = config_value('PRODUCT','NUM_PAGINATED')
+     
+    query = Product.objects.recent_by_site()
+    return query[:ct]
 
 def is_producttype(product, ptype):
     """Returns True if product is ptype"""
