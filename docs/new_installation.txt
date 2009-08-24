@@ -67,7 +67,7 @@ Installing Dependencies
 
    - Check out from source::
 
-       svn checkout http://sorl-thumbnail.googlecode.com/svn/trunk/sorl/
+       hg clone https://sorl-thumbnail.googlecode.com/hg/ sorl-thumbnail   
        cd /path/to/your/site-packages/dir
        ln -s /path/to/sorl .
 
