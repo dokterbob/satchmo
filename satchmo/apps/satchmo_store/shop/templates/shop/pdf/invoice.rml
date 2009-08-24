@@ -2,7 +2,7 @@
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
 {% load i18n satchmo_currency %}
 <document filename="{{ filename }}">
-<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="{% trans "Store Invoice" %}" author="{{ shopDetails.storeName }}" allowSplitting="20">
+<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="{% trans "Store Invoice" %}" author="{{ shopDetails.store_name }}" allowSplitting="20">
     <pageTemplate id="first">
         <pageGraphics>
 

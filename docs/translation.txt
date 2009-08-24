@@ -33,9 +33,9 @@ Template Translations
 
 3. After translating the file, you must compile it to an .mo file.  To do this, you must make sure that your local_settings.py file has a LOCALE_PATHS variable defined (it can be a blank string).
 
-4. Compile the file using the compilemessages command (run from your project directory)::
+4. Compile the file using the compilemessages command (run from your satchmo source directory)::
 
-    python manage.py compilemessages -l de
+   find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-admin.py compilemessages' {} \;
 
 5. (Optional but encouraged) Submit a ticket with your translation.
 
@@ -45,7 +45,8 @@ Making a translation available
 Django will choose a translation based on the user's browser settings, but this is not reliable.
 To allow users to choose a translation using Satchmo's language selection form, you must register the translation with Satchmo.
 
-Create a `config.py` file in your project directory. Add the following lines, and replace `en` with the language code for the translation and replace `English` with the language's name::
+Create a `config.py` file in your project directory. Add the following lines, and replace `en` with the language code 
+for the translation and replace `English` with the language's name::
 
     from satchmo.configuration import config_get
 
@@ -55,7 +56,19 @@ Create a `config.py` file in your project directory. Add the following lines, an
 
 Then, make sure that your project is listed in your INSTALLED_APPS setting. If you've done everything correctly, the translation should be available under the Language Settings section of your Site Settings page.
 
-Please edit your settings.py file and make sure to add 'satchmo' to INSTALLED_APPS so that Django will use the translations. Also, make sure to add 'django.core.context_processors.i18n' to TEMPLATE_CONTEXT_PROCESSORS so that templates will use the correct language code.
+Please edit your settings.py file to enable the i18n urls.::
+
+    #### Satchmo unique variables ####
+    from django.conf.urls.defaults import patterns, include
+    SATCHMO_SETTINGS = {
+        'SHOP_BASE' : '',
+        'MULTISHOP' : False,
+        'SHOP_URLS' : patterns('', (r'^i18n/', include('l10n.urls')),)
+    }
+
+Also, make sure to add 'django.core.context_processors.i18n' to TEMPLATE_CONTEXT_PROCESSORS so that templates will use the 
+correct language code.
+
 
 
 Translating dependencies
