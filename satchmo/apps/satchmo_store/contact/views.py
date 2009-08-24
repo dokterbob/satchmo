@@ -76,6 +76,9 @@ def update(request):
                     init_data[item] = getattr(contact.billing_address,item)
             if contact.primary_phone:
                 init_data['phone'] = contact.primary_phone.phone
+            if contact.organization:
+                init_data['company'] = contact.organization.name
+   
             
         signals.satchmo_contact_view.send(contact, contact=contact, contact_dict=init_data)
         form = ExtendedContactInfoForm(shop=shop, contact=contact, shippable=True, initial=init_data)
