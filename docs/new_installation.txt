@@ -57,11 +57,19 @@ Installing Dependencies
 
 5. Install django-app-plugins:
 
-   - Check out from source::
+   - Two options, use the original, or a slightly forked version which uses Satchmo's advanced caching system to speed up page loads.
+
+   - (Option 1) Check out from original source::
 
        svn checkout http://django-app-plugins.googlecode.com/svn/trunk/ django-app-plugins-read-only
        cd /path/to/your/site-packages/dir
        ln -s /path/to/django-app-plugins-read-only/app_plugins .
+
+   - (Option 2) Check out the forked version::
+
+       hg clone http://bitbucket.org/bkroeze/django-caching-app-plugins/
+       cd /path/to/your/site-packages/dir
+       ln -s /path/to/django-caching-app-plugins/app_plugins .
 
 6. Install sorl-thumbnail:
 
