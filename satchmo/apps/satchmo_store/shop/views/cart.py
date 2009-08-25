@@ -234,6 +234,7 @@ def add_ajax(request, id=0, template="shop/json.html"):
         data['results'] = _('Error')
 
     data['cart_count'] = str(round_decimal(tempCart.numItems, 2))
+    data['cart_total'] = str(tempCart.total)
 
     encoded = JSONEncoder().encode(data)
     encoded = mark_safe(encoded)

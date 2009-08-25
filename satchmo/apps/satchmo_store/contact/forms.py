@@ -280,7 +280,10 @@ class ContactInfoForm(ProxyContactForm):
         if companyname:
             org = Organization.objects.by_name(companyname, create=True)            
             customer.organization = org
-        
+        else:
+            # in case customer wants to remove company name from their profile
+            customer.organization = None
+
         for field in customer.__dict__.keys():
             try:
                 setattr(customer, field, data[field])
