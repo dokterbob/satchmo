@@ -72,6 +72,15 @@ For example, you can make this shipping table::
 .. index::
    single: UPS
 
+TieredWeight
+++++++
+
+This module provides similar features to tiered and requires the same extra steps to install. In addition
+you can specify a number of zones for each carrier adding a number of countries to each zone. You can then
+choose a default zone for each carrier. Each zone can have a number of cart weights with corresponding
+price and handling fee. This means that at checkout the shipping price is based on the shipping country
+and the total weight of the cart.
+
 UPS
 ^^^
 
