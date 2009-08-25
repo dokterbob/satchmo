@@ -15,6 +15,7 @@ CACHED_KEYS = {}
 CACHE_CALLS = 0
 CACHE_HITS = 0
 KEY_DELIM = "::"
+REQUEST_CACHE = {'enabled' : False}
 try:
     CACHE_PREFIX = settings.CACHE_PREFIX
 except AttributeError:
@@ -171,18 +172,33 @@ def cache_get(*keys, **kwargs):
     if not cache_enabled():
         raise NotCachedError(key)
     else:
-        global CACHE_CALLS, CACHE_HITS
+        global CACHE_CALLS, CACHE_HITS, REQUEST_CACHE
         CACHE_CALLS += 1
         if CACHE_CALLS == 1:
             cache_require()
         
-        obj = cache.get(key)
+        obj = None
+        tid = -1
+        if REQUEST_CACHE['enabled']:
+            tid = cache_get_request_uid()
+            if tid > -1:
+                try:
+                    obj = REQUEST_CACHE[tid][key]
+                    log.debug('Got from request cache: %s', key)
+                except KeyError:
+                    pass
+
+        if obj == None:
+            obj = cache.get(key)
+            
         if obj and isinstance(obj, CacheWrapper):
             CACHE_HITS += 1
             CACHED_KEYS[key] = True
             log.debug('got cached [%i/%i]: %s', CACHE_CALLS, CACHE_HITS, key)
             if obj.inprocess:
                 raise MethodNotFinishedError(obj.val)
+            
+            cache_set_request(key, obj, uid=tid)
             
             return obj.val
         else:
@@ -200,7 +216,7 @@ def cache_get(*keys, **kwargs):
 def cache_set(*keys, **kwargs):
     """Set an object into the cache."""
     if cache_enabled():
-        global CACHED_KEYS
+        global CACHED_KEYS, REQUEST_CACHE
         obj = kwargs.pop('value')
         length = kwargs.pop('length', settings.CACHE_TIMEOUT)
         skiplog = kwargs.pop('skiplog', False)
@@ -211,8 +227,8 @@ def cache_set(*keys, **kwargs):
             log.debug('setting cache: %s', key)
         cache.set(key, val, length)
         CACHED_KEYS[key] = True
-
-
+        if REQUEST_CACHE['enabled']:
+            cache_set_request(key, val)
 
 def _hash_or_string(key):
     if is_string_like(key) or isinstance(key, (types.IntType, types.LongType, types.FloatType)):
@@ -254,7 +270,7 @@ def cache_key(*keys, **pairs):
     if not key.startswith(prefix):
         key = prefix+key
     return key.replace(" ", ".")
-    
+
 def md5_hash(obj):
     pickled = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
     return md5_constructor(pickled).hexdigest()
@@ -277,3 +293,31 @@ def cache_require():
         else:
             log.debug("Cache responding OK")
         return True
+
+def cache_clear_request(uid):
+    """Clears all locally cached elements with that uid"""
+    global REQUEST_CACHE
+    try:
+        del REQUEST_CACHE[uid]
+        log.debug('cleared request cache: %s', uid)
+    except KeyError:
+        pass
+
+def cache_use_request_caching():
+    global REQUEST_CACHE
+    REQUEST_CACHE['enabled'] = True
+
+def cache_get_request_uid():
+    from threaded_multihost import threadlocals
+    return threadlocals.get_thread_variable('request_uid', -1)
+    
+def cache_set_request(key, val, uid=None):
+    if uid == None:
+        uid = cache_get_request_uid()
+
+    if uid>-1:
+        global REQUEST_CACHE
+        if not uid in REQUEST_CACHE:
+            REQUEST_CACHE[uid] = {key:val}
+        else:
+            REQUEST_CACHE[tid][key] = val
