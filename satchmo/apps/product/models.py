@@ -478,7 +478,7 @@ class Discount(models.Model):
             return (False, ugettext('This coupon is not active yet.'))
         if self.endDate < datetime.date.today():
             return (False, ugettext('This coupon has expired.'))
-        if self.numUses and self.allowedUses and self.allowedUses > 0 and self.numUses > self.allowedUses:
+        if self.numUses and self.allowedUses and self.allowedUses > 0 and self.numUses >= self.allowedUses:
             return (False, ugettext('This discount has exceeded the number of allowed uses.'))
             
         if cart:
