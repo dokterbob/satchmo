@@ -37,6 +37,9 @@ class TestRoundedDecimals(TestCase):
         
         val = round_decimal(3.23,1,.25,False)
         self.assertEqual(val, Decimal("3.2"))
+        
+        val = round_decimal(2E+1, places=2)
+        self.assertEqual(val, Decimal('20.00'))
 
     def testTruncDecimal(self):
         """Test trunc_decimal's rounding behavior."""
@@ -46,4 +49,15 @@ class TestRoundedDecimals(TestCase):
         self.assertEqual(val, Decimal("0.01"))
         val = trunc_decimal("0.009", 2)
         self.assertEqual(val, Decimal("0.01"))
+
+        val = trunc_decimal("2E+1", places=2)
+        self.assertEqual(val, Decimal('20.00'))
         
+        val = trunc_decimal(2.1E+1, places=2)
+        self.assertEqual(val, Decimal('21.00'))
+
+        val = trunc_decimal(2.1223E+1, places=2)
+        self.assertEqual(val, Decimal('21.23'))
+
+        val = trunc_decimal("2.1223E+1", places=2)
+        self.assertEqual(val, Decimal('21.23'))
