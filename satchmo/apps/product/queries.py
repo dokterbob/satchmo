@@ -6,28 +6,28 @@ log = logging.getLogger('product.queries')
 
 def bestsellers(count):
     """Look up the bestselling products and return in a list"""        
+    sellers = []
     cached = False
     try:
         pks = cache_get('BESTSELLERS', count=count)
-        pks = [long(pk) for pk in pks.split(',')]
-        productdict = Product.objects.in_bulk(pks)
-        #log.debug(productdict)
-        sellers = []
-        for pk in pks:
-            try:
-                if (int(pk)) in productdict:
-                    key = int(pk)
-                elif long(pk) in productdict:
-                    key = long(pk)
-                else:
-                    continue
-                sellers.append(productdict[key])
-            except ValueError:
-                pass
+        if pks:
+            pks = [long(pk) for pk in pks.split(',')]
+            productdict = Product.objects.in_bulk(pks)
+            #log.debug(productdict)
+            for pk in pks:
+                try:
+                    if (int(pk)) in productdict:
+                        key = int(pk)
+                    elif long(pk) in productdict:
+                        key = long(pk)
+                    else:
+                        continue
+                    sellers.append(productdict[key])
+                except ValueError:
+                    pass
             
-        cached = True
-        log.debug('retrieved bestselling products from cache')
-    
+            log.debug('retrieved bestselling products from cache')
+        cached = True    
     except NotCachedError:
         pass
     
