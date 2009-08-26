@@ -24,6 +24,21 @@ log = logging.getLogger('shop.views.cart')
 
 NOTSET = object()
 
+def decimal_too_big(quantity):
+    """
+    Helper to make sure the decimal number isn't too big to process.
+    This does not validate whether or not the decimal is valid just that a 
+    Decimal is too large.
+    """
+    try:
+        if Decimal(quantity) > Decimal("100000000000"):
+            return True
+        else:
+            return False
+    except:
+        return False
+    
+
 def _set_quantity(request, force_delete=False):
     """Set the quantity for a specific cartitem.
     Checks to make sure the item is actually in the user's cart.
@@ -33,6 +48,10 @@ def _set_quantity(request, force_delete=False):
         return (False, None, None, _("No cart to update."))
     
     cartplaces = config_value('SHOP', 'CART_PRECISION')
+    
+    if decimal_too_big(request.POST.get('quantity', 0)):
+        return (False,cart,None,_("Bad quantity."))
+    
     if force_delete:
         qty = Decimal('0')
     else:
@@ -123,6 +142,11 @@ def add(request, id=0, redirect_to='satchmo_cart'):
         log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
     
+    # First we validate that the number isn't too big.
+    if decimal_too_big(formdata['quantity']):
+        return _product_error(request, product, _("Please enter a smaller number."))
+
+    # Then we validate that we can round it appropriately.
     try:
         quantity = round_decimal(formdata['quantity'], places=cartplaces, roundfactor=roundfactor)
     except RoundedDecimalError, P:
@@ -192,7 +216,10 @@ def add_ajax(request, id=0, template="shop/json.html"):
                     quantity = formdata['quantity']
 
                 try:
-                    quantity = round_decimal(quantity, places=cartplaces, roundfactor=roundfactor)
+                    if decimal_too_big(quantity):
+                        data['errors'].append(('quantity',_('Choose a smaller quantity')))
+                    else:
+                        quantity = round_decimal(quantity, places=cartplaces, roundfactor=roundfactor)
 
                     if quantity < Decimal('0'):
                         data['errors'].append(('quantity', _('Choose a quantity.')))
