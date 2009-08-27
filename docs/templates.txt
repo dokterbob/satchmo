@@ -8,7 +8,11 @@ visual elements of this store. There are over 140 templates used within
 Satchmo. This section of the document describes where they are and the
 high level overview of what they are used for. Until more details are included
 in this section, the best way to learn more about these templates is to
-browse through and review the ones you are interested in.
+browse through and review the ones you are interested in. If you have a particular
+view that you would like to customize and are unsure which templates are being 
+rendered, then the `django_debug_toolbar <http://github.com/robhudson/django-debug-toolbar/tree/master>`_ 
+can help you out. Go ahead and install it and use it for debugging and troubleshooting your
+site.
 
 Payment
 -------

@@ -760,7 +760,7 @@ add the following code::
 
 
 Now, you should be able to restrict certain products to only your members. 
-The nice thing is that you've done this withouth modifying your satchmo
+The nice thing is that you've done this without modifying your satchmo
 base code.
 
 .. _Django Signals Documentation: http://docs.djangoproject.com/en/dev/topics/signals/

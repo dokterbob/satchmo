@@ -9,7 +9,9 @@ Some of the highlights are described below.
 
 Changes
 -------
-
+	
+ * New US SST tax module
+ * New Tiered weight shipping module
  * Google checkout v2 integration
  * New feature - satchmo toolbar which displays store info to the admins
  * Added a new form_init signal - useful for collecting additional information at checkout
@@ -35,6 +37,7 @@ Changes
  * Allow discount to be entered on first page of checkout and include free shipping
  * Multiple improvements and cleanups in the templates to make inheritance easier
  * Added improved jquery autocomplete code to the admin
+ * Several performance improvements in key code sections
  
  
 Bug Fixes
@@ -43,3 +46,4 @@ Bug Fixes
  * Fix many undefined variables found through pyflakes
  * Fix IE javascript bug
  * Fix several infinite recurison edge cases
+ * Improve error handling if large quantities are entered when buying product
