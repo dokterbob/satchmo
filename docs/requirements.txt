@@ -61,6 +61,10 @@ Docutils is useful for auto generating some documentation but is not required:
 
 If you are using a version of python less than 2.6, you will have to install the backport of the new SSL module to support accessing SSL 2.0 sites often used by payment processors.
     - `SSL Backport`_
+    
+For reusable, consistent signals:
+
+    - `Signals Ahoy`_
 
 Detailed steps for installing these dependencies is included in the installation_ section.
 
@@ -83,3 +87,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _`Django App Plugins`: http://code.google.com/p/django-app-plugins/
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/
 .. _`SSL Backport`: http://pypi.python.org/pypi/ssl/
+.. _`Signals Ahoy`: http://bitbucket.org/bkroeze/django-signals-ahoy/

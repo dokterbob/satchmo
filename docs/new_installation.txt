@@ -79,7 +79,15 @@ Installing Dependencies
        cd /path/to/your/site-packages/dir
        ln -s /path/to/sorl .
 
-7. Optional dependencies::
+7. Install signals-ahoy:
+
+   - Check out from source::
+   
+       hg clone http://bitbucket.org/bkroeze/django-signals-ahoy/
+       cd /path/to/your/site-packages/dir
+       ln -s /path/to/django-signals-ahoy/signals_ahoy
+
+8. Optional dependencies::
 
     easy_install docutils
     

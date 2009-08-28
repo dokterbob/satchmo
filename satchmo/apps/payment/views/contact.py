@@ -13,7 +13,7 @@ from payment.decorators import cart_has_minimum_order
 from payment.forms import PaymentContactInfoForm
 from satchmo_store.shop.models import Cart, Config, Order
 from satchmo_utils.dynamic import lookup_url
-from satchmo_utils.signals import form_initialdata
+from signals_ahoy.signals import form_initialdata
 
 import logging
 
@@ -97,7 +97,7 @@ def contact_info(request, **kwargs):
             request.session.set_test_cookie()
 
         #Request additional init_data
-        form_initialdata.send(sender=PaymentContactInfoForm, init_data=init_data, 
+        form_initialdata.send(sender=PaymentContactInfoForm, initial=init_data, 
             contact=contact, cart=tempCart, shop=shop)
 
         form = PaymentContactInfoForm(

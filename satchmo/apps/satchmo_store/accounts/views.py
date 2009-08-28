@@ -131,10 +131,6 @@ def register_handle_address_form(request, redirect=None):
                     USA = Country.objects.get(iso2_code__exact="US")    
                     initial_data['country'] = USA
 
-        signals.satchmo_registration_initialdata.send(contact,
-            contact=contact,
-            initial_data=initial_data)
-
         form = RegistrationAddressForm(initial=initial_data, shop=shop, contact=contact)
 
     return (False, form, {'country' : shop.in_country_only})
@@ -181,10 +177,6 @@ def register_handle_form(request, redirect=None):
             contact = None
             
         initial_data['next'] = request.GET.get('next', '') 
-
-        signals.satchmo_registration_initialdata.send(contact,
-            contact=contact,
-            initial_data=initial_data)
 
         form = RegistrationForm(initial=initial_data)
 

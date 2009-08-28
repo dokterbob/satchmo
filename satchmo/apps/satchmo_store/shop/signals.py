@@ -9,9 +9,6 @@ Signals:
  - `satchmo_cart_changed`: sent whenever the cart changes.
  - `satchmo_cartitem_price_query`: sent by the pricing system to allow price
     overrides when displaying line item prices.
- - `satchmo_search`: sent by search_view to ask all listeners to add search results
- 
- Usage satchmo_search.send(Sender, request=request, category=category, keywords=keywords, results={})
 
  - `satchmo_order_status_changed`: sent by the order when its status has changed
  - `satchmo_context`: sent by context_processor to optionally add more to the store context
@@ -45,8 +42,6 @@ satchmo_order_status_changed=django.dispatch.Signal()
 
 #satchmo_post_copy_item_to_order.send(cart, cartitem=cartitem, order=order, orderitem=orderitem)
 satchmo_post_copy_item_to_order=django.dispatch.Signal()
-
-satchmo_search = django.dispatch.Signal()
 
 satchmo_context = django.dispatch.Signal()
 

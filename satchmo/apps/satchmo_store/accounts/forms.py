@@ -9,6 +9,7 @@ from satchmo_store.contact.forms import ContactInfoForm
 from satchmo_store.contact.models import AddressBook, PhoneNumber, Contact, ContactRole
 from l10n.models import Country
 from satchmo_utils.unique_id import generate_id
+from signals_ahoy.signals import form_init, form_initialdata
 
 import logging
 import signals
@@ -41,8 +42,19 @@ class RegistrationForm(forms.Form):
     next = forms.CharField(max_length=100, required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
-        self.contact = None
+        contact = kwargs.get('contact', None)
+        initial = kwargs.get('initial', {})
+        self.contact = contact
+        form_initialdata.send('RegistrationForm',
+            form=self,
+            contact=contact,
+            initial=initial)
+        
+        kwargs['initial'] = initial
         super(RegistrationForm, self).__init__(*args, **kwargs)
+        form_init.send('RegistrationForm',
+            form=self,
+            contact=contact)
 
     newsletter = forms.BooleanField(label=_('Newsletter'),
         widget=forms.CheckboxInput(), required=False)

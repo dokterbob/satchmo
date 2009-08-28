@@ -1,10 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from satchmo_store.contact.forms import ContactInfoForm
 from satchmo_store.contact.models import Contact
-from satchmo_store.contact.signals import form_save
-from satchmo_utils.signals import collect_urls
-from satchmo_store import shop
 import datetime
 import logging
 
@@ -111,7 +107,5 @@ class SubscriptionAttribute(models.Model):
         verbose_name_plural = _("Subscription Attributes")
 
 import config
-from listeners import contact_form_listener
-from urls import add_newsletter_urls
-form_save.connect(contact_form_listener, sender=ContactInfoForm)
-collect_urls.connect(add_newsletter_urls, sender=shop)
+import listeners
+listeners.start_listening()

@@ -6,7 +6,7 @@ from l10n.mixins import TranslatedObjectMixin
 import product
 from product.models import Product
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 import logging
 
 log = logging.getLogger('brand.models')

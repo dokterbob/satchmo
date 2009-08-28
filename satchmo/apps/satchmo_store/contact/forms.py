@@ -7,6 +7,7 @@ from l10n.models import Country
 from livesettings import config_value, config_get_group, SettingNotSet
 from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber, Organization, ContactRole
 from satchmo_store.shop.models import Config
+from signals_ahoy.signals import form_init, form_postsave
 import datetime
 import logging
 import signals
@@ -81,7 +82,7 @@ class ContactInfoForm(ProxyContactForm):
             fld = self.fields[f]
             if fld.required:
                 fld.label = (fld.label or f) + '*'
-        signals.form_init.send(self.__class__, form=self)
+        form_init.send(self.__class__, form=self)
 
     def _check_state(self, data, country):
         if country and self.enforce_state and country.adminarea_set.filter(active=True).count() > 0:
@@ -356,7 +357,7 @@ class ContactInfoForm(ProxyContactForm):
         phone.contact = customer
         phone.save()
         
-        signals.form_save.send(ContactInfoForm, object=customer, formdata=data, form=self)
+        form_postsave.send(ContactInfoForm, object=customer, formdata=data, form=self)
         
         if changed_location:
             signals.satchmo_contact_location_changed.send(self, contact=customer)

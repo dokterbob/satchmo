@@ -11,7 +11,7 @@ from livesettings import config_value
 
 # extending the urls in contacts
 from satchmo_store.contact.urls import urlpatterns
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 from satchmo_store import accounts
 
 

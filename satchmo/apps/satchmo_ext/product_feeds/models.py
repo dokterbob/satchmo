@@ -1,4 +1,4 @@
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 from satchmo_store import shop
 from urls import add_feed_urls
 

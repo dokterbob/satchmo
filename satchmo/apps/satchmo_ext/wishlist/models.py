@@ -6,7 +6,7 @@ from satchmo_store import shop
 from satchmo_store.contact.models import Contact
 from product.models import Product
 from satchmo_store.shop.signals import cart_add_view
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 import datetime
 
 class ProductWishManager(models.Manager):

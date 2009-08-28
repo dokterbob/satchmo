@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 import product
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 
 urlpatterns = patterns('product.views',
     (r'^(?P<product_slug>[-\w]+)/$', 

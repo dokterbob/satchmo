@@ -3,7 +3,7 @@ from django.conf.urls.defaults import *
 from livesettings import config_value
 from products import urlpatterns as prodpatterns
 import product
-from satchmo_utils.signals import collect_urls
+from signals_ahoy.signals import collect_urls
 
 catbase = r'^' + config_value('PRODUCT','CATEGORY_SLUG') + '/'
 prodbase = r'^' + config_value('PRODUCT','PRODUCT_SLUG') + '/'

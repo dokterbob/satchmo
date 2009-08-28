@@ -21,6 +21,7 @@ from satchmo_utils.views import CreditCard
 from shipping.config import shipping_methods, shipping_method_by_key
 from shipping.signals import shipping_choices_query
 from shipping.utils import update_shipping
+from signals_ahoy.signals import form_init, form_presave, form_postsave, form_validate
 from tax.templatetags.satchmo_tax import _get_taxprocessor
 from threaded_multihost import threadlocals
 import calendar
@@ -155,8 +156,19 @@ class CustomChargeForm(forms.Form):
     amount = forms.DecimalField(label=_('New price'), required=False)
     shipping = forms.DecimalField(label=_('Shipping adjustment'), required=False)
     notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
-    
-     
+        
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.get('initial', {})
+        signals.form_initialdata.send('ExampleForm', form=self, initial=initial)
+        kwargs['initial'] = initial
+        super(CustomChargeForm, self).__init__(*args, **kwargs)
+        form_init.send(self.__class__, form=self)
+
+    def clean(self, *args, **kwargs):
+        super(CustomChargeForm, self).clean(*args, **kwargs)
+        form_validate.send(self.__class__, form=self)
+        return self.cleaned_data
+
 class PaymentMethodForm(ProxyContactForm):
     paymentmethod = forms.ChoiceField(
             label=_('Payment method'),
@@ -187,7 +199,7 @@ class PaymentMethodForm(ProxyContactForm):
 
     def clean(self):
         # allow additional validation
-        signals.payment_form_validation.send(PaymentMethodForm, form=self)
+        form_validate.send(PaymentMethodForm, form=self)
         return self.cleaned_data
 
 class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
@@ -211,22 +223,23 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
             else:
                 self.fields['discount'].widget = forms.HiddenInput()
 
-            # Listeners of the payment_form_init signal (below) may modify the dict of
+            # Listeners of the form_init signal (below) may modify the dict of
             # payment_required_fields. For example, if your CUSTOM_PAYMENT requires
             # customer's city, put the following code in the listener:
             #
             #   form.payment_required_fields['CUSTOM_PAYMENT'] = ['city']
             #
-            signals.payment_form_init.send(PaymentContactInfoForm, form=self)
+            form_init.send(PaymentContactInfoForm, form=self)
 
         def save(self, request, *args, **kwargs):
             contactid = super(PaymentContactInfoForm, self).save(*args, **kwargs)
-            signals.form_save.send(PaymentContactInfoForm, form=self)
+            form_presave.send(PaymentContactInfoForm, form=self)
             contact = Contact.objects.get(pk=contactid)
             cart = kwargs.get('cart', None)
             if not cart:
                 cart = Cart.objects.from_request(request)
             self.order = get_or_create_order(request, cart, contact, self.cleaned_data)
+            form_postsave.send(PaymentContactInfoForm, form=self)
             return contactid
 
         def clean(self):
@@ -345,7 +358,7 @@ class SimplePayShipForm(forms.Form):
 
         self.shipping_dict = shipping_dict
         
-        signals.payment_form_init.send(SimplePayShipForm, form=self)
+        form_init.send(SimplePayShipForm, form=self)
         
     def clean_shipping(self):
         shipping = self.cleaned_data['shipping']
@@ -374,6 +387,7 @@ class SimplePayShipForm(forms.Form):
         return needed
 
     def save(self, request, cart, contact, payment_module, data=None):
+        form_presave.send(SimplePayShipForm, form=self)
         if data is None:
             data = self.cleaned_data
         self.order = get_or_create_order(request, cart, contact, data)
@@ -383,7 +397,7 @@ class SimplePayShipForm(forms.Form):
             self.orderpayment = processor.create_pending_payment(order=self.order)
         else:
             self.orderpayment = None
-        signals.form_save.send(SimplePayShipForm, form=self)
+        form_postsave.send(SimplePayShipForm, form=self)
 
 
 class CreditPayShipForm(SimplePayShipForm):
@@ -496,6 +510,7 @@ class CreditPayShipForm(SimplePayShipForm):
             
     def save(self, request, cart, contact, payment_module, data=None):
         """Save the order and the credit card information for this orderpayment"""
+        form_presave.send(CreditPayShipForm, form=self)
         if data is None:
             data = self.cleaned_data
         assert(data)
@@ -515,4 +530,4 @@ class CreditPayShipForm(SimplePayShipForm):
             # set ccv into cache
             cc.ccv = data['ccv']
             self.cc = cc
-        signals.form_save.send(CreditPayShipForm, form=self)
+        form_postsave.send(CreditPayShipForm, form=self)

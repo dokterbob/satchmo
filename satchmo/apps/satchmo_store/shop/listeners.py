@@ -9,6 +9,7 @@ from satchmo_store.contact import signals as contact_signals
 from satchmo_store.shop import signals
 from satchmo_store.shop.exceptions import OutOfStockError
 from satchmo_store.shop.models import DownloadLink, Order
+from signals_ahoy.signals import application_search
 
 import notification
 import logging
@@ -83,7 +84,7 @@ def start_default_listening():
     signals.order_success.connect(ship_downloadable_order, sender=None)
     signals.order_success.connect(discount_used_listener, sender=None)
     signals.satchmo_cart_changed.connect(remove_order_on_cart_update, sender=None)
-    signals.satchmo_search.connect(default_product_search_listener, sender=Product)
+    application_search.connect(default_product_search_listener, sender=Product)
     signals.satchmo_order_status_changed.connect(capture_on_ship_listener)
     signals.satchmo_order_status_changed.connect(notification.notify_on_ship_listener)
     signals.satchmo_cart_add_verify.connect(veto_out_of_stock)
