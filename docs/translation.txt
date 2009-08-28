@@ -35,7 +35,7 @@ Template Translations
 
 4. Compile the file using the compilemessages command (run from your satchmo source directory)::
 
-   find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-admin.py compilemessages' {} \;
+    find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-admin.py compilemessages' {} \;
 
 5. (Optional but encouraged) Submit a ticket with your translation.
 
