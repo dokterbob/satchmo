@@ -29,7 +29,7 @@ config_register(
         ('last_name', _("Last name")),
         ('phone', _("Phone")),
         ('addressee', _("Addressee")),
-        ('company', _("Company")),
+        ('organization', _("Organization")),
         ('street1', _("Street")),
         ('street2', _("Street (second line)")),
         ('city', _("City")),

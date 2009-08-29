@@ -80,7 +80,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
 
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231,
-            'company' : 'Testers Anonymous',
+            'organization' : 'Testers Anonymous',
             }
         shop = Config.objects.get_current()
         form = ContactInfoForm(data=data, shop=shop, contact=contact)

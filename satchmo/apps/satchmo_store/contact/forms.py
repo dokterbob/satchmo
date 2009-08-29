@@ -28,7 +28,7 @@ class ContactInfoForm(ProxyContactForm):
     last_name = forms.CharField(max_length=30, label=_('Last Name'), required=False)
     phone = forms.CharField(max_length=30, label=_('Phone'), required=False)
     addressee = forms.CharField(max_length=61, label=_('Addressee'), required=False)
-    company = forms.CharField(max_length=50, label=_('Company'), required=False)
+    organization = forms.CharField(max_length=50, label=_('Organization'), required=False)
     street1 = forms.CharField(max_length=30, label=_('Street'), required=False)
     street2 = forms.CharField(max_length=30, required=False)
     city = forms.CharField(max_length=30, label=_('City'), required=False)
@@ -276,13 +276,13 @@ class ContactInfoForm(ProxyContactForm):
             data['ship_country'] = shipcountry
         
         data['ship_country_id'] = shipcountry.id
-        
-        companyname = data.pop('company', None)
-        if companyname:
-            org = Organization.objects.by_name(companyname, create=True)            
+
+        organization_name = data.pop('organization', None)
+        if organization_name:
+            org = Organization.objects.by_name(organization_name, create=True)
             customer.organization = org
         else:
-            # in case customer wants to remove company name from their profile
+            # in case customer wants to remove organization name from their profile
             customer.organization = None
 
         for field in customer.__dict__.keys():
