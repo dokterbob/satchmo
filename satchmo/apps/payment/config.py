@@ -95,6 +95,12 @@ config_register_list(
         help_text=_("If False, then the credit card will never be written to disk.  For PCI compliance, this is required unless you have your database server on a separate server not connected to the internet."),
         default=False),
 
+    PositiveIntegerValue(PAYMENT_GROUP,
+        'CC_NUM_YEARS',
+        description=_("Number of years to display for CC expiration"),
+        help_text=_("Number of years that will be added to today's year for the CC expiration drop down"),
+        default=10),
+    
     BooleanValue(PAYMENT_GROUP,
         'USE_DISCOUNTS',
         description=_("Use discounts"),

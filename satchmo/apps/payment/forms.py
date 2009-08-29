@@ -414,9 +414,10 @@ class CreditPayShipForm(SimplePayShipForm):
         self.cc = None
 
         self.fields['credit_type'].choices = creditchoices
-
+        
+        num_years = config_value('PAYMENT', 'CC_NUM_YEARS')
         year_now = datetime.date.today().year
-        self.fields['year_expires'].choices = [(year, year) for year in range(year_now, year_now+6)]
+        self.fields['year_expires'].choices = [(year, year) for year in range(year_now, year_now+num_years+1)]
 
         self.tempCart = Cart.objects.from_request(request)
         
