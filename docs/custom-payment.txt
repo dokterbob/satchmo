@@ -71,9 +71,8 @@ Configuration
 
 Each processor will have unique variables that need to be set.  The ``config.py`` file is where
 you can leverage the Satchmo settings capability to add your unique variables.  Please
-refer to the `configuation documentation </trac/wiki/ConfigurationSystem>`_ in order to understand
-how the system works. For more examples, the existing working modules are great examples of what to
-setup.  The basic format is:
+refer to the :doc:`configuration` in order to understand how the system works. For more examples, 
+the existing working modules are great examples of what to setup.  The basic format is:
 
 Add the new module into the existing payment modules and give it a name::
 
@@ -154,8 +153,8 @@ All of these settings can be accessed in your ``__init__`` method (shown above).
 For example, the LIVE value above can be accessed by using ``settings.LIVE.value``
 
 In order to enable your new payment processor, you must add it to your INSTALLED_APPS setting in your settings.py, 
-and ensure that the module adds itself to the PAYMENT_MODULES in the module's config.py file.  See the first part 
-of this section for an example.
+and ensure that the module adds itself to the PAYMENT_MODULES in the module's config.py file in the SATCHMO_SETTINGS variable.  
+See the first part of this section for an example.
 
 Views
 -----
@@ -174,8 +173,8 @@ views or your own custom view.
 For most people, the views contained in payment.common.views will be sufficient.  The example below
 maps these views to views already available in Satchmo::
 
-    from satchmo.configuration import config_get_group
-    from satchmo.payment.common.views import confirm, payship
+    from livesettings import config_get_group
+    from payment.views import confirm, payship
 
     def pay_ship_info(request):
         return payship.credit_pay_ship_info(request, config_get_group('PAYMENT_MYNEWPROCESSOR'))
@@ -203,7 +202,7 @@ need to tell Satchmo how to access these views.  This is where the ``urls.py`` f
 For most processors, a simple file would look like this::
 
     from django.conf.urls.defaults import *
-    from satchmo.configuration import config_value, config_get_group
+    from livesettings import config_value, config_get_group
 
 
     config = config_get_group('PAYMENT_MYNEWPROCESSOR')
@@ -223,8 +222,8 @@ Enabling the new module
 -----------------------
 Once the new payment module has been written and placed in the payments/modules folder, 
 you need to inform satchmo about the new module that you have written. To do this, 
-edit your settings.py file and add your new module to the CUSTOM_PAYMENT_MODULES variable.
-After this is done, you can see your new payment module ready to work in settings 
+edit your settings.py file and add your new module to the ``CUSTOM_PAYMENT_MODULES`` dictionary in 
+``SATCHMO_SETTINGS`` variable. After this is done, you can see your new payment module ready to work in settings 
 page of admin area. 
 
 Conclusion
