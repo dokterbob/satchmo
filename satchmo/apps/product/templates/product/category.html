@@ -15,12 +15,6 @@
 	<li>{{ category.translated_name }}</li>
 {% endblock %}
 
-{% block sidebar-categories %}
-    <div id="menu_container">
-    {% category_tree category.id %}
-    </div>
-{% endblock %}
-
 {% block content %}
 <div id="product_category">
 <h3>{{ category.translated_name }}</h3>

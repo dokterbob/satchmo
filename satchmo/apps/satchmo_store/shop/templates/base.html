@@ -32,7 +32,15 @@
 			<h3>{% trans "Shop Categories" %}</h3>
 			{% block sidebar-categories %}
 			<div id="menu_container">
-				{% category_tree %}
+                {% if category.id %}
+                    {% category_tree category.id %}
+                {% else %}
+                    {% if product.get_category %}
+                        {% category_tree product.get_category.id %}
+                    {% else %}
+                        {% category_tree %}
+                    {% endif %}
+                {% endif %}
 			</div>
 			{% endblock sidebar-categories %}
 			

@@ -27,16 +27,6 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 <li>{{ product.translated_name }}</li>
 {% endblock %}
 
-{% block sidebar-categories %}
-    <div id="menu_container">
-    {% if product.get_category %}
-        {% category_tree product.get_category.id %}
-    {% else %}
-        {% category_tree %}
-    {% endif %}
-    </div>
-{% endblock %}
-
 {% block content %}
 {% block productdetail %}
 <h4>{{ product.translated_name }}</h4>
