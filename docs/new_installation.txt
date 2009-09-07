@@ -2,8 +2,8 @@
 Installation
 ============
 
-This guide is the new (and hopefully improved) Satchmo installation process. It is meant to be a cookbook
-approach for most users. Advanced users may wish to modify this in order to integrate into their own projects.
+This guide is the Satchmo installation process. It is meant to be a cookbook approach for
+most users. Advanced users may wish to modify this in order to integrate into their own projects.
 
 This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
 you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
@@ -132,7 +132,7 @@ Installing Satchmo into your path
         >>> import django
         >>> import satchmo_store
         >>> satchmo_store.get_version()
-        u'0.9-pre-SVN-XXXX'
+        '0.9-pre hg-YYYY:ZZZZZZZZZZ'
 
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
@@ -259,14 +259,12 @@ Configure the rest of the required files
 8. Next, you need to configure your urls.py file. The most simple urls.py file would look like this::
 
         from django.conf.urls.defaults import *
-
         from satchmo_store.urls import urlpatterns
 
 
 9. If you have additional urls you would like to add to your project, it would look like this::
 
         from django.conf.urls.defaults import *
-
         from satchmo_store.urls import urlpatterns
         
         urlpatterns += patterns('',
@@ -284,50 +282,50 @@ overriding existing templates.
 Test and Install the Data
 -------------------------
    
-12.  Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
+12. Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
 
         python manage.py satchmo_check
         Checking your satchmo configuration.
         Your configuration has no errors.
         
-If any errors are identified, resolve them based on the error description.
+13. If any errors are identified, resolve them based on the error description.
 
-13. Sync the new satchmo tables::
+14. Sync the new satchmo tables::
 
         python manage.py syncdb
         
-14. Load the country data stored in the l10n application::
+15. Load the country data stored in the l10n application::
 
         python manage.py satchmo_load_l10n
         
-15. (Optional) Load the demo store data::
+16. (Optional) Load the demo store data::
 
         python manage.py satchmo_load_store
         
-16. (Optional) Load the US tax table::
+17. (Optional) Load the US tax table::
 
         python manage.py satchmo_load_us_tax
         
 View the Demo Store
 -------------------
 
-17.  Start up the sample webserver to see your store::
+18.  Start up the sample webserver to see your store::
 
         python manage.py runserver
         
-17.  In order to see your sample store, point your browser to::
+19.  In order to see your sample store, point your browser to::
     
         http://127.0.0.1:8000/shop or http://127.0.0.1/
 
-19.  If you want to see the admin interface, point your browser to::
+20.  If you want to see the admin interface, point your browser to::
 
         http://127.0.0.1:8000/admin
         
-20.  Many configuration and customization settings are accessed through the url::
+21.  Many configuration and customization settings are accessed through the url::
 
         http://127.0.0.1:8000/settings
         
-21.  Additional detailed documentation can be found here::
+22.  Additional detailed documentation can be found here::
 
         http://127.0.0.1:8000/admin/doc
 
@@ -338,33 +336,10 @@ View the Demo Store
 Additional Notes
 ----------------
 
-Satchmo also includes a command that will erase all your tables. It is useful while devoloping but please be careful before using!
-
-.. warning::
-    The next step can erase data in the satchmo database. Be sure to have a backup of any critical data.
-    
-(For development use only)::
-
-        python manage.py delete_all_dbs
-
 Satchmo also includes a full set of unit tests. After you get your system installed, you can run the unit tests with this command::
 
         python manage.py test
         
-Advanced Configuration
-----------------------
-
-The steps described above are the quickest and simplest method for getting a Satchmo store up and running
-quickly. However, there are some downsides to the approach described in these steps:
-
-    - Integration with other Django apps is not as straightforward
-    - Keeping templates up to date with Satchmo is more challenging
-
-After you get your store running and are comfortable with the basic functions of Satchmo and Django, we recommend that your review 
-`this blog post <http://gosatchmo.com/starting-a-new-store-real-world-project-layout>`_
-for a more robust project layout. It will take a little bit more effort but is much more sustainable for
-future upgrades.
-
 Useful Links
 ------------
 

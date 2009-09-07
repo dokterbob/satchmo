@@ -6,14 +6,14 @@ useful to get a basic understanding of the way Satchmo is laid out.
 
 The base Satchmo directory should look like this::
 
-    docs
-    satchmo
-     |
-     ---- apps
-     ---- projects
-     ---- static
-     
-The docs directory should be self explanatory. 
+    |-- docs
+    `-- satchmo
+        |-- apps
+        |-- projects
+        `-- static
+
+
+The docs directory should be self explanatory.
 
 Satchmo Apps
 ------------
@@ -21,17 +21,17 @@ Satchmo Apps
 The core Satchmo application is included in the apps directory and is laid out like this::
 
     apps
-     |
-     ---- keyedcache
-     ---- l10n
-     ---- livesettings
-     ---- payment
-     ---- product
-     ---- satchmo_ext
-     ---- satchmo_store
-     ---- satchmo_utils
-     ---- shipping
-     ---- tax
+    |-- keyedcache
+    |-- l10n
+    |-- livesettings
+    |-- payment
+    |-- product
+    |-- satchmo_ext
+    |-- satchmo_store
+    |-- satchmo_utils
+    |-- shipping
+    `-- tax
+
 
 The directories are created in this fashion so that we can accomplish a couple of goals:
 
@@ -122,4 +122,52 @@ may wish to include in your site.
     **wishlist**
         The wishlist allows shoppers to add items from the store to a list that they might
         want to purchase from in the future.
+
+
+Satchmo Projects
+----------------
+
+This directory contains 3 example projects that illustrate how to layout Satchmo and integrate it with other
+Django applications. The installation process will discuss how to setup your individual application based on
+these samples. The simple and large projects include a sample database and can be run directly to provide 
+a quick example of a Satchmo store.
+
+Base
+^^^^
+
+This project contains the basic building blocks of a Satchmo store.
+
+Simple
+^^^^^^
+
+This is a very basic example of a "simple" Satchmo store.
+
+It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
+
+Admin is:
+
+Username: admin
+Password: simple
+
+
+Large
+^^^^^
+
+This is a very basic example of a "large" Satchmo store.  Basically it has all the satchmo apps loaded, plus 
+flatpages (built-in to Django) and Testimonials (from http://gosatchmo.com/apps/django-testimonials/)
+
+It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
+
+Admin is:
+
+Username: admin
+Password: large
+
+
+Satchmo Static
+--------------
+ 
+The static directory contains all of the css, javascript and image files used in Satchmo. This directory is meant
+to be copied to your local Satchmo store. Once your store is running this directory will contain your product images
+as well as custom css and javascript. The process for setting this up will be covered in the installation guide.
 
