@@ -44,4 +44,4 @@ relatively easy to modify it and grow as your business needs change.
 What license are you using?
 ---------------------------
 
-We have decided to use the BSD license for this project. You can learn more about it `here <>`_ BSD License.
+We have decided to use the BSD license for this project. You can learn more about it `here <http://www.opensource.org/licenses/bsd-license.php>`_ BSD License.
