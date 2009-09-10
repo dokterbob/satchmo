@@ -39,7 +39,7 @@ changes, it would be useful to understand Django templates in general.
 The `Django Template Author Guide`_ is the best place to start.
 
 Once you are ready to make template changes, the best option is to copy any of the
-templates that you wish to overried to a new location.
+templates that you wish to override to a new location.
  
 Next, modify settings.py to point to your new templates directory::
 

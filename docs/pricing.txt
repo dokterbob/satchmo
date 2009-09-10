@@ -17,6 +17,7 @@ Effectively it works like:
 Product + Option = Variation
 
 Pricing fits into the picture this way:
+
  * You can set a default price on your Product.
  * You can set a price adjustment for an option.
  * You can set a price over-ride for a variation.
@@ -72,7 +73,6 @@ The price resolution process is straightforward.
 2. If the user has a group and that group has a tier:
 
   2a. Look for explicit prices (see #5 above) for that product.  If found, return it.
-  
   2b. Else return the non-tiered price reduced by the default tier discount percent.
   
 3. If the user has multiple tiers, return the lowest amount found in 2a & 2b.

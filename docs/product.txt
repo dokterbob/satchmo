@@ -50,7 +50,14 @@ Meta
     
 Description
     This is a free form field that describes this category.  You can use this to help guide users in your site.  It's also helpful for search engines.
+
+Ordering
+    This field can be used to specify which order the categories should be displayed.
     
+Active
+    This allows a category to be populated with information but to be set inactive.
+
+Active
 .. index::
    single: Product; fields
    
@@ -78,12 +85,12 @@ Date_added
     The date you added this product to your store.  It could be useful for showing a list of new products.
     
 Active
-    A flag to identify which items are still valid in the store.  If you decide you don't want to show an item for purchase, I recommend making it Active=False instead of trying to delete it.
+    A flag to identify which items are still valid in the store.  If you decide you don't want to show an item for purchase, we recommend making it Active=False instead of trying to delete it.
     
 Featured
     Another flag which can be used to identify special items that you may want to highlight in your site. In the default templates, featured items show-up on the front page of the store.
     
-items in stock
+Items in stock
     The inventory of this specific item.
 
 Meta
@@ -93,13 +100,15 @@ Weight, Length and Height
     These dimensions are for your use in displaying the item's info. It can also be used for shipping calculations.
 
 Taxable
-    A flag to tell whether or not tax should be calculated for this product.  More information on taxes can be found ...
+    A flag to tell whether or not tax should be calculated for this product.
     
 Tax_class
     Allows you to set the rate at which tax is calculated.
 
 Related_items
-    Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book based on the movie or maybe a movie poster.  This would be the place to record those linkages.
+    Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book 
+    based on the movie or maybe a movie poster.  This would be the place to record those linkages. By default, this does not show up in the
+    store. You will need to modify your templates to display it.
     
 Also_purchased
     Another field to show relationships between products.  This can be useful if you want to try to increase sales by showing what others have purchased when they bought this product.
@@ -156,7 +165,7 @@ Caption
     A description of this image.  This field may be used to describe the different angles that images show.
     
 Sort
-    If you would like control of the order in which the images are displayed, this field can be used.  This field is also special in that it must be filled in!  If you want to delete an image from your item, you must delete the value in the sort field and save the image!
+    If you would like control of the order in which the images are displayed, this field can be used. 
 
 .. index::
    single: Product; options
@@ -230,7 +239,8 @@ As described above a ProductVariation can be thought of as the actual product yo
 Downloadable Product
 ^^^^^^^^^^^^^^^^^^^^
 
-A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.  In Satchmo, this is accomplished by sending a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
+A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.  
+In Satchmo, this is accomplished by emailing a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
 
 In order to use a downloadable product, you need to make sure you have a Product created as described above.  Also, make sure that you have the Downloadable Product type enabled in the configuration settings.
 
@@ -238,7 +248,7 @@ From the Product detail page, choose "Add Downloadable Product"
 
 This screen will allow you to upload your file and specifiy the number of allowed downloads, the number of minutes it will remain active and a final flag for whether or not the file is still active.  After saving the changes, the product will be enabled for downloading.
 
-In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache and lighttpd do but you'll need to refer to the web server documentation for details.  Lighttpd natively supports this but Apache needs mod_xsendfile to work correctly.
+In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache, lighttpd and nginx do but you'll need to refer to the web server documentation for details.  Lighttpd and nginx natively supports this but Apache needs mod_xsendfile to work correctly.
 
 In addition to configuring the x-send-file header, you will need to ensure that the protected directory can not be browsed to directly.  An example lighttpd configuration is::
 
@@ -302,14 +312,16 @@ Trial Terms:
         You can add as many trial periods as you wish, unless you are using paypal as a payment option.  PayPal can only accept 2 trial periods.  If you are using PayPal, do not add more than 2 trial periods!
 
 Cronjob:
-In order for recurring billing to work, you need to setup a cronjob on your server to run once a day (preferably in the middle of the night).  Use settings similar to these:
+    In order for recurring billing to work, you need to setup a cronjob on your server to run once a day (preferably in the middle of the night).  Use settings similar to these:
 
     0 23 * * * /usr/bin/lynx -source http://yourdomain.com/shop/checkout/cron/?key=YOURPASSKEY
     You will need to set the CRON_KEY variable in your settings file to your desired passphrase.
 
-Alternatively, you can run the rebilling script as a shell script.  In that case, your cron job would look like this:
+Alternatively, you can run the rebilling script as a shell script.  In that case, your cron job would look like this::
+
     0 23 * * * sh /path/to/satchmo/rebilling_cron.sh
-    If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
+
+If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
 
 .. index::
    single: Product; gift certificate
