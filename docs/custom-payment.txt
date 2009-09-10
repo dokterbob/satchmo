@@ -47,9 +47,7 @@ the command line.
 
 Here is a stub you can use to create your own processor::
 
-
 	from payment.modules.base imort BasePaymentProcessor, ProcessorResult
-	
     class PaymentProcessor(BasePaymentProcessor):
 
 
@@ -190,7 +188,7 @@ However, there is nothing stopping you from creating your own view::
         return render_to_response(template, context)
 
 
-All of the current satchmo payment views are in ``/payment/common/views``
+All of the current satchmo payment views are in ``/payment/common/views``.
 Please review these before trying to build one of your own!
 
 Url configuration
@@ -232,7 +230,7 @@ Conclusion
 Hopefully this document will help you get started in creating your own payment
 modules.  Before trying to tackle one on your own, take some time to look at
 the existing models and get a feel for how things have been done.  Once you are
-comfortable, I suggest copying one of the modules and using it as a starting
+comfortable, we suggest copying one of the modules and using it as a starting
 point for your subsequent efforts.  If you get stuck, please feel free to ask
 the `mailing list`_ for help.
 

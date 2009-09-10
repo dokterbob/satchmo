@@ -185,19 +185,14 @@ Canada Post
 ^^^^^^^^^^^
 
 Prerequisites
-+++++++++++++
 
-  - You must specify dimensions and weight for the products 
-    you intend to ship using Canada Post.
+  - You must specify dimensions and weight for the products you intend to ship using Canada Post.
 
-  - You must have a merchant id assigned by Canada Post to 
-    use the module in production environment. Visit
-    http://www.canadapost.ca/business/default-e.asp for more
-    information.
+  - You must have a merchant id assigned by Canada Post to  use the module in production environment. Visit
+    http://www.canadapost.ca/business/default-e.asp for more information.
 
 
 Setting Up
-++++++++++
 
   - Open up Satchmo settings at http://example.com/settings
 
@@ -211,7 +206,6 @@ Setting Up
   - Save.
 
 Notes
-+++++
 
   - Turn around time is the average time that you will take 
     to process an order before it is ready for Canada Post
@@ -231,10 +225,5 @@ Notes
 Hide Shipping if One Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. You could 
-modify the templates to try to hide the option but there is a simpler method using signals. You can use the shipping_hide_if_one 
-listener to hide the shipping choices. Place the following code in your site's models.py file::
-
-    from payment import signals, listeners, forms
-    signals.payment_form_init.connect(listeners.shipping_hide_if_one, 
-                                  sender=forms.SimplePayShipForm)
+If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. There is a 
+setting in /settings that allows you to control this behavior.
