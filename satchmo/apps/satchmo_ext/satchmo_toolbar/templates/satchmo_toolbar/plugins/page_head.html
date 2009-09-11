@@ -27,6 +27,10 @@ body.debugtoolbar #st-panels {
     padding: 0 15px;
     cursor: pointer;
 }
+
+#st-panels ul li {
+    list-style: none;
+}
 </style>
 <script type="text/javascript" charset="utf-8">
 	// When jQuery is sourced, it's going to overwrite whatever might be in the
@@ -45,6 +49,7 @@ body.debugtoolbar #st-panels {
     		$('body').addClass('debugtoolbar');
     	}
     	$('body').addClass('satchmo-toolbar');
+        $('#slidedown').hide();        
         $('#st-view').hide();
         $('#st-hide').click(function(elt) { 
             $('#st-panels').hide('medium');
@@ -54,6 +59,11 @@ body.debugtoolbar #st-panels {
             $('#st-view').hide();
             $('#st-panels').show('medium');
         });
+        $('#toggle').click(function(elt) {
+            $('#slidedown').css({'background-color' : '#CCCCCC'});
+            $('#slidedown').slideToggle('slow');
+        });
+
     });
 </script>
 {% endif %}

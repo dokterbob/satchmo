@@ -17,6 +17,18 @@
         <div class="panel">
             {% blocktrans %}Contacts: 7d/total: {{ st_contacts_7d_ct }}/{{ st_contacts_ct}}{% endblocktrans %}
         </div>
+        {% if st_show_sales %}
+        <div class="panel">
+            {% blocktrans %}Number sold: {{st_total_sold}}{% endblocktrans %} <span id="toggle">{% if st_variations %}(+){% endif %}</span>
+            <div id="slidedown">
+                    <ul>
+                    {% for variation in st_variations %}
+                        <li>{{ variation.name }}:{{variation.total_sold}} </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+        </div>
+        {% endif %}
         {% for label, url in st_edits %}
         <div class="panel">
             <a href="{{ url }}">{{ label }}</a>

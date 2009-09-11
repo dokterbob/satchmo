@@ -7,6 +7,7 @@ from threaded_multihost import threadlocals
 import datetime
 import logging
 import operator
+from product.models import Product, ProductVariation
 
 
 log = logging.getLogger('satchmo_toolbar')
@@ -14,6 +15,27 @@ log = logging.getLogger('satchmo_toolbar')
 def add_toolbar_context(sender, context={}, **kwargs):
     user = threadlocals.get_current_user()
     if user and user.is_staff:
+        request_path = context['request'].META['PATH_INFO']
+        slug = request_path.split('/')[-2]
+        total_sales = 0
+        show_sales = False
+        variation_items = []
+        try:
+            product = Product.objects.get(slug=slug)
+            show_sales = True
+            subtypes = product.get_subtypes()
+            if 'ConfigurableProduct' in subtypes:
+                total_sales = 0
+                all_variations = ProductVariation.objects.filter(parent=product)
+                for variation in all_variations:
+                    total_sales += variation.product.total_sold
+                    variation_items.append(variation.product)
+            else:
+                total_sales = product.total_sold
+                
+        except:
+            pass
+            
         st = {}
         st['st_satchmo_version'] = get_version()
         newq = Order.objects.filter(status__exact = 'New')
@@ -24,7 +46,9 @@ def add_toolbar_context(sender, context={}, **kwargs):
         else:
             newtotal = 0
         st['st_new_order_total'] = newtotal
-        
+        st['st_total_sold'] = total_sales
+        st['st_show_sales'] = show_sales
+        st['st_variations'] = variation_items
         week = datetime.datetime.today()-datetime.timedelta(days=7)
         day = datetime.datetime.today()-datetime.timedelta(days=1)
         hours = datetime.datetime.today()-datetime.timedelta(hours=1)
