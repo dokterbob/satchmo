@@ -1274,6 +1274,12 @@ class CustomProduct(models.Model):
         Returns all of the valid options
         """
         return get_all_options(self, ids_only=True)
+        
+    def save(self):
+        if hasattr(self.product,'_sub_types'):
+            del self.product._sub_types
+        super(CustomProduct, self).save()
+
 
     class Meta:
         verbose_name = _('Custom Product')
@@ -1500,7 +1506,8 @@ class ConfigurableProduct(models.Model):
         Right now this only works if you save the suboptions, then go back and choose to create the variations.
         """
         super(ConfigurableProduct, self).save()
-
+        if hasattr(self.product,'_sub_types'):
+            del self.product._sub_types
         # Doesn't work with admin - the manipulator doesn't add the option_group
         # until after save() is called.
         if self.create_subs and self.option_group.count():
@@ -1560,6 +1567,11 @@ class DownloadableProduct(models.Model):
     class Meta:
         verbose_name = _("Downloadable Product")
         verbose_name_plural = _("Downloadable Products")
+    
+    def save(self):
+        if hasattr(self.product,'_sub_types'):
+            del self.product._sub_types
+        super(DownloadableProduct, self).save()
 
 class SubscriptionProduct(models.Model):
     """
@@ -1655,6 +1667,11 @@ class SubscriptionProduct(models.Model):
             expiredate = add_month(date, n=self.expire_length)
         
         return expiredate
+    
+    def save(self):
+        if hasattr(self.product,'_sub_types'):
+            del self.product._sub_types
+        super(SubscriptionProduct, self).save()
 
     class Meta:
         verbose_name = _("Subscription Product")

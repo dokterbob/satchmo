@@ -151,6 +151,11 @@ class GiftCertificateProduct(models.Model):
             recipient_email=email
             )
         gc.save()
+    
+    def save(self):
+        if hasattr(self.product,'_sub_types'):
+            del self.product._sub_types
+        super(GiftCertificateProduct, self).save()
 
     class Meta:
         verbose_name = _("Gift certificate product")
