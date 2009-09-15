@@ -21,7 +21,7 @@ from satchmo_utils.views import CreditCard
 from shipping.config import shipping_methods, shipping_method_by_key
 from shipping.signals import shipping_choices_query
 from shipping.utils import update_shipping
-from signals_ahoy.signals import form_init, form_presave, form_postsave, form_validate
+from signals_ahoy.signals import form_init, form_initialdata, form_presave, form_postsave, form_validate
 from tax.templatetags.satchmo_tax import _get_taxprocessor
 from threaded_multihost import threadlocals
 import calendar
@@ -159,7 +159,7 @@ class CustomChargeForm(forms.Form):
         
     def __init__(self, *args, **kwargs):
         initial = kwargs.get('initial', {})
-        signals.form_initialdata.send('CustomChargeForm', form=self, initial=initial)
+        form_initialdata.send('CustomChargeForm', form=self, initial=initial)
         kwargs['initial'] = initial
         super(CustomChargeForm, self).__init__(*args, **kwargs)
         form_init.send(self.__class__, form=self)
