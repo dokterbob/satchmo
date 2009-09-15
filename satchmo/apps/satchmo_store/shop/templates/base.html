@@ -7,7 +7,7 @@
 {% endblock %}
 <head>
     {% block extra-head %}{% endblock %}
-    <link rel="stylesheet" href="{{ media_url }}css/style.css" />
+    {% block stylesheet %}<link rel="stylesheet" href="{{ media_url }}css/style.css" />{% endblock %}
     <title>{% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}{% endif %}{% endblock %}</title>
     {% plugin_point "page_head" %}
 </head>
