@@ -159,7 +159,7 @@ class CustomChargeForm(forms.Form):
         
     def __init__(self, *args, **kwargs):
         initial = kwargs.get('initial', {})
-        signals.form_initialdata.send('ExampleForm', form=self, initial=initial)
+        signals.form_initialdata.send('CustomChargeForm', form=self, initial=initial)
         kwargs['initial'] = initial
         super(CustomChargeForm, self).__init__(*args, **kwargs)
         form_init.send(self.__class__, form=self)
