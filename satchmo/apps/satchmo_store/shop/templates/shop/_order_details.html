@@ -4,6 +4,8 @@
 {% load app_plugins normalize_decimal %}
 {% load i18n %}
 {% if default_view_tax %}{% load satchmo_tax %}{% endif %}
+
+<h4>{% trans "Items Ordered" %}</h4>
 {% for item in order.orderitem_set.all %}
 {% if default_view_tax %}
 {{ item }} - {{item.unit_price_with_tax|currency}} x {{item.quantity|normalize_decimal}}{% if item.discount %} - {{ item.discount|currency }}{% endif %} = {{item.total_with_tax|currency}}<br/>

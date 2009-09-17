@@ -26,8 +26,9 @@
 {% endif %}
 {% endblock %}
 
-<h4>{% trans "Items Ordered" %}</h4>
-{% order_details order default_view_tax %}
+{% block order_details %}
+    {% order_details order default_view_tax %}
+{% endblock %}
 
 {% block payment_display %}
 {# override for module-specific needs, such as displaying card info #}
@@ -41,4 +42,4 @@
 </form>
 {% endblock %}
 
-{% endblock %}
+{% endblock content %}
