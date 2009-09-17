@@ -33,6 +33,7 @@ setup(name = "Satchmo",
       '' : 'satchmo/apps',
       'static' : 'satchmo/static'
       },
+      scripts=['scripts/getsatchmo.py'],
       setup_requires=["setuptools_hg"],
       packages = packages,
       classifiers = [

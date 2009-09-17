@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This is the bootsrap installation script for Satchmo. It will make sure that
 the dependencies are in place, then will create the base Satchmo configuration.
@@ -36,7 +37,6 @@ http://www.reportlab.org/ftp/ReportLab_2_3.tar.gz
 -e hg+http://bitbucket.org/bkroeze/django-caching-app-plugins/#egg=django-caching-app-plugins
 -e hg+http://bitbucket.org/bkroeze/django-signals-ahoy/#egg=django-signals-ahoy
 -e hg+https://sorl-thumbnail.googlecode.com/hg/#egg=sorl-thumbnail
--e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
 """
 
 pil_requirements = "http://effbot.org/downloads/Imaging-1.1.6.tar.gz"
