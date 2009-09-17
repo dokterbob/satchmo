@@ -1,14 +1,17 @@
 Translating Content
 ===================
 
-When translating Satchmo to your desired language, you will generally need to translate the words in the templates as well as the text used in your product and category descriptions. The `Django Internationalization documentation`_ is an excellent resource on the overall capability available through Django. The sections below describe the Satchmo specific steps.
+When translating Satchmo to your desired language, you will generally need to translate the words in the templates 
+as well as the text used in your product and category descriptions. 
+The `Django Internationalization documentation`_ is an excellent resource on the overall capability available 
+through Django. The sections below describe the Satchmo specific steps.
 
 Template Translations
 ---------------------
 
 1. Change to the directory where Satchmo is stored (somewhere on your PYTHONPATH) and create your translation file::
 
-    python make-messages.py -l de
+    /path/to/django-admin.py makemessages -l=de -e=html,txt,rml
 
 
  In the example above, replace "de" with the language code for the message file you want to create.
@@ -93,7 +96,7 @@ After you have translated the templates, you will need to add your translations 
 After you have created a product, you can use the Product Translation section to create translated Name, Short Description and Full Description of the product. Creation is straightforward and allows you to version your changes so that you can try different translations to see which is most effective.
 
 
-.. _Django Internationalization documentation: http://www.djangoproject.com/documentation/i18n/
+.. _Django Internationalization documentation: http://docs.djangoproject.com/en/dev/topics/i18n/
 .. _ISO 639-1: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 .. _ISO 3166-1: http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 .. _Django: http://www.djangoproject.com/
