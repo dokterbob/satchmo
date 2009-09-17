@@ -421,6 +421,8 @@ class DiscountManager(models.Manager):
             
         if sale is None:
             raise Discount.DoesNotExist
+        else:
+            return sale
 
 class Discount(models.Model):
     """
