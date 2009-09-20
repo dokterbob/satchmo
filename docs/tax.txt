@@ -1,0 +1,65 @@
+Tax
+===
+
+Tax Module Activation
+--------------------------
+
+Satchmo provides you the flexibility to enable several different types of
+tax modules.
+
+To activate the various tax modules, they need to be enabled in your settings.py 
+file. For example::
+        
+        INSTALLED_APPS = (
+                ... 
+                'tax',
+                'tax.modules.no',
+                'tax.modules.area',
+                'tax.modules.percent',
+                'tax.modules.us_sst',
+                ...
+
+.. Note::
+    You must include tax as well as the specific module under tax that you
+    would like to enable.
+
+Activate and configure your tax modules from your site settings page.
+Usually this is at ``SHOP_BASE/settings/``. You can also access this page from
+the ``Edit Site Settings`` link on your main admin home page.
+
+.. Note::
+    If you have custom tax you would like to add, make sure it is added to your
+    ``CUSTOM_TAX_MODULES`` list in your local_settings.py file
+
+Available Modules
+-----------------
+
+Satchmo includes several tax modules in the default distribution. In general, you will
+want to enable only one of these. However, based on your products and your
+geography you will need to figure out what makes sense.
+
+No
+^^
+This is a very simple module which does not tax any product. It is meant
+as an example and will probably not be useful in a production store.
+
+Area
+^^^^^
+This tax module allows you to set taxes based on the geographic area a shipment is 
+being sent to. For example, in the US, this would be used to set varying sales tax 
+rates based on the State.
+
+The satchmo admin command satchmo_load_us_tax will load sales tax rates for
+each state. You should verify these and make sure they are correct.
+
+Percent
+^^^^^^^
+This simple module will charge a flat rate percentage (configured in the admin)
+to every purchase.
+
+
+US Streamlined Sales Tax (SST) Processing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The SST module is a complex application that uses the 
+`SST <http://www.streamlinedsalestax.org/>`_ service to try to streamline
+sales tax processing in the US.
