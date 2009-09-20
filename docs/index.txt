@@ -33,6 +33,7 @@ Store Usage
    product
    discounts
    pricing
+   tax
    shipping
    analytics
    payment

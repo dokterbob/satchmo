@@ -1,317 +1,270 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"POT-Creation-Date: 2009-03-13 23:04+0200\n"
+"PO-Revision-Date: 2009-03-22 07:22\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: templates/admin/charge_remaining_confirm.html:7
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "אנא תקן את השגיאה למטה."
-msgstr[1] ""
+#: config.py:13
+msgid "Payment Settings"
+msgstr "אפשרויות תשלום"
 
-#: common/views/payship.py:22
-msgid "Please Select"
-msgstr "בחר"
+#: config.py:18
+msgid "Cron Passkey"
+msgstr "מפתח Cron"
 
-#: common/forms.py:118
-msgid "This field is required."
-msgstr "שדה לא חובה."
+#: config.py:19
+msgid "Enter an authentication passkey to secure your recurring billing cron url."
+msgstr "הזן מפתח אימות כדי לאבטח את כתובת cron לחיובים מחזוריים."
 
-#: views.py:27
-#: templates/admin/charge_remaining_confirm.html:16
-msgid "Notes"
-msgstr "הערות"
+#: config.py:26
+msgid "Allow URL Access to Cron for subscription rebills"
+msgstr "אפשר גישה ל-URL Cron עבור חיובי מנוי "
 
-#: models.py:31
-msgid "Description"
-msgstr "תיאור"
+#: config.py:27
+msgid "Do you want to allow remote url calls for subscription billing?"
+msgstr "האם אתה מעוניין לאפשר קריאות מרחוק לכתובת חיובי מנוי?"
 
-#: models.py:37
-msgid "Sort Order"
-msgstr "סדר מיון"
-
-#: models.py:32
-msgid "Active"
-msgstr "פעיל"
-
-#: modules/authorizenet/config.py:39
-#: modules/cybersource/config.py:33
-#: modules/trustcommerce/config.py:31
-msgid "Use SSL for the checkout pages?"
-msgstr "האם להשתמש ב SSL עבור דפי סיום ההזמנה?"
-
-#: modules/authorizenet/config.py:56
-#: modules/autosuccess/config.py:33
-#: modules/cod/config.py:36
-#: modules/cybersource/config.py:50
-#: modules/dummy/config.py:35
-#: modules/google/config.py:94
-#: modules/paypal/config.py:69
-#: modules/trustcommerce/config.py:19
-msgid "Module key"
-msgstr "מפתח מודול"
-
-#: modules/authorizenet/config.py:50
-#: modules/autosuccess/config.py:27
-#: modules/cod/config.py:30
-#: modules/cybersource/config.py:44
-#: modules/dummy/config.py:29
-#: modules/google/config.py:88
-#: modules/paypal/config.py:63
-#: modules/trustcommerce/config.py:25
-msgid "Implementation module"
-msgstr "מודול מימוש"
-
-#: modules/authorizenet/config.py:62
-#: modules/autosuccess/config.py:39
-#: modules/cod/config.py:42
-#: modules/cybersource/config.py:56
-#: modules/dummy/config.py:41
-#: modules/google/config.py:100
-#: modules/paypal/config.py:75
-#: modules/trustcommerce/config.py:56
-msgid "English name for this group on the checkout screens"
-msgstr "שם באנגלית עבור הקבוצה בדפי סיום הזמנה"
-
-#: modules/authorizenet/config.py:64
-#: modules/autosuccess/config.py:41
-#: modules/cod/config.py:44
-#: modules/cybersource/config.py:58
-#: modules/dummy/config.py:43
-#: modules/google/config.py:102
-#: modules/paypal/config.py:77
-#: modules/trustcommerce/config.py:58
-msgid "This will be passed to the translation utility"
-msgstr "זה יועבר לתוכנית התרגום"
-
-#: config.py:31
-#: modules/authorizenet/config.py:44
-#: modules/autosuccess/config.py:15
-#: modules/cod/config.py:23
-#: modules/cybersource/config.py:38
-#: modules/dummy/config.py:23
-#: modules/google/config.py:82
-#: modules/paypal/config.py:57
+#: config.py:34 modules/authorizenet/config.py:44
+#: modules/autosuccess/config.py:15 modules/cod/config.py:23
+#: modules/cybersource/config.py:38 modules/dummy/config.py:23
+#: modules/giftcertificate/config.py:52 modules/google/config.py:82
+#: modules/paypal/config.py:57 modules/protx/config.py:23
+#: modules/purchaseorder/config.py:19 modules/sermepa/config.py:53
 #: modules/trustcommerce/config.py:41
 msgid "Accept real payments"
 msgstr "קבל תשלומים אמיתיים"
 
-#: modules/authorizenet/config.py:45
-#: modules/autosuccess/config.py:16
-#: modules/cod/config.py:24
-#: modules/cybersource/config.py:39
-#: modules/dummy/config.py:24
-#: modules/google/config.py:83
-#: modules/paypal/config.py:58
-#: modules/trustcommerce/config.py:42
-msgid "False if you want to be in test mode"
-msgstr "שלילי אם את(ה) רוצה להיות במצב בדיקה"
+#: config.py:35
+msgid "False if you want to be in test mode.  This is the master switch, turn it off to force all payments into test mode."
+msgstr "שלילי אם את(ה) רוצה להיות במצב בדיקה. זה השלטר הראשי, כבה אותו כדי לכפות את כל התשלומים למצב בדיקה."
 
-#: modules/authorizenet/config.py:68
-#: modules/autosuccess/config.py:45
-#: modules/cod/config.py:48
-#: modules/cybersource/config.py:68
-#: modules/dummy/config.py:47
-#: modules/google/config.py:106
-#: modules/paypal/config.py:81
-#: modules/trustcommerce/config.py:62
-msgid ""
-"The url base used for constructing urlpatterns which will use this module"
-msgstr "כתובת הבסיס לצורך בנית תבניות כתובת עבור המודול"
+#: config.py:42
+msgid "Email owner?"
+msgstr "אימייל לבעלים?"
 
-#: modules/cod/processor.py:21
-#: modules/dummy/processor.py:38
-msgid "Success"
-msgstr "הצלחה"
+#: config.py:43
+msgid "True if you want to email the owner on order"
+msgstr "חיובי אם את(ה) רוצה לשלוח לבעלים אימייל עם ההזמנה"
 
-#: config.py:10
-msgid "Payment Settings"
-msgstr "אפשרויות תשלום"
+#: config.py:50
+msgid "Extra order emails?"
+msgstr "כתובות אימייל נוספות להזמנה?"
 
-#: config.py:15
-msgid "Cron Passkey"
-msgstr ""
+#: config.py:52
+msgid "Put all email addresses you want to email in addition to the owner when an order is placed."
+msgstr "שים את כל כתובות הדואר האלקטרוני שברצונך לשלוח להם דוא\"ל בנוסף לבעלים כאשר יש הזמנה חדשה."
 
-#: config.py:16
-msgid ""
-"Enter an authentication passkey to secure your recurring billing cron url."
-msgstr ""
-
-#: config.py:23
-msgid "Allow URL Access to Cron for subscription rebills"
-msgstr ""
-
-#: config.py:24
-msgid "Do you want to allow remote url calls for subscription billing?"
-msgstr ""
-
-#: config.py:32
-msgid ""
-"False if you want to be in test mode.  This is the master switch, turn it "
-"off to force all payments into test mode."
-msgstr ""
-"שלילי אם את(ה) רוצה להיות במצב בדיקה. זה השלטר הראשי, כבה אותו כדי לכפות את "
-"כל התשלומים למצב בדיקה."
-
-#: config.py:40
+#: config.py:60
 msgid "Country match required?"
 msgstr "לדרוש התאמת מדינה?"
 
-#: config.py:41
-msgid ""
-"If True, then customers may not have different countries for shipping and "
-"billing."
+#: config.py:61
+msgid "If True, then customers may not have different countries for shipping and billing."
 msgstr "אם חיובי, לקוחות לא יכולים לציין מדינות שונות למשלוח ולתשלום."
 
-#: config.py:46
+#: config.py:66
 msgid "Enable payment modules"
 msgstr "אפשר מודולי תשלום"
 
-#: config.py:47
+#: config.py:67
 msgid ""
 "Select the payment modules you want to use with your shop.  \n"
-"If you are adding a new one, you should save and come back to this page, \n"
-"as it may have enabled a new configuration section."
-msgstr ""
-"בחר מודולי תשלום לחנות. אם את(ה) מוסיף מודול חדש, עליך לשמור ולחזור לדף הזה, "
-"כי אולי המודול החדש הוסיף דף קונפיגורציה חדש."
+"    If you are adding a new one, you should save and come back to this page, \n"
+"    as it may have enabled a new configuration section."
+msgstr "בחר מודולי תשלום לחנות. אם את(ה) מוסיף מודול חדש, עליך לשמור ולחזור לדף הזה, כי אולי המודול החדש הוסיף דף קונפיגורציה חדש."
 
-#: config.py:54
+#: config.py:74
 msgid "Enable SSL"
 msgstr "אפשר SSL"
 
-#: config.py:55
+#: config.py:75
 msgid ""
 "This enables for generic pages like contact information capturing.  \n"
-"It does not set SSL for individual modules. \n"
-"You must enable SSL for each payment module individually."
-msgstr ""
-"אפשר דפים גנריים כגון לכידת אנשי קשר. אפשרות זו לא מפעילה SSL עבור מודולים "
-"אינדיוידואלים. עליך לאפשר SSL עבור כל מודול תשלום בנפרד."
+"    It does not set SSL for individual modules. \n"
+"    You must enable SSL for each payment module individually."
+msgstr "אפשר דפים גנריים כגון לכידת אנשי קשר. אפשרות זו לא מפעילה SSL עבור מודולים אינדיוידואלים. עליך לאפשר SSL עבור כל מודול תשלום בנפרד."
+
+#: config.py:82
+msgid "Minimum Order"
+msgstr "מינימום הזמנה"
+
+#: config.py:83
+msgid "The minimum cart total before checkout is allowed."
+msgstr "סכום מינימום לעגלה לפני שאפשר לגשת לקופה."
+
+#: config.py:88
+msgid "Save Credit Card Numbers"
+msgstr "שמור מספרי כרטיסי אשראי"
+
+#: config.py:89
+msgid "If False, then the credit card will never be written to disk.  For PCI compliance, this is required unless you have your database server on a separate server not connected to the internet."
+msgstr "אם לא, אז מספר כרטיס האשראי לעולם לא יהיה כתוב על הדיסק. עבור תאימות ל-PCI זה מחייב, אלא אם כן שרת מסד הנתונים שלך נמצא על שרת נפרד, שלא מחובר לאינטרנט."
+
+#: config.py:94
+msgid "Use discounts"
+msgstr "השתמש בהנחות"
+
+#: config.py:95
+msgid "If disabled, customers will not be asked for any discount codes."
+msgstr "אם מבוטל, לא יוצג ללקוחות להכניס קודי הנחה."
+
+#: forms.py:71
+msgid "New price"
+msgstr "מחיר חדש"
+
+#: forms.py:72
+msgid "Shipping adjustment"
+msgstr "התאמת משלוח"
+
+#: forms.py:73 modules/giftcertificate/models.py:106
+#: modules/purchaseorder/models.py:18
+#: templates/payment/admin/charge_remaining_confirm.html:16
+msgid "Notes"
+msgstr "הערות"
+
+#: forms.py:78
+msgid "Payment method"
+msgstr "צורת תשלום"
+
+#: forms.py:131
+msgid "This field is required"
+msgstr "שדה זה חובה"
+
+#: forms.py:134
+msgid "Selected payment method requires this field to be filled"
+msgstr "שיטת התשלום הנבחרת מחייבת שדה זה להיות מלא"
+
+#: forms.py:190
+msgid "This field is required."
+msgstr "יש להזין תוכן בשדה זה."
+
+#: forms.py:202
+msgid "Invalid discount."
+msgstr "הנחה לא חוקית."
+
+#: forms.py:264
+msgid "Your card has expired."
+msgstr "תוקף הכרטיס פג."
+
+#: forms.py:273
+msgid "Invalid ccv."
+msgstr "ערך CCV לא תקין."
+
+#: listeners.py:18
+msgid "terms and conditions"
+msgstr "תנאים והגבלות"
+
+#: listeners.py:20
+#, python-format
+msgid "Do you accept the %(terms_link)s?"
+msgstr "האם אתה מסכים ל %(terms_link)s?"
+
+#: models.py:32
+msgid "Description"
+msgstr "תיאור"
 
 #: models.py:33
+msgid "Active"
+msgstr "פעיל"
+
+#: models.py:34
 msgid "Should this be displayed as an option for the user?"
 msgstr "האם להציג זאת כאפשרות למשתמש?"
 
-#: models.py:34
+#: models.py:35
 msgid "Option Name"
 msgstr "שם אופציה"
 
-#: models.py:36
+#: models.py:37
 msgid "The class name as defined in payment.py"
 msgstr "שם המחלקה כמוגדר ב  payment.py"
 
-#: models.py:44
+#: models.py:38
+msgid "Sort Order"
+msgstr "סדר מיון"
+
+#: models.py:41
 msgid "Payment Option"
 msgstr "אפשרות תשלום"
 
-#: models.py:45
+#: models.py:42
 msgid "Payment Options"
 msgstr "אפשרויות תשלום"
 
-#: models.py:54
+#: models.py:51
 msgid "Credit Card Type"
 msgstr "סוג כרטיס אשראי"
 
-#: models.py:56
+#: models.py:52
 msgid "CC Number (Last 4 digits)"
 msgstr "מספר כרטיס (4 ספרות אחרונות)"
 
-#: models.py:58
+#: models.py:54
 msgid "Encrypted Credit Card"
 msgstr "כרטיס אשראי מוצפן"
 
-#: models.py:60
+#: models.py:56
 msgid "Expiration Month"
 msgstr "חודש תפוגה"
 
-#: models.py:61
+#: models.py:57
 msgid "Expiration Year"
 msgstr "שנת תפוגה"
 
-#: models.py:105
-#: modules/authorizenet/config.py:6
-#: modules/cybersource/config.py:6
+#: models.py:58
+msgid "card_holder Name"
+msgstr "שם בעל הכרטיס"
+
+#: models.py:59
+msgid "Start Month"
+msgstr "חודש התחלה"
+
+#: models.py:60
+msgid "Start Year"
+msgstr "שנת התחלה"
+
+#: models.py:110 modules/authorizenet/config.py:6
+#: modules/cybersource/config.py:6 modules/protx/config.py:6
 #: modules/trustcommerce/config.py:5
 msgid "Credit Card"
 msgstr "כרטיס אשראי"
 
-#: models.py:106
+#: models.py:111
 msgid "Credit Cards"
 msgstr "כרטיסי אשראי"
 
-#: views.py:25
-msgid "New price"
-msgstr "מחיר חדש"
+#: modules/base.py:68
+msgid "OK"
+msgstr "נכון"
 
-#: views.py:26
-msgid "Shipping adjustment"
-msgstr "התאמת משלוח"
+#: modules/base.py:333 modules/autosuccess/processor.py:27
+#: modules/cod/processor.py:26 modules/dummy/processor.py:22
+#: modules/dummy/processor.py:43 modules/dummy/processor.py:55
+#: modules/giftcertificate/processor.py:49
+#: modules/purchaseorder/processor.py:31
+msgid "Success"
+msgstr "הצלחה"
 
-#: views.py:41
-msgid "Feature is not enabled."
-msgstr "התכונה לא מאופשרת"
+#: modules/base.py:335
+msgid "Failure"
+msgstr "כשלון"
 
-#: views.py:149
-#: views.py:173
-msgid ""
-"The orderitem you have requested doesn't exist, or you don't have access to "
-"it."
-msgstr "פריט ההזמנה המבוקש אינו קיים, או שאין לך הרשאת צפייה בו."
-
-#: views.py:163
-msgid "No form found in request."
-msgstr "טופס לא נמצא בבקשה."
-
-#: common/forms.py:65
-#: common/forms.py:78
-msgid "Payment method"
-msgstr "צורת תשלום"
-
-#: common/forms.py:128
-msgid "Invalid discount."
-msgstr "הנחה לא חוקית."
-
-#: common/forms.py:180
-msgid "Your card has expired."
-msgstr "תוקף הכרטיס פג."
-
-#: common/forms.py:189
-msgid "Invalid ccv."
-msgstr "ערך CCV לא תקין."
-
-#: common/pay_ship.py:47
-#, python-format
-msgid "Thank you for your order from %(shop_name)s"
-msgstr "תודה על הזמנתך מ %(shop_name)s"
-
-#: common/views/checkout.py:14
-msgid "Your order has already been processed."
-msgstr "ההזמנה שלך כבר טופלה."
-
-#: common/views/confirm.py:42
-#: modules/google/views.py:79
-#: modules/paypal/views.py:48
-msgid "Your order is no longer valid."
-msgstr "ההזמנה שלך כבר לא בתוקף."
-
-#: modules/authorizenet/config.py:6
-#: modules/cybersource/config.py:6
-#: modules/trustcommerce/config.py:5
+#: modules/authorizenet/config.py:6 modules/cybersource/config.py:6
+#: modules/protx/config.py:6 modules/trustcommerce/config.py:5
 msgid "CreditCard"
 msgstr "כרטיס אשראי"
 
@@ -323,8 +276,7 @@ msgstr "אפשרויות תשלום Authorize.net"
 msgid "Submit to URL"
 msgstr "שלח לכתובת"
 
-#: modules/authorizenet/config.py:21
-#: modules/cybersource/config.py:22
+#: modules/authorizenet/config.py:21 modules/cybersource/config.py:22
 msgid "This is the address to submit live transactions."
 msgstr "זו הכתובת לשליחת live transactions."
 
@@ -332,31 +284,140 @@ msgstr "זו הכתובת לשליחת live transactions."
 msgid "Submit to Test URL"
 msgstr "שלח לבדיקת כתובת"
 
-#: modules/authorizenet/config.py:73
-#: modules/cybersource/config.py:73
-#: modules/dummy/config.py:52
+#: modules/authorizenet/config.py:39 modules/cybersource/config.py:33
+#: modules/giftcertificate/config.py:17 modules/protx/config.py:52
+#: modules/purchaseorder/config.py:53 modules/trustcommerce/config.py:31
+msgid "Use SSL for the checkout pages?"
+msgstr "האם להשתמש ב SSL עבור דפי סיום ההזמנה?"
+
+#: modules/authorizenet/config.py:45
+msgid "False if you want to submit to the test urls."
+msgstr "שלילי אם אתה רוצה להשתמש בכתובות בדיקה."
+
+#: modules/authorizenet/config.py:50
+msgid "Force a test post?"
+msgstr "אלץ פוסט בדיקה?"
+
+#: modules/authorizenet/config.py:51
+msgid "True if you want to submit to the live url using a test flag, which won't be accepted."
+msgstr "נכון אם אתה רוצה להשתמש בכתובות האמיתיות ולהדליק את דגל הבדיקה, אשר לא יתקבל."
+
+#: modules/authorizenet/config.py:56 modules/autosuccess/config.py:21
+#: modules/cod/config.py:30 modules/cybersource/config.py:44
+#: modules/dummy/config.py:29 modules/giftcertificate/config.py:40
+#: modules/google/config.py:88 modules/paypal/config.py:63
+#: modules/protx/config.py:57 modules/purchaseorder/config.py:25
+#: modules/sermepa/config.py:27 modules/trustcommerce/config.py:25
+msgid "Implementation module"
+msgstr "מודול מימוש"
+
+#: modules/authorizenet/config.py:62 modules/autosuccess/config.py:27
+#: modules/cod/config.py:36 modules/cybersource/config.py:50
+#: modules/dummy/config.py:35 modules/giftcertificate/config.py:28
+#: modules/google/config.py:94 modules/paypal/config.py:69
+#: modules/protx/config.py:63 modules/purchaseorder/config.py:31
+#: modules/sermepa/config.py:33 modules/trustcommerce/config.py:19
+msgid "Module key"
+msgstr "מפתח מודול"
+
+#: modules/authorizenet/config.py:68 modules/autosuccess/config.py:33
+#: modules/cod/config.py:42 modules/cybersource/config.py:56
+#: modules/dummy/config.py:41 modules/giftcertificate/config.py:46
+#: modules/google/config.py:100 modules/paypal/config.py:75
+#: modules/protx/config.py:69 modules/purchaseorder/config.py:37
+#: modules/sermepa/config.py:39 modules/trustcommerce/config.py:56
+msgid "English name for this group on the checkout screens"
+msgstr "שם באנגלית עבור הקבוצה בדפי סיום הזמנה"
+
+#: modules/authorizenet/config.py:70 modules/autosuccess/config.py:35
+#: modules/cod/config.py:44 modules/cybersource/config.py:58
+#: modules/dummy/config.py:43 modules/giftcertificate/config.py:48
+#: modules/google/config.py:102 modules/paypal/config.py:77
+#: modules/protx/config.py:71 modules/purchaseorder/config.py:39
+#: modules/sermepa/config.py:41 modules/trustcommerce/config.py:58
+msgid "This will be passed to the translation utility"
+msgstr "זה יועבר לתוכנית התרגום"
+
+#: modules/authorizenet/config.py:74 modules/autosuccess/config.py:39
+#: modules/cod/config.py:48 modules/cybersource/config.py:68
+#: modules/dummy/config.py:47 modules/giftcertificate/config.py:58
+#: modules/google/config.py:106 modules/paypal/config.py:81
+#: modules/protx/config.py:109 modules/purchaseorder/config.py:43
+#: modules/sermepa/config.py:46 modules/trustcommerce/config.py:62
+msgid "The url base used for constructing urlpatterns which will use this module"
+msgstr "כתובת הבסיס לצורך בנית תבניות כתובת עבור המודול"
+
+#: modules/authorizenet/config.py:79 modules/cybersource/config.py:73
+#: modules/dummy/config.py:52 modules/protx/config.py:75
 #: modules/trustcommerce/config.py:67
 msgid "Available credit cards"
 msgstr "כרטיסי אשראי זמינים"
 
-#: modules/authorizenet/config.py:83
+#: modules/authorizenet/config.py:89
 msgid "Your authorize.net transaction login"
 msgstr "שם transaction login שלך ב authorize.net"
 
-#: modules/authorizenet/config.py:88
+#: modules/authorizenet/config.py:94
 msgid "Your authorize.net transaction key"
 msgstr "שם transaction key שלך ב authorize.net"
 
-#: modules/authorizenet/config.py:93
-msgid "Capture Payment?"
-msgstr "הקלט תשלום?"
+#: modules/authorizenet/config.py:99 modules/dummy/config.py:62
+msgid "Capture Payment immediately?"
+msgstr "חייב תשלום מייד?"
 
-#: modules/authorizenet/config.py:95
-msgid ""
-"IMPORTANT: If false, you will need to manually go to your authorize.net "
-"merchant account and capture payments.  Setting this to false means you are "
-"authorizing the card only, not capturing payment."
-msgstr ""
+#: modules/authorizenet/config.py:101 modules/dummy/config.py:64
+msgid "IMPORTANT: If false, a capture attempt will be made when the order is marked as shipped.\""
+msgstr "חשוב: אם שלילי, ניסיון חיוב ייעשה כאשר ההזמנה מסומנת כנשלחה. \""
+
+#: modules/authorizenet/config.py:105 modules/autosuccess/config.py:44
+#: modules/cod/config.py:53 modules/cybersource/config.py:93
+#: modules/dummy/config.py:68 modules/giftcertificate/config.py:63
+#: modules/google/config.py:111 modules/paypal/config.py:86
+#: modules/protx/config.py:114 modules/sermepa/config.py:169
+#: modules/trustcommerce/config.py:87
+msgid "Verbose logs"
+msgstr "לוג מפורט"
+
+#: modules/authorizenet/config.py:106 modules/autosuccess/config.py:45
+#: modules/cod/config.py:54 modules/cybersource/config.py:94
+#: modules/dummy/config.py:69 modules/giftcertificate/config.py:64
+#: modules/google/config.py:112 modules/paypal/config.py:87
+#: modules/protx/config.py:115 modules/sermepa/config.py:170
+#: modules/trustcommerce/config.py:88
+msgid "Add extensive logs during post."
+msgstr "הוסף לוג מפורט במהלך פוסט."
+
+#: modules/authorizenet/config.py:113
+msgid "Enable ARB?"
+msgstr "אפשר ARB?"
+
+#: modules/authorizenet/config.py:115
+msgid "Enable ARB processing for setting up subscriptions.  You must have this enabled in your Authorize account for it to work."
+msgstr "אפשר עיבוד ARB עבור הגדרת מנויים. אתה חייב לאפשר את זה בחשבון Authorize שלך כדי שזה יעבוד."
+
+#: modules/authorizenet/config.py:120
+msgid "Submit to URL (ARB)"
+msgstr "שלח לכתובת (ARB)"
+
+#: modules/authorizenet/config.py:121
+msgid "This is the address to submit live transactions for ARB."
+msgstr "זו הכתובת לשליחת live transactions עבור ARB."
+
+#: modules/authorizenet/config.py:128
+msgid "Submit to Test URL (ARB)"
+msgstr "שלח לכתובת בדיקה (ARB)"
+
+#: modules/authorizenet/config.py:129
+msgid "This is the address to submit test transactions for ARB."
+msgstr "זו הכתובת לשליחת test transactions עבור ARB."
+
+#: modules/authorizenet/processor.py:59
+msgid "Already complete"
+msgstr "כבר הושלם"
+
+#: modules/authorizenet/processor.py:362 modules/authorizenet/processor.py:405
+msgid "Could not talk to Authorize.net gateway"
+msgstr "אין אפשרות לדבר עם שרת Authorize.net"
 
 #: modules/autosuccess/config.py:5
 msgid "Auto Success Module"
@@ -366,13 +427,14 @@ msgstr "מודול Auto Success"
 msgid "Payment Auto Success Module Settings"
 msgstr "אפשרויות תשלום Auto Success"
 
-#: modules/autosuccess/config.py:21
-msgid "Send order emails"
-msgstr "שלך אימייל הזמנה"
-
-#: modules/autosuccess/config.py:22
-msgid "True if you want to send emails to customers on order"
-msgstr "חיובי אם את(ה) רוצה לשלוח ללקוחות אימייל עם ההזמנה"
+#: modules/autosuccess/config.py:16 modules/cod/config.py:24
+#: modules/cybersource/config.py:39 modules/dummy/config.py:24
+#: modules/giftcertificate/config.py:53 modules/google/config.py:83
+#: modules/paypal/config.py:58 modules/protx/config.py:24
+#: modules/purchaseorder/config.py:20 modules/sermepa/config.py:54
+#: modules/trustcommerce/config.py:42
+msgid "False if you want to be in test mode"
+msgstr "שלילי אם את(ה) רוצה להיות במצב בדיקה"
 
 #: modules/cod/config.py:8
 msgid "COD"
@@ -382,10 +444,9 @@ msgstr "תשלום בעת קבלה"
 msgid "COD Payment Module Settings"
 msgstr "אפשרויות תשלום COD"
 
-#: modules/cod/config.py:18
-#: modules/dummy/config.py:18
-#: modules/google/config.py:77
-#: modules/paypal/config.py:52
+#: modules/cod/config.py:18 modules/dummy/config.py:18
+#: modules/google/config.py:77 modules/paypal/config.py:52
+#: modules/sermepa/config.py:162
 msgid "Use SSL for the module checkout pages?"
 msgstr "השתמש ב SSL בדפי סיום הזמנה?"
 
@@ -401,9 +462,8 @@ msgstr "כתובת WSDL"
 msgid "Submit to Test WSDL URL"
 msgstr "כתובת WSDL שליחה לבדיקה"
 
-#: modules/cybersource/config.py:62
-#: modules/google/config.py:25
-#: modules/paypal/config.py:16
+#: modules/cybersource/config.py:62 modules/google/config.py:25
+#: modules/paypal/config.py:16 modules/protx/config.py:103
 msgid "Currency Code"
 msgstr "קוד מטבע"
 
@@ -427,6 +487,238 @@ msgstr "מודול בדיקת תשלום"
 msgid "Payment Test Module Settings"
 msgstr "אפשרויות מודול בדיקת תשלום"
 
+#: modules/giftcertificate/config.py:8 modules/giftcertificate/models.py:100
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:7
+#: modules/giftcertificate/templates/giftcertificate/balance.html:13
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:9
+msgid "Gift Certificate"
+msgstr "אישור מתנה"
+
+#: modules/giftcertificate/config.py:11
+msgid "Gift Certificate Settings"
+msgstr "הגדרות אישור מתנה"
+
+#: modules/giftcertificate/config.py:22
+msgid "Character Set"
+msgstr "ערכת תווים"
+
+#: modules/giftcertificate/config.py:24
+msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
+msgstr "התווים המותרים באישורים שנוצרים באופן אקראי."
+
+#: modules/giftcertificate/config.py:34
+msgid "Code format"
+msgstr "פורמט קוד"
+
+#: modules/giftcertificate/config.py:36
+msgid "Enter the format for your cert code.  Use a '^' for the location of a randomly generated character."
+msgstr "הזן את הפורמט שלך לקוד אישור. השתמש ב- '^' עבור מיקום של תו שנוצר באופן אקראי."
+
+#: modules/giftcertificate/forms.py:6
+msgid "Code"
+msgstr "קוד"
+
+#: modules/giftcertificate/models.py:35
+msgid "Site"
+msgstr "אתר"
+
+#: modules/giftcertificate/models.py:36 modules/purchaseorder/models.py:34
+msgid "Order"
+msgstr "הזמנה"
+
+#: modules/giftcertificate/models.py:37
+msgid "Certificate Code"
+msgstr "קוד אישור"
+
+#: modules/giftcertificate/models.py:39
+msgid "Purchased by"
+msgstr "נרכש על ידי"
+
+#: modules/giftcertificate/models.py:41
+msgid "Date added"
+msgstr "תאריך הוספה"
+
+#: modules/giftcertificate/models.py:42
+msgid "Valid"
+msgstr "תקף"
+
+#: modules/giftcertificate/models.py:43
+msgid "Message"
+msgstr "הודעה"
+
+#: modules/giftcertificate/models.py:44
+msgid "Email"
+msgstr "אימייל"
+
+#: modules/giftcertificate/models.py:45
+msgid "Starting Balance"
+msgstr "יתרה התחלתית"
+
+#: modules/giftcertificate/models.py:101
+#: modules/giftcertificate/templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "אישורי מתנה"
+
+#: modules/giftcertificate/models.py:105
+msgid "Date of usage"
+msgstr "מועד השימוש"
+
+#: modules/giftcertificate/models.py:107
+msgid "Amount Used"
+msgstr "הסכום בו נעשה שימוש"
+
+#: modules/giftcertificate/models.py:109
+msgid "Order Payment"
+msgstr "תשלום הזמנה"
+
+#: modules/giftcertificate/models.py:110
+msgid "Used by"
+msgstr "נעשה שימוש על ידי"
+
+#: modules/giftcertificate/models.py:127
+msgid "Product"
+msgstr "מוצר"
+
+#: modules/giftcertificate/models.py:160
+msgid "Gift certificate product"
+msgstr "מוצר אישור מתנה"
+
+#: modules/giftcertificate/models.py:161
+msgid "Gift certificate products"
+msgstr "מוצרי אישור מתנה"
+
+#: modules/giftcertificate/processor.py:29
+msgid "No balance to pay"
+msgstr "אין יתרה לתשלום"
+
+#: modules/giftcertificate/processor.py:38
+msgid "No such Gift Certificate"
+msgstr "אישור מתנה לא קיים"
+
+#: modules/giftcertificate/processor.py:43
+msgid "Bad Gift Certificate"
+msgstr "אישור מתנה לא תקין"
+
+#: modules/giftcertificate/processor.py:53
+#, python-format
+msgid "%s balance remains after gift certificate was applied"
+msgstr "יתרה של %s נוספה לאחר שימוש באישור מתנה"
+
+#: modules/giftcertificate/templates/checkout/confirm.html:9
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:9
+#: modules/giftcertificate/templates/giftcertificate/balance.html:5
+msgid "Home"
+msgstr "דף הבית"
+
+#: modules/giftcertificate/templates/checkout/confirm.html:10
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "לקופה"
+
+#: modules/giftcertificate/templates/checkout/confirm.html:14
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "תשלום"
+
+#: modules/giftcertificate/templates/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "סה\"כ הזמנה: %(orderbalance)s"
+
+#: modules/giftcertificate/templates/checkout/confirm.html:21
+#, python-format
+msgid "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)s total available to pay for your order."
+msgstr "אתה עומד להשתמש באישור מתנה #%(giftcode)s שבו יש %(certbalance)s זמינים לשלם עבור ההזמנה שלך."
+
+#: modules/giftcertificate/templates/checkout/confirm.html:22
+msgid "If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate."
+msgstr "אם אין מספיק כדי לשלם עבור כל ההזמנה, תוכל לבחור צורת תשלום אחרת עבור היתרה לאחר שימוש באישור מתנה זה."
+
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "אנא שים לב:"
+
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid "About to use your gift certificate: %(giftcode)s, which has a balance of %(balance)s."
+msgstr "עומד להשתמש באישור המתנה שלך: %(giftcode)s, אשר מכיל יתרה של %(balance)s."
+
+#: modules/giftcertificate/templates/checkout/giftcertificate/confirm.html:23
+msgid "About to use INVALID gift certificate"
+msgstr "עומד להשתמש באישור מתנה לא חוקי"
+
+#: modules/giftcertificate/templates/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "פרטי התשלום"
+
+#: modules/giftcertificate/templates/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "קוד אישור מתנה"
+
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:5
+msgid "Gift Certificate Codes"
+msgstr "קודי אישור מתנה"
+
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:10
+#, python-format
+msgid "To: %(recipient)s"
+msgstr "עבור: %(recipient)s"
+
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:15
+#, python-format
+msgid "Starting Balance: %(start_balance)s"
+msgstr "יתרה התחלתית: %(start_balance)s"
+
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:19
+#, python-format
+msgid "Code: %(code)s"
+msgstr "קוד: %(code)s"
+
+#: modules/giftcertificate/templates/giftcertificate/_order_summary.html:24
+#, python-format
+msgid "Message: %(message)s"
+msgstr "הודעה: %(message)s"
+
+#: modules/giftcertificate/templates/giftcertificate/balance.html:15
+msgid "Purchased on:"
+msgstr "נרכש ב:"
+
+#: modules/giftcertificate/templates/giftcertificate/balance.html:21
+msgid "Initial Balance:"
+msgstr "יתרה התחלתית:"
+
+#: modules/giftcertificate/templates/giftcertificate/balance.html:22
+msgid "Current Balance:"
+msgstr "יתרה נוכחית:"
+
+#: modules/giftcertificate/templates/giftcertificate/balance.html:25
+msgid "No such gift certificate found."
+msgstr "לא נמצא אישור מתנה כזה."
+
+#: modules/giftcertificate/templates/giftcertificate/balance.html:30
+msgid "Look up balance"
+msgstr "חפש יתרה"
+
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:11
+msgid "Price"
+msgstr "מחיר"
+
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:21
+msgid "Quantity (multiply the gift certificate by this amount)"
+msgstr "כמות (הכפל את אישור המתנה בסכום זה)"
+
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:24
+msgid "Recipient Email (optional):"
+msgstr "כתובת דואר אלקטרוני של המקבל (אופציונאלי):"
+
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:25
+msgid "Message (optional):"
+msgstr "הודעה (אופציונלי):"
+
+#: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:30
+msgid "Add to cart"
+msgstr "הוסף לעגלה"
+
 #: modules/google/config.py:8
 msgid "Google Checkout Module"
 msgstr "מודול Google Checkout"
@@ -440,9 +732,7 @@ msgid "XML Template"
 msgstr "תבנית XML"
 
 #: modules/google/config.py:20
-msgid ""
-"The XML template to use when submitting to Google. Probably you should not "
-"change this."
+msgid "The XML template to use when submitting to Google. Probably you should not change this."
 msgstr "תבנית ה XML לשימוש בשליחה לגוגל. סביר שלא תרצה(י) לשנות את זה."
 
 #: modules/google/config.py:26
@@ -469,10 +759,9 @@ msgstr "בינוני"
 msgid "Large"
 msgstr "גדול"
 
-#: modules/google/config.py:45
-#: modules/google/config.py:51
-#: modules/paypal/config.py:22
-#: modules/paypal/config.py:28
+#: modules/google/config.py:45 modules/google/config.py:51
+#: modules/paypal/config.py:22 modules/paypal/config.py:28
+#: modules/sermepa/config.py:121
 msgid "Post URL"
 msgstr "כתובת Post"
 
@@ -499,6 +788,11 @@ msgstr "זיהוי סוחר נסיוני"
 #: modules/google/config.py:72
 msgid "Merchant Test Key"
 msgstr "מפתח סוחר נסיוני"
+
+#: modules/google/views.py:83 modules/paypal/views.py:48
+#: modules/sermepa/views.py:68 views/confirm.py:202
+msgid "Your order is no longer valid."
+msgstr "ההזמנה שלך כבר לא בתוקף."
 
 #: modules/paypal/config.py:5
 msgid "Paypal Payment Settings"
@@ -541,20 +835,240 @@ msgid "Return URL"
 msgstr "כתובת URL חזרה"
 
 #: modules/paypal/config.py:47
-msgid ""
-"Where Paypal will return the customer after the purchase is complete.  This "
-"can be a named url and defaults to the standard checkout success."
-msgstr ""
-"לאן Paypal יחזיר את הלקוח עם סיום הרכישה. זו יכולה להיות כתובת בעלת שם, "
-"וברירת המחדל היא לדף יציאה מוצלחת סטנדרטי."
+msgid "Where Paypal will return the customer after the purchase is complete.  This can be a named url and defaults to the standard checkout success."
+msgstr "לאן Paypal יחזיר את הלקוח עם סיום הרכישה. זו יכולה להיות כתובת בעלת שם, וברירת המחדל היא לדף יציאה מוצלחת סטנדרטי."
 
-#: modules/paypal/views.py:135
+#: modules/paypal/views.py:142
 msgid "Paid through PayPal."
 msgstr "שולם באמצעות Paypal."
 
-#: modules/paypal/views.py:145
+#: modules/paypal/views.py:152
 msgid "---Comment via Paypal IPN---"
 msgstr "--- IPN Paypal --- משוב דרך"
+
+#: modules/protx/config.py:6
+msgid "Prot/X Secure Payments"
+msgstr "תשלומים מאובטחים Prot/X"
+
+#: modules/protx/config.py:15
+msgid "Prot/X Payment Settings"
+msgstr "אפשרויות תשלום Prot/X"
+
+#: modules/protx/config.py:29
+msgid "Simulated Transactions?"
+msgstr "עסקאות מדומות?"
+
+#: modules/protx/config.py:30
+msgid "Must be false to accept real payments"
+msgstr "חייב להיות שלילי כדי לקבל תשלומים אמיתיים"
+
+#: modules/protx/config.py:35
+msgid "Skip post?"
+msgstr "דלג על פוסט?"
+
+#: modules/protx/config.py:36
+msgid "For testing only, this will skip actually posting to Prot/x servers.  This is because their servers restrict IPs of posting servers, even for tests.  If you are developing on a desktop, you'll have to enable this."
+msgstr "לצורך בדיקות בלבד, לא יישלח מידע לשרתי Prot/x. זאת, משום שיש להם הגבלה על כתובות IP של שרתי תשלום, גם עבור הבדיקות. אם אתה מתפתח על שולחן העבודה, יהיה עליך לאפשר זאת."
+
+#: modules/protx/config.py:41
+msgid "Payment Capture"
+msgstr "לכידת תשלום"
+
+#: modules/protx/config.py:42
+msgid "This can be \"Payment\" which captures immediately, or \"Deferred\".  Note that you can only use the latter if you set option on your Prot/X account first."
+msgstr "זה יכול להיות \"תשלום\" שלוכדים באופן מיידי, או \"דחוי\". שים לב: אתה רק יכול להשתמש באחרון אם אתה קובע קודם באפשרות שלך בחשבון Prot/X."
+
+#: modules/protx/config.py:91
+msgid "Your Vendor Name"
+msgstr "שם הספק שלך"
+
+#: modules/protx/config.py:93
+msgid "This is used for Live and Test transactions.  Make sure to add your server IP address to VSP, or it won't work."
+msgstr "זה משמש גם לעסקאות מדומות (לבדיקה) וגם לעסקאות אמיתיות. הקפד להוסיף את כתובת ה-IP של השרת שלך ל-VSP, או שזה לא יעבוד."
+
+#: modules/protx/config.py:97
+msgid "Simulator Vendor Name"
+msgstr "שם ספק בסימולטור"
+
+#: modules/protx/config.py:99
+msgid "This is used for Live and Test transactions.  Make sure to activate the VSP Simulator (you have to directly request it) and add your server IP address to the VSP Simulator, or it won't work."
+msgstr "זה משמשת לעסקאות מדומות (בדיקה) ולעסקאות אמיתיות. הקפד להפעיל את סימולטור VSP (אתה צריך לבקש את זה ישירות) ולהוסיף את כתובת ה-IP של השרת לסימולטור VSP, או שזה לא יעבוד."
+
+#: modules/protx/config.py:104
+msgid "Currency code for Prot/X transactions."
+msgstr "מספר מטבע עבור Paypal transactions."
+
+#: modules/protx/forms.py:77
+msgid "You must provide a starting month when using this type of card."
+msgstr "אתה חייב לספק חודש התחלה בעת שימוש בסוג כרטיס זה."
+
+#: modules/protx/forms.py:83 modules/protx/forms.py:96
+msgid "This must be a number"
+msgstr "זה חייב להיות מספר"
+
+#: modules/protx/forms.py:86 modules/protx/forms.py:99
+msgid "Out of range, must be 1-12"
+msgstr "מחוץ לטווח, חייב להיות 1-12"
+
+#: modules/protx/forms.py:90
+msgid "You must provide a starting year when using this type of card."
+msgstr "אתה חייב לספק שנת התחלה בעת שימוש בכרטיס מסוג זה."
+
+#: modules/protx/forms.py:103
+msgid "You must provide an issue number when using this type of card."
+msgstr "אתה חייב לספק מספר הנפקה בעת שימוש בכרטיס מסוג זה."
+
+#: modules/protx/processor.py:141
+msgid "TESTING MODE"
+msgstr "מצב בדיקות"
+
+#: modules/protx/processor.py:171
+msgid "Invalid response from payment gateway"
+msgstr "תגובה לא חוקית משרת תשלום"
+
+#: modules/protx/processor.py:173
+msgid "Error processing payment."
+msgstr "שגיאה בעיבוד התשלום."
+
+#: modules/protx/views.py:40
+msgid "3D Secure transaction expired. Please try again."
+msgstr "תוקף עסקה 3D Secure פג. אנא נסה שנית."
+
+#: modules/protx/views.py:57
+msgid "3D Secure transaction was not approved by payment gateway. Please contact us."
+msgstr "עסקת 3D Secure לא אושרה על ידי שרת התשלום, אנא צור עמנו קשר."
+
+#: modules/purchaseorder/config.py:8
+msgid "Purchase Order"
+msgstr "רכישת הזמנה"
+
+#: modules/purchaseorder/config.py:12
+msgid "Purchase Order Module Settings"
+msgstr "אפשרויות מודול רכישת הזמנה"
+
+#: modules/purchaseorder/config.py:48
+msgid "Verbose logging?"
+msgstr "רישום יומן מפורט?"
+
+#: modules/purchaseorder/models.py:13
+msgid "Customer PO Number"
+msgstr "מספר PO של הלקוח"
+
+#: modules/purchaseorder/models.py:15
+msgid "Outstanding Balance"
+msgstr "יתרת חוב"
+
+#: modules/purchaseorder/models.py:17
+msgid "Paid on"
+msgstr "שולם ב"
+
+#: modules/sermepa/config.py:17
+msgid "SERMEPA (ServiRed) Payment"
+msgstr "תשלום SERMEPA (ServiRed)"
+
+#: modules/sermepa/config.py:20
+msgid "SERMEPA (ServiRed) Payment Module Settings"
+msgstr "אפשרויות תשלום SERMEPA (ServiRed)"
+
+#: modules/sermepa/config.py:61
+msgid "Currency"
+msgstr "מטבע"
+
+#: modules/sermepa/config.py:64
+msgid "EUR (Euro)"
+msgstr "EUR (אירו)"
+
+#: modules/sermepa/config.py:65
+msgid "USD (US Dollar)"
+msgstr "USD (דולר ארה\"ב)"
+
+#: modules/sermepa/config.py:66
+msgid "GBP (British Pound)"
+msgstr "GBP (פאונד בריטי)"
+
+#: modules/sermepa/config.py:67
+msgid "JPY (Japanese Yen)"
+msgstr "JPY (יין יפני)"
+
+#: modules/sermepa/config.py:74
+msgid "Merchant FUC"
+msgstr "סוחר FUC"
+
+#: modules/sermepa/config.py:75
+msgid "Your FUC code"
+msgstr "קוד ה-FUC שלך"
+
+#: modules/sermepa/config.py:81
+msgid "Merchant title"
+msgstr "כותרת סוחר"
+
+#: modules/sermepa/config.py:82
+msgid "Description of your shop which will be visible on payment confirmation screen"
+msgstr "תיאור של החנות, אשר יוצג על המסך אישור תשלום"
+
+#: modules/sermepa/config.py:90
+msgid "Signature code"
+msgstr "קוד חתימה"
+
+#: modules/sermepa/config.py:91
+msgid "Your secret code used to sign transaction data"
+msgstr "את הקוד הסודי המשמש לחתימת עסקאות"
+
+#: modules/sermepa/config.py:97
+msgid "Test signature code"
+msgstr "קוד חתימה לבדיקות"
+
+#: modules/sermepa/config.py:98
+msgid "Your secret code used to sign transaction data in test payments"
+msgstr "הקוד הסודי המשמש לחתום עסקאות בעת בדיקת תשלומים"
+
+#: modules/sermepa/config.py:105
+msgid "Terminal number"
+msgstr "מספר מסוף"
+
+#: modules/sermepa/config.py:112
+msgid "Test terminal number"
+msgstr "מספר מסוף בדיקה"
+
+#: modules/sermepa/config.py:114
+msgid "Terminal number used for test payments"
+msgstr "מספר מסוף המשמש בעת בדיקת תשלומים"
+
+#: modules/sermepa/config.py:122
+msgid "The SERMEPA URL for real transaction posting."
+msgstr "כתובת SERMEPA URL לטרנזאקציות אמיתיות."
+
+#: modules/sermepa/config.py:129
+msgid "Test Post URL"
+msgstr "כתובת Post לבדיקה"
+
+#: modules/sermepa/config.py:130
+msgid "The SERMEPA URL for test transaction posting."
+msgstr "כתובת SERMEPA URL לטרנזאקציות בדיקה."
+
+#: modules/sermepa/config.py:138
+msgid "Callback URL"
+msgstr "כתובת לתקשורת חזרה (Callback)"
+
+#: modules/sermepa/config.py:139
+msgid "Callback URL for on-line notifications about payment progress"
+msgstr "כתובת לתקשורת חזרה (Callback) להודעות מקוונות על התקדמות בתהליך התשלום"
+
+#: modules/sermepa/config.py:146
+msgid "OK URL"
+msgstr "כתובת OK"
+
+#: modules/sermepa/config.py:147
+msgid "URL for customer to return after successful payment"
+msgstr "כתובת URL להעברת הלקוח לאחר סיום מוצלח של התשלום"
+
+#: modules/sermepa/config.py:154
+msgid "Failure URL"
+msgstr "כתובת URL לכשלון"
+
+#: modules/sermepa/config.py:155
+msgid "URL for customer to return after payment failure"
+msgstr "תובת URL להעברת הלקוח לאחר כשלון בתהליך התשלום"
 
 #: modules/trustcommerce/config.py:11
 msgid "TrustCommerce Payment Settings"
@@ -588,43 +1102,75 @@ msgstr "שם המשתמש שלך ב TrustCommerce"
 msgid "Your TrustCommerce password"
 msgstr "הסיסמה שלך ב TrustCommerce"
 
-#: modules/trustcommerce/processor.py:81
+#: modules/trustcommerce/processor.py:94
 #, python-format
 msgid "Transaction was declined.  Reason: %s"
 msgstr "העסקה נדחתה. הסיבה: %s"
 
-#: modules/trustcommerce/processor.py:84
+#: modules/trustcommerce/processor.py:97
 #, python-format
 msgid "Improperly formatted data. Offending fields: %s"
 msgstr "המידע לא בפורמט נכון. השדות המפרים: %s"
 
-#: modules/trustcommerce/processor.py:87
+#: modules/trustcommerce/processor.py:100
 #, python-format
 msgid "An error occurred: %s"
 msgstr "שגיאה: %s"
-
-#: templates/admin/charge_remaining_confirm.html:4
-msgid "Custom Charge"
-msgstr "דמי מכס"
-
-#: templates/admin/charge_remaining_confirm.html:12
-msgid "New amount"
-msgstr "סכום חדש"
-
-#: templates/admin/charge_remaining_confirm.html:14
-msgid "Extra Shipping"
-msgstr "משלוח נוסף"
 
 #: templates/payment/_order_payment_summary.html:6
 msgid "Paid"
 msgstr "שולם"
 
 #: templates/payment/_order_payment_summary.html:11
-#, fuzzy, python-format
+#, python-format
 msgid "Balance = %(balance)s "
-msgstr "יתרה התחלתית: %(balance)s"
+msgstr "יתרה : %(balance)s"
 
 #: templates/payment/_order_payment_summary.html:15
 msgid "Pay remaining balance"
 msgstr "שלם את יתרת המאזן"
 
+#: templates/payment/admin/charge_remaining_confirm.html:4
+msgid "Custom Charge"
+msgstr "דמי מכס"
+
+#: templates/payment/admin/charge_remaining_confirm.html:7
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
+msgstr[1] "נא לתקן את השגיאות המופיעות מתחת."
+
+#: templates/payment/admin/charge_remaining_confirm.html:12
+msgid "New amount"
+msgstr "סכום חדש"
+
+#: templates/payment/admin/charge_remaining_confirm.html:14
+msgid "Extra Shipping"
+msgstr "משלוח נוסף"
+
+#: views/balance.py:73 views/balance.py:97
+msgid "The orderitem you have requested doesn't exist, or you don't have access to it."
+msgstr "פריט ההזמנה המבוקש אינו קיים, או שאין לך הרשאת צפייה בו."
+
+#: views/balance.py:87
+msgid "No form found in request."
+msgstr "טופס לא נמצא בבקשה."
+
+#: views/checkout.py:15
+msgid "Your order has already been processed."
+msgstr "ההזמנה שלך כבר טופלה."
+
+#: views/cron.py:25
+msgid "Feature is not enabled."
+msgstr "התכונה לא מאופשרת"
+
+#: views/cron.py:83
+msgid "Subscription Renewal Order successfully submitted"
+msgstr "הזמנת חידוש מנוי נשלחה בהצלחה"
+
+#: views/payship.py:24
+msgid "Please Select"
+msgstr "בחר"
+
+#~ msgid "Thank you for your order from %(shop_name)s"
+#~ msgstr "תודה על הזמנתך מ %(shop_name)s"

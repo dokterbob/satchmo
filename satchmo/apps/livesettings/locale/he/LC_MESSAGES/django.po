@@ -1,90 +1,98 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"POT-Creation-Date: 2009-03-13 23:02+0200\n"
+"PO-Revision-Date: 2009-03-22 07:45\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: templates/livesettings/group_settings.html:10
-#: templates/livesettings/site_settings.html:25
-msgid "Home"
-msgstr "בית"
+#: models.py:75 models.py:114
+msgid "Site"
+msgstr "אתר"
 
-#: values.py:89
+#: values.py:96
 msgid "Base Settings"
 msgstr "תצורה בסיסית"
 
-#: values.py:195
+#: values.py:202
 msgid "Default value: \"\""
 msgstr "ברירת מחדל:\"\""
 
-#: values.py:202
+#: values.py:209
 msgid "Default value: "
 msgstr "ברירת מחדל:"
 
-#: values.py:205
+#: values.py:212
 #, python-format
 msgid "Default value: %s"
 msgstr "ברירת מחדל:%s"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
+#: templates/livesettings/_admin_site_views.html:4
+msgid "Sites"
+msgstr "אתרים"
+
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Documentation"
 msgstr "תיעוד"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Change password"
-msgstr "שינוי ססמא"
-
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
-msgid "Log out"
-msgstr "יציאה "
+msgstr "שינוי סיסמה"
 
 #: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
+msgid "Log out"
+msgstr "יציאה"
+
+#: templates/livesettings/group_settings.html:14
+#: templates/livesettings/site_settings.html:26
+msgid "Home"
+msgstr "דף הבית"
+
+#: templates/livesettings/group_settings.html:15
 msgid "Edit Group Settings"
 msgstr "ערוך הגדרות קבוצה"
 
-#: templates/livesettings/group_settings.html:18
-#: templates/livesettings/site_settings.html:41
+#: templates/livesettings/group_settings.html:22
+#: templates/livesettings/site_settings.html:44
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "אנא תקן את השגיאה למטה."
-msgstr[1] ""
+msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
+msgstr[1] "נא לתקן את השגיאות המופיעות מתחת."
 
-#: templates/livesettings/group_settings.html:24
+#: templates/livesettings/group_settings.html:28
 #, python-format
 msgid "Settings included in %(name)s."
 msgstr "הגדרות כלולות %(name)s"
 
-#: templates/livesettings/group_settings.html:49
-#: templates/livesettings/site_settings.html:87
+#: templates/livesettings/group_settings.html:53
+#: templates/livesettings/site_settings.html:90
 msgid "You don't have permission to edit values."
 msgstr "אינך מורשה לערוך ערכים."
 
-#: templates/livesettings/site_settings.html:26
+#: templates/livesettings/site_settings.html:27
 msgid "Edit Site Settings"
 msgstr "ערוך הגדרות אתר"
 
-#: templates/livesettings/site_settings.html:58
+#: templates/livesettings/site_settings.html:60
 #, python-format
 msgid "Group settings: %(name)s"
 msgstr "הגדרות קבוצה: %(name)s"
 
-#: templates/livesettings/site_settings.html:84
+#: templates/livesettings/site_settings.html:87
 msgid "Uncollapse all"
 msgstr "הסתר פרטים"
-
