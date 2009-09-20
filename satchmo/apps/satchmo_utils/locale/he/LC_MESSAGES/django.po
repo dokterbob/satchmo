@@ -1,29 +1,47 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"POT-Creation-Date: 2009-03-13 23:02+0200\n"
+"PO-Revision-Date: 2009-03-22 07:27\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: thumbnail/templates/widget/file.html:4
-msgid "Change"
-msgstr "שינוי"
+#: numbers.py:27
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr "%(value)s אינו מספר חוקי"
 
-#: thumbnail/templates/widget/file.html:3
-msgid "Currently"
-msgstr "כרגע"
+#: numbers.py:39
+msgid "Please enter a positive number"
+msgstr "נא להזין מספר חיובי"
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "אנא הכנס אחד ורק אחד משדות אלו."
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr "שדות אלו לא יכולים להיות זהים."
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr "סוג הכרטיס אינו תואם למספר כרטיס."
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr "מספר כרטיס אשראי לא חוקי."
 
 #: thumbnail/config.py:4
 msgid "Thumbnail Settings"
@@ -34,12 +52,8 @@ msgid "Thumbnail quality"
 msgstr "איכות Thumbnail"
 
 #: thumbnail/config.py:10
-msgid ""
-"Use a 1-100 value here, which will change the quality of JPG thumbnails "
-"created for products and categories."
-msgstr ""
-"השתמש בערך בין 1 ל- 100 אשר ישנה את איכות ה- JPG thumbnails הנוצרים עבור "
-"מוצרים וקטגוריות."
+msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
+msgstr "השתמש בערך בין 1 ל- 100 אשר ישנה את איכות ה- JPG thumbnails הנוצרים עבור מוצרים וקטגוריות."
 
 #: thumbnail/config.py:16
 msgid "Rename product images?"
@@ -49,3 +63,14 @@ msgstr "שנה שם תמונת מוצר?"
 msgid "Automatically rename product images on upload?"
 msgstr "האם לשנות אוטומטית את שם התמונה למוצר לאחר העלאה?"
 
+#: thumbnail/widgets.py:21
+msgid "Change:"
+msgstr "שינוי:"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "כרגע"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "שינוי"

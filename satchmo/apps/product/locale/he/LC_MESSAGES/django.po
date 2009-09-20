@@ -1,1129 +1,1242 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"POT-Creation-Date: 2009-03-13 23:00+0200\n"
+"PO-Revision-Date: 2009-04-03 15:11\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: templates/product/category.html:12
-#: templates/product/product.html.html:24
-#: templates/product/admin/product_export_form.html:51
-#: templates/product/admin/product_import_result.html:11
-#: templates/product/admin/variation_manager.html:6
-#: templates/product/admin/variation_manager_list.html:6
-msgid "Home"
-msgstr "בית"
+#: admin.py:90 admin.py:94 models.py:216 models.py:220
+msgid "You must not save a category in itself!"
+msgstr "עליך לא לשמור קטגוריה בעצמה!"
 
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Documentation"
-msgstr "תיעוד"
+#: admin.py:129
+msgid "Meta Data"
+msgstr "נתוני מידע"
 
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Change password"
-msgstr "שינוי ססמא"
+#: admin.py:130
+msgid "Item Dimensions"
+msgstr "ממדי הפריט"
 
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Log out"
-msgstr "יציאה "
-
-#: templates/product/admin/product_export_form.html:61
-#: templates/product/admin/product_export_form.html:72
-#: templates/product/admin/variation_manager.html:166
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "אנא תקן את השגיאה למטה."
-msgstr[1] ""
-
-#: models.py:76
-#: templates/product/admin/product_export_form.html:81
-#: templates/product/admin/variation_manager.html:240
-msgid "Name"
-msgstr "שם"
-
-#: models.py:41
-#: models.py:82
-msgid "Description"
-msgstr "תיאור"
-
-#: models.py:42
-msgid "Discount Code"
-msgstr "קוד הנחה"
-
-#: models.py:43
-msgid "Coupon Code"
-msgstr "קוד קופון"
-
-#: models.py:576
+#: admin.py:131
 msgid "Tax"
 msgstr "מס"
 
-#: models.py:583
-#: models.py:771
-#: models.py:896
-#: models.py:1076
-#: models.py:1111
-#: models.py:1193
-msgid "Product"
-msgstr "מוצר"
+#: admin.py:132
+msgid "Related Products"
+msgstr "מוצרים קשורים"
 
-#: templates/product/product.html.html:60
-#: templates/product/detail_configurableproduct.html:66
-#: templates/product/detail_customproduct.html:39
-#: templates/product/detail_subscriptionproduct.html:40
-msgid "Quantity"
-msgstr "כמות"
-
-#: models.py:1363
-msgid "Value"
-msgstr "ערך"
-
-#: models.py:361
-#: models.py:857
-msgid "Price Change"
-msgstr "שינוי מחיר"
-
-#: models.py:243
-#: models.py:301
-#: models.py:855
-#: models.py:1424
-msgid "Sort Order"
-msgstr "סדר מיון"
-
-#: models.py:302
-#: models.py:856
-msgid "The display order for this group."
-msgstr "סדר הצגה עבור קבוצה זו."
-
-#: models.py:61
-#: models.py:1080
-msgid "Active"
-msgstr "פעיל"
-
-#: models.py:27
-msgid "No Discount"
-msgstr "אין הנחה"
-
-#: models.py:44
-msgid "Discount Amount"
-msgstr "כמות הנחה"
-
-#: models.py:46
-msgid "Enter absolute discount amount OR percentage."
-msgstr "הכנס ערך הנחה או אחוז הנחה."
-
-#: models.py:47
-msgid "Discount Percentage"
-msgstr "אחוז הנחה"
-
-#: models.py:50
-msgid ""
-"Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
-msgstr "הכנס ערך הנחה או אחוז הנחה. דוגמה להנחת אחוזים:\"0.10\"."
-
-#: models.py:51
-msgid "Is this an automatic discount?"
-msgstr "האם זו הנחה אוטומטית?"
-
-#: models.py:52
-msgid ""
-"Use this field to advertise the discount on all products to which it "
-"applies.  Generally this is used for site-wide sales."
-msgstr ""
-"השתמש בשדה זה כדי לפרסם את ההנחה על כל המוצרים שעליהם היא חלה. באופן כללי "
-"משתמשים בזה למכירות בכל האתר."
-
-#: models.py:53
-msgid "Number of allowed uses"
-msgstr "מספר משתמשים מירבי"
-
-#: models.py:54
-#: models.py:56
-msgid "Not implemented."
-msgstr "לא ממומש."
-
-#: models.py:55
-msgid "Number of times already used"
-msgstr "מספר פעמים בהם נעשה שימוש"
-
-#: models.py:57
-msgid "Minimum order value"
-msgstr "מינימום להזמנה"
-
-#: models.py:59
-msgid "Start Date"
-msgstr "תאריך התחלה"
-
-#: models.py:60
-msgid "End Date"
-msgstr "תאריך סיום"
-
-#: models.py:62
-msgid "Free shipping"
-msgstr "משלוח חינם"
-
-#: models.py:63
-msgid "Should this discount remove all shipping costs?"
-msgstr "האם על הנחה זו לבטל את כל עלויות המשלוח?"
-
-#: models.py:64
-msgid "Include shipping"
-msgstr "כולל משלוח"
-
-#: models.py:65
-msgid "Should shipping be included in the discount calculation?"
-msgstr "האם לכלול את עלות המשלוח בחישובי הנחה?"
-
-#: models.py:66
-msgid "Valid Products"
-msgstr "מוצרים בתוקף"
-
-#: models.py:82
-msgid "This coupon is disabled."
-msgstr "הקופון מבוטל"
-
-#: models.py:84
-msgid "This coupon is not active yet."
-msgstr "הקופון לא פעיל עדיין"
-
-#: models.py:86
-msgid "This coupon has expired."
-msgstr "הקופון לא בתוקף"
-
-#: models.py:88
-msgid "This discount has exceeded the number of allowed uses."
-msgstr "עברת את מספר הפעמים בהם אפשר להשתמש בהנחה."
-
-#: models.py:90
-#: models.py:107
-msgid "Valid."
-msgstr "בתוקף."
-
-#: models.py:94
-#, python-format
-msgid "This discount only applies to orders of at least %s."
-msgstr "ההנחה בתוקף רק עבור הזמנות עם לפחות %s. "
-
-#: models.py:109
-msgid "This discount cannot be applied to the products in your cart."
-msgstr "אי אפשר להשתמש בהנחה עבור המוצרים שבעגלת הקניות."
-
-#: models.py:190
-msgid "Discount"
-msgstr "הנחה"
-
-#: models.py:191
-msgid "Discounts"
-msgstr "הנחות"
-
-#: models.py:428
-msgid "Date added"
-msgstr "תאריך הוספה"
-
-#: models.py:1159
-#: models.py:1378
-#: models.py:1409
-#: templates/product/product.html.html:52
-#: templates/product/detail_configurableproduct.html:35
-#: templates/product/detail_customproduct.html:12
-msgid "Price"
-msgstr "מחיר"
-
-#: templates/product/product.html.html:62
-#: templates/product/detail_configurableproduct.html:68
-#: templates/product/detail_customproduct.html:41
-#: templates/product/detail_subscriptionproduct.html:42
-msgid "Add to cart"
-msgstr "הוסף לעגלה"
-
-#: models.py:417
-#: models.py:731
-msgid "Full Name"
-msgstr "שם מלא"
-
-#: adminviews.py:28
-msgid "Inventory Editor"
-msgstr "עורך מלאי"
-
-#: adminviews.py:49
-msgid "Product Import/Export"
-msgstr "יבוא/יצוא מוצר"
-
-#: adminviews.py:73
-msgid "No upload file found"
-msgstr "קובץ העלאה לא נמצא"
-
-#: adminviews.py:119
-msgid "The product you have requested is not a Configurable Product."
-msgstr "המוצר שביקשת אינו מוצר אשר ניתן לעיצוב. "
-
-#: adminviews.py:122
-#: views.py:37
-msgid "The product you have requested does not exist."
-msgstr "המוצר שביקשת אינו קיים. "
-
-#: comments.py:43
-#, fuzzy
-msgid "Not Rated"
-msgstr "לא הוגדר"
-
-#: config.py:6
+#: config.py:8
 msgid "Product Settings"
 msgstr "הגדרות מוצר"
 
-#: config.py:10
+#: config.py:12
 msgid "Product Model Options"
 msgstr "אפשרויות מודל מוצר"
 
-#: config.py:12
-#: models.py:1066
+#: config.py:14 models.py:1472
 msgid "Configurable Product"
 msgstr "מוצר אשר ניתן לעיצוב"
 
-#: config.py:13
+#: config.py:15
 msgid "Product Variation"
 msgstr "וריאציית מוצר"
 
-#: config.py:14
+#: config.py:16
 msgid "Custom Order"
 msgstr "הזמנה מותאמת אישית"
 
-#: config.py:15
-#: models.py:1145
-#, fuzzy
+#: config.py:17 models.py:1609
 msgid "Subscription Product"
-msgstr "תיאור המוצר"
+msgstr "מוצר מנוי"
 
-#: config.py:16
-#: models.py:1104
+#: config.py:18 models.py:1510
 msgid "Downloadable Product"
 msgstr "מוצר ניתן להורדה"
 
-#: config.py:23
+#: config.py:24
 msgid "Upload Image Dir"
 msgstr "ספריית העלאת תמונה"
 
-#: config.py:24
-#, fuzzy
+#: config.py:25
 msgid ""
 "Directory name for storing uploaded images.\n"
-"This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
-"We can handle it any which way."
-msgstr ""
-"שם ספרייה לשמירת תמונות מועלות. הערך יתווסף למשתנה MEDIA_ROOT. אין צורך "
-"לדאוג לסוגי קו נטוי. המערכת יודעת להתמודד עם מה שתיתן(י) לה."
+"    This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
+"    We can handle it any which way."
+msgstr "שם ספרייה לשמירת תמונות מועלות. הערך יתווסף למשתנה MEDIA_ROOT. אין צורך לדאוג לסוגי קו נטוי. המערכת יודעת להתמודד עם מה שתיתן(י) לה."
 
-#: config.py:31
+#: config.py:34
 msgid "Protected dir"
 msgstr "ספריה מוגנת"
 
-#: config.py:32
-#, fuzzy
+#: config.py:35
 msgid ""
 "This is only used if you use Downloadable Products.\n"
 "This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
 "We can handle it any which way."
-msgstr ""
-"שדה זה משמש רק כאשר נעשה שימוש במוצרים הניתנים להורדה. הערך יתווסף למשתנה "
-"MEDIA_ROOT. אין צורך לדאוג לסוגי קו נטוי. המערכת יודעת להתמודד עם מה שתיתן"
-"(י) לה."
+msgstr "שדה זה משמש רק כאשר נעשה שימוש במוצרים הניתנים להורדה. הערך יתווסף למשתנה MEDIA_ROOT. אין צורך לדאוג לסוגי קו נטוי. המערכת יודעת להתמודד עם מה שתיתן(י) לה."
 
-#: forms.py:37
+#: config.py:45
+msgid "Category Slug"
+msgstr "שבלול לקטגוריה"
+
+#: config.py:46
+msgid "The url slug for categories.  Requires server restart if changed."
+msgstr "תוספת לכתובת האתר עבור קטגוריות. נדרשת הפעלה מחדש לשרת אם שונה."
+
+#: config.py:52
+msgid "Product Slug"
+msgstr "שבלול למוצר"
+
+#: config.py:53
+msgid "The url slug for products.  Requires server restart if changed."
+msgstr "תוספת לכתובת האתר עבור מוצרים. נדרשת הפעלה מחדש לשרת אם שונה."
+
+#: config.py:59
+msgid "Total featured"
+msgstr "סה\"כ מומלצים"
+
+#: config.py:60
+msgid "Total number of featured items to display"
+msgstr "סה\"כ מספר הפריטים המומלצים להציג"
+
+#: config.py:66
+msgid "Number featured"
+msgstr "מספר מומלצים"
+
+#: config.py:67
+msgid "Number of featured items to display on each page"
+msgstr "מספר הפריטים המומלצים שיוצגו בכל דף"
+
+#: config.py:73
+msgid "Measurement System"
+msgstr "מערכת מדידה"
+
+#: config.py:74
+msgid "Default measurement system to use for products."
+msgstr "ברירת המחדל של מערכת מדידה לשימוש עבור מוצרים."
+
+#: config.py:75
+msgid "Metric"
+msgstr "מטרית"
+
+#: config.py:76
+msgid "Imperial"
+msgstr "אימפריאלית"
+
+#: config.py:82
+msgid "Allow checkout with 0 inventory?"
+msgstr "אפשר תשלום בקופה עם 0 במלאי?"
+
+#: config.py:83
+msgid "If yes, then customers can buy even if your inventory is 0 for a product."
+msgstr "אם כן, אז לקוחות יכולים לקנות את המוצר, גם אם יש 0 במלאי ."
+
+#: config.py:89
+msgid "Random Display"
+msgstr "תצוגה אקראית"
+
+#: config.py:90
+msgid "Enable random display of featured products on home page"
+msgstr "אפשר תצוגה אקראית של מוצרים מומלצים בעמוד הבית"
+
+#: forms.py:151
 msgid "export format"
 msgstr "פורמט יצוא"
 
-#: forms.py:38
+#: forms.py:152
 msgid "Include Images"
 msgstr "הוסף תמונות"
 
-#: forms.py:39
+#: forms.py:153
 msgid "Include Categories"
 msgstr "הוסף קטגוריות"
 
-#: forms.py:171
+#: forms.py:285
 msgid "File to import"
 msgstr "קובץ לייבוא"
 
-#: forms.py:189
-#: forms.py:232
+#: forms.py:303 forms.py:346
 #, python-format
 msgid "Could not parse format from filename: %s"
 msgstr "ניתוח פורמט משם הקובץ נכשל: %s"
 
-#: forms.py:207
+#: forms.py:321
 msgid "Bad VARS file in import zipfile."
 msgstr "קובץ VARS לא תקין בקובץ זיפ מיובא"
 
-#: forms.py:237
+#: forms.py:351
 msgid "Missing VARS in import zipfile."
 msgstr "קובץ VARS חסר בקובץ זיפ מיובא"
 
-#: forms.py:243
+#: forms.py:357
 #, python-format
 msgid "Unknown file format: %s"
 msgstr "קובץ בפורמט לא ידוע: %s"
 
-#: forms.py:270
+#: forms.py:384
 #, python-format
 msgid "Added %(count)i objects from %(filename)s"
 msgstr "נוספו %(count)i אוביקטים מקובץ %(filename)s"
 
-#: forms.py:275
+#: forms.py:389
 #, python-format
 msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
 msgstr "בעיה בהתקנת רכיב קבוע '%(filename)s': %(error_msg)s\n"
 
-#: models.py:65
-msgid "A unit of measure must be entered for the length"
-msgstr "חובה להזין יחידת מידה עבור אורך"
+#: models.py:44
+msgid "Default"
+msgstr "ברירת מחדל"
 
-#: models.py:66
-msgid "A unit of measure must be entered for the width"
-msgstr "חובה להזין יחידת מידה עבור רוחב"
+#: models.py:45
+msgid "Shippable"
+msgstr "ניתן למשלוח"
 
-#: models.py:67
-msgid "A unit of measure must be entered for the height"
-msgstr "חובה להזין יחידת מידה עבור משקל"
+#: models.py:46
+msgid "Not Shippable"
+msgstr "לא ניתן למשלוח"
 
-#: models.py:68
-msgid "A unit of measure must be entered for the weight"
-msgstr "חובה להזין יחידת מידה עבור משקל"
+#: models.py:111 models.py:602 models.py:753
+msgid "Site"
+msgstr "אתר"
 
-#: models.py:70
-msgid "The product and parent fields can not be the same."
-msgstr "שדות המוצר ומוצר אב לא יכולים להיות זהים."
-
-#: models.py:77
-#: models.py:852
+#: models.py:112 templates/product/admin/inventory_form.html:81
 #: templates/product/admin/product_export_form.html:80
-#: templates/product/admin/variation_manager.html:242
+#: templates/product/admin/variation_manager.html:317
+msgid "Name"
+msgstr "שם"
+
+#: models.py:113 models.py:1237 templates/product/admin/inventory_form.html:80
+#: templates/product/admin/product_export_form.html:79
+#: templates/product/admin/variation_manager.html:319
 msgid "Slug"
 msgstr "שורת סדר"
 
-#: models.py:77
-#: models.py:420
+#: models.py:113 models.py:757
 msgid "Used for URLs, auto-generated from name if blank"
 msgstr "משמש ל URL, מיוצר אוטומטית מהשם אם ריק"
 
-#: models.py:80
-#: models.py:427
+#: models.py:117 models.py:764
 msgid "Meta Description"
 msgstr "תיאור על"
 
-#: models.py:81
+#: models.py:118
 msgid "Meta description for this category"
 msgstr "תיאור על של קטגוריה זו"
 
-#: models.py:84
-#: models.py:431
-msgid "Ordering"
-msgstr "סידור"
+#: models.py:119 models.py:394 models.py:2119
+msgid "Description"
+msgstr "תיאור"
 
-#: models.py:84
-#: models.py:431
+#: models.py:121 models.py:768
+msgid "Ordering"
+msgstr "מיון"
+
+#: models.py:121 models.py:768
 msgid "Override alphabetical order in category display"
 msgstr "בטל מיון אלפבתי בתצוגת קטגוריות"
 
-#: models.py:160
-#: models.py:164
-msgid "You must not save a category in itself!"
-msgstr "עליך לא לשמור קטגוריה בעצמה!"
+#: models.py:123
+msgid "Related Categories"
+msgstr "קטגוריות קשורות"
 
-#: models.py:208
-#: models.py:425
+#: models.py:265 models.py:762
 msgid "Category"
 msgstr "קטגוריה"
 
-#: models.py:209
+#: models.py:266 templates/product/category_index.html:12
 msgid "Categories"
 msgstr "קטגוריות"
 
-#: models.py:216
-#: models.py:277
-#: models.py:329
-#: models.py:394
-#: models.py:730
-#: models.py:875
-#: models.py:1361
-#: models.py:1458
+#: models.py:273 models.py:332 models.py:635 models.py:695 models.py:1107
+#: models.py:1262 models.py:1990 models.py:2097
 msgid "language"
 msgstr "שפה"
 
-#: models.py:217
+#: models.py:274
 msgid "Translated Category Name"
 msgstr "שם קטגוריה מתורגם"
 
-#: models.py:218
+#: models.py:275
 msgid "Description of category"
 msgstr "תיאור קטגוריה"
 
-#: models.py:219
-#: models.py:279
-#: models.py:332
-#: models.py:396
-#: models.py:734
-#: models.py:877
-#: models.py:1460
+#: models.py:276 models.py:334 models.py:638 models.py:697 models.py:1111
+#: models.py:1264 models.py:2099
 msgid "version"
 msgstr "גרסה"
 
-#: models.py:220
-#: models.py:280
-#: models.py:333
-#: models.py:397
-#: models.py:735
-#: models.py:878
-#: models.py:1461
+#: models.py:277 models.py:335 models.py:639 models.py:698 models.py:1112
+#: models.py:1265 models.py:2100
 msgid "active"
 msgstr "פעיל"
 
-#: models.py:223
+#: models.py:280
 msgid "Category Translation"
 msgstr "תרגום קטגוריה"
 
-#: models.py:224
+#: models.py:281
 msgid "Category Translations"
 msgstr "תרגומי קטגוריה"
 
-#: models.py:239
-#: models.py:1420
+#: models.py:295 models.py:2061
 msgid "Picture"
 msgstr "תמונה"
 
-#: models.py:241
-#: models.py:1422
+#: models.py:299 models.py:2065
 msgid "Optional caption"
 msgstr "כותרת אופציונלית"
 
-#: models.py:266
+#: models.py:301 models.py:608 models.py:669 models.py:1241 models.py:2067
+msgid "Sort Order"
+msgstr "סדר מיון"
+
+#: models.py:324
 msgid "Category Image"
 msgstr "תמונת קטגוריה"
 
-#: models.py:267
+#: models.py:325
 msgid "Category Images"
 msgstr "תמונות קטגוריה"
 
-#: models.py:278
-#: models.py:1459
+#: models.py:333 models.py:2098
 msgid "Translated Caption"
 msgstr "כותרת מתורגמת"
 
-#: models.py:283
+#: models.py:338
 msgid "Category Image Translation"
 msgstr "תרגום כתגורית תמונה"
 
-#: models.py:284
+#: models.py:339
 msgid "Category Image Translations"
 msgstr "תרגומי קטגוריות תמונה"
 
-#: models.py:296
+#: models.py:359
+msgid "No Discount"
+msgstr "אין הנחה"
+
+#: models.py:393
+msgid "site"
+msgstr "אתר"
+
+#: models.py:395
+msgid "Discount Code"
+msgstr "קוד הנחה"
+
+#: models.py:396
+msgid "Coupon Code"
+msgstr "קוד קופון"
+
+#: models.py:397
+msgid "Discount Amount"
+msgstr "כמות הנחה"
+
+#: models.py:400
+msgid "Enter absolute discount amount OR percentage."
+msgstr "הכנס ערך הנחה או אחוז הנחה."
+
+#: models.py:401
+msgid "Discount Percentage"
+msgstr "אחוז הנחה"
+
+#: models.py:404
+msgid "Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
+msgstr "הכנס ערך הנחה או אחוז הנחה. דוגמה להנחת אחוזים:\"0.10\"."
+
+#: models.py:405
+msgid "Is this an automatic discount?"
+msgstr "האם זו הנחה אוטומטית?"
+
+#: models.py:406
+msgid "Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."
+msgstr "השתמש בשדה זה כדי לפרסם את ההנחה על כל המוצרים שעליהם היא חלה. באופן כללי משתמשים בזה למכירות בכל האתר."
+
+#: models.py:407
+msgid "Number of allowed uses"
+msgstr "מספר משתמשים מירבי"
+
+#: models.py:408 models.py:410
+msgid "Not implemented."
+msgstr "לא ממומש."
+
+#: models.py:409
+msgid "Number of times already used"
+msgstr "מספר פעמים בהם נעשה שימוש"
+
+#: models.py:411
+msgid "Minimum order value"
+msgstr "מינימום להזמנה"
+
+#: models.py:413
+msgid "Start Date"
+msgstr "תאריך התחלה"
+
+#: models.py:414
+msgid "End Date"
+msgstr "תאריך סיום"
+
+#: models.py:415 models.py:1491 templates/product/admin/inventory_form.html:84
+msgid "Active"
+msgstr "פעיל"
+
+#: models.py:416
+msgid "Free shipping"
+msgstr "משלוח חינם"
+
+#: models.py:417
+msgid "Should this discount remove all shipping costs?"
+msgstr "האם על הנחה זו לבטל את כל עלויות המשלוח?"
+
+#: models.py:418
+msgid "Include shipping"
+msgstr "כולל משלוח"
+
+#: models.py:419
+msgid "Should shipping be included in the discount calculation?"
+msgstr "האם לכלול את עלות המשלוח בחישובי הנחה?"
+
+#: models.py:420
+msgid "Valid Products"
+msgstr "מוצרים בתוקף"
+
+#: models.py:438
+msgid "This coupon is disabled."
+msgstr "הקופון מבוטל"
+
+#: models.py:440
+msgid "This coupon is not active yet."
+msgstr "הקופון לא פעיל עדיין"
+
+#: models.py:442
+msgid "This coupon has expired."
+msgstr "הקופון לא בתוקף"
+
+#: models.py:444
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "עברת את מספר הפעמים בהם אפשר להשתמש בהנחה."
+
+#: models.py:446 models.py:459
+msgid "Valid."
+msgstr "בתוקף."
+
+#: models.py:450
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "ההנחה בתוקף רק עבור הזמנות עם לפחות %s. "
+
+#: models.py:461
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "אי אפשר להשתמש בהנחה עבור המוצרים שבעגלת הקניות."
+
+#: models.py:543
+msgid "Discount"
+msgstr "הנחה"
+
+#: models.py:544
+msgid "Discounts"
+msgstr "הנחות"
+
+#: models.py:603
 msgid "Name of Option Group"
 msgstr "שם קבוצת אפשרויות"
 
-#: models.py:297
+#: models.py:604
 msgid "This will be the text displayed on the product page."
 msgstr "זהו הטקסט שיופיע בדף המוצר."
 
-#: models.py:298
+#: models.py:605
 msgid "Detailed Description"
 msgstr "תיאור מפורט"
 
-#: models.py:300
+#: models.py:607
 msgid "Further description of this group (i.e. shirt size vs shoe size)."
 msgstr "תיאור נוסף של הקבוצה (דוגמא גודל חולצה לעומת גודל נעל)"
 
-#: models.py:321
-#: models.py:776
-#: models.py:897
-#: templates/product/admin/variation_manager.html:185
+#: models.py:609 models.py:1242
+msgid "The display order for this group."
+msgstr "סדר הצגה עבור קבוצה זו."
+
+#: models.py:627 models.py:1154 models.py:1283
 msgid "Option Group"
 msgstr "קבוצת אפשרויות בחירה"
 
-#: models.py:322
+#: models.py:628
 msgid "Option Groups"
 msgstr "קבוצות אפשרויות בחירה"
 
-#: models.py:330
+#: models.py:636
 msgid "Translated OptionGroup Name"
 msgstr "שם קבוצת אפשרויות בחירה מתורגם"
 
-#: models.py:331
+#: models.py:637
 msgid "Description of OptionGroup"
 msgstr "תאור קבוצת אפשרויות בחירה"
 
-#: models.py:336
+#: models.py:642
 msgid "Option Group Translation"
 msgstr "תרגום קבוצת אפשרויות בחירה"
 
-#: models.py:337
+#: models.py:643
 msgid "Option Groups Translations"
 msgstr "תרגומי קבוצת אפשרויות בחירה"
 
-#: models.py:359
+#: models.py:664
 msgid "Display value"
 msgstr "ערך מוצג"
 
-#: models.py:360
+#: models.py:665
 msgid "Stored value"
 msgstr "ערך שמור"
 
-#: models.py:363
+#: models.py:666 models.py:1243
+msgid "Price Change"
+msgstr "שינוי מחיר"
+
+#: models.py:668
 msgid "This is the price differential for this option."
 msgstr "זהו ההפרש במחיר עבור אופציה זו"
 
-#: models.py:364
-msgid "Display Order"
-msgstr "סדר תצוגה"
-
-#: models.py:372
+#: models.py:677
 msgid "Option Item"
 msgstr "אפשרות בחירה"
 
-#: models.py:373
+#: models.py:678
 msgid "Option Items"
 msgstr "אפשרויות בחירה"
 
-#: models.py:395
-#, fuzzy
+#: models.py:696
 msgid "Translated Option Name"
-msgstr "שם קבוצת אפשרויות בחירה מתורגם"
+msgstr "שם אפשרות בחירה מתורגם"
 
-#: models.py:400
+#: models.py:701
 msgid "Option Translation"
 msgstr "תרגום אפשרות בחירה"
 
-#: models.py:401
+#: models.py:702
 msgid "Option Translations"
 msgstr "תרגומי אפשרות בחירה"
 
-#: models.py:418
-msgid ""
-"This is what the product will be called in the default site language.  To "
-"add non-default translations, use the Product Translation section below."
-msgstr ""
-"כך יקרא המוצר בשפת ברירת המחדל של האתר. אפשר להגדירתרגומים נוספים באזור "
-"תרגום מוצר למטה."
+#: models.py:754 models.py:1108
+msgid "Full Name"
+msgstr "שם מלא"
 
-#: models.py:419
+#: models.py:755
+msgid "This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."
+msgstr "כך יקרא המוצר בשפת ברירת המחדל של האתר. אפשר להגדיר תרגומים נוספים באזור תרגום מוצר למטה."
+
+#: models.py:756
 msgid "Slug Name"
-msgstr "שם זמני"
+msgstr "שם כתובת"
 
-#: models.py:421
-#: templates/product/admin/variation_manager.html:241
+#: models.py:758 templates/product/admin/variation_manager.html:318
 msgid "SKU"
 msgstr "מק\"ט"
 
-#: models.py:422
+#: models.py:759
 msgid "Defaults to slug if left blank"
-msgstr "אם ריק, ברירת המחדל הוא השם הזמני"
+msgstr "אם ריק, ברירת המחדל הוא שם הכתובת"
 
-#: models.py:423
-#: models.py:732
+#: models.py:760 models.py:1110
 msgid "Short description of product"
 msgstr "תיאור קצר של המוצר"
 
-#: models.py:423
-msgid ""
-"This should be a 1 or 2 line description in the default site language for "
-"use in product listing screens"
-msgstr ""
-"צריך להיות תיאור באורך שורה או 2 (בשפת ברירת המחדל של האתר) שיוצג בדפי רשימת "
-"מוצרים"
+#: models.py:760
+msgid "This should be a 1 or 2 line description in the default site language for use in product listing screens"
+msgstr "צריך להיות תיאור באורך שורה או 2 (בשפת ברירת המחדל של האתר) שיוצג בדפי רשימת מוצרים"
 
-#: models.py:424
-#: models.py:733
+#: models.py:761 models.py:1109
 msgid "Description of product"
 msgstr "תיאור המוצר"
 
-#: models.py:424
-msgid ""
-"This field can contain HTML and should be a few paragraphs in the default "
-"site language explaining the background of the product, and anything that "
-"would help the potential customer make their purchase."
-msgstr ""
-"השדה יכול להכיל HTML וצריך להיות באורך מספר פסקאות (בשפת ברירת המחדל של "
-"האתר) המתארות את הרקע של המוצר או כל דבר שיכול לעזור ללקוח פוטנציאלי לבצע "
-"רכישה."
+#: models.py:761
+msgid "This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "השדה יכול להכיל HTML וצריך להיות באורך מספר פסקאות (בשפת ברירת המחדל של האתר) המתארות את הרקע של המוצר או כל דבר שיכול לעזור ללקוח פוטנציאלי לבצע רכישה."
 
-#: models.py:426
+#: models.py:763
 msgid "Number in stock"
 msgstr "כמות במלאי"
 
-#: models.py:427
+#: models.py:764
 msgid "Meta description for this product"
 msgstr "תיאור על של המוצר"
 
-#: models.py:429
+#: models.py:765
+msgid "Date added"
+msgstr "תאריך הוספה"
+
+#: models.py:766
 msgid "Is product active?"
 msgstr "האם המוצר פעיל?"
 
-#: models.py:429
+#: models.py:766
 msgid "This will determine whether or not this product will appear on the site"
 msgstr "קובע האם המוצר יופיע באתר או לא"
 
-#: models.py:430
+#: models.py:767
 msgid "Featured Item"
-msgstr "פריט מובלט"
+msgstr "פריט מומלץ"
 
-#: models.py:430
+#: models.py:767
 msgid "Featured items will show on the front page"
-msgstr "פריטים מובלטים יופיעו בדף הראשי"
+msgstr "פריטים מומלצים יופיעו בדף הראשי"
 
-#: models.py:432
+#: models.py:769
 msgid "Weight"
 msgstr "משקל"
 
-#: models.py:433
+#: models.py:770
 msgid "Weight units"
 msgstr "יחידות משקל"
 
-#: models.py:434
+#: models.py:772
 msgid "Length"
 msgstr "אורך"
 
-#: models.py:435
+#: models.py:773
 msgid "Length units"
 msgstr "יחידות אורך"
 
-#: models.py:436
+#: models.py:775
 msgid "Width"
 msgstr "רוחב"
 
-#: models.py:437
+#: models.py:776
 msgid "Width units"
 msgstr "יחידות רוחב"
 
-#: models.py:438
+#: models.py:778
 msgid "Height"
 msgstr "גובה"
 
-#: models.py:439
+#: models.py:779
 msgid "Height units"
 msgstr "יחידות גובה"
 
-#: models.py:440
+#: models.py:781
 msgid "Related Items"
 msgstr "פריטים קשורים"
 
-#: models.py:441
+#: models.py:782
 msgid "Previously Purchased"
 msgstr "נרכש בעבר"
 
-#: models.py:442
-#, fuzzy
+#: models.py:783
 msgid "Total sold"
-msgstr "סיכומים"
+msgstr "סך הכל נמכרו"
 
-#: models.py:443
+#: models.py:784
 msgid "Taxable"
 msgstr "חייב במס"
 
-#: models.py:444
+#: models.py:785 models.py:2126
 msgid "Tax Class"
 msgstr "סוג מס"
 
-#: models.py:444
+#: models.py:785
 msgid "If it is taxable, what kind of tax?"
 msgstr "אם חייב במס, איזה סוג מס?"
 
-#: models.py:574
-msgid "Meta Data"
-msgstr "נתוני מידע"
+#: models.py:786
+msgid "Shipping"
+msgstr "משלוח"
 
-#: models.py:575
-msgid "Item Dimensions"
-msgstr "ממדי הפריט"
+#: models.py:787
+msgid "If this is 'Default', then we'll use the product type to determine if it is shippable."
+msgstr "אם זה הוא 'ברירת מחדל', אז נשתמש את סוג המוצר כדי לקבוע אם הוא ניתן למשלוח."
 
-#: models.py:577
-msgid "Related Products"
-msgstr "מוצרים קשורים"
+#: models.py:934 models.py:1149 models.py:1282 models.py:1487 models.py:1517
+#: models.py:1672
+msgid "Product"
+msgstr "מוצר"
 
-#: models.py:584
+#: models.py:935
 msgid "Products"
 msgstr "מוצרים"
 
-#: models.py:612
-#: templates/admin/product/product/change_form.html:8
+#: models.py:968 templates/admin/product/product/change_form.html:8
 msgid "Product Subtypes"
 msgstr "תת-סוגי מוצר"
 
-#: models.py:732
-msgid ""
-"This should be a 1 or 2 line description for use in product listing screens"
+#: models.py:1109
+msgid "This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "השדה יכול להכיל HTML וצריך להיות באורך מספר פסקאות המתארות את הרקע של המוצר או כל דבר שיכול לעזור ללקוח פוטנציאלי לבצע רכישה."
+
+#: models.py:1110
+msgid "This should be a 1 or 2 line description for use in product listing screens"
 msgstr "צריך להיות תיאור באורך שורה או 2 שיוצג בדפי רשימת מוצרים"
 
-#: models.py:733
-msgid ""
-"This field can contain HTML and should be a few paragraphs explaining the "
-"background of the product, and anything that would help the potential "
-"customer make their purchase."
-msgstr ""
-"השדה יכול להכיל HTML וצריך להיות באורך מספר פסקאות המתארות את הרקע של המוצר "
-"או כל דבר שיכול לעזור ללקוח פוטנציאלי לבצע רכישה."
-
-#: models.py:738
+#: models.py:1115
 msgid "Product Translation"
 msgstr "תרגום מוצר"
 
-#: models.py:739
+#: models.py:1116
 msgid "Product Translations"
 msgstr "תרגומי מוצר"
 
-#: models.py:772
+#: models.py:1150
 msgid "Percent Downpayment"
 msgstr "אחוזי מקדמה"
 
-#: models.py:773
+#: models.py:1151
 msgid "Deferred Shipping"
 msgstr "משלוח דחוי"
 
-#: models.py:774
+#: models.py:1152
 msgid "Do not charge shipping at checkout for this item."
 msgstr "לא לגבות משלוח בקופה עבור פריט זה"
 
-#: models.py:843
+#: models.py:1228
 msgid "Custom Product"
 msgstr "מוצר מותאם אישית"
 
-#: models.py:844
+#: models.py:1229
 msgid "Custom Products"
 msgstr "מוצרים מותאמים אישית"
 
-#: models.py:851
+#: models.py:1236
 msgid "Custom field name"
 msgstr "שם שדה מותאם אישית"
 
-#: models.py:852
+#: models.py:1237
 msgid "Auto-generated from name if blank"
 msgstr "מיוצר אוטומטית מהשם אם ריק"
 
-#: models.py:853
+#: models.py:1239
 msgid "Custom Fields"
 msgstr "שדות מותאמים"
 
-#: models.py:876
+#: models.py:1263
 msgid "Translated Custom Text Field Name"
 msgstr "תרגום שם השדה של טקסט מותאם"
 
-#: models.py:881
+#: models.py:1268
 msgid "CustomTextField Translation"
 msgstr "תרגום הטקסט בשדה מותאם"
 
-#: models.py:882
+#: models.py:1269
 msgid "CustomTextField Translations"
 msgstr "תרגומי טקסטים בשדות מותאמים"
 
-#: models.py:898
+#: models.py:1284
 msgid "Create Variations"
 msgstr "צור וריאציות"
 
-#: models.py:898
-msgid ""
-"Create ProductVariations for all this product's options.  To use this, you "
-"must first add an option, save, then return to this page and select this "
-"option."
-msgstr ""
-"צור וריאציות-מוצר לכל האפשרויות עבור מוצר זה. לשם כך, ראשית עליך להוסיף "
-"אפשרות, לשמור אותה ואז לחזור לדף הנוכחי ולבחור באפשרות ששמרת. "
+#: models.py:1284
+msgid "Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."
+msgstr "צור וריאציות-מוצר לכל האפשרויות עבור מוצר זה. לשם כך, ראשית עליך להוסיף אפשרות, לשמור אותה ואז לחזור לדף הנוכחי ולבחור באפשרות ששמרת. "
 
-#: models.py:1067
+#: models.py:1473
 msgid "Configurable Products"
 msgstr "מוצרים ניתנים להתאמה"
 
-#: models.py:1077
-#, fuzzy
+#: models.py:1488
 msgid "File"
-msgstr "כותרת"
+msgstr "קובץ"
 
-#: models.py:1078
-#, fuzzy
+#: models.py:1489
 msgid "Num allowed downloads"
-msgstr "מספר משתמשים מירבי"
+msgstr "מספר הורדות מותר"
 
-#: models.py:1078
+#: models.py:1489
 msgid "Number of times link can be accessed."
 msgstr "מספר הפעמים בן אפשר להכנס אל הלינק"
 
-#: models.py:1079
-#, fuzzy
+#: models.py:1490
 msgid "Expire minutes"
-msgstr "תאריך תפוגה"
+msgstr "דקות לתפוגה"
 
-#: models.py:1079
+#: models.py:1490
 msgid "Number of minutes the link should remain active."
 msgstr "מספר הדקות שבהן על הלינק להשאר פעיל. "
 
-#: models.py:1080
+#: models.py:1491
 msgid "Is this download currently active?"
 msgstr "האם ההורדה הזו פעילה כרגע?"
 
-#: models.py:1105
+#: models.py:1511
 msgid "Downloadable Products"
 msgstr "מוצרים ניתנים להורדה"
 
-#: models.py:1112
+#: models.py:1518
 msgid "Recurring Billing"
 msgstr "חיוב סדיר"
 
-#: models.py:1112
+#: models.py:1518
 msgid "Customer will be charged the regular product price on a periodic basis."
 msgstr "הלקוח יחוייב במחיר המוצר הרגיל באובן סדיר."
 
-#: models.py:1113
+#: models.py:1519
 msgid "Recurring Times"
 msgstr "פרקי זמן"
 
-#: models.py:1113
+#: models.py:1519
 msgid "Number of payments which will occur at the regular rate.  (optional)"
 msgstr "מספר תשלומים במחיר רגיל. (אופציונלי)"
 
-#: models.py:1114
+#: models.py:1520
 msgid "Duration"
 msgstr "זמן"
 
-#: models.py:1114
-msgid "Length of each billing cycle (days)"
-msgstr "משך הזמן (בימים) של כל מחזור חיוב"
+#: models.py:1520
+msgid "Length of each billing cycle"
+msgstr "משך הזמן של כל מחזור חיוב"
 
-#: models.py:1116
+#: models.py:1522
+msgid "Days"
+msgstr "ימים"
+
+#: models.py:1523
+msgid "Months"
+msgstr "חודשים"
+
+#: models.py:1525
+msgid "Expire Unit"
+msgstr "יחידת תפוגה"
+
+#: models.py:1527
 msgid "No Shipping Charges"
 msgstr "ללא עלות משלוח"
 
-#: models.py:1117
+#: models.py:1528
 msgid "Pay Shipping Once"
 msgstr "שלם משלוח פעם אחת"
 
-#: models.py:1118
+#: models.py:1529
 msgid "Pay Shipping Each Billing Cycle"
 msgstr "שלם משלוח עם כל מחזור חיוב?"
 
-#: models.py:1120
+#: models.py:1531
 msgid "Shippable?"
 msgstr "ניתן למשלוח?"
 
-#: models.py:1120
+#: models.py:1531
 msgid "Is this product shippable?"
 msgstr "האם המוצר ניתן למשלוח?"
 
-#: models.py:1146
+#: models.py:1610
 msgid "Subscription Products"
 msgstr "מוצרי מנוי"
 
-#: models.py:1159
-msgid ""
-"Set to 0 for a free trial.  Leave empty if product does not have a trial."
+#: models.py:1623 models.py:2007 models.py:2051
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/detail_customproduct.html:14
+#: templates/product/product.html:44
+msgid "Price"
+msgstr "מחיר"
+
+#: models.py:1623
+msgid "Set to 0 for a free trial.  Leave empty if product does not have a trial."
 msgstr "כוון ל 0 עבור ניסיון חינם. השאר ריק אם למוצר אין אפשרות לנסיון חינם. "
 
-#: models.py:1160
-#, fuzzy
+#: models.py:1624
 msgid "Trial Duration"
-msgstr "כותרת מתורגמת"
+msgstr "משך תקופת הניסיון"
 
-#: models.py:1160
-msgid ""
-"Length of trial billing cycle (days).  Leave empty if product does not have "
-"a trial."
-msgstr ""
-"משך הזמן (בימים) של כל מחזור חיוב. השאר ריק אם למוצר אין אפשרות לנסיון חינם. "
+#: models.py:1624
+msgid "Length of trial billing cycle.  Leave empty if product does not have a trial."
+msgstr "משך הזמן של כל מחזור חיוב. השאר ריק אם למוצר אין אפשרות לתקופת נסיון חינם. "
 
-#: models.py:1167
-#: models.py:1168
+#: models.py:1648 models.py:1649
 msgid "Trial Terms"
 msgstr "תנאי נסיון"
 
-#: models.py:1194
-#, fuzzy
+#: models.py:1673 templates/product/admin/variation_manager.html:253
 msgid "Options"
-msgstr "לא חובה"
+msgstr "אפשרויות"
 
-#: models.py:1195
-#, fuzzy
+#: models.py:1676
 msgid "Parent"
-msgstr "תשלום"
+msgstr "אב"
 
-#: models.py:1291
-#, fuzzy
+#: models.py:1797
 msgid "Two options from the same option group cannot be applied to an item."
 msgstr "לא ניתן לבחור בשתי אפשרויות מאותה קבוצה עבור פריט אחד. "
 
-#: models.py:1347
+#: models.py:1857
 msgid "Product variation"
 msgstr "וריאציה על מוצר"
 
-#: models.py:1348
+#: models.py:1858
 msgid "Product variations"
 msgstr "וריאציות על מוצר"
 
-#: models.py:1362
+#: models.py:1991
 msgid "Attribute Name"
 msgstr "שם מאפיין"
 
-#: models.py:1366
+#: models.py:1992
+msgid "Value"
+msgstr "ערך"
+
+#: models.py:1995
 msgid "Product Attribute"
 msgstr "מאפיין מוצר"
 
-#: models.py:1367
+#: models.py:1996
 msgid "Product Attributes"
 msgstr "מאפייני מוצר"
 
-#: models.py:1379
+#: models.py:2008
 msgid "Discount Quantity"
 msgstr "הנחה על כמות"
 
-#: models.py:1379
+#: models.py:2010
 msgid "Use this price only for this quantity or higher"
 msgstr "יישם מחיר זה רק לגבי כמות זו או גבוהה ממנה"
 
-#: models.py:1380
-#, fuzzy
+#: models.py:2011
 msgid "Expires"
-msgstr "יצוא"
+msgstr "פג"
 
-#: models.py:1410
+#: models.py:2052
 msgid "Prices"
 msgstr "מחירים"
 
-#: models.py:1447
+#: models.py:2089
 msgid "Product Image"
 msgstr "תדמית מוצר"
 
-#: models.py:1448
+#: models.py:2090
 msgid "Product Images"
 msgstr "תדמיות מוצר"
 
-#: models.py:1464
+#: models.py:2103
 msgid "Product Image Translation"
 msgstr "תרגום תדמית מוצר"
 
-#: models.py:1465
+#: models.py:2104
 msgid "Product Image Translations"
 msgstr "תרגומי תדמית מוצר"
 
-#: views.py:92
-#: views.py:105
-#: views.py:112
-#: views.py:119
-msgid "not available"
-msgstr "לא זמין"
+#: models.py:2117
+msgid "Title"
+msgstr "כותרת"
 
-#: templatetags/satchmo_product_admin.py:36
-#, fuzzy, python-format
-msgid "Edit %(subtype)s"
-msgstr "תת-סוגי מוצר"
+#: models.py:2118
+msgid "Displayed title of this tax."
+msgstr "כותרת מוצגת של מס זה."
 
-#: templatetags/satchmo_product_admin.py:38
-#, python-format
-msgid "Add %(subtype)s"
-msgstr "הוסף %(subtype)s"
+#: models.py:2120
+msgid "Description of products that would be taxed."
+msgstr "תיאור של המוצרים עבורם ייגבה מס."
 
-#: templates/product/category.html:23
-#: templates/product/product.html.html:32
-msgid "Shop Categories"
-msgstr "קטגוריות חנות"
+#: models.py:2127
+msgid "Tax Classes"
+msgstr "סוגי מס"
 
-#: templates/product/recently_added.html:7
-msgid "Recently Added"
-msgstr "הוספו לאחרונה"
+#: models.py:2308
+msgid "Price Adjustment"
+msgstr "התאמת מחיר"
 
-#: templates/product/recently_added.html:25
-#: templates/product/recently_added.html:27
-msgid "Previous"
-msgstr "הקודם"
-
-#: templates/product/recently_added.html:30
-#: templates/product/recently_added.html:32
-msgid "Next"
-msgstr "הבא"
-
-#: templates/product/product.html.html:52
-#: templates/product/detail_configurableproduct.html:35
-msgid "(incl. tax)"
-msgstr "(כולל מס)"
-
-#: templates/product/product.html.html:64
-#: templates/product/detail_configurableproduct.html:70
-#: templates/product/detail_customproduct.html:43
-#: templates/product/detail_subscriptionproduct.html:44
-msgid "Add to wishlist"
-msgstr "הוסף לרשימה אישית"
-
-#: templates/product/admin/product_export_form.html:52
-msgid "Inventory Management"
-msgstr "ניהול מלאי"
-
-#: templates/product/admin/product_export_form.html:111
 #: templates/admin/product/configurableproduct/change_form.html:17
-#: templates/admin/product/productvariation/change_form.html:60
+#: templates/admin/product/productvariation/change_form.html:65
+#: templates/product/admin/inventory_form.html:111
+#: templates/product/admin/product_export_form.html:110
 msgid "Helpers"
 msgstr "עוזרים"
 
-#: templates/product/admin/variation_manager.html:7
-#: templates/product/admin/variation_manager_list.html:7
-msgid "Product Variation Manager"
-msgstr "וריאציית מוצר"
+#: templates/admin/product/configurableproduct/change_form.html:18
+#: templates/admin/product/productvariation/change_form.html:66
+msgid "Variation Manager"
+msgstr "מנהל וריאציות"
 
-#: templates/product/admin/product_export_form.html:57
-msgid ""
-"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+#: templates/admin/product/configurableproduct/change_form.html:21
+#: templates/product/admin/variation_manager.html:237
+msgid "Variations"
+msgstr "וריאציות"
+
+#: templates/product/best_ratings.html:8 templates/product/best_sellers.html:7
+#: templates/product/category.html:13 templates/product/category_index.html:7
+#: templates/product/minimum_order.html:5 templates/product/product.html:23
+#: templates/product/recently_added.html:7
+#: templates/product/admin/inventory_form.html:65
+#: templates/product/admin/product_export_form.html:50
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/admin/variation_manager.html:6
+#: templates/product/admin/variation_manager_list.html:6
+msgid "Home"
+msgstr "דף הבית"
+
+#: templates/product/best_ratings.html:9
+#: templates/product/category_index.html:8
+msgid "Most Popular"
+msgstr "הכי פופולרי"
+
+#: templates/product/best_ratings.html:13
+msgid "Best Rated Products"
+msgstr "מוצרים המדורגים גבוהה ביותר"
+
+#: templates/product/best_ratings.html:25
+#, python-format
+msgid "Rating %(rating)s"
+msgstr "דירוג %(rating)s"
+
+#: templates/product/best_sellers.html:8
+msgid "Best Sellers"
+msgstr "רבי מכר"
+
+#: templates/product/best_sellers.html:13
+msgid "Best Selling Products"
+msgstr "מוצרים רבי מכר"
+
+#: templates/product/cart_detail_customproduct.html:7
+msgid "Base Price: "
+msgstr "מחיר בסיס:"
+
+#: templates/product/cart_detail_customproduct.html:8
+msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+msgstr "המחיר בצד ימין הוא המקדמה שלך, תקבל חשבון המכיל את היתרה כאשר הפריט שלך יהיה מוכן."
+
+#: templates/product/cart_detail_subscriptionproduct.html:8
+#, python-format
+msgid "This is the trial price to be charged today, see <a href=\"%(url)s\">the product description</a> for full pricing details."
+msgstr "זהו המחיר עבור תקופת הניסיון שיחויב היום, ראה <a href=\"%(url)s\">את תיאור המוצר</a> לקבלת פרטים נוספים על התמחור המלא."
+
+#: templates/product/cart_detail_subscriptionproduct.html:10
+#, python-format
+msgid "Free trial, see <a href=\"%(url)s\">the product description</a> for full pricing details."
+msgstr "ניסיון חינם, ראה <a href=\"%(url)s\">את תיאור המוצר</a> לקבלת פרטים נוספים על תמחור מלא."
+
+#: templates/product/cart_detail_subscriptionproduct.html:13
+#, python-format
+msgid "For full pricing details, see <a href=\"%(url)s\">the product description</a>."
+msgstr "לקבלת פרטים מלאים על התמחור, ראה <a href=\"%(url)s\">את תיאור המוצר.</a>"
+
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/product.html:44
+msgid "(incl. tax)"
+msgstr "(כולל מע\"מ)"
+
+#: templates/product/detail_configurableproduct.html:54
+msgid "Please choose your options"
+msgstr "אנא בחר את האפשרויות"
+
+#: templates/product/detail_configurableproduct.html:69
+#: templates/product/detail_customproduct.html:42
+#: templates/product/detail_subscriptionproduct.html:41
+#: templates/product/product.html:56
+msgid "Quantity"
+msgstr "כמות"
+
+#: templates/product/detail_configurableproduct.html:71
+#: templates/product/detail_customproduct.html:44
+#: templates/product/detail_subscriptionproduct.html:43
+#: templates/product/product.html:58
+msgid "Add to cart"
+msgstr "הוסף לעגלה"
+
+#: templates/product/detail_customproduct.html:12
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "הזמנה מותאמת עבור %(name)s"
+
+#: templates/product/detail_customproduct.html:38
+msgid "more"
+msgstr "עוד"
+
+#: templates/product/detail_subscriptionproduct.html:10
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr "מוצר מנוי %(name)s"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "Only "
+msgstr "רק"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "easy payments of:"
+msgstr "תשלומים קלים של:"
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "This product has trial subscription pricing "
+msgstr "למוצר זה יש תמחור למנוי ניסיון"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "Free"
+msgstr "חינם"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "for trial period of "
+msgstr "עבור תקופת נסיון של"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "days"
+msgstr "ימים"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "months"
+msgstr "חודשים"
+
+#: templates/product/minimum_order.html:6
+msgid "Cart"
+msgstr "עגלה"
+
+#: templates/product/minimum_order.html:7
+msgid "Notice"
+msgstr "שים לב"
+
+#: templates/product/minimum_order.html:14
+#, python-format
+msgid "This store requires a minimum order of %(value)s before you can check out."
+msgstr "חנות זו דורשת מינימום הזמנה של %(value)s."
+
+#: templates/product/product_discount_eligible.html:4
+#, python-format
+msgid "<p>This item is eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr "<p>מוצר זה זכאי לקבל הנחה של %(pct)s כאשר תזין את הקוד \"%(code)s\" במהלך %(desc)s  אשר מסתיימת ב %(enddate)s.</p>\n"
+
+#: templates/product/recently_added.html:8
+#: templates/product/recently_added.html:12
+msgid "Recently Added"
+msgstr "הוספו לאחרונה"
+
+#: templates/product/recently_added.html:31
+#: templates/product/recently_added.html:33
+msgid "Previous"
+msgstr "הקודם"
+
+#: templates/product/recently_added.html:36
+#: templates/product/recently_added.html:38
+msgid "Next"
+msgstr "הבא"
+
+#: templates/product/recently_added.html:45
+msgid "Bad Page"
+msgstr "דף שגוי"
+
+#: templates/product/sale_details.html:5
+#, python-format
+msgid "<p>Products in your cart are eligible to receive a discount of %(pct)s when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr "<p>חלק מהמוצרים בעגלה שלך זכאים לקבל הנחה של %(pct)s כאשר תזין את הקוד \"%(code)s\" במהלך %(desc)s  אשר מסתיימת ב %(enddate)s.</p>\n"
+
+#: templates/product/some_discount_eligible.html:4
+#, python-format
+msgid "<p>Products on this page are eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr "<p>חלק מהמוצרים בדף זה זכאים לקבל הנחה של %(pct)s כאשר תזין את הקוד \"%(code)s\" במהלך %(desc)s  אשר מסתיימת ב %(enddate)s.</p>\n"
+
+#: templates/product/admin/inventory_form.html:62
+#: templates/product/admin/product_export_form.html:47
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "תיעוד"
+
+#: templates/product/admin/inventory_form.html:62
+#: templates/product/admin/product_export_form.html:47
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "שינוי סיסמה"
+
+#: templates/product/admin/inventory_form.html:62
+#: templates/product/admin/product_export_form.html:47
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "יציאה"
+
+#: templates/product/admin/inventory_form.html:66
+#: templates/product/admin/product_export_form.html:51
+msgid "Inventory Management"
+msgstr "ניהול מלאי"
+
+#: templates/product/admin/inventory_form.html:73
+#: templates/product/admin/product_export_form.html:60
+#: templates/product/admin/product_export_form.html:71
+#: templates/product/admin/variation_manager.html:233
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
+msgstr[1] "נא לתקן את השגיאות המופיעות מתחת."
+
+#: templates/product/admin/inventory_form.html:82
+msgid "Inventory"
+msgstr "מלאי"
+
+#: templates/product/admin/inventory_form.html:83
+msgid "Unit Price"
+msgstr "מחיר יחידה"
+
+#: templates/product/admin/inventory_form.html:85
+msgid "Featured"
+msgstr "מומלצים"
+
+#: templates/product/admin/inventory_form.html:112
+msgid "Mark all featured"
+msgstr "סמן את כל המומלצים"
+
+#: templates/product/admin/inventory_form.html:113
+msgid "Clear all featured"
+msgstr "נקה את כל המומלצים"
+
+#: templates/product/admin/inventory_form.html:114
+msgid "Disable all Products with 0 quantity."
+msgstr "חסום את כל המוצרים עם כמות 0."
+
+#: templates/product/admin/inventory_form.html:115
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "חסום וריאציות מוצר עם כמות 0."
+
+#: templates/product/admin/inventory_form.html:119
+msgid "No inventory items."
+msgstr "אין פריטי מלאי."
+
+#: templates/product/admin/product_export_form.html:56
+msgid "WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
 msgstr "אזהרה: פונקציה זו עדיין בשלבי ניסוי. נא לא לעשות בה שימוש בייצור."
 
-#: templates/product/admin/product_export_form.html:58
-#: templates/product/admin/product_export_form.html:66
+#: templates/product/admin/product_export_form.html:57
+#: templates/product/admin/product_export_form.html:65
 msgid "Import"
 msgstr "יבוא"
 
-#: templates/product/admin/product_export_form.html:65
+#: templates/product/admin/product_export_form.html:64
 msgid "Import from fixture file:"
 msgstr "יבוא ממסמך קיבוע:"
 
-#: templates/product/admin/product_export_form.html:69
-#: templates/product/admin/product_export_form.html:109
+#: templates/product/admin/product_export_form.html:68
+#: templates/product/admin/product_export_form.html:108
 msgid "Export"
 msgstr "יצוא"
 
-#: templates/product/admin/product_export_form.html:79
+#: templates/product/admin/product_export_form.html:78
 msgid "Export?"
 msgstr "יצוא?"
 
-#: templates/product/admin/product_export_form.html:106
+#: templates/product/admin/product_export_form.html:105
 msgid "Include images?"
 msgstr "האם לכלול תמונות?"
 
-#: templates/product/admin/product_export_form.html:107
+#: templates/product/admin/product_export_form.html:106
 msgid "Include categories?"
 msgstr "האם לכלול קטגוריות?"
 
-#: templates/product/admin/product_export_form.html:108
+#: templates/product/admin/product_export_form.html:107
 msgid "Format?"
 msgstr "מערך (פורמט)?"
 
-#: templates/product/admin/product_export_form.html:110
+#: templates/product/admin/product_export_form.html:109
 msgid "Reset"
 msgstr "איפוס"
 
-#: templates/product/admin/product_export_form.html:112
+#: templates/product/admin/product_export_form.html:111
 msgid "Check all"
 msgstr "סמן הכל"
 
-#: templates/product/admin/product_export_form.html:113
+#: templates/product/admin/product_export_form.html:112
 msgid "Uncheck all"
 msgstr "בטל סימון הכל"
 
-#: templates/product/admin/product_export_form.html:116
+#: templates/product/admin/product_export_form.html:115
 msgid "No products."
 msgstr "אין מוצרים."
 
@@ -1147,201 +1260,162 @@ msgstr "שגיאות"
 msgid "results"
 msgstr "תוצאות"
 
-#: templates/admin/product/configurableproduct/change_form.html:18
-#: templates/admin/product/productvariation/change_form.html:61
-msgid "Variation Manager"
-msgstr "מנהל וריאציות"
+#: templates/product/admin/variation_manager.html:7
+#: templates/product/admin/variation_manager_list.html:7
+msgid "Product Variation Manager"
+msgstr "וריאציית מוצר"
 
-#: templates/admin/product/configurableproduct/change_form.html:21
-#: templates/product/admin/variation_manager.html:170
-msgid "Variations"
-msgstr "וריאציות"
-
-#: templates/product/admin/variation_manager.html:163
+#: templates/product/admin/variation_manager.html:230
 #, python-format
 msgid "Variation Manager for %(product_name)s"
 msgstr "מנהל וריאציות עבור %(product_name)s"
 
-#: templates/product/admin/variation_manager.html:172
+#: templates/product/admin/variation_manager.html:239
 msgid ""
 "\n"
-"    <p>The Variation Manager helps create the exact set of variations you "
-"need for your Configurable Product</p>\n"
-"    <p>Make choices from the Option Groups below, and then click one of the "
-"helper links \n"
-"    below them to select or deselect variations which have those options.</"
-"p>\n"
-"    <p>Fine tune the active variations by putting a checkmark next to those "
-"that you want to keep or \n"
+"    <p>The Variation Manager helps create the exact set of variations you need for your Configurable Product</p>\n"
+"    <p>Make choices from the Option Groups below, and then click one of the helper links \n"
+"    below them to select or deselect variations which have those options.</p>\n"
+"    <p>Fine tune the active variations by putting a checkmark next to those that you want to keep or \n"
 "    create, then then click <b>Update Variations</b>.\n"
 "    </p>\n"
 "    "
 msgstr ""
 "\n"
-"    <p>מנהל הוריאציות עוזר ליצור את הסט של כל הקומבינציות האפשריות של המוצר "
-"הניתן לעיצוב.</p>\n"
-"<p>בחר מתוך קבוצות האפשרויות למטה, ולחץ על אחד מהקישורים מתחתם כדי לבחור או "
-"לבטל וריאציות מאותם אפשרויות.</p>\n"
-"<p>אפשר לכוון את הוריאציות הפעילות על ידי סימון הוריאציות שאותם רוצים לשמור "
-"או \n"
+"    <p>מנהל הוריאציות עוזר ליצור את הסט של כל הקומבינציות האפשריות של המוצר הניתן לעיצוב.</p>\n"
+"<p>בחר מתוך קבוצות האפשרויות למטה, ולחץ על אחד מהקישורים מתחתם כדי לבחור או לבטל וריאציות מאותם אפשרויות.</p>\n"
+"<p>אפשר לכוון את הוריאציות הפעילות על ידי סימון הוריאציות שאותם רוצים לשמור או \n"
 "ליצור, ואז לחץ <b>עדכן וריאציות</b>.\n"
 "</p>\n"
 "    "
 
-#: templates/product/admin/variation_manager.html:186
-msgid "Choices"
-msgstr "אפשרויות לבחירה"
-
-#: templates/product/admin/variation_manager.html:206
-#, fuzzy
+#: templates/product/admin/variation_manager.html:273
 msgid "Helper Links"
-msgstr "עוזרים"
+msgstr "קישורים לעזרה"
 
-#: templates/product/admin/variation_manager.html:211
+#: templates/product/admin/variation_manager.html:280
 msgid "Select These Options"
 msgstr "בחר מתוך האפשרויות"
 
-#: templates/product/admin/variation_manager.html:213
+#: templates/product/admin/variation_manager.html:283
 msgid "Select Only These Options"
 msgstr "בחר רק את האפשרויות האלו"
 
-#: templates/product/admin/variation_manager.html:215
+#: templates/product/admin/variation_manager.html:286
 msgid "Select All"
 msgstr "בחר הכל"
 
-#: templates/product/admin/variation_manager.html:217
+#: templates/product/admin/variation_manager.html:289
 msgid "Deselect These Options"
 msgstr "בטל את הבחירה מתוך האפשרויות"
 
-#: templates/product/admin/variation_manager.html:219
+#: templates/product/admin/variation_manager.html:292
 msgid "Deselect All"
 msgstr "בטל בחירה מהכל"
 
-#: templates/product/admin/variation_manager.html:221
+#: templates/product/admin/variation_manager.html:295
 msgid "Show All"
 msgstr "הצג הכל"
 
-#: templates/product/admin/variation_manager.html:223
+#: templates/product/admin/variation_manager.html:298
 msgid "Hide Inactive Rows"
 msgstr "הסתר שורות לא פעילות"
 
-#: templates/product/admin/variation_manager.html:228
-#, fuzzy
+#: templates/product/admin/variation_manager.html:305
 msgid "Update Variations"
-msgstr "צור וריאציות"
+msgstr "עדכן וריאציות"
 
-#: templates/product/admin/variation_manager.html:229
-#, fuzzy
+#: templates/product/admin/variation_manager.html:306
 msgid "Reset Form"
-msgstr "טופס רישום"
+msgstr "אפס טופס"
 
-#: templates/product/admin/variation_manager.html:237
-#, fuzzy
+#: templates/product/admin/variation_manager.html:314
 msgid "Variation"
-msgstr "וריאציות"
+msgstr "וריאציה"
 
-#: templates/product/admin/variation_manager.html:238
+#: templates/product/admin/variation_manager.html:315
 msgid "Exists"
 msgstr "קיים"
 
-#: templates/product/admin/variation_manager.html:239
+#: templates/product/admin/variation_manager.html:316
 msgid "Create/Keep"
 msgstr "צור/שמור"
 
-#: templates/product/admin/variation_manager.html:255
-#, fuzzy
+#: templates/product/admin/variation_manager.html:332
 msgid "yes"
 msgstr "כן"
 
-#: templates/product/admin/variation_manager.html:255
+#: templates/product/admin/variation_manager.html:332
 msgid "no"
 msgstr "לא"
 
 #: templates/product/admin/variation_manager_list.html:12
-#, fuzzy
 msgid "Select the Configurable Product to manage."
-msgstr "מוצר אשר ניתן לעיצוב"
+msgstr "בחר מוצר (ניתן להגדרה) לניהול."
 
-#: sale_details.html:5
+#: templatetags/satchmo_product_admin.py:38
 #, python-format
-msgid ""
-"<p>Some of the products in your cart are eligible to receive a discount of %"
-"(pct)s when you enter the code \"%(code)s\" during our %(desc)s which ends "
-"on %(enddate)s.</p>\n"
-msgstr ""
+msgid "Edit %(subtype)s"
+msgstr "ערוך %(subtype)s"
 
-#: templates/product/product_discount_eligible.html:4
+#: templatetags/satchmo_product_admin.py:43
 #, python-format
-msgid ""
-"<p>This item is eligible to receive a discount of %(pct)s during checkout "
-"when you enter the code \"%(code)s\" during our %(desc)s which ends on %"
-"(enddate)s.</p>\n"
-msgstr ""
+msgid "Add %(subtype)s"
+msgstr "הוסף %(subtype)s"
 
-#: templates/product/some_discount_eligible.html:4
-#, python-format
-msgid ""
-"<p>Some of the products on this page are eligible to receive a discount of %"
-"(pct)s during checkout when you enter the code \"%(code)s\" during our %"
-"(desc)s which ends on %(enddate)s.</p>\n"
-msgstr ""
+#: templatetags/satchmo_product_admin.py:70
+msgid "Delete ProductVariation"
+msgstr "מחק וריאציית מוצר"
 
-#: templates/product/best_ratings.html:8
-#, fuzzy
-msgid "Best Rated Products"
-msgstr "מוצרים קשורים"
+#: views/__init__.py:74
+msgid "The category you have requested does not exist."
+msgstr "הקטגוריה שביקשת אינה קיימת."
 
-#: templates/product/best_ratings.html:19
-#, python-format
-msgid "Rating %(rating)s"
-msgstr ""
+#: views/__init__.py:121 views/adminviews.py:120
+msgid "The product you have requested does not exist."
+msgstr "המוצר שביקשת אינו קיים. "
 
-#: templates/product/best_sellers.html:7
-#, fuzzy
-msgid "Best Selling Products"
-msgstr "מוצרים קשורים"
+#: views/__init__.py:160 views/__init__.py:177 views/__init__.py:184
+#: views/__init__.py:193
+msgid "not available"
+msgstr "לא זמין"
 
-#: templates/product/detail_configurableproduct.html:51
-msgid "Please choose your options"
-msgstr "נא בחר באפשרויות שלך"
+#: views/adminviews.py:27
+msgid "Inventory Editor"
+msgstr "עורך מלאי"
 
-#: templates/product/detail_customproduct.html:10
-#, python-format
-msgid "Custom order for %(name)s"
-msgstr "הזמנה מותאמת עבור %(name)s"
+#: views/adminviews.py:48
+msgid "Product Import/Export"
+msgstr "יבוא/יצוא מוצר"
 
-#: templates/product/detail_customproduct.html:35
-msgid "more"
-msgstr "עוד"
+#: views/adminviews.py:72
+msgid "No upload file found"
+msgstr "קובץ העלאה לא נמצא"
 
-#: templates/product/detail_subscriptionproduct.html:10
-#, fuzzy, python-format
-msgid "Subscription product %(name)s"
-msgstr "תיאור המוצר"
+#: views/adminviews.py:117
+msgid "The product you have requested is not a Configurable Product."
+msgstr "המוצר שביקשת אינו מוצר אשר ניתן לעיצוב. "
 
-#: templates/product/detail_subscriptionproduct.html:12
-msgid "Only "
-msgstr "רק"
+#~ msgid "A unit of measure must be entered for the length"
+#~ msgstr "חובה להזין יחידת מידה עבור אורך"
 
-#: templates/product/detail_subscriptionproduct.html:12
-#, fuzzy
-msgid "easy payments of:"
-msgstr "אין תשלומים."
+#~ msgid "A unit of measure must be entered for the width"
+#~ msgstr "חובה להזין יחידת מידה עבור רוחב"
 
-#: templates/product/detail_subscriptionproduct.html:19
-msgid "This product has trial subscription pricing "
-msgstr "למוצר זה יש תמחור למנוי ניסיון"
+#~ msgid "A unit of measure must be entered for the height"
+#~ msgstr "חובה להזין יחידת מידה עבור משקל"
 
-#: templates/product/detail_subscriptionproduct.html:20
-msgid "for trial period of "
-msgstr "עבור תקופת נסיון של"
+#~ msgid "A unit of measure must be entered for the weight"
+#~ msgstr "חובה להזין יחידת מידה עבור משקל"
 
-#: templates/product/detail_subscriptionproduct.html:20
-msgid "days"
-msgstr "ימים"
+#~ msgid "The product and parent fields can not be the same."
+#~ msgstr "שדות המוצר ומוצר אב לא יכולים להיות זהים."
 
-#: templates/product/recently_added.html:39
-#, fuzzy
-msgid "Bad Page"
-msgstr "עמוד"
+#~ msgid "Display Order"
+#~ msgstr "סדר תצוגה"
 
+#~ msgid "Shop Categories"
+#~ msgstr "קטגוריות"
+
+#~ msgid "Add to wishlist"
+#~ msgstr "הוסף לרשימה אישית"

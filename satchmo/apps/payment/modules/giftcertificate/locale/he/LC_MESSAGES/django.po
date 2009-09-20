@@ -1,27 +1,28 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"PO-Revision-Date: 2009-04-03 06:52\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
 #: templates/checkout/confirm.html:9
 #: templates/checkout/giftcertificate/confirm.html:9
 #: templates/giftcertificate/balance.html:5
 msgid "Home"
-msgstr "בית"
+msgstr "דף הבית"
 
 #: models.py:41
 msgid "Email"
@@ -33,7 +34,7 @@ msgstr "הערות"
 
 #: models.py:33
 msgid "Order"
-msgstr "סדר"
+msgstr "מיון"
 
 #: models.py:130
 msgid "Product"
@@ -43,9 +44,7 @@ msgstr "מוצר"
 msgid "Order Payment"
 msgstr "תשלום הזמנה"
 
-#: config.py:8
-#: models.py:102
-#: templates/giftcertificate/_order_summary.html:7
+#: config.py:8 models.py:102 templates/giftcertificate/_order_summary.html:7
 #: templates/giftcertificate/balance.html:13
 #: templates/product/detail_giftcertificateproduct.html:9
 msgid "Gift Certificate"
@@ -64,9 +63,7 @@ msgid "Character Set"
 msgstr "מערך תווים"
 
 #: config.py:25
-msgid ""
-"The characters allowable in randomly-generated certficate codes.  No vowels "
-"means no unfortunate words."
+msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
 msgstr "תווים אפשריים בקוד אישור המיוצר אוטומטית."
 
 #: config.py:29
@@ -78,12 +75,8 @@ msgid "Code format"
 msgstr "פורמט קוד"
 
 #: config.py:37
-msgid ""
-"Enter the format for your cert code.  Use a '^' for the location of a "
-"randomly generated character."
-msgstr ""
-"הכנס פורמט עבור קוד אישור. השתמש ב '^' לציין מיקום של תו המיוצר באופן "
-"רנדומלי."
+msgid "Enter the format for your cert code.  Use a '^' for the location of a randomly generated character."
+msgstr "הכנס פורמט עבור קוד אישור. השתמש ב '^' לציין מיקום של תו המיוצר באופן רנדומלי."
 
 #: config.py:41
 msgid "Implementation module"
@@ -106,8 +99,7 @@ msgid "False if you want to be in test mode"
 msgstr "שלילי אם את(ה) רוצה להיות במצב בדיקה"
 
 #: config.py:59
-msgid ""
-"The url base used for constructing urlpatterns which will use this module"
+msgid "The url base used for constructing urlpatterns which will use this module"
 msgstr "כתובת הבסיס לצורך בנית תבניות כתובת עבור המודול"
 
 #: forms.py:6
@@ -142,8 +134,7 @@ msgstr "הודעה"
 msgid "Starting Balance"
 msgstr "יתרת התחלה"
 
-#: models.py:103
-#: templates/giftcertificate/balance.html:6
+#: models.py:103 templates/giftcertificate/balance.html:6
 msgid "Gift Certificates"
 msgstr "אישור מתנה"
 
@@ -205,21 +196,12 @@ msgstr "סה\"כ להזמנה: %(orderbalance)s"
 
 #: templates/checkout/confirm.html:21
 #, python-format
-msgid ""
-"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
-"s total available to pay for your order."
-msgstr ""
-"את(ה) עומד להשתמש באישור מתנה # %(giftcode)s המכיל %(certbalance)s אשר "
-"יכולים לשמש כתשלום עבור ההזמנה."
+msgid "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)s total available to pay for your order."
+msgstr "את(ה) עומד להשתמש באישור מתנה # %(giftcode)s המכיל %(certbalance)s אשר יכולים לשמש כתשלום עבור ההזמנה."
 
 #: templates/checkout/confirm.html:22
-msgid ""
-"If there isn't enough remaining to pay for the whole order, you'll be able "
-"to select another form of payment for the balance after you use this gift "
-"certificate."
-msgstr ""
-"אם אין מספיק כדי לשלם על כל ההזמנה, תוכל(י) לבחור אמצעי תשלום אחר לתשלום "
-"היתרה אחרי השימוש באישור המתנה."
+msgid "If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate."
+msgstr "אם אין מספיק כדי לשלם על כל ההזמנה, תוכל(י) לבחור אמצעי תשלום אחר לתשלום היתרה אחרי השימוש באישור המתנה."
 
 #: templates/checkout/giftcertificate/confirm.html:6
 msgid "Please Note:"
@@ -227,9 +209,7 @@ msgstr "לתשומת לבך:"
 
 #: templates/checkout/giftcertificate/confirm.html:19
 #, python-format
-msgid ""
-"About to use your gift certificate: %(giftcode)s, which has a balance of %"
-"(balance)s."
+msgid "About to use your gift certificate: %(giftcode)s, which has a balance of %(balance)s."
 msgstr "עומד להשתמש באישור מתנה: %(giftcode)s, בעל ערך של %(balance)s."
 
 #: templates/checkout/giftcertificate/pay_ship.html:6
@@ -241,9 +221,8 @@ msgid "Gift Certificate Code"
 msgstr "קוד אישור מתנה"
 
 #: templates/giftcertificate/_order_summary.html:5
-#, fuzzy
 msgid "Gift Certificate Codes"
-msgstr "קוד אישור מתנה"
+msgstr "קודי אישור מתנה"
 
 #: templates/giftcertificate/_order_summary.html:10
 #, python-format
@@ -304,4 +283,3 @@ msgstr "הודעה (אופציונלי)"
 #: templates/product/detail_giftcertificateproduct.html:29
 msgid "Add to cart"
 msgstr "הוסף לעגלה"
-

@@ -1,29 +1,54 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-#
+# 
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
-"PO-Revision-Date: 2008-07-18 22:45+0300\n"
+"POT-Creation-Date: 2009-03-13 23:03+0200\n"
+"PO-Revision-Date: 2009-03-13 16:03\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: models.py:41
-msgid "State"
-msgstr "מחוז"
+#: config.py:6
+msgid "Internationalization Settings"
+msgstr "הגדרות שפה"
 
-#: models.py:63
-msgid "Country"
-msgstr "מדינה"
+#: config.py:11
+msgid "Default currency symbol"
+msgstr "ברירת מחדל סמל המטבע"
+
+#: config.py:12
+msgid "Use a '_' character to force a space."
+msgstr "השתמש בתו '_' כדי לאלץ רווח."
+
+#: config.py:18
+msgid "Show translations?"
+msgstr "הצג תרגום?"
+
+#: config.py:19
+msgid "Show translations in admin."
+msgstr "הצג תרגומים בממשק ניהול."
+
+#: config.py:25
+msgid "Allow user to choose from available translations"
+msgstr "לאפשר למשתמש לבחור בין תרגומים זמינים"
+
+#: config.py:33
+msgid "Available languages"
+msgstr "שפות זמינות"
+
+#: config.py:34
+msgid "Languages that have valid translations"
+msgstr "שפות אשר יש עבורם תרגום תקף"
 
 #: models.py:6
 msgid "Africa"
@@ -153,6 +178,10 @@ msgstr "רפובליקה"
 msgid "Sheading"
 msgstr "ממשל מקומי"
 
+#: models.py:41
+msgid "State"
+msgstr "מחוז"
+
 #: models.py:42
 msgid "Subdivision"
 msgstr "תת מחלקה"
@@ -193,28 +222,50 @@ msgstr "מדינה פעילה"
 msgid "Continent"
 msgstr "יבשת"
 
-#: models.py:60
-#: models.py:87
+#: models.py:60 models.py:81
 msgid "Administrative Area"
 msgstr "אזור אדמיניסטרטיבי"
+
+#: models.py:63
+msgid "Country"
+msgstr "מדינה"
 
 #: models.py:64
 msgid "Countries"
 msgstr "מדינות"
 
-#: models.py:82
+#: models.py:76
 msgid "Admin Area name"
 msgstr "שם איזור ניהול"
 
-#: models.py:83
+#: models.py:77
 msgid "Postal Abbreviation"
 msgstr "קיצור דואר"
 
-#: models.py:84
+#: models.py:78
 msgid "Area is active"
 msgstr "איזור פעיל"
 
-#: models.py:88
+#: models.py:82
 msgid "Administrative Areas"
 msgstr "אזורים אדמיניסטרטיביים"
 
+#: templates/l10n/_language_selection_form.html:5
+msgid "Change language"
+msgstr "שנה שפה"
+
+#: templates/l10n/_language_selection_form.html:11
+msgid "Change"
+msgstr "שינוי"
+
+#: validators/aupostcode.py:13
+msgid "Invalid Australian postal code"
+msgstr "מיקוד אוסטרלי לא חוקי"
+
+#: validators/capostcode.py:18
+msgid "Invalid postal code for Canada"
+msgstr "מיקוד לא חוקי של קנדה"
+
+#: validators/uspostcode.py:10
+msgid "Invalid ZIP code"
+msgstr "מיקוד לא חוקי"
