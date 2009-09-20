@@ -189,6 +189,7 @@ to add any pieces of satchmo.
                 'satchmo_store.shop',
                 'django.contrib.admin',
                 'django.contrib.auth',
+                'django.contrib.admindocs',
                 'django.contrib.contenttypes',
                 'django.contrib.comments',
                 'django.contrib.sessions',
