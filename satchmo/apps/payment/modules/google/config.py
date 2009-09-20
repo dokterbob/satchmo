@@ -44,13 +44,13 @@ config_register_list(
         'POST_URL',
         description=_('Post URL'),
         help_text=_('The Google URL for real transaction posting.'),
-        default="https://checkout.google.com/cws/v2/Merchant/%(MERCHANT_ID)s/checkout"),
+        default="https://checkout.google.com/api/checkout/v2/checkout/Merchant/%(MERCHANT_ID)s"),
 
     StringValue(PAYMENT_GROUP,
         'POST_TEST_URL',
         description=_('Post URL'),
         help_text=_('The Google URL for test transaction posting.'),
-        default="https://sandbox.google.com/shop/checkout/cws/v2/Merchant/%(MERCHANT_ID)s/checkout"),
+        default="https://sandbox.google.com/checkout/api/checkout/v2/checkout/Merchant/%(MERCHANT_ID)s"),
 
     StringValue(PAYMENT_GROUP,
         'MERCHANT_ID',
