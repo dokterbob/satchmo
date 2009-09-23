@@ -143,7 +143,7 @@ def moneyfmt(val, curr=None, places=-1, grouping=True, wrapcents='', current_loc
     except TypeError:
         s = format('%%.%if' % places, abs(val), conv, grouping)
     # '<' and '>' are markers if the sign must be inserted between symbol and value
-    s = '<' + s + '>'
+    s = '<' + s.decode('utf8') + '>'
 
     if curr is None:
         curr = config_value('LANGUAGE','CURRENCY')
