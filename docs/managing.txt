@@ -1,0 +1,32 @@
+Managing Your Store
+=====================
+
+Once you have your store up and running, Satchmo has several tools that
+will make it easier for you to administer and maintain your site.
+
+Admin Toolbar
+-------------
+
+Satchmo includes a very useful Administrative toolbar that allows the store
+administrator to browse the active store and displays useful statistics
+about your store including:
+
+    * Current Satchmo version
+    * Link to the admin site
+    * Number of and link to new orders
+    * Number of carts in the past, hour, day and week
+    * Number of contacts in the past week as well as total
+    * If viewing a specific item, it will also show the number of items sold
+    
+In order for this to work you must have  ``satchmo_ext.satchmo_toolbar`` in your
+installed apps.
+
+Editing Items Bookmarklet
+-------------------------
+
+As described in this `article <http://www.b-list.org/weblog/2007/nov/07/bookmarklets/>`_ ,
+Django supports a useful bookmarklet that allows you to quickly jump to the admin page for a
+specific item in the store. In order to use this feature, make sure that you drag
+the necessary bookmarklet from ``/admin/doc/bookmarklets`` to your browser's bookmark
+bar. Then whenever you are on a product page which can be editable from the admin, you
+can quickly jump there.

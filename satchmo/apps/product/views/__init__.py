@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django import http
+from django.core.xheaders import populate_xheaders
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.template.loader import select_template
@@ -126,6 +127,9 @@ def get_product(request, product_slug=None, selected_options=(),
         default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
 
     subtype_names = product.get_subtypes()
+    
+    # Save product id for xheaders, in case we display a ConfigurableProduct
+    product_id = product.id
 
     if 'ProductVariation' in subtype_names:
         selected_options = product.productvariation.unique_option_ids
@@ -149,8 +153,10 @@ def get_product(request, product_slug=None, selected_options=(),
 
     template = find_product_template(product, producttypes=subtype_names)
     context = RequestContext(request, extra_context)
-    return http.HttpResponse(template.render(context))
-
+    
+    response = http.HttpResponse(template.render(context))
+    populate_xheaders(request, response, Product, product_id)
+    return response
 
 def get_price(request, product_slug):
     """Get base price for a product, returning the answer encoded as JSON."""

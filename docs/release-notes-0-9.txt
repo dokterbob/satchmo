@@ -10,6 +10,7 @@ Some of the highlights are described below.
 Changes
 -------
 	
+ * Populate the xheaders so the admin bookmarklet will work
  * New US SST tax module
  * New Tiered weight shipping module
  * Google checkout v2 integration
@@ -47,3 +48,4 @@ Bug Fixes
  * Fix IE javascript bug
  * Fix several infinite recurison edge cases
  * Improve error handling if large quantities are entered when buying product
+ * Fix Paypal IPN callback url
