@@ -81,7 +81,7 @@
 <input type="hidden" name="email" value="{{order.contact.email}}" />
 <input type="hidden" name="address_override" value="0" />
 {% endwith %}{% endif %}
-<input type="hidden" name="notify_url" value="{% url PAYPAL_satchmo_checkout-ipn %}" />
+<input type="hidden" name="notify_url" value="{{shop.base_url}}{% url PAYPAL_satchmo_checkout-ipn %}" />
 <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>
 {% endif %}
