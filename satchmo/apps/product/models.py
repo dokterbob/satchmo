@@ -1538,7 +1538,7 @@ class ConfigurableProduct(models.Model):
 def _protected_dir(instance, filename):
     raw = config_value_safe('PRODUCT', 'PROTECTED_DIR', 'images/')
     updir = normalize_dir(raw)
-    return os.path.join(updir, os.path.basename(filename))
+    return os.path.normpath(os.path.join(updir, os.path.basename(filename)))
 
 class DownloadableProduct(models.Model):
     """
