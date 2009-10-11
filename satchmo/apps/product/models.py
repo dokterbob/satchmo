@@ -31,7 +31,6 @@ from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, ad
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
-from shipping.config import shipping_method_by_key
 
 log = logging.getLogger('product.models')
 
