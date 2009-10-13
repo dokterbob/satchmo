@@ -11,7 +11,7 @@ The simplest way to install Satchmo would be:
     pip install -e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
 
 Then run:
-    python getsatchmo.py
+    python clonesatchmo.py
 
 """
 
