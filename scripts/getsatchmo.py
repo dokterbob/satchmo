@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 """
-This is the bootsrap installation script for Satchmo. It will make sure that
-the dependencies are in place, then will create the base Satchmo configuration.
+This is the installation script for Satchmo. It will create the base Satchmo configuration.
 
 Before running this script, you must have python and pip installed.
 It is also recommended that you install Python Imaging using your distribution's
 package method.
 
-To execute, download this script to a directory and run:
-python getsatchmo.py
+The simplest way to install Satchmo would be:
+    pip install -r http://bitbucket.org/chris1610/satchmo/raw/tip/scripts/requirements.txt
+    pip install -e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
 
-Notes:
-- This file can attempt (using -p) to install Python Imaging from source. On some platforms, 
-  the jpeg or other image libraries may not work as expected. The recommendation is
-  to install PIL from your distributions binaries.
+Then run:
+    python getsatchmo.py
 
 """
 
@@ -24,22 +22,7 @@ import re
 from optparse import OptionParser
 import string
 
-__VERSION__ = "0.1"
-
-pip_requirements = """
-django
-pycrypto
-http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
-django-registration
-PyYAML
-http://www.reportlab.org/ftp/ReportLab_2_3.tar.gz
--e hg+http://bitbucket.org/bkroeze/django-threaded-multihost/#egg=django-threaded-multihost
--e hg+http://bitbucket.org/bkroeze/django-caching-app-plugins/#egg=django-caching-app-plugins
--e hg+http://bitbucket.org/bkroeze/django-signals-ahoy/#egg=django-signals-ahoy
--e hg+https://sorl-thumbnail.googlecode.com/hg/#egg=sorl-thumbnail
-"""
-
-pil_requirements = "http://effbot.org/downloads/Imaging-1.1.6.tar.gz"
+__VERSION__ = "0.2"
 
 def parse_command_line():
     usage = 'usage: %prog [options]'
@@ -52,16 +35,10 @@ def parse_command_line():
     parser.add_option('-l', '--localsite', action='store',type='string', default='localsite',
                      dest='local_site_name', help="Name for the local application stub. [default: %default]")
                      
-    parser.add_option('-p', action='store_true',dest='pil_install', default=False,
-                        help="Attempt to install Python Imaging Library.")
         
     opts, args = parser.parse_args()
     
     return opts, args
-
-def run_pip_commands():
-    for line in pip_requirements.split('\n'):
-        os.system('pip install %s' % line)
 
 def install_pil():
     os.system('pip install %s' % pil_requirements)
@@ -116,27 +93,18 @@ if __name__ == '__main__':
     opts, args = parse_command_line()
     
     errors = []
-    try:
-        import pip
-    except:
-        errors.append("You must install pip: easy_install pip")
     dest_dir = os.path.join('./',opts.site_name)
     if os.path.isdir(dest_dir):
         errors.append("The destination directory already exists. This script can only be used to create new projects.")
-    if opts.pil_install:
-        print "Installing Python Imaging Library"
-        install_pil()
-    else:
-        try:
-            import PIL as Image
-        except ImportError:
-            errors.append("The Python Imaging Library is not installed. Install from your distribution binaries of use the -p flag.")
+
+    try:
+        import PIL as Image
+    except ImportError:
+        errors.append("The Python Imaging Library is not installed. Install from your distribution binaries.")
     if errors:
         for error in errors:
             print error
         exit()
-    print "Downloading and installing additional dependencies"
-    run_pip_commands()
     print "Creating the Satchmo Application"
     create_satchmo_site(opts.site_name)
     print "Customizing the files"
