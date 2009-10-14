@@ -61,18 +61,20 @@ percentage discount. Another common usage is for wholesale versus retail pricing
 This feature is optional and can be enabled by following these steps:
 Using it is quite simple:
 
-    1. Add 'satchmo.product.tieredpricing' to your INSTALLED_APPS
-    2. Create a user group for your desired tier.
-    3. Add users to that group using the group management in the admin.
-    4. Make a PricingTier, associating the group to the tier, and setting any default percentage discount.
-    5. If you want specific tiered pricing for a product, then edit the product. You'll see a new section, "Tiered Prices", where you can set prices by tier.
+    1. Add 'satchmo_ext.tieredpricing' to your INSTALLED_APPS.
+    2. Run 'manage.py syncdb'.
+    3. In the admin site under 'Auth > Groups', create a user group for your desired tier.
+    4. Add users to that group via 'Auth > Users' in the admin.
+    5. Make a PricingTier, associating the group to the tier, and setting any default percentage discount.
+    6. If you want specific tiered pricing for a product, then edit the product. You'll see a new section, "Tiered Prices", where you can set prices by tier.
+
     
 The price resolution process is straightforward.
 
 1. If the user is anonymous or has no groups, use the non-tiered price.
 2. If the user has a group and that group has a tier:
 
-  2a. Look for explicit prices (see #5 above) for that product.  If found, return it.
+  2a. Look for explicit prices (see #6 above) for that product.  If found, return it.
   2b. Else return the non-tiered price reduced by the default tier discount percent.
   
 3. If the user has multiple tiers, return the lowest amount found in 2a & 2b.
