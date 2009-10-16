@@ -7,7 +7,7 @@ from l10n.models import Country
 from livesettings import config_value, config_get_group, SettingNotSet
 from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber, Organization, ContactRole
 from satchmo_store.shop.models import Config
-from signals_ahoy.signals import form_init, form_postsave
+from signals_ahoy.signals import form_init, form_initialdata, form_postsave
 import datetime
 import logging
 import signals
@@ -44,6 +44,10 @@ class ContactInfoForm(ProxyContactForm):
     next = forms.CharField(max_length=40, widget=forms.HiddenInput(), required=False)
 
     def __init__(self, *args, **kwargs):
+        initial = kwargs.get('initial', {})
+        form_initialdata.send(self.__class__, form=self, initial=initial, contact = kwargs.get('contact', None))
+        kwargs['initial'] = initial
+        
         shop = kwargs.pop('shop', None)
         shippable = kwargs.pop('shippable', True)
         super(ContactInfoForm, self).__init__(*args, **kwargs)
@@ -82,6 +86,7 @@ class ContactInfoForm(ProxyContactForm):
             fld = self.fields[f]
             if fld.required:
                 fld.label = (fld.label or f) + '*'
+        log.info('Sending form_init signal: %s', self.__class__)
         form_init.send(self.__class__, form=self)
 
     def _check_state(self, data, country):
