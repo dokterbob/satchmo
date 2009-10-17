@@ -1,4 +1,4 @@
-global-includes *.po *.mo
+recursive-include satchmo/apps *.po *.mo
 include docs/*
 include AUTHORS CONTRIBUTORS LICENSE CHANGELOG
 include setup.cfg
