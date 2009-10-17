@@ -54,7 +54,7 @@ def category_index(request, template="product/category_index.html", root_only=Tr
     ctx = {
         'categorylist' : cats,
     }
-    return render_to_response(template, RequestContext(request, ctx))
+    return render_to_response(template, context_instance=RequestContext(request, ctx))
 
 def category_view(request, slug, parent_slugs='', template='product/category.html'):
     """Display the category, its child categories, and its products.
@@ -80,7 +80,7 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
         'products' : products,
     }
     index_prerender.send(Product, request=request, context=ctx, category=category, object_list=products)
-    return render_to_response(template, RequestContext(request, ctx))
+    return render_to_response(template, context_instance=RequestContext(request, ctx))
 
 
 def display_featured(num_to_display=NOTSET, random_display=NOTSET):
