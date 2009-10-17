@@ -63,8 +63,15 @@ Optional Modules
    google-base
    upsell
 
-Depoloying A Store
-==================
+Tutorials
+=========
+.. toctree::
+   :maxdepth: 1
+    
+   tutorial1
+
+Deploying A Store
+=================
 
 .. toctree::
    :maxdepth: 1

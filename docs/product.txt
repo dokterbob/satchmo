@@ -57,7 +57,6 @@ Ordering
 Active
     This allows a category to be populated with information but to be set inactive.
 
-Active
 .. index::
    single: Product; fields
    
@@ -337,21 +336,7 @@ Once you have enabled the gift certificate product type and payment methods, you
 A short tutorial
 ----------------
 
-Here is a quick step by step overview for adding something to your store.  Hopefully it illustrates how to add products and use the concepts described above.
-
- - From the admin interface, add a new individual Product
- - Choose the appropriate Category, Name, etc.  For illustration purposes, create a Satchmo Developer Book  
- - Be sure to put in a value for the price ($25.00) with no expiration or quantity.  Then click save
- - You should see a list of all your products
- - Click on the Satchmo Developer Book
- - At the bottom of your screen, you'll see the option to "Add ConfigurableProduct"  
- - Click on the link
- - Select the appropriate Option Group (Book Type) and click Save & Continue Editing
- - Check "Create Variations" and Click the save button
-
-You've now created all the Product Variants for the Satchmo Developer
-Handbook.  If you want to tweak specific ProductVariants you can but you
-don't have to. 
+For a more detailed tutorial that covers how to add a product, please review this :doc:`document <tutorial1>`. 
 
 The product variation manager contains a set of helper functions for managing product variations.
 It is accessed at /product/admin/variations/ and provides a streamlined process for managing all of 
