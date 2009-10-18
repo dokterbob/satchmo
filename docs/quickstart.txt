@@ -1,0 +1,49 @@
+Quick Start
+===========
+
+For the impatient, here is the quickest way to get Satchmo installed and 
+running. If you plan to use Satchmo in a production environment, then it is
+important to understand the full :doc:`installation process <new_installation>`.
+
+Install Base Requirements
+-------------------------
+
+Ensure that python 2.4 or greater is installed. 
+
+Next, install `python setuptools <http://pypi.python.org/pypi/setuptools>`_ 
+so that easy_install is available.
+
+Install `Python Imaging Library <http://www.pythonware.com/products/pil/>`_
+based on your OS.
+
+Install pip::
+
+    easy_install pip
+    
+Install Satchmo and Dependencies
+--------------------------------
+
+Execute these commands::
+    
+    pip install -r http://bitbucket.org/chris1610/satchmo/raw/tip/scripts/requirements.txt
+    pip install -e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
+
+Install the Satchmo Starter App
+-------------------------------
+
+The clonesatchmo.py file should now be installed in your /bin directory::
+    
+    python clonesatchmo.py
+
+Run the Development Server
+--------------------------
+
+Execute the development server command::
+
+    cd store
+    python manage.py runserver
+    
+Next Steps
+----------
+
+You should review :doc:`Tutorial 1 <tutorial1>` to learn how to add Products to your store.

@@ -21,6 +21,7 @@ Installation
 .. toctree::
    :maxdepth: 1
 
+   quickstart
    new_installation
    configuration
 
