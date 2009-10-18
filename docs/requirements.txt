@@ -79,14 +79,13 @@ Detailed steps for installing these dependencies is included in the installation
 .. _DocUtils: http://docutils.sourceforge.net/
 .. _PyYaml: http://pyyaml.org/
 .. _Authorize.net: http://www.authorize.net/
-.. _download link: http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz
-.. _Django Registration: http://code.google.com/p/django-registration/
-.. _django-comment-utils: http://code.google.com/p/django-comment-utils/
+.. _download link: http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
+.. _Django Registration: http://bitbucket.org/ubernostrum/django-registration/wiki/Home
 .. _snapshot: http://www.satchmoproject.com/snapshots/
 .. _Docutils: http://docutils.sourceforge.net/
 .. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
-.. _`Django App Plugins`: http://code.google.com/p/django-app-plugins/
+.. _`Django App Plugins`: http://bitbucket.org/bkroeze/django-caching-app-plugins/
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/
 .. _`SSL Backport`: http://pypi.python.org/pypi/ssl/
 .. _`Signals Ahoy`: http://bitbucket.org/bkroeze/django-signals-ahoy/

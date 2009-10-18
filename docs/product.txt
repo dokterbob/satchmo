@@ -336,7 +336,7 @@ Once you have enabled the gift certificate product type and payment methods, you
 A short tutorial
 ----------------
 
-For a more detailed tutorial that covers how to add a product, please review this :doc:`document <tutorial1>`. 
+For a more detailed tutorial that covers how to add a product, please review this :doc:`tutorial <tutorial1>`. 
 
 The product variation manager contains a set of helper functions for managing product variations.
 It is accessed at /product/admin/variations/ and provides a streamlined process for managing all of 

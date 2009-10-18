@@ -49,7 +49,9 @@ Alternatively you can directly execute the command via crontab::
 
     # run every morning at 2:22 am
     22 2 * * * /usr/bin/python /path/to/site/manage.py satchmo_rebuild_pricing >/dev/null 2>&1
-   
+
+.. _tieredpricing:
+
 Pricing Tiers
 -------------
 

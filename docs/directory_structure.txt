@@ -114,7 +114,7 @@ may wish to include in your site.
     
     **tieredpricing**
         This application provides improved flexibility for charging different prices
-        to different customers. It is useful for membership or other tiered price structures.
+        to different customers. It is useful for membership or other tiered price structures. See :ref:`tieredpricing`.
     
     **upsell**
         Present options to customers to purchase other items based on their current items. See :ref:`upsell`
