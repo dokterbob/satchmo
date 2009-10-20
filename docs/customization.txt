@@ -7,7 +7,7 @@ to develop your online presence you will have a whole range of different
 ideas on how you would like to make your store look and feel.  Satchmo 
 provides a simple store layout that you can modify as much or as little 
 as you wish.  There are several ways to tweak Satchmo to your needs.  The
-following list is in the relative ease of customization:
+following list is in order of the relative ease of customization:
 
 1.  CSS customization
 2.  Template customization
@@ -15,6 +15,8 @@ following list is in the relative ease of customization:
 4.  Checkout process customization
 5.  Shipping module customization
 6.  Payment module customization
+7.  Changing views
+8.  Creating custom template tags
 
 CSS Customization
 -----------------
@@ -69,6 +71,9 @@ For convenience, urls can be modified by changing the SHOP_URLS variable in the
 local_settings.py file.  Any url assigned to this variable will override the existing
 url naming scheme.
 
+Additionally, the Satchmo settings application allows you to change some of the names of
+urls associated with products and categories.
+
 Shipping Module Customization
 -----------------------------
 
@@ -85,3 +90,42 @@ See :ref:`Signals in Satchmo <signals>` for an explanation of the available sign
 customize your store.
 
 .. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/
+
+Changing Views
+--------------
+
+In some instances, you may wish to selectively override specific Satchmo views. Satchmo includes
+a useful utility- ``replace_urlpattern`` in satchmo_utils.urlhelper to exchange stock urls
+with your own.
+
+Here is a simple example of using it to replace the quick_order view. In this example, we wish to change
+the items that are displayed on the quick order page so that only featured items are shown. The full 
+urls.py is shown below::
+
+    from django.conf.urls.defaults import *
+
+    # Uncomment the next two lines to enable the admin:
+    # from django.contrib import admin
+    # admin.autodiscover()
+
+    from satchmo_store.urls import urlpatterns
+
+    from satchmo_utils.urlhelper import replace_urlpattern
+    from product.models import Product
+
+    product_list = Product.objects.filter(featured=True)
+
+    replacement = url(r'^quickorder/$', 'satchmo_store.shop.views.cart.add_multiple', 
+                {'products': product_list}, 'satchmo_quick_order')
+    replace_urlpattern(urlpatterns, replacement)
+
+Custom Template Tags and Filters
+---------------------------------
+
+If you find yourself in a situation where you need to display additional information on the page
+or where you need to change the way data is displayed, you should consider writing a custom template tag
+or filter. The general process for using the tag or filter would be:
+
+    1. Create the new tag in your application's templatetags directory
+    2. Selectively override the Satchmo templates that use the tag
+    3. Import the new tag at the top of each template and use it in the template

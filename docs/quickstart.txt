@@ -31,9 +31,13 @@ Execute these commands::
 Install the Satchmo Starter App
 -------------------------------
 
-The clonesatchmo.py file should now be installed in your /bin directory::
-    
+The clonesatchmo.py file should now be installed in your /bin directory. Use it to
+install the Satchmo directories and load the preliminary data::
+
+    cd /path/to/new/store
     python clonesatchmo.py
+    
+.. Note:: If you can not find clonesatchmo.py, it is included in the Satchmo distribution in /scripts/
 
 Run the Development Server
 --------------------------

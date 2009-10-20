@@ -3,13 +3,15 @@ Installation
 ============
 
 This guide is the Satchmo installation process. It is meant to be a cookbook approach for
-most users. Advanced users may wish to modify this in order to integrate into their own projects.
+most users. Advanced users may wish to modify this in order to integrate into their own projects. For the
+truly impatient, you may look at the :doc:`Quick Start <quickstart>` for the fastest way to get a store up and 
+running.
 
 This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
 you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
 
 .. warning::
-   You must have Django 1.1.x (Django trunk) properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
+   You must have Django 1.1.x properly installed and all of the dependencies mentioned in the requirements_ section properly installed. 
    
 The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
 one simple method to install the dependencies. You may manually install them if you wish.
@@ -154,9 +156,13 @@ There are 3 example projects stored here:
 Each of these projects show examples of how to configure Satchmo and integrate it with other Django applications.
 Once you are familiar with these examples, you can configure your project based on the notes below.
 
+Additionally, there is a streamlined satchmo directory structure in the skel directory. You may use this as the
+basis for your store.
+
 You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file 
 called settings.py is available in the projects/base directory to act as a template. You may choose
-to copy this file and use as a template for settings.py or use the notes below to configure your existing one. 
+to copy this file and use as a template for settings.py or use the notes below to configure your existing one.
+
 Please remember to ensure that your Django database connections and settings are working properly before trying 
 to add any pieces of satchmo.
 
@@ -279,6 +285,41 @@ Configure the rest of the required files
         
 11. Ensure that you have a template directory setup. You only need to place templates in the directory if you are
 overriding existing templates.
+
+After you have installed everything, you should have a directory structure that looks similar to this::
+
+    mystore
+        |-- __init__.py
+        |-- local_settings.py
+        |-- manage.py
+        |-- satchmo.log
+        |-- settings.py
+        |-- simple.db
+        |-- static
+        |   |-- css
+        |   |   |-- blackbird.css
+        |   |   |-- jquery.autocomplete.css
+        |   |   `-- style.css
+        |   |-- images
+        |   |   |-- blackbird_icons.png
+        |   |   |-- blackbird_panel.png
+        |   |   |-- productimage-picture-default.jpg
+        |   |   |-- productimage-picture-default_jpg_85x85_q85.jpg
+        |   |   `-- sample-logo.bmp
+        |   `-- js
+        |       |-- blackbird.js
+        |       |-- jquery.ajaxQueue.js
+        |       |-- jquery.autocomplete.js
+        |       |-- jquery.bgiframe.js
+        |       |-- jquery.cookie.js
+        |       |-- jquery.form.js
+        |       |-- jquery.js
+        |       |-- satchmo_checkout.js
+        |       |-- satchmo_pay_ship.js
+        |       |-- satchmo_product.js
+        |       `-- satchmo_store.js
+        |-- templates
+        `-- urls.py
 
 Test and Install the Data
 -------------------------

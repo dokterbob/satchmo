@@ -163,6 +163,11 @@ Admin is:
 Username: admin
 Password: large
 
+Skeleton
+^^^^^^^^
+
+This directory includes the absolute basic files needed to get Satchmo working. It is not a standalone working version
+but is meant to be used as a template for your store.
 
 Satchmo Static
 --------------
