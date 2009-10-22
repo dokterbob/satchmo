@@ -21,7 +21,7 @@ def order_history(request):
         'default_view_tax': config_value('TAX', 'DEFAULT_VIEW_TAX'),
         'orders' : orders})
 
-    return render_to_response('shop/order_history.html', ctx)
+    return render_to_response('shop/order_history.html', context_instance=ctx)
 
 order_history = login_required(order_history)
 
@@ -44,6 +44,6 @@ def order_tracking(request, order_id):
         'contact' : contact,
         'order' : order})
 
-    return render_to_response('shop/order_tracking.html', ctx)
+    return render_to_response('shop/order_tracking.html', context_instance=ctx)
 
 order_tracking = login_required(order_tracking)

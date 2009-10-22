@@ -38,5 +38,5 @@ def home(request, template="shop/index.html"):
         'paginator' : paginator
     })
     
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
     

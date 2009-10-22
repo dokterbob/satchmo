@@ -26,4 +26,4 @@ def search_view(request, template="shop/search.html"):
             'results': results,
             'category' : category,
             'keywords' : keywords})
-    return render_to_response(template, context)
+    return render_to_response(template, context_instance=context)

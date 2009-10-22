@@ -113,7 +113,7 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
         'default_view_tax' : default_view_tax,
         'sale' : sale,
         })
-    return render_to_response('shop/cart.html', context)
+    return render_to_response('shop/cart.html', context_instance=context)
     
 display = never_cache(display)
 
@@ -288,7 +288,7 @@ def add_multiple(request, redirect_to='satchmo_cart', products=None, template="s
     else:
         form = forms.MultipleProductForm(products=products)
 
-    return render_to_response(template, RequestContext(request, {'form' : form}))
+    return render_to_response(template, context_instance=RequestContext(request, {'form' : form}))
 
 def agree_terms(request):
     """Agree to terms"""

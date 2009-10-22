@@ -52,7 +52,7 @@ def process(request, download_key):
         url = urlresolvers.reverse('satchmo_download_send', kwargs= {'download_key': download_key})
         context = RequestContext(request, {'download_product': dl_product,
                                             'dl_url' : url})
-        return render_to_response('shop/download.html', context)
+        return render_to_response('shop/download.html', context_instance=context)
    
 def send_file(request, download_key):
     """

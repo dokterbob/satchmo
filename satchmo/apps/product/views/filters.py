@@ -17,7 +17,7 @@ def display_bestsellers(request, count=0, template='product/best_sellers.html'):
     ctx = RequestContext(request, {
         'products' : bestsellers(count),
     })
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
         
 def display_recent(request, page=0, count=0, template='product/recently_added.html'):
     """Display a list of recently added products."""
@@ -41,4 +41,4 @@ def display_recent(request, page=0, count=0, template='product/recently_added.ht
         'page' : currentpage,
         'paginator' : paginator,
     })
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
