@@ -60,7 +60,6 @@ __author__ = "Stephen Zabel"
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, get_host
-from satchmo_store.shop.models import Config
 from satchmo_utils import request_is_secure
 
 HTTPS_PATHS = getattr(settings, "HTTPS_PATHS", [])
