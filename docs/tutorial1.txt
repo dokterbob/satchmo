@@ -7,6 +7,7 @@ will use to create a new product.
 For this example, we will be adding the following product to our store:
 
 .. image:: /images/adventurer_hat.png
+
 **Full Name:** Adventurer Hat
 
 **Description:**
