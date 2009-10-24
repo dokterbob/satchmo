@@ -55,9 +55,9 @@ The following package is required to load the initial data and run the unit test
 
     - `PyYaml`_
 
-Docutils is useful for auto generating some documentation but is not required:
+Sphinx is useful for auto generating some documentation but is not required:
 
-    - `Docutils`_
+    - `Sphinx`_
 
 If you are using a version of python less than 2.6, you will have to install the backport of the 
 new SSL module to support accessing SSL 2.0 sites often used by payment processors:
@@ -76,13 +76,12 @@ Detailed steps for installing these dependencies is included in the installation
 .. _Python cryptography toolkit: http://www.amk.ca/python/code/crypto
 .. _Windows binary: http://www.voidspace.org.uk/python/modules.shtml#pycrypto
 .. _ReportLab: http://www.reportlab.org/
-.. _DocUtils: http://docutils.sourceforge.net/
+.. _Sphinx: http://sphinx.pocoo.org/
 .. _PyYaml: http://pyyaml.org/
 .. _Authorize.net: http://www.authorize.net/
 .. _download link: http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
 .. _Django Registration: http://bitbucket.org/ubernostrum/django-registration/wiki/Home
 .. _snapshot: http://www.satchmoproject.com/snapshots/
-.. _Docutils: http://docutils.sourceforge.net/
 .. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
 .. _`Django App Plugins`: http://bitbucket.org/bkroeze/django-caching-app-plugins/
