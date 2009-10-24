@@ -1,5 +1,3 @@
-#! /usr/bin/python
-
 __author__="gary paulson"
 __date__ ="$Jan 4, 2009 12:55:44 PM$"
 
