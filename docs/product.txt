@@ -296,7 +296,11 @@ Recurring Times
     Enter an integer here to limit the number of times your customer will be charged. (ie only 10 easy payment of $9.95)
 
 Duration
-    Enter the number of days between each billing cycle.
+    Enter the number of units between between each billing cycle.
+
+Expire Unit
+    This is used in combination with the duration to determine whether the timing should be in months or days. For example,
+    if you want to bill monthly for a year, you could set it to a duration of 12 and Expire Unit of monthly.
 
 Shippable?
     The shipping charges, if any, that will be charged to your customer.
