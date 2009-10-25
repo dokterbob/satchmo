@@ -11,7 +11,7 @@ Template Translations
 
 1. Change to the directory where Satchmo is stored (somewhere on your PYTHONPATH) and create your translation file::
 
-    /path/to/django-admin.py makemessages -l=de -e=html,txt,rml
+    /path/to/django-admin.py makemessages -l de -e html,txt,rml
 
 
  In the example above, replace "de" with the language code for the message file you want to create.
