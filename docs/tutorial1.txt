@@ -17,6 +17,7 @@ For this example, we will be adding the following product to our store:
     the sun at bay in the middle of the desert. Buy one today and start exploring!
 
 **Sizes:** Small, Medium, Large
+
 **Colors:** Black, Brown, White
     
 **Price:** $49.95
