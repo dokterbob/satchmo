@@ -26,7 +26,7 @@ Install Satchmo and Dependencies
 Execute these commands::
     
     pip install -r http://bitbucket.org/chris1610/satchmo/raw/tip/scripts/requirements.txt
-    pip install -e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
+    pip install -e hg+http://bitbucket.org/chris1610/satchmo/@v0.9#egg=satchmo
 
 Install the Satchmo Starter App
 -------------------------------
