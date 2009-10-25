@@ -55,7 +55,11 @@ The following package is required to load the initial data and run the unit test
 
     - `PyYaml`_
 
-Sphinx is useful for auto generating some documentation but is not required:
+Docutils is used for auto generating the admin documentation but is not required:
+    
+    - `Docutils`_
+
+Sphinx is useful for auto generating the user documentation but is not required:
 
     - `Sphinx`_
 
@@ -88,3 +92,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/
 .. _`SSL Backport`: http://pypi.python.org/pypi/ssl/
 .. _`Signals Ahoy`: http://bitbucket.org/bkroeze/django-signals-ahoy/
+.. _DocUtils: http://docutils.sourceforge.net/

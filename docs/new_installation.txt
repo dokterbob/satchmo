@@ -89,9 +89,14 @@ Installing Dependencies
        cd /path/to/your/site-packages/dir
        ln -s /path/to/django-signals-ahoy/signals_ahoy
 
-8. Optional dependencies::
+Satchmo has two types of documentation. Sphinx is used to generate this document.
+Docutils are useful for the auto-generated admin documentation. You may choose to
+install these dependencies.
+
+8. Optional documentation dependencies::
 
     easy_install Sphinx
+    easy_install docutils
     
 .. note::
     Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
