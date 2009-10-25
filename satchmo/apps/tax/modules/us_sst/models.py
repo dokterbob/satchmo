@@ -1,4 +1,4 @@
-# coding=utf8
+# coding=UTF-8
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from product.models import TaxClass
