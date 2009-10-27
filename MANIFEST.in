@@ -1,4 +1,7 @@
-recursive-include satchmo/apps *.po *.mo
-include docs/*
+recursive-include satchmo/apps *.po *.mo *.html *.txt *.rml *.xml *.yaml
+recursive-include satchmo/apps/l10n/bin *
+recursive-include satchmo/static *
+recursive-include docs *
+
 include AUTHORS CONTRIBUTORS LICENSE CHANGELOG
 include setup.cfg

@@ -18,6 +18,8 @@ if not APPDIR in sys.path:
 version = __import__('satchmo_store').__version__
 packages = find_packages('satchmo/apps')
 packages.append('static')
+packages.append('docs')
+packages.append('satchmo_skeleton')
 
 setup(name = "Satchmo",
       version = version,
@@ -31,7 +33,9 @@ setup(name = "Satchmo",
       zip_safe = False,
       package_dir = {
       '' : 'satchmo/apps',
-      'static' : 'satchmo/static'
+      'static' : 'satchmo/static',
+      'docs' : 'docs',
+      'satchmo_skeleton' : 'satchmo/projects/skeleton',
       },
       scripts=['scripts/clonesatchmo.py'],
       setup_requires=["setuptools_hg"],

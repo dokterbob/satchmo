@@ -44,9 +44,8 @@ def install_pil():
     os.system('pip install %s' % pil_requirements)
     
 def create_satchmo_site(site_name):
-    import satchmo_store
-    base_dir = satchmo_store.__path__[0]
-    src_dir = os.path.abspath(os.path.join(base_dir, '../../projects/skeleton'))
+    import satchmo_skeleton
+    src_dir = os.path.abspath(satchmo_skeleton.__path__[0])
     dest_dir = os.path.join('./',site_name)
     shutil.copytree(src_dir, dest_dir)
 
