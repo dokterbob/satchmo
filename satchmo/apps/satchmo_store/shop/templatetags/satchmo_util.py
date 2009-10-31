@@ -176,6 +176,7 @@ def satchmo_language_selection_form(context):
     """
     Display the set language form, if enabled in shop settings.
     """
+    request = context['request']
     enabled = config_value('LANGUAGE', 'ALLOW_TRANSLATION')
     languages = []
     if enabled:
@@ -196,6 +197,7 @@ def satchmo_language_selection_form(context):
         'set_language_url' : url,
         'languages' : languages,
         'media_url' : media_url,
+        'django_language' : request.session.get('django_language', 'en'),
     }
 register.inclusion_tag("l10n/_language_selection_form.html", takes_context=True)(satchmo_language_selection_form)
 
