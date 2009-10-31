@@ -85,6 +85,7 @@ Additional Notes
 .. toctree::
    :maxdepth: 1
 
+   release-notes-1-0
    release-notes-0-9
    release-notes-0-8-1
    release-notes-0-8
