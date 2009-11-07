@@ -1,0 +1,8 @@
+Satchmo Development Branch
+==========================
+
+This is a working document to show all the updates taking place in the
+actively developed tip.
+
+Changes
+------- 

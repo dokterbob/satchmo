@@ -5,7 +5,7 @@
 <p> {% trans "Change language" %} </p>
     <select name="language">
         {% for lang in languages %}
-            <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+            <option {% ifequal django_language lang.0 %}selected {% endifequal %}value="{{ lang.0 }}">{{ lang.1 }}</option>
         {% endfor %}
     </select>
 <input type="submit" value="{% trans 'Change' %}" />

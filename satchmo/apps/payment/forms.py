@@ -505,7 +505,7 @@ class CreditPayShipForm(SimplePayShipForm):
         """ Validate a proper CCV is entered. Remember it can have a leading 0 so don't convert to int and return it"""
         try:
             check = int(self.cleaned_data['ccv'])
-            return self.cleaned_data['ccv']
+            return self.cleaned_data['ccv'].strip()
         except ValueError:
             raise forms.ValidationError(_('Invalid ccv.'))
             
