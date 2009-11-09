@@ -87,7 +87,7 @@ msgstr "Dieses Feld ist erforderlich."
 #: forms.py:76
 #: forms.py:96
 msgid "State is required for your country."
-msgstr "Bundesland is notwändig für Ihr Land."
+msgstr "Bundesland is für Ihr Land notwendig."
 
 #: forms.py:111
 msgid "Shipping and Billing countries must match"
@@ -417,7 +417,7 @@ msgstr "Status"
 
 #: models.py:400
 msgid "This is set automatically."
-msgstr "Dies wird automatisch gesetzt."
+msgstr "Wird automatisch gesetzt."
 
 #: models.py:685
 #: templates/contact/_order_details.html:28
@@ -540,27 +540,24 @@ msgid "Active"
 msgstr "aktiv"
 
 #: models.py:790
-#, fuzzy
 msgid "This download is no longer active"
-msgstr "Dieser Gutschein ist bisher nicht aktiviert."
+msgstr "Dieser Download ist nicht mehr aktiv."
 
 #: models.py:792
-#, fuzzy
 msgid "You have exceeded the number of allowed downloads."
-msgstr "Dieser Rabatt überschreitet die erlaubte Anzahl."
+msgstr "Sie haben die Anzahl der erlaubten Downloads überschritten."
 
 #: models.py:795
-#, fuzzy
 msgid "This download link has expired."
-msgstr "Dieser Gutschein ist abgelaufen."
+msgstr "Dieser Download-Link ist abgelaufen."
 
 #: models.py:825
 msgid "Download Link"
-msgstr ""
+msgstr "Download-Link"
 
 #: models.py:826
 msgid "Download Links"
-msgstr ""
+msgstr "Download-Links"
 
 #: models.py:847
 msgid "Order Status"
@@ -625,7 +622,7 @@ msgstr "Bestellsteuerdetails"
 #: views.py:131
 msgid ""
 "The order you have requested doesn't exist, or you don't have access to it."
-msgstr "Das ausgewählte Produkt existiert nicht."
+msgstr "Die ausgewählte Bestellung existiert nicht, oder Sie haben keinen Zugriff auf sie."
 
 #: templates/contact/_order_details.html:54
 #: templates/contact/_order_tracking_details.html:31
@@ -707,26 +704,10 @@ msgid "Contact Information"
 msgstr "Kontaktinformation"
 
 #: templates/contact/update_form.html:19
-#, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte korrigieren Sie den folgenden Fehler:"
+msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change password"
@@ -755,9 +736,8 @@ msgstr "Rechnungsinformation"
 
 #: templates/contact/update_form.html:65
 #: templates/contact/update_form.html:96
-#, fuzzy
 msgid "State/Province"
-msgstr "Provinz"
+msgstr "Bundesstaat/Provinz"
 
 #: templates/contact/update_form.html:69
 #: templates/contact/update_form.html:100
@@ -771,7 +751,7 @@ msgstr "Lieferanschrift wie Rechnungsanschrift?"
 #: templates/comments/form.html:7
 #: templates/comments/form.html.py:9
 msgid "Username:"
-msgstr ""
+msgstr "Benutzername:"
 
 #: templates/comments/form.html:9
 msgid "Password:"
@@ -783,7 +763,7 @@ msgstr "Passwort vergessen?"
 
 #: templates/comments/form.html:25
 msgid "Post a photo"
-msgstr ""
+msgstr "Ein Photo einstellen"
 
 #: templates/comments/form.html:25
 msgid "Required"
@@ -799,7 +779,7 @@ msgstr "Bewertung:"
 
 #: templates/comments/form.html:39
 msgid "Send review"
-msgstr ""
+msgstr "Rezension abschicken"
 
 #: templates/contact/_addressblock.html:11
 msgid "Not set"
@@ -807,15 +787,15 @@ msgstr "nicht gesetzt"
 
 #: templates/contact/_order_details.html:57
 msgid "Base Shipping"
-msgstr ""
+msgstr "Grundkosten Versand"
 
 #: templates/contact/_order_details.html:59
 msgid "Shipping (incl. Tax)"
-msgstr ""
+msgstr "Versandkosten (inkl. MwSt.)"
 
 #: templates/contact/_order_details.html:65
 msgid "Tax included"
-msgstr ""
+msgstr "inkl. Steuern"
 
 #: templates/contact/_order_tracking_details.html:9
 msgid "Order #"
@@ -830,12 +810,11 @@ msgstr "Lieferadresse"
 #: templates/registration/password_change_done.html:6
 #: templates/registration/password_change_form.html:6
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: templates/contact/view_profile.html:33
-#, fuzzy
 msgid "Order History"
-msgstr ""
+msgstr "Frühere Bestellungen"
 
 #: templates/contact/update_form.html:7
 msgid "Update Profile"
@@ -843,21 +822,19 @@ msgstr "geändert am"
 
 #: templates/contact/update_form.html:17
 msgid "Your Profile"
-msgstr ""
+msgstr "Ihr Profil"
 
 #: templates/contact/update_form.html:24
-#, fuzzy
 msgid "You&apos;ll need to fill out at least the fields with a *"
 msgstr "Sie müssen mindestens die Felder mit * ausfüllen"
 
 #: templates/contact/update_form.html:36
 msgid "Birthday"
-msgstr ""
+msgstr "Geburtstag"
 
 #: templates/contact/update_form.html:109
-#, fuzzy
 msgid "Update"
-msgstr "geändert am"
+msgstr "Aktualisieren"
 
 #: templates/contact/view_profile.html:11
 #: templates/registration/account_info.html:9
@@ -872,7 +849,7 @@ msgstr "Willkommen, %(full_name)s."
 
 #: templates/contact/view_profile.html:17
 msgid "Your profile"
-msgstr ""
+msgstr "Ihr Profil"
 
 #: templates/contact/view_profile.html:19
 msgid "Email:"
@@ -880,22 +857,20 @@ msgstr "eMail:"
 
 #: templates/contact/view_profile.html:20
 msgid "Birthday:"
-msgstr ""
+msgstr "Geburtstag:"
 
 #: templates/contact/view_profile.html:22
-#, fuzzy
 msgid "Newsletter:"
-msgstr "Newsletter abmelden"
+msgstr "Newsletter:"
 
 #: templates/contact/view_profile.html:24
 #, fuzzy
 msgid "Billing Address:"
-msgstr "Rechnungsadresse"
+msgstr "Rechnungsadresse:"
 
 #: templates/contact/view_profile.html:25
-#, fuzzy
 msgid "Shipping Address:"
-msgstr "Lieferadresse"
+msgstr "Lieferadresse:"
 
 #: templates/contact/view_profile.html:27
 #: templates/contact/view_profile.html:40
@@ -905,7 +880,7 @@ msgstr "Account Optionen"
 
 #: templates/contact/view_profile.html:29
 msgid "Update your profile"
-msgstr ""
+msgstr "Profil überarbeiten"
 
 #: templates/contact/view_profile.html:31
 #: templates/contact/view_profile.html:44
@@ -915,7 +890,6 @@ msgid "Change your password"
 msgstr "Ändern Sie Ihr Passwort"
 
 #: templates/contact/view_profile.html:38
-#, fuzzy
 msgid ""
 "Sorry, the user you've logged in as doesn't have any contact information."
 msgstr ""
@@ -974,7 +948,7 @@ msgstr ""
 "(expiration_days)s Tage nach Registrierung gültig."
 
 #: templates/registration/activation_email.txt:1
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Someone, hopefully you, signed up for a new account at %(site)s using this "
 "email address. If it was you, and you'd like to activate and use your "
@@ -1000,8 +974,8 @@ msgstr ""
 #: templates/registration/login.html:11
 msgid "Your email address and password didn't match. Please try again."
 msgstr ""
-"Ihre eMailadresse und Ihr Passwort passen nicht. Bitte probieren Sie es "
-"nochmal."
+"Ihre eMailadresse oder Ihr Passwort waren nicht richtig. Bitte probieren Sie es "
+"noch einmal."
 
 #: templates/registration/login.html:29
 msgid "If you do not have an account, please"

@@ -21,18 +21,17 @@ msgstr "Produktbewertungen"
 
 #: templates/productratings/_product_ratings.html:7
 msgid "Be the first to review it!"
-msgstr ""
+msgstr "Schreiben Sie die erste Rezension"
 
 #: templates/productratings/_product_ratings.html:13
 msgid "Rating"
-msgstr ""
+msgstr "Bewertung"
 
 #: templates/productratings/_product_ratings.html:20
 msgid "Review this product"
-msgstr ""
+msgstr "Rezension schreiben"
 
 #: templates/productratings/_product_ratings.html:23
-#, fuzzy
 msgid "Please login to review this product."
-msgstr "Metabeschreibung für dieses Produkt"
+msgstr "Bitte melden Sie sich an um eine Rezension zu schreiben."
 
