@@ -839,7 +839,7 @@ msgstr "Aktualisieren"
 #: templates/contact/view_profile.html:11
 #: templates/registration/account_info.html:9
 msgid "Your Account info"
-msgstr "Ihre Account Informationen"
+msgstr "Ihre Konto"
 
 #: templates/contact/view_profile.html:14
 #: templates/registration/account_info.html:11
@@ -876,7 +876,7 @@ msgstr "Lieferadresse:"
 #: templates/contact/view_profile.html:40
 #: templates/registration/account_info.html:13
 msgid "Account options"
-msgstr "Account Optionen"
+msgstr "Konto Optionen"
 
 #: templates/contact/view_profile.html:29
 msgid "Update your profile"
