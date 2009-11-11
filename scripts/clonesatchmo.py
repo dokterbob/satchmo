@@ -35,19 +35,43 @@ def parse_command_line():
     parser.add_option('-l', '--localsite', action='store',type='string', default='localsite',
                      dest='local_site_name', help="Name for the local application stub. [default: %default]")
                      
-        
+    parser.add_option('--skel', action='store', type='string', default = None,
+                      dest='skeleton_dir', help="Path to the skeleton directory")
+                      
     opts, args = parser.parse_args()
     
     return opts, args
 
+def check_skeleton_dir(skel_dir):
+    """
+    Verify that the skeleton directory exists and that it points
+    to a location with a localsite subdir.
+    """
+    if skel_dir is None:
+        return (True, "")
+    if os.path.isdir(skel_dir):
+        check_dir = os.path.join(skel_dir, 'localsite')
+        if not os.path.isdir(check_dir):
+            return (False, "Skeleton directory does not contain localsite subdirectory. Path should be /path/to/satchmo/projects/skeleton")
+    else:
+        return (False, "Invalid skeleton directory. Path should be /path/to/satchmo/projects/skeleton")
+    return (True, "")
+
 def install_pil():
     os.system('pip install %s' % pil_requirements)
     
-def create_satchmo_site(site_name):
-    import satchmo_skeleton
-    src_dir = os.path.abspath(satchmo_skeleton.__path__[0])
+def create_satchmo_site(site_name, skeleton_dir):
+    if skeleton_dir:
+        src_dir = os.path.abspath(skeleton_dir)
+    else:
+        try:
+            import satchmo_skeleton
+            src_dir = os.path.abspath(satchmo_skeleton.__path__[0])
+        except:
+            return(False, "Can not find skeleton directory use, --skel option to specify.")
     dest_dir = os.path.join('./',site_name)
     shutil.copytree(src_dir, dest_dir)
+    return (True, "")
 
 def customize_files(site_name, local_site_name):
     """
@@ -87,15 +111,20 @@ def setup_satchmo(site_name, local_site_name):
     os.system('cd %s && python manage.py satchmo_load_l10n' % site_name)
     os.system('cd %s && python manage.py satchmo_load_store' % site_name)
     os.system('cd %s && python manage.py satchmo_rebuild_pricing' % site_name)
+
+
     
 if __name__ == '__main__':
     opts, args = parse_command_line()
     
     errors = []
     dest_dir = os.path.join('./',opts.site_name)
+    
+    result, msg = check_skeleton_dir(opts.skeleton_dir)
+    if not result:
+        errors.append(msg)
     if os.path.isdir(dest_dir):
         errors.append("The destination directory already exists. This script can only be used to create new projects.")
-
     try:
         import PIL as Image
     except ImportError:
@@ -105,7 +134,10 @@ if __name__ == '__main__':
             print error
         exit()
     print "Creating the Satchmo Application"
-    create_satchmo_site(opts.site_name)
+    result, msg = create_satchmo_site(opts.site_name, opts.skeleton_dir)
+    if not result:
+        print msg
+        exit()
     print "Customizing the files"
     customize_files(opts.site_name, opts.local_site_name)
     print "Performing initial data synching"
