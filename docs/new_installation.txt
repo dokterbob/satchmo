@@ -160,7 +160,7 @@ to copy this file and use as a template for settings.py or use the notes below t
 Please remember to ensure that your Django database connections and settings are working properly before trying 
 to add any pieces of satchmo.
 
-5. Ensure that /home/user/src/my-store/settings.py has the following satchmo-specific configurations 
+5. Ensure that /home/user/src/mystore/settings.py has the following satchmo-specific configurations 
    (in addition to the defaults and your other app needs)::
 
         import os

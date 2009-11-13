@@ -31,7 +31,6 @@ from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, ad
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
-from shipping.config import shipping_method_by_key
 
 log = logging.getLogger('product.models')
 
@@ -1538,7 +1537,7 @@ class ConfigurableProduct(models.Model):
 def _protected_dir(instance, filename):
     raw = config_value_safe('PRODUCT', 'PROTECTED_DIR', 'images/')
     updir = normalize_dir(raw)
-    return os.path.join(updir, os.path.basename(filename))
+    return os.path.normpath(os.path.join(updir, os.path.basename(filename)))
 
 class DownloadableProduct(models.Model):
     """
