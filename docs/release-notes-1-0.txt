@@ -6,3 +6,11 @@ actively developed tip.
 
 Changes
 ------- 
+- Updated German translation
+- Improvements to robustness of clonesatchmo program
+- Template cleanups for gift certificates
+- Improve discount handling for paypal
+- Add new management command for billing subscription products
+- Improve handling of ccv numbers
+- Improve display string of subtypes in admin
+- If language is chosen, make sure it's selected by default
