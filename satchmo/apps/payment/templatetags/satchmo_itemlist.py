@@ -8,8 +8,8 @@ def flatten_discounts(items):
 	flat_items = []
 	for item in items:
 		f = item.discount / item.unit_price
-		free_qty = f.quantize(1, rounding=decimal.ROUND_FLOOR)
-		partial_qty = int(not (f % 1).is_zero()) # bool to int
+		free_qty = f.quantize(decimal.Decimal('1'), rounding=decimal.ROUND_FLOOR)
+		partial_qty = int(not (f % decimal.Decimal('1')) == decimal.Decimal('0')) # bool to int
 		full_qty = item.quantity - (free_qty + partial_qty)
 		if free_qty:
 			flat_items.append({'orderitem': item, 'price': 0, 'quantity': free_qty})
