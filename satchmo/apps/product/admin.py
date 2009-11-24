@@ -129,9 +129,47 @@ class OptionOptions(admin.ModelAdmin):
         inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
-    list_display = ('site', 'slug', 'sku', 'name', 'unit_price', 'items_in_stock', 'get_subtypes')
+    
+    def make_active(self, request, queryset):
+        rows_updated = queryset.update(active=True)
+        if rows_updated == 1:
+            message_bit = _("1 product was")
+        else:
+            message_bit = _("%s products were" % rows_updated)
+        self.message_user(request, _("%s successfully marked as active") % message_bit)
+    make_active.short_description = _("Mark selected products as active")
+    
+    def make_inactive(self, request, queryset):
+        rows_updated = queryset.update(active=False)
+        if rows_updated == 1:
+            message_bit = _("1 product was")
+        else:
+            message_bit = _("%s products were" % rows_updated)
+        self.message_user(request, _("%s successfully marked as inactive") % message_bit)
+    make_inactive.short_description = _("Mark selected products as inactive")
+    
+    def make_featured(self, request, queryset):
+        rows_updated = queryset.update(featured=True)
+        if rows_updated == 1:
+            message_bit = _("1 product was")
+        else:
+            message_bit = _("%s products were" % rows_updated)
+        self.message_user(request, _("%s successfully marked as featured") % message_bit)
+    make_featured.short_description = _("Mark selected products as featured")
+    
+    def make_unfeatured(self, request, queryset):
+        rows_updated = queryset.update(featured=False)
+        if rows_updated == 1:
+            message_bit = _("1 product was")
+        else:
+            message_bit = _("%s products were" % rows_updated)
+        self.message_user(request, _("%s successfully marked as not featured") % message_bit)
+    make_unfeatured.short_description = _("Mark selected products as not featured")
+
+    list_display = ('site', 'slug', 'name', 'unit_price', 'items_in_stock', 'active','featured', 'get_subtypes')
     list_display_links = ('slug', 'name')
-    list_filter = ('category', 'date_added')
+    list_filter = ('category', 'date_added','active','featured')
+    actions = ('make_active', 'make_inactive', 'make_featured', 'make_unfeatured')
     fieldsets = (
     (None, {'fields': ('site', 'category', 'name', 'slug', 'sku', 'description', 'short_description', 'date_added', 
             'active', 'featured', 'items_in_stock','total_sold','ordering', 'shipclass')}), (_('Meta Data'), {'fields': ('meta',), 'classes': ('collapse',)}), 
