@@ -14,3 +14,6 @@ Changes
 - Improve handling of ccv numbers
 - Improve display string of subtypes in admin
 - If language is chosen, make sure it's selected by default
+- Tweak the product admin screens to show featured and active status
+- Add new admin functions for toggling active/featured status of products
+- Make the display of the site in the admin lists configurable through the settings

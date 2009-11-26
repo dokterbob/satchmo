@@ -96,7 +96,13 @@ class CategoryAdminForm(models.ModelForm):
         return parent
 
 class CategoryOptions(admin.ModelAdmin):
-    list_display = ('site','name', '_parents_repr', 'is_active')
+    
+    if config_value('SHOP','SHOW_SITE'):
+        list_display = ('site',)
+    else:
+        list_display = ()
+    
+    list_display += ('name', '_parents_repr', 'is_active')
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryImage_Inline]
@@ -120,8 +126,11 @@ class OptionGroupOptions(admin.ModelAdmin):
     inlines = [Option_Inline]
     if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
         inlines.append(OptionGroupTranslation_Inline)
-
-    list_display = ['site', 'name']
+    if config_value('SHOP','SHOW_SITE'):
+        list_display = ('site',)
+    else:
+        list_display = ()
+    list_display += ('name',)
 
 class OptionOptions(admin.ModelAdmin):
     inlines = []
@@ -166,7 +175,12 @@ class ProductOptions(admin.ModelAdmin):
         self.message_user(request, _("%s successfully marked as not featured") % message_bit)
     make_unfeatured.short_description = _("Mark selected products as not featured")
 
-    list_display = ('site', 'slug', 'name', 'unit_price', 'items_in_stock', 'active','featured', 'get_subtypes')
+    if config_value('SHOP','SHOW_SITE'):
+        list_display = ('site',)
+    else:
+        list_display = ()
+
+    list_display += ('slug', 'name', 'unit_price', 'items_in_stock', 'active','featured', 'get_subtypes')
     list_display_links = ('slug', 'name')
     list_filter = ('category', 'date_added','active','featured')
     actions = ('make_active', 'make_inactive', 'make_featured', 'make_unfeatured')

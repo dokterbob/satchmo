@@ -36,6 +36,13 @@ ENFORCE_STATE = config_register(
     description = _('State required?'),
     help_text = _("Require a state during registration/checkout for countries that have states?"),
     default = True))
+
+SHOW_SITE = config_register(
+    BooleanValue(SHOP_GROUP,
+    'SHOW_SITE',
+    description = _('Show Site Field?'),
+    help_text = _("Should the Site field be displayed in the admin lists? A server restart is required for this to take effect."),
+    default = True))
     
 config_register(DecimalValue(
     SHOP_GROUP,
