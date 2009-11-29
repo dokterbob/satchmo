@@ -83,7 +83,7 @@ class Config(models.Model):
     city=models.CharField(_("City"), max_length=50, blank=True, null=True)
     state=models.CharField(_("State"), max_length=30, blank=True, null=True)
     postal_code=models.CharField(_("Zip Code"), blank=True, null=True, max_length=9)
-    country=models.ForeignKey(Country, blank=True, null=False, verbose_name=_('Country'))
+    country=models.ForeignKey(Country, blank=False, null=False, verbose_name=_('Country'))
     phone = models.CharField(_("Phone Number"), blank=True, null=True, max_length=30)
     in_country_only = models.BooleanField(_("Only sell to in-country customers?"), default=True)
     sales_country = models.ForeignKey(Country, blank=True, null=True,
