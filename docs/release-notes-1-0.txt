@@ -17,3 +17,4 @@ Changes
 - Tweak the product admin screens to show featured and active status
 - Add new admin functions for toggling active/featured status of products
 - Make the display of the site in the admin lists configurable through the settings
+- Add a readonly field to the admin. Use it in the order admin for the status field
