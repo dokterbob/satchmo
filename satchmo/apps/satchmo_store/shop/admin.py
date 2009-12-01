@@ -8,6 +8,7 @@ from satchmo_utils.widgets import ReadOnlyWidget
 class CartItem_Inline(admin.TabularInline):
     model = CartItem
     extra = 3
+    raw_id_fields = ('product',)
 
 class CartItemDetails_Inline(admin.StackedInline):
     model = CartItemDetails
@@ -39,6 +40,7 @@ class CartItemOptions(admin.ModelAdmin):
 class OrderItem_Inline(admin.TabularInline):
     model = OrderItem
     extra = 3
+    raw_id_fields = ('product',)
 
 class OrderItemDetail_Inline(admin.TabularInline):
     model = OrderItemDetail
