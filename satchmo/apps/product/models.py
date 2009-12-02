@@ -787,7 +787,7 @@ class ProductManager(models.Manager):
         if query.count() == 0:
             query = self.active_by_site()
             
-        query = query.order_by('-date_added')
+        query = query.order_by('-date_added', '-id')
         return query
     
 
