@@ -325,7 +325,7 @@ class Cart(models.Model):
                         try:
                             similarItem.details.get(
                                     name=detail['name'],
-                                    value=detail['value'],
+                                    value=str(detail['value']),     # typecasting for Postgresql
                                     price_change=detail['price_change']
                                     )
                         except CartItemDetails.DoesNotExist:
