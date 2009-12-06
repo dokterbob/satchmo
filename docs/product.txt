@@ -130,6 +130,12 @@ Product Attributes
 In some cases, you may want to have certain product information stored in the database.  For instance, you might want to have "number of pages" or "ISBN" fields
 for all of the books in your store.  Attributes allow you to associate arbitrary data with your products via name, value pairs.
 
+In the latest version of Satchmo, these are more powerful and useful because you can define specific
+attributes to capture as well as validation to perform on the data.
+
+Refer to :doc:`product-attributes` for more details on using this feature to customize the information
+you store and present for your products.
+
 .. index::
    single: Product; price
 

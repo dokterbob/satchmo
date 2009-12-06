@@ -43,7 +43,7 @@ $(function() {
 {% with product.translated_attributes as atts %}{% if atts %}
 <p class="productattributes">
 {% for att in product.translated_attributes %}
-{{ att.name }}: {{ att.value }}<br/>
+{{ att.description }}: {{ att.value }}<br/>
 {% endfor %}
 </p>
 {% endif %}{% endwith %}

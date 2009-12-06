@@ -49,6 +49,7 @@ Modifying A Store
 
    customization
    custom-payment
+   product-attributes
    custom-product
    translation
    templates

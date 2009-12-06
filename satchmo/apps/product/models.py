@@ -2048,21 +2048,67 @@ class ProductPriceLookup(models.Model):
 
     dynamic_price = property(fget=_dynamic_price)
 
+# Support the user's setting of custom expressions in the settings.py file
+user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+            
+VALIDATIONS = [
+            ('product.utils.validation_simple', _('One or more characters')),
+            ('product.utils.validation_integer', _('Integer number')),
+            ('product.utils.validation_yesno', _('Yes or No')),
+            ('product.utils.validation_decimal', _('Decimal number')),
+            ]
+if user_validations: 
+    VALIDATIONS.extend(user_validations)
+
+class AttributeOption(models.Model):
+    """
+    Allows arbitrary name/value pairs to be attached to a product.
+    By defining the list, the user will be presented with a predefined
+    list of attributes instead of a free form field.
+    The validation field should contain a regular expression that can be 
+    used to validate the structure of the input.
+    Possible usage for a book:
+    ISBN, Pages, Author, etc
+    """
+    description = models.CharField(_("Description"), max_length=100)
+    name = models.SlugField(_("Attribute name"), max_length=100)
+    validation = models.CharField(_("Field Validations"), choices=VALIDATIONS, max_length=100)
+    sort_order = models.IntegerField(_("Sort Order"), default=1)
+    error_message = models.CharField(_("Error Message"), default=_("Inavlid Entry"), max_length=100)
+    
+    class Meta:
+        ordering = ('sort_order',)
+        
+    def __unicode__(self):
+        return self.description
+    
+
 class ProductAttribute(models.Model):
     """
     Allows arbitrary name/value pairs (as strings) to be attached to a product.
-    This is a very quick and dirty way to add extra info to a product.
-    If you want more structure then this, create your own subtype to add
+    This is a simple way to add extra text or numeric info to a product.
+    If you want more structure than this, create your own subtype to add
     whatever you want to your Products.
     """
     product = models.ForeignKey(Product)
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
-    name = models.SlugField(_("Attribute Name"), max_length=100, )
+    option = models.ForeignKey(AttributeOption)
     value = models.CharField(_("Value"), max_length=255)
 
+    def _name(self):
+        return self.option.name
+    name = property(_name)
+    
+    def _description(self):
+        return self.option.description
+    description = property(_description)
+    
     class Meta:
         verbose_name = _("Product Attribute")
         verbose_name_plural = _("Product Attributes")
+        
+    def __unicode__(self):
+        return self.option.name
 
 class Price(models.Model):
     """

@@ -21,3 +21,4 @@ Changes
 - Add some raw id fields in the admin so that large stores will work ok
 - Fix the ajax functions to escape properly and use the right mime type
 - Fix postgres typecast problem
+- Added new Custom Product Attribute functionality - :doc:`product-attributes`

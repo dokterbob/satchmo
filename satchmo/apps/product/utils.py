@@ -9,7 +9,7 @@ from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 import datetime
 import logging
 import types
-
+import string
 
 log = logging.getLogger('product.utils')
 
@@ -225,4 +225,48 @@ def _sort_options(lst):
     work = [(opt.sort_order, opt) for opt in lst] 
     work.sort()
     return zip(*work)[1]
+
+# All the functions below are used to validate custom attributes
+# associated with a product.
+# Custom ones can be added to the list via the admin setting ATTRIBUTE_VALIDATION
     
+def validation_simple(value, product=None):
+    """
+    Validates that at least one character has been entered.
+    Not change is made to the value.
+    """
+    if len(value) > 1:
+        return True, value
+    else:
+        return False, value
+
+def validation_integer(value, product=None):
+    """
+   Validates that value is an integer number.
+   No change is made to the value
+    """
+    try:
+        check = int(value)
+        return True, value
+    except:
+        return False, value
+
+def validation_yesno(value, product=None):
+    """
+    Validates that yes or no is entered. 
+    Converts the yes or no to capitalized version
+    """
+    if string.upper(value) in ["YES","NO"]:
+        return True, string.capitalize(value)
+    else:
+        return False, value
+        
+def validation_decimal(value, product=None):
+    """
+    Validates that the number can be converted to a decimal
+    """
+    try:
+        check = Decimal(value)
+        return True, value
+    except:
+        return False, value

@@ -1,0 +1,111 @@
+Custom Product Attributes
+=========================
+
+Satchmo's product models allow you to capture and present much of the core information
+you need to sell a product. However, there are instances where you might want to
+present additional information tailored to your site. If you think of the
+example of selling books online, you might want all of your products to display 
+something like:
+
+    * Pages
+    * Publisher
+    * ISBN
+    * Author
+    
+You can certainly put this information into the description field but in many cases
+you will want these to be separate fields and enforce some validation on the data
+that can be entered. Attribute Options can do this for you.
+
+Creating Attribute Options
+--------------------------
+
+New versions of Satchmo (> 0.9) include the ability to define options, 
+validations for these options and custom error messages. To use these, you
+will first need to define some Attribute Options in the Admin.
+
+See this screenshot for some examples:
+
+.. image:: /images/attribute-option-list.png
+
+As you can see, there are multiple attributes defined that we can add to
+our products. Looking at the "Book Pages" shows you some of the rich options
+you have to configure this behavior:
+
+.. image:: /images/book-page-attribute.png
+
+Description
+    Information displayed to the user on the product page to describe the attribute
+    
+Attribute Name
+    Slug used for data storage
+    
+Field Validations
+    List of validations available to perform on the data. Satchmo has some included but
+    you may create your own too.
+    
+Sort Order
+    Control the order the options are displayed
+    
+Error Message
+    If the validation fails, this message will be displayed to the user.
+    
+Using Attributes on Products
+----------------------------
+
+Now that we have an attribute for pages in a book, we can add this to
+our Robot Attacks book.
+
+Select the "Robot Attack!" book from the product list and scroll down to
+the Product Attributes section:
+
+.. image:: /images/add-attribute-product.png
+
+If you enter an invalid number, you will get your custom error message. If
+you enter a valid number, you can view it on your page now:
+
+.. image:: /images/robot-attack-pages.png
+
+Customizing Attribute Options
+-----------------------------
+
+This feature is very useful but you can go even farther in your customization
+by creating your own Field Validations.
+
+If you would like to create a custom validation to make sure the site admin
+enters a 3 digit integer, create a simple validation function like this::
+
+    def validation_3digits(value, product=None):
+        """
+       Validates that value is a 3 digit integer number.
+       No change is made to the value
+        """
+        try:
+            check = int(value)
+            if len(value) == 3:
+                return True, value
+            else:
+                return False, value
+        except:
+            return False, value
+
+Assuming you have placed this function in the utils.py file inside your localsite app.
+You can add it to your settings.py (or local_settings.py) file::
+
+    SATCHMO_SETTINGS = {
+        'SHOP_BASE' : '',
+        'MULTISHOP' : False,
+        'ATTRIBUTE_VALIDATIONS': [('localsite.utils.validation_3digits','3 Digits'),]
+                        
+    }
+
+Now, when you choose to add an Attribute Option, you can use your 3 digit validator
+to make sure that the site admin enters the data you need.
+
+Additional Capabilities
+-----------------------
+
+The example above is fairly simple. As you will notice, the current product
+is passed to the validation function. You can use this to do more complex
+lookups. Additional, the validation function can modify the value that is passed
+to it. For instance, you may wish to make sure the value is capitalized or 
+structured in a consistent date format.

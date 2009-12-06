@@ -41,6 +41,14 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
     <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 {% endfor %}
 
+{% with product.translated_attributes as atts %}{% if atts %}
+<p class="productattributes">
+{% for att in product.translated_attributes %}
+{{ att.description }}: {{ att.value }}<br/>
+{% endfor %}
+</p>
+{% endif %}{% endwith %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_smart_add %}" method="post">
 {% trans "Quantity" %} <input type="text" size="5" name="quantity" id="quantity" value="1" class="priced" />
