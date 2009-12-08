@@ -22,3 +22,4 @@ Changes
 - Fix the ajax functions to escape properly and use the right mime type
 - Fix postgres typecast problem
 - Added new Custom Product Attribute functionality - :doc:`product-attributes`
+- Improved the code for calculating comment averages to increase performance
