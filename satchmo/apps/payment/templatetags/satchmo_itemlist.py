@@ -7,7 +7,10 @@ register = template.Library()
 def flatten_discounts(items):
 	flat_items = []
 	for item in items:
-		f = item.discount / item.unit_price
+		if item.unit_price != 0:
+			f = item.discount / item.unit_price
+		else:
+			f = decimal.Decimal('0')
 		free_qty = f.quantize(decimal.Decimal('1'), rounding=decimal.ROUND_FLOOR)
 		partial_qty = int(not (f % decimal.Decimal('1')) == decimal.Decimal('0')) # bool to int
 		full_qty = item.quantity - (free_qty + partial_qty)
