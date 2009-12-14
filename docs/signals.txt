@@ -673,6 +673,23 @@ Arguments sent with this signal:
     ``subtype``
         always the string "download"
 
+discount_filter_items
+*********************
+
+Sent to verify the set of order items that are subject to discount.
+
+Arguments sent with this signal:
+
+    ``sender``
+        The instance of ``product.models.Discount`` that is being applied.
+
+    ``discounted``
+        A dictionary, where the keys are IDs of items which are subject to discount
+        by standard criteria.
+
+    ``order``
+        The instance of ``satchmo_store.shop.models.Order`` being processed.
+
 satchmo_utils.signals
 ^^^^^^^^^^^^^^^^^^^^^
 

@@ -524,6 +524,11 @@ class Discount(models.Model):
             price = lineitem.line_item_price
             if lineitem.product.is_discountable and (allvalid or lineitem.product.slug in validproducts):
                 discounted[lid] = price
+        signals.discount_filter_items.send(
+            sender=self,
+            discounted=discounted,
+            order=order
+            )
 
         if not self.shipping:
             self.shipping = "NONE"

@@ -23,3 +23,4 @@ Changes
 - Fix postgres typecast problem
 - Added new Custom Product Attribute functionality - :doc:`product-attributes`
 - Improved the code for calculating comment averages to increase performance
+- Added signal for custom filtering of items which are subject to a discount

@@ -8,6 +8,12 @@ Signals:
       contact=contact, shipping_choices=shipping_choices, shipping=shipping, success=success)
       
       Listeners should modify the "success" dictionary to veto the discount validity.
+ - `discount_filter_items`: Usage::
+
+      discount_filter_items.send(sender=self, discounted=discounted, order=order)
+
+      Listeners should modify the "discounted" dictionary to change the set of discounted cart
+      items.
       
  - `index_prerender`: Usage::
 
@@ -23,6 +29,7 @@ Signals:
 import django.dispatch
 
 discount_validate = django.dispatch.Signal()
+discount_filter_items = django.dispatch.Signal()
 index_prerender = django.dispatch.Signal()
 satchmo_price_query = django.dispatch.Signal()
 subtype_order_success = django.dispatch.Signal()
