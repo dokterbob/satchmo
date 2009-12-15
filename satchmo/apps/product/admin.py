@@ -31,7 +31,7 @@ class CategoryImageTranslation_Inline(admin.StackedInline):
 class DiscountOptions(admin.ModelAdmin):
     list_display=('site', 'description','active')
     list_display_links = ('description',)
-    filter_horizontal = ('validProducts',)
+    raw_id_fields = ('validProducts',)
 
 class OptionGroupTranslation_Inline(admin.StackedInline):
     model = OptionGroupTranslation
