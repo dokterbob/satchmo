@@ -2054,7 +2054,10 @@ class ProductPriceLookup(models.Model):
     dynamic_price = property(fget=_dynamic_price)
 
 # Support the user's setting of custom expressions in the settings.py file
-user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+try:
+    user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+except:
+    user_validations = None
             
 VALIDATIONS = [
             ('product.utils.validation_simple', _('One or more characters')),
