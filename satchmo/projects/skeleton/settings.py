@@ -34,7 +34,12 @@ SITE_ID = 1
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-#Image files will be stored off of this path
+# Image files will be stored off of this path
+#
+# If you are using Windows, recommend using normalize_path() here
+#
+# from satchmo_utils.thumbnail import normalize_path
+# MEDIA_ROOT = normalize_path(os.path.join(DIRNAME, 'static/')
 MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 
 # URL that handles the media served from MEDIA_ROOT.
