@@ -39,7 +39,7 @@ SITE_ID = 1
 # If you are using Windows, recommend using normalize_path() here
 #
 # from satchmo_utils.thumbnail import normalize_path
-# MEDIA_ROOT = normalize_path(os.path.join(DIRNAME, 'static/')
+# MEDIA_ROOT = normalize_path(os.path.join(DIRNAME, 'static/'))
 MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 
 # URL that handles the media served from MEDIA_ROOT.
