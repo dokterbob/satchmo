@@ -4,6 +4,7 @@ from product.admin import ProductOptions
 from product.models import Product
 from satchmo_ext.tieredpricing.models import TieredPrice, PricingTier
 from product.admin import Price_Inline
+from caktus.django.widgets import WYMEditor
 
 class TieredPriceInline(admin.TabularInline):
     model = TieredPrice
