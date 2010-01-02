@@ -402,10 +402,10 @@ class SimplePayShipForm(forms.Form):
 
 class CreditPayShipForm(SimplePayShipForm):
     credit_type = forms.ChoiceField()
-    credit_number = forms.CharField(max_length=20)
+    credit_number = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'autocomplete':'off'}))
     month_expires = forms.ChoiceField(choices=MONTHS)
     year_expires = forms.ChoiceField()
-    ccv = forms.CharField(max_length=4, label='Sec code')
+    ccv = forms.CharField(max_length=4, label='Sec code', widget=forms.TextInput(attrs={'autocomplete':'off'}))
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         creditchoices = paymentmodule.CREDITCHOICES.choice_values
