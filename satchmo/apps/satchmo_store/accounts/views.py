@@ -29,29 +29,27 @@ YESNO = (
 def emaillogin(request, template_name='registration/login.html', 
     auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
     "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
+
     redirect_to = request.REQUEST.get(redirect_field_name, '')
 
     # Avoid redirecting to logout if the user clicked on login after logout
     if redirect_to == urlresolvers.reverse('auth_logout'):
         redirect_to = None
 
-    if request.method == "POST":
-        form = auth_form(data=request.POST)
-        if form.is_valid():
-            # Light security check -- make sure redirect_to isn't garbage.
-            if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
-                redirect_to = settings.LOGIN_REDIRECT_URL
-            login(request, form.get_user())
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-            return HttpResponseRedirect(redirect_to)
+    success, todo = _login(request, redirect_to)
+    if success:
+        # return the response redirect
+        return todo
     else:
-        form = auth_form(request)
+        # continue with the login form
+        form = todo
+
     request.session.set_test_cookie()
     if Site._meta.installed:
         current_site = Site.objects.get_current()
     else:
         current_site = RequestSite(request)
+
     return render_to_response(template_name, {
         'form': form,
         redirect_field_name: redirect_to,
@@ -59,15 +57,16 @@ def emaillogin(request, template_name='registration/login.html',
     }, context_instance=RequestContext(request))
 emaillogin = never_cache(emaillogin)
 
-def _login(request, redirect_to):
+def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
     """"Altered version of the default login, intended to be called by `combined_login`.
 
     Returns tuple:
     - success
     - redirect (success) or form (on failure)
     """
-    form = EmailAuthenticationForm(data=request.POST)
+    
     if request.method == 'POST':
+        form = auth_form(data=request.POST)
         if form.is_valid():
             # Light security check -- make sure redirect_to isn't garbage.
             if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
@@ -77,7 +76,9 @@ def _login(request, redirect_to):
                 request.session.delete_test_cookie()
             return (True, HttpResponseRedirect(redirect_to))
         else:
-            log.error(form.errors)
+            log.debug(form.errors)
+    else:
+        form = auth_form(request)
 
     return (False, form)
 
