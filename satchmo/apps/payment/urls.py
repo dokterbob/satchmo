@@ -8,6 +8,7 @@ config = config_get_group('PAYMENT')
 
 urlpatterns = patterns('payment.views',
      (r'^$', 'contact.contact_info_view', {'SSL': config.SSL.value}, 'satchmo_checkout-step1'),
+     (r'^success/$', 'checkout.success', {'SSL' : config.SSL.value}, 'satchmo_checkout-success'),
      (r'custom/charge/(?P<orderitem_id>\d+)/$', 'balance.charge_remaining', {}, 'satchmo_charge_remaining'),
      (r'custom/charge/$', 'balance.charge_remaining_post', {}, 'satchmo_charge_remaining_post'),
      (r'^balance/(?P<order_id>\d+)/$', 'balance.balance_remaining_order', {'SSL' : config.SSL.value}, 'satchmo_balance_remaining_order'),
