@@ -356,6 +356,16 @@ class Cart(models.Model):
             item_to_modify.delete()
         self.save()
 
+    
+    def merge_carts(self, src_cart):
+        """
+        Merge the items from the src_cart into
+        the destination. Source cart will be emptied
+        """
+        for item in src_cart.cartitem_set.all():
+            self.add_item(item.product, item.quantity, item.details.all())
+            item.delete()
+    
     def empty(self):
         for item in self.cartitem_set.all():
             item.delete()

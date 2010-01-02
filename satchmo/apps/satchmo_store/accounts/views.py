@@ -16,7 +16,8 @@ from satchmo_store.accounts.mail import send_welcome_email
 from satchmo_store.accounts import signals
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact
-from satchmo_store.shop.models import Config
+from satchmo_store.shop.models import Config, Cart
+
 import logging
 
 log = logging.getLogger('satchmo_store.accounts.views')
@@ -74,6 +75,8 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
             login(request, form.get_user())
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
+                if config_value('SHOP','PERSISTENT_CART'):
+                    _get_prev_cart(request)
             return (True, HttpResponseRedirect(redirect_to))
         else:
             log.debug(form.errors)
@@ -81,6 +84,20 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
         form = auth_form(request)
 
     return (False, form)
+
+def _get_prev_cart(request):
+    try:
+        contact = request.user.contact_set.get()
+        saved_cart = contact.cart_set.latest('date_time_created')
+        # If the latest cart has len == 0, cart is unusable.
+        if len(saved_cart) and request.session['cart']:
+            # Merge the two carts together
+            existing_cart = Cart.objects.from_request(request, create=False)
+            saved_cart.merge_carts(existing_cart)
+            request.session['cart'] = saved_cart.id
+    except Exception, e:
+        pass
+
 
 def register_handle_address_form(request, redirect=None):
     """
