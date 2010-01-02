@@ -78,14 +78,14 @@ class GiftCertificate(models.Model):
         u.save()
         return self.balance
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk:
             self.date_added = datetime.now()
         if not self.code:
             self.code = generate_certificate_code()
         if not self.site:
             self.site = Site.objects.get_current()
-        super(GiftCertificate, self).save(force_insert=force_insert, force_update=force_update)
+        super(GiftCertificate, self).save(**kwargs)
 
     def __unicode__(self):
         sb = moneyfmt(self.start_balance)
@@ -110,10 +110,10 @@ class GiftCertificateUsage(models.Model):
     def __unicode__(self):
         return u"GiftCertificateUsage: %s" % self.balance_used
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk:
             self.usage_date = datetime.now()
-        super(GiftCertificateUsage, self).save(force_insert=force_insert, force_update=force_update)
+        super(GiftCertificateUsage, self).save(**kwargs)
 
 
 class GiftCertificateProduct(models.Model):
@@ -152,10 +152,10 @@ class GiftCertificateProduct(models.Model):
             )
         gc.save()
     
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types
-        super(GiftCertificateProduct, self).save(force_insert=force_insert, force_update=force_update)
+        super(GiftCertificateProduct, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Gift certificate product")

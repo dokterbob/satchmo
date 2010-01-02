@@ -84,7 +84,7 @@ class TieredPrice(models.Model):
 
     dynamic_price = property(fget=_dynamic_price)
     
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         prices = TieredPrice.objects.filter(product=self.product, quantity=self.quantity)
         if self.expires:
             prices = prices.filter(expires=self.expires)
@@ -95,7 +95,7 @@ class TieredPrice(models.Model):
         if prices.count():
             return #Duplicate Price
 
-        super(TieredPrice, self).save(force_insert=force_insert, force_update=force_update)
+        super(TieredPrice, self).save(**kwargs)
 
     class Meta:
         ordering = ['pricingtier', 'expires', '-quantity']

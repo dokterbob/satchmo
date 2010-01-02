@@ -48,11 +48,11 @@ class ProductWish(models.Model):
 
     details = property(fget=get_details, fset=set_details)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """Ensure we have a create_date before saving the first time."""
         if not self.pk:
             self.create_date = datetime.date.today()
-        super(ProductWish, self).save(force_insert=force_insert, force_update=force_update)
+        super(ProductWish, self).save(**kwargs)
         
     class Meta:
         verbose_name = _('Product Wish')

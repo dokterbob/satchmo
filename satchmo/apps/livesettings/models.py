@@ -121,13 +121,13 @@ class Setting(models.Model, CachedObjectMixin):
         self.cache_delete()
         super(Setting, self).delete()
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         try:
             site = self.site
         except Site.DoesNotExist:
             self.site = Site.objects.get_current()
             
-        super(Setting, self).save(force_insert=force_insert, force_update=force_update)
+        super(Setting, self).save(**kwargs)
         
         self.cache_set()
         
@@ -163,12 +163,12 @@ class LongSetting(models.Model, CachedObjectMixin):
         self.cache_delete()
         super(LongSetting, self).delete()
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         try:
             site = self.site
         except Site.DoesNotExist:
             self.site = Site.objects.get_current()
-        super(LongSetting, self).save(force_insert=force_insert, force_update=force_update)
+        super(LongSetting, self).save(**kwargs)
         self.cache_set()
         
     class Meta:
