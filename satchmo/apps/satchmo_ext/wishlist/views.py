@@ -5,7 +5,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
-from django.utils.simplejson.encoder import JSONEncoder
+try:
+    from django.utils.simplejson.encoder import JSONEncoder
+except ImportError:
+    from simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.signals import order_success

@@ -1,5 +1,8 @@
 from django.db import models
-from django.utils import simplejson
+try:
+    from django.utils import simplejson
+except ImportError:
+    import simplejson
 from django.utils.translation import ugettext_lazy as _
 from listeners import wishlist_cart_add_listener
 from satchmo_store import shop
