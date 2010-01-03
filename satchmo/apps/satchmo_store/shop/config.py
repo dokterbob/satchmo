@@ -60,6 +60,13 @@ config_register(PositiveIntegerValue(
         default = 0
     ))
 
+PERSISTENT_CART = config_register(
+    BooleanValue(SHOP_GROUP,
+    'PERSISTENT_CART',
+    description = _('Persistent Cart?'),
+    help_text = _("When a user logs in, attempt to retrieve previous carts and merge with existing?"),
+    default = False
+    ))
 
 #### Google Group ####
 

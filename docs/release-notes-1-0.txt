@@ -27,3 +27,9 @@ Changes
 - Improve handling of the MEDIA_ROOT on Windows systems
 - Add a documentation section about customizing the admin - :doc:`custom-admin`
 - Handle error if unicode value is entered in the cart quantity field
+- Add a persistent cart capability for previously logged in users
+- Django 1.2 compatibility change in save signatures
+- Remove some dupe code in the login functions
+- Turn off autocomplete on cc#'s and ccvs in the checkout form 
+- Move the import of trml2pdf so that startup is quicker
+- Fix a bug in the category slug url
