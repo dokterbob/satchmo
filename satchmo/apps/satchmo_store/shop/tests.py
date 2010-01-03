@@ -9,7 +9,9 @@ from django.test.client import Client
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from keyedcache import cache_delete
+from l10n.l10n_settings import get_l10n_setting
 from l10n.models import Country
+from l10n.utils import moneyfmt
 from livesettings import config_get, config_value
 from product.models import Product
 from product.utils import rebuild_pricing
@@ -188,7 +190,8 @@ class ShopTest(TestCase):
         # that variation already selected
         response = self.client.get(prefix+'/product/neat-book-soft/')
         self.assertContains(response, 'option value="soft" selected="selected"')
-        self.assertContains(response, smart_str("%s5.00" % config_value('LANGUAGE','CURRENCY')))
+        amount = moneyfmt(Decimal('5.00'))
+        self.assertContains(response, smart_str(amount))
 
     def test_orphaned_product(self):
         """
@@ -264,9 +267,15 @@ class ShopTest(TestCase):
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
             status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
-        self.assertContains(response, smart_str("Shipping + %s4.00" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
-        self.assertContains(response, smart_str("Tax + %s4.60" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
-        self.assertContains(response, smart_str("Total = %s54.60" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
+        amount = smart_str('Shipping + ' + moneyfmt(Decimal('4.00')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
+        amount = smart_str('Tax + ' + moneyfmt(Decimal('4.60')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
+        amount = smart_str('Total = ' + moneyfmt(Decimal('54.60')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
             status_code=302, target_status_code=200)
@@ -430,10 +439,18 @@ class ShopTest(TestCase):
             status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, '/satchmo-computer/">satchmo computer', count=1, status_code=200)
-        self.assertContains(response, smart_str("%s168.00" % config_value('LANGUAGE','CURRENCY')), count=3)
-        self.assertContains(response, smart_str("Monogram: CBM  %s10.00" % config_value('LANGUAGE','CURRENCY')), count=1)
-        self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('LANGUAGE','CURRENCY')), count=1)
-        self.assertContains(response, smart_str("Memory - Internal RAM: 1.5 GB  %s25.00" % config_value('LANGUAGE','CURRENCY')), count=1)
+        amount = smart_str(moneyfmt(Decimal('168.00')))
+        self.assertContains(response, amount, count=3)
+        
+        amount = smart_str('Monogram: CBM  ' + moneyfmt(Decimal('10.00')))
+        self.assertContains(response, amount, count=1)
+        
+        amount = smart_str('Case - External Case: Mid  ' + moneyfmt(Decimal('10.00')))
+        self.assertContains(response, amount, count=1)
+        
+        amount = smart_str('Memory - Internal RAM: 1.5 GB  ' + moneyfmt(Decimal('25.00')))
+        self.assertContains(response, amount, count=1)
+        
         response = self.client.post(url('satchmo_checkout-step1'), get_step1_post_data(self.US))
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
             status_code=302, target_status_code=200)
@@ -448,7 +465,9 @@ class ShopTest(TestCase):
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
             status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
-        self.assertContains(response, smart_str("satchmo computer - %s168.00" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
+        
+        amount = smart_str('satchmo computer - ' + moneyfmt(Decimal('168.00')))
+        self.assertContains(response, amount, count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
             status_code=302, target_status_code=200)

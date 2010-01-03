@@ -14,7 +14,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 from l10n.models import Country
 from l10n.utils import moneyfmt
-from livesettings import ConfigurationSettings, config_value, config_choice_values
+from livesettings import ConfigurationSettings
 from payment.fields import PaymentChoiceCharField
 from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price, get_product_quantity_adjustments
 from satchmo_store.contact.models import Contact
@@ -477,10 +477,9 @@ class CartItem(models.Model):
     has_details = property(_has_details)
 
     def __unicode__(self):
-        currency = config_value('LANGUAGE','CURRENCY')
-        currency = currency.replace("_", " ")
-        return u'%s - %s %s%s' % (self.quantity, self.product.name,
-            force_unicode(currency), self.line_total)
+        money_format = force_unicode(moneyfmt(self.line_total))
+        return u'%s - %s %s' % (self.quantity, self.product.name,
+            money_format)
 
     class Meta:
         verbose_name = _("Cart Item")

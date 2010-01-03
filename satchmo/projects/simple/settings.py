@@ -137,6 +137,9 @@ AUTHENTICATION_BACKENDS = (
 #    'INTERCEPT_REDIRECTS' : False,
 #}
 
+L10N_SETTINGS = {
+}
+
 #### Satchmo unique variables ####
 #from django.conf.urls.defaults import patterns, include
 SATCHMO_SETTINGS = {

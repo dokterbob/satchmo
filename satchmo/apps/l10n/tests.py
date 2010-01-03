@@ -1,5 +1,9 @@
+# -*- coding: UTF-8 -*-
 from django.test import TestCase
 from l10n.validators import aupostcode, capostcode, uspostcode
+from l10n import l10n_settings
+from l10n.utils import moneyfmt
+from decimal import Decimal
 
 class AUPostCodeTest(TestCase):
     def test_valid(self):
@@ -84,3 +88,42 @@ class USPostCodeTest(TestCase):
             self.fail('Invalid ZIP code "no" not caught')
         except:
             pass
+            
+class MoneyFmtTest(TestCase):
+    
+    def testUSD(self):
+        l10n_settings.set_l10n_setting('default_currency', 'USD')
+        
+        val = Decimal('10.00')
+        self.assertEqual(moneyfmt(val), '$10.00')
+
+        self.assertEqual(moneyfmt(val, currency_code='USD'), '$10.00')
+
+
+    def testGBP(self):
+        l10n_settings.set_l10n_setting('default_currency', 'GBP')
+
+        val = Decimal('10.00')
+        self.assertEqual(moneyfmt(val), '£10.00')
+
+        self.assertEqual(moneyfmt(val, currency_code='GBP'), '£10.00')
+        self.assertEqual(moneyfmt(val, currency_code='USD'), '$10.00')
+        
+        val = Decimal('-100.00')
+        self.assertEqual(moneyfmt(val), '-£100.00')
+
+    def testFake(self):
+        currencies = l10n_settings.get_l10n_setting('currency_formats')
+        currencies['FAKE'] = {'symbol': '^ ', 'positive' : "%(val)0.2f ^", 'negative': "(%(val)0.2f) ^", 'decimal' : ','}
+        
+        l10n_settings.set_l10n_setting('currency_formats', currencies)
+        
+        val = Decimal('10.00')
+        self.assertEqual(moneyfmt(val, currency_code='FAKE'), '10,00 ^')
+
+        val = Decimal('-50.00')
+        self.assertEqual(moneyfmt(val, currency_code='FAKE'), '(50,00) ^')
+
+
+        
+        

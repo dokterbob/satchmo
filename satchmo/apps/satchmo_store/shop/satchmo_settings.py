@@ -20,6 +20,8 @@ satchmo_settings_defaults = {
     'CUSTOM_TAX_MODULES' : [],
     'ALLOW_PRODUCT_TRANSLATIONS' : True,
     'COOKIE_MAX_SECONDS' : 60*60*24*30, #one month
+    'SHOW_TRANSLATIONS' : True, # show transaltions in admin
+    'ALLOW_TRANSLATIONS' : True # show available languages to users
     }
 
 
