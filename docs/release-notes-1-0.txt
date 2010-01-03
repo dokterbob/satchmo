@@ -33,3 +33,6 @@ Changes
 - Turn off autocomplete on cc#'s and ccvs in the checkout form 
 - Move the import of trml2pdf so that startup is quicker
 - Fix a bug in the category slug url
+- Change the way currency formats are determined. Explicit option will remove locale bugs.
+- Fix the import for simplejson to support certain OS supplied json libs
+- Update search to work on product variation skus

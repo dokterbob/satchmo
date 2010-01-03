@@ -214,5 +214,25 @@ through the settings file.
 
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
 
+Changing the Default Currency
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Satchmo supports a setting L10N_SETTINGS to configure the currency format. The example
+below would configure the Euro::
+
+    L10N_SETTINGS = {
+      'currency_formats' : {
+         'EURO' : {'symbol': '€', 'positive' : "€%(val)0.2f", 'negative': "€(%(val)0.2f)", 'decimal' : ','},
+      },
+      'default_currency' : 'EURO'
+    }
+
+.. Note::
+    If you use a unicode character, you'll need to have an encoding at the top
+    of your settings.py file::
+       
+        # -*- coding: UTF-8 -*-
+
+
 .. _Authorize.net: http://www.authorize.net/
 .. _Mailman: http://www.gnu.org/software/mailman/
