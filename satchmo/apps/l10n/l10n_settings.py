@@ -17,7 +17,8 @@ l10n_settings_defaults = {
         'GBP' : {'symbol': '£', 'positive' : "£%(val)0.2f", 'negative': "-£%(val)0.2f", 'decimal' : '.'},
     },
     
-    'default_currency' : 'USD'
+    'default_currency' : 'USD',
+    'show_translations': True
 }
 
 

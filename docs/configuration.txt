@@ -224,8 +224,12 @@ below would configure the Euro::
       'currency_formats' : {
          'EURO' : {'symbol': '€', 'positive' : "€%(val)0.2f", 'negative': "€(%(val)0.2f)", 'decimal' : ','},
       },
-      'default_currency' : 'EURO'
+      'default_currency' : 'EURO',
+      'show_translations': False
     }
+
+The L10N_SETTINGS variable also allows you to control whether or not translation fields
+should be displayed in the admin. In the example above, they will be disabled. The default is True
 
 .. Note::
     If you use a unicode character, you'll need to have an encoding at the top
