@@ -75,8 +75,8 @@ class CategoryListNode(Node):
             try:
                 cat = Category.objects.active().get(slug__iexact=self.slug.resolve(context))
                 cats = cat.child.all()
-            except Category.DoesNotExist:
-                log.warn("No category found for slug: %s", self.slug.resolve(context))
+            except (Category.DoesNotExist, template.VariableDoesNotExist):
+                log.warn("No category found for slug: %s", self.slug)
                 cats = []
         
         else:
