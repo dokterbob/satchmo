@@ -45,7 +45,7 @@ class GoogleCart(object):
         else:
             merchkey = self.settings.MERCHANT_TEST_KEY.value
 
-        s = hmac.new(merchkey, self.cart_xml, sha)
+        s = hmac.new(str(merchkey), self.cart_xml, sha)
         rawsig = s.digest()
         return rawsig
 
