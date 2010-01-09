@@ -40,20 +40,6 @@ We can handle it any which way."""),
         requiresvalue='product::DownloadableProduct'
     ),
 
-    StringValue(PRODUCT_GROUP,
-        'CATEGORY_SLUG',
-        description=_("Category Slug"),
-        help_text=_("The url slug for categories.  Requires server restart if changed."),
-        default="category"
-    ),
-    
-    StringValue(PRODUCT_GROUP,
-        'PRODUCT_SLUG',
-        description=_("Product Slug"),
-        help_text=_("The url slug for products.  Requires server restart if changed."),
-        default="product"
-    ),
-    
     PositiveIntegerValue(PRODUCT_GROUP,
         'NUM_DISPLAY',
         description=_("Total featured"),

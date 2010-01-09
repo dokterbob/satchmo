@@ -20,6 +20,7 @@ number of places you might want to configure.
         MULTISHOP: False,
         CUSTOM_PRODUCT_MODULES: ['myshop.custom.product.model'],
         CUSTOM_PAYMENT_MODULES: ['myshop.custom.payments'],
+        PRODUCT_SLUG: 'items',
         }
 
 The following settings are available to be added to the SATCHMO_SETTINGS dictionary:
@@ -30,8 +31,12 @@ The following settings are available to be added to the SATCHMO_SETTINGS diction
     - ``CUSTOM_NEWSLETTER_MODULES`` - a list of custom newsletters.
     - ``CUSTOM_PAYMENT_MODULES`` - a list of custom payment modules outside of the standard Satchmo distribution.
     - ``CUSTOM_SHIPPING_MODULES`` - a list of custom shipping modules outside of the standard Satchmo distribution.
-    - ``CUSTOM_PRODUCT_MODULES`` - - a list of custom product modules outside of the standard Satchmo distribution.
+    - ``CUSTOM_PRODUCT_MODULES`` -  a list of custom product modules outside of the standard Satchmo distribution.
     - ``CUSTOM_TAX_MODULES`` - a list of custom tax modules outside of the standard Satchmo distribution.
+    - ``ALLOW_PRODUCT_TRANSLATIONS`` - Allow user to select translations. Default True 
+    - ``COOKIE_MAX_SECONDS`` -  Cookie expiration time. Default: 60*60*24*30
+    - ``CATEGORY_SLUG`` -  The category url prefix. Default: category
+    - ``PRODUCT_SLUG`` - The product url prefix. Default: product
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
     
@@ -214,8 +219,8 @@ through the settings file.
 
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
 
-Changing the Default Currency
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changing the L10N Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Satchmo supports a setting L10N_SETTINGS to configure the currency format. The example
 below would configure the Euro::
@@ -225,8 +230,16 @@ below would configure the Euro::
          'EURO' : {'symbol': '€', 'positive' : "€%(val)0.2f", 'negative': "€(%(val)0.2f)", 'decimal' : ','},
       },
       'default_currency' : 'EURO',
-      'show_translations': False
+      'show_translations': False,
+      'allow_translations': False,
     }
+
+The following settings are available to be added to the L10N_SETTINGS dictionary:
+    
+    - ``default_currency`` - The default currency type to display
+    - ``show_translations`` - Enable of disable the translation section for the store user
+    - ``allow_translations`` - Enable or disable the use of the transaltion options in the admin. Default - True
+
 
 The L10N_SETTINGS variable also allows you to control whether or not translation fields
 should be displayed in the admin. In the example above, they will be disabled. The default is True
