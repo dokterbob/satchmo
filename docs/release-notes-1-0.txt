@@ -38,3 +38,4 @@ Changes
 - Update search to work on product variation skus
 - Update login form so it accepts 75 characters
 - Add a trap for CACHE_TIMEOUT
+- Removed CATEGORY and PRODUCT slug configuration from livesettings
