@@ -227,7 +227,7 @@ below would configure the Euro::
 
     L10N_SETTINGS = {
       'currency_formats' : {
-         'EURO' : {'symbol': '€', 'positive' : "€%(val)0.2f", 'negative': "€(%(val)0.2f)", 'decimal' : ','},
+         'EURO' : {'symbol': u'€', 'positive' : u"€%(val)0.2f", 'negative': u"€(%(val)0.2f)", 'decimal' : ','},
       },
       'default_currency' : 'EURO',
       'show_translations': False,
