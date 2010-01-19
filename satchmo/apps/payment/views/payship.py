@@ -127,10 +127,11 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module,
         else:
             return (False, form)
     else:
-        order_data = {}
+        order_data = None
         try:
             order = Order.objects.from_request(request)
             if order.shipping_model:
+                order_data = {}
                 order_data['shipping'] = order.shipping_model
             ordershippable = order.is_shippable
         except Order.DoesNotExist:
