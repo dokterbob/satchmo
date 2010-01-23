@@ -57,7 +57,8 @@ def balance_remaining(request):
         'order' : order,
         'paymentmethod_ct': len(config_value('PAYMENT', 'MODULES'))
     })
-    return render_to_response('shop/checkout/balance_remaining.html', ctx)
+    return render_to_response('shop/checkout/balance_remaining.html',
+                              context_instance=ctx)
 
 
 def charge_remaining(request, orderitem_id):
@@ -76,8 +77,9 @@ def charge_remaining(request, orderitem_id):
         }
     form = CustomChargeForm(data)
     ctx = RequestContext(request, {'form' : form})
-    return render_to_response('payment/admin/charge_remaining_confirm.html', ctx)
-    
+    return render_to_response('payment/admin/charge_remaining_confirm.html',
+                              context_instance=ctx)
+
 def charge_remaining_post(request):
     if not request.method == 'POST':
         return bad_or_missing(request, _("No form found in request."))
@@ -119,6 +121,6 @@ def charge_remaining_post(request):
         
         return HttpResponseRedirect('/admin/shop/order/%i' % order.id)
     else:
-        ctx = RequestContext(request, {'form' : form})
-        return render_to_response('admin/charge_remaining_confirm.html', ctx)
-
+        ctx = RequestContext(request, {'form': form})
+        return render_to_response('admin/charge_remaining_confirm.html',
+                                  context_instance=ctx)

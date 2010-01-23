@@ -44,7 +44,8 @@ def process(request, download_key):
     valid, msg, dl_product = _validate_key(download_key)
     if not valid:
         context = RequestContext(request, {'error_message': msg})
-        return render_to_response('shop/download.html', context)
+        return render_to_response('shop/download.html',
+                                  context_instance=context)
     else:
         # The key is valid so let's set the session variable and redirect to the 
         # download view

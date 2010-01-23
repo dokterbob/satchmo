@@ -26,8 +26,9 @@ def one_step(request):
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'shop/checkout/empty_cart.html')
-        return render_to_response(template, RequestContext(request))
-            
+        return render_to_response(template,
+                                  context_instance=RequestContext(request))
+
     # Create a new order
     newOrder = Order(contact=contact)
     pay_ship_save(newOrder, tempCart, contact,

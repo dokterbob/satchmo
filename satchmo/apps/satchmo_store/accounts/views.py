@@ -228,8 +228,9 @@ def activate(request, activation_key):
         'account': account,
         'expiration_days': config_value('SHOP', 'ACCOUNT_ACTIVATION_DAYS'),
     })
-    return render_to_response('registration/activate.html', context) 
-    
+    return render_to_response('registration/activate.html',
+                              context_instance=context)
+
 
 def login_signup(request, template_name="contact/login_signup.html", registration_handler=register_handle_form):
     """Display/handle a combined login and create account form"""
@@ -259,7 +260,8 @@ def login_signup(request, template_name="contact/login_signup.html", registratio
                         REDIRECT_FIELD_NAME: redirect_to,
                     })
 
-                    return render_to_response('registration/registration_complete.html', ctx)
+                    return render_to_response('registration/registration_complete.html',
+                                              context_instance=ctx)
             else:
                 createform = todo
 
@@ -307,7 +309,7 @@ def login_signup(request, template_name="contact/login_signup.html", registratio
 
     context = RequestContext(request, ctx)
 
-    return render_to_response(template_name, context)
+    return render_to_response(template_name, context_instance=context)
 
 
 def login_signup_address(request, template_name="contact/login_signup_address.html"):
@@ -348,5 +350,5 @@ def register(request, redirect=None, template='registration/registration_form.ht
             ctx.update(extra_context)
 
         context = RequestContext(request, ctx)
-        return render_to_response(template, context)
-  
+        return render_to_response(template, context_instance=context)
+

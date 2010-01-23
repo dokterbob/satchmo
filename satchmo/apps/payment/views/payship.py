@@ -40,8 +40,9 @@ def pay_ship_info_verify(request, payment_module):
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'shop/checkout/empty_cart.html')
-        return (False, render_to_response(template, RequestContext(request)))
-            
+        return (False, render_to_response(template,
+                                          context_instance=RequestContext(request)))
+
     return (True, contact, tempCart)
 
 def credit_pay_ship_process_form(request, contact, working_cart, payment_module, allow_skip=True, *args, **kwargs):
@@ -164,7 +165,7 @@ def pay_ship_render_form(request, form, template, payment_module, cart):
         'form': form,
         'PAYMENT_LIVE': payment_live(payment_module),
         })
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
 
 def base_pay_ship_info(request, payment_module, form_handler, template):
     results = pay_ship_info_verify(request, payment_module)

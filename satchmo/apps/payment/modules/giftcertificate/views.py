@@ -87,4 +87,5 @@ def check_balance(request):
             'code' : '',
             'form' : form
         })
-    return render_to_response(ctx, 'giftcertificate/balance.html')
+    return render_to_response('giftcertificate/balance.html',
+                              context_instance=ctx)

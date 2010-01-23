@@ -70,5 +70,4 @@ def form(request):
         form = ContactForm(initial=initialData)
 
     return render_to_response('shop/contact_form.html', {'form': form},
-        RequestContext(request))
-
+                              context_instance=RequestContext(request))

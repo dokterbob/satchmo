@@ -134,5 +134,6 @@ def success(request):
         
     del request.session['orderID']
     context = RequestContext(request, {'order': order})
-    return render_to_response('shop/checkout/success.html', context)
+    return render_to_response('shop/checkout/success.html',
+                              context_instance=context)
 

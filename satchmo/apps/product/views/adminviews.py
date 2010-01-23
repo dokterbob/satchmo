@@ -28,7 +28,8 @@ def edit_inventory(request):
         'form' : form
         })
 
-    return render_to_response('product/admin/inventory_form.html', ctx)
+    return render_to_response('product/admin/inventory_form.html',
+                              context_instance=ctx)
 
 edit_inventory = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(edit_inventory)
 
@@ -50,7 +51,7 @@ def export_products(request, template='product/admin/product_export_form.html'):
         'importform': fileform
         })
 
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
 
 export_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(export_products)
 
@@ -75,8 +76,9 @@ def import_products(request, maxsize=10000000):
             'errors' : errors,
             'results' : results
         })
-        return render_to_response("product/admin/product_import_result.html", ctx)  
-    else:  
+        return render_to_response("product/admin/product_import_result.html",
+                                  context_instance=ctx)
+    else:
         url = urlresolvers.reverse('satchmo_admin_product_export')
         return HttpResponseRedirect(url)
 
@@ -96,8 +98,9 @@ def variation_list(request):
     ctx = RequestContext(request, {
            'products' : products,
     })
-    
-    return render_to_response('product/admin/variation_manager_list.html', ctx)
+
+    return render_to_response('product/admin/variation_manager_list.html',
+                              context_instance=ctx)
 
 
 def variation_manager(request, product_id = ""):
@@ -136,6 +139,7 @@ def variation_manager(request, product_id = ""):
         'product' : product,
         'form' : form,
     })
-    return render_to_response('product/admin/variation_manager.html', ctx)
-    
-variation_manager = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(variation_manager)    
+    return render_to_response('product/admin/variation_manager.html',
+                              context_instance=ctx)
+
+variation_manager = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(variation_manager)

@@ -36,9 +36,9 @@ def wishlist_view(request, message=""):
         'wishlist' : wishes,
         'wishlist_message' : message,
     })
-    
-    return render_to_response('wishlist/index.html', ctx)
-    
+
+    return render_to_response('wishlist/index.html', context_instance=ctx)
+
 def wishlist_add(request):
     """Add an item to the wishlist."""
     try:
@@ -193,4 +193,5 @@ def _wishlist_requires_login(request):
     ctx = RequestContext(request, {
         'login_url' : settings.LOGIN_URL
         })
-    return render_to_response('wishlist/login_required.html', ctx)
+    return render_to_response('wishlist/login_required.html',
+                              context_instance=ctx)

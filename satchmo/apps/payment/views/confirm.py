@@ -130,8 +130,8 @@ class ConfirmController(object):
             base_env.update(controller.extra_context)
             
         context = RequestContext(self.request, base_env)
-        return render_to_response(template, context)
-        
+        return render_to_response(template, context_instance=context)
+
     def _onSuccess(self, controller):
         """Handles a success in payment.  If the order is paid-off, sends success, else return page to pay remaining."""
         if controller.order.paid_in_full:
@@ -195,20 +195,23 @@ class ConfirmController(object):
             self.cart = Cart.objects.from_request(self.request)
             if self.cart.numItems == 0 and not self.order.is_partially_paid:
                 template = self.lookup_template('EMPTY_CART')
-                self.invalidate(render_to_response(template, RequestContext(self.request)))
+                self.invalidate(render_to_response(template,
+                                                   context_instance=RequestContext(self.request)))
                 return False
                 
         except Cart.DoesNotExist:
             template = self.lookup_template('EMPTY_CART')
-            self.invalidate(render_to_response(template, RequestContext(self.request)))
+            self.invalidate(render_to_response(template,
+                                               context_instance=RequestContext(self.request)))
             return False
 
         # Check if the order is still valid
         if not self.order.validate(self.request):
             context = RequestContext(self.request, 
                 {'message': _('Your order is no longer valid.')})
-            self.invalidate(render_to_response(self.templates['404'], context))
-            
+            self.invalidate(render_to_response(self.templates['404'],
+                                               context_instance=context))
+
         self.valid = True
         signals.confirm_sanity_check.send(self, controller=self)
         return True
@@ -263,4 +266,3 @@ def confirm_free_order(request, key="FREE", template=None):
         controller.templates['CONFIRM'] = template
     controller.confirm(force_post=True)
     return controller.response
-    

@@ -48,7 +48,6 @@ def _update(request, state, template, result_template, form=NewsletterForm):
     })
 
     if success:
-        return render_to_response(result_template, ctx)
+        return render_to_response(result_template, context_instance=ctx)
     else:
-        return render_to_response(template, ctx)
-
+        return render_to_response(template, context_instance=ctx)
