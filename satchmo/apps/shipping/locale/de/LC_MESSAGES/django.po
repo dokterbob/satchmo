@@ -250,5 +250,5 @@ msgstr "3 - 4"
 #: templates/shipping/shipping_options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
-msgstr "Mit %(method)s versendet kommt voraussichtlich in %(expected_delivery) an."
+msgstr "Mit %(method)s versendet kommt voraussichtlich in %(expected_delivery)s an."
 
