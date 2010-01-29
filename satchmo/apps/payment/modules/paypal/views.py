@@ -37,7 +37,7 @@ def confirm_info(request):
         return HttpResponseRedirect(url)
 
     tempCart = Cart.objects.from_request(request)
-    if tempCart.numItems == 0:
+    if tempCart.numItems == 0 and not order.is_partially_paid:
         template = lookup_template(payment_module, 'shop/checkout/empty_cart.html')
         return render_to_response(template,
                                   context_instance=RequestContext(request))
