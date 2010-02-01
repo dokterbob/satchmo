@@ -5,12 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 gettext = lambda s: s
 _strings = (gettext('CreditCard'), gettext('Credit Card'))
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_AUTHORIZENET', 'Authorize.net'))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_AUTHORIZENET', 
     _('Authorize.net Payment Settings'), 
-    requires=PAYMENT_MODULES,
     ordering=101)
 
 config_register_list(

@@ -1,12 +1,8 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_PAYPAL', _('Paypal Payment Settings')))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PAYPAL', 
     _('Paypal Payment Module Settings'), 
-    requires=PAYMENT_MODULES,
     ordering = 101)
 
 config_register_list(

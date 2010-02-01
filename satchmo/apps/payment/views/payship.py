@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from livesettings import config_value
 from satchmo_store.contact.models import Contact
-from payment.config import payment_live
+from payment.config import gateway_live
 from payment.forms import CreditPayShipForm, SimplePayShipForm
 from product.utils import find_best_auto_discount
 from satchmo_store.shop.models import Cart
@@ -164,7 +164,7 @@ def pay_ship_render_form(request, form, template, payment_module, cart):
             
     ctx = RequestContext(request, {
         'form': form,
-        'PAYMENT_LIVE': payment_live(payment_module),
+        'PAYMENT_LIVE': gateway_live(payment_module),
         })
     return render_to_response(template, context_instance=ctx)
 

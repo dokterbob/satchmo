@@ -2,10 +2,6 @@
     site: !!python/long '1', value: !!python/unicode '["Visa", "Mastercard", "Discover"]'}
   model: !!python/unicode 'livesettings.setting'
   pk: !!python/long '1'
-- fields: {group: !!python/unicode 'PAYMENT', key: !!python/unicode 'MODULES', site: !!python/long '1',
-    value: !!python/unicode '["PAYMENT_AUTHORIZENET", "PAYMENT_DUMMY"]'}
-  model: !!python/unicode 'livesettings.setting'
-  pk: !!python/long '2'
 - fields: {group: !!python/unicode 'PAYMENT_AUTHORIZENET', key: !!python/unicode 'CREDITCHOICES',
     site: !!python/long '1', value: !!python/unicode '["Visa", "Mastercard", "Discover"]'}
   model: !!python/unicode 'livesettings.setting'

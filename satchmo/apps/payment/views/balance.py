@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from livesettings import config_get_group, config_value
+from payment import active_gateways
 from payment.forms import PaymentMethodForm, CustomChargeForm
 from payment.views import contact
 from satchmo_store.shop.models import Order, OrderItem, OrderPayment
@@ -55,7 +56,7 @@ def balance_remaining(request):
         
     ctx = RequestContext(request, {'form' : form, 
         'order' : order,
-        'paymentmethod_ct': len(config_value('PAYMENT', 'MODULES'))
+        'paymentmethod_ct': len(active_gateways())
     })
     return render_to_response('shop/checkout/balance_remaining.html',
                               context_instance=ctx)

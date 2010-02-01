@@ -162,3 +162,4 @@ class GiftCertificateProduct(models.Model):
         verbose_name_plural = _("Gift certificate products")
 
 import config
+PAYMENT_PROCESSOR=True

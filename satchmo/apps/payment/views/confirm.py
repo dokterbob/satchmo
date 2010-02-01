@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from livesettings import config_value
 from satchmo_store.shop.models import Order, OrderStatus
-from payment.config import payment_live
+from payment.config import gateway_live
 from satchmo_utils.dynamic import lookup_url, lookup_template
 from satchmo_store.shop.models import Cart
 from payment import signals
@@ -121,7 +121,7 @@ class ConfirmController(object):
         controller.order.recalculate_total()
         
         base_env = {
-            'PAYMENT_LIVE' : payment_live(controller.paymentModule),
+            'PAYMENT_LIVE' : gateway_live(controller.paymentModule),
             'default_view_tax' : controller.viewTax,
             'order': controller.order,
             'errors': controller.processorMessage,

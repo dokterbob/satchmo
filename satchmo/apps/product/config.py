@@ -83,15 +83,4 @@ We can handle it any which way."""),
         help_text=_("If no, then inventory will not be tracked for products sold."),
         default=True
     ),
-
 )
-
-# --- Load any extra product modules. ---
-extra_product = get_satchmo_setting('CUSTOM_PRODUCT_MODULES')
-
-for extra in extra_product:
-    try:
-        load_module("%s.config" % extra)
-    except ImportError:
-        log.warn('Could not load product module configuration: %s' % extra)
-
