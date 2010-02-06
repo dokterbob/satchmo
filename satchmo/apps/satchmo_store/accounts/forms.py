@@ -45,14 +45,14 @@ class RegistrationForm(forms.Form):
         contact = kwargs.get('contact', None)
         initial = kwargs.get('initial', {})
         self.contact = contact
-        form_initialdata.send('RegistrationForm',
+        form_initialdata.send(self.__class__,
             form=self,
             contact=contact,
             initial=initial)
         
         kwargs['initial'] = initial
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        form_init.send('RegistrationForm',
+        form_init.send(self.__class__,
             form=self,
             contact=contact)
 
