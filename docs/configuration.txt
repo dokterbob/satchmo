@@ -72,11 +72,6 @@ Google Settings
 
 This section allows you to enable or disable google analytics and conversion tracking for adwords.
 
-Language Settings
-^^^^^^^^^^^^^^^^^
-
-Allows the user to manually choose their language they would like to see.
-
 Payment Settings
 ^^^^^^^^^^^^^^^^
 
@@ -89,10 +84,6 @@ Each payment module will have it's own configuration items. These items apply un
     - Force ship to and bill to countries to match during checkout
     - Cron passkey to allow subscription rebilling
     - Enable/disable ssl for the checkout process
-    - Enable specific payment modules.
-    
-.. Note::
-    If you add a new payment module, you will need to save the changes in order for the new payment module configuration items to appear.
     
 .. Warning::
     After saving changes to your payment processor, you will need to restart your server for the changes to take effect.
@@ -240,7 +231,7 @@ The following settings are available to be added to the L10N_SETTINGS dictionary
     
     - ``default_currency`` - The default currency type to display
     - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - True
-    - ``allow_translations`` - Enable of disable the translation section for the store user. Default - True
+    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - True
     
 
 
