@@ -194,6 +194,7 @@ def serialize_options(product, selected_options=()):
             if not serialized.has_key(option.option_group_id):
                 serialized[option.option_group.id] = {
                     'name': option.option_group.translated_name(),
+                    'description': option.option_group.translated_description(),
                     'id': option.option_group.id,
                     'items': [],
                 }
