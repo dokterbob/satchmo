@@ -1,19 +1,17 @@
 '''
 Canada Post Shipping Module
-Nav Aulakh
-www.navaulakh.com
-Dec 14, 2008
+v0.1.1
 '''
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
 
 SHIP_MODULES = config_get('SHIPPING', 'MODULES')
-SHIP_MODULES.add_choice(('satchmo.shipping.modules.canadapost', 'Canada Post'))
+SHIP_MODULES.add_choice(('shipping.modules.canadapost', 'Canada Post'))
 
-SHIPPING_GROUP = ConfigurationGroup('satchmo.shipping.modules.canadapost',
+SHIPPING_GROUP = ConfigurationGroup('shipping.modules.canadapost',
   _('Canada Post Shipping Settings'),
   requires = SHIP_MODULES,
-  requiresvalue='satchmo.shipping.modules.canadapost',
+  requiresvalue='shipping.modules.canadapost',
   ordering = 101
 )
 

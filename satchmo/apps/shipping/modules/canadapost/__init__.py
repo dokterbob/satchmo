@@ -7,4 +7,4 @@ def get_methods():
     enabled in /settings/
   '''
 
-  return [shipper.Shipper(service_type=value) for value in config_choice_values('satchmo.shipping.modules.canadapost', 'CANADAPOST_SHIPPING_CHOICES')]
+  return [shipper.Shipper(service_type=value) for value in config_choice_values('shipping.modules.canadapost', 'CANADAPOST_SHIPPING_CHOICES')]
