@@ -52,6 +52,9 @@ rates based on the State.
 The satchmo admin command satchmo_load_us_tax will load sales tax rates for
 each state. You should verify these and make sure they are correct.
 
+The admin also includes the option to calculate the tax based on the shipping
+or billing address.
+
 Percent
 ^^^^^^^
 This simple module will charge a flat rate percentage (configured in the admin)
@@ -63,3 +66,6 @@ US Streamlined Sales Tax (SST) Processing
 The SST module is a complex application that uses the 
 `SST <http://www.streamlinedsalestax.org/>`_ service to try to streamline
 sales tax processing in the US.
+
+.. Warning::
+    After changing tax modules, you must restart django to enable the new module.
