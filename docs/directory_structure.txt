@@ -15,6 +15,10 @@ The base Satchmo directory should look like this::
 
 The docs directory should be self explanatory.
 
+To understand the Satchmo template structure, please refer to the `Satchmo Template Author Guide`_.
+
+.. _Satchmo Template Author Guide: http://bitbucket.org/chris1610/satchmo/wiki/TemplateGuide
+
 Satchmo Apps
 ------------
 
