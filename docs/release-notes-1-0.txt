@@ -39,3 +39,7 @@ Changes
 - Update login form so it accepts 75 characters
 - Add a trap for CACHE_TIMEOUT
 - Removed CATEGORY and PRODUCT slug configuration from livesettings
+- Fixed imports in Canadapost shipping module
+- Changed the way payment modules are imported. Making way for django-bursar integration
+- Multiple fixes to paypal modules
+- Allow admins to choose whether tax is calculated based on the shipping or billing address
