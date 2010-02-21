@@ -194,6 +194,16 @@ Satchmo_Store
         {% endfor %}
         {% endif %}
 
+.. describe:: satchmo_store/shop/templates/shop/_jquery.html
+
+    The path to jquery is included here. If you choose to host jquery somewhere else
+    or use a different version, override this template.
+    
+.. describe:: satchmo_store/shop/templates/shop/_jquery_form.html
+
+    Similar to the _jquery.html template, this template holds the location of the jquery form
+    library. Override this template to point to a new location.
+
 .. describe:: satchmo_store/shop/templates/shop/multiple_product_form.html
 .. describe:: satchmo_store/shop/templates/shop/_blackbird_logging.html
 .. describe:: satchmo_store/shop/templates/shop/checkout/failure.html
