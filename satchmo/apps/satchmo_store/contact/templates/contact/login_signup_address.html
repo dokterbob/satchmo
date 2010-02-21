@@ -6,8 +6,8 @@
 {% block bodyid %}login{% endblock %}
 
 {% block extra-head %}
-<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
-<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+{% include "shop/_jquery.html" %}
+{% include "shop/_jquery_form.html" %}
 <script type="text/javascript" src="{{media_url}}js/satchmo_checkout.js"></script>
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
