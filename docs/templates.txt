@@ -14,6 +14,10 @@ rendered, then the `django_debug_toolbar <http://github.com/robhudson/django-deb
 can help you out. Go ahead and install it and use it for debugging and troubleshooting your
 site.
 
+It is also important that you review and understand how to setup your templates
+so that they are easy to modify and maintain. Please review :ref:`Template Customization <template-customization>`
+before modifying templates.
+
 Payment
 -------
 
