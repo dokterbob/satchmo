@@ -181,6 +181,19 @@ Satchmo_Store
 .. describe:: satchmo_store/shop/templates/shop/download.html
 .. describe:: satchmo_store/shop/templates/shop/_order_details.html
 .. describe:: satchmo_store/shop/templates/shop/_order_tracking_details.html
+    
+    This template can be modified to include additional information about the completed
+    purchase. For instance, if you have a downloadable product and would like to
+    provide a link to it when the purchase is completed, modify the template
+    with this code::
+    
+        {% if order.downloadlink_set.all %}
+        <h4>Download now</h4>
+        {% for dl_link in order.downloadlink_set.all %}
+        <a href="{{ dl_link.get_absolute_url }}">{{ dl_link.product_name }}</a><br/>
+        {% endfor %}
+        {% endif %}
+
 .. describe:: satchmo_store/shop/templates/shop/multiple_product_form.html
 .. describe:: satchmo_store/shop/templates/shop/_blackbird_logging.html
 .. describe:: satchmo_store/shop/templates/shop/checkout/failure.html
