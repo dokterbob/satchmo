@@ -116,7 +116,7 @@ Using Signals
 See :ref:`Signals in Satchmo <signals>` for an explanation of the available signals and how to use them to
 customize your store.
 
-.. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/
+.. _Django Template Author Guide: http://docs.djangoproject.com/en/1.1/topics/templates/
 
 Changing Views
 --------------
