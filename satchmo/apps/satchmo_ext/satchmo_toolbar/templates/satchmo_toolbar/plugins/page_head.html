@@ -37,7 +37,7 @@ body.debugtoolbar #st-panels {
 	// '$' variable, so store a reference of it in a temporary variable...
 	var _$ = window.$;
 	if (typeof jQuery == 'undefined') {
-		var jquery_url = '{{ media_url }}js/jquery.js';
+		var jquery_url = '{{ media_url }}js/jquery-1.4.2.js';
 		document.write(unescape('%3Cscript src="' + jquery_url + '" type="text/javascript"%3E%3C/script%3E'));
 	}
 </script>
