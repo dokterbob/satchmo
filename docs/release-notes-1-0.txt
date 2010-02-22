@@ -44,3 +44,4 @@ Changes
 - Multiple fixes to paypal modules
 - Allow admins to choose whether tax is calculated based on the shipping or billing address
 - Refactor the templates and the way jquery is loaded. Will make it easier to switch jquery versions and hosting locations.
+- Updated jquery to 1.4.2
