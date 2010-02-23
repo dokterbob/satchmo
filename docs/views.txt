@@ -1,0 +1,69 @@
+=============
+Satchmo Views
+=============
+
+URLs by Name
+============
+
+Here's an overview showing the name and view for URLs in Satchmo.
+
+URL paths are relative to SHOP_BASE.
+
+.. data:: satchmo_category_index
+
+   :URL: /<CATEGORY_SLUG>/
+   :View: :func:`product.views.category_index`
+
+.. data:: satchmo_category
+
+   :URL: /<CATEGORY_SLUG>/slug1/slug2/.../<slug>/
+   :View: :func:`product.views.category_view`
+
+.. data:: satchmo_product
+
+   :URL: /<PRODUCT_SLUG>/<slug>/
+   :View: :func:`product.views.get_product`
+
+Views by App
+============
+
+product
+-------
+
+.. TODO link <CATEGORY_SLUG> and <PRODUCT_SLUG> to config doc
+.. TODO product.views.filters and JSON templates
+
+.. autofunction:: product.views.category_index()
+
+   :url: :data:`satchmo_category_index`
+   :template: product/category_index.html
+
+   :context:
+    :categorylist: list of all root categories
+
+.. autofunction:: product.views.category_view()
+
+   :url: :data:`satchmo_category`
+   :template: product/category.html
+
+   :context:
+    :category: the category with slug *name*
+    :child_categories: child categories of *category*
+    :products: active products in *category*
+.. TODO
+    :sale:
+
+.. function:: product.views.get_product()
+
+   :url: :data:`satchmo_product`
+.. TODO doesn't take into account find_product_template()
+   :template: product/product.html
+
+   :context
+    :product: the product with slug *slug*
+    :current_product: clone of *product* for product variations
+.. TODO ref config; defaults to the config *DEFAULT_VIEW_TAX*
+    :default_view_tax:
+.. TODO
+    :sale:
+    :error_message: errors

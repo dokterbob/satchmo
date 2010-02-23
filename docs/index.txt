@@ -55,6 +55,7 @@ Modifying A Store
    translation
    templates
    template-filters-tags
+   views
    signals
 
 Optional Modules
