@@ -104,13 +104,13 @@ class MoneyFmtTest(TestCase):
         l10n_settings.set_l10n_setting('default_currency', 'GBP')
 
         val = Decimal('10.00')
-        self.assertEqual(moneyfmt(val), '£10.00')
+        self.assertEqual(moneyfmt(val), u'£10.00')
 
-        self.assertEqual(moneyfmt(val, currency_code='GBP'), '£10.00')
+        self.assertEqual(moneyfmt(val, currency_code='GBP'), u'£10.00')
         self.assertEqual(moneyfmt(val, currency_code='USD'), '$10.00')
         
         val = Decimal('-100.00')
-        self.assertEqual(moneyfmt(val), '-£100.00')
+        self.assertEqual(moneyfmt(val), u'-£100.00')
 
     def testFake(self):
         currencies = l10n_settings.get_l10n_setting('currency_formats')
