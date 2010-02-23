@@ -18,6 +18,9 @@ It is also important that you review and understand how to setup your templates
 so that they are easy to modify and maintain. Please review :ref:`Template Customization <template-customization>`
 before modifying templates.
 
+Templates by App
+================
+
 Payment
 -------
 
