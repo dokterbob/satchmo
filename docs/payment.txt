@@ -58,7 +58,7 @@ Google Checkout
 There are a couple of different ways to integrate with Google Checkout. Satchmo uses the XML option. When
 configuring your checkout account via Google, select: "Option A - Configure your form to submit directly to Google Checkout."
 
-It is recommended that you review the `Google checkout documentation <http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#create_checkout_cart>`_ 
+It is recommended that you review the `Google checkout documentation <http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#create_checkout_cart>`_
 in order to understand how the process works.
 
 .. index:: Protx

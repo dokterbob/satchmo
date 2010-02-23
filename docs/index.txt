@@ -70,7 +70,7 @@ Tutorials
 =========
 .. toctree::
    :maxdepth: 1
-    
+
    tutorial1
 
 Deploying A Store
@@ -78,7 +78,7 @@ Deploying A Store
 
 .. toctree::
    :maxdepth: 1
-   
+
    deploying
    managing
 
