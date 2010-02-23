@@ -14,6 +14,10 @@ rendered, then the `django_debug_toolbar <http://github.com/robhudson/django-deb
 can help you out. Go ahead and install it and use it for debugging and troubleshooting your
 site.
 
+It is also important that you review and understand how to setup your templates
+so that they are easy to modify and maintain. Please review :ref:`Template Customization <template-customization>`
+before modifying templates.
+
 Payment
 -------
 
@@ -177,6 +181,29 @@ Satchmo_Store
 .. describe:: satchmo_store/shop/templates/shop/download.html
 .. describe:: satchmo_store/shop/templates/shop/_order_details.html
 .. describe:: satchmo_store/shop/templates/shop/_order_tracking_details.html
+    
+    This template can be modified to include additional information about the completed
+    purchase. For instance, if you have a downloadable product and would like to
+    provide a link to it when the purchase is completed, modify the template
+    with this code::
+    
+        {% if order.downloadlink_set.all %}
+        <h4>Download now</h4>
+        {% for dl_link in order.downloadlink_set.all %}
+        <a href="{{ dl_link.get_absolute_url }}">{{ dl_link.product_name }}</a><br/>
+        {% endfor %}
+        {% endif %}
+
+.. describe:: satchmo_store/shop/templates/shop/_jquery.html
+
+    The path to jquery is included here. If you choose to host jquery somewhere else
+    or use a different version, override this template.
+    
+.. describe:: satchmo_store/shop/templates/shop/_jquery_form.html
+
+    Similar to the _jquery.html template, this template holds the location of the jquery form
+    library. Override this template to point to a new location.
+
 .. describe:: satchmo_store/shop/templates/shop/multiple_product_form.html
 .. describe:: satchmo_store/shop/templates/shop/_blackbird_logging.html
 .. describe:: satchmo_store/shop/templates/shop/checkout/failure.html
