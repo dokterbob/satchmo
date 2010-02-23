@@ -4,10 +4,10 @@ Satchmo Migrations and Upgrades
 The latest list of backwards incompatible changes can always be found here-
 http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChanges
 
-The ideal way to migrate would be to dump all of your existing store data, remove all of your old tables, synch the new models and reload the data.  
+The ideal way to migrate would be to dump all of your existing store data, remove all of your old tables, synch the new models and reload the data.
 If this process is not practical, then follow the individual steps outlined below.
 
-Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration 
+Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration
 on a test server before attempting on a production server.
 
 We hope to add a more automated migration feature in future versions of Satchmo.
