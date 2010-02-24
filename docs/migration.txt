@@ -1,8 +1,9 @@
 Satchmo Migrations and Upgrades
 ===============================
 
-The latest list of backwards incompatible changes can always be found here-
-http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChanges
+The latest list of backwards incompatible changes can always be found 
+`here <http://bitbucket.org/chris1610/satchmo/wiki/BackwardsIncompatibleChanges>`_
+
 
 The ideal way to migrate would be to dump all of your existing store data, remove all of your old tables, synch the new models and reload the data.  
 If this process is not practical, then follow the individual steps outlined below.
