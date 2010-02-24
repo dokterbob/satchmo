@@ -445,22 +445,6 @@ Arguments sent with this signal:
     ``contact``
         The instance of ``satchmo_store.models.Contact`` that was registered
 
-satchmo_registration_initialdata
-********************************
-
-Sent before an instance of ``satchmo_store.accounts.forms.RegistrationAddressForm`` or ``satcmo_store.accounts.forms.RegistrationForm`` is rendered
-
-Arguments sent with this signal:
-
-    ``sender``
-        An instance of ``satchmo_store.models.Contact`` or None
-    
-    ``contact``
-        An instance of ``satchmo_store.models.Contact`` or None (Note: This is the same argument as ``sender``)
-    
-    ``initial_data``
-        A dicionary of initial data to populate the form with on rendering
-
 satchmo_ext.newsletter.signals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
