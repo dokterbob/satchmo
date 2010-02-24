@@ -9,6 +9,11 @@ Here's an overview showing the name and view for URLs in Satchmo.
 
 URL paths are relative to SHOP_BASE.
 
+.. data:: satchmo_shop_home
+
+   :URL: /
+   :View: :func:`satchmo_store.shop.views.home.home`
+
 .. data:: satchmo_category_index
 
    :URL: /<CATEGORY_SLUG>/
@@ -23,6 +28,57 @@ URL paths are relative to SHOP_BASE.
 
    :URL: /<PRODUCT_SLUG>/<slug>/
    :View: :func:`product.views.get_product`
+
+.. data:: satchmo_cart
+
+   :URL: /cart/
+   :View: :func:`satchmo_store.shop.views.cart.display`
+
+.. data:: satchmo_contact
+
+   :URL: /contact/
+   :View: :func:`satchmo_store.shop.views.contact.form`
+
+.. data:: satchmo_contact_thanks
+
+   :URL: /contact/thankyou/
+   :View: :ref:`contact_thanks_view`
+
+.. data:: satchmo_order_history
+
+   :URL: /history/
+   :View: :func:`satchmo_store.shop.views.orders.order_history`
+
+.. data:: satchmo_quick_order
+
+   :URL: /quickorder/
+   :View: :func:`satchmo_store.shop.views.cart.add_multiple`
+
+.. data:: satchmo_search
+
+   :URL: /search/
+   :View: :func:`satchmo_store.shop.views.search.search_view`
+
+.. data:: satchmo_order_tracking
+
+   :URL: /tracking/
+   :View: :func:`satchmo_store.shop.views.orders.order_tracking`
+
+Use of Generic Django Views
+===========================
+
+.. _contact_thanks_view:
+
+Contact thanks
+--------------
+
+The view :func:`satchmo_store.shop.views.contact.form` redirects the user to
+this page after sending the email successfully.
+
+   :url: :data:`satchmo_contact_thanks`
+   :template: shop/contact_thanks.html
+
+   :context: None
 
 Views by App
 ============
@@ -67,3 +123,75 @@ product
 .. TODO
     :sale:
     :error_message: errors
+
+satchmo_store
+-------------
+
+.. TODO doc json views
+.. TODO download views
+
+.. function:: satchmo_store.shop.views.cart.add_multiple()
+
+   :url: :data:`satchmo_quick_order`
+   :template: shop/multiple_product_form.html
+
+   :context:
+    :form: an instance of MultipleProductForm .. TODO cross-ref
+
+.. function:: satchmo_store.shop.views.cart.display()
+
+   :url: :data:`satchmo_cart`
+   :template: shop/cart.html
+
+   :context:
+    :cart: cart
+    :default_view_tax: .. TODO
+    :error_message: errors
+    :sale: .. TODO
+
+.. function:: satchmo_store.shop.views.contact.form()
+
+   :url: :data:`satchmo_contact`
+   :template: shop/contact_form.html
+
+   :context:
+    :form: an instance of ContactForm .. TODO cross-ref
+
+.. function:: satchmo_store.shop.views.home.home()
+
+   :url: :data:`satchmo_shop_home`
+   :template: shop/index.html
+
+   :context:
+    :all_products_list: .. TODO
+    :is_paginated: .. TODO
+    :page_obj: .. TODO
+    :paginator: .. TODO
+
+.. function:: satchmo_store.shop.views.orders.order_history()
+
+   :url: :data:`satchmo_order_history`
+   :template: shop/order_history.html
+
+   :context:
+    :contact: .. TODO
+    :default_view_tax: .. TODO
+    :orders: .. TODO
+
+.. function:: satchmo_store.shop.views.orders.order_tracking
+
+   :url: :data:`satchmo_order_tracking`
+   :template: shop/order_tracking.html
+
+   :context:
+    :contact: .. TODO
+    :default_view_tax: .. TODO
+    :order: .. TODO
+
+.. function:: satchmo_store.shop.views.search.search_view()
+
+   :url: :data:`satchmo_search`
+   :template: shop/search.html
+
+   :context:
+.. TODO cross-ref
