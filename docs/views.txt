@@ -133,7 +133,7 @@ payment
    .. _balance_remaining_context:
 
    :context:
-    :form: an instance of PaymentMethodForm
+    :form: an instance of :class:`payment.forms.PaymentMethodForm`
     :paymentmethod_ct: the length of the return value of
      payment.active_gateways()
     :order: .. TODO
@@ -153,7 +153,7 @@ payment
    :template: payment/admin/charge_remaining_confirm.html
 
    :context:
-    :form: an instance of CustomChargeForm
+    :form: an instance of :class:`payment.forms.CustomChargeForm`
 
 .. function:: payment.views.balance.charge_remaining_post()
 
@@ -163,7 +163,7 @@ payment
    :template: payment/admin/charge_remaining_confirm.html
 
    :context:
-    :form: an instance of CustomChargeForm
+    :form: an instance of :class:`payment.forms.CustomChargeForm`
 
 .. function:: payment.views.contact.authentication_required()
 
@@ -178,7 +178,7 @@ payment
    :template: shop/checkout/form.html
 
    :context:
-    :form: an instance of PaymentContactInfoForm
+    :form: an instance of :class:`payment.forms.PaymentContactInfoForm`
     :country: .. TODO
     :paymentmethod_ct: the length of the return value of
      payment.active_gateways(), passed through the payment_choices signal
@@ -241,7 +241,7 @@ satchmo_store
    :template: shop/multiple_product_form.html
 
    :context:
-    :form: an instance of MultipleProductForm .. TODO cross-ref
+    :form: an instance of :class:`satchmo_store.shop.forms.MultipleProductForm`
 
 .. function:: satchmo_store.shop.views.cart.display()
 
@@ -260,7 +260,7 @@ satchmo_store
    :template: shop/contact_form.html
 
    :context:
-    :form: an instance of ContactForm .. TODO cross-ref
+    :form: an instance of :class:`satchmo_store.shop.views.contact.ContactForm`
 
 .. function:: satchmo_store.shop.views.home.home()
 
@@ -305,6 +305,170 @@ Payment Processor Views
 =======================
 
 .. TODO
+
+Forms
+=====
+
+.. class:: satchmo_store.shop.views.contact.ContactForm
+
+   .. attribute:: contents
+
+      a CharField with a TextArea widget.
+
+   .. attribute:: inquiry
+
+      a ChoiceField with choices:
+       - General Question
+       - Order Problem
+
+   .. attribute:: name
+
+      a CharField.
+
+   .. attribute:: sender
+
+      an EmailField
+
+   .. attribute:: subject
+
+      a CharField.
+
+.. class:: payment.forms.CustomChargeForm
+
+   .. attribute:: amount
+
+      a DecimalField.
+
+   .. attribute:: notes
+
+      a CharField.
+
+   .. attribute:: orderitem
+
+      a hidden IntegerField field.
+
+   .. attribute:: shipping
+
+      a DecimalField.
+
+.. class:: satchmo_store.shop.forms.MultipleProductForm
+
+   A form populated with PositiveRoundedDecimalField fields, one for
+   each active product.
+
+.. class:: payment.forms.PaymentContactInfoForm
+
+   Subclasses :class:`payment.forms.PaymentMethodForm` and
+   :class:`satchmo_store.contact.forms.ContactInfoForm`.
+
+.. class:: payment.forms.PaymentMethodForm
+
+   .. attribute:: paymentmethod
+
+      a radio-button selection with choices
+      payment.config.labelled_gateway_choices().
+
+.. autoclass:: satchmo_store.contact.forms.ContactInfoForm
+
+   .. attribute:: email
+
+      an EmailField.
+
+
+   .. attribute:: title
+
+      a CharField.
+
+
+   .. attribute:: first_name
+
+      a CharField.
+
+
+   .. attribute:: last_name
+
+      a CharField.
+
+
+   .. attribute:: phone
+
+      a CharField.
+
+
+   .. attribute:: addressee
+
+      a CharField.
+
+
+   .. attribute:: organization
+
+      a CharField.
+
+
+   .. attribute:: street1
+
+      a CharField.
+
+
+   .. attribute:: street2
+
+      a CharField.
+
+
+   .. attribute:: city
+
+      a CharField.
+
+
+   .. attribute:: state
+
+      a CharField.
+
+
+   .. attribute:: postal_code
+
+      a CharField.
+
+
+   .. attribute:: copy_address
+
+      a BooleanField to determine whether the data in billing fields is to be
+      copied into shipping fields.
+
+
+   .. attribute:: ship_addressee
+
+      a CharField.
+
+
+   .. attribute:: ship_street1
+
+      a CharField.
+
+
+   .. attribute:: ship_street2
+
+      a CharField.
+
+
+   .. attribute:: ship_city
+
+      a CharField.
+
+
+   .. attribute:: ship_state
+
+      a CharField.
+
+
+   .. attribute:: ship_postal_code
+
+      a CharField.
+
+
+   .. attribute:: next
+
+      a hidden CharField.
 
 Context variables
 =================
