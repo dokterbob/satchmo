@@ -306,6 +306,83 @@ Payment Processor Views
 
 .. TODO
 
+PayPal
+------
+
+URLs by Name
+^^^^^^^^^^^^
+
+URLs are relative to /checkout/:data:`PAYMENT_PAYPAL.URL_BASE`/.
+
+.. _PAYPAL_satchmo_checkout_step2:
+
+.. data:: PAYPAL_satchmo_checkout-step2
+
+   :URL: /
+   :View: :func:`payment.modules.paypal.views.pay_ship_info`
+
+.. _PAYPAL_satchmo_checkout_step3:
+
+.. data:: PAYPAL_satchmo_checkout-step3
+
+   :URL: /confirm/
+   :View: :func:`payment.modules.paypal.views.confirm_info`
+
+.. _PAYPAL_satchmo_checkout_free_confirm:
+
+.. data:: PAYPAL_satchmo_checkout_free-confirm
+
+   :URL: /confirmorder/
+   :View: payment.views.confirm.confirm_free_order
+
+.. _PAYPAL_satchmo_checkout_ipn:
+
+.. data:: PAYPAL_satchmo_checkout-ipn
+
+   :URL: /ipn/
+   :View: payment.modules.paypal.views.ipn
+
+.. _PAYPAL_satchmo_checkout_success:
+
+.. data:: PAYPAL_satchmo_checkout-success
+
+   :URL: /success/
+   :View: :func:`payment.views.checkout.success`
+
+Views
+^^^^^
+
+.. function:: payment.modules.paypal.views.pay_ship_info
+
+   :url: :ref:`PAYPAL_satchmo_checkout-step2 <PAYPAL_satchmo_checkout_step2>`
+   :template: shop/checkout/paypal/pay_ship.html
+
+   :context:
+    :form: an instance of payment.views.payship.simple_pay_ship_process_form
+    :PAYMENT_LIVE: whether the Paypal module is 'live'
+
+.. function:: payment.modules.paypal.views.confirm_info
+
+   :url: :ref:`PAYPAL_satchmo_checkout-step3 <PAYPAL_satchmo_checkout_step3>`
+   :template: shop/checkout/paypal/confirm.html
+
+   :context:
+    :order: the instance of satchmo_store.shop.models.Order being paid for.
+    :post_url: either :data:`PAYMENT_PAYPAL.POST_URL` or
+     :data:`PAYMENT_PAYPAL.POST_TEST_URL`, depending on whether the Paypal
+     module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
+    :default_view_tax: see :data:`default_view_tax`.
+    :business: either :data:`PAYMENT_PAYPAL.BUSINESS` or
+     :data:`PAYMENT_PAYPAL.BUSINESS_TEST`, depending on whether the Paypal
+     module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
+    :currency_code: the value of :data:`PAYMENT_PAYPAL.CURRENCY_CODE`.
+    :return_address: the value of :data:`PAYMENT_PAYPAL.RETURN_ADDRESS`.
+    :invoice: the id of *order*
+    :subscription: .. TODO
+    :PAYMENT_LIVE: whether the Paypal module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
 Forms
 =====
 
