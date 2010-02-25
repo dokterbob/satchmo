@@ -31,8 +31,7 @@ to go to `TrustCommerce <http://www.trustcommerce.com/>`_ and get your account
 setup.
 
 One special note with TrustCommerce - you must have the tclink libraries installed.
-You can get these from TrustCommerce or via this url
-`Tc Link <http://www.trustcommerce.com/tclink.html>`_
+You can get these from `here <http://www.trustcommerce.com/tclink.html>`_.
 
 Once the library is installed, you can fill in your login and password information
 in the admin config.
