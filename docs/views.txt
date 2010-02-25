@@ -34,6 +34,45 @@ URL paths are relative to SHOP_BASE.
    :URL: /cart/
    :View: :func:`satchmo_store.shop.views.cart.display`
 
+.. _satchmo_checkout_step1:
+
+.. data:: satchmo_checkout-step1
+
+   :URL: /checkout/
+   :View: :func:`payment.views.contact.contact_info_view`
+
+.. data:: satchmo_balance_remaining
+
+   :URL: /checkout/balance/
+   :View: :func:`payment.views.balance.balance_remaining_order`
+
+.. data:: satchmo_balance_remaining_order
+
+   :URL: /checkout/balance/<id>/
+   :View: :func:`payment.views.balance.balance_remaining`
+
+.. data:: satchmo_charge_remaining
+
+   :URL: /checkout/custom/charge/
+   :View: :func:`payment.views.balance.charge_remaining_post`
+
+.. data:: satchmo_charge_remaining_post
+
+   :URL: /checkout/custom/charge/<id>/
+   :View: :func:`payment.views.balance.charge_remaining`
+
+.. data:: satchmo_checkout_auth_required
+
+   :URL: /checkout/mustlogin/
+   :View: :func:`payment.views.contact.authentication_required`
+
+.. _satchmo_checkout_success:
+
+.. data:: satchmo_checkout-success
+
+   :URL: /checkout/success/
+   :View: :func:`payment.views.checkout.success`
+
 .. data:: satchmo_contact
 
    :URL: /contact/
@@ -82,6 +121,75 @@ this page after sending the email successfully.
 
 Views by App
 ============
+
+payment
+-------
+
+.. function:: payment.views.balance.balance_remaining()
+
+   :url: :data:`satchmo_balance_remaining`
+   :template: shop/checkout/balance_remaining.html
+
+   .. _balance_remaining_context:
+
+   :context:
+    :form: an instance of PaymentMethodForm
+    :paymentmethod_ct: the length of the return value of
+     payment.active_gateways()
+    :order: .. TODO
+
+.. function:: payment.views.balance.balance_remaining_order()
+
+   :url: :data:`satchmo_balance_remaining_order`
+   :template: shop/checkout/balance_remaining.html
+
+   :context: see :ref:`balance_remaining's context <balance_remaining_context>`.
+
+.. function:: payment.views.balance.charge_remaining()
+
+   Displays a confirmation form for the order with id *id*.
+
+   :url: :data:`satchmo_charge_remaining_post`
+   :template: payment/admin/charge_remaining_confirm.html
+
+   :context:
+    :form: an instance of CustomChargeForm
+
+.. function:: payment.views.balance.charge_remaining_post()
+
+   Handles the submit response to :func:`payment.views.balance.charge_remaining`.
+
+   :url: :data:`satchmo_charge_remaining`
+   :template: payment/admin/charge_remaining_confirm.html
+
+   :context:
+    :form: an instance of CustomChargeForm
+
+.. function:: payment.views.contact.authentication_required()
+
+   :url: :data:`satchmo_checkout_auth_required`
+   :template: shop/checkout/authentication_required.html
+
+   :context: None
+
+.. function:: payment.views.contact.contact_info_view()
+
+   :url: :ref:`satchmo_checkout-step1 <satchmo_checkout_step1>`
+   :template: shop/checkout/form.html
+
+   :context:
+    :form: an instance of PaymentContactInfoForm
+    :country: .. TODO
+    :paymentmethod_ct: the length of the return value of
+     payment.active_gateways(), passed through the payment_choices signal
+
+.. autofunction:: payment.views.checkout.success()
+
+   :url: :ref:`satchmo_checkout-success <satchmo_checkout_success>`
+   :template: shop/checkout/success.html
+
+   :context:
+    :order: .. TODO
 
 product
 -------
@@ -195,3 +303,8 @@ satchmo_store
 
    :context:
 .. TODO cross-ref
+
+Payment Processor Views
+=======================
+
+.. TODO
