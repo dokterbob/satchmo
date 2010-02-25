@@ -214,8 +214,7 @@ product
     :category: the category with slug *name*
     :child_categories: child categories of *category*
     :products: active products in *category*
-.. TODO
-    :sale:
+    :sale: see :data:`sale`.
 
 .. function:: product.views.get_product()
 
@@ -226,10 +225,8 @@ product
    :context
     :product: the product with slug *slug*
     :current_product: clone of *product* for product variations
-.. TODO ref config; defaults to the config *DEFAULT_VIEW_TAX*
-    :default_view_tax:
-.. TODO
-    :sale:
+    :default_view_tax: see :data:`default_view_tax`.
+    :sale: see :data:`sale`.
     :error_message: errors
 
 satchmo_store
@@ -253,9 +250,9 @@ satchmo_store
 
    :context:
     :cart: cart
-    :default_view_tax: .. TODO
+    :default_view_tax: see :data:`default_view_tax`.
     :error_message: errors
-    :sale: .. TODO
+    :sale: see :data:`sale`.
 
 .. function:: satchmo_store.shop.views.contact.form()
 
@@ -283,7 +280,7 @@ satchmo_store
 
    :context:
     :contact: .. TODO
-    :default_view_tax: .. TODO
+    :default_view_tax: see :data:`default_view_tax`.
     :orders: .. TODO
 
 .. function:: satchmo_store.shop.views.orders.order_tracking
@@ -293,7 +290,7 @@ satchmo_store
 
    :context:
     :contact: .. TODO
-    :default_view_tax: .. TODO
+    :default_view_tax: see :data:`default_view_tax`.
     :order: .. TODO
 
 .. function:: satchmo_store.shop.views.search.search_view()
@@ -331,3 +328,16 @@ satchmo_store.shop.context_processor.settings.
   :login_url: the LOGIN_URL setting in your settings.py
   :logout_url: the LOGOUT_URL setting in your settings.py
   :sale: .. TODO
+
+Common variables
+----------------
+
+.. data:: default_view_tax
+
+   The configuration value with group 'TAX' and key 'DEFAULT_VIEW_TAX' from
+   livesettings.
+
+.. data:: sale
+
+   The return value of product.utils.find_best_auto_discount(), which is the
+   discount with the highest discount percentage.
