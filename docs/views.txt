@@ -308,3 +308,26 @@ Payment Processor Views
 =======================
 
 .. TODO
+
+Context variables
+=================
+
+Variables provided by Satchmo's context processor
+-------------------------------------------------
+
+Here are the variables provided in the context by Satchmo's context processor,
+satchmo_store.shop.context_processor.settings.
+
+  :shop_base: the value SHOP_BASE of in SATCHMO_SETTINGS in your
+              local_settings.py
+  :shop: the current satchmo_store.shop.models.Config in use
+  :shop_name: the *store_name* value from the config
+  :media_url: .. TODO
+  :cart_count: number of items in the cart
+  :cart: user's current cart; an instance of satchmo_store.shop.models.Cart
+  :categories: all categories in the site
+  :is_secure: .. TODO
+  :request: .. TODO
+  :login_url: the LOGIN_URL setting in your settings.py
+  :logout_url: the LOGOUT_URL setting in your settings.py
+  :sale: .. TODO
