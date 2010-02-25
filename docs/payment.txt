@@ -48,7 +48,50 @@ credentials you need to configure this module.
 
 PayPal
 ------
-More details needed here.
+
+Configuration
+^^^^^^^^^^^^^
+
+.. data:: PAYMENT_PAYPAL.BUSINESS
+
+   The email address for your paypal account.
+
+.. data:: PAYMENT_PAYPAL.BUSINESS_TEST
+
+   The email address for testing your paypal account.
+
+.. data:: PAYMENT_PAYPAL.CURRENCY_CODE
+
+   Currency code for Paypal transactions.
+
+   Defaults to USD.
+
+.. data:: PAYMENT_PAYPAL.LIVE
+
+   Whether to accept real payments.
+
+   Defaults to False.
+
+.. data:: PAYMENT_PAYPAL.POST_URL
+
+   The Paypal URL for real transaction posting.
+
+   Defaults to `https://www.paypal.com/cgi-bin/webscr`.
+
+.. data:: PAYMENT_PAYPAL.RETURN_ADDRESS
+
+   Where Paypal will return the customer after the purchase is complete. This
+   can be a named url and defaults to 'satchmo_checkout-success'.
+
+.. data:: PAYMENT_PAYPAL.POST_TEST_URL
+
+   The Paypal URL for test transaction posting.
+
+   Defaults to `https://www.sandbox.paypal.com/cgi-bin/webscr`.
+
+.. data:: PAYMENT_PAYPAL.URL_BASE
+
+   Defaults to `^paypal/`.
 
 .. index:: Google Checkout
 
