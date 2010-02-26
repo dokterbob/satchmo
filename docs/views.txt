@@ -1,0 +1,584 @@
+=============
+Satchmo Views
+=============
+
+URLs by Name
+============
+
+Here's an overview showing the name and view for URLs in Satchmo.
+
+URL paths are relative to SHOP_BASE.
+
+.. data:: satchmo_shop_home
+
+   :URL: /
+   :View: :func:`satchmo_store.shop.views.home.home`
+
+.. data:: satchmo_category_index
+
+   :URL: /<CATEGORY_SLUG>/
+   :View: :func:`product.views.category_index`
+
+.. data:: satchmo_category
+
+   :URL: /<CATEGORY_SLUG>/slug1/slug2/.../<slug>/
+   :View: :func:`product.views.category_view`
+
+.. data:: satchmo_product
+
+   :URL: /<PRODUCT_SLUG>/<slug>/
+   :View: :func:`product.views.get_product`
+
+.. data:: satchmo_cart
+
+   :URL: /cart/
+   :View: :func:`satchmo_store.shop.views.cart.display`
+
+.. _satchmo_checkout_step1:
+
+.. data:: satchmo_checkout-step1
+
+   :URL: /checkout/
+   :View: :func:`payment.views.contact.contact_info_view`
+
+.. data:: satchmo_balance_remaining
+
+   :URL: /checkout/balance/
+   :View: :func:`payment.views.balance.balance_remaining_order`
+
+.. data:: satchmo_balance_remaining_order
+
+   :URL: /checkout/balance/<id>/
+   :View: :func:`payment.views.balance.balance_remaining`
+
+.. data:: satchmo_charge_remaining
+
+   :URL: /checkout/custom/charge/
+   :View: :func:`payment.views.balance.charge_remaining_post`
+
+.. data:: satchmo_charge_remaining_post
+
+   :URL: /checkout/custom/charge/<id>/
+   :View: :func:`payment.views.balance.charge_remaining`
+
+.. data:: satchmo_checkout_auth_required
+
+   :URL: /checkout/mustlogin/
+   :View: :func:`payment.views.contact.authentication_required`
+
+.. _satchmo_checkout_success:
+
+.. data:: satchmo_checkout-success
+
+   :URL: /checkout/success/
+   :View: :func:`payment.views.checkout.success`
+
+.. data:: satchmo_contact
+
+   :URL: /contact/
+   :View: :func:`satchmo_store.shop.views.contact.form`
+
+.. data:: satchmo_contact_thanks
+
+   :URL: /contact/thankyou/
+   :View: :ref:`contact_thanks_view`
+
+.. data:: satchmo_order_history
+
+   :URL: /history/
+   :View: :func:`satchmo_store.shop.views.orders.order_history`
+
+.. data:: satchmo_quick_order
+
+   :URL: /quickorder/
+   :View: :func:`satchmo_store.shop.views.cart.add_multiple`
+
+.. data:: satchmo_search
+
+   :URL: /search/
+   :View: :func:`satchmo_store.shop.views.search.search_view`
+
+.. data:: satchmo_order_tracking
+
+   :URL: /tracking/
+   :View: :func:`satchmo_store.shop.views.orders.order_tracking`
+
+Use of Generic Django Views
+===========================
+
+.. _contact_thanks_view:
+
+Contact thanks
+--------------
+
+The view :func:`satchmo_store.shop.views.contact.form` redirects the user to
+this page after sending the email successfully.
+
+   :url: :data:`satchmo_contact_thanks`
+   :template: shop/contact_thanks.html
+
+   :context: None
+
+Views by App
+============
+
+payment
+-------
+
+.. function:: payment.views.balance.balance_remaining()
+
+   :url: :data:`satchmo_balance_remaining`
+   :template: shop/checkout/balance_remaining.html
+
+   .. _balance_remaining_context:
+
+   :context:
+    :form: an instance of :class:`payment.forms.PaymentMethodForm`
+    :paymentmethod_ct: the length of the return value of
+     payment.active_gateways()
+    :order: .. TODO
+
+.. function:: payment.views.balance.balance_remaining_order()
+
+   :url: :data:`satchmo_balance_remaining_order`
+   :template: shop/checkout/balance_remaining.html
+
+   :context: see :ref:`balance_remaining's context <balance_remaining_context>`.
+
+.. function:: payment.views.balance.charge_remaining()
+
+   Displays a confirmation form for the order with id *id*.
+
+   :url: :data:`satchmo_charge_remaining_post`
+   :template: payment/admin/charge_remaining_confirm.html
+
+   :context:
+    :form: an instance of :class:`payment.forms.CustomChargeForm`
+
+.. function:: payment.views.balance.charge_remaining_post()
+
+   Handles the submit response to :func:`payment.views.balance.charge_remaining`.
+
+   :url: :data:`satchmo_charge_remaining`
+   :template: payment/admin/charge_remaining_confirm.html
+
+   :context:
+    :form: an instance of :class:`payment.forms.CustomChargeForm`
+
+.. function:: payment.views.contact.authentication_required()
+
+   :url: :data:`satchmo_checkout_auth_required`
+   :template: shop/checkout/authentication_required.html
+
+   :context: None
+
+.. function:: payment.views.contact.contact_info_view()
+
+   :url: :ref:`satchmo_checkout-step1 <satchmo_checkout_step1>`
+   :template: shop/checkout/form.html
+
+   :context:
+    :form: an instance of :class:`payment.forms.PaymentContactInfoForm`
+    :country: .. TODO
+    :paymentmethod_ct: the length of the return value of
+     payment.active_gateways(), passed through the payment_choices signal
+
+.. autofunction:: payment.views.checkout.success()
+
+   :url: :ref:`satchmo_checkout-success <satchmo_checkout_success>`
+   :template: shop/checkout/success.html
+
+   :context:
+    :order: .. TODO
+
+product
+-------
+
+.. TODO link <CATEGORY_SLUG> and <PRODUCT_SLUG> to config doc
+.. TODO product.views.filters and JSON templates
+
+.. autofunction:: product.views.category_index()
+
+   :url: :data:`satchmo_category_index`
+   :template: product/category_index.html
+
+   :context:
+    :categorylist: list of all root categories
+
+.. autofunction:: product.views.category_view()
+
+   :url: :data:`satchmo_category`
+   :template: product/category.html
+
+   :context:
+    :category: the category with slug *name*
+    :child_categories: child categories of *category*
+    :products: active products in *category*
+    :sale: see :data:`sale`.
+
+.. function:: product.views.get_product()
+
+   :url: :data:`satchmo_product`
+.. TODO doesn't take into account find_product_template()
+   :template: product/product.html
+
+   :context
+    :product: the product with slug *slug*
+    :current_product: clone of *product* for product variations
+    :default_view_tax: see :data:`default_view_tax`.
+    :sale: see :data:`sale`.
+    :error_message: errors
+
+satchmo_store
+-------------
+
+.. TODO doc json views
+.. TODO download views
+
+.. function:: satchmo_store.shop.views.cart.add_multiple()
+
+   :url: :data:`satchmo_quick_order`
+   :template: shop/multiple_product_form.html
+
+   :context:
+    :form: an instance of :class:`satchmo_store.shop.forms.MultipleProductForm`
+
+.. function:: satchmo_store.shop.views.cart.display()
+
+   :url: :data:`satchmo_cart`
+   :template: shop/cart.html
+
+   :context:
+    :cart: cart
+    :default_view_tax: see :data:`default_view_tax`.
+    :error_message: errors
+    :sale: see :data:`sale`.
+
+.. function:: satchmo_store.shop.views.contact.form()
+
+   :url: :data:`satchmo_contact`
+   :template: shop/contact_form.html
+
+   :context:
+    :form: an instance of :class:`satchmo_store.shop.views.contact.ContactForm`
+
+.. function:: satchmo_store.shop.views.home.home()
+
+   :url: :data:`satchmo_shop_home`
+   :template: shop/index.html
+
+   :context:
+    :all_products_list: .. TODO
+    :is_paginated: .. TODO
+    :page_obj: .. TODO
+    :paginator: .. TODO
+
+.. function:: satchmo_store.shop.views.orders.order_history()
+
+   :url: :data:`satchmo_order_history`
+   :template: shop/order_history.html
+
+   :context:
+    :contact: .. TODO
+    :default_view_tax: see :data:`default_view_tax`.
+    :orders: .. TODO
+
+.. function:: satchmo_store.shop.views.orders.order_tracking
+
+   :url: :data:`satchmo_order_tracking`
+   :template: shop/order_tracking.html
+
+   :context:
+    :contact: .. TODO
+    :default_view_tax: see :data:`default_view_tax`.
+    :order: .. TODO
+
+.. function:: satchmo_store.shop.views.search.search_view()
+
+   :url: :data:`satchmo_search`
+   :template: shop/search.html
+
+   :context:
+.. TODO cross-ref
+
+Payment Processor Views
+=======================
+
+.. TODO
+
+PayPal
+------
+
+URLs by Name
+^^^^^^^^^^^^
+
+URLs are relative to /checkout/:data:`PAYMENT_PAYPAL.URL_BASE`/.
+
+.. _PAYPAL_satchmo_checkout_step2:
+
+.. data:: PAYPAL_satchmo_checkout-step2
+
+   :URL: /
+   :View: :func:`payment.modules.paypal.views.pay_ship_info`
+
+.. _PAYPAL_satchmo_checkout_step3:
+
+.. data:: PAYPAL_satchmo_checkout-step3
+
+   :URL: /confirm/
+   :View: :func:`payment.modules.paypal.views.confirm_info`
+
+.. _PAYPAL_satchmo_checkout_free_confirm:
+
+.. data:: PAYPAL_satchmo_checkout_free-confirm
+
+   :URL: /confirmorder/
+   :View: payment.views.confirm.confirm_free_order
+
+.. _PAYPAL_satchmo_checkout_ipn:
+
+.. data:: PAYPAL_satchmo_checkout-ipn
+
+   :URL: /ipn/
+   :View: payment.modules.paypal.views.ipn
+
+.. _PAYPAL_satchmo_checkout_success:
+
+.. data:: PAYPAL_satchmo_checkout-success
+
+   :URL: /success/
+   :View: :func:`payment.views.checkout.success`
+
+Views
+^^^^^
+
+.. function:: payment.modules.paypal.views.pay_ship_info
+
+   :url: :ref:`PAYPAL_satchmo_checkout-step2 <PAYPAL_satchmo_checkout_step2>`
+   :template: shop/checkout/paypal/pay_ship.html
+
+   :context:
+    :form: an instance of payment.views.payship.simple_pay_ship_process_form
+    :PAYMENT_LIVE: whether the Paypal module is 'live'
+
+.. function:: payment.modules.paypal.views.confirm_info
+
+   :url: :ref:`PAYPAL_satchmo_checkout-step3 <PAYPAL_satchmo_checkout_step3>`
+   :template: shop/checkout/paypal/confirm.html
+
+   :context:
+    :order: the instance of satchmo_store.shop.models.Order being paid for.
+    :post_url: either :data:`PAYMENT_PAYPAL.POST_URL` or
+     :data:`PAYMENT_PAYPAL.POST_TEST_URL`, depending on whether the Paypal
+     module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
+    :default_view_tax: see :data:`default_view_tax`.
+    :business: either :data:`PAYMENT_PAYPAL.BUSINESS` or
+     :data:`PAYMENT_PAYPAL.BUSINESS_TEST`, depending on whether the Paypal
+     module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
+    :currency_code: the value of :data:`PAYMENT_PAYPAL.CURRENCY_CODE`.
+    :return_address: the value of :data:`PAYMENT_PAYPAL.RETURN_ADDRESS`.
+    :invoice: the id of *order*
+    :subscription: .. TODO
+    :PAYMENT_LIVE: whether the Paypal module is :data:`'live' <PAYMENT_PAYPAL.LIVE>`.
+
+Forms
+=====
+
+.. class:: satchmo_store.shop.views.contact.ContactForm
+
+   .. attribute:: contents
+
+      a CharField with a TextArea widget.
+
+   .. attribute:: inquiry
+
+      a ChoiceField with choices:
+       - General Question
+       - Order Problem
+
+   .. attribute:: name
+
+      a CharField.
+
+   .. attribute:: sender
+
+      an EmailField
+
+   .. attribute:: subject
+
+      a CharField.
+
+.. class:: payment.forms.CustomChargeForm
+
+   .. attribute:: amount
+
+      a DecimalField.
+
+   .. attribute:: notes
+
+      a CharField.
+
+   .. attribute:: orderitem
+
+      a hidden IntegerField field.
+
+   .. attribute:: shipping
+
+      a DecimalField.
+
+.. class:: satchmo_store.shop.forms.MultipleProductForm
+
+   A form populated with PositiveRoundedDecimalField fields, one for
+   each active product.
+
+.. class:: payment.forms.PaymentContactInfoForm
+
+   Subclasses :class:`payment.forms.PaymentMethodForm` and
+   :class:`satchmo_store.contact.forms.ContactInfoForm`.
+
+.. class:: payment.forms.PaymentMethodForm
+
+   .. attribute:: paymentmethod
+
+      a radio-button selection with choices
+      payment.config.labelled_gateway_choices().
+
+.. autoclass:: satchmo_store.contact.forms.ContactInfoForm
+
+   .. attribute:: email
+
+      an EmailField.
+
+
+   .. attribute:: title
+
+      a CharField.
+
+
+   .. attribute:: first_name
+
+      a CharField.
+
+
+   .. attribute:: last_name
+
+      a CharField.
+
+
+   .. attribute:: phone
+
+      a CharField.
+
+
+   .. attribute:: addressee
+
+      a CharField.
+
+
+   .. attribute:: organization
+
+      a CharField.
+
+
+   .. attribute:: street1
+
+      a CharField.
+
+
+   .. attribute:: street2
+
+      a CharField.
+
+
+   .. attribute:: city
+
+      a CharField.
+
+
+   .. attribute:: state
+
+      a CharField.
+
+
+   .. attribute:: postal_code
+
+      a CharField.
+
+
+   .. attribute:: copy_address
+
+      a BooleanField to determine whether the data in billing fields is to be
+      copied into shipping fields.
+
+
+   .. attribute:: ship_addressee
+
+      a CharField.
+
+
+   .. attribute:: ship_street1
+
+      a CharField.
+
+
+   .. attribute:: ship_street2
+
+      a CharField.
+
+
+   .. attribute:: ship_city
+
+      a CharField.
+
+
+   .. attribute:: ship_state
+
+      a CharField.
+
+
+   .. attribute:: ship_postal_code
+
+      a CharField.
+
+
+   .. attribute:: next
+
+      a hidden CharField.
+
+Context variables
+=================
+
+Variables provided by Satchmo's context processor
+-------------------------------------------------
+
+Here are the variables provided in the context by Satchmo's context processor,
+satchmo_store.shop.context_processor.settings.
+
+  :shop_base: the value SHOP_BASE of in SATCHMO_SETTINGS in your
+              local_settings.py
+  :shop: the current satchmo_store.shop.models.Config in use
+  :shop_name: the *store_name* value from the config
+  :media_url: .. TODO
+  :cart_count: number of items in the cart
+  :cart: user's current cart; an instance of satchmo_store.shop.models.Cart
+  :categories: all categories in the site
+  :is_secure: .. TODO
+  :request: .. TODO
+  :login_url: the LOGIN_URL setting in your settings.py
+  :logout_url: the LOGOUT_URL setting in your settings.py
+  :sale: .. TODO
+
+Common variables
+----------------
+
+.. data:: default_view_tax
+
+   The configuration value with group 'TAX' and key 'DEFAULT_VIEW_TAX' from
+   livesettings.
+
+.. data:: sale
+
+   The return value of product.utils.find_best_auto_discount(), which is the
+   discount with the highest discount percentage.

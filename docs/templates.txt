@@ -1,22 +1,30 @@
 ==================
-Satchmo Templates 
+Satchmo Templates
 ==================
 
-One of the powerful options available to all Satchmo stores is the 
+One of the powerful options available to all Satchmo stores is the
 availability of the robust Django templating language to control all of the
 visual elements of this store. There are over 140 templates used within
 Satchmo. This section of the document describes where they are and the
 high level overview of what they are used for. Until more details are included
 in this section, the best way to learn more about these templates is to
 browse through and review the ones you are interested in. If you have a particular
-view that you would like to customize and are unsure which templates are being 
-rendered, then the `django_debug_toolbar <http://github.com/robhudson/django-debug-toolbar/tree/master>`_ 
+view that you would like to customize and are unsure which templates are being
+rendered, then the `django_debug_toolbar <http://github.com/robhudson/django-debug-toolbar/tree/master>`_
 can help you out. Go ahead and install it and use it for debugging and troubleshooting your
 site.
 
 It is also important that you review and understand how to setup your templates
 so that they are easy to modify and maintain. Please review :ref:`Template Customization <template-customization>`
 before modifying templates.
+
+Templates by View
+=================
+
+See :doc:`views`.
+
+Templates by App
+================
 
 Payment
 -------
@@ -26,7 +34,7 @@ These templates control some of the payment specific display elements.
 .. describe:: payment/templates/payment/admin/charge_remaining_confirm.html
 
    Used in the admin to support paying any remaining balance on an order.
-    
+
 .. describe:: payment/templates/payment/_order_payment_summary.html
 
    Used in the checkout process to show a summary of all the payments that have been
@@ -48,7 +56,7 @@ process.
 .. describe:: giftcertificate/templates/product/detail_giftcertificateproduct.html
 .. describe:: giftcertificate/templates/plugins/order_details.html
 
-L10n 
+L10n
 ----
 
 L10n is used for localizing Satchmo.
@@ -56,7 +64,7 @@ L10n is used for localizing Satchmo.
 .. describe:: l10n/templates/l10n/_language_selection_form.html
 
    Displays the language selection form that can be enabled through the admin.
-   
+
 Satchmo_ext
 -----------
 
@@ -115,7 +123,7 @@ brand
 Product
 -------
 
-The product templates are used to display all aspects of products in 
+The product templates are used to display all aspects of products in
 your store. The admin templates are used to manage various portions of
 Satchmo's custom admin interface.
 
@@ -181,12 +189,12 @@ Satchmo_Store
 .. describe:: satchmo_store/shop/templates/shop/download.html
 .. describe:: satchmo_store/shop/templates/shop/_order_details.html
 .. describe:: satchmo_store/shop/templates/shop/_order_tracking_details.html
-    
+
     This template can be modified to include additional information about the completed
     purchase. For instance, if you have a downloadable product and would like to
     provide a link to it when the purchase is completed, modify the template
     with this code::
-    
+
         {% if order.downloadlink_set.all %}
         <h4>Download now</h4>
         {% for dl_link in order.downloadlink_set.all %}
@@ -198,7 +206,7 @@ Satchmo_Store
 
     The path to jquery is included here. If you choose to host jquery somewhere else
     or use a different version, override this template.
-    
+
 .. describe:: satchmo_store/shop/templates/shop/_jquery_form.html
 
     Similar to the _jquery.html template, this template holds the location of the jquery form
