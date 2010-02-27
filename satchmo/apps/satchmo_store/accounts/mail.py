@@ -17,7 +17,7 @@ log = logging.getLogger('satchmo_store.accounts.mail')
 
 def send_welcome_email(email, first_name, last_name):
     """Send a store new account welcome mail to `email`."""
-    
+
     t = loader.get_template('registration/welcome.txt')
     shop_config = Config.objects.get_current()
     shop_email = shop_config.store_email
