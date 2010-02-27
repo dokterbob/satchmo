@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from django.template import loader
 from django.template import RequestContext, Context
 from django.utils.translation import ugettext_lazy as _
-from satchmo_store.shop import get_satchmo_setting
 from satchmo_store.shop.models import Config
 from socket import error as SocketError
 import logging
