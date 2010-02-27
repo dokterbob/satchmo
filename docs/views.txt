@@ -223,7 +223,7 @@ product
 
     .. TODO doesn't take into account find_product_template()
 
-   :context
+   :context:
     :product: the product with slug *slug*
     :current_product: clone of *product* for product variations
     :default_view_tax: see :data:`default_view_tax`.
