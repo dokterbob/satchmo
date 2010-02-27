@@ -1,13 +1,12 @@
 # Makefile for Sphinx documentation
 #
 # Typical usage for Satchmo:
-# make DJANGOSETTINGS=simplestore.settings ROOT_DIR=/path/to/satchmo-working/ html
+# make DJANGO_SETTINGS_MODULE=simplestore.settings ROOT_DIR=/path/to/satchmo-working/ html
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-DJANGOSETTINGS =
 ROOT_DIR =
 
 # Internal variables.
@@ -63,7 +62,6 @@ PROJECT_DIR = $(ROOT_DIR)/projects
 # Set them in the environment so that the sphinx child process find
 # satchmo and friends.
 export PYTHONPATH = $(shell echo $$PYTHONPATH)$(PATHSEP)$(SATCHMO_APPS)$(PATHSEP)$(PROJECT_DIR)
-export DJANGO_SETTINGS_MODULE = $(DJANGOSETTINGS)
 
 html: sphinx-autodoc
 	mkdir -p .build/html .build/doctrees
