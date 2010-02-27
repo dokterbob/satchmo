@@ -1,19 +1,11 @@
 from django import forms
 from django import http
-from django.conf import settings
 from django.core import urlresolvers
 from django.shortcuts import render_to_response
-from django.template import loader
-from django.template import RequestContext, Context
+from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from satchmo_store.shop.models import Config
-from socket import error as SocketError
+from satchmo_store.mail import send_store_mail
 import logging
-
-if "mailer" in settings.INSTALLED_APPS:
-    from mailer import send_mail
-else:
-    from django.core.mail import send_mail
 
 log = logging.getLogger('satchmo_store.shop.views')
 
@@ -36,29 +28,14 @@ def form(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             new_data = form.cleaned_data
-            t = loader.get_template('shop/email/contact_us.txt')
-            c = Context({
+            c = {
                 'request_type': new_data['inquiry'],
                 'name': new_data['name'],
                 'email': new_data['sender'],
-                'request_text': new_data['contents'] })
+                'request_text': new_data['contents'] }
             subject = new_data['subject']
-            shop_config = Config.objects.get_current()
-            shop_email = shop_config.store_email
-            if not shop_email:
-                log.warn('No email address configured for the shop.  Using admin settings.')
-                shop_email = settings.ADMINS[0][1]
-            try:
-                body = t.render(c)
-                send_mail(subject, body, shop_email,
-                         [shop_email], fail_silently=False)
-            except SocketError, e:
-                if settings.DEBUG:
-                    log.error('Error sending mail: %s' % e)
-                    log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', shop_email, subject, body)
-                else:
-                    log.fatal('Error sending mail: %s' % e)
-                    raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
+            send_store_mail(subject, c, 'shop/email/contact_us.txt',
+                            send_to_store=True)
             url = urlresolvers.reverse('satchmo_contact_thanks')
             return http.HttpResponseRedirect(url)
     else: #Not a post so create an empty form
