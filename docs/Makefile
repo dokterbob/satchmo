@@ -44,6 +44,11 @@ ifeq ($(ROOT_DIR),)
 	@exit 2
 endif
 
+# Fallback on the "simple" sample store.
+ifeq ($(DJANGO_SETTINGS_MODULE),)
+export DJANGO_SETTINGS_MODULE = simple.settings
+endif
+
 # The separator used in PATH.
 # Use ":" unless WINDOWS is defined (use ";" instead).
 #
