@@ -39,7 +39,7 @@ sphinx-autodoc:
 #
 
 # You *must* set this variable from the command line.
-ifndef ROOT_DIR
+ifeq ($(ROOT_DIR),)
 	@echo "Please define ROOT_DIR (the absolute path to the directory containing"
 	@echo "satchmo's apps and projects, usually the parent directory of this file)."
 	@exit 2
