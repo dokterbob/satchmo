@@ -73,10 +73,8 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
             if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
                 redirect_to = settings.LOGIN_REDIRECT_URL
             login(request, form.get_user())
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-                if config_value('SHOP','PERSISTENT_CART'):
-                    _get_prev_cart(request)
+            if config_value('SHOP','PERSISTENT_CART'):
+                _get_prev_cart(request)
             return (True, HttpResponseRedirect(redirect_to))
         else:
             log.debug(form.errors)
@@ -87,14 +85,14 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
 
 def _get_prev_cart(request):
     try:
-        contact = request.user.contact_set.get()
+        contact = Contact.objects.from_request(request)
         saved_cart = contact.cart_set.latest('date_time_created')
         # If the latest cart has len == 0, cart is unusable.
-        if len(saved_cart) and request.session['cart']:
+        if len(saved_cart) and 'cart' in request.session:
             # Merge the two carts together
             existing_cart = Cart.objects.from_request(request, create=False)
             saved_cart.merge_carts(existing_cart)
-            request.session['cart'] = saved_cart.id
+        request.session['cart'] = saved_cart.id
     except Exception, e:
         pass
 
