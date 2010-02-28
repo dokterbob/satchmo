@@ -49,6 +49,10 @@ class Command(NoArgsCommand):
         except ImportError:
             errors.append("Sorl imaging library is not installed.")
         try:
+            import app_plugins
+        except ImportError:
+            errors.append("App plugins is not installed.")
+        try:
             cache_avail = settings.CACHE_BACKEND
         except AttributeError:
             errors.append("A CACHE_BACKEND must be configured.")
