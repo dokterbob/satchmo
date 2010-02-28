@@ -8,7 +8,7 @@ important to understand the full :doc:`installation process <new_installation>`.
 Install Base Requirements
 -------------------------
 
-Ensure that python 2.4 or greater installed. Mercurial must also be installed. 
+Ensure that python 2.4 or greater is installed. Mercurial must also be installed. 
 
 Next, install `python setuptools <http://pypi.python.org/pypi/setuptools>`_ 
 so that easy_install is available.
