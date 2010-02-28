@@ -46,3 +46,4 @@ Changes
 - Refactor the templates and the way jquery is loaded. Will make it easier to switch jquery versions and hosting locations.
 - Updated jquery to 1.4.2
 - Added new documentation on Satchmo's views - :doc:`views`
+- Cache the category tree for big performance improvements
