@@ -1318,6 +1318,7 @@ class CustomTextField(models.Model):
 
     class Meta:
         ordering = ('sort_order',)
+        unique_together = ('slug', 'products')
 
 class CustomTextFieldTranslation(models.Model):
     """A specific language translation for a `CustomTextField`.  This is intended for all descriptions which are not the
