@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -18,13 +18,33 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 
-#: models.py:41
-msgid "State"
-msgstr "Stato"
+#: admin.py:15 admin.py:24
+#, fuzzy
+msgid "1 country was"
+msgstr "Nome del paese"
 
-#: models.py:63
-msgid "Country"
-msgstr "Stato"
+#: admin.py:17 admin.py:26
+#, fuzzy, python-format
+msgid "%s countries were"
+msgstr "Paesi"
+
+#: admin.py:18
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
+
+#: admin.py:19
+msgid "Mark selected countries as active"
+msgstr ""
+
+#: admin.py:27
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
+
+#: admin.py:28
+msgid "Mark selected countries as inactive"
+msgstr ""
 
 #: models.py:6
 msgid "Africa"
@@ -154,6 +174,10 @@ msgstr "Repubblica"
 msgid "Sheading"
 msgstr "Sheading"
 
+#: models.py:41
+msgid "State"
+msgstr "Stato"
+
 #: models.py:42
 msgid "Subdivision"
 msgstr "Suddivisione"
@@ -194,10 +218,13 @@ msgstr "Paese attivo"
 msgid "Continent"
 msgstr "Continente"
 
-#: models.py:60
-#: models.py:81
+#: models.py:60 models.py:81
 msgid "Administrative Area"
 msgstr "Area amministrativa"
+
+#: models.py:63
+msgid "Country"
+msgstr "Stato"
 
 #: models.py:64
 msgid "Countries"
@@ -207,13 +234,13 @@ msgstr "Paesi"
 msgid "Admin Area name"
 msgstr "Nome dell'area amministrativa"
 
-#: models.py:77
 # translated = "Admin Spazio nome"
+#: models.py:77
 msgid "Postal Abbreviation"
 msgstr "Abbreviazione Postale"
 
-#: models.py:78
 # translated = "Abbreviazione postale"
+#: models.py:78
 msgid "Area is active"
 msgstr "La zona e' attiva"
 
@@ -221,3 +248,22 @@ msgstr "La zona e' attiva"
 msgid "Administrative Areas"
 msgstr "Aree amministrative"
 
+#: templates/l10n/_language_selection_form.html:5
+msgid "Change language"
+msgstr ""
+
+#: templates/l10n/_language_selection_form.html:11
+msgid "Change"
+msgstr ""
+
+#: validators/aupostcode.py:13
+msgid "Invalid Australian postal code"
+msgstr ""
+
+#: validators/capostcode.py:18
+msgid "Invalid postal code for Canada"
+msgstr ""
+
+#: validators/uspostcode.py:10
+msgid "Invalid ZIP code"
+msgstr ""

@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:03+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-03-13 16:03\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -18,37 +18,33 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: config.py:6
-msgid "Internationalization Settings"
-msgstr "הגדרות שפה"
+#: admin.py:15 admin.py:24
+#, fuzzy
+msgid "1 country was"
+msgstr "שם מדינה"
 
-#: config.py:11
-msgid "Default currency symbol"
-msgstr "ברירת מחדל סמל המטבע"
+#: admin.py:17 admin.py:26
+#, fuzzy, python-format
+msgid "%s countries were"
+msgstr "מדינות"
 
-#: config.py:12
-msgid "Use a '_' character to force a space."
-msgstr "השתמש בתו '_' כדי לאלץ רווח."
+#: admin.py:18
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
 
-#: config.py:18
-msgid "Show translations?"
-msgstr "הצג תרגום?"
+#: admin.py:19
+msgid "Mark selected countries as active"
+msgstr ""
 
-#: config.py:19
-msgid "Show translations in admin."
-msgstr "הצג תרגומים בממשק ניהול."
+#: admin.py:27
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
 
-#: config.py:25
-msgid "Allow user to choose from available translations"
-msgstr "לאפשר למשתמש לבחור בין תרגומים זמינים"
-
-#: config.py:33
-msgid "Available languages"
-msgstr "שפות זמינות"
-
-#: config.py:34
-msgid "Languages that have valid translations"
-msgstr "שפות אשר יש עבורם תרגום תקף"
+#: admin.py:28
+msgid "Mark selected countries as inactive"
+msgstr ""
 
 #: models.py:6
 msgid "Africa"
@@ -269,3 +265,27 @@ msgstr "מיקוד לא חוקי של קנדה"
 #: validators/uspostcode.py:10
 msgid "Invalid ZIP code"
 msgstr "מיקוד לא חוקי"
+
+#~ msgid "Internationalization Settings"
+#~ msgstr "הגדרות שפה"
+
+#~ msgid "Default currency symbol"
+#~ msgstr "ברירת מחדל סמל המטבע"
+
+#~ msgid "Use a '_' character to force a space."
+#~ msgstr "השתמש בתו '_' כדי לאלץ רווח."
+
+#~ msgid "Show translations?"
+#~ msgstr "הצג תרגום?"
+
+#~ msgid "Show translations in admin."
+#~ msgstr "הצג תרגומים בממשק ניהול."
+
+#~ msgid "Allow user to choose from available translations"
+#~ msgstr "לאפשר למשתמש לבחור בין תרגומים זמינים"
+
+#~ msgid "Available languages"
+#~ msgstr "שפות זמינות"
+
+#~ msgid "Languages that have valid translations"
+#~ msgstr "שפות אשר יש עבורם תרגום תקף"

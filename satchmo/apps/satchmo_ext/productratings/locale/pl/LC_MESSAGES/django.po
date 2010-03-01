@@ -2,12 +2,12 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: <jerzyk@jerzyk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,12 +23,11 @@ msgstr "Włącz oceny produktów Akismet"
 msgid "Akismet API Key"
 msgstr "Klucz API Akismet"
 
-#: models.py:9
-#: templates/productratings/_product_ratings.html:17
+#: models.py:11 templates/productratings/_product_ratings.html:17
 msgid "Rating"
 msgstr "Ocena"
 
-#: utils.py:58
+#: utils.py:49
 msgid "Not Rated"
 msgstr "Jeszcze nie oceniony"
 
@@ -53,3 +52,6 @@ msgstr "Oceń ten produkt"
 msgid "Please login to review this product."
 msgstr "Proszę się zalogować by ocenić ten produkt."
 
+#: templates/productratings/plugins/sidebar_links.html:3
+msgid "Most Popular"
+msgstr ""

@@ -1,0 +1,125 @@
+#: admin.py:12 admin.py:23
+msgid "Translation"
+msgstr ""
+
+#: admin.py:13 admin.py:24
+msgid "Translations"
+msgstr ""
+
+#: admin.py:42 models.py:67
+msgid "Brand"
+msgstr ""
+
+#: admin.py:43 models.py:68 templates/brand/index.html:4
+#: templates/brand/index.html.py:8
+msgid "Brands"
+msgstr ""
+
+#: admin.py:58 models.py:144
+msgid "Brand Category"
+msgstr ""
+
+#: admin.py:59
+msgid "Brand Categories"
+msgstr ""
+
+#: config.py:8
+msgid "Brand Slug"
+msgstr ""
+
+#: config.py:9
+msgid "The url slug for brands.  Requires server restart if changed."
+msgstr ""
+
+#: models.py:28 models.py:109
+msgid "Slug"
+msgstr ""
+
+#: models.py:29 models.py:110
+msgid "Used for URLs"
+msgstr ""
+
+#: models.py:30 models.py:112
+msgid "Products"
+msgstr ""
+
+#: models.py:31 models.py:113
+msgid "Ordering"
+msgstr ""
+
+#: models.py:75
+msgid "Brand Product"
+msgstr ""
+
+#: models.py:76
+msgid "Brand Products"
+msgstr ""
+
+#: models.py:80 models.py:158
+msgid "language"
+msgstr ""
+
+#: models.py:81 models.py:159
+msgid "title"
+msgstr ""
+
+#: models.py:82 models.py:160
+msgid "Short Description"
+msgstr ""
+
+#: models.py:83
+msgid "Full Description"
+msgstr ""
+
+#: models.py:84 models.py:162
+msgid "Picture"
+msgstr ""
+
+#: models.py:99
+msgid "Brand Translation"
+msgstr ""
+
+#: models.py:100
+msgid "Brand Translations"
+msgstr ""
+
+#: models.py:145
+msgid "Categories"
+msgstr ""
+
+#: models.py:152
+msgid "Brand Category Product"
+msgstr ""
+
+#: models.py:153
+msgid "Brand Category Products"
+msgstr ""
+
+#: models.py:161
+msgid "Description"
+msgstr ""
+
+#: models.py:177
+msgid "Brand Category Translations"
+msgstr ""
+
+#: views.py:30 views.py:54
+#, python-format
+msgid "Brand \"%s\" does not exist"
+msgstr ""
+
+#: views.py:57
+msgid "No category \"%{category}s\" in brand \"%{brand}s\""
+msgstr ""
+
+#: templates/brand/index.html:7 templates/brand/view_brand.html:13
+msgid "Home"
+msgstr ""
+
+#: templates/brand/index.html:25
+msgid "No brands are active"
+msgstr ""
+
+#: templates/brand/view_brand.html:53
+msgid "View more products in these categories"
+msgstr ""

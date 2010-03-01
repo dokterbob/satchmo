@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,93 +15,113 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/wishlist/index.html:7
-#: templates/wishlist/login_required.html:4
-msgid "Home"
-msgstr "Inicial"
+#: config.py:8
+#, fuzzy
+msgid "Wishlist slug"
+msgstr "Lista de presentes"
 
-#: models.py:29
-msgid "Creation Date"
-msgstr "Data de criação"
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
 
-#: models.py:26
+#: models.py:33
 msgid "Contact"
 msgstr "Contato"
 
-#: models.py:27
+#: models.py:34
 msgid "Product"
 msgstr "Produto"
 
-#: views.py:86
-msgid "Success"
-msgstr "Sucesso"
-
-#: templates/wishlist/index.html:38
-msgid "Add to cart"
-msgstr "Adicionar ao carrinho"
-
-#: views.py:57
-#: views.py:78
-msgid "The product you have requested does not exist."
-msgstr "O produto que você solicitou não existe."
-
-#: views.py:103
-#, python-format
-msgid "Not enough items of '%s' in stock."
-msgstr "Não há itens suficientes de '%s'  no estoque."
-
-#: views.py:88
-msgid "Error"
-msgstr "Erro"
-
-#: templates/wishlist/index.html:12
-#: templates/wishlist/login_required.html:9
-msgid "Shop Categories"
-msgstr "Categorias"
-
-#: templates/wishlist/index.html:8
-#: templates/wishlist/index.html.py:25
-#: templates/wishlist/login_required.html:5
-msgid "Wishlist"
-msgstr "Lista de presentes"
-
-#: templates/wishlist/index.html:34
-#, python-format
-msgid "added on %(create_date)s"
-msgstr "adicionado em %(create_date)s"
-
-#: templates/wishlist/index.html:42
-msgid "Remove from wishlist"
-msgstr "Remover da lista de presentes"
-
-#: templates/wishlist/login_required.html:16
-#, python-format
-msgid "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your wishlist."
-msgstr "Desculpe, voçê precisa <a href=\"%(login_url)s\">logar-in</a> para acessar sua lista de presentes."
-
-#: models.py:28
+#: models.py:35
 #, fuzzy
 msgid "Details"
 msgstr "detalhe"
 
-#: models.py:54
+#: models.py:36
+msgid "Creation Date"
+msgstr "Data de criação"
+
+#: models.py:61
 #, fuzzy
 msgid "Product Wish"
 msgstr "Podutos"
 
-#: models.py:55
+#: models.py:62
 #, fuzzy
 msgid "Product Wishes"
 msgstr "Apresentação de Produtos"
 
-#: views.py:140
-#: views.py:151
-#: views.py:153
+#: views.py:60 views.py:81
+msgid "The product you have requested does not exist."
+msgstr "O produto que você solicitou não existe."
+
+#: views.py:89
+#, fuzzy
+msgid "The contact associated with this request does not exist."
+msgstr "O produto que você solicitou não existe."
+
+#: views.py:96
+msgid "Success"
+msgstr "Sucesso"
+
+#: views.py:98
+msgid "Error"
+msgstr "Erro"
+
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
+
+#: views.py:154 views.py:165 views.py:167
 #, fuzzy
 msgid "No such wishlist item."
 msgstr "Esse Vale Presente não existe"
 
-#: views.py:146
+#: views.py:160
 msgid "You must be logged in to do that."
 msgstr "Você deve estar logado para fazer isso."
 
+#: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr "Inicial"
+
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
+#: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
+msgid "Wishlist"
+msgstr "Lista de presentes"
+
+#: templates/wishlist/index.html:27
+#, python-format
+msgid "added on %(create_date)s"
+msgstr "adicionado em %(create_date)s"
+
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr "Adicionar ao carrinho"
+
+#: templates/wishlist/index.html:35
+msgid "Remove from wishlist"
+msgstr "Remover da lista de presentes"
+
+#: templates/wishlist/login_required.html:9
+#, python-format
+msgid ""
+"Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
+"wishlist."
+msgstr ""
+"Desculpe, voçê precisa <a href=\"%(login_url)s\">logar-in</a> para acessar "
+"sua lista de presentes."
+
+#: templates/wishlist/plugins/product_add_buttons.html:2
+#, fuzzy
+msgid "Add to wishlist"
+msgstr "Remover da lista de presentes"
+
+#~ msgid "Not enough items of '%s' in stock."
+#~ msgstr "Não há itens suficientes de '%s'  no estoque."
+
+#~ msgid "Shop Categories"
+#~ msgstr "Categorias"

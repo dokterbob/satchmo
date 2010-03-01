@@ -1,0 +1,47 @@
+#: admin.py:11 models.py:102
+msgid "Tiered Price"
+msgstr ""
+
+#: admin.py:12 models.py:103
+msgid "Tiered Prices"
+msgstr ""
+
+#: models.py:43
+msgid "The user group that will receive the discount"
+msgstr ""
+
+#: models.py:44
+msgid "Title"
+msgstr ""
+
+#: models.py:45
+msgid "Discount Percent"
+msgstr ""
+
+#: models.py:47
+msgid ""
+"This is the discount that will be applied to every product if no explicit "
+"Tiered Price exists for that product.  Leave as 0 if you don't want any "
+"automatic discount in that case."
+msgstr ""
+
+#: models.py:72
+msgid "Price"
+msgstr ""
+
+#: models.py:73
+msgid "Discount Quantity"
+msgstr ""
+
+#: models.py:73
+msgid "Use this price only for this quantity or higher"
+msgstr ""
+
+#: models.py:74
+msgid "Expires"
+msgstr ""
+
+#: models.py:150
+#, python-format
+msgid "Tiered Pricing for %(tier)s"
+msgstr ""

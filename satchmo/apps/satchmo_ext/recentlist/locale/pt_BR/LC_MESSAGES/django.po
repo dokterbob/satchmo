@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,7 @@ msgstr "Máximo de itens recentes"
 msgid "The maximum number of items show in the recent box."
 msgstr "Número máximo de itens a serem mostrados na caixa de intens recentes"
 
-#: templates/recentlist/_recently_viewed.html:4
+#: templates/recentlist/_recently_viewed.html:5
 #, fuzzy
 msgid "Recently Viewed"
 msgstr "Recebido"
-

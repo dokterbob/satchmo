@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-04-03 06:48\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -18,78 +18,108 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Translated-Using: django-rosetta 0.4.0\n"
 
+#: config.py:8
+#, fuzzy
+msgid "Wishlist slug"
+msgstr "רשימה אישית"
+
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
+
+#: models.py:33
+msgid "Contact"
+msgstr "איש קשר"
+
+#: models.py:34
+msgid "Product"
+msgstr "מוצר"
+
+#: models.py:35
+msgid "Details"
+msgstr "פרטים"
+
+#: models.py:36
+msgid "Creation Date"
+msgstr "תאריך יצירה"
+
+#: models.py:61
+msgid "Product Wish"
+msgstr "מוצרים"
+
+#: models.py:62
+msgid "Product Wishes"
+msgstr "מוצרים ברשימה"
+
+#: views.py:60 views.py:81
+msgid "The product you have requested does not exist."
+msgstr "המוצר שביקשת אינו קיים. "
+
+#: views.py:89
+#, fuzzy
+msgid "The contact associated with this request does not exist."
+msgstr "המוצר שביקשת אינו קיים. "
+
+#: views.py:96
+msgid "Success"
+msgstr "הצלחה"
+
+#: views.py:98
+msgid "Error"
+msgstr "שגיאה"
+
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
+
+#: views.py:154 views.py:165 views.py:167
+msgid "No such wishlist item."
+msgstr "אין כזה מוצר ברשימה."
+
+#: views.py:160
+msgid "You must be logged in to do that."
+msgstr ""
+
 #: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
 msgid "Home"
 msgstr "דף הבית"
 
-#: models.py:29
-msgid "Creation Date"
-msgstr "תאריך יצירה"
-
-#: models.py:26
-msgid "Contact"
-msgstr "איש קשר"
-
-#: models.py:27
-msgid "Product"
-msgstr "מוצר"
-
-#: views.py:87
-msgid "Success"
-msgstr "הצלחה"
-
-#: templates/wishlist/index.html:38
-msgid "Add to cart"
-msgstr "הוסף לעגלה"
-
-#: views.py:58 views.py:79
-msgid "The product you have requested does not exist."
-msgstr "המוצר שביקשת אינו קיים. "
-
-#: views.py:102
-#, python-format
-msgid "Not enough items of '%s' in stock."
-msgstr "אין מספיק פריטים של '%s' במלאי."
-
-#: views.py:89
-msgid "Error"
-msgstr "שגיאה"
-
-#: templates/wishlist/index.html:12 templates/wishlist/login_required.html:9
-msgid "Shop Categories"
-msgstr "קטגוריות חנות"
-
-#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:25
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
 #: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
 msgid "Wishlist"
 msgstr "רשימה אישית"
 
-#: templates/wishlist/index.html:34
+#: templates/wishlist/index.html:27
 #, python-format
 msgid "added on %(create_date)s"
 msgstr "הוסף בתאריך %(create_date)s"
 
-#: templates/wishlist/index.html:42
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr "הוסף לעגלה"
+
+#: templates/wishlist/index.html:35
 msgid "Remove from wishlist"
 msgstr "הורד מהרשימה"
 
-#: templates/wishlist/login_required.html:16
+#: templates/wishlist/login_required.html:9
 #, python-format
-msgid "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your wishlist."
-msgstr "יש לבצע <a href=\"%(login_url)s\">כניסה</a> למערכת כדי לראות את הרשימה."
+msgid ""
+"Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
+"wishlist."
+msgstr ""
+"יש לבצע <a href=\"%(login_url)s\">כניסה</a> למערכת כדי לראות את הרשימה."
 
-#: models.py:28
-msgid "Details"
-msgstr "פרטים"
+#: templates/wishlist/plugins/product_add_buttons.html:2
+#, fuzzy
+msgid "Add to wishlist"
+msgstr "הורד מהרשימה"
 
-#: models.py:58
-msgid "Product Wish"
-msgstr "מוצרים"
+#~ msgid "Not enough items of '%s' in stock."
+#~ msgstr "אין מספיק פריטים של '%s' במלאי."
 
-#: models.py:59
-msgid "Product Wishes"
-msgstr "מוצרים ברשימה"
-
-#: views.py:140 views.py:151 views.py:153
-msgid "No such wishlist item."
-msgstr "אין כזה מוצר ברשימה."
+#~ msgid "Shop Categories"
+#~ msgstr "קטגוריות חנות"

@@ -2,12 +2,12 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: <jerzyk@jerzyk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,89 +15,109 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/wishlist/index.html:7
-#: templates/wishlist/login_required.html:4
-msgid "Home"
-msgstr "Strona startowa"
+#: config.py:8
+#, fuzzy
+msgid "Wishlist slug"
+msgstr "Lista życzeń"
 
-#: models.py:29
-msgid "Creation Date"
-msgstr "Data utworzenia"
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
 
-#: models.py:26
+#: models.py:33
 msgid "Contact"
 msgstr "Kontakt"
 
-#: models.py:27
+#: models.py:34
 msgid "Product"
 msgstr "Produkt"
 
-#: views.py:86
-msgid "Success"
-msgstr "Sukces"
+#: models.py:35
+msgid "Details"
+msgstr "Szczegóły"
 
-#: templates/wishlist/index.html:38
-msgid "Add to cart"
-msgstr "Dodaj do koszyka"
+#: models.py:36
+msgid "Creation Date"
+msgstr "Data utworzenia"
 
-#: views.py:57
-#: views.py:78
+#: models.py:61
+msgid "Product Wish"
+msgstr "Życzenie"
+
+#: models.py:62
+msgid "Product Wishes"
+msgstr "Życzenia"
+
+#: views.py:60 views.py:81
 msgid "The product you have requested does not exist."
 msgstr "Wybrany produkt nie istnieje."
 
-#: views.py:103
-#, python-format
-msgid "Not enough items of '%s' in stock."
-msgstr "W magazynie nie ma wystarczającej ilości '%s'."
+#: views.py:89
+#, fuzzy
+msgid "The contact associated with this request does not exist."
+msgstr "Wybrany produkt nie istnieje."
 
-#: views.py:88
+#: views.py:96
+msgid "Success"
+msgstr "Sukces"
+
+#: views.py:98
 msgid "Error"
 msgstr "Błąd"
 
-#: templates/wishlist/index.html:12
-#: templates/wishlist/login_required.html:9
-msgid "Shop Categories"
-msgstr "Kategorie"
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
 
-#: templates/wishlist/index.html:8
-#: templates/wishlist/index.html.py:25
+#: views.py:154 views.py:165 views.py:167
+msgid "No such wishlist item."
+msgstr "Nie ma takiego przedmiotu na liście życzeń."
+
+#: views.py:160
+msgid "You must be logged in to do that."
+msgstr "Musisz być zalogowany."
+
+#: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr "Strona startowa"
+
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
 #: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
 msgid "Wishlist"
 msgstr "Lista życzeń"
 
-#: templates/wishlist/index.html:34
+#: templates/wishlist/index.html:27
 #, python-format
 msgid "added on %(create_date)s"
 msgstr "dodano dnia %(create_date)s"
 
-#: templates/wishlist/index.html:42
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr "Dodaj do koszyka"
+
+#: templates/wishlist/index.html:35
 msgid "Remove from wishlist"
 msgstr "Usuń z listy życzeń"
 
-#: templates/wishlist/login_required.html:16
+#: templates/wishlist/login_required.html:9
 #, python-format
-msgid "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your wishlist."
-msgstr "Musisz się <a href=\"%(login_url)s\">zalogować</a> by oglądać swoją listę życzeń."
+msgid ""
+"Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
+"wishlist."
+msgstr ""
+"Musisz się <a href=\"%(login_url)s\">zalogować</a> by oglądać swoją listę "
+"życzeń."
 
-#: models.py:28
-msgid "Details"
-msgstr "Szczegóły"
+#: templates/wishlist/plugins/product_add_buttons.html:2
+#, fuzzy
+msgid "Add to wishlist"
+msgstr "Usuń z listy życzeń"
 
-#: models.py:54
-msgid "Product Wish"
-msgstr "Życzenie"
+#~ msgid "Not enough items of '%s' in stock."
+#~ msgstr "W magazynie nie ma wystarczającej ilości '%s'."
 
-#: models.py:55
-msgid "Product Wishes"
-msgstr "Życzenia"
-
-#: views.py:140
-#: views.py:151
-#: views.py:153
-msgid "No such wishlist item."
-msgstr "Nie ma takiego przedmiotu na liście życzeń."
-
-#: views.py:146
-msgid "You must be logged in to do that."
-msgstr "Musisz być zalogowany."
-
+#~ msgid "Shop Categories"
+#~ msgstr "Kategorie"

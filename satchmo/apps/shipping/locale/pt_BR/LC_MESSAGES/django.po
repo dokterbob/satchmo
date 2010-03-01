@@ -7,44 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: modules/tiered/models.py:208
-#: modules/tieredquantity/models.py:205
-msgid "Description"
-msgstr "Descrição"
-
-#: modules/tiered/models.py:97
-#: modules/tieredquantity/models.py:91
-msgid "Active"
-msgstr "Ativar"
-
-#: modules/fedex/config.py:76
-#: modules/ups/config.py:80
-msgid "Submit to URL"
-msgstr "Submeta à URL"
-
-#: modules/tiered/models.py:96
-#: modules/tieredquantity/models.py:90
-msgid "Ordering"
-msgstr "Fazendo pedido"
-
-#: modules/tiered/models.py:206
-#: modules/tieredquantity/models.py:203
-msgid "language"
-msgstr "Idioma"
-
-#: modules/tiered/models.py:218
-#: modules/tieredquantity/models.py:218
-#, fuzzy
-msgid "Expires"
-msgstr "Exportar"
 
 #: config.py:7
 msgid "Shipping Settings"
@@ -55,22 +24,152 @@ msgid "Active shipping modules"
 msgstr "Módulos ativos de envio"
 
 #: config.py:12
-msgid "Select the active shipping modules, save and reload to set any module-specific shipping settings."
-msgstr "Selecione os módulos ativos de envio, salve e recarregue para definir qualquer configuração de envio específico de módulo."
+msgid ""
+"Select the active shipping modules, save and reload to set any module-"
+"specific shipping settings."
+msgstr ""
+"Selecione os módulos ativos de envio, salve e recarregue para definir "
+"qualquer configuração de envio específico de módulo."
 
 #: config.py:14
 msgid "Per piece"
 msgstr "Por peça"
 
-#: modules/dummy/shipper.py:32
+#: config.py:21
+msgid "Hide if one?"
+msgstr ""
+
+#: config.py:22
+msgid "Hide shipping form fields if there is only one choice available?"
+msgstr ""
+
+#: config.py:26
+msgid "No"
+msgstr ""
+
+#: config.py:27
+msgid "Yes"
+msgstr ""
+
+#: config.py:28
+#, fuzzy
+msgid "Show description only"
+msgstr "Descrição"
+
+#: config.py:34
+msgid "Select least expensive by default?"
+msgstr ""
+
+#: modules/canadapost/config.py:12
+#, fuzzy
+msgid "Canada Post Shipping Settings"
+msgstr "Configurações de frete via UPS"
+
+#: modules/canadapost/config.py:22
+msgid "Canada Post Merchant ID"
+msgstr ""
+
+#: modules/canadapost/config.py:23
+msgid "The merchant ID assigned by Canada Post"
+msgstr ""
+
+#: modules/canadapost/config.py:29
+#, fuzzy
+msgid "Canada Post shipping choices available to customers."
+msgstr "Opções de envio pela UPS disponíveis para clientes."
+
+#: modules/canadapost/config.py:54 modules/ups/config.py:53
+#: modules/usps/config.py:68
+msgid "Type of container used to ship product."
+msgstr "Tipo de embalagem usada para enviar o produto."
+
+#: modules/canadapost/config.py:64
+#, fuzzy
+msgid "Access production Canada Post server"
+msgstr "Acessar servidor de produção UPS"
+
+#: modules/canadapost/config.py:65 modules/fedex/config.py:71
+#: modules/ups/config.py:75 modules/usps/config.py:82
+msgid "Use this when your store is in production."
+msgstr "Use este quando sua loja estiver em produção."
+
+#: modules/canadapost/config.py:70 modules/fedex/config.py:76
+#: modules/ups/config.py:80 modules/usps/config.py:87
+msgid "Submit to URL"
+msgstr "Submeta à URL"
+
+#: modules/canadapost/config.py:71
+#, fuzzy
+msgid "Canada Post Sell Online server to submit live transactions."
+msgstr "Endereço para submeter transações reais."
+
+#: modules/canadapost/config.py:76 modules/fedex/config.py:82
+#: modules/ups/config.py:86
+msgid "Submit to TestURL"
+msgstr "Submeter a TestURL"
+
+#: modules/canadapost/config.py:77
+#, fuzzy
+msgid "Canada Post Sell Online server to submit test transactions."
+msgstr "Endereço para submeter transações teste."
+
+#: modules/canadapost/config.py:82
+msgid "Turn around time"
+msgstr ""
+
+#: modules/canadapost/config.py:83
+msgid ""
+"Turn around time in hours. If declared here, this "
+"parameter                     will overwrite the one defined in the "
+"merchant's profile"
+msgstr ""
+
+#: modules/canadapost/config.py:89 modules/fedex/config.py:94
+#: modules/ups/config.py:92 modules/usps/config.py:99
+msgid "Verbose logs"
+msgstr "Verbose logs"
+
+#: modules/canadapost/config.py:90
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up Canada Post."
+msgstr ""
+
+#: modules/canadapost/shipper.py:62
+#, python-format
+msgid "Canada Post - %s"
+msgstr ""
+
+#: modules/canadapost/shipper.py:78
+msgid "Canada Post"
+msgstr ""
+
+#: modules/canadapost/shipper.py:87 modules/fedex/shipper.py:95
+#: modules/ups/shipper.py:78
+#, python-format
+msgid "%s business days"
+msgstr "%s dias úteis"
+
+#: modules/canadapost/shipper.py:89 modules/fedex/shipper.py:97
+#: modules/ups/shipper.py:80
+#, python-format
+msgid "%s business day"
+msgstr "%s dia útil"
+
+#: modules/canadapost/shipper.py:124 modules/fedex/shipper.py:151
+#: modules/ups/shipper.py:110
+msgid "3 - 4"
+msgstr "3 - 4"
+
+#: modules/dummy/shipper.py:28
 msgid "Dummy Flat Rate Shipping"
 msgstr ""
 
-#: modules/dummy/shipper.py:45
+#: modules/dummy/shipper.py:41
 msgid "US Mail"
 msgstr "Correio dos EUA"
 
-#: modules/dummy/shipper.py:51
+#: modules/dummy/shipper.py:47
 msgid "3 - 4 business days"
 msgstr "3 - 4 dias úteis"
 
@@ -113,23 +212,13 @@ msgstr "Tipo de embalagem usada para enviar o produto."
 msgid "Access production FedEx server"
 msgstr "Acessar servidor de produção UPS"
 
-#: modules/fedex/config.py:71
-#: modules/ups/config.py:75
-msgid "Use this when your store is in production."
-msgstr "Use este quando sua loja estiver em produção."
-
-#: modules/fedex/config.py:77
-#: modules/ups/config.py:81
+#: modules/fedex/config.py:77 modules/ups/config.py:81
+#: modules/usps/config.py:88
 msgid "Address to submit live transactions."
 msgstr "Endereço para submeter transações reais."
 
-#: modules/fedex/config.py:82
-#: modules/ups/config.py:86
-msgid "Submit to TestURL"
-msgstr "Submeter a TestURL"
-
-#: modules/fedex/config.py:83
-#: modules/ups/config.py:87
+#: modules/fedex/config.py:83 modules/ups/config.py:87
+#: modules/usps/config.py:94
 msgid "Address to submit test transactions."
 msgstr "Endereço para submeter transações teste."
 
@@ -138,43 +227,25 @@ msgid "Single Box?"
 msgstr "Caixa simples?"
 
 #: modules/fedex/config.py:89
-msgid "Use just one box and ship by weight?  If no then every item will be sent in its own box."
+msgid ""
+"Use just one box and ship by weight?  If no then every item will be sent in "
+"its own box."
 msgstr ""
-
-#: modules/fedex/config.py:94
-#: modules/ups/config.py:92
-msgid "Verbose logs"
-msgstr "Verbose logs"
 
 #: modules/fedex/config.py:95
-msgid "Send the entire request and response to the log - for debugging help when setting up FedEx."
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up FedEx."
 msgstr ""
 
-#: modules/fedex/shipper.py:69
+#: modules/fedex/shipper.py:70
 #, python-format
 msgid "FedEx - %s"
 msgstr "FedEx - %s"
 
-#: modules/fedex/shipper.py:85
+#: modules/fedex/shipper.py:86
 msgid "FedEx"
 msgstr "FedEx"
-
-#: modules/fedex/shipper.py:94
-#: modules/ups/shipper.py:81
-#, python-format
-msgid "%s business days"
-msgstr "%s dias úteis"
-
-#: modules/fedex/shipper.py:96
-#: modules/ups/shipper.py:83
-#, python-format
-msgid "%s business day"
-msgstr "%s dia útil"
-
-#: modules/fedex/shipper.py:150
-#: modules/ups/shipper.py:113
-msgid "3 - 4"
-msgstr "3 - 4"
 
 #: modules/flat/config.py:5
 msgid "Flat rate"
@@ -196,16 +267,15 @@ msgstr "Serviço de remessa usado com frete fixo"
 msgid "Flat Delivery Days"
 msgstr "Dias fixos de entrega"
 
-#: modules/flat/shipper.py:27
+#: modules/flat/shipper.py:23
 msgid "Flat Rate Shipping"
 msgstr "Remessa com frete fixo"
 
-#: modules/no/shipper.py:26
-#: modules/no/shipper.py:38
+#: modules/no/shipper.py:22 modules/no/shipper.py:34
 msgid "No Shipping"
 msgstr "Sem remessa"
 
-#: modules/no/shipper.py:44
+#: modules/no/shipper.py:40
 msgid "immediately"
 msgstr "imediatamente"
 
@@ -225,75 +295,200 @@ msgstr "Serviço de remessa usado com remessa por item"
 msgid "Per Item Delivery Days"
 msgstr "Dias para entrega por item"
 
-#: modules/per/shipper.py:27
+#: modules/per/shipper.py:23
 msgid "Per Item shipping"
 msgstr "Remessa por item"
+
+#: modules/productshipping/config.py:7
+#, fuzzy
+msgid "Shipping By Product"
+msgstr "Valor do frete"
+
+#: modules/productshipping/models.py:89 modules/tiered/models.py:91
+#: modules/tieredquantity/models.py:85
+msgid "Key"
+msgstr "Chave"
+
+#: modules/productshipping/models.py:90 modules/tiered/models.py:92
+#: modules/tieredquantity/models.py:86 modules/tieredweight/models.py:114
+msgid "Ordering"
+msgstr "Fazendo pedido"
+
+#: modules/productshipping/models.py:91 modules/tiered/models.py:93
+#: modules/tieredquantity/models.py:87 modules/tieredweight/models.py:115
+msgid "Active"
+msgstr "Ativar"
+
+#: modules/productshipping/models.py:194 modules/tiered/models.py:202
+#: modules/tieredquantity/models.py:199 modules/tieredweight/models.py:245
+msgid "language"
+msgstr "Idioma"
+
+#: modules/productshipping/models.py:195 modules/tiered/models.py:203
+#: modules/tieredquantity/models.py:200
+msgid "Carrier"
+msgstr "Transportador"
+
+#: modules/productshipping/models.py:196 modules/tiered/models.py:204
+#: modules/tieredquantity/models.py:201
+msgid "Description"
+msgstr "Descrição"
+
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
+msgid "Method"
+msgstr "Método"
+
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
+msgid "i.e. US Mail"
+msgstr "ex.: Correio dos EUA"
+
+#: modules/productshipping/models.py:198 modules/tiered/models.py:206
+#: modules/tieredquantity/models.py:203
+msgid "Delivery Days"
+msgstr "Dias para entrega"
+
+#: modules/productshipping/models.py:206 modules/tiered/models.py:216
+msgid "Shipping Price"
+msgstr "Valor do frete"
 
 #: modules/tiered/config.py:7
 msgid "Tiered Shipping"
 msgstr "Frete proporcional ao valor"
 
-#: modules/tiered/models.py:95
-#: modules/tieredquantity/models.py:89
-msgid "Key"
-msgstr "Chave"
-
-#: modules/tiered/models.py:207
-#: modules/tieredquantity/models.py:204
-msgid "Carrier"
-msgstr "Transportador"
-
-#: modules/tiered/models.py:209
-#: modules/tieredquantity/models.py:206
-msgid "Method"
-msgstr "Método"
-
-#: modules/tiered/models.py:209
-#: modules/tieredquantity/models.py:206
-msgid "i.e. US Mail"
-msgstr "ex.: Correio dos EUA"
-
-#: modules/tiered/models.py:210
-#: modules/tieredquantity/models.py:207
-msgid "Delivery Days"
-msgstr "Dias para entrega"
-
-#: modules/tiered/models.py:214
+#: modules/tiered/models.py:213
 msgid "Min Price"
 msgstr "Preço mínimo"
 
-#: modules/tiered/models.py:215
+#: modules/tiered/models.py:214
 msgid "The minumum price for this tier to apply"
 msgstr "O mínimo preço para este nível a aplicar"
 
-#: modules/tiered/models.py:217
-msgid "Shipping Price"
-msgstr "Valor do frete"
+#: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
+#, fuzzy
+msgid "Expires"
+msgstr "Exportar"
 
-#: modules/tieredquantity/config.py:5
+#: modules/tieredquantity/config.py:4
 #, fuzzy
 msgid "Tiered Quantity"
 msgstr "Quantidade de itens de linha"
 
-#: modules/tieredquantity/models.py:212
+#: modules/tieredquantity/models.py:207
 #, fuzzy
 msgid "Min Quantity"
 msgstr "Quantidade"
 
-#: modules/tieredquantity/models.py:213
+#: modules/tieredquantity/models.py:208
 #, fuzzy
 msgid "Minimum qty in order for this to apply?"
 msgstr "O mínimo preço para este nível a aplicar"
 
-#: modules/tieredquantity/models.py:214
+#: modules/tieredquantity/models.py:209
 #, fuzzy
 msgid "Handling Price"
 msgstr "Preço mínimo"
 
-#: modules/tieredquantity/models.py:216
+#: modules/tieredquantity/models.py:211
 #, fuzzy
 msgid "Shipping Per Item"
 msgstr "Valor do frete"
+
+#: modules/tieredweight/config.py:10
+#, fuzzy
+msgid "Tiered Weight Shipping"
+msgstr "Frete proporcional ao valor"
+
+#: modules/tieredweight/models.py:113 modules/tieredweight/models.py:126
+#: modules/tieredweight/models.py:139
+#, fuzzy
+msgid "carrier"
+msgstr "Transportador"
+
+#: modules/tieredweight/models.py:116
+msgid "default_zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:127
+#, fuzzy
+msgid "carriers"
+msgstr "Transportador"
+
+#: modules/tieredweight/models.py:140
+msgid "name"
+msgstr ""
+
+#: modules/tieredweight/models.py:141
+msgid "countries"
+msgstr ""
+
+#: modules/tieredweight/models.py:142
+#, fuzzy
+msgid "handling"
+msgstr "Preço mínimo"
+
+#: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
+#: modules/tieredweight/models.py:262
+msgid "zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:154
+msgid "zones"
+msgstr ""
+
+#: modules/tieredweight/models.py:246
+#, fuzzy
+msgid "description"
+msgstr "Descrição"
+
+#: modules/tieredweight/models.py:247
+#, fuzzy
+msgid "method"
+msgstr "Método"
+
+#: modules/tieredweight/models.py:247
+msgid "i.e. Air, Land, Sea"
+msgstr ""
+
+#: modules/tieredweight/models.py:248
+#, fuzzy
+msgid "delivery"
+msgstr "Dias para entrega"
+
+#: modules/tieredweight/models.py:257
+msgid "zone translation"
+msgstr ""
+
+#: modules/tieredweight/models.py:258
+msgid "zone translations"
+msgstr ""
+
+#: modules/tieredweight/models.py:263
+msgid "min weight"
+msgstr ""
+
+#: modules/tieredweight/models.py:264
+msgid "handling ajustment"
+msgstr ""
+
+#: modules/tieredweight/models.py:266
+#, fuzzy
+msgid "shipping price"
+msgstr "Valor do frete"
+
+#: modules/tieredweight/models.py:267
+#, fuzzy
+msgid "expires"
+msgstr "Exportar"
+
+#: modules/tieredweight/models.py:277
+msgid "weight tier"
+msgstr ""
+
+#: modules/tieredweight/models.py:278
+msgid "weight tiers"
+msgstr ""
 
 #: modules/ups/config.py:8
 msgid "UPS Shipping Settings"
@@ -335,10 +530,6 @@ msgstr "Senha de usuário fornecida pelo site da UPS."
 msgid "UPS Shipping Choices Available to customers."
 msgstr "Opções de envio pela UPS disponíveis para clientes."
 
-#: modules/ups/config.py:53
-msgid "Type of container used to ship product."
-msgstr "Tipo de embalagem usada para enviar o produto."
-
 #: modules/ups/config.py:63
 msgid "UPS Pickup option."
 msgstr "Opção de coleta UPS."
@@ -348,20 +539,106 @@ msgid "Access production UPS server"
 msgstr "Acessar servidor de produção UPS"
 
 #: modules/ups/config.py:93
-msgid "Send the entire request and response to the log - for debugging help when setting up UPS."
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up UPS."
 msgstr ""
 
-#: modules/ups/shipper.py:61
+#: modules/ups/shipper.py:58
 #, python-format
 msgid "UPS - %s"
 msgstr "UPS - %s"
 
-#: modules/ups/shipper.py:74
+#: modules/ups/shipper.py:71
 msgid "UPS"
 msgstr "UPS"
 
-#: templates/shipping/shipping_options.html:6
+#: modules/usps/config.py:9
+#, fuzzy
+msgid "U.S.P.S. Shipping Settings"
+msgstr "Configurações de frete via UPS"
+
+#: modules/usps/config.py:17
+#, fuzzy
+msgid "USPS  Username"
+msgstr "ID de usuário UPS"
+
+#: modules/usps/config.py:18
+#, fuzzy
+msgid "User ID provided by USPS site."
+msgstr "ID de usuário fornecida pelo site da UPS."
+
+#: modules/usps/config.py:23
+#, fuzzy
+msgid "USPS Password"
+msgstr "Senha de usuário UPS"
+
+#: modules/usps/config.py:24
+#, fuzzy
+msgid "User password provided by USPS site."
+msgstr "Senha de usuário fornecida pelo site da UPS."
+
+#: modules/usps/config.py:29
+#, fuzzy
+msgid "Handling Fee"
+msgstr "Preço mínimo"
+
+#: modules/usps/config.py:30
+msgid "The cost of packaging and taking order to post office"
+msgstr ""
+
+#: modules/usps/config.py:35
+#, fuzzy
+msgid "USPS Shipping Choices Available to customers."
+msgstr "Opções de envio pela UPS disponíveis para clientes."
+
+#: modules/usps/config.py:81
+#, fuzzy
+msgid "Access production USPS server"
+msgstr "Acessar servidor de produção UPS"
+
+#: modules/usps/config.py:93
+#, fuzzy
+msgid "Submit to Test URL"
+msgstr "Submeter a TestURL"
+
+#: modules/usps/config.py:100
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up USPS."
+msgstr ""
+
+#: modules/usps/shipper.py:129
+#, fuzzy, python-format
+msgid "USPS - %s"
+msgstr "UPS - %s"
+
+#: modules/usps/shipper.py:145
+#, fuzzy
+msgid "USPS"
+msgstr "UPS"
+
+#: modules/usps/shipper.py:153
+#, python-format
+msgid "in %s"
+msgstr ""
+
+#: modules/usps/shipper.py:154
+#, python-format
+msgid "by %s"
+msgstr ""
+
+#: modules/usps/shipper.py:156
+#, fuzzy, python-format
+msgid "in %s business days"
+msgstr "%s dias úteis"
+
+#: modules/usps/shipper.py:158
+#, fuzzy, python-format
+msgid "in %s business day"
+msgstr "%s dia útil"
+
+#: templates/shipping/options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
 msgstr "Enviado via %(method)s chega aproximadamente %(expected_delivery)s."
-

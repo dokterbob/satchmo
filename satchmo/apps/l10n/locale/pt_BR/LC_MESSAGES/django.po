@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,13 +15,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:41
-msgid "State"
-msgstr "Estado"
+#: admin.py:15 admin.py:24
+#, fuzzy
+msgid "1 country was"
+msgstr "Nome do País"
 
-#: models.py:63
-msgid "Country"
-msgstr "País"
+#: admin.py:17 admin.py:26
+#, fuzzy, python-format
+msgid "%s countries were"
+msgstr "Países"
+
+#: admin.py:18
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
+
+#: admin.py:19
+msgid "Mark selected countries as active"
+msgstr ""
+
+#: admin.py:27
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
+
+#: admin.py:28
+msgid "Mark selected countries as inactive"
+msgstr ""
 
 #: models.py:6
 msgid "Africa"
@@ -151,6 +171,10 @@ msgstr "República"
 msgid "Sheading"
 msgstr "Sheading"
 
+#: models.py:41
+msgid "State"
+msgstr "Estado"
+
 #: models.py:42
 msgid "Subdivision"
 msgstr "Subdivisão"
@@ -191,10 +215,13 @@ msgstr "País está ativo"
 msgid "Continent"
 msgstr "Continente"
 
-#: models.py:60
-#: models.py:81
+#: models.py:60 models.py:81
 msgid "Administrative Area"
 msgstr "Área Administrativa"
+
+#: models.py:63
+msgid "Country"
+msgstr "País"
 
 #: models.py:64
 msgid "Countries"
@@ -216,3 +243,22 @@ msgstr "Área ativa"
 msgid "Administrative Areas"
 msgstr "Áreas Administrativas"
 
+#: templates/l10n/_language_selection_form.html:5
+msgid "Change language"
+msgstr ""
+
+#: templates/l10n/_language_selection_form.html:11
+msgid "Change"
+msgstr ""
+
+#: validators/aupostcode.py:13
+msgid "Invalid Australian postal code"
+msgstr ""
+
+#: validators/capostcode.py:18
+msgid "Invalid postal code for Canada"
+msgstr ""
+
+#: validators/uspostcode.py:10
+msgid "Invalid ZIP code"
+msgstr ""

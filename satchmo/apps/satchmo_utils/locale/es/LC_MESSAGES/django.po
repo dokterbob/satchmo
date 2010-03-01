@@ -1,0 +1,58 @@
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
+
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr ""
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr ""
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr ""
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr ""
+
+#: thumbnail/config.py:10
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr ""
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: thumbnail/widgets.py:21
+msgid "Change:"
+msgstr ""
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr ""
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr ""

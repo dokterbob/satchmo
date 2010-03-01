@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"POT-Creation-Date: 2010-02-28 19:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,13 +15,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: thumbnail/templates/widget/file.html:4
-msgid "Change"
-msgstr "Ändern"
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
 
-#: thumbnail/templates/widget/file.html:3
-msgid "Currently"
-msgstr "Aktuell"
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr ""
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr ""
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr ""
 
 #: thumbnail/config.py:9
 msgid "Thumbnail quality"
@@ -33,3 +54,23 @@ msgid ""
 "created for products and categories."
 msgstr ""
 
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr ""
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: thumbnail/widgets.py:21
+#, fuzzy
+msgid "Change:"
+msgstr "Ändern"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Aktuell"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Ändern"

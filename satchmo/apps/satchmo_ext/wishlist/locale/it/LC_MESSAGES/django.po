@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -18,91 +18,108 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 
-#: templates/wishlist/index.html:7
-#: templates/wishlist/login_required.html:4
-msgid "Home"
-msgstr "Pagina iniziale"
+#: config.py:8
+#, fuzzy
+msgid "Wishlist slug"
+msgstr "Lista dei desideri"
 
-#: models.py:29
-msgid "Creation Date"
-msgstr "Data di creazione"
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
 
-#: models.py:26
+#: models.py:33
 msgid "Contact"
 msgstr "Contatto"
 
-#: models.py:27
+#: models.py:34
 msgid "Product"
 msgstr "Prodotto"
 
-#: views.py:86
-msgid "Success"
-msgstr "Successo"
+#: models.py:35
+msgid "Details"
+msgstr "Dettagli"
 
-#: templates/wishlist/index.html:38
-msgid "Add to cart"
-msgstr "Aggiungi al carrello"
+#: models.py:36
+msgid "Creation Date"
+msgstr "Data di creazione"
 
-#: views.py:57
-#: views.py:78
+#: models.py:61
+msgid "Product Wish"
+msgstr "Prodotto desiderato"
+
+#: models.py:62
+msgid "Product Wishes"
+msgstr "Prodotti desiderati"
+
+#: views.py:60 views.py:81
 msgid "The product you have requested does not exist."
 msgstr "Il prodotto richiesto non esiste."
 
-#: views.py:88
+#: views.py:89
+#, fuzzy
+msgid "The contact associated with this request does not exist."
+msgstr "Il prodotto richiesto non esiste."
+
+#: views.py:96
+msgid "Success"
+msgstr "Successo"
+
+#: views.py:98
 msgid "Error"
 msgstr "Errore"
 
-#: templates/wishlist/index.html:12
-#: templates/wishlist/login_required.html:9
-msgid "Shop Categories"
-msgstr "Aree del Negozio"
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
+"Non è stato possibile aggiungere al carrello il prodotto desiderato '%"
+"(product)s'. %(details)s"
 
-#: templates/wishlist/index.html:8
-#: templates/wishlist/index.html.py:25
+#: views.py:154 views.py:165 views.py:167
+msgid "No such wishlist item."
+msgstr "Nessun prodotto di questo tipo nella tua wishlist."
+
+#: views.py:160
+msgid "You must be logged in to do that."
+msgstr "Devi autenticarti per fare questo. "
+
+#: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr "Pagina iniziale"
+
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
 #: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
 msgid "Wishlist"
 msgstr "Lista dei desideri"
 
-#: templates/wishlist/index.html:34
+#: templates/wishlist/index.html:27
 #, python-format
 msgid "added on %(create_date)s"
 msgstr "aggiunto il %(create_date)s"
 
-#: templates/wishlist/index.html:42
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr "Aggiungi al carrello"
+
+#: templates/wishlist/index.html:35
 msgid "Remove from wishlist"
 msgstr "Rimuovi dalla lista dei desideri"
 
-#: templates/wishlist/login_required.html:16
+#: templates/wishlist/login_required.html:9
 #, python-format
 msgid ""
 "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
 "wishlist."
-msgstr "Spiacenti, devi essere <a href=\"%(login_url)s\">loggato</a> per accedere alla tua lista dei desideri."
+msgstr ""
+"Spiacenti, devi essere <a href=\"%(login_url)s\">loggato</a> per accedere "
+"alla tua lista dei desideri."
 
-#: models.py:28
-msgid "Details"
-msgstr "Dettagli"
+#: templates/wishlist/plugins/product_add_buttons.html:2
+#, fuzzy
+msgid "Add to wishlist"
+msgstr "Rimuovi dalla lista dei desideri"
 
-#: models.py:54
-msgid "Product Wish"
-msgstr "Prodotto desiderato"
-
-#: models.py:55
-msgid "Product Wishes"
-msgstr "Prodotti desiderati"
-
-#: views.py:103
-#, python-format
-msgid "Wishlist product '%(product)s' could't be added to the cart. %(details)s"
-msgstr "Non è stato possibile aggiungere al carrello il prodotto desiderato '%(product)s'. %(details)s"
-
-#: views.py:144
-#: views.py:155
-#: views.py:157
-msgid "No such wishlist item."
-msgstr "Nessun prodotto di questo tipo nella tua wishlist."
-
-#: views.py:150
-msgid "You must be logged in to do that."
-msgstr "Devi autenticarti per fare questo. "
-
+#~ msgid "Shop Categories"
+#~ msgstr "Aree del Negozio"
