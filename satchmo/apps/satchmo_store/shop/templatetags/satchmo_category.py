@@ -33,6 +33,7 @@ def recurse_for_children(current_node, parent_node, active_cat, show_empty=True)
             for child in children:
                 recurse_for_children(child, new_parent, active_cat)
 
+@register.simple_tag
 def category_tree(id=None):
     """
     Creates an unnumbered list of the categories.
@@ -80,8 +81,6 @@ def category_tree(id=None):
                 break
     return tostring(existing_tree, 'utf-8')
 
-register.simple_tag(category_tree)
-
 class CategoryListNode(Node):
     """Template Node tag which pushes the category list into the context"""
     def __init__(self, slug, var, nodelist):
@@ -110,7 +109,8 @@ class CategoryListNode(Node):
         context.pop()
         return output
 
-def do_categorylistnode(parser, token):
+@register.tag
+def category_list(parser, token):
     """Push the category list into the context using the given variable name.
 
     Sample usage::
@@ -138,9 +138,7 @@ def do_categorylistnode(parser, token):
 
     return CategoryListNode(slug, var, nodelist)
 
-
-register.tag('category_list', do_categorylistnode)
-
+@register.filter
 def product_category_siblings(product, args=""):
     args, kwargs = get_filter_args(args,
         keywords=('variations', 'include_self'),
@@ -155,5 +153,3 @@ def product_category_siblings(product, args=""):
         sibs = [sib for sib in sibs if not sib == product]
 
     return sibs
-
-register.filter('product_category_siblings', product_category_siblings)
