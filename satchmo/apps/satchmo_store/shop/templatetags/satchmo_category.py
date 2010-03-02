@@ -6,6 +6,7 @@ from product.models import Category
 from satchmo_utils.templatetags import get_filter_args
 
 import logging
+import re
 
 log = logging.getLogger('shop.templatetags')
 
@@ -208,3 +209,133 @@ def product_category_siblings(product, args=""):
         sibs = [sib for sib in sibs if not sib == product]
 
     return sibs
+
+class AllProductsForVariableSlugNode(Node):
+    """
+    Sets the variable *var* in the context to result of
+
+      category.active_products(include_children=True)
+
+    where category is the instance of Category with the slug specified in the
+    context variable *slug_var*.
+    """
+    def __init__(self, slug_var, var):
+        self.slug_var = slug_var
+        self.var = var
+
+    def render(self, context):
+        try:
+            slug = self.slug_var.resolve(context)
+        except VariableDoesNotExist:
+            log.error("The variable '%s' was not found in the context.", self.slug_var)
+            return ''
+
+        try:
+            cat = Category.objects.active().get(slug__iexact=slug)
+        except Category.DoesNotExist:
+            log.error("No category found for slug: %s" % slug)
+            return ''
+
+        context[self.var] = cat.active_products(include_children=True)
+        return ''
+
+class AllProductsForSlugNode(Node):
+    """
+    Sets the variable *var* in the context to result of
+
+      category.active_products(include_children=True)
+
+    where category is the instance of Category with the slug *slug*.
+    """
+    def __init__(self, slug, var):
+        self.slug = slug
+        self.var = var
+
+    def render(self, context):
+        try:
+            cat = Category.objects.active().get(slug__iexact=self.slug)
+        except Category.DoesNotExist:
+            log.error("No category found for slug: %s" % self.slug)
+            return ''
+
+        context[self.var] = cat.active_products(include_children=True)
+        return ''
+
+class AllProductsNode(Node):
+    """
+    Sets the variable *var* in the context to result of
+
+      category.active_products(include_children=True)
+
+    where category is the variable *category* in the context.
+    """
+    def __init__(self, var):
+        self.var = var
+
+    def render(self, context):
+        cat = context.get('category')
+
+        if not cat:
+            log.error("The variable 'category' was not found in the context.")
+
+        context[self.var] = cat.active_products(include_children=True)
+        return ''
+
+@register.tag
+def all_products_for_category(parser, token):
+    """
+    Usage:
+     1. {% all_products_for_category as varname %}
+     2. {% all_products_for_category for slug_var as varname %}
+     3. {% all_products_for_category for "slug" as varname %}
+
+    Sets the variable *varname* in the context to a list of all products that
+    are active in *category*, and is equivalent to the result of:
+
+      category.active_products(include_children=True)
+
+    where *category* is:
+     1. the 'category' variable in the context, for usage 1.
+     2. the instance of Category with the slug in the context variable
+        *slug_var*, for usage 2.
+     3. the instance of Category with the slug *slug*, for usage 3.
+    """
+    try:
+        # Splitting by None == splitting by spaces.
+        tag_name, arg = token.contents.split(None, 1)
+    except ValueError:
+        raise TemplateSyntaxError, "%r tag requires arguments" \
+              % token.contents.split()[0]
+
+    m = re.search(r'(.*?)as (\w+)$', arg)
+
+    # First, get the varname - the easiest
+    if not m:
+        raise TemplateSyntaxError, "Variable name was not specified for %r tag" \
+              % tag_name
+
+    arg, var  = m.groups()
+
+    # Now, try and determine usage case the user wants
+    if not arg:
+        # We're of the first case.
+        return AllProductsNode(var)
+
+    m = re.search(r'^for (.+?)$', arg.strip())
+
+    if not m:
+        raise TemplateSyntaxError, "Invalid arguments for %r tag" \
+              % tag_name
+
+    arg = m.group(1)
+
+    if arg[0] == '"' and arg[-1] == '"':
+        # We're of the third case.
+        cat_var = arg[1:-1]
+        return AllProductsForSlugNode(arg[1:-1], var)
+    elif arg:
+        # We're of the second case.
+        return AllProductsForVariableSlugNode(Variable(arg), var)
+
+    raise TemplateSyntaxError, "Invalid arguments for %r tag" \
+          % tag_name
