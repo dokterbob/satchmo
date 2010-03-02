@@ -8,40 +8,39 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: admin.py:15 admin.py:24
-#, fuzzy
 msgid "1 country was"
-msgstr "Landesname"
+msgstr "1 Land wurde"
 
 #: admin.py:17 admin.py:26
-#, fuzzy, python-format
+#, python-format
 msgid "%s countries were"
-msgstr "Länder"
+msgstr "%s·Länder wurden"
 
 #: admin.py:18
 #, python-format
 msgid "%s successfully marked as active"
-msgstr ""
+msgstr "%s·erfolgreich als aktiv markiert"
 
 #: admin.py:19
 msgid "Mark selected countries as active"
-msgstr ""
+msgstr "Markiere ausgewählte Länder als aktiv"
 
 #: admin.py:27
 #, python-format
 msgid "%s successfully marked as inactive"
-msgstr ""
+msgstr "%s·erfolgreich als inaktiv markiert"
 
 #: admin.py:28
 msgid "Mark selected countries as inactive"
-msgstr ""
+msgstr "Markiere ausgewählte Länder als inaktiv"
 
 #: models.py:6
 msgid "Africa"
@@ -61,7 +60,7 @@ msgstr "Asien"
 
 #: models.py:10
 msgid "Oceania"
-msgstr "Oceanien"
+msgstr "Ozeanien"
 
 #: models.py:11
 msgid "South America"
@@ -77,7 +76,7 @@ msgstr "Andere"
 
 #: models.py:17
 msgid "Island"
-msgstr "Island"
+msgstr "Insel"
 
 #: models.py:18
 msgid "Arrondissement"
@@ -85,7 +84,7 @@ msgstr ""
 
 #: models.py:19
 msgid "Atoll"
-msgstr ""
+msgstr "Atoll"
 
 #: models.py:20
 msgid "Autonomous island"
@@ -113,7 +112,7 @@ msgstr "Kolonie"
 
 #: models.py:26
 msgid "District"
-msgstr "Bezirk"
+msgstr "Distrikt"
 
 #: models.py:27
 msgid "Division"
@@ -181,7 +180,7 @@ msgstr "Gebietskörperschaft"
 
 #: models.py:43
 msgid "Subject"
-msgstr "Subjekt"
+msgstr "Bestreff"
 
 #: models.py:44
 msgid "Territory"
@@ -189,11 +188,11 @@ msgstr "Territorium"
 
 #: models.py:53
 msgid "ISO alpha-2"
-msgstr ""
+msgstr "ISO Alpha-2"
 
 #: models.py:54
 msgid "Official name (CAPS)"
-msgstr "offizieller Name (CAPS)"
+msgstr "Offizieller Name (CAPS)"
 
 #: models.py:55
 msgid "Country name"
@@ -201,7 +200,7 @@ msgstr "Landesname"
 
 #: models.py:56
 msgid "ISO alpha-3"
-msgstr ""
+msgstr "ISO Alpha-3"
 
 #: models.py:57
 msgid "ISO numeric"
@@ -217,7 +216,7 @@ msgstr "Kontinent"
 
 #: models.py:60 models.py:81
 msgid "Administrative Area"
-msgstr "administratives Gebiet"
+msgstr "Administratives Gebiet"
 
 #: models.py:63
 msgid "Country"
@@ -237,28 +236,28 @@ msgstr "postalische Abkürzung"
 
 #: models.py:78
 msgid "Area is active"
-msgstr "Land ist aktiv"
+msgstr "Gebiet ist aktiv"
 
 #: models.py:82
 msgid "Administrative Areas"
-msgstr "administratives Gebiet"
+msgstr "administrative Gebiete"
 
 #: templates/l10n/_language_selection_form.html:5
 msgid "Change language"
-msgstr ""
+msgstr "Sprache ändern"
 
 #: templates/l10n/_language_selection_form.html:11
 msgid "Change"
-msgstr ""
+msgstr "Ändern"
 
 #: validators/aupostcode.py:13
 msgid "Invalid Australian postal code"
-msgstr ""
+msgstr "Ungültige australische PLZ"
 
 #: validators/capostcode.py:18
 msgid "Invalid postal code for Canada"
-msgstr ""
+msgstr "Ungültige canadische PLZ"
 
 #: validators/uspostcode.py:10
 msgid "Invalid ZIP code"
-msgstr ""
+msgstr "Ungültige PLZ"

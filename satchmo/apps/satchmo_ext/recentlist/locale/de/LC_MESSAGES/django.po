@@ -1,6 +1,6 @@
 #: config.py:7
 msgid "Maximum recent items"
-msgstr ""
+msgstr "Max. anzuizeigende Anzahl an kürzlich betrachteten Artikeln"
 
 #: config.py:8
 msgid "The maximum number of items show in the recent box."
@@ -8,4 +8,4 @@ msgstr ""
 
 #: templates/recentlist/_recently_viewed.html:5
 msgid "Recently Viewed"
-msgstr ""
+msgstr "Kürzlich betrachtet"

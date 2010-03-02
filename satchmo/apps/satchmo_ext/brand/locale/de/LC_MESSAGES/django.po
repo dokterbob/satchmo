@@ -1,10 +1,10 @@
 #: admin.py:12 admin.py:23
 msgid "Translation"
-msgstr ""
+msgstr "Übersetzung"
 
 #: admin.py:13 admin.py:24
 msgid "Translations"
-msgstr ""
+msgstr "Übersetzungen"
 
 #: admin.py:42 models.py:67
 msgid "Brand"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: models.py:28 models.py:109
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #: models.py:29 models.py:110
 msgid "Used for URLs"
@@ -41,11 +41,11 @@ msgstr ""
 
 #: models.py:30 models.py:112
 msgid "Products"
-msgstr ""
+msgstr "Produkte"
 
 #: models.py:31 models.py:113
 msgid "Ordering"
-msgstr ""
+msgstr "Sortierreihenfolge"
 
 #: models.py:75
 msgid "Brand Product"
@@ -57,23 +57,23 @@ msgstr ""
 
 #: models.py:80 models.py:158
 msgid "language"
-msgstr ""
+msgstr "Sprache"
 
 #: models.py:81 models.py:159
 msgid "title"
-msgstr ""
+msgstr "Titel"
 
 #: models.py:82 models.py:160
 msgid "Short Description"
-msgstr ""
+msgstr "Kurze Beschreibung"
 
 #: models.py:83
 msgid "Full Description"
-msgstr ""
+msgstr "Lange Beschreibung"
 
 #: models.py:84 models.py:162
 msgid "Picture"
-msgstr ""
+msgstr "Bild"
 
 #: models.py:99
 msgid "Brand Translation"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: models.py:145
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: models.py:152
 msgid "Brand Category Product"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: models.py:161
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: models.py:177
 msgid "Brand Category Translations"
@@ -114,7 +114,7 @@ msgstr ""
 
 #: templates/brand/index.html:7 templates/brand/view_brand.html:13
 msgid "Home"
-msgstr ""
+msgstr "Start"
 
 #: templates/brand/index.html:25
 msgid "No brands are active"

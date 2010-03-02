@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,13 +21,15 @@ msgstr "Versandeinstellung"
 
 #: config.py:11
 msgid "Active shipping modules"
-msgstr "aktive Versandmodule"
+msgstr "Aktive Versandmodule"
 
 #: config.py:12
 msgid ""
 "Select the active shipping modules, save and reload to set any module-"
 "specific shipping settings."
 msgstr ""
+"Wählen Sie die aktivierten Versandmodule, speichern und laden Sie die Seite "
+"erneut um die jeweiligen Moduleinstellungen zu bearbeiten."
 
 #: config.py:14
 msgid "Per piece"
@@ -35,33 +37,31 @@ msgstr "pro Stück"
 
 #: config.py:21
 msgid "Hide if one?"
-msgstr ""
+msgstr "Verstecken wenn nur eine Möglichkeit?"
 
 #: config.py:22
 msgid "Hide shipping form fields if there is only one choice available?"
-msgstr ""
+msgstr "Verstecken des Feldes wenn nur eine Wahlmöglichkeit existiert?"
 
 #: config.py:26
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: config.py:27
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: config.py:28
-#, fuzzy
 msgid "Show description only"
-msgstr "Beschreibung"
+msgstr "Nur Beschreibung anzeigen"
 
 #: config.py:34
 msgid "Select least expensive by default?"
-msgstr ""
+msgstr "Standardmäßig die günstigste Methode wählen?"
 
 #: modules/canadapost/config.py:12
-#, fuzzy
 msgid "Canada Post Shipping Settings"
-msgstr "UPS Versandeinstellungen"
+msgstr "Canada Post Einstellung"
 
 #: modules/canadapost/config.py:22
 msgid "Canada Post Merchant ID"
@@ -121,7 +121,7 @@ msgstr ""
 #: modules/canadapost/config.py:89 modules/fedex/config.py:94
 #: modules/ups/config.py:92 modules/usps/config.py:99
 msgid "Verbose logs"
-msgstr ""
+msgstr "Ausführliche Logs"
 
 #: modules/canadapost/config.py:90
 msgid ""
@@ -168,9 +168,8 @@ msgid "3 - 4 business days"
 msgstr "3 - 4 Werktage"
 
 #: modules/fedex/config.py:10
-#, fuzzy
 msgid "FedEx Shipping Settings"
-msgstr "Versandeinstellung"
+msgstr "FedEx Einstellungen"
 
 #: modules/fedex/config.py:20
 msgid "FedEx Meter Number"
@@ -263,7 +262,7 @@ msgstr "pauschale Versandkosten"
 
 #: modules/no/shipper.py:22 modules/no/shipper.py:34
 msgid "No Shipping"
-msgstr "Keine Lieferung"
+msgstr "Kein Versand"
 
 #: modules/no/shipper.py:40
 msgid "immediately"
@@ -271,7 +270,7 @@ msgstr "sofort"
 
 #: modules/per/config.py:15
 msgid "Per item price"
-msgstr "Einzelpostenpreis"
+msgstr "Einzelpreis"
 
 #: modules/per/config.py:22
 msgid "Per Item Shipping Service"
@@ -290,9 +289,8 @@ msgid "Per Item shipping"
 msgstr "pro Versandartikel"
 
 #: modules/productshipping/config.py:7
-#, fuzzy
 msgid "Shipping By Product"
-msgstr "Versandkosten"
+msgstr "Versandkosten nach Produkt"
 
 #: modules/productshipping/models.py:89 modules/tiered/models.py:91
 #: modules/tieredquantity/models.py:85
@@ -302,12 +300,12 @@ msgstr "Schlüssel"
 #: modules/productshipping/models.py:90 modules/tiered/models.py:92
 #: modules/tieredquantity/models.py:86 modules/tieredweight/models.py:114
 msgid "Ordering"
-msgstr "Reihenfolge"
+msgstr "Sortierreihenfolge"
 
 #: modules/productshipping/models.py:91 modules/tiered/models.py:93
 #: modules/tieredquantity/models.py:87 modules/tieredweight/models.py:115
 msgid "Active"
-msgstr "aktiv"
+msgstr "Aktiv"
 
 #: modules/productshipping/models.py:194 modules/tiered/models.py:202
 #: modules/tieredquantity/models.py:199 modules/tieredweight/models.py:245
@@ -332,7 +330,7 @@ msgstr "Methode"
 #: modules/productshipping/models.py:197 modules/tiered/models.py:205
 #: modules/tieredquantity/models.py:202
 msgid "i.e. US Mail"
-msgstr ""
+msgstr "z.B. DHL"
 
 #: modules/productshipping/models.py:198 modules/tiered/models.py:206
 #: modules/tieredquantity/models.py:203
@@ -341,7 +339,7 @@ msgstr ""
 
 #: modules/productshipping/models.py:206 modules/tiered/models.py:216
 msgid "Shipping Price"
-msgstr "Versandkosten"
+msgstr "Versankosten"
 
 #: modules/tiered/config.py:7
 msgid "Tiered Shipping"
@@ -357,7 +355,7 @@ msgstr ""
 
 #: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
 msgid "Expires"
-msgstr ""
+msgstr "Läuft ab"
 
 #: modules/tieredquantity/config.py:4
 msgid "Tiered Quantity"
@@ -365,7 +363,7 @@ msgstr ""
 
 #: modules/tieredquantity/models.py:207
 msgid "Min Quantity"
-msgstr ""
+msgstr "Mindestanzahl"
 
 #: modules/tieredquantity/models.py:208
 msgid "Minimum qty in order for this to apply?"
@@ -377,9 +375,8 @@ msgid "Handling Price"
 msgstr "Mindestpreis"
 
 #: modules/tieredquantity/models.py:211
-#, fuzzy
 msgid "Shipping Per Item"
-msgstr "Versandkosten"
+msgstr "Versand pro Artikel"
 
 #: modules/tieredweight/config.py:10
 #, fuzzy
@@ -393,7 +390,7 @@ msgstr ""
 
 #: modules/tieredweight/models.py:116
 msgid "default_zone"
-msgstr ""
+msgstr "Standard Zone"
 
 #: modules/tieredweight/models.py:127
 msgid "carriers"
@@ -401,11 +398,11 @@ msgstr ""
 
 #: modules/tieredweight/models.py:140
 msgid "name"
-msgstr ""
+msgstr "Name"
 
 #: modules/tieredweight/models.py:141
 msgid "countries"
-msgstr ""
+msgstr "Länder"
 
 #: modules/tieredweight/models.py:142
 msgid "handling"
@@ -414,19 +411,17 @@ msgstr ""
 #: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
 #: modules/tieredweight/models.py:262
 msgid "zone"
-msgstr ""
+msgstr "Zone"
 
 #: modules/tieredweight/models.py:154
 msgid "zones"
-msgstr ""
+msgstr "Zonen"
 
 #: modules/tieredweight/models.py:246
-#, fuzzy
 msgid "description"
 msgstr "Beschreibung"
 
 #: modules/tieredweight/models.py:247
-#, fuzzy
 msgid "method"
 msgstr "Methode"
 
@@ -448,20 +443,19 @@ msgstr ""
 
 #: modules/tieredweight/models.py:263
 msgid "min weight"
-msgstr ""
+msgstr "Mindestgewicht"
 
 #: modules/tieredweight/models.py:264
 msgid "handling ajustment"
 msgstr ""
 
 #: modules/tieredweight/models.py:266
-#, fuzzy
 msgid "shipping price"
 msgstr "Versandkosten"
 
 #: modules/tieredweight/models.py:267
 msgid "expires"
-msgstr ""
+msgstr "läuft ab"
 
 #: modules/tieredweight/models.py:277
 msgid "weight tier"
@@ -473,7 +467,7 @@ msgstr ""
 
 #: modules/ups/config.py:8
 msgid "UPS Shipping Settings"
-msgstr "UPS Versandeinstellungen"
+msgstr "UPS Versandeinstellung"
 
 #: modules/ups/config.py:16
 msgid "UPS XML Access Key"
@@ -501,7 +495,7 @@ msgstr "UPS Account Nummer."
 
 #: modules/ups/config.py:34
 msgid "UPS User Password"
-msgstr "UPS Benutzerpasswort"
+msgstr "UPS Benutzer Passwort"
 
 #: modules/ups/config.py:35
 msgid "User password provided by UPS site."
@@ -532,29 +526,27 @@ msgstr ""
 
 #: modules/ups/shipper.py:71
 msgid "UPS"
-msgstr ""
+msgstr "UPS"
 
 #: modules/usps/config.py:9
-#, fuzzy
 msgid "U.S.P.S. Shipping Settings"
-msgstr "UPS Versandeinstellungen"
+msgstr "U.S.P.S. Versandeinstellung"
 
 #: modules/usps/config.py:17
 msgid "USPS  Username"
-msgstr ""
+msgstr "USPS  Benutzername"
 
 #: modules/usps/config.py:18
 msgid "User ID provided by USPS site."
-msgstr ""
+msgstr "Benutzer ID von der USPS Seite."
 
 #: modules/usps/config.py:23
-#, fuzzy
 msgid "USPS Password"
-msgstr "UPS Benutzerpasswort"
+msgstr "USPS Passwort"
 
 #: modules/usps/config.py:24
 msgid "User password provided by USPS site."
-msgstr ""
+msgstr "Passwort von der USPS Seite."
 
 #: modules/usps/config.py:29
 msgid "Handling Fee"
@@ -589,7 +581,7 @@ msgstr ""
 
 #: modules/usps/shipper.py:145
 msgid "USPS"
-msgstr ""
+msgstr "USPS"
 
 #: modules/usps/shipper.py:153
 #, python-format
@@ -602,14 +594,14 @@ msgid "by %s"
 msgstr ""
 
 #: modules/usps/shipper.py:156
-#, fuzzy, python-format
+#, python-format
 msgid "in %s business days"
-msgstr "%s Werktage"
+msgstr "in %s Werktagen"
 
 #: modules/usps/shipper.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "in %s business day"
-msgstr "%s Werktag"
+msgstr "in %s Werktag"
 
 #: templates/shipping/options.html:6
 #, python-format

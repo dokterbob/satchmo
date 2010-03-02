@@ -12,11 +12,11 @@ msgstr ""
 
 #: models.py:44
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: models.py:45
 msgid "Discount Percent"
-msgstr ""
+msgstr "Rabatt Prozentsatz"
 
 #: models.py:47
 msgid ""
@@ -27,19 +27,19 @@ msgstr ""
 
 #: models.py:72
 msgid "Price"
-msgstr ""
+msgstr "Preis"
 
 #: models.py:73
 msgid "Discount Quantity"
-msgstr ""
+msgstr "Anzahl für den Rabatt"
 
 #: models.py:73
 msgid "Use this price only for this quantity or higher"
-msgstr ""
+msgstr "Dieser Preis gilt nur für diese Anzahl oder mehr"
 
 #: models.py:74
 msgid "Expires"
-msgstr ""
+msgstr "Läuft ab"
 
 #: models.py:150
 #, python-format

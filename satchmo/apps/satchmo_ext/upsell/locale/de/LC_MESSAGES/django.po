@@ -32,7 +32,7 @@ msgstr ""
 
 #: models.py:40
 msgid "Creation Date"
-msgstr ""
+msgstr "Erstellt am"
 
 #: models.py:42
 msgid "Upsell Style"
@@ -40,19 +40,19 @@ msgstr ""
 
 #: models.py:45
 msgid "Notes"
-msgstr ""
+msgstr "Notizen"
 
 #: models.py:46
 msgid "Internal notes"
-msgstr ""
+msgstr "Interne Notizen"
 
 #: models.py:129
 msgid "language"
-msgstr ""
+msgstr "Sprache"
 
 #: models.py:131
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: views.py:65
 #, python-format
@@ -61,8 +61,8 @@ msgstr ""
 
 #: templates/upsell/product_upsell.html:15
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: templates/upsell/product_upsell.html:18
 msgid "Quantity"
-msgstr ""
+msgstr "Anzahl"
