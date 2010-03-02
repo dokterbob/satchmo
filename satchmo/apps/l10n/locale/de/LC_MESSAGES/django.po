@@ -22,12 +22,12 @@ msgstr "1 Land wurde"
 #: admin.py:17 admin.py:26
 #, python-format
 msgid "%s countries were"
-msgstr "%s·Länder wurden"
+msgstr "%s Länder wurden"
 
 #: admin.py:18
 #, python-format
 msgid "%s successfully marked as active"
-msgstr "%s·erfolgreich als aktiv markiert"
+msgstr "%s erfolgreich als aktiv markiert"
 
 #: admin.py:19
 msgid "Mark selected countries as active"
@@ -36,7 +36,7 @@ msgstr "Markiere ausgewählte Länder als aktiv"
 #: admin.py:27
 #, python-format
 msgid "%s successfully marked as inactive"
-msgstr "%s·erfolgreich als inaktiv markiert"
+msgstr "%s erfolgreich als inaktiv markiert"
 
 #: admin.py:28
 msgid "Mark selected countries as inactive"

@@ -30,12 +30,12 @@ msgstr "1 Produkt wurde"
 #: admin.py:181 admin.py:190 admin.py:199 admin.py:208
 #, python-format
 msgid "%s products were"
-msgstr "%s·Produkte sind"
+msgstr "%s Produkte sind"
 
 #: admin.py:182
 #, python-format
 msgid "%s successfully marked as active"
-msgstr "%s·erfolgreich als aktiv markiert"
+msgstr "%s erfolgreich als aktiv markiert"
 
 #: admin.py:183
 msgid "Mark selected products as active"
@@ -44,7 +44,7 @@ msgstr "Markiere ausgewählte Produkte als aktiv"
 #: admin.py:191
 #, python-format
 msgid "%s successfully marked as inactive"
-msgstr "%s·erfolgreich als inaktiv markiert"
+msgstr "%s erfolgreich als inaktiv markiert"
 
 #: admin.py:192
 msgid "Mark selected products as inactive"
@@ -53,7 +53,7 @@ msgstr "Markiere ausgewählte Produkte als inaktiv"
 #: admin.py:200
 #, python-format
 msgid "%s successfully marked as featured"
-msgstr "%s·erfolgreich als Sonderartikel markiert"
+msgstr "%s erfolgreich als Sonderartikel markiert"
 
 #: admin.py:201
 msgid "Mark selected products as featured"
@@ -62,7 +62,7 @@ msgstr "Ausgewählte Produkte als Sonderartikel markiert"
 #: admin.py:209
 #, python-format
 msgid "%s successfully marked as not featured"
-msgstr "%s·erfolgreich als nicht Sonderartikel markiert"
+msgstr "%s erfolgreich als nicht Sonderartikel markiert"
 
 #: admin.py:210
 msgid "Mark selected products as not featured"
@@ -220,15 +220,15 @@ msgstr "Datei für Import"
 #: forms.py:294 forms.py:337
 #, python-format
 msgid "Could not parse format from filename: %s"
-msgstr "Konnte Format vom Dateinamen nicht parsen:·%s"
+msgstr "Konnte Format vom Dateinamen nicht parsen: %s"
 
 #: forms.py:312
 msgid "Bad VARS file in import zipfile."
-msgstr "Fehlerhafte VARS·Datei in der import Zipdatei."
+msgstr "Fehlerhafte VARS Datei in der import Zipdatei."
 
 #: forms.py:342
 msgid "Missing VARS in import zipfile."
-msgstr "Fehlende·VARS·Datei in import Zipdatei."
+msgstr "Fehlende VARS Datei in import Zipdatei."
 
 #: forms.py:348
 #, python-format
@@ -238,12 +238,12 @@ msgstr "Unbekanntes Dateiformat: %s"
 #: forms.py:375
 #, python-format
 msgid "Added %(count)i objects from %(filename)s"
-msgstr "%(count)i·Objekte aus der Datei %(filename)s hinzugefügt"
+msgstr "%(count)i Objekte aus der Datei %(filename)s hinzugefügt"
 
 #: forms.py:380
 #, python-format
 msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
-msgstr "Problem·beim installieren des Fixture·'%(filename)s':·%(error_msg)s\n"
+msgstr "Problem beim installieren des Fixture '%(filename)s': %(error_msg)s\n"
 
 #: models.py:43
 msgid "None"
@@ -1424,7 +1424,7 @@ msgstr "Produktvariationen Manager"
 #: templates/product/admin/variation_manager.html:230
 #, python-format
 msgid "Variation Manager for %(product_name)s"
-msgstr "Variationen Manager·für·%(product_name)s"
+msgstr "Variationen Manager für %(product_name)s"
 
 #: templates/product/admin/variation_manager.html:239
 msgid ""
@@ -1509,12 +1509,12 @@ msgstr "Wählen sie das zu verwaltende Konfigurierbare Produkt."
 #: templatetags/satchmo_product_admin.py:38
 #, python-format
 msgid "Edit %(subtype)s"
-msgstr "Bearbeite·%(subtype)s"
+msgstr "Bearbeite %(subtype)s"
 
 #: templatetags/satchmo_product_admin.py:43
 #, python-format
 msgid "Add %(subtype)s"
-msgstr "Füge·%(subtype)s hinzu"
+msgstr "Füge %(subtype)s hinzu"
 
 #: templatetags/satchmo_product_admin.py:70
 msgid "Delete ProductVariation"

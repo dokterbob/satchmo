@@ -102,11 +102,11 @@ msgstr "Prozentsatz für dieses Land oder Gebiet"
 
 #: modules/area/models.py:36 modules/us_sst/models.py:155
 msgid "Tax Rate"
-msgstr "Steuerrate"
+msgstr "Steuersatz"
 
 #: modules/area/models.py:37 modules/us_sst/models.py:156
 msgid "Tax Rates"
-msgstr "Steuerraten"
+msgstr "Steuersätze"
 
 #: modules/percent/config.py:5
 msgid "Percent Tax"
