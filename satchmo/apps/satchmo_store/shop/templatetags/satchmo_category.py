@@ -138,6 +138,61 @@ def category_list(parser, token):
 
     return CategoryListNode(slug, var, nodelist)
 
+class SetVariableInContextNode(Node):
+    def __init__(self, var, val):
+        self.var = var
+        self.val = val
+
+    def render(self, context):
+        context[self.var] = self.val
+        return ''
+
+@register.tag
+def categories_for_slugs(parser, token):
+    """
+    Usage: {% categories_for_slugs "slug[,slug...]" as varname %}
+
+    Sets the variable *varname* in the context to a list of categories, given by
+    the list of slugs.
+
+    Useful if you want to specify a custom list of categories and override the
+    default category listing from satchmo.
+
+    For example,
+
+        {% categories_for_slug "hats,boots,accessories" as categories %}
+        <ul>
+            {% for child in categories.child.active %}
+            <li><a href="{{ child.get_absolute_url }}">{{ child.translated_name }}</a></li>
+            {% endfor %}
+        </ul>
+    """
+    try:
+        # Splitting by None == splitting by spaces.
+        tag_name, arg = token.contents.split(None, 1)
+    except ValueError:
+        raise TemplateSyntaxError, "%r tag requires arguments" \
+              % token.contents.split()[0]
+
+    m = re.search(r'"([^ "]+)" as (\w+)', arg)
+
+    if not m:
+        raise TemplateSyntaxError, "%r tag had invalid arguments" \
+              % tag_name
+
+    cat_slugs, var = m.groups()
+    cats=[]
+
+    for cat_slug in cat_slugs.split(','):
+        try:
+            cat = Category.objects.get(slug__iexact=cat_slug)
+        except Category.DoesNotExist:
+            log.warn("No category found for slug: %s", cat_slug)
+            cat = None
+        cats.append(cat)
+
+    return SetVariableInContextNode(var, cats)
+
 @register.filter
 def product_category_siblings(product, args=""):
     args, kwargs = get_filter_args(args,
