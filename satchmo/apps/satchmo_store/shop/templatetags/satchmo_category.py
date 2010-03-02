@@ -1,11 +1,11 @@
+from django.core.cache import cache
+from django.contrib.sites.models import Site
 from django.template import Library, Node, Variable
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from product.models import Category
 from satchmo_utils.templatetags import get_filter_args
-import logging
-from django.core.cache import cache
-from django.contrib.sites.models import Site
 
+import logging
 
 log = logging.getLogger('shop.templatetags')
 
