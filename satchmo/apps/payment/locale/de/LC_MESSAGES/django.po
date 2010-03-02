@@ -1368,7 +1368,7 @@ msgstr ""
 #: templates/shop/checkout/sermepa/confirm.html:17
 #: templates/shop/checkout/sermepa/confirm.html:42
 msgid "Purchase Items"
-msgstr ""
+msgstr "Artikel kaufen"
 
 #: templates/shop/checkout/base_pay_ship.html:18
 #: templates/shop/checkout/form.html:28
@@ -1577,8 +1577,8 @@ msgid ""
 "Please print out this page as a receipt.  You will also receive an email "
 "with this information."
 msgstr ""
-"Bitte drucken sie sich diese Seite als Rechnung aus. Sie werden ebenfalls "
-"eine Rechnung per E-Mail erhalten."
+"Bitte drucken sie sich diese Seite für Ihre Unterlagen aus. Sie werden ebenfalls "
+"eine Bestellbestätigung per E-Mail erhalten."
 
 #: templates/shop/checkout/cod/confirm.html:17
 #, python-format
