@@ -9,6 +9,7 @@ import datetime
 import keyedcache
 import logging
 import random
+from sets import Set
 import signals
 import operator
 import os.path
@@ -467,6 +468,8 @@ class Discount(models.Model):
         help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
     valid_products = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
         blank=True, null=True)
+    valid_categories = models.ManyToManyField('Category', verbose_name=_("Valid Categories"),
+        blank=True, null=True)
 
     objects = DiscountManager()
 
@@ -510,14 +513,20 @@ class Discount(models.Model):
             success=success)
         return (success['valid'], success['message'])
 
+    def _valid_products_in_categories(self):
+        slugs = Set()
+        for cat in Category.objects.filter(id__in=self.valid_categories.values_list('id', flat=True)):
+            slugs.update([p.slug for p in cat.active_products(variations=True, include_children=True)])
+        return slugs
 
     def _valid_products(self, item_query):
+        slugs_from_cat = self._valid_products_in_categories()
         validslugs = self.valid_products.values_list('slug', flat=True)
         itemslugs = item_query.values_list('product__slug', flat=True)
         return ProductPriceLookup.objects.filter(
             Q(discountable=True)
-            &Q(productslug__in=validslugs)
-            &Q(productslug__in=itemslugs)
+            &Q(productslug__in=itemslugs),
+            Q(productslug__in=validslugs) | Q(productslug__in=slugs_from_cat)
             ).values_list('productslug', flat=True)
 
     def calc(self, order):
@@ -598,7 +607,8 @@ class Discount(models.Model):
         if not product.is_discountable:
             return False
         p = self.valid_products.filter(id__exact = product.id)
-        return p.count() > 0
+        return p.count() > 0 or \
+            (product.slug in self._valid_products_in_categories())
 
     class Meta:
         verbose_name = _("Discount")
