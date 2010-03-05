@@ -72,8 +72,16 @@ class ContactInfoForm(ProxyContactForm):
         self._local_only = shop.in_country_only
         self.enforce_state = config_value('SHOP','ENFORCE_STATE')
 
-        if self.enforce_state and shop.in_country_only:
-            billing_areas = shipping_areas = area_choices_for_country(shop.sales_country)
+        self._default_country = shop.sales_country
+        billing_country = (self._contact and getattr(self._contact.billing_address, 'country', None)) or self._default_country
+        shipping_country = (self._contact and getattr(self._contact.shipping_address, 'country', None)) or self._default_country
+        self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
+        self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
+
+        if self.enforce_state:
+            # Get areas for the initial country selected.
+            billing_areas = area_choices_for_country(billing_country)
+            shipping_areas = area_choices_for_country(shipping_country)
 
             if billing_areas is not None:
                 billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
@@ -82,12 +90,6 @@ class ContactInfoForm(ProxyContactForm):
             if shipping_areas is not None:
                 shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
                 self.fields['ship_state'] = forms.ChoiceField(choices=shipping_areas, initial=shipping_state, required=False, label=_('State'))
-
-        self._default_country = shop.sales_country
-        billing_country = (self._contact and getattr(self._contact.billing_address, 'country', None)) or self._default_country
-        shipping_country = (self._contact and getattr(self._contact.shipping_address, 'country', None)) or self._default_country
-        self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
-        self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
 
         for fname in self.required_billing_data:
             if fname == 'country' and self._local_only:
