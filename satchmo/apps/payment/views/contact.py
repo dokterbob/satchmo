@@ -51,7 +51,7 @@ def contact_info(request, **kwargs):
         contact = Contact.objects.from_request(request, create=False)
     except Contact.DoesNotExist:
         contact = None
-        
+
     try:
         order = Order.objects.from_request(request)
         if order.discount_code:
@@ -63,7 +63,7 @@ def contact_info(request, **kwargs):
         new_data = request.POST.copy()
         if not tempCart.is_shippable:
             new_data['copy_address'] = True
-        form = PaymentContactInfoForm(data=new_data, shop=shop, contact=contact, shippable=tempCart.is_shippable, 
+        form = PaymentContactInfoForm(data=new_data, shop=shop, contact=contact, shippable=tempCart.is_shippable,
             initial=init_data, cart=tempCart)
 
         if form.is_valid():
@@ -71,7 +71,7 @@ def contact_info(request, **kwargs):
                 contact = Contact(user=request.user)
             custID = form.save(request, cart=tempCart, contact=contact)
             request.session[CUSTOMER_ID] = custID
-                        
+
             modulename = new_data['paymentmethod']
             if not modulename.startswith('PAYMENT_'):
                 modulename = 'PAYMENT_' + modulename
@@ -98,21 +98,21 @@ def contact_info(request, **kwargs):
             request.session.set_test_cookie()
 
         #Request additional init_data
-        form_initialdata.send(sender=PaymentContactInfoForm, initial=init_data, 
+        form_initialdata.send(sender=PaymentContactInfoForm, initial=init_data,
             contact=contact, cart=tempCart, shop=shop)
 
         form = PaymentContactInfoForm(
-            shop=shop, 
-            contact=contact, 
-            shippable=tempCart.is_shippable, 
-            initial=init_data, 
+            shop=shop,
+            contact=contact,
+            shippable=tempCart.is_shippable,
+            initial=init_data,
             cart=tempCart)
 
     if shop.in_country_only:
         only_country = shop.sales_country
     else:
         only_country = None
-        
+
     context = RequestContext(request, {
         'form': form,
         'country': only_country,

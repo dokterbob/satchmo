@@ -43,5 +43,5 @@ def make_urlpatterns():
             log.debug('Found payment processor: %s, adding urls at %s', key, urlbase)
             patterns.append(url(urlbase, [urlmodule, '', '']))
     return tuple(patterns)
-    
+
 urlpatterns += make_urlpatterns()
