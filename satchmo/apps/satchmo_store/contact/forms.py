@@ -62,14 +62,13 @@ class ContactInfoForm(ProxyContactForm):
         areas = shop.areas()
         self.enforce_state = config_value('SHOP','ENFORCE_STATE')
 
-        if shop.in_country_only and areas and areas.count()>0:
+        if self.enforce_state and shop.in_country_only and areas and areas.count()>0:
             areas = [(area.abbrev or area.name, area.name) for area in areas]
             areas.insert(0,('',_("---Please Select---")))
             billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
             shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
-            if self.enforce_state:
-                self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
-                self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
+            self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
+            self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
 
         self._default_country = shop.sales_country
         billing_country = (self._contact and getattr(self._contact.billing_address, 'country', None)) or self._default_country
