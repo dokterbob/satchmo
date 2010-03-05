@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr "Zahlungseinstellungen"
 
 #: config.py:18
 msgid "Cron Passkey"
-msgstr ""
+msgstr "Cron Passwort"
 
 #: config.py:19
 msgid ""
@@ -50,30 +50,31 @@ msgstr "Akzeptiere echte Zahlungen"
 msgid ""
 "False if you want to be in test mode.  This is the master switch, turn it "
 "off to force all payments into test mode."
-msgstr ""
+msgstr "Deaktivieren um alle Bezahlmodule in den Test Modus zu versetzen."
 
 #: config.py:42
 msgid "Email owner?"
-msgstr ""
+msgstr "Eigentümer benachrichtigen?"
 
 #: config.py:43
 msgid "True if you want to email the owner on order"
-msgstr ""
+msgstr "Bei einer Bestellung den Eigentümer per E-Mail benachrichtigen"
 
 #: config.py:50
-#, fuzzy
 msgid "Extra order emails?"
-msgstr "eMail senden"
+msgstr "Zusätzliche E-Mail-Adressen?"
 
 #: config.py:52
 msgid ""
 "Put all email addresses you want to email in addition to the owner when an "
 "order is placed."
 msgstr ""
+"E-Mail-Adressen, die ebenfalls bei einer Bestellung informiert werden "
+"sollen."
 
 #: config.py:60 modules/dummy/config.py:64
 msgid "Early AUTH"
-msgstr ""
+msgstr "Frühe Authentifizierung"
 
 #: config.py:61
 msgid ""
@@ -83,6 +84,9 @@ msgid ""
 "only supported for payment modules that can do Authorizations.  It will be "
 "silently ignored for any other processors."
 msgstr ""
+"Wenn möglich eine frühe Authentifizierung verwenden. Dies meldet dem Kunden "
+"einen Fehler in der Authentifizierung schon frühzeitig und nicht erst auf "
+"der Bestätigungsseite."
 
 #: config.py:66
 msgid "Country match required?"
@@ -93,10 +97,12 @@ msgid ""
 "If True, then customers may not have different countries for shipping and "
 "billing."
 msgstr ""
+"Wenn aktiviert dürfen Rechnungs- und Lieferadresse nicht in verschiedenen "
+"Ländern liegen."
 
 #: config.py:72
 msgid "Enable SSL"
-msgstr "aktiviertes SSL"
+msgstr "SSL aktivieren"
 
 #: config.py:73
 msgid ""
@@ -104,19 +110,22 @@ msgid ""
 "    It does not set SSL for individual modules. \n"
 "    You must enable SSL for each payment module individually."
 msgstr ""
+"Dies aktiviert SSL für die allgemeinen Seiten wie z.B. die Seite zum "
+"auswählen der Bezahloption. Es aktiviert SSL jedoch nicht für die jeweiligen "
+"Seiten der Bezahlmodule, dies muss in den Einstellungen der Module "
+"aktiviert werden."
 
 #: config.py:80
 msgid "Minimum Order"
-msgstr ""
+msgstr "Mindestbestellwert"
 
 #: config.py:81
 msgid "The minimum cart total before checkout is allowed."
-msgstr ""
+msgstr "Mindestbetrag, damit eine Bestellung ausgeführt werden kann."
 
 #: config.py:86
-#, fuzzy
 msgid "Save Credit Card Numbers"
-msgstr "Kreditkarten"
+msgstr "Kreditkartennumern speichern"
 
 #: config.py:87
 msgid ""
@@ -124,29 +133,33 @@ msgid ""
 "compliance, this is required unless you have your database server on a "
 "separate server not connected to the internet."
 msgstr ""
+"Wenn deaktiviert werden keine Kreditkartennummern auf dem System "
+"gespeichert. Erforderlich für PCI Konformität, solange Sie keinen seperaten "
+"Datenbankserver verwenden, der nicht mit dem Internet verbunden ist."
 
 #: config.py:92
 msgid "Number of years to display for CC expiration"
-msgstr ""
+msgstr "Anzahl der Jahre für das Ablaufdatum der Kreditkarte"
 
 #: config.py:93
 msgid ""
 "Number of years that will be added to today's year for the CC expiration "
 "drop down"
 msgstr ""
+"Anzahl an Jahren, die vom heutigen Jahr ausgehend, dem Benutzer zur Auswahl "
+"des Kreditkarten Ablaufdatums angeboten werden."
 
 #: config.py:98
-#, fuzzy
 msgid "Use discounts"
-msgstr "Unzureichender Kredit."
+msgstr "Rabatte aktivieren"
 
 #: config.py:99
 msgid "If disabled, customers will not be asked for any discount codes."
-msgstr ""
+msgstr "Wenn deaktiviert werden Kunden nicht nach Rabatt Codes gefragt."
 
 #: forms.py:103
 msgid "Discount"
-msgstr ""
+msgstr "Rabatt"
 
 #: forms.py:156
 msgid "New price"
@@ -168,18 +181,16 @@ msgid "Payment method"
 msgstr "Zahlungsmethode"
 
 #: forms.py:249
-#, fuzzy
 msgid "This field is required"
 msgstr "Dieses Feld ist erforderlich."
 
 #: forms.py:252
 msgid "Selected payment method requires this field to be filled"
-msgstr ""
+msgstr "Dieses Feld muss für die ausgewählte Bezahlmethode ausgefüllt werden"
 
 #: forms.py:274
-#, fuzzy
 msgid "Invalid discount code."
-msgstr "Unzureichender Kredit."
+msgstr "Ungültiger Rabattcode."
 
 #: forms.py:366
 msgid "This field is required."
@@ -191,16 +202,16 @@ msgstr "Ihre Karte ist abgelaufen."
 
 #: forms.py:510
 msgid "Invalid ccv."
-msgstr "Unzureichender Kredit."
+msgstr "Ungültiger Kreditkarte Verifizierungs Code."
 
 #: listeners.py:19
 msgid "terms and conditions"
-msgstr ""
+msgstr "Geschäftsbedingungen"
 
 #: listeners.py:21
 #, python-format
 msgid "Do you accept the %(terms_link)s?"
-msgstr ""
+msgstr "%(terms_link)s akzeptieren?"
 
 #: models.py:29
 msgid "Description"
@@ -208,7 +219,7 @@ msgstr "Beschreibung"
 
 #: models.py:30
 msgid "Active"
-msgstr "aktiv"
+msgstr "Aktiv"
 
 #: models.py:31
 msgid "Should this be displayed as an option for the user?"
@@ -220,7 +231,7 @@ msgstr "Optionsname"
 
 #: models.py:34
 msgid "The class name as defined in payment.py"
-msgstr "Der Klassenname is in payment.py definiert"
+msgstr "Der Klassenname wie in payment.py definiert"
 
 #: models.py:35
 msgid "Sort Order"
@@ -256,16 +267,15 @@ msgstr "Ablaufjahr"
 
 #: models.py:55
 msgid "card_holder Name"
-msgstr ""
+msgstr "Name des Kreditkartenbesitzers"
 
 #: models.py:56
 msgid "Start Month"
-msgstr ""
+msgstr "Start Monat"
 
 #: models.py:57
-#, fuzzy
 msgid "Start Year"
-msgstr "Sortierreihenfolge"
+msgstr "Start Jahr"
 
 #: models.py:107 modules/authorizenet/config.py:6
 #: modules/cybersource/config.py:6 modules/protx/config.py:6
@@ -280,7 +290,7 @@ msgstr "Kreditkarten"
 #: modules/base.py:48 modules/base.py:80 modules/base.py:85
 #: modules/base.py:181
 msgid "Not Implemented"
-msgstr ""
+msgstr "Nicht implementiert"
 
 #: modules/base.py:382 modules/autosuccess/processor.py:21
 #: modules/cod/processor.py:26 modules/dummy/processor.py:44
@@ -288,11 +298,11 @@ msgstr ""
 #: modules/dummy/processor.py:85 modules/giftcertificate/processor.py:52
 #: modules/purchaseorder/processor.py:31 views/confirm.py:254
 msgid "Success"
-msgstr "Erfolg"
+msgstr "Erfolgreich"
 
 #: modules/base.py:384
 msgid "Failure"
-msgstr ""
+msgstr "Fehlgeschlagen"
 
 #: modules/authorizenet/config.py:6 modules/cybersource/config.py:6
 #: modules/protx/config.py:6 modules/trustcommerce/config.py:5
@@ -301,7 +311,7 @@ msgstr "Kreditkarte"
 
 #: modules/authorizenet/config.py:9
 msgid "Authorize.net Payment Settings"
-msgstr ""
+msgstr "Authorize.net Zahlungseinstellungen"
 
 #: modules/authorizenet/config.py:16
 msgid "Submit to URL"
@@ -319,7 +329,7 @@ msgstr ""
 #: modules/giftcertificate/config.py:14 modules/protx/config.py:48
 #: modules/purchaseorder/config.py:45 modules/trustcommerce/config.py:27
 msgid "Use SSL for the checkout pages?"
-msgstr ""
+msgstr "SSL für die Seiten des Bestellprozesses aktivieren?"
 
 #: modules/authorizenet/config.py:41
 msgid ""
@@ -364,7 +374,7 @@ msgstr "Modulschlüssel"
 #: modules/protx/config.py:65 modules/purchaseorder/config.py:29
 #: modules/sermepa/config.py:34 modules/trustcommerce/config.py:52
 msgid "English name for this group on the checkout screens"
-msgstr ""
+msgstr "Englischer Name für diese Gruppe auf den Seiten des Bestellprozesses"
 
 #: modules/authorizenet/config.py:66 modules/autosuccess/config.py:31
 #: modules/cod/config.py:40 modules/cybersource/config.py:53
@@ -373,7 +383,7 @@ msgstr ""
 #: modules/protx/config.py:67 modules/purchaseorder/config.py:31
 #: modules/sermepa/config.py:36 modules/trustcommerce/config.py:54
 msgid "This will be passed to the translation utility"
-msgstr ""
+msgstr "Dies wird an das Übersetzungswerkzeug weitergereicht"
 
 #: modules/authorizenet/config.py:70 modules/autosuccess/config.py:35
 #: modules/cod/config.py:44 modules/cybersource/config.py:63
@@ -383,22 +393,21 @@ msgstr ""
 #: modules/sermepa/config.py:41 modules/trustcommerce/config.py:58
 msgid ""
 "The url base used for constructing urlpatterns which will use this module"
-msgstr ""
+msgstr "Basis für die generierten URL's für dieses Modul"
 
 #: modules/authorizenet/config.py:75 modules/cybersource/config.py:68
 #: modules/dummy/config.py:48 modules/protx/config.py:71
 #: modules/trustcommerce/config.py:63
-#, fuzzy
 msgid "Available credit cards"
-msgstr "Typ der Kreditkarte"
+msgstr "Verfügbare Kreditkarten"
 
 #: modules/authorizenet/config.py:85
 msgid "Your authorize.net transaction login"
-msgstr ""
+msgstr "Ihr Authorize.net Transaktions Login"
 
 #: modules/authorizenet/config.py:90
 msgid "Your authorize.net transaction key"
-msgstr ""
+msgstr "Ihr Authorize.net Transaktions Schlüssel"
 
 #: modules/authorizenet/config.py:95 modules/dummy/config.py:58
 msgid "Capture Payment immediately?"
@@ -417,7 +426,7 @@ msgstr ""
 #: modules/protx/config.py:110 modules/sermepa/config.py:164
 #: modules/trustcommerce/config.py:83
 msgid "Verbose logs"
-msgstr ""
+msgstr "Ausführliche Logs"
 
 #: modules/authorizenet/config.py:102 modules/autosuccess/config.py:41
 #: modules/cod/config.py:50 modules/cybersource/config.py:89
@@ -426,12 +435,11 @@ msgstr ""
 #: modules/protx/config.py:111 modules/sermepa/config.py:165
 #: modules/trustcommerce/config.py:84
 msgid "Add extensive logs during post."
-msgstr ""
+msgstr "Extra Logausgaben während des POST aktivieren."
 
 #: modules/authorizenet/config.py:109
-#, fuzzy
 msgid "Enable ARB?"
-msgstr "aktiviertes SSL"
+msgstr "ARB aktivieren"
 
 #: modules/authorizenet/config.py:111
 msgid ""
@@ -463,7 +471,7 @@ msgstr ""
 
 #: modules/authorizenet/processor.py:61
 msgid "Already complete"
-msgstr ""
+msgstr "Bereits vollständig"
 
 #: modules/authorizenet/processor.py:437 modules/authorizenet/processor.py:500
 msgid "Could not talk to Authorize.net gateway"
@@ -471,7 +479,7 @@ msgstr ""
 
 #: modules/autosuccess/config.py:5
 msgid "Payment Auto Success Module Settings"
-msgstr ""
+msgstr "Payment Auto Success Zahlungseinstellungen"
 
 #: modules/autosuccess/config.py:12 modules/cod/config.py:20
 #: modules/cybersource/config.py:34 modules/dummy/config.py:20
@@ -480,21 +488,21 @@ msgstr ""
 #: modules/purchaseorder/config.py:12 modules/sermepa/config.py:49
 #: modules/trustcommerce/config.py:38
 msgid "False if you want to be in test mode"
-msgstr ""
+msgstr "Deaktivieren um das Modul im Testmodus zu betreiben"
 
 #: modules/cod/config.py:8
 msgid "COD Payment Module Settings"
-msgstr "Nachnahme Einstellungen"
+msgstr "Nachnahme Zahlungseinstellungen"
 
 #: modules/cod/config.py:14 modules/dummy/config.py:14
 #: modules/google/config.py:73 modules/paypal/config.py:48
 #: modules/sermepa/config.py:157
 msgid "Use SSL for the module checkout pages?"
-msgstr ""
+msgstr "SSL für die Seiten des Moduls aktivieren?"
 
 #: modules/cybersource/config.py:9
 msgid "Cybersource.net Payment Settings"
-msgstr ""
+msgstr "Cybersource.net Zahlungseinstellungen"
 
 #: modules/cybersource/config.py:16
 msgid "WSDL URL"
@@ -507,23 +515,23 @@ msgstr ""
 #: modules/cybersource/config.py:57 modules/google/config.py:21
 #: modules/paypal/config.py:12 modules/protx/config.py:99
 msgid "Currency Code"
-msgstr "Währungseinheit"
+msgstr "Währungscode"
 
 #: modules/cybersource/config.py:58
 msgid "Currency code for Cybersource transactions."
-msgstr ""
+msgstr "Währungscode für Cybersource.net Transaktionen"
 
 #: modules/cybersource/config.py:78
 msgid "Your Cybersource merchant ID"
-msgstr ""
+msgstr "Ihre Cybersource.net Merchant ID"
 
 #: modules/cybersource/config.py:83
 msgid "Your Cybersource transaction key"
-msgstr ""
+msgstr "Ihr Cybersource.net Transaktions-Schlüssel"
 
 #: modules/dummy/config.py:8
 msgid "Payment Test Module Settings"
-msgstr ""
+msgstr "Payment Test Modul Zahlungseinstellungen"
 
 #: modules/dummy/config.py:65
 msgid ""
@@ -544,15 +552,15 @@ msgstr ""
 #: modules/giftcertificate/templates/giftcertificate/balance.html:13
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:9
 msgid "Gift Certificate"
-msgstr ""
+msgstr "Geschenkgutschein"
 
 #: modules/giftcertificate/config.py:9
 msgid "Gift Certificate Settings"
-msgstr ""
+msgstr "Geschenkgutschein Einstellungen"
 
 #: modules/giftcertificate/config.py:19
 msgid "Character Set"
-msgstr ""
+msgstr "Zeichensetz"
 
 #: modules/giftcertificate/config.py:21
 msgid ""
@@ -562,7 +570,7 @@ msgstr ""
 
 #: modules/giftcertificate/config.py:31
 msgid "Code format"
-msgstr ""
+msgstr "Format des Gutschein-Codes"
 
 #: modules/giftcertificate/config.py:33
 msgid ""
@@ -572,42 +580,39 @@ msgstr ""
 
 #: modules/giftcertificate/forms.py:6
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: modules/giftcertificate/models.py:31
 msgid "Site"
-msgstr ""
+msgstr "Seite"
 
 #: modules/giftcertificate/models.py:32 modules/purchaseorder/models.py:30
-#, fuzzy
 msgid "Order"
-msgstr "Sortierreihenfolge"
+msgstr "Bestellung"
 
 #: modules/giftcertificate/models.py:33
 msgid "Certificate Code"
-msgstr ""
+msgstr "Geschenkgutschein Code"
 
 #: modules/giftcertificate/models.py:35
 msgid "Purchased by"
-msgstr ""
+msgstr "Gekauft von"
 
 #: modules/giftcertificate/models.py:37
 msgid "Date added"
-msgstr ""
+msgstr "angelegt am"
 
 #: modules/giftcertificate/models.py:38
-#, fuzzy
 msgid "Valid"
-msgstr "bezahlt"
+msgstr "Gültig"
 
 #: modules/giftcertificate/models.py:39
 msgid "Message"
-msgstr ""
+msgstr "Nachricht"
 
 #: modules/giftcertificate/models.py:40
-#, fuzzy
 msgid "Email"
-msgstr "klein"
+msgstr "E-Mail"
 
 #: modules/giftcertificate/models.py:41
 msgid "Starting Balance"
@@ -616,35 +621,35 @@ msgstr ""
 #: modules/giftcertificate/models.py:97
 #: modules/giftcertificate/templates/giftcertificate/balance.html:6
 msgid "Gift Certificates"
-msgstr ""
+msgstr "Geschenkgutscheine"
 
 #: modules/giftcertificate/models.py:101
 msgid "Date of usage"
-msgstr ""
+msgstr "Benutzt am"
 
 #: modules/giftcertificate/models.py:103
 msgid "Amount Used"
-msgstr ""
+msgstr "Benutzter Betrag"
 
 #: modules/giftcertificate/models.py:105
 msgid "Order Payment"
-msgstr ""
+msgstr "Bezahlung"
 
 #: modules/giftcertificate/models.py:106
 msgid "Used by"
-msgstr ""
+msgstr "Benutzt von"
 
 #: modules/giftcertificate/models.py:123
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #: modules/giftcertificate/models.py:161
 msgid "Gift certificate product"
-msgstr ""
+msgstr "Geschenkgutschein Produkt"
 
 #: modules/giftcertificate/models.py:162
 msgid "Gift certificate products"
-msgstr ""
+msgstr "Geschenkgutschein Produkte"
 
 #: modules/giftcertificate/processor.py:30
 msgid "No balance to pay"
@@ -652,25 +657,25 @@ msgstr ""
 
 #: modules/giftcertificate/processor.py:41
 msgid "No such Gift Certificate"
-msgstr ""
+msgstr "Ein solcher Geschenkgutschein ist nicht vorhanden"
 
 #: modules/giftcertificate/processor.py:46
 msgid "Bad Gift Certificate"
-msgstr ""
+msgstr "Ungültiger Geschenkgutschein"
 
 #: modules/giftcertificate/processor.py:56
 #, python-format
 msgid "%s balance remains after gift certificate was applied"
-msgstr ""
+msgstr "Es bleibt ein Restbetrag von %s nach anwenden des Geschenkgutscheins"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:5
 msgid "Gift Certificate Codes"
-msgstr ""
+msgstr "Geschenkgutschein Codes"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:10
 #, python-format
 msgid "To: %(recipient)s"
-msgstr ""
+msgstr "An: %(recipient)s"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:15
 #, python-format
@@ -680,12 +685,12 @@ msgstr ""
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:19
 #, python-format
 msgid "Code: %(code)s"
-msgstr ""
+msgstr "Code: %(code)s"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:24
 #, python-format
 msgid "Message: %(message)s"
-msgstr ""
+msgstr "Nachricht: %(message)s"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:5
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:9
@@ -702,11 +707,11 @@ msgstr ""
 #: templates/shop/checkout/protx/confirm.html:9
 #: templates/shop/checkout/purchaseorder/confirm.html:7
 msgid "Home"
-msgstr ""
+msgstr "Start"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:15
 msgid "Purchased on:"
-msgstr ""
+msgstr "Gekauft am:"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:21
 msgid "Starting Balance:"
@@ -718,7 +723,7 @@ msgstr ""
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:25
 msgid "No such gift certificate found."
-msgstr ""
+msgstr "Keinen solchen Geschenkgutschein gefunden."
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:30
 msgid "Look up balance"
@@ -726,7 +731,7 @@ msgstr ""
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:11
 msgid "Price"
-msgstr ""
+msgstr "Preis"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:21
 msgid "Quantity (multiply the gift certificate by this amount)"
@@ -734,15 +739,15 @@ msgstr ""
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:24
 msgid "Recipient Email (optional):"
-msgstr ""
+msgstr "Empfänger E-Mail (optional):"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:25
 msgid "Message (optional):"
-msgstr ""
+msgstr "Nachricht (optional):"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:30
 msgid "Add to cart"
-msgstr ""
+msgstr "Zum Warenkorb hinzufügen"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:10
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:10
@@ -761,7 +766,7 @@ msgstr ""
 #: templates/shop/checkout/protx/confirm.html:10
 #: templates/shop/checkout/purchaseorder/confirm.html:8
 msgid "Checkout"
-msgstr ""
+msgstr "Bestellen"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:14
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:14
@@ -779,14 +784,13 @@ msgstr ""
 #: templates/shop/checkout/purchaseorder/confirm.html:12
 #: templates/shop/checkout/sermepa/confirm.html:6
 #: templates/shop/checkout/sermepa/confirm.html:9
-#, fuzzy
 msgid "Payment"
-msgstr "Bezahloption"
+msgstr "Bezahlung"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:20
 #, python-format
 msgid "Order total: %(orderbalance)s"
-msgstr ""
+msgstr "Gesamt: %(orderbalance)s"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:21
 #, python-format
@@ -801,11 +805,13 @@ msgid ""
 "to select another form of payment for the balance after you use this gift "
 "certificate."
 msgstr ""
+"Wenn der Betrag des Geschenkgutscheins nicht ausreicht um den Gesamtbetrag "
+"der Bestellung zu zahlen, haben Sie die Möglichkeit nach Verwendung des "
+"Geschenkgutscheins eine weitere Zahlungsmethode zu wählen."
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:6
-#, fuzzy
 msgid "Please Note:"
-msgstr "Bitte wählen"
+msgstr "Bitte beachten:"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:19
 #, python-format
@@ -813,29 +819,30 @@ msgid ""
 "About to use your gift certificate: %(giftcode)s, which has a balance of %"
 "(balance)s."
 msgstr ""
+"Im Begriff Ihren Geschenkgutschein: %(giftcode)s mit einem Wert von %"
+"(balance)s zu verwenden."
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:23
 msgid "About to use INVALID gift certificate"
-msgstr ""
+msgstr "Im Begriff einen ungültigen Geschenkgutschein zu verwenden"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/pay_ship.html:6
 #: templates/shop/checkout/pay_ship.html:6
 #: templates/shop/checkout/protx/pay_ship.html:18
-#, fuzzy
 msgid "Payment Information"
-msgstr "Bezahloption"
+msgstr "Zahlungsinformationen"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/pay_ship.html:11
 msgid "Gift Certificate Code"
-msgstr ""
+msgstr "Geschenkgutschein Code"
 
 #: modules/google/config.py:8
 msgid "Google Checkout Module Settings"
-msgstr ""
+msgstr "Google Checkout Einstellungen"
 
 #: modules/google/config.py:15
 msgid "XML Template"
-msgstr ""
+msgstr "XML Template"
 
 #: modules/google/config.py:16
 msgid ""
@@ -857,21 +864,21 @@ msgstr ""
 
 #: modules/google/config.py:34
 msgid "Small"
-msgstr "klein"
+msgstr "Klein"
 
 #: modules/google/config.py:35
 msgid "Medium"
-msgstr "mittel"
+msgstr "Mittel"
 
 #: modules/google/config.py:36
 msgid "Large"
-msgstr "groß"
+msgstr "Groß"
 
 #: modules/google/config.py:41 modules/google/config.py:47
 #: modules/paypal/config.py:18 modules/paypal/config.py:24
 #: modules/sermepa/config.py:116
 msgid "Post URL"
-msgstr ""
+msgstr "Post URL"
 
 #: modules/google/config.py:42
 msgid "The Google URL for real transaction posting."
@@ -903,11 +910,11 @@ msgstr ""
 
 #: modules/google/notifications.py:69
 msgid "Paid through Google Checkout."
-msgstr ""
+msgstr "Ihre Bestellung wurde mit Google Checkout bezahlt."
 
 #: modules/google/notifications.py:80
 msgid "Shipped through Google Checkout."
-msgstr ""
+msgstr "Ihre Bestellung wird mit Google Checkout versand."
 
 #: modules/google/views.py:133 views/checkout.py:15
 msgid "Your order has already been processed."
@@ -915,7 +922,7 @@ msgstr "Ihre Bestellung wurde bereits durchgeführt."
 
 #: modules/paypal/config.py:5
 msgid "Paypal Payment Module Settings"
-msgstr ""
+msgstr "Paypal Einstellungen"
 
 #: modules/paypal/config.py:13
 msgid "Currency code for Paypal transactions."
@@ -935,15 +942,15 @@ msgstr ""
 
 #: modules/paypal/config.py:31
 msgid "The email address for your paypal account"
-msgstr ""
+msgstr "E-Mailadresse für Ihren PayPal Account"
 
 #: modules/paypal/config.py:36
 msgid "Paypal test account email"
-msgstr ""
+msgstr "PayPal Test E-Mailadresse"
 
 #: modules/paypal/config.py:37
 msgid "The email address for testing your paypal account"
-msgstr ""
+msgstr "E-Mailadresse zum Testen Ihres PayPal Account"
 
 #: modules/paypal/config.py:42
 msgid "Return URL"
@@ -981,9 +988,8 @@ msgid "Simulated Transactions?"
 msgstr ""
 
 #: modules/protx/config.py:26
-#, fuzzy
 msgid "Must be false to accept real payments"
-msgstr "Akzeptiere echte Zahlungen"
+msgstr "Deaktivieren um echte Zahlungen zu akzeptieren"
 
 #: modules/protx/config.py:31
 msgid "Skip post?"
@@ -1039,7 +1045,7 @@ msgstr ""
 
 #: modules/protx/forms.py:84 modules/protx/forms.py:97
 msgid "This must be a number"
-msgstr ""
+msgstr "Bitte eine Zahl eingeben"
 
 #: modules/protx/forms.py:87 modules/protx/forms.py:100
 msgid "Out of range, must be 1-12"
@@ -1081,7 +1087,7 @@ msgstr "Nachnahme Einstellungen"
 
 #: modules/purchaseorder/config.py:40
 msgid "Verbose logging?"
-msgstr ""
+msgstr "Ausführliches Logging?"
 
 #: modules/purchaseorder/models.py:9
 msgid "Customer PO Number"
@@ -1089,12 +1095,11 @@ msgstr ""
 
 #: modules/purchaseorder/models.py:11
 msgid "Outstanding Balance"
-msgstr ""
+msgstr "Ausstehender Betrag"
 
 #: modules/purchaseorder/models.py:13
-#, fuzzy
 msgid "Paid on"
-msgstr "bezahlt"
+msgstr "Bezahlt am"
 
 #: modules/sermepa/config.py:17
 #, fuzzy
@@ -1102,25 +1107,24 @@ msgid "SERMEPA (ServiRed) Payment Module Settings"
 msgstr "Nachnahme Einstellungen"
 
 #: modules/sermepa/config.py:56
-#, fuzzy
 msgid "Currency"
-msgstr "Währungseinheit"
+msgstr "Währung"
 
 #: modules/sermepa/config.py:59
 msgid "EUR (Euro)"
-msgstr ""
+msgstr "EUR (Euro)"
 
 #: modules/sermepa/config.py:60
 msgid "USD (US Dollar)"
-msgstr ""
+msgstr "USD (US Dollar)"
 
 #: modules/sermepa/config.py:61
 msgid "GBP (British Pound)"
-msgstr ""
+msgstr "GBP (Britische Pfund)"
 
 #: modules/sermepa/config.py:62
 msgid "JPY (Japanese Yen)"
-msgstr ""
+msgstr "JPY (Japanische Yen)"
 
 #: modules/sermepa/config.py:69
 msgid "Merchant FUC"
@@ -1205,7 +1209,7 @@ msgstr ""
 
 #: modules/trustcommerce/config.py:8
 msgid "TrustCommerce Payment Settings"
-msgstr ""
+msgstr "TrustCommerce Einstellungen"
 
 #: modules/trustcommerce/config.py:32
 msgid "Use Address Verification System (AVS)?"
@@ -1252,7 +1256,7 @@ msgstr ""
 
 #: templates/payment/_order_payment_summary.html:6
 msgid "Paid"
-msgstr "bezahlt"
+msgstr "Bezahlt"
 
 #: templates/payment/_order_payment_summary.html:11
 #, python-format
@@ -1261,46 +1265,29 @@ msgstr ""
 
 #: templates/payment/_order_payment_summary.html:15
 msgid "Pay remaining balance"
-msgstr ""
+msgstr "Restbetrag bezahlen"
 
 #: templates/payment/admin/charge_remaining_confirm.html:4
 msgid "Custom Charge"
 msgstr ""
 
 #: templates/payment/admin/charge_remaining_confirm.html:7
-#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte korrigieren Sie den Fehler unten."
+msgstr[1] "Bitte korrigieren Sie die Fehler unten."
 
 #: templates/payment/admin/charge_remaining_confirm.html:12
 msgid "New amount"
-msgstr ""
+msgstr "Neuer Betrag"
 
 #: templates/payment/admin/charge_remaining_confirm.html:14
 msgid "Extra Shipping"
 msgstr ""
 
 #: templates/shop/checkout/authentication_required.html:10
-#, fuzzy
 msgid "Authentication required"
-msgstr "Länder müssen übereinstimmen?"
+msgstr "Authentifizierung erforderlich"
 
 #: templates/shop/checkout/authentication_required.html:13
 #: templates/shop/checkout/base_confirm.html:15
@@ -1314,28 +1301,28 @@ msgstr ""
 #: templates/shop/checkout/base_pay_ship.html:15
 #: templates/shop/checkout/form.html:25
 msgid "Confirmation"
-msgstr ""
+msgstr "Bestätigung"
 
 #: templates/shop/checkout/authentication_required.html:29
 #: templates/shop/checkout/form.html:45
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "If you do not have an account, please"
-msgstr ""
+msgstr "Wenn sie noch kein Benutzerkonto besitzen, bitte"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "click here"
-msgstr ""
+msgstr "hier klicken"
 
 #: templates/shop/checkout/authentication_required.html:34
 msgid "If you do not remember your password, please"
-msgstr ""
+msgstr "Wenn sie ihr Passwort vergessen haben, bitte"
 
 #: templates/shop/checkout/authentication_required.html:34
 msgid "click here</a> to have it reset."
-msgstr ""
+msgstr "hier klicken</a> um es zurückzusetzen."
 
 #: templates/shop/checkout/balance_remaining.html:12
 msgid "Order Balance"
@@ -1347,26 +1334,32 @@ msgid ""
 "To complete this order, you need to pay the %(orderbalance)s balance "
 "remaining on this order."
 msgstr ""
+"Um diese Bestellung abzuschließen müssen sie noch den Restbetrag von %"
+"(orderbalance)s bezahlen."
 
 #: templates/shop/checkout/balance_remaining.html:22
 #: templates/shop/checkout/form.html:57
 msgid "How do you want to pay?"
-msgstr ""
+msgstr "Wie möchten sie bezahlen?"
 
 #: templates/shop/checkout/balance_remaining.html:26
 #: templates/shop/checkout/form.html:152
 msgid "Continue Checkout"
-msgstr ""
+msgstr "Bestellvorgang fortsetzen"
 
 #: templates/shop/checkout/base_confirm.html:22
 msgid ""
 "The following error was returned while trying to process your payment. "
 "Please correct and resubmit."
 msgstr ""
+"Der folgende Fehler trat beim Versuch ihre Bezahlung zu verarbeiten auf. "
+"Bitte korrigieren sie den Fehler und versuchen sie es erneut."
 
 #: templates/shop/checkout/base_confirm.html:25
 msgid "Please validate the following information, then submit your order."
 msgstr ""
+"Bitte überprüfen sie die folgenden Angaben, und bestätigen sie die "
+"Bestellung."
 
 #: templates/shop/checkout/base_confirm.html:41
 #: templates/shop/checkout/google/confirm.html:17
@@ -1375,58 +1368,42 @@ msgstr ""
 #: templates/shop/checkout/sermepa/confirm.html:17
 #: templates/shop/checkout/sermepa/confirm.html:42
 msgid "Purchase Items"
-msgstr ""
+msgstr "Artikel kaufen"
 
 #: templates/shop/checkout/base_pay_ship.html:18
 #: templates/shop/checkout/form.html:28
 msgid ""
 "Please complete the following information in order to submit your order."
 msgstr ""
+"Bitte vervollständigen sie folgende Angaben um ihre Bestellung fortzusetzen."
 
 #: templates/shop/checkout/base_pay_ship.html:21
 #: templates/shop/checkout/form.html:30
-#, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte korrigieren sie folgenden Fehler:"
+msgstr[1] "Bitte korrigieren sie folgende Fehler:"
 
 #: templates/shop/checkout/base_pay_ship.html:39
 #: templates/shop/checkout/form.html:107
-#, fuzzy
 msgid "Shipping Information"
-msgstr "Versandkosten"
+msgstr "Versandinformationen"
 
 #: templates/shop/checkout/base_pay_ship.html:44
 msgid "The following shipping method will be used"
-msgstr ""
+msgstr "Folgende Versandmethode wird verwendet"
 
 #: templates/shop/checkout/base_pay_ship.html:46
 msgid "Please choose your preferred shipping method"
-msgstr ""
+msgstr "Bitte wähle sie eine Versandmethode"
 
 #: templates/shop/checkout/base_pay_ship.html:55
 msgid "There are no items in this order to ship."
-msgstr ""
+msgstr "Es gibt keine Aktikel in ihrer Bestellung die versendet werden müssen."
 
 #: templates/shop/checkout/base_pay_ship.html:60
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigen"
 
 #: templates/shop/checkout/confirm.html:6
 #: templates/shop/checkout/cod/confirm.html:6
@@ -1435,6 +1412,8 @@ msgid ""
 "The following error was returned while trying to process your card.  Please "
 "correct and resubmit"
 msgstr ""
+"Der folgende Fehler trat beim verarbeiten ihrer Karte auf. Bitte korrigieren "
+"sie ihn und versuchen es erneut."
 
 #: templates/shop/checkout/confirm.html:19
 #: templates/shop/checkout/protx/confirm.html:19
@@ -1443,181 +1422,185 @@ msgid ""
 "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
 "charged %(order_total)s."
 msgstr ""
+"Ihre %(credit_card_type)s Karte mit der Endung %(credit_card_number)s wird "
+"mit %(order_total)s belastet."
 
 #: templates/shop/checkout/empty_cart.html:12
 msgid ""
 "Your cart is empty. Please add some items to your cart, then complete the "
 "checkout process."
 msgstr ""
+"Ihr Warenkorb ist leer. Bitte legen sie zunächt Artikel in ihren Warenkorb "
+"und kehren dann zum Bestellen hierher zurück."
 
 #: templates/shop/checkout/failure.html:11
-#, fuzzy
 msgid "Failed payment"
-msgstr "aktivierte Bezahlmodule"
+msgstr "Fehlgeschlagene Bezahlung"
 
 #: templates/shop/checkout/failure.html:12
 msgid "We are sorry, but the payment process finished with a failure."
-msgstr ""
+msgstr "Es tut uns leid, der Bezahlvorgang endete mit einem Fehler."
 
 #: templates/shop/checkout/failure.html:13
 msgid "You may"
-msgstr ""
+msgstr "Sie können"
 
 #: templates/shop/checkout/failure.html:13
 msgid "proceed to the cart"
-msgstr ""
+msgstr "zum Warenkorb zurückkehren"
 
 #: templates/shop/checkout/failure.html:13
 msgid "and check out again, using other payment method."
-msgstr ""
+msgstr "und es erneut veruchen und eine andere Bezahlmethode wählen."
 
 #: templates/shop/checkout/form.html:39
 msgid ""
 "If you already have an account, you can login now to fill in most of the "
 "information below."
 msgstr ""
+"Wenn sie bereits ein Benutzerkonto besitzen, können sie sich jetzt anmelden "
+"um die meisten der Felder mit den Daten aus ihrem Benutzerkonto befüllen zu "
+"lassen."
 
 #: templates/shop/checkout/form.html:40
 msgid "This is just a convenience, no account is required!"
-msgstr ""
+msgstr "Dies ist nur ein Vorschalg, ein Benutzerkonto is nicht erforderlich."
 
 #: templates/shop/checkout/form.html:43
-#, fuzzy
 msgid "Username or email"
-msgstr "eMail senden"
+msgstr "Benutzername oder E-Mail-Adresse"
 
 #: templates/shop/checkout/form.html:44
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: templates/shop/checkout/form.html:52
 msgid "You'll need to fill out at least the fields with a *"
-msgstr ""
+msgstr "Bitte füllen sie mindestens die Felder mit einem * aus"
 
 #: templates/shop/checkout/form.html:62
 msgid "Basic Information"
-msgstr ""
+msgstr "Basis Informationen"
 
 #: templates/shop/checkout/form.html:63
 msgid "Email address"
-msgstr ""
+msgstr "E-Mail-Adresse"
 
 #: templates/shop/checkout/form.html:66
 msgid "First name"
-msgstr ""
+msgstr "Vorname"
 
 #: templates/shop/checkout/form.html:69
 msgid "Last name"
-msgstr ""
+msgstr "Nachname"
 
 #: templates/shop/checkout/form.html:72
 msgid "Phone number"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: templates/shop/checkout/form.html:75
 msgid "Billing Information"
-msgstr ""
+msgstr "Rechnungsinformationen"
 
 #: templates/shop/checkout/form.html:77
 msgid "Bill To"
-msgstr ""
+msgstr "Rechnungsadresse"
 
 #: templates/shop/checkout/form.html:77 templates/shop/checkout/form.html:112
 msgid "If different from the first and last names above"
-msgstr ""
+msgstr "Wenn abweichend vom vorherigen Vor- und Nachnamen"
 
 #: templates/shop/checkout/form.html:80 templates/shop/checkout/form.html:83
 #: templates/shop/checkout/form.html:115 templates/shop/checkout/form.html:118
 msgid "Street"
-msgstr ""
+msgstr "Straße"
 
 #: templates/shop/checkout/form.html:86 templates/shop/checkout/form.html:121
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 #: templates/shop/checkout/form.html:91 templates/shop/checkout/form.html:94
 #: templates/shop/checkout/form.html:126 templates/shop/checkout/form.html:129
 msgid "State/Province"
-msgstr ""
+msgstr "Bundesland"
 
 #: templates/shop/checkout/form.html:98 templates/shop/checkout/form.html:133
 msgid "Zipcode/Postcode"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: templates/shop/checkout/form.html:102 templates/shop/checkout/form.html:137
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: templates/shop/checkout/form.html:109
 msgid "Shipping same as billing?"
-msgstr ""
+msgstr "Rechnungsadresse als Versandadresse verwenden?"
 
 #: templates/shop/checkout/form.html:112
 msgid "Ship To"
-msgstr ""
+msgstr "Versandadresse"
 
 #: templates/shop/checkout/form.html:146
 msgid "Discounts"
-msgstr ""
+msgstr "Rabatte"
 
 #: templates/shop/checkout/form.html:147
 msgid "Discount code"
-msgstr ""
+msgstr "Rabattcode"
 
 #: templates/shop/checkout/pay_ship.html:11
 #: templates/shop/checkout/protx/pay_ship.html:26
-#, fuzzy
 msgid "Type of credit card"
-msgstr "Verschlüsselte Kreditkarte"
+msgstr "Typ der Kreditkarte"
 
 #: templates/shop/checkout/pay_ship.html:14
 #: templates/shop/checkout/protx/pay_ship.html:29
-#, fuzzy
 msgid "Credit card number"
-msgstr "Kreditkartentyp"
+msgstr "Kreditkartennummer"
 
 #: templates/shop/checkout/pay_ship.html:17
 #: templates/shop/checkout/protx/pay_ship.html:39
-#, fuzzy
 msgid "Expiration date"
-msgstr "Ablaufjahr"
+msgstr "Ablaufdatum"
 
 #: templates/shop/checkout/pay_ship.html:20
 #: templates/shop/checkout/protx/pay_ship.html:42
 msgid "CCV"
-msgstr ""
+msgstr "Kreditkarten Verifikationsnummer"
 
 #: templates/shop/checkout/success.html:13
-#, fuzzy
 msgid "Thank you for your order!"
-msgstr "Vielen Dank für die Bestellung bei %(shop_name)s."
+msgstr "Vielen Dank für die Bestellung."
 
 #: templates/shop/checkout/success.html:14
 msgid ""
 "Please print out this page as a receipt.  You will also receive an email "
 "with this information."
 msgstr ""
+"Bitte drucken sie sich diese Seite für Ihre Unterlagen aus. Sie werden ebenfalls "
+"eine Bestellbestätigung per E-Mail erhalten."
 
 #: templates/shop/checkout/cod/confirm.html:17
 #, python-format
 msgid "This order will be COD for %(order_total)s."
 msgstr ""
+"Diese Bestellung wird per Nachnahme verschickt und beträgt %(order_total)s."
 
 #: templates/shop/checkout/google/confirm.html:11
 msgid "Your payment will be processed through Google Checkout."
-msgstr ""
+msgstr "Ihre Bestellung wird mit Google Checkout verarbeitet."
 
 #: templates/shop/checkout/google/confirm.html:23
 msgid "Fast checkout through Google"
-msgstr ""
+msgstr "Schnelle Bestellung mit Google"
 
 #: templates/shop/checkout/paypal/confirm.html:11
 msgid "Your payment will be processed through PayPal."
-msgstr ""
+msgstr "Ihre Bestellung wird mit PayPal verarbeitet."
 
 #: templates/shop/checkout/protx/pay_ship.html:23
 msgid "Card Holder"
-msgstr ""
+msgstr "Kartenbesitzer"
 
 #: templates/shop/checkout/protx/pay_ship.html:32
 msgid "Issue number"
@@ -1634,11 +1617,11 @@ msgstr ""
 
 #: templates/shop/checkout/purchaseorder/pay_ship.html:9
 msgid "Purchase Order #"
-msgstr ""
+msgstr "Bestell-Nummer #"
 
 #: templates/shop/checkout/sermepa/confirm.html:11
 msgid "Your payment will be processed through Sermepa."
-msgstr ""
+msgstr "Ihre Bestellung wird mit Sermepa verarbeitet."
 
 #: views/balance.py:71 views/balance.py:96
 msgid ""
@@ -1648,11 +1631,11 @@ msgstr "Das ausgewählte Produkt existiert nicht."
 
 #: views/balance.py:86
 msgid "No form found in request."
-msgstr ""
+msgstr "Kein Formular im Request gefunden."
 
 #: views/confirm.py:153
 msgid "Order successfully submitted"
-msgstr ""
+msgstr "Bestellung erfolgreich übertragen"
 
 #: views/confirm.py:256
 msgid "This order does not have a zero balance"

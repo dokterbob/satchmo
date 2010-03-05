@@ -8,52 +8,56 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: config.py:7
 msgid "Tax Settings"
-msgstr "Steuer-Einstellungen"
+msgstr "Steuer Einstellungen"
 
 #: config.py:10
 msgid "Active tax module"
-msgstr ""
+msgstr "Aktives Steuermodul"
 
 #: config.py:11
 msgid "Select a module, save and reload to set any module-specific settings."
 msgstr ""
+"Wählen Sie ein Modul, speichern und laden Sie die Seite erneut um die "
+"jeweiligen Moduleinstellungen zu bearbeiten."
 
 #: config.py:13
 msgid "No Tax"
-msgstr "Ohne Mehrwertsteuer"
+msgstr "Keine Steuer"
 
 #: config.py:19
 msgid "Show with tax included"
-msgstr ""
+msgstr "Inklusive Steuern anzeigen"
 
 #: config.py:20
 msgid "If yes, then all products and the cart will display with tax included."
 msgstr ""
+"Wenn aktiv, werden alle Produkte und der Warenkorb inklusive Steuern "
+"angezeigt."
 
 #: config.py:26
 msgid "New products are automatically made taxable"
-msgstr ""
+msgstr "Neue Produkte automatisch als versteuerbar markieren"
 
 #: config.py:27
 msgid "Whether newly created products should be taxable by default."
-msgstr ""
+msgstr "Sollen neu angelegte Produkte als versteuerbar markiert werden?"
 
 #: config.py:34
 msgid "Should tax be calculated based on shipping or billing address?"
-msgstr ""
+msgstr "Steuern auf Basis der Rechnungs- oder Versandadresse berechnen?"
 
 #: config.py:35
 msgid "This will only be used if tax is calculated based on an address."
-msgstr ""
+msgstr "Wird nur genutzt, wenn Steuern auf Basis von Adressen berechnet wird."
 
 #: modules/area/admin.py:14
 msgid "You must choose a zone or a country."
@@ -61,7 +65,7 @@ msgstr "Sie müssen eine Zone oder ein Land wählen."
 
 #: modules/area/config.py:6
 msgid "By Country/Area"
-msgstr "Nach Land"
+msgstr "Nach Land/Gebiet"
 
 #: modules/area/config.py:12 modules/percent/config.py:19
 msgid "Tax Shipping?"
@@ -94,7 +98,7 @@ msgstr "Prozentsatz"
 
 #: modules/area/models.py:16
 msgid "% tax for this area and type"
-msgstr "% Steuer für dieses Gebiet und Typ"
+msgstr "Prozentsatz für dieses Land oder Gebiet"
 
 #: modules/area/models.py:36 modules/us_sst/models.py:155
 msgid "Tax Rate"
@@ -106,11 +110,11 @@ msgstr "Steuersätze"
 
 #: modules/percent/config.py:5
 msgid "Percent Tax"
-msgstr "Prozentsatz"
+msgstr "Steuersatz"
 
 #: modules/percent/config.py:11
 msgid "Percent tax"
-msgstr "Prozentsatz"
+msgstr "Steuersatz"
 
 #: modules/us_sst/admin.py:97
 msgid "Zip-5 records need a high and a low."
@@ -133,9 +137,8 @@ msgid "Tax Shipping in ANY jurisdiction?"
 msgstr ""
 
 #: modules/us_sst/models.py:62
-#, fuzzy
 msgid "Taxable?"
-msgstr "Steuersatz"
+msgstr "Versteuerbar?"
 
 #: modules/us_sst/models.py:63
 msgid "Use Intrastate rate instead of Interstate?"
@@ -161,7 +164,7 @@ msgstr ""
 
 #: modules/us_sst/models.py:140
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: modules/us_sst/models.py:142
 msgid "FIPS Code"
@@ -213,7 +216,7 @@ msgstr ""
 
 #: modules/us_sst/models.py:206
 msgid "Street Name"
-msgstr ""
+msgstr "Straßenname"
 
 #: modules/us_sst/models.py:208
 msgid "Street Suffix Abbr."
@@ -241,11 +244,11 @@ msgstr ""
 
 #: modules/us_sst/models.py:220
 msgid "City Name"
-msgstr ""
+msgstr "Stadtname"
 
 #: modules/us_sst/models.py:222
 msgid "Zip Code"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: modules/us_sst/models.py:224
 msgid "Zip Code - Plus 4"
