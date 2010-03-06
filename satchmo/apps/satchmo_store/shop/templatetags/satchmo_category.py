@@ -157,9 +157,9 @@ def categories_for_slugs(parser, token):
     the list of slugs.
 
     Useful if you want to specify a custom list of categories and override the
-    default category listing from satchmo.
-
-    For example,
+    default category listing from satchmo. 
+    
+    Example usage::
 
         {% categories_for_slug "hats,boots,accessories" as categories %}
         <ul>
@@ -167,6 +167,7 @@ def categories_for_slugs(parser, token):
             <li><a href="{{ child.get_absolute_url }}">{{ child.translated_name }}</a></li>
             {% endfor %}
         </ul>
+        
     """
     try:
         # Splitting by None == splitting by spaces.
