@@ -34,28 +34,30 @@
     {% if cart.is_shippable %}
 
         {% if form.shipping_hidden %}
-        {{ form.shipping }}
+            {{ form.shipping }}
         {% else %}
         <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
-        </table>
-        {% block shipping_table %}
-        <div id="shipping">
-        {% if form.shipping_description or form.shipping.field.choices|length_is:1 %}
-        <label for="id_shipping">{% trans "The following shipping method will be used" %}:</label>
-        {% else %}
-        <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>
+    </table>
+            {% block shipping_table %}
+            <div id="shipping">
+            {% if form.shipping_description or form.shipping.field.choices|length_is:1 %}
+            <label for="id_shipping">{% trans "The following shipping method will be used" %}:</label>
+            {% else %}
+            <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>
+            {% endif %}
+            {{ form.shipping }}
+            {% if form.shipping_description %}<br/>{{ form.shipping_description }}{% endif %}
+            {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
+            </div>
+            {% endblock %}
         {% endif %}
-        {{ form.shipping }}
-        {% if form.shipping_description %}<br/>{{ form.shipping_description }}{% endif %}
-        {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
-        </div>
-        {% endblock %}
-        {% endif %}
+
     {% else %}
+
         <tr><td colspan="2"><h4>{% trans "There are no items in this order to ship." %}</h4></td></tr>
+    </table>
 
     {% endif %}
-    </table>
 
     <input type="submit" value="{% trans "Confirm" %}"/>
 </form>
