@@ -47,3 +47,6 @@ Changes
 - Updated jquery to 1.4.2
 - Added new documentation on Satchmo's views - :doc:`views`
 - Cache the category tree for big performance improvements
+- Refactor the email sending routine so it is more modular
+- Add two new category tags
+- Added search field in the admin to more easily find products

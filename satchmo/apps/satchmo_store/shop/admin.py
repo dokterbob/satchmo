@@ -82,6 +82,7 @@ class OrderOptions(AutocompleteAdmin):
     date_hierarchy = 'time_stamp' 
     list_filter = ['time_stamp', 'status'] 
     date_hierarchy = 'time_stamp' 
+    search_fields = ('contact__first_name', 'contact__last_name', 'contact__email')
     related_search_fields = {'contact': ('first_name', 'last_name', 'email')} 
     related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, 
