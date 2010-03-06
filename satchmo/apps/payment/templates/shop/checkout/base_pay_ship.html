@@ -24,8 +24,8 @@
     </p>{% endif %}
 {% endif %}
 
-<table>
 <form method="post" action=".">
+<table>
 
     {% block payment_table %}
     {# put your payment module specific rows here.  For example, CC number. #}
@@ -53,7 +53,7 @@
         {% endif %}
     {% else %}
         <tr><td colspan="2"><h4>{% trans "There are no items in this order to ship." %}</h4></td></tr>
-    
+
     {% endif %}
     </table>
 
