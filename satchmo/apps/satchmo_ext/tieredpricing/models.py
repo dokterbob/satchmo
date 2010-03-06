@@ -85,7 +85,7 @@ class TieredPrice(models.Model):
     dynamic_price = property(fget=_dynamic_price)
     
     def save(self, **kwargs):
-        prices = TieredPrice.objects.filter(product=self.product, quantity=self.quantity)
+        prices = TieredPrice.objects.filter(product=self.product, quantity=self.quantity, pricingtier=self.pricingtier)
         if self.expires:
             prices = prices.filter(expires=self.expires)
         else:
