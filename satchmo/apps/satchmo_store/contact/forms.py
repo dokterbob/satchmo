@@ -219,6 +219,11 @@ class ContactInfoForm(ProxyContactForm):
         if not self._shippable:
             return code
 
+        if clean_field(self, 'copy_address'):
+            # We take it that the country for shipping and billing is the same;
+            # don't bother validating again
+            return code
+
         country = None
 
         if self._local_only:
