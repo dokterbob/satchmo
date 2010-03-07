@@ -79,6 +79,18 @@ class ContactInfoForm(ProxyContactForm):
         self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
 
         if self.enforce_state:
+            if self.is_bound:
+                # If the user has already chosen the country and submitted,
+                # populate accordingly.
+                #
+                # We don't really care if country fields are empty;
+                # area_choices_for_country() handles those cases properly.
+                billing_country = clean_field(self, 'country')
+                shipping_country = clean_field(self, 'ship_country')
+
+                if clean_field(self, "copy_address") and not shipping_country:
+                    shipping_country = billing_country
+
             # Get areas for the initial country selected.
             billing_areas = area_choices_for_country(billing_country)
             shipping_areas = area_choices_for_country(shipping_country)
