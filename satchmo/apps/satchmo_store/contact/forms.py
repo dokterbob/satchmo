@@ -7,6 +7,7 @@ from l10n.models import Country
 from livesettings import config_value, config_get_group, SettingNotSet
 from satchmo_store.contact.models import Contact, AddressBook, PhoneNumber, Organization, ContactRole
 from satchmo_store.shop.models import Config
+from satchmo_store.shop.utils import clean_field
 from signals_ahoy.signals import form_init, form_initialdata, form_postsave
 import datetime
 import logging
@@ -127,7 +128,7 @@ class ContactInfoForm(ProxyContactForm):
             shop_config = Config.objects.get_current()
             country = shop_config.sales_country
         else:
-            country = self.fields['country'].clean(self.data.get('country'))
+            country = clean_field(self, 'country')
 
         if not country:
             # Either the store is misconfigured, or the country was
@@ -142,7 +143,7 @@ class ContactInfoForm(ProxyContactForm):
         if self._local_only:
             country = self._default_country
         else:
-            country = self.fields['country'].clean(self.data.get('country'))
+            country = clean_field(self, 'country')
             if country == None:
                 raise forms.ValidationError(_('This field is required.'))
         self._check_state(data, country)
@@ -175,7 +176,7 @@ class ContactInfoForm(ProxyContactForm):
         return self.cleaned_data['country']
 
     def clean_ship_country(self):
-        copy_address = self.fields['copy_address'].clean(self.data.get('copy_address'))
+        copy_address = clean_field(self, 'copy_address')
         if copy_address:
             return self.cleaned_data.get('country')
         if self._local_only:
@@ -193,10 +194,10 @@ class ContactInfoForm(ProxyContactForm):
 
     def ship_charfield_clean(self, field_name):
         if self.cleaned_data.get('copy_address'):
-            self.cleaned_data['ship_' + field_name] = self.fields[field_name].clean(self.data.get(field_name))
+            self.cleaned_data['ship_' + field_name] = clean_field(self, field_name)
             return self.cleaned_data['ship_' + field_name]
         else:
-            val = self.fields['ship_' + field_name].clean(self.data.get('ship_' + field_name))
+            val = clean_field(self, 'ship_' + field_name)
             if (not val) and field_name in ('street1', 'city', 'state', 'postal_code'):
                 raise forms.ValidationError(_('This field is required.'))
             return val
