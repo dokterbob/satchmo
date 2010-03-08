@@ -48,7 +48,7 @@ tr.ConfigurableProduct {
 {% block userlinks %}<a href="{% url django-admindocs-docroot %}">{% trans 'Documentation' %}</a> / <a href="{% url admin:password_change %}">{% trans 'Change password' %}</a> / <a href="{% url admin:logout %}">{% trans 'Log out' %}</a>{% endblock %}
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
+     <a href="{% url admin:index %}">{% trans "Home" %}</a> &rsaquo;
      {% trans "Inventory Management" %}
 </div>
 {% endif %}{% endblock %}
@@ -91,7 +91,7 @@ tr.ConfigurableProduct {
             		{% endif %}
                     <tr class="{{ field.field.subtypes }}">
                         <td>{{ field }}</td>
-                        <td><a href="/admin/product/product/{{ field.field.product_id }}/">{{ field.label_tag }}</a>
+                        <td><a href="{% url admin:product_product_change field.field.product_id %}">{{ field.label_tag }}</a>
                             {% if field.errors %}
                     		<span class="error">{{ field.errors }}</span><br/>
             		        {% endif %}    
