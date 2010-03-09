@@ -46,9 +46,8 @@ def edit_subtypes(product):
         else:
             if not(is_config and subtype=="ProductVariation"):
                 add_url = urlresolvers.reverse('admin:%s_%s_add' %
-                                               (app, subtype.lower()),
-                                               args=(product.pk,))
-                output += ('<li><a href="%s">' % add_url +
+                                               (app, subtype.lower()))
+                output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
                            _('Add %(subtype)s') % {'subtype': subtype_label} +
                            '</a></li>')
     output += '</ul>'

@@ -81,14 +81,12 @@ tr.ConfigurableProduct {
             <th>{% trans 'Name' %}</th>
         </tr>
     {% for field in form %}
-        {% ifnotequal field.name 'format' %} 
+
             {% if field.is_hidden %}
                 {{ field }}
             {% else %}
                 {% ifchanged field.field.slug %}
-                    {% if not forloop.first %}
-            		</tr>
-            		{% endif %}
+                    {% if field.field.product_id %}
                     <tr class="{{ field.field.subtypes }}">
                         <td>{{ field }}</td>
                         <td><a href="{% url admin:product_product_change field.field.product_id %}">{{ field.label_tag }}</a>
@@ -96,12 +94,13 @@ tr.ConfigurableProduct {
                     		<span class="error">{{ field.errors }}</span><br/>
             		        {% endif %}    
                         </td>
-                        <td>{{ field.help_text}}</td>
+                    {% endif %}
+                        <td>{{ field.help_text}}</td></tr>
                 {% endifchanged %}
         	{% endif %}
-    	{% endifnotequal %}
+
     {% endfor %}
-        		</tr>
+
     </table>
     <p>{% trans 'Include images?' %} {{ form.include_images }}</p>
     <p>{% trans 'Include categories?' %} {{ form.include_categories }}</p>
