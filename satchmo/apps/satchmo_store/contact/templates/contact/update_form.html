@@ -1,19 +1,10 @@
-{% extends "shop/base.html" %}
+{% extends "contact/_ContactInfoForm.html" %}
 {% load i18n %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
    <li><a href="{% url satchmo_account_info %}">{% trans "Account" %}</a></li>
    <li>{% trans "Update Profile" %}</li>
-{% endblock %}
-
-{% block extra-head %}
-{% include "shop/_jquery.html" %}
-{% include "shop/_jquery_form.html" %}
-<script type="text/javascript" src="{{media_url}}js/satchmo_checkout.js"></script>
-{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
-{% include "contact/_country_match_script.html" %}
-{% endif %}
 {% endblock %}
 
 {% block content %}

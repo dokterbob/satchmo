@@ -1,18 +1,9 @@
-{% extends "shop/base.html" %}
+{% extends "contact/_ContactInfoForm.html" %}
 {% load i18n %}
 
 {% block pagetitle %}Login{% endblock %}
 {% block bodyclass %}login{% endblock %}
 {% block bodyid %}login{% endblock %}
-
-{% block extra-head %}
-{% include "shop/_jquery.html" %}
-{% include "shop/_jquery_form.html" %}
-<script type="text/javascript" src="{{media_url}}js/satchmo_checkout.js"></script>
-{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
-{% include "contact/_country_match_script.html" %}
-{% endif %}
-{% endblock %}
 
 {% block content %}
 <h4>{% trans "Login, or sign up to the store" %}</h4>
