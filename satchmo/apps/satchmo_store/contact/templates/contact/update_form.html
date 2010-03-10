@@ -14,28 +14,6 @@
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
 {% endif %}
-<script type="text/javascript">
-
-name_change = function() {
-    var first_name = $('#id_first_name').attr('value');
-    var last_name = $('#id_last_name').attr('value');
-    if (!first_name ) { first_name = '' };
-    if (!last_name ) { last_name = '' };
-    $('#id_addressee').attr('value',  jQuery.trim(first_name + ' ' + last_name));
-    $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
-};
-
-$(document).ready(function() {
-    name_change();
-    $('#id_first_name').bind("change", {}, name_change);
-    $('#id_last_name').bind("change", {}, name_change);
-    $('#id_addressee').bind("change", function() {
-         $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
-    });
-});
-
-</script>
-
 {% endblock %}
 
 {% block content %}
