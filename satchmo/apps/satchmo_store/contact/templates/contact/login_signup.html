@@ -14,7 +14,7 @@
 
 <form name="loginform" method="post" action="{% url auth_login %}">
 <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url satchmo_account_info %}{% endif %}" />
-<input type="hidden" name="action" value="login" />    
+<input type="hidden" name="action" value="login" />
 <table class="form" style="float:left; width: 50%">
     <thead>
         <tr>
@@ -53,7 +53,7 @@
     </tbody>
 </table>
 </form>
-		
+
 <form name="createform" method="post" action="{% url auth_login %}">
 <input type="hidden" name="action" value="create" />
 <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url satchmo_account_info %}{% endif %}" />
@@ -86,8 +86,8 @@
 
         <tr><td colspan="2">{{ createform.newsletter }} <label for="id_newsletter">{% trans 'Sign me up for Email Updates about new products and special offers!' %}</label>
         </td>
-        {% if createform.newsletter.errors %}<tr><td colspan="2" class="warn">*** {{ createform.newsletter.errors|join:", " }}</td></tr>{% endif %}   
-        
+        {% if createform.newsletter.errors %}<tr><td colspan="2" class="warn">*** {{ createform.newsletter.errors|join:", " }}</td></tr>{% endif %}
+
         <tr>
             <td colspan="2" class="button">
                 <input type="submit" name="create" value="{% trans 'Create' %}" />
