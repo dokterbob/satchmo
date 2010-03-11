@@ -58,39 +58,7 @@
 
 	    {% block billing-info %}{% with createform as form %}{% include "contact/_ContactInfoForm_billing.html" %}{% endwith %}{% endblock %}
 
-	    <tr><td colspan="2"><h4>{% trans "Shipping Address" %}</h4></td></tr>
-
-	    <tr><td><label for="id_copy_address">{% trans "Shipping same as billing?" %}</label></td><td> {{ createform.copy_address }}</td></tr>
-	    {% if createform.copy_address.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.copy_address.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ createform.ship_addressee }}</td></tr>
-	    {% if createform.ship_addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_street1">{% trans "Street" %}</label></td><td> {{ createform.ship_street1 }}</td></tr>
-	    {% if createform.ship_street1.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_street1.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_street2">{% trans "Street" %}</label></td><td> {{ createform.ship_street2 }}</td></tr>
-	    {% if createform.ship_street2.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_street2.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_city">{% trans "City" %}</label></td><td> {{ createform.ship_city }}</td></tr>
-	    {% if createform.ship_city.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_city.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if country %}
-	      {% if createform.fields.ship_state.choices %}
-	       <tr class="shiprow"><td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td><td> {{ createform.ship_state }}</td></tr>
-	      {% endif %}
-	    {% else %}
-	      <tr class="shiprow"><td><label for="id_ship_state">{% trans "State/Province" %}</label></td><td> {{ createform.ship_state }}</td></tr>
-	    {% endif %}
-	    {% if createform.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_state.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %}</label></td><td>{{ createform.ship_postal_code }}</td></tr>
-	    {% if createform.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if not country %}
-	    <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %}</label></td><td> {{ createform.ship_country }}</td></tr>
-	    {% if createform.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_country.errors|join:", " }}</td></tr>{% endif %}
-	    {% endif %}
+	    {% block shipping-info %}{% with createform as form %}{% include "contact/_ContactInfoForm_shipping.html" %}{% endwith %}{% endblock %}
 
         <tr>
             <td colspan="2" class="button">
