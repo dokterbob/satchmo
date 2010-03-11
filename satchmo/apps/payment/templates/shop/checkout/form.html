@@ -1,5 +1,9 @@
-{% extends "contact/_ContactInfoForm.html" %}
+{% extends "shop/base.html" %}
 {% load i18n %}
+
+{% block extra-head %}
+{% include "contact/_ContactInfoForm.html" %}
+{% endblock %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>

@@ -1,9 +1,13 @@
-{% extends "contact/_ContactInfoForm.html" %}
+{% extends "shop/base.html" %}
 {% load i18n %}
 
 {% block pagetitle %}Login{% endblock %}
 {% block bodyclass %}login{% endblock %}
 {% block bodyid %}login{% endblock %}
+
+{% block extra-head %}
+{% include "contact/_ContactInfoForm.html" %}
+{% endblock %}
 
 {% block content %}
 <h4>{% trans "Login, or sign up to the store" %}</h4>
