@@ -153,7 +153,7 @@ def ajax_get_state(request, **kwargs):
         context = RequestContext(request, {
             'areas': areas,
         })
-        return render_to_response('shop/checkout/_state_choices.html',
+        return render_to_response('contact/_state_choices.html',
                                   context_instance=context)
     except AjaxGetStateException, e:
         log.error("ajax_get_state aborting: %s" % e.message)
