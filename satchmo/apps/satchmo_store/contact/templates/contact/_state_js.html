@@ -3,16 +3,16 @@
 /**
  * Populates state fields when the user selects a country.
  *
- * The following callbacks are provided, and call be overriden. They are called
- * when a request for values for the state field is sent and received
- * successfully.
+ * The following callbacks are provided and can be overriden. They are called
+ *  - when a request for values for the state field is sent,
+ *  - and when a response is received (regardless of success or error).
  *
  *  - satchmo.on_state_load(state)
  *  - satchmo.on_ship_state_load(state)
  *
- * where state corresponds to the Boolean values:
- *  - true, when loading begins;
- *  - false, when loading is completed.
+ * where state is a Boolean value:
+ *  - true, when the request is sent;
+ *  - false, when a response is received.
  */
 jQuery(document).ready(function($) {
 	var CLONE = false;
