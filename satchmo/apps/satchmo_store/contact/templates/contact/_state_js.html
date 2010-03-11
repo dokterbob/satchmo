@@ -75,8 +75,15 @@ jQuery(document).ready(function($) {
 
 		/* Provide default loading handlers. */
 		satchmo[params.state_callback] = function(state) {
-			if (state) { $("#id_"+prefix+"state_loading").show(); }
-			else { $("#id_"+prefix+"state_loading").hide(); }
+			if (state) {
+				$("#id_"+prefix+"state_loading").show();
+				params.country.attr("disabled", true);
+				params.state.attr("disabled", true);
+			} else {
+				$("#id_"+prefix+"state_loading").hide();
+				params.country.attr("disabled", false);
+				params.state.attr("disabled", false);
+			}
 		};
 
 		/* Hook up country fields. */
