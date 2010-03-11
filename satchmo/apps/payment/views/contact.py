@@ -12,7 +12,7 @@ from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.forms import area_choices_for_country
 from satchmo_store.contact.models import Contact
 from payment.decorators import cart_has_minimum_order
-from payment.forms import PaymentContactInfoForm
+from payment.forms import ContactInfoForm, PaymentContactInfoForm
 from satchmo_store.shop.models import Cart, Config, Order
 from satchmo_utils.dynamic import lookup_url
 from signals_ahoy.signals import form_initialdata
@@ -141,7 +141,7 @@ def ajax_get_state(request, **kwargs):
         else:
             raise AjaxGetStateException("No country specified")
 
-        form = PaymentContactInfoForm(data=formdata)
+        form = ContactInfoForm(data=formdata)
         country_data = formdata.get(country_field)
         try:
             country_obj = form.fields[country_field].clean(country_data)
