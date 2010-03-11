@@ -56,36 +56,7 @@
 	    <input type='hidden' name='newsletter' value="False" />
 	    {% endif %}
 
-	    <tr><td colspan="2"><h4>{% trans "Billing Information" %}</h4></td></tr>
-
-	    <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ createform.addressee }}</td></tr>
-	    {% if createform.addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.addressee.errors|join:", "}}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_street1">{% trans "Street" %}{% if createform.street1.field.required %}*{% endif %}</label></td><td> {{ createform.street1 }}</td></tr>
-	    {% if createform.street1.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.street1.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_street2">{% trans "Street" %}</label></td><td> {{ createform.street2 }}</td></tr>
-	    {% if createform.street2.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.street2.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_city">{% trans "City" %}{% if createform.city.field.required %}*{% endif %}</label></td><td> {{ createform.city }}</td></tr>
-	    {% if createform.city.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.city.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if country %}
-	      {% if createform.fields.state.choices %}
-	        <tr><td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if createform.country.field.required %}*{% endif %}</label></td><td> {{ createform.state }}</td></tr>
-	      {% endif %}
-	    {% else %}
-	      <tr><td><label for="id_state">{% trans "State/Province" %}</label></td><td> {{ createform.state }}</td></tr>
-	    {% endif %}
-	    {% if createform.state.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.state.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_postal_code">{% trans "Zipcode/Postcode" %}{% if createform.postal_code.field.required %}*{% endif %}</label></td><td> {{ createform.postal_code }}</td></tr>
-	    {% if createform.postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.postal_code.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if not country %}
-	    <tr><td><label for="id_country">{% trans "Country" %}</label></td><td> {{ createform.country }}</td></tr>
-	    {% if createform.country.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.country.errors|join:", " }}</td></tr>{% endif %}
-	    {% endif %}
+	    {% block billing-info %}{% with createform as form %}{% include "contact/_ContactInfoForm_billing.html" %}{% endwith %}{% endblock %}
 
 	    <tr><td colspan="2"><h4>{% trans "Shipping Address" %}</h4></td></tr>
 
