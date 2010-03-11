@@ -86,7 +86,7 @@
     {% else %}
       <tr>
         <td><label for="id_state">{% trans "State/Province" %}</label></td>
-        <td><p id="id_ship_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
+        <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
       </tr>
     {% endif %}
     {% if form.state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.state.errors|join:", " }}</td></tr>{% endif %}
@@ -127,7 +127,7 @@
     {% else %}
       <tr class="shiprow">
         <td><label for="id_ship_state">{% trans "State/Province" %} {% if form.ship_state.field.required %}*{% endif %}</label></td>
-        <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.ship_state }}</td>
+        <td><p id="id_ship_state_loading" style="display: none">Loading...</p> {{ form.ship_state }}</td>
       </tr>
     {% endif %}
     {% if form.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_state.errors|join:", " }}</td></tr>{% endif %}
