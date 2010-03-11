@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
 			satchmo[p+"state_load"](true);
 			if (CLONE) { satchmo[get_prefix_complement(p)+"state_load"](true); }
 
-			$.post("{% url satchmo_checkout-ajax-state %}", data, callback, "html");
+			$.post("{% url satchmo_contact_ajax_state %}", data, callback, "html");
 		});
 	}
 

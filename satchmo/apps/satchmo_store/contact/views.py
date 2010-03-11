@@ -4,10 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.core import urlresolvers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from livesettings import config_value, config_get_group, SettingNotSet
 from satchmo_store.contact import signals, CUSTOMER_ID
-from satchmo_store.contact.forms import ExtendedContactInfoForm
+from satchmo_store.contact.forms import ExtendedContactInfoForm, ContactInfoForm, area_choices_for_country
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import Config
 import logging
@@ -101,3 +101,37 @@ def update(request):
 
 update = login_required(update)
 
+class AjaxGetStateException(Exception):
+    """Used to barf."""
+    def __init__(self, message):
+        self.message = message
+
+def ajax_get_state(request, **kwargs):
+    formdata = request.REQUEST.copy()
+
+    try:
+        if formdata.has_key("country"):
+            country_field = 'country'
+        elif formdata.has_key("ship_country"):
+            country_field = 'ship_country'
+        else:
+            raise AjaxGetStateException("No country specified")
+
+        form = ContactInfoForm(data=formdata)
+        country_data = formdata.get(country_field)
+        try:
+            country_obj = form.fields[country_field].clean(country_data)
+        except:
+            raise AjaxGetStateException("Invalid country specified")
+
+        areas = area_choices_for_country(country_obj, ugettext)
+
+        context = RequestContext(request, {
+            'areas': areas,
+        })
+        return render_to_response('contact/_state_choices.html',
+                                  context_instance=context)
+    except AjaxGetStateException, e:
+        log.error("ajax_get_state aborting: %s" % e.message)
+
+    return http.HttpResponseServerError()
