@@ -17,6 +17,17 @@ log = logging.getLogger('satchmo_store.contact.forms')
 
 selection = ''
 
+def area_choices_for_country(country, translator=_):
+    if not country:
+        return None
+    areas = country.adminarea_set.filter(active=True)
+    if areas and areas.count()>0:
+        areas = [(area.abbrev or area.name, area.name) for area in areas]
+        areas.insert(0,('',translator("---Please Select---")))
+        return areas
+    else:
+        return None
+
 class ProxyContactForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self._contact = kwargs.pop('contact', None)
@@ -59,23 +70,38 @@ class ContactInfoForm(ProxyContactForm):
 
         self.required_billing_data = config_value('SHOP', 'REQUIRED_BILLING_DATA')
         self._local_only = shop.in_country_only
-        areas = shop.areas()
         self.enforce_state = config_value('SHOP','ENFORCE_STATE')
-
-        if shop.in_country_only and areas and areas.count()>0:
-            areas = [(area.abbrev or area.name, area.name) for area in areas]
-            areas.insert(0,('',_("---Please Select---")))
-            billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
-            shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
-            if self.enforce_state:
-                self.fields['state'] = forms.ChoiceField(choices=areas, initial=billing_state, label=_('State'))
-                self.fields['ship_state'] = forms.ChoiceField(choices=areas, initial=shipping_state, required=False, label=_('State'))
 
         self._default_country = shop.sales_country
         billing_country = (self._contact and getattr(self._contact.billing_address, 'country', None)) or self._default_country
         shipping_country = (self._contact and getattr(self._contact.shipping_address, 'country', None)) or self._default_country
         self.fields['country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=billing_country.pk)
         self.fields['ship_country'] = forms.ModelChoiceField(shop.countries(), required=False, label=_('Country'), empty_label=None, initial=shipping_country.pk)
+
+        if self.enforce_state:
+            if self.is_bound:
+                # If the user has already chosen the country and submitted,
+                # populate accordingly.
+                #
+                # We don't really care if country fields are empty;
+                # area_choices_for_country() handles those cases properly.
+                billing_country = clean_field(self, 'country')
+                shipping_country = clean_field(self, 'ship_country')
+
+                if clean_field(self, "copy_address") and not shipping_country:
+                    shipping_country = billing_country
+
+            # Get areas for the initial country selected.
+            billing_areas = area_choices_for_country(billing_country)
+            shipping_areas = area_choices_for_country(shipping_country)
+
+            if billing_areas is not None:
+                billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
+                self.fields['state'] = forms.ChoiceField(choices=billing_areas, initial=billing_state, label=_('State'))
+
+            if shipping_areas is not None:
+                shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
+                self.fields['ship_state'] = forms.ChoiceField(choices=shipping_areas, initial=shipping_state, required=False, label=_('State'))
 
         for fname in self.required_billing_data:
             if fname == 'country' and self._local_only:

@@ -8,7 +8,10 @@
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
 {% endif %}
+
 <script type="text/javascript" src="{{ media_url}}js/satchmo_checkout.js"></script>
+
+{% include "shop/checkout/_state_js.html" %}
 {% endblock %}
 
 {% block navbar %}
@@ -88,10 +91,16 @@
 
     {% if country %}
       {% if form.fields.state.choices %}
-      <tr><td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if form.country.field.required %}*{% endif %}</label></td><td> {{ form.state }}</td></tr>
+      <tr>
+        <td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if form.country.field.required %}*{% endif %}</label></td>
+        <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
+      </tr>
       {% endif %}
     {% else %}
-      <tr><td><label for="id_state">{% trans "State/Province" %}</label></td><td> {{ form.state }}</td></tr>
+      <tr>
+        <td><label for="id_state">{% trans "State/Province" %}</label></td>
+        <td><p id="id_ship_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
+      </tr>
     {% endif %}
     {% if form.state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.state.errors|join:", " }}</td></tr>{% endif %}
 
@@ -123,21 +132,27 @@
 
     {% if country %}
       {% if form.fields.ship_state.choices %}
-       <tr><td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td><td> {{ form.ship_state }}</td></tr>
+       <tr>
+         <td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td>
+         <td> {{ form.ship_state }}</td>
+       </tr>
       {% endif %}
     {% else %}
-      <tr class="shiprow"><td><label for="id_ship_state">{% trans "State/Province" %} {% if form.ship_state.field.required %}*{% endif %}</label></td><td> {{ form.ship_state }}</td></tr>
+      <tr class="shiprow">
+        <td><label for="id_ship_state">{% trans "State/Province" %} {% if form.ship_state.field.required %}*{% endif %}</label></td>
+        <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.ship_state }}</td>
+      </tr>
     {% endif %}
     {% if form.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_state.errors|join:", " }}</td></tr>{% endif %}
 
     <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %} {% if form.ship_postal_code.field.required %}*{% endif %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
     {% if form.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
-    
+
     {% if not country %}
     <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %} {% if form.ship_country.field.required %}*{% endif %}</label></td><td> {{ form.ship_country }}</td></tr>
     {% if form.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
     {% endif %}
-    
+
 {% endif %}
 
 {% if form.discount.is_hidden %}
