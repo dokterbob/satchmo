@@ -1,41 +1,10 @@
-{% extends "shop/base.html" %}
+{% extends "contact/_ContactInfoForm.html" %}
 {% load i18n %}
 
 {% block navbar %}
    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
    <li><a href="{% url satchmo_account_info %}">{% trans "Account" %}</a></li>
    <li>{% trans "Update Profile" %}</li>
-{% endblock %}
-
-{% block extra-head %}
-{% include "shop/_jquery.html" %}
-{% include "shop/_jquery_form.html" %}
-<script type="text/javascript" src="{{media_url}}js/satchmo_checkout.js"></script>
-{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
-{% include "contact/_country_match_script.html" %}
-{% endif %}
-<script type="text/javascript">
-
-name_change = function() {
-    var first_name = $('#id_first_name').attr('value');
-    var last_name = $('#id_last_name').attr('value');
-    if (!first_name ) { first_name = '' };
-    if (!last_name ) { last_name = '' };
-    $('#id_addressee').attr('value',  jQuery.trim(first_name + ' ' + last_name));
-    $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
-};
-
-$(document).ready(function() {
-    name_change();
-    $('#id_first_name').bind("change", {}, name_change);
-    $('#id_last_name').bind("change", {}, name_change);
-    $('#id_addressee').bind("change", function() {
-         $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
-    });
-});
-
-</script>
-
 {% endblock %}
 
 {% block content %}
@@ -135,12 +104,12 @@ $(document).ready(function() {
 
     <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %}{% if form.ship_postal_code.field.required %}*{% endif %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
     {% if form.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
-    
+
     {% if not country %}
     <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %}{% if form.ship_country.field.required %}*{% endif %}</label></td><td> {{ form.ship_country }}</td></tr>
     {% if form.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
     {% endif %}
-    
+
 
 	<tr><td></td><td><input type="submit" value="{% trans "Update" %}"/></td></tr>
 </table>
