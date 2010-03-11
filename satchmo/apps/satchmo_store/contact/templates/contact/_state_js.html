@@ -15,56 +15,77 @@
  *  - false, when a response is received.
  */
 jQuery(document).ready(function($) {
-	var CLONE = false;
-
-	{# Clone state fields if countries have to match. #}
-	{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
-	CLONE = true;
-	{% endif %}
-
-	var get_prefix_complement = function(prefix) {
-		if (prefix == "") { return "ship_"; }
-		else if (prefix == "ship_") { return ""; }
-	};
-
-	var hook_country_field = function(p) {
-		$(":input[name="+p+"country]").change(function() {
-			var data = {};
-			data[p+"country"] = $(this).val();
-
-			var callback = function(result) {
-				if (!result) { return; }
-				$(":input[name="+p+"state]").html(result);
-				satchmo[p+"state_load"](false);
-
-				if (!CLONE) { return; }
-				$(":input[name="+get_prefix_complement(p)+"state]").html(result);
-				satchmo[get_prefix_complement(p)+"state_load"](false);
-			};
-
-			/* invoke callbacks */
-			satchmo[p+"state_load"](true);
-			if (CLONE) { satchmo[get_prefix_complement(p)+"state_load"](true); }
-
-			$.post("{% url satchmo_contact_ajax_state %}", data, callback, "html");
-		});
-	}
-
-	var set_default_load_handler = function(p) {
-		satchmo[p+"state_load"] = function(state) {
-			if (state) { $("#id_"+p+"state_loading").show(); }
-			else { $("#id_"+p+"state_loading").hide(); }
-		};
-	}
-
 	var satchmo = satchmo || {};
 
-	/* Hook up country fields. */
+	/* should choices for billing state be the same as those for shipping state? (and vice-versa) */
+	var CLONE = {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}true{% else %}false{% endif %};
+
+	var hook_country_field = function(params) {
+		params.country.change(function() {
+			var data = {};
+			data[params.data_key] = $(this).val();
+
+			var success = function(result) {
+				if (!result) { return; }
+				params.state.html(result);
+				satchmo[params.state_callback](false);
+
+				if (!CLONE) { return; }
+				params.other_state.html(result);
+				satchmo[params.other_state_callback](false);
+			};
+
+			var error = function() {
+				satchmo[params.state_callback](false);
+				if (CLONE) { satchmo[params.other_state_callback](false); }
+			};
+
+			/* invoke callback for this field... */
+			satchmo[params.state_callback](true);
+			/* and its complement */
+			if (CLONE) { satchmo[params.other_state_callback](true); }
+
+			$.ajax({
+				type: "POST",
+				url: "{% url satchmo_contact_ajax_state %}",
+				data: data,
+				success: success,
+				error: error,
+				dataType: "html"
+			});
+		});
+	};
+
+	/* try and separate assumptions about the DOM. */
+	var init_for_prefix = function(prefix) {
+		var other_prefix;
+
+		if (prefix == "") { other_prefix = "ship_"; }
+		else if (prefix == "ship_") { other_prefix = ""; }
+		else { return; }
+
+		var params = {
+			country: $(":input[name="+prefix+"country]"),
+			state: $(":input[name="+prefix+"state]"),
+			state_callback: prefix+"state_load",
+			other_state: $(":input[name="+other_prefix+"state]"),
+			other_state_callback: other_prefix+"state_load",
+			data_key: prefix+"country",
+		};
+
+		/* Provide default loading handlers. */
+		satchmo[params.state_callback] = function(state) {
+			if (state) { $("#id_"+prefix+"state_loading").show(); }
+			else { $("#id_"+prefix+"state_loading").hide(); }
+		};
+
+		/* Hook up country fields. */
+		hook_country_field(params);
+	};
+
 	var field_prefixes = ["", "ship_"];
 	for (var i in field_prefixes) {
-		/* Provide default loading handlers. */
-		set_default_load_handler(field_prefixes[i]);
-		hook_country_field(field_prefixes[i]);
+		init_for_prefix(field_prefixes[i]);
 	}
 });
 </script>
