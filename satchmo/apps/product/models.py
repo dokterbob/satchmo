@@ -612,13 +612,14 @@ class Discount(models.Model):
             work = {}
             for lid, price in discounted.items():
                 if price > split_discount:
-                    work[lid] = split_discount
-                    applied += split_discount
+                    to_apply = split_discount
                 else:
-                    work[lid] = price
+                    to_apply = price
                     delta += price
-                    applied += price
                     ct -= 1
+
+                work[lid] = to_apply
+                applied += to_apply
 
             if applied >= amount - Decimal("0.01"):
                 ct = 0
