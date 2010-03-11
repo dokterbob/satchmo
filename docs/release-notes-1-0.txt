@@ -50,3 +50,4 @@ Changes
 - Refactor the email sending routine so it is more modular
 - Add two new category tags
 - Added search field in the admin to more easily find products
+- Added new javascript to populate state fields when the country is changed
