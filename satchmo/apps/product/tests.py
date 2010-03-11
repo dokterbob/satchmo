@@ -17,7 +17,7 @@ import signals
 import zipfile
 
 class OptionGroupTest(TestCase):
-    
+
     def setUp(self):
         self.site=Site.objects.get_current()
         sizes = OptionGroup.objects.create(name="sizes", sort_order=1, site=self.site)
@@ -31,14 +31,14 @@ class OptionGroupTest(TestCase):
         option_white.price_change = 5
         option_white.sort_order = 2
         option_white.save()
-        
+
         self.sizes = sizes
         self.option_small = option_small
         self.option_large = option_large
         self.colors = colors
         self.option_black = option_black
         self.option_white = option_white
-        
+
     def testUniqueTogether(self):
         """You can't have two options with the same value in an option group"""
         self.option_white.value = "black"
@@ -48,13 +48,13 @@ class OptionGroupTest(TestCase):
         except db.IntegrityError:
             pass
         db.transaction.rollback()
-        
+
     def testValues(self):
         opt = Option.objects.get(id=self.option_white.id)
         self.assertEqual(opt.value, u'white')
         self.assertEqual(opt.price_change, 5)
-        self.assertEqual(opt.sort_order, 2)   
-        
+        self.assertEqual(opt.sort_order, 2)
+
     def testConfigurable(self):
         """Create a configurable product, testing ordering and price"""
         django_shirt = Product.objects.create(slug="django-shirt", name="Django shirt", site=self.site)
@@ -74,15 +74,15 @@ class OptionGroupTest(TestCase):
         self.assertEqual(pv_white.unit_price, Decimal("15.50"))
 
     def testConfigurableSlugs(self):
-        """Create a product with a slug that could conflict with an 
+        """Create a product with a slug that could conflict with an
         automatically generated product's slug."""
-        
+
         django_shirt = Product.objects.create(slug="django-shirt", name="Django shirt", site=self.site)
         shirt_price = Price.objects.create(product=django_shirt, price="10.5")
         django_config = ConfigurableProduct.objects.create(product=django_shirt)
         django_config.option_group.add(self.sizes, self.colors)
         django_config.save()
-        
+
         # Create a product with a slug that could conflict with an automatically
         # generated product's slug.
         clash_shirt = Product.objects.create(slug="django-shirt_small_black",
@@ -148,10 +148,10 @@ class DiscountTest(TestCase):
         end = datetime.date(5000, 10, 1)
         self.discount = Discount.objects.create(description="New Sale", code="BUYME", amount="5.00", allowedUses=10,
             numUses=0, minOrder=5, active=True, startDate=start, endDate=end, shipping='NONE', site=self.site)
-    
+
     def tearDown(self):
         keyedcache.cache_delete()
-    
+
     def testValid(self):
 
         v = self.discount.isValid()
@@ -189,10 +189,10 @@ class DiscountTest(TestCase):
         v = self.discount.isValid()
         self.assertFalse(v[0], False)
         self.assertEqual(v[1], u'This coupon is disabled.')
-                
+
 
 class CalcFunctionTest(TestCase):
-    
+
     def testEvenSplit1(self):
         """Simple split test"""
         d = {
@@ -201,13 +201,13 @@ class CalcFunctionTest(TestCase):
             3 : Decimal("10.00"),
             4 : Decimal("10.00"),
         }
-        
+
         s = Discount.apply_even_split(d, Decimal("16.00"))
         self.assertEqual(s[1], Decimal("4.00"))
         self.assertEqual(s[2], Decimal("4.00"))
         self.assertEqual(s[3], Decimal("4.00"))
         self.assertEqual(s[4], Decimal("4.00"))
-        
+
     def testEvenSplitTooMuch(self):
         """Test when amount is greater than total"""
         d = {
@@ -216,7 +216,7 @@ class CalcFunctionTest(TestCase):
             3 : Decimal("10.00"),
             4 : Decimal("10.00"),
         }
-        
+
         s = Discount.apply_even_split(d, Decimal("50.00"))
         self.assertEqual(s[1], Decimal("10.00"))
         self.assertEqual(s[2], Decimal("10.00"))
@@ -237,8 +237,8 @@ class CalcFunctionTest(TestCase):
         self.assertEqual(s[2], Decimal("10.00"))
         self.assertEqual(s[3], Decimal("10.00"))
         self.assertEqual(s[4], Decimal("10.00"))
-        
-        
+
+
     def testEvenSplitOneTooSmall(self):
         """Test when one of the items is maxed, but others are OK"""
         d = {
@@ -306,7 +306,7 @@ class ProductExportTest(TestCase):
         user.is_superuser = True
         user.save()
         self.client.login(username='root', password='12345')
-        
+
     def tearDown(self):
         keyedcache.cache_delete()
 
@@ -353,7 +353,7 @@ class ProductExportTest(TestCase):
         response = self.client.post(url, form_data)
         self.assertTrue(response.has_header('Content-Type'))
         self.assertEqual('application/zip', response['Content-Type'])
-        
+
     def test_unicode(self):
         """Test the ProductExportForm behavior
         Specifically, we're checking that a unicode 'format' is converted to ascii
@@ -385,7 +385,7 @@ class ProductTest(TestCase):
         self.assertEqual(product.get_qty_price(Decimal('1')), Decimal("19.50"))
         self.assertEqual(product.get_qty_price(Decimal('2')), Decimal("19.50"))
         self.assertEqual(product.get_qty_price(Decimal('10')), Decimal("10.00"))
-        
+
     def test_expiring_price(self):
         """Test whether a price with an expiration date is used in preference to a non-expiring price."""
         product = Product.objects.get(slug='PY-Rocks')
@@ -476,7 +476,7 @@ class ProductTest(TestCase):
 class ConfigurableProductTest(TestCase):
     """Test ConfigurableProduct."""
     fixtures = ['products.yaml']
-    
+
     def tearDown(self):
         keyedcache.cache_delete()
 
@@ -505,7 +505,7 @@ class ConfigurableProductTest(TestCase):
 class OptionUtilsTest(TestCase):
     """Test the utilities used for serialization of options and selected option details."""
     fixtures = ['products.yaml']
-    
+
     def test_base_sort_order(self):
         p = Product.objects.get(slug='dj-rocks')
         serialized = serialize_options(p.configurableproduct)
@@ -517,26 +517,26 @@ class OptionUtilsTest(TestCase):
 
     def test_reordered(self):
         p = Product.objects.get(slug='dj-rocks')
-        
+
         pv = p.configurableproduct.productvariation_set.all()[0]
         orig_key = pv.optionkey
         orig_detl = productvariation_details(p, False, None, create=True)
-        
+
         sizegroup = OptionGroup.objects.get(name="sizes")
         sizegroup.sort_order = 100
         sizegroup.save()
-        
+
         # reverse ordering
         for opt in sizegroup.option_set.all():
             opt.sort_order = 100-opt.sort_order
             opt.save()
-        
+
         serialized = serialize_options(p.configurableproduct)
         self.assert_(len(serialized), 2)
         self.assertEqual(serialized[1]['id'], 1)
         got_vals = [opt.value for opt in serialized[1]['items']]
         self.assertEqual(got_vals, ['L','M','S'])
-        
+
         pv2 = ProductVariation.objects.get(pk=pv.pk)
         self.assertEqual(orig_key, pv2.optionkey)
         reorder_detl = productvariation_details(p, False, None)
@@ -544,14 +544,14 @@ class OptionUtilsTest(TestCase):
 
 class PriceAdjustmentTest(TestCase):
     fixtures = ['products.yaml']
-    
+
     def setUp(self):
         self.product = Product.objects.get(slug="dj-rocks")
         self.price = self.product.price_set.get(quantity=1)
-        
+
     def tearDown(self):
         keyedcache.cache_delete()
-            
+
     def test_basic(self):
         pcalc = PriceAdjustmentCalc(self.price)
         p = PriceAdjustment('test', amount=Decimal(1))
@@ -560,7 +560,7 @@ class PriceAdjustmentTest(TestCase):
         p = PriceAdjustment('test2', amount=Decimal(10))
         pcalc += p
         self.assertEqual(pcalc.total_adjustment(), Decimal(12))
-        
+
     def test_product_adjustments(self):
         p1 = self.product.unit_price
         self.assertEqual(p1, Decimal('20.00'))
