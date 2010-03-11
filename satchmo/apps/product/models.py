@@ -603,16 +603,23 @@ class Discount(models.Model):
         context = Context(prec=3, rounding=ROUND_FLOOR)
         if ct > 0:
             split_discount = context.divide(amount, Decimal(ct))
+            remainder = amount - context.multiply(split_discount, Decimal(ct))
         else:
-            split_discount = Decimal("0.00")
+            split_discount = remainder = Decimal("0.00")
 
         while ct > 0:
             log.debug("Trying with ct=%i", ct)
             delta = Decimal("0.00")
             applied = Decimal("0.00")
             work = {}
+            should_apply_remainder = True
             for lid, price in discounted.items():
-                if price > split_discount:
+                if should_apply_remainder \
+                    and remainder > Decimal('0') \
+                    and price > split_discount + remainder:
+                    to_apply = split_discount + remainder
+                    should_apply_remainder = False
+                elif price > split_discount:
                     to_apply = split_discount
                 else:
                     to_apply = price

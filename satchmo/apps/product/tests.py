@@ -262,7 +262,7 @@ class CalcFunctionTest(TestCase):
         }
 
         s = Discount.apply_even_split(d, Decimal("10.00"))
-        self.assertEqual(s[1], Decimal("3.33"))
+        self.assertEqual(s[1], Decimal("3.34"))
         self.assertEqual(s[2], Decimal("3.33"))
         self.assertEqual(s[3], Decimal("3.33"))
 
@@ -275,7 +275,7 @@ class CalcFunctionTest(TestCase):
         }
 
         s = Discount.apply_even_split(d, Decimal("10.00"))
-        self.assertEqual(s[1], Decimal("3.50"))
+        self.assertEqual(s[1], Decimal("3.51"))
         self.assertEqual(s[2], Decimal("3.50"))
         self.assertEqual(s[3], Decimal("3.00"))
 

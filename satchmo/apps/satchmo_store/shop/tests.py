@@ -723,10 +723,10 @@ class DiscountAmountTest(TestCase):
         discount = self.order.discount
 
         self.assertEqual(sub_total, Decimal('11.00'))
-        self.assertEqual(price, Decimal('7.01'))
+        self.assertEqual(price, Decimal('7.00'))
         self.assertEqual(shipcost, Decimal('6.00'))
         self.assertEqual(shiptotal, Decimal('2.67'))
-        self.assertEqual(discount, Decimal('9.99'))
+        self.assertEqual(discount, Decimal('10.00'))
 
     def testApplySmallAmountShip(self):
         """Check small amount discount w/ship."""
