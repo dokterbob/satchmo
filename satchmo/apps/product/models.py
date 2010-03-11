@@ -13,7 +13,7 @@ import signals
 import operator
 import os.path
 
-from decimal import Decimal
+from decimal import Context, Decimal, ROUND_FLOOR
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -600,8 +600,9 @@ class Discount(models.Model):
         lastct = -1
         ct = len(discounted)
         work = {}
+        context = Context(prec=3, rounding=ROUND_FLOOR)
         if ct > 0:
-            split_discount = amount/ct
+            split_discount = context.divide(amount, Decimal(ct))
         else:
             split_discount = Decimal("0.00")
 
