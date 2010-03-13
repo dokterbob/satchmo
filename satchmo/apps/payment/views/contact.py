@@ -6,13 +6,12 @@ from django import http
 from django.core import urlresolvers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext
 from livesettings import config_get_group, config_value
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.forms import area_choices_for_country
 from satchmo_store.contact.models import Contact
 from payment.decorators import cart_has_minimum_order
-from payment.forms import PaymentContactInfoForm
+from payment.forms import ContactInfoForm, PaymentContactInfoForm
 from satchmo_store.shop.models import Cart, Config, Order
 from satchmo_utils.dynamic import lookup_url
 from signals_ahoy.signals import form_initialdata
@@ -124,38 +123,3 @@ def contact_info(request, **kwargs):
                               context_instance=context)
 
 contact_info_view = cart_has_minimum_order()(contact_info)
-
-class AjaxGetStateException(Exception):
-    """Used to barf."""
-    def __init__(self, message):
-        self.message = message
-
-def ajax_get_state(request, **kwargs):
-    formdata = request.REQUEST.copy()
-
-    try:
-        if formdata.has_key("country"):
-            country_field = 'country'
-        elif formdata.has_key("ship_country"):
-            country_field = 'ship_country'
-        else:
-            raise AjaxGetStateException("No country specified")
-
-        form = PaymentContactInfoForm(data=formdata)
-        country_data = formdata.get(country_field)
-        try:
-            country_obj = form.fields[country_field].clean(country_data)
-        except:
-            raise AjaxGetStateException("Invalid country specified")
-
-        areas = area_choices_for_country(country_obj, ugettext)
-
-        context = RequestContext(request, {
-            'areas': areas,
-        })
-        return render_to_response('shop/checkout/_state_choices.html',
-                                  context_instance=context)
-    except AjaxGetStateException, e:
-        log.error("ajax_get_state aborting: %s" % e.message)
-
-    return http.HttpResponseServerError()

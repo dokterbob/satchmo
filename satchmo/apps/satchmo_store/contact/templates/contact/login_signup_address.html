@@ -1,54 +1,18 @@
-{% extends "contact/_ContactInfoForm.html" %}
+{% extends "shop/base.html" %}
 {% load i18n %}
 
 {% block pagetitle %}Login{% endblock %}
 {% block bodyclass %}login{% endblock %}
 {% block bodyid %}login{% endblock %}
 
+{% block extra-head %}
+{% include "contact/_ContactInfoForm.html" %}
+{% endblock %}
+
 {% block content %}
 <h4>{% trans "Login, or sign up to the store" %}</h4>
 
-<form name="loginform" method="post" action="{% url auth_login %}">
-<input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url satchmo_account_info %}{% endif %}" />
-<input type="hidden" name="action" value="login" />
-<table class="form" style="float:left;">
-    <thead>
-        <tr>
-            <th colspan="2" class="label"><b>{% trans 'Existing members login' %}</b></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if loginform.has_errors %}
-            <tr><td class="warn" colspan="2">
-                {% if loginform.non_field_errors %}{{ loginform.non_field_errors }}<br/>{% endif %}
-                {% if loginform.username.errors %}{{ loginform.username.errors|join:", " }}<br/>{% endif %}
-                {% if loginform.password.errors %}{{ loginform.password.errors|join:", " }}<br/>{% endif %}
-            </td></tr>
-        {% endif %}
-        <tr>
-            <td class="label">
-                <label for="id_username">{% trans "Email Address:" %}</label>
-            </td>
-            <td class="text">
-                {{loginform.username }}
-            </td>
-        </tr>
-        <tr>
-            <td class="label">
-                <label for="id_password">{% trans "Password:" %}</label>
-            </td>
-            <td class="text">
-                {{loginform.password }}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="button">
-				<input type="submit" name="login" value="{% trans 'Login' %}" />
-            </td>
-        </tr>
-    </tbody>
-</table>
-</form>
+{% include "contact/_login_form.html" %}
 
 <form name="createform" method="post" action=".">
 <input type="hidden" name="action" value="create" />
@@ -92,70 +56,9 @@
 	    <input type='hidden' name='newsletter' value="False" />
 	    {% endif %}
 
-	    <tr><td colspan="2"><h4>{% trans "Billing Information" %}</h4></td></tr>
+	    {% block billing-info %}{% with createform as form %}{% include "contact/_ContactInfoForm_billing.html" %}{% endwith %}{% endblock %}
 
-	    <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ createform.addressee }}</td></tr>
-	    {% if createform.addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.addressee.errors|join:", "}}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_street1">{% trans "Street" %}{% if createform.street1.field.required %}*{% endif %}</label></td><td> {{ createform.street1 }}</td></tr>
-	    {% if createform.street1.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.street1.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_street2">{% trans "Street" %}</label></td><td> {{ createform.street2 }}</td></tr>
-	    {% if createform.street2.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.street2.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_city">{% trans "City" %}{% if createform.city.field.required %}*{% endif %}</label></td><td> {{ createform.city }}</td></tr>
-	    {% if createform.city.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.city.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if country %}
-	      {% if createform.fields.state.choices %}
-	        <tr><td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if createform.country.field.required %}*{% endif %}</label></td><td> {{ createform.state }}</td></tr>
-	      {% endif %}
-	    {% else %}
-	      <tr><td><label for="id_state">{% trans "State/Province" %}</label></td><td> {{ createform.state }}</td></tr>
-	    {% endif %}
-	    {% if createform.state.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.state.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr><td><label for="id_postal_code">{% trans "Zipcode/Postcode" %}{% if createform.postal_code.field.required %}*{% endif %}</label></td><td> {{ createform.postal_code }}</td></tr>
-	    {% if createform.postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.postal_code.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if not country %}
-	    <tr><td><label for="id_country">{% trans "Country" %}</label></td><td> {{ createform.country }}</td></tr>
-	    {% if createform.country.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.country.errors|join:", " }}</td></tr>{% endif %}
-	    {% endif %}
-
-	    <tr><td colspan="2"><h4>{% trans "Shipping Address" %}</h4></td></tr>
-
-	    <tr><td><label for="id_copy_address">{% trans "Shipping same as billing?" %}</label></td><td> {{ createform.copy_address }}</td></tr>
-	    {% if createform.copy_address.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.copy_address.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ createform.ship_addressee }}</td></tr>
-	    {% if createform.ship_addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_street1">{% trans "Street" %}</label></td><td> {{ createform.ship_street1 }}</td></tr>
-	    {% if createform.ship_street1.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_street1.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_street2">{% trans "Street" %}</label></td><td> {{ createform.ship_street2 }}</td></tr>
-	    {% if createform.ship_street2.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_street2.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_city">{% trans "City" %}</label></td><td> {{ createform.ship_city }}</td></tr>
-	    {% if createform.ship_city.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_city.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if country %}
-	      {% if createform.fields.ship_state.choices %}
-	       <tr class="shiprow"><td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td><td> {{ createform.ship_state }}</td></tr>
-	      {% endif %}
-	    {% else %}
-	      <tr class="shiprow"><td><label for="id_ship_state">{% trans "State/Province" %}</label></td><td> {{ createform.ship_state }}</td></tr>
-	    {% endif %}
-	    {% if createform.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_state.errors|join:", " }}</td></tr>{% endif %}
-
-	    <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %}</label></td><td>{{ createform.ship_postal_code }}</td></tr>
-	    {% if createform.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
-
-	    {% if not country %}
-	    <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %}</label></td><td> {{ createform.ship_country }}</td></tr>
-	    {% if createform.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.ship_country.errors|join:", " }}</td></tr>{% endif %}
-	    {% endif %}
+	    {% block shipping-info %}{% with createform as form %}{% include "contact/_ContactInfoForm_shipping.html" %}{% endwith %}{% endblock %}
 
         <tr>
             <td colspan="2" class="button">

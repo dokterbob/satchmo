@@ -1,8 +1,6 @@
-{% extends "shop/base.html" %}
-
 {# This template is meant to be used by ContactInfoForm and it's subclasses. #}
 
-{% block extra-head %}
+{% block contact-form-imports %}
 {% include "shop/_jquery.html" %}
 {% include "shop/_jquery_form.html" %}
 
@@ -10,5 +8,5 @@
 {% include "contact/_country_match_script.html" %}
 {% endif %}
 <script type="text/javascript" src="{{ media_url}}js/satchmo_checkout.js"></script>
-{% include "shop/checkout/_state_js.html" %}
+{% include "contact/_state_js.html" %}
 {% endblock %}
