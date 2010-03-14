@@ -29,7 +29,7 @@ def find_auto_discounts(product):
         product = (product,)
     today = datetime.date.today()
     discs = Discount.objects.filter(automatic=True, active=True, startDate__lte=today, endDate__gt=today)
-    return discs.filter(validProducts__in=product).order_by('-percentage')
+    return discs.filter(valid_products__in=product).order_by('-percentage')
 
 def find_best_auto_discount(product):
     discs = find_auto_discounts(product)

@@ -58,7 +58,7 @@
     numUses: null
     percentage: null
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
@@ -75,7 +75,7 @@
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
@@ -92,7 +92,7 @@
     numUses: null
     percentage: null
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
@@ -109,7 +109,7 @@
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
@@ -126,7 +126,7 @@
     numUses: null
     percentage: null
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
@@ -143,7 +143,7 @@
     numUses: null
     percentage: '20'
     startDate: 2007-12-15
-    validProducts: []
+    valid_products: []
     site: 1
     allValid: true
   model: product.discount
