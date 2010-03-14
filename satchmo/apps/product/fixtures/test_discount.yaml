@@ -627,7 +627,7 @@
     create_subs: false
     option_group: [3]
   model: product.configurableproduct
-  pk: 4  
+  pk: 4
 - fields:
     options: [1, 4]
     parent: 1
