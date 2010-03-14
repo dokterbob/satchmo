@@ -6,6 +6,19 @@ as well as the text used in your product and category descriptions.
 The `Django Internationalization documentation`_ is an excellent resource on the overall capability available 
 through Django. The sections below describe the Satchmo specific steps.
 
+Using Transifex
+---------------
+Satchmo is available on `transifex <http://www.transifex.net>`_ which describes itself as "... an open service allowing people to collaboratively 
+translate software, documentation and other types of projects."
+
+This application provides an easy to use web interface for translating Satchmo and submitting the translations
+back to Satchmo so they may be incorporated into the application.
+
+The specific Satchmo transifex site is `here. <http://www.transifex.net/projects/p/satchmo/>`_
+
+If you prefer to use your own tools for translation, the sections below describe the steps to generate and maintain
+your translations.
+
 Template Translations
 ---------------------
 

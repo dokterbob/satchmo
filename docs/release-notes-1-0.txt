@@ -54,3 +54,4 @@ Changes
 - Refactor some of the templates to make more consistent
 - Change the behavior of applying discounts that don't evenly split among multiple products
 - Update the autocomplete admin js to the latest version. Also widened field and added missing image
+- Updated polish translation
