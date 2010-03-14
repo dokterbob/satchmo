@@ -50,21 +50,21 @@
     {% else %}
 	<tr><td colspan="2"><h4>{% trans "How do you want to pay?" %}</h4></td></tr>
 	<tr><td><label for="id_paymentmethod">{% trans "Payment method" %}*</label></td> <td><div id="payment">{{ form.paymentmethod }}</div></td></tr>
-    {% if form.paymentmethod.errors %}<tr><td>&nbsp;</td><td>*** {{ form.paymentmethod.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.paymentmethod.errors %}<tr><td class="error" colspan="2">*** {{ form.paymentmethod.errors|join:", " }}</td></tr>{% endif %}
     {% endifequal %}
 
 	<tr><td colspan="2"><h4>{% trans "Basic Information" %}</h4></td></tr>
     <tr><td><label for="id_email">{% trans "Email address" %}*</label></td> <td>{{ form.email }}</td></tr>
-    {% if form.email.errors %}<tr><td>&nbsp;</td><td>*** {{ form.email.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.email.errors %}<tr><td class="error" colspan="2">*** {{ form.email.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_first_name">{% trans "First name" %}{% if form.first_name.field.required %}*{% endif %}</label></td><td> {{ form.first_name }}</td></tr>
-   {% if form.first_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.first_name.errors|join:", " }}</td></tr>{% endif %}
+   {% if form.first_name.errors %}<tr><td class="error" colspan="2">*** {{ form.first_name.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_last_name">{% trans "Last name" %}{% if form.last_name.field.required %}*{% endif %}</label></td><td> {{ form.last_name }}</td></tr>
-    {% if form.last_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.last_name.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.last_name.errors %}<tr><td class="error" colspan="2">*** {{ form.last_name.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_phone">{% trans "Phone number" %}{% if form.phone.field.required %}*{% endif %}</label></td><td> {{ form.phone }}</td></tr>
-    {% if form.phone.errors %}<tr><td>&nbsp;</td><td>*** {{ form.phone.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.phone.errors %}<tr><td class="error" colspan="2">*** {{ form.phone.errors|join:", " }}</td></tr>{% endif %}
 
     {% block billing-info %}{% include "contact/_ContactInfoForm_billing.html" %}{% endblock %}
 
@@ -77,7 +77,7 @@
 {% else %}
     <tr><td colspan="2"><h4>{% trans "Discounts" %}</h4></td></tr>
     <tr><td><label for="id_discount">{% trans "Discount code" %}</label></td><td>{{ form.discount }}</td></tr>
-    {% if form.discount.errors %}<tr><td></td><td>*** {{ form.discount.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.discount.errors %}<tr><td class="error" colspan="2">*** {{ form.discount.errors|join:", " }}</td></tr>{% endif %}
 {% endif %}
 {% if sale %}{% include "product/sale_details.html" %}{% endif %}
 

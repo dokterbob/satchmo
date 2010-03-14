@@ -4,19 +4,19 @@
     <tr><td colspan="2"><h4>{% trans "Shipping Information" %}</h4></td></tr>
 
     <tr><td><label for="id_copy_address">{% trans "Shipping same as billing?" %}</label></td><td> {{ form.copy_address }}</td></tr>
-    {% if form.copy_address.errors %}<tr><td>&nbsp;</td><td>*** {{ form.copy_address.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.copy_address.errors %}<tr><td class="error" colspan="2">*** {{ form.copy_address.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.ship_addressee }}</td></tr>
-    {% if form.ship_addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
+    {% if form.ship_addressee.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
 
     <tr class="shiprow"><td><label for="id_ship_street1">{% trans "Street" %} {% if form.ship_street1.field.required %}*{% endif %}</label></td><td> {{ form.ship_street1 }}</td></tr>
-    {% if form.ship_street1.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_street1.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_street1.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_street1.errors|join:", " }}</td></tr>{% endif %}
 
     <tr class="shiprow"><td><label for="id_ship_street2">{% trans "Street" %} {% if form.ship_street2.field.required %}*{%endif%}</label></td><td> {{ form.ship_street2 }}</td></tr>
-    {% if form.ship_street2.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_street2.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_street2.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_street2.errors|join:", " }}</td></tr>{% endif %}
 
     <tr class="shiprow"><td><label for="id_ship_city">{% trans "City" %} {% if form.ship_city.field.required %}*{% endif %}</label></td><td> {{ form.ship_city }}</td></tr>
-    {% if form.ship_city.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_city.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_city.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_city.errors|join:", " }}</td></tr>{% endif %}
 
     {% if country %}
       {% if form.fields.ship_state.choices %}
@@ -31,13 +31,13 @@
         <td><p id="id_ship_state_loading" style="display: none">Loading...</p> {{ form.ship_state }}</td>
       </tr>
     {% endif %}
-    {% if form.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_state.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_state.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_state.errors|join:", " }}</td></tr>{% endif %}
 
     <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %} {% if form.ship_postal_code.field.required %}*{% endif %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
-    {% if form.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_postal_code.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
 
     {% if not country %}
     <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %} {% if form.ship_country.field.required %}*{% endif %}</label></td><td> {{ form.ship_country }}</td></tr>
-    {% if form.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ship_country.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
     {% endif %}
 {% endblock %}
