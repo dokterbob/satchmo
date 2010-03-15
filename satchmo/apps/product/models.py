@@ -600,9 +600,9 @@ class Discount(models.Model):
         lastct = -1
         ct = len(discounted)
         work = {}
-        context = Context(prec=3, rounding=ROUND_FLOOR)
+        context = Context(rounding=ROUND_FLOOR)
         if ct > 0:
-            split_discount = context.divide(amount, Decimal(ct))
+            split_discount = context.divide(amount, Decimal(ct)).quantize(Decimal("0.01"))
             remainder = amount - context.multiply(split_discount, Decimal(ct))
         else:
             split_discount = remainder = Decimal("0.00")
