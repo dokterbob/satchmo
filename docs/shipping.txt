@@ -109,12 +109,19 @@ For another, it is multilingual from the start, with you being able to specify t
 method, etc. right in the admin pages.  Lastly, you can have shipping specials, expiring on the dates
 of your choice.
 
-For example, you can make this shipping table::
+For example, you can make this shipping table:
 
-    $0-$25   UPS=$8.50, Fedex=$18.00
-    $25.01-$50 UPS=$9.75, Fedex=21.00
-    ....
-    $250.00 + free
++---------------------------+-------+----------+
+| Price range of cart items |  UPS  |  Fedex   |
++===========================+=======+==========+
+| $0-$25                    | $8.50 |  $18.00  |
++---------------------------+-------+----------+
+| $25.01-$50                | $9.75 |  $21.00  |
++---------------------------+-------+----------+
+| ...                       |  ...  |    ...   |
++---------------------------+-------+----------+
+| >$250.00                  |  free |   free   |
++---------------------------+-------+----------+
 
 .. _shipping_tieredweight:
 
