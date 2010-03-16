@@ -72,6 +72,19 @@ Enabling Modules
     displayed alongside settings that apply across all modules in the :ref:`Shipping
     Settings section <shipping_settings>`.
 
+Custom Modules
+^^^^^^^^^^^^^^
+
+.. Note::
+
+    You need to this before going through the instructions in `Enabling Modules`_.
+
+#. Add the module's dotted name to :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+#. If the module has Django-style models, proceed to :ref:`shipping_enabling_models`;
+   otherwise, proceed with the instructions in `Enabling Modules`_.
+
+.. _shipping_enabling_models:
+
 Modules with Django-style Models
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
