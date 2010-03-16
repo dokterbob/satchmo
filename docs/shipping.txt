@@ -125,6 +125,13 @@ To enable, see `Enabling Modules`_.
     they are displayed alongside settings that apply across all modules in the
     :ref:`Shipping Settings section <shipping_settings>`.
 
+.. _shipping_no:
+
+No Shipping
+^^^^^^^^^^^
+
+.. TODO
+
 .. _shipping_per:
 
 Per
@@ -140,6 +147,13 @@ To enable, see `Enabling Modules`_.
     Unlike most modules, settings for this module are not displayed in a separate section;
     they are displayed alongside settings that apply across all modules in the
     :ref:`Shipping Settings section <shipping_settings>`.
+
+.. _shipping_productshipping:
+
+Shipping By Product
+^^^^^^^^^^^^^^^^^^^
+
+.. TODO
 
 .. _shipping_tiered:
 
@@ -183,6 +197,13 @@ you can specify a number of zones for each carrier adding a number of countries 
 choose a default zone for each carrier. Each zone can have a number of cart weights with corresponding
 price and handling fee. This means that at checkout the shipping price is based on the shipping country
 and the total weight of the cart.
+
+.. _shipping_tieredquantity:
+
+Tiered Quantity
+^^^^^^^^^^^^^^^
+
+.. TODO
 
 Specialised Modules
 -------------------
