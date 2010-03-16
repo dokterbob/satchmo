@@ -119,7 +119,7 @@ For example, you can make this shipping table::
 .. _shipping_tieredweight:
 
 Tiered Weight
-+++++++++++++
+^^^^^^^^^^^^^
 
 This module provides similar features to tiered and requires the same extra steps to install. In addition
 you can specify a number of zones for each carrier adding a number of countries to each zone. You can then
