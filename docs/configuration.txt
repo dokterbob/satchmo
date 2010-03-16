@@ -7,12 +7,12 @@ Store Settings
 .. index::
    single: settings; SHOP_BASE
    single: settings; LOCAL_DEV
-   
+
 If you followed the installation steps, you should have a basic store to start using.  There are a
 number of places you might want to configure.
 
 1. In the settings.py (or local_settings.py) file, there are a number of general Django settings.  However, there are a
-   few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS`` 
+   few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS``
    tuple like so::
 
         SATCHMO_SETTINGS = {
@@ -23,7 +23,7 @@ number of places you might want to configure.
         }
 
 The following settings are available to be added to the SATCHMO_SETTINGS dictionary:
-    
+
     - ``SHOP_BASE`` - used as the prefix for your store.  In the default setting, your store is located at www.yourname.com/shop.  If you would like to change this setting, this is the place to do it.  If you would like your store to be at the root of the url, set ``SHOP_BASE = ""``
     - ``SHOP_URLS`` documentation needed.
     - ``MULTISHOP`` - a boolean used to enable to disable multi store capability.
@@ -36,15 +36,15 @@ The following settings are available to be added to the SATCHMO_SETTINGS diction
     - ``PRODUCT_SLUG`` - The product url prefix. Default: product
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
-    
+
     - Make sure that your ``DATABASE_ENGINE`` variable is also set correctly.
     - You should ensure that all of your paths are setup correctly.  Key ones to look at are:
-        
+
         + ``MEDIA_ROOT`` (this is where images will be stored)
         + ``MEDIA_URL``
         + ``ADMIN_MEDIA_PREFIX``
         + ``TEMPLATE_DIRS``
-        
+
 Site Settings
 -------------
 
@@ -84,10 +84,10 @@ Each payment module will have it's own configuration items. These items apply un
     - Force ship to and bill to countries to match during checkout
     - Cron passkey to allow subscription rebilling
     - Enable/disable ssl for the checkout process
-    
+
 .. Warning::
     After saving changes to your payment processor, you will need to restart your server for the changes to take effect.
-        
+
 .. index::
    single: Product types; enabling
 
@@ -102,7 +102,7 @@ Before you use any of the products, you need to enable them in this section. The
     - Subscription Products
     - Downloadable Products
     - Gift Certificates
-    
+
 In this section you can also configure:
 
     - Protected directory to be used for downloadable products
@@ -111,7 +111,7 @@ In this section you can also configure:
 
 .. index::
    single: Shipping; enabling
-   
+
 Shipping Settings
 ^^^^^^^^^^^^^^^^^
 
@@ -145,7 +145,7 @@ Next, choose the way you want to handle the subscriptions.  Currently we have tw
 
 .. index::
    single: SSL
-   
+
 SSL
 ^^^
 
@@ -171,8 +171,8 @@ Then, enable it for the specific urls you would like to be protected by adding
 
 	(r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
-SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can 
-have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set 
+SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can
+have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set
 ``CHECKOUT_SSL=True`` in your local_settings file.
 
 If you only want to enable SSL for some payment modules, enable SSL for payments as described above
@@ -198,8 +198,8 @@ The LIVESETTINGS_OPTIONS must be formatted as follows::
 	            }
 	        }
 
-In the settings dict above, the "1" is a site index, allowing you to have different settings for different sites.  
-The "val" entries must exactly match the format stored in the database for a setting.  For example, do not use a 
+In the settings dict above, the "1" is a site index, allowing you to have different settings for different sites.
+The "val" entries must exactly match the format stored in the database for a setting.  For example, do not use a
 literal True or an integer, it needs to be the string representation of them.
 
 If ``DB`` is False, then editting the settings via the admin will be disabled. All configuration must then be done
@@ -209,9 +209,9 @@ The easiest way to do this is to query the database for livesettings_setting and
 
 .. index::
    single: settings; L10N
-   
+
 .. _l10n_settings:
-   
+
 Changing the L10N Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -228,11 +228,11 @@ below would configure the Euro::
     }
 
 The following settings are available to be added to the L10N_SETTINGS dictionary:
-    
+
     - ``default_currency`` - The default currency type to display
     - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - True
     - ``allow_translations`` - Enable or disable the translation section for the store user. Default - True
-    
+
 
 
 The L10N_SETTINGS variable also allows you to control whether or not translation fields
@@ -241,7 +241,7 @@ should be displayed in the admin. In the example above, they will be disabled. T
 .. Note::
     If you use a unicode character, you'll need to have an encoding at the top
     of your settings.py file::
-       
+
         # -*- coding: UTF-8 -*-
 
 

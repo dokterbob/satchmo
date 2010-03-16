@@ -7,11 +7,11 @@ Tax Module Activation
 Satchmo provides you the flexibility to enable several different types of
 tax modules.
 
-To activate the various tax modules, they need to be enabled in your settings.py 
+To activate the various tax modules, they need to be enabled in your settings.py
 file. For example::
-        
+
         INSTALLED_APPS = (
-                ... 
+                ...
                 'tax',
                 'tax.modules.no',
                 'tax.modules.area',
@@ -45,8 +45,8 @@ as an example and will probably not be useful in a production store.
 
 Area
 ^^^^^
-This tax module allows you to set taxes based on the geographic area a shipment is 
-being sent to. For example, in the US, this would be used to set varying sales tax 
+This tax module allows you to set taxes based on the geographic area a shipment is
+being sent to. For example, in the US, this would be used to set varying sales tax
 rates based on the State.
 
 The satchmo admin command satchmo_load_us_tax will load sales tax rates for
@@ -63,7 +63,7 @@ to every purchase.
 
 US Streamlined Sales Tax (SST) Processing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The SST module is a complex application that uses the 
+The SST module is a complex application that uses the
 `SST <http://www.streamlinedsalestax.org/>`_ service to try to streamline
 sales tax processing in the US.
 
