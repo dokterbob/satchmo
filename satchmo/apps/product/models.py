@@ -457,7 +457,7 @@ class Discount(models.Model):
         default='NONE', blank=True, null=True, max_length=10)
     allValid = models.BooleanField(_("All products?"), default=False,
         help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
-    validProducts = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
+    valid_products = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
         blank=True, null=True)
 
     objects = DiscountManager()
@@ -504,7 +504,7 @@ class Discount(models.Model):
 
 
     def _valid_products(self, item_query):
-        validslugs = self.validProducts.values_list('slug', flat=True)
+        validslugs = self.valid_products.values_list('slug', flat=True)
         itemslugs = item_query.values_list('product__slug', flat=True)
         return ProductPriceLookup.objects.filter(
             Q(discountable=True)
@@ -589,7 +589,7 @@ class Discount(models.Model):
         """Tests if discount is valid for a single product"""
         if not product.is_discountable:
             return False
-        p = self.validProducts.filter(id__exact = product.id)
+        p = self.valid_products.filter(id__exact = product.id)
         return p.count() > 0
 
     class Meta:
