@@ -233,6 +233,8 @@ USPS
 The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
 regarding this module:
 
+ - Specify your username and password in the configuration section for USPS in
+   :ref:`Site Settings <site-settings>`.
  - The USPS API won't return shipping rates if you are trying to go against the testing server,
    so a couple of the settings in modules/config.py become useless and confusing
  - Make sure your products have weights associated with them. The USPS API won't accept weightless packages and your
@@ -244,7 +246,6 @@ regarding this module:
 To enable in Satchmo:
 
  1. In your site settings, make sure that the USPS module is active
- 2. Configure the password and package settings
 
 .. _shipping_canada_post:
 
