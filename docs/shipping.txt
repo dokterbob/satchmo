@@ -18,12 +18,16 @@ Activate and configure your shipping modules from your :ref:`Site Settings page
 Generic Modules
 ---------------
 
+.. _shipping_dummy:
+
 Dummy
 ^^^^^
 
 This module is mainly included in order to demonstrate how you can create your own modules.  If
 you have an interest in creating your own, copy this module to a new directory and use the comments
 to guide you through the process.
+
+.. _shipping_flat:
 
 Flat
 ^^^^
@@ -32,12 +36,16 @@ This is a very simple module that allows you to set a flat rate for all shipment
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
 can be configured through your settings page.
 
+.. _shipping_per:
+
 Per
 ^^^
 
 This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
 multiplied by the number of items in your order.  These values are configured through your settings
 page.
+
+.. _shipping_tiered:
 
 Tiered
 ^^^^^^
@@ -66,6 +74,8 @@ For example, you can make this shipping table::
     ....
     $250.00 + free
 
+.. _shipping_tieredweight:
+
 TieredWeight
 ++++++++++++
 
@@ -80,6 +90,8 @@ Specialised Modules
 
 .. index::
    single: UPS
+
+.. _shipping_ups:
 
 UPS
 ^^^
@@ -133,6 +145,8 @@ one 6 pound package. If your shop has a different method of shipping, you will n
 .. index::
    single: Fedex;
 
+.. _shipping_fedex:
+
 Fedex
 ^^^^^
 
@@ -162,6 +176,8 @@ Once you've got the module installed its time to get your account set up with Fe
 .. index::
    single: USPS;
 
+.. _shipping_usps:
+
 USPS
 ^^^^
 
@@ -180,6 +196,8 @@ To enable in Satchmo:
 
  1. In your site settings, make sure that the USPS module is active
  2. Configure the password and package settings
+
+.. _shipping_canada_post:
 
 Canada Post
 ^^^^^^^^^^^
