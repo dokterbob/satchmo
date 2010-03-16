@@ -40,11 +40,9 @@ are listed below.
     - and the modules listed in :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
    :default: :ref:`shipping_per`
 
-   Satchmo provides you the flexibility to enable and disable as many shipping modules
-   as you would like - you can do it in this section.  If you have custom modules you
-   would like to add, make sure they are added to
-   :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`; they are enabled and disabled in
-   this section too.
+   Satchmo provides you the flexibility to enable as many shipping modules as you would
+   like.  If you have custom modules you would like to use, see `Custom Modules`_
+   below.
 
 .. data:: SHIPPING.SELECT_CHEAPEST
 
