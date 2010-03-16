@@ -266,6 +266,18 @@ class CalcFunctionTest(TestCase):
         self.assertEqual(s[2], Decimal("3.33"))
         self.assertEqual(s[3], Decimal("3.33"))
 
+    def testLargeThirds(self):
+        d = {
+            1 : Decimal("100.00"),
+            2 : Decimal("100.00"),
+            3 : Decimal("100.00"),
+        }
+
+        s = Discount.apply_even_split(d, Decimal("100.00"))
+        self.assertEqual(s[1], Decimal("33.34"))
+        self.assertEqual(s[2], Decimal("33.33"))
+        self.assertEqual(s[3], Decimal("33.33"))
+
 
     def testThirdsUneven(self):
         d = {
