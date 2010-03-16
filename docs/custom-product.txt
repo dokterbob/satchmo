@@ -77,7 +77,7 @@ configuration.
 
 2. Run ``python manage.py syncdb`` in your project directory.
 
-3. Add your app name to your project's ``CUSTOM_PRODUCT_MODULES`` setting in ``SATCHMO_SETTINGS``.
+3. Add your app name to your project's :data:`SATCHMO_SETTINGS.CUSTOM_PRODUCT_MODULES`.
 
 4. Enable the new model in Satchmo's settings.
     1. Go to "Edit Site Settings" in the admin app.

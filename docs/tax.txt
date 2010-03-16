@@ -28,7 +28,7 @@ Activate and configure your tax modules from your :ref:`Site Settings page
 
 .. Note::
     If you have custom tax you would like to add, make sure it is added to your
-    ``CUSTOM_TAX_MODULES`` list in your local_settings.py file
+    :data:`SATCHMO_SETTINGS.CUSTOM_TAX_MODULES`.
 
 Available Modules
 -----------------

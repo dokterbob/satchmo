@@ -24,20 +24,69 @@ number of places you might want to configure.
 
 The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
-    - ``SHOP_BASE`` - used as the prefix for your store.  Don't append a trailing slash
-      (`/`) - Satchmo does this for you.  In the default setting, your
-      store is located at `www.yourname.com/shop/`.  If you would like to change this
-      setting, this is the place to do it.  If you would like your store to be at the root
-      of the url, set this to ``""``.
-    - ``SHOP_URLS`` documentation needed.
-    - ``MULTISHOP`` - a boolean used to enable to disable multi store capability.
-    - ``CUSTOM_NEWSLETTER_MODULES`` - a list of custom newsletters.
-    - ``CUSTOM_SHIPPING_MODULES`` - a list of custom shipping modules outside of the standard Satchmo distribution.
-    - ``CUSTOM_PRODUCT_MODULES`` -  a list of custom product modules outside of the standard Satchmo distribution.
-    - ``CUSTOM_TAX_MODULES`` - a list of custom tax modules outside of the standard Satchmo distribution.
-    - ``COOKIE_MAX_SECONDS`` -  Cookie expiration time. Default: 60*60*24*30
-    - ``CATEGORY_SLUG`` -  The category url prefix. Default: category
-    - ``PRODUCT_SLUG`` - The product url prefix. Default: product
+.. data:: SATCHMO_SETTINGS.SHOP_BASE
+
+    :default: `/shop`
+
+    Used as the prefix for your store.  Don't append a trailing slash (`/`) - Satchmo does
+    this for you.  In the default setting, your store is located at
+    `www.yourname.com/shop/`.  If you would like to change this setting, this is the place
+    to do it.  If you would like your store to be at the root of the url, set this to
+    ``""``.
+
+.. data:: SATCHMO_SETTINGS.SHOP_URLS
+
+    :default: `[]`
+
+    .. TODO documentation needed.
+
+.. data:: SATCHMO_SETTINGS.MULTISHOP
+
+    :default: `False`
+
+    A boolean used to enable to disable multi store capability.
+
+.. data:: SATCHMO_SETTINGS.CUSTOM_NEWSLETTER_MODULES
+
+    :default: `[]`
+
+    A list of custom newsletters.
+
+.. data:: SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES
+
+    :default: `[]`
+
+    A list of custom shipping modules outside of the standard Satchmo distribution.
+
+.. data:: SATCHMO_SETTINGS.CUSTOM_PRODUCT_MODULES
+
+    :default: `[]`
+
+    A list of custom product modules outside of the standard Satchmo distribution.
+
+.. data:: SATCHMO_SETTINGS.CUSTOM_TAX_MODULES
+
+    :default: `[]`
+
+    A list of custom tax modules outside of the standard Satchmo distribution.
+
+.. data:: SATCHMO_SETTINGS.COOKIE_MAX_SECONDS
+
+    :default: `60*60*24*30`
+
+    Cookie expiration time.
+
+.. data:: SATCHMO_SETTINGS.CATEGORY_SLUG
+
+    :default: `category`
+
+    The category url prefix.
+
+.. data:: SATCHMO_SETTINGS.PRODUCT_SLUG
+
+    :default: `product`
+
+    The product url prefix.
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
 
