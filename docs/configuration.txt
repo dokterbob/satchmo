@@ -24,7 +24,7 @@ number of places you might want to configure.
 
 The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
-    - ``SHOP_BASE`` - used as the prefix for your store.  In the default setting, your store is located at www.yourname.com/shop.  If you would like to change this setting, this is the place to do it.  If you would like your store to be at the root of the url, set this to ``""``.
+    - ``SHOP_BASE`` - used as the prefix for your store.  In the default setting, your store is located at `www.yourname.com/shop`.  If you would like to change this setting, this is the place to do it.  If you would like your store to be at the root of the url, set this to ``""``.
     - ``SHOP_URLS`` documentation needed.
     - ``MULTISHOP`` - a boolean used to enable to disable multi store capability.
     - ``CUSTOM_NEWSLETTER_MODULES`` - a list of custom newsletters.
