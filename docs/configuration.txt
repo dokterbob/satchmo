@@ -1,8 +1,8 @@
 Basic Configuration
 ===================
 
-Store Settings
---------------
+Settings configured in Python files
+-----------------------------------
 
 .. index::
    single: settings; SHOP_BASE
@@ -47,8 +47,8 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
 .. _site-settings:
 
-Site Settings
--------------
+Settings configured via Django's admin interface
+------------------------------------------------
 
 The majority of the store configuration is done through the admin interface. This can be
 accessed from the main admin page (usually at `/admin/`) via the `Edit Site Settings`
