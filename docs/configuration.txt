@@ -48,7 +48,9 @@ The following settings are available to be added to the SATCHMO_SETTINGS diction
 Site Settings
 -------------
 
-The majority of the store configuration is done through the admin interface. Satchmo has a flexible Site Settings capability that can be accessed through the admin interface or through the url: /settings
+The majority of the store configuration is done through the admin interface. This can be
+accessed from the main admin page (usually at `/admin/`) via the `Edit Site Settings`
+link. It is also usually available at the URL `/settings/`.
 
 All of the configuration settings have detailed help notes. They also default to sensible configurations so your initial store should work fine without changing any values.
 
