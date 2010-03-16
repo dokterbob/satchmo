@@ -15,8 +15,15 @@ are listed below.
 .. data:: SHIPPING.MODULES
 
    :description: Active shipping modules
-   :choices: all shipping modules that come with Satchmo, and the modules listed in
-             :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+   :choices:
+    - :ref:`shipping_dummy`;
+    - :ref:`shipping_flat`;
+    - :ref:`shipping_per`;
+    - :ref:`shipping_canada_post`;
+    - :ref:`shipping_fedex`;
+    - :ref:`shipping_ups`;
+    - :ref:`shipping_usps`;
+    - and the modules listed in :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
    :default: :ref:`shipping_per`
 
    Satchmo provides you the flexibility to enable and disable as many shipping modules
