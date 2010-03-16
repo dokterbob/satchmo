@@ -12,6 +12,18 @@ are listed below.
     Settings specific to the :ref:`shipping_flat` and :ref:`shipping_per` modules are
     also displayed in this section.
 
+.. data:: SHIPPING.HIDING
+
+   :description: Hide shipping form fields if there is only one module available
+   :choices:
+    - Yes
+    - No
+    - Show description only
+   :default: No
+
+   If your store only has one shipping option, then you may prefer not to show any
+   ability to select shipping options.
+
 .. data:: SHIPPING.MODULES
 
    :description: Active shipping modules
@@ -31,6 +43,7 @@ are listed below.
    would like to add, make sure they are added to
    :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`; they are enabled and disabled in
    this section too.
+
 
 Generic Modules
 ---------------
@@ -255,10 +268,3 @@ Notes
     will find smallest box available and if shipping multiple
     products it will "find the most cost-effective box combination.
     http://www.canadapost.ca/business/offerings/sell_online_shipping_module/can/demo_5-e.asp
-
-
-Hide Shipping if One Module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. There is a
-setting in /settings that allows you to control this behavior.
