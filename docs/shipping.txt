@@ -16,10 +16,8 @@ the ``Edit Site Settings`` link on your main admin home page.
     If you have custom modules you would like to add, make sure it is added to your
     ``CUSTOM_SHIPPING_MODULES`` list in your local_settings.py file
 
-Available Modules
------------------
-
-Satchmo includes several modules in the default distribution.
+Generic Modules
+---------------
 
 Dummy
 ^^^^^
@@ -80,6 +78,9 @@ you can specify a number of zones for each carrier adding a number of countries 
 choose a default zone for each carrier. Each zone can have a number of cart weights with corresponding
 price and handling fee. This means that at checkout the shipping price is based on the shipping country
 and the total weight of the cart.
+
+Specialised Modules
+-------------------
 
 UPS
 ^^^
