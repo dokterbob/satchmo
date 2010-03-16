@@ -21,7 +21,7 @@
     {% if country %}
       {% if form.fields.ship_state.choices %}
        <tr>
-         <td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td>
+         <td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %} {% if form.ship_state.field.required %}*{% endif %}</label></td>
          <td><p id="id_ship_state_loading" style="display: none">Loading...</p> {{ form.ship_state }}</td>
        </tr>
       {% endif %}
