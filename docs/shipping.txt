@@ -44,6 +44,16 @@ are listed below.
    :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`; they are enabled and disabled in
    this section too.
 
+.. data:: SHIPPING.SELECT_CHEAPEST
+
+   :description: Select least expensive by default
+   :choices:
+    - `True`
+    - `False`
+   :default: `True`
+
+   A Boolean value.
+
 
 Generic Modules
 ---------------
