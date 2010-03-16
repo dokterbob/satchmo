@@ -23,9 +23,8 @@ file. For example::
     You must include tax as well as the specific module under tax that you
     would like to enable.
 
-Activate and configure your tax modules from your site settings page.
-Usually this is at ``SHOP_BASE/settings/``. You can also access this page from
-the ``Edit Site Settings`` link on your main admin home page.
+Activate and configure your tax modules from your :ref:`Site Settings page
+<site-settings>`.
 
 .. Note::
     If you have custom tax you would like to add, make sure it is added to your
