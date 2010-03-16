@@ -1,6 +1,8 @@
 Shipping
 ========
 
+.. _shipping_settings:
+
 Configuration in Site Settings
 ------------------------------
 
@@ -54,6 +56,15 @@ are listed below.
 
    A Boolean value.
 
+Enabling Modules
+----------------
+
+#. Under the :ref:`Shipping Settings section <shipping_settings>` on the :ref:`Site
+   Settings page <site-settings>` , select the module you want in
+   :data:`SHIPPING.MODULES`.
+#. Save.
+#. You should see a new configuration section for the shipping module you selected
+   earlier; open up the section and configure the module accordingly.
 
 Generic Modules
 ---------------
@@ -145,6 +156,8 @@ Specialised Modules
 UPS
 ^^^
 
+To enable, see `Enabling Modules`_.
+
 The UPS shipping module provides an interface to the UPS Rating and Service selection interface.  This service
 from UPS allows you to get custom real time shipping quotes based on the sending and receiving addresses
 as well the items in the shipment.
@@ -158,10 +171,6 @@ Before you attempt to test the UPS module, you must sign up for a developer acco
 `UPS web site <http://www.ups.com/content/us/en/bussol/offering/technology/automated_shipping/online_tools.html>`_.
 
 Make sure that your store mailing address is correct in the Store Configuration too.
-
-To enable:
-
- 1. In your site settings, make sure that the UPS shipping module is active
 
 You must configure the following settings in the Site Settings -> UPS Shipping Settings:
 
@@ -199,15 +208,13 @@ one 6 pound package. If your shop has a different method of shipping, you will n
 Fedex
 ^^^^^
 
+To enable, see `Enabling Modules`_.
+
 The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
 
 One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response.
 If you have a configurable product you will need to set weights on each product option. Otherwise you will get errors when the
 FedEx module tries to calculate the weight to send to FedEx for the quote.
-
-To enable in Satchmo:
-
- 1. In your site settings, make sure that the Fedex module is active
 
 Once you've got the module installed its time to get your account set up with FedEx. (It does not work without the following steps)
 
@@ -229,6 +236,8 @@ Once you've got the module installed its time to get your account set up with Fe
 USPS
 ^^^^
 
+To enable, see `Enabling Modules`_.
+
 The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
 regarding this module:
 
@@ -242,14 +251,12 @@ regarding this module:
  - Some rates such as parcel post automatically include the "additional postage may apply" values, and according to
    exchanges with the USPS support crew, we just have to deal with it.
 
-To enable in Satchmo:
-
- 1. In your site settings, make sure that the USPS module is active
-
 .. _shipping_canada_post:
 
 Canada Post
 ^^^^^^^^^^^
+
+To enable, see `Enabling Modules`_.
 
 Prerequisites
 
@@ -257,20 +264,6 @@ Prerequisites
 
   - You must have a merchant id assigned by Canada Post to  use the module in production environment. Visit
     http://www.canadapost.ca/business/default-e.asp for more information.
-
-
-Setting Up
-
-  - Open up Satchmo settings at http://example.com/settings
-
-  - Click on "Show" next to "Shipping Settings"
-
-  - Save.
-
-  - Click on "Show" next to "Canada Post Shipping Settings"
-    to configure the module according to your needs.
-
-  - Save.
 
 Notes
 
