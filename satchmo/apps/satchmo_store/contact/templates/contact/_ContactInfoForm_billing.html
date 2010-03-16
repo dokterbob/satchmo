@@ -24,7 +24,7 @@
       {% endif %}
     {% else %}
       <tr>
-        <td><label for="id_state">{% trans "State/Province" %}</label></td>
+        <td><label for="id_state">{% trans "State/Province" %} {% if form.state.field.required %}*{% endif %}</label></td>
         <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
       </tr>
     {% endif %}
