@@ -95,9 +95,9 @@ It is not enabled by default.
 
 To enable:
 
- 1. Add shipping.modules.tiered to your settings.py INSTALLED_APPS and then run syncdb.
- 2. Enable in site settings under "Active Shipping Modules"
- 3. Configure using the administration page like you would a product.
+ #. Add shipping.modules.tiered to your settings.py INSTALLED_APPS and then run syncdb.
+ #. Enable in site settings under "Active Shipping Modules"
+ #. Configure using the administration page like you would a product.
 
 Why bother?
 
