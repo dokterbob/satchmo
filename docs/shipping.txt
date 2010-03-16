@@ -208,7 +208,6 @@ FedEx module tries to calculate the weight to send to FedEx for the quote.
 To enable in Satchmo:
 
  1. In your site settings, make sure that the Fedex module is active
- 2. Configure the settings as described below
 
 Once you've got the module installed its time to get your account set up with FedEx. (It does not work without the following steps)
 
