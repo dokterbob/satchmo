@@ -1,19 +1,29 @@
 Shipping
 ========
 
-Shipping Module Activation
---------------------------
+Configuration in Site Settings
+------------------------------
 
-Satchmo provides you the flexibility to enable and disable as many shipping modules
-as you would like.  Since everyone has different needs for shipping, there's a simple
-but powerful way to define your own shipping modules.
-
-Activate and configure your shipping modules from your :ref:`Site Settings page
-<site-settings>`.
+The settings that affect are found on the :ref:`Site Settings page
+<site-settings>` under `Shipping Settings`. The settings that apply across all modules
+are listed below.
 
 .. Note::
-    If you have custom modules you would like to add, make sure it is added to your
-    :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+    Settings specific to the :ref:`shipping_flat` and :ref:`shipping_per` modules are
+    also displayed in this section.
+
+.. data:: SHIPPING.MODULES
+
+   :description: Active shipping modules
+   :choices: all shipping modules that come with Satchmo, and the modules listed in
+             :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+   :default: :ref:`shipping_per`
+
+   Satchmo provides you the flexibility to enable and disable as many shipping modules
+   as you would like - you can do it in this section.  If you have custom modules you
+   would like to add, make sure they are added to
+   :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`; they are enabled and disabled in
+   this section too.
 
 Generic Modules
 ---------------
