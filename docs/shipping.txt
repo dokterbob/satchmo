@@ -72,6 +72,20 @@ Enabling Modules
     displayed alongside settings that apply across all modules in the :ref:`Shipping
     Settings section <shipping_settings>`.
 
+Modules with Django-style Models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Note::
+
+    You need to this before going through the instructions in `Enabling Modules`_.
+
+In addition to the instructions above, you'll have to create the database tables for
+these modules:
+
+#. Add the module's dotted name to `INSTALLED_APPS` in your settings.py.
+#. Run `python manage.py syncdb`.
+#. Proceed with the instructions in `Enabling Modules`_.
+
 Generic Modules
 ---------------
 
@@ -124,13 +138,7 @@ Tiered
 This one is much more flexible than any of the prior modules, so it requires a little more configuration.
 It is not enabled by default.
 
-To enable:
-
- #. Add `shipping.modules.tiered` to `INSTALLED_APPS` in your settings.py.
- #. Run `python manage.py syncdb`.
- #. Enable the module in :ref:`Site Settings <site-settings>` under
-    :data:`SHIPPING.MODULES`.
- #. Configure using the administration page like you would a product.
+To enable, see :ref:`shipping_enabling_models`.
 
 Why bother?
 
