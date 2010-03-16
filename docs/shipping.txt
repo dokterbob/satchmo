@@ -66,6 +66,12 @@ Enabling Modules
 #. You should see a new configuration section for the shipping module you selected
    earlier; open up the section and configure the module accordingly.
 
+.. Note::
+    Unlike most modules, settings for the default Satchmo modules :ref:`shipping_flat`
+    and :ref:`shipping_per` modules are not displayed in a separate section; they are
+    displayed alongside settings that apply across all modules in the :ref:`Shipping
+    Settings section <shipping_settings>`.
+
 Generic Modules
 ---------------
 
@@ -87,6 +93,13 @@ This is a very simple module that allows you to set a flat rate for all shipment
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
 can be configured through your settings page.
 
+To enable, see `Enabling Modules`_.
+
+.. Note::
+    Unlike most modules, settings for this module are not displayed in a separate section;
+    they are displayed alongside settings that apply across all modules in the
+    :ref:`Shipping Settings section <shipping_settings>`.
+
 .. _shipping_per:
 
 Per
@@ -95,6 +108,13 @@ Per
 This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
 multiplied by the number of items in your order.  These values are configured through your settings
 page.
+
+To enable, see `Enabling Modules`_.
+
+.. Note::
+    Unlike most modules, settings for this module are not displayed in a separate section;
+    they are displayed alongside settings that apply across all modules in the
+    :ref:`Shipping Settings section <shipping_settings>`.
 
 .. _shipping_tiered:
 
