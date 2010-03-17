@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: config.py:9
 msgid "Only authenticated users can check out"
-msgstr ""
+msgstr "Nur Authentifizierte Benutzer können Bestellungen tätigen"
 
 #: config.py:10
 msgid ""
 "Users will be required to authenticate (and create an account if neccessary) "
 "before checkout."
-msgstr ""
+msgstr "Benutzer müssen sich anmelden um eine Bestellung zu tätigen."
 
 #: config.py:18
 msgid "Required billing data"
-msgstr ""
+msgstr "Erforderliche Rechnungsinformationen"
 
 #: config.py:20
 msgid ""
@@ -36,15 +36,16 @@ msgid ""
 "this may leave you orders with almost no customer data! Some payment modules "
 "may override this setting."
 msgstr ""
+"Daten die Benutzer zwingend zum bestellen angeben müssen. Einige "
+"Bezahlmodule überschreiben diese Einstellung wenn nötig."
 
 #: config.py:26 config.py:50 forms.py:25 models.py:144
 msgid "Email"
-msgstr "eMail"
+msgstr "E-Mail"
 
 #: config.py:27 forms.py:26 models.py:137
-#, fuzzy
 msgid "Title"
-msgstr "Gesamt"
+msgstr "Titel"
 
 #: config.py:28 models.py:138 templates/contact/update_form.html:56
 msgid "First name"
@@ -59,9 +60,8 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: config.py:31 forms.py:30 forms.py:38 models.py:277
-#, fuzzy
 msgid "Addressee"
-msgstr "Adressbuch"
+msgstr "Adressat"
 
 #: config.py:32 forms.py:31 models.py:93 models.py:142
 #: templates/contact/update_form.html:62
@@ -81,7 +81,7 @@ msgstr "Straße"
 
 #: config.py:34
 msgid "Street (second line)"
-msgstr ""
+msgstr "Adresszusatz"
 
 #: config.py:35 forms.py:34 forms.py:41 models.py:281
 #: templates/contact/login_signup_address.html:137
@@ -99,11 +99,11 @@ msgstr "Stadt"
 #: templates/contact/update_form.html:129
 #: templates/contact/update_form.html:132
 msgid "State/Province"
-msgstr "Bundesstaat/Provinz"
+msgstr "Bundesland"
 
 #: config.py:37
 msgid "Postal code/ZIP"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: config.py:38 forms.py:76 forms.py:77 models.py:283
 #: templates/contact/login_signup_address.html:153
@@ -122,6 +122,8 @@ msgid ""
 "Select the style of account verification.  'Immediate' means no verification "
 "needed."
 msgstr ""
+"Wählen sie die Art der Benutzerkonten Überprüfung. 'Sofort' bedeutet, dass "
+"keine Überprüfung stattfindet."
 
 #: config.py:49
 msgid "Immediate"
@@ -129,15 +131,13 @@ msgstr "Sofort"
 
 #: config.py:56
 msgid "Days to verify account"
-msgstr ""
+msgstr "Tage zum überprüfen des Benutzerkontos"
 
 #: forms.py:27
-#, fuzzy
 msgid "First Name"
 msgstr "Vorname"
 
 #: forms.py:28
-#, fuzzy
 msgid "Last Name"
 msgstr "Nachname"
 
@@ -146,19 +146,17 @@ msgid "State"
 msgstr "Bundesland"
 
 #: forms.py:36 forms.py:43
-#, fuzzy
 msgid "ZIP code/Postcode"
 msgstr "Postleitzahl"
 
 #: forms.py:37 templates/contact/login_signup_address.html:159
 #: templates/contact/update_form.html:112
 msgid "Shipping same as billing?"
-msgstr "Lieferanschrift wie Rechnungsanschrift?"
+msgstr "Rechnungsadresse als Versandadresse verwenden?"
 
 #: forms.py:66
-#, fuzzy
 msgid "---Please Select---"
-msgstr "Bitte wählen"
+msgstr "---Bitte wählen---"
 
 #: forms.py:96 forms.py:147 forms.py:174 forms.py:187 forms.py:201
 msgid "This field is required."
@@ -170,19 +168,19 @@ msgstr "Bundesland is für Ihr Land notwendig."
 
 #: forms.py:102
 msgid "Invalid state or province."
-msgstr ""
+msgstr "Ungültiges Bundesland."
 
 #: forms.py:117
 msgid "That email address is already in use."
-msgstr "Diese eMailadresse wird bereits benutzt."
+msgstr "Diese E-Mail-Adresse wird bereits benutzt."
 
 #: forms.py:191
 msgid "Shipping and Billing countries must match"
-msgstr "Lieferland und Rechnungsland müssen übereinstimmen"
+msgstr "Liefer- und Rechnungsadresse müssen im gleichen Land sein"
 
 #: forms.py:392 templates/contact/update_form.html:73
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: models.py:19 models.py:27 models.py:38 models.py:45
 msgid "Key"
@@ -190,12 +188,11 @@ msgstr "Schlüssel"
 
 #: models.py:20 models.py:28 models.py:39 models.py:46 models.py:75
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: models.py:34
-#, fuzzy
 msgid "Contact organization type"
-msgstr "Kontaktinformation"
+msgstr "Organisations-Typ"
 
 #: models.py:76 models.py:225
 msgid "Type"
@@ -207,7 +204,7 @@ msgstr "Rolle"
 
 #: models.py:78
 msgid "Creation Date"
-msgstr "erstellt am"
+msgstr "Erstellt am"
 
 #: models.py:79 models.py:145 supplier/models.py:38 supplier/models.py:83
 msgid "Notes"
@@ -223,7 +220,7 @@ msgstr "Geburtsdatum"
 
 #: models.py:146
 msgid "Creation date"
-msgstr "angelegt am"
+msgstr "Angelegt am"
 
 #: models.py:209 models.py:224
 msgid "Contact"
@@ -235,7 +232,7 @@ msgstr "Kontakte"
 
 #: models.py:213
 msgid "Work"
-msgstr "dienstl."
+msgstr "Dienstl."
 
 #: models.py:214 templates/contact/login_signup.html:9
 #: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
@@ -254,11 +251,11 @@ msgstr "Start"
 
 #: models.py:215
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: models.py:216
 msgid "Mobile"
-msgstr "mobil"
+msgstr "Handy"
 
 #: models.py:226
 msgid "Date and Time"
@@ -282,7 +279,7 @@ msgstr "Telefonnummer"
 
 #: models.py:245
 msgid "Primary"
-msgstr "primär"
+msgstr "Primär"
 
 #: models.py:268
 msgid "Phone Numbers"
@@ -338,7 +335,7 @@ msgstr "Orginalartikel"
 
 #: supplier/models.py:34
 msgid "Date Created"
-msgstr "angelegt am"
+msgstr "Angelegt am"
 
 #: supplier/models.py:35
 msgid "Subtotal"
@@ -346,7 +343,7 @@ msgstr "Zwischensumme"
 
 #: supplier/models.py:36
 msgid "Shipping"
-msgstr "Lieferung"
+msgstr "Versand"
 
 #: supplier/models.py:37
 msgid "Tax"
@@ -382,7 +379,7 @@ msgstr "verschickt"
 
 #: supplier/models.py:72
 msgid "Shipped"
-msgstr "geliefert"
+msgstr "Geliefert"
 
 #: supplier/models.py:73
 msgid "Received"
@@ -398,11 +395,11 @@ msgstr "Datum"
 
 #: supplier/models.py:90
 msgid "Supplier Order Status"
-msgstr ""
+msgstr "Lieferantenbestellung Status"
 
 #: supplier/models.py:91
 msgid "Supplier Order Statuses"
-msgstr ""
+msgstr "Lieferantenbestellung Stati"
 
 #: templates/contact/_addressblock.html:11
 msgid "Not set"
@@ -411,18 +408,17 @@ msgstr "nicht gesetzt"
 #: templates/contact/login_signup.html:13
 #: templates/contact/login_signup_address.html:40
 msgid "Login, or sign up to the store"
-msgstr ""
+msgstr "Anmelden oder Benutzerkonto registrieren"
 
 #: templates/contact/login_signup.html:21
 #: templates/contact/login_signup_address.html:48
 msgid "Existing members login"
-msgstr ""
+msgstr "Mitglieder Login"
 
 #: templates/contact/login_signup.html:32
 #: templates/contact/login_signup_address.html:61
-#, fuzzy
 msgid "Email Address:"
-msgstr "eMailadresse"
+msgstr "E-Mail-Adresse:"
 
 #: templates/contact/login_signup.html:41
 #: templates/contact/login_signup_address.html:69
@@ -433,31 +429,31 @@ msgstr "Passwort:"
 #: templates/contact/login_signup_address.html:77
 #: templates/registration/login.html:23
 msgid "Login"
-msgstr "Anmeldung"
+msgstr "Login"
 
 #: templates/contact/login_signup.html:63
 #: templates/contact/login_signup_address.html:90
 msgid "New Members, Create Your Account Below"
-msgstr ""
+msgstr "Neue Mitglieder erstellen ihr Benutzerkonto unten"
 
 #: templates/contact/login_signup.html:69
 #: templates/contact/login_signup_address.html:96
-#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Bitte korrigieren Sie den folgenden Fehler:"
-msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
+msgstr[0] "Bitte korrigieren Sie den Fehler unten."
+msgstr[1] "Bitte korrigieren Sie die Fehler unten."
 
 #: templates/contact/login_signup.html:87
 #: templates/contact/login_signup_address.html:118
 msgid "Sign me up for Email Updates about new products and special offers!"
 msgstr ""
+"Registrieren sie mich für E-Mail Benachrictigungen über neue Produkte und "
+"Sonderartikel."
 
 #: templates/contact/login_signup.html:93
 #: templates/contact/login_signup_address.html:193
-#, fuzzy
 msgid "Create"
-msgstr "angelegt am"
+msgstr "Erstellen"
 
 #: templates/contact/login_signup_address.html:114
 #: templates/contact/update_form.html:69
@@ -467,20 +463,19 @@ msgstr "Telefonnummer"
 #: templates/contact/login_signup_address.html:126
 #: templates/contact/update_form.html:79
 msgid "Billing Information"
-msgstr "Rechnungsinformation"
+msgstr "Rechnungsinformationen"
 
 #: templates/contact/login_signup_address.html:128
 #: templates/contact/update_form.html:81
-#, fuzzy
 msgid "Bill To"
-msgstr "berechnet"
+msgstr "Rechnungsadresse"
 
 #: templates/contact/login_signup_address.html:128
 #: templates/contact/login_signup_address.html:162
 #: templates/contact/update_form.html:81
 #: templates/contact/update_form.html:115
 msgid "If different from the first and last names above"
-msgstr ""
+msgstr "Wenn abweichend vom vorherigen Vor- und Nachnamen"
 
 #: templates/contact/login_signup_address.html:149
 #: templates/contact/login_signup_address.html:183
@@ -496,9 +491,8 @@ msgstr "Lieferadresse"
 
 #: templates/contact/login_signup_address.html:162
 #: templates/contact/update_form.html:115
-#, fuzzy
 msgid "Ship To"
-msgstr "Lieferadresse"
+msgstr "Versandadresse"
 
 #: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
 #: templates/registration/password_change_done.html:6
@@ -508,7 +502,7 @@ msgstr "Konto"
 
 #: templates/contact/update_form.html:7
 msgid "Update Profile"
-msgstr "geändert am"
+msgstr "Benutzerkonto aktualisieren"
 
 #: templates/contact/update_form.html:42
 msgid "Your Profile"
@@ -529,7 +523,7 @@ msgstr "Basis Informationen"
 
 #: templates/contact/update_form.html:53 templates/registration/login.html:17
 msgid "Email address"
-msgstr "eMailadresse"
+msgstr "E-Mail-Adresse"
 
 #: templates/contact/update_form.html:66
 msgid "Birthday"
@@ -542,7 +536,7 @@ msgstr "Aktualisieren"
 #: templates/contact/view_profile.html:11
 #: templates/registration/account_info.html:9
 msgid "Your Account info"
-msgstr "Ihr Konto"
+msgstr "Ihr Benutzerkonto"
 
 #: templates/contact/view_profile.html:14
 #: templates/registration/account_info.html:11
@@ -556,12 +550,11 @@ msgstr "Ihr Profil"
 
 #: templates/contact/view_profile.html:19
 msgid "Email:"
-msgstr "eMail:"
+msgstr "E-Mail:"
 
 #: templates/contact/view_profile.html:21
-#, fuzzy
 msgid "Organization:"
-msgstr "Organisation"
+msgstr "Organisation:"
 
 #: templates/contact/view_profile.html:23
 msgid "Birthday:"
@@ -580,7 +573,6 @@ msgid "No"
 msgstr "Nein"
 
 #: templates/contact/view_profile.html:27
-#, fuzzy
 msgid "Billing Address:"
 msgstr "Rechnungsadresse:"
 
@@ -592,7 +584,7 @@ msgstr "Lieferadresse:"
 #: templates/contact/view_profile.html:43
 #: templates/registration/account_info.html:13
 msgid "Account options"
-msgstr "Konto Optionen"
+msgstr "Benutzerkonto Optionen"
 
 #: templates/contact/view_profile.html:32
 msgid "Update your profile"
@@ -617,12 +609,11 @@ msgstr ""
 
 #: templates/contact/view_profile.html:41
 msgid "Probably because you are an admin."
-msgstr ""
+msgstr "Möglicherweise weil Sie ein Adminstrator sind."
 
 #: templates/contact/view_profile.html:45
-#, fuzzy
 msgid "Set up contact information"
-msgstr "Kontaktinformation"
+msgstr "Kontaktinformation anlegen"
 
 #: templates/registration/activate.html:7
 msgid "Registration Complete"
@@ -631,7 +622,7 @@ msgstr "Registrierung komplett"
 #: templates/registration/activate.html:12
 #: templates/registration/repeat_activation.html:11
 msgid "Account Activation"
-msgstr "Account aktivieren"
+msgstr "Benutzerkonta aktivieren"
 
 #: templates/registration/activate.html:16
 msgid "Thanks for signing up! You are now logged in."
@@ -641,7 +632,7 @@ msgstr "Danke für Ihre Anmeldedaten! Sie sind nun angemeldet."
 #, python-format
 msgid "In the future, you can log in using your email address (%(email)s)."
 msgstr ""
-"In Zukunft können Sie sich mit Ihrer eMailadresse (%(email)s) anmelden."
+"In Zukunft können Sie sich mit Ihrer E-Mail-Adresse (%(email)s) anmelden."
 
 #: templates/registration/activate.html:21
 #, python-format
@@ -684,19 +675,19 @@ msgstr "Passwort"
 
 #: templates/registration/login.html:32
 msgid "If you do not have an account, please"
-msgstr "Falls Sie noch keinen Account haben, bitte"
+msgstr "Wenn sie noch kein Benutzerkonto besitzen, bitte"
 
 #: templates/registration/login.html:32
 msgid "click here"
-msgstr "klicken Sie hier"
+msgstr "hier klicken"
 
 #: templates/registration/login.html:33
 msgid "If you do not remember your password, please"
-msgstr "Falls Sie Ihre Passwort vergessen haben, bitte"
+msgstr "Wenn sie ihr Passwort vergessen haben, bitte"
 
 #: templates/registration/login.html:33
 msgid "click here</a> to have it reset."
-msgstr "klicken Sie hier</a> um es zurückzusetzen."
+msgstr "hier klicken</a> um es zurückzusetzen."
 
 #: templates/registration/logout.html:9
 msgid "You have been successfully logged out."
@@ -704,7 +695,7 @@ msgstr "Sie wurden erfolgreich abgemeldet."
 
 #: templates/registration/password_change_done.html:7
 msgid "Password Change Done"
-msgstr "Passwortänderung erfolgreich"
+msgstr "Passwortänderung abgeschlossen"
 
 #: templates/registration/password_change_done.html:12
 msgid "Password change successful"
@@ -716,7 +707,7 @@ msgstr "Ihre Passwortänderung wurde durchgeführt."
 
 #: templates/registration/password_change_form.html:7
 msgid "Password Change"
-msgstr "Passwort (nochmal)"
+msgstr "Passwort ändern"
 
 #: templates/registration/password_change_form.html:12
 msgid ""
@@ -728,15 +719,15 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:19
 msgid "Old password"
-msgstr "altes Passwort"
+msgstr "Altes Passwort"
 
 #: templates/registration/password_change_form.html:26
 msgid "New password"
-msgstr "neues Passwort"
+msgstr "Neues Passwort"
 
 #: templates/registration/password_change_form.html:33
 msgid "Confirm new password"
-msgstr "neues Passwort (nochmal)"
+msgstr "Neues Passwort (nochmal)"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change password"
@@ -781,29 +772,29 @@ msgid ""
 "We've e-mailed a new password to the e-mail address you submitted. You "
 "should receive it shortly."
 msgstr ""
-"Wir haben Ihnen ein neues Passwort an Ihre eMailadresse gesandt. Sie werden "
-"diese in Kürze erhalten."
+"Wir haben Ihnen ein neues Passwort an Ihre E-Mail-Adresse gesandt. Sie "
+"werden diese in Kürze erhalten."
 
 #: templates/registration/password_reset_form.html:10
 msgid "Reset your password"
-msgstr "Ihre Passwort zurücksetzen"
+msgstr "Ihr Passwort zurücksetzen"
 
 #: templates/registration/password_reset_form.html:12
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send a "
 "new password to you."
 msgstr ""
-"Passwort vergessen? Geben Sie Ihre eMailadresse ein und wir werden Ihnen ein "
-"neues Passwort zusenden."
+"Passwort vergessen? Geben Sie Ihre E-Mail-Adresse ein und wir werden Ihnen "
+"ein neues Passwort zusenden."
 
 #: templates/registration/password_reset_form.html:19
 msgid "E-mail address"
-msgstr "eMailadresse"
+msgstr "E-Mail-Adresse"
 
 #: templates/registration/password_reset_form.html:20
 msgid "Be sure to enter the same e-mail address you used to register."
 msgstr ""
-"Bitte stellen Sie sicher, das Sie die eMailadresse Ihrer Registrierung "
+"Bitte stellen Sie sicher, das Sie die E-Mail-Adresse Ihrer Registrierung "
 "verwenden."
 
 #: templates/registration/password_reset_form.html:21
@@ -813,7 +804,7 @@ msgstr "Passwort zurücksetzen"
 #: templates/registration/registration_complete.html:7
 #: templates/registration/registration_complete.html:11
 msgid "Account Creation"
-msgstr "Account erstellt"
+msgstr "Benutzerkonto erstellt"
 
 #: templates/registration/registration_complete.html:12
 msgid "Thank you for signing up."
@@ -824,8 +815,8 @@ msgid ""
 "An activation link has been sent to the email address you supplied, along "
 "with instructions for activating your account."
 msgstr ""
-"Ein Aktivierungslink wurde an die angegeben eMailadresse gesendet. Sie "
-"entählt auch Anweisungen zur Aktivierung Ihres Accounts."
+"Ein Aktivierungslink wurde an die angegeben E-Mail-Adresse gesendet. Sie "
+"enthält auch Anweisungen zur Aktivierung Ihres Benutzerkontos."
 
 #: templates/registration/registration_form.html:6
 msgid "Registration"
@@ -833,11 +824,11 @@ msgstr "Registrierung"
 
 #: templates/registration/registration_form.html:10
 msgid "Please Enter Your Account Information"
-msgstr "Bitte geben Sie Ihre Accountinformationen ein"
+msgstr "Bitte geben Sie Ihre Benutzerkontoinformationen ein"
 
 #: templates/registration/registration_form.html:38
 msgid "Create Account"
-msgstr "Account erstellen"
+msgstr "Benutzerkonto erstellen"
 
 #: templates/registration/repeat_activation.html:6
 msgid "Repeat Activation"
@@ -845,7 +836,7 @@ msgstr "Aktivierung wiederholen"
 
 #: templates/registration/repeat_activation.html:13
 msgid "This account has already been activated. Please login."
-msgstr "Dieser Account wurde bereits aktiviert. Bitte melden Sie sich an."
+msgstr "Dieses Benutzerkonto wurde bereits aktiviert. Bitte melden Sie sich an."
 
 #: templates/registration/welcome.txt:1
 #, python-format

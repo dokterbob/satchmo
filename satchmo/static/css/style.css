@@ -315,6 +315,7 @@ img {
 
 .error {
     color: red;
+    text-align: center;
 }
 
 /* =============== Navigation Bars ===================== */

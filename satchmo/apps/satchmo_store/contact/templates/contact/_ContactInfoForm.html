@@ -1,0 +1,12 @@
+{# This template is meant to be used by ContactInfoForm and it's subclasses. #}
+
+{% block contact-form-imports %}
+{% include "shop/_jquery.html" %}
+{% include "shop/_jquery_form.html" %}
+
+{% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
+{% include "contact/_country_match_script.html" %}
+{% endif %}
+<script type="text/javascript" src="{{ media_url}}js/satchmo_checkout.js"></script>
+{% include "contact/_state_js.html" %}
+{% endblock %}

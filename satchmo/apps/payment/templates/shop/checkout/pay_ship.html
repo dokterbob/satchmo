@@ -9,15 +9,15 @@
     {% endif %}
 
     <tr><td><label for="id_credit_type">{% trans "Type of credit card" %}</label></td> <td>{{ form.credit_type }}</td></tr>
-    {% if form.credit_type.errors %}<tr><td></td><td>*** {{ form.credit_type.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.credit_type.errors %}<tr><td class="error" colspan="2">*** {{ form.credit_type.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_credit_number">{% trans "Credit card number" %}</label></td><td> {{ form.credit_number }}</td></tr>
-    {% if form.credit_number.errors %}<tr><td></td><td>*** {{ form.credit_number.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.credit_number.errors %}<tr><td class="error" colspan="2">*** {{ form.credit_number.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_month_expires">{% trans "Expiration date" %}</label><label for="id_year_expires"></label></td><td> {{ form.month_expires }} {{form.year_expires}}</td></tr>
-    {% if form.year_expires.errors %}<tr><td></td><td>*** {{ form.year_expires.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.year_expires.errors %}<tr><td class="error" colspan="2">*** {{ form.year_expires.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td><label for="id_ccv">{% trans "CCV" %}</label></td><td> {{ form.ccv}}</td></tr>
-    {% if form.ccv.errors %}<tr><td></td><td>*** {{ form.ccv.errors|join:", " }}</td></tr>{% endif %}
+    {% if form.ccv.errors %}<tr><td class="error" colspan="2">*** {{ form.ccv.errors|join:", " }}</td></tr>{% endif %}
 
 {% endblock %}

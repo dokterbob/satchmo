@@ -8,10 +8,10 @@
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
-{% block userlinks %}<a href="/admin/doc/">{% trans 'Documentation' %}</a> / <a href="/admin/password_change/">{% trans 'Change password' %}</a> / <a href="/admin/logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block userlinks %}<a href="{% url django-admindocs-docroot %}">{% trans 'Documentation' %}</a> / <a href="{% url admin:password_change %}">{% trans 'Change password' %}</a> / <a href="{% url admin:logout %}">{% trans 'Log out' %}</a>{% endblock %}
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
+     <a href="{% url admin:index %}">{% trans "Home" %}</a> &rsaquo;
      {% trans "Edit Group Settings" %}
 </div>
 {% endif %}{% endblock %}

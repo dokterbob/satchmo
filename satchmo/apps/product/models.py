@@ -13,7 +13,7 @@ import signals
 import operator
 import os.path
 
-from decimal import Decimal
+from decimal import Context, Decimal, ROUND_FLOOR
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -457,7 +457,7 @@ class Discount(models.Model):
         default='NONE', blank=True, null=True, max_length=10)
     allValid = models.BooleanField(_("All products?"), default=False,
         help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
-    validProducts = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
+    valid_products = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
         blank=True, null=True)
 
     objects = DiscountManager()
@@ -504,7 +504,7 @@ class Discount(models.Model):
 
 
     def _valid_products(self, item_query):
-        validslugs = self.validProducts.values_list('slug', flat=True)
+        validslugs = self.valid_products.values_list('slug', flat=True)
         itemslugs = item_query.values_list('product__slug', flat=True)
         return ProductPriceLookup.objects.filter(
             Q(discountable=True)
@@ -589,7 +589,7 @@ class Discount(models.Model):
         """Tests if discount is valid for a single product"""
         if not product.is_discountable:
             return False
-        p = self.validProducts.filter(id__exact = product.id)
+        p = self.valid_products.filter(id__exact = product.id)
         return p.count() > 0
 
     class Meta:
@@ -600,25 +600,34 @@ class Discount(models.Model):
         lastct = -1
         ct = len(discounted)
         work = {}
+        context = Context(prec=3, rounding=ROUND_FLOOR)
         if ct > 0:
-            split_discount = amount/ct
+            split_discount = context.divide(amount, Decimal(ct))
+            remainder = amount - context.multiply(split_discount, Decimal(ct))
         else:
-            split_discount = Decimal("0.00")
+            split_discount = remainder = Decimal("0.00")
 
         while ct > 0:
             log.debug("Trying with ct=%i", ct)
             delta = Decimal("0.00")
             applied = Decimal("0.00")
             work = {}
+            should_apply_remainder = True
             for lid, price in discounted.items():
-                if price > split_discount:
-                    work[lid] = split_discount
-                    applied += split_discount
+                if should_apply_remainder \
+                    and remainder > Decimal('0') \
+                    and price > split_discount + remainder:
+                    to_apply = split_discount + remainder
+                    should_apply_remainder = False
+                elif price > split_discount:
+                    to_apply = split_discount
                 else:
-                    work[lid] = price
+                    to_apply = price
                     delta += price
-                    applied += price
                     ct -= 1
+
+                work[lid] = to_apply
+                applied += to_apply
 
             if applied >= amount - Decimal("0.01"):
                 ct = 0

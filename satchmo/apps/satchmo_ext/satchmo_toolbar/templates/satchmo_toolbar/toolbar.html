@@ -5,11 +5,11 @@
     <div id="st-panels">
         <div id="st-hide" class="panel">{% trans 'Satchmo' %} {{ st_satchmo_version }}</div>
         <div class="panel">
-            <a href="/admin" target="blank">{% trans "Admin" %}</a>
+            <a href="{% url admin:index %}" target="blank">{% trans "Admin" %}</a>
         </div>
         <div class="panel">
             {% blocktrans count st_new_order_ct as counter %}New order:{% plural %}New orders:{% endblocktrans %}
-            <a href="/admin/shop/order/?status__exact=New">{% blocktrans with st_new_order_total|currency as new_total %}{{ st_new_order_ct }} for {{ new_total }}{% endblocktrans %}</a>
+            <a href="{% url admin:shop_order_changelist %}?status__exact=New">{% blocktrans with st_new_order_total|currency as new_total %}{{ st_new_order_ct }} for {{ new_total }}{% endblocktrans %}</a>
         </div>
         <div class="panel">
             {% blocktrans %}Carts in 1h/1d/7d: {{ st_cart_1h_ct }}/{{ st_cart_1d_ct }}/{{ st_cart_7d_ct }}{% endblocktrans %}

@@ -1,6 +1,6 @@
 {% extends "shop/checkout/base_confirm.html" %}
 {% load i18n %}
-{% load satchmo_util satchmo_itemlist %}
+{% load satchmo_util %}
 {# this is the Paypal confirm template #}
 
 {% block payment_step %}<a href="{% url PAYPAL_satchmo_checkout-step2 %}">{% trans "Payment" %}</a>{% endblock %}
@@ -58,14 +58,12 @@
 <input type="hidden" name="amount_1" value="{{order.balance|truncate_decimal:2}}" />
 <input type="hidden" name="quantity_1" value="1" />
 {% else %}
-{% for item in order.orderitem_set.all|flatten_discounts %}
-<input type="hidden" name="item_name_{{forloop.counter}}" value="{{item.orderitem}}" />
-<input type="hidden" name="amount_{{forloop.counter}}" value="{{item.price|truncate_decimal:2}}" />
+{% for item in order.orderitem_set.all %}
+<input type="hidden" name="item_name_{{forloop.counter}}" value="{{item}}" />
+<input type="hidden" name="amount_{{forloop.counter}}" value="{{item.unit_price|truncate_decimal:2}}" />
+{% if item.discount %}<input type="hidden" name="discount_amount_{{forloop.counter}}" value="{{item.discount|truncate_decimal:2}}" />{% endif %}
 <input type="hidden" name="quantity_{{forloop.counter}}" value="{{item.quantity|truncate_decimal:0}}" />
 {% endfor %}
-{% if order.discount %}
-<input type="hidden" name="discount_amount_cart" value="{{ order.item_discount|truncate_decimal:2 }}" />
-{% endif %}
 {# LEAVE THE HANDLING CHARGE ALONE!  PAYPAL SHIPPING WILL INEVITABLY BE MESSED UP IF YOU USE THEIR SHIPPING METHODS #}
 {# To work around their bizarre system, we are telling Paypal "no shipping" and adding all shipping charges as handling #}
 <input type="hidden" name="handling_cart" value="{{order.shipping_with_tax|truncate_decimal:2}}" />

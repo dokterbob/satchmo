@@ -47,3 +47,10 @@ Changes
 - Updated jquery to 1.4.2
 - Added new documentation on Satchmo's views - :doc:`views`
 - Cache the category tree for big performance improvements
+- Refactor the email sending routine so it is more modular
+- Add two new category tags
+- Added search field in the admin to more easily find products
+- Added new javascript to populate state fields when the country is changed
+- Refactor some of the templates to make more consistent
+- Change the behavior of applying discounts that don't evenly split among multiple products
+- Update the autocomplete admin js to the latest version. Also widened field and added missing image

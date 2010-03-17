@@ -1,6 +1,8 @@
 syntax: glob
 build
 .build
+.project
+.pydevproject
 *.orig
 *.rej
 *~
