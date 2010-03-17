@@ -48,6 +48,10 @@ For flexibility in defining template plugin points:
 For the account registration process, you will need:
 
     - `Django Registration`_
+    
+.. warning::
+    You must use Django registration 0.7 with Satchmo. When 0.8 comes out, we will
+    migrate to the new version.
 
 A valid Django cache backend (file, memcached or DB) is required for the config settings.
 

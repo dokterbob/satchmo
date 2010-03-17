@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
 {% load i18n satchmo_currency %}
 <document filename="{{ filename }}">

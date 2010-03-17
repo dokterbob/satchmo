@@ -66,7 +66,7 @@
 
 	    <h3>{% trans "Account Information" %}</h3>
 	    {% if user.is_staff %}
-		<a href="/admin" target="blank">{% trans "Admin" %}</a><br/>
+		<a href="{% url admin:index %}" target="blank">{% trans "Admin" %}</a><br/>
 		{% endif %}
 	    {% if user.is_authenticated %}
 		{% url satchmo_account_info as accounturl %}

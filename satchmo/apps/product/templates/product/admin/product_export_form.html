@@ -45,10 +45,10 @@ tr.ConfigurableProduct {
 
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
-{% block userlinks %}<a href="/admin/doc/">{% trans 'Documentation' %}</a> / <a href="/admin/password_change/">{% trans 'Change password' %}</a> / <a href="/admin/logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% block userlinks %}<a href="{% url django-admindocs-docroot %}">{% trans 'Documentation' %}</a> / <a href="{% url admin:password_change %}">{% trans 'Change password' %}</a> / <a href="{% url admin:logout %}">{% trans 'Log out' %}</a>{% endblock %}
 {% block breadcrumbs %}{% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="/admin/">{% trans "Home" %}</a> &rsaquo;
+     <a href="{% url admin:index %}">{% trans "Home" %}</a> &rsaquo;
      {% trans "Inventory Management" %}
 </div>
 {% endif %}{% endblock %}
@@ -81,27 +81,26 @@ tr.ConfigurableProduct {
             <th>{% trans 'Name' %}</th>
         </tr>
     {% for field in form %}
-        {% ifnotequal field.name 'format' %} 
+
             {% if field.is_hidden %}
                 {{ field }}
             {% else %}
                 {% ifchanged field.field.slug %}
-                    {% if not forloop.first %}
-            		</tr>
-            		{% endif %}
+                    {% if field.field.product_id %}
                     <tr class="{{ field.field.subtypes }}">
                         <td>{{ field }}</td>
-                        <td><a href="/admin/product/product/{{ field.field.product_id }}/">{{ field.label_tag }}</a>
+                        <td><a href="{% url admin:product_product_change field.field.product_id %}">{{ field.label_tag }}</a>
                             {% if field.errors %}
                     		<span class="error">{{ field.errors }}</span><br/>
             		        {% endif %}    
                         </td>
-                        <td>{{ field.help_text}}</td>
+                    {% endif %}
+                        <td>{{ field.help_text}}</td></tr>
                 {% endifchanged %}
         	{% endif %}
-    	{% endifnotequal %}
+
     {% endfor %}
-        		</tr>
+
     </table>
     <p>{% trans 'Include images?' %} {{ form.include_images }}</p>
     <p>{% trans 'Include categories?' %} {{ form.include_categories }}</p>

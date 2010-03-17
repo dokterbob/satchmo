@@ -35,13 +35,21 @@ def edit_subtypes(product):
         app, subtype = key.split("::")
         is_config = "ConfigurableProduct" in subtypes
         if subtype in subtypes:
-            output += '<li><a href="/admin/%s/%s/%s/">' % (app, subtype.lower(), product.pk) + _('Edit %(subtype)s') % {'subtype': subtype_label} + '</a></li>'
+            edit_url = urlresolvers.reverse('admin:%s_%s_change' %
+                                            (app, subtype.lower()),
+                                            args=(product.pk,))
+            output += ('<li><a href="%s">' % edit_url +
+                       _('Edit %(subtype)s') % {'subtype': subtype_label} +
+                       '</a></li>')
             if is_config or subtype=="ProductVariation":
                  output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.id]))
         else:
             if not(is_config and subtype=="ProductVariation"):
-                output += ' <li><a href="/admin/%s/%s/add/?product=%s">' %(app, subtype.lower(), product.pk) + _('Add %(subtype)s') % {'subtype': subtype_label} + '</a></li>'
-
+                add_url = urlresolvers.reverse('admin:%s_%s_add' %
+                                               (app, subtype.lower()))
+                output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
+                           _('Add %(subtype)s') % {'subtype': subtype_label} +
+                           '</a></li>')
     output += '</ul>'
     return output
 

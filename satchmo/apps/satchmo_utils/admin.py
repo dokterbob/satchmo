@@ -71,7 +71,7 @@ class ForeignKeySearchInput(forms.HiddenInput):
                     display: none;
                 }
             </style>
-<input type="text" id="lookup_%(name)s" value="%(label)s" />
+<input type="text" id="lookup_%(name)s" value="%(label)s"/>
 <a href="#" id="del_%(name)s">
 <img src="%(admin_media_prefix)simg/admin/icon_deletelink.gif" />
 </a>
@@ -80,7 +80,7 @@ class ForeignKeySearchInput(forms.HiddenInput):
             if (lookup.val()) {
                 $('#del_%(name)s').show()
             }
-            lookup.attr('size', Math.max(10, lookup.attr('value').length))
+            lookup.attr('size', Math.max(40, lookup.attr('value').length))
             lookup.autocomplete('../search/', {
                 formatResult: function(data){ return $('<div />').html(data[0]).text(); },
                 extraParams: {
@@ -199,7 +199,7 @@ class AutocompleteAdmin(admin.ModelAdmin):
             kwargs['widget'] = ForeignKeySearchInput(
                     db_field.rel,
                     self.related_search_fields[db_field.name],
-                    self.related_string_functions.get(db_field.name)
+                    self.related_string_functions.get(db_field.name),
                     )
         field = super(AutocompleteAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         return field

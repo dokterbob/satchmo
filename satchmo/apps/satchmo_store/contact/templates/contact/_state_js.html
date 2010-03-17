@@ -1,0 +1,99 @@
+{% if shop.options.SHOP.ENFORCE_STATE %}
+<script type="text/javascript">
+/**
+ * Populates state fields when the user selects a country.
+ *
+ * The following callbacks are provided and can be overriden. They are called
+ *  - when a request for values for the state field is sent,
+ *  - and when a response is received (regardless of success or error).
+ *
+ *  - satchmo.on_state_load(state)
+ *  - satchmo.on_ship_state_load(state)
+ *
+ * where state is a Boolean value:
+ *  - true, when the request is sent;
+ *  - false, when a response is received.
+ */
+jQuery(document).ready(function($) {
+	var satchmo = satchmo || {};
+
+	/* should choices for billing state be the same as those for shipping state? (and vice-versa) */
+	var CLONE = {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}true{% else %}false{% endif %};
+
+	var hook_country_field = function(params) {
+		params.country.change(function() {
+			var data = {};
+			data[params.data_key] = $(this).val();
+
+			var success = function(result) {
+				if (!result) { return; }
+				params.state.html(result);
+				satchmo[params.state_callback](false);
+
+				if (!CLONE) { return; }
+				params.other_state.html(result);
+				satchmo[params.other_state_callback](false);
+			};
+
+			var error = function() {
+				satchmo[params.state_callback](false);
+				if (CLONE) { satchmo[params.other_state_callback](false); }
+			};
+
+			/* invoke callback for this field... */
+			satchmo[params.state_callback](true);
+			/* and its complement */
+			if (CLONE) { satchmo[params.other_state_callback](true); }
+
+			$.ajax({
+				type: "POST",
+				url: "{% url satchmo_contact_ajax_state %}",
+				data: data,
+				success: success,
+				error: error,
+				dataType: "html"
+			});
+		});
+	};
+
+	/* try and separate assumptions about the DOM. */
+	var init_for_prefix = function(prefix) {
+		var other_prefix;
+
+		if (prefix == "") { other_prefix = "ship_"; }
+		else if (prefix == "ship_") { other_prefix = ""; }
+		else { return; }
+
+		var params = {
+			country: $(":input[name="+prefix+"country]"),
+			state: $(":input[name="+prefix+"state]"),
+			state_callback: prefix+"state_load",
+			other_state: $(":input[name="+other_prefix+"state]"),
+			other_state_callback: other_prefix+"state_load",
+			data_key: prefix+"country",
+		};
+
+		/* Provide default loading handlers. */
+		satchmo[params.state_callback] = function(state) {
+			if (state) {
+				$("#id_"+prefix+"state_loading").show();
+				params.country.attr("disabled", true);
+				params.state.attr("disabled", true);
+			} else {
+				$("#id_"+prefix+"state_loading").hide();
+				params.country.attr("disabled", false);
+				params.state.attr("disabled", false);
+			}
+		};
+
+		/* Hook up country fields. */
+		hook_country_field(params);
+	};
+
+	var field_prefixes = ["", "ship_"];
+	for (var i in field_prefixes) {
+		init_for_prefix(field_prefixes[i]);
+	}
+});
+</script>
+{% endif %}

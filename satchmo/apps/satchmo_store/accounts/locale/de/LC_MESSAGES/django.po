@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:51-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-01 16:59+0100\n"
+"Last-Translator: Martin Bornhold <mb@bo-tech.de>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: forms.py:32
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: forms.py:33
 msgid "Email address"
-msgstr "eMailadresse"
+msgstr "E-Mail-Adresse"
 
 #: forms.py:35
 msgid "Password (again)"
-msgstr "Passwort (nochmal)"
+msgstr "Passwort (Wiederholung)"
 
 #: forms.py:37
 msgid "Password"
@@ -41,7 +41,7 @@ msgstr "Nachname"
 
 #: forms.py:60
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: forms.py:69
 msgid "The two passwords do not match."
@@ -49,7 +49,7 @@ msgstr "Die beiden Passwörter stimmen nicht überein."
 
 #: forms.py:80
 msgid "That email address is already in use."
-msgstr "Diese eMailadresse wird bereits benutzt."
+msgstr "Diese E-Mail-Adresse wird bereits benutzt."
 
 #: mail.py:24
 #, python-format

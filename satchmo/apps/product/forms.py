@@ -439,7 +439,8 @@ class VariationManagerForm(forms.Form):
                     slug = variation.slug
                     kw['initial'] = 'add'
                     self.existing[key] = True
-                    self.edit_urls[key] = "/admin/product/product/%i/" % variation.id
+                    self.edit_urls[key] = urlresolvers.reverse('admin:product_product_change',
+                                                               args=(variation.id,))
                 else:
                     basename = u'%s (%s)' % (self.product.name, u'/'.join(optnames))
                     slug = slugify(u'%s_%s' % (self.product.slug, u'_'.join(optnames)))
