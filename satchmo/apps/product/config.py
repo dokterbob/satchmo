@@ -13,7 +13,7 @@ PRODUCT_TYPES = config_register(MultipleStringValue(PRODUCT_GROUP,
     default=['product::ConfigurableProduct', 'product::ProductVariation'],
     choices=[('product::ConfigurableProduct', _('Configurable Product')),
              ('product::ProductVariation', _('Product Variation')),
-             ('product::CustomProduct', _('Custom Order')),
+             ('product::CustomProduct', _('Custom Order Product')),
              ('product::SubscriptionProduct', _('Subscription Product')),
              ('product::DownloadableProduct', _('Downloadable Product'))]
     ))

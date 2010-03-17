@@ -18,8 +18,8 @@
 		{% else %}
 		<br/>
 		{% endif %}
-		{% trans 'Initial Balance:' %} {{ giftcertificiate.initial_balance|currency }}<br/>
-		{% trans 'Current Balance:' %} {{ giftcertificiate.balance|currency }}<br/>
+		{% trans 'Starting Balance:' %} {{ giftcertificate.start_balance|currency }}<br/>
+		{% trans 'Current Balance:' %} {{ giftcertificate.balance|currency }}<br/>
 	</p>
 	{% else %}
 	<p class="warning">{% trans 'No such gift certificate found.' %}</p>

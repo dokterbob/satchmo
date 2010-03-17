@@ -35,7 +35,7 @@ class Shipper(BaseShipper):
     def __init__(self, carrier):
         self.id = 'tieredweight_%i' % carrier.pk
         self._carrier = carrier
-        super(BaseShipper, self).__init__(self)
+        super(BaseShipper, self).__init__()
 
 
     def calculate(self, cart, contact):

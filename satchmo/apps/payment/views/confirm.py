@@ -82,7 +82,9 @@ class ConfirmController(object):
 
         if force_post or self.request.method == "POST":
             self.processor.prepare_data(self.order)
-        
+            # This copy command is used to handle an error that can occur
+            # with mod_wsgi. See #951 for more info
+            tmp = self.request.POST.copy()
             if self.process():
                 self.response = self.onSuccess(self)
                 return True

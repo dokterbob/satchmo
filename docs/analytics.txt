@@ -15,6 +15,11 @@ In order to use Google analytics, you must have an analytics id, which you can g
 for free for registering with Google.  Once you get this tracking code, you must 
 enable it in the store by modifying the Site Setting to include the google code.
 
+After enabling Google analytics, you will need to make sure that your analytics
+account has the "Yes, an Ecommerce website" is selected in the analytics site's
+setting. Additionally, you can select the "Do track site search" in order to view
+what people are searching for. Enter "keywords" in the query parameters search field.
+
 Now, all of your pages will be tracked via google analytics.  Satchmo also includes
 the additional ecommerce tracking codes so that purchases from your store can be
 tracked via analytics.

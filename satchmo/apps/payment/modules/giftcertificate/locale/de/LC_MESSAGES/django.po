@@ -163,7 +163,7 @@ msgstr ""
 #: processor.py:33
 #, fuzzy
 msgid "No such Gift Certificate"
-msgstr "Ein solche Geschenkgutschein gibt es nicht"
+msgstr "Diesen Geschenkgutschein gibt es nicht"
 
 #: processor.py:38
 msgid "Bad Gift Certificate"

@@ -18,7 +18,7 @@ msgstr ""
 #: models.py:69
 #: templates/product/admin/product_export_form.html:81
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: templates/product/category.html:12
 #: templates/product/product.html.html:24
@@ -109,7 +109,7 @@ msgstr ""
 
 #: models.py:62
 msgid "Number of allowed uses"
-msgstr "Anzahl erlaubter Anwendung"
+msgstr "Anzahl erlaubter Anwendungen"
 
 #: models.py:63
 #: models.py:65
@@ -726,7 +726,7 @@ msgstr "versandkostenfrei"
 
 #: models.py:703
 msgid "Do not charge shipping at checkout for this item."
-msgstr ""
+msgstr "Keine Versandkosten berechnen"
 
 #: models.py:756
 msgid "Custom Product"
