@@ -6,7 +6,7 @@ Shipping
 Configuration in Site Settings
 ------------------------------
 
-The settings that affect are found on the :ref:`Site Settings page
+The shipping settings are found on the :ref:`Site Settings page
 <site-settings>` under `Shipping Settings`. The settings that apply across all modules
 are listed below.
 
