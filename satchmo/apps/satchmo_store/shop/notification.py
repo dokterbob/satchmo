@@ -59,8 +59,8 @@ def send_order_notice(order, template='shop/email/order_placed_notice.txt'):
         eddresses = [e for e in eddresses if e]
 
         try:
-            send_mail(subject, c, template, eddresses, format_subject=True,
-                      send_to_store=True)
+            send_store_mail(subject, c, template, eddresses, format_subject=True,
+                            send_to_store=True)
         except NoRecipientsException:
             log.warn("No shop owner email specified, skipping owner_email")
             return
@@ -74,5 +74,5 @@ def send_ship_notice(order, template='shop/email/order_shipped.txt'):
     c = {'order': order}
     subject = _("Your order from %(shop_name)s has shipped")
 
-    send_mail(subject, c, template, format_subject=True,
-              send_to_store=True)
+    send_store_mail(subject, c, template, format_subject=True,
+                    send_to_store=True)

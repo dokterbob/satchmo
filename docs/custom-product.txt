@@ -77,7 +77,8 @@ configuration.
 
 2. Run ``python manage.py syncdb`` in your project directory.
 
-3. Add your app name to your project's ``CUSTOM_PRODUCT_MODULES`` setting in ``SATCHMO_SETTINGS``.
+3. Add the app's dotted name to your project's
+   :data:`SATCHMO_SETTINGS.CUSTOM_PRODUCT_MODULES`.
 
 4. Enable the new model in Satchmo's settings.
     1. Go to "Edit Site Settings" in the admin app.
@@ -127,7 +128,7 @@ This document should get you started in customizing Satchmo through the product
 model. If you need help with something discussed here or with more advanced
 topics, feel free to ask the `mailing list`_.
 
-There is another possibility for extending the product model using 
+There is another possibility for extending the product model using
 model inheritance. You can find more information in the `first installment <http://thisismedium.com/tech/satchmo-diaries-part-one/>`_
 of the Satchmo Diaries.
 

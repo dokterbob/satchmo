@@ -18,13 +18,13 @@
     {% if country %}
       {% if form.fields.state.choices %}
       <tr>
-        <td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}{% if form.country.field.required %}*{% endif %}</label></td>
+        <td><label for="id_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %} {% if form.state.field.required %}*{% endif %}</label></td>
         <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
       </tr>
       {% endif %}
     {% else %}
       <tr>
-        <td><label for="id_state">{% trans "State/Province" %}</label></td>
+        <td><label for="id_state">{% trans "State/Province" %} {% if form.state.field.required %}*{% endif %}</label></td>
         <td><p id="id_state_loading" style="display: none">Loading...</p> {{ form.state }}</td>
       </tr>
     {% endif %}

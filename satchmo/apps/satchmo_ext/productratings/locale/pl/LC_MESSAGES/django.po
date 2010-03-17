@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -54,4 +54,4 @@ msgstr "Proszę się zalogować by ocenić ten produkt."
 
 #: templates/productratings/plugins/sidebar_links.html:3
 msgid "Most Popular"
-msgstr ""
+msgstr "Najpolularniejsze"
