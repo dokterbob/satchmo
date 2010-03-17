@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -24,10 +24,10 @@ msgstr "Massimo di prodotti recenti"
 
 #: config.py:8
 msgid "The maximum number of items show in the recent box."
-msgstr "Il numero massimo di prodotti visualizzati nel box degli prodotti recenti"
+msgstr ""
+"Il numero massimo di prodotti visualizzati nel box degli prodotti recenti"
 
-#: templates/recentlist/_recently_viewed.html:4
 # translated = "Inviati in"
+#: templates/recentlist/_recently_viewed.html:5
 msgid "Recently Viewed"
 msgstr "Visti di recente"
-

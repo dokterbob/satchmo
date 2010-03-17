@@ -1,0 +1,52 @@
+#: forms.py:32
+msgid "Title"
+msgstr ""
+
+#: forms.py:33
+msgid "Email address"
+msgstr ""
+
+#: forms.py:35
+msgid "Password (again)"
+msgstr ""
+
+#: forms.py:37
+msgid "Password"
+msgstr ""
+
+#: forms.py:39
+msgid "First name"
+msgstr ""
+
+#: forms.py:41
+msgid "Last name"
+msgstr ""
+
+#: forms.py:60
+msgid "Newsletter"
+msgstr ""
+
+#: forms.py:69
+msgid "The two passwords do not match."
+msgstr ""
+
+#: forms.py:80
+msgid "That email address is already in use."
+msgstr ""
+
+#: mail.py:24
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
+#: views.py:26
+msgid "Yes"
+msgstr ""
+
+#: views.py:27
+msgid "No"
+msgstr ""
+
+#: views.py:343
+msgid "Registration Form"
+msgstr ""

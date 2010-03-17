@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-06-09 18:18+0200\n"
 "Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
 "Language-Team: Turkish <selincuhadar@gmail.com>\n"
@@ -17,52 +17,55 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: views.py:22
-msgid "Yes"
-msgstr "Evet"
+#: forms.py:32
+msgid "Title"
+msgstr ""
 
-#: views.py:23
-msgid "No"
-msgstr "Hayır"
-
-#: views.py:28
+#: forms.py:33
 msgid "Email address"
 msgstr "Email adresi"
 
-#: views.py:29
+#: forms.py:35
 msgid "Password (again)"
 msgstr "Şifre (tekrar)"
 
-#: views.py:30
+#: forms.py:37
 msgid "Password"
 msgstr "Şifre"
 
-#: views.py:31
+#: forms.py:39
 msgid "First name"
 msgstr "Adınız"
 
-#: views.py:32
+#: forms.py:41
 msgid "Last name"
 msgstr "Soyadınız"
 
-#: views.py:33
+#: forms.py:60
 msgid "Newsletter"
 msgstr "Haberler"
 
-#: views.py:40
+#: forms.py:69
 msgid "The two passwords do not match."
 msgstr "Şifreler eşleşmedi."
 
-#: views.py:49
+#: forms.py:80
 msgid "That email address is already in use."
 msgstr "Bu email adresi kullanılıyor."
 
-#: views.py:57
+#: mail.py:24
 #, python-format
 msgid "Welcome to %s"
 msgstr "Hoşgeldiniz, %s"
 
-#: views.py:180
+#: views.py:26
+msgid "Yes"
+msgstr "Evet"
+
+#: views.py:27
+msgid "No"
+msgstr "Hayır"
+
+#: views.py:343
 msgid "Registration Form"
 msgstr "Kayıt Formu"
-

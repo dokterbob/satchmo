@@ -3,6 +3,9 @@ from django.template import Library, Node, TemplateSyntaxError
 from product.models import Category
 from satchmo_utils.templatetags import get_filter_args
 import logging
+from django.core.cache import cache
+from django.contrib.sites.models import Site
+
 
 log = logging.getLogger('shop.templatetags')
 
@@ -17,10 +20,10 @@ def recurse_for_children(current_node, parent_node, active_cat, show_empty=True)
     child_count = current_node.child.active().count()
 
     if show_empty or child_count > 0 or current_node.product_set.count() > 0:
-        temp_parent = SubElement(parent_node, 'li')
+        li_id = 'category-%s' % current_node.id
+        li_attrs = {'id': li_id }
+        temp_parent = SubElement(parent_node, 'li', li_attrs)
         attrs = {'href': current_node.get_absolute_url()}
-        if current_node == active_cat:
-            attrs["class"] = "current"
         link = SubElement(temp_parent, 'a', attrs)
         link.text = current_node.translated_name()
 
@@ -54,11 +57,28 @@ def category_tree(id=None):
         try:
             active_cat = Category.objects.active().get(id=id)
         except Category.DoesNotExist:
-            pass
-    root = Element("ul")
-    for cats in Category.objects.root_categories():
-        recurse_for_children(cats, root, active_cat)
-    return tostring(root, 'utf-8')
+            active_cat = None
+    # We call the category on every page so we will cache
+    # The actual structure to save db hits
+    current_site = Site.objects.get_current()
+    cache_key = "cat-%s" % current_site.id
+    existing_tree = cache.get(cache_key, None)
+    if existing_tree is None:
+        root = Element("ul")
+        for cats in Category.objects.root_categories():
+            recurse_for_children(cats, root, active_cat)
+        existing_tree = root
+        cache.set(cache_key, existing_tree)
+    # If we have an active cat, search through and identify it
+    # This search is less expensive than the multiple db calls
+    if active_cat:
+        active_cat_id = "category-%s" % active_cat.id
+        for li in existing_tree.getiterator("li"):
+            if li.attrib["id"] == active_cat_id:
+                link = li.find("a")
+                link.attrib["class"] = "current"
+                break
+    return tostring(existing_tree, 'utf-8')
 
 register.simple_tag(category_tree)
 

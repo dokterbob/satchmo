@@ -25,10 +25,14 @@ class Processor(object):
         
     def _get_location(self):
         area=country=None
-        
+        calc_by_ship_address = bool(config_value('TAX','TAX_AREA_ADDRESS') == 'ship')
         if self.order:
-            country = self.order.ship_country
-            area = self.order.ship_state
+            if calc_by_ship_address:
+                country = self.order.ship_country
+                area = self.order.ship_state
+            else:
+                country = self.order.bill_country
+                area = self.order.bill_state
         
             if country:
                 try:
@@ -41,11 +45,17 @@ class Processor(object):
             try:
                 contact = Contact.objects.get(user=self.user)
                 try:
-                    area = contact.shipping_address.state
+                    if calc_by_ship_address:
+                        area = contact.shipping_address.state
+                    else:
+                        area = contact.billing_address.state
                 except AttributeError:
                     pass
                 try:
-                    country = contact.shipping_address.country
+                    if calc_by_ship_address:
+                        country = contact.shipping_address.country
+                    else:
+                        country = contact.billing_address.country
                 except AttributeError:
                     pass
 

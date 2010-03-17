@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,15 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
+
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
+
 #: validators.py:5
 msgid "Please enter one and only one of those fields."
 msgstr "Merci de ne remplir qu'un et un seul de ces champs."
@@ -24,13 +33,13 @@ msgstr "Merci de ne remplir qu'un et un seul de ces champs."
 msgid "These fields can not be the same."
 msgstr "Ces champs ne peuvent être identiques."
 
-#: thumbnail/templates/widget/file.html.py:4
-msgid "Change"
-msgstr "Modifier"
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
 
-#: thumbnail/templates/widget/file.html.py:3
-msgid "Currently"
-msgstr "Actuellement"
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
 
 #: thumbnail/config.py:4
 msgid "Thumbnail Settings"
@@ -41,8 +50,12 @@ msgid "Thumbnail quality"
 msgstr "Qualité miniatures"
 
 #: thumbnail/config.py:10
-msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
-msgstr "Utilisez une valeur entre 1 et 100 pour changer la qualité des miniatures créées pour les produits et catégories."
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+"Utilisez une valeur entre 1 et 100 pour changer la qualité des miniatures "
+"créées pour les produits et catégories."
 
 #: thumbnail/config.py:16
 msgid "Rename product images?"
@@ -56,3 +69,10 @@ msgstr "Renommer automatiquement les images de produit lors de l'upload?"
 msgid "Change:"
 msgstr "Modifier:"
 
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Actuellement"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Modifier"

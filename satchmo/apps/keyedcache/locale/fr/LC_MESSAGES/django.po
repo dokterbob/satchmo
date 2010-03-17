@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,34 +36,23 @@ msgstr "Inclure les enfants?"
 msgid "Delete all keys?"
 msgstr "Effacer toutes les clés?"
 
-#: templates/keyedcache/delete.html.py:6
-#: templates/keyedcache/stats.html.py:6
-#: templates/keyedcache/view.html.py:6
-#: templates/keyedcache/delete.html.py:6
-#: templates/keyedcache/stats.html.py:6
-#: templates/keyedcache/view.html.py:6
+#: templates/keyedcache/delete.html:6 templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/keyedcache/delete.html.py:7
-#: templates/keyedcache/view.html.py:7
-#: templates/keyedcache/delete.html.py:7
-#: templates/keyedcache/view.html.py:7
+#: templates/keyedcache/delete.html:7 templates/keyedcache/view.html:7
 msgid "Cache"
 msgstr "Cache"
 
-#: templates/keyedcache/delete.html.py:8
-#: templates/keyedcache/delete.html.py:8
+#: templates/keyedcache/delete.html:8
 msgid "Cache Delete"
 msgstr "Vider le cache"
 
-#: templates/keyedcache/stats.html.py:7
-#: templates/keyedcache/stats.html.py:7
+#: templates/keyedcache/stats.html:7
 msgid "Cache Stats"
 msgstr "Statut du cache"
 
-#: templates/keyedcache/view.html.py:8
-#: templates/keyedcache/view.html.py:8
+#: templates/keyedcache/view.html:8
 msgid "Cache View"
 msgstr "Voir le cache"
-

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo_store.accounts.mail import send_welcome_email
 from livesettings import config_value
@@ -102,9 +103,10 @@ class RegistrationForm(forms.Form):
         verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 
         if verify:
+            site = Site.objects.get_current()
             from registration.models import RegistrationProfile
             user = RegistrationProfile.objects.create_inactive_user(
-                username, password, email, send_email=True)
+                username, email, password, site)
         else:
             user = User.objects.create_user(username, email, password)
 

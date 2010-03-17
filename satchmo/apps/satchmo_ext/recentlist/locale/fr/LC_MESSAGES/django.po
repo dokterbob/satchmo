@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,10 @@ msgstr "Nombre maxi d'articles récents"
 
 #: config.py:8
 msgid "The maximum number of items show in the recent box."
-msgstr "Le nombre maximum d'articles qui seront visibles dans le cadre 'Articles récents'."
+msgstr ""
+"Le nombre maximum d'articles qui seront visibles dans le cadre 'Articles "
+"récents'."
 
-#: templates/recentlist/_recently_viewed.html.py:4
+#: templates/recentlist/_recently_viewed.html:5
 msgid "Recently Viewed"
 msgstr "Vu récemment"
-

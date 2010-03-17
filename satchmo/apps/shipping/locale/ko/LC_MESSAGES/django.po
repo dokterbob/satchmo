@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,41 +15,147 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: modules/tiered/models.py:203
-msgid "Description"
-msgstr "설명"
-
-#: modules/tiered/models.py:93
-msgid "Active"
-msgstr "활성"
-
-#: modules/tiered/models.py:92
-msgid "Ordering"
-msgstr "순서"
-
-#: modules/tiered/models.py:201
-msgid "language"
-msgstr "언어"
-
-#: config.py:6
+#: config.py:7
 msgid "Shipping Settings"
 msgstr "배송 설정"
 
-#: config.py:10
+#: config.py:11
 msgid "Active shipping modules"
 msgstr "배송 모듈 활성"
 
-#: config.py:11
+#: config.py:12
 msgid ""
 "Select the active shipping modules, save and reload to set any module-"
 "specific shipping settings."
 msgstr ""
-"활성 배송 모듈을 선택하세요. 어떤 특정 모듈 배송 설정을 설정하기 위해서는"
-"저장하시고 페이지를 다시 읾어 들이세요."
+"활성 배송 모듈을 선택하세요. 어떤 특정 모듈 배송 설정을 설정하기 위해서는저장"
+"하시고 페이지를 다시 읾어 들이세요."
 
-#: config.py:13
+#: config.py:14
 msgid "Per piece"
 msgstr "개당 가격"
+
+#: config.py:21
+msgid "Hide if one?"
+msgstr ""
+
+#: config.py:22
+msgid "Hide shipping form fields if there is only one choice available?"
+msgstr ""
+
+#: config.py:26
+msgid "No"
+msgstr ""
+
+#: config.py:27
+msgid "Yes"
+msgstr ""
+
+#: config.py:28
+#, fuzzy
+msgid "Show description only"
+msgstr "설명"
+
+#: config.py:34
+msgid "Select least expensive by default?"
+msgstr ""
+
+#: modules/canadapost/config.py:12
+#, fuzzy
+msgid "Canada Post Shipping Settings"
+msgstr "배송 설정"
+
+#: modules/canadapost/config.py:22
+msgid "Canada Post Merchant ID"
+msgstr ""
+
+#: modules/canadapost/config.py:23
+msgid "The merchant ID assigned by Canada Post"
+msgstr ""
+
+#: modules/canadapost/config.py:29
+msgid "Canada Post shipping choices available to customers."
+msgstr ""
+
+#: modules/canadapost/config.py:54 modules/ups/config.py:53
+#: modules/usps/config.py:68
+msgid "Type of container used to ship product."
+msgstr ""
+
+#: modules/canadapost/config.py:64
+msgid "Access production Canada Post server"
+msgstr ""
+
+#: modules/canadapost/config.py:65 modules/fedex/config.py:71
+#: modules/ups/config.py:75 modules/usps/config.py:82
+msgid "Use this when your store is in production."
+msgstr ""
+
+#: modules/canadapost/config.py:70 modules/fedex/config.py:76
+#: modules/ups/config.py:80 modules/usps/config.py:87
+msgid "Submit to URL"
+msgstr ""
+
+#: modules/canadapost/config.py:71
+msgid "Canada Post Sell Online server to submit live transactions."
+msgstr ""
+
+#: modules/canadapost/config.py:76 modules/fedex/config.py:82
+#: modules/ups/config.py:86
+msgid "Submit to TestURL"
+msgstr ""
+
+#: modules/canadapost/config.py:77
+msgid "Canada Post Sell Online server to submit test transactions."
+msgstr ""
+
+#: modules/canadapost/config.py:82
+msgid "Turn around time"
+msgstr ""
+
+#: modules/canadapost/config.py:83
+msgid ""
+"Turn around time in hours. If declared here, this "
+"parameter                     will overwrite the one defined in the "
+"merchant's profile"
+msgstr ""
+
+#: modules/canadapost/config.py:89 modules/fedex/config.py:94
+#: modules/ups/config.py:92 modules/usps/config.py:99
+msgid "Verbose logs"
+msgstr ""
+
+#: modules/canadapost/config.py:90
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up Canada Post."
+msgstr ""
+
+#: modules/canadapost/shipper.py:62
+#, python-format
+msgid "Canada Post - %s"
+msgstr ""
+
+#: modules/canadapost/shipper.py:78
+msgid "Canada Post"
+msgstr ""
+
+#: modules/canadapost/shipper.py:87 modules/fedex/shipper.py:95
+#: modules/ups/shipper.py:78
+#, fuzzy, python-format
+msgid "%s business days"
+msgstr "3 - 4 업무일"
+
+#: modules/canadapost/shipper.py:89 modules/fedex/shipper.py:97
+#: modules/ups/shipper.py:80
+#, fuzzy, python-format
+msgid "%s business day"
+msgstr "3 - 4 업무일"
+
+#: modules/canadapost/shipper.py:124 modules/fedex/shipper.py:151
+#: modules/ups/shipper.py:110
+msgid "3 - 4"
+msgstr ""
 
 #: modules/dummy/shipper.py:28
 msgid "Dummy Flat Rate Shipping"
@@ -62,6 +168,74 @@ msgstr "US 메일"
 #: modules/dummy/shipper.py:47
 msgid "3 - 4 business days"
 msgstr "3 - 4 업무일"
+
+#: modules/fedex/config.py:10
+#, fuzzy
+msgid "FedEx Shipping Settings"
+msgstr "배송 설정"
+
+#: modules/fedex/config.py:20
+msgid "FedEx Meter Number"
+msgstr ""
+
+#: modules/fedex/config.py:21
+msgid "Meter Number provided by FedEx."
+msgstr ""
+
+#: modules/fedex/config.py:26
+msgid "FedEx Account Number"
+msgstr ""
+
+#: modules/fedex/config.py:27
+msgid "FedEx Account Number."
+msgstr ""
+
+#: modules/fedex/config.py:32
+msgid "FedEx Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/fedex/config.py:56
+msgid "Type of container/package used to ship product."
+msgstr ""
+
+#: modules/fedex/config.py:70
+msgid "Access production FedEx server"
+msgstr ""
+
+#: modules/fedex/config.py:77 modules/ups/config.py:81
+#: modules/usps/config.py:88
+msgid "Address to submit live transactions."
+msgstr ""
+
+#: modules/fedex/config.py:83 modules/ups/config.py:87
+#: modules/usps/config.py:94
+msgid "Address to submit test transactions."
+msgstr ""
+
+#: modules/fedex/config.py:88
+msgid "Single Box?"
+msgstr ""
+
+#: modules/fedex/config.py:89
+msgid ""
+"Use just one box and ship by weight?  If no then every item will be sent in "
+"its own box."
+msgstr ""
+
+#: modules/fedex/config.py:95
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up FedEx."
+msgstr ""
+
+#: modules/fedex/shipper.py:70
+#, python-format
+msgid "FedEx - %s"
+msgstr ""
+
+#: modules/fedex/shipper.py:86
+msgid "FedEx"
+msgstr ""
 
 #: modules/flat/config.py:5
 msgid "Flat rate"
@@ -87,8 +261,7 @@ msgstr "고정 배송 일"
 msgid "Flat Rate Shipping"
 msgstr "고정 배송율"
 
-#: modules/no/shipper.py:22
-#: modules/no/shipper.py:34
+#: modules/no/shipper.py:22 modules/no/shipper.py:34
 msgid "No Shipping"
 msgstr "배송 볼가"
 
@@ -96,19 +269,19 @@ msgstr "배송 볼가"
 msgid "immediately"
 msgstr "즉시"
 
-#: modules/per/config.py:14
+#: modules/per/config.py:15
 msgid "Per item price"
 msgstr "아이템 개당 가격"
 
-#: modules/per/config.py:21
+#: modules/per/config.py:22
 msgid "Per Item Shipping Service"
 msgstr "아이템 배송 서비스 당"
 
-#: modules/per/config.py:22
+#: modules/per/config.py:23
 msgid "Shipping service used with per item shipping"
 msgstr "아이템 배송당 사용된 배송 서비스"
 
-#: modules/per/config.py:29
+#: modules/per/config.py:30
 msgid "Per Item Delivery Days"
 msgstr "아이템 배송 일"
 
@@ -116,44 +289,333 @@ msgstr "아이템 배송 일"
 msgid "Per Item shipping"
 msgstr "아이템 배송당"
 
-#: modules/tiered/config.py:5
-msgid "Tiered Shipping"
-msgstr "묶음 배송"
+#: modules/productshipping/config.py:7
+#, fuzzy
+msgid "Shipping By Product"
+msgstr "배송 가격"
 
-#: modules/tiered/models.py:91
+#: modules/productshipping/models.py:89 modules/tiered/models.py:91
+#: modules/tieredquantity/models.py:85
 msgid "Key"
 msgstr "키"
 
-#: modules/tiered/models.py:202
+#: modules/productshipping/models.py:90 modules/tiered/models.py:92
+#: modules/tieredquantity/models.py:86 modules/tieredweight/models.py:114
+msgid "Ordering"
+msgstr "순서"
+
+#: modules/productshipping/models.py:91 modules/tiered/models.py:93
+#: modules/tieredquantity/models.py:87 modules/tieredweight/models.py:115
+msgid "Active"
+msgstr "활성"
+
+#: modules/productshipping/models.py:194 modules/tiered/models.py:202
+#: modules/tieredquantity/models.py:199 modules/tieredweight/models.py:245
+msgid "language"
+msgstr "언어"
+
+#: modules/productshipping/models.py:195 modules/tiered/models.py:203
+#: modules/tieredquantity/models.py:200
 msgid "Carrier"
 msgstr "배송자"
 
-#: modules/tiered/models.py:204
+#: modules/productshipping/models.py:196 modules/tiered/models.py:204
+#: modules/tieredquantity/models.py:201
+msgid "Description"
+msgstr "설명"
+
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
 msgid "Method"
 msgstr "방법"
 
-#: modules/tiered/models.py:204
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
 msgid "i.e. US Mail"
 msgstr "예를 들면, US 메일"
 
-#: modules/tiered/models.py:205
+#: modules/productshipping/models.py:198 modules/tiered/models.py:206
+#: modules/tieredquantity/models.py:203
 msgid "Delivery Days"
 msgstr "배송일"
 
-#: modules/tiered/models.py:209
-msgid "Min Price"
-msgstr "최소 가격"
-
-#: modules/tiered/models.py:210
-msgid "The minumum price for this tier to apply"
-msgstr "이 묶음 배송을 적용하기 위한 최소 가격"
-
-#: modules/tiered/models.py:212
+#: modules/productshipping/models.py:206 modules/tiered/models.py:216
 msgid "Shipping Price"
 msgstr "배송 가격"
 
-#: templates/shipping/shipping_options.html:5
+#: modules/tiered/config.py:7
+msgid "Tiered Shipping"
+msgstr "묶음 배송"
+
+#: modules/tiered/models.py:213
+msgid "Min Price"
+msgstr "최소 가격"
+
+#: modules/tiered/models.py:214
+msgid "The minumum price for this tier to apply"
+msgstr "이 묶음 배송을 적용하기 위한 최소 가격"
+
+#: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
+msgid "Expires"
+msgstr ""
+
+#: modules/tieredquantity/config.py:4
+msgid "Tiered Quantity"
+msgstr ""
+
+#: modules/tieredquantity/models.py:207
+msgid "Min Quantity"
+msgstr ""
+
+#: modules/tieredquantity/models.py:208
+#, fuzzy
+msgid "Minimum qty in order for this to apply?"
+msgstr "이 묶음 배송을 적용하기 위한 최소 가격"
+
+#: modules/tieredquantity/models.py:209
+#, fuzzy
+msgid "Handling Price"
+msgstr "최소 가격"
+
+#: modules/tieredquantity/models.py:211
+#, fuzzy
+msgid "Shipping Per Item"
+msgstr "배송 가격"
+
+#: modules/tieredweight/config.py:10
+#, fuzzy
+msgid "Tiered Weight Shipping"
+msgstr "묶음 배송"
+
+#: modules/tieredweight/models.py:113 modules/tieredweight/models.py:126
+#: modules/tieredweight/models.py:139
+#, fuzzy
+msgid "carrier"
+msgstr "배송자"
+
+#: modules/tieredweight/models.py:116
+msgid "default_zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:127
+#, fuzzy
+msgid "carriers"
+msgstr "배송자"
+
+#: modules/tieredweight/models.py:140
+msgid "name"
+msgstr ""
+
+#: modules/tieredweight/models.py:141
+msgid "countries"
+msgstr ""
+
+#: modules/tieredweight/models.py:142
+msgid "handling"
+msgstr ""
+
+#: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
+#: modules/tieredweight/models.py:262
+msgid "zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:154
+msgid "zones"
+msgstr ""
+
+#: modules/tieredweight/models.py:246
+#, fuzzy
+msgid "description"
+msgstr "설명"
+
+#: modules/tieredweight/models.py:247
+#, fuzzy
+msgid "method"
+msgstr "방법"
+
+#: modules/tieredweight/models.py:247
+msgid "i.e. Air, Land, Sea"
+msgstr ""
+
+#: modules/tieredweight/models.py:248
+#, fuzzy
+msgid "delivery"
+msgstr "배송일"
+
+#: modules/tieredweight/models.py:257
+msgid "zone translation"
+msgstr ""
+
+#: modules/tieredweight/models.py:258
+msgid "zone translations"
+msgstr ""
+
+#: modules/tieredweight/models.py:263
+msgid "min weight"
+msgstr ""
+
+#: modules/tieredweight/models.py:264
+msgid "handling ajustment"
+msgstr ""
+
+#: modules/tieredweight/models.py:266
+#, fuzzy
+msgid "shipping price"
+msgstr "배송 가격"
+
+#: modules/tieredweight/models.py:267
+msgid "expires"
+msgstr ""
+
+#: modules/tieredweight/models.py:277
+msgid "weight tier"
+msgstr ""
+
+#: modules/tieredweight/models.py:278
+msgid "weight tiers"
+msgstr ""
+
+#: modules/ups/config.py:8
+#, fuzzy
+msgid "UPS Shipping Settings"
+msgstr "배송 설정"
+
+#: modules/ups/config.py:16
+msgid "UPS XML Access Key"
+msgstr ""
+
+#: modules/ups/config.py:17
+msgid "XML Access Key Provided by UPS"
+msgstr ""
+
+#: modules/ups/config.py:22
+msgid "UPS User ID"
+msgstr ""
+
+#: modules/ups/config.py:23
+msgid "User ID provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:28
+msgid "UPS Account Number"
+msgstr ""
+
+#: modules/ups/config.py:29
+msgid "UPS Account Number."
+msgstr ""
+
+#: modules/ups/config.py:34
+msgid "UPS User Password"
+msgstr ""
+
+#: modules/ups/config.py:35
+msgid "User password provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:40
+msgid "UPS Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/ups/config.py:63
+msgid "UPS Pickup option."
+msgstr ""
+
+#: modules/ups/config.py:74
+msgid "Access production UPS server"
+msgstr ""
+
+#: modules/ups/config.py:93
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up UPS."
+msgstr ""
+
+#: modules/ups/shipper.py:58
+#, python-format
+msgid "UPS - %s"
+msgstr ""
+
+#: modules/ups/shipper.py:71
+msgid "UPS"
+msgstr ""
+
+#: modules/usps/config.py:9
+#, fuzzy
+msgid "U.S.P.S. Shipping Settings"
+msgstr "배송 설정"
+
+#: modules/usps/config.py:17
+msgid "USPS  Username"
+msgstr ""
+
+#: modules/usps/config.py:18
+msgid "User ID provided by USPS site."
+msgstr ""
+
+#: modules/usps/config.py:23
+msgid "USPS Password"
+msgstr ""
+
+#: modules/usps/config.py:24
+msgid "User password provided by USPS site."
+msgstr ""
+
+#: modules/usps/config.py:29
+msgid "Handling Fee"
+msgstr ""
+
+#: modules/usps/config.py:30
+msgid "The cost of packaging and taking order to post office"
+msgstr ""
+
+#: modules/usps/config.py:35
+msgid "USPS Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/usps/config.py:81
+msgid "Access production USPS server"
+msgstr ""
+
+#: modules/usps/config.py:93
+msgid "Submit to Test URL"
+msgstr ""
+
+#: modules/usps/config.py:100
+msgid ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up USPS."
+msgstr ""
+
+#: modules/usps/shipper.py:129
+#, python-format
+msgid "USPS - %s"
+msgstr ""
+
+#: modules/usps/shipper.py:145
+msgid "USPS"
+msgstr ""
+
+#: modules/usps/shipper.py:153
+#, python-format
+msgid "in %s"
+msgstr ""
+
+#: modules/usps/shipper.py:154
+#, python-format
+msgid "by %s"
+msgstr ""
+
+#: modules/usps/shipper.py:156
+#, fuzzy, python-format
+msgid "in %s business days"
+msgstr "3 - 4 업무일"
+
+#: modules/usps/shipper.py:158
+#, fuzzy, python-format
+msgid "in %s business day"
+msgstr "3 - 4 업무일"
+
+#: templates/shipping/options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
 msgstr " %(method)s로 발송 대략 %(expected_delivery)s 소요"
-

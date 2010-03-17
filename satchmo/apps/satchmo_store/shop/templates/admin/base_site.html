@@ -3,7 +3,7 @@
 
 {% block extrahead %}
 {% blackbird_logging %}
-	<script src="{{media_url}}js/jquery.js" type="text/javascript"></script>
+{% include "shop/_jquery.html" %}
 {{ block.super }}
 	<script type="text/javascript"><!--
 	var satchmo = satchmo || {};

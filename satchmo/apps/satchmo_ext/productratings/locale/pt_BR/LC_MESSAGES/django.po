@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,12 +24,11 @@ msgstr "Ativar pontuação de produtos"
 msgid "Akismet API Key"
 msgstr ""
 
-#: models.py:9
-#: templates/productratings/_product_ratings.html:17
+#: models.py:11 templates/productratings/_product_ratings.html:17
 msgid "Rating"
 msgstr "Pontuação"
 
-#: utils.py:58
+#: utils.py:49
 #, fuzzy
 msgid "Not Rated"
 msgstr "Não definido"
@@ -56,3 +55,6 @@ msgstr "Por favor efetue login para conhecer este produto."
 msgid "Please login to review this product."
 msgstr "Por favor efetue login para conhecer este produto."
 
+#: templates/productratings/plugins/sidebar_links.html:3
+msgid "Most Popular"
+msgstr ""

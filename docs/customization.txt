@@ -31,31 +31,58 @@ The benefits of this approach is that it is simple to implement and makes it
 easy to update Satchmo as changes are made.  The downside is that there is 
 only so much you can do with css changes.
 
+.. _template-customization:
+
 Template Customization
 ----------------------
 
 Template customization allows you to completely alter the look and feel of 
 your site without having to resort to coding.  The majority of the display 
 elements are accessible via css or template changes. Before making any template 
-changes, it would be useful to understand Django templates in general.  
+changes, it is useful to understand Django templates in general.  
 The `Django Template Author Guide`_ is the best place to start.
 
-Once you are ready to make template changes, the best option is to copy any of the
-templates that you wish to override to a new location.
+The other very important concept to understand is how to setup your environment so that you can selectively
+modify the templates that you need to. You should not modify the templates directly in the Satchmo distribution. Doing
+so will make it more difficult to upgrade and maintain your Satchmo installation.
+
+In the default Satchmo settings.py, our template loaders are::
+
+    TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.load_template_source',
+        'django.template.loaders.app_directories.load_template_source',
+         )
+
+These template loaders look for the templates in two different ways.  The first one, the filesystem loader, 
+looks for the templates in the directories you tell it in your settings_local.py file::
+
+    TEMPLATE_DIRS = ('/path/to/your/templates',)
  
-Next, modify settings.py to point to your new templates directory::
+The second loader, the app_directories loader, looks for the templates in a directory 
+named "templates" in each application directory.
 
-    TEMPLATE_DIRS = (
-        # Put strings here, like "/home/html/django_templates".
-        # Always use forward slashes, even on Windows.
-        "/my/new/templates",)
+Any time the system tries to find a template, it follows the order given above.  First it asks the filesystem 
+loader to look in the directories it has been given.  If it finds the template there, it returns that one.  
+Next it asks the app_directories loader to look in the app directories for that template.  
+These are the "fallback" templates to use.
 
+For example, if you wanted to override the default category page template, you can determine that it lives 
+at ``satchmo/apps/product/templates/product/category.html``  It will be found by the app_directory loader if the 
+filesystem loader doesn't find it.
+
+Knowing that, you can tell that the proper place to put your overridden template is at:
+``/path/to/your/templates/product/category.html``
+
+In other word, you just chop the directory tree off at the word "templates" and build your override tree that way.
+
+Another example might be useful. If you wish to override the wishlist index page, which usually 
+lives at: ``satchmo/apps/satchmo_ext/wishlist/templates/index.html``, you would make a directory 
+``wishlist/templates`` and put an index.html file in it.
 
 Now, make the changes to the templates that you have to.  Don't forget, this is
 also the place where you can change the email messages sent to users as well as
 the pdf documents created by the admin interface.  The amount of power and flexibility
 here is much higher than just about any "shopping cart" application out there!
-
 
 URL Customization
 -----------------
@@ -89,7 +116,7 @@ Using Signals
 See :ref:`Signals in Satchmo <signals>` for an explanation of the available signals and how to use them to
 customize your store.
 
-.. _Django Template Author Guide: http://www.djangoproject.com/documentation/templates/
+.. _Django Template Author Guide: http://docs.djangoproject.com/en/1.1/topics/templates/
 
 Changing Views
 --------------

@@ -31,6 +31,7 @@ from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, ad
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
+from django.core.cache import cache
 
 log = logging.getLogger('product.models')
 
@@ -234,7 +235,8 @@ class Category(models.Model):
 
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
-
+        cache_key = "cat-%s" % self.site.id
+        cache.delete(cache_key)
         super(Category, self).save(**kwargs)
 
     def _flatten(self, L):
@@ -1316,6 +1318,7 @@ class CustomTextField(models.Model):
 
     class Meta:
         ordering = ('sort_order',)
+        unique_together = ('slug', 'products')
 
 class CustomTextFieldTranslation(models.Model):
     """A specific language translation for a `CustomTextField`.  This is intended for all descriptions which are not the

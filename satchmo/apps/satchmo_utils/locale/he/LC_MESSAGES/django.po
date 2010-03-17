@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:02+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-03-22 07:27\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: numbers.py:27
+#: numbers.py:23
 #, python-format
 msgid "%(value)s is not a valid number"
 msgstr "%(value)s אינו מספר חוקי"
 
-#: numbers.py:39
+#: numbers.py:35
 msgid "Please enter a positive number"
 msgstr "נא להזין מספר חיובי"
 
@@ -52,8 +52,12 @@ msgid "Thumbnail quality"
 msgstr "איכות Thumbnail"
 
 #: thumbnail/config.py:10
-msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
-msgstr "השתמש בערך בין 1 ל- 100 אשר ישנה את איכות ה- JPG thumbnails הנוצרים עבור מוצרים וקטגוריות."
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+"השתמש בערך בין 1 ל- 100 אשר ישנה את איכות ה- JPG thumbnails הנוצרים עבור "
+"מוצרים וקטגוריות."
 
 #: thumbnail/config.py:16
 msgid "Rename product images?"

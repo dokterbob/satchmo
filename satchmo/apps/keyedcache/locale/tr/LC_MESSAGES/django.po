@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-06-09 18:18+0200\n"
 "Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
 "Language-Team: Turkish <selincuhadar@gmail.com>\n"
@@ -17,14 +17,32 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: templates/keyedcache/delete.html:6
-#: templates/keyedcache/stats.html:6
+#: views.py:16
+msgid "Yes"
+msgstr ""
+
+#: views.py:17
+msgid "No"
+msgstr ""
+
+#: views.py:21
+msgid "Key to delete"
+msgstr ""
+
+#: views.py:22
+msgid "Include Children?"
+msgstr ""
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr ""
+
+#: templates/keyedcache/delete.html:6 templates/keyedcache/stats.html:6
 #: templates/keyedcache/view.html:6
 msgid "Home"
 msgstr "Ev"
 
-#: templates/keyedcache/delete.html:7
-#: templates/keyedcache/view.html:7
+#: templates/keyedcache/delete.html:7 templates/keyedcache/view.html:7
 msgid "Cache"
 msgstr "Cache"
 
@@ -39,4 +57,3 @@ msgstr "Cache İstatistikleri"
 #: templates/keyedcache/view.html:8
 msgid "Cache View"
 msgstr "Cache'yi Göster"
-

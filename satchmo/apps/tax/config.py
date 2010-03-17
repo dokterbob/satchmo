@@ -28,6 +28,18 @@ PRODUCTS_TAXABLE_BY_DEFAULT = config_register(BooleanValue(TAX_GROUP,
     default=False
 ))
 
+TAX_AREA_ADDRESS = config_register(
+        StringValue(TAX_GROUP,
+        'TAX_AREA_ADDRESS',
+        description=_("Should tax be calculated based on shipping or billing address?"),
+        help_text=_("This will only be used if tax is calculated based on an address."),
+        choices = (
+            (('ship', 'Shipping')),
+            (('bill', 'Billing')),
+        ),
+        default = 'ship')
+        )
+
 # --- Load any extra tax modules. ---
 extra_tax = get_satchmo_setting('CUSTOM_TAX_MODULES')
 for extra in extra_tax:

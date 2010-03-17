@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -30,8 +30,8 @@ msgstr "No"
 msgid "Key to delete"
 msgstr "Chiave da eliminare"
 
-#: views.py:22
 # translated = "Slug"
+#: views.py:22
 msgid "Include Children?"
 msgstr "Includi i figli?"
 
@@ -39,30 +39,27 @@ msgstr "Includi i figli?"
 msgid "Delete all keys?"
 msgstr "Elimina tutte le chiavi?"
 
-#: templates/keyedcache/delete.html:6
-#: templates/keyedcache/stats.html:6
+#: templates/keyedcache/delete.html:6 templates/keyedcache/stats.html:6
 #: templates/keyedcache/view.html:6
 msgid "Home"
 msgstr "Pagina iniziale"
 
-#: templates/keyedcache/delete.html:7
-#: templates/keyedcache/view.html:7
 # translated = "Prodotto sottotipi"
+#: templates/keyedcache/delete.html:7 templates/keyedcache/view.html:7
 msgid "Cache"
 msgstr "Cache"
 
-#: templates/keyedcache/delete.html:8
 # translated = "Cache"
+#: templates/keyedcache/delete.html:8
 msgid "Cache Delete"
 msgstr "Elimina Cache"
 
-#: templates/keyedcache/stats.html:7
 # translated = "Elimina cache"
+#: templates/keyedcache/stats.html:7
 msgid "Cache Stats"
 msgstr "Statistiche Cache"
 
-#: templates/keyedcache/view.html:8
 # translated = "Statistiche di cache"
+#: templates/keyedcache/view.html:8
 msgid "Cache View"
 msgstr "Viste Cache"
-

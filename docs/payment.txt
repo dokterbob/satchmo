@@ -31,8 +31,7 @@ to go to `TrustCommerce <http://www.trustcommerce.com/>`_ and get your account
 setup.
 
 One special note with TrustCommerce - you must have the tclink libraries installed.
-You can get these from TrustCommerce or via this url
-`Tc Link <http://www.trustcommerce.com/tclink.html>`_
+You can get these from `here <http://www.trustcommerce.com/tclink.html>`_.
 
 Once the library is installed, you can fill in your login and password information
 in the admin config.
@@ -41,7 +40,7 @@ in the admin config.
 
 CyberSource
 -----------
-CyberSource operates similar to TrustCommerce and Authorize.net.  If you register,
+CyberSource operates similarly to TrustCommerce and Authorize.net.  If you register
 at the `CyberSource Site <http://www.cybersource.com/>`_ you will get all the
 credentials you need to configure this module.
 
@@ -49,16 +48,61 @@ credentials you need to configure this module.
 
 PayPal
 ------
-More details needed here.
+
+Configuration
+^^^^^^^^^^^^^
+
+.. data:: PAYMENT_PAYPAL.BUSINESS
+
+   The email address for your paypal account.
+
+.. data:: PAYMENT_PAYPAL.BUSINESS_TEST
+
+   The email address for testing your paypal account.
+
+.. data:: PAYMENT_PAYPAL.CURRENCY_CODE
+
+   Currency code for Paypal transactions.
+
+   Defaults to USD.
+
+.. data:: PAYMENT_PAYPAL.LIVE
+
+   Whether to accept real payments.
+
+   Defaults to False.
+
+.. data:: PAYMENT_PAYPAL.POST_URL
+
+   The Paypal URL for real transaction posting.
+
+   Defaults to `https://www.paypal.com/cgi-bin/webscr`.
+
+.. data:: PAYMENT_PAYPAL.RETURN_ADDRESS
+
+   Where Paypal will return the customer after the purchase is complete. This
+   can be a named url and defaults to 'satchmo_checkout-success'.
+
+.. data:: PAYMENT_PAYPAL.POST_TEST_URL
+
+   The Paypal URL for test transaction posting.
+
+   Defaults to `https://www.sandbox.paypal.com/cgi-bin/webscr`.
+
+.. data:: PAYMENT_PAYPAL.URL_BASE
+
+   Defaults to `^paypal/`.
 
 .. index:: Google Checkout
 
 Google Checkout
 ---------------
-There are a couple of different ways to integrate with Google Checkout. Satchmo uses the XML option. When
-configuring your checkout account via Google, select: "Option A - Configure your form to submit directly to Google Checkout."
+There are a couple of different ways to integrate with Google Checkout. Satchmo
+uses the XML option. When configuring your checkout account via Google, select:
+"Option A - Configure your form to submit directly to Google Checkout."
 
-It is recommended that you review the `Google checkout documentation <http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#create_checkout_cart>`_ 
+It is recommended that you review the `Google checkout documentation
+<http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#create_checkout_cart>`_
 in order to understand how the process works.
 
 .. index:: Protx

@@ -1,0 +1,8 @@
+#: views.py:27
+#, python-format
+msgid "Bad Category: %s"
+msgstr ""
+
+#: templates/product_feeds/plugins/admin_tools.html:3
+msgid "Export Products as CSV"
+msgstr ""

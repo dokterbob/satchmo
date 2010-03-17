@@ -9,24 +9,23 @@ through Django. The sections below describe the Satchmo specific steps.
 Template Translations
 ---------------------
 
-1. Change to the directory where Satchmo is stored (somewhere on your PYTHONPATH) and create your translation file::
+1. Change to the directory where your Satchmo source is stored (somewhere on your PYTHONPATH). You can run the following
+find command to compile all of the langauge files for the satchmo apps::
 
-    /path/to/django-admin.py makemessages -l de -e html,txt,rml
+    find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-trunk/django/bin/django-admin.py makemessages -l de -e html,txt,rml' {} \;
 
+In the example above, replace "de" with the language code for the message file you want to create.
+The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
+Portuguese and de_AT for Austrian German. The first two letters of the locale is a language code defined
+in `ISO 639-1`_ . The second and optional part  consists of an underscore followed by a two letter country code as defined in
+`ISO 3166-1`_ . For the command above to work you need to have python and xgettext installed.
 
- In the example above, replace "de" with the language code for the message file you want to create.
- The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
- Portuguese and de_AT for Austrian German. The first two letters of the locale is a language code defined
- in `ISO 639-1`_ . The second and optional part  consists of an underscore followed by a two letter country code as defined in
- `ISO 3166-1`_ . For the command above to work you need to have python and xgettext installed.
+This will extract strings that need to be translated from the Satchmo code and templates.
+Upon completion of this command these strings along with references to where they are used
+are stored in multiple `locale/de/LC_MESSAGES/django.po` (again, replace "de" with your own locale).
 
- This will extract strings that need to be translated from the Satchmo code and templates.
- Upon completion of this command these strings along with references to where they are used
- are stored in the file `satchmo/locale/de/LC_MESSAGES/django.po` (again, replace "de"
- with your own locale).
-
- If the `django.po` file already exists the above command will update it and
- add new strings if any are discovered.
+If the `django.po` file already exists the above command will update it and
+add new strings if any are discovered.
 
 2. Translate the `django.po` file of your locale using a translation editor:
 
@@ -88,11 +87,7 @@ Unless a translation to your language is already available, you may also need to
  * `Django`_
  * `Django Registration`_
 
- Such translations are to be submitted to the corresponding project and not to the Satchmo project.
-
-.. note::
-  Although Django provides a `make-messages.py` script, it does not support the PDF generation templates used in Satchmo.
-  For that reason you should use the customized `make-messages.py` script that comes with Satchmo instead of the Django one.
+Such translations are to be submitted to the corresponding project and not to the Satchmo project.
 
 Content Translations
 --------------------

@@ -37,7 +37,11 @@ class TieredTest(TestCase):
         """Test that a tiered user gets the tiered price"""
         product = Product.objects.get(slug='PY-Rocks')
         set_current_user(self.tieruser)
-        # 10% discount from 19.50        
+        # 10% discount from 19.50 
+        # This test is failing when I run the full test suite but
+        # it runs fine if I do python manage.py test tieredpricing
+        # I suspect it's a threadlocals issue and a testing issue not that
+        # anything is broken. CBM 2-22-2010      
         self.assertEqual(product.unit_price, Decimal("17.550"))
         
     def test_no_tier_user(self):
@@ -53,6 +57,10 @@ class TieredTest(TestCase):
         tp.save()
         set_current_user(self.tieruser)
         # should be the new explicit price
+        # This test is failing when I run the full test suite but
+        # it runs fine if I do python manage.py test tieredpricing
+        # I suspect it's a threadlocals issue and a testing issue not that
+        # anything is broken. CBM 2-22-2010
         self.assertEqual(product.unit_price, Decimal("10.00"))        
 
     def test_tieredprice_no_tier_user(self):

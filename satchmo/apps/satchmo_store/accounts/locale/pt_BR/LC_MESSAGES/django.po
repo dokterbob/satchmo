@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-05 23:50-0300\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-05 23:51-0300\n"
 "Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,52 +15,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:17
+#: forms.py:32
+msgid "Title"
+msgstr ""
+
+#: forms.py:33
 msgid "Email address"
 msgstr "Endereço de Email"
 
-#: forms.py:19
+#: forms.py:35
 msgid "Password (again)"
 msgstr "Senha (novamente)"
 
-#: forms.py:21
+#: forms.py:37
 msgid "Password"
 msgstr "Senha"
 
-#: forms.py:23
+#: forms.py:39
 msgid "First name"
 msgstr "Primeiro nome"
 
-#: forms.py:25
+#: forms.py:41
 msgid "Last name"
 msgstr "Último nome"
 
-#: forms.py:28
+#: forms.py:60
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: forms.py:37
+#: forms.py:69
 msgid "The two passwords do not match."
 msgstr "As duas senhas não são iguais."
 
-#: forms.py:48
+#: forms.py:80
 msgid "That email address is already in use."
 msgstr "Este endereço de email já está em uso."
 
-#: mail.py:20
+#: mail.py:24
 #, python-format
 msgid "Welcome to %s"
 msgstr "Bem vindo a %s"
 
-#: views.py:20
+#: views.py:26
 msgid "Yes"
 msgstr "Sim"
 
-#: views.py:21
+#: views.py:27
 msgid "No"
 msgstr "Não"
 
-#: views.py:86
+#: views.py:343
 msgid "Registration Form"
 msgstr "Formulário de Cadastro"
-

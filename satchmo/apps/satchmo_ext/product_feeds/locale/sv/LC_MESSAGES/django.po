@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,8 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: views.py:26
+#: views.py:27
 #, python-format
 msgid "Bad Category: %s"
 msgstr "Ogiltig kategori: %s"
 
+#: templates/product_feeds/plugins/admin_tools.html:3
+msgid "Export Products as CSV"
+msgstr ""

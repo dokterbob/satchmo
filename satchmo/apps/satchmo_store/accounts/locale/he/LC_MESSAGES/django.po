@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:04+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-07-18 22:45+0300\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: forms.py:30
+#: forms.py:32
 msgid "Title"
 msgstr ""
 
-#: forms.py:31
+#: forms.py:33
 msgid "Email address"
 msgstr "כתובת אימייל"
 
-#: forms.py:33
+#: forms.py:35
 msgid "Password (again)"
 msgstr "סיסמה (שוב)"
 
-#: forms.py:35
+#: forms.py:37
 msgid "Password"
 msgstr "סיסמה"
 
-#: forms.py:37
+#: forms.py:39
 msgid "First name"
 msgstr "שם פרטי"
 
-#: forms.py:39
+#: forms.py:41
 msgid "Last name"
 msgstr "שם משפחה"
 
-#: forms.py:47
+#: forms.py:60
 msgid "Newsletter"
 msgstr "עלון מידע"
 
-#: forms.py:56
+#: forms.py:69
 msgid "The two passwords do not match."
 msgstr "שתי הסיסמאות לא תואמות."
 
-#: forms.py:67
+#: forms.py:80
 msgid "That email address is already in use."
 msgstr "כתובת האימייל כבר נמצאת בשימוש."
 
@@ -58,14 +58,14 @@ msgstr "כתובת האימייל כבר נמצאת בשימוש."
 msgid "Welcome to %s"
 msgstr "ברוך הבא ל%s"
 
-#: views.py:27
+#: views.py:26
 msgid "Yes"
 msgstr "כן"
 
-#: views.py:28
+#: views.py:27
 msgid "No"
 msgstr "לא"
 
-#: views.py:330
+#: views.py:343
 msgid "Registration Form"
 msgstr "טופס רישום"

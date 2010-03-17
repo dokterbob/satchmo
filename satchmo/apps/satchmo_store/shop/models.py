@@ -1278,7 +1278,7 @@ class OrderAuthorization(OrderPaymentBase):
         verbose_name_plural = _("Order Payment Authorizations")
 
 class OrderPaymentManager(models.Manager):
-    def create_linked(self, other):
+    def create_linked(self, other, **kwargs):
         linked = OrderPayment(
                 order = other.order,
                 payment = other.payment,
@@ -1286,7 +1286,7 @@ class OrderPaymentManager(models.Manager):
                 transaction_id="LINKED",
                 details=other.details,
                 reason_code="")
-        linked.save()
+        linked.save(**kwargs)
         return linked
 
 class OrderPayment(OrderPaymentBase):
@@ -1320,7 +1320,7 @@ class OrderPendingPayment(OrderPaymentBase):
             capture = self.capture
         except OrderPayment.DoesNotExist:
             log.debug('Pending Payment - creating linked payment')
-            self.capture = OrderPayment.objects.create_linked(self)
+            self.capture = OrderPayment.objects.create_linked(self, **kwargs)
         super(OrderPaymentBase, self).save(**kwargs)
 
     class Meta:

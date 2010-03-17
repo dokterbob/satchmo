@@ -68,7 +68,8 @@ The following translations were updated or added:
 Backwards-incompatible Changes
 ------------------------------
 
-This release does introduce some backwards incompatible-changes so you are encouraged to review and understand the changes listed here - http://www.satchmoproject.com/trac/wiki/BackwardsIncompatibleChangesAfter0.6
+This release does introduce some backwards incompatible-changes so you are encouraged to review and understand the 
+changes listed `here <http://bitbucket.org/chris1610/satchmo/wiki/BackwardsIncompatibleChanges>`_
 
 Thanks
 ------
