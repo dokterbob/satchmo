@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:01+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-03-13 16:04\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"

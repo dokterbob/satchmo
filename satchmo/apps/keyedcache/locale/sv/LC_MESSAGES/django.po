@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,14 +19,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: templates/keyedcache/delete.html:6
-#: templates/keyedcache/stats.html:6
+#: views.py:16
+msgid "Yes"
+msgstr ""
+
+#: views.py:17
+msgid "No"
+msgstr ""
+
+#: views.py:21
+msgid "Key to delete"
+msgstr ""
+
+#: views.py:22
+msgid "Include Children?"
+msgstr ""
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr ""
+
+#: templates/keyedcache/delete.html:6 templates/keyedcache/stats.html:6
 #: templates/keyedcache/view.html:6
 msgid "Home"
 msgstr "Hem"
 
-#: templates/keyedcache/delete.html:7
-#: templates/keyedcache/view.html:7
+#: templates/keyedcache/delete.html:7 templates/keyedcache/view.html:7
 msgid "Cache"
 msgstr "Cache"
 
@@ -41,4 +59,3 @@ msgstr "Cache-statistik"
 #: templates/keyedcache/view.html:8
 msgid "Cache View"
 msgstr "Visa Cache"
-

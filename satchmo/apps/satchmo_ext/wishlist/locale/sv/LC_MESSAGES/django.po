@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,66 +19,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: models.py:29
-msgid "Creation Date"
-msgstr "Skapat datum"
+#: config.py:8
+#, fuzzy
+msgid "Wishlist slug"
+msgstr "Önskelista"
 
-#: models.py:26
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
+
+#: models.py:33
 msgid "Contact"
 msgstr "Kontakt"
 
-#: templates/wishlist/index.html:7
-#: templates/wishlist/login_required.html:4
-msgid "Home"
-msgstr "Hem"
-
-#: models.py:27
+#: models.py:34
 msgid "Product"
 msgstr "Produkt"
 
-#: views.py:92
-msgid "Success"
-msgstr "Lyckades"
+#: models.py:35
+msgid "Details"
+msgstr "Detaljer"
 
-#: templates/wishlist/index.html:12
-#: templates/wishlist/login_required.html:9
-msgid "Shop Categories"
-msgstr "Butikskategorier"
+#: models.py:36
+msgid "Creation Date"
+msgstr "Skapat datum"
 
-#: templates/wishlist/index.html:38
-msgid "Add to cart"
-msgstr "Lägg till i kundvagn"
+#: models.py:61
+msgid "Product Wish"
+msgstr "Produktönskemål"
 
-#: views.py:63
-#: views.py:84
+#: models.py:62
+msgid "Product Wishes"
+msgstr "Produktönskemål"
+
+#: views.py:60 views.py:81
 msgid "The product you have requested does not exist."
 msgstr "Produkten du efterfrågade finns inte."
 
-#: views.py:107
-#, python-format
-msgid "Not enough items of '%s' in stock."
-msgstr "Inte tillräckligt många av '%s' i lager."
+#: views.py:89
+#, fuzzy
+msgid "The contact associated with this request does not exist."
+msgstr "Produkten du efterfrågade finns inte."
 
-#: views.py:94
+#: views.py:96
+msgid "Success"
+msgstr "Lyckades"
+
+#: views.py:98
 msgid "Error"
 msgstr "Fel"
 
-#: templates/wishlist/index.html:8
-#: templates/wishlist/index.html.py:25
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
+
+#: views.py:154 views.py:165 views.py:167
+msgid "No such wishlist item."
+msgstr "Ingen sådan vara på önskelistan."
+
+#: views.py:160
+msgid "You must be logged in to do that."
+msgstr "Du måste logga in för att göra det."
+
+#: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr "Hem"
+
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
 #: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
 msgid "Wishlist"
 msgstr "Önskelista"
 
-#: templates/wishlist/index.html:34
+#: templates/wishlist/index.html:27
 #, python-format
 msgid "added on %(create_date)s"
 msgstr "tillagd %(create_date)s"
 
-#: templates/wishlist/index.html:42
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr "Lägg till i kundvagn"
+
+#: templates/wishlist/index.html:35
 msgid "Remove from wishlist"
 msgstr "Ta bort från önskelista"
 
-#: templates/wishlist/login_required.html:16
+#: templates/wishlist/login_required.html:9
 #, python-format
 msgid ""
 "Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
@@ -87,25 +115,13 @@ msgstr ""
 "Ledsen, du måste <a href=\"%(login_url)s\">logga in</a> för att komma åt din "
 "önskelista."
 
-#: models.py:28
-msgid "Details"
-msgstr "Detaljer"
+#: templates/wishlist/plugins/product_add_buttons.html:2
+#, fuzzy
+msgid "Add to wishlist"
+msgstr "Ta bort från önskelista"
 
-#: models.py:58
-msgid "Product Wish"
-msgstr "Produktönskemål"
+#~ msgid "Shop Categories"
+#~ msgstr "Butikskategorier"
 
-#: models.py:59
-msgid "Product Wishes"
-msgstr "Produktönskemål"
-
-#: views.py:147
-#: views.py:158
-#: views.py:160
-msgid "No such wishlist item."
-msgstr "Ingen sådan vara på önskelistan."
-
-#: views.py:153
-msgid "You must be logged in to do that."
-msgstr "Du måste logga in för att göra det."
-
+#~ msgid "Not enough items of '%s' in stock."
+#~ msgstr "Inte tillräckligt många av '%s' i lager."

@@ -13,13 +13,8 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_SERMEPA', _('SERMEPA (ServiRed) Payment')))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_SERMEPA', 
-    _('SERMEPA (ServiRed) Payment Module Settings'), 
-    requires=PAYMENT_MODULES,
-    ordering = 101)
+    _('SERMEPA (ServiRed) Payment Module Settings'))
 
 config_register_list(
     ModuleValue(PAYMENT_GROUP,

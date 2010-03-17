@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,13 +19,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: models.py:41
-msgid "State"
-msgstr "Delstat"
+#: admin.py:15 admin.py:24
+#, fuzzy
+msgid "1 country was"
+msgstr "Namn på land"
 
-#: models.py:63
-msgid "Country"
-msgstr "Land"
+#: admin.py:17 admin.py:26
+#, fuzzy, python-format
+msgid "%s countries were"
+msgstr "Länder"
+
+#: admin.py:18
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
+
+#: admin.py:19
+msgid "Mark selected countries as active"
+msgstr ""
+
+#: admin.py:27
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
+
+#: admin.py:28
+msgid "Mark selected countries as inactive"
+msgstr ""
 
 #: models.py:6
 msgid "Africa"
@@ -155,6 +175,10 @@ msgstr "Republik"
 msgid "Sheading"
 msgstr ""
 
+#: models.py:41
+msgid "State"
+msgstr "Delstat"
+
 #: models.py:42
 msgid "Subdivision"
 msgstr ""
@@ -195,28 +219,50 @@ msgstr "Landet är aktivt"
 msgid "Continent"
 msgstr "Kontinent"
 
-#: models.py:60
-#: models.py:87
+#: models.py:60 models.py:81
 msgid "Administrative Area"
 msgstr "Administrativt område"
+
+#: models.py:63
+msgid "Country"
+msgstr "Land"
 
 #: models.py:64
 msgid "Countries"
 msgstr "Länder"
 
-#: models.py:82
+#: models.py:76
 msgid "Admin Area name"
 msgstr "Namn på administrativt område"
 
-#: models.py:83
+#: models.py:77
 msgid "Postal Abbreviation"
 msgstr "Postkod"
 
-#: models.py:84
+#: models.py:78
 msgid "Area is active"
 msgstr "Området är aktivt"
 
-#: models.py:88
+#: models.py:82
 msgid "Administrative Areas"
 msgstr "Administrativt område"
 
+#: templates/l10n/_language_selection_form.html:5
+msgid "Change language"
+msgstr ""
+
+#: templates/l10n/_language_selection_form.html:11
+msgid "Change"
+msgstr ""
+
+#: validators/aupostcode.py:13
+msgid "Invalid Australian postal code"
+msgstr ""
+
+#: validators/capostcode.py:18
+msgid "Invalid postal code for Canada"
+msgstr ""
+
+#: validators/uspostcode.py:10
+msgid "Invalid ZIP code"
+msgstr ""

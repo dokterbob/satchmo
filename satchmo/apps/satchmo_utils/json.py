@@ -7,7 +7,10 @@
 
 import types
 from django.db import models
-from django.utils import simplejson as json
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import simplejson as json
 from django.core.serializers.json import DateTimeAwareJSONEncoder
 from decimal import *
 

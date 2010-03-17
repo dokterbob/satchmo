@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -18,28 +18,43 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 
-#: thumbnail/templates/widget/file.html:4
-# translated = ""
-msgid "Change"
-msgstr "Cambia"
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
 
-#: thumbnail/templates/widget/file.html:3
-# translated = "Il tuo nuovo nome utente e' questo indirizzo email, ed e' possibile effettuare l&#39;accesso all&#39;indirizzo"
-msgid "Currently"
-msgstr "Attualmente"
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
 
-#: thumbnail/config.py:4
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Inserite uno e soltanto uno di questi campi."
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr "Questi campi non possono essere identici."
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
+
 # translated = "Ordine fornitore status"
+#: thumbnail/config.py:4
 msgid "Thumbnail Settings"
 msgstr "Impostazioni delle Miniature"
 
-#: thumbnail/config.py:9
 # translated = ""
+#: thumbnail/config.py:9
 msgid "Thumbnail quality"
 msgstr "Qualità delle Miniature"
 
-#: thumbnail/config.py:10
 # translated = "Anteprima qualita'"
+#: thumbnail/config.py:10
 msgid ""
 "Use a 1-100 value here, which will change the quality of JPG thumbnails "
 "created for products and categories."
@@ -55,16 +70,17 @@ msgstr "Rinominare le immagini dei prodotti?"
 msgid "Automatically rename product images on upload?"
 msgstr "Rinominare automaticamente le immagini dei prodotti all'upload ?"
 
-#: thumbnail/widgets.py:21
 # translated = ""
+#: thumbnail/widgets.py:21
 msgid "Change:"
 msgstr "Cambia:"
 
-#: validators.py:5
-msgid "Please enter one and only one of those fields."
-msgstr "Inserite uno e soltanto uno di questi campi."
+# translated = "Il tuo nuovo nome utente e' questo indirizzo email, ed e' possibile effettuare l&#39;accesso all&#39;indirizzo"
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Attualmente"
 
-#: validators.py:15
-msgid "These fields can not be the same."
-msgstr "Questi campi non possono essere identici."
-
+# translated = ""
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Cambia"

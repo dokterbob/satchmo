@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-06-09 18:18+0200\n"
 "Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
 "Language-Team: Turkish <selincuhadar@gmail.com>\n"
@@ -17,174 +17,182 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: models.py:37
-msgid "Email"
-msgstr "Email"
-
-#: models.py:92
-msgid "Notes"
-msgstr "Notlar"
-
-#: templates/checkout/confirm.html:9
-#: templates/checkout/giftcertificate/confirm.html:9
-#: templates/giftcertificate/balance.html:5
-#: templates/product/detail_giftcertificateproduct.html:14
-msgid "Home"
-msgstr "Ev"
-
-#: config.py:8
-#: templates/giftcertificate/_order_summary.html:7
+#: config.py:6 models.py:96 templates/giftcertificate/_order_summary.html:7
 #: templates/giftcertificate/balance.html:13
-#: templates/product/detail_giftcertificateproduct.html:29
+#: templates/product/detail_giftcertificateproduct.html:9
 msgid "Gift Certificate"
 msgstr "Hediye Çeki"
 
-#: config.py:11
+#: config.py:9
 msgid "Gift Certificate Settings"
 msgstr "Hediye Çeki Ayarları"
 
-#: config.py:18
+#: config.py:14
 msgid "Use SSL for the checkout pages?"
 msgstr "Ödeme sayfaları için SSL kullanılsın mı?"
 
-#: config.py:23
+#: config.py:19
 msgid "Character Set"
 msgstr "Karakter Seti"
 
-#: config.py:25
-msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
+#: config.py:21
+msgid ""
+"The characters allowable in randomly-generated certficate codes.  No vowels "
+"means no unfortunate words."
 msgstr ""
 
-#: config.py:29
+#: config.py:25
 msgid "Module key"
 msgstr "Modül anahtarı"
 
-#: config.py:35
+#: config.py:31
 msgid "Code format"
 msgstr "kod Formatı"
 
-#: config.py:37
-msgid "Enter the format for your cert code.  Use a '^' for the location of a randomly generated character."
+#: config.py:33
+msgid ""
+"Enter the format for your cert code.  Use a '^' for the location of a "
+"randomly generated character."
 msgstr ""
 
-#: config.py:41
+#: config.py:37
 #, fuzzy
 msgid "Implementation module"
 msgstr "Yürütme Modülü"
 
-#: config.py:47
+#: config.py:43
 msgid "English name for this group on the checkout screens"
 msgstr ""
 
-#: config.py:49
+#: config.py:45
 msgid "This will be passed to the translation utility"
 msgstr ""
 
-#: config.py:53
-msgid "The url base used for constructing urlpatterns which will use this module"
+#: config.py:49
+msgid "Accept real payments"
+msgstr ""
+
+#: config.py:50
+msgid "False if you want to be in test mode"
+msgstr ""
+
+#: config.py:55
+msgid ""
+"The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+
+#: config.py:60
+msgid "Verbose logs"
+msgstr ""
+
+#: config.py:61
+msgid "Add extensive logs during post."
 msgstr ""
 
 #: forms.py:6
 msgid "Code"
 msgstr "Kod"
 
-#: models.py:30
+#: models.py:31
+msgid "Site"
+msgstr ""
+
+#: models.py:32
+msgid "Order"
+msgstr ""
+
+#: models.py:33
 msgid "Certificate Code"
 msgstr "Çeki Kodu"
 
-#: models.py:32
+#: models.py:35
 msgid "Purchased by"
 msgstr ""
 
-#: models.py:34
+#: models.py:37
 msgid "Date added"
 msgstr "Tarih eklendi"
 
-#: models.py:35
+#: models.py:38
 msgid "Valid"
 msgstr "Geçerli"
 
-#: models.py:36
+#: models.py:39
 msgid "Message"
 msgstr "Mesaj"
 
-#: models.py:38
+#: models.py:40
+msgid "Email"
+msgstr "Email"
+
+#: models.py:41
 #, fuzzy
 msgid "Starting Balance"
 msgstr "Başlangıç Bakiyesi"
 
-#: models.py:91
+#: models.py:97 templates/giftcertificate/balance.html:6
+msgid "Gift Certificates"
+msgstr "Hediye Sertifikaları"
+
+#: models.py:101
 msgid "Date of usage"
 msgstr ""
 
-#: models.py:93
+#: models.py:102
+msgid "Notes"
+msgstr "Notlar"
+
+#: models.py:103
 msgid "Amount Used"
 msgstr ""
 
-#: models.py:96
+#: models.py:105
+#, fuzzy
+msgid "Order Payment"
+msgstr "Ödeme"
+
+#: models.py:106
 msgid "Used by"
 msgstr ""
 
-#: processor.py:24
+#: models.py:123
+msgid "Product"
+msgstr ""
+
+#: models.py:161
+#, fuzzy
+msgid "Gift certificate product"
+msgstr "Hediye Çeki Kodu"
+
+#: models.py:162
+#, fuzzy
+msgid "Gift certificate products"
+msgstr "Hediye Çeki Kodu"
+
+#: processor.py:30
 msgid "No balance to pay"
 msgstr "Bakiyeniz boş"
 
-#: processor.py:33
+#: processor.py:41
 msgid "No such Gift Certificate"
 msgstr "Böyle bir hediye çeki bulunmuyor"
 
-#: processor.py:38
+#: processor.py:46
 msgid "Bad Gift Certificate"
 msgstr "Hatalı Hediye Çeki"
 
-#: processor.py:43
+#: processor.py:52
 msgid "Success"
 msgstr "Onay"
 
-#: processor.py:47
+#: processor.py:56
 #, python-format
 msgid "%s balance remains after gift certificate was applied"
 msgstr "Hediye çeki uygulandıktan sonra %s bakiyeniz kaldı"
 
-#: templates/checkout/confirm.html:10
-#: templates/checkout/giftcertificate/confirm.html:10
-msgid "Checkout"
-msgstr "Checkout"
-
-#: templates/checkout/confirm.html:14
-#: templates/checkout/giftcertificate/confirm.html:14
-msgid "Payment"
-msgstr "Ödeme"
-
-#: templates/checkout/confirm.html:20
-#, fuzzy, python-format
-msgid "Order total: %(orderbalance)s"
-msgstr "Sipariş tutarı: %(orderbalance)s"
-
-#: templates/checkout/confirm.html:21
-#, python-format
-msgid "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)s total available to pay for your order."
-msgstr "Siparişinizin tamamını ödeyebilen %(certbalance)s bir Hediye çeki #%(giftcode)s kullanmaktasınız."
-
-#: templates/checkout/confirm.html:22
-msgid "If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate."
-msgstr ""
-
-#: templates/checkout/giftcertificate/confirm.html:6
-msgid "Please Note:"
-msgstr "Lütfen Not Edin:"
-
-#: templates/checkout/giftcertificate/confirm.html:19
-#, fuzzy, python-format
-msgid "About to use your gift certificate: %(giftcode)s, which has a balance of %(balance)s."
-msgstr " %(balance)s bakiyesi olan bir hediye çeki %(giftcode)s kullanmaktasınız."
-
-#: templates/checkout/giftcertificate/pay_ship.html:6
-msgid "Payment Information"
-msgstr "Ödeme Bilgileri"
-
-#: templates/checkout/giftcertificate/pay_ship.html:11
-msgid "Gift Certificate Code"
+#: templates/giftcertificate/_order_summary.html:5
+#, fuzzy
+msgid "Gift Certificate Codes"
 msgstr "Hediye Çeki Kodu"
 
 #: templates/giftcertificate/_order_summary.html:10
@@ -207,17 +215,20 @@ msgstr "Kod:  %(code)s"
 msgid "Message: %(message)s"
 msgstr "Mesaj: %(message)s"
 
-#: templates/giftcertificate/balance.html:6
-msgid "Gift Certificates"
-msgstr "Hediye Sertifikaları"
+#: templates/giftcertificate/balance.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/giftcertificate/confirm.html:9
+msgid "Home"
+msgstr "Ev"
 
 #: templates/giftcertificate/balance.html:15
 msgid "Purchased on:"
 msgstr ""
 
 #: templates/giftcertificate/balance.html:21
-msgid "Initial Balance:"
-msgstr ""
+#, fuzzy
+msgid "Starting Balance:"
+msgstr "Başlangıç Bakiyesi"
 
 #: templates/giftcertificate/balance.html:22
 #, fuzzy
@@ -232,27 +243,80 @@ msgstr "Böyle bir hediye çeki bulunamadı."
 msgid "Look up balance"
 msgstr ""
 
-#: templates/product/detail_giftcertificateproduct.html:22
-msgid "Shop Categories"
-msgstr "Mağaza Kategorileri"
-
-#: templates/product/detail_giftcertificateproduct.html:31
+#: templates/product/detail_giftcertificateproduct.html:11
 msgid "Price"
 msgstr "Fiyat"
 
-#: templates/product/detail_giftcertificateproduct.html:40
+#: templates/product/detail_giftcertificateproduct.html:21
 msgid "Quantity (multiply the gift certificate by this amount)"
 msgstr ""
 
-#: templates/product/detail_giftcertificateproduct.html:43
+#: templates/product/detail_giftcertificateproduct.html:24
 msgid "Recipient Email (optional):"
 msgstr ""
 
-#: templates/product/detail_giftcertificateproduct.html:44
+#: templates/product/detail_giftcertificateproduct.html:25
 msgid "Message (optional):"
 msgstr "Mesaj (tercihe bağlı):"
 
-#: templates/product/detail_giftcertificateproduct.html:49
+#: templates/product/detail_giftcertificateproduct.html:30
 msgid "Add to cart"
 msgstr "Sepete ekle"
 
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "Checkout"
+
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "Ödeme"
+
+#: templates/shop/checkout/confirm.html:20
+#, fuzzy, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "Sipariş tutarı: %(orderbalance)s"
+
+#: templates/shop/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+"Siparişinizin tamamını ödeyebilen %(certbalance)s bir Hediye çeki #%"
+"(giftcode)s kullanmaktasınız."
+
+#: templates/shop/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+
+#: templates/shop/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "Lütfen Not Edin:"
+
+#: templates/shop/checkout/giftcertificate/confirm.html:19
+#, fuzzy, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+" %(balance)s bakiyesi olan bir hediye çeki %(giftcode)s kullanmaktasınız."
+
+#: templates/shop/checkout/giftcertificate/confirm.html:23
+msgid "About to use INVALID gift certificate"
+msgstr ""
+
+#: templates/shop/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Ödeme Bilgileri"
+
+#: templates/shop/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "Hediye Çeki Kodu"
+
+#~ msgid "Shop Categories"
+#~ msgstr "Mağaza Kategorileri"

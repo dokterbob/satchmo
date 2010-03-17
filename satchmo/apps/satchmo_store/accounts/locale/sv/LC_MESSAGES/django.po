@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,52 +19,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: forms.py:18
+#: forms.py:32
+msgid "Title"
+msgstr ""
+
+#: forms.py:33
 msgid "Email address"
 msgstr "E-postadress"
 
-#: forms.py:20
+#: forms.py:35
 msgid "Password (again)"
 msgstr "Lösenord (igen)"
 
-#: forms.py:22
+#: forms.py:37
 msgid "Password"
 msgstr "Lösenord"
 
-#: forms.py:24
+#: forms.py:39
 msgid "First name"
 msgstr "Förnamn"
 
-#: forms.py:26
+#: forms.py:41
 msgid "Last name"
 msgstr "Efternamn"
 
-#: forms.py:29
+#: forms.py:60
 msgid "Newsletter"
 msgstr "Nyhetsbrev"
 
-#: forms.py:38
+#: forms.py:69
 msgid "The two passwords do not match."
 msgstr "De två lösenorden överensstämmer inte."
 
-#: forms.py:49
+#: forms.py:80
 msgid "That email address is already in use."
 msgstr "Den e-postadressen är redan upptagen."
 
-#: mail.py:20
+#: mail.py:24
 #, python-format
 msgid "Welcome to %s"
 msgstr "Välkommen till %s"
 
-#: views.py:19
+#: views.py:26
 msgid "Yes"
 msgstr "Ja"
 
-#: views.py:20
+#: views.py:27
 msgid "No"
 msgstr "Nej"
 
-#: views.py:85
+#: views.py:343
 msgid "Registration Form"
 msgstr "Registreringsformulär"
-

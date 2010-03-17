@@ -4,12 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 # this is so that the translation utility will pick up the string
 gettext = lambda s: s
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_DUMMY', _('Payment Test Module')))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_DUMMY', 
     _('Payment Test Module Settings'), 
-    requires=PAYMENT_MODULES,
     ordering = 100)
 
 config_register_list(

@@ -6,7 +6,6 @@ from django.template import RequestContext, loader
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
 from django.utils import simplejson
-from django.utils.simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from livesettings import config_value
@@ -20,6 +19,11 @@ from satchmo_store.shop.signals import satchmo_cart_changed, satchmo_cart_add_co
 from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
 import logging
+
+try:
+    from django.utils.simplejson.encoder import JSONEncoder
+except ImportError:
+    from simplejson.encoder import JSONEncoder
 
 log = logging.getLogger('shop.views.cart')
 

@@ -1,0 +1,95 @@
+#: config.py:8
+msgid "Wishlist slug"
+msgstr ""
+
+#: config.py:9
+msgid "The url slug for wishlists.  Requires server restart if changed."
+msgstr ""
+
+#: models.py:33
+msgid "Contact"
+msgstr ""
+
+#: models.py:34
+msgid "Product"
+msgstr ""
+
+#: models.py:35
+msgid "Details"
+msgstr ""
+
+#: models.py:36
+msgid "Creation Date"
+msgstr ""
+
+#: models.py:61
+msgid "Product Wish"
+msgstr ""
+
+#: models.py:62
+msgid "Product Wishes"
+msgstr ""
+
+#: views.py:60 views.py:81
+msgid "The product you have requested does not exist."
+msgstr ""
+
+#: views.py:89
+msgid "The contact associated with this request does not exist."
+msgstr ""
+
+#: views.py:96
+msgid "Success"
+msgstr ""
+
+#: views.py:98
+msgid "Error"
+msgstr ""
+
+#: views.py:113
+#, python-format
+msgid ""
+"Wishlist product '%(product)s' could't be added to the cart. %(details)s"
+msgstr ""
+
+#: views.py:154 views.py:165 views.py:167
+msgid "No such wishlist item."
+msgstr ""
+
+#: views.py:160
+msgid "You must be logged in to do that."
+msgstr ""
+
+#: templates/wishlist/index.html:7 templates/wishlist/login_required.html:4
+msgid "Home"
+msgstr ""
+
+#: templates/wishlist/index.html:8 templates/wishlist/index.html.py:18
+#: templates/wishlist/login_required.html:5
+#: templates/wishlist/plugins/shop_sidebar_actions.html:3
+msgid "Wishlist"
+msgstr ""
+
+#: templates/wishlist/index.html:27
+#, python-format
+msgid "added on %(create_date)s"
+msgstr ""
+
+#: templates/wishlist/index.html:31
+msgid "Add to cart"
+msgstr ""
+
+#: templates/wishlist/index.html:35
+msgid "Remove from wishlist"
+msgstr ""
+
+#: templates/wishlist/login_required.html:9
+#, python-format
+msgid ""
+"Sorry, you must be <a href=\"%(login_url)s\">logged-in</a> to access your "
+"wishlist."
+msgstr ""
+
+#: templates/wishlist/plugins/product_add_buttons.html:2
+msgid "Add to wishlist"
+msgstr ""

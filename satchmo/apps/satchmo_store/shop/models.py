@@ -14,7 +14,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 from l10n.models import Country
 from l10n.utils import moneyfmt
-from livesettings import ConfigurationSettings, config_value, config_choice_values
+from livesettings import ConfigurationSettings
 from payment.fields import PaymentChoiceCharField
 from product.models import Discount, Product, DownloadableProduct, PriceAdjustmentCalc, PriceAdjustment, Price, get_product_quantity_adjustments
 from satchmo_store.contact.models import Contact
@@ -121,7 +121,7 @@ class Config(models.Model):
 
     base_url = property(fget=_base_url)
     
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         keyedcache.cache_delete("Config", self.site.id)
         # ensure the default country is in shipping countries
         mycountry = self.country
@@ -143,7 +143,7 @@ class Config(models.Model):
         else:
             log.warn("%s: has no country set", self)
             
-        super(Config, self).save(force_insert=force_insert, force_update=force_update)
+        super(Config, self).save(**kwargs)
         keyedcache.cache_set("Config", self.site.id, value=self)
 
     def __unicode__(self):
@@ -307,6 +307,9 @@ class Cart(models.Model):
 
     def __len__(self):
         return self.cartitem_set.count()
+        
+    def __nonzero__(self):
+        return self.cartitem_set.count() > 0
 
     def __unicode__(self):
         return u"Shopping Cart (%s)" % self.date_time_created
@@ -356,12 +359,22 @@ class Cart(models.Model):
             item_to_modify.delete()
         self.save()
 
+    
+    def merge_carts(self, src_cart):
+        """
+        Merge the items from the src_cart into
+        the destination. Source cart will be emptied
+        """
+        for item in src_cart.cartitem_set.all():
+            self.add_item(item.product, item.quantity, item.details.all())
+            item.delete()
+    
     def empty(self):
         for item in self.cartitem_set.all():
             item.delete()
         self.save()
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """Ensure we have a date_time_created before saving the first time."""
         if not self.pk:
             self.date_time_created = datetime.datetime.now()
@@ -369,7 +382,7 @@ class Cart(models.Model):
             site = self.site
         except Site.DoesNotExist:
             self.site = Site.objects.get_current()
-        super(Cart, self).save(force_insert=force_insert, force_update=force_update)
+        super(Cart, self).save(**kwargs)
 
     def _get_shippable(self):
         """Return whether the cart contains shippable items."""
@@ -477,10 +490,9 @@ class CartItem(models.Model):
     has_details = property(_has_details)
 
     def __unicode__(self):
-        currency = config_value('LANGUAGE','CURRENCY')
-        currency = currency.replace("_", " ")
-        return u'%s - %s %s%s' % (self.quantity, self.product.name,
-            force_unicode(currency), self.line_total)
+        money_format = force_unicode(moneyfmt(self.line_total))
+        return u'%s - %s %s' % (self.quantity, self.product.name,
+            money_format)
 
     class Meta:
         verbose_name = _("Cart Item")
@@ -777,7 +789,7 @@ class Order(models.Model):
         result = [p for p in q if p.amount]
         return result
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """
         Copy addresses from contact. If the order has just been created, set
         the create_date.
@@ -785,7 +797,7 @@ class Order(models.Model):
         if not self.pk:
             self.time_stamp = datetime.datetime.now()
             self.copy_addresses()
-        super(Order, self).save(force_insert=force_insert, force_update=force_update) # Call the "real" save() method.
+        super(Order, self).save(**kwargs) # Call the "real" save() method.
 
     def invoice(self):
         url = urlresolvers.reverse('satchmo_print_shipping', None, None, {'doc' : 'invoice', 'id' : self.id})
@@ -1084,9 +1096,9 @@ class OrderItem(models.Model):
         return self.unit_price * self.quantity
     line_total = property(_get_line_total)
     
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         self.update_tax()
-        super(OrderItem, self).save(force_insert=force_insert, force_update=force_update)
+        super(OrderItem, self).save(**kwargs)
 
     def update_tax(self):
         taxclass = self.product.taxClass
@@ -1151,13 +1163,13 @@ class DownloadLink(models.Model):
         url = urlresolvers.reverse('satchmo_download_process', kwargs= {'download_key': self.key})
         return('http://%s%s' % (Site.objects.get_current(), url))
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """
        Set the initial time stamp
         """
         if self.time_stamp is None:
             self.time_stamp = datetime.datetime.now()
-        super(DownloadLink, self).save(force_insert=force_insert, force_update=force_update)
+        super(DownloadLink, self).save(**kwargs)
 
     def __unicode__(self):
         return u"%s - %s" % (self.downloadable_product.product.slug, self.time_stamp)
@@ -1183,10 +1195,10 @@ class OrderStatus(models.Model):
     def __unicode__(self):
         return self.status
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk and not self.time_stamp:
             self.time_stamp = datetime.datetime.now()
-        super(OrderStatus, self).save(force_insert=force_insert, force_update=force_update)
+        super(OrderStatus, self).save(**kwargs)
         self.order.update_status(self.status)
 
     class Meta:
@@ -1218,11 +1230,11 @@ class OrderPaymentBase(models.Model):
 
     amount_total = property(fget=_amount_total)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk:
             self.time_stamp = datetime.datetime.now()
 
-        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+        super(OrderPaymentBase, self).save(**kwargs)
 
     class Meta:
         abstract = True
@@ -1251,7 +1263,7 @@ class OrderAuthorization(OrderPaymentBase):
             
         return trunc_decimal(remaining, 2)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         # create linked payment
         try:
             capture = self.capture
@@ -1259,14 +1271,14 @@ class OrderAuthorization(OrderPaymentBase):
             log.debug('Payment Authorization - creating linked payment')
             log.debug('order is: %s', self.order)
             self.capture = OrderPayment.objects.create_linked(self)
-        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+        super(OrderPaymentBase, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Order Payment Authorization")
         verbose_name_plural = _("Order Payment Authorizations")
 
 class OrderPaymentManager(models.Manager):
-    def create_linked(self, other):
+    def create_linked(self, other, **kwargs):
         linked = OrderPayment(
                 order = other.order,
                 payment = other.payment,
@@ -1274,7 +1286,7 @@ class OrderPaymentManager(models.Manager):
                 transaction_id="LINKED",
                 details=other.details,
                 reason_code="")
-        linked.save()
+        linked.save(**kwargs)
         return linked
 
 class OrderPayment(OrderPaymentBase):
@@ -1302,14 +1314,14 @@ class OrderPendingPayment(OrderPaymentBase):
         else:
             return u"Order Pending Payment (unsaved)"
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         # create linked payment
         try:
             capture = self.capture
         except OrderPayment.DoesNotExist:
             log.debug('Pending Payment - creating linked payment')
-            self.capture = OrderPayment.objects.create_linked(self)
-        super(OrderPaymentBase, self).save(force_insert=force_insert, force_update=force_update)
+            self.capture = OrderPayment.objects.create_linked(self, **kwargs)
+        super(OrderPaymentBase, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Order Pending Payment")

@@ -4,12 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 gettext = lambda s:s
 _strings = (gettext('CreditCard'), gettext('Credit Card'))
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_TRUSTCOMMERCE', 'TrustCommerce'))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_TRUSTCOMMERCE', 
     _('TrustCommerce Payment Settings'), 
-    requires=PAYMENT_MODULES,
     ordering=102)
 
 config_register_list(

@@ -83,11 +83,11 @@ class Organization(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """Ensure we have a create_date before saving the first time."""
         if not self.pk:
             self.create_date = datetime.date.today()
-        super(Organization, self).save(force_insert=force_insert, force_update=force_update)
+        super(Organization, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Organization")
@@ -179,7 +179,7 @@ class Contact(models.Model):
     def __unicode__(self):
         return self.full_name
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """Ensure we have a create_date before saving the first time."""
         if not self.pk:
             self.create_date = datetime.date.today()
@@ -203,7 +203,7 @@ class Contact(models.Model):
                 self.user = user
                 self.user.save()
 
-        super(Contact, self).save(force_insert=force_insert, force_update=force_update)
+        super(Contact, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Contact")
@@ -247,7 +247,7 @@ class PhoneNumber(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.type, self.phone)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """
         If this number is the default, then make sure that it is the only
         primary phone number. If there is no existing default, then make
@@ -260,7 +260,7 @@ class PhoneNumber(models.Model):
                 super(PhoneNumber, existing_number).save()
         else:
             self.primary = True
-        super(PhoneNumber, self).save(force_insert=force_insert, force_update=force_update)
+        super(PhoneNumber, self).save(**kwargs)
 
     class Meta:
         ordering = ['-primary']
@@ -289,7 +289,7 @@ class AddressBook(models.Model):
     def __unicode__(self):
        return u'%s - %s' % (self.contact.full_name, self.description)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """
         If this address is the default billing or shipping address, then
         remove the old address's default status. If there is no existing
@@ -311,7 +311,7 @@ class AddressBook(models.Model):
         else:
             self.is_default_shipping = True
 
-        super(AddressBook, self).save(force_insert=force_insert, force_update=force_update)
+        super(AddressBook, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Address Book")

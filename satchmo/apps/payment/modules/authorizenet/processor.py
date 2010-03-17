@@ -341,6 +341,16 @@ class PaymentProcessor(BasePaymentProcessor):
             'x_phone' : order.contact.primary_phone.phone,
             'x_email' : order.contact.email,
             }
+        
+        trans['custShipData'] = {
+            'x_ship_to_first_name' : order.contact.first_name,
+            'x_ship_to_last_name' : order.contact.last_name,
+            'x_ship_to_address' : order.full_ship_street,
+            'x_ship_to_city' : order.ship_city,
+            'x_ship_to_state' : order.ship_state,
+            'x_ship_to_zip' : order.ship_postal_code,
+            'x_ship_to_country' : order.ship_country,
+        }
     
         self.log_extra('standard charges configuration: %s', trans['custBillData'])
         
@@ -372,7 +382,8 @@ class PaymentProcessor(BasePaymentProcessor):
 
         part1 = urlencode(trans['configuration']) + "&"
         part2 = "&" + urlencode(trans['custBillData'])
-        trans['postString'] = part1 + urlencode(trans['transactionData']) + part2
+        part3 = "&" + urlencode(trans['custShipData'])
+        trans['postString'] = part1 + urlencode(trans['transactionData']) + part2 + part3
         
         redactedData = {
             'x_amount' : balance,

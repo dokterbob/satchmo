@@ -130,6 +130,9 @@ def get_product(request, product_slug=None, selected_options=(),
     
     # Save product id for xheaders, in case we display a ConfigurableProduct
     product_id = product.id
+    
+    # Clone product object in order to have current product variations in context (extra_context)
+    current_product = product
 
     if 'ProductVariation' in subtype_names:
         selected_options = product.productvariation.unique_option_ids
@@ -141,6 +144,7 @@ def get_product(request, product_slug=None, selected_options=(),
     
     extra_context = {
         'product': product,
+        'current_product' : current_product,
         'default_view_tax': default_view_tax,
         'sale': best_discount,
         'error_message' : errors,

@@ -61,13 +61,13 @@ def confirm_info(request):
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'shop/checkout/empty_cart.html')
-        return render_to_response(template, RequestContext(request))
+        return render_to_response(template,
+                                  context_instance=RequestContext(request))
 
     # Check if the order is still valid
     if not order.validate(request):
-        context = RequestContext(request,
-            {'message': _('Your order is no longer valid.')})
-        return render_to_response('shop/404.html', context)
+        context = RequestContext(request, {'message': _('Your order is no longer valid.')})
+        return render_to_response('shop/404.html', context_instance=context)
 
     # Check if we are in test or real mode
     live = payment_module.LIVE.value

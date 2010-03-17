@@ -9,8 +9,11 @@ from django.test.client import Client
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from keyedcache import cache_delete
+from l10n.l10n_settings import get_l10n_setting
 from l10n.models import Country
+from l10n.utils import moneyfmt
 from livesettings import config_get, config_value
+from payment import active_gateways
 from product.models import Product
 from product.utils import rebuild_pricing
 from satchmo_store.contact import CUSTOMER_ID
@@ -47,6 +50,17 @@ def get_step1_post_data(US):
         'paymentmethod': 'PAYMENT_DUMMY',
         'copy_address' : True
         }
+        
+def make_order_payment(order, paytype=None, amount=None):
+    if not paytype:
+        paytype = active_gateways()[0][0]
+
+    if not amount:
+        amount = order.balance
+
+    pmt = OrderPayment(order=order, payment=paytype.upper(), amount=amount)
+    pmt.save()
+    return pmt
 
 class ShopTest(TestCase):
     fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
@@ -188,7 +202,8 @@ class ShopTest(TestCase):
         # that variation already selected
         response = self.client.get(prefix+'/product/neat-book-soft/')
         self.assertContains(response, 'option value="soft" selected="selected"')
-        self.assertContains(response, smart_str("%s5.00" % config_value('LANGUAGE','CURRENCY')))
+        amount = moneyfmt(Decimal('5.00'))
+        self.assertContains(response, smart_str(amount))
 
     def test_orphaned_product(self):
         """
@@ -264,9 +279,15 @@ class ShopTest(TestCase):
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
             status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
-        self.assertContains(response, smart_str("Shipping + %s4.00" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
-        self.assertContains(response, smart_str("Tax + %s4.60" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
-        self.assertContains(response, smart_str("Total = %s54.60" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
+        amount = smart_str('Shipping + ' + moneyfmt(Decimal('4.00')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
+        amount = smart_str('Tax + ' + moneyfmt(Decimal('4.60')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
+        amount = smart_str('Total = ' + moneyfmt(Decimal('54.60')))
+        self.assertContains(response, amount, count=1, status_code=200)
+        
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
             status_code=302, target_status_code=200)
@@ -405,7 +426,7 @@ class ShopTest(TestCase):
         response = self.client.get(prefix+'/search/', {'keywords':'shirt'})
         self.assertContains(response, "Shirts", count=2)
         self.assertContains(response, "Short Sleeve", count=2)
-        self.assertContains(response, "Django Rocks shirt", count=1)
+        self.assertContains(response, "Django Rocks shirt", count=10)
         self.assertContains(response, "Python Rocks shirt", count=1)
 
     def test_custom_product(self):
@@ -430,10 +451,18 @@ class ShopTest(TestCase):
             status_code=302, target_status_code=200)
         response = self.client.get(prefix+'/cart/')
         self.assertContains(response, '/satchmo-computer/">satchmo computer', count=1, status_code=200)
-        self.assertContains(response, smart_str("%s168.00" % config_value('LANGUAGE','CURRENCY')), count=3)
-        self.assertContains(response, smart_str("Monogram: CBM  %s10.00" % config_value('LANGUAGE','CURRENCY')), count=1)
-        self.assertContains(response, smart_str("Case - External Case: Mid  %s10.00" % config_value('LANGUAGE','CURRENCY')), count=1)
-        self.assertContains(response, smart_str("Memory - Internal RAM: 1.5 GB  %s25.00" % config_value('LANGUAGE','CURRENCY')), count=1)
+        amount = smart_str(moneyfmt(Decimal('168.00')))
+        self.assertContains(response, amount, count=3)
+        
+        amount = smart_str('Monogram: CBM  ' + moneyfmt(Decimal('10.00')))
+        self.assertContains(response, amount, count=1)
+        
+        amount = smart_str('Case - External Case: Mid  ' + moneyfmt(Decimal('10.00')))
+        self.assertContains(response, amount, count=1)
+        
+        amount = smart_str('Memory - Internal RAM: 1.5 GB  ' + moneyfmt(Decimal('25.00')))
+        self.assertContains(response, amount, count=1)
+        
         response = self.client.post(url('satchmo_checkout-step1'), get_step1_post_data(self.US))
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step2'),
             status_code=302, target_status_code=200)
@@ -448,7 +477,9 @@ class ShopTest(TestCase):
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-step3'),
             status_code=302, target_status_code=200)
         response = self.client.get(url('DUMMY_satchmo_checkout-step3'))
-        self.assertContains(response, smart_str("satchmo computer - %s168.00" % config_value('LANGUAGE','CURRENCY')), count=1, status_code=200)
+        
+        amount = smart_str('satchmo computer - ' + moneyfmt(Decimal('168.00')))
+        self.assertContains(response, amount, count=1, status_code=200)
         response = self.client.post(url('DUMMY_satchmo_checkout-step3'), {'process' : 'True'})
         self.assertRedirects(response, url('DUMMY_satchmo_checkout-success'),
             status_code=302, target_status_code=200)
@@ -824,16 +855,16 @@ class DiscountAmountTest(TestCase):
         self.assertEqual(shiptotal, Decimal('0.00'))
         self.assertEqual(discount, Decimal('7.20'))
 
-def make_order_payment(order, paytype=None, amount=None):
-    if not paytype:
-        paytype = config_value('PAYMENT', 'MODULES')[0]
-    
-    if not amount:
-        amount = order.balance
-    
-    pmt = OrderPayment(order=order, payment=paytype, amount=amount)
-    pmt.save()
-    return pmt
+    def make_order_payment(order, paytype=None, amount=None):
+        if not paytype:
+            paytype = active_gateways()[0][0]
+
+        if not amount:
+            amount = order.balance
+
+        pmt = OrderPayment(order=order, payment=paytype.upper(), amount=amount)
+        pmt.save()
+        return pmt
 
 def make_test_order(country, state, include_non_taxed=False, site=None, price=None, quantity=5):
     if not site:
@@ -883,23 +914,24 @@ class OrderTest(TestCase):
         order.recalculate_total(save=False)
         price = order.total
         subtotal = order.sub_total
-    
+
         self.assertEqual(subtotal, Decimal('105.00'))
         self.assertEqual(price, Decimal('115.00'))
         self.assertEqual(order.balance, price)
-    
-        paytype = config_value('PAYMENT', 'MODULES')[0]
+
+        paytype = active_gateways()[0][0].upper()
+
         pmt = OrderPayment(order = order, payment=paytype, amount=Decimal("5.00"))
         pmt.save()
-    
+
         self.assertEqual(order.balance, Decimal("110.00"))
         self.assertEqual(order.balance_paid, Decimal("5.00"))
 
         self.assert_(order.is_partially_paid)
-    
+
         pmt = OrderPayment(order = order, payment=paytype, amount=Decimal("110.00"))
         pmt.save()
-    
+
         self.assertEqual(order.balance, Decimal("0.00"))
         self.assertEqual(order.is_partially_paid, False)
         self.assert_(order.paid_in_full)
@@ -909,11 +941,11 @@ class OrderTest(TestCase):
         order.recalculate_total(save=False)
         price = order.total
         subtotal = order.sub_total
-        
-        paytype = config_value('PAYMENT', 'MODULES')[0]
+
+        paytype = active_gateways()[0][0].upper()
         pmt = OrderPayment(order = order, payment=paytype, amount=Decimal("0.000001"))
         pmt.save()
-    
+
         self.assert_(order.is_partially_paid)
         
 class QuickOrderTest(TestCase):

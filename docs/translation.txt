@@ -9,24 +9,23 @@ through Django. The sections below describe the Satchmo specific steps.
 Template Translations
 ---------------------
 
-1. Change to the directory where Satchmo is stored (somewhere on your PYTHONPATH) and create your translation file::
+1. Change to the directory where your Satchmo source is stored (somewhere on your PYTHONPATH). You can run the following
+find command to compile all of the langauge files for the satchmo apps::
 
-    /path/to/django-admin.py makemessages -l de -e html,txt,rml
+    find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-trunk/django/bin/django-admin.py makemessages -l de -e html,txt,rml' {} \;
 
+In the example above, replace "de" with the language code for the message file you want to create.
+The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
+Portuguese and de_AT for Austrian German. The first two letters of the locale is a language code defined
+in `ISO 639-1`_ . The second and optional part  consists of an underscore followed by a two letter country code as defined in
+`ISO 3166-1`_ . For the command above to work you need to have python and xgettext installed.
 
- In the example above, replace "de" with the language code for the message file you want to create.
- The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
- Portuguese and de_AT for Austrian German. The first two letters of the locale is a language code defined
- in `ISO 639-1`_ . The second and optional part  consists of an underscore followed by a two letter country code as defined in
- `ISO 3166-1`_ . For the command above to work you need to have python and xgettext installed.
+This will extract strings that need to be translated from the Satchmo code and templates.
+Upon completion of this command these strings along with references to where they are used
+are stored in multiple `locale/de/LC_MESSAGES/django.po` (again, replace "de" with your own locale).
 
- This will extract strings that need to be translated from the Satchmo code and templates.
- Upon completion of this command these strings along with references to where they are used
- are stored in the file `satchmo/locale/de/LC_MESSAGES/django.po` (again, replace "de"
- with your own locale).
-
- If the `django.po` file already exists the above command will update it and
- add new strings if any are discovered.
+If the `django.po` file already exists the above command will update it and
+add new strings if any are discovered.
 
 2. Translate the `django.po` file of your locale using a translation editor:
 
@@ -45,21 +44,26 @@ Template Translations
 Making a translation available
 ------------------------------
 
-Django will choose a translation based on the user's browser settings, but this is not reliable.
-To allow users to choose a translation using Satchmo's language selection form, you must register the translation with Satchmo.
+Django will choose a translation based on the user's browser settings, but this is not always the solution you may be looking for.
+To allow users to choose a translation using Satchmo's language selection form, you must add the list of available translations to
+your settings.py (or local_settings.py)::
 
-Create a `config.py` file in your project directory. Add the following lines, and replace `en` with the language code 
-for the translation and replace `English` with the language's name::
+    LANGUAGES = (
+                ('en', "English"),
+                ('fr', "Français"),
+                ('de',"Deutsch"),
+                ('es', "Español"),
+                ('he',"עִבְרִית"),
+                ('it',"Italiano"),
+                ('ko', "한국어"),
+                ('sv', "Svenska"),
+                ('pt-br',"Português"),
+                ('bg',"Български"),
+                ('tr',"Türkçe"),
+                )
 
-    from satchmo.configuration import config_get
 
-    LANGUAGES_AVAILABLE = config_get('LANGUAGE', 'LANGUAGES_AVAILABLE')
-
-    LANGUAGES_AVAILABLE.add_choice(('en', 'English'))
-
-Then, make sure that your project is listed in your INSTALLED_APPS setting. If you've done everything correctly, the translation should be available under the Language Settings section of your Site Settings page.
-
-Please edit your settings.py file to enable the i18n urls.::
+Then, edit your settings.py file to enable the i18n urls.::
 
     #### Satchmo unique variables ####
     from django.conf.urls.defaults import patterns, include
@@ -72,7 +76,8 @@ Please edit your settings.py file to enable the i18n urls.::
 Also, make sure to add 'django.core.context_processors.i18n' to TEMPLATE_CONTEXT_PROCESSORS so that templates will use the 
 correct language code.
 
-
+The default store setup will show the form to allow the store user to select their translation from the above list. If you wish
+to disable this option, disable ``allow_translations`` by follow the instructions here :ref:`l10n_settings`. 
 
 Translating dependencies
 ------------------------
@@ -82,11 +87,7 @@ Unless a translation to your language is already available, you may also need to
  * `Django`_
  * `Django Registration`_
 
- Such translations are to be submitted to the corresponding project and not to the Satchmo project.
-
-.. note::
-  Although Django provides a `make-messages.py` script, it does not support the PDF generation templates used in Satchmo.
-  For that reason you should use the customized `make-messages.py` script that comes with Satchmo instead of the Django one.
+Such translations are to be submitted to the corresponding project and not to the Satchmo project.
 
 Content Translations
 --------------------

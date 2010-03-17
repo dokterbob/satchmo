@@ -113,10 +113,10 @@ class Upsell(models.Model, CachedObjectMixin):
     def __unicode__(self):
         return u"Upsell for %s" % self.goal
         
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         self.create_date = datetime.date.today()
         self.cache_delete()
-        super(Upsell, self).save(force_insert=force_insert, force_update=force_update)
+        super(Upsell, self).save(**kwargs)
         self.cache_set()
         return self
         

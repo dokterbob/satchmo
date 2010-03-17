@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.forms import models, ValidationError
 from django.utils.translation import get_language, ugettext_lazy as _
+from l10n.l10n_settings import get_l10n_setting
 from livesettings import config_value
 from product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, \
                                    OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, \
@@ -31,7 +32,7 @@ class CategoryImageTranslation_Inline(admin.StackedInline):
 class DiscountOptions(admin.ModelAdmin):
     list_display=('site', 'description','active')
     list_display_links = ('description',)
-    filter_horizontal = ('validProducts',)
+    raw_id_fields = ('validProducts',)
 
 class OptionGroupTranslation_Inline(admin.StackedInline):
     model = OptionGroupTranslation
@@ -139,7 +140,7 @@ class CategoryOptions(admin.ModelAdmin):
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryImage_Inline]
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
@@ -157,7 +158,7 @@ class CategoryImageOptions(admin.ModelAdmin):
 
 class OptionGroupOptions(admin.ModelAdmin):
     inlines = [Option_Inline]
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(OptionGroupTranslation_Inline)
     if config_value('SHOP','SHOW_SITE'):
         list_display = ('site',)
@@ -167,7 +168,7 @@ class OptionGroupOptions(admin.ModelAdmin):
 
 class OptionOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
@@ -225,7 +226,7 @@ class ProductOptions(admin.ModelAdmin):
             (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':('collapse',)}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(ProductTranslation_Inline)
     filter_horizontal = ('category',)
     
@@ -243,7 +244,7 @@ class CustomProductOptions(admin.ModelAdmin):
 
 class CustomTextFieldOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(CustomTextFieldTranslation_Inline)
 
 class SubscriptionProductOptions(admin.ModelAdmin):
@@ -254,7 +255,7 @@ class ProductVariationOptions(admin.ModelAdmin):
 
 class ProductImageOptions(admin.ModelAdmin):
     inlines = []
-    if config_value('LANGUAGE','SHOW_TRANSLATIONS'):
+    if get_l10n_setting('show_translations'):
         inlines.append(ProductImageTranslation_Inline)
 
 admin.site.register(Category, CategoryOptions)

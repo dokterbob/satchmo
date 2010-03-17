@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"POT-Creation-Date: 2010-02-28 19:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,20 +15,151 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: views.py:15
-#: templates/newsletter/subscribe_form.html:20
+#: config.py:7
+msgid "Newsletter Settings"
+msgstr "Newslettereinstellungen"
+
+#: config.py:11
+msgid "Active newsletter module"
+msgstr "aktive Newsletter Module"
+
+#: config.py:12
+msgid ""
+"Select a newsletter, save and reload to set any module-specific newsletter "
+"settings."
+msgstr ""
+"Wählen Sie einen Newsletter, speichern Sie und laden Sie die Seite neu um "
+"Modul-spezifische Einstellungen zu ändern."
+
+#: config.py:14
+msgid "No newsletter"
+msgstr "Kein Newsletter"
+
+#: config.py:15
+msgid "Simple list"
+msgstr "einfache Liste"
+
+#: config.py:16
+msgid "Mailman"
+msgstr ""
+
+#: config.py:21
+msgid "Name of Newsletter"
+msgstr "Name des Newsletter"
+
+#: config.py:22
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr ""
+
+#: config.py:31
+#, fuzzy
+msgid "Newsletter Slug"
+msgstr "Newslettereinstellungen"
+
+#: config.py:32
+msgid "The url slug for the newsletter.  Requires server restart if changed."
+msgstr ""
+
+#: forms.py:16
+msgid "Full Name"
+msgstr "Name"
+
+#: forms.py:17 templates/newsletter/subscribe_form.html:20
 #: templates/newsletter/unsubscribe_form.html:20
 #: templates/newsletter/update_form.html:20
 msgid "Email address"
 msgstr "eMailadresse"
 
-#: models.py:32
+#: forms.py:18 templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+msgid "Subscribe"
+msgstr "Anmelden"
+
+#: mailman.py:44 simple.py:35
+#, fuzzy, python-format
+msgid "Updated subscription for %(email)s."
+msgstr "bereits angemeldet %(email)s."
+
+#: mailman.py:46 simple.py:37
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "bereits angemeldet %(email)s."
+
+#: mailman.py:48 simple.py:40
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "bereits abgemeldet %(email)s."
+
+#: mailman.py:58 mailman.py:95 simple.py:50
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "Angemeldet: %(email)s"
+
+#: mailman.py:61 simple.py:52
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "Abgemeldet: %(email)s"
+
+#: mailman.py:87
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "bereits angemeldet: %s"
+
+#: mailman.py:98
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "bereits ein Mitglied: %(email)s"
+
+#: mailman.py:102
+msgid "Bad/Invalid email address: blank line"
+msgstr "falsche/ungültige eMailadresse: Leerzeile"
+
+#: mailman.py:104
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "falsche/ungültige eMailadresse: %(email)s"
+
+#: mailman.py:107
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "fehlerhafte Adresse (ungültige Zeichen): %(email)s"
+
+#: models.py:37
+msgid "Subscribed"
+msgstr "angemeldet"
+
+#: models.py:38
 msgid "Email"
 msgstr "eMail"
 
-#: models.py:33
+#: models.py:39
 msgid "Creation Date"
 msgstr "erstellt am"
+
+#: models.py:40
+msgid "Update Date"
+msgstr "geändert am"
+
+#: models.py:102
+msgid "Attribute Name"
+msgstr ""
+
+#: models.py:103
+msgid "Value"
+msgstr ""
+
+#: models.py:106
+msgid "Subscription Attribute"
+msgstr ""
+
+#: models.py:107
+msgid "Subscription Attributes"
+msgstr ""
+
+#: views.py:40
+msgid "Error, not valid."
+msgstr "Fehler, nicht gültig."
 
 #: templates/newsletter/subscribe_form.html:5
 #: templates/newsletter/unsubscribe_form.html:5
@@ -36,122 +167,6 @@ msgstr "erstellt am"
 #: templates/newsletter/update_results.html:5
 msgid "Home"
 msgstr "Start"
-
-#: config.py:6
-msgid "Newsletter Settings"
-msgstr "Newslettereinstellungen"
-
-#: config.py:10
-msgid "Active newsletter module"
-msgstr "aktive Newsletter Module"
-
-#: config.py:11
-msgid ""
-"Select a newsletter, save and reload to set any module-specific newsletter "
-"settings."
-msgstr "Wählen Sie einen Newsletter, speichern Sie und laden Sie die Seite neu "
-"um Modul-spezifische Einstellungen zu ändern."
-
-#: config.py:13
-msgid "No newsletter"
-msgstr "Kein Newsletter"
-
-#: config.py:14
-msgid "Simple list"
-msgstr "einfache Liste"
-
-#: config.py:15
-msgid "Mailman"
-msgstr ""
-
-#: config.py:20
-msgid "Name of Newsletter"
-msgstr "Name des Newsletter"
-
-#: config.py:21
-msgid "Give the exact name that matches the mailing list set up in Mailman."
-msgstr ""
-
-#: mailman.py:27
-#: simple.py:18
-#, python-format
-msgid "Already subscribed %(email)s."
-msgstr "bereits angemeldet %(email)s."
-
-#: mailman.py:29
-#: simple.py:20
-#, python-format
-msgid "Already removed %(email)s."
-msgstr "bereits abgemeldet %(email)s."
-
-#: mailman.py:38
-#: mailman.py:74
-#: simple.py:29
-#, python-format
-msgid "Subscribed: %(email)s"
-msgstr "Angemeldet: %(email)s"
-
-#: mailman.py:41
-#: simple.py:31
-#, python-format
-msgid "Unsubscribed: %(email)s"
-msgstr "Abgemeldet: %(email)s"
-
-#: mailman.py:66
-#, python-format
-msgid "Already Subscribed: %s"
-msgstr "bereits angemeldet: %s"
-
-#: mailman.py:77
-#, python-format
-msgid "Already a member: %(email)s"
-msgstr "bereits ein Mitglied: %(email)s"
-
-#: mailman.py:81
-msgid "Bad/Invalid email address: blank line"
-msgstr "falsche/ungültige eMailadresse: Leerzeile"
-
-#: mailman.py:83
-#, python-format
-msgid "Bad/Invalid email address: %(email)s"
-msgstr "falsche/ungültige eMailadresse: %(email)s"
-
-#: mailman.py:86
-#, python-format
-msgid "Hostile address (illegal characters): %(email)s"
-msgstr "fehlerhafte Adresse (ungültige Zeichen): %(email)s"
-
-#: models.py:31
-msgid "Subscribed"
-msgstr "angemeldet"
-
-#: models.py:34
-msgid "Update Date"
-msgstr "geändert am"
-
-#: views.py:14
-msgid "Full Name"
-msgstr "Name"
-
-#: views.py:16
-#: templates/newsletter/subscribe_form.html:23
-#: templates/newsletter/update_form.html:22
-#: templates/newsletter/update_form.html:24
-msgid "Subscribe"
-msgstr "Anmelden"
-
-#: views.py:53
-msgid "Error, not valid."
-msgstr "Fehler, nicht gültig."
-
-#: templates/newsletter/subscribe_form.html:13
-#: templates/newsletter/unsubscribe_form.html:13
-#: templates/newsletter/update_form.html:13
-#, fuzzy
-msgid "Please correct the following error:"
-msgid_plural "Please correct the following errors:"
-msgstr[0] "Bitte korrigieren Sie den folgenden Fehler:"
-msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
 
 #: templates/newsletter/subscribe_form.html:6
 #: templates/newsletter/subscribe_form.html:10
@@ -161,6 +176,15 @@ msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
 #: templates/newsletter/update_results.html:10
 msgid "Newsletter Subscription"
 msgstr "Newsletter anmelden"
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+#, fuzzy
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Bitte korrigieren Sie den folgenden Fehler:"
+msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
 
 #: templates/newsletter/subscribe_form.html:18
 #: templates/newsletter/unsubscribe_form.html:18
@@ -176,4 +200,3 @@ msgstr "Newsletter abmelden"
 #: templates/newsletter/unsubscribe_form.html:22
 msgid "Remove Me"
 msgstr "Austragen"
-

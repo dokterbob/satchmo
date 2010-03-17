@@ -1,5 +1,8 @@
 from django.db import models
-from django.utils import simplejson
+try:
+    from django.utils import simplejson
+except ImportError:
+    import simplejson
 from django.utils.translation import ugettext_lazy as _
 from listeners import wishlist_cart_add_listener
 from satchmo_store import shop
@@ -48,11 +51,11 @@ class ProductWish(models.Model):
 
     details = property(fget=get_details, fset=set_details)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """Ensure we have a create_date before saving the first time."""
         if not self.pk:
             self.create_date = datetime.date.today()
-        super(ProductWish, self).save(force_insert=force_insert, force_update=force_update)
+        super(ProductWish, self).save(**kwargs)
         
     class Meta:
         verbose_name = _('Product Wish')

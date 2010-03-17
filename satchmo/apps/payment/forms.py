@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from l10n.utils import moneyfmt
 from livesettings import config_value, config_value_safe, config_choice_values, config_get_group
 from payment import signals
-from payment.config import labelled_payment_choices
+from payment.config import labelled_gateway_choices
 from payment.models import CreditCardDetail
 from payment.utils import get_or_create_order, pay_ship_save
 from product.models import Discount, TaxClass, Price, PriceAdjustmentCalc, PriceAdjustment
@@ -172,7 +172,7 @@ class CustomChargeForm(forms.Form):
 class PaymentMethodForm(ProxyContactForm):
     paymentmethod = forms.ChoiceField(
             label=_('Payment method'),
-            choices=labelled_payment_choices(),
+            choices=labelled_gateway_choices(),
             widget=forms.RadioSelect,
             required=True
             )
@@ -183,7 +183,7 @@ class PaymentMethodForm(ProxyContactForm):
         # Send a signal to perform additional filtering of available payment methods.
         # Receivers have cart/order passed in variables to check the contents and modify methods
         # list if neccessary.
-        payment_choices = labelled_payment_choices()
+        payment_choices = labelled_gateway_choices()
         signals.payment_methods_query.send(
                 PaymentMethodForm,
                 methods=payment_choices,
@@ -402,10 +402,10 @@ class SimplePayShipForm(forms.Form):
 
 class CreditPayShipForm(SimplePayShipForm):
     credit_type = forms.ChoiceField()
-    credit_number = forms.CharField(max_length=20)
+    credit_number = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'autocomplete':'off'}))
     month_expires = forms.ChoiceField(choices=MONTHS)
     year_expires = forms.ChoiceField()
-    ccv = forms.CharField(max_length=4, label='Sec code')
+    ccv = forms.CharField(max_length=4, label='Sec code', widget=forms.TextInput(attrs={'autocomplete':'off'}))
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         creditchoices = paymentmodule.CREDITCHOICES.choice_values

@@ -112,9 +112,10 @@ INSTALLED_APPS = (
     #'satchmo_ext.product_feeds',
     #'satchmo_ext.brand',
     'payment',
-    #'payment.modules.purchaseorder',
+    'payment.modules.dummy',
+    'payment.modules.paypal',
     #'payment.modules.giftcertificate',
-    #create-'satchmo_ext.wishlist',
+    #'satchmo_ext.wishlist',
     #'satchmo_ext.upsell',
     #'satchmo_ext.productratings',
     'satchmo_ext.satchmo_toolbar',
@@ -136,6 +137,9 @@ AUTHENTICATION_BACKENDS = (
 #DEBUG_TOOLBAR_CONFIG = {
 #    'INTERCEPT_REDIRECTS' : False,
 #}
+
+L10N_SETTINGS = {
+}
 
 #### Satchmo unique variables ####
 #from django.conf.urls.defaults import patterns, include

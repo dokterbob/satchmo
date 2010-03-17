@@ -48,12 +48,14 @@ Modifying A Store
    :maxdepth: 1
 
    customization
+   custom-admin
    custom-payment
    product-attributes
    custom-product
    translation
    templates
    template-filters-tags
+   views
    signals
 
 Optional Modules
@@ -69,7 +71,7 @@ Tutorials
 =========
 .. toctree::
    :maxdepth: 1
-    
+
    tutorial1
 
 Deploying A Store
@@ -77,7 +79,7 @@ Deploying A Store
 
 .. toctree::
    :maxdepth: 1
-   
+
    deploying
    managing
 

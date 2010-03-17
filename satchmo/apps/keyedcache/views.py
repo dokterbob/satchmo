@@ -64,8 +64,8 @@ def stats_page(request):
         'cache_hits' : keyedcache.CACHE_HITS,
         'hit_rate' : "%02.1f" % rate
     })
-    
-    return render_to_response('keyedcache/stats.html', ctx)
+
+    return render_to_response('keyedcache/stats.html', context_instance=ctx)
 
 stats_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(stats_page)
     
@@ -77,8 +77,8 @@ def view_page(request):
     ctx = RequestContext(request, { 
         'cached_keys' : keys,
     })
-    
-    return render_to_response('keyedcache/view.html', ctx)
+
+    return render_to_response('keyedcache/view.html', context_instance=ctx)
 
 view_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(view_page)
 
@@ -99,7 +99,7 @@ def delete_page(request):
     ctx = RequestContext(request, { 
         'form' : form,
     })
-    
-    return render_to_response('keyedcache/delete.html', ctx)
+
+    return render_to_response('keyedcache/delete.html', context_instance=ctx)
 
 delete_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(delete_page)

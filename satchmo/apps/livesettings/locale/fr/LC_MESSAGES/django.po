@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,98 +16,89 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: templates/livesettings/group_settings.html.py:10
-#: templates/livesettings/site_settings.html.py:25
-#: templates/livesettings/group_settings.html.py:10
-#: templates/livesettings/site_settings.html.py:25
-msgid "Home"
-msgstr "Accueil"
-
-#: models.py:76
-#: models.py:115
+#: models.py:108 models.py:147
 msgid "Site"
 msgstr "Site"
 
-#: values.py:94
+#: values.py:96
 msgid "Base Settings"
 msgstr "Configuration de base"
 
-#: values.py:200
+#: values.py:202
 msgid "Default value: \"\""
 msgstr "Valeur par défaut: \"\""
 
-#: values.py:207
+#: values.py:209
 msgid "Default value: "
 msgstr "Valeur par défaut:"
 
-#: values.py:210
+#: values.py:212
 #, python-format
 msgid "Default value: %s"
 msgstr "Valeur par défaut: %s"
 
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
+#: templates/livesettings/_admin_site_views.html:4
+msgid "Sites"
+msgstr "Sites"
+
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Documentation"
 msgstr "Documentation"
 
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
-#: templates/livesettings/group_settings.html.py:7
-#: templates/livesettings/site_settings.html.py:22
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: templates/livesettings/group_settings.html.py:11
-#: templates/livesettings/group_settings.html.py:11
+#: templates/livesettings/group_settings.html:14
+#: templates/livesettings/site_settings.html:26
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/livesettings/group_settings.html:15
 msgid "Edit Group Settings"
 msgstr "Editer les paramètres de groupe"
 
-#: templates/livesettings/group_settings.html.py:18
-#: templates/livesettings/site_settings.html.py:43
-#: templates/livesettings/group_settings.html.py:18
-#: templates/livesettings/site_settings.html.py:41
+#: templates/livesettings/group_settings.html:22
+#: templates/livesettings/site_settings.html:50
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Veuillez corriger l'erreur ci-dessous:"
 msgstr[1] "Veuillez corriger les erreurs ci-dessous:"
 
-#: templates/livesettings/group_settings.html.py:24
-#: templates/livesettings/group_settings.html.py:24
+#: templates/livesettings/group_settings.html:28
+#, python-format
 msgid "Settings included in %(name)s."
 msgstr "Paramètres inclus dans %(name)s."
 
-#: templates/livesettings/group_settings.html.py:49
-#: templates/livesettings/site_settings.html.py:89
-#: templates/livesettings/group_settings.html.py:49
-#: templates/livesettings/site_settings.html.py:87
+#: templates/livesettings/group_settings.html:53
+#: templates/livesettings/site_settings.html:97
 msgid "You don't have permission to edit values."
 msgstr "Vous n'avez pas le droit d'éditer les valeurs."
 
-#: templates/livesettings/site_settings.html.py:26
-#: templates/livesettings/site_settings.html.py:26
+#: templates/livesettings/site_settings.html:27
 msgid "Edit Site Settings"
 msgstr "Editer les paramètres du site"
 
-#: templates/livesettings/site_settings.html.py:59
-#: templates/livesettings/site_settings.html.py:58
+#: templates/livesettings/site_settings.html:43
+msgid "Livesettings are disabled for this site."
+msgstr ""
+
+#: templates/livesettings/site_settings.html:44
+msgid "All configuration options must be edited in the site settings.py file"
+msgstr ""
+
+#: templates/livesettings/site_settings.html:66
+#, python-format
 msgid "Group settings: %(name)s"
 msgstr "Paramètres du groupe: %(name)s"
 
-#: templates/livesettings/site_settings.html.py:86
-#: templates/livesettings/site_settings.html.py:84
+#: templates/livesettings/site_settings.html:93
 msgid "Uncollapse all"
 msgstr "Déployer tout"
-
-#: templates/livesettings/_admin_site_views.html.py:5
-msgid "Sites"
-msgstr "Sites"
-

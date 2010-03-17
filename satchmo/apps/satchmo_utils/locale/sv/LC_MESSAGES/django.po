@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,13 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: thumbnail/templates/widget/file.html:4
-msgid "Change"
-msgstr "Ändra"
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
 
-#: thumbnail/templates/widget/file.html:3
-msgid "Currently"
-msgstr "För närvarande"
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr ""
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr ""
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
+
+#: thumbnail/config.py:4
+#, fuzzy
+msgid "Thumbnail Settings"
+msgstr "Minatyrbildskvalitet"
 
 #: thumbnail/config.py:9
 msgid "Thumbnail quality"
@@ -39,3 +61,23 @@ msgstr ""
 "Använd ett värde 1-100, som kommer att ändra kvaliteten på JPEG-"
 "miniatyrbilder som skapas för produkter och kategorier."
 
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr ""
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: thumbnail/widgets.py:21
+#, fuzzy
+msgid "Change:"
+msgstr "Ändra"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "För närvarande"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Ändra"

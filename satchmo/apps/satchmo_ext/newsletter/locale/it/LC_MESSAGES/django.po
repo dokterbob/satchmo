@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -17,28 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
-
-#: forms.py:17
-#: templates/newsletter/subscribe_form.html:20
-#: templates/newsletter/unsubscribe_form.html:20
-#: templates/newsletter/update_form.html:20
-msgid "Email address"
-msgstr "Indirizzo email"
-
-#: templates/newsletter/subscribe_form.html:5
-#: templates/newsletter/unsubscribe_form.html:5
-#: templates/newsletter/update_form.html:5
-#: templates/newsletter/update_results.html:5
-msgid "Home"
-msgstr "Pagina iniziale"
-
-#: models.py:35
-msgid "Email"
-msgstr "e-mail"
-
-#: models.py:36
-msgid "Creation Date"
-msgstr "Data di creazione"
 
 #: config.py:7
 msgid "Newsletter Settings"
@@ -74,46 +52,55 @@ msgstr "Nome della Newsletter"
 
 #: config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
-msgstr "Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
+msgstr ""
+"Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
+
+#: config.py:31
+#, fuzzy
+msgid "Newsletter Slug"
+msgstr "Impostazioni della newsletter"
+
+#: config.py:32
+msgid "The url slug for the newsletter.  Requires server restart if changed."
+msgstr ""
 
 #: forms.py:16
 msgid "Full Name"
 msgstr "Nome completo"
 
-#: forms.py:18
-#: templates/newsletter/subscribe_form.html:23
+#: forms.py:17 templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "Indirizzo email"
+
+#: forms.py:18 templates/newsletter/subscribe_form.html:23
 #: templates/newsletter/update_form.html:22
 #: templates/newsletter/update_form.html:24
 msgid "Subscribe"
 msgstr "Iscriviti"
 
-#: mailman.py:44
-#: simple.py:35
+#: mailman.py:44 simple.py:35
 #, python-format
 msgid "Updated subscription for %(email)s."
 msgstr "Aggiornata l'iscrizione per %(email)s"
 
-#: mailman.py:46
-#: simple.py:37
+#: mailman.py:46 simple.py:37
 #, python-format
 msgid "Already subscribed %(email)s."
 msgstr "L'email %(email)s risulta già iscritta."
 
-#: mailman.py:48
-#: simple.py:40
+#: mailman.py:48 simple.py:40
 #, python-format
 msgid "Already removed %(email)s."
 msgstr "L'email %(email)s risulta già cancellata."
 
-#: mailman.py:58
-#: mailman.py:95
-#: simple.py:50
+#: mailman.py:58 mailman.py:95 simple.py:50
 #, python-format
 msgid "Subscribed: %(email)s"
 msgstr "Iscritto: %(email)s"
 
-#: mailman.py:61
-#: simple.py:52
+#: mailman.py:61 simple.py:52
 #, python-format
 msgid "Unsubscribed: %(email)s"
 msgstr "Cancellazione: %(email)s"
@@ -142,28 +129,36 @@ msgstr "Indirizzo e-mail non valido: %(email)s"
 msgid "Hostile address (illegal characters): %(email)s"
 msgstr "Indirizzo non valido (caratteri non consentiti):%(email)s"
 
-#: models.py:34
+#: models.py:37
 msgid "Subscribed"
 msgstr "Iscritto"
 
-#: models.py:37
+#: models.py:38
+msgid "Email"
+msgstr "e-mail"
+
+#: models.py:39
+msgid "Creation Date"
+msgstr "Data di creazione"
+
+#: models.py:40
 msgid "Update Date"
 msgstr "Data di aggiornamento"
 
-#: models.py:99
 # translated = "Due opzioni dello stesso gruppo di opzione non puo' essere applicata a un oggetto."
+#: models.py:102
 msgid "Attribute Name"
 msgstr "Nome dell'attributo"
 
-#: models.py:100
+#: models.py:103
 msgid "Value"
 msgstr "Valore"
 
-#: models.py:103
+#: models.py:106
 msgid "Subscription Attribute"
 msgstr "Attributo Iscrizione"
 
-#: models.py:104
+#: models.py:107
 msgid "Subscription Attributes"
 msgstr "Attributi Iscrizione"
 
@@ -171,13 +166,12 @@ msgstr "Attributi Iscrizione"
 msgid "Error, not valid."
 msgstr "Errore, non valido."
 
-#: templates/newsletter/subscribe_form.html:13
-#: templates/newsletter/unsubscribe_form.html:13
-#: templates/newsletter/update_form.html:13
-msgid "Please correct the following error:"
-msgid_plural "Please correct the following errors:"
-msgstr[0] "Per piacere correggi questo errore:"
-msgstr[1] "Per piacere correggi questi errori:"
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Pagina iniziale"
 
 #: templates/newsletter/subscribe_form.html:6
 #: templates/newsletter/subscribe_form.html:10
@@ -188,21 +182,28 @@ msgstr[1] "Per piacere correggi questi errori:"
 msgid "Newsletter Subscription"
 msgstr "Iscrizione alla Newsletter"
 
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Per piacere correggi questo errore:"
+msgstr[1] "Per piacere correggi questi errori:"
+
+# translated = "Iscriviti alla newsletter"
 #: templates/newsletter/subscribe_form.html:18
 #: templates/newsletter/unsubscribe_form.html:18
 #: templates/newsletter/update_form.html:18
-# translated = "Iscriviti alla newsletter"
 msgid "Your name"
 msgstr "Il tuo nome"
 
+# translated = "Il tuo nome"
 #: templates/newsletter/unsubscribe_form.html:6
 #: templates/newsletter/unsubscribe_form.html:10
-# translated = "Il tuo nome"
 msgid "Newsletter Unsubscribe"
 msgstr "Rimozione dalla Newsletter"
 
-#: templates/newsletter/unsubscribe_form.html:22
 # translated = ""
+#: templates/newsletter/unsubscribe_form.html:22
 msgid "Remove Me"
 msgstr "Rimuovimi"
-

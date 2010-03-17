@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -18,89 +18,95 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 
-#: templates/livesettings/group_settings.html:10
-#: templates/livesettings/site_settings.html:25
-msgid "Home"
-msgstr "Pagina iniziale"
-
-#: models.py:76
-#: models.py:115
+#: models.py:108 models.py:147
 msgid "Site"
 msgstr "Sito"
 
-#: values.py:94
+#: values.py:96
 msgid "Base Settings"
 msgstr "Impostazioni base"
 
-#: values.py:200
+#: values.py:202
 msgid "Default value: \"\""
 msgstr "Valore di default: \"\""
 
-#: values.py:207
+#: values.py:209
 msgid "Default value: "
 msgstr "Valore di default: "
 
-#: values.py:210
+#: values.py:212
 #, python-format
 msgid "Default value: %s"
 msgstr "Valore di default:%s"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
+#: templates/livesettings/_admin_site_views.html:4
+msgid "Sites"
+msgstr "Siti"
+
 # translated = "Extra di spedizione"
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Change password"
 msgstr "Cambia Password"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:22
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Log out"
 msgstr "Esci"
 
-#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/group_settings.html:14
+#: templates/livesettings/site_settings.html:26
+msgid "Home"
+msgstr "Pagina iniziale"
+
+#: templates/livesettings/group_settings.html:15
 msgid "Edit Group Settings"
 msgstr "Modifica le impostazioni del Gruppo"
 
-#: templates/livesettings/group_settings.html:18
-#: templates/livesettings/site_settings.html:43
 # translated = ""
+#: templates/livesettings/group_settings.html:22
+#: templates/livesettings/site_settings.html:50
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Correggi l'errore indicato di seguito."
 msgstr[1] "Correggi gli errori indicati di seguito."
 
-#: templates/livesettings/group_settings.html:24
 # translated = "Modificare le impostazioni di gruppo"
+#: templates/livesettings/group_settings.html:28
 #, python-format
 msgid "Settings included in %(name)s."
 msgstr "Impostazioni incluse in %(name)s."
 
-#: templates/livesettings/group_settings.html:49
-#: templates/livesettings/site_settings.html:89
 # translated = "Impostazioni incluse in% (nome) s."
+#: templates/livesettings/group_settings.html:53
+#: templates/livesettings/site_settings.html:97
 msgid "You don't have permission to edit values."
 msgstr "Non hai il permesso di modificare questi valori."
 
-#: templates/livesettings/site_settings.html:26
 # translated = "Non avete il permesso di modificare i valori."
+#: templates/livesettings/site_settings.html:27
 msgid "Edit Site Settings"
 msgstr "Modifica le impostazioni del sito"
 
-#: templates/livesettings/site_settings.html:59
+#: templates/livesettings/site_settings.html:43
+msgid "Livesettings are disabled for this site."
+msgstr ""
+
+#: templates/livesettings/site_settings.html:44
+msgid "All configuration options must be edited in the site settings.py file"
+msgstr ""
+
 # translated = "Modifica impostazioni sito"
+#: templates/livesettings/site_settings.html:66
 #, python-format
 msgid "Group settings: %(name)s"
 msgstr "Impostazioni di gruppo: %(name)s"
 
-#: templates/livesettings/site_settings.html:86
+#: templates/livesettings/site_settings.html:93
 msgid "Uncollapse all"
 msgstr "Espandi tutti"
-
-#: templates/livesettings/_admin_site_views.html:5
-msgid "Sites"
-msgstr "Siti"
-

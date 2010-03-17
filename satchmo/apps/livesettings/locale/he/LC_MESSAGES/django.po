@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:02+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-03-22 07:45\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: models.py:75 models.py:114
+#: models.py:108 models.py:147
 msgid "Site"
 msgstr "אתר"
 
@@ -68,7 +68,7 @@ msgid "Edit Group Settings"
 msgstr "ערוך הגדרות קבוצה"
 
 #: templates/livesettings/group_settings.html:22
-#: templates/livesettings/site_settings.html:44
+#: templates/livesettings/site_settings.html:50
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
@@ -80,7 +80,7 @@ msgid "Settings included in %(name)s."
 msgstr "הגדרות כלולות %(name)s"
 
 #: templates/livesettings/group_settings.html:53
-#: templates/livesettings/site_settings.html:90
+#: templates/livesettings/site_settings.html:97
 msgid "You don't have permission to edit values."
 msgstr "אינך מורשה לערוך ערכים."
 
@@ -88,11 +88,19 @@ msgstr "אינך מורשה לערוך ערכים."
 msgid "Edit Site Settings"
 msgstr "ערוך הגדרות אתר"
 
-#: templates/livesettings/site_settings.html:60
+#: templates/livesettings/site_settings.html:43
+msgid "Livesettings are disabled for this site."
+msgstr ""
+
+#: templates/livesettings/site_settings.html:44
+msgid "All configuration options must be edited in the site settings.py file"
+msgstr ""
+
+#: templates/livesettings/site_settings.html:66
 #, python-format
 msgid "Group settings: %(name)s"
 msgstr "הגדרות קבוצה: %(name)s"
 
-#: templates/livesettings/site_settings.html:87
+#: templates/livesettings/site_settings.html:93
 msgid "Uncollapse all"
 msgstr "הסתר פרטים"

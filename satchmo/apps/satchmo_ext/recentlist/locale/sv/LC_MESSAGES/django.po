@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,16 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: config.py:8
+#: config.py:7
 msgid "Maximum recent items"
 msgstr ""
 
-#: config.py:9
+#: config.py:8
 msgid "The maximum number of items show in the recent box."
 msgstr ""
 
-#: templates/recentlist/_recently_viewed.html:4
+#: templates/recentlist/_recently_viewed.html:5
 #, fuzzy
 msgid "Recently Viewed"
 msgstr "Mottagen"
-

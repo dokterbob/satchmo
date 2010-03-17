@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,52 +15,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: views.py:22
-msgid "Yes"
-msgstr "YES"
+#: forms.py:32
+msgid "Title"
+msgstr ""
 
-#: views.py:23
-msgid "No"
-msgstr "NO"
-
-#: views.py:28
+#: forms.py:33
 msgid "Email address"
 msgstr "이 메일"
 
-#: views.py:29
+#: forms.py:35
 msgid "Password (again)"
 msgstr "패스워드 (한번 더 입력)"
 
-#: views.py:30
+#: forms.py:37
 msgid "Password"
 msgstr "패스워드"
 
-#: views.py:31
+#: forms.py:39
 msgid "First name"
 msgstr "성"
 
-#: views.py:32
+#: forms.py:41
 msgid "Last name"
 msgstr "이름"
 
-#: views.py:33
+#: forms.py:60
 msgid "Newsletter"
 msgstr "뉴스레터"
 
-#: views.py:40
+#: forms.py:69
 msgid "The two passwords do not match."
 msgstr "패스워드가 일치 하지 않습니다."
 
-#: views.py:49
+#: forms.py:80
 msgid "That email address is already in use."
 msgstr "이 메일이 이미 사용중입니다. 다는 이메일을 사용해 주세요"
 
-#: views.py:57
+#: mail.py:24
 #, python-format
 msgid "Welcome to %s"
 msgstr "%s 에 오신것을 환영합니다."
 
-#: views.py:180
+#: views.py:26
+msgid "Yes"
+msgstr "YES"
+
+#: views.py:27
+msgid "No"
+msgstr "NO"
+
+#: views.py:343
 msgid "Registration Form"
 msgstr "등록 폼"
-

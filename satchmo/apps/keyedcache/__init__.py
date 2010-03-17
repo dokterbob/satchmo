@@ -22,7 +22,13 @@ except AttributeError:
     CACHE_PREFIX = str(settings.SITE_ID)
     log.warn("No CACHE_PREFIX found in settings, using SITE_ID.  Please update your settings to add a CACHE_PREFIX")
 
-_CACHE_ENABLED = settings.CACHE_TIMEOUT > 0
+try:
+    CACHE_TIMEOUT = settings.CACHE_TIMEOUT
+except AttributeError:
+    CACHE_TIMEOUT = 0
+    log.warn("No CACHE_TIMEOUT found in settings, so we used 0, disabling the cache system.  Please update your settings to add a CACHE_TIMEOUT and avoid this warning.")
+
+_CACHE_ENABLED = CACHE_TIMEOUT > 0
 
 class CacheWrapper(object):
     def __init__(self, val, inprocess=False):
@@ -115,7 +121,7 @@ def _cache_flush_all():
         return False
     return True
 
-def cache_function(length=settings.CACHE_TIMEOUT):
+def cache_function(length=CACHE_TIMEOUT):
     """
     A variant of the snippet posted by Jeff Wheeler at
     http://www.djangosnippets.org/snippets/109/
@@ -218,7 +224,7 @@ def cache_set(*keys, **kwargs):
     if cache_enabled():
         global CACHED_KEYS, REQUEST_CACHE
         obj = kwargs.pop('value')
-        length = kwargs.pop('length', settings.CACHE_TIMEOUT)
+        length = kwargs.pop('length', CACHE_TIMEOUT)
         skiplog = kwargs.pop('skiplog', False)
 
         key = cache_key(keys, **kwargs)

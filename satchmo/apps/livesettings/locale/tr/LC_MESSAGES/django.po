@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-06-09 18:18+0200\n"
 "Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
 "Language-Team: Turkish <selincuhadar@gmail.com>\n"
@@ -17,35 +17,57 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: values.py:88
+#: models.py:108 models.py:147
+msgid "Site"
+msgstr ""
+
+#: values.py:96
 msgid "Base Settings"
 msgstr "Temel Ayarlar"
 
-#: values.py:194
+#: values.py:202
 msgid "Default value: \"\""
 msgstr "Geçerli Değer: \"\""
 
-#: values.py:201
+#: values.py:209
 msgid "Default value: "
 msgstr "Geçerli Değer:"
 
-#: values.py:204
+#: values.py:212
 #, python-format
 msgid "Default value: %s"
 msgstr "Geçerli Değer: %s"
 
-#: templates/livesettings/group_settings.html:10
-#: templates/livesettings/site_settings.html:10
-msgid "Home"
-msgstr "Ev"
+#: templates/livesettings/_admin_site_views.html:4
+msgid "Sites"
+msgstr ""
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:7
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
+msgid "Documentation"
+msgstr "Dokümentasyon"
+
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
+msgid "Change password"
+msgstr "Şifreyi değiştir"
+
+#: templates/livesettings/group_settings.html:11
+#: templates/livesettings/site_settings.html:23
 msgid "Log out"
 msgstr "Oturumu kapa"
 
-#: templates/livesettings/group_settings.html:18
-#: templates/livesettings/site_settings.html:18
+#: templates/livesettings/group_settings.html:14
+#: templates/livesettings/site_settings.html:26
+msgid "Home"
+msgstr "Ev"
+
+#: templates/livesettings/group_settings.html:15
+msgid "Edit Group Settings"
+msgstr "Grup Ayarlarını Düzenle"
+
+#: templates/livesettings/group_settings.html:22
+#: templates/livesettings/site_settings.html:50
 #, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
@@ -67,36 +89,33 @@ msgstr[1] ""
 "#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
 "#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
 
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:7
-msgid "Documentation"
-msgstr "Dokümentasyon"
-
-#: templates/livesettings/group_settings.html:7
-#: templates/livesettings/site_settings.html:7
-msgid "Change password"
-msgstr "Şifreyi değiştir"
-
-#: templates/livesettings/group_settings.html:11
-msgid "Edit Group Settings"
-msgstr "Grup Ayarlarını Düzenle"
-
-#: templates/livesettings/group_settings.html:24
+#: templates/livesettings/group_settings.html:28
 #, python-format
 msgid "Settings included in %(name)s."
 msgstr "%(name)s ayarlara dahil edildi."
 
-#: templates/livesettings/group_settings.html:49
-#: templates/livesettings/site_settings.html:61
+#: templates/livesettings/group_settings.html:53
+#: templates/livesettings/site_settings.html:97
 msgid "You don't have permission to edit values."
 msgstr "Değerleri düzenlemek için gerekli izniniz yok."
 
-#: templates/livesettings/site_settings.html:11
+#: templates/livesettings/site_settings.html:27
 msgid "Edit Site Settings"
 msgstr "Site Ayarlarını Düzenle"
 
-#: templates/livesettings/site_settings.html:34
+#: templates/livesettings/site_settings.html:43
+msgid "Livesettings are disabled for this site."
+msgstr ""
+
+#: templates/livesettings/site_settings.html:44
+msgid "All configuration options must be edited in the site settings.py file"
+msgstr ""
+
+#: templates/livesettings/site_settings.html:66
 #, python-format
 msgid "Group settings: %(name)s"
 msgstr "Grup ayarları:  %(name)s"
 
+#: templates/livesettings/site_settings.html:93
+msgid "Uncollapse all"
+msgstr ""

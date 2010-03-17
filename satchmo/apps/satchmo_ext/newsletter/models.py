@@ -69,13 +69,13 @@ class Subscription(models.Model):
 
         return value
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk:
             self.create_date = datetime.date.today()
 
         self.update_date = datetime.date.today()
 
-        super(Subscription, self).save(force_insert=force_insert, force_update=force_update)
+        super(Subscription, self).save(**kwargs)
                 
     def update_attribute(self, name, value):
         """Update or create a `SubscriptionAttribute` object with the passed `name` and `value`."""

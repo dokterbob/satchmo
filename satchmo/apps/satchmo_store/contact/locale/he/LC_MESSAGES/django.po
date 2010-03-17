@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 23:04+0200\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-03-29 11:48\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -23,53 +23,64 @@ msgid "Only authenticated users can check out"
 msgstr "רק משתמשים מאומתים יכולים לגשת לקופה"
 
 #: config.py:10
-msgid "Users will be required to authenticate (and create an account if neccessary) before checkout."
-msgstr "משתמשים יידרשו לבצע אימות (וליצור חשבון במידת הצורך) לפני התשלום בקופה."
+msgid ""
+"Users will be required to authenticate (and create an account if neccessary) "
+"before checkout."
+msgstr ""
+"משתמשים יידרשו לבצע אימות (וליצור חשבון במידת הצורך) לפני התשלום בקופה."
 
 #: config.py:18
 msgid "Required billing data"
 msgstr "פרטי חיוב נדרשים"
 
 #: config.py:20
-msgid "Users may be required to provide some set of billing address. Other fields are optional. You may shorten the checkout process here, but be careful, as this may leave you orders with almost no customer data! Some payment modules may override this setting."
-msgstr "ייתכן שמשתמשים יידרשו לספק כתובת חיוב כלשהי. שדות אחרים הם אופציונליים. אתה יכול לקצר את תהליך התשלום כאן, אבל היה זהיר, שכן פעולה זו עלולה להשאיר אותך עם הזמנות בעלות מעט נתוני הלקוח! כמה מודולי תשלום עשויים לעקוף הגדרה זו."
+msgid ""
+"Users may be required to provide some set of billing address. Other fields "
+"are optional. You may shorten the checkout process here, but be careful, as "
+"this may leave you orders with almost no customer data! Some payment modules "
+"may override this setting."
+msgstr ""
+"ייתכן שמשתמשים יידרשו לספק כתובת חיוב כלשהי. שדות אחרים הם אופציונליים. אתה "
+"יכול לקצר את תהליך התשלום כאן, אבל היה זהיר, שכן פעולה זו עלולה להשאיר אותך "
+"עם הזמנות בעלות מעט נתוני הלקוח! כמה מודולי תשלום עשויים לעקוף הגדרה זו."
 
-#: config.py:26 config.py:50 forms.py:24 models.py:130 models.py:206
+#: config.py:26 config.py:50 forms.py:25 models.py:144
 msgid "Email"
 msgstr "אימייל"
 
-#: config.py:27 forms.py:25 models.py:122
+#: config.py:27 forms.py:26 models.py:137
 msgid "Title"
 msgstr "תואר"
 
-#: config.py:28 models.py:123 templates/contact/update_form.html:55
+#: config.py:28 models.py:138 templates/contact/update_form.html:56
 msgid "First name"
 msgstr "שם פרטי"
 
-#: config.py:29 models.py:124 templates/contact/update_form.html:58
+#: config.py:29 models.py:139 templates/contact/update_form.html:59
 msgid "Last name"
 msgstr "שם משפחה"
 
-#: config.py:30 forms.py:28 models.py:207
+#: config.py:30 forms.py:29
 msgid "Phone"
 msgstr "טלפון"
 
-#: config.py:31 forms.py:29 forms.py:37 models.py:269
+#: config.py:31 forms.py:30 forms.py:38 models.py:277
 msgid "Addressee"
 msgstr "נמען"
 
-#: config.py:32 forms.py:30 models.py:25 templates/contact/update_form.html:61
-msgid "Company"
-msgstr "חברה"
+#: config.py:32 forms.py:31 models.py:93 models.py:142
+#: templates/contact/update_form.html:62
+msgid "Organization"
+msgstr "ארגון"
 
-#: config.py:33 forms.py:31 forms.py:38 models.py:270 models.py:271
+#: config.py:33 forms.py:32 forms.py:39 models.py:278 models.py:279
 #: templates/contact/login_signup_address.html:131
 #: templates/contact/login_signup_address.html:134
 #: templates/contact/login_signup_address.html:165
 #: templates/contact/login_signup_address.html:168
-#: templates/contact/update_form.html:83 templates/contact/update_form.html:86
-#: templates/contact/update_form.html:117
-#: templates/contact/update_form.html:120
+#: templates/contact/update_form.html:84 templates/contact/update_form.html:87
+#: templates/contact/update_form.html:118
+#: templates/contact/update_form.html:121
 msgid "Street"
 msgstr "רחוב"
 
@@ -77,11 +88,11 @@ msgstr "רחוב"
 msgid "Street (second line)"
 msgstr "רחוב (שורה שנייה)"
 
-#: config.py:35 forms.py:33 forms.py:40 models.py:273
+#: config.py:35 forms.py:34 forms.py:41 models.py:281
 #: templates/contact/login_signup_address.html:137
 #: templates/contact/login_signup_address.html:171
-#: templates/contact/update_form.html:89
-#: templates/contact/update_form.html:123
+#: templates/contact/update_form.html:90
+#: templates/contact/update_form.html:124
 msgid "City"
 msgstr "עיר"
 
@@ -89,9 +100,9 @@ msgstr "עיר"
 #: templates/contact/login_signup_address.html:145
 #: templates/contact/login_signup_address.html:176
 #: templates/contact/login_signup_address.html:179
-#: templates/contact/update_form.html:94 templates/contact/update_form.html:97
-#: templates/contact/update_form.html:128
-#: templates/contact/update_form.html:131
+#: templates/contact/update_form.html:95 templates/contact/update_form.html:98
+#: templates/contact/update_form.html:129
+#: templates/contact/update_form.html:132
 msgid "State/Province"
 msgstr "מדינה / מחוז"
 
@@ -99,11 +110,11 @@ msgstr "מדינה / מחוז"
 msgid "Postal code/ZIP"
 msgstr "מיקוד"
 
-#: config.py:38 forms.py:69 forms.py:70 models.py:275
+#: config.py:38 forms.py:76 forms.py:77 models.py:283
 #: templates/contact/login_signup_address.html:153
 #: templates/contact/login_signup_address.html:187
-#: templates/contact/update_form.html:105
-#: templates/contact/update_form.html:139
+#: templates/contact/update_form.html:106
+#: templates/contact/update_form.html:140
 msgid "Country"
 msgstr "מדינה"
 
@@ -112,7 +123,9 @@ msgid "Account Verification"
 msgstr "אימות חשבון"
 
 #: config.py:47
-msgid "Select the style of account verification.  'Immediate' means no verification needed."
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
 msgstr "בחר סוג אימות חשבון. \"מידי\" אינו מצריך אימות חשבון."
 
 #: config.py:49
@@ -123,128 +136,109 @@ msgstr "מידי"
 msgid "Days to verify account"
 msgstr "ימים לאימות חשבון"
 
-#: forms.py:26
+#: forms.py:27
 msgid "First Name"
 msgstr "שם פרטי"
 
-#: forms.py:27
+#: forms.py:28
 msgid "Last Name"
 msgstr "שם משפחה"
 
-#: forms.py:34 forms.py:41 forms.py:63 forms.py:64 models.py:272
+#: forms.py:35 forms.py:42 forms.py:70 forms.py:71 models.py:280
 msgid "State"
 msgstr "מחוז"
 
-#: forms.py:35 forms.py:42
+#: forms.py:36 forms.py:43
 msgid "ZIP code/Postcode"
 msgstr "מיקוד"
 
-#: forms.py:36 templates/contact/login_signup_address.html:159
-#: templates/contact/update_form.html:111
+#: forms.py:37 templates/contact/login_signup_address.html:159
+#: templates/contact/update_form.html:112
 msgid "Shipping same as billing?"
 msgstr "האם כתובת המשלוח זהה לכתובת החיוב?"
 
-#: forms.py:59
+#: forms.py:66
 msgid "---Please Select---"
 msgstr "--- בחר ---"
 
-#: forms.py:87 forms.py:138 forms.py:165 forms.py:178 forms.py:192
+#: forms.py:96 forms.py:147 forms.py:174 forms.py:187 forms.py:201
 msgid "This field is required."
 msgstr "יש להזין תוכן בשדה זה."
 
-#: forms.py:88
+#: forms.py:97
 msgid "State is required for your country."
 msgstr "מחוז לא חובה עבור המדינה שלך."
 
-#: forms.py:93
+#: forms.py:102
 msgid "Invalid state or province."
 msgstr "המדינה או המחוז לא חוקיים."
 
-#: forms.py:108
+#: forms.py:117
 msgid "That email address is already in use."
 msgstr "כתובת האימייל כבר נמצאת בשימוש."
 
-#: forms.py:182
+#: forms.py:191
 msgid "Shipping and Billing countries must match"
 msgstr "מדינת המשלוח ומדינת החיוב לא תואמות"
 
-#: forms.py:377 templates/contact/update_form.html:72
+#: forms.py:392 templates/contact/update_form.html:73
 msgid "Newsletter"
 msgstr "עלון מידע"
 
-#: models.py:19 models.py:34
-msgid "Customer"
-msgstr "לקוח"
+#: models.py:19 models.py:27 models.py:38 models.py:45
+msgid "Key"
+msgstr "מפתח"
 
-#: models.py:20 models.py:31 supplier/models.py:16 supplier/models.py:33
-msgid "Supplier"
-msgstr "ספק"
-
-#: models.py:21 models.py:32
-msgid "Distributor"
-msgstr "מפיץ"
-
-#: models.py:26
-msgid "Government"
-msgstr "ממשלה"
-
-#: models.py:27
-msgid "Non-profit"
-msgstr "ללא כוונת רווח"
-
-#: models.py:33
-msgid "Manufacturer"
-msgstr "יצרן"
-
-#: models.py:58
+#: models.py:20 models.py:28 models.py:39 models.py:46 models.py:75
 msgid "Name"
 msgstr "שם"
 
-#: models.py:59 models.py:217
+#: models.py:34
+#, fuzzy
+msgid "Contact organization type"
+msgstr "פרטי קשר"
+
+#: models.py:76 models.py:225
 msgid "Type"
 msgstr "סוג"
 
-#: models.py:61 models.py:126
+#: models.py:77 models.py:141
 msgid "Role"
 msgstr "תפקיד"
 
-#: models.py:63
+#: models.py:78
 msgid "Creation Date"
 msgstr "תאריך יצירה"
 
-#: models.py:64 models.py:131 supplier/models.py:38 supplier/models.py:83
+#: models.py:79 models.py:145 supplier/models.py:38 supplier/models.py:83
 msgid "Notes"
 msgstr "הערות"
 
-#: models.py:78 models.py:128
-msgid "Organization"
-msgstr "ארגון"
-
-#: models.py:79
+#: models.py:94
 msgid "Organizations"
 msgstr "ארגונים"
 
-#: models.py:129
+#: models.py:143
 msgid "Date of birth"
 msgstr "תאריך לידה"
 
-#: models.py:132
+#: models.py:146
 msgid "Creation date"
 msgstr "תאריך יצירה"
 
-#: models.py:195 models.py:216
+#: models.py:209 models.py:224
 msgid "Contact"
 msgstr "איש קשר"
 
-#: models.py:196
+#: models.py:210
 msgid "Contacts"
 msgstr "אנשי קשר"
 
-#: models.py:199
+#: models.py:213
 msgid "Work"
 msgstr "עבודה"
 
-#: models.py:200 templates/contact/login_signup.html:9
+#: models.py:214 templates/contact/login_signup.html:9
 #: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
 #: templates/registration/account_info.html:5
 #: templates/registration/activate.html:6 templates/registration/login.html:5
@@ -259,69 +253,69 @@ msgstr "עבודה"
 msgid "Home"
 msgstr "דף הבית"
 
-#: models.py:201
+#: models.py:215
 msgid "Fax"
 msgstr "פקס"
 
-#: models.py:202
+#: models.py:216
 msgid "Mobile"
 msgstr "נייד"
 
-#: models.py:208
-msgid "In Person"
-msgstr "אישית"
-
-#: models.py:218
+#: models.py:226
 msgid "Date and Time"
 msgstr "תאריך ושעה"
 
-#: models.py:219 models.py:233 models.py:267 supplier/models.py:18
+#: models.py:227 models.py:241 models.py:275 supplier/models.py:18
 msgid "Description"
 msgstr "תיאור"
 
-#: models.py:225
+#: models.py:233
 msgid "Interaction"
 msgstr "אינטראקציה"
 
-#: models.py:226
+#: models.py:234
 msgid "Interactions"
 msgstr "אינטראקציות"
 
-#: models.py:235 models.py:259
+#: models.py:243 models.py:267
 msgid "Phone Number"
 msgstr "מספר טלפון"
 
-#: models.py:237
+#: models.py:245
 msgid "Primary"
 msgstr "ראשי"
 
-#: models.py:260
+#: models.py:268
 msgid "Phone Numbers"
 msgstr "מספרי טלפון"
 
-#: models.py:268
+#: models.py:276
 msgid "Description of address - Home, Office, Warehouse, etc."
 msgstr "תאור כתובת - בית, משרד, מחסן וכו."
 
-#: models.py:274
+#: models.py:282
 msgid "Zip Code"
 msgstr "מיקוד"
 
-#: models.py:276
+#: models.py:284
 msgid "Default Shipping Address"
 msgstr "כתובת ראשית למשלוח"
 
-#: models.py:278
+#: models.py:286
 msgid "Default Billing Address"
 msgstr "כתובת ראשית לחיוב"
 
-#: models.py:309
+#: models.py:317
 msgid "Address Book"
 msgstr "פנקס כתובות"
 
-#: models.py:310
+#: models.py:318
 msgid "Address Books"
 msgstr "ספרי כתובות"
+
+#: supplier/models.py:16 supplier/models.py:33
+msgid "Supplier"
+msgstr "ספק"
 
 #: supplier/models.py:17
 msgid "Supplier ID"
@@ -464,41 +458,41 @@ msgid "Create"
 msgstr "צור"
 
 #: templates/contact/login_signup_address.html:114
-#: templates/contact/update_form.html:68
+#: templates/contact/update_form.html:69
 msgid "Phone number"
 msgstr "מספר טלפון"
 
 #: templates/contact/login_signup_address.html:126
-#: templates/contact/update_form.html:78
+#: templates/contact/update_form.html:79
 msgid "Billing Information"
 msgstr "פרטי חיוב"
 
 #: templates/contact/login_signup_address.html:128
-#: templates/contact/update_form.html:80
+#: templates/contact/update_form.html:81
 msgid "Bill To"
 msgstr "שם"
 
 #: templates/contact/login_signup_address.html:128
 #: templates/contact/login_signup_address.html:162
-#: templates/contact/update_form.html:80
-#: templates/contact/update_form.html:114
+#: templates/contact/update_form.html:81
+#: templates/contact/update_form.html:115
 msgid "If different from the first and last names above"
 msgstr "אם שונה משם ושם משפחה שמופיעים למעלה"
 
 #: templates/contact/login_signup_address.html:149
 #: templates/contact/login_signup_address.html:183
-#: templates/contact/update_form.html:101
-#: templates/contact/update_form.html:135
+#: templates/contact/update_form.html:102
+#: templates/contact/update_form.html:136
 msgid "Zipcode/Postcode"
 msgstr "מיקוד"
 
 #: templates/contact/login_signup_address.html:157
-#: templates/contact/update_form.html:109
+#: templates/contact/update_form.html:110
 msgid "Shipping Address"
 msgstr "כתובת משלוח"
 
 #: templates/contact/login_signup_address.html:162
-#: templates/contact/update_form.html:114
+#: templates/contact/update_form.html:115
 msgid "Ship To"
 msgstr "משלוח אל"
 
@@ -520,23 +514,23 @@ msgstr "הפרופיל שלך"
 msgid "Please correct the following error:"
 msgstr "אנא תקן את השגיאה:"
 
-#: templates/contact/update_form.html:49
+#: templates/contact/update_form.html:50
 msgid "You&apos;ll need to fill out at least the fields with a *"
 msgstr "עליך למלא לפחות את השדות המסומנים ב- *"
 
-#: templates/contact/update_form.html:51
+#: templates/contact/update_form.html:52
 msgid "Basic Information"
 msgstr "מידע בסיסי"
 
-#: templates/contact/update_form.html:52 templates/registration/login.html:17
+#: templates/contact/update_form.html:53 templates/registration/login.html:17
 msgid "Email address"
 msgstr "כתובת אימייל"
 
-#: templates/contact/update_form.html:65
+#: templates/contact/update_form.html:66
 msgid "Birthday"
 msgstr "תאריך לידה"
 
-#: templates/contact/update_form.html:144
+#: templates/contact/update_form.html:145
 msgid "Update"
 msgstr "עדכן"
 
@@ -609,7 +603,8 @@ msgid "Order History"
 msgstr "הסטוריית הזמנות"
 
 #: templates/contact/view_profile.html:41
-msgid "Sorry, the user you've logged in as doesn't have any contact information."
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
 msgstr "מצטערים, לא קיימים פרטים עבור שם המשתמש שלך"
 
 #: templates/contact/view_profile.html:41
@@ -640,8 +635,35 @@ msgstr "בעתיד, ניתן להכנס בעזרת כתובת האימייל ש�
 
 #: templates/registration/activate.html:21
 #, python-format
-msgid "Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for %(expiration_days)s days after registration."
-msgstr "לינק ההפעלה שלך שגוי, או שפג תוקף מפתח ההפעלה עבור חשבונך. מפתחות הפעלה פעילים רק למשך %(expiration_days)s יום לאחר ההרשמה."
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr ""
+"לינק ההפעלה שלך שגוי, או שפג תוקף מפתח ההפעלה עבור חשבונך. מפתחות הפעלה "
+"פעילים רק למשך %(expiration_days)s יום לאחר ההרשמה."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr ""
+"מישהו, בתקוה את(ה) נרשם לאתר %(site)s ונתן את כתובת האימייל הזו. אם זה את"
+"(ה), וברצונך להפעיל את חשבון המשתמש שלך, לחץ על הקישור למטה או העתק והדבק "
+"אותו לתוך שורת הכתובת בדפדפן שלך."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr ""
+"אם לא ביקשת זאת, אין צורך לעשות כלום. לא תקבל הודעות נוספות מאתנו, וחשבון "
+"המשתמש יפקע אוטומטית בעוד %(expiration_days)s ימים."
 
 #: templates/registration/login.html:19
 msgid "Password"
@@ -684,8 +706,11 @@ msgid "Password Change"
 msgstr "שינוי סיסמה"
 
 #: templates/registration/password_change_form.html:12
-msgid "For the sake of security, please enter your old password, and then enter your new password twice."
-msgstr "מטעמי אבטחת מידע, הכנס את הסיסמה הישנה, ואז הכנס פעמיים את הסיסמה החדשה."
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr ""
+"מטעמי אבטחת מידע, הכנס את הסיסמה הישנה, ואז הכנס פעמיים את הסיסמה החדשה."
 
 #: templates/registration/password_change_form.html:19
 msgid "Old password"
@@ -703,20 +728,55 @@ msgstr "סיסמה חדשה (שוב)"
 msgid "Change password"
 msgstr "שינוי סיסמה"
 
+#: templates/registration/password_reset.txt:2
+#, fuzzy
+msgid "You're receiving this e-mail because you requested a password reset"
+msgstr ""
+"אימייל זה נשלח אליך בגלל שביקשת לבצע איפוס סיסמה של חשבון המשתמש שלך ב- %"
+"(site_name)s"
+
+#: templates/registration/password_reset.txt:3
+#, python-format
+msgid "for your user account at %(site_name)s"
+msgstr ""
+
+#: templates/registration/password_reset.txt:5
+#, fuzzy
+msgid "Please go to the following page and choose a new password:"
+msgstr "אנא תקן את השגיאה:"
+
+#: templates/registration/password_reset.txt:9
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/registration/password_reset.txt:11
+msgid "Thanks for using our site!"
+msgstr "תודה שהשתמשת באתר שלנו!"
+
+#: templates/registration/password_reset.txt:13
+#, fuzzy, python-format
+msgid "The %(site_name)s team"
+msgstr "צוות %(site_name)s"
+
 #: templates/registration/password_reset_done.html:10
 msgid "Password reset successful"
 msgstr "הסיסמה אופסה בהצלחה"
 
 #: templates/registration/password_reset_done.html:12
-msgid "We've e-mailed a new password to the e-mail address you submitted. You should receive it shortly."
-msgstr "שלחנו אימייל המכיל את הסיסמה החדשה לכתובת שמסרת. אתה אמור לקבל אותו בקרוב."
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr ""
+"שלחנו אימייל המכיל את הסיסמה החדשה לכתובת שמסרת. אתה אמור לקבל אותו בקרוב."
 
 #: templates/registration/password_reset_form.html:10
 msgid "Reset your password"
 msgstr "אפס סיסמה"
 
 #: templates/registration/password_reset_form.html:12
-msgid "Forgotten your password? Enter your e-mail address below, and we'll send a new password to you."
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
 msgstr "שכחת את הסיסמה? הכנס את כתובת האימייל שלך למטה, ונשלח לך סיסמה חדשה."
 
 #: templates/registration/password_reset_form.html:19
@@ -741,8 +801,12 @@ msgid "Thank you for signing up."
 msgstr "תודה שנרשמת."
 
 #: templates/registration/registration_complete.html:14
-msgid "An activation link has been sent to the email address you supplied, along with instructions for activating your account."
-msgstr "קישור הפעלת משתמש נשלח לכתובת האימייל שרשמת, וכמו כן הוראות איך להפעיל את החשבון שלך."
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr ""
+"קישור הפעלת משתמש נשלח לכתובת האימייל שרשמת, וכמו כן הוראות איך להפעיל את "
+"החשבון שלך."
 
 #: templates/registration/registration_form.html:6
 msgid "Registration"
@@ -763,6 +827,49 @@ msgstr "חזור על תהליך הפעלת משתמש"
 #: templates/registration/repeat_activation.html:13
 msgid "This account has already been activated. Please login."
 msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
+
+#: templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "%(first_name)s %(last_name)s יקר/ה,"
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(company_name)s."
+msgstr "תודה שנרשמת ב %(company_name)s."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr "שם המשתמש החדש שלך הוא כתובת האימייל זו, ואת(ה) יכול להכנס למערכת ב"
+
+#: templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "בברכה"
+
+#: templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "הנהלת החנות"
+
+#~ msgid "Company"
+#~ msgstr "חברה"
+
+#~ msgid "Customer"
+#~ msgstr "לקוח"
+
+#~ msgid "Distributor"
+#~ msgstr "מפיץ"
+
+#~ msgid "Government"
+#~ msgstr "ממשלה"
+
+#~ msgid "Non-profit"
+#~ msgstr "ללא כוונת רווח"
+
+#~ msgid "Manufacturer"
+#~ msgstr "יצרן"
+
+#~ msgid "In Person"
+#~ msgstr "אישית"
 
 #~ msgid "Online"
 #~ msgstr "אונליין"
@@ -893,9 +1000,6 @@ msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
 #~ msgid "Downloadable product"
 #~ msgstr "מוצר ניתן להורדה"
 
-#~ msgid "Key"
-#~ msgstr "מפתח"
-
 #~ msgid "Number of attempts"
 #~ msgstr "מספר נסיונות"
 
@@ -965,14 +1069,13 @@ msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
 #~ msgid "Order tax details"
 #~ msgstr "פרטי מס בהזמנה"
 
-#~ msgid "The order you have requested doesn't exist, or you don't have access to it."
+#~ msgid ""
+#~ "The order you have requested doesn't exist, or you don't have access to "
+#~ "it."
 #~ msgstr "ההזמנה שביקשת לא קיימת או שאין לך הרשאה לצפות בה"
 
 #~ msgid "Discount"
 #~ msgstr "הנחה"
-
-#~ msgid "Contact Information"
-#~ msgstr "פרטי קשר"
 
 #~ msgid "Items Ordered"
 #~ msgstr "פריטים שהוזמנו"
@@ -1010,26 +1113,8 @@ msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
 #~ msgid "Order #"
 #~ msgstr "הזמנה #"
 
-#~ msgid "Dear %(first_name)s %(last_name)s,"
-#~ msgstr "%(first_name)s %(last_name)s יקר/ה,"
-
-#~ msgid "Regards"
-#~ msgstr "בברכה"
-
-#~ msgid "Store Management"
-#~ msgstr "הנהלת החנות"
-
-#~ msgid "Someone, hopefully you, signed up for a new account at %(site)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
-#~ msgstr "מישהו, בתקוה את(ה) נרשם לאתר %(site)s ונתן את כתובת האימייל הזו. אם זה את(ה), וברצונך להפעיל את חשבון המשתמש שלך, לחץ על הקישור למטה או העתק והדבק אותו לתוך שורת הכתובת בדפדפן שלך."
-
-#~ msgid "If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days."
-#~ msgstr "אם לא ביקשת זאת, אין צורך לעשות כלום. לא תקבל הודעות נוספות מאתנו, וחשבון המשתמש יפקע אוטומטית בעוד %(expiration_days)s ימים."
-
 #~ msgid "Your email address and password didn't match. Please try again."
 #~ msgstr "האימייל והסיסמה לא תואמים. נסה שנית."
-
-#~ msgid "You're receiving this e-mail because you requested a password reset for your user account at %(site_name)s"
-#~ msgstr "אימייל זה נשלח אליך בגלל שביקשת לבצע איפוס סיסמה של חשבון המשתמש שלך ב- %(site_name)s"
 
 #~ msgid "Your new password is"
 #~ msgstr "הסיסמה החדשה שלך היא"
@@ -1037,17 +1122,9 @@ msgstr "החשבון כבר פעיל. אנא בצע כניסה למערכת."
 #~ msgid "Feel free to change this password by going to this page"
 #~ msgstr "אתה יכול לשנות סיסמה זו על ידי מעבר לדף זה"
 
-#~ msgid "You can log in using your email address (%(email)s) or your username (%(username)s)."
-#~ msgstr "אתה יכול להכנס למערכת באמצעות כתובת האימייל (%(email)s) אובאמצעות שם המשתמש שלך %(username)s)."
-
-#~ msgid "Thanks for using our site!"
-#~ msgstr "תודה שהשתמשת באתר שלנו!"
-
-#~ msgid "The %(site_name)s team "
-#~ msgstr "צוות %(site_name)s"
-
-#~ msgid "Thank you for signing up with %(company_name)s."
-#~ msgstr "תודה שנרשמת ב %(company_name)s."
-
-#~ msgid "Your new username is this email address, and you can login at"
-#~ msgstr "שם המשתמש החדש שלך הוא כתובת האימייל זו, ואת(ה) יכול להכנס למערכת ב"
+#~ msgid ""
+#~ "You can log in using your email address (%(email)s) or your username (%"
+#~ "(username)s)."
+#~ msgstr ""
+#~ "אתה יכול להכנס למערכת באמצעות כתובת האימייל (%(email)s) אובאמצעות שם "
+#~ "המשתמש שלך %(username)s)."

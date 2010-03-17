@@ -2,8 +2,9 @@
 {% load i18n %}
 
 {% block extra-head %}
-<script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
-<script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+{% include "shop/_jquery.html" %}
+{% include "shop/_jquery_form.html" %}
+
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
 {% endif %}
@@ -39,8 +40,8 @@
 				{% trans "This is just a convenience, no account is required!" %}
 			</td>
 		</tr>
-		<tr><td><label for="id_username">{% trans "Name" %}:</label></td><td><input type="text" id="id_username" class="vTextField required" name="username" size="15" value="" maxlength="30" /></td></tr>
-		<tr><td><label for="id_password">{% trans "Password" %}:</label></td><td><input type="password" id="id_password" class="vPasswordField required" name="password" size="15" value="" maxlength="30" /></td></tr>
+		<tr><td><label for="id_username">{% trans "Username or email" %}:</label></td><td><input type="text" id="id_username" class="vTextField required" name="username" size="15" value="" maxlength="75" /></td></tr>
+        <tr><td><label for="id_password">{% trans "Password" %}:</label></td><td><input type="password" id="id_password" class="vPasswordField required" name="password" size="15" value="" maxlength="30" /></td></tr>
 		<tr><td>&nbsp;</td><td><input type="submit" value="{% trans "Login" %}" /></td></tr>
 </table>
 </form>
@@ -62,13 +63,13 @@
     <tr><td><label for="id_email">{% trans "Email address" %}*</label></td> <td>{{ form.email }}</td></tr>
     {% if form.email.errors %}<tr><td>&nbsp;</td><td>*** {{ form.email.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_first_name">{% trans "First name" %}*</label></td><td> {{ form.first_name }}</td></tr>
+    <tr><td><label for="id_first_name">{% trans "First name" %}{% if form.first_name.field.required %}*{% endif %}</label></td><td> {{ form.first_name }}</td></tr>
    {% if form.first_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.first_name.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_last_name">{% trans "Last name" %}*</label></td><td> {{ form.last_name }}</td></tr>
+    <tr><td><label for="id_last_name">{% trans "Last name" %}{% if form.last_name.field.required %}*{% endif %}</label></td><td> {{ form.last_name }}</td></tr>
     {% if form.last_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.last_name.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr><td><label for="id_phone">{% trans "Phone number" %}*</label></td><td> {{ form.phone }}</td></tr>
+    <tr><td><label for="id_phone">{% trans "Phone number" %}{% if form.phone.field.required %}*{% endif %}</label></td><td> {{ form.phone }}</td></tr>
     {% if form.phone.errors %}<tr><td>&nbsp;</td><td>*** {{ form.phone.errors|join:", " }}</td></tr>{% endif %}
 
     <tr><td colspan="2"><h4>{% trans "Billing Information" %}</h4></td></tr>
@@ -111,13 +112,13 @@
     <tr><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.ship_addressee }}</td></tr>
     {% if form.ship_addressee.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
 
-    <tr class="shiprow"><td><label for="id_ship_street1">{% trans "Street" %}</label></td><td> {{ form.ship_street1 }}</td></tr>
+    <tr class="shiprow"><td><label for="id_ship_street1">{% trans "Street" %} {% if form.ship_street1.field.required %}*{% endif %}</label></td><td> {{ form.ship_street1 }}</td></tr>
     {% if form.ship_street1.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_street1.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr class="shiprow"><td><label for="id_ship_street2">{% trans "Street" %}</label></td><td> {{ form.ship_street2 }}</td></tr>
+    <tr class="shiprow"><td><label for="id_ship_street2">{% trans "Street" %} {% if form.ship_street2.field.required %}*{%endif%}</label></td><td> {{ form.ship_street2 }}</td></tr>
     {% if form.ship_street2.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_street2.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr class="shiprow"><td><label for="id_ship_city">{% trans "City" %}</label></td><td> {{ form.ship_city }}</td></tr>
+    <tr class="shiprow"><td><label for="id_ship_city">{% trans "City" %} {% if form.ship_city.field.required %}*{% endif %}</label></td><td> {{ form.ship_city }}</td></tr>
     {% if form.ship_city.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_city.errors|join:", " }}</td></tr>{% endif %}
 
     {% if country %}
@@ -125,15 +126,15 @@
        <tr><td><label for="id_ship_state">{% if country.get_admin_area_display %}{{ country.get_admin_area_display }}{% else %}{% trans "State/Province" %}{% endif %}</label></td><td> {{ form.ship_state }}</td></tr>
       {% endif %}
     {% else %}
-      <tr class="shiprow"><td><label for="id_ship_state">{% trans "State/Province" %}</label></td><td> {{ form.ship_state }}</td></tr>
+      <tr class="shiprow"><td><label for="id_ship_state">{% trans "State/Province" %} {% if form.ship_state.field.required %}*{% endif %}</label></td><td> {{ form.ship_state }}</td></tr>
     {% endif %}
     {% if form.ship_state.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_state.errors|join:", " }}</td></tr>{% endif %}
 
-    <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
+    <tr class="shiprow"><td><label for="id_ship_postal_code">{% trans "Zipcode/Postcode" %} {% if form.ship_postal_code.field.required %}*{% endif %}</label></td><td>{{ form.ship_postal_code }}</td></tr>
     {% if form.ship_postal_code.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_postal_code.errors|join:", " }}</td></tr>{% endif %}
     
     {% if not country %}
-    <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %}</label></td><td> {{ form.ship_country }}</td></tr>
+    <tr class="shiprow"><td><label for="id_ship_country">{% trans "Country" %} {% if form.ship_country.field.required %}*{% endif %}</label></td><td> {{ form.ship_country }}</td></tr>
     {% if form.ship_country.errors %}<tr><td>&nbsp;</td><td>*** {{ form.ship_country.errors|join:", " }}</td></tr>{% endif %}
     {% endif %}
     

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 23:40+0200\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-04-30 23:35+0100\n"
 "Last-Translator: N.L. <kotorinl@yahoo.co.uk>\n"
 "Language-Team: Group\n"
@@ -19,37 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: SWEDEN\n"
 
-#: views.py:15
-#: templates/newsletter/subscribe_form.html:20
-#: templates/newsletter/unsubscribe_form.html:20
-#: templates/newsletter/update_form.html:20
-msgid "Email address"
-msgstr "E-postadress"
-
-#: models.py:32
-msgid "Email"
-msgstr "E-post"
-
-#: models.py:33
-msgid "Creation Date"
-msgstr "Skapat datum"
-
-#: templates/newsletter/subscribe_form.html:5
-#: templates/newsletter/unsubscribe_form.html:5
-#: templates/newsletter/update_form.html:5
-#: templates/newsletter/update_results.html:5
-msgid "Home"
-msgstr "Hem"
-
-#: config.py:6
+#: config.py:7
 msgid "Newsletter Settings"
 msgstr "Nyhetsbrevsinställningar"
 
-#: config.py:10
+#: config.py:11
 msgid "Active newsletter module"
 msgstr "Aktiv nyhetsbrevsmodul"
 
-#: config.py:11
+#: config.py:12
 msgid ""
 "Select a newsletter, save and reload to set any module-specific newsletter "
 "settings."
@@ -57,107 +35,144 @@ msgstr ""
 "Välj ett nyhetsbrev, spara och ladda om för att ställa in modulspecifika "
 "inställningar för nyhetsbrev."
 
-#: config.py:13
+#: config.py:14
 msgid "No newsletter"
 msgstr "Inget nyhetsbrev"
 
-#: config.py:14
+#: config.py:15
 msgid "Simple list"
 msgstr "Enkel lista"
 
-#: config.py:15
+#: config.py:16
 msgid "Mailman"
 msgstr "Mailman"
 
-#: config.py:20
+#: config.py:21
 msgid "Name of Newsletter"
 msgstr "Namn på nyhetsbrev"
 
-#: config.py:21
+#: config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
 msgstr ""
 "Ange det exakta namn som överensstämmer med mail-listan som upprättats i "
 "Mailman."
 
-#: mailman.py:27
-#: simple.py:18
-#, python-format
-msgid "Already subscribed %(email)s."
-msgstr "Prenumererar redan %(email)s."
+#: config.py:31
+#, fuzzy
+msgid "Newsletter Slug"
+msgstr "Nyhetsbrevsinställningar"
 
-#: mailman.py:29
-#: simple.py:20
-#, python-format
-msgid "Already removed %(email)s."
-msgstr "Redan borttagna %(email)s."
+#: config.py:32
+msgid "The url slug for the newsletter.  Requires server restart if changed."
+msgstr ""
 
-#: mailman.py:38
-#: mailman.py:74
-#: simple.py:29
-#, python-format
-msgid "Subscribed: %(email)s"
-msgstr "Upptecknad: %(email)s"
-
-#: mailman.py:41
-#: simple.py:31
-#, python-format
-msgid "Unsubscribed: %(email)s"
-msgstr "Uppsagd prenumeration: %(email)s"
-
-#: mailman.py:66
-#, python-format
-msgid "Already Subscribed: %s"
-msgstr "Prenumererar redan: %s"
-
-#: mailman.py:77
-#, python-format
-msgid "Already a member: %(email)s"
-msgstr "Redan medlem: %(email)s"
-
-#: mailman.py:81
-msgid "Bad/Invalid email address: blank line"
-msgstr "Ogiltig e-postadress: blank rad"
-
-#: mailman.py:83
-#, python-format
-msgid "Bad/Invalid email address: %(email)s"
-msgstr "Ogiltig e-postadress: %(email)s"
-
-#: mailman.py:86
-#, python-format
-msgid "Hostile address (illegal characters): %(email)s"
-msgstr "Ej ren adress (ogiltiga tecken): %(email)s"
-
-#: models.py:31
-msgid "Subscribed"
-msgstr "Prenumerera på"
-
-#: models.py:34
-msgid "Update Date"
-msgstr "Uppdaterad datum"
-
-#: views.py:14
+#: forms.py:16
 msgid "Full Name"
 msgstr "Fullständigt namn"
 
-#: views.py:16
-#: templates/newsletter/subscribe_form.html:23
+#: forms.py:17 templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "E-postadress"
+
+#: forms.py:18 templates/newsletter/subscribe_form.html:23
 #: templates/newsletter/update_form.html:22
 #: templates/newsletter/update_form.html:24
 msgid "Subscribe"
 msgstr "Prenumerera"
 
-#: views.py:53
+#: mailman.py:44 simple.py:35
+#, fuzzy, python-format
+msgid "Updated subscription for %(email)s."
+msgstr "Prenumererar redan %(email)s."
+
+#: mailman.py:46 simple.py:37
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "Prenumererar redan %(email)s."
+
+#: mailman.py:48 simple.py:40
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "Redan borttagna %(email)s."
+
+#: mailman.py:58 mailman.py:95 simple.py:50
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "Upptecknad: %(email)s"
+
+#: mailman.py:61 simple.py:52
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "Uppsagd prenumeration: %(email)s"
+
+#: mailman.py:87
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "Prenumererar redan: %s"
+
+#: mailman.py:98
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "Redan medlem: %(email)s"
+
+#: mailman.py:102
+msgid "Bad/Invalid email address: blank line"
+msgstr "Ogiltig e-postadress: blank rad"
+
+#: mailman.py:104
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "Ogiltig e-postadress: %(email)s"
+
+#: mailman.py:107
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "Ej ren adress (ogiltiga tecken): %(email)s"
+
+#: models.py:37
+msgid "Subscribed"
+msgstr "Prenumerera på"
+
+#: models.py:38
+msgid "Email"
+msgstr "E-post"
+
+#: models.py:39
+msgid "Creation Date"
+msgstr "Skapat datum"
+
+#: models.py:40
+msgid "Update Date"
+msgstr "Uppdaterad datum"
+
+#: models.py:102
+msgid "Attribute Name"
+msgstr ""
+
+#: models.py:103
+msgid "Value"
+msgstr ""
+
+#: models.py:106
+msgid "Subscription Attribute"
+msgstr ""
+
+#: models.py:107
+msgid "Subscription Attributes"
+msgstr ""
+
+#: views.py:40
 msgid "Error, not valid."
 msgstr "Fel, ogiltigt."
 
-#: templates/newsletter/subscribe_form.html:13
-#: templates/newsletter/unsubscribe_form.html:13
-#: templates/newsletter/update_form.html:13
-msgid "Please correct the following error:"
-msgid_plural "Please correct the following errors:"
-msgstr[0] "Var god rätta till felet nedan."
-msgstr[1] ""
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Hem"
 
 #: templates/newsletter/subscribe_form.html:6
 #: templates/newsletter/subscribe_form.html:10
@@ -167,6 +182,14 @@ msgstr[1] ""
 #: templates/newsletter/update_results.html:10
 msgid "Newsletter Subscription"
 msgstr "Prenumation på nyhetsbrev"
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Var god rätta till felet nedan."
+msgstr[1] ""
 
 #: templates/newsletter/subscribe_form.html:18
 #: templates/newsletter/unsubscribe_form.html:18
@@ -182,4 +205,3 @@ msgstr "Säg upp prenumeration på nyhetsbrev"
 #: templates/newsletter/unsubscribe_form.html:22
 msgid "Remove Me"
 msgstr "Ta bort mig"
-

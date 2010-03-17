@@ -5,26 +5,23 @@ from satchmo_store.shop.models import ORDER_STATUS
 
 register = template.Library()
 
-def payment_label(value):
+@register.filter
+def payment_label(group):
     """convert a payment key into its translated text"""
-    
-    payments = config_get("PAYMENT", "MODULES")
-    for mod in payments.value:
-        config = config_get_group(mod)
-        if config.KEY.value == value:
-            return translation.ugettext(config.LABEL)
-    return value.capitalize()
+    if not group.startswith('PAYMENT_'):
+        group = "PAYMENT_" + group.upper()
+    config = config_get_group(group)
+    label = translation.ugettext(config.LABEL.value)
+    return label.capitalize()
 
-register.filter(payment_label)
-
+@register.inclusion_tag('payment/_order_payment_summary.html')
 def order_payment_summary(order, paylink=False):
     """Output a formatted block giving attached payment details."""
    
     return {'order' : order,
         'paylink' : paylink}
 
-register.inclusion_tag('payment/_order_payment_summary.html')(order_payment_summary)
-
+@register.filter
 def status_label(value):
     """convert a order status into its translated text"""
    
@@ -32,5 +29,3 @@ def status_label(value):
         if status == value:
             return descr
     return value
-
-register.filter(status_label)

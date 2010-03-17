@@ -1,0 +1,49 @@
+Customizing Admin 
+=================
+
+Satchmo does not make extensive modifications to the default
+Django admin. However, it is relatively straightforward to make
+changes to the admin for your needs - without modifying Satchmo's
+core.
+
+Modifying the Product Model
+---------------------------
+The default Product admin model displays all possible fields and makes some
+assumptions about what you would like to see. If you would like to modify
+the admin to use special widgets or change fields that are displayed, use
+``admin.site.unregister`` to unregister the current product model and add
+your own.
+
+Assuming you have a localapp ``admin.py`` file, use code similar to the example below::
+
+    from django.contrib import admin
+    from django.db import models
+    from product.models import Product
+    from product.admin import ProductOptions
+    from tinymce.widgets import AdminTinyMCE
+    
+    
+    """
+    Rest of your admin models go here.
+    """
+    
+    admin.site.unregister(Product)
+
+    class CustomProductAdmin(ProductOptions):
+        formfield_overrides = {
+            models.TextField: {'widget': AdminTinyMCE},
+            }
+        list_display = ('name', 'unit_price', 'items_in_stock', 'active','featured')
+        list_display_links = ('name',)
+
+    admin.site.register(Product, CustomProductAdmin)
+
+This code does a couple of things:
+
+  * Replace the default Text Editor widget with `TinyMCE widget <http://code.google.com/p/django-tinymce/>`_
+  * Changes the columns in the list_display to be a subset of the default
+  * Ensures that the name is a link to the product
+
+.. Note::
+    These changes must be included in an application that is listed after 
+    all the other Satchmo Apps in ``INSTALLED_APPS``

@@ -15,7 +15,7 @@ def default_product_search_listener(sender, request=None, category=None, keyword
     site = Site.objects.get_current()
     products = Product.objects.all()
     productkwargs = {
-        'productvariation__parent__isnull' : True,
+        #'productvariation__parent__isnull' : True,
         'active' : True,
         'site' : site
     }
@@ -44,7 +44,7 @@ def default_product_search_listener(sender, request=None, category=None, keyword
             | Q(meta__icontains=keyword)
             | Q(sku__iexact=keyword),
             **productkwargs)
-                            
+
     results.update({
         'categories': categories, 
         'products': products

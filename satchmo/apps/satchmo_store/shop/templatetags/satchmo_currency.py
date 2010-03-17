@@ -38,10 +38,7 @@ def currency(value, args=""):
     except InvalidOperation:
         log.error("Could not convert value '%s' to decimal", value)
         raise
-        
-    if not 'places' in kwargs:
-        kwargs['places'] = 2
-        
+
     return mark_safe(moneyfmt(value, **kwargs))
 
 register.filter('currency', currency)

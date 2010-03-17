@@ -2,7 +2,7 @@
 Urls for Product Brand module, note that you do not have to add this to your urls file, it will get automatically included by collect_urls.
 """
 from django.conf.urls.defaults import *
-from livesettings import config_value
+from satchmo_store.shop import get_satchmo_setting
 import logging
 
 log = logging.getLogger('brand.urls')
@@ -13,7 +13,9 @@ urlpatterns = patterns('satchmo_ext.brand.views',
     (r'^(?P<brandname>.*)/$', 'brand_page', {}, 'satchmo_brand_view'),
 )
 
-brandbase = r'^' + config_value('PRODUCT','BRAND_SLUG') + '/'    
+brandbase = r'^' + get_satchmo_setting('BRAND_SLUG') + '/'
+
+prodbase = r'^' + get_satchmo_setting('PRODUCT_SLUG') + '/'
 brandpatterns = patterns('',
     (brandbase, include('satchmo_ext.brand.urls'))
 )

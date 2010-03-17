@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: French\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-#: models.py:16
-msgid "Description"
-msgstr "Description"
-
-#: models.py:23
-#: models.py:30
-msgid "Tax Class"
-msgstr "Type de taxe"
 
 #: config.py:7
 msgid "Tax Settings"
@@ -35,81 +26,88 @@ msgstr "Activer le module de taxation"
 
 #: config.py:11
 msgid "Select a module, save and reload to set any module-specific settings."
-msgstr "Sélectionnez un module, sauvez et recharger pour activer les paramètres spécifiques à ce module."
+msgstr ""
+"Sélectionnez un module, sauvez et recharger pour activer les paramètres "
+"spécifiques à ce module."
 
 #: config.py:13
 msgid "No Tax"
 msgstr "Pas de taxe"
 
-#: config.py:18
+#: config.py:19
 msgid "Show with tax included"
 msgstr "Montrer avec la taxe incluse"
 
-#: config.py:19
+#: config.py:20
 msgid "If yes, then all products and the cart will display with tax included."
-msgstr "Si oui, alors tous les produits et le panier seront affichés taxes comprises."
+msgstr ""
+"Si oui, alors tous les produits et le panier seront affichés taxes comprises."
 
-#: models.py:14
-msgid "Title"
-msgstr "Titre"
+#: config.py:26
+msgid "New products are automatically made taxable"
+msgstr ""
 
-#: models.py:15
-msgid "Displayed title of this tax."
-msgstr "Titre affiché pour cette taxe"
+#: config.py:27
+msgid "Whether newly created products should be taxable by default."
+msgstr ""
 
-#: models.py:17
-msgid "Description of products that would be taxed."
-msgstr "Description des produits taxés."
+#: config.py:34
+msgid "Should tax be calculated based on shipping or billing address?"
+msgstr ""
 
-#: models.py:24
-msgid "Tax Classes"
-msgstr "Types de taxe"
+#: config.py:35
+msgid "This will only be used if tax is calculated based on an address."
+msgstr ""
 
-#: models.py:33
-msgid "Tax Zone"
-msgstr "Zone de taxation"
-
-#: models.py:36
-msgid "Tax Country"
-msgstr "Pays de taxation"
-
-#: models.py:37
-#: models.py:49
-msgid "Percentage"
-msgstr "Pourcentage"
-
-#: models.py:38
-msgid "% tax for this area and type"
-msgstr "pourcentage de taxe pour cette zone et ce type"
-
-#: models.py:62
+#: modules/area/admin.py:14
 msgid "You must choose a zone or a country."
 msgstr "Vous devez choisir une zone ou un pays."
 
-#: models.py:65
-msgid "Tax Rate"
-msgstr "Taux de taxe"
-
-#: models.py:66
-msgid "Tax Rates"
-msgstr "Taux de taxe"
-
-#: modules/area/config.py:11
+#: modules/area/config.py:6
 msgid "By Country/Area"
 msgstr "Par pays/zone"
 
-#: modules/area/config.py:33
-#: modules/percent/config.py:19
+#: modules/area/config.py:12 modules/percent/config.py:19
 msgid "Tax Shipping?"
 msgstr "Frais de port taxés?"
 
-#: modules/area/config.py:42
+#: modules/area/config.py:21 modules/us_sst/config.py:21
 msgid "TaxClass for shipping"
 msgstr "Classe de taxation pour l'expédition"
 
-#: modules/area/config.py:43
+#: modules/area/config.py:22 modules/us_sst/config.py:22
 msgid "Select a TaxClass that should be applied for shipments."
-msgstr "Sélectionnez une classe de taxation qui sera appliquée pour les frais d'expédition."
+msgstr ""
+"Sélectionnez une classe de taxation qui sera appliquée pour les frais "
+"d'expédition."
+
+#: modules/area/models.py:10 modules/us_sst/models.py:57
+msgid "Tax Class"
+msgstr "Type de taxe"
+
+#: modules/area/models.py:12 modules/us_sst/models.py:59
+msgid "Tax Zone"
+msgstr "Zone de taxation"
+
+#: modules/area/models.py:14 modules/us_sst/models.py:61
+msgid "Tax Country"
+msgstr "Pays de taxation"
+
+#: modules/area/models.py:15 modules/area/models.py:27
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: modules/area/models.py:16
+msgid "% tax for this area and type"
+msgstr "pourcentage de taxe pour cette zone et ce type"
+
+#: modules/area/models.py:36 modules/us_sst/models.py:155
+msgid "Tax Rate"
+msgstr "Taux de taxe"
+
+#: modules/area/models.py:37 modules/us_sst/models.py:156
+msgid "Tax Rates"
+msgstr "Taux de taxe"
 
 #: modules/percent/config.py:5
 msgid "Percent Tax"
@@ -119,3 +117,359 @@ msgstr "Pourcentage de taxation"
 msgid "Percent tax"
 msgstr "Pourcentage de taxation"
 
+#: modules/us_sst/admin.py:97
+msgid "Zip-5 records need a high and a low."
+msgstr ""
+
+#: modules/us_sst/admin.py:104
+msgid "Zip+4 records need a high and a low for both parts."
+msgstr ""
+
+#: modules/us_sst/admin.py:111
+msgid "Address rocord needs: low, high, street, city, zip, zip+4"
+msgstr ""
+
+#: modules/us_sst/config.py:5
+msgid "USA: Streamlined Sales Tax"
+msgstr ""
+
+#: modules/us_sst/config.py:12
+msgid "Tax Shipping in ANY jurisdiction?"
+msgstr ""
+
+#: modules/us_sst/models.py:62
+#, fuzzy
+msgid "Taxable?"
+msgstr "Taux de taxe"
+
+#: modules/us_sst/models.py:63
+msgid "Use Intrastate rate instead of Interstate?"
+msgstr ""
+
+#: modules/us_sst/models.py:65
+msgid "Use food/drug rate instead of general?"
+msgstr ""
+
+#: modules/us_sst/models.py:86
+#, fuzzy
+msgid "Taxable Class"
+msgstr "Type de taxe"
+
+#: modules/us_sst/models.py:87
+#, fuzzy
+msgid "Taxable Classes"
+msgstr "Types de taxe"
+
+#: modules/us_sst/models.py:138 modules/us_sst/models.py:235
+msgid "FIPS State Code"
+msgstr ""
+
+#: modules/us_sst/models.py:140
+msgid "Type"
+msgstr ""
+
+#: modules/us_sst/models.py:142
+msgid "FIPS Code"
+msgstr ""
+
+#: modules/us_sst/models.py:144
+msgid "General Tax Rate - Intrastate"
+msgstr ""
+
+#: modules/us_sst/models.py:146
+msgid "General Tax Rate - Interstate"
+msgstr ""
+
+#: modules/us_sst/models.py:148
+msgid "Food/Drug Tax Rate - Intrastate"
+msgstr ""
+
+#: modules/us_sst/models.py:150
+msgid "Food/Drug Tax Rate - Interstate"
+msgstr ""
+
+#: modules/us_sst/models.py:151 modules/us_sst/models.py:195
+msgid "Effective Start Date"
+msgstr ""
+
+#: modules/us_sst/models.py:152 modules/us_sst/models.py:196
+msgid "Effective End Date"
+msgstr ""
+
+#: modules/us_sst/models.py:194
+msgid "Boundry Type"
+msgstr ""
+
+#: modules/us_sst/models.py:198
+msgid "Low Address Range"
+msgstr ""
+
+#: modules/us_sst/models.py:200
+msgid "High Address Range"
+msgstr ""
+
+#: modules/us_sst/models.py:202
+msgid "Odd / Even Range Indicator"
+msgstr ""
+
+#: modules/us_sst/models.py:204
+msgid "State Pre-Directional Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:206
+msgid "Street Name"
+msgstr ""
+
+#: modules/us_sst/models.py:208
+msgid "Street Suffix Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:210
+msgid "Street Post Directional"
+msgstr ""
+
+#: modules/us_sst/models.py:212
+msgid "Address Secondary - Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:214
+msgid "Address Secondary - Low"
+msgstr ""
+
+#: modules/us_sst/models.py:216
+msgid "Address Secondary - High"
+msgstr ""
+
+#: modules/us_sst/models.py:218
+msgid "Address Secondary - Odd/Even"
+msgstr ""
+
+#: modules/us_sst/models.py:220
+msgid "City Name"
+msgstr ""
+
+#: modules/us_sst/models.py:222
+msgid "Zip Code"
+msgstr ""
+
+#: modules/us_sst/models.py:224
+msgid "Zip Code - Plus 4"
+msgstr ""
+
+#: modules/us_sst/models.py:226
+msgid "Zip Code - Low"
+msgstr ""
+
+#: modules/us_sst/models.py:228
+msgid "Zip Code Extension - Low"
+msgstr ""
+
+#: modules/us_sst/models.py:230
+msgid "Zip Code - High"
+msgstr ""
+
+#: modules/us_sst/models.py:232
+msgid "Zip Code Extension - High"
+msgstr ""
+
+#: modules/us_sst/models.py:233
+msgid "Composite SER Code"
+msgstr ""
+
+#: modules/us_sst/models.py:237
+msgid "FIPS State Indicator"
+msgstr ""
+
+#: modules/us_sst/models.py:239
+msgid "FIPS County Code"
+msgstr ""
+
+#: modules/us_sst/models.py:241
+msgid "FIPS Place Code"
+msgstr ""
+
+#: modules/us_sst/models.py:243
+msgid "FIPS Place Type"
+msgstr ""
+
+#: modules/us_sst/models.py:244
+msgid "FIPS Special 1 code"
+msgstr ""
+
+#: modules/us_sst/models.py:245
+msgid "FIPS Special 1 type"
+msgstr ""
+
+#: modules/us_sst/models.py:246
+msgid "FIPS Special 2 code"
+msgstr ""
+
+#: modules/us_sst/models.py:247
+msgid "FIPS Special 2 type"
+msgstr ""
+
+#: modules/us_sst/models.py:248
+msgid "FIPS Special 3 code"
+msgstr ""
+
+#: modules/us_sst/models.py:249
+msgid "FIPS Special 3 type"
+msgstr ""
+
+#: modules/us_sst/models.py:250
+msgid "FIPS Special 4 code"
+msgstr ""
+
+#: modules/us_sst/models.py:251
+msgid "FIPS Special 4 type"
+msgstr ""
+
+#: modules/us_sst/models.py:252
+msgid "FIPS Special 5 code"
+msgstr ""
+
+#: modules/us_sst/models.py:253
+msgid "FIPS Special 5 type"
+msgstr ""
+
+#: modules/us_sst/models.py:254
+msgid "FIPS Special 6 code"
+msgstr ""
+
+#: modules/us_sst/models.py:255
+msgid "FIPS Special 6 type"
+msgstr ""
+
+#: modules/us_sst/models.py:256
+msgid "FIPS Special 7 code"
+msgstr ""
+
+#: modules/us_sst/models.py:257
+msgid "FIPS Special 7 type"
+msgstr ""
+
+#: modules/us_sst/models.py:258
+msgid "FIPS Special 8 code"
+msgstr ""
+
+#: modules/us_sst/models.py:259
+msgid "FIPS Special 8 type"
+msgstr ""
+
+#: modules/us_sst/models.py:260
+msgid "FIPS Special 9 code"
+msgstr ""
+
+#: modules/us_sst/models.py:261
+msgid "FIPS Special 9 type"
+msgstr ""
+
+#: modules/us_sst/models.py:262
+msgid "FIPS Special 10 code"
+msgstr ""
+
+#: modules/us_sst/models.py:263
+msgid "FIPS Special 10 type"
+msgstr ""
+
+#: modules/us_sst/models.py:264
+msgid "FIPS Special 11 code"
+msgstr ""
+
+#: modules/us_sst/models.py:265
+msgid "FIPS Special 11 type"
+msgstr ""
+
+#: modules/us_sst/models.py:266
+msgid "FIPS Special 12 code"
+msgstr ""
+
+#: modules/us_sst/models.py:267
+msgid "FIPS Special 12 type"
+msgstr ""
+
+#: modules/us_sst/models.py:268
+msgid "FIPS Special 13 code"
+msgstr ""
+
+#: modules/us_sst/models.py:269
+msgid "FIPS Special 13 type"
+msgstr ""
+
+#: modules/us_sst/models.py:270
+msgid "FIPS Special 14 code"
+msgstr ""
+
+#: modules/us_sst/models.py:271
+msgid "FIPS Special 14 type"
+msgstr ""
+
+#: modules/us_sst/models.py:272
+msgid "FIPS Special 15 code"
+msgstr ""
+
+#: modules/us_sst/models.py:273
+msgid "FIPS Special 15 type"
+msgstr ""
+
+#: modules/us_sst/models.py:274
+msgid "FIPS Special 16 code"
+msgstr ""
+
+#: modules/us_sst/models.py:275
+msgid "FIPS Special 16 type"
+msgstr ""
+
+#: modules/us_sst/models.py:276
+msgid "FIPS Special 17 code"
+msgstr ""
+
+#: modules/us_sst/models.py:277
+msgid "FIPS Special 17 type"
+msgstr ""
+
+#: modules/us_sst/models.py:278
+msgid "FIPS Special 18 code"
+msgstr ""
+
+#: modules/us_sst/models.py:279
+msgid "FIPS Special 18 type"
+msgstr ""
+
+#: modules/us_sst/models.py:280
+msgid "FIPS Special 19 code"
+msgstr ""
+
+#: modules/us_sst/models.py:281
+msgid "FIPS Special 19 type"
+msgstr ""
+
+#: modules/us_sst/models.py:282
+msgid "FIPS Special 20 code"
+msgstr ""
+
+#: modules/us_sst/models.py:283
+msgid "FIPS Special 20 type"
+msgstr ""
+
+#: modules/us_sst/models.py:390
+#, fuzzy
+msgid "Tax Boundry"
+msgstr "Pays de taxation"
+
+#: modules/us_sst/models.py:391
+#, fuzzy
+msgid "Tax Boundries"
+msgstr "Zone de taxation"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Title"
+#~ msgstr "Titre"
+
+#~ msgid "Displayed title of this tax."
+#~ msgstr "Titre affiché pour cette taxe"
+
+#~ msgid "Description of products that would be taxed."
+#~ msgstr "Description des produits taxés."

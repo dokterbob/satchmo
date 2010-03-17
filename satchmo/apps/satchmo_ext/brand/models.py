@@ -26,7 +26,7 @@ class Brand(models.Model, TranslatedObjectMixin):
     """A product brand"""
     site = models.ForeignKey(Site)
     slug = models.SlugField(_("Slug"), unique=True,
-        help_text=_("Used for URLs"))
+    help_text=_("Used for URLs"))
     products = models.ManyToManyField(Product, blank=True, verbose_name=_("Products"), through='BrandProduct')
     ordering = models.IntegerField(_("Ordering"))
     active = models.BooleanField(default=True)
@@ -176,6 +176,6 @@ class BrandCategoryTranslation(models.Model):
         ordering=('languagecode', )
         verbose_name_plural = _('Brand Category Translations')
 
-import config        
+#import config        
 from urls import add_brand_urls
 collect_urls.connect(add_brand_urls, sender=product)

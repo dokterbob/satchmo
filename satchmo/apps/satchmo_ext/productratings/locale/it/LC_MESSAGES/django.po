@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 09:16-0700\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-09-30 13:13+0200\n"
 "Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -26,13 +26,12 @@ msgstr "Abilita Askismet nelle valutazioni"
 msgid "Akismet API Key"
 msgstr "Chiave API di Akismet"
 
-#: models.py:9
-#: templates/productratings/_product_ratings.html:17
+#: models.py:11 templates/productratings/_product_ratings.html:17
 msgid "Rating"
 msgstr "Valutazione"
 
-#: utils.py:54
 # translated = "Gruppo di impostazioni:% (nome) s"
+#: utils.py:49
 msgid "Not Rated"
 msgstr "Non Valutato"
 
@@ -57,3 +56,6 @@ msgstr "Recensisci questo prodotto"
 msgid "Please login to review this product."
 msgstr "Per recensire un prodotto è necessario fare il login."
 
+#: templates/productratings/plugins/sidebar_links.html:3
+msgid "Most Popular"
+msgstr ""

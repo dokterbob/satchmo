@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.contrib.comments.models import Comment
 from django.contrib.sites.models import Site
+from django.db.models import Avg
 from django.utils.translation import ugettext_lazy as _
+from satchmo_ext.productratings.models import ProductRating
 import logging
 import operator
 
@@ -24,24 +26,15 @@ def get_product_rating(product, site=None):
     
     site = site.id
     manager = Comment.objects
-    comments = manager.filter(object_pk__exact=str(product.id),
+    comment_pks = manager.filter(object_pk__exact=str(product.id),
                                content_type__app_label__exact='product',
                                content_type__model__exact='product',
                                site__id__exact=site,
-                               is_public__exact=True)
-    ratings = []
-    for comment in comments:
-        if hasattr(comment,'productrating'):
-            rating = comment.productrating.rating
-            if rating > 0:
-                ratings.append(rating)
-
-    log.debug("Ratings: %s", ratings)
-    if ratings:
-        return average(ratings)
-    
-    else:
-        return None
+                               is_public__exact=True).values_list('pk', flat=True)
+    rating = ProductRating.objects.filter(comment__in=comment_pks
+        ).aggregate(average=Avg('rating'))['average']
+    log.debug("Rating: %s", rating)
+    return rating
 
 def get_product_rating_string(product, site=None):
     """Get the average product rating as a string, for use in templates"""

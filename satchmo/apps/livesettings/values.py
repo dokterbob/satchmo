@@ -6,7 +6,10 @@ from decimal import Decimal
 from django import forms
 from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
-from django.utils import simplejson
+try:
+    from django.utils import simplejson
+except ImportError:
+    import simplejson
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, ugettext_lazy as _

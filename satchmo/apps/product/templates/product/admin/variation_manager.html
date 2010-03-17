@@ -16,8 +16,8 @@
 	#variation_options li {	list-style: none; }
 	</style>
 	{% blackbird_logging %}
-    <script type="text/javascript" src="{{media_url}}js/jquery.js"></script>
-    <script type="text/javascript" src="{{media_url}}js/jquery.form.js"></script>
+    {% include "shop/_jquery.html" %}
+    {% include "shop/_jquery_form.html" %}
     <script type="text/javascript">
     var satchmo = satchmo || {};
     

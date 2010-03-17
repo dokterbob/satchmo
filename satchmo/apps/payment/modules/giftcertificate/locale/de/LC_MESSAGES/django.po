@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 15:10+0100\n"
+"POT-Creation-Date: 2010-02-28 19:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,215 +15,178 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:37
-msgid "Email"
-msgstr "eMail"
-
-#: models.py:96
-msgid "Notes"
-msgstr "Notizen"
-
-#: templates/checkout/confirm.html:9
-#: templates/checkout/giftcertificate/confirm.html:9
-#: templates/giftcertificate/balance.html:5
-#: templates/product/detail_giftcertificateproduct.html:14
-msgid "Home"
-msgstr "Start"
-
-#: models.py:29
-msgid "Order"
-msgstr "Bestellung"
-
-#: models.py:118
-msgid "Product"
-msgstr "Produkt"
-
-#: models.py:99
-msgid "Order Payment"
-msgstr "Bezahlung"
-
-#: config.py:8
-#: models.py:90
-#: templates/giftcertificate/_order_summary.html:7
+#: config.py:6 models.py:96 templates/giftcertificate/_order_summary.html:7
 #: templates/giftcertificate/balance.html:13
-#: templates/product/detail_giftcertificateproduct.html:29
+#: templates/product/detail_giftcertificateproduct.html:9
 msgid "Gift Certificate"
 msgstr "Geschenkgutschein"
 
-#: config.py:11
+#: config.py:9
 msgid "Gift Certificate Settings"
 msgstr "Geschenkgutscheineinstellungen"
 
-#: config.py:18
+#: config.py:14
 msgid "Use SSL for the checkout pages?"
 msgstr ""
 
-#: config.py:23
+#: config.py:19
 msgid "Character Set"
 msgstr "Zeichensatz"
 
-#: config.py:25
+#: config.py:21
 msgid ""
 "The characters allowable in randomly-generated certficate codes.  No vowels "
 "means no unfortunate words."
 msgstr ""
 
-#: config.py:29
+#: config.py:25
 msgid "Module key"
 msgstr "Modulschlüssel"
 
-#: config.py:35
+#: config.py:31
 msgid "Code format"
 msgstr "Codeformat"
 
-#: config.py:37
+#: config.py:33
 msgid ""
 "Enter the format for your cert code.  Use a '^' for the location of a "
 "randomly generated character."
 msgstr ""
 
-#: config.py:41
+#: config.py:37
 msgid "Implementation module"
 msgstr "Implementierungsmodule"
 
-#: config.py:47
+#: config.py:43
 msgid "English name for this group on the checkout screens"
 msgstr ""
 
-#: config.py:49
+#: config.py:45
 msgid "This will be passed to the translation utility"
 msgstr ""
 
-#: config.py:53
+#: config.py:49
+msgid "Accept real payments"
+msgstr ""
+
+#: config.py:50
+msgid "False if you want to be in test mode"
+msgstr ""
+
+#: config.py:55
 msgid ""
 "The url base used for constructing urlpatterns which will use this module"
+msgstr ""
+
+#: config.py:60
+msgid "Verbose logs"
+msgstr ""
+
+#: config.py:61
+msgid "Add extensive logs during post."
 msgstr ""
 
 #: forms.py:6
 msgid "Code"
 msgstr ""
 
-#: models.py:28
+#: models.py:31
 msgid "Site"
 msgstr ""
 
-#: models.py:30
+#: models.py:32
+msgid "Order"
+msgstr "Bestellung"
+
+#: models.py:33
 msgid "Certificate Code"
 msgstr "Gutscheincode"
 
-#: models.py:32
+#: models.py:35
 msgid "Purchased by"
 msgstr "Gekauft von"
 
-#: models.py:34
+#: models.py:37
 msgid "Date added"
 msgstr "angelegt am"
 
-#: models.py:35
+#: models.py:38
 msgid "Valid"
 msgstr "Gültig"
 
-#: models.py:36
+#: models.py:39
 msgid "Message"
 msgstr "Nachricht"
 
-#: models.py:38
+#: models.py:40
+msgid "Email"
+msgstr "eMail"
+
+#: models.py:41
 msgid "Starting Balance"
 msgstr "Startdatum"
 
-#: models.py:91
-#: templates/giftcertificate/balance.html:6
+#: models.py:97 templates/giftcertificate/balance.html:6
 msgid "Gift Certificates"
 msgstr "Geschenkgutscheine"
 
-#: models.py:95
+#: models.py:101
 msgid "Date of usage"
 msgstr "Gebrauchsdatum"
 
-#: models.py:97
+#: models.py:102
+msgid "Notes"
+msgstr "Notizen"
+
+#: models.py:103
 msgid "Amount Used"
 msgstr "verwendeter Betrag"
 
-#: models.py:100
+#: models.py:105
+msgid "Order Payment"
+msgstr "Bezahlung"
+
+#: models.py:106
 msgid "Used by"
 msgstr "verwendet durch"
 
-#: models.py:150
+#: models.py:123
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:161
 msgid "Gift certificate product"
 msgstr "Geschenkgutscheinprodukt"
 
-#: models.py:151
+#: models.py:162
 msgid "Gift certificate products"
 msgstr "Geschenkgutscheinprodukte"
 
-#: processor.py:24
+#: processor.py:30
 msgid "No balance to pay"
 msgstr ""
 
-#: processor.py:33
+#: processor.py:41
 #, fuzzy
 msgid "No such Gift Certificate"
 msgstr "Diesen Geschenkgutschein gibt es nicht"
 
-#: processor.py:38
+#: processor.py:46
 msgid "Bad Gift Certificate"
 msgstr "Falscher Geschenkgutschein"
 
-#: processor.py:43
+#: processor.py:52
 msgid "Success"
 msgstr "Erfolg"
 
-#: processor.py:47
+#: processor.py:56
 #, python-format
 msgid "%s balance remains after gift certificate was applied"
 msgstr ""
 
-#: templates/checkout/confirm.html:10
-#: templates/checkout/giftcertificate/confirm.html:10
-msgid "Checkout"
-msgstr "Bestellen"
-
-#: templates/checkout/confirm.html:14
-#: templates/checkout/giftcertificate/confirm.html:14
-msgid "Payment"
-msgstr "Bezahlung"
-
-#: templates/checkout/confirm.html:20
-#, python-format
-msgid "Order total: %(orderbalance)s"
-msgstr "Bestellung Gesamt: %(orderbalance)s"
-
-#: templates/checkout/confirm.html:21
-#, python-format
-msgid ""
-"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
-"s total available to pay for your order."
-msgstr ""
-
-#: templates/checkout/confirm.html:22
-msgid ""
-"If there isn't enough remaining to pay for the whole order, you'll be able "
-"to select another form of payment for the balance after you use this gift "
-"certificate."
-msgstr ""
-
-#: templates/checkout/giftcertificate/confirm.html:6
-msgid "Please Note:"
-msgstr "Bitte merken:"
-
-#: templates/checkout/giftcertificate/confirm.html:19
-#, python-format
-msgid ""
-"About to use your gift certificate: %(giftcode)s, which has a balance of %"
-"(balance)s."
-msgstr ""
-
-#: templates/checkout/giftcertificate/pay_ship.html:6
-msgid "Payment Information"
-msgstr "Zahlungsinformation"
-
-#: templates/checkout/giftcertificate/pay_ship.html:11
-msgid "Gift Certificate Code"
+#: templates/giftcertificate/_order_summary.html:5
+#, fuzzy
+msgid "Gift Certificate Codes"
 msgstr "Geschenkgutscheinnummer"
 
 #: templates/giftcertificate/_order_summary.html:10
@@ -246,13 +209,20 @@ msgstr ""
 msgid "Message: %(message)s"
 msgstr ""
 
+#: templates/giftcertificate/balance.html:5
+#: templates/shop/checkout/confirm.html:9
+#: templates/shop/checkout/giftcertificate/confirm.html:9
+msgid "Home"
+msgstr "Start"
+
 #: templates/giftcertificate/balance.html:15
 msgid "Purchased on:"
 msgstr "Artikel gekauft:"
 
 #: templates/giftcertificate/balance.html:21
-msgid "Initial Balance:"
-msgstr ""
+#, fuzzy
+msgid "Starting Balance:"
+msgstr "Startdatum"
 
 #: templates/giftcertificate/balance.html:22
 #, fuzzy
@@ -267,27 +237,77 @@ msgstr ""
 msgid "Look up balance"
 msgstr ""
 
-#: templates/product/detail_giftcertificateproduct.html:22
-msgid "Shop Categories"
-msgstr "Shop Kategorien"
-
-#: templates/product/detail_giftcertificateproduct.html:31
+#: templates/product/detail_giftcertificateproduct.html:11
 msgid "Price"
 msgstr "Preis"
 
-#: templates/product/detail_giftcertificateproduct.html:40
+#: templates/product/detail_giftcertificateproduct.html:21
 msgid "Quantity (multiply the gift certificate by this amount)"
 msgstr "Anzahl (multipliziere den Geschenkgutschein mit diesem Betrag)"
 
-#: templates/product/detail_giftcertificateproduct.html:43
+#: templates/product/detail_giftcertificateproduct.html:24
 msgid "Recipient Email (optional):"
 msgstr "Empfänger eMail (optional):"
 
-#: templates/product/detail_giftcertificateproduct.html:44
+#: templates/product/detail_giftcertificateproduct.html:25
 msgid "Message (optional):"
 msgstr "Nachricht (optional):"
 
-#: templates/product/detail_giftcertificateproduct.html:49
+#: templates/product/detail_giftcertificateproduct.html:30
 msgid "Add to cart"
 msgstr "Zum Warenkorb hinzufügen"
 
+#: templates/shop/checkout/confirm.html:10
+#: templates/shop/checkout/giftcertificate/confirm.html:10
+msgid "Checkout"
+msgstr "Bestellen"
+
+#: templates/shop/checkout/confirm.html:14
+#: templates/shop/checkout/giftcertificate/confirm.html:14
+msgid "Payment"
+msgstr "Bezahlung"
+
+#: templates/shop/checkout/confirm.html:20
+#, python-format
+msgid "Order total: %(orderbalance)s"
+msgstr "Bestellung Gesamt: %(orderbalance)s"
+
+#: templates/shop/checkout/confirm.html:21
+#, python-format
+msgid ""
+"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
+"s total available to pay for your order."
+msgstr ""
+
+#: templates/shop/checkout/confirm.html:22
+msgid ""
+"If there isn't enough remaining to pay for the whole order, you'll be able "
+"to select another form of payment for the balance after you use this gift "
+"certificate."
+msgstr ""
+
+#: templates/shop/checkout/giftcertificate/confirm.html:6
+msgid "Please Note:"
+msgstr "Bitte merken:"
+
+#: templates/shop/checkout/giftcertificate/confirm.html:19
+#, python-format
+msgid ""
+"About to use your gift certificate: %(giftcode)s, which has a balance of %"
+"(balance)s."
+msgstr ""
+
+#: templates/shop/checkout/giftcertificate/confirm.html:23
+msgid "About to use INVALID gift certificate"
+msgstr ""
+
+#: templates/shop/checkout/giftcertificate/pay_ship.html:6
+msgid "Payment Information"
+msgstr "Zahlungsinformation"
+
+#: templates/shop/checkout/giftcertificate/pay_ship.html:11
+msgid "Gift Certificate Code"
+msgstr "Geschenkgutscheinnummer"
+
+#~ msgid "Shop Categories"
+#~ msgstr "Shop Kategorien"

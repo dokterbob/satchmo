@@ -8,7 +8,7 @@ important to understand the full :doc:`installation process <new_installation>`.
 Install Base Requirements
 -------------------------
 
-Ensure that python 2.4 or greater is installed. 
+Ensure that python 2.4 or greater is installed. Mercurial must also be installed. 
 
 Next, install `python setuptools <http://pypi.python.org/pypi/setuptools>`_ 
 so that easy_install is available.
@@ -26,7 +26,9 @@ Install Satchmo and Dependencies
 Execute these commands::
     
     pip install -r http://bitbucket.org/chris1610/satchmo/raw/tip/scripts/requirements.txt
-    pip install -e hg+http://bitbucket.org/chris1610/satchmo/@v0.9#egg=satchmo
+    pip install -e hg+http://bitbucket.org/chris1610/satchmo/#egg=satchmo
+    
+.. Note:: This will install the latest version of satchmo from tip.
 
 Install the Satchmo Starter App
 -------------------------------

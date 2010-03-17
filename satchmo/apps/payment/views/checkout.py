@@ -15,8 +15,9 @@ def success(request):
         return bad_or_missing(request, _('Your order has already been processed.'))
 
     del request.session['orderID']
-    context = RequestContext(request, {'order': order})
-    return render_to_response('shop/checkout/success.html', context)
+    return render_to_response('shop/checkout/success.html',
+                              {'order': order},
+                              context_instance=RequestContext(request))
 success = never_cache(success)
 
 def failure(request):

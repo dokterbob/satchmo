@@ -1,7 +1,6 @@
 '''
 Canada Post Shipping Module
-v0.1
-Nav Aulakh - www.navaulakh.com
+v0.1.1
 '''
 
 # Note, make sure you use decimal math everywhere!
@@ -118,7 +117,7 @@ class Shipper(BaseShipper):
         log.debug("Starting Canada Post calculations")
 
         from satchmo.shop.models import Config
-        settings =  config_get_group('satchmo.shipping.modules.canadapost')
+        settings =  config_get_group('shipping.modules.canadapost')
 
         verbose = settings.VERBOSE_LOG.value
             
@@ -204,5 +203,5 @@ class Shipper(BaseShipper):
                 self.verbose_log("Canada Post Cannot find rate for code: %s [%s]", self.service_type_code, self.service_type_text)
               
     def verbose_log(self, *args, **kwargs):
-        if config_value('satchmo.shipping.modules.canadapost', 'VERBOSE_LOG'):
+        if config_value('shipping.modules.canadapost', 'VERBOSE_LOG'):
             log.debug(*args, **kwargs)

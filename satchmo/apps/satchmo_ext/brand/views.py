@@ -19,7 +19,8 @@ def brand_list(request):
     }
     signals.index_prerender.send(Brand, request=request, context=ctx, object_list=brands)
     requestctx = RequestContext(request, ctx)
-    return render_to_response('brand/index.html', requestctx)
+    return render_to_response('brand/index.html',
+                              context_instance=requestctx)
 
 def brand_page(request, brandname):
     try:
@@ -40,8 +41,9 @@ def brand_page(request, brandname):
 
     ctx = RequestContext(request, ctx)
     signals.index_prerender.send(BrandProduct, request=request, context=ctx, brand=brand, object_list=products)
-    
-    return render_to_response('brand/view_brand.html', ctx)
+
+    return render_to_response('brand/view_brand.html',
+                              context_instance=ctx)
 
 
 def brand_category_page(request, brandname, catname):
@@ -61,4 +63,4 @@ def brand_category_page(request, brandname, catname):
         'brand' : cat,
         'sale' : sale,
     })
-    return render_to_response('brand/view_brand.html', ctx)
+    return render_to_response('brand/view_brand.html', context_instance=ctx)

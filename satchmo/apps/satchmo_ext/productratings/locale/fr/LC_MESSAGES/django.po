@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:11+0100\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2008-11-02 17:51+0100\n"
 "Last-Translator: Jacques Moulin <jacques@tpi.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,6 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: utils.py:54
-msgid "Not Rated"
-msgstr "Non évalué"
-
 #: config.py:9
 msgid "Enable Akismet ratings"
 msgstr "Activer les appréciations Akismet"
@@ -28,29 +24,35 @@ msgstr "Activer les appréciations Akismet"
 msgid "Akismet API Key"
 msgstr "Clé pour l'API Akismet"
 
-#: models.py:9
-#: templates/productratings/_product_ratings.html.py:17
+#: models.py:11 templates/productratings/_product_ratings.html:17
 msgid "Rating"
 msgstr "Evaluation"
 
-#: templates/productratings/_product_ratings.html.py:4
+#: utils.py:49
+msgid "Not Rated"
+msgstr "Non évalué"
+
+#: templates/productratings/_product_ratings.html:4
 msgid "Product Reviews"
 msgstr "Avis sur les produits"
 
-#: templates/productratings/_product_ratings.html.py:8
+#: templates/productratings/_product_ratings.html:8
 msgid "Be the first to review it!"
 msgstr "Soyez le premier à donner votre avis sur ce produit!"
 
-#: templates/productratings/_product_ratings.html.py:12
+#: templates/productratings/_product_ratings.html:12
 #, python-format
 msgid "Average rating %(rating)s"
 msgstr "Evaluation moyenne %(rating)s"
 
-#: templates/productratings/_product_ratings.html.py:24
+#: templates/productratings/_product_ratings.html:24
 msgid "Review this product"
 msgstr "Donner son avis sur ce produit"
 
-#: templates/productratings/_product_ratings.html.py:28
+#: templates/productratings/_product_ratings.html:28
 msgid "Please login to review this product."
 msgstr "Veuillez vous authentifier pour donner votre avis sur ce produit."
 
+#: templates/productratings/plugins/sidebar_links.html:3
+msgid "Most Popular"
+msgstr ""

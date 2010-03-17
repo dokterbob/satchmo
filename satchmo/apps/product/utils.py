@@ -65,9 +65,6 @@ def productvariation_details(product, include_tax, user, create=False):
 
     details = {'SALE' : use_discount}
     
-    curr = config_value('LANGUAGE','CURRENCY')
-    curr = curr.replace("_", " ")
-
     variations = ProductPriceLookup.objects.filter(parentid=product.id).order_by("-price")
     if variations.count() == 0:
         if create:
@@ -110,15 +107,15 @@ def productvariation_details(product, include_tax, user, create=False):
         
         price = detl.dynamic_price
         
-        detail['PRICE'][qtykey] = moneyfmt(price, curr=curr)
+        detail['PRICE'][qtykey] = moneyfmt(price)
         if use_discount:
-            detail['SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(price, discount.percentage), curr=curr)
+            detail['SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(price, discount.percentage))
         
         if include_tax:
             tax_price = taxer.by_price(tax_class, price) + price
-            detail['TAXED'][qtykey] = moneyfmt(tax_price, curr=curr)
+            detail['TAXED'][qtykey] = moneyfmt(tax_price)
             if use_discount:
-                detail['TAXED_SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage), curr=curr)
+                detail['TAXED_SALE'][qtykey] = moneyfmt(calc_discounted_by_percentage(tax_price, discount.percentage))
                 
     return details
     
@@ -197,6 +194,7 @@ def serialize_options(product, selected_options=()):
             if not serialized.has_key(option.option_group_id):
                 serialized[option.option_group.id] = {
                     'name': option.option_group.translated_name(),
+                    'description': option.option_group.translated_description(),
                     'id': option.option_group.id,
                     'items': [],
                 }

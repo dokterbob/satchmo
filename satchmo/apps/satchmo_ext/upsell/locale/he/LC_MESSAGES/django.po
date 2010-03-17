@@ -1,13 +1,13 @@
 # translation of Satchmo
 # Copyright (C) 2008 The Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
-# 
+#
 # Aviv Greenberg <avivgr@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-19 01:11+0300\n"
+"POT-Creation-Date: 2010-02-28 19:55-0600\n"
 "PO-Revision-Date: 2009-04-03 06:49\n"
 "Last-Translator: Aviv Greenberg <avivgr@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -18,66 +18,71 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Translated-Using: django-rosetta 0.4.0\n"
 
-#: models.py:41
+#: models.py:24
+msgid "Checkbox to add 1"
+msgstr "Checkbox כדי להוסיף 1"
+
+#: models.py:25
+msgid "Checkbox to add 1, checked by default"
+msgstr "Checkbox כדי להוסיף 1, מסומן כברירת מחדל"
+
+#: models.py:26
+msgid "Checkbox to match quantity"
+msgstr "Checkbox התואם כמות"
+
+#: models.py:27
+msgid "Checkbox to match quantity, checked by default"
+msgstr "Checkbox התואם כמות, מסומן כברירת מחדל"
+
+#: models.py:28
+msgid "Form with 0 quantity"
+msgstr "טופס עם כמות 0"
+
+#: models.py:33
+msgid "Target Product"
+msgstr "מוצר מטרה"
+
+#: models.py:35
+msgid "The products for which you want to show this goal product as an Upsell."
+msgstr "המוצרים עבורם אתה רוצה להראות את מוצר ה goal הזה כ Upsell."
+
+#: models.py:37
+msgid "Goal Product"
+msgstr "מוצר Goal"
+
+#: models.py:40
 msgid "Creation Date"
 msgstr "תאריך יצירה"
 
-#: models.py:46
+#: models.py:42
+msgid "Upsell Style"
+msgstr "סגנון Upsell"
+
+#: models.py:45
 msgid "Notes"
 msgstr "הערות"
 
-#: models.py:136
+#: models.py:46
+msgid "Internal notes"
+msgstr "הערות פנימיות"
+
+#: models.py:129
+msgid "language"
+msgstr "שפה"
+
+#: models.py:131
 msgid "Description"
 msgstr "תיאור"
 
-#: templates/upsell/product_upsell.html:18
-msgid "Quantity"
-msgstr "כמות"
-
-#: models.py:135
-msgid "language"
-msgstr "שפה"
+#: views.py:65
+#, python-format
+msgid "'%(product)s' couldn't be added to the cart. %(details)s"
+msgstr ""
 
 #: templates/upsell/product_upsell.html:15
 msgid "Add"
 msgstr "הוסף"
 
-#: models.py:25
-msgid "Checkbox to add 1"
-msgstr "Checkbox כדי להוסיף 1"
-
-#: models.py:26
-msgid "Checkbox to add 1, checked by default"
-msgstr "Checkbox כדי להוסיף 1, מסומן כברירת מחדל"
-
-#: models.py:27
-msgid "Checkbox to match quantity"
-msgstr "Checkbox התואם כמות"
-
-#: models.py:28
-msgid "Checkbox to match quantity, checked by default"
-msgstr "Checkbox התואם כמות, מסומן כברירת מחדל"
-
-#: models.py:29
-msgid "Form with 0 quantity"
-msgstr "טופס עם כמות 0"
-
-#: models.py:34
-msgid "Target Product"
-msgstr "מוצר מטרה"
-
-#: models.py:36
-msgid "The products for which you want to show this goal product as an Upsell."
-msgstr "המוצרים עבורם אתה רוצה להראות את מוצר ה goal הזה כ Upsell."
-
-#: models.py:38
-msgid "Goal Product"
-msgstr "מוצר Goal"
-
-#: models.py:43
-msgid "Upsell Style"
-msgstr "סגנון Upsell"
-
-#: models.py:47
-msgid "Internal notes"
-msgstr "הערות פנימיות"
+#: templates/upsell/product_upsell.html:18
+msgid "Quantity"
+msgstr "כמות"

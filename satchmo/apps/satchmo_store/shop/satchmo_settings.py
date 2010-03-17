@@ -14,12 +14,13 @@ satchmo_settings_defaults = {
     'SHOP_BASE' : '/shop',
     'MULTISHOP' : False    ,
     'CUSTOM_NEWSLETTER_MODULES' : [],
-    'CUSTOM_PAYMENT_MODULES' : [],
     'CUSTOM_SHIPPING_MODULES' : [],
     'CUSTOM_PRODUCT_MODULES' : [],
     'CUSTOM_TAX_MODULES' : [],
     'ALLOW_PRODUCT_TRANSLATIONS' : True,
     'COOKIE_MAX_SECONDS' : 60*60*24*30, #one month
+    'CATEGORY_SLUG': 'category', # Used for the category url
+    'PRODUCT_SLUG' : 'product', # Used for the product url
     }
 
 

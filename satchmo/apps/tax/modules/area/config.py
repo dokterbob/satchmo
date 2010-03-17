@@ -24,3 +24,4 @@ config_register(
          default='Shipping'
      )
 )
+

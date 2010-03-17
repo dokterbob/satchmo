@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:49-0600\n"
+"POT-Creation-Date: 2010-02-28 19:57-0600\n"
 "PO-Revision-Date: 2008-06-09 18:18+0200\n"
 "Last-Translator: Selin Çuhadar <selincuhadar@gmail.com>\n"
 "Language-Team: Turkish <selincuhadar@gmail.com>\n"
@@ -17,19 +17,65 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: thumbnail/templates/widget/file.html:4
-msgid "Change"
-msgstr "Değiştir"
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr ""
 
-#: thumbnail/templates/widget/file.html:3
-msgid "Currently"
-msgstr "Şimdilik"
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr ""
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr ""
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr ""
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr ""
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr ""
+
+#: thumbnail/config.py:4
+#, fuzzy
+msgid "Thumbnail Settings"
+msgstr "Küçük resim kalitesi"
 
 #: thumbnail/config.py:9
 msgid "Thumbnail quality"
 msgstr "Küçük resim kalitesi"
 
 #: thumbnail/config.py:10
-msgid "Use a 1-100 value here, which will change the quality of JPG thumbnails created for products and categories."
-msgstr "Küçük resimleri oluştururken kullanılacak JPG kalitesi için 1 ile 100 arasında bir değer girin."
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+"Küçük resimleri oluştururken kullanılacak JPG kalitesi için 1 ile 100 "
+"arasında bir değer girin."
 
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr ""
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: thumbnail/widgets.py:21
+#, fuzzy
+msgid "Change:"
+msgstr "Değiştir"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Şimdilik"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Değiştir"

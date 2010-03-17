@@ -2,12 +2,12 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 18:10+0200\n"
+"POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: <jerzyk@jerzyk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,276 +15,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/product/category.html:12
-#: templates/product/product.html.html:24
-#: templates/product/admin/product_export_form.html:51
-#: templates/product/admin/product_import_result.html:11
-#: templates/product/admin/variation_manager.html:6
-#: templates/product/admin/variation_manager_list.html:6
-msgid "Home"
-msgstr "Strona startowa"
+#: admin.py:68
+msgid "Invalid regular expression"
+msgstr ""
 
-#: models.py:76
-#: models.py:293
-#: models.py:430
-msgid "Site"
-msgstr "Strona"
-
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Documentation"
-msgstr "Dokumentacja"
-
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Change password"
-msgstr "Zmiana hasła"
-
-#: templates/product/admin/product_export_form.html:48
-#: templates/product/admin/product_import_result.html:8
-msgid "Log out"
-msgstr "Wyloguj"
-
-#: templates/product/admin/product_export_form.html:61
-#: templates/product/admin/product_export_form.html:72
-#: templates/product/admin/variation_manager.html:166
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "Proszę poprawić poniższy błąd."
-msgstr[1] "Proszę poprawić poniższe błędy."
-
-#: models.py:77
-#: templates/product/admin/product_export_form.html:81
-#: templates/product/admin/variation_manager.html:240
-msgid "Name"
-msgstr "Nazwa"
-
-#: models.py:40
-#: models.py:84
-msgid "Description"
-msgstr "Opis"
-
-#: models.py:25
-msgid "No Discount"
-msgstr "Bez rabatu"
-
-#: models.py:39
-msgid "site"
-msgstr "Strona"
-
-#: models.py:41
-msgid "Discount Code"
-msgstr "Kod rabatu"
-
-#: models.py:42
-msgid "Coupon Code"
-msgstr "Kod kuponu rabatowego"
-
-#: models.py:43
-msgid "Discount Amount"
-msgstr "Kwota rabatu"
-
-#: models.py:46
-msgid "Enter absolute discount amount OR percentage."
-msgstr "Wprowadź bezwzględną kwotę LUB procent"
-
-#: models.py:47
-msgid "Discount Percentage"
-msgstr "Procent rabatu"
-
-#: models.py:50
-msgid "Enter absolute discount amount OR percentage.  Percentage example: \"0.10\"."
-msgstr "Wprowadź bezwzględną wartość kwoty rabatu LUB procent. Przykład procentu: \"0.10\"."
-
-#: models.py:51
-msgid "Is this an automatic discount?"
-msgstr "Czy to jest rabat automatyczny?"
-
-#: models.py:52
-msgid "Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."
-msgstr "Zaznacz to pole, by pokazywać rabat przy wszystkich produktach, których dotyczy. Ma to zastosowanie głównie dla dużych wyprzedaży."
-
-#: models.py:53
-msgid "Number of allowed uses"
-msgstr "Liczba dozwolonych użyć"
-
-#: models.py:54
-#: models.py:56
-msgid "Not implemented."
-msgstr "Nie zaimplementowane."
-
-#: models.py:55
-msgid "Number of times already used"
-msgstr "Liczba użyć"
-
-#: models.py:57
-msgid "Minimum order value"
-msgstr "Minimalna wartość zamówienia"
-
-#: models.py:59
-msgid "Start Date"
-msgstr "Data początkowa"
-
-#: models.py:60
-msgid "End Date"
-msgstr "Data końcowa"
-
-#: models.py:61
-#: models.py:1091
-msgid "Active"
-msgstr "Aktywny"
-
-#: models.py:62
-msgid "Free shipping"
-msgstr "Bezpłatna wysyłka"
-
-#: models.py:63
-msgid "Should this discount remove all shipping costs?"
-msgstr "Czy ten rabat pokrywa wszystkie koszta wysyłki?"
-
-#: models.py:64
-msgid "Include shipping"
-msgstr "Z wysyłką"
-
-#: models.py:65
-msgid "Should shipping be included in the discount calculation?"
-msgstr "Czy koszta wysyłki powinny zostać włączone w wyliczenie rabatu?"
-
-#: models.py:66
-msgid "Valid Products"
-msgstr "Poprawne produkty"
-
-#: models.py:82
-msgid "This coupon is disabled."
-msgstr "Ten kupon jest zablokowany."
-
-#: models.py:84
-msgid "This coupon is not active yet."
-msgstr "Ten kupon jeszcze nie jest aktywny."
-
-#: models.py:86
-msgid "This coupon has expired."
-msgstr "Ten kupon już się przedawnił."
-
-#: models.py:88
-msgid "This discount has exceeded the number of allowed uses."
-msgstr "Została przekroczona maksymana liczba użycia tego rabatu."
-
-#: models.py:90
-#: models.py:107
-msgid "Valid."
-msgstr "Poprawny."
-
-#: models.py:94
-#, python-format
-msgid "This discount only applies to orders of at least %s."
-msgstr "Rabat dotyczy tylko zamówień na kwotę co najmniej %s."
-
-#: models.py:109
-msgid "This discount cannot be applied to the products in your cart."
-msgstr "Rabat nie może być zastosowany do produktów w koszyku."
-
-#: models.py:183
-msgid "Discount"
-msgstr "Rabat"
-
-#: models.py:184
-msgid "Discounts"
-msgstr "Rabaty"
-
-#: models.py:442
-msgid "Date added"
-msgstr "Data dodania"
-
-#: models.py:588
-#: models.py:778
-#: models.py:901
-#: models.py:1087
-#: models.py:1117
-#: models.py:1194
-msgid "Product"
-msgstr "Produkt"
-
-#: models.py:1162
-#: models.py:1378
-#: models.py:1409
-#: templates/product/product.html.html:52
-#: templates/product/detail_configurableproduct.html:35
-#: templates/product/detail_customproduct.html:12
-msgid "Price"
-msgstr "Cena"
-
-#: templates/product/product.html.html:62
-#: templates/product/detail_configurableproduct.html:68
-#: templates/product/detail_customproduct.html:41
-#: templates/product/detail_subscriptionproduct.html:42
-msgid "Add to cart"
-msgstr "Dodaj do koszyka"
-
-#: models.py:431
-#: models.py:740
-msgid "Full Name"
-msgstr "Pełna nazwa"
-
-#: models.py:243
-#: models.py:299
-#: models.py:358
-#: models.py:860
-#: models.py:1424
-msgid "Sort Order"
-msgstr "Porządek sortowania"
-
-#: admin.py:86
-#: admin.py:90
-#: models.py:164
-#: models.py:168
+#: admin.py:124 admin.py:128 models.py:230 models.py:234
 msgid "You must not save a category in itself!"
 msgstr "Nie możesz zapisać kategorii w niej samej!"
 
-#: admin.py:117
-msgid "A unit of measure must be entered for the length"
-msgstr "Podaj jednostkę miary dla długości"
+#: admin.py:179 admin.py:188 admin.py:197 admin.py:206
+#, fuzzy
+msgid "1 product was"
+msgstr "Brak produktów."
 
-#: admin.py:148
+#: admin.py:181 admin.py:190 admin.py:199 admin.py:208
+#, fuzzy, python-format
+msgid "%s products were"
+msgstr "Produkt aktywny?"
+
+#: admin.py:182
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
+
+#: admin.py:183
+#, fuzzy
+msgid "Mark selected products as active"
+msgstr "Produkt aktywny?"
+
+#: admin.py:191
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
+
+#: admin.py:192
+#, fuzzy
+msgid "Mark selected products as inactive"
+msgstr "Produkt aktywny?"
+
+#: admin.py:200
+#, python-format
+msgid "%s successfully marked as featured"
+msgstr ""
+
+#: admin.py:201
+msgid "Mark selected products as featured"
+msgstr ""
+
+#: admin.py:209
+#, python-format
+msgid "%s successfully marked as not featured"
+msgstr ""
+
+#: admin.py:210
+msgid "Mark selected products as not featured"
+msgstr ""
+
+#: admin.py:223
 msgid "Meta Data"
 msgstr "Meta-dane"
 
-#: admin.py:148
+#: admin.py:224
 msgid "Item Dimensions"
 msgstr "Wymiary przedmiotu"
 
-#: admin.py:148
+#: admin.py:225
 msgid "Tax"
 msgstr "Podatek"
 
-#: admin.py:148
+#: admin.py:226
 msgid "Related Products"
 msgstr "Powiązane produkty"
-
-#: admin.py:177
-msgid "The product and parent fields can not be the same."
-msgstr "Pola produktu i rodzica nie mogą być jednakowe"
-
-#: adminviews.py:28
-msgid "Inventory Editor"
-msgstr "Edytor stanów magazynowych"
-
-#: adminviews.py:49
-msgid "Product Import/Export"
-msgstr "Import/Eksport produktów"
-
-#: adminviews.py:73
-msgid "No upload file found"
-msgstr "Nie znaleziono pliku"
-
-#: adminviews.py:119
-msgid "The product you have requested is not a Configurable Product."
-msgstr "Wybrany produkt nie jest Produktem Konfigurowalnym."
-
-#: adminviews.py:122
-#: views.py:40
-msgid "The product you have requested does not exist."
-msgstr "Wybrany produkt nie istnieje."
 
 #: config.py:8
 msgid "Product Settings"
@@ -294,8 +95,7 @@ msgstr "Ustawienia produktu"
 msgid "Product Model Options"
 msgstr "Opcje produktów"
 
-#: config.py:14
-#: models.py:1072
+#: config.py:14 models.py:1538
 msgid "Configurable Product"
 msgstr "Produkt Konfigurowalny"
 
@@ -304,16 +104,15 @@ msgid "Product Variation"
 msgstr "Odmiany produktów"
 
 #: config.py:16
-msgid "Custom Order"
-msgstr "Zamówienie specjalne"
+#, fuzzy
+msgid "Custom Order Product"
+msgstr "Produkt Specjalny"
 
-#: config.py:17
-#: models.py:1148
+#: config.py:17 models.py:1685
 msgid "Subscription Product"
 msgstr "Subskrypcje"
 
-#: config.py:18
-#: models.py:1110
+#: config.py:18 models.py:1576
 msgid "Downloadable Product"
 msgstr "Produkty do pobrania online"
 
@@ -326,7 +125,10 @@ msgid ""
 "Directory name for storing uploaded images.\n"
 "    This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
 "    We can handle it any which way."
-msgstr "Nazwa katalogu, gdzie przechowywane będą załadowane zdjęcia produktów. Wartość z tego pola będzie dołączona do systemowej zmiennej MEDIA_ROOT. Nie przejmuj się separatorami (/ i \\), obsłużymy je."
+msgstr ""
+"Nazwa katalogu, gdzie przechowywane będą załadowane zdjęcia produktów. "
+"Wartość z tego pola będzie dołączona do systemowej zmiennej MEDIA_ROOT. Nie "
+"przejmuj się separatorami (/ i \\), obsłużymy je."
 
 #: config.py:34
 msgid "Protected dir"
@@ -337,690 +139,1242 @@ msgid ""
 "This is only used if you use Downloadable Products.\n"
 "This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
 "We can handle it any which way."
-msgstr "Nazwa katalogu, gdzie przechowywane będą pliki do pobrania. Wartość z tego pola będzie dołączona do systemowej zmiennej MEDIA_ROOT. Nie przejmuj się separatorami (/ i \\), obsłużymy je."
+msgstr ""
+"Nazwa katalogu, gdzie przechowywane będą pliki do pobrania. Wartość z tego "
+"pola będzie dołączona do systemowej zmiennej MEDIA_ROOT. Nie przejmuj się "
+"separatorami (/ i \\), obsłużymy je."
 
-#: forms.py:39
+#: config.py:45
+msgid "Total featured"
+msgstr ""
+
+#: config.py:46
+msgid "Total number of featured items to display"
+msgstr ""
+
+#: config.py:52
+#, fuzzy
+msgid "Number featured"
+msgstr "Liczba użyć"
+
+#: config.py:53
+msgid "Number of featured items to display on each page"
+msgstr ""
+
+#: config.py:59
+msgid "Measurement System"
+msgstr ""
+
+#: config.py:60
+msgid "Default measurement system to use for products."
+msgstr ""
+
+#: config.py:61
+msgid "Metric"
+msgstr ""
+
+#: config.py:62
+msgid "Imperial"
+msgstr ""
+
+#: config.py:68
+msgid "Allow checkout with 0 inventory?"
+msgstr ""
+
+#: config.py:69
+msgid ""
+"If yes, then customers can buy even if your inventory is 0 for a product."
+msgstr ""
+
+#: config.py:75
+msgid "Random Display"
+msgstr ""
+
+#: config.py:76
+msgid "Enable random display of featured products on home page"
+msgstr ""
+
+#: config.py:82
+msgid "Track inventory levels?"
+msgstr ""
+
+#: config.py:83
+msgid "If no, then inventory will not be tracked for products sold."
+msgstr ""
+
+#: forms.py:142
 msgid "export format"
 msgstr "format dancych eksportu"
 
-#: forms.py:40
+#: forms.py:143
 msgid "Include Images"
 msgstr "Dołącz obrazy"
 
-#: forms.py:41
+#: forms.py:144
 msgid "Include Categories"
 msgstr "Dołącz kategorie"
 
-#: forms.py:173
+#: forms.py:276
 msgid "File to import"
 msgstr "Plik do zaimportowania"
 
-#: forms.py:191
-#: forms.py:234
+#: forms.py:294 forms.py:337
 #, python-format
 msgid "Could not parse format from filename: %s"
 msgstr "Nie można przeanalizować pliku: %s"
 
-#: forms.py:209
+#: forms.py:312
 msgid "Bad VARS file in import zipfile."
 msgstr "Zły plik VARS w pliku zip."
 
-#: forms.py:239
+#: forms.py:342
 msgid "Missing VARS in import zipfile."
 msgstr "Brakuje pliku VARS w pliku zip."
 
-#: forms.py:245
+#: forms.py:348
 #, python-format
 msgid "Unknown file format: %s"
 msgstr "Nieznany format pliku: %s"
 
-#: forms.py:272
+#: forms.py:375
 #, python-format
 msgid "Added %(count)i objects from %(filename)s"
 msgstr "Dodano %(count)i obiektów z pliku %(filename)s"
 
-#: forms.py:277
+#: forms.py:380
 #, python-format
 msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
-msgstr "Wystąpił problem z załadowaniem danych z pliku '%(filename)s': %(error_msg)s\n"
+msgstr ""
+"Wystąpił problem z załadowaniem danych z pliku '%(filename)s': %(error_msg)"
+"s\n"
 
-#: models.py:78
-#: models.py:856
+#: models.py:43
+msgid "None"
+msgstr ""
+
+#: models.py:44
+#, fuzzy
+msgid "Free Shipping"
+msgstr "Bezpłatna wysyłka"
+
+#: models.py:45
+msgid "Cheapest shipping option is free"
+msgstr ""
+
+#: models.py:46
+#, fuzzy
+msgid "Apply the discount above to shipping"
+msgstr "Czy ten rabat pokrywa wszystkie koszta wysyłki?"
+
+#: models.py:50
+msgid "Default"
+msgstr ""
+
+#: models.py:51
+#, fuzzy
+msgid "Shippable"
+msgstr "Do wysłki?"
+
+#: models.py:52
+#, fuzzy
+msgid "Not Shippable"
+msgstr "Do wysłki?"
+
+#: models.py:124 models.py:655 models.py:805
+msgid "Site"
+msgstr "Strona"
+
+#: models.py:125 templates/product/admin/inventory_form.html:83
+#: templates/product/admin/product_export_form.html:81
+#: templates/product/admin/variation_manager.html:317
+msgid "Name"
+msgstr "Nazwa"
+
+#: models.py:126 models.py:1302 templates/product/admin/inventory_form.html:82
 #: templates/product/admin/product_export_form.html:80
-#: templates/product/admin/variation_manager.html:242
+#: templates/product/admin/variation_manager.html:319
 msgid "Slug"
 msgstr "Slug"
 
-#: models.py:78
-#: models.py:434
+#: models.py:126 models.py:809
 msgid "Used for URLs, auto-generated from name if blank"
 msgstr "Używane w URL, generowane automatycznie z nazwy jeżeli zostawisz puste"
 
-#: models.py:82
-#: models.py:441
+#: models.py:130 models.py:816
 msgid "Meta Description"
 msgstr "Meta Opis"
 
-#: models.py:83
+#: models.py:131
 msgid "Meta description for this category"
 msgstr "Opis (Meta Description) dla tej kategorii"
 
-#: models.py:86
-#: models.py:445
+#: models.py:132 models.py:434 models.py:2083 models.py:2244
+msgid "Description"
+msgstr "Opis"
+
+#: models.py:134 models.py:820
 msgid "Ordering"
 msgstr "Kolejność"
 
-#: models.py:86
-#: models.py:445
+#: models.py:134 models.py:820
 msgid "Override alphabetical order in category display"
-msgstr "Ustal inną (niż alfabetyczna) kolejność sortowania przy wyświetlaniu kategorii"
+msgstr ""
+"Ustal inną (niż alfabetyczna) kolejność sortowania przy wyświetlaniu "
+"kategorii"
 
-#: models.py:208
-#: models.py:439
+#: models.py:137
+#, fuzzy
+msgid "Related Categories"
+msgstr "Dołącz kategorie"
+
+#: models.py:280 models.py:814
 msgid "Category"
 msgstr "Kategoria"
 
-#: models.py:209
+#: models.py:281 templates/product/category_index.html:12
 msgid "Categories"
 msgstr "Kategorie"
 
-#: models.py:216
-#: models.py:274
-#: models.py:324
-#: models.py:385
-#: models.py:739
-#: models.py:881
-#: models.py:1361
-#: models.py:1454
+#: models.py:289 models.py:348 models.py:688 models.py:748 models.py:1166
+#: models.py:1327 models.py:2104 models.py:2222
 msgid "language"
 msgstr "język"
 
-#: models.py:217
+#: models.py:290
 msgid "Translated Category Name"
 msgstr "Przetłumaczona nazwa kategorii"
 
-#: models.py:218
+#: models.py:291
 msgid "Description of category"
 msgstr "Opis kategorii"
 
-#: models.py:219
-#: models.py:276
-#: models.py:327
-#: models.py:387
-#: models.py:743
-#: models.py:883
-#: models.py:1456
+#: models.py:292 models.py:350 models.py:691 models.py:750 models.py:1170
+#: models.py:1329 models.py:2224
 msgid "version"
 msgstr "wersja"
 
-#: models.py:220
-#: models.py:277
-#: models.py:328
-#: models.py:388
-#: models.py:744
-#: models.py:884
-#: models.py:1457
+#: models.py:293 models.py:351 models.py:692 models.py:751 models.py:1171
+#: models.py:1330 models.py:2225
 msgid "active"
 msgstr "aktywne"
 
-#: models.py:223
+#: models.py:296
 msgid "Category Translation"
 msgstr "Tłumaczenie kategorii"
 
-#: models.py:224
+#: models.py:297
 msgid "Category Translations"
 msgstr "Tłumaczenia kategorii"
 
-#: models.py:238
-#: models.py:1419
+#: models.py:311 models.py:2186
 msgid "Picture"
 msgstr "Obrazek"
 
-#: models.py:241
-#: models.py:1422
+#: models.py:315 models.py:2190
 msgid "Optional caption"
 msgstr "Ocjonalny podpis"
 
-#: models.py:266
+#: models.py:317 models.py:661 models.py:722 models.py:1306 models.py:2086
+#: models.py:2192
+msgid "Sort Order"
+msgstr "Porządek sortowania"
+
+#: models.py:340
 msgid "Category Image"
 msgstr "Obraz dla kategorii"
 
-#: models.py:267
+#: models.py:341
 msgid "Category Images"
 msgstr "Obrazy dla kategorii"
 
-#: models.py:275
-#: models.py:1455
+#: models.py:349 models.py:2223
 msgid "Translated Caption"
 msgstr "Przetłumaczony podpis"
 
-#: models.py:280
+#: models.py:354
 msgid "Category Image Translation"
 msgstr "Przetłumaczony obraz kategorii"
 
-#: models.py:281
+#: models.py:355
 msgid "Category Image Translations"
 msgstr "Przetłumaczone obrazy kategorii"
 
-#: models.py:294
+#: models.py:375
+msgid "No Discount"
+msgstr "Bez rabatu"
+
+#: models.py:433
+msgid "site"
+msgstr "Strona"
+
+#: models.py:435
+msgid "Discount Code"
+msgstr "Kod rabatu"
+
+#: models.py:436
+msgid "Coupon Code"
+msgstr "Kod kuponu rabatowego"
+
+#: models.py:437 models.py:818 models.py:1557
+#: templates/product/admin/inventory_form.html:86
+msgid "Active"
+msgstr "Aktywny"
+
+#: models.py:438
+msgid "Discount Amount"
+msgstr "Kwota rabatu"
+
+#: models.py:441
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Wprowadź bezwzględną kwotę LUB procent"
+
+#: models.py:442
+msgid "Discount Percentage"
+msgstr "Procent rabatu"
+
+#: models.py:445
+#, fuzzy
+msgid ""
+"Enter absolute discount amount OR percentage.  Percents are given in whole "
+"numbers, and can be up to 100%."
+msgstr ""
+"Wprowadź bezwzględną wartość kwoty rabatu LUB procent. Przykład procentu: "
+"\"0.10\"."
+
+#: models.py:446
+msgid "Is this an automatic discount?"
+msgstr "Czy to jest rabat automatyczny?"
+
+#: models.py:447
+msgid ""
+"Use this field to advertise the discount on all products to which it "
+"applies.  Generally this is used for site-wide sales."
+msgstr ""
+"Zaznacz to pole, by pokazywać rabat przy wszystkich produktach, których "
+"dotyczy. Ma to zastosowanie głównie dla dużych wyprzedaży."
+
+#: models.py:448
+msgid "Number of allowed uses"
+msgstr "Liczba dozwolonych użyć"
+
+#: models.py:449
+msgid ""
+"Set this to a number greater than 0 to have the discount expire after that "
+"many uses."
+msgstr ""
+
+#: models.py:450
+msgid "Number of times already used"
+msgstr "Liczba użyć"
+
+#: models.py:452
+msgid "Minimum order value"
+msgstr "Minimalna wartość zamówienia"
+
+#: models.py:454
+msgid "Start Date"
+msgstr "Data początkowa"
+
+#: models.py:455
+msgid "End Date"
+msgstr "Data końcowa"
+
+#: models.py:456 models.py:838
+#, fuzzy
+msgid "Shipping"
+msgstr "Bezpłatna wysyłka"
+
+#: models.py:458
+#, fuzzy
+msgid "All products?"
+msgstr "Brak produktów."
+
+#: models.py:459
+msgid ""
+"Apply this discount to all discountable products? If this is false you must "
+"select products below in the \"Valid Products\" section."
+msgstr ""
+
+#: models.py:460
+msgid "Valid Products"
+msgstr "Poprawne produkty"
+
+#: models.py:479
+msgid "This coupon is disabled."
+msgstr "Ten kupon jest zablokowany."
+
+#: models.py:481
+msgid "This coupon is not active yet."
+msgstr "Ten kupon jeszcze nie jest aktywny."
+
+#: models.py:483
+msgid "This coupon has expired."
+msgstr "Ten kupon już się przedawnił."
+
+#: models.py:485
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Została przekroczona maksymana liczba użycia tego rabatu."
+
+#: models.py:490
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Rabat dotyczy tylko zamówień na kwotę co najmniej %s."
+
+#: models.py:493
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "Rabat nie może być zastosowany do produktów w koszyku."
+
+#: models.py:496
+msgid "Valid."
+msgstr "Poprawny."
+
+#: models.py:596
+msgid "Discount"
+msgstr "Rabat"
+
+#: models.py:597
+msgid "Discounts"
+msgstr "Rabaty"
+
+#: models.py:656
 msgid "Name of Option Group"
 msgstr "Nazwa grupy opcji"
 
-#: models.py:295
+#: models.py:657
 msgid "This will be the text displayed on the product page."
 msgstr "Niniejszy tekst będzie wyświetlany na stronie produktu."
 
-#: models.py:296
+#: models.py:658
 msgid "Detailed Description"
 msgstr "Opis szczegłowy"
 
-#: models.py:298
+#: models.py:660
 msgid "Further description of this group (i.e. shirt size vs shoe size)."
-msgstr "Dodatkowy opis tej grupy (np. dla rozróżnienia rozmiaru buta i rozmiaru koszulki)"
+msgstr ""
+"Dodatkowy opis tej grupy (np. dla rozróżnienia rozmiaru buta i rozmiaru "
+"koszulki)"
 
-#: models.py:300
-#: models.py:861
+#: models.py:662 models.py:1307
 msgid "The display order for this group."
 msgstr "Porządek wyświetlania dla tej grupy."
 
-#: models.py:316
-#: models.py:783
-#: models.py:902
-#: templates/product/admin/variation_manager.html:185
+#: models.py:680 models.py:1213 models.py:1348
 msgid "Option Group"
 msgstr "Grupa opcji"
 
-#: models.py:317
+#: models.py:681
 msgid "Option Groups"
 msgstr "Grupy opcji"
 
-#: models.py:325
+#: models.py:689
 msgid "Translated OptionGroup Name"
 msgstr "Przetłumaczona nazwa grupy opcji"
 
-#: models.py:326
+#: models.py:690
 msgid "Description of OptionGroup"
 msgstr "Opis grupy opcji"
 
-#: models.py:331
+#: models.py:695
 msgid "Option Group Translation"
 msgstr "Tłumaczenie grupy opcji"
 
-#: models.py:332
+#: models.py:696
 msgid "Option Groups Translations"
 msgstr "Tłumaczenia grupy opcji"
 
-#: models.py:353
+#: models.py:717
 msgid "Display value"
 msgstr "Wyświetlana wartość"
 
-#: models.py:354
+#: models.py:718
 msgid "Stored value"
 msgstr "Zapisana wartość"
 
-#: models.py:355
-#: models.py:862
+#: models.py:719 models.py:1308
 msgid "Price Change"
 msgstr "Zmiana ceny"
 
-#: models.py:357
+#: models.py:721
 msgid "This is the price differential for this option."
 msgstr "Różnica w cenie dla tej opcji"
 
-#: models.py:366
+#: models.py:730
 msgid "Option Item"
 msgstr "Opcja"
 
-#: models.py:367
+#: models.py:731
 msgid "Option Items"
 msgstr "Opcje"
 
-#: models.py:386
+#: models.py:749
 msgid "Translated Option Name"
 msgstr "Tłumaczona nazwa opcji"
 
-#: models.py:391
+#: models.py:754
 msgid "Option Translation"
 msgstr "Tłumaczenie opcji"
 
-#: models.py:392
+#: models.py:755
 msgid "Option Translations"
 msgstr "Tłumaczenia opcji"
 
-#: models.py:432
-msgid "This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."
-msgstr "Nazwa produktu w domyślnym języku serwisu. Aby dodać inne tłumacznia użyj \"Tłumaczenia produktu\"."
+#: models.py:806 models.py:1167
+msgid "Full Name"
+msgstr "Pełna nazwa"
 
-#: models.py:433
+#: models.py:807
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+"Nazwa produktu w domyślnym języku serwisu. Aby dodać inne tłumacznia użyj "
+"\"Tłumaczenia produktu\"."
+
+#: models.py:808
 msgid "Slug Name"
 msgstr "Slug Name"
 
-#: models.py:435
-#: templates/product/admin/variation_manager.html:241
+#: models.py:810 templates/product/admin/variation_manager.html:318
 msgid "SKU"
 msgstr "SKU"
 
-#: models.py:436
+#: models.py:811
 msgid "Defaults to slug if left blank"
 msgstr "Jeżeli puste, przyjmuje wartość slug"
 
-#: models.py:437
-#: models.py:741
+#: models.py:812 models.py:1169
 msgid "Short description of product"
 msgstr "Krótki opis produktu"
 
-#: models.py:437
-msgid "This should be a 1 or 2 line description in the default site language for use in product listing screens"
-msgstr "1-2 linie opisu w domyślnym języku, do przedstawienia na listach produktów"
+#: models.py:812
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr ""
+"1-2 linie opisu w domyślnym języku, do przedstawienia na listach produktów"
 
-#: models.py:438
-#: models.py:742
+#: models.py:813 models.py:1168
 msgid "Description of product"
 msgstr "Opis produktu"
 
-#: models.py:438
-msgid "This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."
-msgstr "Pole może zawierać HTML, powinno zawierać kilka akapitów opisu w domyślnym języku. Dowolna treść, która zacęci potencjalnego klienta do zakupu."
+#: models.py:813
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr ""
+"Pole może zawierać HTML, powinno zawierać kilka akapitów opisu w domyślnym "
+"języku. Dowolna treść, która zacęci potencjalnego klienta do zakupu."
 
-#: models.py:440
+#: models.py:815
 msgid "Number in stock"
 msgstr "Ilość na stanie"
 
-#: models.py:441
+#: models.py:816
 msgid "Meta description for this product"
 msgstr "Meta opis dla tego produktu"
 
-#: models.py:443
-msgid "Is product active?"
-msgstr "Produkt aktywny?"
+#: models.py:817
+msgid "Date added"
+msgstr "Data dodania"
 
-#: models.py:443
+#: models.py:818
 msgid "This will determine whether or not this product will appear on the site"
 msgstr "Flaga kontroluje to czy produkt pojawi się na stronach"
 
-#: models.py:444
-msgid "Featured Item"
+#: models.py:819 templates/product/admin/inventory_form.html:87
+#, fuzzy
+msgid "Featured"
 msgstr "Promowany przedmiot"
 
-#: models.py:444
+#: models.py:819
 msgid "Featured items will show on the front page"
 msgstr "przedmioty promowane są wyświetlane na stronie głównej"
 
-#: models.py:446
+#: models.py:821
 msgid "Weight"
 msgstr "Waga"
 
-#: models.py:447
+#: models.py:822
 msgid "Weight units"
 msgstr "Jednostka wagi"
 
-#: models.py:449
+#: models.py:824
 msgid "Length"
 msgstr "Długość"
 
-#: models.py:450
+#: models.py:825
 msgid "Length units"
 msgstr "Jednostka długości"
 
-#: models.py:452
+#: models.py:827
 msgid "Width"
 msgstr "Szerokość"
 
-#: models.py:453
+#: models.py:828
 msgid "Width units"
 msgstr "Jednostka szerokości"
 
-#: models.py:455
+#: models.py:830
 msgid "Height"
 msgstr "Wysokość"
 
-#: models.py:456
+#: models.py:831
 msgid "Height units"
 msgstr "Jednostka szerokości"
 
-#: models.py:458
+#: models.py:833
 msgid "Related Items"
 msgstr "Przedmioty powiązane"
 
-#: models.py:459
+#: models.py:834
 msgid "Previously Purchased"
 msgstr "Poprzednio zakupione"
 
-#: models.py:460
+#: models.py:835
 msgid "Total sold"
 msgstr "Całkowita sprzedaż"
 
-#: models.py:461
+#: models.py:836
 msgid "Taxable"
 msgstr "Podlega opodatkowaniu"
 
-#: models.py:462
+#: models.py:837 models.py:2251
 msgid "Tax Class"
 msgstr "Klasa podatku"
 
-#: models.py:462
+#: models.py:837
 msgid "If it is taxable, what kind of tax?"
 msgstr "Jeżeli podlega opodatkowaniu, to jakiemu?"
 
-#: models.py:589
+#: models.py:839
+msgid ""
+"If this is 'Default', then we'll use the product type to determine if it is "
+"shippable."
+msgstr ""
+
+#: models.py:986 models.py:1208 models.py:1347 models.py:1553 models.py:1588
+#: models.py:1748
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:987
 msgid "Products"
 msgstr "Produkty"
 
-#: models.py:621
-#: templates/admin/product/product/change_form.html:8
+#: models.py:1025 templates/admin/product/product/change_form.html:8
 msgid "Product Subtypes"
 msgstr "Podtypy produktów"
 
-#: models.py:741
-msgid "This should be a 1 or 2 line description for use in product listing screens"
+#: models.py:1168
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr ""
+"Pole może zawierać HTML, powinno zawierać kilka akapitów opisu w domyślnym "
+"języku. Dowolna treść, która zacęci potencjalnego klienta do zakupu."
+
+#: models.py:1169
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
 msgstr "1-2 linie opisu, do wyświetlania na listach produktów"
 
-#: models.py:742
-msgid "This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."
-msgstr "Pole może zawierać HTML, powinno zawierać kilka akapitów opisu w domyślnym języku. Dowolna treść, która zacęci potencjalnego klienta do zakupu."
-
-#: models.py:747
+#: models.py:1174
 msgid "Product Translation"
 msgstr "Tłumaczenie produktu"
 
-#: models.py:748
+#: models.py:1175
 msgid "Product Translations"
 msgstr "Tłumaczenia produktów"
 
-#: models.py:779
+#: models.py:1209
 msgid "Percent Downpayment"
 msgstr "Procent przedpłaty"
 
-#: models.py:780
+#: models.py:1210
 msgid "Deferred Shipping"
 msgstr "Odroczona wysyłka"
 
-#: models.py:781
+#: models.py:1211
 msgid "Do not charge shipping at checkout for this item."
 msgstr "Nie pobieraj opłaty za przesyłkę dla tego przedmiotu"
 
-#: models.py:847
+#: models.py:1293
 msgid "Custom Product"
 msgstr "Produkt Specjalny"
 
-#: models.py:848
+#: models.py:1294
 msgid "Custom Products"
 msgstr "Produkty Specjalne"
 
-#: models.py:855
+#: models.py:1301
 msgid "Custom field name"
 msgstr "Nazwa pola dodatkowego"
 
-#: models.py:856
+#: models.py:1302
 msgid "Auto-generated from name if blank"
 msgstr "Generowane automatycznie jeżeli pozostawisz puste"
 
-#: models.py:858
+#: models.py:1304
 msgid "Custom Fields"
 msgstr "Pola specjalne"
 
-#: models.py:882
+#: models.py:1328
 msgid "Translated Custom Text Field Name"
 msgstr "Przetłumaczona nazwa pola specjalnego"
 
-#: models.py:887
+#: models.py:1333
 msgid "CustomTextField Translation"
 msgstr "Tłumaczenie pola specjalnego"
 
-#: models.py:888
+#: models.py:1334
 msgid "CustomTextField Translations"
 msgstr "Tłumaczenia pól specjalnych"
 
-#: models.py:903
+#: models.py:1349
 msgid "Create Variations"
 msgstr "Utwórz odmiany"
 
-#: models.py:903
-msgid "Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."
-msgstr "Utwórz odmiany produktów, dla wszystkich opcji. Aby użyć tej opcji musisz najpierw dodać opcję, zapisać ją i dopiero wrócić na tą stronę."
+#: models.py:1349
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+"Utwórz odmiany produktów, dla wszystkich opcji. Aby użyć tej opcji musisz "
+"najpierw dodać opcję, zapisać ją i dopiero wrócić na tą stronę."
 
-#: models.py:1073
+#: models.py:1539
 msgid "Configurable Products"
 msgstr "Produkty Konfigurowalne"
 
-#: models.py:1088
+#: models.py:1554
 msgid "File"
 msgstr "Plik"
 
-#: models.py:1089
+#: models.py:1555
 msgid "Num allowed downloads"
 msgstr "Ilość dozwolonych pobrań"
 
-#: models.py:1089
+#: models.py:1555
 msgid "Number of times link can be accessed."
 msgstr "Ile razy link może być użyty"
 
-#: models.py:1090
+#: models.py:1556
 msgid "Expire minutes"
 msgstr "Ważność w minutach"
 
-#: models.py:1090
+#: models.py:1556
 msgid "Number of minutes the link should remain active."
 msgstr "Czas aktywności linku w minutach."
 
-#: models.py:1091
+#: models.py:1557
 msgid "Is this download currently active?"
 msgstr "Czy link do pobrania jest aktywny?"
 
-#: models.py:1111
+#: models.py:1577
 msgid "Downloadable Products"
 msgstr "Produkt do pobrania online"
 
-#: models.py:1118
+#: models.py:1589
 msgid "Recurring Billing"
 msgstr "Naliczenia cykliczne"
 
-#: models.py:1118
+#: models.py:1589
 msgid "Customer will be charged the regular product price on a periodic basis."
 msgstr "Klient będzie regularnie obciążany ceną za ten produkt."
 
-#: models.py:1119
+#: models.py:1590
 msgid "Recurring Times"
 msgstr "Jak często będzie powtarzane"
 
-#: models.py:1119
+#: models.py:1590
 msgid "Number of payments which will occur at the regular rate.  (optional)"
 msgstr "Ilość opłat, które nastąpią w regularnej cenie (opcjonalne)"
 
-#: models.py:1120
+#: models.py:1591
 msgid "Duration"
 msgstr "Długość"
 
-#: models.py:1120
-msgid "Length of each billing cycle (days)"
+#: models.py:1591
+#, fuzzy
+msgid "Length of each billing cycle"
 msgstr "Długość każdego cyklu rozliczeniowego (dni)"
 
-#: models.py:1122
+#: models.py:1593
+#, fuzzy
+msgid "Days"
+msgstr "dni"
+
+#: models.py:1594
+msgid "Months"
+msgstr ""
+
+#: models.py:1596
+#, fuzzy
+msgid "Expire Unit"
+msgstr "Ważność w minutach"
+
+#: models.py:1598
 msgid "No Shipping Charges"
 msgstr "Bez opłat za wysyłkę"
 
-#: models.py:1123
+#: models.py:1599
 msgid "Pay Shipping Once"
 msgstr "Opłata jednorazowa"
 
-#: models.py:1124
+#: models.py:1600
 msgid "Pay Shipping Each Billing Cycle"
 msgstr "Opłata za wysyłkę za każdym cyklem"
 
-#: models.py:1126
+#: models.py:1602
 msgid "Shippable?"
 msgstr "Do wysłki?"
 
-#: models.py:1126
+#: models.py:1602
 msgid "Is this product shippable?"
 msgstr "Czy produkt daje się wysłać?"
 
-#: models.py:1149
+#: models.py:1686
 msgid "Subscription Products"
 msgstr "Subskrypcje"
 
-#: models.py:1162
-msgid "Set to 0 for a free trial.  Leave empty if product does not have a trial."
-msgstr "Ustaw na 0 dla bezpłatnego okresu. Pozostaw puste jeżeli produkt nie ma okresu próby."
+#: models.py:1699 models.py:2132 models.py:2176
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/detail_customproduct.html:14
+#: templates/product/product.html:34
+msgid "Price"
+msgstr "Cena"
 
-#: models.py:1163
+#: models.py:1699
+msgid ""
+"Set to 0 for a free trial.  Leave empty if product does not have a trial."
+msgstr ""
+"Ustaw na 0 dla bezpłatnego okresu. Pozostaw puste jeżeli produkt nie ma "
+"okresu próby."
+
+#: models.py:1700
 msgid "Trial Duration"
 msgstr "Ores próbny"
 
-#: models.py:1163
-msgid "Length of trial billing cycle (days).  Leave empty if product does not have a trial."
-msgstr "Okres testowy (w dniach). Pozostaw pusty jeżeli nie ma okresu testowania."
+#: models.py:1700
+#, fuzzy
+msgid ""
+"Length of trial billing cycle.  Leave empty if product does not have a trial."
+msgstr ""
+"Okres testowy (w dniach). Pozostaw pusty jeżeli nie ma okresu testowania."
 
-#: models.py:1170
-#: models.py:1171
+#: models.py:1724 models.py:1725
 msgid "Trial Terms"
 msgstr "Warunki testu"
 
-#: models.py:1195
+#: models.py:1749 templates/product/admin/variation_manager.html:253
 msgid "Options"
 msgstr "Opcje"
 
-#: models.py:1198
+#: models.py:1752
 msgid "Parent"
 msgstr "Rodzic"
 
-#: models.py:1294
+#: models.py:1873
 msgid "Two options from the same option group cannot be applied to an item."
-msgstr "Dwie opcje z tej samej grupy nie mogą być zaznaczone dla jednego obiektu"
+msgstr ""
+"Dwie opcje z tej samej grupy nie mogą być zaznaczone dla jednego obiektu"
 
-#: models.py:1347
+#: models.py:1933
 msgid "Product variation"
 msgstr "Odmiana produktu"
 
-#: models.py:1348
+#: models.py:1934
 msgid "Product variations"
 msgstr "Odmiany produktów"
 
-#: models.py:1362
-msgid "Attribute Name"
+#: models.py:2065
+msgid "One or more characters"
+msgstr ""
+
+#: models.py:2066
+msgid "Integer number"
+msgstr ""
+
+#: models.py:2067
+msgid "Yes or No"
+msgstr ""
+
+#: models.py:2068
+msgid "Decimal number"
+msgstr ""
+
+#: models.py:2084
+#, fuzzy
+msgid "Attribute name"
 msgstr "Nazwa atrybutu"
 
-#: models.py:1363
+#: models.py:2085
+#, fuzzy
+msgid "Field Validations"
+msgstr "Odmiany"
+
+#: models.py:2087
+#, fuzzy
+msgid "Error Message"
+msgstr "Błędy"
+
+#: models.py:2087
+msgid "Invalid Entry"
+msgstr ""
+
+#: models.py:2106
 msgid "Value"
 msgstr "Wartość"
 
-#: models.py:1366
+#: models.py:2117
 msgid "Product Attribute"
 msgstr "Atrybut produktu"
 
-#: models.py:1367
+#: models.py:2118
 msgid "Product Attributes"
 msgstr "Atrybuty produktów"
 
-#: models.py:1379
+#: models.py:2133
 msgid "Discount Quantity"
 msgstr "Rabat ilościowy"
 
-#: models.py:1379
+#: models.py:2135
 msgid "Use this price only for this quantity or higher"
 msgstr "Użyj tej ceny tylko jeżeli zamówienie opiewa na co najmniej tę ilość"
 
-#: models.py:1380
+#: models.py:2136
 msgid "Expires"
 msgstr "Wygaśnie"
 
-#: models.py:1410
+#: models.py:2177
 msgid "Prices"
 msgstr "Ceny"
 
-#: models.py:1446
+#: models.py:2214
 msgid "Product Image"
 msgstr "Obraz produktu"
 
-#: models.py:1447
+#: models.py:2215
 msgid "Product Images"
 msgstr "Obrazy produktów"
 
-#: models.py:1460
+#: models.py:2228
 msgid "Product Image Translation"
 msgstr "Przetłumaczony obraz produktu"
 
-#: models.py:1461
+#: models.py:2229
 msgid "Product Image Translations"
 msgstr "Przetłumaczone obrazy produktów"
 
-#: views.py:95
-#: views.py:108
-#: views.py:115
-#: views.py:122
-msgid "not available"
-msgstr "niedostępny"
+#: models.py:2242
+#, fuzzy
+msgid "Title"
+msgstr "Strona"
 
-#: templatetags/satchmo_product_admin.py:36
-#, python-format
-msgid "Edit %(subtype)s"
-msgstr "Edytuj %(subtype)s"
+#: models.py:2243
+msgid "Displayed title of this tax."
+msgstr ""
 
-#: templatetags/satchmo_product_admin.py:38
-#, python-format
-msgid "Add %(subtype)s"
-msgstr "Dodaj %(subtype)s"
+#: models.py:2245
+#, fuzzy
+msgid "Description of products that would be taxed."
+msgstr "Opis produktu"
 
-#: templatetags/satchmo_product_admin.py:65
-msgid "Delete ProductVariation"
-msgstr "Usuń odmianę produktu"
+#: models.py:2252
+#, fuzzy
+msgid "Tax Classes"
+msgstr "Klasa podatku"
 
-#: templates/product/product.html.html:60
-#: templates/product/detail_configurableproduct.html:66
-#: templates/product/detail_customproduct.html:39
-#: templates/product/detail_subscriptionproduct.html:40
-msgid "Quantity"
-msgstr "Ilość"
+#: models.py:2435
+msgid "Price Adjustment"
+msgstr ""
 
-#: templates/product/category.html:23
-#: templates/product/product.html.html:32
-msgid "Shop Categories"
-msgstr "Kategorie"
+#: templates/admin/product/configurableproduct/change_form.html:17
+#: templates/admin/product/productvariation/change_form.html:65
+#: templates/product/admin/inventory_form.html:113
+#: templates/product/admin/product_export_form.html:111
+msgid "Helpers"
+msgstr "Skróty"
 
+#: templates/admin/product/configurableproduct/change_form.html:18
+#: templates/admin/product/productvariation/change_form.html:66
+msgid "Variation Manager"
+msgstr "Zarządzanie odmianami"
+
+#: templates/admin/product/configurableproduct/change_form.html:21
+#: templates/product/admin/variation_manager.html:237
+msgid "Variations"
+msgstr "Odmiany"
+
+#: templates/product/best_ratings.html:8 templates/product/best_sellers.html:7
+#: templates/product/category.html:13 templates/product/category_index.html:7
+#: templates/product/minimum_order.html:5 templates/product/product.html:23
 #: templates/product/recently_added.html:7
-msgid "Recently Added"
-msgstr "Ostatnio dodane"
+#: templates/product/admin/inventory_form.html:67
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/admin/variation_manager.html:6
+#: templates/product/admin/variation_manager_list.html:6
+msgid "Home"
+msgstr "Strona startowa"
 
-#: templates/product/recently_added.html:25
-#: templates/product/recently_added.html:27
-msgid "Previous"
-msgstr "Poprzednie"
+#: templates/product/best_ratings.html:9
+#: templates/product/category_index.html:8
+msgid "Most Popular"
+msgstr ""
 
-#: templates/product/recently_added.html:30
-#: templates/product/recently_added.html:32
-msgid "Next"
-msgstr "Następne"
+#: templates/product/best_ratings.html:13
+msgid "Best Rated Products"
+msgstr "Najlepiej oceniane produkty"
 
-#: templates/product/product.html.html:52
-#: templates/product/detail_configurableproduct.html:35
+#: templates/product/best_ratings.html:25
+#, python-format
+msgid "Rating %(rating)s"
+msgstr "Ocena %(rating)s"
+
+#: templates/product/best_sellers.html:8
+#, fuzzy
+msgid "Best Sellers"
+msgstr "Najelepiej sprzedające się produkty"
+
+#: templates/product/best_sellers.html:13
+msgid "Best Selling Products"
+msgstr "Najelepiej sprzedające się produkty"
+
+#: templates/product/cart_detail_customproduct.html:7
+msgid "Base Price: "
+msgstr ""
+
+#: templates/product/cart_detail_customproduct.html:8
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:8
+#, python-format
+msgid ""
+"This is the trial price to be charged today, see <a href=\"%(url)s\">the "
+"product description</a> for full pricing details."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:10
+#, python-format
+msgid ""
+"Free trial, see <a href=\"%(url)s\">the product description</a> for full "
+"pricing details."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:13
+#, python-format
+msgid ""
+"For full pricing details, see <a href=\"%(url)s\">the product description</"
+"a>."
+msgstr ""
+
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/product.html:34
 msgid "(incl. tax)"
 msgstr "(brutto)"
 
-#: templates/product/product.html.html:64
-#: templates/product/detail_configurableproduct.html:70
-#: templates/product/detail_customproduct.html:43
-#: templates/product/detail_subscriptionproduct.html:44
-msgid "Add to wishlist"
-msgstr "Dodaj do listy życzeń"
+#: templates/product/detail_configurableproduct.html:54
+msgid "Please choose your options"
+msgstr "Proszę wybrać opcję"
 
-#: templates/product/admin/variation_manager.html:7
-#: templates/product/admin/variation_manager_list.html:7
-msgid "Product Variation Manager"
-msgstr "Zarządzanie odmianami produktów"
+#: templates/product/detail_configurableproduct.html:69
+#: templates/product/detail_customproduct.html:50
+#: templates/product/detail_subscriptionproduct.html:49
+#: templates/product/product.html:54
+msgid "Quantity"
+msgstr "Ilość"
 
+#: templates/product/detail_configurableproduct.html:71
+#: templates/product/detail_customproduct.html:52
+#: templates/product/detail_subscriptionproduct.html:51
+#: templates/product/product.html:56
+msgid "Add to cart"
+msgstr "Dodaj do koszyka"
+
+#: templates/product/detail_customproduct.html:12
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "Zamówienia specjalne dla %(name)s"
+
+#: templates/product/detail_customproduct.html:46
+msgid "more"
+msgstr "więcej"
+
+#: templates/product/detail_subscriptionproduct.html:10
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr "Subskrypcja %(name)s"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "Only "
+msgstr "Tylko"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "easy payments of:"
+msgstr "łatwa płatność:"
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "This product has trial subscription pricing "
+msgstr "Produkt ma specjalną cenę subskrypcji testowej "
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "Free"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "for trial period of "
+msgstr "na okres"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "days"
+msgstr "dni"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "months"
+msgstr ""
+
+#: templates/product/minimum_order.html:6
+#, fuzzy
+msgid "Cart"
+msgstr "Rodzic"
+
+#: templates/product/minimum_order.html:7
+#, fuzzy
+msgid "Notice"
+msgstr "Wybory"
+
+#: templates/product/minimum_order.html:14
+#, python-format
+msgid ""
+"This store requires a minimum order of %(value)s before you can check out."
+msgstr ""
+
+#: templates/product/product_discount_eligible.html:4
+#, python-format
+msgid ""
+"<p>This item is eligible to receive a discount of %(pct)s during checkout "
+"when you enter the code \"%(code)s\" during our %(desc)s which ends on %"
+"(enddate)s.</p>\n"
+msgstr ""
+
+#: templates/product/recently_added.html:8
+#: templates/product/recently_added.html:12
+msgid "Recently Added"
+msgstr "Ostatnio dodane"
+
+#: templates/product/recently_added.html:31
+#: templates/product/recently_added.html:33
+msgid "Previous"
+msgstr "Poprzednie"
+
+#: templates/product/recently_added.html:36
+#: templates/product/recently_added.html:38
+msgid "Next"
+msgstr "Następne"
+
+#: templates/product/recently_added.html:45
+msgid "Bad Page"
+msgstr "Zła strona"
+
+#: templates/product/sale_details.html:5
+#, fuzzy, python-format
+msgid ""
+"<p>Products in your cart are eligible to receive a discount of %(pct)s when "
+"you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)"
+"s.</p>\n"
+msgstr ""
+"<p>Niketóre z produktów w koszyku podlegają rabatowi %(pct)s. Aby z niego "
+"skorzystać wprowadź kod \"%(code)s\" w czasie naszej  %(desc)s do dnia %"
+"(enddate)s.</p>\n"
+
+#: templates/product/some_discount_eligible.html:4
+#, fuzzy, python-format
+msgid ""
+"<p>Products on this page are eligible to receive a discount of %(pct)s "
+"during checkout when you enter the code \"%(code)s\" during our %(desc)s "
+"which ends on %(enddate)s.</p>\n"
+msgstr ""
+"<p>Niketóre z produktów w koszyku podlegają rabatowi %(pct)s. Aby z niego "
+"skorzystać wprowadź kod \"%(code)s\" w czasie naszej  %(desc)s do dnia %"
+"(enddate)s.</p>\n"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "Zmiana hasła"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "Wyloguj"
+
+#: templates/product/admin/inventory_form.html:68
 #: templates/product/admin/product_export_form.html:52
 msgid "Inventory Management"
 msgstr "Stany magazynowe"
 
-#: templates/product/admin/product_export_form.html:111
-#: templates/admin/product/configurableproduct/change_form.html:17
-#: templates/admin/product/productvariation/change_form.html:60
-msgid "Helpers"
-msgstr "Skróty"
+#: templates/product/admin/inventory_form.html:75
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#: templates/product/admin/variation_manager.html:233
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Proszę poprawić poniższy błąd."
+msgstr[1] "Proszę poprawić poniższe błędy."
+
+#: templates/product/admin/inventory_form.html:84
+#, fuzzy
+msgid "Inventory"
+msgstr "Edytor stanów magazynowych"
+
+#: templates/product/admin/inventory_form.html:85
+#, fuzzy
+msgid "Unit Price"
+msgstr "Cena"
+
+#: templates/product/admin/inventory_form.html:114
+msgid "Mark all featured"
+msgstr ""
+
+#: templates/product/admin/inventory_form.html:115
+msgid "Clear all featured"
+msgstr ""
+
+#: templates/product/admin/inventory_form.html:116
+msgid "Disable all Products with 0 quantity."
+msgstr ""
+
+#: templates/product/admin/inventory_form.html:117
+#, fuzzy
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Usuń odmianę produktu"
+
+#: templates/product/admin/inventory_form.html:121
+#, fuzzy
+msgid "No inventory items."
+msgstr "Edytor stanów magazynowych"
 
 #: templates/product/admin/product_export_form.html:57
-msgid "WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
-msgstr "UWAGA: TA FUNKCJA JEST WCIĄŻ W STANIE EKSPERYMENTALNYM. NIE UŻYWAĆ W SYSTEMACH PRODUKCYJNYCH."
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+"UWAGA: TA FUNKCJA JEST WCIĄŻ W STANIE EKSPERYMENTALNYM. NIE UŻYWAĆ W "
+"SYSTEMACH PRODUKCYJNYCH."
 
 #: templates/product/admin/product_export_form.html:58
 #: templates/product/admin/product_export_form.html:66
@@ -1088,94 +1442,89 @@ msgstr "Błędy"
 msgid "results"
 msgstr "rezultaty"
 
-#: templates/admin/product/configurableproduct/change_form.html:18
-#: templates/admin/product/productvariation/change_form.html:61
-msgid "Variation Manager"
-msgstr "Zarządzanie odmianami"
+#: templates/product/admin/variation_manager.html:7
+#: templates/product/admin/variation_manager_list.html:7
+msgid "Product Variation Manager"
+msgstr "Zarządzanie odmianami produktów"
 
-#: templates/admin/product/configurableproduct/change_form.html:21
-#: templates/product/admin/variation_manager.html:170
-msgid "Variations"
-msgstr "Odmiany"
-
-#: templates/product/admin/variation_manager.html:163
+#: templates/product/admin/variation_manager.html:230
 #, python-format
 msgid "Variation Manager for %(product_name)s"
 msgstr "Zarządzanie odmianami dla %(product_name)s"
 
-#: templates/product/admin/variation_manager.html:172
+#: templates/product/admin/variation_manager.html:239
 msgid ""
 "\n"
-"    <p>The Variation Manager helps create the exact set of variations you need for your Configurable Product</p>\n"
-"    <p>Make choices from the Option Groups below, and then click one of the helper links \n"
-"    below them to select or deselect variations which have those options.</p>\n"
-"    <p>Fine tune the active variations by putting a checkmark next to those that you want to keep or \n"
+"    <p>The Variation Manager helps create the exact set of variations you "
+"need for your Configurable Product</p>\n"
+"    <p>Make choices from the Option Groups below, and then click one of the "
+"helper links \n"
+"    below them to select or deselect variations which have those options.</"
+"p>\n"
+"    <p>Fine tune the active variations by putting a checkmark next to those "
+"that you want to keep or \n"
 "    create, then then click <b>Update Variations</b>.\n"
 "    </p>\n"
 "    "
 msgstr ""
 
-#: templates/product/admin/variation_manager.html:186
-msgid "Choices"
-msgstr "Wybory"
-
-#: templates/product/admin/variation_manager.html:206
+#: templates/product/admin/variation_manager.html:273
 msgid "Helper Links"
 msgstr "Linki programów pomocniczych"
 
-#: templates/product/admin/variation_manager.html:211
+#: templates/product/admin/variation_manager.html:280
 msgid "Select These Options"
 msgstr "Wybierz spośród opcji"
 
-#: templates/product/admin/variation_manager.html:213
+#: templates/product/admin/variation_manager.html:283
 msgid "Select Only These Options"
 msgstr "Wybierz tylko te opcje"
 
-#: templates/product/admin/variation_manager.html:215
+#: templates/product/admin/variation_manager.html:286
 msgid "Select All"
 msgstr "Wybierz wszystko"
 
-#: templates/product/admin/variation_manager.html:217
+#: templates/product/admin/variation_manager.html:289
 msgid "Deselect These Options"
 msgstr "Odznacz te opcje"
 
-#: templates/product/admin/variation_manager.html:219
+#: templates/product/admin/variation_manager.html:292
 msgid "Deselect All"
 msgstr "Odznacz wszystko"
 
-#: templates/product/admin/variation_manager.html:221
+#: templates/product/admin/variation_manager.html:295
 msgid "Show All"
 msgstr "Pokaż wszystko"
 
-#: templates/product/admin/variation_manager.html:223
+#: templates/product/admin/variation_manager.html:298
 msgid "Hide Inactive Rows"
 msgstr "Ukryj nieaktywne wiersze"
 
-#: templates/product/admin/variation_manager.html:228
+#: templates/product/admin/variation_manager.html:305
 msgid "Update Variations"
 msgstr "Aktualizuj odmiany"
 
-#: templates/product/admin/variation_manager.html:229
+#: templates/product/admin/variation_manager.html:306
 msgid "Reset Form"
 msgstr "Resetuj formularz"
 
-#: templates/product/admin/variation_manager.html:237
+#: templates/product/admin/variation_manager.html:314
 msgid "Variation"
 msgstr "Odmiana"
 
-#: templates/product/admin/variation_manager.html:238
+#: templates/product/admin/variation_manager.html:315
 msgid "Exists"
 msgstr "Istnieje"
 
-#: templates/product/admin/variation_manager.html:239
+#: templates/product/admin/variation_manager.html:316
 msgid "Create/Keep"
 msgstr "Utwórz/Zachowaj"
 
-#: templates/product/admin/variation_manager.html:255
+#: templates/product/admin/variation_manager.html:332
 msgid "yes"
 msgstr "tak"
 
-#: templates/product/admin/variation_manager.html:255
+#: templates/product/admin/variation_manager.html:332
 msgid "no"
 msgstr "nie"
 
@@ -1183,73 +1532,70 @@ msgstr "nie"
 msgid "Select the Configurable Product to manage."
 msgstr "Wybierz Produkt Konfigurowalny"
 
-#: sale_details.html:5
+#: templatetags/satchmo_product_admin.py:38
 #, python-format
-msgid "<p>Some of the products in your cart are eligible to receive a discount of %(pct)s when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
-msgstr "<p>Niketóre z produktów w koszyku podlegają rabatowi %(pct)s. Aby z niego skorzystać wprowadź kod \"%(code)s\" w czasie naszej  %(desc)s do dnia %(enddate)s.</p>\n"
+msgid "Edit %(subtype)s"
+msgstr "Edytuj %(subtype)s"
 
-#: templates/product/product_discount_eligible.html:4
+#: templatetags/satchmo_product_admin.py:43
 #, python-format
-msgid "<p>This item is eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
-msgstr ""
+msgid "Add %(subtype)s"
+msgstr "Dodaj %(subtype)s"
 
-#: templates/product/some_discount_eligible.html:4
-#, python-format
-msgid "<p>Some of the products on this page are eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
-msgstr ""
+#: templatetags/satchmo_product_admin.py:70
+msgid "Delete ProductVariation"
+msgstr "Usuń odmianę produktu"
 
-#: templates/product/best_ratings.html:8
-msgid "Best Rated Products"
-msgstr "Najlepiej oceniane produkty"
+#: views/__init__.py:72
+#, fuzzy
+msgid "The category you have requested does not exist."
+msgstr "Wybrany produkt nie istnieje."
 
-#: templates/product/best_ratings.html:19
-#, python-format
-msgid "Rating %(rating)s"
-msgstr "Ocena %(rating)s"
+#: views/__init__.py:124 views/adminviews.py:123
+msgid "The product you have requested does not exist."
+msgstr "Wybrany produkt nie istnieje."
 
-#: templates/product/best_sellers.html:7
-msgid "Best Selling Products"
-msgstr "Najelepiej sprzedające się produkty"
+#: views/__init__.py:172 views/__init__.py:189 views/__init__.py:196
+#: views/__init__.py:205
+msgid "not available"
+msgstr "niedostępny"
 
-#: templates/product/detail_configurableproduct.html:51
-msgid "Please choose your options"
-msgstr "Proszę wybrać opcję"
+#: views/adminviews.py:27
+msgid "Inventory Editor"
+msgstr "Edytor stanów magazynowych"
 
-#: templates/product/detail_customproduct.html:10
-#, python-format
-msgid "Custom order for %(name)s"
-msgstr "Zamówienia specjalne dla %(name)s"
+#: views/adminviews.py:49
+msgid "Product Import/Export"
+msgstr "Import/Eksport produktów"
 
-#: templates/product/detail_customproduct.html:35
-msgid "more"
-msgstr "więcej"
+#: views/adminviews.py:73
+msgid "No upload file found"
+msgstr "Nie znaleziono pliku"
 
-#: templates/product/detail_subscriptionproduct.html:10
-#, python-format
-msgid "Subscription product %(name)s"
-msgstr "Subskrypcja %(name)s"
+#: views/adminviews.py:120
+msgid "The product you have requested is not a Configurable Product."
+msgstr "Wybrany produkt nie jest Produktem Konfigurowalnym."
 
-#: templates/product/detail_subscriptionproduct.html:12
-msgid "Only "
-msgstr "Tylko"
+#~ msgid "Not implemented."
+#~ msgstr "Nie zaimplementowane."
 
-#: templates/product/detail_subscriptionproduct.html:12
-msgid "easy payments of:"
-msgstr "łatwa płatność:"
+#~ msgid "Include shipping"
+#~ msgstr "Z wysyłką"
 
-#: templates/product/detail_subscriptionproduct.html:19
-msgid "This product has trial subscription pricing "
-msgstr "Produkt ma specjalną cenę subskrypcji testowej "
+#~ msgid "Should shipping be included in the discount calculation?"
+#~ msgstr "Czy koszta wysyłki powinny zostać włączone w wyliczenie rabatu?"
 
-#: templates/product/detail_subscriptionproduct.html:20
-msgid "for trial period of "
-msgstr "na okres"
+#~ msgid "A unit of measure must be entered for the length"
+#~ msgstr "Podaj jednostkę miary dla długości"
 
-#: templates/product/detail_subscriptionproduct.html:20
-msgid "days"
-msgstr "dni"
+#~ msgid "The product and parent fields can not be the same."
+#~ msgstr "Pola produktu i rodzica nie mogą być jednakowe"
 
-#: templates/product/recently_added.html:39
-msgid "Bad Page"
-msgstr "Zła strona"
+#~ msgid "Custom Order"
+#~ msgstr "Zamówienie specjalne"
 
+#~ msgid "Shop Categories"
+#~ msgstr "Kategorie"
+
+#~ msgid "Add to wishlist"
+#~ msgstr "Dodaj do listy życzeń"
