@@ -45,7 +45,7 @@ class BasePaymentProcessor(object):
     def authorize_payment(self, testing=False, order=None, amount=NOTSET):
         """Authorize a single payment, must be overridden to function"""
         self.log.warn('Module does not implement authorize_payment: %s', self.key)
-        return ProcessorResult(False, _("Not Implemented"))
+        return ProcessorResult(self.key, False, _("Not Implemented"))
 
     def can_authorize(self):
         return False
@@ -77,12 +77,12 @@ class BasePaymentProcessor(object):
     def capture_authorized_payment(self, authorization, testing=False, order=None, amount=NOTSET):
         """Capture a single payment, must be overridden to function"""
         self.log.warn('Module does not implement capture_payment: %s', self.key)
-        return ProcessorResult(False, _("Not Implemented"))
+        return ProcessorResult(self.key, False, _("Not Implemented"))
 
     def capture_payment(self, testing=False, order=None, amount=NOTSET):
         """Capture payment without an authorization step.  Override this one."""
         self.log.warn('Module does not implement authorize_and_capture: %s', self.key)
-        return ProcessorResult(False, _("Not Implemented"))
+        return ProcessorResult(self.key, False, _("Not Implemented"))
 
     def create_pending_payment(self, order=None, amount=NOTSET):
         if not order:
@@ -178,7 +178,7 @@ class BasePaymentProcessor(object):
     def release_authorized_payment(self, order=None, auth=None, testing=False):
         """Release a previously authorized payment."""
         self.log.warn('Module does not implement released_authorized_payment: %s', self.key)
-        return ProcessorResult(False, _("Not Implemented"))
+        return ProcessorResult(self.key, False, _("Not Implemented"))
 
 class HeadlessPaymentProcessor(BasePaymentProcessor):
     """A payment processor which doesn't actually do any processing directly.
