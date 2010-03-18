@@ -28,9 +28,9 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'SHOP_BASE'``
 
-    :default: '/shop'
+    :default: ``'/shop'``
 
-    Used as the prefix for your store.  Don't append a trailing slash (`/`) - Satchmo does
+    Used as the prefix for your store.  Don't append a trailing slash (``'/'``) - Satchmo does
     this for you.  In the default setting, your store is located at
     `www.yourname.com/shop/`.  If you would like to change this setting, this is the place
     to do it.  If you would like your store to be at the root of the url, set this to
@@ -40,7 +40,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'SHOP_URLS'``
 
-    :default: []
+    :default: ``[]``
 
     .. TODO documentation needed.
 
@@ -48,7 +48,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'MULTISHOP'``
 
-    :default: False
+    :default: ``False``
 
     A boolean used to enable to disable multi store capability.
 
@@ -56,7 +56,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'CUSTOM_NEWSLETTER_MODULES'``
 
-    :default: []
+    :default: ``[]``
 
     A list of custom newsletters.
 
@@ -64,7 +64,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'CUSTOM_SHIPPING_MODULES'``
 
-    :default: []
+    :default: ``[]``
 
     A list of custom shipping modules outside of the standard Satchmo distribution.
 
@@ -72,7 +72,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'CUSTOM_PRODUCT_MODULES'``
 
-    :default: []
+    :default: ``[]``
 
     A list of custom product modules outside of the standard Satchmo distribution.
 
@@ -80,7 +80,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'CUSTOM_TAX_MODULES'``
 
-    :default: []
+    :default: ``[]``
 
     A list of custom tax modules outside of the standard Satchmo distribution.
 
@@ -88,7 +88,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'COOKIE_MAX_SECONDS'``
 
-    :default: 60*60*24*30
+    :default: ``60*60*24*30``
 
     Cookie expiration time.
 
@@ -96,7 +96,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'CATEGORY_SLUG'``
 
-    :default: 'category'
+    :default: ``'category'``
 
     The category url prefix.
 
@@ -104,7 +104,7 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
   ``'PRODUCT_SLUG'``
 
-    :default: 'product'
+    :default: ``'product'``
 
     The product url prefix.
 
@@ -213,7 +213,7 @@ Newsletters
 ^^^^^^^^^^^
 
 Satchmo has two methods for handling newsletter subscriptions.  By default, you have an "ignore it" processor enabled.
-To enable handling, first add "satchmo.newsletter" to your list of installed modules in your settings file.
+To enable handling, first add ``"satchmo.newsletter"`` to your list of installed modules in your settings file.
 
 Next, choose the way you want to handle the subscriptions.  Currently we have two working newsletter plugins:
 
@@ -244,7 +244,7 @@ will automatically be used in pages served by SSL, but only if you specify it in
     MEDIA_SECURE_URL = 'https://secure.example.com/static/'
 
 Then, enable it for the specific urls you would like to be protected by adding
-{'SSL': True} to each url.  Here's an example which would enable SSL for login::
+``{'SSL': True}`` to each url.  Here's an example which would enable SSL for login::
 
 	(r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
@@ -275,11 +275,11 @@ The LIVESETTINGS_OPTIONS must be formatted as follows::
 	            }
 	        }
 
-In the settings dict above, the "1" is a site index, allowing you to have different settings for different sites.
-The "val" entries must exactly match the format stored in the database for a setting.  For example, do not use a
-literal True or an integer, it needs to be the string representation of them.
+In the settings dict above, the ``1`` is a site index, allowing you to have different settings for different sites.
+The ``val`` entries must exactly match the format stored in the database for a setting.  For example, do not use a
+literal ``True`` or an integer, it needs to be the string representation of them.
 
-If ``DB`` is False, then editting the settings via the admin will be disabled. All configuration must then be done
+If ``DB`` is ``False``, then editting the settings via the admin will be disabled. All configuration must then be done
 through the settings file.
 
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
@@ -307,13 +307,13 @@ below would configure the Euro::
 The following settings are available to be added to the L10N_SETTINGS dictionary:
 
     - ``default_currency`` - The default currency type to display
-    - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - True
-    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - True
+    - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - ``True``
+    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - ``True``
 
 
 
 The L10N_SETTINGS variable also allows you to control whether or not translation fields
-should be displayed in the admin. In the example above, they will be disabled. The default is True
+should be displayed in the admin. In the example above, they will be disabled. The default is ``True``
 
 .. Note::
     If you use a unicode character, you'll need to have an encoding at the top
