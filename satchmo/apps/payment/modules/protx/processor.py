@@ -162,7 +162,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
                 except urllib2.URLError, ue:
                     self.log.error("error opening %s\n%s", self.url, ue)
-                    return (False, 'ERROR', 'Could not talk to Protx gateway')
+                    return ProcessorResult(self.key, False, 'Could not talk to Protx gateway')
 
                 try:
                     self.response = dict([row.split('=', 1) for row in result.splitlines()])
