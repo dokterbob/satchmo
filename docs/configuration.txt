@@ -22,7 +22,7 @@ number of places you might want to configure.
         'PRODUCT_SLUG': 'items',
         }
 
-The following settings can be added to the SATCHMO_SETTINGS dictionary:
+The following settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
 
 .. data:: SATCHMO_SETTINGS.SHOP_BASE
 
@@ -240,9 +240,9 @@ to be SSL enabled, but Authorize.net should be.
 Disabling the Live Settings System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once your store is live, you may want to disable the admin ability to edit the site configuration.  To do this, edit your settings.py file and add a new entry "LIVESETTINGS_OPTIONS" with the settings you want to lock into place.
+Once your store is live, you may want to disable the admin ability to edit the site configuration.  To do this, edit your settings.py file and add a new entry ``LIVESETTINGS_OPTIONS`` with the settings you want to lock into place.
 
-The LIVESETTINGS_OPTIONS must be formatted as follows::
+The ``LIVESETTINGS_OPTIONS`` must be formatted as follows::
 
 
 	LIVESETTINGS_OPTIONS = {
@@ -272,7 +272,7 @@ The easiest way to do this is to query the database for livesettings_setting and
 Changing the L10N Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Satchmo supports a setting L10N_SETTINGS to configure the currency format and other internationalization options. The example
+Satchmo supports a setting ``L10N_SETTINGS`` to configure the currency format and other internationalization options. The example
 below would configure the Euro::
 
     L10N_SETTINGS = {
@@ -284,7 +284,7 @@ below would configure the Euro::
       'allow_translations': False,
     }
 
-The following settings are available to be added to the L10N_SETTINGS dictionary:
+The following settings are available to be added to the ``L10N_SETTINGS`` dictionary:
 
     - ``default_currency`` - The default currency type to display
     - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - ``True``
@@ -292,7 +292,7 @@ The following settings are available to be added to the L10N_SETTINGS dictionary
 
 
 
-The L10N_SETTINGS variable also allows you to control whether or not translation fields
+The ``L10N_SETTINGS`` variable also allows you to control whether or not translation fields
 should be displayed in the admin. In the example above, they will be disabled. The default is ``True``
 
 .. Note::
