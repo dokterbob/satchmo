@@ -20,7 +20,7 @@
 -------------------
 {{ order.bill_addressee }}
 {{ order.full_bill_street }}
-{{ order.bill_city }} 
+{{ order.bill_city }}
 {{ order.bill_state }}
 {{ order.bill_postal_code }}
 {{ order.bill_country }}
@@ -40,8 +40,8 @@
 {% trans "Shipping Method" %}
 ---------------
 {{ order.shipping_description }}
-{{ order.shipping_method }} 
-{{ order.shipping_sub_total|currency }} 
+{{ order.shipping_method }}
+{{ order.shipping_sub_total|currency }}
 {% endif %}
 
 {% trans "Total" %}
