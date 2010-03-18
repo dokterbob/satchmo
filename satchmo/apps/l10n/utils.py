@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
 from django.utils.translation import get_language, to_locale
