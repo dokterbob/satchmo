@@ -15,12 +15,12 @@ number of places you might want to configure.
    few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS``
    dictionary like this::
 
-        SATCHMO_SETTINGS = {
+    SATCHMO_SETTINGS = {
         'SHOP_BASE': '/shop',
         'MULTISHOP': False,
         'CUSTOM_PRODUCT_MODULES': ['myshop.custom.product.model'],
         'PRODUCT_SLUG': 'items',
-        }
+    }
 
 The following settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
 
