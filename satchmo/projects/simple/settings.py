@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'registration',
     'sorl.thumbnail',
+    'south',
     'keyedcache',
     'livesettings',
     'l10n',
