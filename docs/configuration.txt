@@ -245,14 +245,27 @@ Once your store is live, you may want to disable the admin ability to edit the s
 The ``LIVESETTINGS_OPTIONS`` must be formatted as follows::
 
     LIVESETTINGS_OPTIONS = {
-            1 : {
-                    'DB' : [True/False],
-                    'SETTINGS' : {
-                        'GROUPKEY' : {'KEY', val, 'KEY2', val},
-                        'GROUPKEY2' : {'KEY', val, 'KEY2', val},
-                    }
-                }
+        1 : {
+            'DB' : (True|False),
+            'SETTINGS' : {
+                'GROUPKEY' : {
+                    'KEY' : val,
+                    'KEY2' : val,
+                    # ...
+                },
+
+                'GROUPKEY2' : {
+                    'KEY' : val,
+                    'KEY2' : val,
+                    # ...
+                },
+
+                # ...
             }
+        },
+
+        # ...
+    }
 
 In the settings dict above, the ``1`` is a site index, allowing you to have different settings for different sites.
 The ``val`` entries must exactly match the format stored in the database for a setting.  For example, do not use a
