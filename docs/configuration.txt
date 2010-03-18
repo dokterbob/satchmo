@@ -197,8 +197,8 @@ To enable handling, first add ``"satchmo.newsletter"`` to your list of installed
 
 Next, choose the way you want to handle the subscriptions.  Currently we have two working newsletter plugins:
 
-	- ``satchmo.newsletter.simple``  - This just tracks subscriptions in a database table for your querying pleasure.  You can then export that list to whatever mailing manager you want to use.
-	- ``satchmo.newsletter.mailman`` - This is an integration module which works with Gnu Mailman (http://www.gnu.org/software/mailman/).  This is particularly convenient if you have a Cpanel VPS system, since Mailman is installed by default on most such systems. To use this, you need to make sure Mailman is on your PYTHONPATH and you should have already set up a mailing list as an announce-only list (http://www.modwest.com/help/kb13-195.html). You'll need to enter the name of the list in your local settings file.
+  - ``satchmo.newsletter.simple``  - This just tracks subscriptions in a database table for your querying pleasure.  You can then export that list to whatever mailing manager you want to use.
+  - ``satchmo.newsletter.mailman`` - This is an integration module which works with Gnu Mailman (http://www.gnu.org/software/mailman/).  This is particularly convenient if you have a Cpanel VPS system, since Mailman is installed by default on most such systems. To use this, you need to make sure Mailman is on your PYTHONPATH and you should have already set up a mailing list as an announce-only list (http://www.modwest.com/help/kb13-195.html). You'll need to enter the name of the list in your local settings file.
 
 .. index::
    single: SSL
@@ -216,7 +216,7 @@ make sure that it is enabled in the middleware section of your settings.py::
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.middleware.doc.XViewMiddleware",
         "satchmo.shop.SSLMiddleware.SSLRedirect"
-			    )
+    )
 
 In order to support a fully encrypted page, you also need to make sure you provide a secure url for the media.  This url
 will automatically be used in pages served by SSL, but only if you specify it in your settings.py::
@@ -226,7 +226,7 @@ will automatically be used in pages served by SSL, but only if you specify it in
 Then, enable it for the specific urls you would like to be protected by adding
 ``{'SSL': True}`` to each url.  Here's an example which would enable SSL for login::
 
-	(r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
+    (r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
 SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can
 have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set
@@ -244,16 +244,15 @@ Once your store is live, you may want to disable the admin ability to edit the s
 
 The ``LIVESETTINGS_OPTIONS`` must be formatted as follows::
 
-
-	LIVESETTINGS_OPTIONS = {
-	        1 : {
-	                'DB' : [True/False],
-	                'SETTINGS' : {
-	                    'GROUPKEY' : {'KEY', val, 'KEY2', val},
-	                    'GROUPKEY2' : {'KEY', val, 'KEY2', val},
-	                }
-	            }
-	        }
+    LIVESETTINGS_OPTIONS = {
+            1 : {
+                    'DB' : [True/False],
+                    'SETTINGS' : {
+                        'GROUPKEY' : {'KEY', val, 'KEY2', val},
+                        'GROUPKEY2' : {'KEY', val, 'KEY2', val},
+                    }
+                }
+            }
 
 In the settings dict above, the ``1`` is a site index, allowing you to have different settings for different sites.
 The ``val`` entries must exactly match the format stored in the database for a setting.  For example, do not use a
