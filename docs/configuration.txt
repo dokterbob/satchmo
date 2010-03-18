@@ -286,9 +286,21 @@ below would configure the Euro::
 
 The following settings are available to be added to the ``L10N_SETTINGS`` dictionary:
 
-    - ``default_currency`` - The default currency type to display
-    - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - ``True``
-    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - ``True``
+.. data:: L10N_SETTINGS.default_currency
+
+   The default currency type to display.
+
+.. data:: L10N_SETTINGS.show_translations
+
+   :default: ``True``
+
+   Enable or disable the use of the translation options in the admin.
+
+.. data:: L10N_SETTINGS.allow_translations
+
+   :default: ``True``
+
+   Enable or disable the translation section for the store user.
 
 
 
