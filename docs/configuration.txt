@@ -24,7 +24,7 @@ number of places you might want to configure.
 
 The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
-.. data:: SATCHMO_SETTINGS['SHOP_BASE']
+.. data:: SATCHMO_SETTINGS.SHOP_BASE
 
     :default: '/shop'
 
@@ -34,55 +34,55 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
     to do it.  If you would like your store to be at the root of the url, set this to
     ``""``.
 
-.. data:: SATCHMO_SETTINGS['SHOP_URLS']
+.. data:: SATCHMO_SETTINGS.SHOP_URLS
 
     :default: []
 
     .. TODO documentation needed.
 
-.. data:: SATCHMO_SETTINGS['MULTISHOP']
+.. data:: SATCHMO_SETTINGS.MULTISHOP
 
     :default: False
 
     A boolean used to enable to disable multi store capability.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_NEWSLETTER_MODULES']
+.. data:: SATCHMO_SETTINGS.CUSTOM_NEWSLETTER_MODULES
 
     :default: []
 
     A list of custom newsletters.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_SHIPPING_MODULES']
+.. data:: SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES
 
     :default: []
 
     A list of custom shipping modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_PRODUCT_MODULES']
+.. data:: SATCHMO_SETTINGS.CUSTOM_PRODUCT_MODULES
 
     :default: []
 
     A list of custom product modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_TAX_MODULES']
+.. data:: SATCHMO_SETTINGS.CUSTOM_TAX_MODULES
 
     :default: []
 
     A list of custom tax modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['COOKIE_MAX_SECONDS']
+.. data:: SATCHMO_SETTINGS.COOKIE_MAX_SECONDS
 
     :default: 60*60*24*30
 
     Cookie expiration time.
 
-.. data:: SATCHMO_SETTINGS['CATEGORY_SLUG']
+.. data:: SATCHMO_SETTINGS.CATEGORY_SLUG
 
     :default: 'category'
 
     The category url prefix.
 
-.. data:: SATCHMO_SETTINGS['PRODUCT_SLUG']
+.. data:: SATCHMO_SETTINGS.PRODUCT_SLUG
 
     :default: 'product'
 
