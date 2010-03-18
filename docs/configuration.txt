@@ -80,13 +80,13 @@ The following settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
 
     :default: ``'category'``
 
-    The category url prefix.
+    The prefix used for category urls; see :data:`satchmo_category` and :data:`satchmo_category_index`.
 
 .. data:: SATCHMO_SETTINGS.PRODUCT_SLUG
 
     :default: ``'product'``
 
-    The product url prefix.
+    The prefix used for product urls; see :data:`satchmo_product`.
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
 
