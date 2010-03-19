@@ -37,7 +37,8 @@ are listed below.
     - :ref:`shipping_fedex`;
     - :ref:`shipping_ups`;
     - :ref:`shipping_usps`;
-    - and the modules listed in :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+    - and the modules listed in :ref:`CUSTOM_SHIPPING_MODULES
+      <satchmo_settings_custom_shipping_modules>`.
    :default: :ref:`shipping_per`
 
    Satchmo provides you the flexibility to enable as many shipping modules as you would
@@ -77,7 +78,8 @@ Custom Modules
 
     You need to this before going through the instructions in `Enabling Modules`_.
 
-#. Add the module's dotted name to :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+#. Add the module's dotted name to :ref:`CUSTOM_SHIPPING_MODULES
+   <satchmo_settings_custom_shipping_modules>`.
 #. If the module has Django-style models, proceed to :ref:`shipping_enabling_models`;
    otherwise, proceed with the instructions in `Enabling Modules`_.
 

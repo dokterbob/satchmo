@@ -24,6 +24,8 @@ number of places you might want to configure.
 
 The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
+  .. _satchmo_settings_shop_base:
+
   ``'SHOP_BASE'``
 
     :default: '/shop'
@@ -34,11 +36,15 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
     to do it.  If you would like your store to be at the root of the url, set this to
     ``""``.
 
+  .. _satchmo_settings_shop_urls:
+
   ``'SHOP_URLS'``
 
     :default: []
 
     .. TODO documentation needed.
+
+  .. _satchmo_settings_multishop:
 
   ``'MULTISHOP'``
 
@@ -46,11 +52,15 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
     A boolean used to enable to disable multi store capability.
 
+  .. _satchmo_settings_custom_newsletter_modules:
+
   ``'CUSTOM_NEWSLETTER_MODULES'``
 
     :default: []
 
     A list of custom newsletters.
+
+  .. _satchmo_settings_custom_shipping_modules:
 
   ``'CUSTOM_SHIPPING_MODULES'``
 
@@ -58,11 +68,15 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
     A list of custom shipping modules outside of the standard Satchmo distribution.
 
+  .. _satchmo_settings_custom_product_modules:
+
   ``'CUSTOM_PRODUCT_MODULES'``
 
     :default: []
 
     A list of custom product modules outside of the standard Satchmo distribution.
+
+  .. _satchmo_settings_custom_tax_modules:
 
   ``'CUSTOM_TAX_MODULES'``
 
@@ -70,17 +84,23 @@ The following settings can be added to the SATCHMO_SETTINGS dictionary:
 
     A list of custom tax modules outside of the standard Satchmo distribution.
 
+  .. _satchmo_settings_cookie_max_seconds:
+
   ``'COOKIE_MAX_SECONDS'``
 
     :default: 60*60*24*30
 
     Cookie expiration time.
 
+  .. _satchmo_settings_category_slug:
+
   ``'CATEGORY_SLUG'``
 
     :default: 'category'
 
     The category url prefix.
+
+  .. _satchmo_settings_product_slug:
 
   ``'PRODUCT_SLUG'``
 
