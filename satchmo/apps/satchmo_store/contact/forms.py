@@ -69,6 +69,7 @@ class ContactInfoForm(ProxyContactForm):
         self._shippable = shippable
 
         self.required_billing_data = config_value('SHOP', 'REQUIRED_BILLING_DATA')
+        self.required_shipping_data = config_value('SHOP', 'REQUIRED_SHIPPING_DATA')
         self._local_only = shop.in_country_only
         self.enforce_state = config_value('SHOP','ENFORCE_STATE')
 
@@ -114,6 +115,13 @@ class ContactInfoForm(ProxyContactForm):
             if fname == 'country' and self._local_only:
                 continue
             self.fields[fname].required = True
+
+        # if copy_address is on, turn of django's validation for required fields
+        if not (self.is_bound and clean_field(self, "copy_address")):
+            for fname in self.required_shipping_data:
+                if fname == 'country' and self._local_only:
+                    continue
+                self.fields['ship_%s' % fname].required = True
 
         # slap a star on the required fields
         for f in self.fields:
