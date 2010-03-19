@@ -1,5 +1,4 @@
 from decimal import Decimal
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core import mail
@@ -7,12 +6,10 @@ from django.core.urlresolvers import reverse as url
 from django.test import TestCase
 from django.test.client import Client
 from django.utils.encoding import smart_str
-from django.utils.translation import ugettext as _
 from keyedcache import cache_delete
-from l10n.l10n_settings import get_l10n_setting
 from l10n.models import Country
 from l10n.utils import moneyfmt
-from livesettings import config_get, config_value
+from livesettings import config_get
 from payment import active_gateways
 from product.models import Product
 from product.utils import rebuild_pricing
@@ -22,10 +19,8 @@ from satchmo_store.shop import get_satchmo_setting, signals
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import *
 from satchmo_utils.templatetags import get_filter_args
-from threaded_multihost.threadlocals import get_current_request
 
 import keyedcache
-import datetime
 
 domain = 'http://example.com'
 prefix = get_satchmo_setting('SHOP_BASE')
