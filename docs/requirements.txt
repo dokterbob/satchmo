@@ -66,6 +66,11 @@ Docutils is used for auto generating the admin documentation but is not required
 Sphinx is useful for auto generating the user documentation but is not required:
 
     - `Sphinx`_
+    
+Satchmo uses South for migrating database schema changes. It is not required to run the store
+but is very useful for migrating versions.
+
+    - `South <http://south.aeracode.org/>`_
 
 If you are using a version of python less than 2.6, you will have to install the backport of the 
 new SSL module to support accessing SSL 2.0 sites often used by payment processors:
