@@ -4,21 +4,21 @@ GiftCertificate processor
 from django.utils.translation import ugettext as _
 from l10n.utils import moneyfmt
 from models import GiftCertificate
-from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
+from payment.modules.base import BasePaymentProcessor, ProcessorResult
 
 class PaymentProcessor(BasePaymentProcessor):
 
     def __init__(self, settings):
         super(PaymentProcessor, self).__init__('giftcertificate', settings)
 
-    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+    def capture_payment(self, testing=False, order=None, amount=None):
         """
         Process the transaction and return a ProcessorResponse
         """
         if not order:
             order = self.order
-            
-        if amount==NOTSET:
+
+        if amount is None:
             amount = order.balance
 
         payment = None

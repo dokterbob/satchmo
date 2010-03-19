@@ -1,5 +1,5 @@
 from django.template import Context, loader
-from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
+from payment.modules.base import BasePaymentProcessor, ProcessorResult
 from satchmo_utils.numbers import trunc_decimal
 from django.utils.translation import ugettext_lazy as _
 
@@ -52,7 +52,7 @@ class PaymentProcessor(BasePaymentProcessor):
     """
     Cybersource payment processing module
     You must have an account with Cybersource in order to use this module
-    
+
     """
     def __init__(self, settings):
         super(PaymentProcessor, self).__init__('cybersource', settings)
@@ -63,7 +63,7 @@ class PaymentProcessor(BasePaymentProcessor):
         else:
             self.testflag = 'TRUE'
             self.connection = settings.CONNECTION_TEST.value
-            
+
         self.configuration = {
             'merchantID' : settings.MERCHANT_ID.value,
             'password' : settings.TRANKEY.value,
@@ -96,13 +96,13 @@ class PaymentProcessor(BasePaymentProcessor):
             'grandTotalAmount' : trunc_decimal(amount, 2),
         }
 
-    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+    def capture_payment(self, testing=False, order=None, amount=None):
         """
         Creates and sends XML representation of transaction to Cybersource
         """
         if not order:
             order = self.order
-            
+
         if order.paid_in_full:
             self.log_extra('%s is paid in full, no capture attempted.', order)
             self.record_payment()
@@ -110,16 +110,16 @@ class PaymentProcessor(BasePaymentProcessor):
 
         self.log_extra('Capturing payment for %s', order)
 
-        if amount==NOTSET:
+        if amount is None:
             amount = order.balance
 
         self.prepare_content(order, amount)
-        
+
         invoice = "%s" % order.id
         failct = order.paymentfailures.count()
         if failct > 0:
             invoice = "%s_%i" % (invoice, failct)
-        
+
         # XML format is very simple, using ElementTree for generation would be overkill
         t = loader.get_template('shop/checkout/cybersource/request.xml')
         c = Context({
@@ -150,21 +150,21 @@ class PaymentProcessor(BasePaymentProcessor):
         response_text = CYBERSOURCE_RESPONSES.get(reason_code, 'Unknown Failure')
 
         if reason_code == '100':
-            payment = self.record_payment(order=order, amount=amount, 
+            payment = self.record_payment(order=order, amount=amount,
                 transaction_id="", reason_code=reason_code)
             return ProcessorResult(self.key, True, response_text, payment=payment)
         else:
-            payment = self.record_failure(order=order, amount=amount, 
-                transaction_id="", reason_code=reason_code, 
+            payment = self.record_failure(order=order, amount=amount,
+                transaction_id="", reason_code=reason_code,
                 details=response_text)
-            
+
             return ProcessorResult(self.key, False, response_text)
 
 if __name__ == "__main__":
     """
     For testing purposes only.
     Allows this module to be run as a script to test the connection
-    
+
     """
 
     import os
@@ -209,7 +209,7 @@ if __name__ == "__main__":
     cybersource_settings = config_get_group('PAYMENT_CYBERSOURCE')
     if cybersource_settings.LIVE.value:
         print "Warning.  You are submitting a live order.  CYBERSOURCE system is set LIVE."
-        
+
     processor = PaymentProcessor(cybersource_settings)
     processor.prepare_data(sampleOrder)
     results = processor.process(testing=True)

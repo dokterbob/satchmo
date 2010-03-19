@@ -3,7 +3,6 @@ from django.db.models.fields.files import ImageField
 from livesettings import config_value, SettingNotSet
 from satchmo_utils.thumbnail.utils import remove_model_thumbnails, rename_by_field
 from satchmo_utils import normalize_dir
-import config
 import logging
 import os
 
@@ -16,7 +15,7 @@ def _delete(sender, instance=None, **kwargs):
                 remove_model_thumbnails(instance)
         else:
             remove_model_thumbnails(instance)
-        
+
 def upload_dir(instance, filename):
     raw = "images/"
 
@@ -26,12 +25,10 @@ def upload_dir(instance, filename):
         pass
     except ImportError, e:
         log.warn("Error getting upload_dir, OK if you are in SyncDB.")
-        
+
     updir = normalize_dir(raw)
     return os.path.join(updir, filename)
-        
 
-NOTSET = object()
 
 class ImageWithThumbnailField(ImageField):
     """ ImageField with thumbnail support
@@ -43,9 +40,9 @@ class ImageWithThumbnailField(ImageField):
 
     def __init__(self, verbose_name=None, name=None,
                  width_field=None, height_field=None,
-                 auto_rename=NOTSET, name_field=None, 
+                 auto_rename=None, name_field=None,
                  upload_to=upload_dir, **kwargs):
-                 
+
         self.auto_rename = auto_rename
 
         self.width_field, self.height_field = width_field, height_field
@@ -57,16 +54,16 @@ class ImageWithThumbnailField(ImageField):
                                                       **kwargs)
         self.name_field = name_field
         self.auto_rename = auto_rename
-        
+
     def _save_rename(self, instance, **kwargs):
         if hasattr(self, '_renaming') and self._renaming:
             return
-        if self.auto_rename == NOTSET:
+        if self.auto_rename is None:
             try:
                 self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
             except SettingNotSet:
                 self.auto_rename = False
-        
+
         image = getattr(instance, self.attname)
         if image and self.auto_rename:
             if self.name_field:
