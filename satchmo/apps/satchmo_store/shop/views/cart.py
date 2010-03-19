@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.core import urlresolvers
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext, loader
 from django.utils.datastructures import MultiValueDictKeyError
@@ -11,7 +11,7 @@ from django.views.decorators.cache import never_cache
 from livesettings import config_value
 from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
-from product.views import find_product_template, optionids_from_post
+from product.views import optionids_from_post
 from satchmo_store.shop import forms
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
@@ -27,16 +27,14 @@ except ImportError:
 
 log = logging.getLogger('shop.views.cart')
 
-NOTSET = object()
-
 def _json_response(data, template="shop/json.html"):
-    return HttpResponse(loader.render_to_string(template, 
+    return HttpResponse(loader.render_to_string(template,
         {'json':mark_safe(simplejson.dumps(data))}), mimetype='application/javascript')
 
 def decimal_too_big(quantity):
     """
     Helper to make sure the decimal number isn't too big to process.
-    This does not validate whether or not the decimal is valid just that a 
+    This does not validate whether or not the decimal is valid just that a
     Decimal is too large.
     """
     try:
@@ -46,7 +44,7 @@ def decimal_too_big(quantity):
             return False
     except:
         return False
-    
+
 
 def _set_quantity(request, force_delete=False):
     """Set the quantity for a specific cartitem.
@@ -55,12 +53,12 @@ def _set_quantity(request, force_delete=False):
     cart = Cart.objects.from_request(request, create=False)
     if isinstance(cart, NullCart):
         return (False, None, None, _("No cart to update."))
-    
+
     cartplaces = config_value('SHOP', 'CART_PRECISION')
-    
+
     if decimal_too_big(request.POST.get('quantity', 0)):
         return (False,cart,None,_("Bad quantity."))
-    
+
     if force_delete:
         qty = Decimal('0')
     else:
@@ -69,7 +67,7 @@ def _set_quantity(request, force_delete=False):
             qty = round_decimal(request.POST.get('quantity', 0), places=cartplaces, roundfactor=roundfactor, normalize=True)
         except RoundedDecimalError, P:
             return (False, cart, None, _("Bad quantity."))
-            
+
         if qty < Decimal('0'):
             qty = Decimal('0')
 
@@ -101,10 +99,10 @@ def _set_quantity(request, force_delete=False):
     satchmo_cart_changed.send(cart, cart=cart, request=request)
     return (True, cart, cartitem, "")
 
-def display(request, cart=None, error_message='', default_view_tax=NOTSET):
+def display(request, cart=None, error_message='', default_view_tax=None):
     """Display the items in the cart."""
 
-    if default_view_tax == NOTSET:
+    if default_view_tax is None:
         default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
 
     if not cart:
@@ -123,7 +121,7 @@ def display(request, cart=None, error_message='', default_view_tax=NOTSET):
         'sale' : sale,
         })
     return render_to_response('shop/cart.html', context_instance=context)
-    
+
 display = never_cache(display)
 
 def add(request, id=0, redirect_to='satchmo_cart'):
@@ -131,11 +129,11 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     log.debug('FORM: %s', request.POST)
     formdata = request.POST.copy()
     productslug = None
-    
+
     cartplaces = config_value('SHOP', 'CART_PRECISION')
-    roundfactor = config_value('SHOP', 'CART_ROUNDING')    
-    
-    
+    roundfactor = config_value('SHOP', 'CART_ROUNDING')
+
+
     if formdata.has_key('productname'):
         productslug = formdata['productname']
     try:
@@ -150,7 +148,7 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     except (Product.DoesNotExist, MultiValueDictKeyError):
         log.debug("Could not find product: %s", productslug)
         return bad_or_missing(request, _('The product you have requested does not exist.'))
-    
+
     # First we validate that the number isn't too big.
     if decimal_too_big(formdata['quantity']):
         return _product_error(request, product, _("Please enter a smaller number."))
@@ -178,10 +176,10 @@ def add(request, id=0, redirect_to='satchmo_cart'):
             )
     try:
         added_item = cart.add_item(product, number_added=quantity, details=details)
-        
+
     except CartAddProhibited, cap:
         return _product_error(request, product, cap.message)
-        
+
     # got to here with no error, now send a signal so that listeners can also operate on this form.
     satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, product=product, request=request, form=formdata)
     satchmo_cart_changed.send(cart, cart=cart, request=request)
@@ -191,8 +189,8 @@ def add(request, id=0, redirect_to='satchmo_cart'):
 
 def add_ajax(request, id=0, template="shop/json.html"):
     cartplaces = config_value('SHOP', 'CART_PRECISION')
-    roundfactor = config_value('SHOP', 'CART_ROUNDING')    
-    
+    roundfactor = config_value('SHOP', 'CART_ROUNDING')
+
     data = {'errors': []}
     product = None
     formdata = request.POST.copy()
@@ -261,11 +259,11 @@ def add_ajax(request, id=0, template="shop/json.html"):
                         request=request,
                         form=formdata
                         )
-                        
+
         except CartAddProhibited, cap:
             data['results'] = _('Error')
             data['errors'].append(('product', cap.message))
-        
+
     else:
         data['results'] = _('Error')
 
@@ -277,19 +275,19 @@ def add_ajax(request, id=0, template="shop/json.html"):
 
 def add_multiple(request, redirect_to='satchmo_cart', products=None, template="shop/multiple_product_form.html"):
     """Add multiple items to the cart.
-    """    
+    """
     if request.method == "POST":
         log.debug('FORM: %s', request.POST)
         formdata = request.POST.copy()
         form = forms.MultipleProductForm(formdata, products=products)
-        
+
         if form.is_valid():
             cart = Cart.objects.from_request(request, create=True)
             form.save(cart, request)
             satchmo_cart_changed.send(cart, cart=cart, request=request)
 
             url = urlresolvers.reverse(redirect_to)
-            return HttpResponseRedirect(url)            
+            return HttpResponseRedirect(url)
     else:
         form = forms.MultipleProductForm(products=products)
 
@@ -329,7 +327,7 @@ def remove_ajax(request, template="shop/json.html"):
         # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
         if cart and cartitem:
             data['cart_total'] = str(cart.total)
-            data['cart_count'] = str(round_decimal(cart.numItems, 2)) 
+            data['cart_count'] = str(round_decimal(cart.numItems, 2))
             data['item_id'] = cartitem.id
     return _json_response(data, template)
 
@@ -339,10 +337,10 @@ def set_quantity(request):
     Intended to be called via the cart itself, returning to the cart after done.
     """
     cart_url = urlresolvers.reverse('satchmo_cart')
-    
+
     if not request.POST:
         return HttpResponseRedirect(cart_url)
-    
+
     success, cart, cartitem, errors = _set_quantity(request)
     if success:
         return HttpResponseRedirect(cart_url)

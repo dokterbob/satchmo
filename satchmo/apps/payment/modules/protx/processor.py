@@ -9,7 +9,7 @@ will fall back to the defaults for any not specified in your dictionary.
 """
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
+from payment.modules.base import BasePaymentProcessor, ProcessorResult
 from satchmo_utils.numbers import trunc_decimal
 from django.utils.http import urlencode
 import forms
@@ -127,7 +127,7 @@ class PaymentProcessor(BasePaymentProcessor):
         self.url = self.callback
         self.valid = True
 
-    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+    def capture_payment(self, testing=False, order=None, amount=None):
         """Execute the post to protx VSP DIRECT"""
         if not order:
             order = self.order
@@ -139,7 +139,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
         self.log_extra('Capturing payment for %s', order)
 
-        if amount == NOTSET:
+        if amount is None:
             amount = order.balance
 
         self.prepare_post(order, amount)
