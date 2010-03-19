@@ -239,7 +239,8 @@ class ContactInfoForm(ProxyContactForm):
             return self.cleaned_data['ship_' + field_name]
         else:
             val = clean_field(self, 'ship_' + field_name)
-            if (not val) and field_name in ('street1', 'city', 'state', 'postal_code'):
+            # REQUIRED_SHIPPING_DATA doesn't contain 'ship_' prefix
+            if (not val) and field_name in self.required_shipping_data:
                 raise forms.ValidationError(_('This field is required.'))
             return val
 
