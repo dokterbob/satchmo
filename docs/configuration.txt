@@ -22,7 +22,7 @@ number of places you might want to configure.
         'PRODUCT_SLUG': 'items',
     }
 
- The following keys in settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
+ Satchmo recognises the following keys in ``SATCHMO_SETTINGS``:
 
   .. _satchmo_settings_shop_base:
 
@@ -316,7 +316,7 @@ below would configure the Euro::
       'allow_translations': False,
     }
 
-The following settings are available to be added to the ``L10N_SETTINGS`` dictionary:
+Satchmo recognises the following keys in ``L10N_SETTINGS``:
 
   .. _l10n_settings_default_currency:
 
