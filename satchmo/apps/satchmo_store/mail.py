@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
 from livesettings import config_value
+from satchmo_store.shop.signals import sending_store_mail
 
 from socket import error as SocketError
 
@@ -15,6 +16,9 @@ else:
 from django.core.mail import EmailMultiAlternatives
 
 class NoRecipientsException(StandardError):
+    pass
+
+class ShouldNotSendMail(Exception):
     pass
 
 def send_store_mail_template_decorator(template_base):
@@ -35,7 +39,7 @@ def send_store_mail_template_decorator(template_base):
 
 def send_store_mail(subject, context, template='', recipients_list=None,
                     format_subject=False, send_to_store=False,
-                    template_html='', fail_silently=False):
+                    template_html='', fail_silently=False, sender=None, **kwargs):
     """
     :param subject: A string.
 
@@ -51,6 +55,9 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     :param template_html: The path of the HTML template to use when rendering
       the message body; this will only be used if the config ``SHOP.HTML_EMAIL``
       is true.
+
+    :param `**kwargs`: Additional arguments that are passed to listeners of the
+      signal :data:`satchmo_store.shop.signals.sending_store_mail`.
     """
     from satchmo_store.shop.models import Config
 
@@ -89,18 +96,38 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     if send_to_store:
         recipients.append(shop_email)
 
-    if not recipients:
-        raise NoRecipientsException
+    # match send_mail's signature
+    send_mail_args = {
+        'subject': subject,
+        'message': body,
+        'from_email': shop_email,
+        'recipient_list': recipients,
+        'fail_silently': fail_silently,
+    }
+
+    try:
+        # We inform listeners before checking recipients list, as they may
+        # modify it.
+        # Listeners may also choose to send mail themselves, so we place this
+        # call in the SocketError try block to handle errors for them.
+        try:
+            sending_store_mail.send(sender, send_mail_args=send_mail_args, \
+                                    context=c, **kwargs)
+        except ShouldNotSendMail:
+            return
+
+        if not recipients:
+            raise NoRecipientsException
 
     try:
         if send_html:
+            fail_silently = send_mail_args.pop('fail_silently', fail_silently)
             # email contains both text and html
-            msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
+            msg = EmailMultiAlternatives(**send_mail_args)
             msg.attach_alternative(html_body, "text/html")
             msg.send(fail_silently=fail_silently)
         else:
-            send_mail(subject, body, shop_email, recipients,
-                      fail_silently=fail_silently)
+            send_mail(**send_mail_args)
     except SocketError, e:
         if settings.DEBUG:
             log.error('Error sending mail: %s' % e)

@@ -46,6 +46,8 @@ Signal Descriptions
 
 .. autofunction:: cart_add_view(sender, request=None, method=None, **kwargs)
 
+.. autofunction:: sending_store_mail(sender, send_mail_args={}, context={}, **kwargs)
+
 .. currentmodule:: satchmo_store.contact.signals
 
 .. autofunction:: satchmo_contact_view(sender, contact=None, contact_dict=None, **kwargs)

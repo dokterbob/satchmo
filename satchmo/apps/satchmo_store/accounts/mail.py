@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils.translation import ugettext
 from satchmo_store.mail import send_store_mail
 from satchmo_store.shop.models import Config
+from satchmo_store.signals import registration_sender
 
 import logging
 log = logging.getLogger('satchmo_store.accounts.mail')
@@ -21,4 +22,4 @@ def send_welcome_email(email, first_name, last_name):
         'login_url': settings.LOGIN_URL,
     }
     send_store_mail(subject, c, 'registration/welcome.txt', [email],
-                    format_subject=True)
+                    format_subject=True, sender=registration_sender)
