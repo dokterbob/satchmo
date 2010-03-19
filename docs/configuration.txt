@@ -22,7 +22,7 @@ number of places you might want to configure.
         'PRODUCT_SLUG': 'items',
     }
 
-The following settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
+ The following keys in settings can be added to the ``SATCHMO_SETTINGS`` dictionary:
 
   .. _satchmo_settings_shop_base:
 
