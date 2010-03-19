@@ -39,6 +39,25 @@ config_register(
         )
     )
 )
+
+config_register(
+    MultipleStringValue(SHOP_GROUP,
+    'REQUIRED_SHIPPING_DATA',
+    description=_("Required shipping data"),
+    help_text=_("Similar to'REQUIRED_BILLING_DATA', except for shipping fields."),
+    default=('addressee', 'street1', 'city', 'postal_code', 'country'),
+    choices=(
+        ('addressee', _("Addressee")),
+        ('street1', _("Street")),
+        ('street2', _("Street (second line)")),
+        ('city', _("City")),
+        ('state', _("State/Province")),
+        ('postal_code', _("Postal code/ZIP")),
+        ('country', _("Country"))
+        )
+    )
+)
+
 # I am doing it this way instead of a boolean for email verification because I
 # intend to add a "manual approval" style of account verification. -Bruce
 ACCOUNT_VERIFICATION = config_register(StringValue(SHOP_GROUP,
@@ -49,7 +68,7 @@ ACCOUNT_VERIFICATION = config_register(StringValue(SHOP_GROUP,
     choices=[('IMMEDIATE', _('Immediate')),
              ('EMAIL', _('Email'))]
     ))
-             
+
 config_register(
     IntegerValue(SHOP_GROUP,
     'ACCOUNT_ACTIVATION_DAYS',
