@@ -16,17 +16,17 @@ URL paths are relative to SHOP_BASE.
 
 .. data:: satchmo_category_index
 
-   :URL: /<:data:`SATCHMO_SETTINGS.CATEGORY_SLUG`>/
+   :URL: /<:ref:`CATEGORY_SLUG <satchmo_settings_category_slug>`>/
    :View: :func:`product.views.category_index`
 
 .. data:: satchmo_category
 
-   :URL: /<:data:`SATCHMO_SETTINGS.CATEGORY_SLUG`>/slug1/slug2/.../<slug>/
+   :URL: /<:ref:`CATEGORY_SLUG <satchmo_settings_category_slug>`>/slug1/slug2/.../<slug>/
    :View: :func:`product.views.category_view`
 
 .. data:: satchmo_product
 
-   :URL: /<:data:`SATCHMO_SETTINGS.PRODUCT_SLUG`>/<slug>/
+   :URL: /<:ref:`PRODUCT_SLUG <satchmo_settings_product_slug>`>/<slug>/
    :View: :func:`product.views.get_product`
 
 .. data:: satchmo_cart

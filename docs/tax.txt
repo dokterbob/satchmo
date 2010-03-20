@@ -28,7 +28,7 @@ Activate and configure your tax modules from your :ref:`Site Settings page
 
 .. Note::
     If you have custom tax module you would like to use, add the module's dotted name to
-    :data:`SATCHMO_SETTINGS.CUSTOM_TAX_MODULES`.
+    :ref:`CUSTOM_TAX_MODULES <satchmo_settings_custom_tax_modules>`.
 
 Available Modules
 -----------------
