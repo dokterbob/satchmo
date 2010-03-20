@@ -58,7 +58,7 @@ def send_order_notice(order, template='', template_html=''):
                 if not m in eddresses:
                     eddresses.append(m)
 
-        eddresses = [e for e in eddresses if e]
+            eddresses = [e for e in eddresses if e]
 
         try:
             send_store_mail(subject, c, template, eddresses,
