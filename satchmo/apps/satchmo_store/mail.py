@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
 from livesettings import config_value
-from satchmo_store.shop.models import Config
 
 import os.path
 from socket import error as SocketError
@@ -38,6 +37,8 @@ def send_store_mail(subject, context, template, recipients_list=None,
     If store config is set to enable HTML emails, will attempt to find the HTML
     template and send it.
     """
+    from satchmo_store.shop.models import Config
+
     shop_config = Config.objects.get_current()
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
