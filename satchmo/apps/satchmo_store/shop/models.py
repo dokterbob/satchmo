@@ -315,9 +315,14 @@ class Cart(models.Model):
         carts even if they have no items. This is ok because the most likely
         scenario is moving data from one db to the next. See ticket #1015 for
         discussion.
+        Use cart.is_empty if you want to know if qty >= 1
         """
         return True
 
+    def _is_empty(self):
+        return self.cartitem_set.count() == 0
+    is_empty = property(_is_empty)
+    
     def __unicode__(self):
         return u"Shopping Cart (%s)" % self.date_time_created
 
