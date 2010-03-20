@@ -15,78 +15,98 @@ number of places you might want to configure.
    few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS``
    dictionary like this::
 
-        SATCHMO_SETTINGS = {
+    SATCHMO_SETTINGS = {
         'SHOP_BASE': '/shop',
         'MULTISHOP': False,
         'CUSTOM_PRODUCT_MODULES': ['myshop.custom.product.model'],
         'PRODUCT_SLUG': 'items',
-        }
+    }
 
-The following settings can be added to the SATCHMO_SETTINGS dictionary:
+ Satchmo recognises the following keys in ``SATCHMO_SETTINGS``:
 
-.. data:: SATCHMO_SETTINGS['SHOP_BASE']
+  .. _satchmo_settings_shop_base:
 
-    :default: '/shop'
+  ``'SHOP_BASE'``
 
-    Used as the prefix for your store.  Don't append a trailing slash (`/`) - Satchmo does
+    :default: ``'/shop'``
+
+    Used as the prefix for your store.  Don't append a trailing slash (``'/'``) - Satchmo does
     this for you.  In the default setting, your store is located at
     `www.yourname.com/shop/`.  If you would like to change this setting, this is the place
     to do it.  If you would like your store to be at the root of the url, set this to
     ``""``.
 
-.. data:: SATCHMO_SETTINGS['SHOP_URLS']
+  .. _satchmo_settings_shop_urls:
 
-    :default: []
+  ``'SHOP_URLS'``
+
+    :default: ``[]``
 
     .. TODO documentation needed.
 
-.. data:: SATCHMO_SETTINGS['MULTISHOP']
+  .. _satchmo_settings_multishop:
 
-    :default: False
+  ``'MULTISHOP'``
+
+    :default: ``False``
 
     A boolean used to enable to disable multi store capability.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_NEWSLETTER_MODULES']
+  .. _satchmo_settings_custom_newsletter_modules:
 
-    :default: []
+  ``'CUSTOM_NEWSLETTER_MODULES'``
+
+    :default: ``[]``
 
     A list of custom newsletters.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_SHIPPING_MODULES']
+  .. _satchmo_settings_custom_shipping_modules:
 
-    :default: []
+  ``'CUSTOM_SHIPPING_MODULES'``
+
+    :default: ``[]``
 
     A list of custom shipping modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_PRODUCT_MODULES']
+  .. _satchmo_settings_custom_product_modules:
 
-    :default: []
+  ``'CUSTOM_PRODUCT_MODULES'``
+
+    :default: ``[]``
 
     A list of custom product modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['CUSTOM_TAX_MODULES']
+  .. _satchmo_settings_custom_tax_modules:
 
-    :default: []
+  ``'CUSTOM_TAX_MODULES'``
+
+    :default: ``[]``
 
     A list of custom tax modules outside of the standard Satchmo distribution.
 
-.. data:: SATCHMO_SETTINGS['COOKIE_MAX_SECONDS']
+  .. _satchmo_settings_cookie_max_seconds:
 
-    :default: 60*60*24*30
+  ``'COOKIE_MAX_SECONDS'``
+
+    :default: ``60*60*24*30``
 
     Cookie expiration time.
 
-.. data:: SATCHMO_SETTINGS['CATEGORY_SLUG']
+  .. _satchmo_settings_category_slug:
 
-    :default: 'category'
+  ``'CATEGORY_SLUG'``
 
-    The category url prefix.
+    :default: ``'category'``
 
-.. data:: SATCHMO_SETTINGS['PRODUCT_SLUG']
+    The prefix used for category urls; see :data:`satchmo_category` and :data:`satchmo_category_index`.
 
-    :default: 'product'
+  .. _satchmo_settings_product_slug:
 
-    The product url prefix.
+  ``'PRODUCT_SLUG'``
+
+    :default: ``'product'``
+
+    The prefix used for product urls; see :data:`satchmo_product`.
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
 
@@ -193,12 +213,12 @@ Newsletters
 ^^^^^^^^^^^
 
 Satchmo has two methods for handling newsletter subscriptions.  By default, you have an "ignore it" processor enabled.
-To enable handling, first add "satchmo.newsletter" to your list of installed modules in your settings file.
+To enable handling, first add ``"satchmo.newsletter"`` to your list of installed modules in your settings file.
 
 Next, choose the way you want to handle the subscriptions.  Currently we have two working newsletter plugins:
 
-	- ``satchmo.newsletter.simple``  - This just tracks subscriptions in a database table for your querying pleasure.  You can then export that list to whatever mailing manager you want to use.
-	- ``satchmo.newsletter.mailman`` - This is an integration module which works with Gnu Mailman (http://www.gnu.org/software/mailman/).  This is particularly convenient if you have a Cpanel VPS system, since Mailman is installed by default on most such systems. To use this, you need to make sure Mailman is on your PYTHONPATH and you should have already set up a mailing list as an announce-only list (http://www.modwest.com/help/kb13-195.html). You'll need to enter the name of the list in your local settings file.
+  - ``satchmo.newsletter.simple``  - This just tracks subscriptions in a database table for your querying pleasure.  You can then export that list to whatever mailing manager you want to use.
+  - ``satchmo.newsletter.mailman`` - This is an integration module which works with Gnu Mailman (http://www.gnu.org/software/mailman/).  This is particularly convenient if you have a Cpanel VPS system, since Mailman is installed by default on most such systems. To use this, you need to make sure Mailman is on your PYTHONPATH and you should have already set up a mailing list as an announce-only list (http://www.modwest.com/help/kb13-195.html). You'll need to enter the name of the list in your local settings file.
 
 .. index::
    single: SSL
@@ -216,7 +236,7 @@ make sure that it is enabled in the middleware section of your settings.py::
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.middleware.doc.XViewMiddleware",
         "satchmo.shop.SSLMiddleware.SSLRedirect"
-			    )
+    )
 
 In order to support a fully encrypted page, you also need to make sure you provide a secure url for the media.  This url
 will automatically be used in pages served by SSL, but only if you specify it in your settings.py::
@@ -224,9 +244,9 @@ will automatically be used in pages served by SSL, but only if you specify it in
     MEDIA_SECURE_URL = 'https://secure.example.com/static/'
 
 Then, enable it for the specific urls you would like to be protected by adding
-{'SSL': True} to each url.  Here's an example which would enable SSL for login::
+``{'SSL': True}`` to each url.  Here's an example which would enable SSL for login::
 
-	(r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
+    (r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
 SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can
 have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set
@@ -240,26 +260,38 @@ to be SSL enabled, but Authorize.net should be.
 Disabling the Live Settings System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once your store is live, you may want to disable the admin ability to edit the site configuration.  To do this, edit your settings.py file and add a new entry "LIVESETTINGS_OPTIONS" with the settings you want to lock into place.
+Once your store is live, you may want to disable the admin ability to edit the site configuration.  To do this, edit your settings.py file and add a new entry ``LIVESETTINGS_OPTIONS`` with the settings you want to lock into place.
 
-The LIVESETTINGS_OPTIONS must be formatted as follows::
+The ``LIVESETTINGS_OPTIONS`` must be formatted as follows::
 
+    LIVESETTINGS_OPTIONS = {
+        1 : {
+            'DB' : (True|False),
+            'SETTINGS' : {
+                'GROUPKEY' : {
+                    'KEY' : val,
+                    'KEY2' : val,
+                    # ...
+                },
 
-	LIVESETTINGS_OPTIONS = {
-	        1 : {
-	                'DB' : [True/False],
-	                'SETTINGS' : {
-	                    'GROUPKEY' : {'KEY', val, 'KEY2', val},
-	                    'GROUPKEY2' : {'KEY', val, 'KEY2', val},
-	                }
-	            }
-	        }
+                'GROUPKEY2' : {
+                    'KEY' : val,
+                    'KEY2' : val,
+                    # ...
+                },
 
-In the settings dict above, the "1" is a site index, allowing you to have different settings for different sites.
-The "val" entries must exactly match the format stored in the database for a setting.  For example, do not use a
-literal True or an integer, it needs to be the string representation of them.
+                # ...
+            }
+        },
 
-If ``DB`` is False, then editting the settings via the admin will be disabled. All configuration must then be done
+        # ...
+    }
+
+In the settings dict above, the ``1`` is a site index, allowing you to have different settings for different sites.
+The ``val`` entries must exactly match the format stored in the database for a setting.  For example, do not use a
+literal ``True`` or an integer, it needs to be the string representation of them.
+
+If ``DB`` is ``False``, then editting the settings via the admin will be disabled. All configuration must then be done
 through the settings file.
 
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
@@ -272,7 +304,7 @@ The easiest way to do this is to query the database for livesettings_setting and
 Changing the L10N Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Satchmo supports a setting L10N_SETTINGS to configure the currency format and other internationalization options. The example
+Satchmo supports a setting ``L10N_SETTINGS`` to configure the currency format and other internationalization options. The example
 below would configure the Euro::
 
     L10N_SETTINGS = {
@@ -284,16 +316,34 @@ below would configure the Euro::
       'allow_translations': False,
     }
 
-The following settings are available to be added to the L10N_SETTINGS dictionary:
+Satchmo recognises the following keys in ``L10N_SETTINGS``:
 
-    - ``default_currency`` - The default currency type to display
-    - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - True
-    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - True
+  .. _l10n_settings_default_currency:
 
+  ``'default_currency'``
 
+    The default currency type to display.
 
-The L10N_SETTINGS variable also allows you to control whether or not translation fields
-should be displayed in the admin. In the example above, they will be disabled. The default is True
+  .. _l10n_settings_show_translations:
+
+  ``'show_translations'``
+
+    :default: ``True``
+
+    Enable or disable the use of the translation options in the admin.
+
+  .. _l10n_settings_allow_translations:
+
+  ``'allow_translations'``
+
+    :default: ``True``
+
+    Enable or disable the translation section for the store user.
+
+  .. TODO this seems to repeat one of the above options, but I'm not sure which.
+
+The ``L10N_SETTINGS`` variable also allows you to control whether or not translation fields
+should be displayed in the admin. In the example above, they will be disabled. The default is ``True``
 
 .. Note::
     If you use a unicode character, you'll need to have an encoding at the top
