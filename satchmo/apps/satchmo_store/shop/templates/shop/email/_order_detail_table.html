@@ -1,0 +1,123 @@
+{% load i18n satchmo_currency satchmo_discounts normalize_decimal %}
+<table style="margin-bottom:20px;">
+	<tr><th style="text-align:left;">Order #:</th><td>{{ order.id }}</td></tr>	
+</table>
+
+<table style="width:100%;margin-bottom:20px;">
+	<tr>
+		<th style="text-align:left;">{% trans "Contact Information" %}</th>
+	</tr>	
+	<tr>
+		<td >
+		{{ order.contact.full_name }}<br />
+		<a href="mailto:{{ order.contact.email }}">{{ order.contact.email }}</a><br />
+		{{ order.contact.primary_phone.phone }}
+		</td>
+
+	</tr>	
+
+</table>
+
+<table style="width:100%;margin-bottom:20px;">
+	<tr style="width:80%;border-bottom:1px solid #ccc;">
+		<th style="text-align:left;border-bottom:1px solid #ccc;">{% trans "Billing Information" %}</th>
+		<th style="text-align:left;border-bottom:1px solid #ccc;">{% if order.is_shippable %}{% trans "Shipping Address" %}{% endif %}</th>
+	</tr>	
+	<tr>
+		<td>
+		{{ order.full_bill_street }}<br />
+		{{ order.bill_city }}, {{ order.bill_state }} {{ order.bill_postal_code }}<br />
+		{{ order.bill_country }}
+		</td>
+		<td>
+		{% if order.is_shippable %}
+		{{ order.full_ship_street }}<br />
+		{{ order.ship_city }}, {{ order.ship_state }} {{ order.ship_postal_code }}<br />
+		{{ order.ship_country }}
+		{% endif %}
+		</td>
+
+	</tr>	
+
+</table>
+
+<table style="width:100%;border-collapse:collapse;">
+	<tr>
+		<th style="text-align:left;border-top:2px solid #ccc;border-bottom:2px solid #ccc;">SKU</th>
+		<th style="width:50%;text-align:left;border-top:2px solid #ccc;border-bottom:2px solid #ccc;">Item</th>
+		<th style="border-top:2px solid #ccc;border-bottom:2px solid #ccc;">QTY</th>
+		<th style="border-top:2px solid #ccc;border-bottom:2px solid #ccc;">UNIT</th>
+		<th style="text-align:left;border-top:2px solid #ccc;border-bottom:2px solid #ccc;">SUBTOTAL</th>
+	</tr>
+	{% for item in order.orderitem_set.all %}
+	<tr>
+		<td style="border-bottom:1px dotted #ccc;" >{{ item.product.sku }}</td>
+		<td style="border-bottom:1px dotted #ccc;" >{{ item }}</td>
+		<td style="text-align:center;border-bottom:1px dotted #ccc;" >{{item.quantity|normalize_decimal}}</td>
+		<td style="text-align:center;border-bottom:1px dotted #ccc;" >{{item.product|discount_price:sale|currency }}</td>
+		<td style="text-align:right;border-bottom:1px dotted #ccc;" >{{item|discount_line_total:sale|currency}}</td>
+	</tr>
+	{% endfor %}
+	{% if order.discount %}	
+	<tr>
+		<td></td>
+		<td></td>
+		<td ></td>
+		<th style="text-align:right;">{% trans "Discount:" %}</th>
+		<td style="text-align:right;border-bottom:1px dotted #ccc;" >{{order.discount|currency}}</td>
+	</tr>
+	{% endif %}
+	{% if order.is_shippable %}	
+	<tr>
+		<td></td>
+		<td></td>
+		<td ></td>
+		<th style="text-align:right;">{% trans "Shipping:" %} - {{order.shipping_method}}</th>
+		<td style="text-align:right;border-bottom:1px dotted #ccc;" >{{order.shipping_sub_total|currency}}</td>
+	</tr>
+	{% endif %}
+	{% if order.tax %}
+	<tr>
+		<td></td>
+		<td></td>
+		<td ></td>
+		<th style="text-align:right;">{% trans "Tax:" %}</th>
+		<td style="text-align:right;border-bottom:1px dotted #ccc;" >{{order.tax|currency}}</td>
+	</tr>
+	{% endif %}
+	<tr>
+		<td></td>
+		<td></td>
+		<td ></td>
+		<th style="text-align:right;border-top:2px dotted #ccc;">{% trans "Total:" %}</th>
+		<td style="text-align:right;border-top:2px dotted #ccc;font-weight:bold;" >{{order.total|currency}}</td>
+	</tr>	
+	<tr>
+		<td></td>
+		<td colspan="2">
+		{% trans "Payment: " %}
+		{% with order.credit_card.credit_type as credit_card_type %}
+		{% with order.credit_card.display_cc as credit_card_number %}
+		{% with order.total|currency as order_total %}
+		{% blocktrans %}{{ credit_card_type }} card ending in {{ credit_card_number }} will be charged {{ order_total }}.{% endblocktrans %}
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
+		</td>
+		<td></td>
+		<td></td>
+	</tr>	
+	<tr>
+		<td></td>
+		<td colspan="2">
+		{% if order.has_downloads %}
+		{% trans "This is a downloadable product" %}
+		{% for download in order.downloadlink_set.all %}
+		{{ download.product_name }} - {{download.get_full_url}}
+		{% endfor %}
+		{% endif %}
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>

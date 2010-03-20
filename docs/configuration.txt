@@ -139,6 +139,7 @@ These items are used for general store configuration and include:
     - Enable/disable product ratings
     - Controlling display of featured products
     - Controlling quality of thumbnail creating
+    - Enabling sending of html formatted emails
 
 .. index::
    single: Google; analytics
