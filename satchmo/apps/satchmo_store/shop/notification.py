@@ -53,11 +53,7 @@ def send_order_notice(order, template='', template_html=''):
         eddresses = []
         more = config_value("PAYMENT", "ORDER_EMAIL_EXTRA")
         if more:
-            more = [m.strip() for m in more.split(',')]
-            for m in more:
-                if not m in eddresses:
-                    eddresses.append(m)
-
+            eddresses = set([m.strip() for m in more.split(',')])
             eddresses = [e for e in eddresses if e]
 
         try:
