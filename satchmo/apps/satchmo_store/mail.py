@@ -55,9 +55,6 @@ def send_store_mail(subject, context, template, recipients_list=None,
     c_dict.update(context)
     c = Context(c_dict)
 
-    t = loader.get_template(template)
-    body = t.render(c)
-
     if send_html:
         base_dir,base_name = os.path.split(template)
         file_name, ext = os.path.splitext(base_name)
@@ -65,11 +62,15 @@ def send_store_mail(subject, context, template, recipients_list=None,
         if settings.DEBUG:
             log.info("Attempting to send html mail.")
         try:
-            html_t = loader.get_template(os.path.join(base_dir, template_name))
-            html_body = html_t.render(c)
+            t = loader.get_template(os.path.join(base_dir, template_name))
         except TemplateDoesNotExist:
             log.warn('Unable to find html email template %s. Falling back to text only email.' % os.path.join(base_dir, template_name))
             send_html = False
+
+    if not send_html:
+        t = loader.get_template(template)
+
+    body = t.render(c)
 
     recipients = recipients_list or []
 
@@ -82,7 +83,7 @@ def send_store_mail(subject, context, template, recipients_list=None,
     try:
         if send_html:
             msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
-            msg.attach_alternative(html_body, "text/html")
+            msg.attach_alternative(body, "text/html")
             msg.send(fail_silently=fail_silently)
         else:
             send_mail(subject, body, shop_email, recipients,
