@@ -18,9 +18,25 @@ from django.core.mail import EmailMultiAlternatives
 class NoRecipientsException(StandardError):
     pass
 
-def send_store_mail(subject, context, template, recipients_list=None,
+def send_store_mail_template_decorator(template_base):
+    """
+    This decorator sets the arguments ``template`` and ``template_html``
+    when the decorated function is called.
+    """
+    def dec(func):
+        def newfunc(*args, **kwargs):
+            default_kwargs = {
+                'template': '%s.txt' % template_base,
+                'template_html': '%s.html' % template_base
+            }
+            default_kwargs.update(kwargs)
+            return func(*args, **default_kwargs)
+        return newfunc
+    return dec
+
+def send_store_mail(subject, context, template='', recipients_list=None,
                     format_subject=False, send_to_store=False,
-                    fail_silently=False):
+                    template_html='', fail_silently=False):
     """
     :parameter: subject: A string.
 
@@ -31,11 +47,12 @@ def send_store_mail(subject, context, template, recipients_list=None,
       This dictionary overwrites an internal dictionary which provides the key
       `shop_name`.
 
-    :parameter: template: The path of the template to use when rendering the
-      message body.
+    :parameter: template: The path of the plain text template to use when
+      rendering the message body.
 
-    If store config is set to enable HTML emails, will attempt to find the HTML
-    template and send it.
+    :parameter: template_html: The path of the HTML template to use when
+      rendering the message body; this will only be used if the config
+      ``SHOP.HTML_EMAIL`` is true.
     """
     from satchmo_store.shop.models import Config
 
@@ -56,15 +73,12 @@ def send_store_mail(subject, context, template, recipients_list=None,
     c = Context(c_dict)
 
     if send_html:
-        base_dir,base_name = os.path.split(template)
-        file_name, ext = os.path.splitext(base_name)
-        template_name = file_name + '.html'
         if settings.DEBUG:
             log.info("Attempting to send html mail.")
         try:
-            t = loader.get_template(os.path.join(base_dir, template_name))
+            t = loader.get_template(template_html)
         except TemplateDoesNotExist:
-            log.warn('Unable to find html email template %s. Falling back to text only email.' % os.path.join(base_dir, template_name))
+            log.warn('Unable to find html email template %s. Falling back to text only email.' % template_html)
             send_html = False
 
     if not send_html:
