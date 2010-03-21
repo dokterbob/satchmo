@@ -79,26 +79,18 @@ def send_store_mail(subject, context, template, recipients_list=None,
     if not recipients:
         raise NoRecipientsException
 
-    if send_html:
-        msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
-        msg.attach_alternative(html_body, "text/html")
-        try:
+    try:
+        if send_html:
+            msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
+            msg.attach_alternative(html_body, "text/html")
             msg.send(fail_silently=fail_silently)
-        except SocketError, e:
-            if settings.DEBUG:
-                log.error('Error sending mail: %s' % e)
-                log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
-            else:
-                log.fatal('Error sending mail: %s' % e)
-                raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
-    else:
-        try:
+        else:
             send_mail(subject, body, shop_email, recipients,
                       fail_silently=fail_silently)
-        except SocketError, e:
-            if settings.DEBUG:
-                log.error('Error sending mail: %s' % e)
-                log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
-            else:
-                log.fatal('Error sending mail: %s' % e)
-                raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
+    except SocketError, e:
+        if settings.DEBUG:
+            log.error('Error sending mail: %s' % e)
+            log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
+        else:
+            log.fatal('Error sending mail: %s' % e)
+            raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
