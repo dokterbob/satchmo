@@ -5,8 +5,14 @@ from django.conf import settings
 from django.utils.translation import get_language, to_locale
 from l10n.l10n_settings import get_l10n_setting
 import logging
+import re
 
 log = logging.getLogger('l10n.utils')
+
+# Defined outside the function, so won't be recompiled each time
+# moneyfmt is called.
+# This is required because some currencies might include a . in the description
+decimal_separator = re.compile(r'(\d)\.(\d)')
 
 def moneyfmt(val, currency_code=None, wrapcents=''):
     """Formats val according to the currency settings for the desired currency, as set in L10N_SETTINGS"""
@@ -46,7 +52,7 @@ def moneyfmt(val, currency_code=None, wrapcents=''):
 
     sep = currency.get('decimal', '.')
     if sep != '.':
-        formatted = formatted.replace('.', sep)
+        formatted = decimal_separator.sub(r'\1%s\2' % sep, formatted)
 
     if wrapcents:
         pos = formatted.rfind(sep)
