@@ -12,7 +12,7 @@ if "mailer" in settings.INSTALLED_APPS:
     from mailer import send_mail
 else:
     from django.core.mail import send_mail
-    
+
 from django.core.mail import EmailMultiAlternatives
 
 class NoRecipientsException(StandardError):
@@ -33,7 +33,7 @@ def send_store_mail(subject, context, template, recipients_list=None,
 
     :parameter: template: The path of the template to use when rendering the
       message body.
-      
+
     If store config is set to enable HTML emails, will attempt to find the HTML
     template and send it.
     """
@@ -55,9 +55,9 @@ def send_store_mail(subject, context, template, recipients_list=None,
 
     t = loader.get_template(template)
     body = t.render(c)
-    
+
     if send_html:
-        base_dir,base_name = os.path.split(template) 
+        base_dir,base_name = os.path.split(template)
         file_name, ext = os.path.splitext(base_name)
         template_name = file_name + '.html'
         if settings.DEBUG:

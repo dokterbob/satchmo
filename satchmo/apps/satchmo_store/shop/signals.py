@@ -15,7 +15,7 @@ Signals:
  - `cart_add_view`: sent by 'views.smart_add` to allow listeners to optionally change the responding function
  - `satchmo_shipping_price_query`: Usage::
 
-      satchmo_shipping_price_query.send(self, adjustment=PriceAdjustmentCalc) 
+      satchmo_shipping_price_query.send(self, adjustment=PriceAdjustmentCalc)
 """
 import django.dispatch
 
