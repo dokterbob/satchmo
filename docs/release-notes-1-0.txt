@@ -57,3 +57,4 @@ Changes
 - Updated polish translation
 - Multiple documentation improvements on the shipping pages
 - Added initial `South <http://south.aeracode.org/>`_ migrations for the Product model 
+- Add optional support for sending HTML formatted emails

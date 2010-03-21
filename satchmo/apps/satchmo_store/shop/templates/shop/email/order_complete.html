@@ -1,0 +1,16 @@
+{% load i18n satchmo_currency satchmo_discounts %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html><head><title></title></head>
+<body style="font-family:'Helvetica Neue', Helvetica, Arial;font-size:90%;">
+<h1>{{ shop_name}}</h1>
+
+<p>{% blocktrans %}Thank you for ordering with {{ shop_name }}.{% endblocktrans %}</p>
+<p>{% trans "Your order is summarized below:" %}</p>
+
+{% include "shop/email/_order_detail_table.html" %}
+
+<p>{% trans "Regards" %},</p>
+<p>{% trans "Store Management" %}</p>
+
+</body>
+</html>

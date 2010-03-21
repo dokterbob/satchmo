@@ -188,6 +188,30 @@ Satchmo_Store
 .. describe:: satchmo_store/shop/templates/shop/_search.html
 .. describe:: satchmo_store/shop/templates/shop/download.html
 .. describe:: satchmo_store/shop/templates/shop/_order_details.html
+.. describe:: satchmo_store/shop/templates/shop/email/contact_us.txt
+
+.. index::
+   single: email; sending html
+
+.. describe:: satchmo_store/shop/templates/shop/email/order_complete.txt|html
+
+    This template is used to render the order receipt email to the customer. If
+    html email sending is configured and there is a corresponding ".html" file, an 
+    html formatted email will be sent to the customer.
+    
+.. describe:: satchmo_store/shop/templates/shop/email/order_placed_notice.txt|html
+
+    This template is used to render the store owner notification that an order has been placed. If
+    html email sending is configured and there is a corresponding ".html" file, an 
+    html formatted email will be sent to the store owner.
+
+.. describe:: satchmo_store/shop/templates/shop/email/order_shipped.txt
+
+.. Note::
+    For all of the email templates, if there is a corresponding .html template and
+    the admin setting "Send HTML Email" is enabled, an html formatted email
+    will be sent to the recipient.
+
 .. describe:: satchmo_store/shop/templates/shop/_order_tracking_details.html
 
     This template can be modified to include additional information about the completed
