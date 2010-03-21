@@ -65,6 +65,7 @@ def send_order_notice(order, template='shop/email/order_placed_notice.txt'):
             log.warn("No shop owner email specified, skipping owner_email")
             return
 
+# TODO add html email template
 def send_ship_notice(order, template='shop/email/order_shipped.txt'):
     """Send an order shipped mail to the customer.
     """

@@ -9,6 +9,7 @@ from satchmo_store.shop.models import Config
 
 log = logging.getLogger('satchmo_store.accounts.mail')
 
+# TODO add html email template
 def send_welcome_email(email, first_name, last_name):
     """Send a store new account welcome mail to `email`."""
 
