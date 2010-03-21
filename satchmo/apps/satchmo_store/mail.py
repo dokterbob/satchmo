@@ -68,7 +68,7 @@ def send_store_mail(subject, context, template, recipients_list=None,
             html_t = loader.get_template(os.path.join(base_dir, template_name))
             html_body = html_t.render(c)
         except TemplateDoesNotExist:
-            log.warn('Unable to find html email template %s. Falling back to text only email.', os.path.join(base_dir, template_name))
+            log.warn('Unable to find html email template %s. Falling back to text only email.' % os.path.join(base_dir, template_name))
             send_html = False
 
     recipients = recipients_list or []
