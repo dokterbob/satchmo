@@ -10,4 +10,11 @@ If this process is not practical, then follow the individual steps outlined belo
 Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration
 on a test server before attempting on a production server.
 
-We hope to add a more automated migration feature in future versions of Satchmo.
+The very latest version of Satchmo includes migration files for `South <http://south.aeracode.org/>`_.
+They will only include changes for the migration from 0.9 -> 0.9.1 but we will also continue to use
+South for future migrations.
+
+Upgrading database schemas using South will be as simple as::
+
+    $ ./manage.py migrate --list
+    $ ./manage.py migrate [MIGRATION NAME]
