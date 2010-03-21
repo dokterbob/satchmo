@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
-from satchmo_store.shop.models import Config
-from socket import error as SocketError
-import logging
 from livesettings import config_value
-import os.path
+from satchmo_store.shop.models import Config
 
+import os.path
+from socket import error as SocketError
+
+import logging
 log = logging.getLogger('satchmo_store.mail')
 
 if "mailer" in settings.INSTALLED_APPS:
