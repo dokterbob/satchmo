@@ -164,7 +164,7 @@ msgstr "Dieses Feld ist erforderlich."
 
 #: forms.py:97
 msgid "State is required for your country."
-msgstr "Bundesland is für Ihr Land notwendig."
+msgstr "Bundesland ist für Ihr Land notwendig."
 
 #: forms.py:102
 msgid "Invalid state or province."
