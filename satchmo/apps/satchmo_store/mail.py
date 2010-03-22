@@ -1,26 +1,42 @@
 from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
-from satchmo_store.shop.models import Config
-from socket import error as SocketError
-import logging
 from livesettings import config_value
-import os.path
 
+import os.path
+from socket import error as SocketError
+
+import logging
 log = logging.getLogger('satchmo_store.mail')
 
 if "mailer" in settings.INSTALLED_APPS:
     from mailer import send_mail
 else:
     from django.core.mail import send_mail
-    
+
 from django.core.mail import EmailMultiAlternatives
 
 class NoRecipientsException(StandardError):
     pass
 
-def send_store_mail(subject, context, template, recipients_list=None,
+def send_store_mail_template_decorator(template_base):
+    """
+    This decorator sets the arguments ``template`` and ``template_html``
+    when the decorated function is called.
+    """
+    def dec(func):
+        def newfunc(*args, **kwargs):
+            default_kwargs = {
+                'template': '%s.txt' % template_base,
+                'template_html': '%s.html' % template_base
+            }
+            default_kwargs.update(kwargs)
+            return func(*args, **default_kwargs)
+        return newfunc
+    return dec
+
+def send_store_mail(subject, context, template='', recipients_list=None,
                     format_subject=False, send_to_store=False,
-                    fail_silently=False):
+                    template_html='', fail_silently=False):
     """
     :parameter: subject: A string.
 
@@ -31,12 +47,15 @@ def send_store_mail(subject, context, template, recipients_list=None,
       This dictionary overwrites an internal dictionary which provides the key
       `shop_name`.
 
-    :parameter: template: The path of the template to use when rendering the
-      message body.
-      
-    If store config is set to enable HTML emails, will attempt to find the HTML
-    template and send it.
+    :parameter: template: The path of the plain text template to use when
+      rendering the message body.
+
+    :parameter: template_html: The path of the HTML template to use when
+      rendering the message body; this will only be used if the config
+      ``SHOP.HTML_EMAIL`` is true.
     """
+    from satchmo_store.shop.models import Config
+
     shop_config = Config.objects.get_current()
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
@@ -53,21 +72,19 @@ def send_store_mail(subject, context, template, recipients_list=None,
     c_dict.update(context)
     c = Context(c_dict)
 
-    t = loader.get_template(template)
-    body = t.render(c)
-    
     if send_html:
-        base_dir,base_name = os.path.split(template) 
-        file_name, ext = os.path.splitext(base_name)
-        template_name = file_name + '.html'
         if settings.DEBUG:
             log.info("Attempting to send html mail.")
         try:
-            html_t = loader.get_template(os.path.join(base_dir, template_name))
-            html_body = html_t.render(c)
+            t = loader.get_template(template_html)
         except TemplateDoesNotExist:
-            log.warn('Unable to find html email template %s. Falling back to text only email.', os.path.join(base_dir, template_name))
+            log.warn('Unable to find html email template %s. Falling back to text only email.' % template_html)
             send_html = False
+
+    if not send_html:
+        t = loader.get_template(template)
+
+    body = t.render(c)
 
     recipients = recipients_list or []
 
@@ -77,26 +94,18 @@ def send_store_mail(subject, context, template, recipients_list=None,
     if not recipients:
         raise NoRecipientsException
 
-    if send_html:
-        msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
-        msg.attach_alternative(html_body, "text/html")
-        try:
+    try:
+        if send_html:
+            msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
+            msg.attach_alternative(body, "text/html")
             msg.send(fail_silently=fail_silently)
-        except SocketError, e:
-            if settings.DEBUG:
-                log.error('Error sending mail: %s' % e)
-                log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
-            else:
-                log.fatal('Error sending mail: %s' % e)
-                raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
-    else:
-        try:
+        else:
             send_mail(subject, body, shop_email, recipients,
                       fail_silently=fail_silently)
-        except SocketError, e:
-            if settings.DEBUG:
-                log.error('Error sending mail: %s' % e)
-                log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
-            else:
-                log.fatal('Error sending mail: %s' % e)
-                raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
+    except SocketError, e:
+        if settings.DEBUG:
+            log.error('Error sending mail: %s' % e)
+            log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo:%s\nSubject: %s\n---\n%s', ",".join(recipients), subject, body)
+        else:
+            log.fatal('Error sending mail: %s' % e)
+            raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
