@@ -67,7 +67,7 @@ class MultipleProductForm(forms.Form):
 
             if product and quantity > Decimal('0'):
                 log.debug('Adding %s=%s to cart from MultipleProductForm', key, value)
-                details = {}
+                details = []
                 formdata = request.POST
                 satchmo_cart_details_query.send(
                     cart,
