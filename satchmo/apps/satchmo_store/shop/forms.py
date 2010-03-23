@@ -11,7 +11,7 @@ log = logging.getLogger('shop.forms')
 
 class MultipleProductForm(forms.Form):
     """A form used to add multiple products to the cart."""
-    
+
     def __init__(self, *args, **kwargs):
         products = kwargs.pop('products', None)
 
@@ -21,11 +21,11 @@ class MultipleProductForm(forms.Form):
             products = [p for p in products if p.active]
         else:
             products = Product.objects.active_by_site()
-            
+
         self.slugs = [p.slug for p in products]
 
         for product in products:
-            kw = { 
+            kw = {
                 'label' : product.name,
                 'help_text' : product.description,
                 'initial' : 0,
@@ -41,8 +41,8 @@ class MultipleProductForm(forms.Form):
         log.debug('saving');
         self.full_clean()
         cartplaces = config_value('SHOP', 'CART_PRECISION')
-        roundfactor = config_value('SHOP', 'CART_ROUNDING')    
-        
+        roundfactor = config_value('SHOP', 'CART_ROUNDING')
+
         for name, value in self.cleaned_data.items():
             opt, key = name.split('__')
             log.debug('%s=%s', opt, key)
@@ -51,12 +51,12 @@ class MultipleProductForm(forms.Form):
             quantity = 0
             product = None
 
-            if opt=='qty':                
+            if opt=='qty':
                 try:
                     quantity = round_decimal(value, places=cartplaces, roundfactor=roundfactor)
                 except RoundedDecimalError, P:
                     quantity = 0
-                    
+
             if not key in self.slugs:
                 log.debug('caught attempt to add product not in the form: %s', key)
             else:
@@ -64,8 +64,8 @@ class MultipleProductForm(forms.Form):
                     product = Product.objects.get(slug=key)
                 except Product.DoesNotExist:
                     log.debug('caught attempt to add an non-existent product, ignoring: %s', key)
-                    
-            if product and quantity > Decimal('0'):                
+
+            if product and quantity > Decimal('0'):
                 log.debug('Adding %s=%s to cart from MultipleProductForm', key, value)
                 details = {}
                 formdata = request.POST
@@ -78,6 +78,5 @@ class MultipleProductForm(forms.Form):
                     form=formdata
                 )
                 added_item = cart.add_item(product, number_added=quantity, details=details)
-                satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, 
+                satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item,
                     product=product, request=request, form=formdata)
-    
