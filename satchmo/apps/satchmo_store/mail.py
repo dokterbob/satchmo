@@ -72,19 +72,19 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     c_dict.update(context)
     c = Context(c_dict)
 
+    # render text email, regardless of whether html email is used.
+    t = loader.get_template(template)
+    body = t.render(c)
+
     if send_html:
         if settings.DEBUG:
             log.info("Attempting to send html mail.")
         try:
             t = loader.get_template(template_html)
+            html_body = t.render(c)
         except TemplateDoesNotExist:
             log.warn('Unable to find html email template %s. Falling back to text only email.' % template_html)
             send_html = False
-
-    if not send_html:
-        t = loader.get_template(template)
-
-    body = t.render(c)
 
     recipients = recipients_list or []
 
@@ -96,8 +96,9 @@ def send_store_mail(subject, context, template='', recipients_list=None,
 
     try:
         if send_html:
+            # email contains both text and html
             msg = EmailMultiAlternatives(subject, body, shop_email, recipients)
-            msg.attach_alternative(body, "text/html")
+            msg.attach_alternative(html_body, "text/html")
             msg.send(fail_silently=fail_silently)
         else:
             send_mail(subject, body, shop_email, recipients,
