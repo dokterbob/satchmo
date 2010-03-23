@@ -13,9 +13,8 @@ Signals:
  - `satchmo_order_status_changed`: sent by the order when its status has changed
  - `satchmo_context`: sent by context_processor to optionally add more to the store context
  - `cart_add_view`: sent by 'views.smart_add` to allow listeners to optionally change the responding function
- - `satchmo_shipping_price_query`: Usage::
+ - `satchmo_shipping_price_query`: sent by the order during the calculation of the total.
 
-      satchmo_shipping_price_query.send(self, adjustment=PriceAdjustmentCalc)
 """
 import django.dispatch
 
@@ -47,4 +46,5 @@ satchmo_context = django.dispatch.Signal()
 
 cart_add_view = django.dispatch.Signal()
 
+#satchmo_shipping_price_query.send(order, adjustment=shipadjust)
 satchmo_shipping_price_query = django.dispatch.Signal()
