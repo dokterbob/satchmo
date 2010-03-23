@@ -84,10 +84,10 @@ Sent after an item has been successfully added to the cart.
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.Cart`` that was added to
+        The instance of ``satchmo_store.shop.models.Cart`` the cart item was added to
 
     ``cart``
-        The instance of ``satchmo_store.shop.models.Cart`` that was added to (Note: this argument is the same as ``sender``)
+        The instance of ``satchmo_store.shop.models.Cart`` the cart item was added to (Note: this argument is the same as ``sender``)
 
     ``added_item``
         The instance of ``satchmo_store.shop.models.CartItem`` that was added (or updated) to the cart
@@ -108,10 +108,10 @@ Sent before an item is added to the cart.
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it
+        The instance of ``satchmo_store.shop.models.Cart`` the cart item is being added to.
 
     ``cart``
-        The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it (Note: this argument is the same as ``sender``)
+        The instance of ``satchmo_store.shop.models.Cart`` the cart item is being added to (Note: this argument is the same as ``sender``)
 
     ``cartitem``
         An instance of ``satchmo_store.shop.models.CartItem`` that is being added to the cart
@@ -169,10 +169,10 @@ Sent before an item is added to the cart so that listeners can update product de
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.Cart`` being added to
+        The instance of ``satchmo_store.shop.models.Cart`` the cart item is being added to
 
     ``product``
-        Either an instance of ``product.models.Product`` or ``product.models.ConfigurableProduct`` being added to the cart
+        The instance of either ``product.models.Product`` or ``product.models.ConfigurableProduct`` that is being added to the cart
 
     ``quantity``
         The number of items (represented as a Decimal) being added to the cart
