@@ -3,26 +3,25 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 19:02-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-23 13:53+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: config.py:7
 msgid "Shipping Settings"
-msgstr ""
+msgstr "Forsendelsesindstillinger"
 
 #: config.py:11
 msgid "Active shipping modules"
-msgstr ""
+msgstr "Aktive forsendelsesmoduler"
 
 #: config.py:12
 msgid ""
@@ -32,31 +31,31 @@ msgstr ""
 
 #: config.py:14
 msgid "Per piece"
-msgstr ""
+msgstr "Per styk"
 
 #: config.py:21
 msgid "Hide if one?"
-msgstr ""
+msgstr "Skjul hvis en?"
 
 #: config.py:22
 msgid "Hide shipping form fields if there is only one choice available?"
-msgstr ""
+msgstr "Vis ikke muligheden for at vælge forsendelsestype hvis der kun er en valgmulighed."
 
 #: config.py:26
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: config.py:27
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: config.py:28
 msgid "Show description only"
-msgstr ""
+msgstr "Vis kun beskrivelse"
 
 #: config.py:34
 msgid "Select least expensive by default?"
-msgstr ""
+msgstr "Vælg den billigste som standard"
 
 #: modules/canadapost/config.py:12
 msgid "Canada Post Shipping Settings"
@@ -120,7 +119,7 @@ msgstr ""
 #: modules/canadapost/config.py:89 modules/fedex/config.py:94
 #: modules/ups/config.py:92 modules/usps/config.py:99
 msgid "Verbose logs"
-msgstr ""
+msgstr "Omfattende logning"
 
 #: modules/canadapost/config.py:90
 msgid ""
@@ -141,30 +140,30 @@ msgstr ""
 #: modules/ups/shipper.py:78
 #, python-format
 msgid "%s business days"
-msgstr ""
+msgstr "%s forretningsdage"
 
 #: modules/canadapost/shipper.py:89 modules/fedex/shipper.py:97
 #: modules/ups/shipper.py:80
 #, python-format
 msgid "%s business day"
-msgstr ""
+msgstr "%s forretningsdag"
 
 #: modules/canadapost/shipper.py:124 modules/fedex/shipper.py:151
 #: modules/ups/shipper.py:110
 msgid "3 - 4"
-msgstr ""
+msgstr "3–4"
 
 #: modules/dummy/shipper.py:28
 msgid "Dummy Flat Rate Shipping"
-msgstr ""
+msgstr "Dummy fastprisforsendelse"
 
 #: modules/dummy/shipper.py:41
 msgid "US Mail"
-msgstr ""
+msgstr "US Mail"
 
 #: modules/dummy/shipper.py:47
 msgid "3 - 4 business days"
-msgstr ""
+msgstr "3–4 arbejdsdage"
 
 #: modules/fedex/config.py:10
 msgid "FedEx Shipping Settings"
@@ -255,19 +254,19 @@ msgstr ""
 
 #: modules/flat/shipper.py:23
 msgid "Flat Rate Shipping"
-msgstr ""
+msgstr "Fastprisforsendelse"
 
 #: modules/no/shipper.py:22 modules/no/shipper.py:34
 msgid "No Shipping"
-msgstr ""
+msgstr "Ingen forsendelse"
 
 #: modules/no/shipper.py:40
 msgid "immediately"
-msgstr ""
+msgstr "umiddelbart"
 
 #: modules/per/config.py:15
 msgid "Per item price"
-msgstr ""
+msgstr "Pris per vare"
 
 #: modules/per/config.py:22
 msgid "Per Item Shipping Service"
@@ -292,96 +291,96 @@ msgstr ""
 #: modules/productshipping/models.py:89 modules/tiered/models.py:91
 #: modules/tieredquantity/models.py:85
 msgid "Key"
-msgstr ""
+msgstr "Nøgle"
 
 #: modules/productshipping/models.py:90 modules/tiered/models.py:92
 #: modules/tieredquantity/models.py:86 modules/tieredweight/models.py:114
 msgid "Ordering"
-msgstr ""
+msgstr "Rækkefølge"
 
 #: modules/productshipping/models.py:91 modules/tiered/models.py:93
 #: modules/tieredquantity/models.py:87 modules/tieredweight/models.py:115
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: modules/productshipping/models.py:194 modules/tiered/models.py:202
 #: modules/tieredquantity/models.py:199 modules/tieredweight/models.py:245
 msgid "language"
-msgstr ""
+msgstr "sprog"
 
 #: modules/productshipping/models.py:195 modules/tiered/models.py:203
 #: modules/tieredquantity/models.py:200
 msgid "Carrier"
-msgstr ""
+msgstr "Fragtmand"
 
 #: modules/productshipping/models.py:196 modules/tiered/models.py:204
 #: modules/tieredquantity/models.py:201
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: modules/productshipping/models.py:197 modules/tiered/models.py:205
 #: modules/tieredquantity/models.py:202
 msgid "Method"
-msgstr ""
+msgstr "Metode"
 
 #: modules/productshipping/models.py:197 modules/tiered/models.py:205
 #: modules/tieredquantity/models.py:202
 msgid "i.e. US Mail"
-msgstr ""
+msgstr "f.eks. Post Danmark"
 
 #: modules/productshipping/models.py:198 modules/tiered/models.py:206
 #: modules/tieredquantity/models.py:203
 msgid "Delivery Days"
-msgstr ""
+msgstr "Leveringsdage"
 
 #: modules/productshipping/models.py:206 modules/tiered/models.py:216
 msgid "Shipping Price"
-msgstr ""
+msgstr "Forsendelsespris"
 
 #: modules/tiered/config.py:7
 msgid "Tiered Shipping"
-msgstr ""
+msgstr "Niveauindelt forsendelse"
 
 #: modules/tiered/models.py:213
 msgid "Min Price"
-msgstr ""
+msgstr "Minimumspris"
 
 #: modules/tiered/models.py:214
 msgid "The minumum price for this tier to apply"
-msgstr ""
+msgstr "Minimumsprisen for dette niveau"
 
 #: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
 msgid "Expires"
-msgstr ""
+msgstr "Udløber"
 
 #: modules/tieredquantity/config.py:4
 msgid "Tiered Quantity"
-msgstr ""
+msgstr "Niveauantal"
 
 #: modules/tieredquantity/models.py:207
 msgid "Min Quantity"
-msgstr ""
+msgstr "Minimumsantal"
 
 #: modules/tieredquantity/models.py:208
 msgid "Minimum qty in order for this to apply?"
-msgstr ""
+msgstr "Minimumsantal i ordren for dette niveau"
 
 #: modules/tieredquantity/models.py:209
 msgid "Handling Price"
-msgstr ""
+msgstr "Ekspeditionsgebyr"
 
 #: modules/tieredquantity/models.py:211
 msgid "Shipping Per Item"
-msgstr ""
+msgstr "Forsendelse per vare"
 
 #: modules/tieredweight/config.py:10
 msgid "Tiered Weight Shipping"
-msgstr ""
+msgstr "Vægtindelt forsendelse"
 
 #: modules/tieredweight/models.py:113 modules/tieredweight/models.py:126
 #: modules/tieredweight/models.py:139
 msgid "carrier"
-msgstr ""
+msgstr "fragtmand"
 
 #: modules/tieredweight/models.py:116
 msgid "default_zone"
@@ -389,76 +388,76 @@ msgstr ""
 
 #: modules/tieredweight/models.py:127
 msgid "carriers"
-msgstr ""
+msgstr "fragtmænd"
 
 #: modules/tieredweight/models.py:140
 msgid "name"
-msgstr ""
+msgstr "navn"
 
 #: modules/tieredweight/models.py:141
 msgid "countries"
-msgstr ""
+msgstr "lande"
 
 #: modules/tieredweight/models.py:142
 msgid "handling"
-msgstr ""
+msgstr "ekspedition"
 
 #: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
 #: modules/tieredweight/models.py:262
 msgid "zone"
-msgstr ""
+msgstr "zone"
 
 #: modules/tieredweight/models.py:154
 msgid "zones"
-msgstr ""
+msgstr "zoner"
 
 #: modules/tieredweight/models.py:246
 msgid "description"
-msgstr ""
+msgstr "beskrivelse"
 
 #: modules/tieredweight/models.py:247
 msgid "method"
-msgstr ""
+msgstr "metode"
 
 #: modules/tieredweight/models.py:247
 msgid "i.e. Air, Land, Sea"
-msgstr ""
+msgstr "f.eks. luft, land eller søfragt"
 
 #: modules/tieredweight/models.py:248
 msgid "delivery"
-msgstr ""
+msgstr "levering"
 
 #: modules/tieredweight/models.py:257
 msgid "zone translation"
-msgstr ""
+msgstr "zoneoversættelse"
 
 #: modules/tieredweight/models.py:258
 msgid "zone translations"
-msgstr ""
+msgstr "zoneoverstættelser"
 
 #: modules/tieredweight/models.py:263
 msgid "min weight"
-msgstr ""
+msgstr "minimumsvægt"
 
 #: modules/tieredweight/models.py:264
 msgid "handling ajustment"
-msgstr ""
+msgstr "ekspeditionsjustering"
 
 #: modules/tieredweight/models.py:266
 msgid "shipping price"
-msgstr ""
+msgstr "forsendelsespris"
 
 #: modules/tieredweight/models.py:267
 msgid "expires"
-msgstr ""
+msgstr "udløber"
 
 #: modules/tieredweight/models.py:277
 msgid "weight tier"
-msgstr ""
+msgstr "vægtniveau"
 
 #: modules/tieredweight/models.py:278
 msgid "weight tiers"
-msgstr ""
+msgstr "vægtniveauer"
 
 #: modules/ups/config.py:8
 msgid "UPS Shipping Settings"
@@ -601,4 +600,4 @@ msgstr ""
 #: templates/shipping/options.html:6
 #, python-format
 msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
-msgstr ""
+msgstr "Sendt med %(method)s. Leveres omkring %(expected_delivery)s."

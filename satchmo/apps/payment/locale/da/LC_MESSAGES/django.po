@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 19:02-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-23 14:39+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -144,67 +143,67 @@ msgstr ""
 
 #: forms.py:103
 msgid "Discount"
-msgstr ""
+msgstr "Rabat"
 
 #: forms.py:156
 msgid "New price"
-msgstr ""
+msgstr "Ny pris"
 
 #: forms.py:157
 msgid "Shipping adjustment"
-msgstr ""
+msgstr "Forsendelsesjustering"
 
 #: forms.py:158 modules/giftcertificate/models.py:102
 #: modules/purchaseorder/models.py:14
 #: templates/payment/admin/charge_remaining_confirm.html:16
 msgid "Notes"
-msgstr ""
+msgstr "Noter"
 
 #: forms.py:174 templates/shop/checkout/balance_remaining.html:23
 #: templates/shop/checkout/form.html:52
 msgid "Payment method"
-msgstr ""
+msgstr "Betalingsform"
 
 #: forms.py:249
 msgid "This field is required"
-msgstr ""
+msgstr "Dette felt er påkrævet"
 
 #: forms.py:252
 msgid "Selected payment method requires this field to be filled"
-msgstr ""
+msgstr "Valgte betalingsform kræver at dette felt udfyldes"
 
 #: forms.py:274
 msgid "Invalid discount code."
-msgstr ""
+msgstr "Ugyldig rabatkode"
 
 #: forms.py:366
 msgid "This field is required."
-msgstr ""
+msgstr "Dette felt er påkrævet"
 
 #: forms.py:501
 msgid "Your card has expired."
-msgstr ""
+msgstr "Dit kort er udløbet"
 
 #: forms.py:510
 msgid "Invalid ccv."
-msgstr ""
+msgstr "Ugyldig CCV"
 
 #: listeners.py:19
 msgid "terms and conditions"
-msgstr ""
+msgstr "forretningsbetingelser"
 
 #: listeners.py:21
 #, python-format
 msgid "Do you accept the %(terms_link)s?"
-msgstr ""
+msgstr "Accepterer du vores %(terms_link)s?"
 
 #: models.py:29
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: models.py:30
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: models.py:31
 msgid "Should this be displayed as an option for the user?"
@@ -266,16 +265,16 @@ msgstr ""
 #: modules/cybersource/config.py:6 modules/protx/config.py:6
 #: modules/trustcommerce/config.py:5
 msgid "Credit Card"
-msgstr ""
+msgstr "Kreditkort"
 
 #: models.py:108
 msgid "Credit Cards"
-msgstr ""
+msgstr "Kreditkort"
 
 #: modules/base.py:45 modules/base.py:77 modules/base.py:82
 #: modules/base.py:178
 msgid "Not Implemented"
-msgstr ""
+msgstr "Ikke implementeret"
 
 #: modules/base.py:379 modules/autosuccess/processor.py:21
 #: modules/cod/processor.py:26 modules/dummy/processor.py:44
@@ -283,16 +282,16 @@ msgstr ""
 #: modules/dummy/processor.py:85 modules/giftcertificate/processor.py:52
 #: modules/purchaseorder/processor.py:31 views/confirm.py:254
 msgid "Success"
-msgstr ""
+msgstr "Succes"
 
 #: modules/base.py:381
 msgid "Failure"
-msgstr ""
+msgstr "Fejl"
 
 #: modules/authorizenet/config.py:6 modules/cybersource/config.py:6
 #: modules/protx/config.py:6 modules/trustcommerce/config.py:5
 msgid "CreditCard"
-msgstr ""
+msgstr "Kreditkort"
 
 #: modules/authorizenet/config.py:9
 msgid "Authorize.net Payment Settings"
@@ -500,7 +499,7 @@ msgstr ""
 #: modules/cybersource/config.py:57 modules/google/config.py:21
 #: modules/paypal/config.py:12 modules/protx/config.py:99
 msgid "Currency Code"
-msgstr ""
+msgstr "Valutakode"
 
 #: modules/cybersource/config.py:58
 msgid "Currency code for Cybersource transactions."
@@ -537,21 +536,21 @@ msgstr ""
 #: modules/giftcertificate/templates/giftcertificate/balance.html:13
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:9
 msgid "Gift Certificate"
-msgstr ""
+msgstr "Gavekort"
 
 #: modules/giftcertificate/config.py:9
 msgid "Gift Certificate Settings"
-msgstr ""
+msgstr "Indstillinger for gavekort"
 
 #: modules/giftcertificate/config.py:19
 msgid "Character Set"
-msgstr ""
+msgstr "Tegnsæt"
 
 #: modules/giftcertificate/config.py:21
 msgid ""
 "The characters allowable in randomly-generated certficate codes.  No vowels "
 "means no unfortunate words."
-msgstr ""
+msgstr "Tegn der er gyldige til tilfældigt genererede gavekortkoder. Ingen vokaler betyder ingen uheldige ord."
 
 #: modules/giftcertificate/config.py:31
 msgid "Code format"
@@ -565,68 +564,68 @@ msgstr ""
 
 #: modules/giftcertificate/forms.py:6
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: modules/giftcertificate/models.py:31
 msgid "Site"
-msgstr ""
+msgstr "Site"
 
 #: modules/giftcertificate/models.py:32 modules/purchaseorder/models.py:30
 msgid "Order"
-msgstr ""
+msgstr "Ordre"
 
 #: modules/giftcertificate/models.py:33
 msgid "Certificate Code"
-msgstr ""
+msgstr "Gavekortkode"
 
 #: modules/giftcertificate/models.py:35
 msgid "Purchased by"
-msgstr ""
+msgstr "Købt af"
 
 #: modules/giftcertificate/models.py:37
 msgid "Date added"
-msgstr ""
+msgstr "Tilføjet dato"
 
 #: modules/giftcertificate/models.py:38
 msgid "Valid"
-msgstr ""
+msgstr "Gyldig"
 
 #: modules/giftcertificate/models.py:39
 msgid "Message"
-msgstr ""
+msgstr "Besked"
 
 #: modules/giftcertificate/models.py:40
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: modules/giftcertificate/models.py:41
 msgid "Starting Balance"
-msgstr ""
+msgstr "Startbalance"
 
 #: modules/giftcertificate/models.py:97
 #: modules/giftcertificate/templates/giftcertificate/balance.html:6
 msgid "Gift Certificates"
-msgstr ""
+msgstr "Gavekort"
 
 #: modules/giftcertificate/models.py:101
 msgid "Date of usage"
-msgstr ""
+msgstr "Brugsdato"
 
 #: modules/giftcertificate/models.py:103
 msgid "Amount Used"
-msgstr ""
+msgstr "Brugt beløb"
 
 #: modules/giftcertificate/models.py:105
 msgid "Order Payment"
-msgstr ""
+msgstr "Ordrebetaling"
 
 #: modules/giftcertificate/models.py:106
 msgid "Used by"
-msgstr ""
+msgstr "Brugt af"
 
 #: modules/giftcertificate/models.py:123
 msgid "Product"
-msgstr ""
+msgstr "Vare"
 
 #: modules/giftcertificate/models.py:161
 msgid "Gift certificate product"
@@ -638,44 +637,44 @@ msgstr ""
 
 #: modules/giftcertificate/processor.py:30
 msgid "No balance to pay"
-msgstr ""
+msgstr "Ingen balance at betale"
 
 #: modules/giftcertificate/processor.py:41
 msgid "No such Gift Certificate"
-msgstr ""
+msgstr "Gavekortet findes ikke"
 
 #: modules/giftcertificate/processor.py:46
 msgid "Bad Gift Certificate"
-msgstr ""
+msgstr "Ugyldigt gavekort"
 
 #: modules/giftcertificate/processor.py:56
 #, python-format
 msgid "%s balance remains after gift certificate was applied"
-msgstr ""
+msgstr "%s resterende balance efter brug af gavekort"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:5
 msgid "Gift Certificate Codes"
-msgstr ""
+msgstr "Gavekortkoder"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:10
 #, python-format
 msgid "To: %(recipient)s"
-msgstr ""
+msgstr "Til: %(recipient)s"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:15
 #, python-format
 msgid "Starting Balance: %(start_balance)s"
-msgstr ""
+msgstr "Startbeløb: %(start_balance)s"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:19
 #, python-format
 msgid "Code: %(code)s"
-msgstr ""
+msgstr "Kode: %(code)s"
 
 #: modules/giftcertificate/templates/giftcertificate/_order_summary.html:24
 #, python-format
 msgid "Message: %(message)s"
-msgstr ""
+msgstr "Besked: %(message)s"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:5
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:9
@@ -692,47 +691,47 @@ msgstr ""
 #: templates/shop/checkout/protx/confirm.html:9
 #: templates/shop/checkout/purchaseorder/confirm.html:7
 msgid "Home"
-msgstr ""
+msgstr "Hjem"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:15
 msgid "Purchased on:"
-msgstr ""
+msgstr "Købt på:"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:21
 msgid "Starting Balance:"
-msgstr ""
+msgstr "Startbalance"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:22
 msgid "Current Balance:"
-msgstr ""
+msgstr "Nuværende balance:"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:25
 msgid "No such gift certificate found."
-msgstr ""
+msgstr "Gavekortet blev ikke fundet"
 
 #: modules/giftcertificate/templates/giftcertificate/balance.html:30
 msgid "Look up balance"
-msgstr ""
+msgstr "Check balance"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:11
 msgid "Price"
-msgstr ""
+msgstr "Pris"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:21
 msgid "Quantity (multiply the gift certificate by this amount)"
-msgstr ""
+msgstr "Antal (gang gavekortet med dette beløb)"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:24
 msgid "Recipient Email (optional):"
-msgstr ""
+msgstr "Modtagerens e-mail (frivillig):"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:25
 msgid "Message (optional):"
-msgstr ""
+msgstr "Besked (frivillig):"
 
 #: modules/giftcertificate/templates/product/detail_giftcertificateproduct.html:30
 msgid "Add to cart"
-msgstr ""
+msgstr "Tilføj til kurv"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:10
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:10
@@ -751,7 +750,7 @@ msgstr ""
 #: templates/shop/checkout/protx/confirm.html:10
 #: templates/shop/checkout/purchaseorder/confirm.html:8
 msgid "Checkout"
-msgstr ""
+msgstr "Gå til kassen"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:14
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:14
@@ -770,89 +769,90 @@ msgstr ""
 #: templates/shop/checkout/sermepa/confirm.html:6
 #: templates/shop/checkout/sermepa/confirm.html:9
 msgid "Payment"
-msgstr ""
+msgstr "Betaling"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:20
 #, python-format
 msgid "Order total: %(orderbalance)s"
-msgstr ""
+msgstr "Ordretotal: %(orderbalance)s"
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:21
 #, python-format
 msgid ""
 "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
 "s total available to pay for your order."
-msgstr ""
+msgstr "Du skal til at bruge gavekort nummer %(giftcode)s som har %(certbalance)s til rådighed for din ordre."
 
 #: modules/giftcertificate/templates/shop/checkout/confirm.html:22
 msgid ""
 "If there isn't enough remaining to pay for the whole order, you'll be able "
 "to select another form of payment for the balance after you use this gift "
 "certificate."
-msgstr ""
+msgstr "Hvis der ikke er nok penge tilbage på gavekortet til at betale for hele ordren, kan du vælge en anden betalingsform efter du har brugt gavekortet."
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:6
 msgid "Please Note:"
-msgstr ""
+msgstr "Bemærk venligst:"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:19
 #, python-format
 msgid ""
 "About to use your gift certificate: %(giftcode)s, which has a balance of %"
 "(balance)s."
-msgstr ""
+msgstr "Benytter nu gavekortet %(giftcode)s, som har en balance på %"
+"(balance)s."
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/confirm.html:23
 msgid "About to use INVALID gift certificate"
-msgstr ""
+msgstr "Benytter nu UGYLDIGT gavekort"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/pay_ship.html:6
 #: templates/shop/checkout/pay_ship.html:6
 #: templates/shop/checkout/protx/pay_ship.html:18
 msgid "Payment Information"
-msgstr ""
+msgstr "Betalingsoplysninger"
 
 #: modules/giftcertificate/templates/shop/checkout/giftcertificate/pay_ship.html:11
 msgid "Gift Certificate Code"
-msgstr ""
+msgstr "Gavekortkode"
 
 #: modules/google/config.py:8
 msgid "Google Checkout Module Settings"
-msgstr ""
+msgstr "Google Checkout indstillinger"
 
 #: modules/google/config.py:15
 msgid "XML Template"
-msgstr ""
+msgstr "XML skabelon"
 
 #: modules/google/config.py:16
 msgid ""
 "The XML template to use when submitting to Google. Probably you should not "
 "change this."
-msgstr ""
+msgstr "XML skabelon som bruges når data sendes til Google. Skal normalt ikke ændres."
 
 #: modules/google/config.py:22
 msgid "Currency code for Google Checkout transactions."
-msgstr ""
+msgstr "Valutakode for Google Checkout transaktioner"
 
 #: modules/google/config.py:27
 msgid "Checkout Button URL"
-msgstr ""
+msgstr "Checkout knap URL"
 
 #: modules/google/config.py:32
 msgid "Checkout Button Size"
-msgstr ""
+msgstr "Checkout knapstørrelse"
 
 #: modules/google/config.py:34
 msgid "Small"
-msgstr ""
+msgstr "Lille"
 
 #: modules/google/config.py:35
 msgid "Medium"
-msgstr ""
+msgstr "Mellem"
 
 #: modules/google/config.py:36
 msgid "Large"
-msgstr ""
+msgstr "Stor"
 
 #: modules/google/config.py:41 modules/google/config.py:47
 #: modules/paypal/config.py:18 modules/paypal/config.py:24
@@ -1232,16 +1232,16 @@ msgstr ""
 
 #: templates/payment/_order_payment_summary.html:6
 msgid "Paid"
-msgstr ""
+msgstr "Betalt"
 
 #: templates/payment/_order_payment_summary.html:11
 #, python-format
 msgid "Balance = %(balance)s "
-msgstr ""
+msgstr "Balance = %(balance)s "
 
 #: templates/payment/_order_payment_summary.html:15
 msgid "Pay remaining balance"
-msgstr ""
+msgstr "Betal udestående balance"
 
 #: templates/payment/admin/charge_remaining_confirm.html:4
 msgid "Custom Charge"
@@ -1250,86 +1250,86 @@ msgstr ""
 #: templates/payment/admin/charge_remaining_confirm.html:7
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ret venligst fejlen herunder."
+msgstr[1] "Ret venligst fejlene herunder."
 
 #: templates/payment/admin/charge_remaining_confirm.html:12
 msgid "New amount"
-msgstr ""
+msgstr "Nyt beløb"
 
 #: templates/payment/admin/charge_remaining_confirm.html:14
 msgid "Extra Shipping"
-msgstr ""
+msgstr "Ekstra forsendelse"
 
 #: templates/shop/checkout/authentication_required.html:10
 msgid "Authentication required"
-msgstr ""
+msgstr "Godkendelse kræves"
 
 #: templates/shop/checkout/authentication_required.html:13
 #: templates/shop/checkout/base_confirm.html:15
 #: templates/shop/checkout/base_pay_ship.html:13
 #: templates/shop/checkout/form.html:17
 msgid "Ship/Bill"
-msgstr ""
+msgstr "Forsendelse/fakturering"
 
 #: templates/shop/checkout/authentication_required.html:15
 #: templates/shop/checkout/base_confirm.html:17
 #: templates/shop/checkout/base_pay_ship.html:15
 #: templates/shop/checkout/form.html:19
 msgid "Confirmation"
-msgstr ""
+msgstr "Bekræftelse"
 
 #: templates/shop/checkout/authentication_required.html:29
 #: templates/shop/checkout/form.html:39
 msgid "Login"
-msgstr ""
+msgstr "Log ind"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "If you do not have an account, please"
-msgstr ""
+msgstr "Hvis du ikke har en konto, så"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "click here"
-msgstr ""
+msgstr "klik venligst her"
 
 #: templates/shop/checkout/authentication_required.html:34
 msgid "If you do not remember your password, please"
-msgstr ""
+msgstr "Hvis du har glemt dit kodeord, så"
 
 #: templates/shop/checkout/authentication_required.html:34
 msgid "click here</a> to have it reset."
-msgstr ""
+msgstr "klik venligst her</a> for at få et nyt."
 
 #: templates/shop/checkout/balance_remaining.html:12
 msgid "Order Balance"
-msgstr ""
+msgstr "Ordrebalance"
 
 #: templates/shop/checkout/balance_remaining.html:17
 #, python-format
 msgid ""
 "To complete this order, you need to pay the %(orderbalance)s balance "
 "remaining on this order."
-msgstr ""
+msgstr "For at gennemføre ordren, skal du betale %(orderbalance)s udestående for denne ordre."
 
 #: templates/shop/checkout/balance_remaining.html:22
 #: templates/shop/checkout/form.html:51
 msgid "How do you want to pay?"
-msgstr ""
+msgstr "Hvordan ønsker du at betale"
 
 #: templates/shop/checkout/balance_remaining.html:26
 #: templates/shop/checkout/form.html:84
 msgid "Continue Checkout"
-msgstr ""
+msgstr "Forsæt til betaling"
 
 #: templates/shop/checkout/base_confirm.html:22
 msgid ""
 "The following error was returned while trying to process your payment. "
 "Please correct and resubmit."
-msgstr ""
+msgstr "Følgende fejl opstod i forbindelse med behandling af din betaling. Ret venligst, og prøv igen."
 
 #: templates/shop/checkout/base_confirm.html:25
 msgid "Please validate the following information, then submit your order."
-msgstr ""
+msgstr "Bekræft venligst følgende oplysninger for at gennemføre ordren."
 
 #: templates/shop/checkout/base_confirm.html:41
 #: templates/shop/checkout/google/confirm.html:17
@@ -1338,43 +1338,40 @@ msgstr ""
 #: templates/shop/checkout/sermepa/confirm.html:17
 #: templates/shop/checkout/sermepa/confirm.html:42
 msgid "Purchase Items"
-msgstr ""
+msgstr "Køb varer"
 
 #: templates/shop/checkout/base_pay_ship.html:18
 #: templates/shop/checkout/form.html:22
 msgid ""
 "Please complete the following information in order to submit your order."
-msgstr ""
+msgstr "Udfyld venligst følgende oplysninger for at gennemføre ordren."
 
 #: templates/shop/checkout/base_pay_ship.html:21
 #: templates/shop/checkout/form.html:24
-#, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] "#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Ret venligst følgende fejl."
+msgstr[1] "Ret venligst følgende fejl."
 
 #: templates/shop/checkout/base_pay_ship.html:40
 msgid "Shipping Information"
-msgstr ""
+msgstr "Forsendelsesinformation"
 
 #: templates/shop/checkout/base_pay_ship.html:45
 msgid "The following shipping method will be used"
-msgstr ""
+msgstr "Den følgende forsendelsesform vil blive brugt"
 
 #: templates/shop/checkout/base_pay_ship.html:47
 msgid "Please choose your preferred shipping method"
-msgstr ""
+msgstr "Vælg venligst din foretrukne forsendelsesform"
 
 #: templates/shop/checkout/base_pay_ship.html:58
 msgid "There are no items in this order to ship."
-msgstr ""
+msgstr "Der er ingen varer til forsendelse i denne ordre."
 
 #: templates/shop/checkout/base_pay_ship.html:63
 msgid "Confirm"
-msgstr ""
+msgstr "Bekræft"
 
 #: templates/shop/checkout/confirm.html:6
 #: templates/shop/checkout/cod/confirm.html:6
@@ -1382,7 +1379,7 @@ msgstr ""
 msgid ""
 "The following error was returned while trying to process your card.  Please "
 "correct and resubmit"
-msgstr ""
+msgstr "Følgende fejl opstod i forbindelse med behandling af dit kort. Ret venligst, og prøv igen."
 
 #: templates/shop/checkout/confirm.html:19
 #: templates/shop/checkout/protx/confirm.html:19
@@ -1390,151 +1387,151 @@ msgstr ""
 msgid ""
 "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
 "charged %(order_total)s."
-msgstr ""
+msgstr "Dit %(credit_card_type)skort, der ender på %(credit_card_number)s, vil blive debiteret %(order_total)s."
 
 #: templates/shop/checkout/empty_cart.html:12
 msgid ""
 "Your cart is empty. Please add some items to your cart, then complete the "
 "checkout process."
-msgstr ""
+msgstr "Din kurv er tom. Læg venligst nogen varer i kurven før du går til kassen."
 
 #: templates/shop/checkout/failure.html:11
 msgid "Failed payment"
-msgstr ""
+msgstr "Mislykket betaling"
 
 #: templates/shop/checkout/failure.html:12
 msgid "We are sorry, but the payment process finished with a failure."
-msgstr ""
+msgstr "Vi beklager, men betalingsprocessen mislykkedes"
 
 #: templates/shop/checkout/failure.html:13
 msgid "You may"
-msgstr ""
+msgstr "Du kan"
 
 #: templates/shop/checkout/failure.html:13
 msgid "proceed to the cart"
-msgstr ""
+msgstr "gå til kurven"
 
 #: templates/shop/checkout/failure.html:13
 msgid "and check out again, using other payment method."
-msgstr ""
+msgstr "og bruge en anden betalingsform."
 
 #: templates/shop/checkout/form.html:33
 msgid ""
 "If you already have an account, you can login now to fill in most of the "
 "information below."
-msgstr ""
+msgstr "Hvis du allerede har en konto, så kan du logge ind for at få udfyldt de fleste af felterne herunder."
 
 #: templates/shop/checkout/form.html:34
 msgid "This is just a convenience, no account is required!"
-msgstr ""
+msgstr "Dette er blot for en nemheds skyld, du behøver ikke have en konto."
 
 #: templates/shop/checkout/form.html:37
 msgid "Username or email"
-msgstr ""
+msgstr "Brugernavn eller e-mail-adresse"
 
 #: templates/shop/checkout/form.html:38
 msgid "Password"
-msgstr ""
+msgstr "Kodeord"
 
 #: templates/shop/checkout/form.html:46
 msgid "You'll need to fill out at least the fields with a *"
-msgstr ""
+msgstr "Du skal som minimum udfylde felterne markeret med *"
 
 #: templates/shop/checkout/form.html:56
 msgid "Basic Information"
-msgstr ""
+msgstr "Stamdata"
 
 #: templates/shop/checkout/form.html:57
 msgid "Email address"
-msgstr ""
+msgstr "E-mail-adresse"
 
 #: templates/shop/checkout/form.html:60
 msgid "First name"
-msgstr ""
+msgstr "Fornavn"
 
 #: templates/shop/checkout/form.html:63
 msgid "Last name"
-msgstr ""
+msgstr "Efternavn"
 
 #: templates/shop/checkout/form.html:66
 msgid "Phone number"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: templates/shop/checkout/form.html:78
 msgid "Discounts"
-msgstr ""
+msgstr "Rabatter"
 
 #: templates/shop/checkout/form.html:79
 msgid "Discount code"
-msgstr ""
+msgstr "Rabatkode"
 
 #: templates/shop/checkout/pay_ship.html:11
 #: templates/shop/checkout/protx/pay_ship.html:26
 msgid "Type of credit card"
-msgstr ""
+msgstr "Kreditkorttype"
 
 #: templates/shop/checkout/pay_ship.html:14
 #: templates/shop/checkout/protx/pay_ship.html:29
 msgid "Credit card number"
-msgstr ""
+msgstr "Kreditkortnummer"
 
 #: templates/shop/checkout/pay_ship.html:17
 #: templates/shop/checkout/protx/pay_ship.html:39
 msgid "Expiration date"
-msgstr ""
+msgstr "Udløbsdato"
 
 #: templates/shop/checkout/pay_ship.html:20
 #: templates/shop/checkout/protx/pay_ship.html:42
 msgid "CCV"
-msgstr ""
+msgstr "CCV"
 
 #: templates/shop/checkout/success.html:13
 msgid "Thank you for your order!"
-msgstr ""
+msgstr "Tak for din ordre!"
 
 #: templates/shop/checkout/success.html:14
 msgid ""
 "Please print out this page as a receipt.  You will also receive an email "
 "with this information."
-msgstr ""
+msgstr "Print venligst denne side ud som kvittering. Du vil også modtage en e-mail med disse oplysninger"
 
 #: templates/shop/checkout/cod/confirm.html:17
 #, python-format
 msgid "This order will be COD for %(order_total)s."
-msgstr ""
+msgstr "Denne ordre sendes pr. efterkrav for %(order_total)s."
 
 #: templates/shop/checkout/google/confirm.html:11
 msgid "Your payment will be processed through Google Checkout."
-msgstr ""
+msgstr "Din ordre bliver betalt gennem Google Checkout"
 
 #: templates/shop/checkout/google/confirm.html:23
 msgid "Fast checkout through Google"
-msgstr ""
+msgstr "Hurtig betaling gennem Google"
 
 #: templates/shop/checkout/paypal/confirm.html:11
 msgid "Your payment will be processed through PayPal."
-msgstr ""
+msgstr "Din ordre bliver betalt gennem PayPal"
 
 #: templates/shop/checkout/protx/pay_ship.html:23
 msgid "Card Holder"
-msgstr ""
+msgstr "Navn på kort"
 
 #: templates/shop/checkout/protx/pay_ship.html:32
 msgid "Issue number"
-msgstr ""
+msgstr "Udstedelsesnummer"
 
 #: templates/shop/checkout/protx/pay_ship.html:35
 msgid "Issue date"
-msgstr ""
+msgstr "Udstedelsesdato"
 
 #: templates/shop/checkout/purchaseorder/confirm.html:15
 #, python-format
 msgid "This order will be charged on your account for %(order_total)s."
-msgstr ""
+msgstr "Denne ordre debiteres din konto for %(ordre_total)s."
 
 #: templates/shop/checkout/purchaseorder/pay_ship.html:9
 msgid "Purchase Order #"
-msgstr ""
+msgstr "Bestillingsnummer"
 
 #: templates/shop/checkout/sermepa/confirm.html:11
 msgid "Your payment will be processed through Sermepa."
@@ -1544,7 +1541,7 @@ msgstr ""
 msgid ""
 "The orderitem you have requested doesn't exist, or you don't have access to "
 "it."
-msgstr ""
+msgstr "Den ordre/vare du efterspurgte findes ikke, eller du har ikke adgang til at se den."
 
 #: views/balance.py:86
 msgid "No form found in request."
@@ -1556,7 +1553,7 @@ msgstr ""
 
 #: views/confirm.py:256
 msgid "This order does not have a zero balance"
-msgstr ""
+msgstr "Denne ordre har ikke en nulbalance."
 
 #: views/cron.py:21
 msgid "Feature is not enabled."
@@ -1568,4 +1565,4 @@ msgstr ""
 
 #: views/payship.py:23
 msgid "Please Select"
-msgstr ""
+msgstr "Vælg venligst"

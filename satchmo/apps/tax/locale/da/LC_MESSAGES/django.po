@@ -3,114 +3,125 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Satchmo 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 19:02-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-03-23 13:06+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: config.py:7
 msgid "Tax Settings"
-msgstr ""
+msgstr "Momsindstillinger"
 
 #: config.py:10
 msgid "Active tax module"
-msgstr ""
+msgstr "Aktivt momsmodul"
 
 #: config.py:11
 msgid "Select a module, save and reload to set any module-specific settings."
-msgstr ""
+msgstr "Vælg et modul, gem og genindlæs siden for at sætte modul-specifikke indstillinger."
 
 #: config.py:13
 msgid "No Tax"
-msgstr ""
+msgstr "Ingen moms"
 
 #: config.py:19
 msgid "Show with tax included"
-msgstr ""
+msgstr "Vis priser inkl. moms"
 
 #: config.py:20
 msgid "If yes, then all products and the cart will display with tax included."
-msgstr ""
+msgstr "Hvis ja, vil alle priser på siden blive vist inklusiv moms."
 
 #: config.py:26
 msgid "New products are automatically made taxable"
-msgstr ""
+msgstr "Gør nye produkter momspligtige"
 
 #: config.py:27
 msgid "Whether newly created products should be taxable by default."
-msgstr ""
+msgstr "Hvorvidt nyoprettede produkter som udgangspunkt skal være markeret som momspligtige"
 
 #: config.py:34
 msgid "Should tax be calculated based on shipping or billing address?"
-msgstr ""
+msgstr "Beregn moms på basis af forsendelses- eller faktureringsadresse?"
 
 #: config.py:35
 msgid "This will only be used if tax is calculated based on an address."
-msgstr ""
+msgstr "Dette vil kun blive brugt, hvis momsen beregnes på basis af adressen."
 
 #: modules/area/admin.py:14
 msgid "You must choose a zone or a country."
-msgstr ""
+msgstr "Du skal vælge et land eller område."
 
 #: modules/area/config.py:6
 msgid "By Country/Area"
-msgstr ""
+msgstr "Efter område/land"
 
-#: modules/area/config.py:12 modules/percent/config.py:19
+#: modules/area/config.py:12
+#: modules/percent/config.py:19
 msgid "Tax Shipping?"
-msgstr ""
+msgstr "Forsendelsesmoms"
 
-#: modules/area/config.py:21 modules/us_sst/config.py:21
+#: modules/area/config.py:21
+#: modules/us_sst/config.py:21
 msgid "TaxClass for shipping"
-msgstr ""
+msgstr "Momsklasse for forsendelse"
 
-#: modules/area/config.py:22 modules/us_sst/config.py:22
+#: modules/area/config.py:22
+#: modules/us_sst/config.py:22
 msgid "Select a TaxClass that should be applied for shipments."
-msgstr ""
+msgstr "Vælg en momsklasse der skal bruges til forsendelse."
 
-#: modules/area/models.py:10 modules/us_sst/models.py:57
+#: modules/area/models.py:10
+#: modules/us_sst/models.py:57
 msgid "Tax Class"
-msgstr ""
+msgstr "Momsklasse"
 
-#: modules/area/models.py:12 modules/us_sst/models.py:59
+#: modules/area/models.py:12
+#: modules/us_sst/models.py:59
 msgid "Tax Zone"
-msgstr ""
+msgstr "Momsområde"
 
-#: modules/area/models.py:14 modules/us_sst/models.py:61
+#: modules/area/models.py:14
+#: modules/us_sst/models.py:61
 msgid "Tax Country"
-msgstr ""
+msgstr "Momsland"
 
-#: modules/area/models.py:15 modules/area/models.py:27
+#: modules/area/models.py:15
+#: modules/area/models.py:27
 msgid "Percentage"
-msgstr ""
+msgstr "Procentsats"
 
 #: modules/area/models.py:16
 msgid "% tax for this area and type"
-msgstr ""
+msgstr "momsprocent for dette område og denne type"
 
-#: modules/area/models.py:36 modules/us_sst/models.py:155
+#: modules/area/models.py:36
+#: modules/us_sst/models.py:155
 msgid "Tax Rate"
-msgstr ""
+msgstr "Momssats"
 
-#: modules/area/models.py:37 modules/us_sst/models.py:156
+#: modules/area/models.py:37
+#: modules/us_sst/models.py:156
 msgid "Tax Rates"
-msgstr ""
+msgstr "Momssatser"
 
 #: modules/percent/config.py:5
 msgid "Percent Tax"
-msgstr ""
+msgstr "Momsprocent"
 
 #: modules/percent/config.py:11
 msgid "Percent tax"
-msgstr ""
+msgstr "Momsprocent"
 
 #: modules/us_sst/admin.py:97
 msgid "Zip-5 records need a high and a low."
@@ -134,7 +145,7 @@ msgstr ""
 
 #: modules/us_sst/models.py:62
 msgid "Taxable?"
-msgstr ""
+msgstr "Momspligtig"
 
 #: modules/us_sst/models.py:63
 msgid "Use Intrastate rate instead of Interstate?"
@@ -146,19 +157,20 @@ msgstr ""
 
 #: modules/us_sst/models.py:86
 msgid "Taxable Class"
-msgstr ""
+msgstr "Momsklasse"
 
 #: modules/us_sst/models.py:87
 msgid "Taxable Classes"
 msgstr ""
 
-#: modules/us_sst/models.py:138 modules/us_sst/models.py:235
+#: modules/us_sst/models.py:138
+#: modules/us_sst/models.py:235
 msgid "FIPS State Code"
 msgstr ""
 
 #: modules/us_sst/models.py:140
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: modules/us_sst/models.py:142
 msgid "FIPS Code"
@@ -180,11 +192,13 @@ msgstr ""
 msgid "Food/Drug Tax Rate - Interstate"
 msgstr ""
 
-#: modules/us_sst/models.py:151 modules/us_sst/models.py:195
+#: modules/us_sst/models.py:151
+#: modules/us_sst/models.py:195
 msgid "Effective Start Date"
 msgstr ""
 
-#: modules/us_sst/models.py:152 modules/us_sst/models.py:196
+#: modules/us_sst/models.py:152
+#: modules/us_sst/models.py:196
 msgid "Effective End Date"
 msgstr ""
 
@@ -254,7 +268,7 @@ msgstr ""
 
 #: modules/us_sst/models.py:228
 msgid "Zip Code Extension - Low"
-msgstr ""
+msgstr "Indtast et gyldigt postnummer."
 
 #: modules/us_sst/models.py:230
 msgid "Zip Code - High"
@@ -451,3 +465,4 @@ msgstr ""
 #: modules/us_sst/models.py:391
 msgid "Tax Boundries"
 msgstr ""
+
