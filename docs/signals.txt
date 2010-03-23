@@ -205,7 +205,7 @@ Sent after each item from the cart is copied into an order
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.Cart`` being copied
+        The instance of ``satchmo_store.shop.models.Cart`` the cart items are being copied into
 
     ``cartitem``
         The instance of ``satchmo_store.shop.models.CartItem`` being copied into an order
