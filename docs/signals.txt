@@ -120,7 +120,7 @@ Arguments sent with this signal:
         The number of ``cartitem`` items being added to the cart
 
     ``details``
-         A list of dictionaries containing additonal details about the item if the item is a custom product or a gift certificate product. Each dictionaries will contain the following information:
+         A list of dictionaries containing additional details about the item if the item is a custom product or a gift certificate product. Each dictionary has the following entries:
 
             ``name``
                 The name of the detail
@@ -178,7 +178,7 @@ Arguments sent with this signal:
         The number of items (represented as a Decimal) being added to the cart
 
     ``details``
-        A list of dictionaries containing additonal details about the item if the item is a custom product or a gift certificate product. Each dictionaries will contain the following information:
+        A list of dictionaries containing additional details about the item if the item is a custom product or a gift certificate product. Each dictionary has the following entries:
 
         ``name``
             The name of the detail
