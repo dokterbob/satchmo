@@ -10,11 +10,30 @@ If this process is not practical, then follow the individual steps outlined belo
 Always remember to do a complete backup of your store before attempting to migrate.  Additionally, we recommend that you test the migration
 on a test server before attempting on a production server.
 
+Using South
+-----------
+
 The very latest version of Satchmo includes migration files for `South <http://south.aeracode.org/>`_.
-They will only include changes for the migration from 0.9 -> 0.9.1 but we will also continue to use
+Initially, they will only include changes for the migration from 0.9 -> 0.9.1 but we will also continue to use
 South for future migrations.
 
-Upgrading database schemas using South will be as simple as::
+The basic workflow for executing migrations is:
 
-    $ ./manage.py migrate --list
-    $ ./manage.py migrate [MIGRATION NAME]
+    - Add south to INSTALLED_APPS
+    - Install history table::
+       
+        python manage.py syncdb
+           
+    - "Fake" the initial migration::
+    
+        python manage.py migrate <satchmo_app> --fake 0001_initial
+
+    - See list of migrations::
+        
+        python manage.py migrate --list
+    
+    - Run the migrations::
+    
+        python manage.py migrate <satchmo_app> --db-dry-run # db untouched
+        python manage.py migrate <satchmo_app>
+    
