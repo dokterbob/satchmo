@@ -1,4 +1,4 @@
-:tocdepth: 2
+:tocdepth: 3
 
 .. _signals:
 
@@ -473,56 +473,7 @@ Arguments sent with this signal:
     ``form``
         An instance of the form (whose type is defined by ``sender``) being intitialized.
 
-Example Usage
-"""""""""""""
-
-This signal can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and
-conditions acceptance box into your checkout flow.
-
-First, add the terms view in your :file:`/localsite/urls.py` file::
-
-    urlpatterns += patterns('',
-    url(r'^shop_terms/$', 'project-name.localsite.views.shop_terms',
-        name="shop_terms"),
-    )
-
-Next, create the view in your :file:`/localsite/views.py` to display the terms::
-
-    from django.shortcuts import render_to_response
-    from django.template import RequestContext
-
-    def shop_terms(request):
-        ctx = RequestContext(request, {})
-        return render_to_response('localsite/shop-terms.html',
-            context_instance=ctx)
-
-Now, you will need modify the checkout html to display the new form. Copy
-:file:`/satchmo/apps/payment/templates/shop/checkout/pay_ship.html` to
-:file:`/project-name/templates/shop/checkout/pay_ship.html`.
-
-Add the following code to the copied :file:`pay_ship.html` to display the form::
-
-    {{ form.terms }} {{ form.terms.label|safe }}
-    {% if form.terms.errors %}<br/>**{{ form.terms.errors|join:", " }}{% endif %}
-
-Make sure you register the forms_terms_listener by adding the following code to your
-:file:`/localsite/models.py`::
-
-    from payment.forms import SimplePayShipForm
-    from payment.listeners import form_terms_listener
-    from signals_ahoy.signals import form_init
-
-    form_init.connect(form_terms_listener, sender=SimplePayShipForm)
-
-The final step is to create your actual :file:`/templates/shop-terms.html`,
-like this::
-
-    {% extends "base.html" %}
-    {% block content %}
-    <p>Put all of your sample terms here.</p>
-    {% endblock %}
-
-Now, when users checkout, they must agree to your store's terms.
+See `Ensuring Accepting of Terms during Checkout`_ for an example of how this signal can be used.
 
 .. function:: payment_methods_query
 
@@ -704,10 +655,7 @@ Arguments sent with this signal:
     ``section``
         The name of the section adding the urls (Note: this argument is not always provided). For example '__init__' or 'product'
 
-Example Usage
--------------
-
-    Usage::
+    Example::
 
         from satchmo_store.shop.signals import satchmo_cart_add_complete
         import myviews
@@ -715,8 +663,11 @@ Example Usage
         satchmo_cart_add_complete.connect(myviews.cart_add_listener, sender=None)
 
 
-Example - Putting it All Together
----------------------------------
+Examples
+--------
+
+Putting it All Together
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This section contains a brief example of how to use signals in your application.
 For this example, we want to have certain products that are only available to members.
@@ -775,6 +726,57 @@ add the following code::
 Now, you should be able to restrict certain products to only your members.
 The nice thing is that you've done this without modifying your satchmo
 base code.
+
+Ensuring Acceptance of Terms during Checkout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The signal :func:`payment.signals.payment_form_init` can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and
+conditions acceptance box into your checkout flow.
+
+First, add the terms view in your :file:`/localsite/urls.py` file::
+
+    urlpatterns += patterns('',
+    url(r'^shop_terms/$', 'project-name.localsite.views.shop_terms',
+        name="shop_terms"),
+    )
+
+Next, create the view in your :file:`/localsite/views.py` to display the terms::
+
+    from django.shortcuts import render_to_response
+    from django.template import RequestContext
+
+    def shop_terms(request):
+        ctx = RequestContext(request, {})
+        return render_to_response('localsite/shop-terms.html',
+            context_instance=ctx)
+
+Now, you will need modify the checkout html to display the new form. Copy
+:file:`/satchmo/apps/payment/templates/shop/checkout/pay_ship.html` to
+:file:`/project-name/templates/shop/checkout/pay_ship.html`.
+
+Add the following code to the copied :file:`pay_ship.html` to display the form::
+
+    {{ form.terms }} {{ form.terms.label|safe }}
+    {% if form.terms.errors %}<br/>**{{ form.terms.errors|join:", " }}{% endif %}
+
+Make sure you register the forms_terms_listener by adding the following code to your
+:file:`/localsite/models.py`::
+
+    from payment.forms import SimplePayShipForm
+    from payment.listeners import form_terms_listener
+    from signals_ahoy.signals import form_init
+
+    form_init.connect(form_terms_listener, sender=SimplePayShipForm)
+
+The final step is to create your actual :file:`/templates/shop-terms.html`,
+like this::
+
+    {% extends "base.html" %}
+    {% block content %}
+    <p>Put all of your sample terms here.</p>
+    {% endblock %}
+
+Now, when users checkout, they must agree to your store's terms.
 
 .. _Django Signals Documentation: http://docs.djangoproject.com/en/dev/topics/signals/
 .. _Django signals: http://docs.djangoproject.com/en/dev/ref/signals/
