@@ -494,7 +494,7 @@ Arguments sent with this signal:
         An instance of ``satchmo_store.shop.models.Order`` representing the current order
 
     ``contact``
-        An instance of ``satchmo_store.contact.models.Contact`` representing the current customer (if authenticated, so it may be None).
+        An instance of ``satchmo_store.contact.models.Contact`` representing the current customer if authenticated; it is None otherwise.
 
 .. function:: payment_form_validation
 
