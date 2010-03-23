@@ -245,7 +245,7 @@ Arguments sent with this signal:
 
 .. function:: satchmo_context
 
-Sent after the ``satchmo_store.shop.context_processors.settings`` has been run, but before the context is returned. This signal can be used to modify the context returned by the context processor.
+Sent when ``satchmo_store.shop.context_processors.settings()`` is invoked, before the context is returned. This signal can be used to modify the context returned by the context processor.
 
 Arguments sent with this signal:
 
