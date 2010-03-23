@@ -14,11 +14,9 @@ In addition to all of the built in `Django signals`_, Satchmo includes a number 
 Signal Descriptions
 --------------------
 
-livesettings.signals
-^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: livesettings.signals
 
-configuration_value_changed
-***************************
+.. function:: configuration_value_changed
 
 Sent after a value from the configuration application has been changed.
 
@@ -36,11 +34,9 @@ Arguments sent with this signal:
     ``setting``
         The instance of ``livesettings.values.Value`` that was changed (Note: this argument is the same as ``sender``)
 
-satchmo_store.shop.signals
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: satchmo_store.shop.signals
 
-order_success
-**************
+.. function:: order_success
 
 Sent when an order is complete and the balance goes to zero during a save.
 
@@ -52,8 +48,7 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was successful (Note: this argument is the same as ``sender``)
 
-order_cancel_query
-******************
+.. function:: order_cancel_query
 
 Sent when an order is about to be cancelled and asks listeners if they allow to do so.
 
@@ -69,8 +64,7 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
 
-order_cancelled
-***************
+.. function:: order_cancelled
 
 Sent when an order has been cancelled (it's status already reflects it and has been saved
 to the database).
@@ -83,8 +77,7 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was cancelled (Note: this argument is the same as ``sender``)
 
-satchmo_cart_add_complete
-*************************
+.. function:: satchmo_cart_add_complete
 
 Sent after an item has been successfully added to the cart.
 
@@ -108,8 +101,7 @@ Arguments sent with this signal:
     ``form``
         The POST data for the form used to add the item to the cart
 
-satchmo_cart_add_verify
-***********************
+.. function:: satchmo_cart_add_verify
 
 Sent before an item is added to the cart.
 
@@ -143,8 +135,7 @@ Arguments sent with this signal:
                 The price change of the detail, default of zero
 
 
-satchmo_cart_changed
-********************
+.. function:: satchmo_cart_changed
 
 Sent whenever the status of the cart has changed. For example, when an item is added, removed, or had it's quantity updated.
 
@@ -159,8 +150,7 @@ Arguments sent with this signal:
     ``request``
         The ``HttpRequest`` object used in the view to change the cart
 
-satchmo_cartitem_price_query
-****************************
+.. function:: satchmo_cartitem_price_query
 
 Sent by the pricing system to allow price overrides when displaying line item prices.
 
@@ -172,8 +162,7 @@ Arguments sent with this signal:
     ``cartitem``
         The instance of ``satchmo_store.shop.models.CartItem`` being querried for price overrides (Note: this argument is the same as ``sender``)
 
-satchmo_cart_details_query
-**************************
+.. function:: satchmo_cart_details_query
 
 Sent before an item is added to the cart so that listeners can update product details.
 
@@ -209,8 +198,7 @@ Arguments sent with this signal:
     ``form``
         The POST data for the form used to add the item to the cart
 
-satchmo_post_copy_item_to_order
-*******************************
+.. function:: satchmo_post_copy_item_to_order
 
 Sent after each item from the cart is copied into an order
 
@@ -228,8 +216,7 @@ Arguments sent with this signal:
     ``orderitem``
         The instance of ``satchmo_store.shop.models.OrderItem`` being added to the order
 
-satchmo_search
-**************
+.. function:: satchmo_search
 
 Sent by search_view to ask all listeners to add search results.
 
@@ -256,8 +243,7 @@ Arguments sent with this signal:
         ``products``
             A ``Queryset`` of ``product.models.Product`` objects which matched the search critera
 
-satchmo_context
-***************
+.. function:: satchmo_context
 
 Sent after the ``satchmo_store.shop.context_processors.settings`` has been run, but before the context is returned. This signal can be used to modify the context returned by the context processor.
 
@@ -305,8 +291,7 @@ Arguments sent with this signal:
         ``sale``
             An instance of ``product.models.Discount`` if there is a current sale, or None
 
-cart_add_view
-*************
+.. function:: cart_add_view
 
 Sent by `satchmo_store.shop.views.smart.smart_add` to allow listeners to optionally change the responding function
 
@@ -324,11 +309,9 @@ Arguments sent with this signal:
             method = {'view': cart.add }
 
 
-satchmo_store.contact.signals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: satchmo_store.contact.signals
 
-satchmo_contact_view
-********************
+.. function:: satchmo_contact_view
 
 Sent when contact information is viewed or updated before a template is rendered. Allows you to override the contact information and context passed to the templates used.
 
@@ -344,8 +327,7 @@ Arguments sent with this signal:
         A dictionary containing the intitial data for the instance of ``satchmo_store.contact.forms.ExtendedContactInfoForm`` instance that will be rendered to the user.
 
 
-satchmo_contact_location_changed
-********************************
+.. function:: satchmo_contact_location_changed
 
 Sent after a user changes their location in their profile
 
@@ -357,8 +339,7 @@ Arguments sent with this signal:
     ``contact``
         The instance of ``satchmo_store.contact.models.Contact`` which was updated with a new location.
 
-form_init
-*********
+.. function:: form_init
 
 Sent when a contact info form is initialized. Contact info forms include:
 
@@ -374,8 +355,7 @@ Arguments sent with this signal:
     ``form``
         An instance of the form (whose type is defined by ``sender``) being intitialized.
 
-form_save
-*********
+.. function:: form_save
 
 Sent after a form has been saved to the database
 
@@ -393,8 +373,7 @@ Arguments sent with this signal:
     ``form``
         - The instance of the form defined by one of the above models that was saved.
 
-validate_postcode
-*****************
+.. function:: validate_postcode
 
 Sent when a form that contains postal codes (shipping and billing forms) needs to validate. This signal can be used to custom validate postal postal codes. Any listener should return the validated postal code or raise an exception for an invalid postal code.
 
@@ -409,11 +388,9 @@ Arguments sent with this signal:
     ``country``
         An instance of ``l10n.models.Country`` that was selected in the form (or specified in the configuration if local sales are only allowed)
 
-satchmo_store.accounts.signals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: satchmo_store.accounts.signals
 
-satchmo_registration
-********************
+.. function:: satchmo_registration
 
 Sent after a user has registered an account with the store.
 
@@ -431,8 +408,7 @@ Arguments sent with this signal:
     ``data``
         The cleaned_data dictionary of the submitted form
 
-satchmo_registration_verified
-*****************************
+.. function:: satchmo_registration_verified
 
 Sent after a user account has been verified. This signal is also sent right after an account is created if account verification is disabled.
 
@@ -445,11 +421,9 @@ Arguments sent with this signal:
     ``contact``
         The instance of ``satchmo_store.models.Contact`` that was registered
 
-satchmo_ext.newsletter.signals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: satchmo_ext.newsletter.signals
 
-newsletter_subscription_updated
-*******************************
+.. function:: newsletter_subscription_updated
 
 Sent after a newsletter subscription has been updated
 
@@ -470,11 +444,9 @@ Arguments sent with this signal:
     ``attributes``
         An empty dictionary. This argument is not currently used.
 
-payment.signals
-^^^^^^^^^^^^^^^
+.. currentmodule:: payment.signals
 
-confirm_sanity_check
-********************
+.. function:: confirm_sanity_check
 
 Sent after ensuring that the cart and order are valid
 
@@ -486,8 +458,7 @@ Arguments sent with this signal:
     ``controller``
         An instance of ``payment.views.confirm.ConfirmController`` which perofmred the sanity check (Note: this is the same argument as ``sender``)
 
-payment_form_init
-*****************
+.. function:: payment_form_init
 
 Sent when a payment form is initialized. Payment forms include:
 
@@ -553,8 +524,7 @@ like this::
 
 Now, when users checkout, they must agree to your store's terms.
 
-payment_methods_query
-*********************
+.. function:: payment_methods_query
 
 Sent when a ``payment.forms.PaymentMethodForm`` is initialized. Receivers have cart/order passed in variables to check the contents and modify methods list if neccessary.
 
@@ -575,8 +545,7 @@ Arguments sent with this signal:
     ``contact``
         An instance of ``satchmo_store.contact.models.Contact`` representing the current customer (if authenticated, so it may be None).
 
-payment_form_validation
-***********************
+.. function:: payment_form_validation
 
 Sent at the end of clean() method of:
 
@@ -591,8 +560,7 @@ Arguments sent with this signal:
     ``form``
         - The instance of the form whose type is that of ``sender``
 
-form_save
-*********
+.. function:: form_save
 
 Sent after one of the following forms (or their subtypes) has been saved:
 
@@ -616,8 +584,7 @@ Arguments sent with this signal:
     ``form``
         - The instance of the form whose type is that of ``sender``
 
-payment_choices
-***************
+.. function:: payment_choices
 
 Sent after a list of payment choices is compiled, allows the editing of payment choices.
 
@@ -630,11 +597,9 @@ Arguments sent with this signal:
     ``choices``
         A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
 
-product.signals
-^^^^^^^^^^^^^^^
+.. currentmodule:: product.signals
 
-index_prerender
-***************
+.. function:: index_prerender
 
 Sent before an index is rendered for categories or brands
 
@@ -664,8 +629,7 @@ Arguments sent with this signal:
     ``object_list``
         A ``QuerySet`` of ``product.models.Product`` objects
 
-satchmo_price_query
-*******************
+.. function:: satchmo_price_query
 
 Sent before returning the price of a product. The following models send this signal:
 
@@ -689,8 +653,7 @@ Arguments sent with this signal:
     ``discountable``
         A boolean representing weather or not the product price is discountable (Note: only sent with ``product.models.ProductPriceLookup``)
 
-subtype_order_success
-*********************
+.. function:: subtype_order_success
 
 Sent when a downloadable product is successful
 
@@ -708,8 +671,7 @@ Arguments sent with this signal:
     ``subtype``
         always the string "download"
 
-discount_filter_items
-*********************
+.. function:: discount_filter_items
 
 Sent to verify the set of order items that are subject to discount.
 
@@ -725,11 +687,9 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` being processed.
 
-satchmo_utils.signals
-^^^^^^^^^^^^^^^^^^^^^
+.. currentmodule:: satchmo_utils.signals
 
-collect_urls
-************
+.. function:: collect_urls
 
 Sent by urls modules to allow listeners to add or replace urls to that module
 
