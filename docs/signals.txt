@@ -6,7 +6,7 @@ Signals in Satchmo
 ==================
 
 Signals are a very powerful tool available in Django that allows you to decouple aspects of your application. The `Django Signals Documentation`_, has this summary:
-   
+
     "In a nutshell, signals allow certain senders to notify a set of receivers that some action has taken place."
 
 In addition to all of the built in `Django signals`_, Satchmo includes a number of store related signals. By using these signals, you can add very unique customizations to your store without needing to modify the Satchmo code.
@@ -26,18 +26,18 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``livesettings.values.Value`` that was changed
-        
+
     ``old_value``
         The old value of the setting
-        
+
     ``new_value``
         The new value of the settings
-        
+
     ``setting``
         The instance of ``livesettings.values.Value`` that was changed (Note: this argument is the same as ``sender``)
 
 satchmo_store.shop.signals
-^^^^^^^^^^^^^^^^^^^^^^^^^^    
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 order_success
 **************
@@ -48,7 +48,7 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.shop.models.Order`` that was successful
-        
+
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was successful (Note: this argument is the same as ``sender``)
 
@@ -65,7 +65,7 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.shop.models.Order`` that is about to be canceleld
-        
+
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
 
@@ -79,7 +79,7 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.shop.models.Order`` that was cancelled
-        
+
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was cancelled (Note: this argument is the same as ``sender``)
 
@@ -92,12 +92,12 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.shop.models.Cart`` that was added to
-        
-    ``cart``	
+
+    ``cart``
         The instance of ``satchmo_store.shop.models.Cart`` that was added to (Note: this argument is the same as ``sender``)
 
     ``added_item``
-        The instance of ``satchmo_store.shop.models.CartItem`` that was added (or updated) to the cart 
+        The instance of ``satchmo_store.shop.models.CartItem`` that was added (or updated) to the cart
 
     ``product``
         The instance of ``product.models.Product`` that was added to the cart
@@ -117,16 +117,16 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it
-    
+
     ``cart``
         The instance of ``satchmo_store.shop.models.Cart`` that is having an item added to it (Note: this argument is the same as ``sender``)
-        
+
     ``cartitem``
         An instance of ``satchmo_store.shop.models.CartItem`` that is being added to the cart
-        
+
     ``added_quantity``
         The number of ``cartitem`` items being added to the cart
-        
+
     ``details``
          A list of dictionaries containing additonal details about the item if the item is a custom product or a gift certificate product. Each dictionaries will contain the following information:
 
@@ -190,16 +190,16 @@ Arguments sent with this signal:
 
     ``details``
         A list of dictionaries containing additonal details about the item if the item is a custom product or a gift certificate product. Each dictionaries will contain the following information:
-        
+
         ``name``
             The name of the detail
-        
+
         ``value``
             The value of the detail
-        
+
         ``sort_order``
             The order the detail should be listed in displays
-        
+
         ``price_change``
             The price change of the detail, default of zero
 
@@ -207,7 +207,7 @@ Arguments sent with this signal:
         The ``HttpRequest`` object used in the view to add an item to the cart
 
     ``form``
-        The POST data for the form used to add the item to the cart 
+        The POST data for the form used to add the item to the cart
 
 satchmo_post_copy_item_to_order
 *******************************
@@ -249,10 +249,10 @@ Arguments sent with this signal:
 
     ``results``
         A dictionary of results to update with search results. The contents of the dictionary should contain the following information:
-        
+
         ``categories``
             A ``QuerySet`` of ``product.models.Cateogry`` objects which matched the search criteria
-        
+
         ``products``
             A ``Queryset`` of ``product.models.Product`` objects which matched the search critera
 
@@ -268,40 +268,40 @@ Arguments sent with this signal:
 
     ``context``
         A dictionary containing the context to be returned by the context processor. The dictionary contains:
-        
+
         ``shop_base``
             The base URL for the store
-        
+
         ``shop``
             An instance of ``satchmo_store.shop.models.Config`` representing the current store configuration
-        
+
         ``shop_name``
             The shop name
-        
+
         ``media_url``
             The current media url, taking into account SSL
-        
+
         ``cart_count``
             The number of items in the cart
-        
+
         ``cart``
             An instance of ``satchmo_store.shop.models.Cart`` representing the current cart
-        
+
         ``categories``
             A ``QuerySet`` of all the ``product.models.Category`` objects for the current site.
-        
+
         ``is_secure``
             A boolean representing weather or not SSL is enabled
-        
+
         ``request``
             The ``HttpRequest`` object passed into the context processor
-        
+
         ``login_url``
             The login url defined in settings.LOGIN_URL
-        
+
         ``logout_url``
             The logout url defined in settings.LOGOUT_URL
-        
+
         ``sale``
             An instance of ``product.models.Discount`` if there is a current sale, or None
 
@@ -320,7 +320,7 @@ Arguments sent with this signal:
 
     ``method``
         A dictionary containing a single key ``view`` to be updated with the function to be called by smart_add. For example::
-        
+
             method = {'view': cart.add }
 
 
@@ -336,14 +336,14 @@ Arguments sent with this signal:
 
     ``sender``
         An instance of ``satchmo_store.contact.models.Contact`` representing the contact information being viewed, or None if the information cannot be found.
-    
+
     ``contact``
         An instance of ``satchmo_store.contact.models.Contact`` representing the contact information being viewed, or None if the information cannot be found (Note: This argument is the same as ``sender``).
-    
+
     ``contact_dict``
-        A dictionary containing the intitial data for the instance of ``satchmo_store.contact.forms.ExtendedContactInfoForm`` instance that will be rendered to the user. 
-    
-    
+        A dictionary containing the intitial data for the instance of ``satchmo_store.contact.forms.ExtendedContactInfoForm`` instance that will be rendered to the user.
+
+
 satchmo_contact_location_changed
 ********************************
 
@@ -353,7 +353,7 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.contact.forms.ContactInfoForm`` which was responsible for the location change.
-    
+
     ``contact``
         The instance of ``satchmo_store.contact.models.Contact`` which was updated with a new location.
 
@@ -383,16 +383,16 @@ Arguments sent with this signal:
 
     ``sender``
         The form model of the form being set (Note: Not an instance). Possible values include:
-        
+
         - ``satchmo_store.contact.forms.ContactInfoForm``
         - ``payment.modules.purchaseorder.forms.PurchaseorderPayShipForm``
         - ``payment.forms.CreditPayShipForm``
         - ``payment.forms.SimplePayShipForm``
         - ``payment.forms.PaymentContactInfoForm``
-    
+
     ``form``
         - The instance of the form defined by one of the above models that was saved.
-    
+
 validate_postcode
 *****************
 
@@ -421,13 +421,13 @@ Arguments sent with this signal:
 
     ``sender``
         The instance of ``satchmo_store.accounts.forms.RegistrationForm`` which was submitted.
-    
+
     ``contact``
         The instance of ``satchmo_store.contact.models.Contact`` that was saved to the database
-    
+
     ``subscribed``
         A boolean reflecting weather or not the user subscribed to a newsletter (defaults to False)
-        
+
     ``data``
         The cleaned_data dictionary of the submitted form
 
@@ -439,9 +439,9 @@ Sent after a user account has been verified. This signal is also sent right afte
 Arguments sent with this signal:
 
     ``sender``
-        An instance of ``satchmo_store.models.Contact`` if the account was verified via email (Note: this is the same argument as ``contact``), 
+        An instance of ``satchmo_store.models.Contact`` if the account was verified via email (Note: this is the same argument as ``contact``),
         or an instance of ``satchmo_store.accounts.forms.RegistrationForm`` if account verification is disabled.
-    
+
     ``contact``
         The instance of ``satchmo_store.models.Contact`` that was registered
 
@@ -457,16 +457,16 @@ Arguments sent with this signal:
 
     ``sender``
         An instance of ``satchmo_store.models.Contact`` representing the person having the subscription status updated
-    
+
     ``old_state``
         Boolean representing the old state of subscription
-    
+
     ``new_state``
         Boolean representing the new state of the subscription
-    
+
     ``contact``
         An instance of ``satchmo_store.models.Contact`` representing the person having the subscription status update (Note: this argument is the same as ``sender``)
-    
+
     ``attributes``
         An empty dictionary. This argument is not currently used.
 
@@ -482,7 +482,7 @@ Arguments sent with this signal:
 
     ``sender``
         An instance of ``payment.views.confirm.ConfirmController`` which performed the sanity check.
-    
+
     ``controller``
         An instance of ``payment.views.confirm.ConfirmController`` which perofmred the sanity check (Note: this is the same argument as ``sender``)
 
@@ -498,14 +498,14 @@ Arguments sent with this signal:
 
     ``sender``
         The model of the form being initialized. The value of sender will be one of the models defined above.
-    
+
     ``form``
         An instance of the form (whose type is defined by ``sender``) being intitialized.
-        
+
 Example Usage
 """""""""""""
 
-This signal can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and 
+This signal can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and
 conditions acceptance box into your checkout flow.
 
 First, add the terms view in your :file:`/localsite/urls.py` file::
@@ -543,7 +543,7 @@ Make sure you register the forms_terms_listener by adding the following code to 
 
     form_init.connect(form_terms_listener, sender=SimplePayShipForm)
 
-The final step is to create your actual :file:`/templates/shop-terms.html`, 
+The final step is to create your actual :file:`/templates/shop-terms.html`,
 like this::
 
     {% extends "base.html" %}
@@ -562,16 +562,16 @@ Arguments sent with this signal:
 
     ``sender``
         The model ``payment.forms.PaymentMethodForm``
-    
+
     ``methods``
         A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
-    
+
     ``cart``
         An instance of ``satchmo_store.shop.models.Cart`` representing the current cart
-    
+
     ``order``
         An instance of ``satchmo_store.shop.models.Order`` representing the current order
-    
+
     ``contact``
         An instance of ``satchmo_store.contact.models.Contact`` representing the current customer (if authenticated, so it may be None).
 
@@ -606,13 +606,13 @@ Arguments sent with this signal:
 
     ``sender``
         - The model of the form that was just saved
-    
+
     ``object``
         - A ``satchmo_store.contact.models.Contact`` instance if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
-    
+
     ``formdata``
         - The data associated with the form if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
-    
+
     ``form``
         - The instance of the form whose type is that of ``sender``
 
@@ -624,9 +624,9 @@ Sent after a list of payment choices is compiled, allows the editing of payment 
 Arguments sent with this signal:
 
     ``sender``
-    
+
         Always None
-        
+
     ``choices``
         A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
 
@@ -642,11 +642,11 @@ Arguments sent with this signal:
 
     ``sender``
         One of the following models:
-            
+
             - ``product.models.product``
-            
+
             - ``satchmo_ext.brand.models.Brand``
-            
+
             - ''satchmo_ext.brand.models.BrandProduct``
 
     ``request``
@@ -657,7 +657,7 @@ Arguments sent with this signal:
 
     ``category``
         An instance of ``product.models.Category`` representing the category being viewed. This paramemter will not exist for brand listings.
-        
+
     ``brand``
         An instance of ``satchmo_ext.brand.modes.Brand`` representing the brand being viewed. This parameter will not existi for category listings.
 
@@ -670,9 +670,9 @@ satchmo_price_query
 Sent before returning the price of a product. The following models send this signal:
 
     - ``product.models.ProductPriceLookup``
-    
+
     - ``product.models.Price``
-    
+
     - ``satchmo_ext.tieredpricing.models.TieredPrice``
 
 Arguments sent with this signal:
@@ -701,7 +701,7 @@ Arguments sent with this signal:
 
     ``product``
         The instance of ``product.models.DownoadableProduct`` that was successfully ordered.
-        
+
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` that was sucessful
 
@@ -748,10 +748,10 @@ Example Usage
 -------------
 
     Usage::
-    
+
         from satchmo_store.shop.signals import satchmo_cart_add_complete
         import myviews
-        
+
         satchmo_cart_add_complete.connect(myviews.cart_add_listener, sender=None)
 
 
@@ -787,12 +787,12 @@ the file would look something like this::
         else:
             msg = _("Only members are allowed to purchase this product.")
             raise ContactCannotOrder(customer, cartitem.product, msg)
-            
+
 Next, you need to create the `can_user_buy` function. Your `utils.py` file could
 look something like this (details left up to the reader)::
 
     def can_user_buy(product, contact=None):
-        """  
+        """
         Given a product and a user, return True if that person can buy it and
         False if they can not.
         This doesn't work as it stands now. You'll need to customize the
@@ -808,11 +808,11 @@ add the following code::
 
     from listeners import veto_for_non_members
     from satchmo_store.shop import signals
-        
+
     signals.satchmo_cart_add_verify.connect(veto_for_non_members, sender=None)
 
 
-Now, you should be able to restrict certain products to only your members. 
+Now, you should be able to restrict certain products to only your members.
 The nice thing is that you've done this without modifying your satchmo
 base code.
 

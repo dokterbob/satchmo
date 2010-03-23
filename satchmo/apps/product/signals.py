@@ -3,10 +3,10 @@
 Signals:
 
  - `discount_validate`: Usage::
- 
-      discount_validate.send(sender=Discount, discount=self, cart=cart, 
+
+      discount_validate.send(sender=Discount, discount=self, cart=cart,
       contact=contact, shipping_choices=shipping_choices, shipping=shipping, success=success)
-      
+
       Listeners should modify the "success" dictionary to veto the discount validity.
  - `discount_filter_items`: Usage::
 
@@ -14,14 +14,14 @@ Signals:
 
       Listeners should modify the "discounted" dictionary to change the set of discounted cart
       items.
-      
+
  - `index_prerender`: Usage::
 
       index_prerender.send(Sender, request=request, context=ctx, object_list=somelist)
-   
+
  - `satchmo_price_query`: Usage::
- 
-      satchmo_price_query.send(self, adjustment=PriceAdjustmentCalc) 
+
+      satchmo_price_query.send(self, adjustment=PriceAdjustmentCalc)
 
  - `satchmo_order_success`
 """

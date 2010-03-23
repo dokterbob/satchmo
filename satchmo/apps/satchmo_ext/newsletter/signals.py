@@ -2,9 +2,9 @@
 
 Signals:
  - `newsletter_subscription_updated`: Usage::
-    
-    Usage: newsletter_subscription_updated.send(sender, old_state=bool, new_state=bool, contact=contact) 
- 
+
+    Usage: newsletter_subscription_updated.send(sender, old_state=bool, new_state=bool, contact=contact)
+
 """
 
 import django.dispatch
