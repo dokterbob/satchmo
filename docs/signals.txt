@@ -485,7 +485,7 @@ Arguments sent with this signal:
         The model ``payment.forms.PaymentMethodForm``
 
     ``methods``
-        A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
+        A list of 2-element tuples containing the name and label for each active payment module
 
     ``cart``
         An instance of ``satchmo_store.shop.models.Cart`` representing the current cart
@@ -546,7 +546,7 @@ Arguments sent with this signal:
         Always None
 
     ``choices``
-        A list of 2-element tuples containing the currently active payment methods. Each tuple contains the payment module name as well as the label for that payment module
+        A list of 2-element tuples containing the name and label for each active payment module
 
 .. currentmodule:: product.signals
 
