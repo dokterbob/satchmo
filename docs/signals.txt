@@ -216,33 +216,6 @@ Arguments sent with this signal:
     ``orderitem``
         The instance of ``satchmo_store.shop.models.OrderItem`` being added to the order
 
-.. function:: satchmo_search
-
-Sent by search_view to ask all listeners to add search results.
-
-Arguments sent with this signal:
-
-    ``sender``
-        The ``product.models.Product`` model (Note: not an instance of Product)
-
-    ``request``
-        The ``HttpRequest`` object used in the search view
-
-    ``category``
-        The category slug to limit a search to a specific category
-
-    ``keywords``
-        A list of keywords search for
-
-    ``results``
-        A dictionary of results to update with search results. The contents of the dictionary should contain the following information:
-
-        ``categories``
-            A ``QuerySet`` of ``product.models.Cateogry`` objects which matched the search criteria
-
-        ``products``
-            A ``Queryset`` of ``product.models.Product`` objects which matched the search critera
-
 .. function:: satchmo_context
 
 Sent when ``satchmo_store.shop.context_processors.settings()`` is invoked, before the context is returned. This signal can be used to modify the context returned by the context processor.
@@ -339,40 +312,6 @@ Arguments sent with this signal:
     ``contact``
         The instance of ``satchmo_store.contact.models.Contact`` which was updated with a new location.
 
-.. function:: form_init
-
-Sent when a contact info form is initialized. Contact info forms include:
-
-    - ``contact.forms.ContactInfoForm``
-    - ``contact.forms.ExtendedContactInfoForm``
-    - ``payment.forms.PaymentContactInfoForm``
-
-Arguments sent with this signal:
-
-    ``sender``
-        The model of the form being initialized. The value of sender will be one of the models defined above.
-
-    ``form``
-        An instance of the form (whose type is defined by ``sender``) being intitialized.
-
-.. function:: form_save
-
-Sent after a form has been saved to the database
-
-Arguments sent with this signal:
-
-    ``sender``
-        The form model of the form being set (Note: Not an instance). Possible values include:
-
-        - ``satchmo_store.contact.forms.ContactInfoForm``
-        - ``payment.modules.purchaseorder.forms.PurchaseorderPayShipForm``
-        - ``payment.forms.CreditPayShipForm``
-        - ``payment.forms.SimplePayShipForm``
-        - ``payment.forms.PaymentContactInfoForm``
-
-    ``form``
-        - The instance of the form defined by one of the above models that was saved.
-
 .. function:: validate_postcode
 
 Sent when a form that contains postal codes (shipping and billing forms) needs to validate. This signal can be used to custom validate postal postal codes. Any listener should return the validated postal code or raise an exception for an invalid postal code.
@@ -458,23 +397,6 @@ Arguments sent with this signal:
     ``controller``
         An instance of ``payment.views.confirm.ConfirmController`` which performed the sanity check (Note: this is the same argument as ``sender``)
 
-.. function:: payment_form_init
-
-Sent when a payment form is initialized. Payment forms include:
-
-    - ``payment.forms.PaymentContactInfoForm``
-    - ``payment.forms.SimplePayShipForm``
-
-Arguments sent with this signal:
-
-    ``sender``
-        The model of the form being initialized. The value of sender will be one of the models defined above.
-
-    ``form``
-        An instance of the form (whose type is defined by ``sender``) being initialized.
-
-See `Ensuring Accepting of Terms during Checkout`_ for an example of how this signal can be used.
-
 .. function:: payment_methods_query
 
 Sent when a ``payment.forms.PaymentMethodForm`` is initialized. Receivers have cart/order passed in variables to check the contents and modify methods list if neccessary.
@@ -495,45 +417,6 @@ Arguments sent with this signal:
 
     ``contact``
         An instance of ``satchmo_store.contact.models.Contact`` representing the current customer if authenticated; it is None otherwise.
-
-.. function:: payment_form_validation
-
-Sent at the end of clean() method of:
-
-    - ``payment.forms.PaymentMethodForm``
-    - ``payment.forms.PaymentContactInfoForm``
-
-Arguments sent with this signal:
-
-    ``sender``
-        - The model of the form that is finishing validation
-
-    ``form``
-        - The instance of the form whose type is that of ``sender``
-
-.. function:: form_save
-
-Sent after one of the following forms (or their subtypes) has been saved:
-
-    - ``payment.forms.PaymentContactInfoForm``
-    - ``payment.forms.SimplePayShipForm``
-    - ``payment.forms.CreditPayShipForm``
-    - ``payment.modules.purchaseorder.forms.PurcahseorderPayShipForm``
-    - ``satchmo_store.contact.forms.ContactInfoForm``
-
-Arguments sent with this signal:
-
-    ``sender``
-        - The model of the form that was just saved
-
-    ``object``
-        - A ``satchmo_store.contact.models.Contact`` instance if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
-
-    ``formdata``
-        - The data associated with the form if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
-
-    ``form``
-        - The instance of the form whose type is that of ``sender``
 
 .. function:: payment_choices
 
@@ -638,7 +521,41 @@ Arguments sent with this signal:
     ``order``
         The instance of ``satchmo_store.shop.models.Order`` being processed.
 
-.. currentmodule:: satchmo_utils.signals
+External Signals Used in Satchmo
+--------------------------------
+
+Satchmo depends on signals in ``signals_ahoy.signals`` and triggers them at
+various points of execution; below are some of them.
+
+.. currentmodule:: signals_ahoy.signals
+
+.. function:: application_search
+
+Sent by :func:`satchmo_store.shop.views.search.search_view` to ask all listeners
+to add search results.
+
+Arguments sent with this signal:
+
+    ``sender``
+        The ``product.models.Product`` model (Note: not an instance of Product)
+
+    ``request``
+        The ``HttpRequest`` object used in the search view
+
+    ``category``
+        The category slug to limit a search to a specific category
+
+    ``keywords``
+        A list of keywords search for
+
+    ``results``
+        A dictionary of results to update with search results. The contents of the dictionary should contain the following information:
+
+        ``categories``
+            A ``QuerySet`` of ``product.models.Cateogry`` objects which matched the search criteria
+
+        ``products``
+            A ``Queryset`` of ``product.models.Product`` objects which matched the search critera
 
 .. function:: collect_urls
 
@@ -661,6 +578,48 @@ Arguments sent with this signal:
         import myviews
 
         satchmo_cart_add_complete.connect(myviews.cart_add_listener, sender=None)
+
+.. function:: form_init
+
+Sent when a contact info form is initialized. Contact info forms include:
+
+    - ``contact.forms.ContactInfoForm``
+    - ``contact.forms.ExtendedContactInfoForm``
+    - ``payment.forms.PaymentContactInfoForm``
+
+Arguments sent with this signal:
+
+    ``sender``
+        The model of the form being initialized. The value of sender will be one of the models defined above.
+
+    ``form``
+        An instance of the form (whose type is defined by ``sender``) being intitialized.
+
+See `Ensuring Accepting of Terms during Checkout`_ for an example of how this signal can be used.
+
+.. function:: form_postsave
+
+Sent after a form has been saved to the database
+
+Arguments sent with this signal:
+
+    ``sender``
+        The form model of the form being set (Note: Not an instance). Possible values include:
+
+        - ``satchmo_store.contact.forms.ContactInfoForm``
+        - ``payment.modules.purchaseorder.forms.PurchaseorderPayShipForm``
+        - ``payment.forms.CreditPayShipForm``
+        - ``payment.forms.SimplePayShipForm``
+        - ``payment.forms.PaymentContactInfoForm``
+
+    ``form``
+        - The instance of the form defined by one of the above models that was saved.
+
+    ``object``
+        - A ``satchmo_store.contact.models.Contact`` instance if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
+
+    ``formdata``
+        - The data associated with the form if the form being saved is an instance of ``satchmo_store.contact.forms.ContactInfoForm`` otherwise this value does not exist.
 
 
 Examples
@@ -730,7 +689,7 @@ base code.
 Ensuring Acceptance of Terms during Checkout
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The signal :func:`payment.signals.payment_form_init` can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and
+The signal :func:`signals_ahoy.signals.form_init` can be combined with the ``payment.listeners.form_terms_listener`` to add a custom terms and
 conditions acceptance box into your checkout flow.
 
 First, add the terms view in your :file:`/localsite/urls.py` file::
