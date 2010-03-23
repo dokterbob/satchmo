@@ -326,7 +326,7 @@ class Cart(models.Model):
     def __unicode__(self):
         return u"Shopping Cart (%s)" % self.date_time_created
 
-    def add_item(self, chosen_item, number_added, details={}):
+    def add_item(self, chosen_item, number_added, details=[]):
         alreadyInCart = False
         # Custom Products will not be added, they will each get their own line item
         if 'CustomProduct' in chosen_item.get_subtypes():
