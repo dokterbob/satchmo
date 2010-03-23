@@ -59,10 +59,10 @@ modify this flag, according to their needs.
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.Order`` that is about to be canceleld
+        The instance of ``satchmo_store.shop.models.Order`` that is about to be cancelled
 
     ``order``
-        The instance of ``satchmo_store.shop.models.Order`` that is about to be cencelled (Note: this argument is the same as ``sender``)
+        The instance of ``satchmo_store.shop.models.Order`` that is about to be cancelled (Note: this argument is the same as ``sender``)
 
 .. function:: order_cancelled
 
@@ -157,10 +157,10 @@ Sent by the pricing system to allow price overrides when displaying line item pr
 Arguments sent with this signal:
 
     ``sender``
-        The instance of ``satchmo_store.shop.models.CartItem`` being querried for price overrides.
+        The instance of ``satchmo_store.shop.models.CartItem`` being queried for price overrides.
 
     ``cartitem``
-        The instance of ``satchmo_store.shop.models.CartItem`` being querried for price overrides (Note: this argument is the same as ``sender``)
+        The instance of ``satchmo_store.shop.models.CartItem`` being queried for price overrides (Note: this argument is the same as ``sender``)
 
 .. function:: satchmo_cart_details_query
 
@@ -380,7 +380,7 @@ Sent when a form that contains postal codes (shipping and billing forms) needs t
 Arguments sent with this signal:
 
     ``sender``
-        An instance of ``satchmo_store.contact.forms.ContactInfoForm`` which is validating it's postal codes.
+        An instance of ``satchmo_store.contact.forms.ContactInfoForm`` which is validating its postal codes.
 
     ``postcode``
         The postal code as a string being validated
@@ -403,7 +403,7 @@ Arguments sent with this signal:
         The instance of ``satchmo_store.contact.models.Contact`` that was saved to the database
 
     ``subscribed``
-        A boolean reflecting weather or not the user subscribed to a newsletter (defaults to False)
+        A boolean reflecting whether or not the user subscribed to a newsletter (defaults to False)
 
     ``data``
         The cleaned_data dictionary of the submitted form
@@ -456,7 +456,7 @@ Arguments sent with this signal:
         An instance of ``payment.views.confirm.ConfirmController`` which performed the sanity check.
 
     ``controller``
-        An instance of ``payment.views.confirm.ConfirmController`` which perofmred the sanity check (Note: this is the same argument as ``sender``)
+        An instance of ``payment.views.confirm.ConfirmController`` which performed the sanity check (Note: this is the same argument as ``sender``)
 
 .. function:: payment_form_init
 
@@ -471,7 +471,7 @@ Arguments sent with this signal:
         The model of the form being initialized. The value of sender will be one of the models defined above.
 
     ``form``
-        An instance of the form (whose type is defined by ``sender``) being intitialized.
+        An instance of the form (whose type is defined by ``sender``) being initialized.
 
 See `Ensuring Accepting of Terms during Checkout`_ for an example of how this signal can be used.
 
@@ -572,10 +572,10 @@ Arguments sent with this signal:
         A dictionary containing the context that will be used to render the template. The contents of this dictionary changes depending on the sender.
 
     ``category``
-        An instance of ``product.models.Category`` representing the category being viewed. This paramemter will not exist for brand listings.
+        An instance of ``product.models.Category`` representing the category being viewed. This parameter will not exist for brand listings.
 
     ``brand``
-        An instance of ``satchmo_ext.brand.modes.Brand`` representing the brand being viewed. This parameter will not existi for category listings.
+        An instance of ``satchmo_ext.brand.modes.Brand`` representing the brand being viewed. This parameter will not exist for category listings.
 
     ``object_list``
         A ``QuerySet`` of ``product.models.Product`` objects
@@ -599,10 +599,10 @@ Arguments sent with this signal:
         The instance of the model sending the price query (Note: This argument is the same as ``sender``)
 
     ``slug``
-        The slug of the product being querried (Note: Only sent with ``product.models.ProductPriceLookup``)
+        The slug of the product being queried (Note: Only sent with ``product.models.ProductPriceLookup``)
 
     ``discountable``
-        A boolean representing weather or not the product price is discountable (Note: only sent with ``product.models.ProductPriceLookup``)
+        A Boolean representing whether or not the product price is discountable (Note: only sent with ``product.models.ProductPriceLookup``)
 
 .. function:: subtype_order_success
 
@@ -617,7 +617,7 @@ Arguments sent with this signal:
         The instance of ``product.models.DownoadableProduct`` that was successfully ordered.
 
     ``order``
-        The instance of ``satchmo_store.shop.models.Order`` that was sucessful
+        The instance of ``satchmo_store.shop.models.Order`` that was successful
 
     ``subtype``
         always the string "download"
