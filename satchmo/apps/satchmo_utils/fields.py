@@ -6,7 +6,7 @@ from widgets import CurrencyWidget
 log = logging.getLogger('satchmo_utils.fields')
 
 class CurrencyField(DecimalField):
-    
+
     def __init__(self, *args, **kwargs):
         self.places = kwargs.pop('display_decimal', 2)
         super(CurrencyField, self).__init__(*args, **kwargs)
