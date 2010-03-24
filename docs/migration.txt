@@ -21,19 +21,19 @@ The basic workflow for executing migrations is:
 
     - Add south to INSTALLED_APPS
     - Install history table::
-       
+
         python manage.py syncdb
-           
+
     - "Fake" the initial migration::
-    
+
         python manage.py migrate <satchmo_app> --fake 0001_initial
 
     - See list of migrations::
-        
+
         python manage.py migrate --list
-    
+
     - Run the migrations::
-    
+
         python manage.py migrate <satchmo_app> --db-dry-run # db untouched
         python manage.py migrate <satchmo_app>
-    
+
