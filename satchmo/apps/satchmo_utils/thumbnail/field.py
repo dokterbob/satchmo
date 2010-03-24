@@ -31,7 +31,7 @@ def upload_dir(instance, filename):
     return os.path.join(updir, filename)
 
 
-NOTSET = object()
+NOTSET = None
 
 class ImageWithThumbnailField(ImageField):
     """ ImageField with thumbnail support
