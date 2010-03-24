@@ -5,6 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from livesettings import config_value
 from satchmo_utils.numbers import round_decimal
 import logging
+from django.utils.html import escape
+
 
 log = logging.getLogger('satchmo_utils.widgets')
 
@@ -84,4 +86,18 @@ class StrippedDecimalWidget(forms.TextInput):
     def render(self, name, value, attrs=None):
         value = _render_decimal(value, places=8, min_places=0)
         return super(StrippedDecimalWidget, self).render(name, value, attrs)
+
+
+class ReadOnlyWidget(forms.Widget):
+    def render(self, name, value, attrs):
+        final_attrs = self.build_attrs(attrs, name=name)
+        if hasattr(self, 'initial'):
+            value = self.initial
+        if value:
+            return mark_safe("<p>%s</p>" % escape(value))
+        else:
+            return ''
+
+    def _has_changed(self, initial, data):
+        return False
 

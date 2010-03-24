@@ -22,6 +22,14 @@
     {% if forloop.last %} </ul> {% endif %}
  {% endfor %}
 
+{% with product.translated_attributes as atts %}{% if atts %}
+<p class="productattributes">
+{% for att in product.translated_attributes %}
+{{ att.description }}: {{ att.value }}<br/>
+{% endfor %}
+</p>
+{% endif %}{% endwith %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form id="options" action="{% url satchmo_smart_add %}" method="post">
 

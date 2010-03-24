@@ -1,0 +1,24 @@
+Satchmo Development Branch
+==========================
+
+This is a working document to show all the updates taking place in the
+actively developed tip.
+
+Changes
+------- 
+- Updated German translation
+- Improvements to robustness of clonesatchmo program
+- Template cleanups for gift certificates
+- Improve discount handling for paypal
+- Add new management command for billing subscription products
+- Improve handling of ccv numbers
+- Improve display string of subtypes in admin
+- If language is chosen, make sure it's selected by default
+- Tweak the product admin screens to show featured and active status
+- Add new admin functions for toggling active/featured status of products
+- Make the display of the site in the admin lists configurable through the settings
+- Add a readonly field to the admin. Use it in the order admin for the status field
+- Add some raw id fields in the admin so that large stores will work ok
+- Fix the ajax functions to escape properly and use the right mime type
+- Fix postgres typecast problem
+- Added new Custom Product Attribute functionality - :doc:`product-attributes`

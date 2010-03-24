@@ -30,3 +30,21 @@ specific item in the store. In order to use this feature, make sure that you dra
 the necessary bookmarklet from ``/admin/doc/bookmarklets`` to your browser's bookmark
 bar. Then whenever you are on a product page which can be editable from the admin, you
 can quickly jump there.
+
+Users and Groups
+----------------
+
+In its default setting, Satchmo does not come with any predefined groups. What this means
+for you is that any user that has staff permissions will be able to see and edit all of
+the items in the admin. For production use, you will probably want to create several custom
+groups so that users can have different access based on their needs. The 
+`Django documentation <http://docs.djangoproject.com/en/dev/topics/auth/#topics-auth>`_
+can help you with the process of setting up individual user as well as group permissions.
+
+Here is one scenario that you could use for configuring your groups:
+
+    * Store Admin (full access to the admin site)
+    * Order Manager (able to see and manage orders)
+    * Product Manager (add, delete and edit product information)
+    * Contact Manager (add, delete and edit contact information)
+

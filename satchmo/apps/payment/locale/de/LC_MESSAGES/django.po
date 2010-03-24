@@ -350,11 +350,11 @@ msgstr ""
 
 #: modules/cod/config.py:8
 msgid "COD"
-msgstr ""
+msgstr "Nachnahme"
 
 #: modules/cod/config.py:11
 msgid "COD Payment Module Settings"
-msgstr ""
+msgstr "Nachnahme Einstellungen"
 
 #: modules/cod/config.py:18
 #: modules/dummy/config.py:18

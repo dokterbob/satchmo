@@ -3,10 +3,12 @@ from django.contrib import admin
 from django.utils.translation import get_language, ugettext_lazy as _
 from satchmo_utils.admin import AutocompleteAdmin
 from satchmo_utils.fields import CurrencyField
+from satchmo_utils.widgets import ReadOnlyWidget
 
 class CartItem_Inline(admin.TabularInline):
     model = CartItem
     extra = 3
+    raw_id_fields = ('product',)
 
 class CartItemDetails_Inline(admin.StackedInline):
     model = CartItemDetails
@@ -38,6 +40,7 @@ class CartItemOptions(admin.ModelAdmin):
 class OrderItem_Inline(admin.TabularInline):
     model = OrderItem
     extra = 3
+    raw_id_fields = ('product',)
 
 class OrderItemDetail_Inline(admin.TabularInline):
     model = OrderItemDetail
@@ -84,6 +87,14 @@ class OrderOptions(AutocompleteAdmin):
     inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, 
         OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline, 
         OrderPaymentDetail_Inline, OrderPaymentFailureDetail_Inline]
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        read_only = ['status']
+        field = super(OrderOptions, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name in read_only:
+            field.widget = ReadOnlyWidget()
+        return field
+
 
 class OrderItemOptions(admin.ModelAdmin):
     inlines = [OrderItemDetail_Inline]

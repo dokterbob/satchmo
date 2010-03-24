@@ -45,7 +45,7 @@ msgstr "Kunde"
 #: views/contact.py:23
 #: templates/shop/checkout/form.html:39
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: models.py:206
 msgid "Creation Date"
@@ -181,7 +181,7 @@ msgstr "Sortierreihenfolge"
 
 #: models.py:350
 msgid "The display order for this group."
-msgstr ""
+msgstr "Die Anzeige-Reihenfolge für diese Gruppe."
 
 #: templates/shop/admin/_orderpayment_list.html:12
 msgid "Transaction ID"
@@ -260,11 +260,11 @@ msgstr "Methode"
 
 #: config.py:9
 msgid "Default currency symbol"
-msgstr ""
+msgstr "Standard Währungssymbol"
 
 #: config.py:10
 msgid "Use a '_' character to force a space."
-msgstr ""
+msgstr "Benutzen Sie einen Unterstrich ('_') um ein Leerzeichen zu erzwingen."
 
 #: config.py:16
 msgid "Enable product ratings"
@@ -272,15 +272,15 @@ msgstr "aktivierte Produktbewertungen?"
 
 #: config.py:22
 msgid "Enable random display of featured products on home page"
-msgstr ""
+msgstr "Zufällige Anzeige von Sonderartikeln auf der Homepage"
 
 #: config.py:28
 msgid "Number of featured items to display"
-msgstr ""
+msgstr "Anzahl der Sonderartikel die angezeigt werden"
 
 #: config.py:34
 msgid "Measurement system to use in store"
-msgstr ""
+msgstr "Messsystem welches im Shop verwendet wird"
 
 #: config.py:35
 msgid "Metric"
@@ -323,11 +323,11 @@ msgstr ""
 #: config.py:94
 #, fuzzy
 msgid "Available languages"
-msgstr "Sprachen"
+msgstr "Verfügbare Sprachen"
 
 #: config.py:95
 msgid "Languages that have valid translations"
-msgstr ""
+msgstr "Sprachen mit gültigen Übersetzungen"
 
 #: config.py:96
 msgid "English"
@@ -433,7 +433,7 @@ msgstr "Bitte füllen Sie eines und nur eines dieser Felder aus."
 
 #: utils/validators.py:15
 msgid "These fields can not be the same."
-msgstr ""
+msgstr "Diese Felder dürfen nicht identisch sein."
 
 #: views/admin-portal.py:10
 msgid "Site Administration"
@@ -460,11 +460,11 @@ msgstr "Ein solche Artikel ist nicht in Ihrem Warenborb"
 #: views/cart.py:216
 #, python-format
 msgid "Not enough items of '%s' in stock."
-msgstr ""
+msgstr "Nicht genug Stück von '%s' auf Lager."
 
 #: views/cart.py:155
 msgid "Please enter a whole number."
-msgstr "Bitte geben Sie die komplette Zahl ein."
+msgstr "Bitte geben Sie die ganze Zahl ein."
 
 #: views/cart.py:162
 msgid "Please enter a positive number."
@@ -476,7 +476,7 @@ msgstr "Wählen Sie eine Anzahl"
 
 #: views/cart.py:206
 msgid "Choose a whole number."
-msgstr "Wählen Sie eine komplette Nummer"
+msgstr "Wählen Sie eine ganze Anzahl."
 
 #: views/cart.py:215
 #: views/cart.py:218
@@ -488,7 +488,7 @@ msgstr "Fehler"
 
 #: views/cart.py:236
 msgid "You must accept the terms and conditions."
-msgstr ""
+msgstr "Sie müssen den Geschäftsbedingungen zustimmen."
 
 #: views/cart.py:252
 #: views/cart.py:286
@@ -501,7 +501,7 @@ msgstr "Die ausgewählte Kategorie existiert nicht."
 
 #: views/comments.py:26
 msgid "One or more of the required fields wasn't submitted"
-msgstr ""
+msgstr "Ein oder mehr benötigte Felder wurden nicht übertragen"
 
 #: views/comments.py:33
 #, python-format
@@ -518,7 +518,7 @@ msgstr "Bestellproblem"
 
 #: views/contact.py:26
 msgid "Inquiry"
-msgstr ""
+msgstr "Anfrage"
 
 #: views/contact.py:27
 msgid "Contents"
@@ -527,7 +527,7 @@ msgstr "Inhalte"
 #: views/download.py:19
 #: views/download.py:24
 msgid "The download key is invalid."
-msgstr ""
+msgstr "Der Download-Schlüssel ist ungültig."
 
 #: views/utils.py:71
 msgid "Card type does not match card number."
@@ -555,7 +555,7 @@ msgstr "Kann die von Ihnen gesuchte Seite nicht finden."
 
 #: templates/shop/500.html:11
 msgid "There was an error with the store.  The admin has been notified."
-msgstr ""
+msgstr "Es gab einen Fehler mit dem Shop.  Der Administrator wurde benachrichtigt."
 
 #: templates/base.html:27
 #: templates/base.html.py:30
@@ -564,11 +564,11 @@ msgstr "Suche"
 
 #: templates/base.html:44
 msgid "Account Information"
-msgstr ""
+msgstr "Konto-Information"
 
 #: templates/base.html:46
 msgid "Account Details"
-msgstr ""
+msgstr "Konto-Details"
 
 #: templates/base.html:47
 #: templates/shop/admin/inventory_form.html:63
@@ -635,7 +635,7 @@ msgstr "Basispreis: "
 msgid ""
 "price at right is your deposit, you will receive a bill for the remainder "
 "when your item is ready."
-msgstr ""
+msgstr "Preis rechts ist Ihre Anzahlung, Sie bekommen eine Rechnung über den Rest wenn ihr Artikel fertig ist."
 
 #: templates/shop/cart.html:65
 msgid "Cart Total"
@@ -668,26 +668,10 @@ msgstr "Kontaktinformation"
 #: templates/shop/contact_form.html:13
 #: templates/shop/checkout/base_pay_ship.html:21
 #: templates/shop/checkout/form.html:26
-#, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte beheben Sie den folgenden Fehler:"
+msgstr[1] "Bitte beheben Sie die folgenden Fehler:"
 
 #: templates/shop/contact_form.html:19
 msgid "Send Email"
@@ -695,17 +679,18 @@ msgstr "eMail senden"
 
 #: templates/shop/download.html:13
 msgid "Downloading of"
-msgstr ""
+msgstr "Das herunterladen von"
 
 #: templates/shop/download.html:13
 msgid "will commence after clicking the link below:"
-msgstr ""
+msgstr "wird beginnen sobald sie dem Link unten folgen:"
 
 #: templates/shop/download.html:15
 msgid ""
 "Once you click the link, the download will be counted.  If you have trouble "
 "with the download, please refresh yourbrowser and try the download again"
-msgstr ""
+msgstr "Sobald sie dem Link folgen wird ihr Download gezählt. Wenn Sie Probleme "
+"mit dem Herunterladen haben, laden Sie bitte diese Seite neu und probieren Sie es erneut"
 
 #: templates/shop/search.html:12
 msgid "Nothing found"
@@ -720,7 +705,6 @@ msgid "We will attempt to get back to you within 48 hours."
 msgstr "Wir werden Ihnen innerhalb 48 Stunden antworten."
 
 #: templates/shop/admin/_customorder_management.html:8
-#, fuzzy
 msgid "Fully charged"
 msgstr ""
 
@@ -729,23 +713,20 @@ msgid "Charge remaining amount"
 msgstr ""
 
 #: templates/shop/admin/_customorder_management.html:13
-#, fuzzy
 msgid "Product Details"
-msgstr ""
+msgstr "Produktdetails"
 
 #: templates/shop/admin/_orderpayment_list.html:9
-#, fuzzy
 msgid "Amount"
-msgstr ""
+msgstr "Betrag"
 
 #: templates/shop/admin/_orderpayment_list.html:35
-#, fuzzy
 msgid "No payments."
 msgstr ""
 
 #: templates/shop/admin/_orderpayment_list.html:40
 msgid "Paid in full"
-msgstr ""
+msgstr "Komplett bezahlt"
 
 #: templates/shop/admin/_orderpayment_list.html:42
 msgid "Balance on order:"
@@ -757,31 +738,14 @@ msgid "Satchmo Site Administration"
 msgstr ""
 
 #: templates/shop/admin/inventory_form.html:74
-#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte beheben Sie den folgenden Fehler:"
+msgstr[1] "Bitte beheben Sie die folgenden Fehler:"
 
 #: templates/shop/admin/inventory_form.html:63
-#, fuzzy
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentation"
 
 #: templates/shop/admin/inventory_form.html:63
 msgid "Change password"
@@ -840,7 +804,7 @@ msgstr ""
 #: templates/shop/admin/index.html:87
 #, python-format
 msgid "Models available in the %(name)s application."
-msgstr "verfügbare Modell in der %(name)s Anwendung."
+msgstr "Verfügbare Modelle in der %(name)s Anwendung."
 
 #: templates/shop/admin/index.html:88
 #, python-format
@@ -849,7 +813,7 @@ msgstr ""
 
 #: templates/shop/admin/index.html:98
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: templates/shop/admin/index.html:121
 msgid "Edit Site Settings"
@@ -888,7 +852,7 @@ msgstr "Wie wollen Sie bezahlen?"
 #: templates/shop/checkout/balance_remaining.html:26
 #: templates/shop/checkout/form.html:131
 msgid "Continue Checkout"
-msgstr "Bestellung abschliessen"
+msgstr "Bestellung abschließen"
 
 #: templates/shop/checkout/base_confirm.html:15
 #: templates/shop/checkout/base_pay_ship.html:13
@@ -937,7 +901,7 @@ msgstr ""
 
 #: templates/shop/checkout/base_pay_ship.html:33
 msgid "Discount code"
-msgstr "Rabatt Code"
+msgstr "Rabattcode"
 
 #: templates/shop/checkout/base_pay_ship.html:38
 #: templates/shop/checkout/form.html:98
@@ -959,7 +923,7 @@ msgid ""
 "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
 "charged %(order_total)s."
 msgstr ""
-"Ihrer %(credit_card_type)s Kreditkarte, die auf %(credit_card_number)s "
+"Ihre %(credit_card_type)s Kreditkarte, die auf %(credit_card_number)s "
 "endet, wird mit %(order_total)s belastet."
 
 #: templates/shop/checkout/empty_cart.html:12
@@ -1008,7 +972,7 @@ msgstr "Rechnungsinformation"
 #: templates/shop/checkout/form.html.py:117
 #, fuzzy
 msgid "State/Province"
-msgstr "Provinz"
+msgstr "Bundesstaat/Provinz"
 
 #: templates/shop/checkout/form.html:89
 #: templates/shop/checkout/form.html.py:121
@@ -1029,14 +993,13 @@ msgstr "Kreditkartennummer"
 
 #: templates/shop/checkout/pay_ship.html:17
 msgid "Expiration date"
-msgstr "abgelaufen am"
+msgstr "Gültig bis"
 
 #: templates/shop/checkout/pay_ship.html:20
 msgid "CCV"
 msgstr ""
 
 #: templates/shop/checkout/success.html:13
-#, fuzzy
 msgid "Thank you for your order!"
 msgstr "Danke für Ihre Bestellung!"
 
@@ -1044,12 +1007,12 @@ msgstr "Danke für Ihre Bestellung!"
 msgid ""
 "Please print out this page as a receipt.  You will also receive an email "
 "with this information."
-msgstr ""
+msgstr "Bitte drucken Sie sich diese Seite als Quittung. Sie werden auch eine Email mit diesen Informationen bekommen."
 
 #: templates/shop/checkout/cod/confirm.html:17
 #, python-format
 msgid "This order will be COD for %(order_total)s."
-msgstr ""
+msgstr "Diese Bestellung wird per Nachnahme zum Gesamtpreis von %(order_total)s geliefert."
 
 #: templates/shop/checkout/google/confirm.html:11
 msgid "Your payment will be processed through Google Checkout."
@@ -1070,13 +1033,13 @@ msgstr "Bestellung Nr."
 #: templates/shop/order_history.html:8
 #: templates/shop/order_tracking.html:7
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: templates/shop/order_history.html:9
 #: templates/shop/order_history.html:14
 #, fuzzy
 msgid "Order History"
-msgstr ""
+msgstr "Frühere Bestellungen"
 
 #: templates/shop/order_history.html:22
 msgid "Items"
@@ -1084,12 +1047,12 @@ msgstr "Artikel"
 
 #: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
-msgstr ""
+msgstr "Sie haben noch keine Bestellung aufgegeben."
 
 #: templates/shop/order_tracking.html:8
 #: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
-msgstr ""
+msgstr "Bestellungs-Verfolgung"
 
 #: templates/shop/email/contact_us.txt:1
 #, python-format
@@ -1103,7 +1066,7 @@ msgstr ""
 #: templates/shop/email/order_complete.txt:1
 #, python-format
 msgid "Dear %(first_name)s %(last_name)s,"
-msgstr "Sehr geehrte(r) %(first_name)s %(last_name)s."
+msgstr "Sehr geehrte(r) %(first_name)s %(last_name)s,"
 
 #: templates/shop/email/order_complete.txt:3
 #, python-format
@@ -1116,11 +1079,11 @@ msgstr "Ihre Bestellung:"
 
 #: templates/shop/email/order_complete.txt:67
 msgid "Your order contains products that can be downloaded"
-msgstr ""
+msgstr "Ihre Bestellung enthält Artikel die Sie herunterladen können"
 
 #: templates/shop/email/order_complete.txt:68
 msgid "Please click the link to being the download"
-msgstr ""
+msgstr "Bitte folgen Sie diesem Link zum Herunterladen"
 
 #: templates/shop/email/order_complete.txt:74
 msgid "Regards"
@@ -1154,7 +1117,7 @@ msgstr "Seite"
 #: templates/shop/pdf/invoice.rml:116
 #: templates/shop/pdf/packing-slip.rml:116
 msgid "Unit Price"
-msgstr "Preiseinheit"
+msgstr "Stückpreis"
 
 #: templates/shop/pdf/invoice.rml:153
 #, python-format

@@ -152,10 +152,10 @@ class GiftCertificateProduct(models.Model):
             )
         gc.save()
     
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types
-        super(GiftCertificateProduct, self).save()
+        super(GiftCertificateProduct, self).save(force_insert=force_insert, force_update=force_update)
 
     class Meta:
         verbose_name = _("Gift certificate product")

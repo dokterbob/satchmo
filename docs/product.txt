@@ -130,6 +130,12 @@ Product Attributes
 In some cases, you may want to have certain product information stored in the database.  For instance, you might want to have "number of pages" or "ISBN" fields
 for all of the books in your store.  Attributes allow you to associate arbitrary data with your products via name, value pairs.
 
+In the latest version of Satchmo, these are more powerful and useful because you can define specific
+attributes to capture as well as validation to perform on the data.
+
+Refer to :doc:`product-attributes` for more details on using this feature to customize the information
+you store and present for your products.
+
 .. index::
    single: Product; price
 
@@ -315,16 +321,25 @@ Trial Terms:
         You can add as many trial periods as you wish, unless you are using paypal as a payment option.  PayPal can only accept 2 trial periods.  If you are using PayPal, do not add more than 2 trial periods!
 
 Cronjob:
-    In order for recurring billing to work, you need to setup a cronjob on your server to run once a day (preferably in the middle of the night).  Use settings similar to these:
 
-    0 23 * * * /usr/bin/lynx -source http://yourdomain.com/shop/checkout/cron/?key=YOURPASSKEY
-    You will need to set the CRON_KEY variable in your settings file to your desired passphrase.
+    
+    In order for recurring billing to work, you need to setup a cronjob on your server to run once a day 
+    (preferably in the middle of the night).  There are a couplf of options to do this.
+    
+    Using satchmo's custom management command::
+    
+        0 23 * * * python manage.py satchmo_bill_recurring
+    
+    Using lynx::
 
-Alternatively, you can run the rebilling script as a shell script.  In that case, your cron job would look like this::
+        0 23 * * * /usr/bin/lynx -source http://yourdomain.com/shop/checkout/cron/?key=YOURPASSKEY
+        You will need to set the CRON_KEY variable in your settings file to your desired passphrase.
 
-    0 23 * * * sh /path/to/satchmo/rebilling_cron.sh
+    Using a shell script::
 
-If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
+        0 23 * * * sh /path/to/satchmo/rebilling_cron.sh
+
+    If you use this method, make sure to edit the path on the first line of rebilling_cron.sh to point to the directory containing the script.
 
 .. index::
    single: Product; gift certificate

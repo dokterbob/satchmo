@@ -28,14 +28,19 @@ def normalize_decimal(value, args=""):
         val|normalize_decimal:'places=2:roundfactor=.5'
         val|normalize_decimal:'places=2:roundfactor=.5:normalize=False'
 
-    -val- The value to be converted and optionally formated to decimal.
-    -places- The decimal place precision is defined by integer "places" and
+    val
+        The value to be converted and optionally formated to decimal.
+    places 
+        The decimal place precision is defined by integer "places" and
         must be <= the precision defined in the decimal.Decimal context.  roundfactor represents
         the maximum number of decimal places to display if normalize is False.
 
-    -roundfactor- (partial unit rounding factor) If roundfactor is between 0 and 1, roundfactor rounds up
+    roundfactor
+        (partial unit rounding factor) If roundfactor is between 0 and 1, roundfactor rounds up
         (positive roundfactor value) or down (negative roundfactor value) in factional "roundfactor" increments.
-    -normalize- If normalize is True (any value other than False), then rightmost zeros are truncated.
+    
+    normalize
+        If normalize is True (any value other than False), then rightmost zeros are truncated.
 
     General Filter/Template Usage.
         normalize_decimal is generally used without parameters in the template.

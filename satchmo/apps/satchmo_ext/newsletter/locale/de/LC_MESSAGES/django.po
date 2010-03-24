@@ -49,7 +49,8 @@ msgstr "aktive Newsletter Module"
 msgid ""
 "Select a newsletter, save and reload to set any module-specific newsletter "
 "settings."
-msgstr ""
+msgstr "Wählen Sie einen Newsletter, speichern Sie und laden Sie die Seite neu "
+"um Modul-spezifische Einstellungen zu ändern."
 
 #: config.py:13
 msgid "No newsletter"
@@ -149,23 +150,8 @@ msgstr "Fehler, nicht gültig."
 #, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-msgstr[1] ""
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  django.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+msgstr[0] "Bitte korrigieren Sie den folgenden Fehler:"
+msgstr[1] "Bitte korrigieren Sie die folgenden Fehler:"
 
 #: templates/newsletter/subscribe_form.html:6
 #: templates/newsletter/subscribe_form.html:10
@@ -189,5 +175,5 @@ msgstr "Newsletter abmelden"
 
 #: templates/newsletter/unsubscribe_form.html:22
 msgid "Remove Me"
-msgstr "Entferne Mich"
+msgstr "Austragen"
 
