@@ -20,3 +20,17 @@ class CurrencyField(DecimalField):
         }
         defaults.update(kwargs)
         return super(CurrencyField, self).formfield(**defaults)
+
+try:
+    # South introspection rules for our custom field.
+    from south.modelsinspector import add_introspection_rules
+
+    add_introspection_rules([(
+        (CurrencyField, ),
+        [],
+        {
+            'display_decimal': ["places", {"default": 2}],
+        },
+    )], ['satchmo_utils\.fields'])
+except ImportError:
+    pass
