@@ -13,30 +13,39 @@ on a test server before attempting on a production server.
 Using South
 -----------
 
-The very latest version of Satchmo includes migration files for `South <http://south.aeracode.org/>`_.
-Initially, they will only include changes for the migration from 0.9 -> 0.9.1 but we will also continue to use
-South for future migrations.
+The very latest version of Satchmo includes migration files for
+`South <http://south.aeracode.org/>`_. So far, we only have migrations for the
+``product`` app, with the initial migration based on the 0.9 code base.
 
-The basic workflow for executing migrations is:
+Upgrading from 0.9
+^^^^^^^^^^^^^^^^^^
 
 .. highlight:: console
 
-- Add south to INSTALLED_APPS
-- Install history table::
+- Download/check out a copy of the new version of Satchmo handy.
+
+  .. warning:: *Do not* install the new version of Satchmo yet.
+
+- If you aren't already using South for your project, add it to your
+  ``INSTALLED_APPS`` and create the history table::
 
     $ python manage.py syncdb
 
-- "Fake" the initial migration::
+- Replace your Satchmo installation with the new version of it.
 
-    $ python manage.py migrate <satchmo_app> --fake 0001_initial
+- Since the database tables have already been created for your old (0.9)
+  Satchmo installation, you need to "fake" the initial migration, or else
+  South will try re-creating the database tables. Do it like so::
+
+    $ python manage.py migrate product --fake 0001
 
 - See list of migrations::
 
-    $ python manage.py migrate --list
+    $ python manage.py migrate product --list
 
 - Run the migrations::
 
-    $ python manage.py migrate <satchmo_app> --db-dry-run # db untouched
-    $ python manage.py migrate <satchmo_app>
+    $ python manage.py migrate product --db-dry-run # db untouched
+    $ python manage.py migrate product
 
 .. highlight:: python
