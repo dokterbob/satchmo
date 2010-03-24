@@ -103,7 +103,7 @@ try:
         (ImageWithThumbnailField, ),
         [],
         {
-            'auto_rename': ["auto_rename", {"default": NOTSET}],
+            'auto_rename': ["auto_rename", {"default": None}],
             'name_field': ["name_field", {"default": None}],
             'auto_rename': ["auto_rename", {"default": None}],
         },
