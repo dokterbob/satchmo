@@ -31,6 +31,43 @@ Upgrading from 0.9
 
     $ python manage.py syncdb
 
+    Syncing...
+    Installing yaml fixture 'initial_data' from '/home/user/lib/python2.5/Satchmo-0.9_0-py2.5.egg/satchmo_store/shop/fixtures'.
+    Installing yaml fixture 'initial_data' from '/home/user/lib/python2.5/Satchmo-0.9_0-py2.5.egg/satchmo_store/contact/fixtures'.
+    Installing yaml fixture 'initial_data' from '/home/user/lib/python2.5/Satchmo-0.9_0-py2.5.egg/product/fixtures'.
+    Installed 16 object(s) from 3 fixture(s)
+
+    Synced:
+     > django.contrib.admin
+     > django.contrib.auth
+     > django.contrib.contenttypes
+     > django.contrib.sessions
+     > django.contrib.sites
+     > django.contrib.comments
+     > satchmo_store.shop
+     > keyedcache
+     > livesettings
+     > l10n
+     > south
+     > sorl.thumbnail
+     > satchmo_store.contact
+     > tax
+     > tax.modules.area
+     > tax.modules.percent
+     > shipping
+     > product
+     > payment
+     > payment.modules.giftcertificate
+     > satchmo_utils
+     > app_plugins
+     > singpost
+     > shop_ext
+     > satchmo_state
+
+    Not synced (use migrations):
+     -
+    (use ./manage.py migrate to migrate these)
+
 - Replace your Satchmo installation with the new version of it.
 
 - Since the database tables have already been created for your old (0.9)
@@ -39,9 +76,27 @@ Upgrading from 0.9
 
     $ python manage.py migrate product --fake 0001
 
+    - Soft matched migration 0001 to 0001_initial.
+
+    Running migrations for product:
+     - Migrating forwards to 0001_initial.
+     > product: 0001_initial
+       (faked)
+
 - See list of migrations::
 
     $ python manage.py migrate product --list
+
+     product
+      (*) 0001_initial
+      ( ) 0002_add_attributeoption
+      ( ) 0003_add_productattribute_option
+      ( ) 0004_remove_productattribute_name
+      ( ) 0005_fix_attributeoption_error_default_spelling
+      ( ) 0006_custom_textfield_add_constraint
+      ( ) 0007_add_discount_valid_products_field
+      ( ) 0008_remove_discount_validproducts_field
+      ( ) 0009_add_categoryattributes
 
 - Run the migrations::
 
