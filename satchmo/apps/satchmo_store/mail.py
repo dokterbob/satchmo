@@ -37,21 +37,20 @@ def send_store_mail(subject, context, template='', recipients_list=None,
                     format_subject=False, send_to_store=False,
                     template_html='', fail_silently=False):
     """
-    :parameter: subject: A string.
+    :param subject: A string.
 
-    :parameter: format_subject: Determines whether the *subject* parameter
-     is formatted. Only the %(shop_name)s specifier is supported now.
+    :param format_subject: Determines whether the *subject* parameter is
+      formatted. Only the %(shop_name)s specifier is supported now.
 
-    :parameter: context: A dictionary to use when rendering the message body.
-      This dictionary overwrites an internal dictionary which provides the key
-      `shop_name`.
+    :param context: A dictionary to use when rendering the message body. This
+      overwrites an internal dictionary with a single entry, `shop_name`.
 
-    :parameter: template: The path of the plain text template to use when
-      rendering the message body.
+    :param template: The path of the plain text template to use when rendering
+      the message body.
 
-    :parameter: template_html: The path of the HTML template to use when
-      rendering the message body; this will only be used if the config
-      ``SHOP.HTML_EMAIL`` is true.
+    :param template_html: The path of the HTML template to use when rendering
+      the message body; this will only be used if the config ``SHOP.HTML_EMAIL``
+      is true.
     """
     from satchmo_store.shop.models import Config
 
