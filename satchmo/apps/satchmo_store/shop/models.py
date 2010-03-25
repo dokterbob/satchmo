@@ -7,7 +7,7 @@ from decimal import Decimal, ROUND_CEILING
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.sites.models import Site
-from django.core import urlresolvers 
+from django.core import urlresolvers
 from django.db import models
 from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
@@ -54,9 +54,9 @@ class ConfigManager(models.Manager):
         """Convenience method to get the current shop config"""
         if not site:
             site = Site.objects.get_current()
-        
+
         site = site.id
-            
+
         try:
             shop_config = keyedcache.cache_get("Config", site)
         except keyedcache.NotCachedError, nce:
@@ -67,7 +67,7 @@ class ConfigManager(models.Manager):
                 log.warning("No Shop Config found, using test shop config for site=%s.", site)
                 shop_config = NullConfig()
 
-        return shop_config    
+        return shop_config
 
 class Config(models.Model):
     """
@@ -97,21 +97,21 @@ class Config(models.Model):
         return ConfigurationSettings()
 
     options = property(fget=_options)
-    
+
     def areas(self):
         """Get country areas (states/counties).  Used in forms."""
         if self.in_country_only:
             return self.sales_country.adminarea_set.filter(active=True)
         else:
             return None
-            
+
     def countries(self):
         """Get country selections.  Used in forms."""
         if self.in_country_only:
             return Country.objects.filter(pk=self.sales_country.pk)
         else:
             return self.shipping_countries.filter(active=True)
-        
+
 
     def _base_url(self, secure=False):
         prefix = "http"
@@ -120,19 +120,19 @@ class Config(models.Model):
         return prefix + "://" + self.site.domain
 
     base_url = property(fget=_base_url)
-    
+
     def save(self, **kwargs):
         keyedcache.cache_delete("Config", self.site.id)
         # ensure the default country is in shipping countries
         mycountry = self.country
-        
+
         if mycountry:
             if not self.sales_country:
                 log.debug("%s: No sales_country set, adding country of store, '%s'", self, mycountry)
                 self.sales_country = mycountry
-        
+
 # This code doesn't work when creating a new site. At the time of creation, all of the necessary relationships
-# aren't setup. I modified the load_store code so that it would create this relationship manually when running 
+# aren't setup. I modified the load_store code so that it would create this relationship manually when running
 # with sample data. This is a bit of a django limitation so I'm leaving this in here for now. - CBM
 #            salescountry = self.sales_country
 #            try:
@@ -142,7 +142,7 @@ class Config(models.Model):
 #                self.shipping_countries.add(salescountry)
         else:
             log.warn("%s: has no country set", self)
-            
+
         super(Config, self).save(**kwargs)
         keyedcache.cache_set("Config", self.site.id, value=self)
 
@@ -281,10 +281,10 @@ class Cart(models.Model):
             itemCount += item.quantity
         return (itemCount)
     numItems = property(_get_count)
-    
+
     def _get_discount(self):
         return self.undiscounted_total - self.total
-        
+
     discount = property(_get_discount)
 
     def _get_total(self, include_discount=True):
@@ -296,25 +296,37 @@ class Cart(models.Model):
                 total += item.undiscounted_line_total
         return(total)
     total = property(_get_total)
-    
+
     def _get_undiscounted_total(self):
         return self._get_total(False)
-        
+
     undiscounted_total = property(_get_undiscounted_total)
-    
+
     def __iter__(self):
         return iter(self.cartitem_set.all())
 
     def __len__(self):
         return self.cartitem_set.count()
-        
+
     def __nonzero__(self):
-        return self.cartitem_set.count() > 0
+        """
+        This is used by django to evaluate whether or not to
+        include an object when dumping data. Therefore, we will dump
+        carts even if they have no items. This is ok because the most likely
+        scenario is moving data from one db to the next. See ticket #1015 for
+        discussion.
+        Use cart.is_empty if you want to know if qty >= 1
+        """
+        return True
+
+    def _is_empty(self):
+        return self.cartitem_set.count() == 0
+    is_empty = property(_is_empty)
 
     def __unicode__(self):
         return u"Shopping Cart (%s)" % self.date_time_created
 
-    def add_item(self, chosen_item, number_added, details={}):
+    def add_item(self, chosen_item, number_added, details=[]):
         alreadyInCart = False
         # Custom Products will not be added, they will each get their own line item
         if 'CustomProduct' in chosen_item.get_subtypes():
@@ -337,9 +349,9 @@ class Cart(models.Model):
                     item_to_modify = similarItem
                     alreadyInCart = True
                     break
-            
-        # Verify that the 'item_to_modify' can be added to the cart regardless 
-        # of whether or not it is already in the cart 
+
+        # Verify that the 'item_to_modify' can be added to the cart regardless
+        # of whether or not it is already in the cart
         signals.satchmo_cart_add_verify.send(self, cart=self, cartitem=item_to_modify, added_quantity=number_added, details=details)
         if not alreadyInCart:
             self.cartitem_set.add(item_to_modify)
@@ -359,7 +371,7 @@ class Cart(models.Model):
             item_to_modify.delete()
         self.save()
 
-    
+
     def merge_carts(self, src_cart):
         """
         Merge the items from the src_cart into
@@ -368,7 +380,7 @@ class Cart(models.Model):
         for item in src_cart.cartitem_set.all():
             self.add_item(item.product, item.quantity, item.details.all())
             item.delete()
-    
+
     def empty(self):
         for item in self.cartitem_set.all():
             item.delete()
@@ -439,12 +451,12 @@ class CartItem(models.Model):
         return price
 
     unit_price = property(_get_line_unitprice)
-    
+
     def _get_undiscounted_unitprice(self):
         return self._get_line_unitprice(include_discount=False)
-        
+
     undiscounted_unit_price = property(_get_undiscounted_unitprice)
-    
+
     def get_detail_price(self):
         """Get the delta price based on detail modifications"""
         delta = Decimal("0")
@@ -461,10 +473,10 @@ class CartItem(models.Model):
     def _get_line_total(self):
         return self.unit_price * self.quantity
     line_total = property(_get_line_total)
-    
+
     def _get_undiscounted_line_total(self):
         return self.undiscounted_unit_price * self.quantity
-        
+
     undiscounted_line_total = property(_get_undiscounted_line_total)
 
     def _get_description(self):
@@ -473,7 +485,7 @@ class CartItem(models.Model):
 
     def _is_shippable(self):
         return self.product.is_shippable
-        
+
     is_shippable = property(fget=_is_shippable)
 
     def add_detail(self, data):
@@ -506,7 +518,7 @@ class CartItemDetails(models.Model):
     cartitem = models.ForeignKey(CartItem, related_name='details', )
     value = models.TextField(_('detail'))
     name = models.CharField(_('name'), max_length=100)
-    price_change = CurrencyField(_("Item Detail Price Change"), max_digits=6, 
+    price_change = CurrencyField(_("Item Detail Price Change"), max_digits=6,
         decimal_places=2, blank=True, null=True)
     sort_order = models.IntegerField(_("Sort Order"),
         help_text=_("The display order for this group."))
@@ -645,14 +657,14 @@ class Order(models.Model):
         except OrderVariable.DoesNotExist:
             v = OrderVariable(order=self, key=key, value=value)
         v.save()
-        
+
     def _authorized_remaining(self):
         auths = [p.amount for p in self.authorizations.filter(complete=False)]
         if auths:
             amount = reduce(operator.add, auths)
         else:
             amount = Decimal('0.00')
-            
+
         return amount
 
     authorized_remaining = property(fget=_authorized_remaining)
@@ -710,7 +722,7 @@ class Order(models.Model):
             paid = reduce(operator.add, payments)
         else:
             paid = Decimal("0.0000000000")
-            
+
         return paid + self.authorized_remaining
 
     balance_paid = property(_balance_paid)
@@ -749,20 +761,20 @@ class Order(models.Model):
             address = self.ship_street1
         return mark_safe(address)
     full_ship_street = property(_full_ship_street)
-    
-    def _ship_country_name(self): 
-        return Country.objects.get(iso2_code=self.ship_country).name 
-    ship_country_name = property(_ship_country_name) 
-    
-    def _bill_country_name(self): 
-        return Country.objects.get(iso2_code=self.bill_country).name 
-    bill_country_name = property(_bill_country_name) 
-    
+
+    def _ship_country_name(self):
+        return Country.objects.get(iso2_code=self.ship_country).name
+    ship_country_name = property(_ship_country_name)
+
+    def _bill_country_name(self):
+        return Country.objects.get(iso2_code=self.bill_country).name
+    bill_country_name = property(_bill_country_name)
+
     def _discounted_sub_total(self):
         return self.sub_total - self.item_discount
-    
+
     discounted_sub_total = property(_discounted_sub_total)
-    
+
     def _get_balance_remaining_url(self):
         return ('satchmo_balance_remaining_order', None, {'order_id' : self.id})
     get_balance_remaining_url = models.permalink(_get_balance_remaining_url)
@@ -775,8 +787,8 @@ class Order(models.Model):
     def _is_partially_paid(self):
         if self.total:
             return (
-                float(self.balance) > 0.0 
-                and float(self.balance_paid) > 0.0 
+                float(self.balance) > 0.0
+                and float(self.balance_paid) > 0.0
                 and self.balance != self.balance_paid
                 )
         else:
@@ -801,7 +813,7 @@ class Order(models.Model):
 
     def invoice(self):
         url = urlresolvers.reverse('satchmo_print_shipping', None, None, {'doc' : 'invoice', 'id' : self.id})
-        return mark_safe(u'<a href="%s">%s</a>' % (url, ugettext('View'))) 
+        return mark_safe(u'<a href="%s">%s</a>' % (url, ugettext('View')))
     invoice.allow_tags = True
 
     def _item_discount(self):
@@ -845,9 +857,9 @@ class Order(models.Model):
             if adjustment and adjustment.price:
                 baseprice = adjustment.price.price
                 finalprice = adjustment.final_price()
-                #We need to add in any OrderItemDetail price adjustments before we do anything else 
-                baseprice += lineitem.get_detail_price() 
-                finalprice += lineitem.get_detail_price() 
+                #We need to add in any OrderItemDetail price adjustments before we do anything else
+                baseprice += lineitem.get_detail_price()
+                finalprice += lineitem.get_detail_price()
                 if baseprice > finalprice or baseprice != lineitem.unit_price:
                     unitdiscount = (lineitem.discount/lineitem.quantity) + baseprice-finalprice
                     unitdiscount = trunc_decimal(unitdiscount, 2)
@@ -858,7 +870,7 @@ class Order(models.Model):
                     lineitem.unit_price = baseprice
                     lineitem.discount = linediscount
                     lineitem.line_item_price = baseprice * lineitem.quantity
-                    log.debug('Adjusting lineitem unit price for %s. Full price=%s, discount=%s.  Final price for qty %d is %s', 
+                    log.debug('Adjusting lineitem unit price for %s. Full price=%s, discount=%s.  Final price for qty %d is %s',
                         lineitem.product.slug, baseprice, unitdiscount, lineitem.quantity, fullydiscounted)
             if save:
                 lineitem.save()
@@ -872,7 +884,7 @@ class Order(models.Model):
         if 'Shipping' in discounts:
             shipadjust += PriceAdjustment('discount', _('Discount'), discounts['Shipping'])
 
-        signals.satchmo_shipping_price_query.send(self, adjustment=shipadjust)    
+        signals.satchmo_shipping_price_query.send(self, adjustment=shipadjust)
         shipdiscount = shipadjust.total_adjustment()
         self.shipping_discount = shipdiscount
         total_discount += shipdiscount
@@ -906,9 +918,9 @@ class Order(models.Model):
 
         log.debug("Order #%i, recalc: sub_total=%s, shipping=%s, discount=%s, tax=%s",
             self.id,
-            moneyfmt(item_sub_total), 
+            moneyfmt(item_sub_total),
             moneyfmt(self.shipping_sub_total),
-            moneyfmt(self.discount), 
+            moneyfmt(self.discount),
             moneyfmt(self.tax))
 
         self.total = Decimal(item_sub_total + self.shipping_sub_total + self.tax)
@@ -998,7 +1010,7 @@ class Order(models.Model):
 
     def sub_total_with_tax(self):
         return reduce(operator.add, [o.total_with_tax for o in self.orderitem_set.all()])
-        
+
     def update_status(self, status):
         """WARNING: To just change order status, use Order.add_status().
         This method is called back when OrderStatus is saved and does not create required object."""
@@ -1055,13 +1067,13 @@ class OrderItem(models.Model):
 
     def _is_shippable(self):
         return self.product.is_shippable
-        
+
     is_shippable = property(fget=_is_shippable)
-    
+
     def _has_details(self):
         """Determine if this specific item has more detail"""
         return (self.orderitemdetail_set.count() > 0)
-    
+
     has_details = property(_has_details)
 
     def get_detail_price(self):
@@ -1095,7 +1107,7 @@ class OrderItem(models.Model):
     def _get_line_total(self):
         return self.unit_price * self.quantity
     line_total = property(_get_line_total)
-    
+
     def save(self, **kwargs):
         self.update_tax()
         super(OrderItem, self).save(**kwargs)
@@ -1178,7 +1190,7 @@ class DownloadLink(models.Model):
         return u"%s" % (self.downloadable_product.product.translated_name())
     product_name=property(_product_name)
 
-    class Meta:        
+    class Meta:
         verbose_name = _("Download Link")
         verbose_name_plural = _("Download Links")
 
@@ -1210,7 +1222,7 @@ class OrderStatus(models.Model):
 class OrderPaymentBase(models.Model):
     payment = PaymentChoiceCharField(_("Payment Method"),
         max_length=25, blank=True)
-    amount = CurrencyField(_("amount"), 
+    amount = CurrencyField(_("amount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
     time_stamp = models.DateTimeField(_("timestamp"), blank=True, null=True)
     transaction_id = models.CharField(_("Transaction ID"), max_length=45, blank=True, null=True)
@@ -1256,11 +1268,11 @@ class OrderAuthorization(OrderPaymentBase):
             amount = reduce(operator.add, payments)
         else:
             amount = Decimal('0.00')
-        
+
         remaining = self.order.total - amount
         if remaining > self.amount:
             remaining = self.amount
-            
+
         return trunc_decimal(remaining, 2)
 
     def save(self, **kwargs):
@@ -1307,7 +1319,7 @@ class OrderPayment(OrderPaymentBase):
 class OrderPendingPayment(OrderPaymentBase):
     order = models.ForeignKey(Order, related_name="pendingpayments")
     capture = models.ForeignKey('OrderPayment', related_name="pendingpayments")
-    
+
     def __unicode__(self):
         if self.id is not None:
             return u"Order Pending Payment #%i" % self.id
@@ -1335,7 +1347,7 @@ class OrderVariable(models.Model):
     key = models.SlugField(_('key'), )
     value = models.CharField(_('value'), max_length=100)
 
-    class Meta:        
+    class Meta:
         ordering=('key',)
         verbose_name = _("Order variable")
         verbose_name_plural = _("Order variables")
@@ -1352,7 +1364,7 @@ class OrderTaxDetail(models.Model):
     order = models.ForeignKey(Order, related_name="taxes")
     method = models.CharField(_("Model"), max_length=50, )
     description = models.CharField(_("Description"), max_length=50, blank=True)
-    tax = CurrencyField(_("Tax"), 
+    tax = CurrencyField(_("Tax"),
         max_digits=18, decimal_places=10, blank=True, null=True)
 
     def __unicode__(self):
@@ -1361,7 +1373,7 @@ class OrderTaxDetail(models.Model):
         else:
             return u"Tax: %s" % self.tax
 
-    class Meta:        
+    class Meta:
         verbose_name = _('Order tax detail')
         verbose_name_plural = _('Order tax details')
         ordering = ('id',)

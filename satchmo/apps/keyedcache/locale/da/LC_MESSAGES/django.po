@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-22 19:02-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:16
+msgid "Yes"
+msgstr ""
+
+#: views.py:17
+msgid "No"
+msgstr ""
+
+#: views.py:21
+msgid "Key to delete"
+msgstr ""
+
+#: views.py:22
+msgid "Include Children?"
+msgstr ""
+
+#: views.py:23
+msgid "Delete all keys?"
+msgstr ""
+
+#: templates/keyedcache/delete.html:6 templates/keyedcache/stats.html:6
+#: templates/keyedcache/view.html:6
+msgid "Home"
+msgstr ""
+
+#: templates/keyedcache/delete.html:7 templates/keyedcache/view.html:7
+msgid "Cache"
+msgstr ""
+
+#: templates/keyedcache/delete.html:8
+msgid "Cache Delete"
+msgstr ""
+
+#: templates/keyedcache/stats.html:7
+msgid "Cache Stats"
+msgstr ""
+
+#: templates/keyedcache/view.html:8
+msgid "Cache View"
+msgstr ""

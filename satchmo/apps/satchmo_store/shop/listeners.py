@@ -27,13 +27,13 @@ def only_one_item_in_cart(sender, cart=None, cartitem=None, **kwargs):
 
 def create_download_link(product=None, order=None, subtype=None, **kwargs):
     """Creates a download link for a Downloadable Product on order success."""
-    if product and order and subtype == "download":        
-        new_link = DownloadLink(downloadable_product=product, order=order, 
+    if product and order and subtype == "download":
+        new_link = DownloadLink(downloadable_product=product, order=order,
             key=product.create_key(), num_attempts=0)
         new_link.save()
     else:
         log.debug("ignoring subtype_order_success signal, looking for download product, got %s", subtype)
-        
+
 def decrease_inventory_on_sale(sender, order=None, **kwargs):
     """Track inventory and total sold."""
     # Added to track total sold for each product
@@ -66,7 +66,7 @@ def remove_order_on_cart_update(request=None, cart=None, **kwargs):
 
 def veto_out_of_stock(sender, cartitem=None, added_quantity=0, **kwargs):
     """Listener which vetoes adding products to the cart which are out of stock."""
-    
+
     if config_value('PRODUCT','NO_STOCK_CHECKOUT') == False:
         product = cartitem.product
         need_qty = cartitem.quantity + added_quantity

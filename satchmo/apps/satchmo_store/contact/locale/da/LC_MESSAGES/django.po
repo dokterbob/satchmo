@@ -1,0 +1,800 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-22 19:02-0500\n"
+"PO-Revision-Date: 2010-03-23 19:44+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: config.py:9
+msgid "Only authenticated users can check out"
+msgstr "Kun brugere der er logget ind kan fuldføre ordreprocessen"
+
+#: config.py:10
+msgid ""
+"Users will be required to authenticate (and create an account if neccessary) "
+"before checkout."
+msgstr "Kræv at brugere logger ind (og opretter en konto om nødvendigt) for at kunne fuldføre en ordre."
+
+#: config.py:18
+msgid "Required billing data"
+msgstr "Påkrævede faktureringdata"
+
+#: config.py:20
+msgid ""
+"Users may be required to provide some set of billing address. Other fields "
+"are optional. You may shorten the checkout process here, but be careful, as "
+"this may leave you orders with almost no customer data! Some payment modules "
+"may override this setting."
+msgstr ""
+
+#: config.py:26 config.py:50 forms.py:37 models.py:144
+msgid "Email"
+msgstr "E-mail"
+
+#: config.py:27 forms.py:38 models.py:137
+msgid "Title"
+msgstr "Titel"
+
+#: config.py:28 models.py:138 templates/contact/update_form.html:29
+msgid "First name"
+msgstr "Fornavn"
+
+#: config.py:29 models.py:139 templates/contact/update_form.html:32
+msgid "Last name"
+msgstr "Efternavn"
+
+#: config.py:30 forms.py:41
+msgid "Phone"
+msgstr "Telefon"
+
+#: config.py:31 forms.py:42 forms.py:50 models.py:277
+msgid "Addressee"
+msgstr "Navn"
+
+#: config.py:32 forms.py:43 models.py:93 models.py:142
+#: templates/contact/update_form.html:35
+msgid "Organization"
+msgstr "Organisation"
+
+#: config.py:33 forms.py:44 forms.py:51 models.py:278 models.py:279
+#: templates/contact/_ContactInfoForm_billing.html:9
+#: templates/contact/_ContactInfoForm_billing.html:12
+#: templates/contact/_ContactInfoForm_shipping.html:12
+#: templates/contact/_ContactInfoForm_shipping.html:15
+msgid "Street"
+msgstr "Gade"
+
+#: config.py:34
+msgid "Street (second line)"
+msgstr "Gade (anden linje)"
+
+#: config.py:35 forms.py:46 forms.py:53 models.py:281
+#: templates/contact/_ContactInfoForm_billing.html:15
+#: templates/contact/_ContactInfoForm_shipping.html:18
+msgid "City"
+msgstr "By"
+
+#: config.py:36 templates/contact/_ContactInfoForm_billing.html:21
+#: templates/contact/_ContactInfoForm_billing.html:27
+#: templates/contact/_ContactInfoForm_shipping.html:24
+#: templates/contact/_ContactInfoForm_shipping.html:30
+msgid "State/Province"
+msgstr "Stat/provins"
+
+#: config.py:37
+msgid "Postal code/ZIP"
+msgstr "Postnummer"
+
+#: config.py:38 forms.py:78 forms.py:79 models.py:283
+#: templates/contact/_ContactInfoForm_billing.html:37
+#: templates/contact/_ContactInfoForm_shipping.html:40
+msgid "Country"
+msgstr "Land"
+
+#: config.py:46
+msgid "Account Verification"
+msgstr "Kontoberæftelse"
+
+#: config.py:47
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
+msgstr ""
+
+#: config.py:49
+msgid "Immediate"
+msgstr ""
+
+#: config.py:56
+msgid "Days to verify account"
+msgstr ""
+
+#: forms.py:39
+msgid "First Name"
+msgstr "Fornavn"
+
+#: forms.py:40
+msgid "Last Name"
+msgstr "Efternavn"
+
+#: forms.py:47 forms.py:54 forms.py:107 forms.py:111 models.py:280
+msgid "State"
+msgstr "Stat"
+
+#: forms.py:48 forms.py:55
+msgid "ZIP code/Postcode"
+msgstr "Postnummer"
+
+#: forms.py:49 templates/contact/_ContactInfoForm_shipping.html:6
+msgid "Shipping same as billing?"
+msgstr "Samme forsendelses- og faktureringsadresse?"
+
+#: forms.py:130 forms.py:181 forms.py:208 forms.py:221 forms.py:235
+msgid "This field is required."
+msgstr "Dette felt er påkrævet"
+
+#: forms.py:131
+msgid "State is required for your country."
+msgstr "Stat skal udfyldes for dette land."
+
+#: forms.py:136
+msgid "Invalid state or province."
+msgstr "Ugyldig stat eller provins."
+
+#: forms.py:151
+msgid "That email address is already in use."
+msgstr "Den e-mail-adresse er allerede i brug."
+
+#: forms.py:225
+msgid "Shipping and Billing countries must match"
+msgstr "Forsendelses- og faktureringsland skal være ens"
+
+#: forms.py:431 templates/contact/update_form.html:46
+msgid "Newsletter"
+msgstr "Nyhedsbrev"
+
+#: models.py:19 models.py:27 models.py:38 models.py:45
+msgid "Key"
+msgstr "Nøgle"
+
+#: models.py:20 models.py:28 models.py:39 models.py:46 models.py:75
+msgid "Name"
+msgstr "Navn"
+
+#: models.py:34
+msgid "Contact organization type"
+msgstr "Kontaktorganisationstype"
+
+#: models.py:76 models.py:225
+msgid "Type"
+msgstr "Type"
+
+#: models.py:77 models.py:141
+msgid "Role"
+msgstr "Rolle"
+
+#: models.py:78
+msgid "Creation Date"
+msgstr "Oprettelsesdato"
+
+#: models.py:79 models.py:145 supplier/models.py:38 supplier/models.py:83
+msgid "Notes"
+msgstr "Noter"
+
+#: models.py:94
+msgid "Organizations"
+msgstr "Organisationer"
+
+#: models.py:143
+msgid "Date of birth"
+msgstr "Fødselsdato"
+
+#: models.py:146
+msgid "Creation date"
+msgstr "Oprettelsesdato"
+
+#: models.py:209 models.py:224
+msgid "Contact"
+msgstr "Kontakt"
+
+#: models.py:210
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: models.py:213
+msgid "Work"
+msgstr "Arbejde"
+
+#: models.py:214 templates/contact/login_signup.html:9
+#: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
+#: templates/registration/account_info.html:5
+#: templates/registration/activate.html:6 templates/registration/login.html:5
+#: templates/registration/logout.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_form.html:5
+#: templates/registration/repeat_activation.html:5
+msgid "Home"
+msgstr "Hjem"
+
+#: models.py:215
+msgid "Fax"
+msgstr "Fax"
+
+#: models.py:216
+msgid "Mobile"
+msgstr "Mobil"
+
+#: models.py:226
+msgid "Date and Time"
+msgstr "Tid og dato"
+
+#: models.py:227 models.py:241 models.py:275 supplier/models.py:18
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: models.py:233
+msgid "Interaction"
+msgstr "Interaktion"
+
+#: models.py:234
+msgid "Interactions"
+msgstr "Interaktioner"
+
+#: models.py:243 models.py:267
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+#: models.py:245
+msgid "Primary"
+msgstr "Primær"
+
+#: models.py:268
+msgid "Phone Numbers"
+msgstr "Telefonnumre"
+
+#: models.py:276
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "Beskrivelse af adressen – hjem, kontor, varehus osv."
+
+#: models.py:282
+msgid "Zip Code"
+msgstr "Postnummer"
+
+#: models.py:284
+msgid "Default Shipping Address"
+msgstr "Standard forsendelsesadresse"
+
+#: models.py:286
+msgid "Default Billing Address"
+msgstr "Standard faktureringsadresse"
+
+#: models.py:317
+msgid "Address Book"
+msgstr "Adressebog"
+
+#: models.py:318
+msgid "Address Books"
+msgstr "Adressebøger"
+
+#: supplier/models.py:16 supplier/models.py:33
+msgid "Supplier"
+msgstr "Leverandør"
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "Leverandør ID"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "Stykpris"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "Beholdning"
+
+#: supplier/models.py:26
+msgid "Raw Item"
+msgstr "Råvare"
+
+#: supplier/models.py:27
+msgid "Raw Items"
+msgstr "Råvarer"
+
+#: supplier/models.py:34
+msgid "Date Created"
+msgstr "Oprettelsesdato"
+
+#: supplier/models.py:35
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: supplier/models.py:36
+msgid "Shipping"
+msgstr "Forsendelse"
+
+#: supplier/models.py:37
+msgid "Tax"
+msgstr "Moms"
+
+#: supplier/models.py:39
+msgid "Total"
+msgstr "Total"
+
+#: supplier/models.py:55
+msgid "Supplier Order"
+msgstr "Leverandørordre"
+
+#: supplier/models.py:56
+msgid "Supplier Orders"
+msgstr "Leverandørordrer"
+
+#: supplier/models.py:63
+msgid "Line Item"
+msgstr "Ordrelinje"
+
+#: supplier/models.py:64
+msgid "Line Item Quantity"
+msgstr "Ordrelinjeantal"
+
+#: supplier/models.py:65
+msgid "Line Item Total"
+msgstr "Ordrelinjetotal"
+
+#: supplier/models.py:71
+msgid "Sent in"
+msgstr "Indsent"
+
+#: supplier/models.py:72
+msgid "Shipped"
+msgstr "Afsendt"
+
+#: supplier/models.py:73
+msgid "Received"
+msgstr "Modtaget"
+
+#: supplier/models.py:82
+msgid "Status"
+msgstr "Status"
+
+#: supplier/models.py:84
+msgid "Date"
+msgstr "Dato"
+
+#: supplier/models.py:90
+msgid "Supplier Order Status"
+msgstr "Leverandørordrestatus"
+
+#: supplier/models.py:91
+msgid "Supplier Order Statuses"
+msgstr "Leverandørordrestatusser"
+
+#: templates/contact/_ContactInfoForm_billing.html:4
+msgid "Billing Information"
+msgstr "Faktureringsoplysninger"
+
+#: templates/contact/_ContactInfoForm_billing.html:6
+msgid "Bill To"
+msgstr "Faktureres til"
+
+#: templates/contact/_ContactInfoForm_billing.html:6
+#: templates/contact/_ContactInfoForm_shipping.html:9
+msgid "If different from the first and last names above"
+msgstr "Hvis forskellig fra for- og efternavn ovenfor"
+
+#: templates/contact/_ContactInfoForm_billing.html:33
+#: templates/contact/_ContactInfoForm_shipping.html:36
+msgid "Zipcode/Postcode"
+msgstr "Postnummer"
+
+#: templates/contact/_ContactInfoForm_shipping.html:4
+msgid "Shipping Information"
+msgstr "Forsendelsesoplysninger"
+
+#: templates/contact/_ContactInfoForm_shipping.html:9
+msgid "Ship To"
+msgstr "Sendes til"
+
+#: templates/contact/_addressblock.html:11
+msgid "Not set"
+msgstr "Ikke sat"
+
+#: templates/contact/_login_form.html:10
+msgid "Existing members login"
+msgstr "Eksisterende kunde log-in"
+
+#: templates/contact/_login_form.html:21
+msgid "Email Address:"
+msgstr "E-mail-adresse"
+
+#: templates/contact/_login_form.html:30
+msgid "Password:"
+msgstr "Kodeord"
+
+#: templates/contact/_login_form.html:39 templates/registration/login.html:23
+msgid "Login"
+msgstr "Log-in"
+
+#: templates/contact/login_signup.html:13
+#: templates/contact/login_signup_address.html:13
+msgid "Login, or sign up to the store"
+msgstr "Log-in, eller opret konto"
+
+#: templates/contact/login_signup.html:23
+#: templates/contact/login_signup_address.html:23
+msgid "New Members, Create Your Account Below"
+msgstr "Nye medlemmer, opret din konto herunder"
+
+#: templates/contact/login_signup.html:29
+#: templates/contact/login_signup_address.html:29
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Ret venligst fejlen herunder."
+msgstr[1] "Ret venligst fejlene herunder."
+
+#: templates/contact/login_signup.html:47
+#: templates/contact/login_signup_address.html:51
+msgid "Sign me up for Email Updates about new products and special offers!"
+msgstr "Tilmeld mig e-mail-opdateringer om nye produkter og tilbud!"
+
+#: templates/contact/login_signup.html:53
+#: templates/contact/login_signup_address.html:65
+msgid "Create"
+msgstr "Opret"
+
+#: templates/contact/login_signup_address.html:47
+#: templates/contact/update_form.html:42
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
+#: templates/registration/password_change_done.html:6
+#: templates/registration/password_change_form.html:6
+msgid "Account"
+msgstr "Konto"
+
+#: templates/contact/update_form.html:7
+msgid "Update Profile"
+msgstr "Opdater profil"
+
+#: templates/contact/update_form.html:15
+msgid "Your Profile"
+msgstr "Din profil"
+
+#: templates/contact/update_form.html:17
+msgid "Please correct the following error:"
+msgstr "Ret venligst følgende dejl"
+
+#: templates/contact/update_form.html:23
+msgid "You&apos;ll need to fill out at least the fields with a *"
+msgstr "Du skal som minimum udfylde felterne markeret med *"
+
+#: templates/contact/update_form.html:25
+msgid "Basic Information"
+msgstr "Stamdata"
+
+#: templates/contact/update_form.html:26 templates/registration/login.html:17
+msgid "Email address"
+msgstr "E-mail-adresse"
+
+#: templates/contact/update_form.html:39
+msgid "Birthday"
+msgstr "Fødselsdato"
+
+#: templates/contact/update_form.html:57
+msgid "Update"
+msgstr "Opdater"
+
+#: templates/contact/view_profile.html:11
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "Dine kontooplysninger"
+
+#: templates/contact/view_profile.html:14
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "Velkommen, %(full_name)s."
+
+#: templates/contact/view_profile.html:17
+msgid "Your profile"
+msgstr "Din profil"
+
+#: templates/contact/view_profile.html:19
+msgid "Email:"
+msgstr "E-mail"
+
+#: templates/contact/view_profile.html:21
+msgid "Organization:"
+msgstr "Organisation:"
+
+#: templates/contact/view_profile.html:23
+msgid "Birthday:"
+msgstr "Fødselsdato:"
+
+#: templates/contact/view_profile.html:25
+msgid "Newsletter:"
+msgstr "Nyhedsbrev"
+
+#: templates/contact/view_profile.html:25
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/contact/view_profile.html:25
+msgid "No"
+msgstr "Nej"
+
+#: templates/contact/view_profile.html:27
+msgid "Billing Address:"
+msgstr "Faktureringsadresse:"
+
+#: templates/contact/view_profile.html:28
+msgid "Shipping Address:"
+msgstr "Leveringsadresse:"
+
+#: templates/contact/view_profile.html:30
+#: templates/contact/view_profile.html:43
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "Kontoindstillinger"
+
+#: templates/contact/view_profile.html:32
+msgid "Update your profile"
+msgstr "Opdater din profil"
+
+#: templates/contact/view_profile.html:34
+#: templates/contact/view_profile.html:47
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:11
+msgid "Change your password"
+msgstr "Skift dit kodeord"
+
+#: templates/contact/view_profile.html:36
+msgid "Order History"
+msgstr "Ordrehistorik"
+
+#: templates/contact/view_profile.html:41
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
+msgstr "Den konto du er logget ind med har ikke nogen kontaktoplysninger."
+
+#: templates/contact/view_profile.html:41
+msgid "Probably because you are an admin."
+msgstr "Sandsynligvis fordi du er en admin-bruger."
+
+#: templates/contact/view_profile.html:45
+msgid "Set up contact information"
+msgstr "Indtast kontaktoplysninger"
+
+#: templates/registration/activate.html:7
+msgid "Registration Complete"
+msgstr "Registrering fuldendt"
+
+#: templates/registration/activate.html:12
+#: templates/registration/repeat_activation.html:11
+msgid "Account Activation"
+msgstr "Kontoaktivering"
+
+#: templates/registration/activate.html:16
+msgid "Thanks for signing up! You are now logged in."
+msgstr "Tak for din tilmelding! Du er nu logget ind."
+
+#: templates/registration/activate.html:17
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr "I fremtiden kan du logge ind ved at bruge din e-mail-adresse (%(email)s)."
+
+#: templates/registration/activate.html:21
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr "Enten var dit aktiveringslink forkert, eller aktiveringsnøglen for din konto er udløbet. Aktiveringsnøgler er kun gyldige i %(expiration_days)s dage efter registrering."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr "Nogen, forhåbentlig dig, har oprettet en konto på %(site)s med denne e-mail-adresse. Hvis det var dig, og du ønsker at aktivere og bruge denne konto, så klik på linket herunder eller kopier og sæt det ind i din browsers adresselinje."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr "Hvis du ikke ønsker det, er der ikke noget du behøver at gøre; du vil ikke få flere e-mails fra os, og kontoen vil automatisk udløbe om %(expiration_days)s dage."
+
+#: templates/registration/login.html:19
+msgid "Password"
+msgstr "Kodeord"
+
+#: templates/registration/login.html:32
+msgid "If you do not have an account, please"
+msgstr "Hvis du ikke har en konto, så"
+
+#: templates/registration/login.html:32
+msgid "click here"
+msgstr "klik venligst her"
+
+#: templates/registration/login.html:33
+msgid "If you do not remember your password, please"
+msgstr "Hvis du ikke kan huske dit kodeord, så"
+
+#: templates/registration/login.html:33
+msgid "click here</a> to have it reset."
+msgstr "klik her</a> for at få et nyt."
+
+#: templates/registration/logout.html:9
+msgid "You have been successfully logged out."
+msgstr "Du er nu logget ud."
+
+#: templates/registration/password_change_done.html:7
+msgid "Password Change Done"
+msgstr "Kodeordet er skiftet"
+
+#: templates/registration/password_change_done.html:12
+msgid "Password change successful"
+msgstr "Kodeordet er skiftet"
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password change has been completed."
+msgstr "Dit kodeord er blevet skiftet."
+
+#: templates/registration/password_change_form.html:7
+msgid "Password Change"
+msgstr "Skift kodeord"
+
+#: templates/registration/password_change_form.html:12
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr "Skriv venligst dit nuværende kodeord og et nyt kodeord to gange."
+
+#: templates/registration/password_change_form.html:19
+msgid "Old password"
+msgstr "Nuværende kodeord"
+
+#: templates/registration/password_change_form.html:26
+msgid "New password"
+msgstr "Nyt kodeord"
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm new password"
+msgstr "Bekræft nyt kodeord"
+
+#: templates/registration/password_change_form.html:36
+msgid "Change password"
+msgstr "Skift kodeord"
+
+#: templates/registration/password_reset.txt:2
+msgid "You're receiving this e-mail because you requested a password reset"
+msgstr "Du modtager denne e-mail fordi du har bedt om at få et nyt kodeord"
+
+#: templates/registration/password_reset.txt:3
+#, python-format
+msgid "for your user account at %(site_name)s"
+msgstr "for din konto på %(site_name)s"
+
+#: templates/registration/password_reset.txt:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "Gå venligst til følgende side og vælg et nyt kodeord."
+
+#: templates/registration/password_reset.txt:9
+msgid "Your username, in case you've forgotten:"
+msgstr "Dit brugernavn:"
+
+#: templates/registration/password_reset.txt:11
+msgid "Thanks for using our site!"
+msgstr "Tak fordi du bruger vores side."
+
+#: templates/registration/password_reset.txt:13
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "%(site_name)s"
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "Nulstilling af kodeord gennemført"
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr "Vi har sendt et nyt kodeord til den e-mail-adresse du skrev. Du skulle modtage den inden for få minutter."
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "Nulstil dit kodeord"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr "Har du glemt dit kodeord? Skriv din e-mail-adresse herunder, så sender vi dig en ny kode."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "E-mail-adresse"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr "Sørg for at skrive den samme e-mail-adresse, som du brugte ved tilmelding."
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "Nulstil kodeord"
+
+#: templates/registration/registration_complete.html:7
+#: templates/registration/registration_complete.html:11
+msgid "Account Creation"
+msgstr "Kontooprettelse"
+
+#: templates/registration/registration_complete.html:12
+msgid "Thank you for signing up."
+msgstr "Tak for din tilmelding."
+
+#: templates/registration/registration_complete.html:14
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr "Et aktiveringslink er blevet sendt den den e-mail-adresse du skrev, med instruktioner om hvordan du aktiverer din konto."
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "Registrering"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "Skriv venligst dine kontooplysninger"
+
+#: templates/registration/registration_form.html:38
+msgid "Create Account"
+msgstr "Opret konto"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "Gentagen aktivering"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "Denne konto er allerede blevet aktiveret. Log venligst ind."
+
+#: templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Kære %(first_name)s %(last_name)s,"
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(shop_name)s."
+msgstr "Tak for din tilmelding på %(shop_name)s."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr "Dit nye brugernavn er denne e-mail-adresse, og du kan logge ind på"
+
+#: templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "Med venlig hilsen"
+
+#: templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "Butikken"

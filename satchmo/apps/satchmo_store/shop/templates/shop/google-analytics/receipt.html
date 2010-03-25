@@ -1,8 +1,11 @@
-{% load satchmo_util%}{% if shop.options.GOOGLE.USE_URCHIN.value %}
+{% load satchmo_util%}
+{% load normalize_decimal %}
+
+{% if shop.options.GOOGLE.USE_URCHIN.value %}
     <form style="display:none;" name="utmform">
     <textarea id="utmtrans">
     UTM:T|{{order.id}}|{{Store}}|{{order.total|truncate_decimal}}|{{order.tax|truncate_decimal}}|{{order.shipping_sub_total|truncate_decimal}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
-    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price|truncate_decimal}}|{{item.quantity}}
+    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name }}|{{ item }}|{{ item.category }}|{{item.unit_price|truncate_decimal}}|{{item.quantity|normalize_decimal}}
     {% endfor %}</textarea>
     </form>
 
@@ -28,7 +31,7 @@
          "{{item}}",
          "{{item.category}}",
          "{{item.unit_price|truncate_decimal}}",
-         "{{item.quantity}}"
+         "{{item.quantity|normalize_decimal}}"
         );
     {% endfor %}
     pageTracker._trackTrans();

@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from product.forms import VariationManagerForm, InventoryForm, ProductExportForm, ProductImportForm
-from product.models import Product
+from product.models import Product, ConfigurableProduct
 from satchmo_utils.views import bad_or_missing
 import logging
 
@@ -94,7 +94,7 @@ import_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff
 # product_active_report = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(product_active_report)    
 
 def variation_list(request):
-    products = [p for p in Product.objects.all() if "ConfigurableProduct" in p.get_subtypes()]
+    products = Product.objects.filter(configurableproduct__in = ConfigurableProduct.objects.all()) 
     ctx = RequestContext(request, {
            'products' : products,
     })

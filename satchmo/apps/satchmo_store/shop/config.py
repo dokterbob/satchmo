@@ -67,6 +67,14 @@ PERSISTENT_CART = config_register(
     help_text = _("When a user logs in, attempt to retrieve previous carts and merge with existing?"),
     default = False
     ))
+    
+HTML_EMAIL = config_register(
+    BooleanValue(SHOP_GROUP,
+    'HTML_EMAIL',
+    description = _('Send HTML Email?'),
+    help_text = _("Should HTML emails be used when sending notifications?"),
+    default = False
+    ))
 
 #### Google Group ####
 

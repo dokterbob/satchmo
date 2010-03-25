@@ -169,6 +169,14 @@ class Category(models.Model):
         else:
             return qry.filter(site=self.site, active=True, productvariation__parent__isnull=True, **kwargs)
 
+    def translated_attributes(self, language_code=None):
+        if not language_code:
+            language_code = get_language()
+        q = self.categoryattribute_set.filter(languagecode__exact = language_code)
+        if q.count() == 0:
+            q = self.categoryattribute_set.filter(Q(languagecode__isnull = True) | Q(languagecode__exact = ""))
+        return q
+
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
 
@@ -2126,6 +2134,30 @@ class ProductAttribute(models.Model):
     class Meta:
         verbose_name = _("Product Attribute")
         verbose_name_plural = _("Product Attributes")
+
+    def __unicode__(self):
+        return self.option.name
+
+class CategoryAttribute(models.Model):
+    """
+    Similar to ProductAttribute, except that this is for categories.
+    """
+    category = models.ForeignKey(Category)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
+    option = models.ForeignKey(AttributeOption)
+    value = models.CharField(_("Value"), max_length=255)
+
+    def _name(self):
+        return self.option.name
+    name = property(_name)
+
+    def _description(self):
+        return self.option.description
+    description = property(_description)
+
+    class Meta:
+        verbose_name = _("Category Attribute")
+        verbose_name_plural = _("Category Attributes")
 
     def __unicode__(self):
         return self.option.name

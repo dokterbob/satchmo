@@ -1,0 +1,198 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-22 19:02-0500\n"
+"PO-Revision-Date: 2010-03-23 18:17+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: config.py:7
+msgid "Newsletter Settings"
+msgstr "Nyhedsbrevsindstillinger"
+
+#: config.py:11
+msgid "Active newsletter module"
+msgstr "Aktivt nyhedsbrevsmodul"
+
+#: config.py:12
+msgid ""
+"Select a newsletter, save and reload to set any module-specific newsletter "
+"settings."
+msgstr "Vælg et nyhedsbrev, gem, og genindlæs siden for at sætte modul-specifikke indstillinger."
+
+#: config.py:14
+msgid "No newsletter"
+msgstr "Intet nyhedsbrev"
+
+#: config.py:15
+msgid "Simple list"
+msgstr "Simpel liste"
+
+#: config.py:16
+msgid "Mailman"
+msgstr "Mailman"
+
+#: config.py:21
+msgid "Name of Newsletter"
+msgstr "Nyhedsbrevets navn"
+
+#: config.py:22
+msgid "Give the exact name that matches the mailing list set up in Mailman."
+msgstr "Skriv navnet på nyhedsbrevet, så passer eksakt med mailing-listen sat op i Mailman."
+
+#: config.py:31
+msgid "Newsletter Slug"
+msgstr "Nyhedsbrevs slug"
+
+#: config.py:32
+msgid "The url slug for the newsletter.  Requires server restart if changed."
+msgstr "URL slug for nyhedsbrevet. Kræver genstart af butikken hvis ændret."
+
+#: forms.py:16
+msgid "Full Name"
+msgstr "Fulde navn"
+
+#: forms.py:17 templates/newsletter/subscribe_form.html:20
+#: templates/newsletter/unsubscribe_form.html:20
+#: templates/newsletter/update_form.html:20
+msgid "Email address"
+msgstr "E-mail-adresse"
+
+#: forms.py:18 templates/newsletter/subscribe_form.html:23
+#: templates/newsletter/update_form.html:22
+#: templates/newsletter/update_form.html:24
+msgid "Subscribe"
+msgstr "Tilmeld"
+
+#: mailman.py:44 simple.py:35
+#, python-format
+msgid "Updated subscription for %(email)s."
+msgstr "Updateret tilmelding for %(email)s."
+
+#: mailman.py:46 simple.py:37
+#, python-format
+msgid "Already subscribed %(email)s."
+msgstr "Allerede tilmeldt %(email)s."
+
+#: mailman.py:48 simple.py:40
+#, python-format
+msgid "Already removed %(email)s."
+msgstr "Allerede fjernet %(email)s"
+
+#: mailman.py:58 mailman.py:95 simple.py:50
+#, python-format
+msgid "Subscribed: %(email)s"
+msgstr "Tilmeldt: %(email)s"
+
+#: mailman.py:61 simple.py:52
+#, python-format
+msgid "Unsubscribed: %(email)s"
+msgstr "Frameldt: %(email)s"
+
+#: mailman.py:87
+#, python-format
+msgid "Already Subscribed: %s"
+msgstr "Allerede tilmeldt: %s"
+
+#: mailman.py:98
+#, python-format
+msgid "Already a member: %(email)s"
+msgstr "Allerede medlem: %(email)s"
+
+#: mailman.py:102
+msgid "Bad/Invalid email address: blank line"
+msgstr "Forkert/ugyldig e-mail-adresse: blank linje"
+
+#: mailman.py:104
+#, python-format
+msgid "Bad/Invalid email address: %(email)s"
+msgstr "Forkert/ugyldig e-mail-adresse: %(email)s"
+
+#: mailman.py:107
+#, python-format
+msgid "Hostile address (illegal characters): %(email)s"
+msgstr "Fjendtlig adresse (ugyldige tegn): %(email)s"
+
+#: models.py:37
+msgid "Subscribed"
+msgstr "Tilmeldt"
+
+#: models.py:38
+msgid "Email"
+msgstr "E-mail"
+
+#: models.py:39
+msgid "Creation Date"
+msgstr "Oprettelsesdato"
+
+#: models.py:40
+msgid "Update Date"
+msgstr "Opdateringsdato"
+
+#: models.py:102
+msgid "Attribute Name"
+msgstr "Attributnavn"
+
+#: models.py:103
+msgid "Value"
+msgstr "Værdi"
+
+#: models.py:106
+msgid "Subscription Attribute"
+msgstr ""
+
+#: models.py:107
+msgid "Subscription Attributes"
+msgstr ""
+
+#: views.py:40
+msgid "Error, not valid."
+msgstr "Fejl, ugyldig"
+
+#: templates/newsletter/subscribe_form.html:5
+#: templates/newsletter/unsubscribe_form.html:5
+#: templates/newsletter/update_form.html:5
+#: templates/newsletter/update_results.html:5
+msgid "Home"
+msgstr "Hjem"
+
+#: templates/newsletter/subscribe_form.html:6
+#: templates/newsletter/subscribe_form.html:10
+#: templates/newsletter/update_form.html:6
+#: templates/newsletter/update_form.html:10
+#: templates/newsletter/update_results.html:6
+#: templates/newsletter/update_results.html:10
+msgid "Newsletter Subscription"
+msgstr "Nyhedsbrevstilmelding"
+
+#: templates/newsletter/subscribe_form.html:13
+#: templates/newsletter/unsubscribe_form.html:13
+#: templates/newsletter/update_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Ret venligst følgende fejl:"
+msgstr[1] "Ret venligst følgende fejl:"
+
+#: templates/newsletter/subscribe_form.html:18
+#: templates/newsletter/unsubscribe_form.html:18
+#: templates/newsletter/update_form.html:18
+msgid "Your name"
+msgstr "Dit navn"
+
+#: templates/newsletter/unsubscribe_form.html:6
+#: templates/newsletter/unsubscribe_form.html:10
+msgid "Newsletter Unsubscribe"
+msgstr "Nyhedsbrevsafmelding"
+
+#: templates/newsletter/unsubscribe_form.html:22
+msgid "Remove Me"
+msgstr "Fjern mig"
