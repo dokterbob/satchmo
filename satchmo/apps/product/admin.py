@@ -9,6 +9,7 @@ from product.models import Category, CategoryTranslation, CategoryImage, Categor
                                    DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
                                    default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption
+from product.utils import validate_attribute_value
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.thumbnail.widgets import AdminImageWithThumbnailWidget
 from django.http import HttpResponseRedirect
@@ -74,18 +75,13 @@ class ProductAttributeAdmin(admin.ModelAdmin):
     form = ProductAttributeForm
     prepopulated_fields = {"name": ("description",)}
 
-
 class ProductAttributeInlineForm(models.ModelForm):
 
     def clean_value(self):
         value = self.cleaned_data['value']
         attribute = self.cleaned_data['option']
         product = self.cleaned_data['product']
-        function_name = attribute.validation.split('.')[-1]
-        import_name = '.'.join(attribute.validation.split('.')[:-1])
-        import_module = __import__(import_name, fromlist=[function_name])
-        validation_function = getattr(import_module, function_name)
-        success, valid_value = validation_function(value, product)
+        success, valid_value = validate_attribute_value(attribute, value, product)
         if not success:
             raise ValidationError(attribute.error_message)
         return valid_value

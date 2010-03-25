@@ -268,3 +268,14 @@ def validation_decimal(value, product=None):
         return True, value
     except:
         return False, value
+
+def validate_attribute_value(attribute, value, obj):
+    """
+    Helper function for forms that wish to validation a value for an
+    AttributeOption.
+    """
+    function_name = attribute.validation.split('.')[-1]
+    import_name = '.'.join(attribute.validation.split('.')[:-1])
+    import_module = __import__(import_name, fromlist=[function_name])
+    validation_function = getattr(import_module, function_name)
+    return validation_function(value, obj)
