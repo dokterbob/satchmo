@@ -3,10 +3,9 @@
 from django.conf import settings
 from django.utils.translation import ugettext
 from satchmo_store.mail import send_store_mail
-import logging
 from satchmo_store.shop.models import Config
 
-
+import logging
 log = logging.getLogger('satchmo_store.accounts.mail')
 
 # TODO add html email template
