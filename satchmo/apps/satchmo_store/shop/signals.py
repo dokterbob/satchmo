@@ -233,6 +233,25 @@ satchmo_post_copy_item_to_order=django.dispatch.Signal()
 #satchmo_shipping_price_query.send(order, adjustment=shipadjust)
 satchmo_shipping_price_query = django.dispatch.Signal()
 
+#
+# Signals sent by email system
+#
+
+#: Sent by ``satchmo_store.mail.send_store_mail()`` before the message body is
+#: rendered.
+#:
+#: Takes the same arguments as :data:`sending_store_mail`.
+#:
+#: .. Note::
+#:   :ref:`send_mail_args <send_mail_args>` does not contain the ``'subject'``
+#:   entry.
+#:
+#: .. Note::
+#:   If the ``'message'`` entry is set in :ref:`send_mail_args <send_mail_args>`
+#:   by a listener, it will be used instead of the rendered result in
+#:   ``send_store_mail()``.
+rendering_store_mail = django.dispatch.Signal()
+
 #: Sent by ``satchmo_store.mail.send_store_mail()`` just before ``send_mail()``
 #: is invoked.
 #:
@@ -244,6 +263,8 @@ satchmo_shipping_price_query = django.dispatch.Signal()
 #:
 #: :param sender: Defaults to None, unless the sender argument to
 #:   ``send_store_mail()`` is specified; see below.
+#:
+#: .. _send_mail_args:
 #:
 #: :param send_mail_args: A dictionary containing the keyword arguments passed
 #:   to ``send_mail()``:

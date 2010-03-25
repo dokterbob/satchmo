@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
 from livesettings import config_value
-from satchmo_store.shop.signals import sending_store_mail
+from satchmo_store.shop.signals import rendering_store_mail, sending_store_mail
 
 from socket import error as SocketError
 
@@ -109,10 +109,6 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     c_dict.update(context)
     c = Context(c_dict)
 
-    # render text email, regardless of whether html email is used.
-    t = loader.get_template(template)
-    body = t.render(c)
-
     recipients = recipients_list or []
 
     if send_to_store:
@@ -121,11 +117,22 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     # match send_mail's signature
     send_mail_args = {
         'subject': subject,
-        'message': body,
         'from_email': shop_email,
         'recipient_list': recipients,
         'fail_silently': fail_silently,
     }
+
+    # let listeners modify context
+    rendering_store_mail.send(sender, send_mail_args=send_mail_args, context=c,
+                              **kwargs)
+
+    # render text email, regardless of whether html email is used.
+    t = loader.get_template(template)
+    body = t.render(c)
+
+    # listeners may have set this entry
+    if not 'message' in send_mail_args:
+        send_mail_args['message'] = body
 
     try:
         # We inform listeners before checking recipients list, as they may
