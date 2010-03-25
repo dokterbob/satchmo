@@ -8,12 +8,21 @@ from product.models import Category, CategoryTranslation, CategoryImage, Categor
                                    CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, \
                                    DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
-                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption
+                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption, \
+                                   CategoryAttribute
 from product.utils import validate_attribute_value
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.thumbnail.widgets import AdminImageWithThumbnailWidget
 from django.http import HttpResponseRedirect
 import re
+
+def clean_attribute_value(cleaned_data, obj):
+    value = cleaned_data['value']
+    attribute = cleaned_data['option']
+    success, valid_value = validate_attribute_value(attribute, value, obj)
+    if not success:
+        raise ValidationError(attribute.error_message)
+    return valid_value
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -78,13 +87,7 @@ class AttributeOptionAdmin(admin.ModelAdmin):
 class ProductAttributeInlineForm(models.ModelForm):
 
     def clean_value(self):
-        value = self.cleaned_data['value']
-        attribute = self.cleaned_data['option']
-        product = self.cleaned_data['product']
-        success, valid_value = validate_attribute_value(attribute, value, product)
-        if not success:
-            raise ValidationError(attribute.error_message)
-        return valid_value
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['product'])
 
 class ProductAttribute_Inline(admin.TabularInline):
     model = ProductAttribute
@@ -110,6 +113,16 @@ class ProductTranslation_Inline(admin.TabularInline):
 class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
     extra = 1
+
+class CategoryAttributeInlineForm(models.ModelForm):
+
+    def clean_value(self):
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['category'])
+
+class CategoryAttributeInline(admin.TabularInline):
+    model = CategoryAttribute
+    extra = 2
+    form = CategoryAttributeInlineForm
 
 class CategoryAdminForm(models.ModelForm):
 
@@ -141,6 +154,7 @@ class CategoryOptions(admin.ModelAdmin):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
+    inlines = (CategoryAttributeInline, )
 
     actions = ('mark_active', 'mark_inactive')
 
