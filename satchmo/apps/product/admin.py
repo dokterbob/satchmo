@@ -60,7 +60,7 @@ class Trial_Inline(admin.StackedInline):
     model = Trial
     extra = 2
 
-class ProductAttributeForm(models.ModelForm):
+class AttributeOptionForm(models.ModelForm):
 
     def clean_validation(self):
         validation = self.cleaned_data['validation']
@@ -71,8 +71,8 @@ class ProductAttributeForm(models.ModelForm):
         return validation
 
 
-class ProductAttributeAdmin(admin.ModelAdmin):
-    form = ProductAttributeForm
+class AttributeOptionAdmin(admin.ModelAdmin):
+    form = AttributeOptionForm
     prepopulated_fields = {"name": ("description",)}
 
 class ProductAttributeInlineForm(models.ModelForm):
@@ -274,6 +274,6 @@ admin.site.register(DownloadableProduct)
 admin.site.register(SubscriptionProduct, SubscriptionProductOptions)
 admin.site.register(ProductVariation, ProductVariationOptions)
 admin.site.register(TaxClass)
-admin.site.register(AttributeOption, ProductAttributeAdmin)
+admin.site.register(AttributeOption, AttributeOptionAdmin)
 #admin.site.register(ProductImage, ProductImageOptions)
 
