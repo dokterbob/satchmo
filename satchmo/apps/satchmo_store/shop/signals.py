@@ -1,8 +1,8 @@
 import django.dispatch
 
-"""
-Signals sent by Orders
-"""
+#
+# Signals sent by Orders
+#
 
 #: Sent when an order is about to be cancelled and asks listeners if they allow
 #: to do so.
@@ -47,9 +47,9 @@ order_success = django.dispatch.Signal()
 #satchmo_order_status_changed.send(self.order, oldstatus=oldstatus, newstatus=status, order=order)
 satchmo_order_status_changed=django.dispatch.Signal()
 
-"""
-Signals sent by the Cart system
-"""
+#
+# Signals sent by the Cart system
+#
 
 #: Sent by 'views.smart_add` to allow listeners to optionally change the
 #: responding function.
@@ -182,9 +182,9 @@ satchmo_cartitem_price_query=django.dispatch.Signal()
 #: .. Note:: *cart* is the same as *sender*.
 satchmo_cart_details_query=django.dispatch.Signal()
 
-"""
-Miscellaneous Signals
-"""
+#
+# Miscellaneous Signals
+#
 
 #: Sent when ``satchmo_store.shop.context_processors.settings()`` is invoked,
 #: before the context is returned. This signal can be used to modify the context

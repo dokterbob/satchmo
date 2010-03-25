@@ -158,7 +158,7 @@ Arguments sent with this signal:
     ``form``
         An instance of the form (whose type is defined by ``sender``) being intitialized.
 
-See `Ensuring Accepting of Terms during Checkout`_ for an example of how this signal can be used.
+See `Ensuring Acceptance of Terms during Checkout`_ for an example of how this signal can be used.
 
 .. function:: form_postsave
 
