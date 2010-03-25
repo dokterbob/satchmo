@@ -37,9 +37,46 @@ def send_store_mail_template_decorator(template_base):
         return newfunc
     return dec
 
+def send_html_email(sender, send_mail_args=None, context=None, template_html=None ,**kwargs):
+    send_html = config_value('SHOP', 'HTML_EMAIL')
+
+    if not send_html:
+        return
+
+    # perhaps send_store_mail() was not passed the *template_html* argument
+    if not template_html:
+        return
+
+    if settings.DEBUG:
+        log.info("Attempting to send html mail.")
+    try:
+        t = loader.get_template(template_html)
+        html_body = t.render(context)
+    except TemplateDoesNotExist:
+        log.warn('Unable to find html email template %s. Falling back to text only email.' % template_html)
+        return
+
+    # just like send_store_mail() does
+    if not send_mail_args.get('recipient_list'):
+        raise NoRecipientsException
+
+    # prepare kwargs for EmailMultiAlternatives()
+    fail_silently = send_mail_args.pop('fail_silently')
+    send_mail_args['body'] = send_mail_args.pop('message') # the plain text part
+    send_mail_args['to'] = send_mail_args.pop('recipient_list')
+
+    msg = EmailMultiAlternatives(**send_mail_args)
+    msg.attach_alternative(html_body, "text/html")
+
+    # don't have to handle any errors, as send_store_mail() does so for us.
+    msg.send(fail_silently=fail_silently)
+
+    # tell send_store_mail() to abort sending plain text mail
+    raise ShouldNotSendMail
+
 def send_store_mail(subject, context, template='', recipients_list=None,
                     format_subject=False, send_to_store=False,
-                    template_html='', fail_silently=False, sender=None, **kwargs):
+                    fail_silently=False, sender=None, **kwargs):
     """
     :param subject: A string.
 
@@ -52,10 +89,6 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     :param template: The path of the plain text template to use when rendering
       the message body.
 
-    :param template_html: The path of the HTML template to use when rendering
-      the message body; this will only be used if the config ``SHOP.HTML_EMAIL``
-      is true.
-
     :param `**kwargs`: Additional arguments that are passed to listeners of the
       signal :data:`satchmo_store.shop.signals.sending_store_mail`.
     """
@@ -64,7 +97,6 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     shop_config = Config.objects.get_current()
     shop_email = shop_config.store_email
     shop_name = shop_config.store_name
-    send_html = config_value('SHOP', 'HTML_EMAIL')
     if not shop_email:
         log.warn('No email address configured for the shop.  Using admin settings.')
         shop_email = settings.ADMINS[0][1]
@@ -80,16 +112,6 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     # render text email, regardless of whether html email is used.
     t = loader.get_template(template)
     body = t.render(c)
-
-    if send_html:
-        if settings.DEBUG:
-            log.info("Attempting to send html mail.")
-        try:
-            t = loader.get_template(template_html)
-            html_body = t.render(c)
-        except TemplateDoesNotExist:
-            log.warn('Unable to find html email template %s. Falling back to text only email.' % template_html)
-            send_html = False
 
     recipients = recipients_list or []
 
@@ -119,15 +141,7 @@ def send_store_mail(subject, context, template='', recipients_list=None,
         if not recipients:
             raise NoRecipientsException
 
-    try:
-        if send_html:
-            fail_silently = send_mail_args.pop('fail_silently', fail_silently)
-            # email contains both text and html
-            msg = EmailMultiAlternatives(**send_mail_args)
-            msg.attach_alternative(html_body, "text/html")
-            msg.send(fail_silently=fail_silently)
-        else:
-            send_mail(**send_mail_args)
+        send_mail(**send_mail_args)
     except SocketError, e:
         if settings.DEBUG:
             log.error('Error sending mail: %s' % e)
