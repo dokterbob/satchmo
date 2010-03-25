@@ -1,8 +1,6 @@
 {% load i18n satchmo_currency satchmo_discounts %}
 {% load normalize_decimal %}
 
-{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}
-
 {% with order.contact.email as email %}{% with order.contact.full_name as customer %}{% blocktrans %}Order placed on {{ shop_name }} by {{ customer }}<{{ email }}>.{% endblocktrans %}{% endwith %}{% endwith %}
 
 {% trans "Items Ordered" %}
