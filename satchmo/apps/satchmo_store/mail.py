@@ -2,7 +2,6 @@ from django.conf import settings
 from django.template import loader, Context, TemplateDoesNotExist
 from livesettings import config_value
 
-import os.path
 from socket import error as SocketError
 
 import logging
