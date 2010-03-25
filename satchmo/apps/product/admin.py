@@ -8,11 +8,21 @@ from product.models import Category, CategoryTranslation, CategoryImage, Categor
                                    CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, \
                                    DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
-                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption
+                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption, \
+                                   CategoryAttribute
+from product.utils import validate_attribute_value
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.thumbnail.widgets import AdminImageWithThumbnailWidget
 from django.http import HttpResponseRedirect
 import re
+
+def clean_attribute_value(cleaned_data, obj):
+    value = cleaned_data['value']
+    attribute = cleaned_data['option']
+    success, valid_value = validate_attribute_value(attribute, value, obj)
+    if not success:
+        raise ValidationError(attribute.error_message)
+    return valid_value
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -59,7 +69,7 @@ class Trial_Inline(admin.StackedInline):
     model = Trial
     extra = 2
 
-class ProductAttributeForm(models.ModelForm):
+class AttributeOptionForm(models.ModelForm):
 
     def clean_validation(self):
         validation = self.cleaned_data['validation']
@@ -70,25 +80,14 @@ class ProductAttributeForm(models.ModelForm):
         return validation
 
 
-class ProductAttributeAdmin(admin.ModelAdmin):
-    form = ProductAttributeForm
+class AttributeOptionAdmin(admin.ModelAdmin):
+    form = AttributeOptionForm
     prepopulated_fields = {"name": ("description",)}
-
 
 class ProductAttributeInlineForm(models.ModelForm):
 
     def clean_value(self):
-        value = self.cleaned_data['value']
-        attribute = self.cleaned_data['option']
-        product = self.cleaned_data['product']
-        function_name = attribute.validation.split('.')[-1]
-        import_name = '.'.join(attribute.validation.split('.')[:-1])
-        import_module = __import__(import_name, fromlist=[function_name])
-        validation_function = getattr(import_module, function_name)
-        success, valid_value = validation_function(value, product)
-        if not success:
-            raise ValidationError(attribute.error_message)
-        return valid_value
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['product'])
 
 class ProductAttribute_Inline(admin.TabularInline):
     model = ProductAttribute
@@ -114,6 +113,16 @@ class ProductTranslation_Inline(admin.TabularInline):
 class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
     extra = 1
+
+class CategoryAttributeInlineForm(models.ModelForm):
+
+    def clean_value(self):
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['category'])
+
+class CategoryAttributeInline(admin.TabularInline):
+    model = CategoryAttribute
+    extra = 2
+    form = CategoryAttributeInlineForm
 
 class CategoryAdminForm(models.ModelForm):
 
@@ -145,6 +154,7 @@ class CategoryOptions(admin.ModelAdmin):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
+    inlines = (CategoryAttributeInline, )
 
     actions = ('mark_active', 'mark_inactive')
 
@@ -278,6 +288,6 @@ admin.site.register(DownloadableProduct)
 admin.site.register(SubscriptionProduct, SubscriptionProductOptions)
 admin.site.register(ProductVariation, ProductVariationOptions)
 admin.site.register(TaxClass)
-admin.site.register(AttributeOption, ProductAttributeAdmin)
+admin.site.register(AttributeOption, AttributeOptionAdmin)
 #admin.site.register(ProductImage, ProductImageOptions)
 
