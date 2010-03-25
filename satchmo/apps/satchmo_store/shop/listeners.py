@@ -6,6 +6,7 @@ from product import signals as product_signals
 from product.models import Product
 from product.listeners import default_product_search_listener, discount_used_listener
 from satchmo_store.contact import signals as contact_signals
+from satchmo_store.mail import send_html_email
 from satchmo_store.shop import signals
 from satchmo_store.shop.exceptions import OutOfStockError
 from satchmo_store.shop.models import DownloadLink, Order
@@ -88,5 +89,7 @@ def start_default_listening():
     signals.satchmo_order_status_changed.connect(capture_on_ship_listener)
     signals.satchmo_order_status_changed.connect(notification.notify_on_ship_listener)
     signals.satchmo_cart_add_verify.connect(veto_out_of_stock)
+
+    signals.sending_store_mail.connect(send_html_email)
 
     log.debug('Added default shop listeners')
