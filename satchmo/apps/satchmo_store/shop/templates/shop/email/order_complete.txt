@@ -1,6 +1,6 @@
 {% extends "shop/email/_order_detail.txt" %}{% load i18n satchmo_currency %}
 
-{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}
+{% block salutation %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}{% endblock %}
 
 {% blocktrans %}Thank you for ordering with {{ shop_name }}.{% endblocktrans %}
 
@@ -18,6 +18,6 @@
 {% endfor %}
 {% endif %}
 
-{% trans "Regards" %},
+{% block valediction %}{% trans "Regards" %},
 
-{% trans "Store Management" %}
+{% trans "Store Management" %}{% endblock%}
