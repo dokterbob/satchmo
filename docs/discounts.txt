@@ -64,6 +64,13 @@ A discount code is easy to setup in Satchmo using the following fields:
 
   :Valid Products: A list of all the products this discount is valid for.
 
+  :Valid Categories:
+
+    .. versionadded:: 0.9.1
+
+    A list of categories this discount is valid for; the discount will be valid
+    for products in these categories, as well as in their child categories.
+
 .. _auto-discounts:
 
 Site-wide Sales via Auto Discounts
