@@ -71,6 +71,8 @@ Site-wide Sales via Auto Discounts
 
 Automatic discounts are how you do side-wide sales.
 
+.. highlight:: html
+
 .. warning::
   Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
 
@@ -95,5 +97,6 @@ Automatic discounts are how you do side-wide sales.
 
 The key parts of the above markup are the ``{{ product|discount_saved:"sale"|currency }}`` and the ``{{ product|discount_price:"sale"|currency }}`` filtered variables. The former returns the amount saved by the discount while the latter returns the discounted price, all in the correct locale currency.
 
+.. highlight:: python
 
 .. _`Satchmo Templates`: templates.html
