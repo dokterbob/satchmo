@@ -1,8 +1,8 @@
 import django.dispatch
 
-"""
-Signals sent by Orders
-"""
+#
+# Signals sent by Orders
+#
 
 #: Sent when an order is about to be cancelled and asks listeners if they allow
 #: to do so.
@@ -47,9 +47,9 @@ order_success = django.dispatch.Signal()
 #satchmo_order_status_changed.send(self.order, oldstatus=oldstatus, newstatus=status, order=order)
 satchmo_order_status_changed=django.dispatch.Signal()
 
-"""
-Signals sent by the Cart system
-"""
+#
+# Signals sent by the Cart system
+#
 
 #: Sent by 'views.smart_add` to allow listeners to optionally change the
 #: responding function.
@@ -182,9 +182,9 @@ satchmo_cartitem_price_query=django.dispatch.Signal()
 #: .. Note:: *cart* is the same as *sender*.
 satchmo_cart_details_query=django.dispatch.Signal()
 
-"""
-Miscellaneous Signals
-"""
+#
+# Miscellaneous Signals
+#
 
 #: Sent when ``satchmo_store.shop.context_processors.settings()`` is invoked,
 #: before the context is returned. This signal can be used to modify the context
@@ -232,3 +232,88 @@ satchmo_post_copy_item_to_order=django.dispatch.Signal()
 #: Sent by the order during the calculation of the total.
 #satchmo_shipping_price_query.send(order, adjustment=shipadjust)
 satchmo_shipping_price_query = django.dispatch.Signal()
+
+#
+# Signals sent by email system
+#
+
+#: Sent by ``satchmo_store.mail.send_store_mail()`` before the message body is
+#: rendered.
+#:
+#: Takes the same arguments as :data:`sending_store_mail`.
+#:
+#: .. Note::
+#:   :ref:`send_mail_args <send_mail_args>` does not contain the ``'subject'``
+#:   entry.
+#:
+#: .. Note::
+#:   If the ``'message'`` entry is set in :ref:`send_mail_args <send_mail_args>`
+#:   by a listener, it will be used instead of the rendered result in
+#:   ``send_store_mail()``.
+rendering_store_mail = django.dispatch.Signal()
+
+#: Sent by ``satchmo_store.mail.send_store_mail()`` just before ``send_mail()``
+#: is invoked.
+#:
+#: Listeners may raise ``satchmo_store.mail.ShouldNotSendMail``.
+#:
+#: If they choose to invoke ``django.mail.EmailMessage.send()``, any errors
+#: raised will be handled by ``send_store_mail()``; they should consequently
+#: raise ``ShouldNotSendMail`` to avoid re-sending the email.
+#:
+#: :param sender: Defaults to None, unless the sender argument to
+#:   ``send_store_mail()`` is specified; see below.
+#:
+#: .. _send_mail_args:
+#:
+#: :param send_mail_args: A dictionary containing the keyword arguments passed
+#:   to ``send_mail()``:
+#:
+#:   - subject
+#:   - message
+#:   - from_email
+#:   - recipient_list
+#:   - fail_silently
+#:
+#: :param context: The context used to render the message body; by default, it
+#:   contains the 'shop_name' key, but may contain other keys, depending on the
+#:   `context` argument to ``send_store_mail()``.
+#:
+#: :param `**kwargs`: Additional keyword arguments received by
+#:   ``send_store_mail()``.
+#:
+#: .. Note::
+#:
+#:    If the *context* argument to ``send_store_mail()`` contains the entry
+#:    `send_mail_args`, it will not be available in the listener's *context*
+#:    dictionary.
+#:
+#: Example::
+#:
+#:   from satchmo_store.shop.signals import order_notice_sender
+#:
+#:   def modify_subject(sender, send_mail_args={}, context={}, **kwargs):
+#:     if not ('shop_name' in context and 'order' in context):
+#:       return
+#:
+#:     send_mail_args['subject'] = '[%s] Woohoo! You got a *new* order! (ID: #%d)' % \
+#:         (context['shop_name'], context['order'].id)
+#:
+#:   sending_store_mail.connect(modify_subject, sender=order_notice_sender)
+#:
+sending_store_mail = django.dispatch.Signal()
+
+#
+# Email senders.
+#
+
+# satchmo_store.notification
+order_confirmation_sender = object()
+order_notice_sender = object()
+ship_notice_sender = object()
+
+# satchmo_store.contact
+contact_sender = object()
+
+# satchmo_store.registration
+registration_sender = object()

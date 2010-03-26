@@ -127,7 +127,6 @@ class Category(models.Model):
     slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
         related_name='child')
-        #,validator_list=['categoryvalidator'])
     meta = models.TextField(_("Meta Description"), blank=True, null=True,
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
@@ -446,11 +445,9 @@ class Discount(models.Model):
     active = models.BooleanField(_("Active"))
     amount = CurrencyField(_("Discount Amount"), decimal_places=2,
         max_digits=8, blank=True, null=True,
-        #validator_list=[amount_validator],
         help_text=_("Enter absolute discount amount OR percentage."))
     percentage = models.DecimalField(_("Discount Percentage"), decimal_places=2,
         max_digits=5, blank=True, null=True,
-        #validator_list=[percentage_validator],
         help_text=_("Enter absolute discount amount OR percentage.  Percents are given in whole numbers, and can be up to 100%."))
     automatic = models.NullBooleanField(_("Is this an automatic discount?"), default=False, blank=True,
         null=True, help_text=_("Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."))
@@ -847,16 +844,12 @@ class Product(models.Model):
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
     weight = models.DecimalField(_("Weight"), max_digits=8, decimal_places=2, null=True, blank=True)
     weight_units = models.CharField(_("Weight units"), max_length=3, null=True, blank=True)
-    #, validator_list=[weight_validator])
     length = models.DecimalField(_("Length"), max_digits=6, decimal_places=2, null=True, blank=True)
     length_units = models.CharField(_("Length units"), max_length=3, null=True, blank=True)
-    #, validator_list=[length_validator])
     width = models.DecimalField(_("Width"), max_digits=6, decimal_places=2, null=True, blank=True)
     width_units = models.CharField(_("Width units"), max_length=3, null=True, blank=True)
-    #, validator_list=[width_validator])
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
     height_units = models.CharField(_("Height units"), max_length=3, null=True, blank=True)
-    #, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.DecimalField(_("Total sold"),  max_digits=18, decimal_places=6, default='0')
@@ -1775,9 +1768,7 @@ class ProductVariation(models.Model):
     """
     product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
     options = models.ManyToManyField(Option, verbose_name=_('Options'))
-    parent = models.ForeignKey(ConfigurableProduct,
-    #, validator_list=[variant_validator]
-    verbose_name=_('Parent'))
+    parent = models.ForeignKey(ConfigurableProduct, verbose_name=_('Parent'))
 
     objects = ProductVariationManager()
 
