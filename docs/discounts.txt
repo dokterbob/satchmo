@@ -72,7 +72,7 @@ Site-wide Sales via Auto Discounts
 Automatic discounts are how you do side-wide sales.
 
 .. warning::
-	Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
+  Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
 
 1. In your site's admin interface, create a new discount.
 
@@ -82,16 +82,16 @@ Automatic discounts are how you do side-wide sales.
 
 4. You can now add some markup to your template, similar to below::
 
-	{% if sale %}
-	<div>
-		<div class="saleprices">
-			<h3> Regular price: <span class="saleprice" id="price">{{product.unit_price|currency}}</span></h3>
-	    	<h3> {{ sale.percentage_text }} off: <span class="saleprice" id="sale_saved">{{ product|discount_saved:"sale"|currency }}</span></h3>
-	    	<h3> Your price: <span class="saleprice" id="sale_price">{{ product|discount_price:"sale"|currency }}</span></h3>
-	{% else %}
-		<h3 id="price">{{product.unit_price|currency}}</h3>
-	</div>
-	{% endif %}
+    {% if sale %}
+    <div>
+      <div class="saleprices">
+        <h3> Regular price: <span class="saleprice" id="price">{{product.unit_price|currency}}</span></h3>
+        <h3> {{ sale.percentage_text }} off: <span class="saleprice" id="sale_saved">{{ product|discount_saved:"sale"|currency }}</span></h3>
+        <h3> Your price: <span class="saleprice" id="sale_price">{{ product|discount_price:"sale"|currency }}</span></h3>
+    {% else %}
+      <h3 id="price">{{product.unit_price|currency}}</h3>
+    </div>
+    {% endif %}
 
 The key parts of the above markup are the ``{{ product|discount_saved:"sale"|currency }}`` and the ``{{ product|discount_price:"sale"|currency }}`` filtered variables. The former returns the amount saved by the discount while the latter returns the discounted price, all in the correct locale currency.
 
