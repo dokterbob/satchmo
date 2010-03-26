@@ -457,10 +457,8 @@ class Discount(models.Model):
         default='NONE', blank=True, null=True, max_length=10)
     allValid = models.BooleanField(_("All products?"), default=False,
         help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
-    validProducts = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
-        blank=True, null=True)
     valid_products = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
-        related_name="discounts_temp", blank=True, null=True)
+        blank=True, null=True)
 
     objects = DiscountManager()
 
