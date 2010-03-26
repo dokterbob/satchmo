@@ -80,7 +80,7 @@ Automatic discounts are how you do side-wide sales.
 
 2. Make an "automatic" discount, so that it is available to the automatic discount template tags. Do not enter a new price in the admin for the products.
 
-3. In the template where you want to show the auto discount, load the ``{% satchmo_discounts %}`` (Visit `Satchmo Templates`_ documentation for details on Satchmo filters) filter library.
+3. In the template where you want to show the auto discount, load the ``{% satchmo_discounts %}`` (Visit :doc:`templates` documentation for details on Satchmo filters) filter library.
 
 4. You can now add some markup to your template, similar to below::
 
@@ -98,5 +98,3 @@ Automatic discounts are how you do side-wide sales.
 The key parts of the above markup are the ``{{ product|discount_saved:"sale"|currency }}`` and the ``{{ product|discount_price:"sale"|currency }}`` filtered variables. The former returns the amount saved by the discount while the latter returns the discounted price, all in the correct locale currency.
 
 .. highlight:: python
-
-.. _`Satchmo Templates`: templates.html
