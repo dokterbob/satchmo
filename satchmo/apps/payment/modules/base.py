@@ -1,13 +1,10 @@
 from datetime import datetime
 from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_get_group
-from satchmo_store.shop.models import Order, OrderAuthorization, OrderPayment, OrderPaymentFailure, OrderPendingPayment, OrderStatus
+from satchmo_store.shop.models import OrderAuthorization, OrderPayment, OrderPaymentFailure, OrderPendingPayment, OrderStatus
 import logging
 
 log = logging.getLogger('payment.modules.base')
-
-NOTSET = object()
 
 class BasePaymentProcessor(object):
 
@@ -21,13 +18,13 @@ class BasePaymentProcessor(object):
     def allowed(self, user, amount):
         """Allows different payment processors to be allowed for certain situations."""
         return True
-        
-    def authorize_and_release(self, order=None, amount=NOTSET, testing=False):
+
+    def authorize_and_release(self, order=None, amount=None, testing=False):
         if not order:
             order = self.order
         else:
             self.order = order
-        if amount == NOTSET:
+        if amount is None:
             amount = Decimal('0.01')
         self.log_extra('authorize_and_release for order #%i, %s', order.id, amount)
         result = self.authorize_payment(testing=testing, order=order, amount=amount)
@@ -35,14 +32,14 @@ class BasePaymentProcessor(object):
             auths = order.authorizations.filter(complete=False).order_by('-id')
             if auths.count() > 0:
                 auth = auths[0]
-            self.log_extra('releasing successful authorize_and_release for order #%i [%s], %s.  AUTH', 
+            self.log_extra('releasing successful authorize_and_release for order #%i [%s], %s.  AUTH',
                 order.id,  amount, auth.transaction_id)
             return self.release_authorized_payment(order=order, auth=auth, testing=testing)
         else:
             self.log_extra('early authorization was not successful for: %s', order)
             return result
 
-    def authorize_payment(self, testing=False, order=None, amount=NOTSET):
+    def authorize_payment(self, testing=False, order=None, amount=None):
         """Authorize a single payment, must be overridden to function"""
         self.log.warn('Module does not implement authorize_payment: %s', self.key)
         return ProcessorResult(False, _("Not Implemented"))
@@ -60,7 +57,7 @@ class BasePaymentProcessor(object):
         return False
 
     def capture_authorized_payments(self, order=None):
-        """Capture all outstanding payments for this processor.  This is usually called by a 
+        """Capture all outstanding payments for this processor.  This is usually called by a
         listener which watches for a 'shipped' status change on the Order."""
         results = []
         if self.can_authorize():
@@ -71,20 +68,20 @@ class BasePaymentProcessor(object):
             self.prepare_data(order)
             for auth in auths:
                 results.append(self.capture_authorized_payment(auth))
-                
+
         return results
 
-    def capture_authorized_payment(self, authorization, testing=False, order=None, amount=NOTSET):
+    def capture_authorized_payment(self, authorization, testing=False, order=None, amount=None):
         """Capture a single payment, must be overridden to function"""
         self.log.warn('Module does not implement capture_payment: %s', self.key)
         return ProcessorResult(False, _("Not Implemented"))
 
-    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+    def capture_payment(self, testing=False, order=None, amount=None):
         """Capture payment without an authorization step.  Override this one."""
         self.log.warn('Module does not implement authorize_and_capture: %s', self.key)
         return ProcessorResult(False, _("Not Implemented"))
-        
-    def create_pending_payment(self, order=None, amount=NOTSET):
+
+    def create_pending_payment(self, order=None, amount=None):
         if not order:
             order = self.order
         recorder = PaymentRecorder(order, self.settings)
@@ -128,8 +125,8 @@ class BasePaymentProcessor(object):
         else:
             self.log_extra('Capturing payment on order #%i', self.order.id)
             return self.capture_payment(testing=testing)
-            
-    def record_authorization(self, amount=NOTSET, transaction_id="", reason_code="", order=None):
+
+    def record_authorization(self, amount=None, transaction_id="", reason_code="", order=None):
         """
         Convert a pending payment into a real authorization.
         """
@@ -141,7 +138,7 @@ class BasePaymentProcessor(object):
         recorder.reason_code = reason_code
         return recorder.authorize_payment(amount=amount)
 
-    def record_failure(self, amount=NOTSET, transaction_id="", reason_code="", 
+    def record_failure(self, amount=None, transaction_id="", reason_code="",
         authorization=None, order=None, details=""):
         """
         Add an OrderPaymentFailure record
@@ -155,7 +152,7 @@ class BasePaymentProcessor(object):
         recorder.reason_code = reason_code
         recorder.record_failure(amount, details=details, authorization=authorization)
 
-    def record_payment(self, amount=NOTSET, transaction_id="", reason_code="", authorization=None, order=None):
+    def record_payment(self, amount=None, transaction_id="", reason_code="", authorization=None, order=None):
         """
         Convert a pending payment or an authorization.
         """
@@ -182,33 +179,33 @@ class BasePaymentProcessor(object):
 
 class HeadlessPaymentProcessor(BasePaymentProcessor):
     """A payment processor which doesn't actually do any processing directly.
-    
+
     This is used for payment providers such as PayPal and Google, which are entirely
     view/form based.
     """
-    
+
     def can_process(self):
         return False
 
 class PaymentRecorder(object):
     """Manages proper recording of pending payments, payments, and authorizations."""
-    
+
     def __init__(self, order, config):
         self.order = order
         self.key = unicode(config.KEY.value)
         self.config = config
-        self._amount = NOTSET
+        self._amount = None
         self.transaction_id = ""
         self.reason_code = ""
         self.orderpayment = None
         self.pending = None
-        
+
     def _set_amount(self, amount):
-        if amount != NOTSET:
+        if not amount is None:
             self._amount = amount
 
     def _get_amount(self):
-        if self._amount == NOTSET:
+        if self._amount is None:
             return self.order.balance
         else:
             return self._amount
@@ -220,31 +217,31 @@ class PaymentRecorder(object):
         if self.pendingpayments.count() > 0:
             self.pending = self.pendingpayments[0]
             log.debug("Found pending payment: %s", self.pending)
-            
-    def authorize_payment(self, amount=NOTSET):
+
+    def authorize_payment(self, amount=None):
         """Make an authorization, using the existing pending payment if found"""
         self.amount = amount
         log.debug("Recording %s authorization of %s for %s", self.key, self.amount, self.order)
-        
+
         self._get_pending()
 
         if self.pending:
             self.orderpayment = OrderAuthorization()
             self.orderpayment.capture = self.pending.capture
-            
-            if amount == NOTSET:
+
+            if amount is None:
                 self.set_amount_from_pending()
-            
+
         else:
             log.debug("No pending %s authorizations for %s", self.key, self.order)
             self.orderpayment = OrderAuthorization(
-                order=self.order, 
+                order=self.order,
                 payment=self.key)
 
         self.cleanup()
         return self.orderpayment
 
-    def capture_authorized_payment(self, authorization, amount=NOTSET):
+    def capture_authorized_payment(self, authorization, amount=None):
         """Convert an authorization into a payment."""
         self.amount = amount
         log.debug("Recording %s capture of authorization #%i for %s", self.key, authorization.id, self.order)
@@ -253,43 +250,43 @@ class PaymentRecorder(object):
         self.cleanup()
         return self.orderpayment
 
-    def capture_payment(self, amount=NOTSET):
+    def capture_payment(self, amount=None):
         """Make a direct payment without a prior authorization, using the existing pending payment if found."""
         self.amount = amount
 
         self._get_pending()
-        
+
         if self.pending:
             self.orderpayment = self.pending.capture
             log.debug("Using linked payment: %s", self.orderpayment)
 
-            if amount == NOTSET:
+            if amount is None:
                 self.set_amount_from_pending()
 
         else:
             log.debug("No pending %s payments for %s", self.key, self.order)
-        
+
             self.orderpayment = OrderPayment(
-                order=self.order, 
+                order=self.order,
                 payment=self.key)
-                
+
         log.debug("Recorded %s payment of %s for %s", self.key, self.amount, self.order)
         self.cleanup()
         return self.orderpayment
-        
-    def record_failure(self, amount=NOTSET, details="", authorization=None):
+
+    def record_failure(self, amount=None, details="", authorization=None):
         log.info('Recording a payment failure: order #%i, code %s\nmessage=%s', self.order.id, self.reason_code, details)
         self.amount = amount
-            
-        failure = OrderPaymentFailure.objects.create(order=self.order, 
-            details=details, 
+
+        failure = OrderPaymentFailure.objects.create(order=self.order,
+            details=details,
             transaction_id=self.transaction_id,
             amount = self.amount,
             payment = self.key,
             reason_code = self.reason_code
         )
         return failure
-    
+
     def cleanup(self):
         if self.pending:
             pending = self.pending
@@ -326,13 +323,13 @@ class PaymentRecorder(object):
                 # order_success listeners or product methods could have modified the status. reload it.
                 if _latest_status(order) == '':
                     order.add_status('New')
-                
-    def create_pending(self, amount=NOTSET):
-        """Create a placeholder payment entry for the order.  
+
+    def create_pending(self, amount=None):
+        """Create a placeholder payment entry for the order.
         This is done by step 2 of the payment process."""
-        if amount == NOTSET:
+        if amount is None:
             amount = Decimal("0.00")
-            
+
         self.amount = amount
 
         self._get_pending()
@@ -344,7 +341,7 @@ class PaymentRecorder(object):
                 if pending.capture.transaction_id=='LINKED':
                     pending.capture.delete()
                 pending.delete()
-        
+
         log.debug("Creating pending %s payment of %s for %s", self.key, amount, self.order)
 
         self.pending = OrderPendingPayment.objects.create(order=self.order, amount=amount, payment=self.key)
@@ -354,11 +351,11 @@ class PaymentRecorder(object):
         """Try to figure out how much to charge. If it is set on the "pending" charge use that
         otherwise use the order balance."""
         amount = self.pending.amount
-                
+
         # otherwise use the order balance.
         if amount == Decimal('0.00'):
             amount = self.order.balance
-                    
+
         self.amount = amount
 
 class ProcessorResult(object):

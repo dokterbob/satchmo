@@ -7,20 +7,15 @@ from django.template.loader import select_template
 from django.utils.translation import ugettext as _
 from l10n.utils import moneyfmt
 from livesettings import config_value
-from product import signals
 from product.models import Category, Product, ConfigurableProduct, sorted_tuple
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
 from satchmo_utils.json import json_encode
 from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
-import datetime
 import logging
-import random
 
 log = logging.getLogger('product.views')
-
-NOTSET = object()
 
 # ---- Helpers ----
 
@@ -33,7 +28,7 @@ def find_product_template(product, producttypes=None):
     templates.append('product/product.html')
     log.debug("finding product template: %s", templates)
     return select_template(templates)
-    
+
 def optionids_from_post(configurableproduct, POST):
     """Reads through the POST dictionary and tries to match keys to possible `OptionGroup` ids
     from the passed `ConfigurableProduct`"""
@@ -46,7 +41,7 @@ def optionids_from_post(configurableproduct, POST):
 # ---- Views ----
 def category_index(request, template="product/category_index.html", root_only=True):
     """Display all categories.
-    
+
     Parameters:
     - root_only: If true, then only show root categories.
     """
@@ -61,7 +56,7 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
 
     Parameters:
      - slug: slug of category
-     - parent_slugs: ignored    
+     - parent_slugs: ignored
     """
     try:
         category =  Category.objects.get_by_site(slug=slug)
@@ -74,7 +69,7 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
     child_categories = category.get_all_children()
 
     ctx = {
-        'category': category, 
+        'category': category,
         'child_categories': child_categories,
         'sale' : sale,
         'products' : products,
@@ -83,16 +78,16 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
     return render_to_response(template, context_instance=RequestContext(request, ctx))
 
 
-def display_featured(num_to_display=NOTSET, random_display=NOTSET):
+def display_featured(num_to_display=None, random_display=None):
     """
     Used by the index generic view to choose how the featured products are displayed.
     Items can be displayed randomly or all in order
     """
-    if num_to_display == NOTSET:
+    if num_to_display is None:
         num_to_display = config_value('PRODUCT','NUM_DISPLAY')
-    if random_display == NOTSET:
+    if random_display is None:
         random_display = config_value('PRODUCT','RANDOM_FEATURED')
-        
+
     q = Product.objects.featured_by_site()
     if not random_display:
         return q[:num_to_display]
@@ -111,10 +106,10 @@ def get_configurable_product_options(request, id):
     return http.HttpResponse(options, mimetype="text/html")
 
 
-def get_product(request, product_slug=None, selected_options=(), 
-    default_view_tax=NOTSET):
+def get_product(request, product_slug=None, selected_options=(),
+    default_view_tax=None):
     """Basic product view"""
-    
+
     errors = request.session.get('ERRORS', None)
     if errors is not None:
         del(request.session['ERRORS'])
@@ -123,14 +118,14 @@ def get_product(request, product_slug=None, selected_options=(),
     except Product.DoesNotExist:
         return bad_or_missing(request, _('The product you have requested does not exist.'))
 
-    if default_view_tax == NOTSET:
+    if default_view_tax is None:
         default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
 
     subtype_names = product.get_subtypes()
-    
+
     # Save product id for xheaders, in case we display a ConfigurableProduct
     product_id = product.id
-    
+
     # Clone product object in order to have current product variations in context (extra_context)
     current_product = product
 
@@ -141,7 +136,7 @@ def get_product(request, product_slug=None, selected_options=(),
         subtype_names = product.get_subtypes()
 
     best_discount = find_best_auto_discount(product)
-    
+
     extra_context = {
         'product': product,
         'current_product' : current_product,
@@ -157,7 +152,7 @@ def get_product(request, product_slug=None, selected_options=(),
 
     template = find_product_template(product, producttypes=subtype_names)
     context = RequestContext(request, extra_context)
-    
+
     response = http.HttpResponse(template.render(context))
     populate_xheaders(request, response, Product, product_id)
     return response

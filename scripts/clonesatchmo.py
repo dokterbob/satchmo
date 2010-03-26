@@ -61,14 +61,20 @@ def install_pil():
     os.system('pip install %s' % pil_requirements)
     
 def create_satchmo_site(site_name, skeleton_dir):
+    """
+    If we are passed a skeleton_dir, use it
+    If we aren't we assume the script is being run from the source tree so
+    we try to find it.
+    If this doesn't work, let the user know they need to specify it manually
+    """
     if skeleton_dir:
         src_dir = os.path.abspath(skeleton_dir)
     else:
-        try:
-            import satchmo_skeleton
-            src_dir = os.path.abspath(satchmo_skeleton.__path__[0])
-        except:
-            return(False, "Can not find skeleton directory use, --skel option to specify.")
+        clone_dir = os.path.dirname(__file__)
+        src_dir = os.path.abspath(os.path.join(clone_dir,'../satchmo/projects/skeleton'))
+        result,msg = check_skeleton_dir(src_dir)
+        if not result:
+            return (False, msg)
     dest_dir = os.path.join('./',site_name)
     shutil.copytree(src_dir, dest_dir)
     return (True, "")

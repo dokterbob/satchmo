@@ -3,7 +3,6 @@ from django.db.models.fields.files import ImageField
 from livesettings import config_value, SettingNotSet
 from satchmo_utils.thumbnail.utils import remove_model_thumbnails, rename_by_field
 from satchmo_utils import normalize_dir
-import config
 import logging
 import os
 
@@ -30,9 +29,6 @@ def upload_dir(instance, filename):
     updir = normalize_dir(raw)
     return os.path.join(updir, filename)
 
-
-NOTSET = None
-
 class ImageWithThumbnailField(ImageField):
     """ ImageField with thumbnail support
 
@@ -43,7 +39,7 @@ class ImageWithThumbnailField(ImageField):
 
     def __init__(self, verbose_name=None, name=None,
                  width_field=None, height_field=None,
-                 auto_rename=NOTSET, name_field=None,
+                 auto_rename=None, name_field=None,
                  upload_to=upload_dir, **kwargs):
 
         self.auto_rename = auto_rename
@@ -61,7 +57,7 @@ class ImageWithThumbnailField(ImageField):
     def _save_rename(self, instance, **kwargs):
         if hasattr(self, '_renaming') and self._renaming:
             return
-        if self.auto_rename == NOTSET:
+        if self.auto_rename is None:
             try:
                 self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
             except SettingNotSet:

@@ -2,14 +2,14 @@
 
 To use this module, enable it in your shop configuration, usually at http:yourshop/settings/
 
-To override the connection urls specified below in `PROTX_DEFAULT_URLS, add a dictionary in 
-your settings.py file called "PROTX_URLS", mapping the keys below to the urls you need for 
+To override the connection urls specified below in `PROTX_DEFAULT_URLS, add a dictionary in
+your settings.py file called "PROTX_URLS", mapping the keys below to the urls you need for
 your store.  You only need to override the specific urls that have changed, the processor
 will fall back to the defaults for any not specified in your dictionary.
 """
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from payment.modules.base import BasePaymentProcessor, ProcessorResult, NOTSET
+from payment.modules.base import BasePaymentProcessor, ProcessorResult
 from satchmo_utils.numbers import trunc_decimal
 from django.utils.http import urlencode
 import forms
@@ -31,7 +31,7 @@ FORM = forms.ProtxPayShipForm
 class PaymentProcessor(BasePaymentProcessor):
     packet = {}
     response = {}
-    
+
     def __init__(self, settings):
         super(PaymentProcessor, self).__init__('Protx', settings)
 
@@ -43,7 +43,7 @@ class PaymentProcessor(BasePaymentProcessor):
             if not vendor:
                 self.log.warn("You are trying to use the Prot/X VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
                 vendor = settings.VENDOR.value
-        
+
         self.packet = {
             'VPSProtocol': PROTOCOL,
             'TxType': settings.CAPTURE.value,
@@ -69,20 +69,20 @@ class PaymentProcessor(BasePaymentProcessor):
     def _connection(self):
         return self._url('CONNECTION')
 
-    connection = property(fget=_connection)        
-        
+    connection = property(fget=_connection)
+
     def _callback(self):
         return self._url('CALLBACK')
 
     callback = property(fget=_callback)
-        
+
     def prepare_post(self, data, amount):
-        
+
         invoice = "%s" % data.id
         failct = data.paymentfailures.count()
         if failct > 0:
             invoice = "%s_%i" % (invoice, failct)
-        
+
         try:
             cc = data.credit_card
             balance = trunc_decimal(data.balance, 2)
@@ -106,7 +106,7 @@ class PaymentProcessor(BasePaymentProcessor):
             self.log.error('preparing data, got error: %s\nData: %s', e, data)
             self.valid = False
             return
-            
+
         # handle pesky unicode chars in names
         for key, value in self.packet.items():
             try:
@@ -114,11 +114,11 @@ class PaymentProcessor(BasePaymentProcessor):
                 self.packet[key] = value
             except AttributeError:
                 pass
-        
+
         self.postString = urlencode(self.packet)
         self.url = self.connection
         self.valid = True
-    
+
     def prepare_data3d(self, md, pares):
         self.packet = {}
         self.packet['MD'] = md
@@ -126,8 +126,8 @@ class PaymentProcessor(BasePaymentProcessor):
         self.postString = urlencode(self.packet)
         self.url = self.callback
         self.valid = True
-        
-    def capture_payment(self, testing=False, order=None, amount=NOTSET):
+
+    def capture_payment(self, testing=False, order=None, amount=None):
         """Execute the post to protx VSP DIRECT"""
         if not order:
             order = self.order
@@ -139,19 +139,19 @@ class PaymentProcessor(BasePaymentProcessor):
 
         self.log_extra('Capturing payment for %s', order)
 
-        if amount == NOTSET:
+        if amount is None:
             amount = order.balance
 
         self.prepare_post(order, amount)
-        
+
         if self.valid:
             if self.settings.SKIP_POST.value:
                 self.log.info("TESTING MODE - Skipping post to server.  Would have posted %s?%s", self.url, self.postString)
-                payment = self.record_payment(order=order, amount=amount, 
+                payment = self.record_payment(order=order, amount=amount,
                     transaction_id="TESTING", reason_code='0')
 
                 return ProcessorResult(self.key, True, _('TESTING MODE'), payment=payment)
-                
+
             else:
                 self.log_extra("About to post to server: %s?%s", self.url, self.postString)
                 conn = urllib2.Request(self.url, data=self.postString)
@@ -169,7 +169,7 @@ class PaymentProcessor(BasePaymentProcessor):
                     status = self.response['Status']
                     success = (status == 'OK')
                     detail = self.response['StatusDetail']
-                    
+
                     payment = None
                     transaction_id = ""
                     if success:
@@ -177,22 +177,22 @@ class PaymentProcessor(BasePaymentProcessor):
                         txauthno = self.response.get('TxAuthNo', '')
                         transaction_id="%s,%s" % (vpstxid, txauthno)
                         self.log.info('Success on order #%i, recording payment', self.order.id)
-                        payment = self.record_payment(order=order, amount=amount, 
+                        payment = self.record_payment(order=order, amount=amount,
                             transaction_id=transaction_id, reason_code=status)
-                            
+
                     else:
-                        payment = self.record_failure(order=order, amount=amount, 
-                            transaction_id=transaction_id, reason_code=status, 
+                        payment = self.record_failure(order=order, amount=amount,
+                            transaction_id=transaction_id, reason_code=status,
                             details=detail)
 
                     return ProcessorResult(self.key, success, detail, payment=payment)
 
                 except Exception, e:
                     self.log.info('Error submitting payment: %s', e)
-                    payment = self.record_failure(order=order, amount=amount, 
-                        transaction_id="", reason_code="error", 
+                    payment = self.record_failure(order=order, amount=amount,
+                        transaction_id="", reason_code="error",
                         details='Invalid response from payment gateway')
-                    
+
                     return ProcessorResult(self.key, False, _('Invalid response from payment gateway'))
         else:
             return ProcessorResult(self.key, False, _('Error processing payment.'))
