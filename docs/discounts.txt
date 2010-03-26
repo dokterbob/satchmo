@@ -66,10 +66,10 @@ A discount code is easy to setup in Satchmo using the following fields:
 
 .. _auto-discounts:
 
-Store Wide Sales via Auto Discounts
------------------------------------
+Site-wide Sales via Auto Discounts
+----------------------------------
 
-Automatic discounts are how you do store wide sales.
+Automatic discounts are how you do side-wide sales.
 
 .. warning::
 	Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
