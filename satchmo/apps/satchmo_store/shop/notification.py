@@ -3,6 +3,7 @@ from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Discount
 from satchmo_store.mail import NoRecipientsException, send_store_mail, send_store_mail_template_decorator
+from satchmo_store.shop.signals import order_confirmation_sender, order_notice_sender, ship_notice_sender
 import logging
 
 log = logging.getLogger('contact.notifications')
@@ -34,7 +35,8 @@ def send_order_confirmation(order, template='', template_html=''):
     subject = _("Thank you for your order from %(shop_name)s")
 
     send_store_mail(subject, c, template, [order.contact.email],
-                    template_html=template_html, format_subject=True)
+                    template_html=template_html, format_subject=True,
+                    sender=order_confirmation_sender)
 
 @send_store_mail_template_decorator('shop/email/order_placed_notice')
 def send_order_notice(order, template='', template_html=''):
@@ -53,17 +55,13 @@ def send_order_notice(order, template='', template_html=''):
         eddresses = []
         more = config_value("PAYMENT", "ORDER_EMAIL_EXTRA")
         if more:
-            more = [m.strip() for m in more.split(',')]
-            for m in more:
-                if not m in eddresses:
-                    eddresses.append(m)
-
-        eddresses = [e for e in eddresses if e]
+            eddresses = set([m.strip() for m in more.split(',')])
+            eddresses = [e for e in eddresses if e]
 
         try:
             send_store_mail(subject, c, template, eddresses,
                             template_html=template_html, format_subject=True,
-                            send_to_store=True)
+                            send_to_store=True, sender=order_notice_sender)
         except NoRecipientsException:
             log.warn("No shop owner email specified, skipping owner_email")
             return
@@ -79,4 +77,5 @@ def send_ship_notice(order, template='shop/email/order_shipped.txt', template_ht
     subject = _("Your order from %(shop_name)s has shipped")
 
     send_store_mail(subject, c, template, format_subject=True,
-                    template_html=template_html, send_to_store=True)
+                    template_html=template_html, send_to_store=True,
+                    sender=ship_notice_sender)

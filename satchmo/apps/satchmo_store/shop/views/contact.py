@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from satchmo_store.mail import send_store_mail
+from satchmo_store.shop.signals import contact_sender
 import logging
 
 log = logging.getLogger('satchmo_store.shop.views')
@@ -35,7 +36,7 @@ def form(request):
                 'request_text': new_data['contents'] }
             subject = new_data['subject']
             send_store_mail(subject, c, 'shop/email/contact_us.txt',
-                            send_to_store=True)
+                            send_to_store=True, sender=contact_sender)
             url = urlresolvers.reverse('satchmo_contact_thanks')
             return http.HttpResponseRedirect(url)
     else: #Not a post so create an empty form
