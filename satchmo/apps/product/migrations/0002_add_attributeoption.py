@@ -1,6 +1,7 @@
 # encoding: utf-8
 import datetime
 from south.db import db
+from south.logger import get_logger
 from south.v2 import SchemaMigration
 from django.db import models
 
@@ -30,11 +31,63 @@ class Migration(SchemaMigration):
                     validation=default_validation,
                 )
 
+        if db.backend_name=='sqlite3':
+            get_logger().debug("dropping and re-creating table for ProductAttribute")
+            if db.dry_run:
+                return
+            #
+            # We re-create ProductAttribute, since sqlite does not support adding
+            # foreign key constraints on existing tables (ie. adding ForeignKey
+            # fields).
+            #
+            # We have to do 0003's work here, because we can't iterate over
+            # ProductAttribute instances there - the 'option' column has not
+            # been created and django barfs if we do so.
+            #
+
+            # Collect old data
+            old_attrs = {}
+            for attr in orm['product.ProductAttribute'].objects.all():
+                obj = {}
+                # We have already collected 'name' earlier, so we can leave it
+                # out.
+                # TODO make this more generic
+                for k in ('product', 'languagecode', 'value'):
+                    obj[k] = getattr(attr, k)
+                old_attrs[attr.id] = obj
+
+            # Deleting old 'ProductAttribute' table
+            db.delete_table('product_productattribute')
+
+            # Re-use create_table expression for old 'ProductAttribute', this
+            # time with the adding the 'option' column
+            db.create_table('product_productattribute', (
+                ('languagecode', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
+                ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['product.Product'])),
+                ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+                ('value', self.gf('django.db.models.fields.CharField')(max_length=255)),
+                ('name', self.gf('django.db.models.fields.SlugField')(max_length=100, db_index=True)),
+                ('option', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['product.AttributeOption']))
+            ))
+            db.send_create_signal('product', ['ProductAttribute'])
+
+            # Add back data
+            for id, attr_dict in old_attrs.items():
+                kwargs = {}
+                for field in ('product', 'languagecode', 'value'):
+                    kwargs[field] = attr_dict[field]
+                orm['product.ProductAttribute'].objects.create(
+                    id=id, **kwargs)
+
 
     def backwards(self, orm):
 
         # Deleting model 'AttributeOption'
         db.delete_table('product_attributeoption')
+
+        if db.backend_name == 'sqlite3':
+            # Since we added the 'option' column in forwards(), delete it here.
+            db.delete_column('product_productattribute', 'option_id')
 
 
     models = {

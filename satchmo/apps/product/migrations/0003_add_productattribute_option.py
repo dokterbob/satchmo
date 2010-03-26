@@ -8,8 +8,13 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
 
-        # Adding field 'ProductAttribute.option'
-        db.add_column('product_productattribute', 'option', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['product.AttributeOption']), keep_default=False)
+        if not db.backend_name == 'sqlite3':
+            # Adding field 'ProductAttribute.option'
+            db.add_column('product_productattribute', 'option', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['product.AttributeOption']), keep_default=False)
+        else:
+            # The previous migration has already created the column; nothing to
+            # do here.
+            pass
 
         if not db.dry_run:
             for attr in orm['product.ProductAttribute'].objects.all():
@@ -19,8 +24,12 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
 
-        # Deleting field 'ProductAttribute.option'
-        db.delete_column('product_productattribute', 'option_id')
+        if not db.backend_name == 'sqlite3':
+            # Deleting field 'ProductAttribute.option'
+            db.delete_column('product_productattribute', 'option_id')
+        else:
+            # The previous migration will handle this.
+            pass
 
 
     models = {
