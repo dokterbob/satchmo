@@ -16,17 +16,17 @@ URL paths are relative to SHOP_BASE.
 
 .. data:: satchmo_category_index
 
-   :URL: /<CATEGORY_SLUG>/
+   :URL: /<:data:`SATCHMO_SETTINGS.CATEGORY_SLUG`>/
    :View: :func:`product.views.category_index`
 
 .. data:: satchmo_category
 
-   :URL: /<CATEGORY_SLUG>/slug1/slug2/.../<slug>/
+   :URL: /<:data:`SATCHMO_SETTINGS.CATEGORY_SLUG`>/slug1/slug2/.../<slug>/
    :View: :func:`product.views.category_view`
 
 .. data:: satchmo_product
 
-   :URL: /<PRODUCT_SLUG>/<slug>/
+   :URL: /<:data:`SATCHMO_SETTINGS.PRODUCT_SLUG`>/<slug>/
    :View: :func:`product.views.get_product`
 
 .. data:: satchmo_cart
@@ -194,7 +194,6 @@ payment
 product
 -------
 
-.. TODO link <CATEGORY_SLUG> and <PRODUCT_SLUG> to config doc
 .. TODO product.views.filters and JSON templates
 
 .. autofunction:: product.views.category_index()

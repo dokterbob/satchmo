@@ -13,7 +13,7 @@
 <div id="checkoutprogress">
 <ul>
     <li class="first"><a href="{% url satchmo_checkout-step1 %}">{% trans "Ship/Bill" %}</a></li>
-    <li>{% block paymentstep %}<a href="{{ checkout_step2 }}">{% trans "Payment" %}</a>{% endblock %}</li>
+    <li>{% block payment_step %}<a href="{{ checkout_step2 }}">{% trans "Payment" %}</a>{% endblock %}</li>
     <li class="active">{% trans "Confirmation" %}</li>
 </ul>
 </div>

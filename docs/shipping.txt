@@ -1,25 +1,106 @@
 Shipping
 ========
 
-Shipping Module Activation
---------------------------
+.. _shipping_settings:
 
-Satchmo provides you the flexibility to enable and disable as many shipping modules
-as you would like.  Since everyone has different needs for shipping, there's a simple
-but powerful way to define your own shipping modules.
+Configuration in Site Settings
+------------------------------
 
-Activate and configure your shipping modules from your site settings page.
-Usually this is at ``SHOP_BASE/settings/``. You can also access this page from
-the ``Edit Site Settings`` link on your main admin home page.
+The shipping settings are found on the :ref:`Site Settings page
+<site-settings>` under `Shipping Settings`. The settings that apply across all modules
+are listed below.
 
 .. Note::
-    If you have custom modules you would like to add, make sure it is added to your
-    ``CUSTOM_SHIPPING_MODULES`` list in your local_settings.py file
+    Settings specific to the :ref:`shipping_flat` and :ref:`shipping_per` modules are
+    also displayed in this section.
 
-Available Modules
------------------
+.. data:: SHIPPING.HIDING
 
-Satchmo includes several modules in the default distribution.
+   :description: Hide shipping form fields if there is only one module available
+   :choices:
+    - Yes
+    - No
+    - Show description only
+   :default: No
+
+   If your store only has one shipping option, then you may prefer not to show any
+   ability to select shipping options.
+
+.. data:: SHIPPING.MODULES
+
+   :description: Active shipping modules
+   :choices:
+    - :ref:`shipping_dummy`;
+    - :ref:`shipping_flat`;
+    - :ref:`shipping_per`;
+    - :ref:`shipping_canada_post`;
+    - :ref:`shipping_fedex`;
+    - :ref:`shipping_ups`;
+    - :ref:`shipping_usps`;
+    - and the modules listed in :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+   :default: :ref:`shipping_per`
+
+   Satchmo provides you the flexibility to enable as many shipping modules as you would
+   like.  If you have custom modules you would like to use, see `Custom Modules`_
+   below.
+
+.. data:: SHIPPING.SELECT_CHEAPEST
+
+   :description: Select least expensive by default
+   :choices:
+    - `True`
+    - `False`
+   :default: `True`
+
+   A Boolean value.
+
+Enabling Modules
+----------------
+
+#. Under the :ref:`Shipping Settings section <shipping_settings>` on the :ref:`Site
+   Settings page <site-settings>` , select the module you want in
+   :data:`SHIPPING.MODULES`.
+#. Save.
+#. You should see a new configuration section for the shipping module you selected
+   earlier; open up the section and configure the module accordingly.
+
+.. Note::
+    Unlike most modules, settings for the default Satchmo modules :ref:`shipping_flat`
+    and :ref:`shipping_per` modules are not displayed in a separate section; they are
+    displayed alongside settings that apply across all modules in the :ref:`Shipping
+    Settings section <shipping_settings>`.
+
+Custom Modules
+^^^^^^^^^^^^^^
+
+.. Note::
+
+    You need to this before going through the instructions in `Enabling Modules`_.
+
+#. Add the module's dotted name to :data:`SATCHMO_SETTINGS.CUSTOM_SHIPPING_MODULES`.
+#. If the module has Django-style models, proceed to :ref:`shipping_enabling_models`;
+   otherwise, proceed with the instructions in `Enabling Modules`_.
+
+.. _shipping_enabling_models:
+
+Modules with Django-style Models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Note::
+
+    You need to this before going through the instructions in `Enabling Modules`_.
+
+In addition to the instructions above, you'll have to create the database tables for
+these modules:
+
+#. Add the module's dotted name to `INSTALLED_APPS` in your settings.py.
+#. Run `python manage.py syncdb`.
+#. Proceed with the instructions in `Enabling Modules`_.
+
+Generic Modules
+---------------
+
+.. _shipping_dummy:
 
 Dummy
 ^^^^^
@@ -28,12 +109,30 @@ This module is mainly included in order to demonstrate how you can create your o
 you have an interest in creating your own, copy this module to a new directory and use the comments
 to guide you through the process.
 
+.. _shipping_flat:
+
 Flat
 ^^^^
 
 This is a very simple module that allows you to set a flat rate for all shipments.  It's not very
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
 can be configured through your settings page.
+
+To enable, see `Enabling Modules`_.
+
+.. Note::
+    Unlike most modules, settings for this module are not displayed in a separate section;
+    they are displayed alongside settings that apply across all modules in the
+    :ref:`Shipping Settings section <shipping_settings>`.
+
+.. _shipping_no:
+
+No Shipping
+^^^^^^^^^^^
+
+.. TODO
+
+.. _shipping_per:
 
 Per
 ^^^
@@ -42,17 +141,29 @@ This module is a little bit more complex than the flat rate.  It allows you to s
 multiplied by the number of items in your order.  These values are configured through your settings
 page.
 
+To enable, see `Enabling Modules`_.
+
+.. Note::
+    Unlike most modules, settings for this module are not displayed in a separate section;
+    they are displayed alongside settings that apply across all modules in the
+    :ref:`Shipping Settings section <shipping_settings>`.
+
+.. _shipping_productshipping:
+
+Shipping By Product
+^^^^^^^^^^^^^^^^^^^
+
+.. TODO
+
+.. _shipping_tiered:
+
 Tiered
 ^^^^^^
 
 This one is much more flexible than any of the prior modules, so it requires a little more configuration.
 It is not enabled by default.
 
-To enable:
-
- 1. Add shipping.modules.tiered to your settings.py INSTALLED_APPS and then run syncdb.
- 2. Enable in site settings under "Active Shipping Modules"
- 3. Configure using the administration page like you would a product.
+To enable, see :ref:`shipping_enabling_models`.
 
 Why bother?
 
@@ -62,27 +173,50 @@ For another, it is multilingual from the start, with you being able to specify t
 method, etc. right in the admin pages.  Lastly, you can have shipping specials, expiring on the dates
 of your choice.
 
-For example, you can make this shipping table::
+For example, you can make this shipping table:
 
-    $0-$25   UPS=$8.50, Fedex=$18.00
-    $25.01-$50 UPS=$9.75, Fedex=21.00
-    ....
-    $250.00 + free
++---------------------------+-------+----------+
+| Price range of cart items |  UPS  |  Fedex   |
++===========================+=======+==========+
+| $0-$25                    | $8.50 |  $18.00  |
++---------------------------+-------+----------+
+| $25.01-$50                | $9.75 |  $21.00  |
++---------------------------+-------+----------+
+| ...                       |  ...  |    ...   |
++---------------------------+-------+----------+
+| >$250.00                  |  free |   free   |
++---------------------------+-------+----------+
 
-.. index::
-   single: UPS
+.. _shipping_tieredweight:
 
-TieredWeight
-++++++++++++
+Tiered Weight
+^^^^^^^^^^^^^
 
-This module provides similar features to tiered and requires the same extra steps to install. In addition
+This module provides similar features to :ref:`shipping_tiered` and requires the same extra steps to install. In addition
 you can specify a number of zones for each carrier adding a number of countries to each zone. You can then
 choose a default zone for each carrier. Each zone can have a number of cart weights with corresponding
 price and handling fee. This means that at checkout the shipping price is based on the shipping country
 and the total weight of the cart.
 
+.. _shipping_tieredquantity:
+
+Tiered Quantity
+^^^^^^^^^^^^^^^
+
+.. TODO
+
+Specialised Modules
+-------------------
+
+.. index::
+   single: UPS
+
+.. _shipping_ups:
+
 UPS
 ^^^
+
+To enable, see `Enabling Modules`_.
 
 The UPS shipping module provides an interface to the UPS Rating and Service selection interface.  This service
 from UPS allows you to get custom real time shipping quotes based on the sending and receiving addresses
@@ -96,11 +230,7 @@ that the shipping configuration currently used by Satchmo makes sense for your n
 Before you attempt to test the UPS module, you must sign up for a developer account at the
 `UPS web site <http://www.ups.com/content/us/en/bussol/offering/technology/automated_shipping/online_tools.html>`_.
 
-To enable:
-
- 1. In your site settings, make sure that the UPS shipping module is active
- 2. Configure the UPS settings as described below.
- 3. Make sure your store mailing address is correct in the Store Configuration
+Make sure that your store mailing address is correct in the Store Configuration too.
 
 You must configure the following settings in the Site Settings -> UPS Shipping Settings:
 
@@ -127,25 +257,24 @@ entered the weight, then the module will not display any choices.
 
 One important note to remember with the UPS module is that when a user has multiple products in the cart, the UPS request
 will quote this as if each product is shipped in a separate package. For example, two 3 pound packages will cost more to ship than
-one 6 pound package. If your shop has a different method of shipping, you will need to override the 
+one 6 pound package. If your shop has a different method of shipping, you will need to override the
 /apps/shipping/templates/shipping/ups/request.xml file to group products together into one package.
 
 .. index::
    single: Fedex;
 
+.. _shipping_fedex:
+
 Fedex
 ^^^^^
+
+To enable, see `Enabling Modules`_.
 
 The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
 
 One important note to consider is that each product MUST have a weight of at least .1 pounds for Fedex to give a valid response.
 If you have a configurable product you will need to set weights on each product option. Otherwise you will get errors when the
 FedEx module tries to calculate the weight to send to FedEx for the quote.
-
-To enable in Satchmo:
-
- 1. In your site settings, make sure that the Fedex module is active
- 2. Configure the settings as described below
 
 Once you've got the module installed its time to get your account set up with FedEx. (It does not work without the following steps)
 
@@ -161,28 +290,33 @@ Once you've got the module installed its time to get your account set up with Fe
 
 .. index::
    single: USPS;
-   
+
+.. _shipping_usps:
+
 USPS
 ^^^^
+
+To enable, see `Enabling Modules`_.
 
 The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
 regarding this module:
 
- - The USPS API won't return shipping rates if you are trying to go against the testing server, 
+ - Specify your username and password in the configuration section for USPS in
+   :ref:`Site Settings <site-settings>`.
+ - The USPS API won't return shipping rates if you are trying to go against the testing server,
    so a couple of the settings in modules/config.py become useless and confusing
- - Make sure your products have weights associated with them. The USPS API won't accept weightless packages and your 
+ - Make sure your products have weights associated with them. The USPS API won't accept weightless packages and your
    list of shipping options might not be a list at all!
  - The module assumes that the value entered in a product's "weight" attribute is in pounds (because that's what USPS expects)
- - Some rates such as parcel post automatically include the "additional postage may apply" values, and according to 
+ - Some rates such as parcel post automatically include the "additional postage may apply" values, and according to
    exchanges with the USPS support crew, we just have to deal with it.
-   
-To enable in Satchmo:
 
- 1. In your site settings, make sure that the USPS module is active
- 2. Configure the password and package settings
+.. _shipping_canada_post:
 
 Canada Post
 ^^^^^^^^^^^
+
+To enable, see `Enabling Modules`_.
 
 Prerequisites
 
@@ -191,39 +325,18 @@ Prerequisites
   - You must have a merchant id assigned by Canada Post to  use the module in production environment. Visit
     http://www.canadapost.ca/business/default-e.asp for more information.
 
-
-Setting Up
-
-  - Open up Satchmo settings at http://example.com/settings
-
-  - Click on "Show" next to "Shipping Settings"
-  
-  - Save.
-
-  - Click on "Show" next to "Canada Post Shipping Settings"
-    to configure the module according to your needs.
-
-  - Save.
-
 Notes
 
-  - Turn around time is the average time that you will take 
+  - Turn around time is the average time that you will take
     to process an order before it is ready for Canada Post
     to pick it up. It may include inventory sourcing, payment
-    processing, order packing, etc. Canada Post will add 
+    processing, order packing, etc. Canada Post will add
     this time to the shipping date and quote the delivery date
     based on that.
 
 
   - For "Type of container used to ship product" select "Unknown"
-    if you are not sure. If shipping single product Canada post 
-    will find smallest box available and if shipping multiple 
+    if you are not sure. If shipping single product Canada post
+    will find smallest box available and if shipping multiple
     products it will "find the most cost-effective box combination.
     http://www.canadapost.ca/business/offerings/sell_online_shipping_module/can/demo_5-e.asp
-
-
-Hide Shipping if One Module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you store only has one shipping option, then you may prefer not to show any ability to select shipping options. There is a 
-setting in /settings that allows you to control this behavior.
