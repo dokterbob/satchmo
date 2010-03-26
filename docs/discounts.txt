@@ -36,8 +36,8 @@ A discount code is easy to setup in Satchmo using the following fields:
 
   :Auto Discounts:
     Use this field to advertise the discount on all products to which it
-    applies. Generally this is used for site-wide sales. See `Auto Discounts`_
-    for details.
+    applies. Generally this is used for site-wide sales. See
+    :ref:`auto-discounts` for details.
 
   :Allowed Uses: The number of times this discount can be applied.
 
@@ -64,10 +64,10 @@ A discount code is easy to setup in Satchmo using the following fields:
 
   :Valid Products: A list of all the products this discount is valid for.
 
-.. _`Auto Discounts`:
+.. _auto-discounts:
 
-Store Wide Sales
-----------------
+Store Wide Sales via Auto Discounts
+-----------------------------------
 
 Automatic discounts are how you do store wide sales.
 
