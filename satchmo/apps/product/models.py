@@ -2092,9 +2092,12 @@ class ProductAttribute(models.Model):
     """
     product = models.ForeignKey(Product)
     languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
-    name = models.SlugField(_("Attribute Name"), max_length=100, )
     option = models.ForeignKey(AttributeOption)
     value = models.CharField(_("Value"), max_length=255)
+
+    def _name(self):
+        return self.option.name
+    name = property(_name)
 
     def _description(self):
         return self.option.description
