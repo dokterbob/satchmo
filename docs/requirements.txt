@@ -79,7 +79,7 @@ Detailed steps for installing these dependencies is included in the installation
 .. _Elementtree: http://effbot.org/zone/element-index.htm
 .. _Python cryptography toolkit: http://www.amk.ca/python/code/crypto
 .. _Windows binary: http://www.voidspace.org.uk/python/modules.shtml#pycrypto
-.. _ReportLab: http://www.reportlab.org/
+.. _ReportLab: http://www.reportlab.com/software/opensource/rl-toolkit/download/
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _PyYaml: http://pyyaml.org/
 .. _Authorize.net: http://www.authorize.net/

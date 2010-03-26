@@ -46,8 +46,8 @@ def confirm_secure3d(request, secure3d_template='shop/checkout/secure3d_form.htm
             if not returnMD:
                 template = lookup_template(payment_module, secure3d_template)
                 ctx = RequestContext(request, {'order': controller.order, 'auth': auth3d })
-                return render_to_response(template, ctx)
-            
+                return render_to_response(template, context_instance=ctx)
+
             elif returnMD == auth3d['MD']:
                 pares = request.POST.get('PaRes', None)
                 controller.processor.prepare_data(controller.order)
@@ -61,8 +61,8 @@ def confirm_secure3d(request, secure3d_template='shop/checkout/secure3d_form.htm
             ctx =RequestContext(request, {
                 'order': controller.order, 'auth': auth3d 
                 })
-            return render_to_response(template, ctx)                
-                    
+            return render_to_response(template, context_instance=ctx)
+
     return secure3d_form_handler(controller)
 
 def secure3d_form_handler(controller):

@@ -40,20 +40,6 @@ We can handle it any which way."""),
         requiresvalue='product::DownloadableProduct'
     ),
 
-    StringValue(PRODUCT_GROUP,
-        'CATEGORY_SLUG',
-        description=_("Category Slug"),
-        help_text=_("The url slug for categories.  Requires server restart if changed."),
-        default="category"
-    ),
-    
-    StringValue(PRODUCT_GROUP,
-        'PRODUCT_SLUG',
-        description=_("Product Slug"),
-        help_text=_("The url slug for products.  Requires server restart if changed."),
-        default="product"
-    ),
-    
     PositiveIntegerValue(PRODUCT_GROUP,
         'NUM_DISPLAY',
         description=_("Total featured"),
@@ -97,15 +83,4 @@ We can handle it any which way."""),
         help_text=_("If no, then inventory will not be tracked for products sold."),
         default=True
     ),
-
 )
-
-# --- Load any extra product modules. ---
-extra_product = get_satchmo_setting('CUSTOM_PRODUCT_MODULES')
-
-for extra in extra_product:
-    try:
-        load_module("%s.config" % extra)
-    except ImportError:
-        log.warn('Could not load product module configuration: %s' % extra)
-

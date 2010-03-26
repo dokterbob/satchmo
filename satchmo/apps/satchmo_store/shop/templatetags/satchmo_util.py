@@ -3,10 +3,12 @@ from django import template
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils.safestring import mark_safe
+from l10n.l10n_settings import get_l10n_setting
 from livesettings import config_value, config_choice_values
 from product.models import Category
 from satchmo_utils.numbers import trunc_decimal
 from satchmo_utils.json import json_encode
+from threaded_multihost import threadlocals
 import logging
 import math
 
@@ -176,13 +178,13 @@ def satchmo_language_selection_form(context):
     """
     Display the set language form, if enabled in shop settings.
     """
-    request = context['request']
-    enabled = config_value('LANGUAGE', 'ALLOW_TRANSLATION')
+    request = threadlocals.get_current_request()
+    enabled = get_l10n_setting('allow_translations')
     languages = []
     if enabled:
         try:
             url = urlresolvers.reverse('satchmo_set_language')
-            languages = config_choice_values('LANGUAGE', 'LANGUAGES_AVAILABLE')
+            languages = settings.LANGUAGES
             
         except urlresolvers.NoReverseMatch:
             url = ""

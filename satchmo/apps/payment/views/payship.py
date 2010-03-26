@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from livesettings import config_value
 from satchmo_store.contact.models import Contact
-from payment.config import payment_live
+from payment.config import gateway_live
 from payment.forms import CreditPayShipForm, SimplePayShipForm
 from product.utils import find_best_auto_discount
 from satchmo_store.shop.models import Cart
@@ -40,8 +40,9 @@ def pay_ship_info_verify(request, payment_module):
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
         template = lookup_template(payment_module, 'shop/checkout/empty_cart.html')
-        return (False, render_to_response(template, RequestContext(request)))
-            
+        return (False, render_to_response(template,
+                                          context_instance=RequestContext(request)))
+
     return (True, contact, tempCart)
 
 def credit_pay_ship_process_form(request, contact, working_cart, payment_module, allow_skip=True, *args, **kwargs):
@@ -126,10 +127,11 @@ def simple_pay_ship_process_form(request, contact, working_cart, payment_module,
         else:
             return (False, form)
     else:
-        order_data = {}
+        order_data = None
         try:
             order = Order.objects.from_request(request)
             if order.shipping_model:
+                order_data = {}
                 order_data['shipping'] = order.shipping_model
             ordershippable = order.is_shippable
         except Order.DoesNotExist:
@@ -162,9 +164,9 @@ def pay_ship_render_form(request, form, template, payment_module, cart):
             
     ctx = RequestContext(request, {
         'form': form,
-        'PAYMENT_LIVE': payment_live(payment_module),
+        'PAYMENT_LIVE': gateway_live(payment_module),
         })
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)
 
 def base_pay_ship_info(request, payment_module, form_handler, template):
     results = pay_ship_info_verify(request, payment_module)

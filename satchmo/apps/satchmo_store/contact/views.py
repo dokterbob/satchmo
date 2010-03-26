@@ -28,8 +28,9 @@ def view(request):
     signals.satchmo_contact_view.send(user_data, contact=user_data, contact_dict=contact_dict)
             
     context = RequestContext(request, contact_dict)
-    
-    return render_to_response('contact/view_profile.html', context)
+
+    return render_to_response('contact/view_profile.html',
+                              context_instance=context)
 
 view = login_required(view)
 
@@ -94,8 +95,9 @@ def update(request):
     
     init_data['next'] = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
     context = RequestContext(request, init_data)
-        
-    return render_to_response('contact/update_form.html', context)
+
+    return render_to_response('contact/update_form.html',
+                              context_instance=context)
 
 update = login_required(update)
 

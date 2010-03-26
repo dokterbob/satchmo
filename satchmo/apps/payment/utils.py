@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 from livesettings import config_get_group
-from payment.config import active_modules
+from payment import active_gateways
 from satchmo_store.shop.models import Order, OrderAuthorization, OrderItem, OrderItemDetail, OrderPayment, OrderPendingPayment
 from satchmo_store.shop.signals import satchmo_post_copy_item_to_order
 from shipping.utils import update_shipping
@@ -13,10 +13,11 @@ log = logging.getLogger('payment.utils')
 def capture_authorizations(order):
     """Capture all outstanding authorizations on this order"""
     if order.authorized_remaining > Decimal('0'):
-        for key, payment_module in active_modules():
-            processor_module = payment_module.MODULE.load_module('processor')
-            processor = processor_module.PaymentProcessor(payment_module)
-            processor.capture_authorized_payments(order)
+        purchase = order.get_or_create_purchase()
+        for key, group in active_gateways():
+            gateway_settings = config_get(group, 'MODULE')
+            processor = get_gateway_by_settings(gateway_settings)
+            processor.capture_authorized_payments(purchase)
 
 def get_or_create_order(request, working_cart, contact, data):
     """Get the existing order from the session, else create using 
@@ -48,6 +49,11 @@ def get_or_create_order(request, working_cart, contact, data):
     request.session['orderID'] = order.id
     return order
 
+def get_gateway_by_settings(gateway_settings, settings={}):
+    log.debug('getting gateway by settings: %s', gateway_settings.key)
+    processor_module = gateway_settings.MODULE.load_module('processor')
+    gateway_settings = get_gateway_settings(gateway_settings, settings=settings)
+    return processor_module.PaymentProcessor(settings=gateway_settings)
 
 def get_processor_by_key(key):
     payment_module = config_get_group(key)

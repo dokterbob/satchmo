@@ -30,7 +30,8 @@ def contact_info(request, **kwargs):
     #First verify that the cart exists and has items
     tempCart = Cart.objects.from_request(request)
     if tempCart.numItems == 0:
-        return render_to_response('shop/checkout/empty_cart.html', RequestContext(request))
+        return render_to_response('shop/checkout/empty_cart.html',
+                                  context_instance=RequestContext(request))
 
     if not request.user.is_authenticated() and config_value('SHOP', 'AUTHENTICATION_REQUIRED'):
         url = urlresolvers.reverse('satchmo_checkout_auth_required')
@@ -117,6 +118,7 @@ def contact_info(request, **kwargs):
         'country': only_country,
         'paymentmethod_ct': len(form.fields['paymentmethod'].choices)
         })
-    return render_to_response('shop/checkout/form.html', context)
+    return render_to_response('shop/checkout/form.html',
+                              context_instance=context)
 
 contact_info_view = cart_has_minimum_order()(contact_info)

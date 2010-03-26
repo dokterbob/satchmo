@@ -19,7 +19,7 @@ number of places you might want to configure.
         SHOP_BASE: '/shop',
         MULTISHOP: False,
         CUSTOM_PRODUCT_MODULES: ['myshop.custom.product.model'],
-        CUSTOM_PAYMENT_MODULES: ['myshop.custom.payments'],
+        PRODUCT_SLUG: 'items',
         }
 
 The following settings are available to be added to the SATCHMO_SETTINGS dictionary:
@@ -28,10 +28,12 @@ The following settings are available to be added to the SATCHMO_SETTINGS diction
     - ``SHOP_URLS`` documentation needed.
     - ``MULTISHOP`` - a boolean used to enable to disable multi store capability.
     - ``CUSTOM_NEWSLETTER_MODULES`` - a list of custom newsletters.
-    - ``CUSTOM_PAYMENT_MODULES`` - a list of custom payment modules outside of the standard Satchmo distribution.
     - ``CUSTOM_SHIPPING_MODULES`` - a list of custom shipping modules outside of the standard Satchmo distribution.
-    - ``CUSTOM_PRODUCT_MODULES`` - - a list of custom product modules outside of the standard Satchmo distribution.
+    - ``CUSTOM_PRODUCT_MODULES`` -  a list of custom product modules outside of the standard Satchmo distribution.
     - ``CUSTOM_TAX_MODULES`` - a list of custom tax modules outside of the standard Satchmo distribution.
+    - ``COOKIE_MAX_SECONDS`` -  Cookie expiration time. Default: 60*60*24*30
+    - ``CATEGORY_SLUG`` -  The category url prefix. Default: category
+    - ``PRODUCT_SLUG`` - The product url prefix. Default: product
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
     
@@ -70,11 +72,6 @@ Google Settings
 
 This section allows you to enable or disable google analytics and conversion tracking for adwords.
 
-Language Settings
-^^^^^^^^^^^^^^^^^
-
-Allows the user to manually choose their language they would like to see.
-
 Payment Settings
 ^^^^^^^^^^^^^^^^
 
@@ -87,10 +84,6 @@ Each payment module will have it's own configuration items. These items apply un
     - Force ship to and bill to countries to match during checkout
     - Cron passkey to allow subscription rebilling
     - Enable/disable ssl for the checkout process
-    - Enable specific payment modules.
-    
-.. Note::
-    If you add a new payment module, you will need to save the changes in order for the new payment module configuration items to appear.
     
 .. Warning::
     After saving changes to your payment processor, you will need to restart your server for the changes to take effect.
@@ -213,6 +206,44 @@ If ``DB`` is False, then editting the settings via the admin will be disabled. A
 through the settings file.
 
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
+
+.. index::
+   single: settings; L10N
+   
+.. _l10n_settings:
+   
+Changing the L10N Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Satchmo supports a setting L10N_SETTINGS to configure the currency format and other internationalization options. The example
+below would configure the Euro::
+
+    L10N_SETTINGS = {
+      'currency_formats' : {
+         'EURO' : {'symbol': u'€', 'positive' : u"€%(val)0.2f", 'negative': u"€(%(val)0.2f)", 'decimal' : ','},
+      },
+      'default_currency' : 'EURO',
+      'show_translations': False,
+      'allow_translations': False,
+    }
+
+The following settings are available to be added to the L10N_SETTINGS dictionary:
+    
+    - ``default_currency`` - The default currency type to display
+    - ``show_translations`` - Enable or disable the use of the translation options in the admin. Default - True
+    - ``allow_translations`` - Enable or disable the translation section for the store user. Default - True
+    
+
+
+The L10N_SETTINGS variable also allows you to control whether or not translation fields
+should be displayed in the admin. In the example above, they will be disabled. The default is True
+
+.. Note::
+    If you use a unicode character, you'll need to have an encoding at the top
+    of your settings.py file::
+       
+        # -*- coding: UTF-8 -*-
+
 
 .. _Authorize.net: http://www.authorize.net/
 .. _Mailman: http://www.gnu.org/software/mailman/

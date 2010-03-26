@@ -300,6 +300,7 @@ Recurring Billing
 
 Recurring Times
     Enter an integer here to limit the number of times your customer will be charged. (ie only 10 easy payment of $9.95)
+    If this is a perpetual subscription, enter 99999.
 
 Duration
     Enter the number of units between between each billing cycle.

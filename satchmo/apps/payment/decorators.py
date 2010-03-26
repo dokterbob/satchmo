@@ -27,10 +27,9 @@ def cart_has_minimum_order(template="product/minimum_order.html", min_order="PAY
             if cart.total >= min_order:
                 return view_func(request, *args, **kwargs)
             else:
-                return render_to_response(template, RequestContext(request, {
-                    'minimum_order' : min_order
-                }))
-                
+                ctx = RequestContext(request, {'minimum_order' : min_order})
+                return render_to_response(template, context_instance=ctx)
+
         _checkorder.__doc__ = view_func.__doc__
         _checkorder.__dict__ = view_func.__dict__
 

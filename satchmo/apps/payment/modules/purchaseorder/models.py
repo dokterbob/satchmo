@@ -37,8 +37,6 @@ class PurchaseOrder(models.Model):
         if self.balance is None:
             self.balance = self.order.balance
         super(PurchaseOrder, self).save()
-    
-    
-            
 
 import config
+PAYMENT_PROCESSOR=True

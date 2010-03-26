@@ -1,15 +1,12 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
 
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_GIFTCERTIFICATE', 'Gift Certificates'))
 
 PRODUCTS = config_get('PRODUCT', 'PRODUCT_TYPES')
 PRODUCTS.add_choice(('giftcertificate::GiftCertificateProduct', _('Gift Certificate')))
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_GIFTCERTIFICATE', 
-    _('Gift Certificate Settings'), 
-    requires=PAYMENT_MODULES)
+    _('Gift Certificate Settings'))
 
 config_register_list(
     BooleanValue(PAYMENT_GROUP, 

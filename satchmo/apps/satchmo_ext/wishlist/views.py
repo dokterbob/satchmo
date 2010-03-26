@@ -5,7 +5,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
-from django.utils.simplejson.encoder import JSONEncoder
+try:
+    from django.utils.simplejson.encoder import JSONEncoder
+except ImportError:
+    from simplejson.encoder import JSONEncoder
 from django.utils.translation import ugettext as _
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.signals import order_success
@@ -33,9 +36,9 @@ def wishlist_view(request, message=""):
         'wishlist' : wishes,
         'wishlist_message' : message,
     })
-    
-    return render_to_response('wishlist/index.html', ctx)
-    
+
+    return render_to_response('wishlist/index.html', context_instance=ctx)
+
 def wishlist_add(request):
     """Add an item to the wishlist."""
     try:
@@ -190,4 +193,5 @@ def _wishlist_requires_login(request):
     ctx = RequestContext(request, {
         'login_url' : settings.LOGIN_URL
         })
-    return render_to_response('wishlist/login_required.html', ctx)
+    return render_to_response('wishlist/login_required.html',
+                              context_instance=ctx)

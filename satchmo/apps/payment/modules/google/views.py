@@ -5,7 +5,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from livesettings import config_get_group, config_value
-from payment.config import payment_live
+from payment.config import gateway_live
 from payment.views import confirm, payship
 from satchmo_store.shop.models import Order
 from satchmo_utils.dynamic import lookup_url
@@ -45,7 +45,7 @@ class GoogleCart(object):
         else:
             merchkey = self.settings.MERCHANT_TEST_KEY.value
 
-        s = hmac.new(merchkey, self.cart_xml, sha)
+        s = hmac.new(str(merchkey), self.cart_xml, sha)
         rawsig = s.digest()
         return rawsig
 
@@ -69,7 +69,7 @@ def confirm_info(request):
     if not controller.sanity_check():
         return controller.response
 
-    live = payment_live(payment_module)
+    live = gateway_live(payment_module)
     gcart = GoogleCart(controller.order, payment_module, live)
     log.debug("CART:\n%s", gcart.cart_xml)
         
@@ -134,5 +134,6 @@ def success(request):
         
     del request.session['orderID']
     context = RequestContext(request, {'order': order})
-    return render_to_response('shop/checkout/success.html', context)
+    return render_to_response('shop/checkout/success.html',
+                              context_instance=context)
 

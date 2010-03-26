@@ -1,5 +1,4 @@
 import os
-import trml2pdf
 import urllib
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -13,6 +12,7 @@ from satchmo_store.shop.models import Config
 from livesettings import config_value
 
 def displayDoc(request, id, doc):
+    import trml2pdf
     # Create the HttpResponse object with the appropriate PDF headers for an invoice or a packing slip
     order = get_object_or_404(Order, pk=id)
     shopDetails = Config.objects.get_current()

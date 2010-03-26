@@ -2,6 +2,7 @@ from decimal import Decimal
 from django import forms
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from l10n.l10n_settings import get_l10n_default_currency_symbol
 from livesettings import config_value
 from satchmo_utils.numbers import round_decimal
 import logging
@@ -56,7 +57,7 @@ class CurrencyWidget(BaseCurrencyWidget):
         if value != '':
             value = _render_decimal(value, places=8)
         rendered = super(CurrencyWidget, self).render(name, value, attrs)
-        curr = config_value('LANGUAGE','CURRENCY')
+        curr = get_l10n_default_currency_symbol()
         curr = curr.replace("_", "&nbsp;")
         return mark_safe('<span class="currency">%s</span>%s' % (curr, rendered))
 

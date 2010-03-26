@@ -1,16 +1,8 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
-import logging
-
-log = logging.getLogger('purchaseorder.config')
-
-PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-PAYMENT_MODULES.add_choice(('PAYMENT_PURCHASEORDER', _('Purchase Order')))
-log.debug('added purchase order payments')
 
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PURCHASEORDER', 
     _('Purchase Order Module Settings'), 
-    requires=PAYMENT_MODULES,
     ordering = 100)
 
 config_register_list(    

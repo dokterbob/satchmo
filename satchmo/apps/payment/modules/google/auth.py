@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from livesettings import config_get_group
-from payment.config import payment_live
+from payment.config import gateway_live
 
 def auth_required(request):
     """
@@ -13,7 +13,7 @@ def auth_required(request):
 
 def get_cred():
     payment_module = config_get_group('PAYMENT_GOOGLE')
-    live = payment_live(payment_module)
+    live = gateway_live(payment_module)
     # get key and value
     if live:
         merchant_id = payment_module.MERCHANT_ID.value
@@ -30,7 +30,7 @@ def get_url():
     """
     (merchant_id, merchant_key) = get_cred()
     payment_module = config_get_group('PAYMENT_GOOGLE')
-    live = payment_live(payment_module)
+    live = gateway_live(payment_module)
     if live:
         url_template = payment_module.POST_URL.value
     else:

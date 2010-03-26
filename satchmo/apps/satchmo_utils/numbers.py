@@ -92,7 +92,7 @@ def round_decimal(val='0', places=None, roundfactor='0', normalize=True):
         raise RoundedDecimalError(val=places, id=4, msg='places Exceeds Decimal Context Precision')
     try:
         decval =Decimal(str(val))
-    except InvalidOperation:
+    except (InvalidOperation, UnicodeEncodeError):
         raise RoundedDecimalError(val=val, id=5, msg='InvalidOperation - val cannot be converted to Decimal')
     
     #-- Round decimal number by the Partial Unit Rounding Factor

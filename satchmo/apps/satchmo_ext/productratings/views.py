@@ -11,4 +11,4 @@ def display_bestratings(request, count=0, template='product/best_ratings.html'):
     ctx = RequestContext(request, {
         'products' : highest_rated(),
     })
-    return render_to_response(template, ctx)
+    return render_to_response(template, context_instance=ctx)

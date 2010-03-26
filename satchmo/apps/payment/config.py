@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy, ugettext
 from livesettings import *
+from payment import signals, active_gateways
 from satchmo_store.shop import get_satchmo_setting
 from satchmo_utils import is_string_like, load_module
 import logging
@@ -60,21 +61,12 @@ config_register_list(
         help_text=_("Where possible, Authenticate on the card entry page.  This causes an immediate $.01 AUTH and release, allowing errors with the card to show on the card entry page instead of on the confirmation page.  Note that this is only supported for payment modules that can do Authorizations.  It will be silently ignored for any other processors."),
         default=False),
 
-
     BooleanValue(PAYMENT_GROUP,
         'COUNTRY_MATCH',
         description=_("Country match required?"),
         help_text=_("If True, then customers may not have different countries for shipping and billing."),
         default=True),
 
-    MultipleStringValue(PAYMENT_GROUP,
-        'MODULES',
-        description=_("Enable payment modules"),
-        help_text=_("""Select the payment modules you want to use with your shop.  
-    If you are adding a new one, you should save and come back to this page, 
-    as it may have enabled a new configuration section."""),
-        default=["PAYMENT_DUMMY"]),
-    
     BooleanValue(PAYMENT_GROUP,
         'SSL',
         description=_("Enable SSL"),
@@ -108,63 +100,36 @@ config_register_list(
         default=True)
 )
 
-# --- Load default payment modules.  Ignore import errors, user may have deleted them. ---
-_default_modules = ('authorizenet','dummy','google','paypal', 'trustcommerce', 'cybersource', 'autosuccess', 'cod', 'protx', 'sermepa')
-
-for module in _default_modules:
-    try:
-        load_module("payment.modules.%s.config" % module)
-    except ImportError:
-        log.debug('Could not load default payment module configuration: %s', module)
-
-# --- Load any extra payment modules. ---
-extra_payment = get_satchmo_setting('CUSTOM_PAYMENT_MODULES')
-
-for extra in extra_payment:
-    try:
-        load_module("%s.config" % extra)
-    except ImportError:
-        log.warn('Could not load payment module configuration: %s' % extra)
-
 # --- helper functions ---
-
-def active_modules():
-    """Get a list of activated payment modules, in the form of
-    [(key), (config group),...]
-    """
-    return [(module, config_get_group(module)) for module in config_value('PAYMENT', 'MODULES')]
 
 def credit_choices(settings=None, include_module_if_no_choices=False):
     choices = []
     keys = []
-    for module in config_value('PAYMENT', 'MODULES'):
-        vals = config_choice_values(module, 'CREDITCHOICES')
-        for val in vals:
-            key, label = val
+    for module, group in active_gateways():
+        vals = config_choice_values(group, 'CREDITCHOICES')
+        for key, label in vals:
             if not key in keys:
                 keys.append(key)
                 pair = (key, ugettext(label))
                 choices.append(pair)
         if include_module_if_no_choices and not vals:
-            key = config_value(module, 'KEY')
-            label = config_value(module, 'LABEL')
+            key = config_value(group, 'KEY')
+            label = config_value(group, 'LABEL')
             pair = (key, ugettext(label))
             choices.append(pair)
     return choices
 
-def labelled_payment_choices():
-    active_payment_modules = config_choice_values('PAYMENT', 'MODULES', translate=True)
-
+def labelled_gateway_choices():
     choices = []
-    for module, module_name in active_payment_modules:
-        label = _(config_value(module, 'LABEL', default = module_name))
-        choices.append((module, label))
+    for module, group in active_gateways():
+        defaultlabel = module.split('.')[-1]
+        label = _(config_value(group, 'LABEL', default = defaultlabel))
+        choices.append((group, label))
     
     signals.payment_choices.send(None, choices=choices)
     return choices
 
-
-def payment_live(settings):
+def gateway_live(settings):
     if is_string_like(settings):
         settings = config_get_group(settings)
     

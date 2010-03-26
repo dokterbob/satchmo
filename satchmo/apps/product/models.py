@@ -223,7 +223,7 @@ class Category(models.Model):
         name_list.append(self.name)
         return self.get_separator().join(name_list)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if self.id:
             if self.parent and self.parent_id == self.id:
                 raise forms.ValidationError(_("You must not save a category in itself!"))
@@ -235,7 +235,7 @@ class Category(models.Model):
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
 
-        super(Category, self).save(force_insert=force_insert, force_update=force_update)
+        super(Category, self).save(**kwargs)
 
     def _flatten(self, L):
         """
@@ -524,6 +524,11 @@ class Discount(models.Model):
             price = lineitem.line_item_price
             if lineitem.product.is_discountable and (allvalid or lineitem.product.slug in validproducts):
                 discounted[lid] = price
+        signals.discount_filter_items.send(
+            sender=self,
+            discounted=discounted,
+            order=order
+            )
 
         if not self.shipping:
             self.shipping = "NONE"
@@ -554,11 +559,11 @@ class Discount(models.Model):
         self._item_discounts = discounted
         self._calculated = True
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if self.automatic:
             today = datetime.date.today()
             keyedcache.cache_delete('discount', 'sale', self.site, today)
-        super(Discount, self).save(force_insert=force_insert, force_update=force_update)
+        super(Discount, self).save(**kwargs)
 
 
     def _total(self):
@@ -980,7 +985,7 @@ class Product(models.Model):
         verbose_name_plural = _("Products")
         unique_together = (('site', 'sku'),('site','slug'))
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.pk:
             self.date_added = datetime.date.today()
 
@@ -989,7 +994,7 @@ class Product(models.Model):
 
         if not self.sku:
             self.sku = self.slug
-        super(Product, self).save(force_insert=force_insert, force_update=force_update)
+        super(Product, self).save(**kwargs)
         ProductPriceLookup.objects.smart_create_for_product(self)
 
     def get_subtypes(self):
@@ -1301,10 +1306,10 @@ class CustomTextField(models.Model):
     price_change = CurrencyField(_("Price Change"), max_digits=14,
         decimal_places=6, blank=True, null=True)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name, instance=self)
-        super(CustomTextField, self).save(force_insert=force_insert, force_update=force_update)
+        super(CustomTextField, self).save(**kwargs)
 
     def translated_name(self, language_code=None):
         return lookup_translation(self, 'name', language_code)
@@ -1502,7 +1507,7 @@ class ConfigurableProduct(models.Model):
 
         return context
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         """
         Right now this only works if you save the suboptions, then go back and choose to create the variations.
         """
@@ -1514,7 +1519,7 @@ class ConfigurableProduct(models.Model):
         if self.create_subs and self.option_group.count():
             self.create_all_variations()
             self.create_subs = False
-            super(ConfigurableProduct, self).save(force_insert=force_insert, force_update=force_update)
+            super(ConfigurableProduct, self).save(**kwargs)
 
         ProductPriceLookup.objects.smart_create_for_product(self.product)
 
@@ -1873,7 +1878,7 @@ class ProductVariation(models.Model):
                 price_delta += Decimal(option.price_change)
         return price_delta
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         # don't save if the product is a configurableproduct
         if "ConfigurableProduct" in self.product.get_subtypes():
             log.warn("cannot add a productvariation subtype to a product which already is a configurableproduct. Aborting")
@@ -1889,7 +1894,7 @@ class ProductVariation(models.Model):
             # will force calculation of default name
             self.name = ""
 
-        super(ProductVariation, self).save(force_insert=force_insert, force_update=force_update)
+        super(ProductVariation, self).save(**kwargs)
         ProductPriceLookup.objects.smart_create_for_product(self.product)
 
     def _set_name(self, name):
@@ -2049,7 +2054,10 @@ class ProductPriceLookup(models.Model):
     dynamic_price = property(fget=_dynamic_price)
 
 # Support the user's setting of custom expressions in the settings.py file
-user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+try:
+    user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+except:
+    user_validations = None
 
 VALIDATIONS = [
             ('product.utils.validation_simple', _('One or more characters')),
@@ -2074,7 +2082,7 @@ class AttributeOption(models.Model):
     name = models.SlugField(_("Attribute name"), max_length=100)
     validation = models.CharField(_("Field Validations"), choices=VALIDATIONS, max_length=100)
     sort_order = models.IntegerField(_("Sort Order"), default=1)
-    error_message = models.CharField(_("Error Message"), default=_("Inavlid Entry"), max_length=100)
+    error_message = models.CharField(_("Error Message"), default=_("Invalid Entry"), max_length=100)
 
     class Meta:
         ordering = ('sort_order',)
@@ -2146,7 +2154,7 @@ class Price(models.Model):
 
     dynamic_price = property(fget=_dynamic_price)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, **kwargs):
         prices = Price.objects.filter(product=self.product, quantity=self.quantity)
         ## Jump through some extra hoops to check expires - if there's a better way to handle this field I can't think of it. Expires needs to be able to be set to None in cases where there is no expiration date.
         if self.expires:
@@ -2158,7 +2166,7 @@ class Price(models.Model):
         if prices.count():
             return #Duplicate Price
 
-        super(Price, self).save(force_insert=force_insert, force_update=force_update)
+        super(Price, self).save(**kwargs)
         ProductPriceLookup.objects.smart_create_for_product(self.product)
 
     class Meta:
