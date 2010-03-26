@@ -6,7 +6,7 @@ Satchmo allows you to setup multiple types of discount codes:
  * Straight dollar amounts
  * Percentage off
  * Free shipping
- 
+
 Each of these types can be qualified or limited by:
 
  * Number of uses
@@ -16,7 +16,7 @@ Each of these types can be qualified or limited by:
 
 .. index::
    single: Discounts
- 
+
 Creating Discounts
 ------------------
 
@@ -24,43 +24,43 @@ A discount code is easy to setup in Satchmo using the following fields:
 
 Description
     A simple characterization of the discount.  For example, "New User Discount" or "Repeat Customer Promotion."
-    
+
 Code
     The unique identifier a user would enter to activate this discount.
-    
+
 Amount
     A straight dollar discount off a product.  You can only have a dollar OR percentage.
-    
+
 Percentage
     A percent discount off the price.
-    
+
 Auto Discounts
 	Use this field to advertise the discount on all products to which it applies. Generally this is used for site-wide sales. See `Auto Discounts`_ for details.
-    
+
 Allowed Uses
     The number of times this discount can be applied.
-    
+
 Num Uses
     The number of times this discount has been used.
 
 Minimum Order
     The minimum amount that must be purchased before this can apply.
-   
+
 Start Date
     The date when this discount becomes effective.
-    
+
 End Date
     The date when this discount is no longer valid.
-    
+
 Active
     A flag you can set to make it active.  If you want to create a discount in advance but hold off on making it available, you can use this flag.
-    
+
 Free Shipping
     Whether or not this discount allows the user to not have to pay shipping charges.
-    
+
 Include Shipping
     A flag to determine if shipping costs should be affected by the discount.
-    
+
 Valid Products
     A list of all the products this discount is valid for.
 
@@ -71,7 +71,7 @@ Store Wide Sales
 
 Automatic discounts are how you do store wide sales.
 
-.. warning:: 
+.. warning::
 	Automatic discounts must always be percentage sales, and you can only have one running at a time. You should also ensure that you do not apply auto discounts to gift certificates.
 
 1. In your site's admin interface, create a new discount.
@@ -92,7 +92,7 @@ Automatic discounts are how you do store wide sales.
 		<h3 id="price">{{product.unit_price|currency}}</h3>
 	</div>
 	{% endif %}
-	
+
 The key parts of the above markup are the ``{{ product|discount_saved:"sale"|currency }}`` and the ``{{ product|discount_price:"sale"|currency }}`` filtered variables. The former returns the amount saved by the discount while the latter returns the discounted price, all in the correct locale currency.
 
 
