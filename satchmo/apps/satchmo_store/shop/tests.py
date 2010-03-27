@@ -642,6 +642,8 @@ class DiscountAmountTest(TestCase):
         self.order = o
         self.small = small
 
+        rebuild_pricing()
+
     def tearDown(self):
         cache_delete()
 
@@ -849,6 +851,46 @@ class DiscountAmountTest(TestCase):
         self.assertEqual(shipcost, Decimal('6.00'))
         self.assertEqual(shiptotal, Decimal('0.00'))
         self.assertEqual(discount, Decimal('7.20'))
+
+    def testApplyPercentProducts(self):
+        """
+        Check that a percentage discount applies only to products specified in
+        valid_products.
+        """
+        #
+        # The discount "test10-product" applies only to 'neat-book-soft'.
+        #
+        # +-----------------+-----------+----------------------+
+        # | Product         | Price ($) | Discounted price ($) |
+        # +=================+===========+======================+
+        # | 'neat-book-hard'|     $5    |      $5              |
+        # +-----------------+-----------+----------------------+
+        # | 'neat-book-soft'|     $6    |      $5.40           |
+        # +-----------------+-----------+----------------------+
+        # |          Total: |    $11    |     $10.40           |
+        # +-----------------+-----------+----------------------+
+        #
+
+        discount_obj = Discount.objects.by_code("test10-product")
+        products = {}
+        for orderitem in self.order.orderitem_set.all():
+            products[orderitem.product.slug] = orderitem.product
+        self.assertFalse(discount_obj.valid_for_product(products['neat-book-hard']))
+        self.assertTrue(discount_obj.valid_for_product(products['neat-book-soft']))
+
+        self.order.discount_code=discount_obj.code
+        self.order.recalculate_total(save=False)
+        sub_total = self.order.sub_total
+        price = self.order.total
+        shipcost = self.order.shipping_cost
+        shiptotal = self.order.shipping_sub_total
+        discount = self.order.discount
+
+        self.assertEqual(sub_total, Decimal('11.00'))
+        self.assertEqual(price, Decimal('16.40'))
+        self.assertEqual(shipcost, Decimal('6.00'))
+        self.assertEqual(shiptotal, Decimal('6.00'))
+        self.assertEqual(discount, Decimal('0.60'))
 
     def make_order_payment(order, paytype=None, amount=None):
         if not paytype:

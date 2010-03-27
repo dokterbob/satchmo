@@ -148,6 +148,23 @@
     allValid: true
   model: product.discount
   pk: 6
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    code: test10-product
+    description: Test Percent 10 (Product)
+    endDate: 5000-01-01
+    shipping: 'NONE'
+    minOrder: null
+    numUses: null
+    percentage: '10'
+    startDate: 2007-12-15
+    valid_products: [15]
+    site: 1
+    allValid: false
+  model: product.discount
+  pk: 7
 - fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,
     slug: book, site: 1}
   model: product.category
