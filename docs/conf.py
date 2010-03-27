@@ -18,6 +18,13 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.append(os.path.abspath('.'))
 
+# Add satchmo apps.
+sys.path.append(os.path.abspath('../satchmo/apps'))
+
+# Setup the 'simple' store.
+sys.path.append(os.path.abspath('../satchmo/projects'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'simple.settings'
+
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
