@@ -9,7 +9,6 @@ import datetime
 import keyedcache
 import logging
 import random
-from sets import Set
 import signals
 import operator
 import os.path
@@ -511,7 +510,7 @@ class Discount(models.Model):
         return (success['valid'], success['message'])
 
     def _valid_products_in_categories(self):
-        slugs = Set()
+        slugs = set()
         for cat in Category.objects.filter(id__in=self.valid_categories.values_list('id', flat=True)):
             slugs.update([p.slug for p in cat.active_products(variations=True, include_children=True)])
         return slugs
