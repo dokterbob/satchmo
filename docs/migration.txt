@@ -17,6 +17,11 @@ The very latest version of Satchmo includes migration files for
 `South <http://south.aeracode.org/>`_. So far, we only have migrations for the
 ``product`` app, with the initial migration based on the 0.9 code base.
 
+The instructions below assume that you have installed South 0.7; you can
+download it from here:
+
+  http://south.aeracode.org/docs/installation.html
+
 Upgrading from 0.9
 ^^^^^^^^^^^^^^^^^^
 
