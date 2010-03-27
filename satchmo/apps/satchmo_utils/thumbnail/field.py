@@ -29,7 +29,6 @@ def upload_dir(instance, filename):
     updir = normalize_dir(raw)
     return os.path.join(updir, filename)
 
-
 class ImageWithThumbnailField(ImageField):
     """ ImageField with thumbnail support
 
@@ -92,3 +91,18 @@ class ImageWithThumbnailField(ImageField):
         signals.pre_delete.connect(_delete, sender=cls)
         signals.post_save.connect(self._save_rename, sender=cls)
 
+try:
+    # South introspection rules for our custom field.
+    from south.modelsinspector import add_introspection_rules
+
+    add_introspection_rules([(
+        (ImageWithThumbnailField, ),
+        [],
+        {
+            'auto_rename': ["auto_rename", {"default": None}],
+            'name_field': ["name_field", {"default": None}],
+            'auto_rename': ["auto_rename", {"default": None}],
+        },
+    )], ['satchmo_utils\.thumbnail\.field'])
+except ImportError:
+    pass
