@@ -77,9 +77,8 @@ class ContactInfoFormLANGUAGETest(TestCase):
         contact = Contact.objects.create()
         data = {
             'email': 'company@satchmoproject.com', 'first_name': 'Test', 'last_name': 'Company','phone':'123-111-4411',
-
             'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
-            'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231,
+            'ship_addressee': "Test Company", 'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231,
             'organization' : 'Testers Anonymous',
             }
         shop = Config.objects.get_current()
@@ -101,8 +100,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
         contact = Contact.objects.create()
         data = {
             'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
-
-            'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
+            'ship_addressee' : 'Test McTestalot', 'street1': "56 Cool Lane", 'city': "Niftyville", 'state': "IA", 'postal_code': "12344", 'country': 231,
             'ship_street1': "56 Industry Way", 'ship_city': "Niftytown", 'ship_state': "IA", 'ship_postal_code': "12366", 'ship_country': 231
             }
         form = ContactInfoForm(data=data, shop=shop, contact=contact)
@@ -124,7 +122,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
         # a valid one
         data = {
             'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
-
+            'ship_addressee' : 'Test McTestalot',
             'street1': "301 Front Street West", 'city': "Toronto", 'state': "ON", 'postal_code': "M5V 2T6", 'country': 39,
             'ship_street1': "301 Front Street West", 'ship_city': "Toronto", 'ship_state': "ON", 'ship_postal_code': "M5V 2T6", 'ship_country': 39
             }
@@ -157,7 +155,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
         # a valid one
         data = {
             'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
-
+            'ship_addressee' : 'Test McTestalot',
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "2000", 'ship_country': 14
             }
@@ -167,7 +165,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
         # bad state
         data = {
             'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
-
+            'ship_addressee' : 'Test McTestalot',
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NY", 'postal_code': "2000", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NY", 'ship_postal_code': "2000", 'ship_country': 14
             }
@@ -177,7 +175,7 @@ class ContactInfoFormLANGUAGETest(TestCase):
         # bad postal code
         data = {
             'email': 'test_email@satchmoproject.com', 'first_name': 'Test', 'last_name': 'McTestalot','phone':'123-111-4411',
-
+            'ship_addressee' : 'Test McTestalot',
             'street1': "Macquarie Street", 'city': "Sydney", 'state': "NSW", 'postal_code': "200A", 'country': 14,
             'ship_street1': "Macquarie Street", 'ship_city': "Sydney", 'ship_state': "NSW", 'ship_postal_code': "200A", 'ship_country': 14
             }

@@ -25,6 +25,9 @@ sys.path.append(os.path.abspath('../satchmo/apps'))
 sys.path.append(os.path.abspath('../satchmo/projects'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'simple.settings'
 
+# For Sphinx to properly work with Satchmo, you need to make one small path to Sphinx:
+# Patch here - http://gist.github.com/345738
+
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
