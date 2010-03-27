@@ -19,6 +19,8 @@ that can be entered. Attribute Options can do this for you.
 Creating Attribute Options
 --------------------------
 
+.. versionadded:: 0.9.1
+
 New versions of Satchmo (> 0.9) include the ability to define options, 
 validations for these options and custom error messages. To use these, you
 will first need to define some Attribute Options in the Admin.

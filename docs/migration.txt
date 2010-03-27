@@ -27,7 +27,7 @@ Upgrading from 0.9
 
 .. highlight:: console
 
-- Download/check out a copy of the new version of Satchmo handy.
+- Download/check out a copy of the new version of Satchmo.
 
   .. warning:: *Do not* install the new version of Satchmo yet.
 
