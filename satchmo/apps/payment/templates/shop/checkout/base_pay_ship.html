@@ -15,6 +15,7 @@
     <li>{% trans "Confirmation" %}</li>
 </ul>
 </div>
+
 <h4>{% trans "Please complete the following information in order to submit your order." %}</h4>
 
 {% if form.errors %}
@@ -30,28 +31,28 @@
     {% block payment_table %}
     {# put your payment module specific rows here.  For example, CC number. #}
     {% endblock %}
-
+    
     {% if cart.is_shippable %}
-
-        {% if form.shipping_hidden %}
-            {{ form.shipping }}
-            </table>
-        {% else %}
-        <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
-    </table>
-            {% block shipping_table %}
-            <div id="shipping">
-            {% if form.shipping_description or form.shipping.field.choices|length_is:1 %}
-            <label for="id_shipping">{% trans "The following shipping method will be used" %}:</label>
+    
+            {% if form.shipping_hidden %}
+                {{ form.shipping }}
+                </table>
             {% else %}
-            <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>
+            <tr><td><h4>{% trans "Shipping Information" %}</h4></td></tr>
+                </table>
+                {% block shipping_table %}
+                <div id="shipping">
+                {% if form.shipping_description or form.shipping.field.choices|length_is:1 %}
+                <label for="id_shipping">{% trans "The following shipping method will be used" %}:</label>
+                {% else %}
+                <label for="id_shipping">{% trans "Please choose your preferred shipping method" %}</label>
+                {% endif %}
+                {{ form.shipping }}
+                {% if form.shipping_description %}<br/>{{ form.shipping_description }}{% endif %}
+                {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
+                </div>
+                {% endblock %}
             {% endif %}
-            {{ form.shipping }}
-            {% if form.shipping_description %}<br/>{{ form.shipping_description }}{% endif %}
-            {% if form.shipping.errors %}*** {{ form.shipping.errors|join:", " }}{% endif %}
-            </div>
-            {% endblock %}
-        {% endif %}
 
     {% else %}
 
@@ -59,8 +60,12 @@
     </table>
 
     {% endif %}
-
-    <input type="submit" value="{% trans "Confirm" %}"/>
+    
+    {% if form.shipping.field.choices|length_is:0 and cart.is_shippable %}
+        <h4>{% blocktrans %}No valid shipping method is available. Please verify that your address is correct.{% endblocktrans %}</h4>
+    {% else %}
+        <input type="submit" value="{% trans "Confirm" %}"/>
+    {% endif %}
 </form>
 
 {% endblock %}
