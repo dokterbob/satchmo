@@ -11,7 +11,7 @@ from django.views.decorators.cache import never_cache
 from livesettings import config_value
 from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
-from product.views import find_product_template, optionids_from_post
+from product.views import optionids_from_post
 from satchmo_store.shop import forms
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
