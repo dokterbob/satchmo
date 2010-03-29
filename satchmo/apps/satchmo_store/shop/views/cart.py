@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.core import urlresolvers
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext, loader
 from django.utils.datastructures import MultiValueDictKeyError
@@ -11,7 +11,7 @@ from django.views.decorators.cache import never_cache
 from livesettings import config_value
 from product.models import Product, OptionManager
 from product.utils import find_best_auto_discount
-from product.views import optionids_from_post
+from product.views import find_product_template, optionids_from_post
 from satchmo_store.shop import forms
 from satchmo_store.shop.exceptions import CartAddProhibited
 from satchmo_store.shop.models import Cart, CartItem, NullCart, NullCartItem
@@ -27,9 +27,15 @@ except ImportError:
 
 log = logging.getLogger('shop.views.cart')
 
-def _json_response(data, template="shop/json.html"):
-    return HttpResponse(loader.render_to_string(template,
+
+def _json_response(data, error=False, template="shop/json.html"):
+    response = HttpResponse(loader.render_to_string(template, 
         {'json':mark_safe(simplejson.dumps(data))}), mimetype='application/javascript')
+    
+    if error:
+        response.status_code = 400
+    
+    return response
 
 def decimal_too_big(quantity):
     """
@@ -184,94 +190,27 @@ def add(request, id=0, redirect_to='satchmo_cart'):
     satchmo_cart_add_complete.send(cart, cart=cart, cartitem=added_item, product=product, request=request, form=formdata)
     satchmo_cart_changed.send(cart, cart=cart, request=request)
 
-    url = urlresolvers.reverse(redirect_to)
-    return HttpResponseRedirect(url)
+    if request.is_ajax():
+        data = {}
+        data['id'] = product.id
+        data['name'] = product.translated_name()
+        data['cart_count'] = str(round_decimal(cart.numItems, 2))
+        data['cart_total'] = str(cart.total)
+        # Legacy result, for now
+        data['results'] = _("Success")
+        log.debug('CART AJAX: %s', data)
+        
+        return _json_response(data)
+    else:
+        url = urlresolvers.reverse(redirect_to)
+        return HttpResponseRedirect(url)
 
 def add_ajax(request, id=0, template="shop/json.html"):
-    cartplaces = config_value('SHOP', 'CART_PRECISION')
-    roundfactor = config_value('SHOP', 'CART_ROUNDING')
-
-    data = {'errors': []}
-    product = None
-    formdata = request.POST.copy()
-    if not formdata.has_key('productname'):
-        data['errors'].append(('product', _('No product requested')))
-    else:
-        productslug = formdata['productname']
-        log.debug('CART_AJAX: slug=%s', productslug)
-        try:
-            product, details = product_from_post(productslug, formdata)
-
-        except Product.DoesNotExist:
-            log.warn("Could not find product: %s", productslug)
-            product = None
-
-        if not product:
-            data['errors'].append(('product', _('The product you have requested does not exist.')))
-
-        else:
-            if not product.active:
-                data['errors'].append(('product', _('That product is not available at the moment.')))
-
-            else:
-                data['id'] = product.id
-                data['name'] = product.translated_name()
-
-                if not formdata.has_key('quantity'):
-                    quantity = Decimal('-1')
-                else:
-                    quantity = formdata['quantity']
-
-                try:
-                    if decimal_too_big(quantity):
-                        data['errors'].append(('quantity',_('Choose a smaller quantity')))
-                    else:
-                        quantity = round_decimal(quantity, places=cartplaces, roundfactor=roundfactor)
-
-                    if quantity < Decimal('0'):
-                        data['errors'].append(('quantity', _('Choose a quantity.')))
-
-                except RoundedDecimalError:
-                    data['errors'].append(('quantity', _('Invalid quantity.')))
-
-    tempCart = Cart.objects.from_request(request, create=True)
-
-    if not data['errors']:
-        # send a signal so that listeners can update product details before we add it to the cart.
-        satchmo_cart_details_query.send(
-                tempCart,
-                product=product,
-                quantity=quantity,
-                details=details,
-                request=request,
-                form=formdata
-                )
-        try:
-            added_item = tempCart.add_item(product, number_added=quantity, details=details)
-            request.session['cart'] = tempCart.id
-            data['results'] = _('Success')
-            if added_item:
-                # send a signal so that listeners can also operate on this form and item.
-                satchmo_cart_add_complete.send(
-                        tempCart,
-                        cartitem=added_item,
-                        product=product,
-                        request=request,
-                        form=formdata
-                        )
-
-        except CartAddProhibited, cap:
-            data['results'] = _('Error')
-            data['errors'].append(('product', cap.message))
-
-    else:
-        data['results'] = _('Error')
-
-    data['cart_count'] = str(round_decimal(tempCart.numItems, 2))
-    data['cart_total'] = str(tempCart.total)
-    log.debug('CART AJAX: %s', data)
-    satchmo_cart_changed.send(tempCart, cart=tempCart, request=request)
-    return _json_response(data, template)
+    # Allow for legacy apps to still use this url
+    if not request.META.has_key('HTTP_X_REQUESTED_WITH'):
+        request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+        
+    return add(request, id)
 
 def add_multiple(request, redirect_to='satchmo_cart', products=None, template="shop/multiple_product_form.html"):
     """Add multiple items to the cart.
@@ -304,32 +243,36 @@ def agree_terms(request):
 
 def remove(request):
     """Remove an item from the cart."""
+    if not request.POST:
+        # Should be a POST request
+        return bad_or_missing(request, "Please use a POST request")
+
     success, cart, cartitem, errors = _set_quantity(request, force_delete=True)
-    if errors:
-        return display(request, cart=cart, error_message=errors)
+    
+    if request.is_ajax():
+        if errors:
+            return _json_response({'errors': errors, 'results': _("Error")}, True)
+        else:
+            return _json_response({
+                'cart_total': str(cart.total),
+                'cart_count': str(cart.numItems),
+                'item_id': cartitem.id,
+                'results': success, # Legacy
+            })
     else:
-        url = urlresolvers.reverse('satchmo_cart')
-        return HttpResponseRedirect(url)
+        if errors:
+            return display(request, cart=cart, error_message=errors)
+        else:
+            url = urlresolvers.reverse('satchmo_cart')
+            return HttpResponseRedirect(url)
 
 def remove_ajax(request, template="shop/json.html"):
     """Remove an item from the cart. Returning JSON formatted results."""
-    data = {}
-    if not request.POST:
-        data['results'] = False
-        data['errors'] = _('Internal error: please submit as a POST')
-
-    else:
-        success, cart, cartitem, errors = _set_quantity(request, force_delete=True)
-
-        data['results'] = success
-        data['errors'] = errors
-
-        # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
-        if cart and cartitem:
-            data['cart_total'] = str(cart.total)
-            data['cart_count'] = str(round_decimal(cart.numItems, 2))
-            data['item_id'] = cartitem.id
-    return _json_response(data, template)
+    # Allow for legacy apps to still use this url
+    if not request.META.has_key('HTTP_X_REQUESTED_WITH'):
+        request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+        
+    return remove(request)
 
 def set_quantity(request):
     """Set the quantity for a cart item.
@@ -342,50 +285,34 @@ def set_quantity(request):
         return HttpResponseRedirect(cart_url)
 
     success, cart, cartitem, errors = _set_quantity(request)
-    if success:
-        return HttpResponseRedirect(cart_url)
+            
+    if request.is_ajax():
+        if errors:
+            return _json_response({'errors': errors, 'results': _("Error")}, True)
+        else:
+            return _json_response({
+                'item_id': cartitem.id,
+                'item_qty': str(cartitem.quantity) or "0",
+                'item_price': str(cartitem.line_total) or "0.00",
+                'cart_total': str(cart.total) or "0.00",
+                'cart_count': str(cart.numItems) or '0',
+            })
+        
     else:
-        return display(request, cart = cart, error_message = errors)
-
+        if success:
+            return HttpResponseRedirect(cart_url)
+        else:
+            return display(request, cart = cart, error_message = errors)
+        
+        
 def set_quantity_ajax(request, template="shop/json.html"):
     """Set the quantity for a cart item, returning results formatted for handling by script.
+    Kept for legacy apps.
     """
-    data = {}
-    if not request.POST:
-        data['results'] = False
-        data['errors'] = _('Internal error: please submit as a POST')
-
-    else:
-        success, cart, cartitem, errors = _set_quantity(request)
-
-        data['results'] = success
-        data['errors'] = errors
-
-        # note we have to convert Decimals to strings, since simplejson doesn't know about Decimals
-        if cart:
-            carttotal = str(round_decimal(cart.total, 2))
-            cartqty = cart.numItems
-        else:
-            carttotal = "0.00"
-            cartqty = Decimal('0')
-
-        data['cart_total'] = carttotal
-        data['cart_count'] = str(round_decimal(cartqty, 2))
-
-        if cartitem:
-            itemid = cartitem.id
-            itemqty = cartitem.quantity
-            price = str(round_decimal(cartitem.line_total, 2))
-        else:
-            itemid = -1
-            itemqty = Decimal('0')
-            price = "0.00"
-
-        data['item_id'] = itemid
-        data['item_qty'] = str(round_decimal(itemqty, 2))
-        data['item_price'] = price
-
-    return _json_response(data, template)
+    if not request.META.has_key('HTTP_X_REQUESTED_WITH'):
+        request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+        
+    return set_quantity(request)
 
 def product_from_post(productslug, formdata):
     product = Product.objects.get_by_site(slug=productslug)
@@ -453,5 +380,10 @@ def product_from_post(productslug, formdata):
 def _product_error(request, product, msg):
     request.session['ERRORS'] = msg
     log.debug('Product Error: %s', msg)
-    return HttpResponseRedirect(product.get_absolute_url())
+    
+    if request.is_ajax():
+        return _json_response({'errors': [msg,]}, error=True)
+    else:
+        request.session['ERRORS'] = msg
+        return HttpResponseRedirect(product.get_absolute_url())
 
