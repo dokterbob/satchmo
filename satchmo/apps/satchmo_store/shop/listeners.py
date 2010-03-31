@@ -1,5 +1,4 @@
-from django.conf import settings
-from django.utils.translation import ugettext, gettext_lazy as _
+from django.utils.translation import ugettext
 from livesettings import config_value
 from payment.listeners import capture_on_ship_listener
 from product import signals as product_signals

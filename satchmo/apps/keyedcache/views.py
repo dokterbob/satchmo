@@ -1,13 +1,11 @@
 from django import forms
 from django.conf import settings
-from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import user_passes_test
-from django.core import urlresolvers
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from keyedcache.models import *
+import keyedcache
 import logging
 
 log = logging.getLogger('keyedcache.views')
@@ -21,9 +19,9 @@ class CacheDeleteForm(forms.Form):
     tag = forms.CharField(label=_('Key to delete'), required=False)
     children = forms.ChoiceField(label=_('Include Children?'), choices=YN, initial="Y")
     kill_all = forms.ChoiceField(label=_('Delete all keys?'), choices=YN, initial="Y")
-    
+
     def delete_cache(self):
-        
+
         data = self.cleaned_data
         if data['kill_all'] == "Y":
             keyedcache.cache_delete()
@@ -36,25 +34,25 @@ class CacheDeleteForm(forms.Form):
                 result = "Deleted %s" % data['tag']
         else:
             result = "Nothing selected to delete"
-        
+
         log.debug(result)
         return result
 
 def stats_page(request):
     calls = keyedcache.CACHE_CALLS
     hits = keyedcache.CACHE_HITS
-    
+
     if (calls and hits):
         rate =  float(keyedcache.CACHE_HITS)/keyedcache.CACHE_CALLS*100
     else:
         rate = 0
-        
+
     try:
         running = keyedcache.cache_require()
-        
+
     except keyedcache.CacheNotRespondingError:
         running = False
-        
+
     ctx = RequestContext(request, {
         'cache_count' : len(keyedcache.CACHED_KEYS),
         'cache_running' : running,
@@ -68,13 +66,13 @@ def stats_page(request):
     return render_to_response('keyedcache/stats.html', context_instance=ctx)
 
 stats_page = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(stats_page)
-    
+
 def view_page(request):
     keys = keyedcache.CACHED_KEYS.keys()
-    
+
     keys.sort()
-    
-    ctx = RequestContext(request, { 
+
+    ctx = RequestContext(request, {
         'cached_keys' : keys,
     })
 
@@ -95,8 +93,8 @@ def delete_page(request):
     else:
         log.debug("new form")
         form = CacheDeleteForm()
-            
-    ctx = RequestContext(request, { 
+
+    ctx = RequestContext(request, {
         'form' : form,
     })
 

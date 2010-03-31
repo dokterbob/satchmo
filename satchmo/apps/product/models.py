@@ -4,7 +4,6 @@ as well as individual product level information which includes
 options.
 """
 
-import config
 import datetime
 import keyedcache
 import logging
@@ -27,7 +26,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 from l10n.utils import moneyfmt
 from livesettings import config_value, SettingNotSet, config_value_safe
-from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, add_month
+from satchmo_utils import cross_list, normalize_dir, get_flat_list, add_month
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify

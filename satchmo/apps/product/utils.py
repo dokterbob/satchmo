@@ -2,10 +2,9 @@ from decimal import Decimal
 from django.contrib.sites.models import Site
 from livesettings import config_value
 from l10n.utils import moneyfmt
-from product.models import ProductVariation, Option, split_option_unique_id, \
-                                   ProductPriceLookup, OptionGroup, Discount, \
-                                   NullDiscount, Product
-from satchmo_utils.numbers import RoundedDecimalError, round_decimal
+from product.models import Option, split_option_unique_id, \
+    ProductPriceLookup, OptionGroup, Discount, Product
+from satchmo_utils.numbers import round_decimal
 import datetime
 import logging
 import types

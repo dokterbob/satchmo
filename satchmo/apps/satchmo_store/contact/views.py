@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core import urlresolvers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext_lazy as _, ugettext
-from livesettings import config_value, config_get_group, SettingNotSet
+from django.utils.translation import ugettext
 from satchmo_store.contact import signals, CUSTOMER_ID
 from satchmo_store.contact.forms import ExtendedContactInfoForm, ContactInfoForm, area_choices_for_country
 from satchmo_store.contact.models import Contact

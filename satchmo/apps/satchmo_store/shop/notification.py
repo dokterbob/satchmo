@@ -1,4 +1,3 @@
-from decimal import Decimal
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from product.models import Discount

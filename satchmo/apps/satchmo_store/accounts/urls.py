@@ -6,7 +6,7 @@ root URLConf to include this URLConf for any URL beginning with
 '/accounts/'.
 
 """
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns
 from livesettings import config_value
 
 # extending the urls in contacts
@@ -23,7 +23,7 @@ urlpatterns += patterns('satchmo_store.accounts.views',
     (r'^activate/(?P<activation_key>\w+)/$', 'activate', {}, 'registration_activate'),
     (r'^login/$', 'emaillogin', {'template_name': 'registration/login.html'}, 'auth_login'),
     (r'^register/$', 'register', {}, 'registration_register'),
-    (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'registration/login.html'}, 'auth_secure_login'),    
+    (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'registration/login.html'}, 'auth_secure_login'),
 )
 
 urlpatterns += patterns('',
@@ -35,7 +35,7 @@ verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 urlpatterns += patterns('django.views.generic',
     (r'^register/complete/$', 'simple.direct_to_template',
         {'template': 'registration/registration_complete.html',
-        'extra_context': {'verify': verify }}, 
+        'extra_context': {'verify': verify }},
         'registration_complete'),
 )
 

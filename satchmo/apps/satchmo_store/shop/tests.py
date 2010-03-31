@@ -58,7 +58,7 @@ def make_order_payment(order, paytype=None, amount=None):
     return pmt
 
 class ShopTest(TestCase):
-    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml', 'initial_data.yaml']
 
     def setUp(self):
         # Every test needs a client
@@ -481,7 +481,7 @@ class ShopTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
 
 class AdminTest(TestCase):
-    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml']
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'initial_data.yaml']
 
     def setUp(self):
         self.client = Client()
@@ -604,7 +604,7 @@ class ConfigTest(TestCase):
         self.assertEquals(config.base_url, domain)
 
 class DiscountAmountTest(TestCase):
-    fixtures = ['l10n-data.yaml', 'test_discount.yaml']
+    fixtures = ['l10n-data.yaml', 'test_discount.yaml', 'initial_data.yaml']
 
     def setUp(self):
         self.US = Country.objects.get(iso2_code__iexact = 'US')
@@ -937,7 +937,7 @@ def make_test_order(country, state, include_non_taxed=False, site=None, price=No
     return o
 
 class OrderTest(TestCase):
-    fixtures = ['l10n-data.yaml', 'test_multishop.yaml', 'products.yaml']
+    fixtures = ['l10n-data.yaml', 'test_multishop.yaml', 'products.yaml', 'initial_data.yaml']
 
     def setUp(self):
         keyedcache.cache_delete()
@@ -987,7 +987,7 @@ class OrderTest(TestCase):
 
 class QuickOrderTest(TestCase):
     """Test quickorder sheet."""
-    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml']
+    fixtures = ['l10n-data.yaml', 'sample-store-data.yaml', 'products.yaml', 'test-config.yaml', 'initial_data.yaml']
 
     def setUp(self):
         keyedcache.cache_delete()

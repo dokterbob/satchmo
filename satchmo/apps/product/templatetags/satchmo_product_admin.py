@@ -1,8 +1,7 @@
 from django import template
-from django.conf import settings
 from django.core import urlresolvers
 from django.template import Context, Template
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from livesettings import config_choice_values
 
 register = template.Library()

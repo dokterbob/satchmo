@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import models, ValidationError
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from l10n.l10n_settings import get_l10n_setting
 from livesettings import config_value
 from product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, \

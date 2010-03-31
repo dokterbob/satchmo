@@ -4,8 +4,6 @@ Also contains shopping cart and related classes.
 """
 
 from decimal import Decimal, ROUND_CEILING
-from django.conf import settings
-from django.contrib.sites.models import Site
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from django.db import models
@@ -27,7 +25,6 @@ import keyedcache
 import logging
 import operator
 import signals
-import tax
 
 log = logging.getLogger('satchmo_store.shop.models')
 
@@ -85,11 +82,18 @@ class Config(models.Model):
     postal_code=models.CharField(_("Zip Code"), blank=True, null=True, max_length=9)
     country=models.ForeignKey(Country, blank=False, null=False, verbose_name=_('Country'))
     phone = models.CharField(_("Phone Number"), blank=True, null=True, max_length=30)
-    in_country_only = models.BooleanField(_("Only sell to in-country customers?"), default=True)
-    sales_country = models.ForeignKey(Country, blank=True, null=True,
-                                     related_name='sales_country',
-                                     verbose_name=_("Default country for customers"))
-    shipping_countries = models.ManyToManyField(Country, blank=True, verbose_name=_("Shipping Countries"), related_name="shop_configs")
+    in_country_only = models.BooleanField(
+        _("Only sell to in-country customers?"),
+        default=True)
+    sales_country = models.ForeignKey(
+        Country, blank=True, null=True,
+        related_name='sales_country',
+        verbose_name=_("Default country for customers"))
+    shipping_countries = models.ManyToManyField(
+        Country,
+        blank=True,
+        verbose_name=_("Shipping Countries"),
+        related_name="shop_configs")
 
     objects = ConfigManager()
 
@@ -352,7 +356,13 @@ class Cart(models.Model):
 
         # Verify that the 'item_to_modify' can be added to the cart regardless
         # of whether or not it is already in the cart
-        signals.satchmo_cart_add_verify.send(self, cart=self, cartitem=item_to_modify, added_quantity=number_added, details=details)
+        signals.satchmo_cart_add_verify.send(
+            self,
+            cart=self,
+            cartitem=item_to_modify,
+            added_quantity=number_added,
+            details=details)
+
         if not alreadyInCart:
             self.cartitem_set.add(item_to_modify)
 
@@ -489,7 +499,13 @@ class CartItem(models.Model):
     is_shippable = property(fget=_is_shippable)
 
     def add_detail(self, data):
-        detl = CartItemDetails(cartitem=self, name=data['name'], value=data['value'], sort_order=data['sort_order'], price_change=data['price_change'])
+        detl = CartItemDetails(
+            cartitem=self,
+            name=data['name'],
+            value=data['value'],
+            sort_order=data['sort_order'],
+            price_change=data['price_change'])
+
         detl.save()
         #self.details.add(detl)
 
@@ -608,7 +624,8 @@ class Order(models.Model):
         max_digits=18, decimal_places=10, blank=True, null=True, display_decimal=4)
     total = CurrencyField(_("Total"),
         max_digits=18, decimal_places=10, blank=True, null=True, display_decimal=4)
-    discount_code = models.CharField(_("Discount Code"), max_length=20, blank=True, null=True,
+    discount_code = models.CharField(
+        _("Discount Code"), max_length=20, blank=True, null=True,
         help_text=_("Coupon Code"))
     discount = CurrencyField(_("Discount amount"),
         max_digits=18, decimal_places=10, blank=True, null=True)
@@ -729,11 +746,12 @@ class Order(models.Model):
 
     def _credit_card(self):
         """Return the credit card associated with this payment."""
+        from payment.models import CreditCardDetail
         for payment in self.payments.order_by('-time_stamp'):
             try:
                 if payment.creditcards.count() > 0:
                     return payment.creditcards.get()
-            except ObjectDoesNotExist:
+            except CreditCardDetail.DoesNotExist:
                 pass
         return None
     credit_card = property(_credit_card)

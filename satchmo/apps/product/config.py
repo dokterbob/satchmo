@@ -2,8 +2,6 @@
 
 from django.utils.translation import ugettext_lazy as _
 from livesettings import *
-from satchmo_utils import load_module
-from satchmo_store.shop import get_satchmo_setting
 
 PRODUCT_GROUP = ConfigurationGroup('PRODUCT', _('Product Settings'))
 
@@ -62,14 +60,14 @@ We can handle it any which way."""),
                     ('imperial',_('Imperial'))],
         default="imperial"
     ),
-    
+
     BooleanValue(PRODUCT_GROUP,
         'NO_STOCK_CHECKOUT',
         description=_("Allow checkout with 0 inventory?"),
         help_text=_("If yes, then customers can buy even if your inventory is 0 for a product."),
         default=True
     ),
-    
+
     BooleanValue(PRODUCT_GROUP,
         'RANDOM_FEATURED',
         description= _("Random Display"),

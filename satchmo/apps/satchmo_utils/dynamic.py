@@ -1,7 +1,6 @@
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
 from satchmo_utils import url_join
-from django.contrib.sites.models import Site
 import logging
 log = logging.getLogger('satchmo_utils')
 
@@ -43,7 +42,7 @@ def lookup_url(settings, name, include_server=False, ssl=False):
         except urlresolvers.NoReverseMatch:
             log.error('Could not find any url for %s', name)
             raise urlresolvers.NoReverseMatch('No reverse for %s or %s' % (possible, name))
-            
+
     if include_server:
         if ssl:
             method = "https://"

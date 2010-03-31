@@ -1,4 +1,4 @@
-from decimal import Decimal, ROUND_HALF_UP, ROUND_DOWN, InvalidOperation, getcontext
+from decimal import Decimal, ROUND_DOWN, InvalidOperation, getcontext
 from django import forms
 from django.utils.translation import ugettext as _
 from livesettings import config_value
@@ -12,8 +12,8 @@ class RoundedDecimalField(forms.Field):
         Normalize the field according to cart normalizing rules.
         """
         cartplaces = config_value('SHOP', 'CART_PRECISION')
-        roundfactor = config_value('SHOP', 'CART_ROUNDING')    
-        
+        roundfactor = config_value('SHOP', 'CART_ROUNDING')
+
         if not value or value == '':
             value = Decimal(0)
 
@@ -94,18 +94,18 @@ def round_decimal(val='0', places=None, roundfactor='0', normalize=True):
         decval =Decimal(str(val))
     except (InvalidOperation, UnicodeEncodeError):
         raise RoundedDecimalError(val=val, id=5, msg='InvalidOperation - val cannot be converted to Decimal')
-    
+
     #-- Round decimal number by the Partial Unit Rounding Factor
     if roundfactor and decval%roundfactor:
         if roundfactor < 0: roundby = 0
         else: roundby = (decval/abs(decval))*roundfactor	#change sign of roudby to decval
         decval=(decval//roundfactor*roundfactor)+roundby #round up or down by next roundfactor increment
-    
+
     #-- Adjust number of decimal places if caller provided decimal places
     if places != None:
         decmask = '0.'.ljust(places+2,'0') #i.e. => '.00' if places eq 2
         decval=decval.quantize(Decimal(decmask), rounding=ROUND_DOWN)  #convert to Decimal and truncate to two decimals
-    
+
     #-- normalize - strips the rightmost zeros... i.e. 2.0 => returns as 2
     if normalize:
         # if the number has no decimal portion return just the number with no decimal places
@@ -116,9 +116,9 @@ def round_decimal(val='0', places=None, roundfactor='0', normalize=True):
             decval = decval.quantize(Decimal('1'))
         else:
             decval.normalize()
-    
+
     return decval
-    
+
 def trunc_decimal(val, places):
     """Legacy compatibility, rounds the way the old satchmo 0.8.1 used to round."""
     if val is None or val == '':

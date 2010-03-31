@@ -2,7 +2,7 @@
 URLConf for Caching app
 """
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('keyedcache.views',
     (r'^$', 'stats_page', {}, 'keyedcache_stats'),
