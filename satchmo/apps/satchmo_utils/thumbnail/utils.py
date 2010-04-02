@@ -124,13 +124,11 @@ def make_thumbnail(photo_url, width=None, height=None, root=settings.MEDIA_ROOT,
 
     return th_url
 
-def _remove_thumbnails(photo_url, root=settings.MEDIA_ROOT, url_root=settings.MEDIA_URL):
-    if not photo_url: return # empty url
-
-    file_name = _get_path_from_url(photo_url, root, url_root)
+def _remove_thumbnails(file_name_path):
+    if not file_name_path: return # empty path
     import fnmatch, os
-    base, ext = os.path.splitext(os.path.basename(file_name))
-    basedir = os.path.dirname(file_name)
+    base, ext = os.path.splitext(os.path.basename(file_name_path))
+    basedir = os.path.dirname(file_name_path)
     for file in fnmatch.filter(os.listdir(basedir), _THUMBNAIL_GLOB % (base, ext)):
         path = os.path.join(basedir, file)
         try:
@@ -147,8 +145,8 @@ def remove_model_thumbnails(model):
         if isinstance(obj, ImageField):
             field_value = getattr(model, obj.name)
             if field_value:
-                url = field_value.path
-                _remove_thumbnails(url)
+                path = field_value.path
+                _remove_thumbnails(path)
 
 def make_admin_thumbnail(url):
     """ make thumbnails for admin interface """
