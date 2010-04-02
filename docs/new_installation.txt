@@ -106,8 +106,8 @@ install these dependencies.
 
 10. Optional documentation dependencies::
 
-    easy_install Sphinx
-    easy_install docutils
+     easy_install Sphinx
+     easy_install docutils
     
 .. note::
     Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
