@@ -62,4 +62,5 @@ Changes
 - Performance improvement in the variation manager so that it won't choke on 1000's of products
 - Added ability to assign discounts to an entire category - :doc:`discounts`
 - Expand product custom attributes to work with categories
+- Refactored cart views for consistency with ajax calls
 
