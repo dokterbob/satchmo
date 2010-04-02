@@ -59,15 +59,9 @@ Installing Dependencies
 
 5. Install django-app-plugins:
 
-   - Two options, use the original, or a slightly forked version which uses Satchmo's advanced caching system to speed up page loads.
+   - You may use the original, but we recommend using the slightly forked version which uses Satchmo's advanced caching system to speed up page loads.
 
-   - (Option 1) Check out from original source::
-
-       svn checkout http://django-app-plugins.googlecode.com/svn/trunk/ django-app-plugins-read-only
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/django-app-plugins-read-only/app_plugins .
-
-   - (Option 2) Check out the forked version::
+   - Check out the forked version::
 
        hg clone http://bitbucket.org/bkroeze/django-caching-app-plugins/
        cd /path/to/your/site-packages/dir
@@ -89,11 +83,28 @@ Installing Dependencies
        cd /path/to/your/site-packages/dir
        ln -s /path/to/django-signals-ahoy/signals_ahoy
 
+8. Install livesettings:
+
+   - Check out from source::
+   
+       hg clone http://bitbucket.org/bkroeze/django-livesettings/
+       cd /path/to/your/site-packages/dir
+       ln -s /path/to/django-livesettings/livesettings
+
+
+9. Install keyedcache:
+
+   - Check out from source::
+   
+       hg clone http://bitbucket.org/bkroeze/django-keyedcache/
+       cd /path/to/your/site-packages/dir
+       ln -s /path/to/django-keyedcache/keyedcache
+
 Satchmo has two types of documentation. Sphinx is used to generate this document.
 Docutils are useful for the auto-generated admin documentation. You may choose to
 install these dependencies.
 
-8. Optional documentation dependencies::
+10. Optional documentation dependencies::
 
     easy_install Sphinx
     easy_install docutils
