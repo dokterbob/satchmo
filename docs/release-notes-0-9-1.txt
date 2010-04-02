@@ -63,4 +63,4 @@ Changes
 - Added ability to assign discounts to an entire category - :doc:`discounts`
 - Expand product custom attributes to work with categories
 - Refactored cart views for consistency with ajax calls
-
+- Removed Keyedcache and Livesettings from Satchmo and gave them their own project

@@ -47,11 +47,11 @@ For flexibility in defining template plugin points:
 
 For admin-configurable settings:
 
-    - `Django Livesettings`
+    - `Django Livesettings`_
 
 For advanced caching settings:
 
-    - `Django Keyedcache`
+    - `Django Keyedcache`_
 
 For the account registration process, you will need:
 
@@ -111,4 +111,4 @@ Detailed steps for installing these dependencies is included in the installation
 .. _`Signals Ahoy`: http://bitbucket.org/bkroeze/django-signals-ahoy/
 .. _DocUtils: http://docutils.sourceforge.net/
 .. _Django Livesettings: http://bitbucket.org/bkroeze/django-livesettings
-.. _Django Leyedcache: http://bitbucket.org/bkroeze/django-keyedcache
+.. _Django Keyedcache: http://bitbucket.org/bkroeze/django-keyedcache
