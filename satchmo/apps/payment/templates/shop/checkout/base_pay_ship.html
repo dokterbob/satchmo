@@ -57,6 +57,7 @@
     {% else %}
 
         <tr><td colspan="2"><h4>{% trans "There are no items in this order to ship." %}</h4></td></tr>
+        <tr><td colspan="2"> {{ form.shipping }} </td></tr>
     </table>
 
     {% endif %}
