@@ -41,47 +41,47 @@ The directories are created in this fashion so that we can accomplish a couple o
     2. Bundle the required portions together so that installation is as simple as possible
     3. Allow store owners flexibility in installing only the portions they need
     4. Allow developers to extend Satchmo to provide the custom portions they require
-    
+
 Here's a brief description of the various applications.
 
     **keyedcache (required)**
         A specialized cache used in various places in Satchmo to speed up and
         improve the overall useability of the application.
-        
+
     **l10n (required)**
         A collection of models and data used to Internationalize Satchmo. This data
         includes all of the country information as well as tools to present information
         correctly depending on the user's location.
-        
+
     **livesettings (required)**
         A sophisticated configuration tool that allows us to set reasonable defaults
         for an application but offer users a streamlined way of changing them through
         the admin interface.
-        
+
     **payment (required)**
         The various payment modules, forms and views used to allow checking out of a store.
-        
+
     **product (required)**
         The models and views used to store and present product information
-        
+
     **satchmo_ext (optional)**
-        A collection of Satchmo modules that provide optional features that may or may not 
+        A collection of Satchmo modules that provide optional features that may or may not
         be needed for your store. Additional information on these are described below.
-        
+
     **satchmo_store (required)**
         The core models, views and urls used for a store. This application includes account
         information, contact information and the base tools for running a store.
-        
+
     **satchmo_utils (required)**
         A collection of helper utilities used throughout Satchmo.
-        
+
     **shipping (required)**
         The various modules used to determine shipping costs for orders.
-        
+
     **tax (optional)**
         Modules for calculating tax based on various criteria.
-    
-    
+
+
 Satchmo_ext
 ^^^^^^^^^^^
 
@@ -89,38 +89,38 @@ As described above, the satchmo_ext module includes many smaller applications th
 may wish to include in your site.
 
     **brand**
-        This application is useful if you have different brands of products that you want to use to 
+        This application is useful if you have different brands of products that you want to use to
         categorize and display your products.
-        
+
     **contrib**
-        This application contains one small helper function that modifies the price 
+        This application contains one small helper function that modifies the price
         calculation to count all items in the cart when figuring quantity discounts.
-    
+
     **metrics**
         The metrics app has a Log Middleware which you can add to your middleware and capture
         items that are being viewed.
-    
+
     **newsletter**
-        Satchmo has two basic options for handling newsletter configurations. You can use a simple 
+        Satchmo has two basic options for handling newsletter configurations. You can use a simple
         database list or interface with mailman. See :ref:`newsletter`.
-    
+
     **product_feeds**
         Provides support for atom or csv feeds of the products in the store. For more info on using
         with Google base, see :ref:`feeds`.
-        
+
     **productratings**
         Product ratings allows your store users to rate and review the products in the store.
-    
+
     **recentlist**
         Allows you to display recently viewed products on your site.
-    
+
     **tieredpricing**
         This application provides improved flexibility for charging different prices
         to different customers. It is useful for membership or other tiered price structures. See :ref:`tieredpricing`.
-    
+
     **upsell**
         Present options to customers to purchase other items based on their current items. See :ref:`upsell`
-    
+
     **wishlist**
         The wishlist allows shoppers to add items from the store to a list that they might
         want to purchase from in the future.
@@ -131,7 +131,7 @@ Satchmo Projects
 
 This directory contains 3 example projects that illustrate how to layout Satchmo and integrate it with other
 Django applications. The installation process will discuss how to setup your individual application based on
-these samples. The simple and large projects include a sample database and can be run directly to provide 
+these samples. The simple and large projects include a sample database and can be run directly to provide
 a quick example of a Satchmo store.
 
 Base
@@ -155,7 +155,7 @@ Password: simple
 Large
 ^^^^^
 
-This is a very basic example of a "large" Satchmo store.  Basically it has all the satchmo apps loaded, plus 
+This is a very basic example of a "large" Satchmo store.  Basically it has all the satchmo apps loaded, plus
 flatpages (built-in to Django) and Testimonials (from http://gosatchmo.com/apps/django-testimonials/)
 
 It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
@@ -173,7 +173,7 @@ but is meant to be used as a template for your store.
 
 Satchmo Static
 --------------
- 
+
 The static directory contains all of the css, javascript and image files used in Satchmo. This directory is meant
 to be copied to your local Satchmo store. Once your store is running this directory will contain your product images
 as well as custom css and javascript. The process for setting this up will be covered in the installation guide.
