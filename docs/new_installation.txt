@@ -170,8 +170,8 @@ Additionally, there is a streamlined satchmo directory structure in the skel dir
 basis for your store.
 
 You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file
-called settings.py is available in the projects/base directory to act as a template. You may choose
-to copy this file and use as a template for settings.py or use the notes below to configure your existing one.
+called settings.py is available in the projects/base directory to act as a template. You may
+use this file as a template for settings.py or use the notes below to configure your existing one.
 
 Please remember to ensure that your Django database connections and settings are working properly before trying
 to add any pieces of satchmo.
