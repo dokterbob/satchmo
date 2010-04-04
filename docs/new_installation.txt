@@ -161,13 +161,7 @@ Customizing the settings
 
 Now that Satchmo is installed on your PYTHONPATH, you will need to create a new project or integrate Satchmo
 into an existing project. Before proceeding with the next steps, please familiarize yourself with the
-sample projects that are available in /satchmo/projects/.
-
-There are 3 example projects stored here:
-
- - base
- - large
- - simple
+sample projects, :ref:`see here for more <satchmo_sample_projects>`.
 
 Each of these projects show examples of how to configure Satchmo and integrate it with other Django applications.
 Once you are familiar with these examples, you can configure your project based on the notes below.

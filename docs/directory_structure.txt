@@ -125,6 +125,7 @@ may wish to include in your site.
         The wishlist allows shoppers to add items from the store to a list that they might
         want to purchase from in the future.
 
+.. _satchmo_sample_projects:
 
 Satchmo Projects
 ----------------
