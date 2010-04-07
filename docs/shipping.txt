@@ -76,7 +76,8 @@ Custom Modules
 
 .. Note::
 
-    You need to this before going through the instructions in `Enabling Modules`_.
+    You need to go through these steps before going through the instructions in
+    `Enabling Modules`_.
 
 #. Add the module's dotted name to :ref:`CUSTOM_SHIPPING_MODULES
    <satchmo_settings_custom_shipping_modules>`.
@@ -90,7 +91,8 @@ Modules with Django-style Models
 
 .. Note::
 
-    You need to this before going through the instructions in `Enabling Modules`_.
+    You need to through these steps before going through the instructions in
+    `Enabling Modules`_.
 
 In addition to the instructions above, you'll have to create the database tables for
 these modules:
