@@ -62,7 +62,9 @@ class ImageWithThumbnailField(ImageField):
             return
         if self.auto_rename is None:
             # if we get a SettingNotSet exception (even though we've already
-            # imported/loaded it), that' bad, so let it bubble up.
+            # imported/loaded it), that's bad, so let it bubble up; don't try
+            # to guess a default (which should be set in the default config in
+            # the first place.)
             self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
 
         image = getattr(instance, self.attname)
