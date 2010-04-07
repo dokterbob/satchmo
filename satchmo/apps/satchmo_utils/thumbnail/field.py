@@ -6,6 +6,9 @@ from satchmo_utils import normalize_dir
 import logging
 import os
 
+#ensure config is loaded
+import satchmo_utils.thumbnail.config
+
 log = logging.getLogger('thumbnail.fields')
 
 def _delete(sender, instance=None, **kwargs):
@@ -58,10 +61,9 @@ class ImageWithThumbnailField(ImageField):
         if hasattr(self, '_renaming') and self._renaming:
             return
         if self.auto_rename is None:
-            try:
-                self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
-            except SettingNotSet:
-                self.auto_rename = False
+            # if we get a SettingNotSet exception (even though we've already
+            # imported/loaded it), that' bad, so let it bubble up.
+            self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
 
         image = getattr(instance, self.attname)
         if image and self.auto_rename:

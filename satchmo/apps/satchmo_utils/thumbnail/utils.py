@@ -1,17 +1,23 @@
-import os
+from django.conf import settings
+from django.core.cache import get_cache
+from django.db.models.fields.files import ImageField
+from livesettings import config_value
+from satchmo_utils.thumbnail.text import URLify
+
+#ensure config is loaded
+import satchmo_utils.thumbnail.config
+
 import fnmatch
+import logging
+import os
 import shutil
 import urlparse
+
 try:
     import Image
 except ImportError:
     from PIL import Image
-from django.conf import settings
-from django.core.cache import get_cache
-from django.db.models.fields.files import ImageField
-from satchmo_utils.thumbnail.text import URLify
-from livesettings import config_value
-import logging
+
 log = logging.getLogger('satchmo_utils.thumbnail')
 
 image_cache = get_cache('locmem:///')

@@ -312,7 +312,7 @@ order_confirmation_sender = object()
 order_notice_sender = object()
 ship_notice_sender = object()
 
-# satchmo_store.contact
+# satchmo_store.shop.views.contact
 contact_sender = object()
 
 # satchmo_store.registration
