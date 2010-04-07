@@ -4,6 +4,9 @@ from django.db.models.fields.files import ImageField
 from livesettings import config_value
 from satchmo_utils.thumbnail.text import URLify
 
+#ensure config is loaded
+import satchmo_utils.thumbnail.config
+
 import fnmatch
 import logging
 import os
