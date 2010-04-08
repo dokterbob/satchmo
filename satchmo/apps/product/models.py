@@ -31,6 +31,7 @@ from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
 from django.core.cache import cache
+import config   #This import is required to make sure livesettings pickups the config values
 
 log = logging.getLogger('product.models')
 
