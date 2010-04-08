@@ -5,7 +5,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         from satchmo_store.contact.models import Organization, ContactRole, PhoneNumber, Contact, ContactOrganization, ContactOrganizationRole, AddressBook
-        from product.models import Product, Price, ConfigurableProduct, Category, OptionGroup, Option, #, DownloadableProduct
+        from product.models import Product, Price, ConfigurableProduct, Category, OptionGroup, Option #, DownloadableProduct
         from satchmo_store.shop.models import Config
         from django.conf import settings
         from l10n.models import Country
