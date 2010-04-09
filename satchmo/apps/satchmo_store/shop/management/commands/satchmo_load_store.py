@@ -4,8 +4,24 @@ class Command(NoArgsCommand):
     help = "Load sample store data for satchmo."
 
     def handle_noargs(self, **options):
-        from satchmo_store.contact.models import Organization, ContactRole, PhoneNumber, Contact, ContactOrganization, ContactOrganizationRole, AddressBook
-        from product.models import Product, Price, ConfigurableProduct, Category, OptionGroup, Option #, DownloadableProduct
+        from satchmo_store.contact.models import (
+            AddressBook,
+            Contact,
+            ContactOrganization,
+            ContactOrganizationRole,
+            ContactRole,
+            Organization,
+            PhoneNumber,
+        )
+        from product.models import (
+            Category,
+            ConfigurableProduct,
+            # DownloadableProduct,
+            OptionGroup,
+            Option,
+            Price,
+            Product,
+        )
         from satchmo_store.shop.models import Config
         from django.conf import settings
         from l10n.models import Country
