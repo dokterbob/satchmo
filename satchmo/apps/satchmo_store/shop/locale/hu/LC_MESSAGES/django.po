@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-26 06:19+0100\n"
+"POT-Creation-Date: 2010-04-09 18:10-0500\n"
 "PO-Revision-Date: 2010-03-30 08:53+0200\n"
 "Last-Translator: Krizmanich Károly <karoly.krizmanich@gmail.com>\n"
 "Language-Team: Hungarian <none>\n"
@@ -17,35 +17,34 @@ msgstr ""
 "X-Poedit-Basepath: ../../../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:24
+#: admin.py:23
 msgid "Store Contact"
 msgstr "Kapcsolattartó"
 
-#: admin.py:28 models.py:92
+#: admin.py:27 models.py:95
 msgid "Shipping Countries"
 msgstr "Szállítási országok"
 
-#: admin.py:75 models.py:607 templates/shop/_order_details.html:39
+#: admin.py:74 models.py:636 templates/shop/_order_details.html:39
 #: templates/shop/_order_tracking_details.html:22
-#: templates/shop/email/order_complete.txt:40
-#: templates/shop/email/order_placed_notice.txt:36
+#: templates/shop/email/_order_detail.txt:31
 msgid "Shipping Method"
 msgstr "Szállítási mód"
 
-#: admin.py:76 templates/shop/_order_details.html:30
-#: templates/shop/email/order_complete.txt:29
-#: templates/shop/email/order_placed_notice.txt:26
+#: admin.py:75 templates/shop/_order_details.html:30
+#: templates/shop/email/_order_detail.txt:22
+#: templates/shop/email/_order_detail_table.html:24
 #: templates/shop/email/order_shipped.txt:7 templates/shop/pdf/invoice.rml:25
 #: templates/shop/pdf/packing-slip.rml:25
 msgid "Shipping Address"
 msgstr "Szállítási cím"
 
-#: admin.py:77 templates/shop/pdf/invoice.rml:24
+#: admin.py:76 templates/shop/pdf/invoice.rml:24
 #: templates/shop/pdf/packing-slip.rml:24
 msgid "Billing Address"
 msgstr "Számlázási cím"
 
-#: admin.py:78
+#: admin.py:77
 msgid "Totals"
 msgstr "Összesen"
 
@@ -116,19 +115,28 @@ msgstr ""
 "Amikor a felhasználó belép, megpróbáljuk visszaállítani a korábbi kosár "
 "tartalmát, és az újakat hozzáadni?"
 
-#: config.py:73
+#: config.py:74
+#, fuzzy
+msgid "Send HTML Email?"
+msgstr "Email küldése"
+
+#: config.py:75
+msgid "Should HTML emails be used when sending notifications?"
+msgstr ""
+
+#: config.py:81
 msgid "Google Settings"
 msgstr "Google beállítások"
 
-#: config.py:78
+#: config.py:86
 msgid "Enable Analytics"
 msgstr "Analytics engedélyezése"
 
-#: config.py:85
+#: config.py:93
 msgid "Use Urchin?"
 msgstr "Használjon urchin-t?"
 
-#: config.py:86
+#: config.py:94
 msgid ""
 "Use the old-style, urchin javascript?.  This is not needed unless your "
 "analytics account hasn't been updated yet."
@@ -136,15 +144,15 @@ msgstr ""
 "Használjuk a régi, urchin Javascript stílust? Nem szükséges, csak ha az "
 "Analytics-ed nincs frissítve."
 
-#: config.py:94
+#: config.py:102
 msgid "Analytics Code"
 msgstr "Analytics Code"
 
-#: config.py:102
+#: config.py:110
 msgid "Enable Conversion Tracking"
 msgstr "Conversion tracking engedélyezve"
 
-#: config.py:109
+#: config.py:117
 msgid "Adwords ID (ex: UA-abcd-1)"
 msgstr "Adwords azonosító (pl.: UA-abcd-1)"
 
@@ -162,54 +170,54 @@ msgstr "Csak %(amount)i '%(product)s' van raktáron."
 msgid "Order immediately available for download"
 msgstr "A rendelés rögtön letölthető."
 
-#: models.py:38
+#: models.py:35
 msgid "Test Store"
 msgstr "Test áruház"
 
-#: models.py:77 models.py:271 models.py:578
+#: models.py:74 models.py:275 models.py:606
 msgid "Site"
 msgstr "Oldal"
 
-#: models.py:78
+#: models.py:75
 msgid "Store Name"
 msgstr "Áruház neve"
 
-#: models.py:79 models.py:272 models.py:1354
+#: models.py:76 models.py:276 models.py:1384
 #: templates/shop/pdf/invoice.rml:130 templates/shop/pdf/packing-slip.rml:124
 msgid "Description"
 msgstr "Leírás"
 
-#: models.py:80 templates/shop/pdf/invoice.rml:112
+#: models.py:77 templates/shop/pdf/invoice.rml:112
 #: templates/shop/pdf/packing-slip.rml:102
 msgid "Email"
 msgstr "Email"
 
-#: models.py:81 models.py:82 models.py:581 models.py:582 models.py:588
-#: models.py:589
+#: models.py:78 models.py:79 models.py:609 models.py:610 models.py:616
+#: models.py:617
 msgid "Street"
 msgstr "Utca"
 
-#: models.py:83 models.py:583 models.py:590
+#: models.py:80 models.py:611 models.py:618
 msgid "City"
 msgstr "Város"
 
-#: models.py:84 models.py:584 models.py:591
+#: models.py:81 models.py:612 models.py:619
 msgid "State"
 msgstr "Állam/megye"
 
-#: models.py:85 models.py:585 models.py:592
+#: models.py:82 models.py:613 models.py:620
 msgid "Zip Code"
 msgstr "Irányítószám"
 
-#: models.py:86 models.py:586 models.py:593
+#: models.py:83 models.py:614 models.py:621
 msgid "Country"
 msgstr "Ország"
 
-#: models.py:87
+#: models.py:84
 msgid "Phone Number"
 msgstr "Telefonszám"
 
-#: models.py:88
+#: models.py:86
 msgid "Only sell to in-country customers?"
 msgstr "Csak országon belüli vásárlók számára árulható?"
 
@@ -217,432 +225,428 @@ msgstr "Csak országon belüli vásárlók számára árulható?"
 msgid "Default country for customers"
 msgstr "A vásárók alapértelmezett országa"
 
-#: models.py:153
+#: models.py:157
 msgid "Store Configuration"
 msgstr "Áruház beállítása"
 
-#: models.py:154
+#: models.py:158
 msgid "Store Configurations"
 msgstr "Áruház beállításai"
 
-#: models.py:273
+#: models.py:277
 msgid "Creation Date"
 msgstr "Létrehozás dátuma"
 
-#: models.py:274
+#: models.py:278
 msgid "Customer"
 msgstr "Vevő"
 
-#: models.py:408
+#: models.py:430
 msgid "Shopping Cart"
 msgstr "Bevásárló kosár"
 
-#: models.py:409
+#: models.py:431
 msgid "Shopping Carts"
 msgstr "Bevásárló kosarak"
 
-#: models.py:421 templates/base.html:80 templates/shop/cart.html:12
+#: models.py:443 templates/base.html:80 templates/shop/cart.html:12
 msgid "Cart"
 msgstr "Kosár"
 
-#: models.py:422 models.py:1034
+#: models.py:444 models.py:1064
 msgid "Product"
 msgstr "Termék"
 
-#: models.py:423 models.py:1035 templates/shop/cart.html:25
+#: models.py:445 models.py:1065 templates/shop/cart.html:25
 #: templates/shop/pdf/invoice.rml:131 templates/shop/pdf/packing-slip.rml:125
 msgid "Quantity"
 msgstr "Mennyiség"
 
-#: models.py:498
+#: models.py:526
 msgid "Cart Item"
 msgstr "Kosárban lévő termék"
 
-#: models.py:499
+#: models.py:527
 msgid "Cart Items"
 msgstr "Kosárban lévő termékek"
 
-#: models.py:507
+#: models.py:535
 msgid "detail"
 msgstr "részlet"
 
-#: models.py:508
+#: models.py:536
 msgid "name"
 msgstr "név"
 
-#: models.py:509
+#: models.py:537
 msgid "Item Detail Price Change"
 msgstr "Ár változtatás"
 
-#: models.py:511 models.py:1124
+#: models.py:539 models.py:1154
 msgid "Sort Order"
 msgstr "Rendezési sorrend"
 
-#: models.py:512 models.py:1125
+#: models.py:540 models.py:1155
 msgid "The display order for this group."
 msgstr "A csoport megjelenítési sorrendje"
 
-#: models.py:516
+#: models.py:544
 msgid "Cart Item Detail"
 msgstr "A kosárban lévő termék részletei"
 
-#: models.py:517
+#: models.py:545
 msgid "Cart Item Details"
 msgstr "A kosárban lévő termékek részletes leírása"
 
-#: models.py:521
+#: models.py:549
 msgid "Online"
 msgstr "Online"
 
-#: models.py:522
+#: models.py:550
 msgid "In Person"
 msgstr "Személyesen"
 
-#: models.py:523
+#: models.py:551
 msgid "Show"
 msgstr "Mutasd"
 
-#: models.py:527
+#: models.py:555
 msgid "Temp"
 msgstr "Ideiglenes"
 
-#: models.py:528
+#: models.py:556
 msgid "New"
 msgstr "Új"
 
-#: models.py:529
+#: models.py:557
 msgid "Blocked"
 msgstr "Blokkolt"
 
-#: models.py:530
+#: models.py:558
 msgid "In Process"
 msgstr "Folyamatban"
 
-#: models.py:531
+#: models.py:559
 msgid "Billed"
 msgstr "Számlázott"
 
-#: models.py:532
+#: models.py:560
 msgid "Shipped"
 msgstr "Szállított"
 
-#: models.py:533 models.py:1245
+#: models.py:561 models.py:1275
 msgid "Complete"
 msgstr "Kész"
 
-#: models.py:534
+#: models.py:562
 msgid "Cancelled"
 msgstr "Törölt"
 
-#: models.py:579
+#: models.py:607
 msgid "Contact"
 msgstr "Kapcsolattartó"
 
-#: models.py:580 models.py:587
+#: models.py:608 models.py:615
 msgid "Addressee"
 msgstr "Címzett"
 
-#: models.py:594 models.py:1192
+#: models.py:622 models.py:1222
 msgid "Notes"
 msgstr "Megjegyzés"
 
-#: models.py:595 templates/shop/_order_details.html:50
+#: models.py:623 templates/shop/_order_details.html:50
 #: templates/shop/pdf/invoice.rml:154
 msgid "Subtotal"
 msgstr "Összesen"
 
-#: models.py:597 templates/shop/_order_details.html:49
+#: models.py:625 templates/shop/_order_details.html:49
 #: templates/shop/_order_details.html:71
 #: templates/shop/_order_tracking_details.html:28
 #: templates/shop/_order_tracking_details.html:36 templates/shop/cart.html:33
 #: templates/shop/order_history.html:23
-#: templates/shop/email/order_complete.txt:47
-#: templates/shop/email/order_complete.txt:56
-#: templates/shop/email/order_placed_notice.txt:43
-#: templates/shop/email/order_placed_notice.txt:52
+#: templates/shop/email/_order_detail.txt:37
+#: templates/shop/email/_order_detail.txt:42
 #: templates/shop/pdf/invoice.rml:134 templates/shop/pdf/invoice.rml.py:177
 msgid "Total"
 msgstr "Mindösszesen"
 
-#: models.py:599
+#: models.py:628
 msgid "Discount Code"
 msgstr "Leértékelés kódja"
 
-#: models.py:600
+#: models.py:629
 msgid "Coupon Code"
 msgstr "Kupon kódja"
 
-#: models.py:601
+#: models.py:630
 msgid "Discount amount"
 msgstr "Leértékelés mértéke"
 
-#: models.py:603
+#: models.py:632
 msgid "Order method"
 msgstr "Rendelés módja"
 
-#: models.py:605
+#: models.py:634
 msgid "Shipping Description"
 msgstr "Száállítás leírása"
 
-#: models.py:609
+#: models.py:638
 msgid "Shipping Models"
 msgstr "Szállítási modellek"
 
-#: models.py:611
+#: models.py:640
 msgid "Shipping Cost"
 msgstr "Szállítási költség"
 
-#: models.py:613 templates/shop/_order_details.html:60
+#: models.py:642 templates/shop/_order_details.html:60
 #: templates/shop/pdf/invoice.rml:169
 msgid "Shipping Discount"
 msgstr "Szállításból elenged"
 
-#: models.py:615 models.py:1355 templates/shop/_order_details.html:69
+#: models.py:644 models.py:1385 templates/shop/_order_details.html:69
 #: templates/shop/_order_tracking_details.html:34
-#: templates/shop/email/order_complete.txt:54
-#: templates/shop/email/order_placed_notice.txt:50
+#: templates/shop/email/_order_detail.txt:41
 #: templates/shop/pdf/invoice.rml:174
 msgid "Tax"
 msgstr "ÁFA"
 
-#: models.py:617 models.py:1193
+#: models.py:646 models.py:1223
 #: templates/shop/admin/_orderpayment_list.html:11
 msgid "Timestamp"
 msgstr "Időbélyeg"
 
-#: models.py:618 models.py:1190 templates/shop/_order_tracking_details.html:9
+#: models.py:647 models.py:1220 templates/shop/_order_tracking_details.html:9
 #: templates/shop/order_history.html:20
 msgid "Status"
 msgstr "Állapot"
 
-#: models.py:619
+#: models.py:648
 msgid "This is set automatically."
 msgstr "Automatikusan beálltva"
 
-#: models.py:804 models.py:814 models.py:921
+#: models.py:834 models.py:844 models.py:951
 msgid "View"
 msgstr "Nézet"
 
-#: models.py:873 templates/shop/_order_details.html:56
+#: models.py:903 templates/shop/_order_details.html:56
 #: templates/shop/_order_tracking_details.html:30
-#: templates/shop/email/order_complete.txt:50
-#: templates/shop/email/order_placed_notice.txt:46
+#: templates/shop/email/_order_detail.txt:39
 #: templates/shop/pdf/invoice.rml:133 templates/shop/pdf/invoice.rml.py:159
 msgid "Discount"
 msgstr "Leárazás"
 
-#: models.py:1026
+#: models.py:1056
 msgid "Product Order"
 msgstr "Termék rendelés"
 
-#: models.py:1027
+#: models.py:1057
 msgid "Product Orders"
 msgstr "Termék rendelések"
 
-#: models.py:1033 models.py:1137 models.py:1189
+#: models.py:1063 models.py:1167 models.py:1219
 msgid "Order"
 msgstr "Megrendelés"
 
-#: models.py:1036
+#: models.py:1066
 msgid "Unit price"
 msgstr "Egységár"
 
-#: models.py:1038
+#: models.py:1068
 msgid "Unit tax"
 msgstr "ÁFA"
 
-#: models.py:1040
+#: models.py:1070
 msgid "Line item price"
 msgstr "Ár"
 
-#: models.py:1042
+#: models.py:1072
 msgid "Line item tax"
 msgstr "ÁFA"
 
-#: models.py:1044
+#: models.py:1074
 msgid "Subscription End"
 msgstr "Előfizetés vége"
 
-#: models.py:1044
+#: models.py:1074
 msgid "Subscription expiration date."
 msgstr "Előfizetés lejárati dátuma."
 
-#: models.py:1045
+#: models.py:1075
 msgid "Completed"
 msgstr "Kész"
 
-#: models.py:1046
+#: models.py:1076
 msgid "Line item discount"
 msgstr "Tétel árkedvezménye"
 
-#: models.py:1112
+#: models.py:1142
 msgid "Order Line Item"
 msgstr "Rendelési tétel"
 
-#: models.py:1113
+#: models.py:1143
 msgid "Order Line Items"
 msgstr "Rendelési tételek"
 
-#: models.py:1120
+#: models.py:1150
 msgid "Order Item"
 msgstr "Tétel"
 
-#: models.py:1121 views/contact.py:19
+#: models.py:1151 views/contact.py:20
 msgid "Name"
 msgstr "Név"
 
-#: models.py:1122
+#: models.py:1152
 msgid "Value"
 msgstr "Érték"
 
-#: models.py:1123
+#: models.py:1153
 msgid "Price Change"
 msgstr "Árváltozás"
 
-#: models.py:1131
+#: models.py:1161
 msgid "Order Item Detail"
 msgstr "Tétel részletezése"
 
-#: models.py:1132
+#: models.py:1162
 msgid "Order Item Details"
 msgstr "Tétel részletei"
 
-#: models.py:1136
+#: models.py:1166
 msgid "Downloadable product"
 msgstr "Letölthető termék"
 
-#: models.py:1138
+#: models.py:1168
 msgid "Key"
 msgstr "Kulcs"
 
-#: models.py:1139
+#: models.py:1169
 msgid "Number of attempts"
 msgstr "Kísérletek száma"
 
-#: models.py:1140
+#: models.py:1170
 msgid "Time stamp"
 msgstr "Időbélyeg"
 
-#: models.py:1141
+#: models.py:1171
 msgid "Active"
 msgstr "Aktív"
 
-#: models.py:1150
+#: models.py:1180
 msgid "This download is no longer active"
 msgstr "Éz a letöltés már nem aktív"
 
-#: models.py:1152
+#: models.py:1182
 msgid "You have exceeded the number of allowed downloads."
 msgstr "Elérted a megengedett letöltések számát."
 
-#: models.py:1155
+#: models.py:1185
 msgid "This download link has expired."
 msgstr "Ez a letöltési link lejárt."
 
-#: models.py:1182
+#: models.py:1212
 msgid "Download Link"
 msgstr "Letöltési link."
 
-#: models.py:1183
+#: models.py:1213
 msgid "Download Links"
 msgstr "Letöltési linkek"
 
-#: models.py:1205
+#: models.py:1235
 msgid "Order Status"
 msgstr "Megrendelés állapota"
 
-#: models.py:1206
+#: models.py:1236
 msgid "Order Statuses"
 msgstr "Megrendelés állapotai"
 
-#: models.py:1211
+#: models.py:1241
 msgid "Payment Method"
 msgstr "Fizetési mód"
 
-#: models.py:1213
+#: models.py:1243
 msgid "amount"
 msgstr "összeg"
 
-#: models.py:1215
+#: models.py:1245
 msgid "timestamp"
 msgstr "időbélyeg"
 
-#: models.py:1216 templates/shop/admin/_orderpayment_list.html:12
+#: models.py:1246 templates/shop/admin/_orderpayment_list.html:12
 msgid "Transaction ID"
 msgstr "Tranzakció azonosító"
 
-#: models.py:1217
+#: models.py:1247
 msgid "Details"
 msgstr "Részletek"
 
 # ez nem biztos hogy jó :-)
-#: models.py:1218
+#: models.py:1248
 msgid "Reason Code"
 msgstr "Reason Code"
 
-#: models.py:1277
+#: models.py:1307
 msgid "Order Payment Authorization"
 msgstr "Kifizetési meghatalmazás"
 
-#: models.py:1278
+#: models.py:1308
 msgid "Order Payment Authorizations"
 msgstr "Kifizetési meghatalmazások"
 
-#: models.py:1304
+#: models.py:1334
 msgid "Order Payment"
 msgstr "Kifizetés"
 
-#: models.py:1305 templates/shop/admin/_orderpayment_list.html:3
+#: models.py:1335 templates/shop/admin/_orderpayment_list.html:3
 msgid "Order Payments"
 msgstr "Kifizetések"
 
-#: models.py:1327
+#: models.py:1357
 msgid "Order Pending Payment"
 msgstr "Függőben lévő kifizetés"
 
-#: models.py:1328
+#: models.py:1358
 msgid "Order Pending Payments"
 msgstr "Függőben lévő kifizetések"
 
-#: models.py:1335
+#: models.py:1365
 msgid "key"
 msgstr "kulcs"
 
-#: models.py:1336
+#: models.py:1366
 msgid "value"
 msgstr "érték"
 
-#: models.py:1340
+#: models.py:1370
 msgid "Order variable"
 msgstr "Rendelési változók"
 
-#: models.py:1341
+#: models.py:1371
 msgid "Order variables"
 msgstr "Rendelési változók"
 
-#: models.py:1353
+#: models.py:1383
 msgid "Model"
 msgstr "Modell"
 
-#: models.py:1365
+#: models.py:1395
 msgid "Order tax detail"
 msgstr "Rendelés ÁFA részletezés"
 
-#: models.py:1366
+#: models.py:1396
 msgid "Order tax details"
 msgstr "Rendelés ÁFA részletek"
 
-#: notification.py:33
+#: notification.py:34
 #, python-format
 msgid "Thank you for your order from %(shop_name)s"
 msgstr "Köszönjük, hogy vásároltál a '%(shop_name)s'ben"
 
-#: notification.py:49
+#: notification.py:52
 #, python-format
 msgid "New order on %(shop_name)s"
 msgstr "Új rendelés a '%(shop_name)s'ben"
 
-#: notification.py:75
+#: notification.py:76
 #, python-format
 msgid "Your order from %(shop_name)s has shipped"
 msgstr "Rendelésedet szállítottuk a '%(shop_name)s'ból"
@@ -657,7 +661,7 @@ msgid "Home"
 msgstr "Kezdőlap"
 
 #: templates/404.html:10 templates/500.html:10 templates/shop/404.html:10
-#: views/cart.py:266 views/cart.py:270
+#: views/cart.py:254 views/cart.py:291
 msgid "Error"
 msgstr "Hiba"
 
@@ -791,21 +795,20 @@ msgstr "Készpénz állapot"
 
 #: templates/shop/_order_details.html:8
 #: templates/shop/_order_tracking_details.html:16
-#: templates/shop/email/order_complete.txt:7
-#: templates/shop/email/order_placed_notice.txt:5
+#: templates/shop/email/_order_detail.txt:1
 msgid "Items Ordered"
 msgstr "Megrendelt tételek"
 
 #: templates/shop/_order_details.html:17 templates/shop/contact_form.html:10
 #: templates/shop/contact_thanks.html:10
-#: templates/shop/email/order_complete.txt:13
-#: templates/shop/email/order_placed_notice.txt:11
+#: templates/shop/email/_order_detail.txt:7
+#: templates/shop/email/_order_detail_table.html:8
 msgid "Contact Information"
 msgstr "Kapcsolat"
 
 #: templates/shop/_order_details.html:22
-#: templates/shop/email/order_complete.txt:19
-#: templates/shop/email/order_placed_notice.txt:17
+#: templates/shop/email/_order_detail.txt:13
+#: templates/shop/email/_order_detail_table.html:23
 msgid "Billing Information"
 msgstr "Számlázási információk"
 
@@ -819,8 +822,7 @@ msgstr "Szállítási díja ÁFA-val"
 
 #: templates/shop/_order_details.html:63
 #: templates/shop/_order_tracking_details.html:32
-#: templates/shop/email/order_complete.txt:52
-#: templates/shop/email/order_placed_notice.txt:48
+#: templates/shop/email/_order_detail.txt:40
 msgid "Shipping"
 msgstr "Szállíitás"
 
@@ -1011,8 +1013,7 @@ msgid "on"
 msgstr "Dátum: "
 
 #: templates/shop/admin/_orderpayment_list.html:8
-#: templates/shop/email/order_complete.txt:58
-#: templates/shop/email/order_placed_notice.txt:54
+#: templates/shop/email/_order_detail.txt:44
 msgid "Payment"
 msgstr "Fizetés"
 
@@ -1052,6 +1053,46 @@ msgstr "Rendelések folyamantban"
 msgid "View all Orders"
 msgstr "Mutasd az össze megrendelést"
 
+#: templates/shop/email/_order_detail.txt:46
+#: templates/shop/email/_order_detail_table.html:102
+#, python-format
+msgid ""
+"%(credit_card_type)s card ending in %(credit_card_number)s will be charged %"
+"(order_total)s."
+msgstr ""
+" A %(credit_card_number)s számú %(credit_card_type)s típusú kártyát %"
+"(order_total)s összeggel fogjuk terhelni."
+
+#: templates/shop/email/_order_detail_table.html:66
+#, fuzzy
+msgid "Discount:"
+msgstr "Leárazás"
+
+#: templates/shop/email/_order_detail_table.html:75
+#, fuzzy
+msgid "Shipping:"
+msgstr "Szállíitás"
+
+#: templates/shop/email/_order_detail_table.html:84
+#, fuzzy
+msgid "Tax:"
+msgstr "ÁFA"
+
+#: templates/shop/email/_order_detail_table.html:92
+#, fuzzy
+msgid "Total:"
+msgstr "Mindösszesen"
+
+#: templates/shop/email/_order_detail_table.html:98
+#, fuzzy
+msgid "Payment: "
+msgstr "Fizetés"
+
+#: templates/shop/email/_order_detail_table.html:114
+#: templates/shop/email/order_placed_notice.txt:8
+msgid "This is a downloadable product"
+msgstr "Letölthető termék"
+
 #: templates/shop/email/contact_us.txt:1
 #, python-format
 msgid ""
@@ -1061,65 +1102,46 @@ msgstr ""
 "Van itt egy %(request_type)s %(name)stől (%(email)s), amelyet a Kapcsolat "
 "menüből küldött."
 
-#: templates/shop/email/order_complete.txt:1
-#: templates/shop/email/order_placed_notice.txt:1
-#: templates/shop/email/order_shipped.txt:1
-#, python-format
-msgid "Dear %(first_name)s %(last_name)s,"
-msgstr "Kedves %(last_name)s %(first_name)s,"
-
-#: templates/shop/email/order_complete.txt:3
+#: templates/shop/email/order_complete.html:7
+#: templates/shop/email/order_complete.txt:5
 #: templates/shop/email/order_shipped.txt:3
 #, python-format
 msgid "Thank you for ordering with %(shop_name)s."
 msgstr "Köszönjük, hogy rendelt a  %(shop_name)s ből."
 
-#: templates/shop/email/order_complete.txt:5
+#: templates/shop/email/order_complete.html:8
+#: templates/shop/email/order_complete.txt:7
 msgid "Your order is summarized below:"
 msgstr "A megrendelésed összegezve:"
 
-#: templates/shop/email/order_complete.txt:63
-#, python-format
-msgid ""
-"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
-"charged %(order_total)s."
-msgstr ""
-"A %(credit_card_type)s tipusú kártyád (%(credit_card_number)s) %(order_total)"
-"s összeggel fogjuk megterhelni."
-
-#: templates/shop/email/order_complete.txt:69
-msgid "Your order contains products that can be downloaded"
-msgstr "A megrendelésed letölthető termékeket is tartalmaz."
-
-#: templates/shop/email/order_complete.txt:70
-msgid "Please click the link to begin the download"
-msgstr "Kérlek kattints a linkre a letöltéshez"
-
-#: templates/shop/email/order_complete.txt:76
+#: templates/shop/email/order_complete.html:12
+#: templates/shop/email/order_complete.txt:21
 msgid "Regards"
 msgstr "Üdv"
 
-#: templates/shop/email/order_complete.txt:78
+#: templates/shop/email/order_complete.html:13
+#: templates/shop/email/order_complete.txt:23
 msgid "Store Management"
 msgstr "Áruház kezelés"
+
+#: templates/shop/email/order_complete.txt:3
+#: templates/shop/email/order_shipped.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Kedves %(last_name)s %(first_name)s,"
+
+#: templates/shop/email/order_complete.txt:14
+msgid "Your order contains products that can be downloaded"
+msgstr "A megrendelésed letölthető termékeket is tartalmaz."
+
+#: templates/shop/email/order_complete.txt:15
+msgid "Please click the link to begin the download"
+msgstr "Kérlek kattints a linkre a letöltéshez"
 
 #: templates/shop/email/order_placed_notice.txt:3
 #, python-format
 msgid "Order placed on %(shop_name)s by %(customer)s<%(email)s>."
 msgstr "%(customer)s <%(email)s> rendelt a %(shop_name)s-ből."
-
-#: templates/shop/email/order_placed_notice.txt:59
-#, python-format
-msgid ""
-"%(credit_card_type)s card ending in %(credit_card_number)s will be charged %"
-"(order_total)s."
-msgstr ""
-" A %(credit_card_number)s számú %(credit_card_type)s típusú kártyát %"
-"(order_total)s összeggel fogjuk terhelni."
-
-#: templates/shop/email/order_placed_notice.txt:65
-msgid "This is a downloadable product"
-msgstr "Letölthető termék"
 
 #: templates/shop/email/order_shipped.txt:5
 #, python-format
@@ -1197,70 +1219,54 @@ msgstr "Csomag cédula"
 msgid "Thank you for your business!"
 msgstr "Köszönjük a vásárlást!"
 
-#: views/cart.py:57
+#: views/cart.py:61
 msgid "No cart to update."
 msgstr "Nincs kosár."
 
-#: views/cart.py:62 views/cart.py:71
+#: views/cart.py:66 views/cart.py:75
 msgid "Bad quantity."
 msgstr "Érvénytelen mennyiség."
 
-#: views/cart.py:79
+#: views/cart.py:83
 msgid "Bad item number."
 msgstr "Érvénytelen tételszám."
 
-#: views/cart.py:84
+#: views/cart.py:88
 msgid "No such item in your cart."
 msgstr "Nincs ilyen tétel a kosárban."
 
-#: views/cart.py:96
+#: views/cart.py:100
 #, python-format
 msgid "Not enough items of '%s' in stock."
 msgstr "Nincs elég '%s' termék raktáron."
 
-#: views/cart.py:146 views/cart.py:216
+#: views/cart.py:150
 msgid "That product is not available at the moment."
 msgstr "A termék jelenleg nem rendelhető."
 
-#: views/cart.py:152 views/cart.py:212
+#: views/cart.py:156
 msgid "The product you have requested does not exist."
 msgstr "A kért termék nem létezik."
 
-#: views/cart.py:156
+#: views/cart.py:160
 msgid "Please enter a smaller number."
 msgstr "Kérlek adj meg egy kisebb számot."
 
-#: views/cart.py:163 views/cart.py:237
+#: views/cart.py:167
 msgid "Invalid quantity."
 msgstr "Érvénytelen mennyiség."
 
-#: views/cart.py:167
+#: views/cart.py:171
 msgid "Please enter a positive number."
 msgstr "Kérlek adj meg egy pozitív számot."
 
 #: views/cart.py:200
-msgid "No product requested"
-msgstr "Nem adtál meg terméket."
-
-#: views/cart.py:229
-msgid "Choose a smaller quantity"
-msgstr "Válassz egy kisebb számot"
-
-#: views/cart.py:234
-msgid "Choose a quantity."
-msgstr "Válassz egy mennyiséget."
-
-#: views/cart.py:254
 msgid "Success"
 msgstr "Sikerült."
 
-#: views/cart.py:305
+#: views/cart.py:242
 msgid "You must accept the terms and conditions."
 msgstr "El kell fogadnod a feltételeket."
-
-#: views/cart.py:321 views/cart.py:358
-msgid "Internal error: please submit as a POST"
-msgstr "Belső hiba, kérlek POST metódust használj a küldésre."
 
 #: views/comments.py:20 views/comments.py:31
 msgid "One or more of the required fields wasn't submitted"
@@ -1271,27 +1277,27 @@ msgstr "Néhány kötelező mezőt nem töltöttél ki."
 msgid "Bad ContentType: %s"
 msgstr "Érvénytelen ContentType: %s"
 
-#: views/contact.py:14
+#: views/contact.py:15
 msgid "General question"
 msgstr "Általános kérdés"
 
-#: views/contact.py:15
+#: views/contact.py:16
 msgid "Order problem"
 msgstr "Rendelési probléma"
 
-#: views/contact.py:20
+#: views/contact.py:21
 msgid "Email address"
 msgstr "Email cím"
 
-#: views/contact.py:21
+#: views/contact.py:22
 msgid "Subject"
 msgstr "Tárgy"
 
-#: views/contact.py:22
+#: views/contact.py:23
 msgid "Inquiry"
 msgstr "Kapcsolat"
 
-#: views/contact.py:23
+#: views/contact.py:24
 msgid "Contents"
 msgstr "Tartalom"
 
@@ -1307,3 +1313,22 @@ msgstr "Érvénytelen oldalszám"
 msgid ""
 "The order you have requested doesn't exist, or you don't have access to it."
 msgstr "A kért megrendelés nemlétezik, vagy nincs jogosultságod megnézni."
+
+#~ msgid ""
+#~ "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
+#~ "charged %(order_total)s."
+#~ msgstr ""
+#~ "A %(credit_card_type)s tipusú kártyád (%(credit_card_number)s) %"
+#~ "(order_total)s összeggel fogjuk megterhelni."
+
+#~ msgid "No product requested"
+#~ msgstr "Nem adtál meg terméket."
+
+#~ msgid "Choose a smaller quantity"
+#~ msgstr "Válassz egy kisebb számot"
+
+#~ msgid "Choose a quantity."
+#~ msgstr "Válassz egy mennyiséget."
+
+#~ msgid "Internal error: please submit as a POST"
+#~ msgstr "Belső hiba, kérlek POST metódust használj a küldésre."
