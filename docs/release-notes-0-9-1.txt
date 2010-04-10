@@ -64,3 +64,5 @@ Changes
 - Expand product custom attributes to work with categories
 - Refactored cart views for consistency with ajax calls
 - Removed Keyedcache and Livesettings from Satchmo and gave them their own project
+- Updated Russian and added Hungarian translations
+- Fix a bug in clonesatchmo
