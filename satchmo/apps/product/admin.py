@@ -149,12 +149,12 @@ class CategoryOptions(admin.ModelAdmin):
     list_display += ('name', '_parents_repr', 'is_active')
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
-    inlines = [CategoryImage_Inline]
+    inlines = [CategoryAttributeInline, CategoryImage_Inline]
     if get_l10n_setting('show_translations'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
-    inlines = (CategoryAttributeInline, )
+
 
     actions = ('mark_active', 'mark_inactive')
 
