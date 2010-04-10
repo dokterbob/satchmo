@@ -177,7 +177,7 @@ def satchmo_language_selection_form(context):
     Display the set language form, if enabled in shop settings.
     """
     request = threadlocals.get_current_request()
-    enabled = get_l10n_setting('allow_translations')
+    enabled = get_l10n_setting('allow_translation_choice')
     languages = []
     if enabled:
         try:

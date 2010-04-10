@@ -313,8 +313,8 @@ below would configure the Euro::
          'EURO' : {'symbol': u'€', 'positive' : u"€%(val)0.2f", 'negative': u"€(%(val)0.2f)", 'decimal' : ','},
       },
       'default_currency' : 'EURO',
-      'show_translations': False,
-      'allow_translations': False,
+      'show_admin_translations': False,
+      'allow_translation_choice': False,
     }
 
 Satchmo recognises the following keys in ``L10N_SETTINGS``:
@@ -325,17 +325,17 @@ Satchmo recognises the following keys in ``L10N_SETTINGS``:
 
     The default currency type to display.
 
-  .. _l10n_settings_show_translations:
+  .. _l10n_settings_show_admin_translations:
 
-  ``'show_translations'``
+  ``'show_admin_translations'``
 
     :default: ``True``
 
     Enable or disable the use of the translation options in the admin.
 
-  .. _l10n_settings_allow_translations:
+  .. _l10n_settings_allow_translation_choice:
 
-  ``'allow_translations'``
+  ``'allow_translation_choice'``
 
     :default: ``True``
 

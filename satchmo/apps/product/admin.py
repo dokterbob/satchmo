@@ -150,7 +150,7 @@ class CategoryOptions(admin.ModelAdmin):
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
     inlines = [CategoryAttributeInline, CategoryImage_Inline]
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
@@ -171,7 +171,7 @@ class CategoryImageOptions(admin.ModelAdmin):
 
 class OptionGroupOptions(admin.ModelAdmin):
     inlines = [Option_Inline]
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(OptionGroupTranslation_Inline)
     if config_value('SHOP','SHOW_SITE'):
         list_display = ('site',)
@@ -181,7 +181,7 @@ class OptionGroupOptions(admin.ModelAdmin):
 
 class OptionOptions(admin.ModelAdmin):
     inlines = []
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
@@ -243,7 +243,7 @@ class ProductOptions(admin.ModelAdmin):
             (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':('collapse',)}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(ProductTranslation_Inline)
     filter_horizontal = ('category',)
 
@@ -261,7 +261,7 @@ class CustomProductOptions(admin.ModelAdmin):
 
 class CustomTextFieldOptions(admin.ModelAdmin):
     inlines = []
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(CustomTextFieldTranslation_Inline)
 
 class SubscriptionProductOptions(admin.ModelAdmin):
@@ -272,7 +272,7 @@ class ProductVariationOptions(admin.ModelAdmin):
 
 class ProductImageOptions(admin.ModelAdmin):
     inlines = []
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(ProductImageTranslation_Inline)
 
 admin.site.register(Category, CategoryOptions)
