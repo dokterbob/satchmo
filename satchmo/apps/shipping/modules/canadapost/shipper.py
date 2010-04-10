@@ -116,7 +116,7 @@ class Shipper(BaseShipper):
         '''
         log.debug("Starting Canada Post calculations")
 
-        from satchmo.shop.models import Config
+        from satchmo_store.shop.models import Config
         settings =  config_get_group('shipping.modules.canadapost')
 
         verbose = settings.VERBOSE_LOG.value
