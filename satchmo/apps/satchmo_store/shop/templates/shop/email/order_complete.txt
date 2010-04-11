@@ -1,20 +1,24 @@
-{% extends "shop/email/_order_detail.txt" %}{% load i18n satchmo_currency %}
-
-{% block salutation %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}{% endblock %}
+{% load i18n satchmo_currency %}
+{% block salutation %}
+    {% with order.contact.first_name as first_name %}
+    {% with order.contact.last_name as last_name %}
+    {% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}
+    {% endwith %}
+    {% endwith %}
+{% endblock %}
 
 {% blocktrans %}Thank you for ordering with {{ shop_name }}.{% endblocktrans %}
 
 {% trans "Your order is summarized below:" %}
 
-{% block order_details %}{{block.super}}{% endblock %}
-
-{% block order_details_payment_body %}Your {{block.super}}{% endblock %}
-
+{% include "shop/email/_order_detail.txt" %}
 {% if order.has_downloads %}
 {% trans "Your order contains products that can be downloaded" %}
 {% trans "Please click the link to begin the download" %}
 {% for download in order.downloadlink_set.all %}
-{{ download.product_name }} - {{download.get_full_url}}
+{{ download.product_name }}:
+{{ download.get_full_url }}
+
 {% endfor %}
 {% endif %}
 
