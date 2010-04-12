@@ -2181,13 +2181,16 @@ class Price(models.Model):
     def __unicode__(self):
         return unicode(self.price)
 
-    def adjustments(self):
-        """Get a list of price adjustments, in the form of a PriceAdjustmentCalc object.
+    def adjustments(self, product=None):
+        """Get a list of price adjustments, in the form of a PriceAdjustmentCalc
+        object. Optionally, provide a pre-fetched product to avoid the foreign
+        key lookup of the `product' attribute.
         """
-
-        adjust = PriceAdjustmentCalc(self)
+        if product is None:
+            product = self.product
+        adjust = PriceAdjustmentCalc(self, product)
         signals.satchmo_price_query.send(self, adjustment=adjust,
-            slug=self.product.slug, discountable=self.product.is_discountable)
+            slug=product.slug, discountable=product.is_discountable)
         return adjust
 
     def _dynamic_price(self):
@@ -2380,7 +2383,7 @@ def get_product_quantity_adjustments(product, qty=1, parent=None):
 
     if qty_discounts.count() > 0:
         # Get the price with the quantity closest to the one specified without going over
-        adjustments = qty_discounts.order_by('price','-quantity', 'expires')[0].adjustments()
+        adjustments = qty_discounts.order_by('price','-quantity', 'expires')[0].adjustments(product)
 
     elif parent:
         adjustments = get_product_quantity_adjustments(parent, qty=qty)
