@@ -67,7 +67,7 @@ class TruncatedCurrencyWidget(BaseCurrencyWidget):
     def render(self, name, value, attrs=None):
         value = _render_decimal(value, places=2)
         rendered = super(TruncatedCurrencyWidget, self).render(name, value, attrs)
-        curr = config_value('LANGUAGE','CURRENCY')
+        curr = get_l10n_default_currency_symbol()
         curr = curr.replace("_", "&nbsp;")
         return mark_safe('<span class="currency">%s</span>%s' % (curr, rendered))
 
