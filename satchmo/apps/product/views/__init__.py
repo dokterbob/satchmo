@@ -7,7 +7,8 @@ from django.template.loader import select_template
 from django.utils.translation import ugettext as _
 from l10n.utils import moneyfmt
 from livesettings import config_value
-from product.models import Category, Product, ConfigurableProduct, sorted_tuple
+from product.models import Category, Product
+from product.modules.configurable.models import ConfigurableProduct, sorted_tuple
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
 from satchmo_utils.json import json_encode

@@ -5,8 +5,7 @@ from l10n.l10n_settings import get_l10n_setting
 from livesettings import config_value
 from product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, \
                                    OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, \
-                                   CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, \
-                                   DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
+                                   ProductAttribute, \
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
                                    default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption, \
                                    CategoryAttribute
@@ -56,18 +55,6 @@ class Option_Inline(admin.TabularInline):
 class OptionTranslation_Inline(admin.StackedInline):
     model = OptionTranslation
     extra = 1
-
-class CustomTextField_Inline(admin.TabularInline):
-    model = CustomTextField
-    extra = 3
-
-class CustomTextFieldTranslation_Inline(admin.StackedInline):
-    model = CustomTextFieldTranslation
-    extra = 1
-
-class Trial_Inline(admin.StackedInline):
-    model = Trial
-    extra = 2
 
 class AttributeOptionForm(models.ModelForm):
 
@@ -256,37 +243,12 @@ class ProductOptions(admin.ModelAdmin):
             field.initial = default_weight_unit()
         return field
 
-class CustomProductOptions(admin.ModelAdmin):
-    inlines = [CustomTextField_Inline]
-
-class CustomTextFieldOptions(admin.ModelAdmin):
-    inlines = []
-    if get_l10n_setting('show_admin_translations'):
-        inlines.append(CustomTextFieldTranslation_Inline)
-
-class SubscriptionProductOptions(admin.ModelAdmin):
-    inlines = [Trial_Inline]
-
-class ProductVariationOptions(admin.ModelAdmin):
-    filter_horizontal = ('options',)
-
-class ProductImageOptions(admin.ModelAdmin):
-    inlines = []
-    if get_l10n_setting('show_admin_translations'):
-        inlines.append(ProductImageTranslation_Inline)
-
 admin.site.register(Category, CategoryOptions)
 #admin.site.register(CategoryImage, CategoryImageOptions)
 admin.site.register(Discount, DiscountOptions)
 admin.site.register(OptionGroup, OptionGroupOptions)
 admin.site.register(Option, OptionOptions)
 admin.site.register(Product, ProductOptions)
-admin.site.register(CustomProduct, CustomProductOptions)
-admin.site.register(CustomTextField, CustomTextFieldOptions)
-admin.site.register(ConfigurableProduct)
-admin.site.register(DownloadableProduct)
-admin.site.register(SubscriptionProduct, SubscriptionProductOptions)
-admin.site.register(ProductVariation, ProductVariationOptions)
 admin.site.register(TaxClass)
 admin.site.register(AttributeOption, AttributeOptionAdmin)
 #admin.site.register(ProductImage, ProductImageOptions)

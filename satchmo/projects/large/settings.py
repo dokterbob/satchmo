@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'satchmo_ext.recentlist',
     #'testimonials',
     'product',
+    'product.modules.configurable',
     'satchmo_ext.product_feeds',
     'satchmo_ext.brand',
     'payment',

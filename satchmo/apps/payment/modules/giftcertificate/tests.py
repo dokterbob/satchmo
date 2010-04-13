@@ -1,23 +1,22 @@
-# -*- coding: UTF-8 -*-
 from decimal import Decimal
 from django.contrib.sites.models import Site
 from django.test import TestCase
 from keyedcache import cache_delete
 from l10n.models import Country
-from livesettings import config_get_group, config_value
+from livesettings import config_value
 from models import *
 from product.models import Product
 from satchmo_store.contact.models import AddressBook, Contact, ContactRole
 from satchmo_store.shop.models import Order, OrderItem, OrderItemDetail
 from utils import generate_certificate_code, generate_code
-import datetime, logging
+import logging
 
 log = logging.getLogger('giftcertificate.tests')
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 def make_test_order(country, state):
-    c = Contact(first_name="Gift", last_name="Tester", 
+    c = Contact(first_name="Gift", last_name="Tester",
         role=ContactRole.objects.get(pk='Customer'), email="gift@example.com")
     c.save()
     if not isinstance(country, Country):
@@ -49,17 +48,17 @@ class TestGenerateCode(TestCase):
 
     def testGetCode(self):
         c = generate_code(alphabet, '^^^^')
-        
+
         self.assertEqual(len(c), 4)
-        
+
         for ch in c:
             self.assert_(ch in alphabet)
-            
+
     def testGetCode2(self):
         c = generate_code(alphabet, '^^^^-^^^^')
         c2 = generate_code(alphabet, '^^^^-^^^^')
         self.assertNotEqual(c,c2)
-        
+
     def testFormat(self):
         c = generate_code(alphabet, '^-^-^-^')
         for i in (0,2,4,6):
@@ -71,7 +70,7 @@ class TestGenerateCertificateCode(TestCase):
     def setUp(self):
         self.charset = config_value('PAYMENT_GIFTCERTIFICATE', 'CHARSET')
         self.format = config_value('PAYMENT_GIFTCERTIFICATE', 'FORMAT')
-        
+
     def testGetCode(self):
         c = generate_certificate_code()
         self.assertEqual(len(c), len(self.format))
@@ -80,20 +79,20 @@ class TestGenerateCertificateCode(TestCase):
         chars.extend(self.charset)
         for ch in c:
             self.assert_(ch in chars)
-    
+
 class TestCertCreate(TestCase):
     fixtures = ['l10n-data.yaml','test_shop']
-    
+
     def setUp(self):
         self.site = Site.objects.get_current()
-    
+
     def tearDown(self):
         cache_delete()
 
     def testCreate(self):
         gc = GiftCertificate(start_balance = '100.00', site=self.site)
         gc.save()
-        
+
         self.assert_(gc.code)
         self.assertEqual(gc.balance, Decimal('100.00'))
 
@@ -103,12 +102,12 @@ class TestCertCreate(TestCase):
         bal = gc.use('10.00')
         self.assertEqual(bal, Decimal('90.00'))
         self.assertEqual(gc.usages.count(), 1)
-        
-        
+
+
 class GiftCertOrderTest(TestCase):
 
-    fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'test_giftcertificate.yaml', 'test_giftcertificate_config.yaml']
-    
+    fixtures = ['l10n-data.yaml', 'test_shop.yaml', 'test_giftcertificate.yaml', 'test_giftcertificate_config.yaml', 'initial_data.yaml']
+
     def tearDown(self):
         cache_delete()
 
@@ -117,11 +116,12 @@ class GiftCertOrderTest(TestCase):
         cache_delete()
         order = make_test_order('US', '')
         order.order_success()
-    
+
+        order = Order.objects.get(pk=order.id)
         certs = order.giftcertificates.all()
         self.assertEqual(len(certs), 1)
         c = certs[0]
         self.assertEqual(c.balance, Decimal('20.00'))
         self.assertEqual(c.recipient_email, 'me@example.com')
         self.assertEqual(c.message, 'hello there')
-        
+

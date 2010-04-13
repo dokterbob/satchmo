@@ -1,9 +1,9 @@
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import loader, RequestContext
+from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from satchmo_store.shop.models import DownloadLink
+from product.modules.downloadable.models import DownloadLink
 import mimetypes
 
 import os
@@ -32,14 +32,14 @@ def _validate_key(download_key):
         return (False, msg, None)
     else:
         return (True, None, dl_product)
-    
+
 def process(request, download_key):
     """
     Validate that the key is good, then set a session variable.
     Redirect to the download view.
-    
+
     We use this two step process so that we can easily display meaningful feedback
-    to the user.   
+    to the user.
     """
     valid, msg, dl_product = _validate_key(download_key)
     if not valid:
@@ -47,39 +47,39 @@ def process(request, download_key):
         return render_to_response('shop/download.html',
                                   context_instance=context)
     else:
-        # The key is valid so let's set the session variable and redirect to the 
+        # The key is valid so let's set the session variable and redirect to the
         # download view
         request.session['download_key'] = download_key
         url = urlresolvers.reverse('satchmo_download_send', kwargs= {'download_key': download_key})
         context = RequestContext(request, {'download_product': dl_product,
                                             'dl_url' : url})
         return render_to_response('shop/download.html', context_instance=context)
-   
+
 def send_file(request, download_key):
     """
     After the appropriate session variable has been set, we commence the download.
     The key is maintained in the url but the session variable is used to control the
     download in order to maintain security.
-    
+
     For this to work, your server must support the X-Sendfile header
     Lighttpd and Apache should both work with the headers used below.
     For apache, will need mod_xsendfile
     For lighttpd, allow-x-send-file must be enabled
-    
+
     Also, you must ensure that the directory where the file is stored is protected
-    from users.  
-    
+    from users.
+
     In lighttpd.conf:
     $HTTP["url"] =~ "^/static/protected/" {
     url.access-deny = ("")
     }
-    
+
     In Nginx:
     location /protected/{
              internal;
              root /usr/local/www/website/static;
         }
-    
+
     """
     if not request.session.get('download_key', False):
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': download_key})

@@ -1,10 +1,6 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
 
-
-PRODUCTS = config_get('PRODUCT', 'PRODUCT_TYPES')
-PRODUCTS.add_choice(('giftcertificate::GiftCertificateProduct', _('Gift Certificate')))
-
 PAYMENT_GROUP = ConfigurationGroup('PAYMENT_GIFTCERTIFICATE',
     _('Gift Certificate Settings'))
 

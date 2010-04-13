@@ -1,5 +1,5 @@
 import logging
-from product.models import ConfigurableProduct
+from product.modules.configurable.models import ConfigurableProduct
 
 class LogMiddleware(object):
     """

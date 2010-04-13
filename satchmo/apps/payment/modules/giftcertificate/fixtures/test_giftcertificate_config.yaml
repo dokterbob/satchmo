@@ -2,8 +2,4 @@
       "Discover"]'}
   model: livesettings.setting
   pk: 1
-- fields: {group: PRODUCT, key: PRODUCT_TYPES, site: 1, value: '["product::ConfigurableProduct",
-      "product::ProductVariation", "giftcertificate::GiftCertificateProduct"]'}
-  model: livesettings.setting
-  pk: 3
 

@@ -2,7 +2,7 @@ from django import template
 from django.core import urlresolvers
 from django.template import Context, Template
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_choice_values
+from product import active_product_types
 
 register = template.Library()
 
@@ -30,15 +30,14 @@ register.simple_tag(js_make_select_readonly)
 def edit_subtypes(product):
     output = '<ul>'
     subtypes = product.get_subtypes()
-    for key, subtype_label in config_choice_values('PRODUCT', 'PRODUCT_TYPES'):
-        app, subtype = key.split("::")
+    for app, subtype in active_product_types():
         is_config = "ConfigurableProduct" in subtypes
         if subtype in subtypes:
             edit_url = urlresolvers.reverse('admin:%s_%s_change' %
                                             (app, subtype.lower()),
                                             args=(product.pk,))
             output += ('<li><a href="%s">' % edit_url +
-                       _('Edit %(subtype)s') % {'subtype': subtype_label} +
+                       _('Edit %(subtype)s') % {'subtype': subtype} +
                        '</a></li>')
             if is_config or subtype=="ProductVariation":
                  output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.id]))
@@ -47,7 +46,7 @@ def edit_subtypes(product):
                 add_url = urlresolvers.reverse('admin:%s_%s_add' %
                                                (app, subtype.lower()))
                 output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
-                           _('Add %(subtype)s') % {'subtype': subtype_label} +
+                           _('Add %(subtype)s') % {'subtype': subtype} +
                            '</a></li>')
     output += '</ul>'
     return output
