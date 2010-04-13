@@ -221,7 +221,7 @@ class ConfigurableProduct(models.Model):
         """
         Right now this only works if you save the suboptions, then go back and choose to create the variations.
         """
-        super(ConfigurableProduct, self).save()
+        super(ConfigurableProduct, self).save(**kwargs)
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types
         # Doesn't work with admin - the manipulator doesn't add the option_group
