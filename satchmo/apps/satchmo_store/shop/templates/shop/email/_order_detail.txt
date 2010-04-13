@@ -1,8 +1,6 @@
 {% load i18n satchmo_currency satchmo_discounts normalize_decimal %}{% block order_details_items %}{% trans "Items Ordered" %}
---------------
-{% for item in order.orderitem_set.all %}
-{{ item }} - {{item.product|discount_price:sale|currency}} x {{item.quantity|normalize_decimal}} = {{item.sub_total|currency}}
-{% endfor %}{% endblock order_details_items %}
+--------------{% for item in order.orderitem_set.all %}
+{{ item }} - {{item.product|discount_price:sale|currency}} x {{item.quantity|normalize_decimal}} = {{item.sub_total|currency}}{% endfor %}{% endblock order_details_items %}
 
 {% block order_details_contact %}{% trans "Contact Information" %}
 -------------------
