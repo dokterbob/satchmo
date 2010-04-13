@@ -1,8 +1,14 @@
-{% extends "shop/email/_order_detail.txt" %}{% load i18n satchmo_currency %}
+{% load i18n satchmo_currency %}
 
 {% with order.contact.email as email %}{% with order.contact.full_name as customer %}{% blocktrans %}Order placed on {{ shop_name }} by {{ customer }}<{{ email }}>.{% endblocktrans %}{% endwith %}{% endwith %}
 
-{% block order_details %}{{block.super}}{% endblock order_details %}
+{% block order_details %}{% include "shop/email/_order_detail.txt" %}{% endblock order_details %}{% comment %}
+    Whitespace for readibility. Hidden, so that we only have two newlines before
+    the next block.
+{% endcomment %}
+{% load i18n satchmo_currency %}{% block order_details_payment %}{% trans "Payment" %}
+-------{% with order.credit_card.credit_type as credit_card_type %}{% with order.credit_card.display_cc as credit_card_number %}{% with order.total|currency as order_total %}
+{% block order_details_payment_body %}{% blocktrans %}{{ credit_card_type }} card ending in {{ credit_card_number }} will be charged {{ order_total }}.{% endblocktrans %}{% endblock order_details_payment_body %}{% endwith %}{% endwith %}{% endwith %}{% endblock order_details_payment %}
 
 {% if order.has_downloads %}
 {% trans "This is a downloadable product" %}
