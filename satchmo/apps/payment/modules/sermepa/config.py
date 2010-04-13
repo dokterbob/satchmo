@@ -13,7 +13,7 @@
 from livesettings import *
 from django.utils.translation import ugettext_lazy as _
 
-PAYMENT_GROUP = ConfigurationGroup('PAYMENT_SERMEPA', 
+PAYMENT_GROUP = ConfigurationGroup('PAYMENT_SERMEPA',
     _('SERMEPA (ServiRed) Payment Module Settings'))
 
 config_register_list(
@@ -151,14 +151,6 @@ config_register_list(
         default='SERMEPA_satchmo_checkout-failure',
         ordering=320
         ),
-    BooleanValue(
-        PAYMENT_GROUP,
-        'SSL',
-        description=_("Use SSL for the module checkout pages?"),
-        default=False,
-        ordering=330
-        ),
-        
     BooleanValue(PAYMENT_GROUP,
         'EXTRA_LOGGING',
         description=_("Verbose logs"),

@@ -1,15 +1,15 @@
-from django.conf.urls.defaults import *
-from livesettings import config_get_group
+from django.conf.urls.defaults import patterns
+from satchmo_store.shop.satchmo_settings import get_satchmo_setting
 
-config = config_get_group('PAYMENT_PURCHASEORDER')
+ssl = get_satchmo_setting('SSL', default_value=False)
 
 urlpatterns = patterns('payment',
-    (r'^$', 'modules.purchaseorder.views.pay_ship_info', 
-       {'SSL':config.SSL.value}, 'PURCHASEORDER_satchmo_checkout-step2'),
+    (r'^$', 'modules.purchaseorder.views.pay_ship_info',
+       {'SSL':ssl}, 'PURCHASEORDER_satchmo_checkout-step2'),
 
-    (r'^confirm/$', 'modules.purchaseorder.views.confirm_info', 
-       {'SSL':config.SSL.value}, 'PURCHASEORDER_satchmo_checkout-step3'),
+    (r'^confirm/$', 'modules.purchaseorder.views.confirm_info',
+       {'SSL':ssl}, 'PURCHASEORDER_satchmo_checkout-step3'),
 
-     (r'^success/$', 'views.checkout.success', 
-        {'SSL':config.SSL.value}, 'PURCHASEORDER_satchmo_checkout-success'),
+     (r'^success/$', 'views.checkout.success',
+        {'SSL':ssl}, 'PURCHASEORDER_satchmo_checkout-success'),
 )

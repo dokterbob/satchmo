@@ -150,5 +150,7 @@ SATCHMO_SETTINGS = {
     #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
 }
 
+SKIP_SOUTH_TESTS=True
+
 # Load the local settings
 from local_settings import *

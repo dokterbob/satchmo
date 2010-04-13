@@ -21,6 +21,7 @@ satchmo_settings_defaults = {
     'COOKIE_MAX_SECONDS' : 60*60*24*30, #one month
     'CATEGORY_SLUG': 'category', # Used for the category url
     'PRODUCT_SLUG' : 'product', # Used for the product url
+    'SSL' : False, # Used for checkout pages
     }
 
 
@@ -28,7 +29,7 @@ def add_setting_defaults(newdefaults):
     """
     This method can be used by other applications to define their
     default values.
-    
+
     newdefaults has to be a dictionary containing name -> value of
     the settings.
     """
@@ -39,7 +40,7 @@ def set_satchmo_setting(name, value):
     if not hasattr(settings, 'SATCHMO_SETTINGS'):
         settings.SATCHMO_SETTINGS = {}
     settings.SATCHMO_SETTINGS[name] = value
-    
+
 
 def get_satchmo_setting(name, default_value = None):
     if not hasattr(settings, 'SATCHMO_SETTINGS'):

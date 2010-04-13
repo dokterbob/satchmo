@@ -8,6 +8,7 @@ from livesettings import config_get_group, config_value
 from payment.config import gateway_live
 from payment.views import confirm, payship
 from satchmo_store.shop.models import Order
+from satchmo_store.shop.satchmo_settings import get_satchmo_setting
 from satchmo_utils.dynamic import lookup_url
 from satchmo_utils.views import bad_or_missing
 import auth
@@ -30,8 +31,9 @@ class GoogleCart(object):
     def _cart_xml(self, order):
         template = get_template(self.settings["CART_XML_TEMPLATE"].value)
 
-        shopping_url = lookup_url(self.settings, 'satchmo_checkout-success', True, self.settings.SSL.value)
-        edit_url = lookup_url(self.settings, 'satchmo_cart', True, self.settings.SSL.value)
+        ssl = get_satchmo_setting('SSL', default_value=False)
+        shopping_url = lookup_url(self.settings, 'satchmo_checkout-success', True, ssl)
+        edit_url = lookup_url(self.settings, 'satchmo_cart', True, ssl)
         ctx = Context({"order" : order,
                        "continue_shopping_url" : shopping_url,
                        "edit_cart_url" : edit_url,
@@ -72,10 +74,10 @@ def confirm_info(request):
     live = gateway_live(payment_module)
     gcart = GoogleCart(controller.order, payment_module, live)
     log.debug("CART:\n%s", gcart.cart_xml)
-        
+
     post_url = auth.get_url()
     default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
-    
+
     ctx = {
         'post_url': post_url,
         'google_cart' : gcart.encoded_cart(),
@@ -94,20 +96,20 @@ def notification(request):
     """
     data = request.POST
     log.debug(data)
-    
+
     # check the given merchant id
     log.debug("Google Checkout Notification")
     response = auth.do_auth(request)
     if response:
         return response
-    
+
     # ok its authed, get the type and serial
     type = data['_type']
     serial_number = data['serial-number'].strip()
-    
+
     log.debug("type: %s" % type)
     log.debug("serial-number: %s" % serial_number)
-    
+
     # check type
     if type == 'new-order-notification':
         notifications.notify_neworder(request, data)
@@ -117,7 +119,7 @@ def notification(request):
         notifications.notify_chargeamount(request, data)
 
     # return ack so google knows we handled the message
-    ack = '<notification-acknowledgment xmlns="http://checkout.google.com/schema/2" serial-number="%s"/>' % serial_number 
+    ack = '<notification-acknowledgment xmlns="http://checkout.google.com/schema/2" serial-number="%s"/>' % serial_number
     response = http.HttpResponse(content=ack, content_type="text/xml; charset=UTF-8")
     log.debug(response)
     return response
@@ -131,7 +133,7 @@ def success(request):
         order = Order.objects.from_request(request)
     except Order.DoesNotExist:
         return bad_or_missing(request, _('Your order has already been processed.'))
-        
+
     del request.session['orderID']
     context = RequestContext(request, {'order': order})
     return render_to_response('shop/checkout/success.html',
