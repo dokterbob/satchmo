@@ -13,7 +13,7 @@ def capture_authorizations(order):
     """Capture all outstanding authorizations on this order"""
     if order.authorized_remaining > Decimal('0'):
         for authz in order.authorizations.filter(complete=False):
-            processor = get_processor_by_key(authz.order.payment)
+            processor = get_processor_by_key('PAYMENT_%s' % authz.payment)
             processor.capture_authorized_payments(order)
 
 def get_or_create_order(request, working_cart, contact, data):
@@ -53,6 +53,11 @@ def get_gateway_by_settings(gateway_settings, settings={}):
     return processor_module.PaymentProcessor(settings=gateway_settings)
 
 def get_processor_by_key(key):
+    """
+    Returns an instance of a payment processor, referred to by *key*.
+
+    :param key: A string of the form 'PAYMENT_<PROCESSOR_NAME>'.
+    """
     payment_module = config_get_group(key)
     processor_module = payment_module.MODULE.load_module('processor')
     return processor_module.PaymentProcessor(payment_module)
