@@ -309,8 +309,7 @@ class TestPaymentHandling(TestCase):
         self.assertEqual(result.success, True)
         payment = result.payment
         self.assertEqual(auth.capture, payment)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
         self.assertEqual(order.balance, Decimal('0'))
 
     def test_authorize_multiple(self):
@@ -344,8 +343,7 @@ class TestPaymentHandling(TestCase):
         r2 = results[1]
         self.assertEqual(r1.success, True)
         self.assertEqual(r2.success, True)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
         self.assertEqual(order.balance, Decimal('0'))
 
     def test_capture(self):
@@ -368,8 +366,7 @@ class TestPaymentHandling(TestCase):
         self.assertEqual(result.success, True)
         payment = result.payment
         self.assertEqual(pmt1, payment)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
         self.assertEqual(order.balance, Decimal('0'))
 
 
