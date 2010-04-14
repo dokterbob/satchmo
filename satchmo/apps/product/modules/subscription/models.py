@@ -106,10 +106,10 @@ class SubscriptionProduct(models.Model):
 
         return expiredate
 
-    def save(self):
+    def save(self, **kwargs):
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types
-        super(SubscriptionProduct, self).save()
+        super(SubscriptionProduct, self).save(**kwargs)
 
     class Meta:
         verbose_name = _("Subscription Product")
