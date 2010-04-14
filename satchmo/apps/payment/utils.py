@@ -13,11 +13,9 @@ log = logging.getLogger('payment.utils')
 def capture_authorizations(order):
     """Capture all outstanding authorizations on this order"""
     if order.authorized_remaining > Decimal('0'):
-        purchase = order.get_or_create_purchase()
-        for key, group in active_gateways():
-            gateway_settings = config_get(group, 'MODULE')
-            processor = get_gateway_by_settings(gateway_settings)
-            processor.capture_authorized_payments(purchase)
+        for authz in order.authorizations.filter(complete=False):
+            processor = get_processor_by_key('PAYMENT_%s' % authz.payment)
+            processor.capture_authorized_payments(order)
 
 def get_or_create_order(request, working_cart, contact, data):
     """Get the existing order from the session, else create using
