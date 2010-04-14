@@ -71,7 +71,7 @@ class ImageWithThumbnailField(ImageField):
         if image and self.auto_rename:
             if self.name_field:
                 field = getattr(instance, self.name_field)
-                image = rename_by_field(image.path, '%s-%s-%s' \
+                image = rename_by_field(image.name, '%s-%s-%s' \
                                         % (instance.__class__.__name__,
                                            self.name,
                                            field
@@ -79,7 +79,7 @@ class ImageWithThumbnailField(ImageField):
                                         )
             else:
                 # XXX this needs testing, maybe it can generate too long image names (max is 100)
-                image = rename_by_field(image.path, '%s-%s-%s' \
+                image = rename_by_field(image.name, '%s-%s-%s' \
                                         % (instance.__class__.__name__,
                                            self.name,
                                            instance._get_pk_val()

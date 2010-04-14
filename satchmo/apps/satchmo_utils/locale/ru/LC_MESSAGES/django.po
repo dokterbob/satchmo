@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 19:57-0600\n"
+"POT-Creation-Date: 2010-04-08 13:16+0300\n"
 "PO-Revision-Date: 2009-03-06 12:20+0300\n"
 "Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
 "Language-Team: \n"
@@ -15,63 +15,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: numbers.py:23
+#: .\numbers.py:23
 #, python-format
 msgid "%(value)s is not a valid number"
-msgstr ""
+msgstr "%(value)s  - неверное число"
 
-#: numbers.py:35
+#: .\numbers.py:35
 msgid "Please enter a positive number"
-msgstr ""
+msgstr "Пожалуйста, введите положительное число"
 
-#: validators.py:5
-msgid "Please enter one and only one of those fields."
-msgstr ""
-
-#: validators.py:15
-msgid "These fields can not be the same."
-msgstr ""
-
-#: views.py:103
+#: .\views.py:103
 msgid "Card type does not match card number."
-msgstr ""
+msgstr "Тип карты не соответствует номеру карты."
 
-#: views.py:105
+#: .\views.py:105
 msgid "Invalid credit card number."
-msgstr ""
+msgstr "Неверный номер карты."
 
-#: thumbnail/config.py:4
+#: .\thumbnail\config.py:4
 #, fuzzy
 msgid "Thumbnail Settings"
 msgstr "Качество миниатюры"
 
-#: thumbnail/config.py:9
+#: .\thumbnail\config.py:9
 msgid "Thumbnail quality"
 msgstr "Качество миниатюры"
 
-#: thumbnail/config.py:10
+#: .\thumbnail\config.py:10
 msgid ""
 "Use a 1-100 value here, which will change the quality of JPG thumbnails "
 "created for products and categories."
 msgstr ""
+"Введите число от 1 до 100, чтобы указать качество JPG картинок для продуктов "
+"и категорий."
 
-#: thumbnail/config.py:16
+#: .\thumbnail\config.py:16
 msgid "Rename product images?"
-msgstr ""
+msgstr "Переименовать изображения продукта?"
 
-#: thumbnail/config.py:17
+#: .\thumbnail\config.py:17
 msgid "Automatically rename product images on upload?"
-msgstr ""
+msgstr "Автоматически переименовывать изображения продукта при загрузке?"
 
-#: thumbnail/widgets.py:21
+#: .\thumbnail\widgets.py:21
 #, fuzzy
 msgid "Change:"
-msgstr "Изменить"
+msgstr "Изменить:"
 
-#: thumbnail/templates/widget/file.html:3
+#: .\thumbnail\templates\widget\file.html.py:3
 msgid "Currently"
 msgstr "Текущий"
 
-#: thumbnail/templates/widget/file.html:4
+#: .\thumbnail\templates\widget\file.html.py:4
 msgid "Change"
 msgstr "Изменить"

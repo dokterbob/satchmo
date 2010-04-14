@@ -1,11 +1,10 @@
-from datetime import datetime, timedelta
 from decimal import Decimal
+from livesettings import config_get
 from livesettings import config_get_group
 from payment import active_gateways
-from satchmo_store.shop.models import Order, OrderAuthorization, OrderItem, OrderItemDetail, OrderPayment, OrderPendingPayment
+from satchmo_store.shop.models import Order, OrderItem, OrderItemDetail
 from satchmo_store.shop.signals import satchmo_post_copy_item_to_order
 from shipping.utils import update_shipping
-from socket import error as SocketError
 import logging
 
 log = logging.getLogger('payment.utils')
@@ -18,11 +17,11 @@ def capture_authorizations(order):
             processor.capture_authorized_payments(order)
 
 def get_or_create_order(request, working_cart, contact, data):
-    """Get the existing order from the session, else create using 
+    """Get the existing order from the session, else create using
     the working_cart, contact and data"""
     shipping = data.get('shipping', None)
     discount = data.get('discount', None)
-    
+
     try:
         order = Order.objects.from_request(request)
         if order.status != '':
@@ -34,7 +33,7 @@ def get_or_create_order(request, working_cart, contact, data):
     update = bool(order)
     if order:
         # make sure to copy/update addresses - they may have changed
-        order.copy_addresses() 
+        order.copy_addresses()
         order.save()
         if discount is None and order.discount_code:
             discount = order.discount_code

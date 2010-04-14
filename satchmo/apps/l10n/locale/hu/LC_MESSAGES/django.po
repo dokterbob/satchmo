@@ -1,0 +1,264 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-09 18:10-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:15 admin.py:24
+msgid "1 country was"
+msgstr ""
+
+#: admin.py:17 admin.py:26
+#, python-format
+msgid "%s countries were"
+msgstr ""
+
+#: admin.py:18
+#, python-format
+msgid "%s successfully marked as active"
+msgstr ""
+
+#: admin.py:19
+msgid "Mark selected countries as active"
+msgstr ""
+
+#: admin.py:27
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr ""
+
+#: admin.py:28
+msgid "Mark selected countries as inactive"
+msgstr ""
+
+#: models.py:6
+msgid "Africa"
+msgstr ""
+
+#: models.py:7
+msgid "North America"
+msgstr ""
+
+#: models.py:8
+msgid "Europe"
+msgstr ""
+
+#: models.py:9
+msgid "Asia"
+msgstr ""
+
+#: models.py:10
+msgid "Oceania"
+msgstr ""
+
+#: models.py:11
+msgid "South America"
+msgstr ""
+
+#: models.py:12
+msgid "Antarctica"
+msgstr ""
+
+#: models.py:16
+msgid "Another"
+msgstr ""
+
+#: models.py:17
+msgid "Island"
+msgstr ""
+
+#: models.py:18
+msgid "Arrondissement"
+msgstr ""
+
+#: models.py:19
+msgid "Atoll"
+msgstr ""
+
+#: models.py:20
+msgid "Autonomous island"
+msgstr ""
+
+#: models.py:21
+msgid "Canton"
+msgstr ""
+
+#: models.py:22
+msgid "Commune"
+msgstr ""
+
+#: models.py:23
+msgid "County"
+msgstr ""
+
+#: models.py:24
+msgid "Department"
+msgstr ""
+
+#: models.py:25
+msgid "Dependency"
+msgstr ""
+
+#: models.py:26
+msgid "District"
+msgstr ""
+
+#: models.py:27
+msgid "Division"
+msgstr ""
+
+#: models.py:28
+msgid "Emirate"
+msgstr ""
+
+#: models.py:29
+msgid "Governorate"
+msgstr ""
+
+#: models.py:30
+msgid "Island council"
+msgstr ""
+
+#: models.py:31
+msgid "Island group"
+msgstr ""
+
+#: models.py:32
+msgid "Island region"
+msgstr ""
+
+#: models.py:33
+msgid "Kingdom"
+msgstr ""
+
+#: models.py:34
+msgid "Municipality"
+msgstr ""
+
+#: models.py:35
+msgid "Parish"
+msgstr ""
+
+#: models.py:36
+msgid "Prefecture"
+msgstr ""
+
+#: models.py:37
+msgid "Province"
+msgstr ""
+
+#: models.py:38
+msgid "Region"
+msgstr ""
+
+#: models.py:39
+msgid "Republic"
+msgstr ""
+
+#: models.py:40
+msgid "Sheading"
+msgstr ""
+
+#: models.py:41
+msgid "State"
+msgstr ""
+
+#: models.py:42
+msgid "Subdivision"
+msgstr ""
+
+#: models.py:43
+msgid "Subject"
+msgstr ""
+
+#: models.py:44
+msgid "Territory"
+msgstr ""
+
+#: models.py:53
+msgid "ISO alpha-2"
+msgstr ""
+
+#: models.py:54
+msgid "Official name (CAPS)"
+msgstr ""
+
+#: models.py:55
+msgid "Country name"
+msgstr ""
+
+#: models.py:56
+msgid "ISO alpha-3"
+msgstr ""
+
+#: models.py:57
+msgid "ISO numeric"
+msgstr ""
+
+#: models.py:58
+msgid "Country is active"
+msgstr ""
+
+#: models.py:59
+msgid "Continent"
+msgstr ""
+
+#: models.py:60 models.py:81
+msgid "Administrative Area"
+msgstr ""
+
+#: models.py:63
+msgid "Country"
+msgstr ""
+
+#: models.py:64
+msgid "Countries"
+msgstr ""
+
+#: models.py:76
+msgid "Admin Area name"
+msgstr ""
+
+#: models.py:77
+msgid "Postal Abbreviation"
+msgstr ""
+
+#: models.py:78
+msgid "Area is active"
+msgstr ""
+
+#: models.py:82
+msgid "Administrative Areas"
+msgstr ""
+
+#: templates/l10n/_language_selection_form.html:5
+msgid "Change language"
+msgstr ""
+
+#: templates/l10n/_language_selection_form.html:11
+msgid "Change"
+msgstr ""
+
+#: validators/aupostcode.py:13
+msgid "Invalid Australian postal code"
+msgstr ""
+
+#: validators/capostcode.py:18
+msgid "Invalid postal code for Canada"
+msgstr ""
+
+#: validators/uspostcode.py:10
+msgid "Invalid ZIP code"
+msgstr ""

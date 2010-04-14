@@ -18,8 +18,8 @@ l10n_settings_defaults = {
     },
     
     'default_currency' : 'USD',
-    'show_translations': True,  #Display in the admin
-    'allow_translations' : True, #Display the list of languages to store user
+    'show_admin_translations': True,  #Display in the admin
+    'allow_translation_choice' : True, #Display the list of languages to store user
 }
 
 

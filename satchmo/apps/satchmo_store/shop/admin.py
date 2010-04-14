@@ -1,4 +1,4 @@
-from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderPaymentFailure, OrderAuthorization, OrderVariable, OrderTaxDetail
+from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, OrderStatus, OrderPayment, OrderPaymentFailure, OrderAuthorization, OrderVariable, OrderTaxDetail
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from satchmo_utils.admin import AutocompleteAdmin
@@ -115,7 +115,6 @@ class OrderAuthorizationOptions(OrderPaymentOptions):
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)
 admin.site.register(Config, ConfigOptions)
-admin.site.register(DownloadLink)
 admin.site.register(Order, OrderOptions)
 admin.site.register(OrderItem, OrderItemOptions)
 admin.site.register(OrderPayment, OrderPaymentOptions)

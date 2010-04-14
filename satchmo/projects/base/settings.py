@@ -164,7 +164,7 @@ INSTALLED_APPS = (
     # * jobs.
     # ****
     #'django_extensions',
-    
+
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -198,24 +198,26 @@ SATCHMO_SETTINGS = {
     'SHOP_URLS' : patterns('',
         # disable this if you don't want multi-language
         (r'^i18n/', include('l10n.urls')),
-    
+
         # paypal urls need special treatment
-        # (r'^checkout/pay/$', 'payment.modules.paypal.checkout_step2.pay_ship_info', 
+        # (r'^checkout/pay/$', 'payment.modules.paypal.checkout_step2.pay_ship_info',
         #     {'SSL': False}, 'satchmo_checkout-step2'),
-        # (r'^checkout/confirm/$', 'paypal.checkout_step3.confirm_info', 
-        #     {'SSL': False}, 'satchmo_checkout-step3'),                
+        # (r'^checkout/confirm/$', 'paypal.checkout_step3.confirm_info',
+        #     {'SSL': False}, 'satchmo_checkout-step3'),
     ),
-    
+
     # This is the base url for the shop.  Only include a leading slash
     # examples: '/shop' or '/mystore'
     # If you want the shop at the root directory, set SHOP_BASE to ''
     'SHOP_BASE' : '/store',
-    
+
     # Set this to true if you want to use the multi-shop features
     # of satchmo.  It requires the "threaded_multihost" application
     # to be on your pythonpath.
-    'MULTISHOP' : False,    
+    'MULTISHOP' : False,
 }
+
+SKIP_SOUTH_TESTS=True
 
 # Load the local settings
 from local_settings import *

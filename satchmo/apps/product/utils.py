@@ -2,8 +2,7 @@ from decimal import Decimal
 from django.contrib.sites.models import Site
 from livesettings import config_value
 from l10n.utils import moneyfmt
-from product.models import Option, split_option_unique_id, \
-    ProductPriceLookup, OptionGroup, Discount, Product
+from product.models import Option, ProductPriceLookup, OptionGroup, Discount, Product, split_option_unique_id
 from satchmo_utils.numbers import round_decimal
 import datetime
 import logging
@@ -226,6 +225,7 @@ def _sort_options(lst):
 # All the functions below are used to validate custom attributes
 # associated with a product or category.
 # Custom ones can be added to the list via the admin setting ATTRIBUTE_VALIDATION
+
 
 def validation_simple(value, obj=None):
     """

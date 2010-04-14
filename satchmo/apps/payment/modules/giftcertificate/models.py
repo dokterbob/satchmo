@@ -1,11 +1,9 @@
 from datetime import datetime
 from decimal import Decimal
 from django.contrib.sites.models import Site
-from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from l10n.utils import moneyfmt
-from livesettings import config_value
 from payment.modules.giftcertificate.utils import generate_certificate_code
 from payment.utils import get_processor_by_key
 from product.models import Product
@@ -15,6 +13,10 @@ import logging
 
 GIFTCODE_KEY = 'GIFTCODE'
 log = logging.getLogger('giftcertificate.models')
+SATCHMO_PRODUCT = True
+
+def get_product_types():
+    return ("GiftcertificateProduct",)
 
 class GiftCertificateManager(models.Manager):
 
@@ -59,13 +61,13 @@ class GiftCertificate(models.Model):
         Returns new balance.
         """
         amount = min(order.balance, self.balance)
-        log.info('applying %s from giftcert #%i [%s] to order #%i [%s]', 
-            moneyfmt(amount), 
-            self.id, 
-            moneyfmt(self.balance), 
-            order.id, 
+        log.info('applying %s from giftcert #%i [%s] to order #%i [%s]',
+            moneyfmt(amount),
+            self.id,
+            moneyfmt(self.balance),
+            order.id,
             moneyfmt(order.balance))
-            
+
         processor = get_processor_by_key('PAYMENT_GIFTCERTIFICATE')
         orderpayment = processor.record_payment(order=order, amount=amount)
         self.orderpayment = orderpayment
@@ -126,9 +128,9 @@ class GiftCertificateProduct(models.Model):
 
     def __unicode__(self):
         return u"GiftCertificateProduct: %s" % self.product.name
-        
+
     def _get_subtype(self):
-        return 'GiftCertificateProduct'        
+        return 'GiftCertificateProduct'
 
     def order_success(self, order, order_item):
         log.debug("Order success called, creating gift certs on order: %s", order)
@@ -151,7 +153,7 @@ class GiftCertificateProduct(models.Model):
             recipient_email=email
             )
         gc.save()
-    
+
     def save(self, **kwargs):
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types

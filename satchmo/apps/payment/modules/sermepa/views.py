@@ -10,20 +10,20 @@
 #   TODO: SERMEPA interface provides possibility of recurring payments, which
 #   could be probably used for SubscriptionProducts. This module doesn't support it.
 #
+from datetime import datetime
+from decimal import Decimal
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
-from django.views.decorators.cache import never_cache
 from django.template import RequestContext
-from livesettings import config_get_group, config_value 
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.cache import never_cache
+from livesettings import config_get_group, config_value
 from payment.utils import get_processor_by_key
 from payment.views import payship
 from satchmo_store.shop.models import Order, Cart
+from satchmo_store.shop.satchmo_settings import get_satchmo_setting
 from satchmo_utils.dynamic import lookup_url, lookup_template
-from django.utils.translation import ugettext_lazy as _
-
-from datetime import datetime
-from decimal import Decimal
 import logging
 try:
     from hashlib import sha1
@@ -113,7 +113,7 @@ def confirm_info(request):
 
     template = lookup_template(payment_module, 'shop/checkout/sermepa/confirm.html')
 
-    url_callback = _resolve_local_url(payment_module, payment_module.MERCHANT_URL_CALLBACK, ssl=payment_module.SSL.value)
+    url_callback = _resolve_local_url(payment_module, payment_module.MERCHANT_URL_CALLBACK, ssl=get_satchmo_setting('SSL'))
     url_ok = _resolve_local_url(payment_module, payment_module.MERCHANT_URL_OK)
     url_ko = _resolve_local_url(payment_module, payment_module.MERCHANT_URL_KO)
 
@@ -191,8 +191,8 @@ def notify_callback(request):
     order.add_status(status='New', notes=u"Paid through SERMEPA.")
     processor = get_processor_by_key('PAYMENT_SERMEPA')
     payment = processor.record_payment(
-        order=order, 
-        amount=amount, 
+        order=order,
+        amount=amount,
         transaction_id=data['Ds_AuthorisationCode'])
     # empty customer's carts
     for cart in Cart.objects.filter(customer=order.contact):

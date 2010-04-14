@@ -76,7 +76,8 @@ Custom Modules
 
 .. Note::
 
-    You need to this before going through the instructions in `Enabling Modules`_.
+    You need to go through these steps before going through the instructions in
+    `Enabling Modules`_.
 
 #. Add the module's dotted name to :ref:`CUSTOM_SHIPPING_MODULES
    <satchmo_settings_custom_shipping_modules>`.
@@ -90,7 +91,8 @@ Modules with Django-style Models
 
 .. Note::
 
-    You need to this before going through the instructions in `Enabling Modules`_.
+    You need to through these steps before going through the instructions in
+    `Enabling Modules`_.
 
 In addition to the instructions above, you'll have to create the database tables for
 these modules:
@@ -107,6 +109,8 @@ Generic Modules
 Dummy
 ^^^^^
 
+:dotted name: ``shipping.modules.dummy``
+
 This module is mainly included in order to demonstrate how you can create your own modules.  If
 you have an interest in creating your own, copy this module to a new directory and use the comments
 to guide you through the process.
@@ -115,6 +119,8 @@ to guide you through the process.
 
 Flat
 ^^^^
+
+:dotted name: ``shipping.modules.flat``
 
 This is a very simple module that allows you to set a flat rate for all shipments.  It's not very
 sophisticated but it may be useful for simple stores or as a basis for other modules.  The values
@@ -139,6 +145,8 @@ No Shipping
 Per
 ^^^
 
+:dotted name: ``shipping.modules.per``
+
 This module is a little bit more complex than the flat rate.  It allows you to set one rate that is
 multiplied by the number of items in your order.  These values are configured through your settings
 page.
@@ -155,12 +163,16 @@ To enable, see `Enabling Modules`_.
 Shipping By Product
 ^^^^^^^^^^^^^^^^^^^
 
+:dotted name: ``shipping.modules.productshipping``
+
 .. TODO
 
 .. _shipping_tiered:
 
 Tiered
 ^^^^^^
+
+:dotted name: ``shipping.modules.tiered``
 
 This one is much more flexible than any of the prior modules, so it requires a little more configuration.
 It is not enabled by default.
@@ -194,6 +206,8 @@ For example, you can make this shipping table:
 Tiered Weight
 ^^^^^^^^^^^^^
 
+:dotted name: ``shipping.modules.tieredweight``
+
 This module provides similar features to :ref:`shipping_tiered` and requires the same extra steps to install. In addition
 you can specify a number of zones for each carrier adding a number of countries to each zone. You can then
 choose a default zone for each carrier. Each zone can have a number of cart weights with corresponding
@@ -204,6 +218,8 @@ and the total weight of the cart.
 
 Tiered Quantity
 ^^^^^^^^^^^^^^^
+
+:dotted name: ``shipping.modules.tieredquantity``
 
 .. TODO
 
@@ -217,6 +233,8 @@ Specialised Modules
 
 UPS
 ^^^
+
+:dotted name: ``shipping.modules.ups``
 
 To enable, see `Enabling Modules`_.
 
@@ -270,6 +288,8 @@ one 6 pound package. If your shop has a different method of shipping, you will n
 Fedex
 ^^^^^
 
+:dotted name: ``shipping.modules.fedex``
+
 To enable, see `Enabling Modules`_.
 
 The Fedex module allows Satchmo to calculate shipping costs using the Fedex Web Services interface.
@@ -298,6 +318,8 @@ Once you've got the module installed its time to get your account set up with Fe
 USPS
 ^^^^
 
+:dotted name: ``shipping.modules.usps``
+
 To enable, see `Enabling Modules`_.
 
 The United States Postal Service module allows you to calculate shipping costs using the USPS web api. Here are a couple of noted
@@ -317,6 +339,8 @@ regarding this module:
 
 Canada Post
 ^^^^^^^^^^^
+
+:dotted name: ``shipping.modules.canadapost``
 
 To enable, see `Enabling Modules`_.
 

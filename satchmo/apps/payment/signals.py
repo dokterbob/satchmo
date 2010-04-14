@@ -39,4 +39,14 @@ payment_choices = django.dispatch.Signal()
 #: :param contact: The contact representing the current customer if
 #:   authenticated; it is None otherwise.
 #: :type contact: ``satchmo_store.contact.models.Contact``
+#:
+#: The following example shows how to conditionally modify the payment choices 
+#: presented to a customer::
+#:
+#:  def adjust_payment_choices(sender, contact, methods, **kwargs):
+#:      if should_reduce: # whatever your condition is
+#:          for method in methods:
+#:              if method[0] == 'PAYMENT_PMTKEY':
+#:                  methods.remove(method)
+
 payment_methods_query = django.dispatch.Signal()

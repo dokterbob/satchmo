@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'satchmo_ext.recentlist',
     #'testimonials',
     'product',
+    'product.modules.configurable',
     'satchmo_ext.product_feeds',
     'satchmo_ext.brand',
     'payment',
@@ -149,6 +150,8 @@ SATCHMO_SETTINGS = {
     'MULTISHOP' : False,
     #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
 }
+
+SKIP_SOUTH_TESTS=True
 
 # Load the local settings
 from local_settings import *

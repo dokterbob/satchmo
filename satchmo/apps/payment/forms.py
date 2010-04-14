@@ -1,16 +1,16 @@
 from decimal import Decimal
 from django import forms
-from django.conf import settings
 from django.template import loader
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from l10n.utils import moneyfmt
-from livesettings import config_value, config_value_safe, config_choice_values, config_get_group
+from livesettings import config_value, config_value_safe
 from payment import signals
 from payment.config import labelled_gateway_choices
 from payment.models import CreditCardDetail
-from payment.utils import get_or_create_order, pay_ship_save
-from product.models import Discount, TaxClass, Price, PriceAdjustmentCalc, PriceAdjustment
+from payment.utils import get_or_create_order
+from product.models import Discount, TaxClass, Price
+from product.prices import PriceAdjustmentCalc, PriceAdjustment
 from product.utils import find_best_auto_discount
 from satchmo_store.contact.forms import ProxyContactForm, ContactInfoForm
 from satchmo_store.contact.models import Contact
@@ -27,7 +27,6 @@ from threaded_multihost import threadlocals
 import calendar
 import datetime
 import logging
-import sys
 
 log = logging.getLogger('payment.forms')
 
@@ -36,7 +35,7 @@ MONTHS = [(month,'%02d'%month) for month in range(1,13)]
 def _get_cheapest_shipping(shipping_dict):
     """Use the shipping_dict as returned by _get_shipping_choices
     to figure the cheapest shipping option."""
-    
+
     least = None
     leastcost = None
     for key, value in shipping_dict.items():
@@ -49,7 +48,7 @@ def _get_cheapest_shipping(shipping_dict):
 
 def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_tax=False, order=None):
     """Iterate through legal shipping modules, building the list for display to the user.
-    
+
     Returns the shipping choices list, along with a dictionary of shipping choices, useful
     for building javascript that operates on shipping choices.
     """
@@ -61,7 +60,7 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
             order = Order.objects.from_request(request)
         except Order.DoesNotExist:
             pass
-    
+
     discount = None
     if order:
         try:
@@ -73,14 +72,14 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
         methods = [shipping_method_by_key('NoShipping'),]
     else:
         methods = shipping_methods()
-        
+
     tax_shipping = config_value_safe('TAX','TAX_SHIPPING', False)
     shipping_tax = None
-    
+
     if tax_shipping:
         taxer = _get_taxprocessor(request)
         shipping_tax = TaxClass.objects.get(title=config_value('TAX', 'TAX_CLASS'))
-    
+
     for method in methods:
         method.calculate(cart, contact)
         if method.valid():
@@ -94,7 +93,7 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
                 shipdiscount = discount.item_discounts.get('Shipping', 0)
             else:
                 shipdiscount = 0
-            
+
             # set up query to determine shipping price to show
             shipprice = Price()
             shipprice.price = shipcost
@@ -117,7 +116,7 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
                 taxed_shipping_price = moneyfmt(total)
                 shipping_dict[method.id]['taxedcost'] = total
                 shipping_dict[method.id]['tax'] = taxcost
-                
+
             c = RequestContext(request, {
                 'amount': finalcost,
                 'description' : method.description(),
@@ -127,15 +126,15 @@ def _get_shipping_choices(request, paymentmodule, cart, contact, default_view_ta
                 'shipping_tax': shipping_tax,
                 'taxed_shipping_price': taxed_shipping_price})
             rendered[method.id] = t.render(c)
-            
+
     #now sort by price, low to high
     sortme = [(value['cost'], key) for key, value in shipping_dict.items()]
     sortme.sort()
-    
+
     shipping_options = [(key, rendered[key]) for cost, key in sortme]
 
-    shipping_choices_query.send(sender=cart, cart=cart, 
-        paymentmodule=paymentmodule, contact=contact, 
+    shipping_choices_query.send(sender=cart, cart=cart,
+        paymentmodule=paymentmodule, contact=contact,
         default_view_tax=default_view_tax, order=order,
         shipping_options = shipping_options,
         shipping_dict = shipping_dict)
@@ -148,7 +147,7 @@ def _find_sale(cart):
         sale = find_best_auto_discount(products)
     else:
         sale = None
-        
+
     return sale
 
 class CustomChargeForm(forms.Form):
@@ -156,7 +155,7 @@ class CustomChargeForm(forms.Form):
     amount = forms.DecimalField(label=_('New price'), required=False)
     shipping = forms.DecimalField(label=_('Shipping adjustment'), required=False)
     notes = forms.CharField(_("Notes"), required=False, initial="Your custom item is ready.")
-        
+
     def __init__(self, *args, **kwargs):
         initial = kwargs.get('initial', {})
         form_initialdata.send('CustomChargeForm', form=self, initial=initial)
@@ -210,9 +209,9 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
             if not self.cart:
                 request = threadlocals.get_current_request()
                 self.cart = Cart.objects.from_request(request)
-                
+
             self.fields['discount'] = forms.CharField(max_length=30, required=False)
-            
+
             self.payment_required_fields = {}
 
             if config_value('PAYMENT', 'USE_DISCOUNTS'):
@@ -261,7 +260,7 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
                         self._errors[fld] = e.messages
             super(PaymentContactInfoForm, self).clean()
             return self.cleaned_data
-            
+
         def clean_discount(self):
             """ Check if discount exists and is valid. """
             if not config_value('PAYMENT', 'USE_DISCOUNTS'):
@@ -272,7 +271,7 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
                     discount = Discount.objects.get(code=data, active=True)
                 except Discount.DoesNotExist:
                     raise forms.ValidationError(_('Invalid discount code.'))
-                    
+
                 request = threadlocals.get_current_request()
                 try:
                     contact = Contact.objects.from_request(request)
@@ -285,14 +284,14 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
                     raise forms.ValidationError(msg)
                 # TODO: validate that it can work with these products
             return data
-    
+
 
 class SimplePayShipForm(forms.Form):
     shipping = forms.ChoiceField(widget=forms.RadioSelect(), required=False)
 
     def __init__(self, request, paymentmodule, *args, **kwargs):
         super(SimplePayShipForm, self).__init__(*args, **kwargs)
-        
+
         try:
             order = Order.objects.from_request(request)
         except Order.DoesNotExist:
@@ -300,28 +299,28 @@ class SimplePayShipForm(forms.Form):
         self.order = order
         self.orderpayment = None
         self.paymentmodule = paymentmodule
-        
+
         try:
             self.tempCart = Cart.objects.from_request(request)
             if self.tempCart.numItems > 0:
                 products = [item.product for item in self.tempCart.cartitem_set.all()]
-            
+
         except Cart.DoesNotExist:
             self.tempCart = None
-            
+
         try:
             self.tempContact = Contact.objects.from_request(request)
         except Contact.DoesNotExist:
             self.tempContact = None
-            
+
         if kwargs.has_key('default_view_tax'):
             default_view_tax = kwargs['default_view_tax']
         else:
             default_view_tax = config_value_safe('TAX', 'TAX_SHIPPING', False)
-            
+
         shipping_choices, shipping_dict = _get_shipping_choices(request, paymentmodule, self.tempCart, self.tempContact, default_view_tax=default_view_tax)
-        
-        
+
+
         cheapshipping = _get_cheapest_shipping(shipping_dict)
         self.cheapshipping = cheapshipping
         discount = None
@@ -334,12 +333,12 @@ class SimplePayShipForm(forms.Form):
                         shipping_dict = {cheapshipping: shipping_dict[cheapshipping]}
             except Discount.DoesNotExist:
                 pass
-        
-        # possibly hide the shipping        
+
+        # possibly hide the shipping
         shiphide = config_value('SHIPPING','HIDING')
-        
+
         if shiphide in ('YES', 'DESCRIPTION') and len(shipping_choices) == 1:
-            self.fields['shipping'] = forms.CharField(max_length=30, initial=shipping_choices[0][0], 
+            self.fields['shipping'] = forms.CharField(max_length=30, initial=shipping_choices[0][0],
                 widget=forms.HiddenInput(attrs={'value' : shipping_choices[0][0]}))
             if shiphide == 'DESCRIPTION':
                 self.shipping_hidden = False
@@ -357,9 +356,9 @@ class SimplePayShipForm(forms.Form):
             self.shipping_hidden = False
 
         self.shipping_dict = shipping_dict
-        
+
         form_init.send(SimplePayShipForm, form=self)
-        
+
     def clean_shipping(self):
         shipping = self.cleaned_data['shipping']
         if not shipping and self.tempCart.is_shippable:
@@ -383,7 +382,7 @@ class SimplePayShipForm(forms.Form):
             needed = not order.paid_in_full
             if not needed:
                 log.debug('%s can skip the payment step - no info needed', order)
-                
+
         return needed
 
     def save(self, request, cart, contact, payment_module, data=None):
@@ -414,44 +413,44 @@ class CreditPayShipForm(SimplePayShipForm):
         self.cc = None
 
         self.fields['credit_type'].choices = creditchoices
-        
+
         num_years = config_value('PAYMENT', 'CC_NUM_YEARS')
         year_now = datetime.date.today().year
         self.fields['year_expires'].choices = [(year, year) for year in range(year_now, year_now+num_years+1)]
 
         self.tempCart = Cart.objects.from_request(request)
-        
+
         initial = kwargs.get('initial', None)
         if initial:
             if initial.get('credit_number', None):
                 self.fields['credit_number'].widget = forms.PasswordInput()
             if initial.get('ccv', None):
                 self.fields['ccv'].widget = forms.PasswordInput()
-            
+
         try:
             self.tempContact = Contact.objects.from_request(request)
         except Contact.DoesNotExist:
             self.tempContact = None
 
-    def clean(self):            
+    def clean(self):
         super(CreditPayShipForm, self).clean()
         data = self.cleaned_data
         if not self.is_valid():
             log.debug('form not valid, no early auth')
             return data
         early = config_value('PAYMENT', 'AUTH_EARLY')
-        
+
         if early:
             processor_module = self.paymentmodule.MODULE.load_module('processor')
             processor = processor_module.PaymentProcessor(self.paymentmodule)
             if processor.can_authorize():
                 log.debug('Processing early capture/release for: %s', self.order)
                 processor_module = self.paymentmodule.MODULE.load_module('processor')
-                processor = processor_module.PaymentProcessor(self.paymentmodule)                
+                processor = processor_module.PaymentProcessor(self.paymentmodule)
                 if self.order:
                     # we have to make a payment object and save the credit card data to
                     # make an auth/release.
-                    orderpayment = processor.create_pending_payment(order=self.order, 
+                    orderpayment = processor.create_pending_payment(order=self.order,
                         amount=Decimal('0.01'))
                     op = orderpayment.capture
 
@@ -476,7 +475,7 @@ class CreditPayShipForm(SimplePayShipForm):
                 log.debug('Payment module %s cannot do credit authorizations, ignoring AUTH_EARLY setting.',
                     self.paymentmodule.MODULE.KEY.value)
         return data
-        
+
 
     def clean_credit_number(self):
         """ Check if credit card is valid. """
@@ -508,7 +507,7 @@ class CreditPayShipForm(SimplePayShipForm):
             return self.cleaned_data['ccv'].strip()
         except ValueError:
             raise forms.ValidationError(_('Invalid ccv.'))
-            
+
     def save(self, request, cart, contact, payment_module, data=None):
         """Save the order and the credit card information for this orderpayment"""
         form_presave.send(CreditPayShipForm, form=self)
@@ -516,7 +515,7 @@ class CreditPayShipForm(SimplePayShipForm):
             data = self.cleaned_data
         assert(data)
         super(CreditPayShipForm, self).save(request, cart, contact, payment_module, data=data)
-        
+
         if self.orderpayment:
             op = self.orderpayment.capture
 

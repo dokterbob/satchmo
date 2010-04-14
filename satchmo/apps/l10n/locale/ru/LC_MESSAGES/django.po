@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 19:57-0600\n"
+"POT-Creation-Date: 2010-04-08 13:29+0300\n"
 "PO-Revision-Date: 2009-03-02 21:36+0300\n"
 "Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
 "Language-Team: \n"
@@ -15,250 +15,250 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:15 admin.py:24
+#: .\admin.py:15 .\admin.py:24
 #, fuzzy
 msgid "1 country was"
-msgstr "Название страны"
+msgstr "1 страна была"
 
-#: admin.py:17 admin.py:26
+#: .\admin.py:17 .\admin.py:26
 #, fuzzy, python-format
 msgid "%s countries were"
-msgstr "Страны"
+msgstr "%s стран было"
 
-#: admin.py:18
+#: .\admin.py:18
 #, python-format
 msgid "%s successfully marked as active"
-msgstr ""
+msgstr "%s отмечено активными"
 
-#: admin.py:19
+#: .\admin.py:19
 msgid "Mark selected countries as active"
-msgstr ""
+msgstr "Отметить выбранные страны как активные"
 
-#: admin.py:27
+#: .\admin.py:27
 #, python-format
 msgid "%s successfully marked as inactive"
-msgstr ""
+msgstr "%s отмечено как неактивные"
 
-#: admin.py:28
+#: .\admin.py:28
 msgid "Mark selected countries as inactive"
-msgstr ""
+msgstr "Отметить выбранные страны как неактивные"
 
-#: models.py:6
+#: .\models.py:6
 msgid "Africa"
 msgstr "Африка"
 
-#: models.py:7
+#: .\models.py:7
 msgid "North America"
 msgstr "Северная Америка"
 
-#: models.py:8
+#: .\models.py:8
 msgid "Europe"
 msgstr "Европа"
 
-#: models.py:9
+#: .\models.py:9
 msgid "Asia"
 msgstr "Азия"
 
-#: models.py:10
+#: .\models.py:10
 msgid "Oceania"
 msgstr "Океания"
 
-#: models.py:11
+#: .\models.py:11
 msgid "South America"
 msgstr "Южная Америка"
 
-#: models.py:12
+#: .\models.py:12
 msgid "Antarctica"
 msgstr "Антарктида"
 
-#: models.py:16
+#: .\models.py:16
 msgid "Another"
 msgstr "Другое"
 
-#: models.py:17
+#: .\models.py:17
 msgid "Island"
 msgstr "Остров"
 
-#: models.py:18
+#: .\models.py:18
 msgid "Arrondissement"
 msgstr "Арондисман"
 
-#: models.py:19
+#: .\models.py:19
 msgid "Atoll"
 msgstr "Атолл"
 
-#: models.py:20
+#: .\models.py:20
 msgid "Autonomous island"
 msgstr "Автономный остров"
 
-#: models.py:21
+#: .\models.py:21
 msgid "Canton"
 msgstr "Кантон"
 
-#: models.py:22
+#: .\models.py:22
 msgid "Commune"
 msgstr "Коммуна"
 
-#: models.py:23
+#: .\models.py:23
 msgid "County"
 msgstr "Графство"
 
-#: models.py:24
+#: .\models.py:24
 msgid "Department"
 msgstr "Департамент"
 
-#: models.py:25
+#: .\models.py:25
 msgid "Dependency"
 msgstr "Колония"
 
-#: models.py:26
+#: .\models.py:26
 msgid "District"
 msgstr "Дистрикт"
 
-#: models.py:27
+#: .\models.py:27
 msgid "Division"
 msgstr "Округ"
 
-#: models.py:28
+#: .\models.py:28
 msgid "Emirate"
 msgstr "Эмират"
 
-#: models.py:29
+#: .\models.py:29
 msgid "Governorate"
 msgstr "Административный округ"
 
-#: models.py:30
+#: .\models.py:30
 msgid "Island council"
 msgstr "Островной округ"
 
-#: models.py:31
+#: .\models.py:31
 msgid "Island group"
 msgstr "Группа островов"
 
-#: models.py:32
+#: .\models.py:32
 msgid "Island region"
 msgstr "Островной регион (в Папуа — Новая Гвинея)"
 
-#: models.py:33
+#: .\models.py:33
 msgid "Kingdom"
 msgstr "Королевство"
 
-#: models.py:34
+#: .\models.py:34
 msgid "Municipality"
 msgstr "Муниципалитет"
 
-#: models.py:35
+#: .\models.py:35
 msgid "Parish"
 msgstr "Уезд (в Луизиане)"
 
-#: models.py:36
+#: .\models.py:36
 msgid "Prefecture"
 msgstr "Префектура"
 
-#: models.py:37
+#: .\models.py:37
 msgid "Province"
 msgstr "Провинция"
 
-#: models.py:38
+#: .\models.py:38
 msgid "Region"
 msgstr "Регион"
 
-#: models.py:39
+#: .\models.py:39
 msgid "Republic"
 msgstr "Республика"
 
-#: models.py:40
+#: .\models.py:40
 msgid "Sheading"
 msgstr "Уезд (на о-ве Мэн)"
 
-#: models.py:41
+#: .\models.py:41
 msgid "State"
 msgstr "Штат"
 
-#: models.py:42
+#: .\models.py:42
 msgid "Subdivision"
 msgstr "Подразделение"
 
-#: models.py:43
+#: .\models.py:43
 msgid "Subject"
 msgstr "Субьект"
 
-#: models.py:44
+#: .\models.py:44
 msgid "Territory"
 msgstr "Территория"
 
-#: models.py:53
+#: .\models.py:53
 msgid "ISO alpha-2"
 msgstr "Двухбуквенный код ISO"
 
-#: models.py:54
+#: .\models.py:54
 msgid "Official name (CAPS)"
 msgstr "Официальное название (англ., ЗАГЛАВНЫЕ)"
 
-#: models.py:55
+#: .\models.py:55
 msgid "Country name"
 msgstr "Название страны"
 
-#: models.py:56
+#: .\models.py:56
 msgid "ISO alpha-3"
 msgstr "Трехбуквенный код ISO"
 
-#: models.py:57
+#: .\models.py:57
 msgid "ISO numeric"
 msgstr "Числовой код ISO"
 
-#: models.py:58
+#: .\models.py:58
 msgid "Country is active"
 msgstr "Страна активна"
 
-#: models.py:59
+#: .\models.py:59
 msgid "Continent"
 msgstr "Континент"
 
-#: models.py:60 models.py:81
+#: .\models.py:60 .\models.py:81
 msgid "Administrative Area"
 msgstr "Административная зона"
 
-#: models.py:63
+#: .\models.py:63
 msgid "Country"
 msgstr "Страна"
 
-#: models.py:64
+#: .\models.py:64
 msgid "Countries"
 msgstr "Страны"
 
-#: models.py:76
+#: .\models.py:76
 msgid "Admin Area name"
 msgstr "Название административной зоны"
 
-#: models.py:77
+#: .\models.py:77
 msgid "Postal Abbreviation"
 msgstr "Почтовое обозначение"
 
-#: models.py:78
+#: .\models.py:78
 msgid "Area is active"
 msgstr "Зона активна"
 
-#: models.py:82
+#: .\models.py:82
 msgid "Administrative Areas"
 msgstr "Административные зоны"
 
-#: templates/l10n/_language_selection_form.html:5
+#: .\templates\l10n\_language_selection_form.html.py:5
 msgid "Change language"
-msgstr ""
+msgstr "Изменить язык"
 
-#: templates/l10n/_language_selection_form.html:11
+#: .\templates\l10n\_language_selection_form.html.py:11
 msgid "Change"
-msgstr ""
+msgstr "Изменить"
 
-#: validators/aupostcode.py:13
+#: .\validators\aupostcode.py:13
 msgid "Invalid Australian postal code"
-msgstr ""
+msgstr "Неверный почтовый индекс для Автралии"
 
-#: validators/capostcode.py:18
+#: .\validators\capostcode.py:18
 msgid "Invalid postal code for Canada"
-msgstr ""
+msgstr "Неверный почтовый индекс для Канады"
 
-#: validators/uspostcode.py:10
+#: .\validators\uspostcode.py:10
 msgid "Invalid ZIP code"
-msgstr ""
+msgstr "Неверный почтовый индекс"
