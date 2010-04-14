@@ -12,6 +12,7 @@ from product.models import Product
 from product.modules.downloadable.models import DownloadLink, DownloadableProduct
 from satchmo_store.contact.models import AddressBook, Contact
 from satchmo_store.shop.models import Cart, Order
+from satchmo_store.shop.signals import sendfile_url_for_file
 from shipping.modules.flat.shipper import Shipper as flat
 from shipping.modules.per.shipper import Shipper as per
 
@@ -160,6 +161,28 @@ class DownloadableProductTest(TestCase):
             self.protected_dir.split(os.path.sep)[-1],
             self.file_name
         )
+
+        self.assertEqual(response['X-Accel-Redirect'], exp_url)
+        self.assertEqual(response['X-Sendfile'], exp_url)
+        self.assertEqual(response['X-LIGHTTPD-send-file'], exp_url)
+
+    def test_sendfile_signal(self):
+        """Test that we can modify the location in the sendfile header."""
+
+        # something else instead of the usual /protected/file_name
+        str_format = '/sendfile_dir/%s'
+        exp_url = str_format % self.file_name
+
+        # hookup a listener.
+        def _sendfile_listener(sender, file=None, product=None, url_dict={},
+            **kwargs):
+            file_name = os.path.basename(file.name)
+            url_dict['url'] = str_format % file_name
+        sendfile_url_for_file.connect(_sendfile_listener, sender=None)
+
+        # we should have gotten a page that says "click here".
+        # hit the pd_url again; we should get a sendfile redirect.
+        response = self.client.get(self.pd_url)
 
         self.assertEqual(response['X-Accel-Redirect'], exp_url)
         self.assertEqual(response['X-Sendfile'], exp_url)

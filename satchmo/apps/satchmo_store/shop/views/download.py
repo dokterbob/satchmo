@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from product.modules.downloadable.models import DownloadLink
+from satchmo_store.shop.signals import sendfile_url_for_file
 import mimetypes
 
 import os
@@ -74,7 +75,19 @@ def send_file(request, download_key):
     # some temp vars
     file = dl_product.downloadable_product.file
     file_url = '/%s' % file.name # create an absolute/root url
-    file_name = os.path.basename(file.name)
+
+    # poll listeners
+    url_dict = {'url': file_url}
+    sendfile_url_for_file.send(
+        None, file=file,
+        product=dl_product.downloadable_product,
+        url_dict=url_dict,
+    )
+    # url may have changed; update it
+    file_url = url_dict['url']
+
+    # get file name from url
+    file_name = os.path.basename(file_url)
 
     dl_product.num_attempts += 1
     dl_product.save()
