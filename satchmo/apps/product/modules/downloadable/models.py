@@ -25,8 +25,8 @@ def _protected_dir(instance, filename):
     # if we get a SettingNotSet exception (even though we've already
     # imported/loaded it), that's bad, so let it bubble up.
     raw = config_value('PRODUCT', 'PROTECTED_DIR')
-    updir = normalize_dir(raw)
-    return os.path.normpath(os.path.join(updir, os.path.basename(filename)))
+    updir = os.path.normpath(normalize_dir(raw))
+    return os.path.join(updir, instance.file.field.get_filename(filename))
 
 class DownloadableProduct(models.Model):
     """
