@@ -255,7 +255,7 @@ As Satchmo relies on the default storage class, the files will be stored in
 ``django.core.files.storage.default_storage.location`` (usually,
 ``settings.MEDIA_ROOT``).
 
-.. TODO add assumed url
+The Downloadable Products will be served from ``/<PRODUCT.PROTECTED_DIR>/``.
 
 Configuration
 +++++++++++++
@@ -263,16 +263,16 @@ Configuration
 In the below configuration examples, the following assumptions are made:
 
   - ``"/usr/local/www/website/static"`` to be ``default_storage.location``;
-  - ``PRODUCT.PROTECTED_DIR`` to be the default ``"protected"``.
-
-.. TODO add assumed url
+  - ``PRODUCT.PROTECTED_DIR`` to be the default ``"protected"``;
+  - the URL ``"/protected/"`` to be location from which the products will be
+    served.
 
 Apache
 ~~~~~~
 
 Install mod_xsendfile, and add this to your configuration::
 
-    <Location /static/protected/>
+    <Location /protected/>
         XSendFile on
     </Location>
 
@@ -284,7 +284,7 @@ Lighttpd
 Set ``"allow-x-send-file"`` to ``"enable"`` in your FastCGI/SCGI config, and
 add also the below to your configuration file::
 
-    $HTTP["url"] =~ "^/static/protected/" {
+    $HTTP["url"] =~ "^/protected/" {
         url.access-deny = ("")
         server.document-root = "/usr/local/www/website/static"
     }
@@ -294,7 +294,7 @@ Nginx
 
 Add this to your configuration file::
 
-    location /static/protected/ {
+    location /protected/ {
         internal;
         root /usr/local/www/website/static;
     }

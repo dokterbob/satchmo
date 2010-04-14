@@ -10,7 +10,7 @@ config_register(
         'PROTECTED_DIR',
         description=_("Protected dir"),
         help_text=_("""This is only used if you use Downloadable Products.
-This value will be appended to MEDIA_ROOT.  Do not worry about slashes.
+This value will be appended to MEDIA_ROOT/MEDIA_URL.  Do not worry about slashes.
 We can handle it any which way."""),
         default="protected",
     ))

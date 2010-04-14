@@ -151,7 +151,16 @@ class DownloadableProductTest(TestCase):
         exp_file_name = "attachment; filename=%s" % self.file_name
         self.assertEqual(response['Content-Disposition'], exp_file_name)
 
-        # ideally, we should be using 'failIfRaises', but that doesn't exist.
-        self.failIfEqual(response.get('X-Accel-Redirect', None), None)
-        self.failIfEqual(response.get('X-Sendfile', None), None)
-        self.failIfEqual(response.get('X-LIGHTTPD-send-file', None), None)
+        #
+        # we expect something like:
+        #
+        #   /protected/file_name
+        #
+        exp_url = "/%s/%s" % (
+            self.protected_dir.split(os.path.sep)[-1],
+            self.file_name
+        )
+
+        self.assertEqual(response['X-Accel-Redirect'], exp_url)
+        self.assertEqual(response['X-Sendfile'], exp_url)
+        self.assertEqual(response['X-LIGHTTPD-send-file'], exp_url)

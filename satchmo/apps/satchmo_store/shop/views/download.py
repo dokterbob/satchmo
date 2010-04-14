@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -9,6 +10,7 @@ import mimetypes
 import os
 import os.path
 import re
+from urlparse import urljoin
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
@@ -71,19 +73,19 @@ def send_file(request, download_key):
 
     # some temp vars
     file = dl_product.downloadable_product.file
-    file_path = file.path
-    file_name = os.path.split(file_path)[1]
+    file_url = '/%s' % file.name # create an absolute/root url
+    file_name = os.path.basename(file.name)
 
     dl_product.num_attempts += 1
     dl_product.save()
     del request.session['download_key']
     response = HttpResponse()
     # For Nginx
-    response['X-Accel-Redirect'] = file_path
+    response['X-Accel-Redirect'] = file_url
     # For Apache and Lighttpd v1.5
-    response['X-Sendfile'] = file_path
+    response['X-Sendfile'] = file_url
     # For Lighttpd v1.4
-    response['X-LIGHTTPD-send-file'] = file_path
+    response['X-LIGHTTPD-send-file'] = file_url
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
     response['Content-length'] =  file.size
     contenttype, encoding = mimetypes.guess_type(file_name)
