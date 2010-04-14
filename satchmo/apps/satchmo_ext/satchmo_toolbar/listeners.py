@@ -7,7 +7,8 @@ from threaded_multihost import threadlocals
 import datetime
 import logging
 import operator
-from product.models import Product, ProductVariation
+from product.models import Product
+from product.modules.configurable.models import ProductVariation
 
 
 log = logging.getLogger('satchmo_toolbar')
