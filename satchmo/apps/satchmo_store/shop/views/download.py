@@ -88,19 +88,24 @@ def send_file(request, download_key):
     if not valid:
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': request.session['download_key']})
         return HttpResponseRedirect(url)
-    file_name = os.path.split(dl_product.downloadable_product.file.path)[1]
+
+    # some temp vars
+    file = dl_product.downloadable_product.file
+    file_path = file.path
+    file_name = os.path.split(file_path)[1]
+
     dl_product.num_attempts += 1
     dl_product.save()
     del request.session['download_key']
     response = HttpResponse()
     # For Nginx
-    response['X-Accel-Redirect'] = dl_product.downloadable_product.file.path
+    response['X-Accel-Redirect'] = file_path
     # For Apache and Lighttpd v1.5
-    response['X-Sendfile'] = dl_product.downloadable_product.file.path
+    response['X-Sendfile'] = file_path
     # For Lighttpd v1.4
-    response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
+    response['X-LIGHTTPD-send-file'] = file_path
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
-    response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
+    response['Content-length'] =  os.stat(file_path).st_size
     contenttype, encoding = mimetypes.guess_type(file_name)
     if contenttype:
         response['Content-type'] = contenttype
