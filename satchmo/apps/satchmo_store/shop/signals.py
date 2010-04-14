@@ -208,10 +208,10 @@ satchmo_cart_details_query=django.dispatch.Signal()
 #:     for the current site.
 #:   :is_secure: A boolean representing weather or not SSL is enabled
 #:   :request: The ``HttpRequest`` object passed into the context processor
-#:   :login_url: The login url defined in settings.LOGIN_URL
-#:   :logout_url: The logout url defined in settings.LOGOUT_URL
+#:   :login_url: The login url defined in ``settings.LOGIN_URL``
+#:   :logout_url: The logout url defined in ``settings.LOGOUT_URL``
 #:   :sale: An instance of ``product.models.Discount`` if there is a current
-#:     sale, or None
+#:     sale, or ``None``
 satchmo_context = django.dispatch.Signal()
 
 #: Sent after each item from the cart is copied into an order.
@@ -261,7 +261,7 @@ rendering_store_mail = django.dispatch.Signal()
 #: raised will be handled by ``send_store_mail()``; they should consequently
 #: raise ``ShouldNotSendMail`` to avoid re-sending the email.
 #:
-#: :param sender: Defaults to None, unless the sender argument to
+#: :param sender: Defaults to ``None``, unless the sender argument to
 #:   ``send_store_mail()`` is specified; see below.
 #:
 #: .. _send_mail_args:
