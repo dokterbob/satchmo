@@ -56,6 +56,11 @@ def get_gateway_by_settings(gateway_settings, settings={}):
     return processor_module.PaymentProcessor(settings=gateway_settings)
 
 def get_processor_by_key(key):
+    """
+    Returns an instance of a payment processor, referred to by *key*.
+
+    :param key: A string of the form 'PAYMENT_<PROCESSOR_NAME>'.
+    """
     payment_module = config_get_group(key)
     processor_module = payment_module.MODULE.load_module('processor')
     return processor_module.PaymentProcessor(payment_module)
