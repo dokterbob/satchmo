@@ -22,17 +22,17 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 def make_test_order(country, state, site=None, orderitems=None):
     if not orderitems:
         orderitems = [('dj-rocks-s-b', 5), ('neat-book-hard', 1)]
-        
+
     if not site:
         site = Site.objects.get_current()
-        
-    c = Contact(first_name="Order", last_name="Tester", 
+
+    c = Contact(first_name="Order", last_name="Tester",
         role=ContactRole.objects.get(pk='Customer'), email="order@example.com")
     c.save()
-    
+
     if not isinstance(country, Country):
         country = Country.objects.get(iso2_code__iexact = country)
-        
+
     ad = AddressBook(contact=c, description="home",
         street1 = "test", state=state, city="Portland",
         country = country, is_default_shipping=True,
@@ -40,7 +40,7 @@ def make_test_order(country, state, site=None, orderitems=None):
     ad.save()
     o = Order(contact=c, shipping_cost=Decimal('10.00'), site = site)
     o.save()
-    
+
     for slug, qty in orderitems:
         p = Product.objects.get(slug=slug)
         price = p.unit_price
@@ -56,7 +56,7 @@ class TestRecurringBilling(TestCase):
     def setUp(self):
         self.customer = Contact.objects.create(first_name='Jane', last_name='Doe')
         US = Country.objects.get(iso2_code__iexact="US")
-        self.customer.addressbook_set.create(street1='123 Main St', city='New York', state='NY', postal_code='12345', country=US)       
+        self.customer.addressbook_set.create(street1='123 Main St', city='New York', state='NY', postal_code='12345', country=US)
         import datetime
         site = Site.objects.get_current()
         for product in Product.objects.all():
@@ -65,7 +65,7 @@ class TestRecurringBilling(TestCase):
                 continue
             order = Order.objects.create(contact=self.customer, shipping_cost=0, site=site)
             order.orderitem_set.create(
-                product=product, 
+                product=product,
                 quantity=Decimal('1'),
                 unit_price=price,
                 line_item_price=price,
@@ -75,10 +75,10 @@ class TestRecurringBilling(TestCase):
             order.recalculate_total()
             order.payments.create(order=order, payment='DUMMY', amount=order.total)
             order.save()
-        
+
     def tearDown(self):
         keyedcache.cache_delete()
-        
+
     def testProductType(self):
         product1 = Product.objects.get(slug='membership-p1')
         product2 = Product.objects.get(slug='membership-p2')
@@ -89,8 +89,8 @@ class TestRecurringBilling(TestCase):
         self.assertEqual(product2.subscriptionproduct.get_trial_terms(0).expire_length, 7)
 
     def testCheckout(self):
-       pass 
-        
+       pass
+
     def testCronRebill(self):
         for order in OrderItem.objects.all():
             price, expire_length = self.getTerms(order.product)
@@ -119,7 +119,7 @@ class TestRecurringBilling(TestCase):
                 continue
             self.assertEqual(order.expire_date, datetime.date.today() + datetime.timedelta(days=expire_length))
             self.assertEqual(order.order.balance, Decimal('0.00'))
-        
+
     def getTerms(self, object, ignore_trial=False):
         if object.subscriptionproduct.get_trial_terms().count() and ignore_trial is False:
             price = object.subscriptionproduct.get_trial_terms(0).price
@@ -165,20 +165,20 @@ class TestModulesSettings(TestCase):
         self.assertTrue(len(pats) > 0)
 
 # class TestGenerateCode(TestCase):
-# 
+#
 #     def testGetCode(self):
 #         c = generate_code(alphabet, '^^^^')
-# 
+#
 #         self.assertEqual(len(c), 4)
-# 
+#
 #         for ch in c:
 #             self.assert_(ch in alphabet)
-# 
+#
 #     def testGetCode2(self):
 #         c = generate_code(alphabet, '^^^^-^^^^')
 #         c2 = generate_code(alphabet, '^^^^-^^^^')
 #         self.assertNotEqual(c,c2)
-# 
+#
 #     def testFormat(self):
 #         c = generate_code(alphabet, '^-^-^-^')
 #         for i in (0,2,4,6):
@@ -190,24 +190,24 @@ class TestModulesSettings(TestCase):
 #     def setUp(self):
 #         self.charset = config_value('PAYMENT_PAYMENT_GIFTCERTIFICATE', 'CHARSET')
 #         self.format = config_value('PAYMENT_PAYMENT_GIFTCERTIFICATE', 'FORMAT')
-# 
+#
 #     def testGetCode(self):
 #         c = generate_certificate_code()
 #         self.assertEqual(len(c), len(self.format))
-# 
+#
 #         chars = [x for x in self.format if not x=='^']
 #         chars.extend(self.charset)
 #         for ch in c:
 #             self.assert_(ch in chars)
-# 
+#
 # class TestCertCreate(TestCase):
 #     def testCreate(self):
 #         gc = GiftCertificate(start_balance = '100.00')
 #         gc.save()
-# 
+#
 #         self.assert_(gc.code)
 #         self.assertEqual(gc.balance, Decimal('100.00'))
-# 
+#
 #     def testUse(self):
 #         gc = GiftCertificate(start_balance = '100.00')
 #         gc.save()
@@ -221,7 +221,7 @@ class TestMinimumOrder(TestCase):
     def setUp(self):
         # Every test needs a client
         self.client = Client()
-        
+
     def tearDown(self):
         keyedcache.cache_delete()
 
@@ -230,7 +230,7 @@ class TestMinimumOrder(TestCase):
         Validate we can add some items to the cart
         """
         min_order = config_get('PAYMENT', 'MINIMUM_ORDER')
-        
+
         #start with no min.
         min_order.update("0.00")
         producturl = urlresolvers.reverse("satchmo_product", kwargs={'product_slug' : 'dj-rocks'})
@@ -241,7 +241,7 @@ class TestMinimumOrder(TestCase):
                                                       "1" : "L",
                                                       "2" : "BL",
                                                       "quantity" : '2'})
-        carturl = urlresolvers.reverse('satchmo_cart')                                              
+        carturl = urlresolvers.reverse('satchmo_cart')
         self.assertRedirects(response, carturl,
             status_code=302, target_status_code=200)
         response = self.client.get(carturl)
@@ -253,7 +253,7 @@ class TestMinimumOrder(TestCase):
         min_order.update("100.00")
         response = self.client.get(url('satchmo_checkout-step1'))
         self.assertContains(response, "This store requires a minimum order", count=1, status_code=200)
-        
+
         # add a bunch of shirts, to make the min order
         response = self.client.post(cartadd, { "productname" : "dj-rocks",
                                                       "1" : "L",
@@ -270,7 +270,7 @@ class TestPaymentHandling(TestCase):
     def setUp(self):
         self.client = Client()
         self.US = Country.objects.get(iso2_code__iexact = "US")
-                
+
     def tearDown(self):
         keyedcache.cache_delete()
 
@@ -279,32 +279,32 @@ class TestPaymentHandling(TestCase):
         order = make_test_order(self.US, '')
         self.assertEqual(order.balance, order.total)
         self.assertEqual(order.total, Decimal('125.00'))
-        
+
         processor = utils.get_processor_by_key('PAYMENT_DUMMY')
         processor.create_pending_payment(order=order, amount=order.total)
-        
+
         self.assertEqual(order.pendingpayments.count(), 1)
         self.assertEqual(order.payments.count(), 1)
-        
+
         pending = order.pendingpayments.all()[0]
         self.assertEqual(pending.amount, order.total)
-        
+
         payment = order.payments.all()[0]
         self.assertEqual(payment.amount, Decimal('0'))
-        
+
         self.assertEqual(pending.capture, payment)
-        
+
         self.assertEqual(order.balance_paid, Decimal('0'))
         self.assertEqual(order.authorized_remaining, Decimal('0'))
-        
+
         processor.prepare_data(order)
         result = processor.authorize_payment()
         self.assertEqual(result.success, True)
         auth = result.payment
         self.assertEqual(type(auth), OrderAuthorization)
-                
+
         self.assertEqual(order.authorized_remaining, Decimal('125.00'))
-                
+
         result = processor.capture_authorized_payment(auth)
         self.assertEqual(result.success, True)
         payment = result.payment
@@ -318,28 +318,28 @@ class TestPaymentHandling(TestCase):
         order = make_test_order(self.US, '')
         self.assertEqual(order.balance, order.total)
         self.assertEqual(order.total, Decimal('125.00'))
-        
+
         processor = utils.get_processor_by_key('PAYMENT_DUMMY')
         processor.create_pending_payment(order=order, amount=Decimal('25.00'))
-        
+
         self.assertEqual(order.pendingpayments.count(), 1)
         self.assertEqual(order.payments.count(), 1)
-        
+
         pending = order.pendingpayments.all()[0]
-        
+
         self.assertEqual(pending.amount, Decimal('25.00'))
         processor.prepare_data(order)
         result = processor.authorize_payment()
         self.assertEqual(result.success, True)
         #self.assertEqual(order.authorized_remaining, Decimal('25.00'))
         #self.assertEqual(order.balance, Decimal('100.00'))
-                
+
         processor.create_pending_payment(order=order, amount=Decimal('100.00'))
         result = processor.authorize_payment()
-                
+
         results = processor.capture_authorized_payments()
         self.assertEqual(len(results), 2)
-        
+
         r1 = results[0]
         r2 = results[1]
         self.assertEqual(r1.success, True)
@@ -353,18 +353,18 @@ class TestPaymentHandling(TestCase):
         order = make_test_order(self.US, '')
         self.assertEqual(order.balance, order.total)
         self.assertEqual(order.total, Decimal('125.00'))
-        
+
         processor = utils.get_processor_by_key('PAYMENT_DUMMY')
         processor.create_pending_payment(order=order, amount=order.total)
-        
+
         processor.prepare_data(order)
         result = processor.capture_payment()
         self.assertEqual(result.success, True)
         pmt1 = result.payment
         self.assertEqual(type(pmt1), OrderPayment)
-                
+
         self.assertEqual(order.authorized_remaining, Decimal('0.00'))
-                
+
         self.assertEqual(result.success, True)
         payment = result.payment
         self.assertEqual(pmt1, payment)
@@ -379,10 +379,10 @@ class TestPaymentHandling(TestCase):
         order = make_test_order(self.US, '')
         self.assertEqual(order.balance, order.total)
         self.assertEqual(order.total, Decimal('125.00'))
-        
+
         processor = utils.get_processor_by_key('PAYMENT_DUMMY')
         pend1 = processor.create_pending_payment(order=order, amount=order.total)
         pend2 = processor.create_pending_payment(order=order, amount=order.total)
-        
+
         self.assertEqual(order.pendingpayments.count(), 1)
         self.assertEqual(order.payments.count(), 1)
