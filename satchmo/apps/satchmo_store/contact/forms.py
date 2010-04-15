@@ -103,7 +103,11 @@ class ContactInfoForm(ProxyContactForm):
             shipping_areas = area_choices_for_country(shipping_country)
 
             billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
-            self.fields['state'] = forms.ChoiceField(choices=billing_areas, initial=billing_state, label=_('State'))
+            self.fields['state'] = forms.ChoiceField(choices=billing_areas, initial=billing_state, label=_('State'),
+                # if there are not states, then don't make it required. (first
+                # choice is always either "--Please Select--", or "Not
+                # Applicable")
+                required=len(billing_areas)>1)
 
             shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
             self.fields['ship_state'] = forms.ChoiceField(choices=shipping_areas, initial=shipping_state, required=False, label=_('State'))
@@ -111,6 +115,14 @@ class ContactInfoForm(ProxyContactForm):
         for fname in self.required_billing_data:
             if fname == 'country' and self._local_only:
                 continue
+
+            # ignore the user if ENFORCE_STATE is on; if there aren't any
+            # states, we might have made the billing state field not required in
+            # the enforce_state block earlier, and we don't want the user to
+            # make it required again.
+            if fname == 'state' and self.enforce_state:
+                continue
+
             self.fields[fname].required = True
 
         # slap a star on the required fields
