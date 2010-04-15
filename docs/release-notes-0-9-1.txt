@@ -66,3 +66,6 @@ Changes
 - Removed Keyedcache and Livesettings from Satchmo and gave them their own project
 - Updated Russian and added Hungarian translations
 - Fix a bug in clonesatchmo
+- Split out the product models to use a more modular layout and remove settings dependencies for loading
+- Move SSL config to a setting not a livesetting
+- Fix bugs in payment authorization

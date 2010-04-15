@@ -222,7 +222,9 @@ to add any pieces of satchmo.
                 'tax.modules.percent',
                 'shipping',
                 'product',
+                'product.modules.configurable',
                 'payment',
+                'payment.modules.dummy',
                 'payment.modules.giftcertificate',
                 'satchmo_utils',
                 'app_plugins',
@@ -238,6 +240,7 @@ to add any pieces of satchmo.
         SATCHMO_SETTINGS = {
                             'SHOP_BASE' : '',
                             'MULTISHOP' : False,
+                            'SSL'       : False,
                             #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
                             }
 

@@ -20,6 +20,7 @@ number of places you might want to configure.
         'MULTISHOP': False,
         'CUSTOM_PRODUCT_MODULES': ['myshop.custom.product.model'],
         'PRODUCT_SLUG': 'items',
+        'SSL':  True,
     }
 
  Satchmo recognises the following keys in ``SATCHMO_SETTINGS``:
@@ -68,14 +69,6 @@ number of places you might want to configure.
 
     A list of custom shipping modules outside of the standard Satchmo distribution.
 
-  .. _satchmo_settings_custom_product_modules:
-
-  ``'CUSTOM_PRODUCT_MODULES'``
-
-    :default: ``[]``
-
-    A list of custom product modules outside of the standard Satchmo distribution.
-
   .. _satchmo_settings_custom_tax_modules:
 
   ``'CUSTOM_TAX_MODULES'``
@@ -107,6 +100,14 @@ number of places you might want to configure.
     :default: ``'product'``
 
     The prefix used for product urls; see :data:`satchmo_product`.
+    
+  .. _satchmo_settings_ssl:
+
+  ``'SSL'``
+
+    :default: ``'False'``
+
+    Whether or not SSL should be enabled for the checkout modules.
 
 2. In addition to the Satchmo specific settings, there are some Django settings you will want to make sure are properly set:
 
@@ -161,7 +162,7 @@ Each payment module will have it's own configuration items. These items apply un
     - Allow URL access for cron rebilling of subscriptions
     - Force ship to and bill to countries to match during checkout
     - Cron passkey to allow subscription rebilling
-    - Enable/disable ssl for the checkout process
+
 
 .. Warning::
     After saving changes to your payment processor, you will need to restart your server for the changes to take effect.
@@ -249,14 +250,8 @@ Then, enable it for the specific urls you would like to be protected by adding
 
     (r'^accounts/login/$', 'login', {'SSL': True, 'template_name': 'login.html'}, 'satchmo_login'),
 
-SSL for Payments works slightly differently.  Since the urls for Payments are configured automatically, you can
-have SSL applied automatically as well.  To have all checkout pages enabled for SSL, just set
-``CHECKOUT_SSL=True`` in your local_settings file.
-
-If you only want to enable SSL for some payment modules, enable SSL for payments as described above
-and then check ``SSL=True`` in the payment module configuration setting for the module you want to have SSL enabled.
-This may be useful if you accept both PayPal and Authorize.net payments, for example.  PayPal wouldn't need
-to be SSL enabled, but Authorize.net should be.
+SSL for Payments works slightly differently.  The are controlled by the Satchmo setting described above.
+To have all checkout pages enabled for SSL, just set ``SSL:True`` in your Satchmo settings.
 
 Disabling the Live Settings System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
