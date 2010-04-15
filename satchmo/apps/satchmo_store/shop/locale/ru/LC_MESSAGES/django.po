@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-07 16:29+0300\n"
 "PO-Revision-Date: 2009-03-06 13:04+0300\n"
-"Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
+"Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: .\admin.py:23
 #, fuzzy
 msgid "Store Contact"
-msgstr "Конфигурация магазина"
+msgstr "Контакты магазина"
 
 #: .\admin.py:27 .\models.py:95
 msgid "Shipping Countries"
@@ -47,7 +47,7 @@ msgstr "Итого"
 #: .\config.py:13
 #, fuzzy
 msgid "Satchmo Shop Settings"
-msgstr "Переключиться в магазинный вид"
+msgstr "Настройки магазина"
 
 #: .\config.py:28
 msgid "URI to the logo for the store"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: .\config.py:50
 msgid "Cart Quantity Rounding Factor"
-msgstr "Округление закаазанного количества"
+msgstr "Округление заказанного количества"
 
 #: .\config.py:51
 msgid ""
@@ -109,7 +109,7 @@ msgid ""
 "When a user logs in, attempt to retrieve previous carts and merge with "
 "existing?"
 msgstr ""
-"После входа попытаться получить предыдущую корзину и обединить со текущей?"
+"После входа попытаться получить предыдущую корзину и объединить с текущей?"
 
 #: .\config.py:74
 #, fuzzy
@@ -137,7 +137,7 @@ msgid ""
 "Use the old-style, urchin javascript?.  This is not needed unless your "
 "analytics account hasn't been updated yet."
 msgstr ""
-"Использовать устарешний код Urchin? Это не требуется, если ваша учетная "
+"Использовать устаревший код Urchin? Это не требуется, если ваша учетная "
 "запись в Analytics уже обновлена."
 
 #: .\config.py:102
@@ -173,7 +173,7 @@ msgstr "Тестовый магазин"
 #: .\models.py:74 .\models.py:275 .\models.py:606
 #, fuzzy
 msgid "Site"
-msgstr "Область (штат, регион)"
+msgstr "Сайт"
 
 #: .\models.py:75
 msgid "Store Name"
@@ -270,7 +270,7 @@ msgstr "Заказываемые товары"
 
 #: .\models.py:535
 msgid "detail"
-msgstr "детализация"
+msgstr "описание"
 
 #: .\models.py:536
 msgid "name"
@@ -453,7 +453,7 @@ msgstr "Заказы продуктов"
 #: .\models.py:1063 .\models.py:1167 .\models.py:1219
 #, fuzzy
 msgid "Order"
-msgstr "Заказ №"
+msgstr "Заказ"
 
 #: .\models.py:1066
 #, fuzzy
@@ -504,7 +504,7 @@ msgstr "Позиции заказа"
 #: .\models.py:1150
 #, fuzzy
 msgid "Order Item"
-msgstr "Позиция №"
+msgstr "Позиция заказа"
 
 #: .\models.py:1151 .\views\contact.py:20
 msgid "Name"
@@ -522,12 +522,12 @@ msgstr "Изменение цены для наименования"
 #: .\models.py:1161
 #, fuzzy
 msgid "Order Item Detail"
-msgstr "Подробности о продукции"
+msgstr "Подробности о позиции заказа"
 
 #: .\models.py:1162
 #, fuzzy
 msgid "Order Item Details"
-msgstr "Подробности о продукции"
+msgstr "Подробности о позиции заказа"
 
 #: .\models.py:1166
 #, fuzzy
@@ -906,7 +906,7 @@ msgstr "Обычная цена"
 #: .\templates\shop\cart.html.py:29
 #, fuzzy
 msgid "Sale Price"
-msgstr "Продажная цена: "
+msgstr "Продажная цена "
 
 #: .\templates\shop\cart.html.py:31
 #, fuzzy
@@ -976,11 +976,11 @@ msgstr "Специальное предложение"
 
 #: .\templates\shop\index.html.py:32 .\templates\shop\index.html.py:34
 msgid "Previous"
-msgstr "Предыдущее"
+msgstr "Назад"
 
 #: .\templates\shop\index.html.py:44 .\templates\shop\index.html.py:46
 msgid "Next"
-msgstr "Следующее"
+msgstr "Вперед"
 
 #: .\templates\shop\multiple_product_form.html.py:11
 msgid "Quick Order Form"

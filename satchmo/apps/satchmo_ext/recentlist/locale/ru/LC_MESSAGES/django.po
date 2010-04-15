@@ -1,17 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Satchmo Translation Package
+# Copyright (C) 2008 Satchmo Project
+# This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:57-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-02-28 19:57-0600\n"
+"Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,12 +18,12 @@ msgstr ""
 
 #: config.py:7
 msgid "Maximum recent items"
-msgstr ""
+msgstr "Максимум просмотренных товаров"
 
 #: config.py:8
 msgid "The maximum number of items show in the recent box."
-msgstr ""
+msgstr "Максимальное количество просмотренных товаров, которое будет отображаться"
 
 #: templates/recentlist/_recently_viewed.html:5
 msgid "Recently Viewed"
-msgstr ""
+msgstr "Просмотренные товары"

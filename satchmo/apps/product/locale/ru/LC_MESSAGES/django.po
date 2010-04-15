@@ -146,7 +146,7 @@ msgid ""
 "This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
 "We can handle it any which way."
 msgstr ""
-"Имя каталога для сохранения закачиваемых изображений.  \n"
+"Имя каталога для сохранения скачиваемых товаров. \n"
 "Это значение будет соединено с MEDIA_ROOT.  Не беспокойтись насчет "
 "слешей.  \n"
 "Путь будет действительным в любом случае."
@@ -221,7 +221,7 @@ msgstr "Включать изображения"
 #: .\forms.py:142
 #, fuzzy
 msgid "Include Categories"
-msgstr "Включать изображения"
+msgstr "Включать категории"
 
 #: .\forms.py:274
 msgid "File to import"
@@ -339,7 +339,7 @@ msgstr "Активно"
 #: .\models.py:135
 #, fuzzy
 msgid "Related Categories"
-msgstr "Разделы"
+msgstr "Связанные разделы"
 
 #: .\models.py:286 .\models.py:836
 msgid "Category"
@@ -494,7 +494,7 @@ msgstr "Дата окончания"
 #: .\models.py:460 .\models.py:856
 #, fuzzy
 msgid "Shipping"
-msgstr "Ддоставка"
+msgstr "Доставка"
 
 #: .\models.py:462
 #, fuzzy
@@ -661,7 +661,7 @@ msgstr ""
 
 #: .\models.py:833
 msgid "Defaults to slug if left blank"
-msgstr ""
+msgstr "Используется для URL, если короткое имя пусто."
 
 #: .\models.py:834 .\models.py:1187
 msgid "Short description of product"
@@ -835,12 +835,12 @@ msgstr "Не снимать за доставку этого продукта п
 #: .\models.py:1311
 #, fuzzy
 msgid "Custom Product"
-msgstr "Особый заказ"
+msgstr "Особый продукт"
 
 #: .\models.py:1312
 #, fuzzy
 msgid "Custom Products"
-msgstr "Продукты"
+msgstr "Особые продукты"
 
 #: .\models.py:1319
 msgid "Custom field name"
@@ -868,7 +868,7 @@ msgstr "Переводы особых текстовых полей"
 
 #: .\models.py:1368
 msgid "Create Variations"
-msgstr "Создать вариации"
+msgstr "Создать варианты"
 
 #: .\models.py:1368
 msgid ""
@@ -876,7 +876,7 @@ msgid ""
 "must first add an option, save, then return to this page and select this "
 "option."
 msgstr ""
-"Создать вариации продукта для всех опций продукта. Чтобы использовать их, вы "
+"Создать варианты продукта для всех опций продукта. Чтобы использовать их, вы "
 "должны вначале добавить опцию, сохранить, затем вернуться к этой странице и "
 "выбрать эту опцию."
 
@@ -936,7 +936,7 @@ msgstr ""
 #: .\models.py:1610
 #, fuzzy
 msgid "Duration"
-msgstr "Вариации"
+msgstr "Длительность"
 
 #: .\models.py:1610
 msgid "Length of each billing cycle"
@@ -1013,7 +1013,7 @@ msgstr "Условия испытательного периода"
 #: .\models.py:1768 .\templates\product\admin\variation_manager.html.py:253
 #, fuzzy
 msgid "Options"
-msgstr "Элементы опции"
+msgstr "Опции"
 
 #: .\models.py:1769
 msgid "Parent"
@@ -1059,7 +1059,7 @@ msgstr "Название атрибута"
 #: .\models.py:2102
 #, fuzzy
 msgid "Field Validations"
-msgstr "Вариации"
+msgstr "Валидация полей"
 
 #: .\models.py:2104
 #, fuzzy
@@ -1103,7 +1103,7 @@ msgstr "Использовать эту цену только для данно�
 #: .\models.py:2177
 #, fuzzy
 msgid "Expires"
-msgstr "Экспорт"
+msgstr "Истекает"
 
 #: .\models.py:2218
 msgid "Prices"
@@ -1158,12 +1158,12 @@ msgstr "Помощники"
 #: .\templates\admin\product\productvariation\change_form.html.py:66
 #, fuzzy
 msgid "Variation Manager"
-msgstr "Вариации"
+msgstr "Менеджер вариантов"
 
 #: .\templates\admin\product\configurableproduct\change_form.html.py:21
 #: .\templates\product\admin\variation_manager.html.py:237
 msgid "Variations"
-msgstr "Вариации"
+msgstr "Варианты"
 
 #: .\templates\product\best_ratings.html.py:8
 #: .\templates\product\best_sellers.html.py:7
@@ -1344,12 +1344,12 @@ msgstr "Недавно добавленные"
 #: .\templates\product\recently_added.html.py:33
 #, fuzzy
 msgid "Previous"
-msgstr "Продукты"
+msgstr "Назад"
 
 #: .\templates\product\recently_added.html.py:36
 #: .\templates\product\recently_added.html.py:38
 msgid "Next"
-msgstr "Следующий"
+msgstr "Вперед"
 
 #: .\templates\product\recently_added.html.py:45
 msgid "Bad Page"
@@ -1416,7 +1416,7 @@ msgstr "Редактор товаров"
 #: .\templates\product\admin\inventory_form.html.py:85
 #, fuzzy
 msgid "Unit Price"
-msgstr "Цена"
+msgstr "Цена на единицу"
 
 #: .\templates\product\admin\inventory_form.html.py:114
 msgid "Mark all featured"
@@ -1437,7 +1437,7 @@ msgstr "Деактивировать все варианты с 0-ми оста�
 #: .\templates\product\admin\inventory_form.html.py:121
 #, fuzzy
 msgid "No inventory items."
-msgstr "Редактор товаров"
+msgstr "Нет на складе"
 
 #: .\templates\product\admin\product_export_form.html.py:57
 msgid ""
@@ -1471,7 +1471,7 @@ msgstr "Включать изображения?"
 #: .\templates\product\admin\product_export_form.html.py:106
 #, fuzzy
 msgid "Include categories?"
-msgstr "Включать изображения?"
+msgstr "Включать категории?"
 
 #: .\templates\product\admin\product_export_form.html.py:107
 msgid "Format?"
@@ -1517,7 +1517,7 @@ msgstr "результаты"
 #: .\templates\product\admin\variation_manager_list.html.py:7
 #, fuzzy
 msgid "Product Variation Manager"
-msgstr "Варьируемый продукт"
+msgstr "Менеджер варьируемых продуктов"
 
 #: .\templates\product\admin\variation_manager.html.py:230
 #, python-format
@@ -1545,16 +1545,16 @@ msgstr ""
 "    <p>Выберите группы опций, а затем щелкните по вспомогательной ссылке под "
 "ними, \n"
 "   чтобы создать наборы опций.</p>\n"
-"    <p>Отредактируйте активные вариации, ставя галочку рядом с теми, "
+"    <p>Отредактируйте активные варианты, ставя галочку рядом с теми, "
 "которые  вы хотите оставить или создать, а затем нажмите <b>Обновить "
-"вариации</b>.\n"
+"варианты</b>.\n"
 "    </p>\n"
 "    "
 
 #: .\templates\product\admin\variation_manager.html.py:273
 #, fuzzy
 msgid "Helper Links"
-msgstr "Помощники"
+msgstr "Вспомогательные ссылки"
 
 #: .\templates\product\admin\variation_manager.html.py:280
 msgid "Select These Options"
@@ -1587,7 +1587,7 @@ msgstr "Спрятать неактивные строки"
 #: .\templates\product\admin\variation_manager.html.py:305
 #, fuzzy
 msgid "Update Variations"
-msgstr "Обновить вариации"
+msgstr "Обновить варианты"
 
 #: .\templates\product\admin\variation_manager.html.py:306
 #, fuzzy
@@ -1597,7 +1597,7 @@ msgstr "Сброс"
 #: .\templates\product\admin\variation_manager.html.py:314
 #, fuzzy
 msgid "Variation"
-msgstr "Вариации"
+msgstr "Варианты"
 
 #: .\templates\product\admin\variation_manager.html.py:315
 msgid "Exists"
