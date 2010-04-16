@@ -247,7 +247,7 @@ Downloadable Product
 A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.  
 In Satchmo, this is accomplished by emailing a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
 
-In order to use a downloadable product, you need to make sure you have a Product created as described above.  Also, make sure that you have the Downloadable Product type enabled in the configuration settings.
+To use a downloadable product, you need to setup a base Product as described in the sections above as well as enable downloadable products in the site settings.  You can enable it under "Product Model Options" in the "Product Settings" option group.
 
 From the Product detail page, choose "Add Downloadable Product"
 
@@ -270,7 +270,7 @@ Custom Product
 
 A custom product is one that is typically assembled or made to order based on the customer's needs. A common situation is a computer configurator that allows a customer to tailor the computer to their needs. Once the order is submitted the store owner will then build or configure that product. 
 
-Once you have created a product as described above, you may wish to use it as a basis for a custom product. The most important additional information you need to associate with your product is the option groups or custom text fields the customer may use to create their product. The option groups are no different from the ones described above. This gives you tremendous flexibility to vary the price of the product based on the chosen options. The custom text fields are free form text fields meant to capture special notes or instructions related to the order.
+To use a custom product, you need to setup a base Product as described in the sections above as well as enable custom order products in the site settings.  You can enable it under "Product Model Options" in the "Product Settings" option group.  The most important additional information you need to associate with your product is the option groups or custom text fields the customer may use to create their product. The option groups are no different from the ones described above. This gives you tremendous flexibility to vary the price of the product based on the chosen options. The custom text fields are free form text fields meant to capture special notes or instructions related to the order.
 
 One unique aspect of the custom product is that you can elect to charge only a certain percentage at the time the order is placed. If you choose a percent downpayment then only that amount will be charged when the order is completed. If you choose 100%, then the entire price will be charged at checkout.
 
@@ -289,7 +289,7 @@ A subscription product is a product type that can be used to manage recurring bi
 
 In order to use this product,make sure you have the Subscription Product type enabled in the configuration settings. Additionally, if you would like to use a url to activate the rebilling, you will need to make sure the the setting ALLOW_URL_REBILL is set to True. If you do set it to True, make sure that you add a new unique key in the CRON_KEY setting.
 
-To use a subscription product, you need to setup a base Product as described in the sections above.  The price you set for the base product will be the amount that is charged to your customer periodically based on your subscription schedule
+To use a subscription product, you need to setup a base Product as described in the sections above as well as enable subscription products in the site settings.  You can enable it under "Product Model Options" in the "Product Settings" option group.  The price you set for the base product will be the amount that is charged to your customer periodically based on your subscription schedule
 
 In order to use this product type, from the Product detail page, choose Add Subscription Product.
 
