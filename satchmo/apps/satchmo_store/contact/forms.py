@@ -21,7 +21,7 @@ def area_choices_for_country(country, translator=_):
     if not country:
         return None
     areas = country.adminarea_set.filter(active=True)
-    if areas and areas.count()>0:
+    if areas.count()>0:
         areas = [(area.abbrev or area.name, area.name) for area in areas]
         areas.insert(0,('',translator("---Please Select---")))
         return areas
