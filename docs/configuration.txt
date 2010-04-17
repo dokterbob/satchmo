@@ -18,7 +18,6 @@ number of places you might want to configure.
     SATCHMO_SETTINGS = {
         'SHOP_BASE': '/shop',
         'MULTISHOP': False,
-        'CUSTOM_PRODUCT_MODULES': ['myshop.custom.product.model'],
         'PRODUCT_SLUG': 'items',
         'SSL':  True,
     }
@@ -119,6 +118,62 @@ number of places you might want to configure.
         + ``ADMIN_MEDIA_PREFIX``
         + ``TEMPLATE_DIRS``
 
+.. index::
+   single: settings; L10N
+
+.. _l10n_settings:
+
+Changing the L10N Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Satchmo supports a setting ``L10N_SETTINGS`` that can be defined in your store's settings.py file. To configure the 
+currency format and other internationalization options. The example below would configure the Euro::
+
+    L10N_SETTINGS = {
+      'currency_formats' : {
+         'EURO' : {'symbol': u'€', 'positive' : u"€%(val)0.2f", 'negative': u"€(%(val)0.2f)", 'decimal' : ','},
+      },
+      'default_currency' : 'EURO',
+      'show_admin_translations': False,
+      'allow_translation_choice': False,
+    }
+
+Satchmo recognises the following keys in ``L10N_SETTINGS``:
+
+  .. _l10n_settings_default_currency:
+
+  ``'default_currency'``
+
+    The default currency type to display.
+
+  .. _l10n_settings_show_admin_translations:
+
+  ``'show_admin_translations'``
+
+    :default: ``True``
+
+    Enable or disable the use of the translation options in the admin.
+
+  .. _l10n_settings_allow_translation_choice:
+
+  ``'allow_translation_choice'``
+
+    :default: ``True``
+
+    Enable or disable the translation section for the store user.
+
+  .. TODO this seems to repeat one of the above options, but I'm not sure which.
+
+The ``L10N_SETTINGS`` variable also allows you to control whether or not translation fields
+should be displayed in the admin. In the example above, they will be disabled. The default is ``True``
+
+.. Note::
+    If you use a unicode character, you'll need to have an encoding at the top
+    of your settings.py file::
+
+        # -*- coding: UTF-8 -*-
+
+
 .. _site-settings:
 
 Settings configured via Django's admin interface
@@ -173,19 +228,17 @@ Each payment module will have it's own configuration items. These items apply un
 Product Settings
 ^^^^^^^^^^^^^^^^
 
-Before you use any of the products, you need to enable them in this section. The following products are available here:
-
-    - Configurable Products
-    - Product Variations
-    - Custom Orders
-    - Subscription Products
-    - Downloadable Products
-    - Gift Certificates
+Before you use any of the products, you need to make sure the appropriate products are added to your ``INSTALLED_APPS``.
 
 In this section you can also configure:
 
+    - Allowing checkout with 0 inventory
+    - Using Akismet for comment spam prevention
+    - Number of recent items displayed
+    - Measurement system
+    - Number of featured items
+    - Random display of featured products
     - Protected directory to be used for downloadable products
-    - Whether or not images should be renamed
     - Specific directory where images should be uploaded
 
 .. index::
@@ -293,60 +346,25 @@ through the settings file.
 The easiest way to do this is to query the database for livesettings_setting and livesettings_longsetting, and convert to a Python dictionary manually.
 
 .. index::
-   single: settings; L10N
+   single: Shipping Countries; configuring
 
-.. _l10n_settings:
+.. _shippingcountries:
 
-Changing the L10N Settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Store Configuration
+^^^^^^^^^^^^^^^^^^^
 
-Satchmo supports a setting ``L10N_SETTINGS`` to configure the currency format and other internationalization options. The example
-below would configure the Euro::
+The final configuration option that is available is configuring which Countries you would like to ship to. This option is 
+available through the Admin interface in the Store Configuration model. It is typically accessed through the URL `/admin/shop/config`
 
-    L10N_SETTINGS = {
-      'currency_formats' : {
-         'EURO' : {'symbol': u'€', 'positive' : u"€%(val)0.2f", 'negative': u"€(%(val)0.2f)", 'decimal' : ','},
-      },
-      'default_currency' : 'EURO',
-      'show_admin_translations': False,
-      'allow_translation_choice': False,
-    }
+This section allows you to fill in store address and basic demographic information that is used throughout Satchmo. The
+`Shipping Countries` section will allow you to configure:
 
-Satchmo recognises the following keys in ``L10N_SETTINGS``:
-
-  .. _l10n_settings_default_currency:
-
-  ``'default_currency'``
-
-    The default currency type to display.
-
-  .. _l10n_settings_show_admin_translations:
-
-  ``'show_admin_translations'``
-
-    :default: ``True``
-
-    Enable or disable the use of the translation options in the admin.
-
-  .. _l10n_settings_allow_translation_choice:
-
-  ``'allow_translation_choice'``
-
-    :default: ``True``
-
-    Enable or disable the translation section for the store user.
-
-  .. TODO this seems to repeat one of the above options, but I'm not sure which.
-
-The ``L10N_SETTINGS`` variable also allows you to control whether or not translation fields
-should be displayed in the admin. In the example above, they will be disabled. The default is ``True``
-
-.. Note::
-    If you use a unicode character, you'll need to have an encoding at the top
-    of your settings.py file::
-
-        # -*- coding: UTF-8 -*-
-
+    * Whether or not to ship only within 1 country
+    * The Default Country to ship to
+    * All Countries which may be chosen during the checkout process
+    
+If you choose to allow shipping to multiple countries, the checkout process will automatically populate valid
+states based on the selected country.
 
 .. _Authorize.net: http://www.authorize.net/
 .. _Mailman: http://www.gnu.org/software/mailman/

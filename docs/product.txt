@@ -63,7 +63,23 @@ Active
 Product
 -------
 
-A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.  There are many fields you can use to configure your Items.
+A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.  
+
+To activate the various product modules, they need to be enabled in your settings.py
+file. For example::
+
+        INSTALLED_APPS = (
+                ...
+                'product',
+                'product.modules.configurable',
+                'product.modules.custom',
+                'product.modules.downloadable',
+                'product.modules.subscription',
+                ...
+
+
+
+Once the products have been added, there are many fields you can use to configure your Items.
 
 Category
     See the description above.  This is where you choose one or more categories where a person could find this product.
