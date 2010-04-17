@@ -8,9 +8,6 @@ wishlist.  The view here just looks in the formdata to determine whether
 from satchmo_store.shop.models import Cart
 from satchmo_store.shop.signals import cart_add_view
 from satchmo_store.shop.views import cart
-import logging
-
-log = logging.getLogger('shop.views.smart')
 
 def smart_add(request):
     """Redirect the request to cart_add (default) or whatever gets returned by
