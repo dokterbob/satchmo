@@ -37,7 +37,6 @@ msgid "Email"
 msgstr "Электронная почта"
 
 #: .\config.py:27 .\forms.py:37 .\models.py:133
-#, fuzzy
 msgid "Title"
 msgstr "Обращение"
 
@@ -349,9 +348,8 @@ msgid "Supplier Orders"
 msgstr "Заказы поставщиков"
 
 #: .\supplier\models.py:63
-#, fuzzy
 msgid "Line Item"
-msgstr "Наименование заказа"
+msgstr "Строка заказа"
 
 #: .\supplier\models.py:64
 msgid "Line Item Quantity"
@@ -394,9 +392,8 @@ msgid "Billing Information"
 msgstr "Платежная информация"
 
 #: .\templates\contact\_ContactInfoForm_billing.html.py:6
-#, fuzzy
 msgid "Bill To"
-msgstr "Оплачен"
+msgstr "Оформить на"
 
 #: .\templates\contact\_ContactInfoForm_billing.html.py:6
 #: .\templates\contact\_ContactInfoForm_shipping.html.py:9

@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
@@ -46,9 +46,8 @@ msgid "Average rating %(rating)s"
 msgstr "Средний рейтинг %(rating)s"
 
 #: templates/productratings/_product_ratings.html:24
-#, fuzzy
 msgid "Review this product"
-msgstr "Пожалуйста, авторизуйтесь, чтобы оставить отзыв об этом продукте."
+msgstr "Написать отзыв"
 
 #: templates/productratings/_product_ratings.html:28
 msgid "Please login to review this product."

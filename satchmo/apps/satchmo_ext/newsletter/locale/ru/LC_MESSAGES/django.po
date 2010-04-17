@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
@@ -25,12 +25,8 @@ msgid "Active newsletter module"
 msgstr "Активный модуль новостной рассылки"
 
 #: config.py:12
-msgid ""
-"Select a newsletter, save and reload to set any module-specific newsletter "
-"settings."
-msgstr ""
-"Выберите новостную рассылку, сохраните и обновите страницу, чтобы изменить "
-"настройки выбранной новостной рассылки."
+msgid "Select a newsletter, save and reload to set any module-specific newsletter settings."
+msgstr "Выберите новостную рассылку, сохраните и обновите страницу, чтобы изменить настройки выбранной новостной рассылки."
 
 #: config.py:14
 msgid "No newsletter"
@@ -50,20 +46,15 @@ msgstr "Название новостной рассылки"
 
 #: config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
-msgstr ""
-"Укажите точное название, которое соответствует списку почтовой рассылки для "
-"настройки Почтальон."
+msgstr "Укажите точное название, которое соответствует списку почтовой рассылки для настройки Почтальон."
 
 #: config.py:31
-#, fuzzy
 msgid "Newsletter Slug"
 msgstr "Короткое имя рассылки для URL"
 
 #: config.py:32
 msgid "The url slug for the newsletter.  Requires server restart if changed."
-msgstr ""
-"URL, по которому будет доступна рассылка. Для изменения требуется "
-"рестарт сервера."
+msgstr "URL, по которому будет доступна рассылка. Для изменения требуется рестарт сервера."
 
 #: forms.py:16
 msgid "Full Name"
@@ -82,9 +73,9 @@ msgid "Subscribe"
 msgstr "Подписаться"
 
 #: mailman.py:44 simple.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "Updated subscription for %(email)s."
-msgstr "Уже подписан %(email)s."
+msgstr "Подписка для %(email)s обновлена."
 
 #: mailman.py:46 simple.py:37
 #, python-format
@@ -171,7 +162,7 @@ msgstr "Ошибка, неверно."
 #: templates/newsletter/update_form.html:5
 #: templates/newsletter/update_results.html:5
 msgid "Home"
-msgstr "Домой"
+msgstr "Главная"
 
 #: templates/newsletter/subscribe_form.html:6
 #: templates/newsletter/subscribe_form.html:10
