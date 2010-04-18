@@ -447,7 +447,7 @@ class AdminTest(TestCase):
         self.assertContains(response, "Django Rocks shirt", status_code=200)
 
     #def test_configurableproduct(self):
-        response = self.client.get('/admin/product/configurableproduct/1/')
+        response = self.client.get('/admin/configurable/configurableproduct/1/')
         self.assertContains(response, "Small, Black", status_code=200)
 
     #def test_productimage_list(self):
