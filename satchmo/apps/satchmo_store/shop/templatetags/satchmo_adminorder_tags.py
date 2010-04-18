@@ -31,7 +31,7 @@ def inprocess_order_list():
 register.inclusion_tag('shop/admin/_ordercount_list.html')(inprocess_order_list)
 
 def orders_at_status(status):
-    return Order.objects.filter(status=status)
+    return Order.objects.filter(status=status).order_by('-time_stamp')
 
 def orderpayment_list(order):
     return {
