@@ -216,7 +216,7 @@ border-bottom: 1px dashed #e0e0e0;
 background-color: white;
 }
 
-#wishlist ul li:hover
+#wishlist ul li:hover,
 #product_category ul li:hover {
 	background-color: #f0fff0;
 }
