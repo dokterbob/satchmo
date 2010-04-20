@@ -1,7 +1,7 @@
 from django.db.models import signals
 from django.db.models.fields.files import ImageField
 from livesettings import config_value, SettingNotSet
-from satchmo_utils.thumbnail.utils import remove_model_thumbnails, rename_by_field
+from satchmo_utils.thumbnail.utils import remove_file_thumbnails, rename_by_field
 from satchmo_utils import normalize_dir
 import logging
 import os
@@ -10,14 +10,6 @@ import os
 import satchmo_utils.thumbnail.config
 
 log = logging.getLogger('thumbnail.fields')
-
-def _delete(sender, instance=None, **kwargs):
-    if instance:
-        if hasattr(instance.picture,'path') and os.path.isfile(instance.picture.path):
-            if os.path.isfile(instance.picture.path):
-                remove_model_thumbnails(instance)
-        else:
-            remove_model_thumbnails(instance)
 
 def upload_dir(instance, filename):
     raw = "images/"
@@ -90,9 +82,14 @@ class ImageWithThumbnailField(ImageField):
             instance.save()
             self._renaming = False
 
+    def _delete_thumbnail(self, sender, instance=None, **kwargs):
+        image = getattr(instance, self.attname)
+        if hasattr(image, 'path'):
+            remove_file_thumbnails(image.path)
+
     def contribute_to_class(self, cls, name):
         super(ImageWithThumbnailField, self).contribute_to_class(cls, name)
-        signals.pre_delete.connect(_delete, sender=cls)
+        signals.pre_delete.connect(self._delete_thumbnail, sender=cls)
         signals.post_save.connect(self._save_rename, sender=cls)
 
 try:

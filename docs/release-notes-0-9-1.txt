@@ -69,3 +69,8 @@ Changes
 - Split out the product models to use a more modular layout and remove settings dependencies for loading
 - Move SSL config to a setting not a livesetting
 - Fix bugs in payment authorization
+- Improve error handling in Protx module
+- Refactor portions of the ImageWithThumbnailField to be more generic
+- Clarify an error page within the wishlist module
+- Improve contact form handling if Country has no states
+
