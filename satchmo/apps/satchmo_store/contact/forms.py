@@ -52,7 +52,7 @@ class ContactInfoForm(ProxyContactForm):
     ship_city = forms.CharField(max_length=30, label=_('City'), required=False)
     ship_state = forms.CharField(max_length=30, label=_('State'), required=False)
     ship_postal_code = forms.CharField(max_length=10, label=_('ZIP code/Postcode'), required=False)
-    next = forms.CharField(max_length=40, widget=forms.HiddenInput(), required=False)
+    next = forms.CharField(max_length=200, widget=forms.HiddenInput(), required=False)
 
     def __init__(self, *args, **kwargs):
         initial = kwargs.get('initial', {})
