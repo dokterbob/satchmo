@@ -64,7 +64,7 @@
 {% endif %}<br/>
 {% if order.tax %}
     {% if default_view_tax %}
-    {% trans "Tax included" %} 
+    {% trans "Tax included" %}
     {% else %}
     {% trans "Tax" %} + {% endif %}{{order.tax|currency}}<br/>
 {% endif %}
