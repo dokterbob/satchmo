@@ -34,7 +34,6 @@
 {{ order.ship_postal_code }}<br/>
 {{ order.ship_country }}<br/>
 
-{% if order.shipping_method %}
 <h4>{% trans "Shipping Method" %}</h4>
 {{ order.shipping_description }}<br/>
 {{ order.shipping_method }}<br/>
@@ -43,7 +42,6 @@
 {% else %}
 {{ order.shipping_sub_total|currency }}
 {% endif %}<br/>
-{% endif %}
 {% endif %}{# order.is_shippable #}
 
 <h4>{% trans "Total" %}</h4>
