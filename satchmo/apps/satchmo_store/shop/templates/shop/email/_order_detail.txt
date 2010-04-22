@@ -24,13 +24,13 @@
 {{ order.ship_city }}
 {{ order.ship_state }}
 {{ order.ship_postal_code }}
-{{ order.ship_country }}{% endblock order_details_shipping %}{% endif %}{% if shipping_method %}
+{{ order.ship_country }}{% endblock order_details_shipping %}{% if shipping_method %}
 
 {% block order_details_shipping_method %}{% trans "Shipping Method" %}
 ---------------
 {{ order.shipping_description }}
 {{ order.shipping_method }}
-{{ order.shipping_sub_total|currency }}{% endblock order_details_shipping_method %}{% endif %}
+{{ order.shipping_sub_total|currency }}{% endblock order_details_shipping_method %}{% endif %}{% endif %}
 
 {% block order_details_total %}{% trans "Total" %}
 -----{% if order.discount %}
