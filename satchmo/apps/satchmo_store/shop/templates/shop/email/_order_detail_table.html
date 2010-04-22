@@ -21,7 +21,7 @@
 <table style="width:100%;margin-bottom:20px;">
 	<tr style="width:80%;border-bottom:1px solid #ccc;">
 		<th style="text-align:left;border-bottom:1px solid #ccc;">{% trans "Billing Information" %}</th>
-		<th style="text-align:left;border-bottom:1px solid #ccc;">{% if order.is_shippable %}{% trans "Shipping Address" %}{% endif %}</th>
+		{% if order.is_shippable %}<th style="text-align:left;border-bottom:1px solid #ccc;">{% trans "Shipping Address" %}</th>{% endif %}
 	</tr>
 	<tr>
 		<td>
@@ -29,14 +29,13 @@
 		{{ order.bill_city }}, {{ order.bill_state }} {{ order.bill_postal_code }}<br />
 		{{ order.bill_country }}
 		</td>
-		<td>
 		{% if order.is_shippable %}
+		<td>
 		{{ order.full_ship_street }}<br />
 		{{ order.ship_city }}, {{ order.ship_state }} {{ order.ship_postal_code }}<br />
 		{{ order.ship_country }}
-		{% endif %}
 		</td>
-
+		{% endif %}
 	</tr>
 
 </table>
