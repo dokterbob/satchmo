@@ -11,7 +11,7 @@ Settings configured in Python files
 If you followed the installation steps, you should have a basic store to start using.  There are a
 number of places you might want to configure.
 
-1. In the settings.py (or local_settings.py) file, there are a number of general Django settings.  However, there are a
+1. In the :file:`settings.py` (or :file:`local_settings.py`) file, there are a number of general Django settings.  However, there are a
    few that are specific to Satchmo. These default Satchmo settings can be overridden by adding them to a ``SATCHMO_SETTINGS``
    dictionary like this::
 
@@ -126,7 +126,7 @@ number of places you might want to configure.
 Changing the L10N Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Satchmo supports a setting ``L10N_SETTINGS`` that can be defined in your store's settings.py file. To configure the 
+Satchmo supports a setting ``L10N_SETTINGS`` that can be defined in your store's :file:`settings.py` file. To configure the 
 currency format and other internationalization options. The example below would configure the Euro::
 
     L10N_SETTINGS = {
@@ -180,7 +180,7 @@ Settings configured via Django's admin interface
 ------------------------------------------------
 
 The majority of the store configuration is done through the admin interface. This can be
-accessed from the main admin page (usually at `/admin/`) via the `Edit Site Settings`
+accessed from the main admin page (usually at `/admin/`) via the :menuselection:`Admin --> Edit Site Settings`
 link. It is also usually available at the URL `/settings/`.
 
 All of the configuration settings have detailed help notes. They also default to sensible configurations so your initial store should work fine without changing any values.
@@ -354,7 +354,7 @@ Store Configuration
 ^^^^^^^^^^^^^^^^^^^
 
 The final configuration option that is available is configuring which Countries you would like to ship to. This option is 
-available through the Admin interface in the Store Configuration model. It is typically accessed through the URL `/admin/shop/config`
+available through the Admin interface through :menuselection:`Admin --> Shop --> Store Configuration`. It is typically accessed through the URL `/admin/shop/config`
 
 This section allows you to fill in store address and basic demographic information that is used throughout Satchmo. The
 `Shipping Countries` section will allow you to configure:

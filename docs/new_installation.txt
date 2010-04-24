@@ -8,7 +8,7 @@ truly impatient, you may look at the :doc:`Quick Start <quickstart>` for the fas
 running.
 
 This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
-you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
+you have write access to. In the below example, we use :file:`/home/user/src`. You are expected to modify the path to fit your needs.
 
 .. warning::
    You must have Django 1.1.x properly installed.
@@ -20,7 +20,7 @@ A Quick Note About Installing Dependencies
 ------------------------------------------
 
 Python allows you to install applications in multiple ways. Much of this is personal preference. For the purposes of this guide,
-we will use either easy_install or python setup.py install to install most of the packages.
+we will use either :command:`easy_install` or :command:`python setup.py install` to install most of the packages.
 
 You may elect to use pip, manually link packages into your site-packages directory or use .pth files to add each to your
 python path. All of these will work fine with Satchmo but in the interest of keeping this as straightforward as possible, we
@@ -29,7 +29,8 @@ are picking a small number of approaches that work across the maximum number of 
 Installing Dependencies
 -----------------------
 
-1. Install setuputils by following the instructions on the easy_install_ page. After installation, you should be able to run ``easy_install`` directly (assuming the install directory is in you $PATH).
+1. Install setuputils by following the instructions on the easy_install_ page. After installation, you should be able to run :command:`easy_install` directly 
+(assuming the install directory is in you $PATH).
 
 2. Install required dependencies (this may vary based on your OS of choice)::
 
@@ -117,12 +118,12 @@ install these dependencies.
     
 .. note::
     Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
-    recommended satchmo version is available via ``easy_install`` before proceeding.
+    recommended satchmo version is available via :command:`easy_install` before proceeding.
 
 Installing Satchmo into your path
 ---------------------------------
 
-1. Checkout the latest Satchmo release into (/home/user/src)::
+1. Checkout the latest Satchmo release into :file:`/home/user/src`::
 
         hg clone http://bitbucket.org/chris1610/satchmo/
 
@@ -137,8 +138,8 @@ Installing Satchmo into your path
         sudo python setup.py install
 
 .. note::
-   An alternative to running the install is ensuring that /path/to/satchmo/apps is on your python path.
-   You may do this by placing a symbolic link to the source, adding a .pth file that points to your /satchmo/apps
+   An alternative to running the install is ensuring that :file:`/path/to/satchmo/apps` is on your python path.
+   You may do this by placing a symbolic link to the source, adding a .pth file that points to your :file:`/satchmo/apps`
    location or modifying your PYTHONPATH environment variable.
 
 
@@ -164,7 +165,7 @@ Build Your Store With clonesatchmo
 In order to quickly get you up and running, satchmo includes a helper script that will
 get a new sample store up and running quickly.
 
-1. Build a starter store using clonesatchmo::
+1. Build a starter store using :command:`clonesatchmo`::
 
     python /home/user/src/satchmo-trunk/scripts/clonesatchmo.py
 

@@ -20,13 +20,13 @@ Additionally, there is a streamlined satchmo directory structure in the skel dir
 basis for your store.
 
 You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file
-called settings.py is available in the projects/base directory to act as a template. You may
-use this file as a template for settings.py or use the notes below to configure your existing one.
+called :file:`settings.py` is available in the projects/base directory to act as a template. You may
+use this file as a template for :file:`settings.py` or use the notes below to configure your existing one.
 
 Please remember to ensure that your Django database connections and settings are working properly before trying
 to add any pieces of satchmo.
 
-1. Ensure that /home/user/src/mystore/settings.py has the following satchmo-specific configurations
+1. Ensure that :file:`/home/user/src/mystore/settings.py` has the following satchmo-specific configurations
    (in addition to the defaults and your other app needs)::
 
         import os
@@ -100,11 +100,11 @@ to add any pieces of satchmo.
 .. note::
     In order for the admin site to work properly, you must have satchmo_store.shop placed before django.contrib.admin
 
-2. Copy the local_settings file to mystore::
+2. Copy the :file:`local_settings` file to mystore::
 
         cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py /home/user/src/mystore/local_settings.py
 
-3. You will need to verify the values assigned to the following items in local_settings.py::
+3. You will need to verify the values assigned to the following items in :file:`local_settings.py`::
 
         SITE_NAME
         CACHE_BACKEND
@@ -133,7 +133,7 @@ to add any pieces of satchmo.
 Configure the rest of the required files
 ----------------------------------------
 
-1. Next, you need to configure your urls.py file. The most simple urls.py file would look like this::
+1. Next, you need to configure your :file:`urls.py` file. The most simple :file:`urls.py` file would look like this::
 
         from django.conf.urls.defaults import *
         from satchmo_store.urls import urlpatterns

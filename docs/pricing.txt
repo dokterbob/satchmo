@@ -38,7 +38,8 @@ This useful for running temporary promotions that automatically expire.
 
 Expiring Pricing
 ----------------
-If you are using expiring dates for prices, please note that you must run a daily update of the pricing lookup table.  To do this, you need to run "./manage.py satchmo_rebuild_pricing"
+If you are using expiring dates for prices, please note that you must run a daily update of the pricing lookup table.  To do this, you need 
+to run :command:`./manage.py satchmo_rebuild_pricing`
 
 The easiest way to run this automatically is to use the excellent "Django_Extensions_" app.  We've already added a daily job to rebuild prices, so all you need to do is to ensure that the daily job is getting run via crontab::
 
