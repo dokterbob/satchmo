@@ -13,7 +13,8 @@ The base Satchmo directory should look like this::
         `-- static
 
 
-The docs directory should be self explanatory.
+The docs directory contains the text documents that can be used with `Sphinx <http://sphinx.pocoo.org/>`_ to create nicely formatted
+html or pdf documentation.
 
 To understand the Satchmo template structure, please refer to :ref:`Template Customization <template-customization>`.
 
@@ -159,7 +160,7 @@ Skeleton
 ^^^^^^^^
 
 This directory includes the absolute basic files needed to get Satchmo working. It is not a standalone working version
-but is meant to be used as a template for your store.
+but is meant to be used as a template for your store. It is used by the clonesatchmo program to setup your store.
 
 Satchmo Static
 --------------

@@ -5,7 +5,7 @@ Satchmo is based on the Django framework, therefore you do need a fully function
 Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
-It is recommended that you use Django 1.1.
+It is recommended that you use Django 1.1.1.
 
 Satchmo requires Python 2.4 or later and a database supported by Django.
 
@@ -53,6 +53,10 @@ For advanced caching settings:
 
     - `Django Keyedcache`_
 
+For reusable, consistent signals:
+
+    - `Signals Ahoy`_
+
 For the account registration process, you will need:
 
     - `Django Registration`_
@@ -84,10 +88,6 @@ If you are using a version of python less than 2.6, you will have to install the
 new SSL module to support accessing SSL 2.0 sites often used by payment processors:
 
     - `SSL Backport`_
-
-For reusable, consistent signals:
-
-    - `Signals Ahoy`_
 
 Detailed steps for installing these dependencies is included in the installation_ section.
 

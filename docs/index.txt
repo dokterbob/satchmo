@@ -23,6 +23,7 @@ Installation
 
    quickstart
    new_installation
+   settings
    configuration
 
 Store Usage
