@@ -224,11 +224,41 @@ Downloadable Product
 A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.
 In Satchmo, this is accomplished by emailing a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
 
-In order to use a downloadable product, you need to make sure you have a Product created as described above.  Also, make sure that you have the Downloadable Product type enabled in the configuration settings.
+In order for the downloadable product to be secured, you will need to ensure
+that the protected directory can not be browsed to directly; you should also
+ensure that the directory where the file is stored on the server is protected
+from other users.
 
-From the Product detail page, choose "Add Downloadable Product"
+Adding a Downloadable Product
++++++++++++++++++++++++++++++
 
-This screen will allow you to upload your file and specify the number of allowed downloads, the number of minutes it will remain active and a final flag for whether or not the file is still active.  After saving the changes, the product will be enabled for downloading.
+#. Add the dotted name ``'product.modules.downloadable'`` to
+   ``INSTALLED_APPS`` in your settings.py.
+#. Create the tables by with ``python manage.py syncdb``.
+#. In the "Downloadable" section of the admin site, add a new instance of a
+   Downloadable Product as you would usually do.
+
+The last screen will allow you to:
+
+- upload your file;
+- specify the number of allowed downloads;
+- specify the number of minutes it will remain active;
+- a flag for whether or not the file is still active.
+
+After saving the changes, the product will be enabled for downloading.
+
+Storage and Serving Location of Downloadable Products
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+As Satchmo relies on the default storage class, the files will be stored in
+``PRODUCT.PROTECTED_DIR`` (by default, ``"protected"``), a subdirectory of
+``django.core.files.storage.default_storage.location`` (usually,
+``settings.MEDIA_ROOT``).
+
+.. TODO add assumed url
+
+Configuration
++++++++++++++
 
 In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache, lighttpd and nginx do but you'll need to refer to the web server documentation for details.  Lighttpd and nginx natively supports this but Apache needs mod_xsendfile to work correctly.
 
