@@ -5,9 +5,10 @@ from django.db.models.fields.files import FileField
 from django.utils.encoding import smart_str
 from django.utils.hashcompat import sha_constructor
 from django.utils.translation import ugettext_lazy as _
-from livesettings import config_value_safe
+from livesettings import config_value
 from product import signals
 from product.models import Product
+import product.modules.downloadable.config
 from satchmo_store.shop.models import Order
 from satchmo_utils import normalize_dir
 import datetime
@@ -21,7 +22,9 @@ def get_product_types():
 
 
 def _protected_dir(instance, filename):
-    raw = config_value_safe('PRODUCT', 'PROTECTED_DIR', 'images/')
+    # if we get a SettingNotSet exception (even though we've already
+    # imported/loaded it), that's bad, so let it bubble up.
+    raw = config_value('PRODUCT', 'PROTECTED_DIR')
     updir = normalize_dir(raw)
     return os.path.normpath(os.path.join(updir, os.path.basename(filename)))
 
