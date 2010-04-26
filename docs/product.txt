@@ -260,12 +260,43 @@ As Satchmo relies on the default storage class, the files will be stored in
 Configuration
 +++++++++++++
 
-In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache, lighttpd and nginx do but you'll need to refer to the web server documentation for details.  Lighttpd and nginx natively supports this but Apache needs mod_xsendfile to work correctly.
+In the below configuration examples, the following assumptions are made:
 
-In addition to configuring the x-send-file header, you will need to ensure that the protected directory can not be browsed to directly.  An example lighttpd configuration is::
+  - ``"/usr/local/www/website/static"`` to be ``default_storage.location``;
+  - ``PRODUCT.PROTECTED_DIR`` to be the default ``"protected"``.
+
+.. TODO add assumed url
+
+Apache
+~~~~~~
+
+Install mod_xsendfile, and add this to your configuration::
+
+    <Location /static/protected/>
+        XSendFile on
+    </Location>
+
+.. TODO: add denying of direct hits, and aliasing.
+
+Lighttpd
+~~~~~~~~
+
+Set ``"allow-x-send-file"`` to ``"enable"`` in your FastCGI/SCGI config, and
+add also the below to your configuration file::
 
     $HTTP["url"] =~ "^/static/protected/" {
-    url.access-deny = ("")
+        url.access-deny = ("")
+        server.document-root = "/usr/local/www/website/static"
+    }
+
+Nginx
+~~~~~
+
+Add this to your configuration file::
+
+    location /static/protected/ {
+        internal;
+        root /usr/local/www/website/static;
     }
 
 .. index::
