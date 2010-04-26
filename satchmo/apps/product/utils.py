@@ -275,6 +275,12 @@ def validate_attribute_value(attribute, value, obj):
     """
     function_name = attribute.validation.split('.')[-1]
     import_name = '.'.join(attribute.validation.split('.')[:-1])
-    import_module = __import__(import_name, fromlist=[function_name])
+
+    # The below __import__() call is from python docs, and is equivalent to:
+    #
+    #   from import_name import function_name
+    #
+    import_module = __import__(import_name, globals(), locals(), [function_name])
+
     validation_function = getattr(import_module, function_name)
     return validation_function(value, obj)
