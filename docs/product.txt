@@ -228,7 +228,7 @@ In order to use a downloadable product, you need to make sure you have a Product
 
 From the Product detail page, choose "Add Downloadable Product"
 
-This screen will allow you to upload your file and specifiy the number of allowed downloads, the number of minutes it will remain active and a final flag for whether or not the file is still active.  After saving the changes, the product will be enabled for downloading.
+This screen will allow you to upload your file and specify the number of allowed downloads, the number of minutes it will remain active and a final flag for whether or not the file is still active.  After saving the changes, the product will be enabled for downloading.
 
 In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache, lighttpd and nginx do but you'll need to refer to the web server documentation for details.  Lighttpd and nginx natively supports this but Apache needs mod_xsendfile to work correctly.
 
