@@ -5,6 +5,7 @@ Also contains shopping cart and related classes.
 
 from decimal import Decimal, ROUND_CEILING
 from django.contrib.sites.models import Site
+from django.conf import settings
 from django.core import urlresolvers
 from django.db import models
 from django.utils.encoding import force_unicode
@@ -985,7 +986,8 @@ class Order(models.Model):
 
     def _has_downloads(self):
         """Determine if there are any downloadable products on this order"""
-        if self.downloadlink_set.count() > 0:
+        if 'product.modules.downloadable' in settings.INSTALLED_APPS \
+            and self.downloadlink_set.count() > 0:
             return True
         return False
     has_downloads = property(_has_downloads)
