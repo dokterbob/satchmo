@@ -2,10 +2,8 @@ from decimal import Decimal
 from django.contrib.sites.models import Site
 from livesettings import config_value
 from l10n.utils import moneyfmt
-from product.models import ProductVariation, Option, split_option_unique_id, \
-                                   ProductPriceLookup, OptionGroup, Discount, \
-                                   NullDiscount, Product
-from satchmo_utils.numbers import RoundedDecimalError, round_decimal
+from product.models import Option, ProductPriceLookup, OptionGroup, Discount, Product, split_option_unique_id
+from satchmo_utils.numbers import round_decimal
 import datetime
 import logging
 import types
@@ -225,10 +223,11 @@ def _sort_options(lst):
     return zip(*work)[1]
 
 # All the functions below are used to validate custom attributes
-# associated with a product.
+# associated with a product or category.
 # Custom ones can be added to the list via the admin setting ATTRIBUTE_VALIDATION
 
-def validation_simple(value, product=None):
+
+def validation_simple(value, obj=None):
     """
     Validates that at least one character has been entered.
     Not change is made to the value.
@@ -238,7 +237,7 @@ def validation_simple(value, product=None):
     else:
         return False, value
 
-def validation_integer(value, product=None):
+def validation_integer(value, obj=None):
     """
    Validates that value is an integer number.
    No change is made to the value
@@ -249,7 +248,7 @@ def validation_integer(value, product=None):
     except:
         return False, value
 
-def validation_yesno(value, product=None):
+def validation_yesno(value, obj=None):
     """
     Validates that yes or no is entered.
     Converts the yes or no to capitalized version
@@ -259,7 +258,7 @@ def validation_yesno(value, product=None):
     else:
         return False, value
 
-def validation_decimal(value, product=None):
+def validation_decimal(value, obj=None):
     """
     Validates that the number can be converted to a decimal
     """
@@ -268,3 +267,20 @@ def validation_decimal(value, product=None):
         return True, value
     except:
         return False, value
+
+def validate_attribute_value(attribute, value, obj):
+    """
+    Helper function for forms that wish to validation a value for an
+    AttributeOption.
+    """
+    function_name = attribute.validation.split('.')[-1]
+    import_name = '.'.join(attribute.validation.split('.')[:-1])
+
+    # The below __import__() call is from python docs, and is equivalent to:
+    #
+    #   from import_name import function_name
+    #
+    import_module = __import__(import_name, globals(), locals(), [function_name])
+
+    validation_function = getattr(import_module, function_name)
+    return validation_function(value, obj)

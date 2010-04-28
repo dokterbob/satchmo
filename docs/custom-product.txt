@@ -77,14 +77,6 @@ configuration.
 
 2. Run ``python manage.py syncdb`` in your project directory.
 
-3. Add the app's dotted name to your project's
-   :ref:`CUSTOM_PRODUCT_MODULES <satchmo_settings_custom_product_modules>`.
-
-4. Enable the new model in Satchmo's settings.
-    1. Go to "Edit Site Settings" in the admin app.
-    2. Look in the "Product Settings" section and find the "Product Model Options" setting.
-    3. Add your new product model and click "Save".
-
 You can now use the new product model in the same way that you would use one
 of Satchmo's default product types. You will find an "Add MyNewProduct" link in
 the "Product Subtypes" section of each product's admin page.

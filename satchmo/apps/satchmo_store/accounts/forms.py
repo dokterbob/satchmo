@@ -7,8 +7,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from satchmo_store.accounts.mail import send_welcome_email
 from livesettings import config_value
 from satchmo_store.contact.forms import ContactInfoForm
-from satchmo_store.contact.models import AddressBook, PhoneNumber, Contact, ContactRole
-from l10n.models import Country
+from satchmo_store.contact.models import Contact, ContactRole
 from satchmo_utils.unique_id import generate_id
 from signals_ahoy.signals import form_init, form_initialdata
 
@@ -19,9 +18,9 @@ log = logging.getLogger('accounts.forms')
 
 class EmailAuthenticationForm(AuthenticationForm):
     """Authentication form with a longer username field."""
-    
+
     def __init__(self, *args, **kwargs):
-        
+
         super(EmailAuthenticationForm, self).__init__(*args, **kwargs)
         username = self.fields['username']
         username.max_length = 75
@@ -40,7 +39,7 @@ class RegistrationForm(forms.Form):
         max_length=30, required=True)
     last_name = forms.CharField(label=_('Last name'),
         max_length=30, required=True)
-    next = forms.CharField(max_length=100, required=False, widget=forms.HiddenInput())
+    next = forms.CharField(max_length=200, required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         contact = kwargs.get('contact', None)
@@ -50,7 +49,7 @@ class RegistrationForm(forms.Form):
             form=self,
             contact=contact,
             initial=initial)
-        
+
         kwargs['initial'] = initial
         super(RegistrationForm, self).__init__(*args, **kwargs)
         form_init.send(self.__class__,
@@ -157,15 +156,15 @@ class RegistrationForm(forms.Form):
 
 class RegistrationAddressForm(RegistrationForm, ContactInfoForm):
     """Registration form which also requires address information."""
-    
+
     def __init__(self, *args, **kwargs):
         super(RegistrationAddressForm, self).__init__(*args, **kwargs)
 
     def save(self, request=None, **kwargs):
         contact = self.save_contact(request)
         kwargs['contact'] = contact
-        
+
         log.debug('Saving address for %s', contact)
         self.save_info(**kwargs)
-                
+
         return contact

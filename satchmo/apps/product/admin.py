@@ -1,18 +1,27 @@
 from django.contrib import admin
 from django.forms import models, ValidationError
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from l10n.l10n_settings import get_l10n_setting
 from livesettings import config_value
 from product.models import Category, CategoryTranslation, CategoryImage, CategoryImageTranslation, \
                                    OptionGroup, OptionGroupTranslation, Option, OptionTranslation, Product, \
-                                   CustomProduct, CustomTextField, CustomTextFieldTranslation, ConfigurableProduct, \
-                                   DownloadableProduct, SubscriptionProduct, Trial, ProductVariation, ProductAttribute, \
+                                   ProductAttribute, \
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
-                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption
+                                   default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption, \
+                                   CategoryAttribute
+from product.utils import validate_attribute_value
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.thumbnail.widgets import AdminImageWithThumbnailWidget
 from django.http import HttpResponseRedirect
 import re
+
+def clean_attribute_value(cleaned_data, obj):
+    value = cleaned_data['value']
+    attribute = cleaned_data['option']
+    success, valid_value = validate_attribute_value(attribute, value, obj)
+    if not success:
+        raise ValidationError(attribute.error_message)
+    return valid_value
 
 class CategoryTranslation_Inline(admin.StackedInline):
     model = CategoryTranslation
@@ -47,19 +56,7 @@ class OptionTranslation_Inline(admin.StackedInline):
     model = OptionTranslation
     extra = 1
 
-class CustomTextField_Inline(admin.TabularInline):
-    model = CustomTextField
-    extra = 3
-
-class CustomTextFieldTranslation_Inline(admin.StackedInline):
-    model = CustomTextFieldTranslation
-    extra = 1
-
-class Trial_Inline(admin.StackedInline):
-    model = Trial
-    extra = 2
-
-class ProductAttributeForm(models.ModelForm):
+class AttributeOptionForm(models.ModelForm):
 
     def clean_validation(self):
         validation = self.cleaned_data['validation']
@@ -70,25 +67,14 @@ class ProductAttributeForm(models.ModelForm):
         return validation
 
 
-class ProductAttributeAdmin(admin.ModelAdmin):
-    form = ProductAttributeForm
+class AttributeOptionAdmin(admin.ModelAdmin):
+    form = AttributeOptionForm
     prepopulated_fields = {"name": ("description",)}
-
 
 class ProductAttributeInlineForm(models.ModelForm):
 
     def clean_value(self):
-        value = self.cleaned_data['value']
-        attribute = self.cleaned_data['option']
-        product = self.cleaned_data['product']
-        function_name = attribute.validation.split('.')[-1]
-        import_name = '.'.join(attribute.validation.split('.')[:-1])
-        import_module = __import__(import_name, fromlist=[function_name])
-        validation_function = getattr(import_module, function_name)
-        success, valid_value = validation_function(value, product)
-        if not success:
-            raise ValidationError(attribute.error_message)
-        return valid_value
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['product'])
 
 class ProductAttribute_Inline(admin.TabularInline):
     model = ProductAttribute
@@ -115,6 +101,16 @@ class ProductImageTranslation_Inline(admin.StackedInline):
     model = ProductImageTranslation
     extra = 1
 
+class CategoryAttributeInlineForm(models.ModelForm):
+
+    def clean_value(self):
+        return clean_attribute_value(self.cleaned_data, self.cleaned_data['category'])
+
+class CategoryAttributeInline(admin.TabularInline):
+    model = CategoryAttribute
+    extra = 2
+    form = CategoryAttributeInlineForm
+
 class CategoryAdminForm(models.ModelForm):
 
     def clean_parent(self):
@@ -140,11 +136,12 @@ class CategoryOptions(admin.ModelAdmin):
     list_display += ('name', '_parents_repr', 'is_active')
     list_display_links = ('name',)
     ordering = ['site', 'parent__id', 'ordering', 'name']
-    inlines = [CategoryImage_Inline]
-    if get_l10n_setting('show_translations'):
+    inlines = [CategoryAttributeInline, CategoryImage_Inline]
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(CategoryTranslation_Inline)
     filter_horizontal = ('related_categories',)
     form = CategoryAdminForm
+
 
     actions = ('mark_active', 'mark_inactive')
 
@@ -161,7 +158,7 @@ class CategoryImageOptions(admin.ModelAdmin):
 
 class OptionGroupOptions(admin.ModelAdmin):
     inlines = [Option_Inline]
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(OptionGroupTranslation_Inline)
     if config_value('SHOP','SHOW_SITE'):
         list_display = ('site',)
@@ -171,7 +168,7 @@ class OptionGroupOptions(admin.ModelAdmin):
 
 class OptionOptions(admin.ModelAdmin):
     inlines = []
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(OptionTranslation_Inline)
 
 class ProductOptions(admin.ModelAdmin):
@@ -233,7 +230,7 @@ class ProductOptions(admin.ModelAdmin):
             (_('Related Products'), {'fields':('related_items','also_purchased'),'classes':('collapse',)}), )
     search_fields = ['slug', 'sku', 'name']
     inlines = [ProductAttribute_Inline, Price_Inline, ProductImage_Inline]
-    if get_l10n_setting('show_translations'):
+    if get_l10n_setting('show_admin_translations'):
         inlines.append(ProductTranslation_Inline)
     filter_horizontal = ('category',)
 
@@ -246,38 +243,13 @@ class ProductOptions(admin.ModelAdmin):
             field.initial = default_weight_unit()
         return field
 
-class CustomProductOptions(admin.ModelAdmin):
-    inlines = [CustomTextField_Inline]
-
-class CustomTextFieldOptions(admin.ModelAdmin):
-    inlines = []
-    if get_l10n_setting('show_translations'):
-        inlines.append(CustomTextFieldTranslation_Inline)
-
-class SubscriptionProductOptions(admin.ModelAdmin):
-    inlines = [Trial_Inline]
-
-class ProductVariationOptions(admin.ModelAdmin):
-    filter_horizontal = ('options',)
-
-class ProductImageOptions(admin.ModelAdmin):
-    inlines = []
-    if get_l10n_setting('show_translations'):
-        inlines.append(ProductImageTranslation_Inline)
-
 admin.site.register(Category, CategoryOptions)
 #admin.site.register(CategoryImage, CategoryImageOptions)
 admin.site.register(Discount, DiscountOptions)
 admin.site.register(OptionGroup, OptionGroupOptions)
 admin.site.register(Option, OptionOptions)
 admin.site.register(Product, ProductOptions)
-admin.site.register(CustomProduct, CustomProductOptions)
-admin.site.register(CustomTextField, CustomTextFieldOptions)
-admin.site.register(ConfigurableProduct)
-admin.site.register(DownloadableProduct)
-admin.site.register(SubscriptionProduct, SubscriptionProductOptions)
-admin.site.register(ProductVariation, ProductVariationOptions)
 admin.site.register(TaxClass)
-admin.site.register(AttributeOption, ProductAttributeAdmin)
+admin.site.register(AttributeOption, AttributeOptionAdmin)
 #admin.site.register(ProductImage, ProductImageOptions)
 

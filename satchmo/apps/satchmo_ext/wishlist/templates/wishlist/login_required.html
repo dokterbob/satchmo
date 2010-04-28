@@ -6,5 +6,12 @@
 {% endblock %}
 
 {% block content %}
-{% blocktrans %}Sorry, you must be <a href="{{ login_url }}">logged-in</a> to access your wishlist.{% endblocktrans %}
+
+{% if request.user.is_authenticated %}
+    {% blocktrans %}You are authenticated but need to set up your contact information. You can update it {% endblocktrans %}<a href="{% url satchmo_profile_update %}">{% trans "here" %}.</a>
+{% else %}
+    {% blocktrans %}Sorry, you must be <a href="{{ login_url }}">logged-in</a> to access your wishlist.{% endblocktrans %}
+{% endif %}
+
+
 {% endblock %}

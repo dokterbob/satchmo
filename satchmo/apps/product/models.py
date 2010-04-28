@@ -3,35 +3,30 @@ Base model used for products.  Stores hierarchical categories
 as well as individual product level information which includes
 options.
 """
-
-import config
-import datetime
-import keyedcache
-import logging
-import random
-import signals
-import operator
-import os.path
-
 from decimal import Context, Decimal, ROUND_FLOOR
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
+from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
-from django.db.models.fields.files import FileField
-from django.utils.encoding import smart_str
-from django.utils.hashcompat import sha_constructor
-from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
-from l10n.utils import moneyfmt
+from l10n.utils import moneyfmt, lookup_translation
 from livesettings import config_value, SettingNotSet, config_value_safe
-from satchmo_utils import cross_list, normalize_dir, url_join, get_flat_list, add_month
+from prices import get_product_quantity_price, get_product_quantity_adjustments
+from product import active_product_types
+from product.prices import PriceAdjustmentCalc
+from satchmo_utils import get_flat_list
 from satchmo_utils.fields import CurrencyField
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.unique_id import slugify
-from django.core.cache import cache
+import config   #This import is required to make sure livesettings picks up the config values
+import datetime
+import keyedcache
+import logging
+import operator
+import signals
 
 log = logging.getLogger('product.models')
 
@@ -126,13 +121,12 @@ class Category(models.Model):
     slug = models.SlugField(_("Slug"), help_text=_("Used for URLs, auto-generated from name if blank"), blank=True)
     parent = models.ForeignKey('self', blank=True, null=True,
         related_name='child')
-        #,validator_list=['categoryvalidator'])
     meta = models.TextField(_("Meta Description"), blank=True, null=True,
         help_text=_("Meta description for this category"))
     description = models.TextField(_("Description"), blank=True,
         help_text="Optional")
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
-    is_active = models.BooleanField(default=True, blank=True)
+    is_active = models.BooleanField(_("Active"), default=True, blank=True)
     related_categories = models.ManyToManyField('self', blank=True, null=True,
         verbose_name=_('Related Categories'), related_name='related_categories')
     objects = CategoryManager()
@@ -168,6 +162,14 @@ class Category(models.Model):
             return qry.filter(site=self.site, active=True, **kwargs)
         else:
             return qry.filter(site=self.site, active=True, productvariation__parent__isnull=True, **kwargs)
+
+    def translated_attributes(self, language_code=None):
+        if not language_code:
+            language_code = get_language()
+        q = self.categoryattribute_set.filter(languagecode__exact = language_code)
+        if q.count() == 0:
+            q = self.categoryattribute_set.filter(Q(languagecode__isnull = True) | Q(languagecode__exact = ""))
+        return q
 
     def translated_description(self, language_code=None):
         return lookup_translation(self, 'description', language_code)
@@ -437,11 +439,9 @@ class Discount(models.Model):
     active = models.BooleanField(_("Active"))
     amount = CurrencyField(_("Discount Amount"), decimal_places=2,
         max_digits=8, blank=True, null=True,
-        #validator_list=[amount_validator],
         help_text=_("Enter absolute discount amount OR percentage."))
     percentage = models.DecimalField(_("Discount Percentage"), decimal_places=2,
         max_digits=5, blank=True, null=True,
-        #validator_list=[percentage_validator],
         help_text=_("Enter absolute discount amount OR percentage.  Percents are given in whole numbers, and can be up to 100%."))
     automatic = models.NullBooleanField(_("Is this an automatic discount?"), default=False, blank=True,
         null=True, help_text=_("Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."))
@@ -458,6 +458,8 @@ class Discount(models.Model):
     allValid = models.BooleanField(_("All products?"), default=False,
         help_text=_('Apply this discount to all discountable products? If this is false you must select products below in the "Valid Products" section.'))
     valid_products = models.ManyToManyField('Product', verbose_name=_("Valid Products"),
+        blank=True, null=True)
+    valid_categories = models.ManyToManyField('Category', verbose_name=_("Valid Categories"),
         blank=True, null=True)
 
     objects = DiscountManager()
@@ -502,14 +504,20 @@ class Discount(models.Model):
             success=success)
         return (success['valid'], success['message'])
 
+    def _valid_products_in_categories(self):
+        slugs = set()
+        for cat in Category.objects.filter(id__in=self.valid_categories.values_list('id', flat=True)):
+            slugs.update([p.slug for p in cat.active_products(variations=True, include_children=True)])
+        return slugs
 
     def _valid_products(self, item_query):
+        slugs_from_cat = self._valid_products_in_categories()
         validslugs = self.valid_products.values_list('slug', flat=True)
         itemslugs = item_query.values_list('product__slug', flat=True)
         return ProductPriceLookup.objects.filter(
             Q(discountable=True)
-            &Q(productslug__in=validslugs)
-            &Q(productslug__in=itemslugs)
+            &Q(productslug__in=itemslugs),
+            Q(productslug__in=validslugs) | Q(productslug__in=slugs_from_cat)
             ).values_list('productslug', flat=True)
 
     def calc(self, order):
@@ -590,7 +598,8 @@ class Discount(models.Model):
         if not product.is_discountable:
             return False
         p = self.valid_products.filter(id__exact = product.id)
-        return p.count() > 0
+        return p.count() > 0 or \
+            (product.slug in self._valid_products_in_categories())
 
     class Meta:
         verbose_name = _("Discount")
@@ -829,16 +838,12 @@ class Product(models.Model):
     ordering = models.IntegerField(_("Ordering"), default=0, help_text=_("Override alphabetical order in category display"))
     weight = models.DecimalField(_("Weight"), max_digits=8, decimal_places=2, null=True, blank=True)
     weight_units = models.CharField(_("Weight units"), max_length=3, null=True, blank=True)
-    #, validator_list=[weight_validator])
     length = models.DecimalField(_("Length"), max_digits=6, decimal_places=2, null=True, blank=True)
     length_units = models.CharField(_("Length units"), max_length=3, null=True, blank=True)
-    #, validator_list=[length_validator])
     width = models.DecimalField(_("Width"), max_digits=6, decimal_places=2, null=True, blank=True)
     width_units = models.CharField(_("Width units"), max_length=3, null=True, blank=True)
-    #, validator_list=[width_validator])
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
     height_units = models.CharField(_("Height units"), max_length=3, null=True, blank=True)
-    #, validator_list=[height_validator])
     related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.DecimalField(_("Total sold"),  max_digits=18, decimal_places=6, default='0')
@@ -1015,8 +1020,7 @@ class Product(models.Model):
             return self._sub_types
         types = []
         try:
-            for key in config_value('PRODUCT', 'PRODUCT_TYPES'):
-                app, subtype = key.split("::")
+            for module, subtype in active_product_types():
                 try:
                     subclass = getattr(self, subtype.lower())
                     gettype = getattr(subclass, '_get_subtype')
@@ -1188,552 +1192,6 @@ class ProductTranslation(models.Model):
     def __unicode__(self):
         return u"ProductTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.product, self.name)
 
-def get_all_options(obj, ids_only=False):
-    """
-    Returns all possible combinations of options for this products OptionGroups as a List of Lists.
-    Ex:
-    For OptionGroups Color and Size with Options (Blue, Green) and (Large, Small) you'll get
-    [['Blue', 'Small'], ['Blue', 'Large'], ['Green', 'Small'], ['Green', 'Large']]
-    Note: the actual values will be instances of Option instead of strings
-    """
-    sublist = []
-    masterlist = []
-    #Create a list of all the options & create all combos of the options
-    for opt in obj.option_group.select_related().all():
-        for value in opt.option_set.all():
-            if ids_only:
-                sublist.append(value.unique_id)
-            else:
-                sublist.append(value)
-        masterlist.append(sublist)
-        sublist = []
-    results = cross_list(masterlist)
-    return results
-
-class CustomProduct(models.Model):
-    """
-    Product which must be custom-made or ordered.
-    """
-    product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
-    downpayment = models.IntegerField(_("Percent Downpayment"), default=20)
-    deferred_shipping = models.BooleanField(_('Deferred Shipping'),
-        help_text=_('Do not charge shipping at checkout for this item.'),
-        default=False)
-    option_group = models.ManyToManyField(OptionGroup, verbose_name=_('Option Group'), blank=True,)
-
-    def _is_shippable(self):
-        return not self.deferred_shipping
-    is_shippable = property(fget=_is_shippable)
-
-    def _get_fullPrice(self):
-        """
-        returns price as a Decimal
-        """
-        return self.get_qty_price(Decimal('1'))
-
-    unit_price = property(_get_fullPrice)
-
-    def add_template_context(self, context, selected_options, **kwargs):
-        """
-        Add context for the product template.
-        Return the updated context.
-        """
-        from product.utils import serialize_options
-
-        context['options'] = serialize_options(self, selected_options)
-
-        return context
-
-    def get_qty_price(self, qty, include_discount=True):
-        """
-        If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
-        the specified qty.  Otherwise, return the unit_price
-        returns price as a Decimal
-        """
-        if include_discount:
-            price = get_product_quantity_price(self.product, qty)
-        else:
-            adjustment = get_product_quantity_adjustments(self, qty)
-            if adjustment.price is not None:
-                price = adjustment.price.price
-            else:
-                price = None
-
-        if not price and qty == Decimal('1'): # Prevent a recursive loop.
-            price = Decimal("0.00")
-        elif not price:
-            price = self.product._get_fullPrice()
-
-        return price * self.downpayment / 100
-
-    def get_full_price(self, qty=Decimal('1')):
-        """
-        Return the full price, ignoring the deposit.
-        """
-        price = get_product_quantity_price(self.product, qty)
-        if not price:
-            price = self.product.unit_price
-
-        return price
-
-    full_price = property(fget=get_full_price)
-
-
-
-    def _get_subtype(self):
-        return 'CustomProduct'
-
-    def __unicode__(self):
-        return u"CustomProduct: %s" % self.product.name
-
-    def get_valid_options(self):
-        """
-        Returns all of the valid options
-        """
-        return get_all_options(self, ids_only=True)
-
-    def save(self):
-        if hasattr(self.product,'_sub_types'):
-            del self.product._sub_types
-        super(CustomProduct, self).save()
-
-
-    class Meta:
-        verbose_name = _('Custom Product')
-        verbose_name_plural = _('Custom Products')
-
-class CustomTextField(models.Model):
-    """
-    A text field to be filled in by a customer.
-    """
-
-    name = models.CharField(_('Custom field name'), max_length=40, )
-    slug = models.SlugField(_("Slug"), help_text=_("Auto-generated from name if blank"),
-        blank=True)
-    products = models.ForeignKey(CustomProduct, verbose_name=_('Custom Fields'),
-        related_name='custom_text_fields')
-    sort_order = models.IntegerField(_("Sort Order"),
-        help_text=_("The display order for this group."), default=0)
-    price_change = CurrencyField(_("Price Change"), max_digits=14,
-        decimal_places=6, blank=True, null=True)
-
-    def save(self, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name, instance=self)
-        super(CustomTextField, self).save(**kwargs)
-
-    def translated_name(self, language_code=None):
-        return lookup_translation(self, 'name', language_code)
-
-    class Meta:
-        ordering = ('sort_order',)
-        unique_together = ('slug', 'products')
-
-class CustomTextFieldTranslation(models.Model):
-    """A specific language translation for a `CustomTextField`.  This is intended for all descriptions which are not the
-    default settings.LANGUAGE.
-    """
-    customtextfield = models.ForeignKey(CustomTextField, related_name="translations")
-    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES)
-    name = models.CharField(_("Translated Custom Text Field Name"), max_length=255, )
-    version = models.IntegerField(_('version'), default=1)
-    active = models.BooleanField(_('active'), default=True)
-
-    class Meta:
-        verbose_name = _('CustomTextField Translation')
-        verbose_name_plural = _('CustomTextField Translations')
-        ordering = ('customtextfield', 'name','languagecode')
-        unique_together = ('customtextfield', 'languagecode', 'version')
-
-    def __unicode__(self):
-        return u"CustomTextFieldTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.customtextfield, self.name)
-
-class ConfigurableProduct(models.Model):
-    """
-    Product with selectable options.
-    This is a sort of virtual product that is visible to the customer, but isn't actually stocked on a shelf,
-    the specific "shelf" product is determined by the selected options.
-    """
-    product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
-    option_group = models.ManyToManyField(OptionGroup, blank=True, verbose_name=_("Option Group"))
-    create_subs = models.BooleanField(_("Create Variations"), default=False, help_text =_("Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."))
-
-    def __init__(self, *args, **kwargs):
-        super(ConfigurableProduct, self).__init__(*args, **kwargs)
-
-    def _get_subtype(self):
-        return 'ConfigurableProduct'
-
-    def get_all_options(self):
-        """
-        Returns all possible combinations of options for this products OptionGroups as a List of Lists.
-        Ex:
-        For OptionGroups Color and Size with Options (Blue, Green) and (Large, Small) you'll get
-        [['Blue', 'Small'], ['Blue', 'Large'], ['Green', 'Small'], ['Green', 'Large']]
-        Note: the actual values will be instances of Option instead of strings
-        """
-        sublist = []
-        masterlist = []
-        #Create a list of all the options & create all combos of the options
-        for opt in self.option_group.all():
-            for value in opt.option_set.all():
-                sublist.append(value)
-            masterlist.append(sublist)
-            sublist = []
-        return cross_list(masterlist)
-
-    def get_valid_options(self):
-        """
-        Returns unique_ids from get_all_options(), but filters out Options that this
-        ConfigurableProduct doesn't have a ProductVariation for.
-        """
-        variations = self.productvariation_set.filter(product__active='1')
-        active_options = [v.unique_option_ids for v in variations]
-        all_options = get_all_options(self, ids_only=True)
-        return [opt for opt in all_options if self._unique_ids_from_options(opt) in active_options]
-
-    def create_all_variations(self):
-        """
-        Get a list of all the optiongroups applied to this object
-        Create all combinations of the options and create variations
-        """
-        # Create a new ProductVariation for each combination.
-        for options in self.get_all_options():
-            self.create_variation(options)
-
-    def create_variation(self, options, name=u"", sku=u"", slug=u""):
-        """Create a productvariation with the specified options.
-        Will not create a duplicate."""
-        log.debug("Create variation: %s", options)
-        variations = self.get_variations_for_options(options)
-
-        if not variations:
-            # There isn't an existing ProductVariation.
-            if self.product:
-                site = self.product.site
-            else:
-                site = self.site
-
-            variant = Product(site=site, items_in_stock=0, name=name)
-            optnames = [opt.value for opt in options]
-            if not slug:
-                slug = slugify(u'%s_%s' % (self.product.slug, u'_'.join(optnames)))
-
-            while Product.objects.filter(slug=slug).count():
-                slug = u'_'.join((slug, unicode(self.product.id)))
-
-            variant.slug = slug
-
-            log.info("Creating variation for [%s] %s", self.product.slug, variant.slug)
-            variant.save()
-
-            pv = ProductVariation(product=variant, parent=self)
-            pv.save()
-
-            for option in options:
-                pv.options.add(option)
-
-            pv.name = name
-            pv.sku = sku
-            pv.save()
-
-        else:
-            variant = variations[0].product
-            log.debug("Existing variant: %s", variant)
-            dirty = False
-            if name and name != variant.name:
-                log.debug("Updating name: %s --> %s", self, name)
-                variant.name = name
-                dirty = True
-            if sku and sku != variant.sku:
-                variant.sku = sku
-                log.debug("Updating sku: %s --> %s", self, sku)
-                dirty = True
-            if slug:
-                # just in case
-                slug = slugify(slug)
-            if slug and slug != variant.slug:
-                variant.slug = slug
-                log.debug("Updating slug: %s --> %s", self, slug)
-                dirty = True
-            if dirty:
-                log.debug("Changed existing variant, saving: %s", variant)
-                variant.save()
-            else:
-                log.debug("No change to variant, skipping save: %s", variant)
-
-        return variant
-
-    def _unique_ids_from_options(self, options):
-        """
-        Takes an iterable of Options (or str(Option)) and outputs a sorted tuple of
-        option unique ids suitable for comparing to a productvariation.option_values
-        """
-        optionlist = []
-        for opt in options:
-            if isinstance(options[0], Option):
-                opt = opt.unique_id
-            optionlist.append(opt)
-
-        return sorted_tuple(optionlist)
-
-    def get_product_from_options(self, options):
-        """
-        Accepts an iterable of either Option object or a sorted tuple of
-        options ids.
-        Returns the product that matches or None
-        """
-        options = self._unique_ids_from_options(options)
-        pv = None
-        if hasattr(self, '_variation_cache'):
-            pv =  self._variation_cache.get(options, None)
-        else:
-            for member in self.productvariation_set.all():
-                if member.unique_option_ids == options:
-                    pv = member
-                    break
-        if pv:
-            return pv.product
-        return None
-
-    def get_variations_for_options(self, options):
-        """
-        Returns a list of existing ProductVariations with the specified options.
-        """
-        variations = ProductVariation.objects.filter(parent=self)
-        for option in options:
-            variations = variations.filter(options=option)
-        return variations
-
-    def add_template_context(self, context, request, selected_options, default_view_tax=False, **kwargs):
-        """
-        Add context for the product template.
-        Return the updated context.
-        """
-        from product.utils import productvariation_details, serialize_options
-
-        selected_options = self._unique_ids_from_options(selected_options)
-        context['options'] = serialize_options(self, selected_options)
-        context['details'] = productvariation_details(self.product, default_view_tax,
-            request.user)
-
-        return context
-
-    def save(self, **kwargs):
-        """
-        Right now this only works if you save the suboptions, then go back and choose to create the variations.
-        """
-        super(ConfigurableProduct, self).save()
-        if hasattr(self.product,'_sub_types'):
-            del self.product._sub_types
-        # Doesn't work with admin - the manipulator doesn't add the option_group
-        # until after save() is called.
-        if self.create_subs and self.option_group.count():
-            self.create_all_variations()
-            self.create_subs = False
-            super(ConfigurableProduct, self).save(**kwargs)
-
-        ProductPriceLookup.objects.smart_create_for_product(self.product)
-
-    def get_absolute_url(self):
-        return self.product.get_absolute_url()
-
-    def setup_variation_cache(self):
-        self._variation_cache = {}
-        for member in self.productvariation_set.all():
-            key = member.unique_option_ids
-            self._variation_cache[key] = member
-
-    class Meta:
-        verbose_name = _("Configurable Product")
-        verbose_name_plural = _("Configurable Products")
-
-    def __unicode__(self):
-        return self.product.slug
-
-def _protected_dir(instance, filename):
-    raw = config_value_safe('PRODUCT', 'PROTECTED_DIR', 'images/')
-    updir = normalize_dir(raw)
-    return os.path.normpath(os.path.join(updir, os.path.basename(filename)))
-
-class DownloadableProduct(models.Model):
-    """
-    This type of Product is a file to be downloaded
-    """
-    product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
-    file = FileField(_("File"), upload_to=_protected_dir)
-    num_allowed_downloads = models.IntegerField(_("Num allowed downloads"), help_text=_("Number of times link can be accessed."))
-    expire_minutes = models.IntegerField(_("Expire minutes"), help_text=_("Number of minutes the link should remain active."))
-    active = models.BooleanField(_("Active"), help_text=_("Is this download currently active?"), default=True)
-    is_shippable = False
-    is_downloadable = True
-
-    def __unicode__(self):
-        return self.product.slug
-
-    def _get_subtype(self):
-        return 'DownloadableProduct'
-
-    def create_key(self):
-        salt = sha_constructor(str(random.random())).hexdigest()[:5]
-        download_key = sha_constructor(salt+smart_str(self.product.name)).hexdigest()
-        return download_key
-
-    def order_success(self, order, order_item):
-        signals.subtype_order_success.send(self, product=self, order=order, subtype="download")
-
-    class Meta:
-        verbose_name = _("Downloadable Product")
-        verbose_name_plural = _("Downloadable Products")
-
-    def save(self):
-        if hasattr(self.product,'_sub_types'):
-            del self.product._sub_types
-        super(DownloadableProduct, self).save()
-
-class SubscriptionProduct(models.Model):
-    """
-    This type of Product is for recurring billing (memberships, subscriptions, payment terms)
-    """
-    product = models.OneToOneField(Product, verbose_name=_("Product"), primary_key=True)
-    recurring = models.BooleanField(_("Recurring Billing"), help_text=_("Customer will be charged the regular product price on a periodic basis."), default=False)
-    recurring_times = models.IntegerField(_("Recurring Times"), help_text=_("Number of payments which will occur at the regular rate.  (optional)"), null=True, blank=True)
-    expire_length = models.IntegerField(_("Duration"), help_text=_("Length of each billing cycle"), null=True, blank=True)
-    SUBSCRIPTION_UNITS = (
-        ('DAY', _('Days')),
-        ('MONTH', _('Months'))
-    )
-    expire_unit = models.CharField(_("Expire Unit"), max_length=5, choices=SUBSCRIPTION_UNITS, default="DAY", null=False)
-    SHIPPING_CHOICES = (
-        ('0', _('No Shipping Charges')),
-        ('1', _('Pay Shipping Once')),
-        ('2', _('Pay Shipping Each Billing Cycle')),
-    )
-    is_shippable = models.IntegerField(_("Shippable?"), help_text=_("Is this product shippable?"), max_length=1, choices=SHIPPING_CHOICES)
-
-    is_subscription = True
-
-    def _get_subtype(self):
-        return 'SubscriptionProduct'
-
-    def __unicode__(self):
-        return self.product.slug
-
-    def _get_fullPrice(self):
-        """
-        returns price as a Decimal
-        """
-        return self.get_qty_price(1)
-
-    unit_price = property(_get_fullPrice)
-
-    def get_qty_price(self, qty, show_trial=True, include_discount=True):
-        """
-        If QTY_DISCOUNT prices are specified, then return the appropriate discount price for
-        the specified qty.  Otherwise, return the unit_price
-        returns price as a Decimal
-
-        Note: If a subscription has a trial, then we'll return the first trial price, otherwise the checkout won't
-        balance and it will look like there are items to be paid on the order.
-        """
-        if show_trial:
-            trial = self.get_trial_terms(0)
-        else:
-            trial = None
-
-        if trial:
-            price = trial.price * qty
-        else:
-            if include_discount:
-                price = get_product_quantity_price(self.product, qty)
-            else:
-                adjustment = get_product_quantity_adjustments(self, qty)
-                if adjustment.price is not None:
-                    price = adjustment.price.price
-                else:
-                    price = None
-
-            if not price and qty == Decimal('1'):      # Prevent a recursive loop.
-                price = Decimal("0.00")
-            elif not price:
-                price = self.product._get_fullPrice()
-        return price
-
-    def recurring_price(self):
-        """
-        Get the non-trial price.
-        """
-        return self.get_qty_price(Decimal('1'), show_trial=False)
-
-    # use order_success() and DownloadableProduct.create_key() to add user to group and perform other tasks
-    def get_trial_terms(self, trial=None):
-        """Get the trial terms for this subscription"""
-        if trial is None:
-            return self.trial_set.all().order_by('id')
-        else:
-            try:
-                return self.trial_set.all().order_by('id')[trial]
-            except IndexError:
-                return None
-
-    def calc_expire_date(self, date=None):
-        if date is None:
-            date = datetime.datetime.now()
-        if self.expire_unit == "DAY":
-            expiredate = date + datetime.timedelta(days=self.expire_length)
-        else:
-            expiredate = add_month(date, n=self.expire_length)
-
-        return expiredate
-
-    def save(self):
-        if hasattr(self.product,'_sub_types'):
-            del self.product._sub_types
-        super(SubscriptionProduct, self).save()
-
-    class Meta:
-        verbose_name = _("Subscription Product")
-        verbose_name_plural = _("Subscription Products")
-
-class Trial(models.Model):
-    """
-    Trial billing terms for subscription products.
-    Separating it out lets us have as many trial periods as we want.
-    Note that some third party payment processors support only a limited number of trial
-    billing periods.  For example, PayPal limits us to 2 trial periods, so if you are using
-    PayPal for a billing option, you need to create no more than 2 trial periods for your
-    product.  However, gateway based processors like Authorize.net can support as many
-    billing periods as you wish.
-    """
-    subscription = models.ForeignKey(SubscriptionProduct)
-    price = CurrencyField(_("Price"), help_text=_("Set to 0 for a free trial.  Leave empty if product does not have a trial."), max_digits=10, decimal_places=2, null=True, )
-    expire_length = models.IntegerField(_("Trial Duration"), help_text=_("Length of trial billing cycle.  Leave empty if product does not have a trial."), null=True, blank=True)
-
-    def __unicode__(self):
-        return unicode(self.price)
-
-    def _occurrences(self):
-        if self.expire_length:
-            return int(self.expire_length/self.subscription.expire_length)
-        else:
-            return 0
-    occurrences = property(fget=_occurrences)
-
-    def calc_expire_date(self, date=None):
-        if date is None:
-            date = datetime.datetime.now()
-        if self.subscription.expire_unit == "DAY":
-            expiredate = date + datetime.timedelta(days=self.expire_length)
-        else:
-            expiredate = add_month(date, n=self.expire_length)
-
-        return expiredate
-
-    class Meta:
-        ordering = ['-id']
-        verbose_name = _("Trial Terms")
-        verbose_name_plural = _("Trial Terms")
-
 #class BundledProduct(models.Model):
 #    """
 #    This type of Product is a group of products that are sold as a set
@@ -1743,208 +1201,6 @@ class Trial(models.Model):
 #    members = models.ManyToManyField(Product, related_name='parent_productgroup_set')
 #
 
-class ProductVariationManager(models.Manager):
-
-    def by_parent(self, parent):
-        """Get the list of productvariations which have the `product` as the parent"""
-        return ProductVariation.objects.filter(parent=parent)
-
-class ProductVariation(models.Model):
-    """
-    This is the real Product that is ordered when a customer orders a
-    ConfigurableProduct with the matching Options selected
-
-    """
-    product = models.OneToOneField(Product, verbose_name=_('Product'), primary_key=True)
-    options = models.ManyToManyField(Option, verbose_name=_('Options'))
-    parent = models.ForeignKey(ConfigurableProduct,
-    #, validator_list=[variant_validator]
-    verbose_name=_('Parent'))
-
-    objects = ProductVariationManager()
-
-    def _get_fullPrice(self):
-        """ Get price based on parent ConfigurableProduct """
-        # allow explicit setting of prices.
-        #qty_discounts = self.price_set.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=1)
-        try:
-            qty_discounts = Price.objects.filter(product__id=self.product.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
-            if qty_discounts.count() > 0:
-                # Get the price with the quantity closest to the one specified without going over
-                return qty_discounts.order_by('-quantity')[0].dynamic_price
-
-            if self.parent.product.unit_price is None:
-                log.warn("%s: Unexpectedly no parent.product.unit_price", self)
-                return None
-
-        except AttributeError:
-            pass
-
-        # calculate from options
-        return self.parent.product.unit_price + self.price_delta()
-
-    unit_price = property(_get_fullPrice)
-
-    def _get_optionName(self):
-        "Returns the options in a human readable form"
-        if self.options.count() == 0:
-            return self.parent.verbose_name
-        output = self.parent.verbose_name + " ( "
-        numProcessed = 0
-        # We want the options to be sorted in a consistent manner
-        optionDict = dict([(sub.option_group.sort_order, sub) for sub in self.options.all()])
-        for optionNum in optionDict.keys().sort():
-            numProcessed += 1
-            if numProcessed == self.options.count():
-                output += optionDict[optionNum].name
-            else:
-                output += optionDict[optionNum].name + "/"
-        output += " )"
-        return output
-    full_name = property(_get_optionName)
-
-    def _optionkey(self):
-        #todo: verify ordering
-        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
-        return "::".join(optkeys)
-    optionkey = property(fget=_optionkey)
-
-    def _get_option_ids(self):
-        """
-        Return a sorted tuple of all the valid options for this variant.
-        """
-        qry = self.options.values_list('option_group__id', 'value').order_by('option_group')
-        ret = [make_option_unique_id(*v) for v in qry]
-        return sorted_tuple(ret)
-
-    unique_option_ids = property(_get_option_ids)
-
-    def _get_subtype(self):
-        return 'ProductVariation'
-
-    def _has_variants(self):
-        return True
-    has_variants = property(_has_variants)
-
-    def _get_category(self):
-        """
-        Return the primary category associated with this product
-        """
-        return self.parent.product.category.all()[0]
-    get_category = property(_get_category)
-
-    def _check_optionParents(self):
-        groupList = []
-        for option in self.options.all():
-            if option.option_group.id in groupList:
-                return(True)
-            else:
-                groupList.append(option.option_group.id)
-        return(False)
-
-    def get_qty_price(self, qty, include_discount=True):
-        if include_discount:
-            price = get_product_quantity_price(
-                self.product, qty,
-                delta=self.price_delta(False),
-                parent=self.parent.product)
-        else:
-            adjustment = get_product_quantity_adjustments(self, qty, parent=self.parent.product)
-            if adjustment.price is not None:
-                price = adjustment.price.price + self.price_delta(True)
-            else:
-                price = None
-
-        return price
-
-    def get_qty_price_list(self):
-        """Return a list of tuples (qty, price)"""
-        prices = Price.objects.filter(product__id=self.product.id).exclude(expires__isnull=False, expires__lt=datetime.date.today())
-        if prices.count() > 0:
-            # prices directly set, return them
-            pricelist = [(price.quantity, price.dynamic_price) for price in prices]
-        else:
-            prices = self.parent.product.get_qty_price_list()
-            price_delta = self.price_delta()
-
-            pricelist = [(qty, price+price_delta) for qty, price in prices]
-
-        return pricelist
-
-    def _is_shippable(self):
-        product = self.product
-        parent = self.parent.product
-        return ((product.shipclass == "DEFAULT" and parent.shipclass == "DEFAULT")
-                or product.shipclass == 'YES')
-
-    is_shippable = property(fget=_is_shippable)
-
-    def isValidOption(self, field_data, all_data):
-        raise forms.ValidationError(_("Two options from the same option group cannot be applied to an item."))
-
-    def price_delta(self, include_discount=True):
-        # TODO: deltas aren't taken into account by satchmo_price_query
-        price_delta = Decimal("0.00")
-        for option in self.options.all():
-            if option.price_change:
-                price_delta += Decimal(option.price_change)
-        return price_delta
-
-    def save(self, **kwargs):
-        # don't save if the product is a configurableproduct
-        if "ConfigurableProduct" in self.product.get_subtypes():
-            log.warn("cannot add a productvariation subtype to a product which already is a configurableproduct. Aborting")
-            return
-
-        pvs = ProductVariation.objects.filter(parent=self.parent)
-        pvs = pvs.exclude(product=self.product)
-        for pv in pvs:
-            if pv.unique_option_ids == self.unique_option_ids:
-                return # Don't allow duplicates
-
-        if not self.product.name:
-            # will force calculation of default name
-            self.name = ""
-
-        super(ProductVariation, self).save(**kwargs)
-        ProductPriceLookup.objects.smart_create_for_product(self.product)
-
-    def _set_name(self, name):
-        if not name:
-            name = self.parent.product.name
-            options = [option.name for option in self.options.order_by("option_group")]
-            if options:
-                name = u'%s (%s)' % (name, u'/'.join(options))
-            log.debug("Setting default name for ProductVariant: %s", name)
-
-        self.product.name = name
-        self.product.save()
-
-    def _get_name(self):
-        return self.product.name
-
-    name = property(fset=_set_name, fget=_get_name)
-
-    def _set_sku(self, sku):
-        if not sku:
-            sku = self.product.slug
-        self.product.sku = sku
-        self.product.save()
-
-    def _get_sku(self):
-        return self.product.sku
-
-    sku = property(fset=_set_sku, fget=_get_sku)
-
-    def get_absolute_url(self):
-        return self.product.get_absolute_url()
-
-    class Meta:
-        verbose_name = _("Product variation")
-        verbose_name_plural = _("Product variations")
-
-    def __unicode__(self):
-        return self.product.slug
 
 
 class ProductPriceLookupManager(models.Manager):
@@ -2130,6 +1386,30 @@ class ProductAttribute(models.Model):
     def __unicode__(self):
         return self.option.name
 
+class CategoryAttribute(models.Model):
+    """
+    Similar to ProductAttribute, except that this is for categories.
+    """
+    category = models.ForeignKey(Category)
+    languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
+    option = models.ForeignKey(AttributeOption)
+    value = models.CharField(_("Value"), max_length=255)
+
+    def _name(self):
+        return self.option.name
+    name = property(_name)
+
+    def _description(self):
+        return self.option.description
+    description = property(_description)
+
+    class Meta:
+        verbose_name = _("Category Attribute")
+        verbose_name_plural = _("Category Attributes")
+
+    def __unicode__(self):
+        return self.option.name
+
 class Price(models.Model):
     """
     A Price!
@@ -2149,13 +1429,16 @@ class Price(models.Model):
     def __unicode__(self):
         return unicode(self.price)
 
-    def adjustments(self):
-        """Get a list of price adjustments, in the form of a PriceAdjustmentCalc object.
+    def adjustments(self, product=None):
+        """Get a list of price adjustments, in the form of a PriceAdjustmentCalc
+        object. Optionally, provide a pre-fetched product to avoid the foreign
+        key lookup of the `product' attribute.
         """
-
-        adjust = PriceAdjustmentCalc(self)
+        if product is None:
+            product = self.product
+        adjust = PriceAdjustmentCalc(self, product)
         signals.satchmo_price_query.send(self, adjustment=adjust,
-            slug=self.product.slug, discountable=self.product.is_discountable)
+            slug=product.slug, discountable=product.is_discountable)
         return adjust
 
     def _dynamic_price(self):
@@ -2261,113 +1544,6 @@ class TaxClass(models.Model):
         verbose_name = _("Tax Class")
         verbose_name_plural = _("Tax Classes")
 
-UNSET = object()
-
-# --------------- helpers ------------------
-
-def lookup_translation(obj, attr, language_code=None, version=-1):
-    """Get a translated attribute by language.
-
-    If specific language isn't found, returns the attribute from the base object.
-    """
-    if not language_code:
-        language_code = get_language()
-
-    if not hasattr(obj, '_translationcache'):
-        obj._translationcache = {}
-
-    short_code = language_code
-    pos = language_code.find('_')
-    if pos > -1:
-        short_code = language_code[:pos]
-
-    else:
-        pos = language_code.find('-')
-        if pos > -1:
-            short_code = language_code[:pos]
-
-    trans = None
-    has_key = obj._translationcache.has_key(language_code)
-    if has_key:
-        if obj._translationcache[language_code] == None and short_code != language_code:
-            return lookup_translation(obj, attr, short_code)
-
-    if not has_key:
-        q = obj.translations.filter(
-            languagecode__iexact = language_code)
-
-        if q.count() == 0:
-            obj._translationcache[language_code] = None
-
-            if short_code != language_code:
-                return lookup_translation(obj, attr, language_code=short_code, version=version)
-
-            else:
-                q = obj.translations.filter(
-                    languagecode__istartswith = language_code)
-
-        if q.count() > 0:
-            trans = None
-            if version > -1:
-                trans = q.order_by('-version')[0]
-            else:
-                # try to get the requested version, if it is available,
-                # else fallback to the most recent version
-                fallback = None
-                for t in q.order_by('-version'):
-                    if not fallback:
-                        fallback = t
-                    if t.version == version:
-                        trans = t
-                        break
-                if not trans:
-                    trans = fallback
-
-            obj._translationcache[language_code] = trans
-
-    if not trans:
-        trans = obj._translationcache[language_code]
-
-    if not trans:
-        trans = obj
-
-    val = getattr(trans, attr, UNSET)
-    if trans != obj and (val in (None, UNSET)):
-        val = getattr(obj, attr)
-
-    return mark_safe(val)
-
-def get_product_quantity_adjustments(product, qty=1, parent=None):
-    """Gets a list of adjustments for the price found for a product/qty"""
-
-    qty_discounts = product.price_set.exclude(
-        expires__isnull=False,
-        expires__lt=datetime.date.today()).filter(quantity__lte=qty)
-
-    adjustments = None
-
-    if qty_discounts.count() > 0:
-        # Get the price with the quantity closest to the one specified without going over
-        adjustments = qty_discounts.order_by('price','-quantity', 'expires')[0].adjustments()
-
-    elif parent:
-        adjustments = get_product_quantity_adjustments(parent, qty=qty)
-
-    if not adjustments:
-        adjustments = PriceAdjustmentCalc(None)
-
-    return adjustments
-
-def get_product_quantity_price(product, qty=Decimal('1'), delta=Decimal("0.00"), parent=None):
-    """
-    Returns price as a Decimal else None.
-    First checks the product, if none, then checks the parent.
-    """
-
-    adjustments = get_product_quantity_adjustments(product, qty=qty, parent=parent)
-
-    return adjustments.final_price()+delta
-
 def make_option_unique_id(groupid, value):
     return '%s-%s' % (str(groupid), str(value),)
 
@@ -2376,71 +1552,8 @@ def round_cents(work):
     for lid in work:
         work[lid] = work[lid].quantize(cents)
 
-def sorted_tuple(lst):
-    ret = []
-    for x in lst:
-        if not x in ret:
-            ret.append(x)
-    ret.sort()
-    return tuple(ret)
-
 def split_option_unique_id(uid):
     "reverse of make_option_unique_id"
 
     parts = uid.split('-')
     return (parts[0], '-'.join(parts[1:]))
-
-# -------------------------------------------
-# helper objects - not Django model objects
-
-class PriceAdjustmentCalc(object):
-    """Helper class to handle adding up product pricing adjustments"""
-
-    def __init__(self, price, product=None):
-        self.price = price
-        self.base_product = product
-        self.adjustments = []
-
-    def __add__(self, adjustment):
-        self.adjustments.append(adjustment)
-        return self
-
-    def total_adjustment(self):
-        total = Decimal(0)
-        for adj in self.adjustments:
-            total += adj.amount
-        return total
-
-    def _product(self):
-        """Lazy product dereference"""
-        if self.base_product:
-            product = self.base_product
-        else:
-            product = self.price.product
-        return product
-
-    product = property(fget=_product)
-
-    def final_price(self):
-        total = Decimal(0)
-        if self.price:
-            total = self.price.price
-            if total is None:
-                total = Decimal(0)
-        return total - self.total_adjustment()
-
-class PriceAdjustment(object):
-    """A single product pricing adjustment"""
-
-    def __init__(self, key, label=None, amount=None):
-        if label is None:
-            label = key.capitalize()
-        if amount is None:
-            amount = Decimal(0)
-        self.key = key
-        self.label = label
-        self.amount = amount
-
-    def __unicode__(self):
-        return u"%s: %s=%s" % (_('Price Adjustment'), self.label, moneyfmt(self.amount))
-

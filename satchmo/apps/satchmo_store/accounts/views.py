@@ -1,7 +1,5 @@
 from django.conf import settings
 from django.contrib.auth import login, REDIRECT_FIELD_NAME
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
 from django.contrib.sites.models import Site, RequestSite
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect, QueryDict
@@ -27,7 +25,7 @@ YESNO = (
     (0, _('No'))
 )
 
-def emaillogin(request, template_name='registration/login.html', 
+def emaillogin(request, template_name='registration/login.html',
     auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
     "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
 
@@ -65,7 +63,7 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
     - success
     - redirect (success) or form (on failure)
     """
-    
+
     if request.method == 'POST':
         form = auth_form(data=request.POST)
         if form.is_valid():
@@ -101,7 +99,7 @@ def register_handle_address_form(request, redirect=None):
     """
     Handle all registration logic.  This is broken out from "register" to allow easy overriding/hooks
     such as a combined login/register page.
-    
+
     This handler allows a login or a full registration including address.
 
     Returns:
@@ -144,7 +142,7 @@ def register_handle_address_form(request, redirect=None):
                 try:
                     initial_data['country'] = address.country
                 except Country.DoesNotExist:
-                    USA = Country.objects.get(iso2_code__exact="US")    
+                    USA = Country.objects.get(iso2_code__exact="US")
                     initial_data['country'] = USA
 
         form = RegistrationAddressForm(initial=initial_data, shop=shop, contact=contact)
@@ -156,8 +154,8 @@ def register_handle_form(request, redirect=None):
     """
     Handle all registration logic.  This is broken out from "register" to allow easy overriding/hooks
     such as a combined login/register page.
-    
-    This method only presents a typical login or register form, not a full address form 
+
+    This method only presents a typical login or register form, not a full address form
     (see register_handle_address_form for that one.)
 
     Returns:
@@ -191,8 +189,8 @@ def register_handle_form(request, redirect=None):
         except Contact.DoesNotExist:
             log.debug("No contact in request")
             contact = None
-            
-        initial_data['next'] = request.GET.get('next', '') 
+
+        initial_data['next'] = request.GET.get('next', '')
 
         form = RegistrationForm(initial=initial_data)
 
@@ -272,7 +270,7 @@ def login_signup(request, template_name="contact/login_signup.html", registratio
                 loginform = todo
 
         request.POST = QueryDict("")
-        
+
 
     else:
         request.session.set_test_cookie()
@@ -303,7 +301,7 @@ def login_signup(request, template_name="contact/login_signup.html", registratio
     }
 
     if extra_context:
-        ctx.update(extra_context)            
+        ctx.update(extra_context)
 
     context = RequestContext(request, ctx)
 
@@ -339,7 +337,7 @@ def register(request, redirect=None, template='registration/registration_form.ht
             show_newsletter = False
 
         ctx = {
-            'form': todo, 
+            'form': todo,
             'title' : _('Registration Form'),
             'show_newsletter' : show_newsletter
         }

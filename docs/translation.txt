@@ -90,7 +90,7 @@ Also, make sure to add 'django.core.context_processors.i18n' to TEMPLATE_CONTEXT
 correct language code.
 
 The default store setup will show the form to allow the store user to select their translation from the above list. If you wish
-to disable this option, disable ``allow_translations`` by follow the instructions here :ref:`l10n_settings`. 
+to disable this option, disable ``allow_translation_choice`` by follow the instructions here :ref:`l10n_settings`. 
 
 Translating dependencies
 ------------------------

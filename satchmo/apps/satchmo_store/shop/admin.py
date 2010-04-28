@@ -1,8 +1,7 @@
-from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, DownloadLink, OrderStatus, OrderPayment, OrderPaymentFailure, OrderAuthorization, OrderVariable, OrderTaxDetail
+from satchmo_store.shop.models import Config, Cart, CartItem, CartItemDetails, Order, OrderItem, OrderItemDetail, OrderStatus, OrderPayment, OrderPaymentFailure, OrderAuthorization, OrderVariable, OrderTaxDetail
 from django.contrib import admin
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from satchmo_utils.admin import AutocompleteAdmin
-from satchmo_utils.fields import CurrencyField
 from satchmo_utils.widgets import ReadOnlyWidget
 
 class CartItem_Inline(admin.TabularInline):
@@ -23,7 +22,7 @@ class ConfigOptions(admin.ModelAdmin):
             }),
         (_('Store Contact'), {'fields' : (
             'store_email', 'phone', 'street1', 'street2',
-            'city', 'state', 'postal_code', 'country',) 
+            'city', 'state', 'postal_code', 'country',)
             }),
         (_('Shipping Countries'), {'fields' : (
             'in_country_only', 'sales_country', 'shipping_countries')
@@ -45,11 +44,11 @@ class OrderItem_Inline(admin.TabularInline):
 class OrderItemDetail_Inline(admin.TabularInline):
     model = OrderItemDetail
     extra = 3
-    
+
 class OrderAuthorizationDetail_Inline(admin.TabularInline):
     model = OrderAuthorization
     extra = 0
-    
+
 class OrderPaymentDetail_Inline(admin.TabularInline):
     model = OrderPayment
     extra = 0
@@ -79,14 +78,14 @@ class OrderOptions(AutocompleteAdmin):
             ('sub_total', 'shipping_cost', 'shipping_discount', 'tax', 'discount', 'total', 'time_stamp')}))
     list_display = ('contact', 'time_stamp', 'order_total', 'balance_forward', 'status', 'invoice', 'packingslip', 'shippinglabel')
     list_filter = ['time_stamp', 'contact', 'status']
-    date_hierarchy = 'time_stamp' 
-    list_filter = ['time_stamp', 'status'] 
-    date_hierarchy = 'time_stamp' 
+    date_hierarchy = 'time_stamp'
+    list_filter = ['time_stamp', 'status']
+    date_hierarchy = 'time_stamp'
     search_fields = ('contact__first_name', 'contact__last_name', 'contact__email')
-    related_search_fields = {'contact': ('first_name', 'last_name', 'email')} 
+    related_search_fields = {'contact': ('first_name', 'last_name', 'email')}
     related_string_functions = {'contact': lambda c: u"%s &lt;%s&gt;" % (c.full_name, c.email)}
-    inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline, 
-        OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline, 
+    inlines = [OrderItem_Inline, OrderStatus_Inline, OrderVariable_Inline,
+        OrderTaxDetail_Inline, OrderAuthorizationDetail_Inline,
         OrderPaymentDetail_Inline, OrderPaymentFailureDetail_Inline]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -106,7 +105,7 @@ class OrderPaymentOptions(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('order', 'payment', 'amount', 'transaction_id', 'time_stamp')}), )
     raw_id_fields = ['order']
-    
+
 
 class OrderAuthorizationOptions(OrderPaymentOptions):
     list_display = ['id', 'order', 'capture', 'payment', 'amount_total', 'complete', 'time_stamp']
@@ -116,7 +115,6 @@ class OrderAuthorizationOptions(OrderPaymentOptions):
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)
 admin.site.register(Config, ConfigOptions)
-admin.site.register(DownloadLink)
 admin.site.register(Order, OrderOptions)
 admin.site.register(OrderItem, OrderItemOptions)
 admin.site.register(OrderPayment, OrderPaymentOptions)

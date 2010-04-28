@@ -1,10 +1,8 @@
-from django import forms
 from django import template
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils.safestring import mark_safe
 from l10n.l10n_settings import get_l10n_setting
-from livesettings import config_value, config_choice_values
 from product.models import Category
 from satchmo_utils.numbers import trunc_decimal
 from satchmo_utils.json import json_encode
@@ -31,7 +29,7 @@ def template_range(value):
     except:
         value = 0
     return range(1, value + 1)
-    
+
 register.filter('template_range', template_range)
 
 def in_list(value, val=None):
@@ -39,13 +37,13 @@ def in_list(value, val=None):
     if val in value:
         return "true"
     return ""
-    
+
 register.filter('in_list', in_list)
 
 def as_json(value):
     """Return the value as a json encoded object"""
     return mark_safe(json_encode(value))
-    
+
 register.filter('as_json', as_json)
 
 def blackbird_logging(context):
@@ -60,7 +58,7 @@ register.inclusion_tag('shop/_blackbird_logging.html', takes_context=True)(black
 
 def truncate_decimal(val, places=2):
     return trunc_decimal(val, places)
-    
+
 register.filter('truncate_decimal', truncate_decimal)
 
 def tag_attr(obj, arg1):
@@ -78,18 +76,18 @@ def shuffle(l):
     l = list(l)
     random.shuffle(l)
     return l
-    
+
 register.filter('shuffle', shuffle)
 
 def remove_tags(value):
     """
     Returns the text with all tags removed
-    This can fail if give invalid input. This is only intended to be used on safe HTML markup. It should not be used to 
+    This can fail if give invalid input. This is only intended to be used on safe HTML markup. It should not be used to
     clean unsafe input data.
     For example, this will fail.
-    
+
     Example::
-    
+
         >> remove_tags('<<> <test></test>')
             '<test></test>'
     """
@@ -98,7 +96,7 @@ def remove_tags(value):
     out = []
     if i == -1:
         return value
-            
+
     while i>-1:
         out.append(value[last+1:i])
         last = value.find(">", i)
@@ -109,14 +107,14 @@ def remove_tags(value):
 
     if last > -1:
         out.append(value[last+1:])
-    
+
     ret = " ".join(out)
     ret = ret.replace("  ", " ")
     ret = ret.replace("  ", " ")
     if ret.endswith(" "):
         ret = ret[:-1]
     return ret
-    
+
 register.filter('remove_tags', remove_tags)
 
 def lookup(value, key):
@@ -127,7 +125,7 @@ def lookup(value, key):
         return value[key]
     except KeyError:
         return ""
-        
+
 register.filter('lookup', lookup)
 
 def is_mod(value, args=""):
@@ -138,7 +136,7 @@ def is_mod(value, args=""):
             return "true"
     except:
         pass
-        
+
     return ""
 
 register.filter('is_mod', is_mod)
@@ -151,9 +149,9 @@ def more_than(value, args=""):
             return "true"
     except:
         pass
-        
+
     return ""
-    
+
 register.filter('more_than', more_than)
 
 def satchmo_category_search_form(category=None):
@@ -165,7 +163,7 @@ def satchmo_category_search_form(category=None):
     except urlresolvers.NoReverseMatch:
         url = ""
         log.warning('No url found for satchmo_search (OK if running tests)')
-    
+
     cats = Category.objects.root_categories()
     return {
         'satchmo_search_url' : url,
@@ -179,21 +177,21 @@ def satchmo_language_selection_form(context):
     Display the set language form, if enabled in shop settings.
     """
     request = threadlocals.get_current_request()
-    enabled = get_l10n_setting('allow_translations')
+    enabled = get_l10n_setting('allow_translation_choice')
     languages = []
     if enabled:
         try:
             url = urlresolvers.reverse('satchmo_set_language')
             languages = settings.LANGUAGES
-            
+
         except urlresolvers.NoReverseMatch:
             url = ""
             log.warning('No url found for satchmo_set_language (OK if running tests)')
 
     else:
         url = ""
-    
-    media_url = context.get('media_url', None)    
+
+    media_url = context.get('media_url', None)
     return {
         'enabled' : enabled,
         'set_language_url' : url,
@@ -212,7 +210,7 @@ def satchmo_search_form():
     except urlresolvers.NoReverseMatch:
         url = ""
         log.warning('No url found for satchmo_search (OK if running tests)')
-        
+
     return {
         'satchmo_search_url' : url,
         'categories' : None,

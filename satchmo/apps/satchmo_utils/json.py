@@ -2,7 +2,7 @@
 
 # This is code from http://dpaste.com/hold/4601
 # Originally by Wolfram Kriesing (http://wolfram.kriesing.de/blog/)
-# Used by written permission to license under the same modified 
+# Used by written permission to license under the same modified
 # BSD license as the rest of Satchmo.
 
 import types
@@ -12,12 +12,12 @@ try:
 except ImportError:
     import simplejson as json
 from django.core.serializers.json import DateTimeAwareJSONEncoder
-from decimal import *
+from decimal import Decimal
 
 def json_encode(data):
     """
     The main issues with django's default json serializer is that properties that
-    had been added to a object dynamically are being ignored (and it also has 
+    had been added to a object dynamically are being ignored (and it also has
     problems with some models).
     """
 
@@ -38,7 +38,7 @@ def json_encode(data):
         else:
             ret = data
         return ret
-    
+
     def _model(data):
         ret = {}
         # If we only have a model, we only want to encode the fields.
@@ -50,20 +50,20 @@ def json_encode(data):
         for k in add_ons:
             ret[k] = _any(getattr(data, k))
         return ret
-    
+
     def _list(data):
         ret = []
         for v in data:
             ret.append(_any(v))
         return ret
-    
+
     def _dict(data):
         ret = {}
         for k,v in data.items():
             ret[k] = _any(v)
         return ret
-    
+
     ret = _any(data)
-    
+
     return json.dumps(ret, cls=DateTimeAwareJSONEncoder)
 

@@ -4,28 +4,23 @@ from django.utils.translation import ugettext_lazy as _
 # this is so that the translation utility will pick up the string
 gettext = lambda s: s
 
-PAYMENT_GROUP = ConfigurationGroup('PAYMENT_DUMMY', 
-    _('Payment Test Module Settings'), 
+PAYMENT_GROUP = ConfigurationGroup('PAYMENT_DUMMY',
+    _('Payment Test Module Settings'),
     ordering = 100)
 
 config_register_list(
-    BooleanValue(PAYMENT_GROUP, 
-        'SSL', 
-        description=_("Use SSL for the module checkout pages?"), 
-        default=False),
-        
-    BooleanValue(PAYMENT_GROUP, 
-        'LIVE', 
+    BooleanValue(PAYMENT_GROUP,
+        'LIVE',
         description=_("Accept real payments"),
         help_text=_("False if you want to be in test mode"),
         default=False),
-        
+
     ModuleValue(PAYMENT_GROUP,
         'MODULE',
         description=_('Implementation module'),
         hidden=True,
         default = 'payment.modules.dummy'),
-        
+
     StringValue(PAYMENT_GROUP,
         'KEY',
         description=_("Module key"),
@@ -52,13 +47,13 @@ config_register_list(
             (('Discover','Discover')),
             (('American Express', 'American Express'))),
         default = ('Visa', 'Mastercard', 'Discover', 'American Express')),
-        
+
     BooleanValue(PAYMENT_GROUP,
         'CAPTURE',
         description=_('Capture Payment immediately?'),
         default=True,
         help_text=_('IMPORTANT: If false, a capture attempt will be made when the order is marked as shipped."')),
-        
+
     BooleanValue(PAYMENT_GROUP,
         'AUTH_EARLY',
         description=_("Early AUTH"),

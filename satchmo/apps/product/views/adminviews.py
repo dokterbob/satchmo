@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from product.forms import VariationManagerForm, InventoryForm, ProductExportForm, ProductImportForm
 from product.models import Product
+from product.modules.configurable.models import ConfigurableProduct
 from satchmo_utils.views import bad_or_missing
 import logging
 
@@ -42,8 +43,8 @@ def export_products(request, template='product/admin/product_export_form.html'):
             return form.export(request)
     else:
         form = ProductExportForm()
-        fileform = ProductImportForm()  
-        
+        fileform = ProductImportForm()
+
 
     ctx = RequestContext(request, {
         'title' : _('Product Import/Export'),
@@ -55,23 +56,23 @@ def export_products(request, template='product/admin/product_export_form.html'):
 
 export_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(export_products)
 
-def import_products(request, maxsize=10000000):  
-    """ 
+def import_products(request, maxsize=10000000):
+    """
     Imports product from an uploaded file.
-    """  
+    """
 
-    if request.method == 'POST':  
+    if request.method == 'POST':
         errors = []
         results = []
-        if 'upload' in request.FILES:  
-            infile = request.FILES['upload']              
+        if 'upload' in request.FILES:
+            infile = request.FILES['upload']
             form = ProductImportForm()
             results, errors = form.import_from(infile, maxsize=maxsize)
-                       
+
         else:
             errors.append('File: %s' % request.FILES.keys())
             errors.append(_('No upload file found'))
-                 
+
         ctx = RequestContext(request, {
             'errors' : errors,
             'results' : results
@@ -83,18 +84,18 @@ def import_products(request, maxsize=10000000):
         return HttpResponseRedirect(url)
 
 import_products = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(import_products)
-        
+
 # def product_active_report(request):
-#     
+#
 #     products = Product.objects.filter(active=True)
 #     products = [p for p in products.all() if 'productvariation' not in p.get_subtypes]
 #     ctx = RequestContext(Request, {title: 'Active Product Report', 'products' : products })
 #     return render_to_response('product/admin/active_product_report.html', ctx)
-#     
-# product_active_report = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(product_active_report)    
+#
+# product_active_report = user_passes_test(lambda u: u.is_authenticated() and u.is_staff, login_url='/accounts/login/')(product_active_report)
 
 def variation_list(request):
-    products = [p for p in Product.objects.all() if "ConfigurableProduct" in p.get_subtypes()]
+    products = Product.objects.filter(configurableproduct__in = ConfigurableProduct.objects.all())
     ctx = RequestContext(request, {
            'products' : products,
     })
@@ -107,23 +108,23 @@ def variation_manager(request, product_id = ""):
     try:
         product = Product.objects.get(id=product_id)
         subtypes = product.get_subtypes()
-        
+
         if 'ProductVariation' in subtypes:
             # got a variation, we want to work with its parent
             product = product.productvariation.parent.product
             if 'ConfigurableProduct' in product.get_subtypes():
-                url = urlresolvers.reverse("satchmo_admin_variation_manager", 
+                url = urlresolvers.reverse("satchmo_admin_variation_manager",
                     kwargs = {'product_id' : product.id})
                 return HttpResponseRedirect(url)
-            
+
         if 'ConfigurableProduct' not in subtypes:
             return bad_or_missing(request, _('The product you have requested is not a Configurable Product.'))
-            
+
     except Product.DoesNotExist:
             return bad_or_missing(request, _('The product you have requested does not exist.'))
-     
+
     if request.method == 'POST':
-        new_data = request.POST.copy()       
+        new_data = request.POST.copy()
         form = VariationManagerForm(new_data, product=product)
         if form.is_valid():
             log.debug("Saving form")
@@ -134,7 +135,7 @@ def variation_manager(request, product_id = ""):
             log.debug('errors on form')
     else:
         form = VariationManagerForm(product=product)
-    
+
     ctx = RequestContext(request, {
         'product' : product,
         'form' : form,

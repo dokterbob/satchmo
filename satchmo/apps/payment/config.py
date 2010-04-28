@@ -1,10 +1,8 @@
 from django.utils.translation import ugettext_lazy, ugettext
 from livesettings import *
 from payment import signals, active_gateways
-from satchmo_store.shop import get_satchmo_setting
-from satchmo_utils import is_string_like, load_module
+from satchmo_utils import is_string_like
 import logging
-import signals
 
 _ = ugettext_lazy
 
@@ -29,8 +27,8 @@ ALLOW_URL_CRON = config_register(
 )
 
 PAYMENT_LIVE = config_register(
-    BooleanValue(PAYMENT_GROUP, 
-        'LIVE', 
+    BooleanValue(PAYMENT_GROUP,
+        'LIVE',
         description=_("Accept real payments"),
         help_text=_("False if you want to be in test mode.  This is the master switch, turn it off to force all payments into test mode."),
         default=False)
@@ -43,7 +41,7 @@ ORDER_EMAIL = config_register(
         help_text=_("True if you want to email the owner on order"),
         default=False)
 )
-    
+
 ORDER_EMAIL_EXTRA = config_register(
     StringValue(PAYMENT_GROUP,
         'ORDER_EMAIL_EXTRA',
@@ -67,14 +65,6 @@ config_register_list(
         help_text=_("If True, then customers may not have different countries for shipping and billing."),
         default=True),
 
-    BooleanValue(PAYMENT_GROUP,
-        'SSL',
-        description=_("Enable SSL"),
-        help_text=_("""This enables for generic pages like contact information capturing.  
-    It does not set SSL for individual modules. 
-    You must enable SSL for each payment module individually."""),
-        default=False),
-
     DecimalValue(PAYMENT_GROUP,
         'MINIMUM_ORDER',
         description=_("Minimum Order"),
@@ -92,7 +82,7 @@ config_register_list(
         description=_("Number of years to display for CC expiration"),
         help_text=_("Number of years that will be added to today's year for the CC expiration drop down"),
         default=10),
-    
+
     BooleanValue(PAYMENT_GROUP,
         'USE_DISCOUNTS',
         description=_("Use discounts"),
@@ -125,19 +115,19 @@ def labelled_gateway_choices():
         defaultlabel = module.split('.')[-1]
         label = _(config_value(group, 'LABEL', default = defaultlabel))
         choices.append((group, label))
-    
+
     signals.payment_choices.send(None, choices=choices)
     return choices
 
 def gateway_live(settings):
     if is_string_like(settings):
         settings = config_get_group(settings)
-    
-    try:    
+
+    try:
         if config_value('PAYMENT', 'LIVE'):
             return settings['LIVE'].value
-            
+
     except SettingNotSet:
         pass
-        
+
     return False

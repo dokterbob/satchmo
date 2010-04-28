@@ -1,0 +1,847 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-09 18:10-0500\n"
+"PO-Revision-Date: 2010-03-30 08:53+0200\n"
+"Last-Translator: Krizmanich Károly <karoly.krizmanich@gmail.com>\n"
+"Language-Team: Hungarian <none>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: config.py:9
+msgid "Only authenticated users can check out"
+msgstr "Csak belépett felhasználók rendlehetnek"
+
+#: config.py:10
+msgid ""
+"Users will be required to authenticate (and create an account if neccessary) "
+"before checkout."
+msgstr ""
+"A felhasználóknak rendelés előtt be kell lépniük regiszrálniuk kell (és "
+"regisztrálniuk, ha szükséges)"
+
+#: config.py:18
+msgid "Required billing data"
+msgstr "Kötelező számlázási adatok"
+
+#: config.py:20
+msgid ""
+"Users may be required to provide some set of billing address. Other fields "
+"are optional. You may shorten the checkout process here, but be careful, as "
+"this may leave you orders with almost no customer data! Some payment modules "
+"may override this setting."
+msgstr ""
+"A felhazsnálóktól nem minden adatot kérünk a számlázási címhez. A többi "
+"mező\n"
+"opcionális. Lerövidtheted a fizetési procedúrát ezzel, de vigyázz, mert \n"
+"így lehet, hogy vevői adatok nélküli megrendeléseid lesznek. A fizetési "
+"modulok\n"
+"felülbírálhatják ezt a beállítást."
+
+#: config.py:26 config.py:69 forms.py:36 models.py:140
+msgid "Email"
+msgstr "Email"
+
+#: config.py:27 forms.py:37 models.py:133
+msgid "Title"
+msgstr "Megszólítás"
+
+#: config.py:28 models.py:134 templates/contact/update_form.html:29
+msgid "First name"
+msgstr "Keresztnév"
+
+#: config.py:29 models.py:135 templates/contact/update_form.html:32
+msgid "Last name"
+msgstr "Vezetéknév"
+
+#: config.py:30 forms.py:40
+msgid "Phone"
+msgstr "Telefon"
+
+#: config.py:31 config.py:50 forms.py:41 forms.py:49 models.py:273
+msgid "Addressee"
+msgstr "Címzett"
+
+#: config.py:32 forms.py:42 models.py:89 models.py:138
+#: templates/contact/update_form.html:35
+msgid "Organization"
+msgstr "Szervezet"
+
+#: config.py:33 config.py:51 forms.py:43 forms.py:50 models.py:274
+#: models.py:275 templates/contact/_ContactInfoForm_billing.html:9
+#: templates/contact/_ContactInfoForm_billing.html:12
+#: templates/contact/_ContactInfoForm_shipping.html:12
+#: templates/contact/_ContactInfoForm_shipping.html:15
+msgid "Street"
+msgstr "Utca"
+
+#: config.py:34 config.py:52
+msgid "Street (second line)"
+msgstr "Házszám"
+
+#: config.py:35 config.py:53 forms.py:45 forms.py:52 models.py:277
+#: templates/contact/_ContactInfoForm_billing.html:15
+#: templates/contact/_ContactInfoForm_shipping.html:18
+msgid "City"
+msgstr "Város"
+
+#: config.py:36 config.py:54
+#: templates/contact/_ContactInfoForm_billing.html:21
+#: templates/contact/_ContactInfoForm_billing.html:27
+#: templates/contact/_ContactInfoForm_shipping.html:24
+#: templates/contact/_ContactInfoForm_shipping.html:30
+msgid "State/Province"
+msgstr "Megye"
+
+#: config.py:37 config.py:55
+msgid "Postal code/ZIP"
+msgstr "Irányítószám"
+
+#: config.py:38 config.py:56 forms.py:78 forms.py:79 models.py:279
+#: templates/contact/_ContactInfoForm_billing.html:37
+#: templates/contact/_ContactInfoForm_shipping.html:40
+msgid "Country"
+msgstr "Ország"
+
+#: config.py:46
+#, fuzzy
+msgid "Required shipping data"
+msgstr "Kötelező számlázási adatok"
+
+#: config.py:47
+msgid "Similar to'REQUIRED_BILLING_DATA', except for shipping fields."
+msgstr ""
+
+#: config.py:65
+msgid "Account Verification"
+msgstr "Hitelesítés"
+
+#: config.py:66
+msgid ""
+"Select the style of account verification.  'Immediate' means no verification "
+"needed."
+msgstr ""
+"Válaszd ki a regisztráció hitelesítésének a módját. Az 'Azonnal' opcióval\n"
+"nem szükséges hitelesítés."
+
+#: config.py:68
+msgid "Immediate"
+msgstr "Azonnal"
+
+#: config.py:75
+msgid "Days to verify account"
+msgstr "A hitelesítésre engedélyezett napok száma"
+
+#: forms.py:38
+msgid "First Name"
+msgstr "Keresztnév"
+
+#: forms.py:39
+msgid "Last Name"
+msgstr "Családi név"
+
+#: forms.py:46 forms.py:53 forms.py:107 forms.py:111 models.py:276
+msgid "State"
+msgstr "Megye"
+
+#: forms.py:47 forms.py:54
+msgid "ZIP code/Postcode"
+msgstr "Irányító szám"
+
+#: forms.py:48 templates/contact/_ContactInfoForm_shipping.html:6
+msgid "Shipping same as billing?"
+msgstr "Szállítási cím megegyezik a számlázási címmel?"
+
+#: forms.py:137 forms.py:188 forms.py:215 forms.py:228 forms.py:243
+msgid "This field is required."
+msgstr "A mező kitöltése kötelező."
+
+#: forms.py:138
+msgid "State is required for your country."
+msgstr "Megye megadása ebben az országban kötelező"
+
+#: forms.py:143
+msgid "Invalid state or province."
+msgstr "Érvénytelen megye."
+
+#: forms.py:158
+msgid "That email address is already in use."
+msgstr "Ezt az email címet már használja valaki."
+
+#: forms.py:232
+msgid "Shipping and Billing countries must match"
+msgstr "Csak abba az országba szállítunk, ahova a számla szól."
+
+#: forms.py:439 templates/contact/update_form.html:46
+msgid "Newsletter"
+msgstr "Hírlevél"
+
+#: models.py:15 models.py:23 models.py:34 models.py:41
+msgid "Key"
+msgstr "Kulcs"
+
+#: models.py:16 models.py:24 models.py:35 models.py:42 models.py:71
+msgid "Name"
+msgstr "Név"
+
+#: models.py:30
+msgid "Contact organization type"
+msgstr "A szervezet típusa"
+
+#: models.py:72 models.py:221
+msgid "Type"
+msgstr "Típus"
+
+#: models.py:73 models.py:137
+msgid "Role"
+msgstr "Szerep"
+
+#: models.py:74
+msgid "Creation Date"
+msgstr "Létrehozás dátuma"
+
+#: models.py:75 models.py:141 supplier/models.py:38 supplier/models.py:83
+msgid "Notes"
+msgstr "Megjegyzések"
+
+#: models.py:90
+msgid "Organizations"
+msgstr "Szervezetek"
+
+#: models.py:139
+msgid "Date of birth"
+msgstr "Születési dátum"
+
+#: models.py:142
+msgid "Creation date"
+msgstr "Létrehozás dátuma"
+
+#: models.py:205 models.py:220
+msgid "Contact"
+msgstr "Ügyfél"
+
+#: models.py:206
+msgid "Contacts"
+msgstr "Ügyfelek"
+
+#: models.py:209
+msgid "Work"
+msgstr "Munkahelyi"
+
+#: models.py:210 templates/contact/login_signup.html:9
+#: templates/contact/update_form.html:5 templates/contact/view_profile.html:6
+#: templates/registration/account_info.html:5
+#: templates/registration/activate.html:6 templates/registration/login.html:5
+#: templates/registration/logout.html:5
+#: templates/registration/password_change_done.html:5
+#: templates/registration/password_change_form.html:5
+#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_form.html:5
+#: templates/registration/registration_complete.html:6
+#: templates/registration/registration_form.html:5
+#: templates/registration/repeat_activation.html:5
+msgid "Home"
+msgstr "Otthoni"
+
+#: models.py:211
+msgid "Fax"
+msgstr "Fax"
+
+#: models.py:212
+msgid "Mobile"
+msgstr "Mobil"
+
+#: models.py:222
+msgid "Date and Time"
+msgstr "Dátum és idő"
+
+#: models.py:223 models.py:237 models.py:271 supplier/models.py:18
+msgid "Description"
+msgstr "Leírás"
+
+#: models.py:229
+msgid "Interaction"
+msgstr "Kapcsolat"
+
+#: models.py:230
+msgid "Interactions"
+msgstr "Kapcsolatok"
+
+#: models.py:239 models.py:263
+msgid "Phone Number"
+msgstr "Telefonszám"
+
+#: models.py:241
+msgid "Primary"
+msgstr "Elsődleges"
+
+#: models.py:264
+msgid "Phone Numbers"
+msgstr "Telefonszámok"
+
+#: models.py:272
+msgid "Description of address - Home, Office, Warehouse, etc."
+msgstr "A cím leírása - Otthoni, munkahelyi, üzlet, stb."
+
+#: models.py:278
+msgid "Zip Code"
+msgstr "Irányítószám"
+
+#: models.py:280
+msgid "Default Shipping Address"
+msgstr "Alapértelmezett szállítási cím"
+
+#: models.py:282
+msgid "Default Billing Address"
+msgstr "Alapértelmezett számlázási cím"
+
+#: models.py:313
+msgid "Address Book"
+msgstr "Címjegyzék"
+
+#: models.py:314
+msgid "Address Books"
+msgstr "Címjegyzékek"
+
+#: supplier/models.py:16 supplier/models.py:33
+msgid "Supplier"
+msgstr "Beszállító"
+
+#: supplier/models.py:17
+msgid "Supplier ID"
+msgstr "Beszállító azonosító"
+
+#: supplier/models.py:19
+msgid "Unit Cost"
+msgstr "Bekerülési egységár"
+
+#: supplier/models.py:20
+msgid "Inventory"
+msgstr "Leltár"
+
+#: supplier/models.py:26
+msgid "Raw Item"
+msgstr "Árudarab"
+
+#: supplier/models.py:27
+msgid "Raw Items"
+msgstr "Árudarabok"
+
+#: supplier/models.py:34
+msgid "Date Created"
+msgstr "Létrehozás dátuma"
+
+#: supplier/models.py:35
+msgid "Subtotal"
+msgstr "Részösszeg"
+
+#: supplier/models.py:36
+msgid "Shipping"
+msgstr "Szállítás"
+
+#: supplier/models.py:37
+msgid "Tax"
+msgstr "Adó"
+
+#: supplier/models.py:39
+msgid "Total"
+msgstr "Összesen"
+
+#: supplier/models.py:55
+msgid "Supplier Order"
+msgstr "Beszállítói megrendelés"
+
+#: supplier/models.py:56
+msgid "Supplier Orders"
+msgstr "Beszállítói megrendelések"
+
+#: supplier/models.py:63
+msgid "Line Item"
+msgstr "Tétel"
+
+#: supplier/models.py:64
+msgid "Line Item Quantity"
+msgstr "Tétel mennyiség"
+
+#: supplier/models.py:65
+msgid "Line Item Total"
+msgstr "Tétel összeg"
+
+#: supplier/models.py:71
+msgid "Sent in"
+msgstr "Megrendelés elküldve"
+
+#: supplier/models.py:72
+msgid "Shipped"
+msgstr "Szállíva"
+
+#: supplier/models.py:73
+msgid "Received"
+msgstr "Megérkezett"
+
+#: supplier/models.py:82
+msgid "Status"
+msgstr "Állapot"
+
+#: supplier/models.py:84
+msgid "Date"
+msgstr "Dátum"
+
+#: supplier/models.py:90
+msgid "Supplier Order Status"
+msgstr "Beszállítói megrendelés állapota"
+
+#: supplier/models.py:91
+msgid "Supplier Order Statuses"
+msgstr "Beszállítói megrendelés állapotai"
+
+#: templates/contact/_ContactInfoForm_billing.html:4
+msgid "Billing Information"
+msgstr "Számlázási információ"
+
+#: templates/contact/_ContactInfoForm_billing.html:6
+msgid "Bill To"
+msgstr "Számlázás"
+
+#: templates/contact/_ContactInfoForm_billing.html:6
+#: templates/contact/_ContactInfoForm_shipping.html:9
+msgid "If different from the first and last names above"
+msgstr "Ha különbözik a fenti nevektől"
+
+#: templates/contact/_ContactInfoForm_billing.html:33
+#: templates/contact/_ContactInfoForm_shipping.html:36
+msgid "Zipcode/Postcode"
+msgstr "Irányítószám"
+
+#: templates/contact/_ContactInfoForm_shipping.html:4
+#, fuzzy
+msgid "Shipping Information"
+msgstr "Számlázási információ"
+
+#: templates/contact/_ContactInfoForm_shipping.html:9
+msgid "Ship To"
+msgstr "Szállítási cím"
+
+#: templates/contact/_addressblock.html:11
+msgid "Not set"
+msgstr "Nincs megadva"
+
+#: templates/contact/_login_form.html:10
+msgid "Existing members login"
+msgstr "Regisztrált felhasználók"
+
+#: templates/contact/_login_form.html:21
+msgid "Email Address:"
+msgstr "Email cím:"
+
+#: templates/contact/_login_form.html:30
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: templates/contact/_login_form.html:39 templates/registration/login.html:23
+msgid "Login"
+msgstr "Belépés"
+
+#: templates/contact/login_signup.html:13
+#: templates/contact/login_signup_address.html:13
+msgid "Login, or sign up to the store"
+msgstr "Belépés vagy regisztráció"
+
+#: templates/contact/login_signup.html:23
+#: templates/contact/login_signup_address.html:23
+msgid "New Members, Create Your Account Below"
+msgstr "Új felhasználók regisztrációja"
+
+#: templates/contact/login_signup.html:29
+#: templates/contact/login_signup_address.html:29
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Kérlek javítsd a lenti hibát!"
+msgstr[1] "Kérlek javítsd a lenti hibákat!"
+
+#: templates/contact/login_signup.html:47
+#: templates/contact/login_signup_address.html:51
+msgid "Sign me up for Email Updates about new products and special offers!"
+msgstr "Feliratkozom a hírlevélre"
+
+#: templates/contact/login_signup.html:53
+#: templates/contact/login_signup_address.html:65
+msgid "Create"
+msgstr "Létrehozás"
+
+#: templates/contact/login_signup_address.html:47
+#: templates/contact/update_form.html:42
+msgid "Phone number"
+msgstr "Telefonszám"
+
+#: templates/contact/update_form.html:6 templates/contact/view_profile.html:7
+#: templates/registration/password_change_done.html:6
+#: templates/registration/password_change_form.html:6
+msgid "Account"
+msgstr "Azonosító"
+
+#: templates/contact/update_form.html:7
+msgid "Update Profile"
+msgstr "Adatok módosítása"
+
+#: templates/contact/update_form.html:15
+msgid "Your Profile"
+msgstr "Adataid"
+
+#: templates/contact/update_form.html:17
+msgid "Please correct the following error:"
+msgstr "Kérlek javítsd a következő hibát:"
+
+#: templates/contact/update_form.html:23
+msgid "You&apos;ll need to fill out at least the fields with a *"
+msgstr "A *-gal jelölt mezők kitöltése kötelező."
+
+#: templates/contact/update_form.html:25
+msgid "Basic Information"
+msgstr "Alapadatok"
+
+#: templates/contact/update_form.html:26 templates/registration/login.html:17
+msgid "Email address"
+msgstr "Email cím"
+
+#: templates/contact/update_form.html:39
+msgid "Birthday"
+msgstr "Születésnap"
+
+#: templates/contact/update_form.html:57
+msgid "Update"
+msgstr "Módosít"
+
+#: templates/contact/view_profile.html:11
+#: templates/registration/account_info.html:9
+msgid "Your Account info"
+msgstr "Felhasználói adataid"
+
+#: templates/contact/view_profile.html:14
+#: templates/registration/account_info.html:11
+#, python-format
+msgid "Welcome, %(full_name)s."
+msgstr "Üdvözöllek %(full_name)s."
+
+#: templates/contact/view_profile.html:17
+msgid "Your profile"
+msgstr "Adataid"
+
+#: templates/contact/view_profile.html:19
+msgid "Email:"
+msgstr "Email:"
+
+#: templates/contact/view_profile.html:21
+msgid "Organization:"
+msgstr "Szervezet:"
+
+#: templates/contact/view_profile.html:23
+msgid "Birthday:"
+msgstr "Születésnap:"
+
+#: templates/contact/view_profile.html:25
+msgid "Newsletter:"
+msgstr "Hírlevél"
+
+#: templates/contact/view_profile.html:25
+msgid "Yes"
+msgstr "Igen"
+
+#: templates/contact/view_profile.html:25
+msgid "No"
+msgstr "Nem"
+
+#: templates/contact/view_profile.html:27
+msgid "Billing Address:"
+msgstr "Számlázási cím"
+
+#: templates/contact/view_profile.html:28
+msgid "Shipping Address:"
+msgstr "Szállítási cím:"
+
+#: templates/contact/view_profile.html:30
+#: templates/contact/view_profile.html:43
+#: templates/registration/account_info.html:13
+msgid "Account options"
+msgstr "Felhasználói adatok"
+
+#: templates/contact/view_profile.html:32
+msgid "Update your profile"
+msgstr "Adatok módosítása"
+
+#: templates/contact/view_profile.html:34
+#: templates/contact/view_profile.html:47
+#: templates/registration/account_info.html:15
+#: templates/registration/password_change_form.html:11
+msgid "Change your password"
+msgstr "Jelszó megváltoztatása"
+
+#: templates/contact/view_profile.html:36
+msgid "Order History"
+msgstr "Korábbi rendelések"
+
+#: templates/contact/view_profile.html:41
+msgid ""
+"Sorry, the user you've logged in as doesn't have any contact information."
+msgstr "Bocs, de a belépett felhasználónak nincsenek adatai."
+
+#: templates/contact/view_profile.html:41
+msgid "Probably because you are an admin."
+msgstr "Valószínűleg azért, mert te vagy az admin."
+
+#: templates/contact/view_profile.html:45
+msgid "Set up contact information"
+msgstr "Felhasználói adatok megadása"
+
+#: templates/registration/activate.html:7
+msgid "Registration Complete"
+msgstr "A regisztráció kész"
+
+#: templates/registration/activate.html:12
+#: templates/registration/repeat_activation.html:11
+msgid "Account Activation"
+msgstr "Azonosító aktiválása"
+
+#: templates/registration/activate.html:16
+msgid "Thanks for signing up! You are now logged in."
+msgstr "Köszönjük a regisztrációt. Be vagy lépve."
+
+#: templates/registration/activate.html:17
+#, python-format
+msgid "In the future, you can log in using your email address (%(email)s)."
+msgstr "A jövőben a következő email címmel tudsz belépni: %(email)s."
+
+#: templates/registration/activate.html:21
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired. Activation keys are only valid for %(expiration_days)s "
+"days after registration."
+msgstr ""
+"Az aktivációs link érvénytelen volt, vagy az aktivációs kulcs túl régi.\n"
+"Az aktivációs kulcsok csak %(expiration_days)s napig érvényesek a\n"
+"regisztráció után."
+
+#: templates/registration/activation_email.txt:1
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar."
+msgstr ""
+"Valaki, remélhetőleg Te :-), regisztrált a %(site)s oldalon ezzel az email "
+"címmel.\n"
+"Ha Te voltál, és szeretnéd aktiválni az azonosítódat, kattints az alábbi "
+"linkre,\n"
+"vagy másold be a címet a böngésződ címsorába."
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(expiration_days)s days."
+msgstr ""
+"Ha nem Te voltál, nem kell tenned semmit; nem fogsz több emailt kapni "
+"tőlünk,\n"
+"és az azonosító automatikusan lejár %(expiration_days)s napon belül."
+
+#: templates/registration/login.html:19
+msgid "Password"
+msgstr "Jelszó"
+
+#: templates/registration/login.html:32
+msgid "If you do not have an account, please"
+msgstr "Ha még nincs azonosítód,"
+
+#: templates/registration/login.html:32
+msgid "click here"
+msgstr "kattints ide"
+
+#: templates/registration/login.html:33
+msgid "If you do not remember your password, please"
+msgstr "Ha nem emlékszel a jelszavadra,"
+
+#: templates/registration/login.html:33
+msgid "click here</a> to have it reset."
+msgstr "kattints ide</a>, hogy újat tudjunk adni."
+
+#: templates/registration/logout.html:9
+msgid "You have been successfully logged out."
+msgstr "Sikeresen kiléptél."
+
+#: templates/registration/password_change_done.html:7
+msgid "Password Change Done"
+msgstr "Sikeresen megváltoztattuk a jelszót."
+
+#: templates/registration/password_change_done.html:12
+msgid "Password change successful"
+msgstr "Sikeresen megváltoztattuk a jelszót."
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password change has been completed."
+msgstr "Sikeresen megváltoztattuk a jelszót."
+
+#: templates/registration/password_change_form.html:7
+msgid "Password Change"
+msgstr "Jelszó megváltoztatása"
+
+#: templates/registration/password_change_form.html:12
+msgid ""
+"For the sake of security, please enter your old password, and then enter "
+"your new password twice."
+msgstr ""
+"A biztonság kedvéért, kérünk add meg a régi jelszavadat, majd kétszer az "
+"újat."
+
+#: templates/registration/password_change_form.html:19
+msgid "Old password"
+msgstr "Régi jelszó"
+
+#: templates/registration/password_change_form.html:26
+msgid "New password"
+msgstr "Új jelszó"
+
+#: templates/registration/password_change_form.html:33
+msgid "Confirm new password"
+msgstr "Új jelszó mégegyszer"
+
+#: templates/registration/password_change_form.html:36
+msgid "Change password"
+msgstr "Jelszó megváltoztatása"
+
+#: templates/registration/password_reset.txt:2
+msgid "You're receiving this e-mail because you requested a password reset"
+msgstr "Ezt az email azért kaptad, mert a jelszavad törlését kérted"
+
+#: templates/registration/password_reset.txt:3
+#, python-format
+msgid "for your user account at %(site_name)s"
+msgstr "a %(site_name)soldalon."
+
+#: templates/registration/password_reset.txt:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "A következő oldalon tudsz új jelszót beállítani:"
+
+#: templates/registration/password_reset.txt:9
+msgid "Your username, in case you've forgotten:"
+msgstr "A felhsználói neved:"
+
+#: templates/registration/password_reset.txt:11
+msgid "Thanks for using our site!"
+msgstr "Köszönjük, hogy nálunk jártál!"
+
+#: templates/registration/password_reset.txt:13
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "A %(site_name)s csapata"
+
+#: templates/registration/password_reset_done.html:10
+msgid "Password reset successful"
+msgstr "A régi jelszavadat töröltük."
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should receive it shortly."
+msgstr ""
+"Küldtünk egy emailt az új jelszavaddal az email címedre. Hamarosan meg\n"
+"kell kapnod."
+
+#: templates/registration/password_reset_form.html:10
+msgid "Reset your password"
+msgstr "Jelszó törlése"
+
+#: templates/registration/password_reset_form.html:12
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send a "
+"new password to you."
+msgstr ""
+"Elfelejtetted a jelszavadat? Add meg az email címedet, és küldünk egy\n"
+"újat."
+
+#: templates/registration/password_reset_form.html:19
+msgid "E-mail address"
+msgstr "Email cím"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Be sure to enter the same e-mail address you used to register."
+msgstr "Kérlek ugyanazt a címet add meg, mint amivel regisztráltál."
+
+#: templates/registration/password_reset_form.html:21
+msgid "Reset password"
+msgstr "Jelszó törlése"
+
+#: templates/registration/registration_complete.html:7
+#: templates/registration/registration_complete.html:11
+msgid "Account Creation"
+msgstr "Új felhazsnáló"
+
+#: templates/registration/registration_complete.html:12
+msgid "Thank you for signing up."
+msgstr "Köszönjük, hogy regisztráltál."
+
+#: templates/registration/registration_complete.html:14
+msgid ""
+"An activation link has been sent to the email address you supplied, along "
+"with instructions for activating your account."
+msgstr ""
+"A megadott email címre elküldtük az aktiváló linket, és a\n"
+"az aktivációhoz szükséges lépések leírását."
+
+#: templates/registration/registration_form.html:6
+msgid "Registration"
+msgstr "Regisztráció"
+
+#: templates/registration/registration_form.html:10
+msgid "Please Enter Your Account Information"
+msgstr "Add meg a felhasználói adataidat"
+
+#: templates/registration/registration_form.html:38
+msgid "Create Account"
+msgstr "Felhasználó létrehozása"
+
+#: templates/registration/repeat_activation.html:6
+msgid "Repeat Activation"
+msgstr "Aktiválás megismétlése"
+
+#: templates/registration/repeat_activation.html:13
+msgid "This account has already been activated. Please login."
+msgstr "Ezt a felhasználói azonosítót már aktiváltuk. Kérlek lépj be."
+
+#: templates/registration/welcome.txt:1
+#, python-format
+msgid "Dear %(first_name)s %(last_name)s,"
+msgstr "Kedves %(last_name)s %(first_name)s,"
+
+#: templates/registration/welcome.txt:3
+#, python-format
+msgid "Thank you for signing up with %(shop_name)s."
+msgstr "Köszönjük, hogy regisztráltál üzletünkben. %(shop_name)s."
+
+#: templates/registration/welcome.txt:5
+msgid "Your new username is this email address, and you can login at"
+msgstr ""
+"Az új azonosítód ez az email cím, és ezzel beléphetsz a következő\n"
+"oldalon: "
+
+#: templates/registration/welcome.txt:7
+msgid "Regards"
+msgstr "Üdv"
+
+#: templates/registration/welcome.txt:9
+msgid "Store Management"
+msgstr "A webáruház csapata"
+
+#~ msgid "Shipping Address"
+#~ msgstr "Szállítási cím"

@@ -587,107 +587,107 @@
 - fields:
     create_subs: false
     option_group: [!!python/long '1', !!python/long '2']
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: '1'
 - fields:
     create_subs: false
     option_group: [!!python/long '3']
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: '3'
 - fields:
     create_subs: false
     option_group: [!!python/long '3']
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: '4'
 #- fields:
 #    create_subs: false
 #    option_group: [!!python/long '4']
-#  model: product.configurableproduct
+#  model: configurable.configurableproduct
 #  pk: '5'
 - fields:
     options: [!!python/long '1', !!python/long '4']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '6'
 - fields:
     options: [!!python/long '1', !!python/long '5']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '7'
 - fields:
     options: [!!python/long '1', !!python/long '6']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '8'
 - fields:
     options: [!!python/long '2', !!python/long '4']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '9'
 - fields:
     options: [!!python/long '2', !!python/long '5']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '10'
 - fields:
     options: [!!python/long '2', !!python/long '6']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '11'
 - fields:
     options: [!!python/long '3', !!python/long '4']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '12'
 - fields:
     options: [!!python/long '3', !!python/long '5']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '13'
 - fields:
     options: [!!python/long '3', !!python/long '6']
     parent: !!python/long '1'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '14'
 - fields:
     options: [!!python/long '7']
     parent: !!python/long '3'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '15'
 - fields:
     options: [!!python/long '8']
     parent: !!python/long '3'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '16'
 - fields:
     options: [!!python/long '9']
     parent: !!python/long '3'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '17'
 - fields:
     options: [!!python/long '7']
     parent: !!python/long '4'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '18'
 - fields:
     options: [!!python/long '8']
     parent: !!python/long '4'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '19'
 - fields:
     options: [!!python/long '9']
     parent: !!python/long '4'
-  model: product.productvariation
+  model: configurable.productvariation
   pk: '20'
 #- fields:
 #    options: [!!python/long '10']
 #    parent: !!python/long '5'
-#  model: product.productvariation
+#  model: configurable.productvariation
 #  pk: '21'
 #- fields:
 #    options: [!!python/long '11']
 #    parent: !!python/long '5'
-#  model: product.productvariation
+#  model: configurable.productvariation
 #  pk: '22'
 - fields:
       sort: !!python/long '1'
@@ -809,9 +809,9 @@
     deferred_shipping: false
     downpayment: 100
     option_group: [5, 6]
-  model: product.customproduct
+  model: custom.customproduct
   pk: 30
 - fields: {name: Monogram, price_change: '10.000000', products: 30, slug: monogram,
     sort_order: 1}
-  model: product.customtextfield
+  model: custom.customtextfield
   pk: 1

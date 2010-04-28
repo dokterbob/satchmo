@@ -1,60 +1,6 @@
 Satchmo Development Branch
 ==========================
 
-This is a working document to show all the updates taking place in the
-actively developed tip.
 
 Changes
-------- 
-- Updated German translation
-- Improvements to robustness of clonesatchmo program
-- Template cleanups for gift certificates
-- Improve discount handling for paypal
-- Add new management command for billing subscription products
-- Improve handling of ccv numbers
-- Improve display string of subtypes in admin
-- If language is chosen, make sure it's selected by default
-- Tweak the product admin screens to show featured and active status
-- Add new admin functions for toggling active/featured status of products
-- Make the display of the site in the admin lists configurable through the settings
-- Add a readonly field to the admin. Use it in the order admin for the status field
-- Add some raw id fields in the admin so that large stores will work ok
-- Fix the ajax functions to escape properly and use the right mime type
-- Fix postgres typecast problem
-- Added new Custom Product Attribute functionality - :doc:`product-attributes`
-- Improved the code for calculating comment averages to increase performance
-- Added signal for custom filtering of items which are subject to a discount
-- Improve handling of the MEDIA_ROOT on Windows systems
-- Add a documentation section about customizing the admin - :doc:`custom-admin`
-- Handle error if unicode value is entered in the cart quantity field
-- Add a persistent cart capability for previously logged in users
-- Django 1.2 compatibility change in save signatures
-- Remove some dupe code in the login functions
-- Turn off autocomplete on cc#'s and ccvs in the checkout form 
-- Move the import of trml2pdf so that startup is quicker
-- Fix a bug in the category slug url
-- Change the way currency formats are determined. Explicit option will remove locale bugs.
-- Fix the import for simplejson to support certain OS supplied json libs
-- Update search to work on product variation skus
-- Update login form so it accepts 75 characters
-- Add a trap for CACHE_TIMEOUT
-- Removed CATEGORY and PRODUCT slug configuration from livesettings
-- Fixed imports in Canadapost shipping module
-- Changed the way payment modules are imported. Making way for django-bursar integration
-- Multiple fixes to paypal modules
-- Allow admins to choose whether tax is calculated based on the shipping or billing address
-- Refactor the templates and the way jquery is loaded. Will make it easier to switch jquery versions and hosting locations.
-- Updated jquery to 1.4.2
-- Added new documentation on Satchmo's views - :doc:`views`
-- Cache the category tree for big performance improvements
-- Refactor the email sending routine so it is more modular
-- Add two new category tags
-- Added search field in the admin to more easily find products
-- Added new javascript to populate state fields when the country is changed
-- Refactor some of the templates to make more consistent
-- Change the behavior of applying discounts that don't evenly split among multiple products
-- Update the autocomplete admin js to the latest version. Also widened field and added missing image
-- Updated polish translation
-- Multiple documentation improvements on the shipping pages
-- Added initial `South <http://south.aeracode.org/>`_ migrations for the Product model 
-- Add optional support for sending HTML formatted emails
+-------

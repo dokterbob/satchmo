@@ -1,0 +1,468 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Satchmo 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-22 19:02-0500\n"
+"PO-Revision-Date: 2010-03-23 13:06+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: config.py:7
+msgid "Tax Settings"
+msgstr "Momsindstillinger"
+
+#: config.py:10
+msgid "Active tax module"
+msgstr "Aktivt momsmodul"
+
+#: config.py:11
+msgid "Select a module, save and reload to set any module-specific settings."
+msgstr "Vælg et modul, gem og genindlæs siden for at sætte modul-specifikke indstillinger."
+
+#: config.py:13
+msgid "No Tax"
+msgstr "Ingen moms"
+
+#: config.py:19
+msgid "Show with tax included"
+msgstr "Vis priser inkl. moms"
+
+#: config.py:20
+msgid "If yes, then all products and the cart will display with tax included."
+msgstr "Hvis ja, vil alle priser på siden blive vist inklusiv moms."
+
+#: config.py:26
+msgid "New products are automatically made taxable"
+msgstr "Gør nye produkter momspligtige"
+
+#: config.py:27
+msgid "Whether newly created products should be taxable by default."
+msgstr "Hvorvidt nyoprettede produkter som udgangspunkt skal være markeret som momspligtige"
+
+#: config.py:34
+msgid "Should tax be calculated based on shipping or billing address?"
+msgstr "Beregn moms på basis af forsendelses- eller faktureringsadresse?"
+
+#: config.py:35
+msgid "This will only be used if tax is calculated based on an address."
+msgstr "Dette vil kun blive brugt, hvis momsen beregnes på basis af adressen."
+
+#: modules/area/admin.py:14
+msgid "You must choose a zone or a country."
+msgstr "Du skal vælge et land eller område."
+
+#: modules/area/config.py:6
+msgid "By Country/Area"
+msgstr "Efter område/land"
+
+#: modules/area/config.py:12
+#: modules/percent/config.py:19
+msgid "Tax Shipping?"
+msgstr "Forsendelsesmoms"
+
+#: modules/area/config.py:21
+#: modules/us_sst/config.py:21
+msgid "TaxClass for shipping"
+msgstr "Momsklasse for forsendelse"
+
+#: modules/area/config.py:22
+#: modules/us_sst/config.py:22
+msgid "Select a TaxClass that should be applied for shipments."
+msgstr "Vælg en momsklasse der skal bruges til forsendelse."
+
+#: modules/area/models.py:10
+#: modules/us_sst/models.py:57
+msgid "Tax Class"
+msgstr "Momsklasse"
+
+#: modules/area/models.py:12
+#: modules/us_sst/models.py:59
+msgid "Tax Zone"
+msgstr "Momsområde"
+
+#: modules/area/models.py:14
+#: modules/us_sst/models.py:61
+msgid "Tax Country"
+msgstr "Momsland"
+
+#: modules/area/models.py:15
+#: modules/area/models.py:27
+msgid "Percentage"
+msgstr "Procentsats"
+
+#: modules/area/models.py:16
+msgid "% tax for this area and type"
+msgstr "momsprocent for dette område og denne type"
+
+#: modules/area/models.py:36
+#: modules/us_sst/models.py:155
+msgid "Tax Rate"
+msgstr "Momssats"
+
+#: modules/area/models.py:37
+#: modules/us_sst/models.py:156
+msgid "Tax Rates"
+msgstr "Momssatser"
+
+#: modules/percent/config.py:5
+msgid "Percent Tax"
+msgstr "Momsprocent"
+
+#: modules/percent/config.py:11
+msgid "Percent tax"
+msgstr "Momsprocent"
+
+#: modules/us_sst/admin.py:97
+msgid "Zip-5 records need a high and a low."
+msgstr ""
+
+#: modules/us_sst/admin.py:104
+msgid "Zip+4 records need a high and a low for both parts."
+msgstr ""
+
+#: modules/us_sst/admin.py:111
+msgid "Address rocord needs: low, high, street, city, zip, zip+4"
+msgstr ""
+
+#: modules/us_sst/config.py:5
+msgid "USA: Streamlined Sales Tax"
+msgstr ""
+
+#: modules/us_sst/config.py:12
+msgid "Tax Shipping in ANY jurisdiction?"
+msgstr ""
+
+#: modules/us_sst/models.py:62
+msgid "Taxable?"
+msgstr "Momspligtig"
+
+#: modules/us_sst/models.py:63
+msgid "Use Intrastate rate instead of Interstate?"
+msgstr ""
+
+#: modules/us_sst/models.py:65
+msgid "Use food/drug rate instead of general?"
+msgstr ""
+
+#: modules/us_sst/models.py:86
+msgid "Taxable Class"
+msgstr "Momsklasse"
+
+#: modules/us_sst/models.py:87
+msgid "Taxable Classes"
+msgstr ""
+
+#: modules/us_sst/models.py:138
+#: modules/us_sst/models.py:235
+msgid "FIPS State Code"
+msgstr ""
+
+#: modules/us_sst/models.py:140
+msgid "Type"
+msgstr "Type"
+
+#: modules/us_sst/models.py:142
+msgid "FIPS Code"
+msgstr ""
+
+#: modules/us_sst/models.py:144
+msgid "General Tax Rate - Intrastate"
+msgstr ""
+
+#: modules/us_sst/models.py:146
+msgid "General Tax Rate - Interstate"
+msgstr ""
+
+#: modules/us_sst/models.py:148
+msgid "Food/Drug Tax Rate - Intrastate"
+msgstr ""
+
+#: modules/us_sst/models.py:150
+msgid "Food/Drug Tax Rate - Interstate"
+msgstr ""
+
+#: modules/us_sst/models.py:151
+#: modules/us_sst/models.py:195
+msgid "Effective Start Date"
+msgstr ""
+
+#: modules/us_sst/models.py:152
+#: modules/us_sst/models.py:196
+msgid "Effective End Date"
+msgstr ""
+
+#: modules/us_sst/models.py:194
+msgid "Boundry Type"
+msgstr ""
+
+#: modules/us_sst/models.py:198
+msgid "Low Address Range"
+msgstr ""
+
+#: modules/us_sst/models.py:200
+msgid "High Address Range"
+msgstr ""
+
+#: modules/us_sst/models.py:202
+msgid "Odd / Even Range Indicator"
+msgstr ""
+
+#: modules/us_sst/models.py:204
+msgid "State Pre-Directional Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:206
+msgid "Street Name"
+msgstr ""
+
+#: modules/us_sst/models.py:208
+msgid "Street Suffix Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:210
+msgid "Street Post Directional"
+msgstr ""
+
+#: modules/us_sst/models.py:212
+msgid "Address Secondary - Abbr."
+msgstr ""
+
+#: modules/us_sst/models.py:214
+msgid "Address Secondary - Low"
+msgstr ""
+
+#: modules/us_sst/models.py:216
+msgid "Address Secondary - High"
+msgstr ""
+
+#: modules/us_sst/models.py:218
+msgid "Address Secondary - Odd/Even"
+msgstr ""
+
+#: modules/us_sst/models.py:220
+msgid "City Name"
+msgstr ""
+
+#: modules/us_sst/models.py:222
+msgid "Zip Code"
+msgstr ""
+
+#: modules/us_sst/models.py:224
+msgid "Zip Code - Plus 4"
+msgstr ""
+
+#: modules/us_sst/models.py:226
+msgid "Zip Code - Low"
+msgstr ""
+
+#: modules/us_sst/models.py:228
+msgid "Zip Code Extension - Low"
+msgstr "Indtast et gyldigt postnummer."
+
+#: modules/us_sst/models.py:230
+msgid "Zip Code - High"
+msgstr ""
+
+#: modules/us_sst/models.py:232
+msgid "Zip Code Extension - High"
+msgstr ""
+
+#: modules/us_sst/models.py:233
+msgid "Composite SER Code"
+msgstr ""
+
+#: modules/us_sst/models.py:237
+msgid "FIPS State Indicator"
+msgstr ""
+
+#: modules/us_sst/models.py:239
+msgid "FIPS County Code"
+msgstr ""
+
+#: modules/us_sst/models.py:241
+msgid "FIPS Place Code"
+msgstr ""
+
+#: modules/us_sst/models.py:243
+msgid "FIPS Place Type"
+msgstr ""
+
+#: modules/us_sst/models.py:244
+msgid "FIPS Special 1 code"
+msgstr ""
+
+#: modules/us_sst/models.py:245
+msgid "FIPS Special 1 type"
+msgstr ""
+
+#: modules/us_sst/models.py:246
+msgid "FIPS Special 2 code"
+msgstr ""
+
+#: modules/us_sst/models.py:247
+msgid "FIPS Special 2 type"
+msgstr ""
+
+#: modules/us_sst/models.py:248
+msgid "FIPS Special 3 code"
+msgstr ""
+
+#: modules/us_sst/models.py:249
+msgid "FIPS Special 3 type"
+msgstr ""
+
+#: modules/us_sst/models.py:250
+msgid "FIPS Special 4 code"
+msgstr ""
+
+#: modules/us_sst/models.py:251
+msgid "FIPS Special 4 type"
+msgstr ""
+
+#: modules/us_sst/models.py:252
+msgid "FIPS Special 5 code"
+msgstr ""
+
+#: modules/us_sst/models.py:253
+msgid "FIPS Special 5 type"
+msgstr ""
+
+#: modules/us_sst/models.py:254
+msgid "FIPS Special 6 code"
+msgstr ""
+
+#: modules/us_sst/models.py:255
+msgid "FIPS Special 6 type"
+msgstr ""
+
+#: modules/us_sst/models.py:256
+msgid "FIPS Special 7 code"
+msgstr ""
+
+#: modules/us_sst/models.py:257
+msgid "FIPS Special 7 type"
+msgstr ""
+
+#: modules/us_sst/models.py:258
+msgid "FIPS Special 8 code"
+msgstr ""
+
+#: modules/us_sst/models.py:259
+msgid "FIPS Special 8 type"
+msgstr ""
+
+#: modules/us_sst/models.py:260
+msgid "FIPS Special 9 code"
+msgstr ""
+
+#: modules/us_sst/models.py:261
+msgid "FIPS Special 9 type"
+msgstr ""
+
+#: modules/us_sst/models.py:262
+msgid "FIPS Special 10 code"
+msgstr ""
+
+#: modules/us_sst/models.py:263
+msgid "FIPS Special 10 type"
+msgstr ""
+
+#: modules/us_sst/models.py:264
+msgid "FIPS Special 11 code"
+msgstr ""
+
+#: modules/us_sst/models.py:265
+msgid "FIPS Special 11 type"
+msgstr ""
+
+#: modules/us_sst/models.py:266
+msgid "FIPS Special 12 code"
+msgstr ""
+
+#: modules/us_sst/models.py:267
+msgid "FIPS Special 12 type"
+msgstr ""
+
+#: modules/us_sst/models.py:268
+msgid "FIPS Special 13 code"
+msgstr ""
+
+#: modules/us_sst/models.py:269
+msgid "FIPS Special 13 type"
+msgstr ""
+
+#: modules/us_sst/models.py:270
+msgid "FIPS Special 14 code"
+msgstr ""
+
+#: modules/us_sst/models.py:271
+msgid "FIPS Special 14 type"
+msgstr ""
+
+#: modules/us_sst/models.py:272
+msgid "FIPS Special 15 code"
+msgstr ""
+
+#: modules/us_sst/models.py:273
+msgid "FIPS Special 15 type"
+msgstr ""
+
+#: modules/us_sst/models.py:274
+msgid "FIPS Special 16 code"
+msgstr ""
+
+#: modules/us_sst/models.py:275
+msgid "FIPS Special 16 type"
+msgstr ""
+
+#: modules/us_sst/models.py:276
+msgid "FIPS Special 17 code"
+msgstr ""
+
+#: modules/us_sst/models.py:277
+msgid "FIPS Special 17 type"
+msgstr ""
+
+#: modules/us_sst/models.py:278
+msgid "FIPS Special 18 code"
+msgstr ""
+
+#: modules/us_sst/models.py:279
+msgid "FIPS Special 18 type"
+msgstr ""
+
+#: modules/us_sst/models.py:280
+msgid "FIPS Special 19 code"
+msgstr ""
+
+#: modules/us_sst/models.py:281
+msgid "FIPS Special 19 type"
+msgstr ""
+
+#: modules/us_sst/models.py:282
+msgid "FIPS Special 20 code"
+msgstr ""
+
+#: modules/us_sst/models.py:283
+msgid "FIPS Special 20 type"
+msgstr ""
+
+#: modules/us_sst/models.py:390
+msgid "Tax Boundry"
+msgstr ""
+
+#: modules/us_sst/models.py:391
+msgid "Tax Boundries"
+msgstr ""
+

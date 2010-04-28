@@ -148,6 +148,23 @@
     allValid: true
   model: product.discount
   pk: 6
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    code: test10-product
+    description: Test Percent 10 (Product)
+    endDate: 5000-01-01
+    shipping: 'NONE'
+    minOrder: null
+    numUses: null
+    percentage: '10'
+    startDate: 2007-12-15
+    valid_products: [15]
+    site: 1
+    allValid: false
+  model: product.discount
+  pk: 7
 - fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,
     slug: book, site: 1}
   model: product.category
@@ -616,92 +633,92 @@
 - fields:
     create_subs: false
     option_group: [1, 2]
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: 1
 - fields:
     create_subs: false
     option_group: [3]
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: 3
 - fields:
     create_subs: false
     option_group: [3]
-  model: product.configurableproduct
+  model: configurable.configurableproduct
   pk: 4
 - fields:
     options: [1, 4]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 5
 - fields:
     options: [1, 5]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 6
 - fields:
     options: [1, 6]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 7
 - fields:
     options: [2, 4]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 8
 - fields:
     options: [2, 5]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 9
 - fields:
     options: [2, 6]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 10
 - fields:
     options: [3, 4]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 11
 - fields:
     options: [3, 5]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 12
 - fields:
     options: [3, 6]
     parent: 1
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 13
 - fields:
     options: [7]
     parent: 3
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 14
 - fields:
     options: [8]
     parent: 3
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 15
 - fields:
     options: [9]
     parent: 3
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 16
 - fields:
     options: [7]
     parent: 4
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 17
 - fields:
     options: [8]
     parent: 4
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 18
 - fields:
     options: [9]
     parent: 4
-  model: product.productvariation
+  model: configurable.productvariation
   pk: 19
 - fields: {caption: Photo Not Available, picture: images/productimage-picture-default.jpg,
     product: null, sort: 1}

@@ -3,7 +3,7 @@
 {% block billing-info %}
     <tr><td colspan="2"><h4>{% trans "Billing Information" %}</h4></td></tr>
 
-    <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.addressee }}</td></tr>
+    <tr><td><label for="id_addressee">{% trans "Bill To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</p></td><td> {{ form.addressee }}</td></tr>
     {% if form.addressee.errors %}<tr><td class="error" colspan="2">*** {{ form.addressee.errors|join:", "}}</td></tr>{% endif %}
 
     <tr><td><label for="id_street1">{% trans "Street" %}{% if form.street1.field.required %}*{% endif %}</label></td><td> {{ form.street1 }}</td></tr>

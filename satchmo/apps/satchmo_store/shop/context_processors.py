@@ -7,10 +7,9 @@ It is used to add some common variables to all the templates
 from django.conf import settings as site_settings
 from product.models import Category, Discount
 from satchmo_store.shop import get_satchmo_setting
-from satchmo_store.shop.models import Config, NullConfig, Cart, NullCart
+from satchmo_store.shop.models import Config, Cart
 from satchmo_store.shop.signals import satchmo_context
 from satchmo_utils import current_media_url, request_is_secure
-import datetime
 import logging
 
 log = logging.getLogger('shop_context')
@@ -20,7 +19,7 @@ def settings(request):
     cart = Cart.objects.from_request(request)
 
     all_categories = Category.objects.by_site()
-    
+
     try:
         sale = Discount.objects.get_sale()
     except Discount.DoesNotExist:
@@ -40,7 +39,7 @@ def settings(request):
         'logout_url': site_settings.LOGOUT_URL,
         'sale': sale
     }
-    
+
     satchmo_context.send(shop_config, context=ctx)
-    
+
     return ctx

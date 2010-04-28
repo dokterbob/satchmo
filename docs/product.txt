@@ -36,26 +36,19 @@ Some things to keep in mind with Satchmo's implementation:
  
 When entering a category in the admin interface, you will have several fields to fill in.  Below is a description of each field and how it is used:
 
-Name
-    The name of this specific category.  It is the text seen by the user to describe this category.  In the example above, Movies, Action, etc. are all names.
+  :Name:  The name of this specific category.  It is the text seen by the user to describe this category.  In the example above, Movies, Action, etc. are all names.
     
-Slug
-    This is a prepopulated field that is used in the url to identify the category.  One aspect that Django encourages is well designed urls.  The slug field is commonly used so that a url "makes sense" when you look at it.  The nice side effect of this is that in some cases, search engines will give higher ranking for sites with cleaner urls.
+  :Slug:  This is a prepopulated field that is used in the url to identify the category.  One aspect that Django encourages is well designed urls.  The slug field is commonly used so that a url "makes sense" when you look at it.  The nice side effect of this is that in some cases, search engines will give higher ranking for sites with cleaner urls.
     
-Parent
-    If a category is at the top of the tree, then there is no parent.  In our example above, Movies and Books have no parents.  While Action, Comedy, Black and White would all have Movies as a parent.
+  :Parent:    If a category is at the top of the tree, then there is no parent.  In our example above, Movies and Books have no parents.  While Action, Comedy, Black and White would all have Movies as a parent.
     
-Meta
-    When an HTML page is constructed, certain meta information can be added to the page which makes it easier for search engines to classify your pages and your products.  This field is used to enter information about your category that may not be readily seen by just looking at a description.
+  :Meta:  When an HTML page is constructed, certain meta information can be added to the page which makes it easier for search engines to classify your pages and your products.  This field is used to enter information about your category that may not be readily seen by just looking at a description.
     
-Description
-    This is a free form field that describes this category.  You can use this to help guide users in your site.  It's also helpful for search engines.
+  :Description:   This is a free form field that describes this category.  You can use this to help guide users in your site.  It's also helpful for search engines.
 
-Ordering
-    This field can be used to specify which order the categories should be displayed.
+  :Ordering:  This field can be used to specify which order the categories should be displayed.
     
-Active
-    This allows a category to be populated with information but to be set inactive.
+  :Active:    This allows a category to be populated with information but to be set inactive.
 
 .. index::
    single: Product; fields
@@ -63,63 +56,62 @@ Active
 Product
 -------
 
-A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.  There are many fields you can use to configure your Items.
+A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.  
 
-Category
-    See the description above.  This is where you choose one or more categories where a person could find this product.
-    
-Name
-    This is the full name of an product.  Think of it as the title of the product.
-    
-Slug
-    This is similar to the slug field in category.  It is a brief description of the item that will show up in the url and uniquely identify this product.
-    
-Description
-    Free form text fields that tell a potential customer about this item and why they may want to purchase it.
+To activate the various product modules, they need to be enabled in your settings.py
+file. For example::
 
-Short_description
-    This is meant for a brief 1 or 2 line description that can be shown by your templates on the product category pages and similar places.
+        INSTALLED_APPS = (
+                ...
+                'product',
+                'product.modules.configurable',
+                'product.modules.custom',
+                'product.modules.downloadable',
+                'product.modules.subscription',
+                ...
 
-Date_added
-    The date you added this product to your store.  It could be useful for showing a list of new products.
-    
-Active
-    A flag to identify which items are still valid in the store.  If you decide you don't want to show an item for purchase, we recommend making it Active=False instead of trying to delete it.
-    
-Featured
-    Another flag which can be used to identify special items that you may want to highlight in your site. In the default templates, featured items show-up on the front page of the store.
-    
-Items in stock
-    The inventory of this specific item.
 
-Meta
-    This meta field is similar to the one described above in the category.  It's basically some additional descriptive language you might want to include in your HTML that does not already show up in the description.
-    
-Weight, Length and Height
-    These dimensions are for your use in displaying the item's info. It can also be used for shipping calculations.
 
-Taxable
-    A flag to tell whether or not tax should be calculated for this product.
-    
-Tax_class
-    Allows you to set the rate at which tax is calculated.
+Once the products have been added, there are many fields you can use to configure your Items.
 
-Related_items
-    Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book 
-    based on the movie or maybe a movie poster.  This would be the place to record those linkages. By default, this does not show up in the
-    store. You will need to modify your templates to display it.
-    
-Also_purchased
-    Another field to show relationships between products.  This can be useful if you want to try to increase sales by showing what others have purchased when they bought this product.
-    
-Price
-    An item has multiple ways to determine a price.  For a simple single-price all the time item, just enter a price with a "Discount Quantity" of 1, and a blank "Expires" date.  More detailed options are spelled out in the Price and ConfigurableProduct sections below.
+    :Category:  See the description above.  This is where you choose one or more categories where a person could find this product.
+        
+    :Name:  This is the full name of an product.  Think of it as the title of the product.
+        
+    :Slug:  This is similar to the slug field in category.  It is a brief description of the item that will show up in the url and uniquely identify this product.
+        
+    :Description:    Free form text fields that tell a potential customer about this item and why they may want to purchase it.
 
-Images
-    Add an image to your product, see Images section below.
+    :Short_description:    This is meant for a brief 1 or 2 line description that can be shown by your templates on the product category pages and similar places.
 
-Product Subtypes
-    There's a variety of ways that the behavior of a product can be expanded. These additional, optional, features are shown as product SubTypes. The most commonly used of these will be ConfigurableProduct which allows you to have options on your product such as Sizes: Small/Medium/Large, Colors, etc. For more details on the Product SubTypes look in the applicable sections below.
+    :Date_added:    The date you added this product to your store.  It could be useful for showing a list of new products.
+        
+    :Active:    A flag to identify which items are still valid in the store.  If you decide you don't want to show an item for purchase, we recommend making it Active=False instead of trying to delete it.
+        
+    :Featured:   Another flag which can be used to identify special items that you may want to highlight in your site. In the default templates, featured items show-up on the front page of the store.
+        
+    :Items in stock:    The inventory of this specific item.
+
+    :Meta:    This meta field is similar to the one described above in the category.  It's basically some additional descriptive language you might want to include in your HTML that does not already show up in the description.
+        
+    :Weight, Length and Height:    These dimensions are for your use in displaying the item's info. It can also be used for shipping calculations.
+
+    :Taxable:    A flag to tell whether or not tax should be calculated for this product.
+        
+    :Tax_class:    Allows you to set the rate at which tax is calculated.
+
+    :Related_items:
+        Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book 
+        based on the movie or maybe a movie poster.  This would be the place to record those linkages. By default, this does not show up in the
+        store. You will need to modify your templates to display it.
+        
+    :Also_purchased:    Another field to show relationships between products.  This can be useful if you want to try to increase sales by showing what others have purchased when they bought this product.
+        
+    :Price:    An item has multiple ways to determine a price.  For a simple single-price all the time item, just enter a price with a "Discount Quantity" of 1, and a blank "Expires" date.  More detailed options are spelled out in the Price and ConfigurableProduct sections below.
+
+    :Images:    Add an image to your product, see Images section below.
+
+    :Product Subtypes:    There's a variety of ways that the behavior of a product can be expanded. These additional, optional, features are shown as product SubTypes. The most commonly used of these will be ConfigurableProduct which allows you to have options on your product such as Sizes: Small/Medium/Large, Colors, etc. For more details on the Product SubTypes look in the applicable sections below.
 
 .. index::
    single: Product; attributes
@@ -144,14 +136,11 @@ Price
 
 The final choice you have with your products is if there is additional pricing you would like to apply for bulk or special discounts.  For instance, you may want to charge someone $10 for 1-5 shirts but only $7 if they order 6 or more.  This model allows you to do such configuration.
 
-Price
-    Override the price for this sub item if it meets one of the other criteria identified below.
-    
-Quantity
-    The number of items needed to qualify for the price change.
-    
-Expires
-    Date when this offer is no longer valid.  This can be used for various promotions.
+    :Price: Override the price for this sub item if it meets one of the other criteria identified below.
+        
+    :Quantity:  The number of items needed to qualify for the price change.
+        
+    :Expires:    Date when this offer is no longer valid.  This can be used for various promotions.
 
 .. index::
    single: Product; images
@@ -163,14 +152,11 @@ In addition to the information discussed above, you can add as many images as yo
 
 Images only have a couple of fields:
 
-Picture
-    This is the image of your item that you upload to the web server.  The actual thumbnail size is set in your templates.
-    
-Caption
-    A description of this image.  This field may be used to describe the different angles that images show.
-    
-Sort
-    If you would like control of the order in which the images are displayed, this field can be used. 
+    :Picture:    This is the image of your item that you upload to the web server.  The actual thumbnail size is set in your templates.
+        
+    :Caption:    A description of this image.  This field may be used to describe the different angles that images show.
+        
+    :Sort:    If you would like control of the order in which the images are displayed, this field can be used. 
 
 .. index::
    single: Product; options
@@ -187,28 +173,22 @@ Continuing on with the shirt example, you will probably end up with some similar
 
 Here are the fields in the option groups:
 
-Name
-    A description of the group.  This is displayed in the product page to describe the choices available to the user.  In our shirt instance, "size" would be appropriate.
-    
-Description
-    This field is used for administrative purposes.  Size may make sense when looking at a product but what if you have shirts, shoes and hats?  How do you know which group these sizes apply to?  Use this field to write details about the size.  For instance, you could have an option group with the description "Shirt Sizes", "Hat Sizes" and "Shoe Sizes."
-    
-Sort Order
-    This helps you order the options in the way you would like them displayed.  For instance, you may want colors to show before sizes.
+    :Name:    A description of the group.  This is displayed in the product page to describe the choices available to the user.  In our shirt instance, "size" would be appropriate.
+        
+    :Description:    This field is used for administrative purposes.  Size may make sense when looking at a product but what if you have shirts, shoes and hats?  How do you know which group these sizes apply to?  Use this field to write details about the size.  For instance, you could have an option group with the description "Shirt Sizes", "Hat Sizes" and "Shoe Sizes."
+        
+    :Sort Order:    This helps you order the options in the way you would like them displayed.  For instance, you may want colors to show before sizes.
 
 Options
 ^^^^^^^
 
 In our example, if an option group is size, then the options would be "small", "medium" or "large."  The nice thing about these options is that you can configure these to change the price of your product.  If a large shirt costs more than a small shirt, then you can assign the incremental cost to the "large" option item and the correct price will be shown in the users cart and order.
 
-Name
-    This is the displayed value of the option.  You may want to show people "Small" but only store "S" in the database.  
-    
-Value
-    Corresponds with the Name above.  In this example, the value would be "S."
-    
-Price Change
-    If you would like this option to modify the Item's price, enter a positive or negative number here.
+    :Name:    This is the displayed value of the option.  You may want to show people "Small" but only store "S" in the database.  
+        
+    :Value:    Corresponds with the Name above.  In this example, the value would be "S."
+        
+    :Price Change:    If you would like this option to modify the Item's price, enter a positive or negative number here.
 
 .. index::
    single: Product; configurable
@@ -219,15 +199,12 @@ Configurable Products
 
 ConfigurableProduct is a modifier for a product that allows you to associate an OptionGroup with a particular Product.
 
-Option group
-    This is a collection of descriptions that identify this item.  See more details below.
-    
-Create_Variations
-    This is a special option that allows you to create ProductVariations.
+    :Option group:    This is a collection of descriptions that identify this item.  See more details below.
+        
+    :Create_Variations:    This is a special option that allows you to create ProductVariations.
 
-Variations
-    Variations are all Products that are never displayed directly to a customer, but represent the actual product as you would have it on the shelf.  For example, if your ConfigurableProduct is a t-shirt, then you will probably have ProductVariations for "Large Green t-shirt", "Small Blue t-shirt", etc.  It's easiest to have these generated for you using the create_variations option above, but once they are created, you can edit these individually to do things such as set a different price for the XL shirt.
-    
+    :Variations:    Variations are all Products that are never displayed directly to a customer, but represent the actual product as you would have it on the shelf.  For example, if your ConfigurableProduct is a t-shirt, then you will probably have ProductVariations for "Large Green t-shirt", "Small Blue t-shirt", etc.  It's easiest to have these generated for you using the create_variations option above, but once they are created, you can edit these individually to do things such as set a different price for the XL shirt.
+        
 .. index::
    single: Product; variations
    single: Product Variation
@@ -295,30 +272,26 @@ In order to use this product type, from the Product detail page, choose Add Subs
 
 On this screen, you will enter your subscription payment terms as described below.
 
-Recurring Billing
-    Select this if you want your customer to be charged the regular product price on a repeating schedule
+    :Recurring Billing:    Select this if you want your customer to be charged the regular product price on a repeating schedule
 
-Recurring Times
-    Enter an integer here to limit the number of times your customer will be charged. (ie only 10 easy payment of $9.95)
-    If this is a perpetual subscription, enter 99999.
+    :Recurring Times:
+        Enter an integer here to limit the number of times your customer will be charged. (ie only 10 easy payment of $9.95)
+        If this is a perpetual subscription, enter 99999.
 
-Duration
-    Enter the number of units between between each billing cycle.
+    :Duration:    Enter the number of units between between each billing cycle.
 
-Expire Unit
-    This is used in combination with the duration to determine whether the timing should be in months or days. For example,
-    if you want to bill monthly for a year, you could set it to a duration of 12 and Expire Unit of monthly.
+    :Expire Unit:    This is used in combination with the duration to determine whether the timing should be in months or days. For example,
+        if you want to bill monthly for a year, you could set it to a duration of 12 and Expire Unit of monthly.
 
-Shippable?
-    The shipping charges, if any, that will be charged to your customer.
+    :Shippable:    The shipping charges, if any, that will be charged to your customer.
 
-Trial Terms:
-    Use this section to add trial pricing to your product (ie only $4.95 for the first 7 days, then $29.95 a month thereafter).
-        
-        Price:  The price of the trial period.  Enter 0 for a free trial, or a decimal number for a non-free trial (ie 9.94)
-        Trial Duration: The number of days the trial will last. Leave both price and trial duration blank if you do not want to add a trial.
+    :Trial Terms:
+        Use this section to add trial pricing to your product (ie only $4.95 for the first 7 days, then $29.95 a month thereafter).
+            
+            :Price:  The price of the trial period.  Enter 0 for a free trial, or a decimal number for a non-free trial (ie $9.94)
+            :Trial Duration: The number of days the trial will last. Leave both price and trial duration blank if you do not want to add a trial.
 
-    Important Note About Trials:
+    .. note::
         You can add as many trial periods as you wish, unless you are using paypal as a payment option.  PayPal can only accept 2 trial periods.  If you are using PayPal, do not add more than 2 trial periods!
 
 Cronjob:

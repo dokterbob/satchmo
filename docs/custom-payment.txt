@@ -72,11 +72,6 @@ you can leverage the Satchmo settings capability to add your unique variables.  
 refer to the :doc:`configuration` in order to understand how the system works. For more examples, 
 the existing working modules are great examples of what to setup.  The basic format is:
 
-Add the new module into the existing payment modules and give it a name::
-
-    PAYMENT_MODULES = config_get('PAYMENT', 'MODULES')
-    PAYMENT_MODULES.add_choice(('PAYMENT_MYNEWPROCESSOR', 'MyNewProcessor'))
-
 Create the new configuration group::
 
     PAYMENT_GROUP = ConfigurationGroup('PAYMENT_MYNEWPROCESSOR',
@@ -150,10 +145,6 @@ Now register the settings you need::
 All of these settings can be accessed in your ``__init__`` method (shown above).
 For example, the LIVE value above can be accessed by using ``settings.LIVE.value``
 
-In order to enable your new payment processor, you must add it to your INSTALLED_APPS setting in your settings.py, 
-and ensure that the module adds itself to the PAYMENT_MODULES in the module's config.py file in the SATCHMO_SETTINGS variable.  
-See the first part of this section for an example.
-
 Views
 -----
 
@@ -218,11 +209,15 @@ maintain the naming convention for the urls as shown above.
 
 Enabling the new module
 -----------------------
-Once the new payment module has been written and placed in the payments/modules folder, 
-you need to inform satchmo about the new module that you have written. To do this, 
-edit your settings.py file and add your new module to the ``CUSTOM_PAYMENT_MODULES`` dictionary in 
-``SATCHMO_SETTINGS`` variable. After this is done, you can see your new payment module ready to work in settings 
-page of admin area. 
+
+In order to enable your new payment processor, you must add it to your INSTALLED_APPS setting in your settings.py. For example::
+
+    INSTALLED_APPS = (
+            ...
+            'payment',
+            'payment.modules.myprocessor',
+            ...
+
 
 Conclusion
 ----------

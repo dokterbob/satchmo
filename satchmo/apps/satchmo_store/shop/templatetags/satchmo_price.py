@@ -1,7 +1,5 @@
-from django.conf import settings
-from django.template import Library, Node
+from django.template import Library
 from l10n.utils import moneyfmt
-from product.models import Option
 
 register = Library()
 

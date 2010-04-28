@@ -1,4 +1,3 @@
-from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 from django.conf import settings
 import datetime
 import logging
@@ -22,7 +21,7 @@ def add_month(date, n=1):
 def app_enabled(appname):
     """Check the app list to see if a named app is installed."""
     from django.db import models
-    
+
     all_apps = {}
     for app in models.get_apps():
         n = app.__name__.split('.')[-2]
@@ -49,7 +48,7 @@ def cross_list(sequences):
         result = [sublist+[item] for sublist in result for item in seq]
     return result
 
-def current_media_url(request):    
+def current_media_url(request):
     """Return the media_url, taking into account SSL."""
     media_url = settings.MEDIA_URL
     secure = request_is_secure(request)
@@ -145,7 +144,7 @@ def request_is_secure(request):
         return True
 
     return False
-            
+
 def url_join(*args):
     """Join any arbitrary strings into a forward-slash delimited string.
     Do not strip leading / from first element, nor trailing / from last element.

@@ -1,5 +1,4 @@
-from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include
 from product.urls import urlpatterns as productpatterns
 from satchmo_store import shop
 from satchmo_store.shop.views.sitemaps import sitemaps
@@ -24,7 +23,7 @@ urlpatterns += patterns('satchmo_store.shop.views',
     (r'^quickorder/$', 'cart.add_multiple', {}, 'satchmo_quick_order'),
     (r'^tracking/(?P<order_id>\d+)/$', 'orders.order_tracking', {}, 'satchmo_order_tracking'),
     (r'^search/$', 'search.search_view', {}, 'satchmo_search'),
-    
+
     # Used for downloadable products.
     (r'^download/process/(?P<download_key>\w+)/$', 'download.process', {}, 'satchmo_download_process'),
     (r'^download/send/(?P<download_key>\w+)/$', 'download.send_file', {}, 'satchmo_download_send'),
@@ -36,10 +35,10 @@ urlpatterns += productpatterns
 urlpatterns += patterns('',
     (r'^contact/thankyou/$','django.views.generic.simple.direct_to_template',
         {'template':'shop/contact_thanks.html'},'satchmo_contact_thanks'),
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', 
-        {'sitemaps': sitemaps}, 
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps},
         'satchmo_sitemap_xml'),
-    
+
 )
 
 # here we are sending a signal to add patterns to the base of the shop.

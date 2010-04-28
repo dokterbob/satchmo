@@ -22,7 +22,4 @@
     value: !!python/unicode '€'}
   model: !!python/unicode 'livesettings.setting'
   pk: !!python/long '7'
-- fields: {group: !!python/unicode 'PRODUCT', key: !!python/unicode 'PRODUCT_TYPES', site: !!python/long '1', 
-    value: !!python/unicode '["product::ConfigurableProduct","product::ProductVariation", "product::CustomProduct", "product::SubscriptionProduct"]'}
-  model: !!python/unicode 'livesettings.setting'
-  pk: !!python/long '8'
+

@@ -1,17 +1,23 @@
-import os
+from django.conf import settings
+from django.core.cache import get_cache
+from django.db.models.fields.files import ImageField
+from livesettings import config_value
+from satchmo_utils.thumbnail.text import URLify
+
+#ensure config is loaded
+import satchmo_utils.thumbnail.config
+
 import fnmatch
+import logging
+import os
 import shutil
 import urlparse
+
 try:
     import Image
 except ImportError:
     from PIL import Image
-from django.conf import settings
-from django.core.cache import get_cache
-from django.db.models.fields.files import ImageField
-from satchmo_utils.thumbnail.text import URLify
-from livesettings import config_value
-import logging
+
 log = logging.getLogger('satchmo_utils.thumbnail')
 
 image_cache = get_cache('locmem:///')
@@ -124,13 +130,11 @@ def make_thumbnail(photo_url, width=None, height=None, root=settings.MEDIA_ROOT,
 
     return th_url
 
-def _remove_thumbnails(photo_url, root=settings.MEDIA_ROOT, url_root=settings.MEDIA_URL):
-    if not photo_url: return # empty url
-
-    file_name = _get_path_from_url(photo_url, root, url_root)
+def remove_file_thumbnails(file_name_path):
+    if not file_name_path: return # empty path
     import fnmatch, os
-    base, ext = os.path.splitext(os.path.basename(file_name))
-    basedir = os.path.dirname(file_name)
+    base, ext = os.path.splitext(os.path.basename(file_name_path))
+    basedir = os.path.dirname(file_name_path)
     for file in fnmatch.filter(os.listdir(basedir), _THUMBNAIL_GLOB % (base, ext)):
         path = os.path.join(basedir, file)
         try:
@@ -139,16 +143,6 @@ def _remove_thumbnails(photo_url, root=settings.MEDIA_ROOT, url_root=settings.ME
             # no reason to crash due to bad paths.
             log.warn("Could not delete image thumbnail: %s", path)
         image_cache.delete(path) # delete from cache
-
-def remove_model_thumbnails(model):
-    """ remove all thumbnails for all ImageFields (and subclasses) in the model """
-
-    for obj in model._meta.fields:
-        if isinstance(obj, ImageField):
-            field_value = getattr(model, obj.name)
-            if field_value:
-                url = field_value.path
-                _remove_thumbnails(url)
 
 def make_admin_thumbnail(url):
     """ make thumbnails for admin interface """
@@ -253,11 +247,9 @@ def _rename(old_name, new_name):
 def rename_by_field(file_path, req_name, add_path=None):
     if file_path.strip() == '': return '' # no file uploaded
 
-    old_name = os.path.basename(file_path)
-    path = os.path.dirname(file_path)
-    media_root = os.path.normpath(settings.MEDIA_ROOT)
-    if path.startswith(media_root):
-        path = path[len(media_root):]
+    old_name = os.path.normpath(os.path.normcase(os.path.basename(file_path)))
+    path = os.path.normpath(os.path.normcase(os.path.dirname(file_path)))
+    media_root = os.path.normcase(os.path.normpath(settings.MEDIA_ROOT))
     if path[0] == '/' or path[0] == '\\':        #windows fix
         path = path[1:]
     name, ext = os.path.splitext(old_name)

@@ -2,12 +2,12 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 19:57-0600\n"
+"POT-Creation-Date: 2010-04-07 13:30+0300\n"
 "PO-Revision-Date: 2009-03-05 03:05+0300\n"
 "Last-Translator: Данил Семеленов <danil.mail@gmail.com>\n"
 "Language-Team: \n"
@@ -15,55 +15,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:32
+#: .\forms.py:31
 msgid "Title"
-msgstr ""
+msgstr "Обращение"
 
-#: forms.py:33
+#: .\forms.py:32
 msgid "Email address"
-msgstr ""
+msgstr "Адресс электронной почты"
 
-#: forms.py:35
+#: .\forms.py:34
 msgid "Password (again)"
-msgstr ""
+msgstr "Пароль (снова)"
 
-#: forms.py:37
+#: .\forms.py:36
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
-#: forms.py:39
+#: .\forms.py:38
 msgid "First name"
 msgstr "Имя"
 
-#: forms.py:41
+#: .\forms.py:40
 msgid "Last name"
 msgstr "Фамилия"
 
-#: forms.py:60
+#: .\forms.py:59
 msgid "Newsletter"
-msgstr "Новосная рассылка"
+msgstr "Новостная рассылка"
 
-#: forms.py:69
+#: .\forms.py:68
 msgid "The two passwords do not match."
 msgstr "Пароли не совпадают."
 
-#: forms.py:80
+#: .\forms.py:79
 msgid "That email address is already in use."
 msgstr "Этот адрес электронной почты уже используется."
 
-#: mail.py:24
+#: .\mail.py:17
 #, python-format
-msgid "Welcome to %s"
-msgstr "Добро пожаловать в %s"
+msgid "Welcome to %(shop_name)s"
+msgstr "Добро пожаловать в %(shop_name)s"
 
-#: views.py:26
+#: .\views.py:24
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
-#: views.py:27
+#: .\views.py:25
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
-#: views.py:343
+#: .\views.py:341
 msgid "Registration Form"
 msgstr "Форма регистрации"

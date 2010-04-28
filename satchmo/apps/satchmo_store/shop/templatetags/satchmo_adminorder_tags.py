@@ -1,5 +1,4 @@
 from django import template
-from django.db import models
 from satchmo_store.shop import get_satchmo_setting
 from satchmo_store.shop.models import Order, ORDER_STATUS
 from satchmo_store.shop.utils import is_multihost_enabled
@@ -23,7 +22,7 @@ def inprocess_order_list():
     """Returns a formatted list of in-process orders"""
     inprocess = unicode(ORDER_STATUS[2][0])
     orders = orders_at_status(inprocess)
-    
+
     return {
         'orders' : orders,
         'multihost' : is_multihost_enabled()
@@ -32,7 +31,7 @@ def inprocess_order_list():
 register.inclusion_tag('shop/admin/_ordercount_list.html')(inprocess_order_list)
 
 def orders_at_status(status):
-    return Order.objects.filter(status=status)
+    return Order.objects.filter(status=status).order_by('-time_stamp')
 
 def orderpayment_list(order):
     return {
@@ -47,7 +46,7 @@ def pending_order_list():
     """Returns a formatted list of pending orders"""
     pending = unicode(ORDER_STATUS[1][0])
     orders = orders_at_status(pending)
-    
+
     return {
         'orders' : orders,
         'multihost' : is_multihost_enabled()

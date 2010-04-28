@@ -1,0 +1,219 @@
+========
+Settings
+========
+
+The recommended way to get a working settings file and configure your first store is to use the :ref:`clonesatchmo <clonesatchmo>` program.
+However, if you would like to customize the settings by hand or dive into the details
+of how Satchmo's settings are used, this portion of the documentation will be useful.
+
+Customizing the settings
+------------------------
+
+Once Satchmo is installed on your PYTHONPATH, you will need to create a new project or integrate Satchmo
+into an existing project. Before proceeding with the next steps, please familiarize yourself with the
+sample projects, :ref:`see here for more <satchmo_sample_projects>`.
+
+Each of these projects show examples of how to configure Satchmo and integrate it with other Django applications.
+Once you are familiar with these examples, you can configure your project based on the notes below.
+
+Additionally, there is a streamlined satchmo directory structure in the skel directory. You may use this as the
+basis for your store.
+
+You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file
+called :file:`settings.py` is available in the projects/base directory to act as a template. You may
+use this file as a template for :file:`settings.py` or use the notes below to configure your existing one.
+
+Please remember to ensure that your Django database connections and settings are working properly before trying
+to add any pieces of satchmo.
+
+1. Ensure that :file:`/home/user/src/mystore/settings.py` has the following satchmo-specific configurations
+   (in addition to the defaults and your other app needs)::
+
+        import os
+        DIRNAME = os.path.abspath(os.path.dirname(__file__))
+        LOCAL_DEV = True
+
+        MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
+        MEDIA_URL = '/static/'
+
+        MIDDLEWARE_CLASSES = (
+        "django.middleware.common.CommonMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.middleware.locale.LocaleMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.middleware.doc.XViewMiddleware",
+        "threaded_multihost.middleware.ThreadLocalMiddleware",
+        "satchmo_store.shop.SSLMiddleware.SSLRedirect")
+
+        TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
+        TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo_store.shop.context_processors.settings',
+                                         'django.core.context_processors.auth',
+                                         )
+
+        INSTALLED_APPS = (
+                'django.contrib.sites',
+                'satchmo_store.shop',
+                'django.contrib.admin',
+                'django.contrib.auth',
+                'django.contrib.admindocs',
+                'django.contrib.contenttypes',
+                'django.contrib.comments',
+                'django.contrib.sessions',
+                'django.contrib.sitemaps',
+                'registration',
+                'keyedcache',
+                'livesettings',
+                'l10n',
+                'sorl.thumbnail',
+                'satchmo_store.contact',
+                'tax',
+                'tax.modules.no',
+                'tax.modules.area',
+                'tax.modules.percent',
+                'shipping',
+                'product',
+                'product.modules.configurable',
+                'payment',
+                'payment.modules.dummy',
+                'payment.modules.giftcertificate',
+                'satchmo_utils',
+                'app_plugins',
+                )
+
+        AUTHENTICATION_BACKENDS = (
+            'satchmo_store.accounts.email-auth.EmailBackend',
+            'django.contrib.auth.backends.ModelBackend'
+            )
+
+        #### Satchmo unique variables ####
+        #from django.conf.urls.defaults import patterns, include
+        SATCHMO_SETTINGS = {
+                            'SHOP_BASE' : '',
+                            'MULTISHOP' : False,
+                            'SSL'       : False,
+                            #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
+                            }
+
+        # Load the local settings
+        from local_settings import *
+
+.. note::
+    In order for the admin site to work properly, you must have satchmo_store.shop placed before django.contrib.admin
+
+2. Copy the :file:`local_settings` file to mystore::
+
+        cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py /home/user/src/mystore/local_settings.py
+
+3. You will need to verify the values assigned to the following items in :file:`local_settings.py`::
+
+        SITE_NAME
+        CACHE_BACKEND
+        CACHE_TIMEOUT
+        SITE_DOMAIN
+        LOGDIR
+        LOGFILE
+
+.. note::
+    Satchmo requires that your database be able to support utf-8 characters. This is
+    especially important for MySQL. If you are using MySQL, you may want to use the
+    following statement in your settings file to enforce utf-8 collation::
+
+        DATABASE_OPTIONS = {
+           'init_command' : 'SET NAMES "utf8"',
+           }
+
+.. note::
+    If you are using a Windows system, we recommend setting your MEDIA_ROOT using normalize_path as
+    shown below::
+
+        from satchmo_utils.thumbnail import normalize_path
+        MEDIA_ROOT = normalize_path(os.path.join(DIRNAME, 'static/'))
+
+
+Configure the rest of the required files
+----------------------------------------
+
+1. Next, you need to configure your :file:`urls.py` file. The most simple :file:`urls.py` file would look like this::
+
+        from django.conf.urls.defaults import *
+        from satchmo_store.urls import urlpatterns
+
+
+2. If you have additional urls you would like to add to your project, it would look like this::
+
+        from django.conf.urls.defaults import *
+        from satchmo_store.urls import urlpatterns
+
+        urlpatterns += patterns('',
+            (r'test/', include('simple.localsite.urls'))
+        )
+
+
+3. Copy over the static directory::
+
+        python manage.py satchmo_copy_static
+
+4. Ensure that you have a template directory setup. You only need to place templates in the directory if you are
+overriding existing templates.
+
+After you have installed everything, you should have a directory structure that looks similar to this::
+
+    mystore
+        |-- __init__.py
+        |-- local_settings.py
+        |-- manage.py
+        |-- satchmo.log
+        |-- settings.py
+        |-- simple.db
+        |-- static
+        |   |-- css
+        |   |   |-- blackbird.css
+        |   |   |-- jquery.autocomplete.css
+        |   |   `-- style.css
+        |   |-- images
+        |   |   |-- blackbird_icons.png
+        |   |   |-- blackbird_panel.png
+        |   |   |-- productimage-picture-default.jpg
+        |   |   |-- productimage-picture-default_jpg_85x85_q85.jpg
+        |   |   `-- sample-logo.bmp
+        |   `-- js
+        |       |-- blackbird.js
+        |       |-- jquery.ajaxQueue.js
+        |       |-- jquery.autocomplete.js
+        |       |-- jquery.bgiframe.js
+        |       |-- jquery.cookie.js
+        |       |-- jquery.form.js
+        |       |-- jquery.js
+        |       |-- satchmo_checkout.js
+        |       |-- satchmo_pay_ship.js
+        |       |-- satchmo_product.js
+        |       `-- satchmo_store.js
+        |-- templates
+        `-- urls.py
+
+Test and Install the Data
+-------------------------
+
+1. Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
+
+        python manage.py satchmo_check
+        Checking your satchmo configuration.
+        Your configuration has no errors.
+
+2. If any errors are identified, resolve them based on the error description.
+
+3. Sync the new satchmo tables::
+
+        python manage.py syncdb
+
+4. Load the country data stored in the l10n application::
+
+        python manage.py satchmo_load_l10n
+
+5. (Optional) Load the demo store data::
+
+        python manage.py satchmo_load_store
+
+6. (Optional) Load the US tax table::
+
+        python manage.py satchmo_load_us_tax

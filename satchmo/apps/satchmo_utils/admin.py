@@ -11,10 +11,8 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.auth.models import Message
 from django.http import HttpResponse, HttpResponseNotFound
 from django.utils.encoding import smart_str
-from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.text import truncate_words
 
@@ -22,7 +20,7 @@ import operator
 
 class ForeignKeySearchInput(forms.HiddenInput):
     """
-    A Widget for displaying ForeignKeys in an autocomplete search input 
+    A Widget for displaying ForeignKeys in an autocomplete search input
     instead in a <select> box.
     """
 

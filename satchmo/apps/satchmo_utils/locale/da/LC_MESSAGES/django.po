@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-22 19:02-0500\n"
+"PO-Revision-Date: 2010-03-23 23:03+0100\n"
+"Last-Translator: Mikkel Høgh <mikkel@hoegh.org>\n"
+"Language-Team: Dansk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: numbers.py:23
+#, python-format
+msgid "%(value)s is not a valid number"
+msgstr "%(value)s er ikke et gyldigt tal"
+
+#: numbers.py:35
+msgid "Please enter a positive number"
+msgstr "Skriv venligst et positivt tal"
+
+#: validators.py:5
+msgid "Please enter one and only one of those fields."
+msgstr "Udfyld venligst kun et af disse felter."
+
+#: validators.py:15
+msgid "These fields can not be the same."
+msgstr "Disse felter må ikke være ens."
+
+#: views.py:103
+msgid "Card type does not match card number."
+msgstr "Korttypen stemmer ikke med kortnummeret."
+
+#: views.py:105
+msgid "Invalid credit card number."
+msgstr "Ugyldigt kreditkortnummer."
+
+#: thumbnail/config.py:4
+msgid "Thumbnail Settings"
+msgstr ""
+
+#: thumbnail/config.py:9
+msgid "Thumbnail quality"
+msgstr ""
+
+#: thumbnail/config.py:10
+msgid ""
+"Use a 1-100 value here, which will change the quality of JPG thumbnails "
+"created for products and categories."
+msgstr ""
+
+#: thumbnail/config.py:16
+msgid "Rename product images?"
+msgstr ""
+
+#: thumbnail/config.py:17
+msgid "Automatically rename product images on upload?"
+msgstr ""
+
+#: thumbnail/widgets.py:21
+msgid "Change:"
+msgstr "Skift:"
+
+#: thumbnail/templates/widget/file.html:3
+msgid "Currently"
+msgstr "Nuværende"
+
+#: thumbnail/templates/widget/file.html:4
+msgid "Change"
+msgstr "Skift"

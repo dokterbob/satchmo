@@ -1,0 +1,40 @@
+{% load i18n satchmo_currency satchmo_discounts normalize_decimal %}{% block order_details_items %}{% trans "Items Ordered" %}
+--------------{% for item in order.orderitem_set.all %}
+{{ item }} - {{item.product|discount_price:sale|currency}} x {{item.quantity|normalize_decimal}} = {{item.sub_total|currency}}{% endfor %}{% endblock order_details_items %}
+
+{% block order_details_contact %}{% trans "Contact Information" %}
+-------------------
+{{ order.contact.full_name }}
+{{ order.contact.email }}
+{{ order.contact.primary_phone.phone }}{% endblock order_details_contact %}
+
+{% block order_details_billing %}{% trans "Billing Information" %}
+-------------------
+{{ order.bill_addressee }}
+{{ order.full_bill_street }}
+{{ order.bill_city }}
+{{ order.bill_state }}
+{{ order.bill_postal_code }}
+{{ order.bill_country }}{% endblock order_details_billing %}{% if order.is_shippable %}
+
+{% block order_details_shipping %}{% trans "Shipping Address" %}
+----------------
+{{ order.ship_addressee }}
+{{ order.full_ship_street }}
+{{ order.ship_city }}
+{{ order.ship_state }}
+{{ order.ship_postal_code }}
+{{ order.ship_country }}{% endblock order_details_shipping %}
+
+{% block order_details_shipping_method %}{% trans "Shipping Method" %}
+---------------
+{{ order.shipping_description }}
+{{ order.shipping_method }}
+{{ order.shipping_sub_total|currency }}{% endblock order_details_shipping_method %}{% endif %}
+
+{% block order_details_total %}{% trans "Total" %}
+-----{% if order.discount %}
+{% trans "Discount" %} - {{order.discount|currency}}{% endif %}{% if order.is_shippable %}
+{% trans "Shipping" %} + {{order.shipping_sub_total|currency}}{% endif %}{% if order.tax %}
+{% trans "Tax" %} + {{order.tax|currency}}{% endif %}
+{% trans "Total" %} = {{order.total|currency}}{% endblock order_details_total %}

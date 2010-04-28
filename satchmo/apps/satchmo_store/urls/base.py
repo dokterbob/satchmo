@@ -2,7 +2,7 @@
 
 Split out from urls.py to allow much easier overriding and integration with larger apps.
 """
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include
 from signals_ahoy.signals import collect_urls
 from product.urls.base import adminpatterns as prodpatterns
 from shipping.urls import adminpatterns as shippatterns

@@ -1,4 +1,5 @@
 from django.core.management.base import NoArgsCommand
+from django.core import urlresolvers
 import sys
 import django
 from decimal import Decimal
@@ -17,6 +18,8 @@ class Command(NoArgsCommand):
             errors.append("Satchmo is not installed correctly. Please verify satchmo is on your sys path.")
         print "Using Django version %s" % django.get_version()
         print "Using Satchmo version %s" % satchmo_store.get_version()
+        
+        # Try importing all our dependencies
         try:
             import Crypto.Cipher
         except ImportError:
@@ -53,9 +56,22 @@ class Command(NoArgsCommand):
         except ImportError:
             errors.append("App plugins is not installed.")
         try:
+            import livesettings
+        except ImportError:
+            errors.append("Livesettings is not installed.")
+        try:
+            import keyedcache
+        except ImportError:
+            errors.append("Keyedcache is not installed.")
+        try:
             cache_avail = settings.CACHE_BACKEND
         except AttributeError:
             errors.append("A CACHE_BACKEND must be configured.")
+        # Try looking up a url to see if there's a misconfiguration there    
+        try:
+            url = urlresolvers.reverse('satchmo_search')
+        except Exception, e:
+            errors.append("Unable to resolve url. Received error- %s" % e)
         from l10n.l10n_settings import get_l10n_default_currency_symbol
         if not isinstance(get_l10n_default_currency_symbol(),types.UnicodeType):
             errors.append("Your currency symbol should be a unicode string.")

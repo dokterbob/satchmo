@@ -2,7 +2,7 @@
 URLConf for Satchmo Contacts.
 """
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns
 from signals_ahoy.signals import collect_urls
 from satchmo_store import contact
 

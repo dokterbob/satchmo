@@ -1,8 +1,10 @@
 """Protx Form"""
 from django import forms
 from django.utils.translation import ugettext as _
+from livesettings import config_value
 from payment.forms import CreditPayShipForm, MONTHS
 from payment.modules.protx.config import REQUIRES_ISSUE_NUMBER
+import datetime
 import logging
 
 log = logging.getLogger('payment.protx.forms')
@@ -23,7 +25,9 @@ class ProtxPayShipForm(CreditPayShipForm):
             if user and user.is_authenticated() and user.contact_set.count() > 0:
                 cf.initial = self.tempContact.full_name
         self.requires_issue_number = REQUIRES_ISSUE_NUMBER
-        self.fields['year_start'].choices = self.fields['year_expires'].choices
+        num_years = config_value('PAYMENT', 'CC_NUM_YEARS')
+        year_now = datetime.date.today().year
+        self.fields['year_start'].choices = [(year, year) for year in range(year_now, year_now-num_years-1, -1)]
 
     def save(self, request, cart, contact, payment_module, data=None):
         """Save the order and the credit card details."""

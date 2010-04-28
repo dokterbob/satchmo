@@ -1,20 +1,15 @@
 from django.db.models import signals
 from django.db.models.fields.files import ImageField
 from livesettings import config_value, SettingNotSet
-from satchmo_utils.thumbnail.utils import remove_model_thumbnails, rename_by_field
+from satchmo_utils.thumbnail.utils import remove_file_thumbnails, rename_by_field
 from satchmo_utils import normalize_dir
 import logging
 import os
 
-log = logging.getLogger('thumbnail.fields')
+#ensure config is loaded
+import satchmo_utils.thumbnail.config
 
-def _delete(sender, instance=None, **kwargs):
-    if instance:
-        if hasattr(instance.picture,'path') and os.path.isfile(instance.picture.path):
-            if os.path.isfile(instance.picture.path):
-                remove_model_thumbnails(instance)
-        else:
-            remove_model_thumbnails(instance)
+log = logging.getLogger('thumbnail.fields')
 
 def upload_dir(instance, filename):
     raw = "images/"
@@ -28,7 +23,6 @@ def upload_dir(instance, filename):
 
     updir = normalize_dir(raw)
     return os.path.join(updir, filename)
-
 
 class ImageWithThumbnailField(ImageField):
     """ ImageField with thumbnail support
@@ -59,16 +53,17 @@ class ImageWithThumbnailField(ImageField):
         if hasattr(self, '_renaming') and self._renaming:
             return
         if self.auto_rename is None:
-            try:
-                self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
-            except SettingNotSet:
-                self.auto_rename = False
+            # if we get a SettingNotSet exception (even though we've already
+            # imported/loaded it), that's bad, so let it bubble up; don't try
+            # to guess a default (which should be set in the default config in
+            # the first place.)
+            self.auto_rename = config_value('THUMBNAIL', 'RENAME_IMAGES')
 
         image = getattr(instance, self.attname)
         if image and self.auto_rename:
             if self.name_field:
                 field = getattr(instance, self.name_field)
-                image = rename_by_field(image.path, '%s-%s-%s' \
+                image = rename_by_field(image.name, '%s-%s-%s' \
                                         % (instance.__class__.__name__,
                                            self.name,
                                            field
@@ -76,7 +71,7 @@ class ImageWithThumbnailField(ImageField):
                                         )
             else:
                 # XXX this needs testing, maybe it can generate too long image names (max is 100)
-                image = rename_by_field(image.path, '%s-%s-%s' \
+                image = rename_by_field(image.name, '%s-%s-%s' \
                                         % (instance.__class__.__name__,
                                            self.name,
                                            instance._get_pk_val()
@@ -87,8 +82,28 @@ class ImageWithThumbnailField(ImageField):
             instance.save()
             self._renaming = False
 
+    def _delete_thumbnail(self, sender, instance=None, **kwargs):
+        image = getattr(instance, self.attname)
+        if hasattr(image, 'path'):
+            remove_file_thumbnails(image.path)
+
     def contribute_to_class(self, cls, name):
         super(ImageWithThumbnailField, self).contribute_to_class(cls, name)
-        signals.pre_delete.connect(_delete, sender=cls)
+        signals.pre_delete.connect(self._delete_thumbnail, sender=cls)
         signals.post_save.connect(self._save_rename, sender=cls)
 
+try:
+    # South introspection rules for our custom field.
+    from south.modelsinspector import add_introspection_rules
+
+    add_introspection_rules([(
+        (ImageWithThumbnailField, ),
+        [],
+        {
+            'auto_rename': ["auto_rename", {"default": None}],
+            'name_field': ["name_field", {"default": None}],
+            'auto_rename': ["auto_rename", {"default": None}],
+        },
+    )], ['satchmo_utils\.thumbnail\.field'])
+except ImportError:
+    pass
