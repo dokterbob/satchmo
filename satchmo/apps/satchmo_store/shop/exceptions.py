@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _, ugettext
+from django.utils.translation import ugettext_lazy as _
 
 class CartAddProhibited(Exception):
     """Raised when a `signals.satchmo_cart_add_verify` listener vetoes adding an item to the cart.
