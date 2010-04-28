@@ -75,6 +75,6 @@ def send_ship_notice(order, template='shop/email/order_shipped.txt', template_ht
     c = {'order': order}
     subject = _("Your order from %(shop_name)s has shipped")
 
-    send_store_mail(subject, c, template, format_subject=True,
-                    template_html=template_html, send_to_store=True,
+    send_store_mail(subject, c, template, [order.contact.email],
+                    format_subject=True, template_html=template_html,
                     sender=ship_notice_sender)
