@@ -1,8 +1,8 @@
 Products
 ========
 
-The core of any online store is the product  you are selling.  Some people may have very simple needs for categorizing and describing their products, 
-while others may have much more complex needs.  Satchmo's product framework tries to strike a balance, enabling easy product configuration but supporting 
+The core of any online store is the product  you are selling.  Some people may have very simple needs for categorizing and describing their products,
+while others may have much more complex needs.  Satchmo's product framework tries to strike a balance, enabling easy product configuration but supporting
 complex products if your needs demand.
 
 .. index::
@@ -28,35 +28,35 @@ Out of the box, Satchmo supports the traditional hierarchical method for categor
 
    - Fiction
    - Non-fiction
-    
+
 Some things to keep in mind with Satchmo's implementation:
 
  * You are not limited to the number of categories or the depth of categories.
  * You are allowed to add products to 1 or more product categories
- 
+
 When entering a category in the admin interface, you will have several fields to fill in.  Below is a description of each field and how it is used:
 
   :Name:  The name of this specific category.  It is the text seen by the user to describe this category.  In the example above, Movies, Action, etc. are all names.
-    
+
   :Slug:  This is a prepopulated field that is used in the url to identify the category.  One aspect that Django encourages is well designed urls.  The slug field is commonly used so that a url "makes sense" when you look at it.  The nice side effect of this is that in some cases, search engines will give higher ranking for sites with cleaner urls.
-    
+
   :Parent:    If a category is at the top of the tree, then there is no parent.  In our example above, Movies and Books have no parents.  While Action, Comedy, Black and White would all have Movies as a parent.
-    
+
   :Meta:  When an HTML page is constructed, certain meta information can be added to the page which makes it easier for search engines to classify your pages and your products.  This field is used to enter information about your category that may not be readily seen by just looking at a description.
-    
+
   :Description:   This is a free form field that describes this category.  You can use this to help guide users in your site.  It's also helpful for search engines.
 
   :Ordering:  This field can be used to specify which order the categories should be displayed.
-    
+
   :Active:    This allows a category to be populated with information but to be set inactive.
 
 .. index::
    single: Product; fields
-   
+
 Product
 -------
 
-A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.  
+A Product is the main focus of your store.  It is the "thing" that a person going to your store would see.
 
 To activate the various product modules, they need to be enabled in your settings.py
 file. For example::
@@ -75,38 +75,38 @@ file. For example::
 Once the products have been added, there are many fields you can use to configure your Items.
 
     :Category:  See the description above.  This is where you choose one or more categories where a person could find this product.
-        
+
     :Name:  This is the full name of an product.  Think of it as the title of the product.
-        
+
     :Slug:  This is similar to the slug field in category.  It is a brief description of the item that will show up in the url and uniquely identify this product.
-        
+
     :Description:    Free form text fields that tell a potential customer about this item and why they may want to purchase it.
 
     :Short_description:    This is meant for a brief 1 or 2 line description that can be shown by your templates on the product category pages and similar places.
 
     :Date_added:    The date you added this product to your store.  It could be useful for showing a list of new products.
-        
+
     :Active:    A flag to identify which items are still valid in the store.  If you decide you don't want to show an item for purchase, we recommend making it Active=False instead of trying to delete it.
-        
+
     :Featured:   Another flag which can be used to identify special items that you may want to highlight in your site. In the default templates, featured items show-up on the front page of the store.
-        
+
     :Items in stock:    The inventory of this specific item.
 
     :Meta:    This meta field is similar to the one described above in the category.  It's basically some additional descriptive language you might want to include in your HTML that does not already show up in the description.
-        
+
     :Weight, Length and Height:    These dimensions are for your use in displaying the item's info. It can also be used for shipping calculations.
 
     :Taxable:    A flag to tell whether or not tax should be calculated for this product.
-        
+
     :Tax_class:    Allows you to set the rate at which tax is calculated.
 
     :Related_items:
-        Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book 
+        Certain products may naturally be grouped together.  If you were to purchase a movie, you might want to include links to the book
         based on the movie or maybe a movie poster.  This would be the place to record those linkages. By default, this does not show up in the
         store. You will need to modify your templates to display it.
-        
+
     :Also_purchased:    Another field to show relationships between products.  This can be useful if you want to try to increase sales by showing what others have purchased when they bought this product.
-        
+
     :Price:    An item has multiple ways to determine a price.  For a simple single-price all the time item, just enter a price with a "Discount Quantity" of 1, and a blank "Expires" date.  More detailed options are spelled out in the Price and ConfigurableProduct sections below.
 
     :Images:    Add an image to your product, see Images section below.
@@ -137,14 +137,14 @@ Price
 The final choice you have with your products is if there is additional pricing you would like to apply for bulk or special discounts.  For instance, you may want to charge someone $10 for 1-5 shirts but only $7 if they order 6 or more.  This model allows you to do such configuration.
 
     :Price: Override the price for this sub item if it meets one of the other criteria identified below.
-        
+
     :Quantity:  The number of items needed to qualify for the price change.
-        
+
     :Expires:    Date when this offer is no longer valid.  This can be used for various promotions.
 
 .. index::
    single: Product; images
-   
+
 Images
 ^^^^^^
 
@@ -153,10 +153,10 @@ In addition to the information discussed above, you can add as many images as yo
 Images only have a couple of fields:
 
     :Picture:    This is the image of your item that you upload to the web server.  The actual thumbnail size is set in your templates.
-        
+
     :Caption:    A description of this image.  This field may be used to describe the different angles that images show.
-        
-    :Sort:    If you would like control of the order in which the images are displayed, this field can be used. 
+
+    :Sort:    If you would like control of the order in which the images are displayed, this field can be used.
 
 .. index::
    single: Product; options
@@ -174,9 +174,9 @@ Continuing on with the shirt example, you will probably end up with some similar
 Here are the fields in the option groups:
 
     :Name:    A description of the group.  This is displayed in the product page to describe the choices available to the user.  In our shirt instance, "size" would be appropriate.
-        
+
     :Description:    This field is used for administrative purposes.  Size may make sense when looking at a product but what if you have shirts, shoes and hats?  How do you know which group these sizes apply to?  Use this field to write details about the size.  For instance, you could have an option group with the description "Shirt Sizes", "Hat Sizes" and "Shoe Sizes."
-        
+
     :Sort Order:    This helps you order the options in the way you would like them displayed.  For instance, you may want colors to show before sizes.
 
 Options
@@ -184,10 +184,10 @@ Options
 
 In our example, if an option group is size, then the options would be "small", "medium" or "large."  The nice thing about these options is that you can configure these to change the price of your product.  If a large shirt costs more than a small shirt, then you can assign the incremental cost to the "large" option item and the correct price will be shown in the users cart and order.
 
-    :Name:    This is the displayed value of the option.  You may want to show people "Small" but only store "S" in the database.  
-        
+    :Name:    This is the displayed value of the option.  You may want to show people "Small" but only store "S" in the database.
+
     :Value:    Corresponds with the Name above.  In this example, the value would be "S."
-        
+
     :Price Change:    If you would like this option to modify the Item's price, enter a positive or negative number here.
 
 .. index::
@@ -200,15 +200,15 @@ Configurable Products
 ConfigurableProduct is a modifier for a product that allows you to associate an OptionGroup with a particular Product.
 
     :Option group:    This is a collection of descriptions that identify this item.  See more details below.
-        
+
     :Create_Variations:    This is a special option that allows you to create ProductVariations.
 
     :Variations:    Variations are all Products that are never displayed directly to a customer, but represent the actual product as you would have it on the shelf.  For example, if your ConfigurableProduct is a t-shirt, then you will probably have ProductVariations for "Large Green t-shirt", "Small Blue t-shirt", etc.  It's easiest to have these generated for you using the create_variations option above, but once they are created, you can edit these individually to do things such as set a different price for the XL shirt.
-        
+
 .. index::
    single: Product; variations
    single: Product Variation
-   
+
 Product Variations
 ^^^^^^^^^^^^^^^^^^
 
@@ -221,31 +221,94 @@ As described above a ProductVariation can be thought of as the actual product yo
 Downloadable Product
 ^^^^^^^^^^^^^^^^^^^^
 
-A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.  
+A downloadable product is a virtual product that will be electronically delivered to a customer after the purchase is completed.
 In Satchmo, this is accomplished by emailing a unique url to a customer after the purchase.  This url can be restricted so that the possibility of multiple downloads is minimized.  Depending on your product you may want to add additional security controls but that is outside the scope of Satchmo.
 
-In order to use a downloadable product, you need to make sure you have a Product created as described above.  Also, make sure that you have the Downloadable Product type enabled in the configuration settings.
+In order for the downloadable product to be secured, you will need to ensure
+that the protected directory can not be browsed to directly; you should also
+ensure that the directory where the file is stored on the server is protected
+from other users.
 
-From the Product detail page, choose "Add Downloadable Product"
+Adding a Downloadable Product
++++++++++++++++++++++++++++++
 
-This screen will allow you to upload your file and specifiy the number of allowed downloads, the number of minutes it will remain active and a final flag for whether or not the file is still active.  After saving the changes, the product will be enabled for downloading.
+#. Add the dotted name ``'product.modules.downloadable'`` to
+   ``INSTALLED_APPS`` in your settings.py.
+#. Create the tables by with ``python manage.py syncdb``.
+#. In the "Downloadable" section of the admin site, add a new instance of a
+   Downloadable Product as you would usually do.
 
-In order for the downloadable product to be secured, you must make sure that your web server supports the x-send-file header.  Both Apache, lighttpd and nginx do but you'll need to refer to the web server documentation for details.  Lighttpd and nginx natively supports this but Apache needs mod_xsendfile to work correctly.
+The last screen will allow you to:
 
-In addition to configuring the x-send-file header, you will need to ensure that the protected directory can not be browsed to directly.  An example lighttpd configuration is::
+- upload your file;
+- specify the number of allowed downloads;
+- specify the number of minutes it will remain active;
+- a flag for whether or not the file is still active.
 
-    $HTTP["url"] =~ "^/static/protected/" {
-    url.access-deny = ("")
-    }   
+After saving the changes, the product will be enabled for downloading.
+
+Storage and Serving Location of Downloadable Products
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+As Satchmo relies on the default storage class, the files will be stored in
+``PRODUCT.PROTECTED_DIR`` (by default, ``"protected"``), a subdirectory of
+``django.core.files.storage.default_storage.location`` (usually,
+``settings.MEDIA_ROOT``).
+
+The Downloadable Products will be served from ``/<PRODUCT.PROTECTED_DIR>/``. To
+modify this location, please see
+:func:`satchmo_store.shop.signals.sendfile_url_for_file`.
+
+Configuration
++++++++++++++
+
+In the below configuration examples, the following assumptions are made:
+
+  - ``"/usr/local/www/website/static"`` to be ``default_storage.location``;
+  - ``PRODUCT.PROTECTED_DIR`` to be the default ``"protected"``;
+  - the URL ``"/protected/"`` to be location from which the products will be
+    served.
+
+Apache
+~~~~~~
+
+Install mod_xsendfile, and add this to your configuration::
+
+    <Location /protected/>
+        XSendFile on
+    </Location>
+
+.. TODO: add denying of direct hits, and aliasing.
+
+Lighttpd
+~~~~~~~~
+
+Set ``"allow-x-send-file"`` to ``"enable"`` in your FastCGI/SCGI config, and
+add also the below to your configuration file::
+
+    $HTTP["url"] =~ "^/protected/" {
+        url.access-deny = ("")
+        server.document-root = "/usr/local/www/website/static"
+    }
+
+Nginx
+~~~~~
+
+Add this to your configuration file::
+
+    location /protected/ {
+        internal;
+        root /usr/local/www/website/static;
+    }
 
 .. index::
    single: Product; custom
    single: Custom Product
-   
+
 Custom Product
 ^^^^^^^^^^^^^^
 
-A custom product is one that is typically assembled or made to order based on the customer's needs. A common situation is a computer configurator that allows a customer to tailor the computer to their needs. Once the order is submitted the store owner will then build or configure that product. 
+A custom product is one that is typically assembled or made to order based on the customer's needs. A common situation is a computer configurator that allows a customer to tailor the computer to their needs. Once the order is submitted the store owner will then build or configure that product.
 
 Once you have created a product as described above, you may wish to use it as a basis for a custom product. The most important additional information you need to associate with your product is the option groups or custom text fields the customer may use to create their product. The option groups are no different from the ones described above. This gives you tremendous flexibility to vary the price of the product based on the chosen options. The custom text fields are free form text fields meant to capture special notes or instructions related to the order.
 
@@ -287,7 +350,7 @@ On this screen, you will enter your subscription payment terms as described belo
 
     :Trial Terms:
         Use this section to add trial pricing to your product (ie only $4.95 for the first 7 days, then $29.95 a month thereafter).
-            
+
             :Price:  The price of the trial period.  Enter 0 for a free trial, or a decimal number for a non-free trial (ie $9.94)
             :Trial Duration: The number of days the trial will last. Leave both price and trial duration blank if you do not want to add a trial.
 
@@ -296,14 +359,14 @@ On this screen, you will enter your subscription payment terms as described belo
 
 Cronjob:
 
-    
-    In order for recurring billing to work, you need to setup a cronjob on your server to run once a day 
+
+    In order for recurring billing to work, you need to setup a cronjob on your server to run once a day
     (preferably in the middle of the night).  There are a couplf of options to do this.
-    
+
     Using satchmo's custom management command::
-    
+
         0 23 * * * python manage.py satchmo_bill_recurring
-    
+
     Using lynx::
 
         0 23 * * * /usr/bin/lynx -source http://yourdomain.com/shop/checkout/cron/?key=YOURPASSKEY
@@ -318,7 +381,7 @@ Cronjob:
 .. index::
    single: Product; gift certificate
    single: Gift certificate
-   
+
 Gift Certificate Product
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -329,8 +392,8 @@ Once you have enabled the gift certificate product type and payment methods, you
 A short tutorial
 ----------------
 
-For a more detailed tutorial that covers how to add a product, please review this :doc:`tutorial <tutorial1>`. 
+For a more detailed tutorial that covers how to add a product, please review this :doc:`tutorial <tutorial1>`.
 
 The product variation manager contains a set of helper functions for managing product variations.
-It is accessed at /product/admin/variations/ and provides a streamlined process for managing all of 
+It is accessed at /product/admin/variations/ and provides a streamlined process for managing all of
 your configurable products.

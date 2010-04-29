@@ -233,6 +233,27 @@ satchmo_post_copy_item_to_order=django.dispatch.Signal()
 #satchmo_shipping_price_query.send(order, adjustment=shipadjust)
 satchmo_shipping_price_query = django.dispatch.Signal()
 
+#: Sent to determine where to redirect a user for a ``DownloadableProduct``.
+#:
+#: :param sender: ``None``
+#: :type sender: ``None``
+#:
+#: :param file: The ``'file'`` field of the ``DownloadableProduct``.
+#: :type file: ``django.db.models.fields.files.FileField``
+#:
+#: :param product: The product which is being downloaded.
+#: :type product: ``product.models.DownloadableProduct``
+#:
+#: :param url_dict: A dictionary containing a single entry, ``'url'``, the URL
+#:   which the user will be redirected to. Listeners should modify this value
+#:   to change the redirect URL.
+#:
+#: .. Warning::
+#:    For a sane ``filename`` parameter in the ``Content-Disposition`` header,
+#:    users are cautioned against appending a trailing slash(``'/'``) to the
+#:    URL.
+sendfile_url_for_file = django.dispatch.Signal()
+
 #
 # Signals sent by email system
 #
