@@ -98,10 +98,10 @@ class CustomProduct(models.Model):
         """
         return get_all_options(self, ids_only=True)
 
-    def save(self):
+    def save(self, **kwargs):
         if hasattr(self.product,'_sub_types'):
             del self.product._sub_types
-        super(CustomProduct, self).save()
+        super(CustomProduct, self).save(**kwargs)
 
 
     class Meta:

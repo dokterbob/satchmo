@@ -17,15 +17,15 @@ log = logging.getLogger('satchmo_store.contact.forms')
 selection = ''
 
 def area_choices_for_country(country, translator=_):
-    if not country:
-        return None
-    areas = country.adminarea_set.filter(active=True)
-    if areas and areas.count()>0:
-        areas = [(area.abbrev or area.name, area.name) for area in areas]
-        areas.insert(0,('',translator("---Please Select---")))
-        return areas
-    else:
-        return None
+    choices = [('',translator("Not Applicable"))]
+
+    if country:
+        areas = country.adminarea_set.filter(active=True)
+        if areas.count()>0:
+            choices = [('',translator("---Please Select---"))]
+            choices.extend([(area.abbrev or area.name, area.name) for area in areas])
+
+    return choices
 
 class ProxyContactForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -102,17 +102,27 @@ class ContactInfoForm(ProxyContactForm):
             billing_areas = area_choices_for_country(billing_country)
             shipping_areas = area_choices_for_country(shipping_country)
 
-            if billing_areas is not None:
-                billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
-                self.fields['state'] = forms.ChoiceField(choices=billing_areas, initial=billing_state, label=_('State'))
+            billing_state = (self._contact and getattr(self._contact.billing_address, 'state', None)) or selection
+            self.fields['state'] = forms.ChoiceField(choices=billing_areas, initial=billing_state, label=_('State'),
+                # if there are not states, then don't make it required. (first
+                # choice is always either "--Please Select--", or "Not
+                # Applicable")
+                required=len(billing_areas)>1)
 
-            if shipping_areas is not None:
-                shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
-                self.fields['ship_state'] = forms.ChoiceField(choices=shipping_areas, initial=shipping_state, required=False, label=_('State'))
+            shipping_state = (self._contact and getattr(self._contact.shipping_address, 'state', None)) or selection
+            self.fields['ship_state'] = forms.ChoiceField(choices=shipping_areas, initial=shipping_state, required=False, label=_('State'))
 
         for fname in self.required_billing_data:
             if fname == 'country' and self._local_only:
                 continue
+
+            # ignore the user if ENFORCE_STATE is on; if there aren't any
+            # states, we might have made the billing state field not required in
+            # the enforce_state block earlier, and we don't want the user to
+            # make it required again.
+            if fname == 'state' and self.enforce_state:
+                continue
+
             self.fields[fname].required = True
 
         # if copy_address is on, turn of django's validation for required fields

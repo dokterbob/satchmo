@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
@@ -21,35 +21,22 @@ msgid "Only authenticated users can check out"
 msgstr "Только зарегистрированные пользователи могут произвести оплату"
 
 #: .\config.py:10
-msgid ""
-"Users will be required to authenticate (and create an account if neccessary) "
-"before checkout."
-msgstr ""
-"Пользователи будут должны залогиниться (и зарегистрироваться при "
-"необходимости) перед оформлением платежа."
+msgid "Users will be required to authenticate (and create an account if neccessary) before checkout."
+msgstr "Пользователи будут должны залогиниться (и зарегистрироваться при необходимости) перед оформлением платежа."
 
 #: .\config.py:18
 msgid "Required billing data"
 msgstr "Требуются данные об оплате"
 
 #: .\config.py:20
-msgid ""
-"Users may be required to provide some set of billing address. Other fields "
-"are optional. You may shorten the checkout process here, but be careful, as "
-"this may leave you orders with almost no customer data! Some payment modules "
-"may override this setting."
-msgstr ""
-"У пользователей будут запрошены только адреса оплаты. Остальные поля "
-"опциональны. Вы можете упростить процесс оплаты, но будьте осторожны, так "
-"как это может оставить заказы без информации о клиенте! Некоторые методы "
-"оплаты могут переопределять эту настройку."
+msgid "Users may be required to provide some set of billing address. Other fields are optional. You may shorten the checkout process here, but be careful, as this may leave you orders with almost no customer data! Some payment modules may override this setting."
+msgstr "У пользователей будут запрошены только адреса оплаты. Остальные поля опциональны. Вы можете упростить процесс оплаты, но будьте осторожны, так как это может оставить заказы без информации о клиенте! Некоторые методы оплаты могут переопределять эту настройку."
 
 #: .\config.py:26 .\config.py:69 .\forms.py:36 .\models.py:140
 msgid "Email"
 msgstr "Электронная почта"
 
 #: .\config.py:27 .\forms.py:37 .\models.py:133
-#, fuzzy
 msgid "Title"
 msgstr "Обращение"
 
@@ -66,7 +53,6 @@ msgid "Phone"
 msgstr "Телефон"
 
 #: .\config.py:31 .\config.py:50 .\forms.py:41 .\forms.py:49 .\models.py:273
-#, fuzzy
 msgid "Addressee"
 msgstr "Адресат"
 
@@ -124,12 +110,8 @@ msgid "Account Verification"
 msgstr "Подтверждение регистрации"
 
 #: .\config.py:66
-msgid ""
-"Select the style of account verification.  'Immediate' means no verification "
-"needed."
-msgstr ""
-"Выберите тип подтверждения регистрации.  'Моментальный' означает то, что "
-"подтверждение не требуется."
+msgid "Select the style of account verification.  'Immediate' means no verification needed."
+msgstr "Выберите тип подтверждения регистрации.  'Моментальный' означает то, что подтверждение не требуется."
 
 #: .\config.py:68
 msgid "Immediate"
@@ -140,12 +122,10 @@ msgid "Days to verify account"
 msgstr "Дней на подтверждение регистрации"
 
 #: .\forms.py:38
-#, fuzzy
 msgid "First Name"
 msgstr "Имя"
 
 #: .\forms.py:39
-#, fuzzy
 msgid "Last Name"
 msgstr "Фамилия"
 
@@ -154,7 +134,6 @@ msgid "State"
 msgstr "Область (штат, регион)"
 
 #: .\forms.py:47 .\forms.py:54
-#, fuzzy
 msgid "ZIP code/Postcode"
 msgstr "Почтовый индекс"
 
@@ -187,7 +166,6 @@ msgid "Newsletter"
 msgstr "Новостная рассылка"
 
 #: .\models.py:15 .\models.py:23 .\models.py:34 .\models.py:41
-#, fuzzy
 msgid "Key"
 msgstr "Ключ"
 
@@ -196,9 +174,8 @@ msgid "Name"
 msgstr "Название"
 
 #: .\models.py:30
-#, fuzzy
 msgid "Contact organization type"
-msgstr "Контактные данные"
+msgstr "Тип организации контакта"
 
 #: .\models.py:72 .\models.py:221
 msgid "Type"
@@ -214,9 +191,8 @@ msgstr "Дата создания"
 
 #: .\models.py:75 .\models.py:141 .\supplier\models.py:38
 #: .\supplier\models.py:83
-#, fuzzy
 msgid "Notes"
-msgstr "Не указан"
+msgstr "Примечания"
 
 #: .\models.py:90
 msgid "Organizations"
@@ -372,9 +348,8 @@ msgid "Supplier Orders"
 msgstr "Заказы поставщиков"
 
 #: .\supplier\models.py:63
-#, fuzzy
 msgid "Line Item"
-msgstr "Наименование заказа"
+msgstr "Строка заказа"
 
 #: .\supplier\models.py:64
 msgid "Line Item Quantity"
@@ -401,9 +376,8 @@ msgid "Status"
 msgstr "Статус"
 
 #: .\supplier\models.py:84
-#, fuzzy
 msgid "Date"
-msgstr "Область (штат, регион)"
+msgstr "День"
 
 #: .\supplier\models.py:90
 msgid "Supplier Order Status"
@@ -418,9 +392,8 @@ msgid "Billing Information"
 msgstr "Платежная информация"
 
 #: .\templates\contact\_ContactInfoForm_billing.html.py:6
-#, fuzzy
 msgid "Bill To"
-msgstr "Оплачен"
+msgstr "Оформить на"
 
 #: .\templates\contact\_ContactInfoForm_billing.html.py:6
 #: .\templates\contact\_ContactInfoForm_shipping.html.py:9
@@ -433,12 +406,10 @@ msgid "Zipcode/Postcode"
 msgstr "Почтовый индекс"
 
 #: .\templates\contact\_ContactInfoForm_shipping.html.py:4
-#, fuzzy
 msgid "Shipping Information"
-msgstr "Платежная информация"
+msgstr "Информация о доставке"
 
 #: .\templates\contact\_ContactInfoForm_shipping.html.py:9
-#, fuzzy
 msgid "Ship To"
 msgstr "Доставка в"
 
@@ -451,9 +422,8 @@ msgid "Existing members login"
 msgstr "Вход для зарегистрированных клиентов"
 
 #: .\templates\contact\_login_form.html.py:21
-#, fuzzy
 msgid "Email Address:"
-msgstr "Платежный адрес:"
+msgstr "Адрес электронной почты:"
 
 #: .\templates\contact\_login_form.html.py:30
 msgid "Password:"
@@ -485,12 +455,10 @@ msgstr[2] "Пожалуйста, исправьте ошибки ниже."
 #: .\templates\contact\login_signup.html.py:47
 #: .\templates\contact\login_signup_address.html.py:51
 msgid "Sign me up for Email Updates about new products and special offers!"
-msgstr ""
-"Присылайте мне оповещения о новых продуктах и специальных предложениях!"
+msgstr "Присылайте мне оповещения о новых продуктах и специальных предложениях!"
 
 #: .\templates\contact\login_signup.html.py:53
 #: .\templates\contact\login_signup_address.html.py:65
-#, fuzzy
 msgid "Create"
 msgstr "Создать"
 
@@ -541,7 +509,6 @@ msgstr "Обновить"
 
 #: .\templates\contact\view_profile.html.py:11
 #: .\templates\registration\account_info.html.py:9
-#, fuzzy
 msgid "Your Account info"
 msgstr "Настройки учетной записи"
 
@@ -560,9 +527,8 @@ msgid "Email:"
 msgstr "Электронная почта:"
 
 #: .\templates\contact\view_profile.html.py:21
-#, fuzzy
 msgid "Organization:"
-msgstr "Организация"
+msgstr "Организация:"
 
 #: .\templates\contact\view_profile.html.py:23
 msgid "Birthday:"
@@ -610,11 +576,8 @@ msgid "Order History"
 msgstr "История заказов"
 
 #: .\templates\contact\view_profile.html.py:41
-msgid ""
-"Sorry, the user you've logged in as doesn't have any contact information."
-msgstr ""
-"Извините, пользователь, под которым вы вошли, не имеет никакой контактной "
-"информации."
+msgid "Sorry, the user you've logged in as doesn't have any contact information."
+msgstr "Извините, пользователь, под которым вы вошли, не имеет никакой контактной информации."
 
 #: .\templates\contact\view_profile.html.py:41
 msgid "Probably because you are an admin."
@@ -640,20 +603,12 @@ msgstr "Спасибо за регистрацию! Теперь вы вошли
 #: .\templates\registration\activate.html.py:17
 #, python-format
 msgid "In the future, you can log in using your email address (%(email)s)."
-msgstr ""
-"В будущем, вы сможете входить на сайт, используя ваш адрес электронной почты "
-"(%(email)s)."
+msgstr "В будущем, вы сможете входить на сайт, используя ваш адрес электронной почты (%(email)s)."
 
 #: .\templates\registration\activate.html.py:21
 #, python-format
-msgid ""
-"Either your activation link was incorrect, or the activation key for your "
-"account has expired. Activation keys are only valid for %(expiration_days)s "
-"days after registration."
-msgstr ""
-"Либо ваша активационная ссылка неверна, либо срок действия активационного "
-"ключа для вашей учетной записи истек. Активационные ключи действительны "
-"только %(expiration_days)s дн. после регистрации."
+msgid "Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for %(expiration_days)s days after registration."
+msgstr "Либо ваша активационная ссылка неверна, либо срок действия активационного ключа для вашей учетной записи истек. Активационные ключи действительны только %(expiration_days)s дн. после регистрации."
 
 #: .\templates\registration\login.html.py:19
 msgid "Password"
@@ -696,12 +651,8 @@ msgid "Password Change"
 msgstr "Изменение пароля"
 
 #: .\templates\registration\password_change_form.html.py:12
-msgid ""
-"For the sake of security, please enter your old password, and then enter "
-"your new password twice."
-msgstr ""
-"Для безопасности, пожалуйста, введите сначала ваш старый пароль, затем "
-"введите ваш новый пароль дважды."
+msgid "For the sake of security, please enter your old password, and then enter your new password twice."
+msgstr "Для безопасности, пожалуйста, введите сначала ваш старый пароль, затем введите ваш новый пароль дважды."
 
 #: .\templates\registration\password_change_form.html.py:19
 msgid "Old password"
@@ -724,24 +675,16 @@ msgid "Password reset successful"
 msgstr "Успешный сброс пароля"
 
 #: .\templates\registration\password_reset_done.html.py:12
-msgid ""
-"We've e-mailed a new password to the e-mail address you submitted. You "
-"should receive it shortly."
-msgstr ""
-"Мы отправили вам новый пароль на адрес электронной почты, который вы "
-"предоставили. Вы получите его скоро."
+msgid "We've e-mailed a new password to the e-mail address you submitted. You should receive it shortly."
+msgstr "Мы отправили вам новый пароль на адрес электронной почты, который вы предоставили. Вы получите его скоро."
 
 #: .\templates\registration\password_reset_form.html.py:10
 msgid "Reset your password"
 msgstr "Сбросить ваш пароль"
 
 #: .\templates\registration\password_reset_form.html.py:12
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send a "
-"new password to you."
-msgstr ""
-"Забыли свой пароль? Введите ваш адрес электронной почты ниже, и мы отправим "
-"вам новый пароль."
+msgid "Forgotten your password? Enter your e-mail address below, and we'll send a new password to you."
+msgstr "Забыли свой пароль? Введите ваш адрес электронной почты ниже, и мы отправим вам новый пароль."
 
 #: .\templates\registration\password_reset_form.html.py:19
 msgid "E-mail address"
@@ -749,9 +692,7 @@ msgstr "Адресс электронной почты"
 
 #: .\templates\registration\password_reset_form.html.py:20
 msgid "Be sure to enter the same e-mail address you used to register."
-msgstr ""
-"Следует ввести такой же адрес электронной почты, который вы указали при "
-"регистрации."
+msgstr "Следует ввести такой же адрес электронной почты, который вы указали при регистрации."
 
 #: .\templates\registration\password_reset_form.html.py:21
 msgid "Reset password"
@@ -767,12 +708,8 @@ msgid "Thank you for signing up."
 msgstr "Спасибо за регистрацию."
 
 #: .\templates\registration\registration_complete.html.py:14
-msgid ""
-"An activation link has been sent to the email address you supplied, along "
-"with instructions for activating your account."
-msgstr ""
-"Активационная ссылка была отправлена на указанный вами адрес электронной "
-"почты вместе с инструкциями по активации вашей учетной записи."
+msgid "An activation link has been sent to the email address you supplied, along with instructions for activating your account."
+msgstr "Активационная ссылка была отправлена на указанный вами адрес электронной почты вместе с инструкциями по активации вашей учетной записи."
 
 #: .\templates\registration\registration_form.html.py:6
 msgid "Registration"
@@ -794,44 +731,24 @@ msgstr "Повторить активацию"
 msgid "This account has already been activated. Please login."
 msgstr "Эта учетная запись уже активирована. Пожалуйста, войдите на сайт."
 
-#, fuzzy
 #~ msgid "---Please Select---"
 #~ msgstr "Пожадуйста, выберите"
 
 #~ msgid "Shipping Address"
 #~ msgstr "Адрес доставки"
 
-#, fuzzy
-#~ msgid ""
-#~ "Someone, hopefully you, signed up for a new account at %(site)s using "
-#~ "this email address. If it was you, and you'd like to activate and use "
-#~ "your account, click the link below or copy and paste it into your web "
-#~ "browser's address bar."
-#~ msgstr ""
-#~ "Кто-то, скорее всего вы, запросил регистрирацию на сайте %(site_url)s, "
-#~ "используя этот адрес электронной почты. Если это были вы, то вам следует "
-#~ "активировать вашу учетную запись, для этого перейдите по ссылке ниже или "
-#~ "скопируйте и вставьте ее в адресную строку вашего браузера."
+#~ msgid "Someone, hopefully you, signed up for a new account at %(site)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
+#~ msgstr "Кто-то, скорее всего вы, запросил регистрирацию на сайте %(site_url)s, используя этот адрес электронной почты. Если это были вы, то вам следует активировать вашу учетную запись, для этого перейдите по ссылке ниже или скопируйте и вставьте ее в адресную строку вашего браузера."
 
-#~ msgid ""
-#~ "If you didn't request this, you don't need to do anything; you won't "
-#~ "receive any more email from us, and the account will expire automatically "
-#~ "in %(expiration_days)s days."
-#~ msgstr ""
-#~ "Если это были не вы, то ничего не следует делать; вы не получите больше "
-#~ "писем от нас, и учетная запись будет автоматически удалена через %"
-#~ "(expiration_days)s дн."
+#~ msgid "If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days."
+#~ msgstr "Если это были не вы, то ничего не следует делать; вы не получите больше писем от нас, и учетная запись будет автоматически удалена через %(expiration_days)s дн."
 
-#, fuzzy
 #~ msgid "You're receiving this e-mail because you requested a password reset"
-#~ msgstr ""
-#~ "Вы получили это сообщение, потому что запросили сброс пароля для вашей "
-#~ "учетной записи на сайте %(site_name)s"
+#~ msgstr "Вы получили это сообщение, потому что запросили сброс пароля для вашей учетной записи на сайте %(site_name)s"
 
 #~ msgid "Thanks for using our site!"
 #~ msgstr "Спасибо за использование нашего сайта!"
 
-#, fuzzy
 #~ msgid "The %(site_name)s team"
 #~ msgstr "Команда сайта %(site_name)s "
 
@@ -842,9 +759,7 @@ msgstr "Эта учетная запись уже активирована. По
 #~ msgstr "Спасибо за то, что заргистрировались на сайте %(company_name)s"
 
 #~ msgid "Your new username is this email address, and you can login at"
-#~ msgstr ""
-#~ "Ваше новое имя пользователя соответствует этому адресу электронной почты, "
-#~ "и вы можете войти на сайт"
+#~ msgstr "Ваше новое имя пользователя соответствует этому адресу электронной почты, и вы можете войти на сайт"
 
 #~ msgid "Regards"
 #~ msgstr "С уважением"
@@ -1014,9 +929,7 @@ msgstr "Эта учетная запись уже активирована. По
 #~ msgid "Model"
 #~ msgstr "Модель"
 
-#~ msgid ""
-#~ "The order you have requested doesn't exist, or you don't have access to "
-#~ "it."
+#~ msgid "The order you have requested doesn't exist, or you don't have access to it."
 #~ msgstr "Запрошенный заказ не существует, или у вас нет доступа к нему."
 
 #~ msgid "Discount"
@@ -1050,8 +963,7 @@ msgstr "Эта учетная запись уже активирована. По
 #~ msgstr "Заказ №"
 
 #~ msgid "Your email address and password didn't match. Please try again."
-#~ msgstr ""
-#~ "Неправильные адрес электронной почты или пароль. Попробуйте еще раз."
+#~ msgstr "Неправильные адрес электронной почты или пароль. Попробуйте еще раз."
 
 #~ msgid "Your new password is"
 #~ msgstr "Ваш новый пароль"
@@ -1059,12 +971,8 @@ msgstr "Эта учетная запись уже активирована. По
 #~ msgid "Feel free to change this password by going to this page"
 #~ msgstr "Вы можете с легкостью сменить этот пароль, перейдя на эту страницу"
 
-#~ msgid ""
-#~ "You can log in using your email address (%(email)s) or your username (%"
-#~ "(username)s)."
-#~ msgstr ""
-#~ "Вы можете войти, используя ваш адрес электронной почты (%(email)s) или "
-#~ "ваше имя пользователя (%(username)s)."
+#~ msgid "You can log in using your email address (%(email)s) or your username (%(username)s)."
+#~ msgstr "Вы можете войти, используя ваш адрес электронной почты (%(email)s) или ваше имя пользователя (%(username)s)."
 
 #~ msgid "(show)"
 #~ msgstr "(показать)"

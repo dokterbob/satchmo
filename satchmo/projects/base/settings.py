@@ -110,6 +110,10 @@ INSTALLED_APPS = (
     'livesettings',
     'satchmo_store.contact',
     'product',
+    'product.modules.configurable',
+    #'product.modules.custom',
+    #'product.modules.downloadable',
+    #'product.modules.subscription',
     # ****
     # * Optional feature, product brands
     # * Uncomment below, and add the brand url in your satchmo_urls setting

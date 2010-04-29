@@ -15,13 +15,13 @@ class Command(NoArgsCommand):
         )
         from product.models import (
             Category,
-            ConfigurableProduct,
-            # DownloadableProduct,
             OptionGroup,
             Option,
             Price,
             Product,
         )
+        from product.modules.configurable.models import ConfigurableProduct
+
         from satchmo_store.shop.models import Config
         from django.conf import settings
         from l10n.models import Country

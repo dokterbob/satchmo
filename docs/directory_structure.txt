@@ -23,9 +23,7 @@ Satchmo Apps
 The core Satchmo application is included in the apps directory and is laid out like this::
 
     apps
-    |-- keyedcache
     |-- l10n
-    |-- livesettings
     |-- payment
     |-- product
     |-- satchmo_ext
@@ -44,19 +42,10 @@ The directories are created in this fashion so that we can accomplish a couple o
 
 Here's a brief description of the various applications.
 
-    **keyedcache (required)**
-        A specialized cache used in various places in Satchmo to speed up and
-        improve the overall useability of the application.
-
     **l10n (required)**
         A collection of models and data used to Internationalize Satchmo. This data
         includes all of the country information as well as tools to present information
         correctly depending on the user's location.
-
-    **livesettings (required)**
-        A sophisticated configuration tool that allows us to set reasonable defaults
-        for an application but offer users a streamlined way of changing them through
-        the admin interface.
 
     **payment (required)**
         The various payment modules, forms and views used to allow checking out of a store.

@@ -224,8 +224,35 @@ class TestPaymentHandling(TestCase):
         self.assertEqual(result.success, True)
         payment = result.payment
         self.assertEqual(auth.capture, payment)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
+        self.assertEqual(order.balance, Decimal('0'))
+
+    def test_authorize_listener(self):
+        """
+        Test making an authorization using DUMMY, then trigger its capture via
+        the built-in listener, ``capture_on_ship_listener()``.
+
+        This the lesser twin of ``test_authorize()``.
+        """
+        order = make_test_order(self.US, '')
+        self.assertEqual(order.balance, order.total)
+        self.assertEqual(order.total, Decimal('125.00'))
+
+        processor = utils.get_processor_by_key('PAYMENT_DUMMY')
+        processor.create_pending_payment(order=order, amount=order.total)
+
+        processor.prepare_data(order)
+        result = processor.authorize_payment()
+        self.assertEqual(result.success, True)
+
+        self.assertEqual(order.authorized_remaining, Decimal('125.00'))
+
+        # By changing the status, we trigger the satchmo_order_status_changed
+        # signal. Additionally, the use the status 'Shipped', so that
+        # capture_on_ship_listener() completes as expected.
+        order.add_status('Shipped')
+
+        self.assertEqual(order.authorized_remaining, Decimal('0'))
         self.assertEqual(order.balance, Decimal('0'))
 
     def test_authorize_multiple(self):
@@ -259,8 +286,7 @@ class TestPaymentHandling(TestCase):
         r2 = results[1]
         self.assertEqual(r1.success, True)
         self.assertEqual(r2.success, True)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
         self.assertEqual(order.balance, Decimal('0'))
 
     def test_capture(self):
@@ -283,8 +309,7 @@ class TestPaymentHandling(TestCase):
         self.assertEqual(result.success, True)
         payment = result.payment
         self.assertEqual(pmt1, payment)
-        order = Order.objects.get(pk=order.id)
-        self.assertEqual(order.status, 'New')
+        self.assertEqual(order.orderstatus_set.latest().status, 'New')
         self.assertEqual(order.balance, Decimal('0'))
 
 

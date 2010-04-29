@@ -32,9 +32,10 @@ def edit_subtypes(product):
     subtypes = product.get_subtypes()
     for app, subtype in active_product_types():
         is_config = "ConfigurableProduct" in subtypes
+        app_label = app.split(".")[-1]
         if subtype in subtypes:
             edit_url = urlresolvers.reverse('admin:%s_%s_change' %
-                                            (app, subtype.lower()),
+                                            (app_label, subtype.lower()),
                                             args=(product.pk,))
             output += ('<li><a href="%s">' % edit_url +
                        _('Edit %(subtype)s') % {'subtype': subtype} +
@@ -44,7 +45,7 @@ def edit_subtypes(product):
         else:
             if not(is_config and subtype=="ProductVariation"):
                 add_url = urlresolvers.reverse('admin:%s_%s_add' %
-                                               (app, subtype.lower()))
+                                               (app_label, subtype.lower()))
                 output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
                            _('Add %(subtype)s') % {'subtype': subtype} +
                            '</a></li>')

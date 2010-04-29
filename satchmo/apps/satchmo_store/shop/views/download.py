@@ -60,26 +60,6 @@ def send_file(request, download_key):
     After the appropriate session variable has been set, we commence the download.
     The key is maintained in the url but the session variable is used to control the
     download in order to maintain security.
-
-    For this to work, your server must support the X-Sendfile header
-    Lighttpd and Apache should both work with the headers used below.
-    For apache, will need mod_xsendfile
-    For lighttpd, allow-x-send-file must be enabled
-
-    Also, you must ensure that the directory where the file is stored is protected
-    from users.
-
-    In lighttpd.conf:
-    $HTTP["url"] =~ "^/static/protected/" {
-    url.access-deny = ("")
-    }
-
-    In Nginx:
-    location /protected/{
-             internal;
-             root /usr/local/www/website/static;
-        }
-
     """
     if not request.session.get('download_key', False):
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': download_key})
