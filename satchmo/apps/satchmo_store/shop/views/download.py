@@ -95,9 +95,9 @@ def send_file(request, download_key):
     response = HttpResponse()
     # For Nginx
     response['X-Accel-Redirect'] = dl_product.downloadable_product.file.path
-    # For Apache
+    # For Apache and Lighttpd v1.5
     response['X-Sendfile'] = dl_product.downloadable_product.file.path
-    # For Lighttpd
+    # For Lighttpd v1.4
     response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
     response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
