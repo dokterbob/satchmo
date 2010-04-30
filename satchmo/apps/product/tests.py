@@ -4,8 +4,18 @@ from django.core import urlresolvers
 from django.http import HttpResponse
 from django.test import TestCase
 from product.forms import ProductExportForm
-from product.models import Discount, Option, OptionGroup, Product, Price
-from product.prices import PriceAdjustment, PriceAdjustmentCalc, get_product_quantity_adjustments
+from product.models import (
+    Discount,
+    Option,
+    OptionGroup,
+    Product,
+    Price,
+)
+from product.prices import (
+    get_product_quantity_adjustments,
+    PriceAdjustment,
+    PriceAdjustmentCalc,
+)
 import datetime
 import keyedcache
 import signals
