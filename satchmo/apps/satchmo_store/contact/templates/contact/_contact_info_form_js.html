@@ -27,8 +27,8 @@ satchmo.update_ship_copy = function(elt) {
 satchmo.name_change = function() {
     var first_name = $('#id_first_name').attr('value');
     var last_name = $('#id_last_name').attr('value');
-    if (!first_name) { first_name = '' };
-    if (!last_name) { last_name = '' };
+    if (!first_name) { first_name = ''; }
+    if (!last_name) { last_name = ''; }
     $('#id_addressee').attr('value',  jQuery.trim(first_name + ' ' + last_name));
     $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
 };
