@@ -7,6 +7,6 @@
 {% if shop.options.PAYMENT.COUNTRY_MATCH.value %}
 {% include "contact/_country_match_script.html" %}
 {% endif %}
-<script type="text/javascript" src="{{ media_url}}js/satchmo_checkout.js"></script>
+{% include "contact/_contact_info_form_js.html" %}
 {% include "contact/_state_js.html" %}
 {% endblock %}
