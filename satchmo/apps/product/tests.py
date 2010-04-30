@@ -1,10 +1,12 @@
 from decimal import Decimal
 from django.contrib.sites.models import Site
 from django.core import urlresolvers
+from django.forms.util import ValidationError
 from django.http import HttpResponse
 from django.test import TestCase
 from product.forms import ProductExportForm
 from product.models import (
+    Category,
     Discount,
     Option,
     OptionGroup,
@@ -67,20 +69,39 @@ class CategoryTest(TestCase):
     def setUp(self):
         self.site = Site.objects.get_current()
 
+        # setup simple categories
+        self.pet_jewelry, _created = Category.objects.get_or_create(
+            slug="pet-jewelry", name="Pet Jewelry", parent=None, site=self.site
+        )
+        self.womens_jewelry, _created = Category.objects.get_or_create(
+            slug="womens-jewelry", name="Women's Jewelry", parent=None, site=self.site
+        )
+
     def tearDown(self):
         keyedcache.cache_delete()
 
-#    def test_absolute_url(self):
-#        pet_jewelry = Category.objects.create(slug="pet-jewelry", name="Pet Jewelry", site=self.site)
-#        womens_jewelry = Category.objects.create(slug="womens-jewelry", name="Women's Jewelry", site=self.site)
-#        pet_jewelry.parent = womens_jewelry
-#        pet_jewelry.save()
-#        womens_jewelry.parent = pet_jewelry
-#        self.assertRaises(ValidationError, womens_jewelry.save)
-#        Model.save(womens_jewelry)
-#        womens_jewelry = Category.objects.active().get(slug="womens-jewelry")
-#        url = urlresolvers.reverse('satchmo_category', None, {'parent_slugs', 'womens-jewelry'})
-#        self.assertEqual(womens_jewelry.get_absolute_url(), url)
+    def test_hierarchy_validation(self):
+        #
+        # first, set the hierarchy
+        #
+        #   None -> womens_jewelry -> pet_jewelry
+        #
+        self.pet_jewelry.parent = self.womens_jewelry
+        self.pet_jewelry.save()
+
+        #
+        # now, try
+        #
+        #   pet_jewelry -> womens_jewelry -> pet_jewelry
+        #
+        self.womens_jewelry.parent = self.pet_jewelry
+        self.assertRaises(ValidationError, self.womens_jewelry.save)
+
+    def test_absolute_url(self):
+        exp_url = urlresolvers.reverse('satchmo_category', kwargs={
+            'parent_slugs': '', 'slug': self.womens_jewelry.slug
+        })
+        self.assertEqual(self.womens_jewelry.get_absolute_url(), exp_url)
 
 #    def test_infinite_loop(self):
 #        """Check that Category methods still work on a Category whose parents list contains an infinite loop."""
