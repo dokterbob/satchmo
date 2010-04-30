@@ -99,7 +99,7 @@ class CategoryTest(TestCase):
 
     def test_absolute_url(self):
         exp_url = urlresolvers.reverse('satchmo_category', kwargs={
-            'parent_slugs': '', 'slug': self.womens_jewelry.slug
+            'slug': self.womens_jewelry.slug
         })
         self.assertEqual(self.womens_jewelry.get_absolute_url(), exp_url)
 
