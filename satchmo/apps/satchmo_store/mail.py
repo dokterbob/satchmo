@@ -152,7 +152,11 @@ def send_store_mail(subject, context, template='', recipients_list=None,
     except SocketError, e:
         if settings.DEBUG:
             log.error('Error sending mail: %s' % e)
-            log.warn('Ignoring email error, since you are running in DEBUG mode.  Email was:\nTo: %s\nSubject: %s\n---\n%s' % (",".join(recipients), subject, body))
+            log.warn("""Ignoring email error, since you are running in DEBUG mode.  Email was:
+To: %s
+Subject: %s
+---
+%s""" % (",".join(recipients), subject, body))
         else:
             log.fatal('Error sending mail: %s' % e)
             raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
