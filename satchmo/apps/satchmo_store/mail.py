@@ -156,7 +156,7 @@ def send_store_mail(subject, context, template='', recipients_list=None,
 To: %s
 Subject: %s
 ---
-%s""" % (",".join(recipients), subject, body))
+%s""" % (",".join(send_mail_args['recipient_list']), send_mail_args['subject'], send_mail_args['message']))
         else:
             log.fatal('Error sending mail: %s' % e)
             raise IOError('Could not send email. Please make sure your email settings are correct and that you are not being blocked by your ISP.')
