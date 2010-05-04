@@ -1,5 +1,5 @@
 from django import template
-from django.core import urlresolvers
+from django.core.urlresolvers import reverse
 from django.template import Context, Template
 from django.utils.translation import ugettext_lazy as _
 from product import active_product_types
@@ -34,18 +34,18 @@ def edit_subtypes(product):
         is_config = "ConfigurableProduct" in subtypes
         app_label = app.split(".")[-1]
         if subtype in subtypes:
-            edit_url = urlresolvers.reverse('admin:%s_%s_change' %
-                                            (app_label, subtype.lower()),
-                                            args=(product.pk,))
+            edit_url = reverse('admin:%s_%s_change' %
+                               (app_label, subtype.lower()),
+                                args=(product.pk,))
             output += ('<li><a href="%s">' % edit_url +
                        _('Edit %(subtype)s') % {'subtype': subtype} +
                        '</a></li>')
             if is_config or subtype=="ProductVariation":
-                 output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.id]))
+                 output += '<li><a href="%s">Variation Manager</a></li>' % (reverse("satchmo_admin_variation_manager", args = [product.id]))
         else:
             if not(is_config and subtype=="ProductVariation"):
-                add_url = urlresolvers.reverse('admin:%s_%s_add' %
-                                               (app_label, subtype.lower()))
+                add_url = reverse('admin:%s_%s_add' %
+                                  (app_label, subtype.lower()))
                 output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
                            _('Add %(subtype)s') % {'subtype': subtype} +
                            '</a></li>')
