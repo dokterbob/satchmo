@@ -3,6 +3,8 @@ from django.core.urlresolvers import reverse
 from django.template import Context, Template
 from django.utils.translation import ugettext_lazy as _
 from product import active_product_types
+from product.models import Product
+from satchmo_utils.urlhelper import reverse_admin_url
 
 register = template.Library()
 
@@ -55,6 +57,8 @@ def edit_subtypes(product):
 register.simple_tag(edit_subtypes)
 
 def list_variations(configurableproduct):
+    from product.modules.configurable.models import ProductVariation
+
     opts = configurableproduct.get_all_options()
     output = "{% load admin_modify adminmedia %}"
     output += "<table>"
@@ -65,8 +69,8 @@ def list_variations(configurableproduct):
 
         product = configurableproduct.get_product_from_options(p_opt)
         if product:
-            p_url = '/admin/product/product/%s/' % product.pk
-            pv_url = '/admin/product/productvariation/%s/delete/' % product.pk
+            p_url = reverse_admin_url(Product, 'change', args=(product.pk,))
+            pv_url = reverse_admin_url(ProductVariation, 'delete', args=(product.pk,))
             output += """
             <tr>
             <td>%s</td>
@@ -80,7 +84,7 @@ def list_variations(configurableproduct):
             #opt_pks = ','.join(opt_pks)
             # TODO [NFA]: Blocked by Django ticket #7738.
             opt_pks = ''
-            add_url = '/admin/product/productvariation/add/' + \
+            add_url = reverse_admin_url(ProductVariation, 'add') + \
                 "?product=%s&parent=%s&options=%s" % (
                 configurableproduct.product.pk, configurableproduct.product.pk,
                 opt_pks)
