@@ -34,13 +34,13 @@ def remove_duplicate_urls(urls, names):
 
 def replace_urlpattern(urlpatterns, replacement):
     """Delete the old urlpattern, and add a new one.
-    
+
     parameters:
         urlpatterns: list
         replacement: an `django.conf.urls.defaults.url` object.
-    
+
     example:
-    
+
         replacement = url(r'^accounts/login/', 'my.site.login_signup', {}, name='auth_login'))
         replace_urlpattern(urlpatterns, replacement)
     """
@@ -53,7 +53,7 @@ def replace_urlpattern(urlpatterns, replacement):
     else:
         name = None
         regex = replacement.regex.pattern
-    
+
     while not found and ix < len(urlpatterns):
         pattern = urlpatterns[ix]
         if hasattr(pattern, 'url_patterns'):
@@ -68,12 +68,18 @@ def replace_urlpattern(urlpatterns, replacement):
                 del urlpatterns[ix]
                 urlpatterns.append(replacement)
                 found = True
-                    
+
         if not found:
             ix += 1
-            
+
     return found
-    
+
 def replace_urlpatterns(urlpatterns, replacelist):
     for replace in replacelist:
         replace_urlpattern(urlpatterns, replace)
+
+def reverse_admin_url(model, action, args=None, kwargs=None):
+    from django.core.urlresolvers import reverse
+    meta = model._meta
+    name = 'admin:%s_%s_%s' % (meta.app_label, meta.module_name, action)
+    return reverse(name, args=args, kwargs=kwargs)
