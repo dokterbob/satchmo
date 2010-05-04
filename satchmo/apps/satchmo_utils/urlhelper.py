@@ -77,3 +77,9 @@ def replace_urlpattern(urlpatterns, replacement):
 def replace_urlpatterns(urlpatterns, replacelist):
     for replace in replacelist:
         replace_urlpattern(urlpatterns, replace)
+
+def reverse_admin_url(model, action, args=None, kwargs=None):
+    from django.core.urlresolvers import reverse
+    meta = model._meta
+    name = 'admin:%s_%s_%s' % (meta.app_label, meta.module_name, action)
+    return reverse(name, args=args, kwargs=kwargs)
