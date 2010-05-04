@@ -80,10 +80,10 @@ def list_variations(configurableproduct):
             #opt_pks = ','.join(opt_pks)
             # TODO [NFA]: Blocked by Django ticket #7738.
             opt_pks = ''
-            add_url = ('/admin/product/productvariation/add/' +
+            add_url = '/admin/product/productvariation/add/' + \
                 "?product=%s&parent=%s&options=%s" % (
                 configurableproduct.product.pk, configurableproduct.product.pk,
-                opt_pks))
+                opt_pks)
             output += """
             <tr>
             <td>%s</td>
