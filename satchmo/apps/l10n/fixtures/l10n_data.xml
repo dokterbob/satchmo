@@ -26206,12 +26206,6 @@
         <field type="CharField" name="abbrev"></field>
         <field type="BooleanField" name="active">1</field>
     </object>
-    <object pk="1459" model="l10n.adminarea">
-        <field to="l10n.country" name="country" rel="ManyToOneRel">230</field>
-        <field type="CharField" name="name">Staffordshire</field>
-        <field type="CharField" name="abbrev"></field>
-        <field type="BooleanField" name="active">1</field>
-    </object>
     <object pk="2341" model="l10n.adminarea">
         <field to="l10n.country" name="country" rel="ManyToOneRel">41</field>
         <field type="CharField" name="name">Stake Bay</field>
