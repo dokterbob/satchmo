@@ -95,6 +95,7 @@ Installing Dependencies
        cd /path/to/djang-livesettings
        python setup.py install
 
+   .. versionadded:: 0.9.1
 
 #. Install keyedcache:
 
@@ -103,6 +104,8 @@ Installing Dependencies
        hg clone http://bitbucket.org/bkroeze/django-keyedcache/
        cd /path/to/django-keyedcache
        python setup.py install
+
+   .. versionadded:: 0.9.1
 
 Satchmo has two types of documentation. Sphinx is used to generate this document.
 Docutils are useful for the auto-generated admin documentation. You may choose to
@@ -116,6 +119,8 @@ install these dependencies.
 12. Satchmo also uses South for database migrations. You may also install it::
 
      easy_install South
+
+   .. versionadded:: 0.9.1
 
 .. note::
     Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
