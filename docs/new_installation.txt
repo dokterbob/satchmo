@@ -13,18 +13,27 @@ you have write access to. In the below example, we use :file:`/home/user/src`. Y
 .. warning::
    You must have Django 1.1.x properly installed.
 
-The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
-one simple method to install the dependencies. You may manually install them if you wish.
-
 A Quick Note About Installing Dependencies
 ------------------------------------------
 
-Python allows you to install applications in multiple ways. Much of this is personal preference. For the purposes of this guide,
-we will use either :command:`easy_install` or :command:`python setup.py install` to install most of the packages.
+Python allows you to install applications in multiple ways: you can use the
+commands :command:`easy_install` or :command:`pip`; you may also manually
+install them by:
 
-You may elect to use :command:`pip`, manually link packages into your site-packages directory or use .pth files to add each to your
-python path. All of these will work fine with Satchmo but in the interest of keeping this as straightforward as possible, we
-are picking a small number of approaches that work across the maximum number of platforms.
+  - linking the packages into your site-packages directory, or
+  - use .pth files to add each to your python path.
+
+All of these will work fine with Satchmo, but in the interest of keeping this as
+straightforward as possible, we show how to install the packages with either:
+
+  - :command:`easy_install`, or
+  - :command:`python setup.py install` on a source code checkout (with mercurial)
+
+.. note::
+    The provided egg and tar files by the various dependencies may not be the
+    most current installation, so you should ensure that the version recommended
+    by satchmo (see :doc:`requirements`) is available via
+    :command:`easy_install` before proceeding.
 
 Installing Dependencies
 -----------------------
@@ -122,10 +131,6 @@ Installing Dependencies
      easy_install South
 
    .. versionadded:: 0.9.1
-
-.. note::
-    Please note that all dependencies can be installed manually. Please visit the :doc:`requirements` page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
-    recommended satchmo version is available via :command:`easy_install` before proceeding.
 
 Installing Satchmo into your path
 ---------------------------------
