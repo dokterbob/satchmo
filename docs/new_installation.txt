@@ -29,8 +29,9 @@ are picking a small number of approaches that work across the maximum number of 
 Installing Dependencies
 -----------------------
 
-1. Install setuputils by following the instructions on the easy_install_ page. After installation, you should be able to run :command:`easy_install` directly
-(assuming the install directory is in you $PATH).
+1. Install setuputils by following the instructions on the easy_install_ page.
+   After installation, you should be able to run :command:`easy_install`
+   directly (assuming the install directory is in you $PATH).
 
 2. Install required dependencies (this may vary based on your OS of choice)::
 
