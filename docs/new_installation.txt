@@ -143,6 +143,7 @@ Installing Satchmo into your path
       You may do this by placing a symbolic link to the source, adding a .pth file that points to your :file:`/satchmo/apps`
       location or modifying your PYTHONPATH environment variable.
 
+.. highlight:: pycon
 
 3. Once the above step is completed, you should be able to import both django and satchmo::
 
@@ -154,6 +155,8 @@ Installing Satchmo into your path
         >>> import satchmo_store
         >>> satchmo_store.get_version()
         '0.9-pre hg-YYYY:ZZZZZZZZZZ'
+
+.. highlight:: python
 
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
