@@ -22,7 +22,7 @@ A Quick Note About Installing Dependencies
 Python allows you to install applications in multiple ways. Much of this is personal preference. For the purposes of this guide,
 we will use either :command:`easy_install` or :command:`python setup.py install` to install most of the packages.
 
-You may elect to use pip, manually link packages into your site-packages directory or use .pth files to add each to your
+You may elect to use :command:`pip`, manually link packages into your site-packages directory or use .pth files to add each to your
 python path. All of these will work fine with Satchmo but in the interest of keeping this as straightforward as possible, we
 are picking a small number of approaches that work across the maximum number of platforms.
 
