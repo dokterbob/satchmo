@@ -29,7 +29,7 @@ are picking a small number of approaches that work across the maximum number of 
 Installing Dependencies
 -----------------------
 
-1. Install setuputils by following the instructions on the easy_install_ page. After installation, you should be able to run :command:`easy_install` directly 
+1. Install setuputils by following the instructions on the easy_install_ page. After installation, you should be able to run :command:`easy_install` directly
 (assuming the install directory is in you $PATH).
 
 2. Install required dependencies (this may vary based on your OS of choice)::
@@ -52,7 +52,7 @@ Installing Dependencies
 
         sudo apt-get install python-imaging
 
-4. Install Reportlab based on the description for your OS `here <http://www.reportlab.com/software/opensource/rl-toolkit/download/>`_ 
+4. Install Reportlab based on the description for your OS `here <http://www.reportlab.com/software/opensource/rl-toolkit/download/>`_
 
 5. Install django-threaded-multihost:
 
@@ -115,7 +115,7 @@ install these dependencies.
 12. Satchmo also uses South for database migrations. You may also install it::
 
      easy_install South
-    
+
 .. note::
     Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
     recommended satchmo version is available via :command:`easy_install` before proceeding.
@@ -156,7 +156,7 @@ Installing Satchmo into your path
 
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
-   
+
 .. _clonesatchmo:
 
 Build Your Store With clonesatchmo
@@ -179,8 +179,8 @@ The clonesatchmo program will do everything described in :doc:`settings`. At a h
     * Synchs your database (using sqlite)
     * Loads l10n data
     * Loads a sample store
-    
-Using this process is the recommended way to get your store up and running. Once you are comfortable with 
+
+Using this process is the recommended way to get your store up and running. Once you are comfortable with
 this store, you can dive into modifying your :doc:`settings` file or making other changes.
 
 View the Demo Store
