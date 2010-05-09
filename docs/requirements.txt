@@ -89,7 +89,7 @@ new SSL module to support accessing SSL 2.0 sites often used by payment processo
 
     - `SSL Backport`_
 
-Detailed steps for installing these dependencies is included in the installation_ section.
+Detailed steps for installing these dependencies is included in the :doc:`new_installation` section.
 
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _Python Imaging Library: http://www.pythonware.com/products/pil/
@@ -103,7 +103,6 @@ Detailed steps for installing these dependencies is included in the installation
 .. _download link: http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
 .. _Django Registration: http://bitbucket.org/ubernostrum/django-registration/wiki/Home
 .. _snapshot: http://www.satchmoproject.com/snapshots/
-.. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
 .. _`Django App Plugins`: http://bitbucket.org/bkroeze/django-caching-app-plugins/
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/
