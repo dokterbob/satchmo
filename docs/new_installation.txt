@@ -29,11 +29,11 @@ are picking a small number of approaches that work across the maximum number of 
 Installing Dependencies
 -----------------------
 
-1. Install setuputils by following the instructions on the easy_install_ page.
+#. Install setuputils by following the instructions on the easy_install_ page.
    After installation, you should be able to run :command:`easy_install`
    directly (assuming the install directory is in you $PATH).
 
-2. Install required dependencies (this may vary based on your OS of choice)::
+#. Install required dependencies (this may vary based on your OS of choice)::
 
         easy_install pycrypto
         easy_install http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
@@ -45,7 +45,7 @@ Installing Dependencies
 
         easy_install elementtree
 
-3. Install Python Imaging Library. There are multiple options for installing this application. Please use 1 of the options below::
+#. Install Python Imaging Library. There are multiple options for installing this application. Please use 1 of the options below::
 
     - Download the binary from the PIL `site <http://www.pythonware.com/products/pil/>`_ and install.
 
@@ -53,9 +53,9 @@ Installing Dependencies
 
         sudo apt-get install python-imaging
 
-4. Install Reportlab based on the description for your OS `here <http://www.reportlab.com/software/opensource/rl-toolkit/download/>`_
+#. Install Reportlab based on the description for your OS `here <http://www.reportlab.com/software/opensource/rl-toolkit/download/>`_
 
-5. Install django-threaded-multihost:
+#. Install django-threaded-multihost:
 
    - Check out from source::
 
@@ -63,7 +63,7 @@ Installing Dependencies
        cd /path/to/django-threaded-multihost
        python setup.py install
 
-6. Install django-app-plugins:
+#. Install django-app-plugins:
 
    - Check out the satchmo-enhanced version::
 
@@ -71,7 +71,7 @@ Installing Dependencies
        cd /path/to/django-caching-app-plugins
        python setup.py install
 
-7. Install sorl-thumbnail:
+#. Install sorl-thumbnail:
 
    - Check out from source::
 
@@ -79,7 +79,7 @@ Installing Dependencies
        cd /path/to/sorl-thumbnail
        python setup.py install
 
-8. Install signals-ahoy:
+#. Install signals-ahoy:
 
    - Check out from source::
 
@@ -87,7 +87,7 @@ Installing Dependencies
        cd /path/to/django-signals-ahoy
        python setup.py install
 
-9. Install livesettings:
+#. Install livesettings:
 
    - Check out from source::
 
@@ -96,7 +96,7 @@ Installing Dependencies
        python setup.py install
 
 
-10. Install keyedcache:
+#. Install keyedcache:
 
    - Check out from source::
 
