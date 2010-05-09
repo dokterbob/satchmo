@@ -37,55 +37,56 @@ features in Satchmo.
 
 There are also a number of other Django packages (mentioned below) that you will need to install.
 
-To support multi store configurations:
+- To support multi store configurations:
 
     - `Django Threaded Multihost`_
 
-For flexibility in defining template plugin points:
+- For flexibility in defining template plugin points:
 
     - `Django App Plugins`_
 
-For admin-configurable settings:
+- For admin-configurable settings:
 
     - `Django Livesettings`_
 
-For advanced caching settings:
+- For advanced caching settings:
 
     - `Django Keyedcache`_
 
-For reusable, consistent signals:
+- For reusable, consistent signals:
 
     - `Signals Ahoy`_
 
-For the account registration process, you will need:
+- For the account registration process, you will need:
 
     - `Django Registration`_
 
-.. warning::
+  .. warning::
     You must use Django registration 0.7 with Satchmo. When 0.8 comes out, we will
     migrate to the new version.
 
 A valid Django cache backend (file, memcached or DB) is required for the config settings.
 
-The following package is required to load the initial data and run the unit tests:
+- The following package is required to load the initial data and run the unit tests:
 
     - `PyYaml`_
 
-Docutils is used for auto generating the admin documentation but is not required:
+- Docutils is used for auto generating the admin documentation but is not required:
 
     - `Docutils`_
 
-Sphinx is useful for auto generating the user documentation but is not required:
+- Sphinx is useful for auto generating the user documentation but is not required:
 
     - `Sphinx`_
 
-Satchmo uses South for migrating database schema changes. It is not required to run the store
-but is very useful for migrating versions.
+- Satchmo uses South for migrating database schema changes. It is not required
+  to run the store but is very useful for migrating versions.
 
     - `South <http://south.aeracode.org/>`_
 
-If you are using a version of python less than 2.6, you will have to install the backport of the
-new SSL module to support accessing SSL 2.0 sites often used by payment processors:
+- If you are using a version of python less than 2.6, you will have to install
+  the backport of the new SSL module to support accessing SSL 2.0 sites often
+  used by payment processors:
 
     - `SSL Backport`_
 
