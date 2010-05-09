@@ -108,16 +108,16 @@ Installing Dependencies
 
    .. versionadded:: 0.9.1
 
-Satchmo has two types of documentation. Sphinx is used to generate this document.
-Docutils are useful for the auto-generated admin documentation. You may choose to
-install these dependencies.
+#. Satchmo has two types of documentation: Sphinx and docutils. Sphinx is used
+   to generate this document, while docutils are useful for the auto-generated
+   admin documentation.
 
-11. Optional documentation dependencies::
+   You may choose to install these dependencies by running::
 
      easy_install Sphinx
      easy_install docutils
 
-12. Satchmo also uses South for database migrations. You may also install it::
+#. Satchmo also uses South for database migrations. You may also install it::
 
      easy_install South
 
