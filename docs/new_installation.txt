@@ -124,7 +124,7 @@ Installing Dependencies
    .. versionadded:: 0.9.1
 
 .. note::
-    Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
+    Please note that all dependencies can be installed manually. Please visit the :doc:`requirements` page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
     recommended satchmo version is available via :command:`easy_install` before proceeding.
 
 Installing Satchmo into your path
@@ -249,4 +249,3 @@ Useful Links
 .. _`Django Comment Utils`: http://code.google.com/p/django-comment-utils/
 .. _easy_install : http://peak.telecommunity.com/DevCenter/EasyInstall#installation-instructions
 .. _`PIL site`: http://www.pythonware.com/products/pil/
-.. _requirements : requirements.html
