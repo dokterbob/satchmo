@@ -19,47 +19,47 @@ features in Satchmo.
 
 - Satchmo's thumbnail capability is very robust and utilizes the following packages:
 
-    - `Python Imaging Library`_
-    - `Sorl Thumbnails`_
+  - `Python Imaging Library`_
+  - `Sorl Thumbnails`_
 
 - In order to securely store sensitive information, you will need:
 
-    - `Python cryptography toolkit`_ (`Windows binary`_)
+  - `Python cryptography toolkit`_ (`Windows binary`_)
 
 - Satchmo creates PDF output for shipping and invoicing using:
 
-    - `ReportLab`_
-    - Tiny RML2PDF (`download link`_)
+  - `ReportLab`_
+  - Tiny RML2PDF (`download link`_)
 
 - In order to manage hierarchical data and use XML in shipping and payment modules, we use:
 
-    - `Elementtree`_ (included in Python 2.5+)
+  - `Elementtree`_ (included in Python 2.5+)
 
 There are also a number of other Django packages (mentioned below) that you will need to install.
 
 - To support multi store configurations:
 
-    - `Django Threaded Multihost`_
+  - `Django Threaded Multihost`_
 
 - For flexibility in defining template plugin points:
 
-    - `Django App Plugins`_
+  - `Django App Plugins`_
 
 - For admin-configurable settings:
 
-    - `Django Livesettings`_
+  - `Django Livesettings`_
 
 - For advanced caching settings:
 
-    - `Django Keyedcache`_
+  - `Django Keyedcache`_
 
 - For reusable, consistent signals:
 
-    - `Signals Ahoy`_
+  - `Signals Ahoy`_
 
 - For the account registration process, you will need:
 
-    - `Django Registration`_
+  - `Django Registration`_
 
   .. warning::
     You must use Django registration 0.7 with Satchmo. When 0.8 comes out, we will
@@ -69,26 +69,26 @@ A valid Django cache backend (file, memcached or DB) is required for the config 
 
 - The following package is required to load the initial data and run the unit tests:
 
-    - `PyYaml`_
+  - `PyYaml`_
 
 - Docutils is used for auto generating the admin documentation but is not required:
 
-    - `Docutils`_
+  - `Docutils`_
 
 - Sphinx is useful for auto generating the user documentation but is not required:
 
-    - `Sphinx`_
+  - `Sphinx`_
 
 - Satchmo uses South for migrating database schema changes. It is not required
   to run the store but is very useful for migrating versions.
 
-    - `South <http://south.aeracode.org/>`_
+  - `South <http://south.aeracode.org/>`_
 
 - If you are using a version of python less than 2.6, you will have to install
   the backport of the new SSL module to support accessing SSL 2.0 sites often
   used by payment processors:
 
-    - `SSL Backport`_
+  - `SSL Backport`_
 
 Detailed steps for installing these dependencies is included in the :doc:`new_installation` section.
 
