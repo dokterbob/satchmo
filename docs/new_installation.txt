@@ -40,8 +40,8 @@ Installing Dependencies
         easy_install django-registration
         easy_install PyYAML
 
-.. note::
-    If you have Python 2.4 installed, you will need to install elementtree also::
+   .. note::
+      If you have Python 2.4 installed, you will need to install elementtree also::
 
         easy_install elementtree
 
@@ -128,20 +128,20 @@ Installing Satchmo into your path
 
         hg clone http://bitbucket.org/chris1610/satchmo/
 
-.. note::
-   If you are a bitbucket user, you may see a slightly different url than described above.
-   You may use the generic url or one that is specific to your username. For the purposes
-   of an install, either will work.
+   .. note::
+      If you are a bitbucket user, you may see a slightly different url than described above.
+      You may use the generic url or one that is specific to your username. For the purposes
+      of an install, either will work.
 
 2. Install satchmo onto your system::
 
         cd /home/user/src/satchmo-trunk
         sudo python setup.py install
 
-.. note::
-   An alternative to running the install is ensuring that :file:`/path/to/satchmo/apps` is on your python path.
-   You may do this by placing a symbolic link to the source, adding a .pth file that points to your :file:`/satchmo/apps`
-   location or modifying your PYTHONPATH environment variable.
+   .. note::
+      An alternative to running the install is ensuring that :file:`/path/to/satchmo/apps` is on your python path.
+      You may do this by placing a symbolic link to the source, adding a .pth file that points to your :file:`/satchmo/apps`
+      location or modifying your PYTHONPATH environment variable.
 
 
 3. Once the above step is completed, you should be able to import both django and satchmo::
