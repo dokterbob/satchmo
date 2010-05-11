@@ -8,38 +8,37 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
-"PO-Revision-Date: 2008-09-05 23:51-0300\n"
-"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"PO-Revision-Date: 2010-05-11 16:46-0300\n"
+"Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: config.py:9
-#, fuzzy
 msgid "Enable Akismet ratings"
-msgstr "Ativar pontuação de produtos"
+msgstr "Ativar Akismet"
 
 #: config.py:15
 msgid "Akismet API Key"
-msgstr ""
+msgstr "Chave API Akismet"
+
 
 #: models.py:11 templates/productratings/_product_ratings.html:17
 msgid "Rating"
 msgstr "Pontuação"
 
 #: utils.py:49
-#, fuzzy
 msgid "Not Rated"
-msgstr "Não definido"
+msgstr "Não Avaliado"
 
 #: templates/productratings/_product_ratings.html:4
 msgid "Product Reviews"
-msgstr "Apresentação de Produtos"
+msgstr "Opiniões dos produtos"
 
 #: templates/productratings/_product_ratings.html:8
 msgid "Be the first to review it!"
-msgstr "Seja o primeiro a conhecer este produto!"
+msgstr "Seja o primeiro dar sua opinião sobre este produto!"
 
 #: templates/productratings/_product_ratings.html:12
 #, python-format
@@ -47,14 +46,13 @@ msgid "Average rating %(rating)s"
 msgstr "Classificação média %(rating)s"
 
 #: templates/productratings/_product_ratings.html:24
-#, fuzzy
 msgid "Review this product"
-msgstr "Por favor efetue login para conhecer este produto."
+msgstr "Dê sua opinião sobre este produto"
 
 #: templates/productratings/_product_ratings.html:28
 msgid "Please login to review this product."
-msgstr "Por favor efetue login para conhecer este produto."
+msgstr "Por favor entre para opinar sobre este produto."
 
 #: templates/productratings/plugins/sidebar_links.html:3
 msgid "Most Popular"
-msgstr ""
+msgstr "Mais Populares"

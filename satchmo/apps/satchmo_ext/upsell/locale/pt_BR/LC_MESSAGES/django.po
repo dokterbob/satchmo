@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
-"PO-Revision-Date: 2008-09-05 23:51-0300\n"
-"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"PO-Revision-Date: 2010-05-11 16:32-0300\n"
+"Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,38 +17,35 @@ msgstr ""
 
 #: models.py:24
 msgid "Checkbox to add 1"
-msgstr "Checkbox para adicionar 1"
+msgstr "Caixa de seleção para adicionar 1"
 
 #: models.py:25
 msgid "Checkbox to add 1, checked by default"
-msgstr "Checkbox para adicionar 1, marcado por padrão"
+msgstr "Caixa de seleção para adicionar 1, marcado por padrão"
 
 #: models.py:26
-#, fuzzy
 msgid "Checkbox to match quantity"
-msgstr "Escolha uma quantidade."
+msgstr "Caixa de seleção para igualar a quantidade"
 
 #: models.py:27
 msgid "Checkbox to match quantity, checked by default"
-msgstr "Checkbox para igualar a quantidade, marcado por padrão"
+msgstr "Caixa de seleção para igualar a quantidade, marcado por padrão"
 
 #: models.py:28
 msgid "Form with 0 quantity"
 msgstr "Formulário com quantidade 0"
 
 #: models.py:33
-#, fuzzy
 msgid "Target Product"
-msgstr "Produto"
+msgstr "Produto alvo"
 
 #: models.py:35
 msgid "The products for which you want to show this goal product as an Upsell."
-msgstr ""
+msgstr "Os produtos para os quais você deseja mostrar este produto como um Upsell."
 
 #: models.py:37
-#, fuzzy
 msgid "Goal Product"
-msgstr "Produtos válidos"
+msgstr "Produto Alvo"
 
 #: models.py:40
 msgid "Creation Date"
@@ -56,16 +53,15 @@ msgstr "Data de criação"
 
 #: models.py:42
 msgid "Upsell Style"
-msgstr ""
+msgstr "Estilo Upsell"
 
 #: models.py:45
 msgid "Notes"
 msgstr "Notas"
 
 #: models.py:46
-#, fuzzy
 msgid "Internal notes"
-msgstr "Interações"
+msgstr "Notas internas"
 
 #: models.py:129
 msgid "language"
@@ -78,7 +74,7 @@ msgstr "Descrição"
 #: views.py:65
 #, python-format
 msgid "'%(product)s' couldn't be added to the cart. %(details)s"
-msgstr ""
+msgstr "'%(product)s' não pode ser adicionado ao carrinho. %(details)s"
 
 #: templates/upsell/product_upsell.html:15
 msgid "Add"
