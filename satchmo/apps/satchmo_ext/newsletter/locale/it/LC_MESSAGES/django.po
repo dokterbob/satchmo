@@ -1,7 +1,7 @@
 # translation of django.po to Italiano
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
 # Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
 msgid ""
@@ -24,15 +24,11 @@ msgstr "Impostazioni della newsletter"
 
 #: config.py:11
 msgid "Active newsletter module"
-msgstr "Attiva il modulo newsletter"
+msgstr "Modulo newsletter attivo"
 
 #: config.py:12
-msgid ""
-"Select a newsletter, save and reload to set any module-specific newsletter "
-"settings."
-msgstr ""
-"Seleziona una newsletter, salva e ricarica per modificare qualsiasi "
-"impostazione della newsletter."
+msgid "Select a newsletter, save and reload to set any module-specific newsletter settings."
+msgstr "Seleziona una newsletter, salva e ricarica per modificare qualsiasi impostazione della newsletter."
 
 #: config.py:14
 msgid "No newsletter"
@@ -52,17 +48,15 @@ msgstr "Nome della Newsletter"
 
 #: config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
-msgstr ""
-"Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
+msgstr "Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
 
 #: config.py:31
-#, fuzzy
 msgid "Newsletter Slug"
-msgstr "Impostazioni della newsletter"
+msgstr "slug della newsletter"
 
 #: config.py:32
 msgid "The url slug for the newsletter.  Requires server restart if changed."
-msgstr ""
+msgstr "Lo slug per l'URL della newsletter. Richiede riavvio del server se modificata."
 
 #: forms.py:16
 msgid "Full Name"
@@ -135,7 +129,7 @@ msgstr "Iscritto"
 
 #: models.py:38
 msgid "Email"
-msgstr "e-mail"
+msgstr "E-mail"
 
 #: models.py:39
 msgid "Creation Date"
@@ -145,7 +139,8 @@ msgstr "Data di creazione"
 msgid "Update Date"
 msgstr "Data di aggiornamento"
 
-# translated = "Due opzioni dello stesso gruppo di opzione non puo' essere applicata a un oggetto."
+# translated = "Due opzioni dello stesso gruppo di opzione non puo' essere
+# applicata a un oggetto."
 #: models.py:102
 msgid "Attribute Name"
 msgstr "Nome dell'attributo"
