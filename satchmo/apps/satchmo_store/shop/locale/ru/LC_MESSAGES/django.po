@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
@@ -14,28 +14,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; "
-"plural=n%10==1 && n%100!=11 ? 0 "
-": n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: .\admin.py:23
 msgid "Store Contact"
 msgstr "Контакты магазина"
 
-#: .\admin.py:27
-#: .\models.py:95
+#: .\admin.py:27 .\models.py:95
 msgid "Shipping Countries"
 msgstr "Страны, в которые возможна доставка"
 
-#: .\admin.py:74
-#: .\models.py:636
-#: .\templates\shop\_order_details.html.py:39
+#: .\admin.py:74 .\models.py:636 .\templates\shop\_order_details.html.py:39
 #: .\templates\shop\_order_tracking_details.html.py:22
 msgid "Shipping Method"
 msgstr "Способ доставки"
 
-#: .\admin.py:75
-#: .\templates\shop\_order_details.html.py:30
+#: .\admin.py:75 .\templates\shop\_order_details.html.py:30
 #: .\templates\shop\email\_order_detail_table.html.py:24
 msgid "Shipping Address"
 msgstr "Адрес доставки"
@@ -45,12 +39,10 @@ msgid "Billing Address"
 msgstr "Платежный адрес"
 
 #: .\admin.py:77
-#, fuzzy
 msgid "Totals"
 msgstr "Итого"
 
 #: .\config.py:13
-#, fuzzy
 msgid "Satchmo Shop Settings"
 msgstr "Настройки магазина"
 
@@ -63,55 +55,42 @@ msgid "State required?"
 msgstr "Штат(область) обязателен?"
 
 #: .\config.py:37
-msgid ""
-"Require a state during registration/checkout for countries that have states?"
-msgstr ""
-"Запрашивать штат во время регистрации/оплаты для стран, имеющих штаты(области)?"
+msgid "Require a state during registration/checkout for countries that have states?"
+msgstr "Запрашивать штат во время регистрации/оплаты для стран, имеющих штаты(области)?"
 
 #: .\config.py:43
 msgid "Show Site Field?"
 msgstr "Показывать поле \"сайт\"?"
 
 #: .\config.py:44
-msgid ""
-"Should the Site field be displayed in the admin lists? A server restart is "
-"required for this to take effect."
-msgstr ""
-"Должно ли поле 'Сайт' отображаться на панени администрирования? (Требуется "
-"перезапуск сервера)."
+msgid "Should the Site field be displayed in the admin lists? A server restart is required for this to take effect."
+msgstr "Должно ли поле 'Сайт' отображаться на панени администрирования? (Требуется перезапуск сервера)."
 
 #: .\config.py:50
 msgid "Cart Quantity Rounding Factor"
 msgstr "Округление заказанного количества"
 
 #: .\config.py:51
-msgid "What to round cart adds/deletes by, a '1' here means to round up to a "
-"whole number.  Must be -1 to 1."
-msgstr "Как округлять количество при добавлении/удалении товаров в/из корзину. "
-"'1' - значит до целого. Должно быть от -1 до 1."
+msgid "What to round cart adds/deletes by, a '1' here means to round up to a whole number.  Must be -1 to 1."
+msgstr "Как округлять количество при добавлении/удалении товаров в/из корзину. '1' - значит до целого. Должно быть от -1 до 1."
 
 #: .\config.py:58
 msgid "Cart Quantity Decimal Places"
 msgstr "Количество десятичных знаков в корзине"
 
 #: .\config.py:59
-msgid "How many places to assume for cart quantities, use 0 unless you are "
-"selling products in fractional quantities."
-msgstr "Сколько знаков следует зарезервировать под количество товаров в "
-"корзине, поставьте 0, если продаете дробные количества товаров."
+msgid "How many places to assume for cart quantities, use 0 unless you are selling products in fractional quantities."
+msgstr "Сколько знаков следует зарезервировать под количество товаров в корзине, поставьте 0, если продаете дробные количества товаров."
 
 #: .\config.py:66
 msgid "Persistent Cart?"
 msgstr "Постоянная корзина?"
 
 #: .\config.py:67
-msgid ""
-"When a user logs in, attempt to retrieve previous carts and merge with existing?"
-msgstr ""
-"После входа попытаться получить предыдущую корзину и объединить с текущей?"
+msgid "When a user logs in, attempt to retrieve previous carts and merge with existing?"
+msgstr "После входа попытаться получить предыдущую корзину и объединить с текущей?"
 
 #: .\config.py:74
-#, fuzzy
 msgid "Send HTML Email?"
 msgstr "Отправлять сообщения в HTML?"
 
@@ -132,12 +111,8 @@ msgid "Use Urchin?"
 msgstr "Использовать Urchin?"
 
 #: .\config.py:94
-msgid ""
-"Use the old-style, urchin javascript?. "
-" This is not needed unless your analytics account hasn't been updated yet."
-msgstr ""
-"Использовать устаревший код Urchin? Это не требуется, если ваша учетная "
-"запись в Analytics уже обновлена."
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
+msgstr "Использовать устаревший код Urchin? Это не требуется, если ваша учетная запись в Analytics уже обновлена."
 
 #: .\config.py:102
 msgid "Analytics Code"
@@ -169,9 +144,7 @@ msgstr "Заказ сразу же доступен для скачивания"
 msgid "Test Store"
 msgstr "Тестовый магазин"
 
-#: .\models.py:74
-#: .\models.py:275
-#: .\models.py:606
+#: .\models.py:74 .\models.py:275 .\models.py:606
 msgid "Site"
 msgstr "Сайт"
 
@@ -179,9 +152,7 @@ msgstr "Сайт"
 msgid "Store Name"
 msgstr "Название магазина"
 
-#: .\models.py:76
-#: .\models.py:276
-#: .\models.py:1384
+#: .\models.py:76 .\models.py:276 .\models.py:1384
 msgid "Description"
 msgstr "Описание"
 
@@ -189,36 +160,24 @@ msgstr "Описание"
 msgid "Email"
 msgstr "Электронная почта"
 
-#: .\models.py:78
-#: .\models.py:79
-#: .\models.py:609
-#: .\models.py:610
-#: .\models.py:616
-#: .\models.py:617
+#: .\models.py:78 .\models.py:79 .\models.py:609 .\models.py:610
+#: .\models.py:616 .\models.py:617
 msgid "Street"
 msgstr "Улица"
 
-#: .\models.py:80
-#: .\models.py:611
-#: .\models.py:618
+#: .\models.py:80 .\models.py:611 .\models.py:618
 msgid "City"
 msgstr "Город"
 
-#: .\models.py:81
-#: .\models.py:612
-#: .\models.py:619
+#: .\models.py:81 .\models.py:612 .\models.py:619
 msgid "State"
 msgstr "Область (штат, регион)"
 
-#: .\models.py:82
-#: .\models.py:613
-#: .\models.py:620
+#: .\models.py:82 .\models.py:613 .\models.py:620
 msgid "Zip Code"
 msgstr "Почтовый индекс"
 
-#: .\models.py:83
-#: .\models.py:614
-#: .\models.py:621
+#: .\models.py:83 .\models.py:614 .\models.py:621
 msgid "Country"
 msgstr "Страна"
 
@@ -258,31 +217,25 @@ msgstr "Корзина"
 msgid "Shopping Carts"
 msgstr "Корзины"
 
-#: .\models.py:443
-#: .\templates\base.html.py:80
+#: .\models.py:443 .\templates\base.html.py:80
 #: .\templates\shop\cart.html.py:12
 msgid "Cart"
 msgstr "Корзина"
 
-#: .\models.py:444
-#: .\models.py:1064
+#: .\models.py:444 .\models.py:1064
 #, fuzzy
 msgid "Product"
 msgstr "Подробности о продукции"
 
-#: .\models.py:445
-#: .\models.py:1065
-#: .\templates\shop\cart.html.py:25
+#: .\models.py:445 .\models.py:1065 .\templates\shop\cart.html.py:25
 msgid "Quantity"
 msgstr "Платежный адрес"
 
 #: .\models.py:526
-#, fuzzy
 msgid "Cart Item"
 msgstr "Заказываемый товар"
 
 #: .\models.py:527
-#, fuzzy
 msgid "Cart Items"
 msgstr "Заказываемые товары"
 
@@ -298,13 +251,11 @@ msgstr "наименование"
 msgid "Item Detail Price Change"
 msgstr "Изменение цены для наименования"
 
-#: .\models.py:539
-#: .\models.py:1154
+#: .\models.py:539 .\models.py:1154
 msgid "Sort Order"
 msgstr "Порядок сортировки"
 
-#: .\models.py:540
-#: .\models.py:1155
+#: .\models.py:540 .\models.py:1155
 msgid "The display order for this group."
 msgstr "Порядок отображения для этой группы."
 
@@ -352,8 +303,7 @@ msgstr "Оплаченный"
 msgid "Shipped"
 msgstr "Отправленный"
 
-#: .\models.py:561
-#: .\models.py:1275
+#: .\models.py:561 .\models.py:1275
 msgid "Complete"
 msgstr "Завершенный"
 
@@ -365,28 +315,23 @@ msgstr "Отмененный"
 msgid "Contact"
 msgstr "Клиент"
 
-#: .\models.py:608
-#: .\models.py:615
+#: .\models.py:608 .\models.py:615
 msgid "Addressee"
 msgstr "Адресат"
 
-#: .\models.py:622
-#: .\models.py:1222
+#: .\models.py:622 .\models.py:1222
 msgid "Notes"
 msgstr "Примечание"
 
-#: .\models.py:623
-#: .\templates\shop\_order_details.html.py:50
+#: .\models.py:623 .\templates\shop\_order_details.html.py:50
 msgid "Subtotal"
 msgstr "Подытог"
 
-#: .\models.py:625
-#: .\templates\shop\_order_details.html.py:49
+#: .\models.py:625 .\templates\shop\_order_details.html.py:49
 #: .\templates\shop\_order_details.html.py:71
 #: .\templates\shop\_order_tracking_details.html.py:28
 #: .\templates\shop\_order_tracking_details.html.py:36
-#: .\templates\shop\cart.html.py:33
-#: .\templates\shop\order_history.html.py:23
+#: .\templates\shop\cart.html.py:33 .\templates\shop\order_history.html.py:23
 msgid "Total"
 msgstr "Итого"
 
@@ -418,26 +363,21 @@ msgstr "Способы доставки"
 msgid "Shipping Cost"
 msgstr "Цена доставки"
 
-#: .\models.py:642
-#: .\templates\shop\_order_details.html.py:60
+#: .\models.py:642 .\templates\shop\_order_details.html.py:60
 msgid "Shipping Discount"
 msgstr "Скидка на доставку"
 
-#: .\models.py:644
-#: .\models.py:1385
-#: .\templates\shop\_order_details.html.py:69
+#: .\models.py:644 .\models.py:1385 .\templates\shop\_order_details.html.py:69
 #: .\templates\shop\_order_tracking_details.html.py:34
 msgid "Tax"
 msgstr "Налог"
 
-#: .\models.py:646
-#: .\models.py:1223
+#: .\models.py:646 .\models.py:1223
 #: .\templates\shop\admin\_orderpayment_list.html.py:11
 msgid "Timestamp"
 msgstr "Время"
 
-#: .\models.py:647
-#: .\models.py:1220
+#: .\models.py:647 .\models.py:1220
 #: .\templates\shop\_order_tracking_details.html.py:9
 #: .\templates\shop\order_history.html.py:20
 msgid "Status"
@@ -447,14 +387,11 @@ msgstr "Статус"
 msgid "This is set automatically."
 msgstr "Включается автоматически"
 
-#: .\models.py:834
-#: .\models.py:844
-#: .\models.py:951
+#: .\models.py:834 .\models.py:844 .\models.py:951
 msgid "View"
 msgstr "Смотреть"
 
-#: .\models.py:903
-#: .\templates\shop\_order_details.html.py:56
+#: .\models.py:903 .\templates\shop\_order_details.html.py:56
 #: .\templates\shop\_order_tracking_details.html.py:30
 msgid "Discount"
 msgstr "Скидка"
@@ -467,14 +404,11 @@ msgstr "Заказ"
 msgid "Product Orders"
 msgstr "Заказы"
 
-#: .\models.py:1063
-#: .\models.py:1167
-#: .\models.py:1219
+#: .\models.py:1063 .\models.py:1167 .\models.py:1219
 msgid "Order"
 msgstr "Заказ"
 
 #: .\models.py:1066
-#, fuzzy
 msgid "Unit price"
 msgstr "Цена за единицу"
 
@@ -483,7 +417,6 @@ msgid "Unit tax"
 msgstr "Налог на единицу"
 
 #: .\models.py:1070
-#, fuzzy
 msgid "Line item price"
 msgstr "Цена за единицу"
 
@@ -492,12 +425,10 @@ msgid "Line item tax"
 msgstr "Налог на единицу"
 
 #: .\models.py:1074
-#, fuzzy
 msgid "Subscription End"
 msgstr "Окончание подписки"
 
 #: .\models.py:1074
-#, fuzzy
 msgid "Subscription expiration date."
 msgstr "Дата завершения подписки."
 
@@ -510,22 +441,18 @@ msgid "Line item discount"
 msgstr "Скидка на единицу"
 
 #: .\models.py:1142
-#, fuzzy
 msgid "Order Line Item"
 msgstr "Позиция заказа"
 
 #: .\models.py:1143
-#, fuzzy
 msgid "Order Line Items"
 msgstr "Позиции заказа"
 
 #: .\models.py:1150
-#, fuzzy
 msgid "Order Item"
 msgstr "Позиция заказа"
 
-#: .\models.py:1151
-#: .\views\contact.py:20
+#: .\models.py:1151 .\views\contact.py:20
 msgid "Name"
 msgstr "Наименование"
 
@@ -605,8 +532,7 @@ msgstr "количество"
 msgid "timestamp"
 msgstr "время"
 
-#: .\models.py:1246
-#: .\templates\shop\admin\_orderpayment_list.html.py:12
+#: .\models.py:1246 .\templates\shop\admin\_orderpayment_list.html.py:12
 msgid "Transaction ID"
 msgstr "ID транзакци"
 
@@ -630,8 +556,7 @@ msgstr "Авторизации для оплаты заказов"
 msgid "Order Payment"
 msgstr "Платеж по заказу"
 
-#: .\models.py:1335
-#: .\templates\shop\admin\_orderpayment_list.html.py:3
+#: .\models.py:1335 .\templates\shop\admin\_orderpayment_list.html.py:3
 msgid "Order Payments"
 msgstr "Платежы по заказам"
 
@@ -686,26 +611,19 @@ msgstr "Новый заказ в %(shop_name)s."
 msgid "Your order from %(shop_name)s has shipped"
 msgstr "Ваш заказ в %(shop_name)s в процессе доставки"
 
-#: .\templates\404.html.py:5
-#: .\templates\500.html.py:5
-#: .\templates\shop\404.html.py:5
-#: .\templates\shop\cart.html.py:11
+#: .\templates\404.html.py:5 .\templates\500.html.py:5
+#: .\templates\shop\404.html.py:5 .\templates\shop\cart.html.py:11
 #: .\templates\shop\contact_form.html.py:5
 #: .\templates\shop\contact_thanks.html.py:5
-#: .\templates\shop\download.html.py:5
-#: .\templates\shop\index.html.py:7
+#: .\templates\shop\download.html.py:5 .\templates\shop\index.html.py:7
 #: .\templates\shop\multiple_product_form.html.py:10
 #: .\templates\shop\order_history.html.py:7
-#: .\templates\shop\order_tracking.html.py:6
-#: .\templates\shop\search.html.py:6
+#: .\templates\shop\order_tracking.html.py:6 .\templates\shop\search.html.py:6
 msgid "Home"
 msgstr "Главная"
 
-#: .\templates\404.html.py:10
-#: .\templates\500.html.py:10
-#: .\templates\shop\404.html.py:10
-#: .\views\cart.py:254
-#: .\views\cart.py:291
+#: .\templates\404.html.py:10 .\templates\500.html.py:10
+#: .\templates\shop\404.html.py:10 .\views\cart.py:254 .\views\cart.py:291
 msgid "Error"
 msgstr "Ошибка"
 
@@ -753,13 +671,11 @@ msgstr "Выход"
 msgid "Log in"
 msgstr "Войти"
 
-#: .\templates\base.html.py:85
-#: .\templates\shop\cart.html.py:65
+#: .\templates\base.html.py:85 .\templates\shop\cart.html.py:65
 msgid "Check out"
 msgstr "Оформить заказ"
 
-#: .\templates\base.html.py:91
-#: .\templates\shop\contact_form.html.py:6
+#: .\templates\base.html.py:91 .\templates\shop\contact_form.html.py:6
 #: .\templates\shop\contact_thanks.html.py:6
 msgid "Contact Us"
 msgstr "Написать нам"
@@ -882,8 +798,7 @@ msgstr "Заказ №"
 msgid "Shipping To"
 msgstr "Доставка"
 
-#: .\templates\shop\_search.html.py:2
-#: .\templates\shop\_search.html.py:13
+#: .\templates\shop\_search.html.py:2 .\templates\shop\_search.html.py:13
 msgid "Search"
 msgstr "Поиск"
 
@@ -908,12 +823,10 @@ msgid "Regular Price"
 msgstr "Обычная цена"
 
 #: .\templates\shop\cart.html.py:29
-#, fuzzy
 msgid "Sale Price"
 msgstr "Продажная цена "
 
 #: .\templates\shop\cart.html.py:31
-#, fuzzy
 msgid "Price"
 msgstr "Цена"
 
@@ -961,12 +874,8 @@ msgid "will commence after clicking the link below:"
 msgstr "начнется после нажатия на ссылку ниже:"
 
 #: .\templates\shop\download.html.py:15
-msgid ""
-"Once you click the link, the download will be counted.  If you have "
-"trouble with the download, please refresh your browser and try the download again"
-msgstr ""
-"Как только вы кликните по ссылке, начнется скачивание. Если у вас возникнут "
-"проблемы со скачиванием, пожалуйста, обновите ваш браузре и попробуйте скачать снова."
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh your browser and try the download again"
+msgstr "Как только вы кликните по ссылке, начнется скачивание. Если у вас возникнут проблемы со скачиванием, пожалуйста, обновите ваш браузре и попробуйте скачать снова."
 
 #: .\templates\shop\index.html.py:11
 msgid "Welcome to the shop."
@@ -976,13 +885,11 @@ msgstr "Добро пожаловать в магазин."
 msgid "Featured Items"
 msgstr "Специальное предложение"
 
-#: .\templates\shop\index.html.py:32
-#: .\templates\shop\index.html.py:34
+#: .\templates\shop\index.html.py:32 .\templates\shop\index.html.py:34
 msgid "Previous"
 msgstr "Назад"
 
-#: .\templates\shop\index.html.py:44
-#: .\templates\shop\index.html.py:46
+#: .\templates\shop\index.html.py:44 .\templates\shop\index.html.py:46
 msgid "Next"
 msgstr "Вперед"
 
@@ -991,7 +898,6 @@ msgid "Quick Order Form"
 msgstr "Быстрый заказ"
 
 #: .\templates\shop\multiple_product_form.html.py:52
-#, fuzzy
 msgid "Add to Cart"
 msgstr "Добавить в корзину"
 
@@ -1022,8 +928,7 @@ msgstr "Вы пока не совершили заказов."
 msgid "Order Tracking"
 msgstr "Отслеживание заказов"
 
-#: .\templates\shop\search.html.py:12
-#: .\templates\shop\search.html.py:38
+#: .\templates\shop\search.html.py:12 .\templates\shop\search.html.py:38
 msgid "Nothing found"
 msgstr "Ничего не найдено"
 
@@ -1033,12 +938,10 @@ msgid "Search results for %(category_name)s products"
 msgstr "Результаты поиска продуктов в %(category_name)s"
 
 #: .\templates\shop\search.html.py:19
-#, fuzzy
 msgid "Categories"
 msgstr "Разделы магазина"
 
 #: .\templates\shop\search.html.py:29
-#, fuzzy
 msgid "Products"
 msgstr "Продукты"
 
@@ -1092,7 +995,6 @@ msgid "Balance on order:"
 msgstr "Остаток на счете:"
 
 #: .\templates\shop\admin\order_sidebar.html.py:4
-#, fuzzy
 msgid "Satchmo Orders"
 msgstr "Заказы"
 
@@ -1135,11 +1037,8 @@ msgstr "Платеж: "
 
 #: .\templates\shop\email\_order_detail_table.html.py:102
 #, python-format
-msgid ""
-"%(credit_card_type)s card ending in %(credit_card_number)s will be "
-"charged %(order_total)s."
-msgstr "С вашей карты %(credit_card_type)s, заканчивающейся на "
-"%(credit_card_number)s будет списано %(order_total)s."
+msgid "%(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "С вашей карты %(credit_card_type)s, заканчивающейся на %(credit_card_number)s будет списано %(order_total)s."
 
 #: .\templates\shop\email\_order_detail_table.html.py:114
 msgid "This is a downloadable product"
@@ -1166,8 +1065,7 @@ msgstr "Администрация магазина"
 msgid "No cart to update."
 msgstr "Нет корзины для обновления."
 
-#: .\views\cart.py:66
-#: .\views\cart.py:75
+#: .\views\cart.py:66 .\views\cart.py:75
 msgid "Bad quantity."
 msgstr "Неправильное количество."
 
@@ -1213,8 +1111,7 @@ msgstr "Успешно"
 msgid "You must accept the terms and conditions."
 msgstr "Вы должны принять условия и соглашения."
 
-#: .\views\comments.py:20
-#: .\views\comments.py:31
+#: .\views\comments.py:20 .\views\comments.py:31
 msgid "One or more of the required fields wasn't submitted"
 msgstr "Одно или более требуемых полей не было заполнено"
 
@@ -1247,8 +1144,7 @@ msgstr "Вопрос"
 msgid "Contents"
 msgstr "Содержимое"
 
-#: .\views\download.py:23
-#: .\views\download.py:28
+#: .\views\download.py:23 .\views\download.py:28
 msgid "The download key is invalid."
 msgstr "Неверный ключ для скачивания."
 
@@ -1257,31 +1153,21 @@ msgid "Invalid page number"
 msgstr "Неправильный номер страницы."
 
 #: .\views\orders.py:40
-msgid ""
-"The order you have requested doesn't exist, or you don't have access to it."
+msgid "The order you have requested doesn't exist, or you don't have access to it."
 msgstr "Запрошенный продукт не существует, или у вас нет к нему доступа."
 
-#~ msgid ""
-#~ "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
-#~ "contact form."
-#~ msgstr ""
-#~ "Сообщение типа \"%(request_type)s\" от %(name)s ( %(email)s ) было "
-#~ "отправлено через веб-форму обратной связи."
+#~ msgid "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web contact form."
+#~ msgstr "Сообщение типа \"%(request_type)s\" от %(name)s ( %(email)s ) было отправлено через веб-форму обратной связи."
 
 #~ msgid "Dear %(first_name)s %(last_name)s,"
 #~ msgstr "Уважаемый %(first_name)s %(last_name)s,"
 
-#~ msgid ""
-#~ "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
-#~ "charged %(order_total)s."
-#~ msgstr ""
-#~ "С вашей карты %(credit_card_type)s, заканчивающейся на %"
-#~ "(credit_card_number)s будет списано %(order_total)s."
+#~ msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+#~ msgstr "С вашей карты %(credit_card_type)s, заканчивающейся на %(credit_card_number)s будет списано %(order_total)s."
 
 #~ msgid "Your order contains products that can be downloaded"
 #~ msgstr "Ваш заказ содержит продукцию, которая может быть скачана"
 
-#, fuzzy
 #~ msgid "Please click the link to begin the download"
 #~ msgstr "Пожалуйста, кликните по ссылке, чтобы начать скачивание"
 
@@ -1303,11 +1189,9 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Unit Price"
 #~ msgstr "Цена за единицу"
 
-#, fuzzy
 #~ msgid "Payments Made"
 #~ msgstr "Платеж"
 
-#, fuzzy
 #~ msgid "Balance Due"
 #~ msgstr "Остаток на счете:"
 
@@ -1317,14 +1201,9 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Accounts Receivable"
 #~ msgstr "Получатели"
 
-#~ msgid ""
-#~ "%(order_total)s was charged to your %(credit_card_type)s card (x%"
-#~ "(credit_card_number)s) on %(order_date)s."
-#~ msgstr ""
-#~ "%(order_total)s было снято с вашей карты %(credit_card_type)s (x%"
-#~ "(credit_card_number)s) %(order_date)s."
+#~ msgid "%(order_total)s was charged to your %(credit_card_type)s card (x%(credit_card_number)s) on %(order_date)s."
+#~ msgstr "%(order_total)s было снято с вашей карты %(credit_card_type)s (x%(credit_card_number)s) %(order_date)s."
 
-#, fuzzy
 #~ msgid "This invoice has been paid in full. Thank you for your business!"
 #~ msgstr "Спасибо за то, что работаете с нами!"
 
@@ -1334,7 +1213,6 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Thank you for your business!"
 #~ msgstr "Спасибо за то, что работаете с нами!"
 
-#, fuzzy
 #~ msgid "Choose a smaller quantity"
 #~ msgstr "Выберите количество."
 
@@ -1363,9 +1241,7 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgstr "Используйте символ '_' для задания пробела."
 
 #~ msgid "Enable random display of featured products on home page"
-#~ msgstr ""
-#~ "Разрешить случайное отображение продуктов из специального предложения на "
-#~ "главной"
+#~ msgstr "Разрешить случайное отображение продуктов из специального предложения на главной"
 
 #~ msgid "Allow user to choose from available translations"
 #~ msgstr "Позволять пользователям выбирать из доступных переводов"
@@ -1409,12 +1285,8 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Change language"
 #~ msgstr "Изменить язык"
 
-#~ msgid ""
-#~ "price at right is your deposit, you will receive a bill for the remainder "
-#~ "when your item is ready."
-#~ msgstr ""
-#~ "число справа - это ваша предоплата, вы получите счет на оставщуюся сумму, "
-#~ "когда товар будет готов."
+#~ msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+#~ msgstr "число справа - это ваша предоплата, вы получите счет на оставщуюся сумму, когда товар будет готов."
 
 #~ msgid "Satchmo Site Administration"
 #~ msgstr "Администрирование сайта Satchmo"
@@ -1446,12 +1318,8 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Order Balance"
 #~ msgstr "Баланс оплаты заказа"
 
-#~ msgid ""
-#~ "To complete this order, you need to pay the %(orderbalance)s balance "
-#~ "remaining on this order."
-#~ msgstr ""
-#~ "Чтобы завершить ваш заказ, вам нужно погасить неоплаченный остаток в %"
-#~ "(orderbalance)s за этот заказ."
+#~ msgid "To complete this order, you need to pay the %(orderbalance)s balance remaining on this order."
+#~ msgstr "Чтобы завершить ваш заказ, вам нужно погасить неоплаченный остаток в %(orderbalance)s за этот заказ."
 
 #~ msgid "How do you want to pay?"
 #~ msgstr "Как бы хотели оплатить?"
@@ -1465,26 +1333,17 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Confirmation"
 #~ msgstr "Подтверждение"
 
-#~ msgid ""
-#~ "The following error was returned while trying to process your payment. "
-#~ "Please correct and resubmit."
-#~ msgstr ""
-#~ "Во время обработки вашего платежа произошла следующая ошибка. Пожалуйста, "
-#~ "исправьте и повторите попытку."
+#~ msgid "The following error was returned while trying to process your payment. Please correct and resubmit."
+#~ msgstr "Во время обработки вашего платежа произошла следующая ошибка. Пожалуйста, исправьте и повторите попытку."
 
 #~ msgid "Please validate the following information, then submit your order."
-#~ msgstr ""
-#~ "Пожалуйста, проверьте следующую информацию и отправьте данные о вашем "
-#~ "заказе."
+#~ msgstr "Пожалуйста, проверьте следующую информацию и отправьте данные о вашем заказе."
 
 #~ msgid "Purchase Items"
 #~ msgstr "Оплатить товары"
 
-#~ msgid ""
-#~ "Please complete the following information in order to submit your order."
-#~ msgstr ""
-#~ "Пожалуйста, дополните следующую информацию для того, что отправить данные "
-#~ "о вашем заказе."
+#~ msgid "Please complete the following information in order to submit your order."
+#~ msgstr "Пожалуйста, дополните следующую информацию для того, что отправить данные о вашем заказе."
 
 #~ msgid "Shipping Information"
 #~ msgstr "Информация о доставке"
@@ -1495,19 +1354,11 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Confirm"
 #~ msgstr "Подтвердить"
 
-#~ msgid ""
-#~ "Your cart is empty. Please add some items to your cart, then complete the "
-#~ "checkout process."
-#~ msgstr ""
-#~ "Ваша корзина пуста. Пожалуйста, добавьте товаров в корзину, а затем "
-#~ "совершите процедуру оформления заказа."
+#~ msgid "Your cart is empty. Please add some items to your cart, then complete the checkout process."
+#~ msgstr "Ваша корзина пуста. Пожалуйста, добавьте товаров в корзину, а затем совершите процедуру оформления заказа."
 
-#~ msgid ""
-#~ "If you already have an account, you can login now to fill in most of the "
-#~ "information below."
-#~ msgstr ""
-#~ "Если вы уже имеете учетную запись, то вы можете войти, предоставив нужную "
-#~ "для этого информацию ниже."
+#~ msgid "If you already have an account, you can login now to fill in most of the information below."
+#~ msgstr "Если вы уже имеете учетную запись, то вы можете войти, предоставив нужную для этого информацию ниже."
 
 #~ msgid "This is just a convenience, no account is required!"
 #~ msgstr "Это лишь для вашего удобства, никакой учетной записи не требуется!"
@@ -1542,12 +1393,8 @@ msgstr "Запрошенный продукт не существует, или 
 #~ msgid "Thank you for your order!"
 #~ msgstr "Спасибо за ваш заказ!"
 
-#~ msgid ""
-#~ "Please print out this page as a receipt.  You will also receive an email "
-#~ "with this information."
-#~ msgstr ""
-#~ "Пожалуйста, распечатайте эту страницу в качестве квитанции об оплате. Вы "
-#~ "также получите электронное письмо с этой информацией."
+#~ msgid "Please print out this page as a receipt.  You will also receive an email with this information."
+#~ msgstr "Пожалуйста, распечатайте эту страницу в качестве квитанции об оплате. Вы также получите электронное письмо с этой информацией."
 
 #~ msgid "This order will be COD for %(order_total)s."
 #~ msgstr "Этот заказ будет оплачен в системе COD на сумму %(order_total)s."
