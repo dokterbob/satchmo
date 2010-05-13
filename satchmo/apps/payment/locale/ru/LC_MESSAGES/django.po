@@ -3,13 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 16:29+0300\n"
+"POT-Creation-Date: 2010-05-13 16:28+0300\n"
 "Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: .\config.py:11
 msgid "Payment Settings"
@@ -329,8 +330,9 @@ msgid ""
 "then you can use the cc# 4222222222222 to force a bad credit card response.  "
 "If you use that number and a ccv of 222, that will force a bad ccv response "
 "from authorize.net"
-msgstr "Если нет - платежи будут проведены по тестовым URL. ВАЖНО: если вы "
-"хотите получить сообщение о неверном ccv от authorize.net в тестовом режиме - "
+msgstr ""
+"Если нет - платежи будут проведены по тестовым URL. ВАЖНО: если вы хотите "
+"получить сообщение о неверном ccv от authorize.net в тестовом режиме - "
 "используйте номер карты 4222222222222 и код проверки 222"
 
 #: .\modules\authorizenet\config.py:40
@@ -342,8 +344,8 @@ msgid ""
 "True if you want to submit to the live url using a test flag, which won't be "
 "accepted."
 msgstr ""
-"Включите, если хотите при отсылке данных к рабочему url использовать тестовый "
-"режим, в котором транзакция не будет принята."
+"Включите, если хотите при отсылке данных к рабочему url использовать "
+"тестовый режим, в котором транзакция не будет принята."
 
 #: .\modules\authorizenet\config.py:46 .\modules\autosuccess\config.py:17
 #: .\modules\cod\config.py:21 .\modules\cybersource\config.py:34
@@ -447,9 +449,9 @@ msgid ""
 "Enable ARB processing for setting up subscriptions.  You must have this "
 "enabled in your Authorize account for it to work."
 msgstr ""
-"Включить ARB (Automated Recurring Billing) - автоматические повторные платежи "
-" для товаров-подписок. Эта опция должна быть также включена в настройках "
-"аккаунта Authorize."
+"Включить ARB (Automated Recurring Billing) - автоматические повторные "
+"платежи  для товаров-подписок. Эта опция должна быть также включена в "
+"настройках аккаунта Authorize."
 
 #: .\modules\authorizenet\config.py:110
 #, fuzzy
@@ -818,8 +820,8 @@ msgid ""
 "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
 "s total available to pay for your order."
 msgstr ""
-"Вы собираетесь использовать для оплаты счета подарочный сертификат "
-"№%(giftcode)s с балансом %(certbalance)s."
+"Вы собираетесь использовать для оплаты счета подарочный сертификат №%"
+"(giftcode)s с балансом %(certbalance)s."
 
 #: .\modules\giftcertificate\templates\shop\checkout\confirm.html.py:22
 msgid ""
@@ -828,8 +830,8 @@ msgid ""
 "certificate."
 msgstr ""
 "Если на балансе сертификата недостаточно средств, чтобы оплатить весь заказ, "
-"вы сможете использовать другой метод оплаты после использования сертификата, "
-" чтобы оплатить недостающую сумму."
+"вы сможете использовать другой метод оплаты после использования "
+"сертификата,  чтобы оплатить недостающую сумму."
 
 #: .\modules\giftcertificate\templates\shop\checkout\giftcertificate\confirm.html.py:6
 #, fuzzy
@@ -1060,8 +1062,8 @@ msgid ""
 "This is used for Live and Test transactions.  Make sure to add your server "
 "IP address to VSP, or it won't work."
 msgstr ""
-"Используется для настоящих и тестовых транзакций. Убедитесь, что вы добавили"
-"IP вашего сервера в VSP, иначе работать не будет. "
+"Используется для настоящих и тестовых транзакций. Убедитесь, что вы "
+"добавилиIP вашего сервера в VSP, иначе работать не будет. "
 
 #: .\modules\protx\config.py:88
 msgid "Simulator Vendor Name"
@@ -1074,8 +1076,8 @@ msgid ""
 "to the VSP Simulator, or it won't work."
 msgstr ""
 "Используется для настоящих и тестовых транзакций. Убедитесь, что вы "
-"активировали VSP Simulator и добавили"
-"IP вашего сервера в VSP Simulator, иначе работать не будет. "
+"активировали VSP Simulator и добавилиIP вашего сервера в VSP Simulator, "
+"иначе работать не будет. "
 
 #: .\modules\protx\config.py:95
 #, fuzzy
@@ -1167,12 +1169,12 @@ msgid "USD (US Dollar)"
 msgstr "USD (Доллар США)"
 
 #: .\modules\sermepa\config.py:61
-msgid "GBP (Британский Фунт)"
-msgstr ""
+msgid "GBP (British Pound)"
+msgstr "GBP (Британский Фунт)"
 
 #: .\modules\sermepa\config.py:62
-msgid "JPY (Японская йена)"
-msgstr ""
+msgid "JPY (Japanese Yen)"
+msgstr "JPY (Японская Йена)"
 
 #: .\modules\sermepa\config.py:69
 #, fuzzy
@@ -1389,8 +1391,8 @@ msgid ""
 "To complete this order, you need to pay the %(orderbalance)s balance "
 "remaining on this order."
 msgstr ""
-"Для завершения заказа вам необходимо оплатить недостающую сумму: "
-"%(orderbalance)s."
+"Для завершения заказа вам необходимо оплатить недостающую сумму: %"
+"(orderbalance)s."
 
 #: .\templates\shop\checkout\balance_remaining.html.py:22
 #: .\templates\shop\checkout\form.html.py:51
@@ -1407,8 +1409,8 @@ msgid ""
 "The following error was returned while trying to process your payment. "
 "Please correct and resubmit."
 msgstr ""
-"Следующая ошибка была получена при обработке вашего заказа."
-"Пожалуйста, исправьте и отправьте снова."
+"Следующая ошибка была получена при обработке вашего заказа.Пожалуйста, "
+"исправьте и отправьте снова."
 
 #: .\templates\shop\checkout\base_confirm.html.py:25
 msgid "Please validate the following information, then submit your order."
@@ -1427,8 +1429,7 @@ msgstr "Заказываемые товары"
 #: .\templates\shop\checkout\form.html.py:22
 msgid ""
 "Please complete the following information in order to submit your order."
-msgstr ""
-"Предоставьте необходимую информацию для подтверждения заказа."
+msgstr "Предоставьте необходимую информацию для подтверждения заказа."
 
 #: .\templates\shop\checkout\base_pay_ship.html.py:22
 #: .\templates\shop\checkout\form.html.py:24
@@ -1460,8 +1461,7 @@ msgstr "В заказе отсутствуют товары для достав�
 msgid ""
 "No valid shipping method is available. Please verify that your address is "
 "correct."
-msgstr ""
-"Доставка невозможна. Пожалуйста, проверьте ваш адрес."
+msgstr "Доставка невозможна. Пожалуйста, проверьте ваш адрес."
 
 #: .\templates\shop\checkout\base_pay_ship.html.py:68
 msgid "Confirm"
@@ -1474,8 +1474,8 @@ msgid ""
 "The following error was returned while trying to process your card.  Please "
 "correct and resubmit"
 msgstr ""
-"Следующая ошибка была получена при обработке вашей карты."
-"Пожалуйста, исправьте и отправьте снова."
+"Следующая ошибка была получена при обработке вашей карты.Пожалуйста, "
+"исправьте и отправьте снова."
 
 #: .\templates\shop\checkout\confirm.html.py:19
 #: .\templates\shop\checkout\protx\confirm.html.py:19
@@ -1484,15 +1484,16 @@ msgid ""
 "Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
 "charged %(order_total)s."
 msgstr ""
-"С вашей кредитной карты %(credit_card_type)s, заканчивающейся на "
-"%(credit_card_number)s будет снято %(order_total)s."
+"С вашей кредитной карты %(credit_card_type)s, заканчивающейся на %"
+"(credit_card_number)s будет снято %(order_total)s."
 
 #: .\templates\shop\checkout\empty_cart.html.py:12
 msgid ""
 "Your cart is empty. Please add some items to your cart, then complete the "
 "checkout process."
 msgstr ""
-"Корзина пуста. Пожалуйста, добавьте товары в корзину перед оформлением заказа."
+"Корзина пуста. Пожалуйста, добавьте товары в корзину перед оформлением "
+"заказа."
 
 #: .\templates\shop\checkout\failure.html.py:11
 #, fuzzy
@@ -1520,8 +1521,8 @@ msgid ""
 "If you already have an account, you can login now to fill in most of the "
 "information below."
 msgstr ""
-"Если у вас уже имеется учетная запись, вы можете войти, чтобы заполнить "
-"эти поля."
+"Если у вас уже имеется учетная запись, вы можете войти, чтобы заполнить эти "
+"поля."
 
 #: .\templates\shop\checkout\form.html.py:34
 msgid "This is just a convenience, no account is required!"
