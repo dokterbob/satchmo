@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
-"PO-Revision-Date: 2008-09-05 23:51-0300\n"
-"Last-Translator: Terry Laundos Aguiar <terry@s1solucoes.com.br>\n"
+"PO-Revision-Date: 2010-05-12 11:49-0300\n"
+"Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,46 +37,44 @@ msgstr "Por peça"
 
 #: config.py:21
 msgid "Hide if one?"
-msgstr ""
+msgstr "Esconder se um?"
 
 #: config.py:22
 msgid "Hide shipping form fields if there is only one choice available?"
-msgstr ""
+msgstr "Esconder campos de envio no formulário se houver somente uma escolha disponível?"
 
 #: config.py:26
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: config.py:27
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: config.py:28
-#, fuzzy
 msgid "Show description only"
-msgstr "Descrição"
+msgstr "Exibir somente a Descrição"
 
 #: config.py:34
 msgid "Select least expensive by default?"
-msgstr ""
+msgstr "Selecionar a mais barata por padrão?"
 
 #: modules/canadapost/config.py:12
-#, fuzzy
 msgid "Canada Post Shipping Settings"
-msgstr "Configurações de frete via UPS"
+msgstr "Configurações de frete via Canada Post"
 
 #: modules/canadapost/config.py:22
 msgid "Canada Post Merchant ID"
-msgstr ""
+msgstr "ID do comerciante Canada Post"
 
 #: modules/canadapost/config.py:23
 msgid "The merchant ID assigned by Canada Post"
-msgstr ""
+msgstr "O ID de comerciante atribuído pelo Canada Post"
 
 #: modules/canadapost/config.py:29
-#, fuzzy
 msgid "Canada Post shipping choices available to customers."
-msgstr "Opções de envio pela UPS disponíveis para clientes."
+msgstr "Opções de envio pelo Canada Post disponíveis para clientes."
+
 
 #: modules/canadapost/config.py:54 modules/ups/config.py:53
 #: modules/usps/config.py:68
@@ -84,9 +82,8 @@ msgid "Type of container used to ship product."
 msgstr "Tipo de embalagem usada para enviar o produto."
 
 #: modules/canadapost/config.py:64
-#, fuzzy
 msgid "Access production Canada Post server"
-msgstr "Acessar servidor de produção UPS"
+msgstr "Acessar servidor de produção Canada Post"
 
 #: modules/canadapost/config.py:65 modules/fedex/config.py:71
 #: modules/ups/config.py:75 modules/usps/config.py:82
@@ -96,26 +93,25 @@ msgstr "Use este quando sua loja estiver em produção."
 #: modules/canadapost/config.py:70 modules/fedex/config.py:76
 #: modules/ups/config.py:80 modules/usps/config.py:87
 msgid "Submit to URL"
-msgstr "Submeta à URL"
+msgstr "URL Envio"
 
 #: modules/canadapost/config.py:71
-#, fuzzy
 msgid "Canada Post Sell Online server to submit live transactions."
-msgstr "Endereço para submeter transações reais."
+msgstr "Endereço para submeter transações reais (Canada Post)."
+
 
 #: modules/canadapost/config.py:76 modules/fedex/config.py:82
 #: modules/ups/config.py:86
 msgid "Submit to TestURL"
-msgstr "Submeter a TestURL"
+msgstr "Enviar para URL de teste"
 
 #: modules/canadapost/config.py:77
-#, fuzzy
 msgid "Canada Post Sell Online server to submit test transactions."
-msgstr "Endereço para submeter transações teste."
+msgstr "Endereço para submeter transações teste (Canada Post)."
 
 #: modules/canadapost/config.py:82
 msgid "Turn around time"
-msgstr ""
+msgstr "Tempo de retorno"
 
 #: modules/canadapost/config.py:83
 msgid ""
@@ -123,6 +119,9 @@ msgid ""
 "parameter                     will overwrite the one defined in the "
 "merchant's profile"
 msgstr ""
+"Tempo de retorno em horas. Se declarado aqui, "
+"este parâmetro irá sobrescrever o definido no "
+"perfil do comerciante."
 
 #: modules/canadapost/config.py:89 modules/fedex/config.py:94
 #: modules/ups/config.py:92 modules/usps/config.py:99
@@ -134,15 +133,18 @@ msgid ""
 "Send the entire request and response to the log - for debugging help when "
 "setting up Canada Post."
 msgstr ""
+"Enviar requisição e respostas inteiras para o log - para facilitar a depuração "
+"quando configurando Canada Post."
 
 #: modules/canadapost/shipper.py:62
 #, python-format
 msgid "Canada Post - %s"
-msgstr ""
+msgstr "Canada Post - %s"
 
 #: modules/canadapost/shipper.py:78
 msgid "Canada Post"
-msgstr ""
+msgstr "Canada Post"
+
 
 #: modules/canadapost/shipper.py:87 modules/fedex/shipper.py:95
 #: modules/ups/shipper.py:78
@@ -163,7 +165,7 @@ msgstr "3 - 4"
 
 #: modules/dummy/shipper.py:28
 msgid "Dummy Flat Rate Shipping"
-msgstr ""
+msgstr "Valor padrão para módulo de frete de testes"
 
 #: modules/dummy/shipper.py:41
 msgid "US Mail"
@@ -174,43 +176,37 @@ msgid "3 - 4 business days"
 msgstr "3 - 4 dias úteis"
 
 #: modules/fedex/config.py:10
-#, fuzzy
 msgid "FedEx Shipping Settings"
-msgstr "Configurações de frete"
+msgstr "Configurações de frete FedEx"
 
 #: modules/fedex/config.py:20
 msgid "FedEx Meter Number"
-msgstr ""
+msgstr "Número métrico FedEx"
 
 #: modules/fedex/config.py:21
-#, fuzzy
 msgid "Meter Number provided by FedEx."
-msgstr "ID de usuário fornecida pelo site da UPS."
+msgstr "Número Métrico fornecido pela FedEx"
 
 #: modules/fedex/config.py:26
-#, fuzzy
 msgid "FedEx Account Number"
-msgstr "Número da conta UPS"
+msgstr "Número da conta FedEx"
 
 #: modules/fedex/config.py:27
-#, fuzzy
 msgid "FedEx Account Number."
-msgstr "Número da conta UPS."
+msgstr "Número da conta FedEx."
 
 #: modules/fedex/config.py:32
-#, fuzzy
 msgid "FedEx Shipping Choices Available to customers."
-msgstr "Opções de envio pela UPS disponíveis para clientes."
+msgstr "Opções de envio pela FedEx disponíveis para clientes."
 
 #: modules/fedex/config.py:56
-#, fuzzy
 msgid "Type of container/package used to ship product."
 msgstr "Tipo de embalagem usada para enviar o produto."
 
 #: modules/fedex/config.py:70
-#, fuzzy
 msgid "Access production FedEx server"
-msgstr "Acessar servidor de produção UPS"
+msgstr "Acessar servidor de produção FedEx"
+
 
 #: modules/fedex/config.py:77 modules/ups/config.py:81
 #: modules/usps/config.py:88
@@ -231,12 +227,16 @@ msgid ""
 "Use just one box and ship by weight?  If no then every item will be sent in "
 "its own box."
 msgstr ""
+"Usar somente uma caixa e entrega por peso? Se não, cada item será enviado "
+"em sua própria caixa."
 
 #: modules/fedex/config.py:95
 msgid ""
 "Send the entire request and response to the log - for debugging help when "
 "setting up FedEx."
 msgstr ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up FedEx."
 
 #: modules/fedex/shipper.py:70
 #, python-format
@@ -300,9 +300,9 @@ msgid "Per Item shipping"
 msgstr "Remessa por item"
 
 #: modules/productshipping/config.py:7
-#, fuzzy
 msgid "Shipping By Product"
-msgstr "Valor do frete"
+msgstr "Entrega por Produto"
+
 
 #: modules/productshipping/models.py:89 modules/tiered/models.py:91
 #: modules/tieredquantity/models.py:85
@@ -366,129 +366,115 @@ msgid "The minumum price for this tier to apply"
 msgstr "O mínimo preço para este nível a aplicar"
 
 #: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
-#, fuzzy
 msgid "Expires"
-msgstr "Exportar"
+msgstr "Expira em"
 
 #: modules/tieredquantity/config.py:4
-#, fuzzy
 msgid "Tiered Quantity"
-msgstr "Quantidade de itens de linha"
+msgstr "Quantidade diferenciada"
 
 #: modules/tieredquantity/models.py:207
-#, fuzzy
 msgid "Min Quantity"
-msgstr "Quantidade"
+msgstr "Quantidade Mínima"
 
 #: modules/tieredquantity/models.py:208
-#, fuzzy
 msgid "Minimum qty in order for this to apply?"
-msgstr "O mínimo preço para este nível a aplicar"
+msgstr "Quantidade mínima em pedido?"
 
 #: modules/tieredquantity/models.py:209
-#, fuzzy
 msgid "Handling Price"
-msgstr "Preço mínimo"
+msgstr "Preço manuseio"
 
 #: modules/tieredquantity/models.py:211
-#, fuzzy
 msgid "Shipping Per Item"
-msgstr "Valor do frete"
+msgstr "Valor do frete por item"
 
 #: modules/tieredweight/config.py:10
-#, fuzzy
 msgid "Tiered Weight Shipping"
-msgstr "Frete proporcional ao valor"
+msgstr "Envio peso diferenciado"
 
 #: modules/tieredweight/models.py:113 modules/tieredweight/models.py:126
 #: modules/tieredweight/models.py:139
-#, fuzzy
 msgid "carrier"
-msgstr "Transportador"
+msgstr "transportador"
 
 #: modules/tieredweight/models.py:116
 msgid "default_zone"
-msgstr ""
+msgstr "zona_padrao"
 
 #: modules/tieredweight/models.py:127
-#, fuzzy
 msgid "carriers"
-msgstr "Transportador"
+msgstr "transportadores"
 
 #: modules/tieredweight/models.py:140
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: modules/tieredweight/models.py:141
 msgid "countries"
-msgstr ""
+msgstr "países"
 
 #: modules/tieredweight/models.py:142
-#, fuzzy
 msgid "handling"
-msgstr "Preço mínimo"
+msgstr "manuseio"
+
 
 #: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
 #: modules/tieredweight/models.py:262
 msgid "zone"
-msgstr ""
+msgstr "zona"
 
 #: modules/tieredweight/models.py:154
 msgid "zones"
-msgstr ""
+msgstr "zonas"
 
 #: modules/tieredweight/models.py:246
-#, fuzzy
 msgid "description"
-msgstr "Descrição"
+msgstr "descrição"
 
 #: modules/tieredweight/models.py:247
-#, fuzzy
 msgid "method"
-msgstr "Método"
+msgstr "método"
 
 #: modules/tieredweight/models.py:247
 msgid "i.e. Air, Land, Sea"
-msgstr ""
+msgstr "ex: Ar, Terra, Mar"
 
 #: modules/tieredweight/models.py:248
-#, fuzzy
 msgid "delivery"
-msgstr "Dias para entrega"
+msgstr "entrega"
 
 #: modules/tieredweight/models.py:257
 msgid "zone translation"
-msgstr ""
+msgstr "tradução zona"
 
 #: modules/tieredweight/models.py:258
 msgid "zone translations"
-msgstr ""
+msgstr "traduções zona"
 
 #: modules/tieredweight/models.py:263
 msgid "min weight"
-msgstr ""
+msgstr "peso mínimo"
 
 #: modules/tieredweight/models.py:264
 msgid "handling ajustment"
-msgstr ""
+msgstr "ajuste manipulação"
 
 #: modules/tieredweight/models.py:266
-#, fuzzy
 msgid "shipping price"
-msgstr "Valor do frete"
+msgstr "preço entrega"
 
 #: modules/tieredweight/models.py:267
-#, fuzzy
 msgid "expires"
-msgstr "Exportar"
+msgstr "expira em"
 
 #: modules/tieredweight/models.py:277
 msgid "weight tier"
-msgstr ""
+msgstr "camada de peso "
 
 #: modules/tieredweight/models.py:278
 msgid "weight tiers"
-msgstr ""
+msgstr "camadas de peso"
 
 #: modules/ups/config.py:8
 msgid "UPS Shipping Settings"
@@ -543,6 +529,8 @@ msgid ""
 "Send the entire request and response to the log - for debugging help when "
 "setting up UPS."
 msgstr ""
+"Send the entire request and response to the log - for debugging help when "
+"setting up UPS."
 
 #: modules/ups/shipper.py:58
 #, python-format
@@ -554,87 +542,70 @@ msgid "UPS"
 msgstr "UPS"
 
 #: modules/usps/config.py:9
-#, fuzzy
 msgid "U.S.P.S. Shipping Settings"
-msgstr "Configurações de frete via UPS"
-
+msgstr "Configurações de envio via U.S.P.S. "
 #: modules/usps/config.py:17
-#, fuzzy
 msgid "USPS  Username"
-msgstr "ID de usuário UPS"
-
+msgstr "Nome de usuário USPS"
 #: modules/usps/config.py:18
-#, fuzzy
 msgid "User ID provided by USPS site."
-msgstr "ID de usuário fornecida pelo site da UPS."
-
+msgstr "ID de usuário fornecida pelo site da USPS."
 #: modules/usps/config.py:23
-#, fuzzy
 msgid "USPS Password"
-msgstr "Senha de usuário UPS"
-
+msgstr "Senha de usuário USPS"
 #: modules/usps/config.py:24
-#, fuzzy
 msgid "User password provided by USPS site."
-msgstr "Senha de usuário fornecida pelo site da UPS."
-
+msgstr "Senha de usuário fornecida pelo site da USPS."
 #: modules/usps/config.py:29
-#, fuzzy
 msgid "Handling Fee"
-msgstr "Preço mínimo"
+msgstr "Taxa de  manuseio"
 
 #: modules/usps/config.py:30
 msgid "The cost of packaging and taking order to post office"
-msgstr ""
-
+msgstr "O custo de embalamento e envio para o correio"
 #: modules/usps/config.py:35
-#, fuzzy
 msgid "USPS Shipping Choices Available to customers."
-msgstr "Opções de envio pela UPS disponíveis para clientes."
-
+msgstr "Opções de envio pela USPS disponíveis para clientes."
 #: modules/usps/config.py:81
-#, fuzzy
 msgid "Access production USPS server"
-msgstr "Acessar servidor de produção UPS"
-
+msgstr "Acessar servidor de produção USPS"
 #: modules/usps/config.py:93
-#, fuzzy
 msgid "Submit to Test URL"
-msgstr "Submeter a TestURL"
+msgstr "Enviar para URL de teste"
 
 #: modules/usps/config.py:100
 msgid ""
 "Send the entire request and response to the log - for debugging help when "
 "setting up USPS."
 msgstr ""
+"Enviar requisição e respostas inteiras para o log - para facilitar "
+"a depuração quando configurando USPS."
 
 #: modules/usps/shipper.py:129
-#, fuzzy, python-format
+#, python-format
 msgid "USPS - %s"
-msgstr "UPS - %s"
-
+msgstr "USPS - %s"
 #: modules/usps/shipper.py:145
-#, fuzzy
 msgid "USPS"
-msgstr "UPS"
+msgstr "USPS"
 
 #: modules/usps/shipper.py:153
 #, python-format
 msgid "in %s"
-msgstr ""
+msgstr "em %s"
 
 #: modules/usps/shipper.py:154
 #, python-format
 msgid "by %s"
-msgstr ""
+msgstr "por %s"
 
 #: modules/usps/shipper.py:156
-#, fuzzy, python-format
+#, python-format
 msgid "in %s business days"
 msgstr "%s dias úteis"
 
 #: modules/usps/shipper.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "in %s business day"
 msgstr "%s dia útil"
 

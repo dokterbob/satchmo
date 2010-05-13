@@ -1,22 +1,24 @@
 # translation of django.po to Italiano
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
 # Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+# Andrea Innocenti <andyinno@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
-"PO-Revision-Date: 2008-09-30 13:13+0200\n"
-"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
-"Language-Team: Italiano <it@li.org>\n"
+"PO-Revision-Date: 2010-05-12 13:39+0200\n"
+"Last-Translator: Andrea Innocenti <andyinno@gmail.com>\n"
+"Language-Team: italiano <nn@nn.it>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=n > 1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config.py:7
 msgid "Newsletter Settings"
@@ -27,8 +29,12 @@ msgid "Active newsletter module"
 msgstr "Modulo newsletter attivo"
 
 #: config.py:12
-msgid "Select a newsletter, save and reload to set any module-specific newsletter settings."
-msgstr "Seleziona una newsletter, salva e ricarica per modificare qualsiasi impostazione della newsletter."
+msgid ""
+"Select a newsletter, save and reload to set any module-specific newsletter "
+"settings."
+msgstr ""
+"Seleziona una newsletter, salva e ricarica per modificare qualsiasi "
+"impostazione della newsletter."
 
 #: config.py:14
 msgid "No newsletter"
@@ -48,7 +54,8 @@ msgstr "Nome della Newsletter"
 
 #: config.py:22
 msgid "Give the exact name that matches the mailing list set up in Mailman."
-msgstr "Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
+msgstr ""
+"Dare il nome esatto che corrisponde alla mailing list creata in Mailman."
 
 #: config.py:31
 msgid "Newsletter Slug"
@@ -56,7 +63,9 @@ msgstr "slug della newsletter"
 
 #: config.py:32
 msgid "The url slug for the newsletter.  Requires server restart if changed."
-msgstr "Lo slug per l'URL della newsletter. Richiede riavvio del server se modificata."
+msgstr ""
+"Lo slug per l'URL della newsletter. Richiede riavvio del server se "
+"modificata."
 
 #: forms.py:16
 msgid "Full Name"
@@ -77,7 +86,7 @@ msgstr "Iscriviti"
 #: mailman.py:44 simple.py:35
 #, python-format
 msgid "Updated subscription for %(email)s."
-msgstr "Aggiornata l'iscrizione per %(email)s"
+msgstr "Iscrizioni per %(email)s aggiornate"
 
 #: mailman.py:46 simple.py:37
 #, python-format
@@ -111,12 +120,12 @@ msgstr "Già membro:%(email)s"
 
 #: mailman.py:102
 msgid "Bad/Invalid email address: blank line"
-msgstr "Indirizzo e-mail non valido: riga vuota"
+msgstr "Indirizzo e-mail malformato/non valido: riga vuota"
 
 #: mailman.py:104
 #, python-format
 msgid "Bad/Invalid email address: %(email)s"
-msgstr "Indirizzo e-mail non valido: %(email)s"
+msgstr "Indirizzo e-mail malformato/non valido: %(email)s"
 
 #: mailman.py:107
 #, python-format
@@ -182,7 +191,7 @@ msgstr "Iscrizione alla Newsletter"
 #: templates/newsletter/update_form.html:13
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
-msgstr[0] "Per piacere correggi questo errore:"
+msgstr[0] "Per piacere correggi questi errore:"
 msgstr[1] "Per piacere correggi questi errori:"
 
 # translated = "Iscriviti alla newsletter"

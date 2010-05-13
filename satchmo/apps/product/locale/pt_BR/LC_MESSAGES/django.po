@@ -10,6 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2010-05-11 15:16-0300\n"
 "Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1332,8 +1333,8 @@ msgstr "Gestão de Estoque"
 #: templates/product/admin/variation_manager.html:233
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Por favor corrija o erro abaixo."
+msgstr[1] "Por favor corrija os erros abaixo."
 
 #: templates/product/admin/inventory_form.html:84
 msgid "Inventory"

@@ -10,6 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
 "PO-Revision-Date: 2011-05-11 13:36-0300\n"
 "Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -179,7 +180,6 @@ msgstr "Assinatura da Newsletter"
 #: templates/newsletter/subscribe_form.html:13
 #: templates/newsletter/unsubscribe_form.html:13
 #: templates/newsletter/update_form.html:13
-#, fuzzy
 msgid "Please correct the following error:"
 msgid_plural "Please correct the following errors:"
 msgstr[0] "Por favor corrija o seguinte erro:"

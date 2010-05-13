@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # Ederson Mota Pereira <edermp@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,9 +12,9 @@ msgstr ""
 "Last-Translator: Ederson Mota Pereira <edermp@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Plural-Forms: nplurals=2; plural=n != 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 
 #: admin.py:24
 msgid "Store Contact"
@@ -69,46 +69,34 @@ msgid "Show Site Field?"
 msgstr "Exibir campo Site?"
 
 #: config.py:44
-msgid ""
-"Should the Site field be displayed in the admin lists? A server restart is "
-"required for this to take effect."
-msgstr ""
-"O campo Site deve ser exibido nas listas do admin? Um reinicialização é "
-"necessária para esta alteração entrar em vigor."
+msgid "Should the Site field be displayed in the admin lists? A server restart is required for this to take effect."
+msgstr "O campo Site deve ser exibido nas listas do admin? Um reinicialização é necessária para esta alteração entrar em vigor."
 
 #: config.py:50
 msgid "Cart Quantity Rounding Factor"
 msgstr "Fator arredondamento para quantidade do carrinho"
 
 #: config.py:51
-msgid ""
-"What to round cart adds/deletes by, a '1' here means to round up to a whole "
-"number.  Must be -1 to 1."
+msgid "What to round cart adds/deletes by, a '1' here means to round up to a whole number.  Must be -1 to 1."
 msgstr ""
+"Arredondamento para inclusão/exclusão do carrinho, '1' aqui significa\r\n"
+"arredondar para um número inteiro. Deve ser entre -1/1."
 
 #: config.py:58
 msgid "Cart Quantity Decimal Places"
 msgstr "Casas Decimais na Quantidade do carrinho"
 
 #: config.py:59
-msgid ""
-"How many places to assume for cart quantities, use 0 unless you are selling "
-"products in fractional quantities."
-msgstr ""
-"Quantas casas assumir para quantidades no carrinho, use 0 a não ser que você venda"
-"produtos em quantidades fracionadas."
+msgid "How many places to assume for cart quantities, use 0 unless you are selling products in fractional quantities."
+msgstr "Quantas casas assumir para quantidades no carrinho, use 0 a não ser que você vendaprodutos em quantidades fracionadas."
 
 #: config.py:66
 msgid "Persistent Cart?"
 msgstr "Carrinho persistente?"
 
 #: config.py:67
-msgid ""
-"When a user logs in, attempt to retrieve previous carts and merge with "
-"existing?"
-msgstr ""
-"Quando um usuário entra, tentar resgatar carrinhos anterioriores e mesclar com "
-"existente?"
+msgid "When a user logs in, attempt to retrieve previous carts and merge with existing?"
+msgstr "Quando um usuário entra, tentar resgatar carrinhos anterioriores e mesclar com existente?"
 
 #: config.py:73
 msgid "Google Settings"
@@ -123,12 +111,8 @@ msgid "Use Urchin?"
 msgstr "Usar Urchin?"
 
 #: config.py:86
-msgid ""
-"Use the old-style, urchin javascript?.  This is not needed unless your "
-"analytics account hasn't been updated yet."
-msgstr ""
-"Usar o antiquado,  urchin javascript? Não é necessário a menos que sua "
-"conta analytics não tenha sido atualizada ainda."
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
+msgstr "Usar o antiquado,  urchin javascript? Não é necessário a menos que sua conta analytics não tenha sido atualizada ainda."
 
 #: config.py:94
 msgid "Analytics Code"
@@ -903,12 +887,8 @@ msgid "will commence after clicking the link below:"
 msgstr "vai começar depois que você clicar no link abaixo:"
 
 #: templates/shop/download.html:15
-msgid ""
-"Once you click the link, the download will be counted.  If you have trouble "
-"with the download, please refresh your browser and try the download again"
-msgstr ""
-"Ao clicar no link, o download será contado. Se você tiver problema com o "
-"download, recarregue seu navegador e tente o download novamente"
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh your browser and try the download again"
+msgstr "Ao clicar no link, o download será contado. Se você tiver problema com o download, recarregue seu navegador e tente o download novamente"
 
 #: templates/shop/index.html:11
 msgid "Welcome to the shop."
@@ -1045,12 +1025,8 @@ msgstr "Ver todos os Pedidos"
 
 #: templates/shop/email/contact_us.txt:1
 #, python-format
-msgid ""
-"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
-"contact form."
-msgstr ""
-"Este é um %(request_type)s de %(name)s ( %(email)s ) enviado pelo formulário "
-"de contato web."
+msgid "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web contact form."
+msgstr "Este é um %(request_type)s de %(name)s ( %(email)s ) enviado pelo formulário de contato web."
 
 #: templates/shop/email/order_complete.txt:1
 #: templates/shop/email/order_placed_notice.txt:1
@@ -1071,12 +1047,8 @@ msgstr "Seu pedido está resumido abaixo:"
 
 #: templates/shop/email/order_complete.txt:63
 #, python-format
-msgid ""
-"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
-"charged %(order_total)s."
-msgstr ""
-"Seu  cartão %(credit_card_type)s terminado em %(credit_card_number)s será "
-"cobrado %(order_total)s."
+msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "Seu  cartão %(credit_card_type)s terminado em %(credit_card_number)s será cobrado %(order_total)s."
 
 #: templates/shop/email/order_complete.txt:69
 msgid "Your order contains products that can be downloaded"
@@ -1101,12 +1073,8 @@ msgstr "Pedido realizado em %(shop_name)s por %(customer)s<%(email)s>."
 
 #: templates/shop/email/order_placed_notice.txt:59
 #, python-format
-msgid ""
-"%(credit_card_type)s card ending in %(credit_card_number)s will be charged %"
-"(order_total)s."
-msgstr ""
-"Cartão %(credit_card_type)s terminado em %(credit_card_number)s será "
-"cobrado %(order_total)s."
+msgid "%(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "Cartão %(credit_card_type)s terminado em %(credit_card_number)s será cobrado %(order_total)s."
 
 #: templates/shop/email/order_placed_notice.txt:65
 msgid "This is a donwloadable product"
@@ -1166,12 +1134,8 @@ msgstr "Contas a Receber"
 
 #: templates/shop/pdf/invoice.rml:212
 #, python-format
-msgid ""
-"%(order_total)s was charged to your %(credit_card_type)s card (x%"
-"(credit_card_number)s) on %(order_date)s."
-msgstr ""
-"O total de %(order_total)s foi cobrado de seu cartão %(credit_card_type)s nº "
-"(x%(credit_card_number)s) na data %(order_date)s."
+msgid "%(order_total)s was charged to your %(credit_card_type)s card (x%(credit_card_number)s) on %(order_date)s."
+msgstr "O total de %(order_total)s foi cobrado de seu cartão %(credit_card_type)s nº (x%(credit_card_number)s) na data %(order_date)s."
 
 #: templates/shop/pdf/invoice.rml:215
 msgid "This invoice has been paid in full. Thank you for your business!"
@@ -1293,10 +1257,8 @@ msgid "Invalid page number"
 msgstr "Número de página inválido."
 
 #: views/orders.py:40
-msgid ""
-"The order you have requested doesn't exist, or you don't have access to it."
-msgstr ""
-"O Pedido que está tentando acessar não existe ou você não tem acesso a ele."
+msgid "The order you have requested doesn't exist, or you don't have access to it."
+msgstr "O Pedido que está tentando acessar não existe ou você não tem acesso a ele."
 
 #~ msgid "Password"
 #~ msgstr "Senha"
@@ -1335,8 +1297,7 @@ msgstr ""
 #~ msgstr "Ativar pontuação de produtos"
 
 #~ msgid "Enable random display of featured products on home page"
-#~ msgstr ""
-#~ "Habilitar exibição aleatória de produtos em destaque em uma homepage"
+#~ msgstr "Habilitar exibição aleatória de produtos em destaque em uma homepage"
 
 #~ msgid "Total number of featured items to display"
 #~ msgstr "Numero de itens em destaque para exibir"
@@ -1355,6 +1316,7 @@ msgstr ""
 
 #~ msgid "Language Settings"
 #~ msgstr "Configurações de Idioma"
+
 #~ msgid "Allow user to choose from available translations"
 #~ msgstr "Premite usuário escolher entre traduções disponíveis"
 
@@ -1394,20 +1356,18 @@ msgstr ""
 #~ msgid "Change language"
 #~ msgstr "Mudar idioma"
 
-#~ msgid ""
-#~ "price at right is your deposit, you will receive a bill for the remainder "
-#~ "when your item is ready."
-#~ msgstr ""
-#~ "O valor à direita é seu depósito, você receberá uma cobrança para o "
-#~ "restante quando seu item estiver pronto."
+#~ msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+#~ msgstr "O valor à direita é seu depósito, você receberá uma cobrança para o restante quando seu item estiver pronto."
 
 #~ msgid "Export Products as CSV"
 #~ msgstr "Exportar produtos como CSV"
+
 #~ msgid "Inventory Management"
 #~ msgstr "Gerenciamento de Estoque"
 
 #~ msgid "Featured"
 #~ msgstr "Em Destaque"
+
 #~ msgid "Helpers"
 #~ msgstr "Ajudantes"
 
@@ -1422,18 +1382,15 @@ msgstr ""
 
 #~ msgid "Disable ProductVariations with 0 quantity."
 #~ msgstr "Desabilitar todas as variações de produto com quantidade 0."
+
 #~ msgid "No inventory items."
 #~ msgstr "Não há itens de estoque."
 
 #~ msgid "Order Balance"
 #~ msgstr "Saldo do pedido"
 
-#~ msgid ""
-#~ "To complete this order, you need to pay the %(orderbalance)s balance "
-#~ "remaining on this order."
-#~ msgstr ""
-#~ "Para completar este pedido, você precisa pagar o saldo restante de %"
-#~ "(orderbalance)s deste pedido."
+#~ msgid "To complete this order, you need to pay the %(orderbalance)s balance remaining on this order."
+#~ msgstr "Para completar este pedido, você precisa pagar o saldo restante de %(orderbalance)s deste pedido."
 
 #~ msgid "How do you want to pay?"
 #~ msgstr "Como você pretende pagar?"
@@ -1447,22 +1404,16 @@ msgstr ""
 #~ msgid "Confirmation"
 #~ msgstr "Confirmação"
 
-#~ msgid ""
-#~ "The following error was returned while trying to process your payment. "
-#~ "Please correct and resubmit."
-#~ msgstr ""
-#~ "O seguinte erro foi retornado ao tentar processar seu pagamento. Por "
-#~ "favor corrija e reenvie."
+#~ msgid "The following error was returned while trying to process your payment. Please correct and resubmit."
+#~ msgstr "O seguinte erro foi retornado ao tentar processar seu pagamento. Por favor corrija e reenvie."
 
 #~ msgid "Please validate the following information, then submit your order."
-#~ msgstr ""
-#~ "Por favor valide as seguintes informações e, em seguida, envie o seu "
-#~ "pedido."
+#~ msgstr "Por favor valide as seguintes informações e, em seguida, envie o seu pedido."
 
 #~ msgid "Purchase Items"
 #~ msgstr "Finalizar Compra"
-#~ msgid ""
-#~ "Please complete the following information in order to submit your order."
+
+#~ msgid "Please complete the following information in order to submit your order."
 #~ msgstr "Complete a seguinte informação para submeter seu pedido."
 
 #~ msgid "Discount code"
@@ -1470,31 +1421,21 @@ msgstr ""
 
 #~ msgid "Shipping Information"
 #~ msgstr "Informações para o envio"
+
 #~ msgid "Please choose your preferred shipping method"
 #~ msgstr "Escolha seu método de envio preferido"
 
 #~ msgid "Confirm"
 #~ msgstr "Confirme"
 
-#~ msgid ""
-#~ "The following error was returned while trying to process your card.  "
-#~ "Please correct and resubmit"
-#~ msgstr ""
-#~ "O seguinte erro foi retornado ao tentar processar seu pagamento. Por "
-#~ "favor corrija e tente novamente."
-#~ msgid ""
-#~ "Your cart is empty. Please add some items to your cart, then complete the "
-#~ "checkout process."
-#~ msgstr ""
-#~ "Seu carrinho está vazio. Adicione itens a ele, e depois complete o "
-#~ "processo de pagamento."
+#~ msgid "The following error was returned while trying to process your card.  Please correct and resubmit"
+#~ msgstr "O seguinte erro foi retornado ao tentar processar seu pagamento. Por favor corrija e tente novamente."
 
-#~ msgid ""
-#~ "If you already have an account, you can login now to fill in most of the "
-#~ "information below."
-#~ msgstr ""
-#~ "Se você já tem uma conta, você pode logar agora para preencher as "
-#~ "informações abaixo."
+#~ msgid "Your cart is empty. Please add some items to your cart, then complete the checkout process."
+#~ msgstr "Seu carrinho está vazio. Adicione itens a ele, e depois complete o processo de pagamento."
+
+#~ msgid "If you already have an account, you can login now to fill in most of the information below."
+#~ msgstr "Se você já tem uma conta, você pode logar agora para preencher as informações abaixo."
 
 #~ msgid "This is just a convenience, no account is required!"
 #~ msgstr "Isso é apenas uma conveniência, não é necessário ter conta!"
@@ -1513,6 +1454,7 @@ msgstr ""
 
 #~ msgid "Bill To"
 #~ msgstr "Cobrar a"
+
 #~ msgid "If different from the first and last names above"
 #~ msgstr "Se diferente do primeiro e do último acima"
 
@@ -1527,6 +1469,7 @@ msgstr ""
 
 #~ msgid "Ship To"
 #~ msgstr "Enviar para"
+
 #~ msgid "Type of credit card"
 #~ msgstr "Tipo de cartão de crédito"
 
@@ -1542,12 +1485,8 @@ msgstr ""
 #~ msgid "Thank you for your order!"
 #~ msgstr "Obrigado por seu pedido!"
 
-#~ msgid ""
-#~ "Please print out this page as a receipt.  You will also receive an email "
-#~ "with this information."
-#~ msgstr ""
-#~ "Imprima esta página como recibo. Você também receberá um e-mail com essa "
-#~ "informação."
+#~ msgid "Please print out this page as a receipt.  You will also receive an email with this information."
+#~ msgstr "Imprima esta página como recibo. Você também receberá um e-mail com essa informação."
 
 #~ msgid "This order will be COD for %(order_total)s."
 #~ msgstr "Esse pedido será pago no ato da entrega o valor de %(order_total)s."
