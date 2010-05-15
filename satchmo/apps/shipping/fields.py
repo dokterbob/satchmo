@@ -15,3 +15,19 @@ class ShippingChoiceCharField(models.CharField):
             kwargs['choices'] = shipping_choices()
 
         super(ShippingChoiceCharField, self).__init__(*args, **kwargs)
+
+try:
+    # South introspection rules for our custom field.
+    from south.modelsinspector import add_introspection_rules, matching_details
+
+    # get the kwargs for a Field instance
+    # we're using Field, as CharField doesn't change __init__()
+    _args, kwargs = matching_details(models.Field())
+
+    add_introspection_rules([(
+        (ShippingChoiceCharField, ),
+        [],
+        kwargs,
+    )], ['shipping\.fields'])
+except ImportError:
+    pass
