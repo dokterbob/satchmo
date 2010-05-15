@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'satchmo_store.shop',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.comments',
