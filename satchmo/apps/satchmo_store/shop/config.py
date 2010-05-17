@@ -76,6 +76,15 @@ HTML_EMAIL = config_register(
     default = False
     ))
 
+CART_QTY = config_register(
+    BooleanValue(SHOP_GROUP,
+    'CART_QTY',
+    description=_('Use Cart Price Breaks?'),
+    help_text=_('Use the total number or cart or order items to determine quantities for discount pricing.'),
+    default=False
+    ))
+
+
 #### Google Group ####
 
 GOOGLE_GROUP = ConfigurationGroup('GOOGLE', _('Google Settings'))

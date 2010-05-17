@@ -13,7 +13,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 from l10n.models import Country
 from l10n.utils import moneyfmt
-from livesettings import ConfigurationSettings
+from livesettings import ConfigurationSettings, config_value
 from payment.fields import PaymentChoiceCharField
 from product.models import Discount, Product, Price, get_product_quantity_adjustments
 from product.prices import PriceAdjustmentCalc, PriceAdjustment
@@ -449,7 +449,13 @@ class CartItem(models.Model):
     def _get_line_unitprice(self, include_discount=True):
         # Get the qty discount price as the unit price for the line.
 
-        self.qty_price = self.get_qty_price(self.quantity, include_discount=include_discount)
+        if config_value('SHOP','CART_QTY'):
+            qty = self.cart.numItems
+        else:
+            qty = self.quantity
+
+        self.qty_price = self.get_qty_price(qty, include_discount=include_discount)
+
         self.detail_price = self.get_detail_price()
         #send signal to possibly adjust the unitprice
         if include_discount:
@@ -688,6 +694,13 @@ class Order(models.Model):
 
     authorized_remaining = property(fget=_authorized_remaining)
 
+    def _get_count(self):
+        itemCount = 0
+        for item in self.orderitem_set.all():
+            itemCount += item.quantity
+        return (itemCount)
+    numItems = property(_get_count)
+
     def get_variable(self, key, default=None):
         qry = self.variables.filter(key__exact=key)
         ct = qry.count()
@@ -864,6 +877,11 @@ class Order(models.Model):
         discounts = discount.item_discounts
         itemprices = []
         fullprices = []
+
+        qty_override = config_value('SHOP','CART_QTY')
+        if qty_override:
+            itemct = self.numItems
+
         for lineitem in self.orderitem_set.all():
             lid = lineitem.id
             if lid in discounts:
@@ -873,7 +891,13 @@ class Order(models.Model):
             else:
                 lineitem.discount = zero
             # now double check against other discounts, such as tiered discounts
-            adjustment = get_product_quantity_adjustments(lineitem.product, qty=lineitem.quantity)
+            if qty_override:
+                qty = itemct
+            else:
+                qty = lineitem.quantity
+
+            adjustment = get_product_quantity_adjustments(lineitem.product, qty=qty)
+
             if adjustment and adjustment.price:
                 baseprice = adjustment.price.price
                 finalprice = adjustment.final_price()
