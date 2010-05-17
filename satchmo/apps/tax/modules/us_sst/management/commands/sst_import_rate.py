@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 import os
 from datetime import date
 from tax.modules.us_sst.models import TaxRate
@@ -19,6 +19,8 @@ class Command(BaseCommand):
         new = 0
         updated = 0
         unchanged = 0
+        if not args:
+            raise CommandError("No file specified")
         file = args[0]
         if not os.path.isfile(file):
             raise RuntimeError("File: %s is not a normal file or doesn't exist." % file)
