@@ -12,6 +12,9 @@ class Command(BaseCommand):
     their end dates set properly and the new rows inserted. You will need to do
     this quartly or as-needed by your tax jurisdictions.'''
 
+    help = "Imports a CSV rate file from the SST website."
+    args = 'file'
+
     def handle(self, *args, **options):
         new = 0
         updated = 0
