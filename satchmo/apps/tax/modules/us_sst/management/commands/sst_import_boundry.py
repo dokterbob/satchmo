@@ -24,7 +24,7 @@ CSV_MAP = (
     'lowAddress', 'highAddress', 'oddEven',
     'streetPreDirection', 'streetName', 'streetSuffix', 'streetPostDirection',
     'addressSecondaryAbbr', 'addressSecondaryLow', 'addressSecondaryHigh', 'addressSecondaryOddEven',
-    'cityName', 'zipCode', 'plus4', 
+    'cityName', 'zipCode', 'plus4',
     'zipCodeLow', 'zipExtensionLow', 'zipCodeHigh', 'zipExtensionHigh',
     'serCode',
     'fipsStateCode', 'fipsStateIndicator', 'fipsCountyCode', 'fipsPlaceCode', 'fipsPlaceType',
@@ -166,7 +166,7 @@ class Command(BaseCommand):
 
             if total % 100 == 0:
                 print "%s," % total,
-                
+
             # Now, handle mapping boundries to rates.
             #extra = SER,state_providing,state_taxed,County,Place,Class,Long,Lat, (ST/VD,Special Code,Special Type,) x 20
             # IF SER, then the tax module should report all sales taxes by that SER code.
