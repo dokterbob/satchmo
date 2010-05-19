@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-13 16:33+0300\n"
-"PO-Revision-Date: 2010-05-13 16:33+0300\n"
+"POT-Creation-Date: 2010-05-17 11:01+0300\n"
+"PO-Revision-Date: 2010-05-17 16:33+0300\n"
 "Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1000,7 +1000,7 @@ msgstr ""
 
 #: .\modules\downloadable\listeners.py:25
 msgid "Order immediately available for download"
-msgstr ""
+msgstr "Заказ готов к скачиванию"
 
 #: .\modules\downloadable\models.py:36
 msgid "File"
@@ -1049,7 +1049,7 @@ msgstr "Порядок сортировки"
 
 #: .\modules\downloadable\models.py:75
 msgid "Key"
-msgstr ""
+msgstr "Ключ"
 
 #: .\modules\downloadable\models.py:76
 #, fuzzy
@@ -1058,7 +1058,7 @@ msgstr "Количество специальных предложений"
 
 #: .\modules\downloadable\models.py:77
 msgid "Time stamp"
-msgstr ""
+msgstr "Время создания"
 
 #: .\modules\downloadable\models.py:87
 #, fuzzy
@@ -1077,11 +1077,11 @@ msgstr "Срок действия этого купона истек."
 
 #: .\modules\downloadable\models.py:119
 msgid "Download Link"
-msgstr ""
+msgstr "Ссылка для скачивания"
 
 #: .\modules\downloadable\models.py:120
 msgid "Download Links"
-msgstr ""
+msgstr "Ссылки для скачивания"
 
 #: .\modules\subscription\models.py:19
 msgid "Recurring Billing"
