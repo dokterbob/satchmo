@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -34,12 +34,8 @@ msgid "Character Set"
 msgstr "Zestaw znaków"
 
 #: config.py:21
-msgid ""
-"The characters allowable in randomly-generated certficate codes.  No vowels "
-"means no unfortunate words."
-msgstr ""
-"Znaki dozwolone w losowo wygenerowanych kodach certyfikatów. Brak samogłosek "
-"chroni przed tworzeniem niefortunnych słów."
+msgid "The characters allowable in randomly-generated certficate codes.  No vowels means no unfortunate words."
+msgstr "Znaki dozwolone w losowo wygenerowanych kodach certyfikatów. Brak samogłosek chroni przed tworzeniem niefortunnych słów."
 
 #: config.py:25
 msgid "Module key"
@@ -50,12 +46,8 @@ msgid "Code format"
 msgstr "Format kodu"
 
 #: config.py:33
-msgid ""
-"Enter the format for your cert code.  Use a '^' for the location of a "
-"randomly generated character."
-msgstr ""
-"Wprowadź format kodu certfikatu. Użyj '^' dla pokazania, gdzie ma się "
-"znaleźć losowy znak."
+msgid "Enter the format for your cert code.  Use a '^' for the location of a randomly generated character."
+msgstr "Wprowadź format kodu certfikatu. Użyj '^' dla pokazania, gdzie ma się znaleźć losowy znak."
 
 #: config.py:37
 msgid "Implementation module"
@@ -78,18 +70,16 @@ msgid "False if you want to be in test mode"
 msgstr "Fałsz - jeżeli tryb testowy"
 
 #: config.py:55
-msgid ""
-"The url base used for constructing urlpatterns which will use this module"
-msgstr ""
-"Bazowy URL, który będzie użyty do skonstruowania wzorca adresów w tym module"
+msgid "The url base used for constructing urlpatterns which will use this module"
+msgstr "Bazowy URL, który będzie użyty do skonstruowania wzorca adresów w tym module"
 
 #: config.py:60
 msgid "Verbose logs"
-msgstr ""
+msgstr "Szczegółowe logi"
 
 #: config.py:61
 msgid "Add extensive logs during post."
-msgstr ""
+msgstr "Dodaj rozszerzone logowanie podczas wysyłania (postowania)"
 
 #: forms.py:6
 msgid "Code"
@@ -276,20 +266,12 @@ msgstr "Suma zamówienia: %(orderbalance)s"
 
 #: templates/shop/checkout/confirm.html:21
 #, python-format
-msgid ""
-"You are about to use Gift certificate #%(giftcode)s which has %(certbalance)"
-"s total available to pay for your order."
-msgstr ""
-"Używasz kuponu podarunkowego #%(giftcode)s z dostępną kwotą %(certbalance)s."
+msgid "You are about to use Gift certificate #%(giftcode)s which has %(certbalance)s total available to pay for your order."
+msgstr "Używasz kuponu podarunkowego #%(giftcode)s z dostępną kwotą %(certbalance)s."
 
 #: templates/shop/checkout/confirm.html:22
-msgid ""
-"If there isn't enough remaining to pay for the whole order, you'll be able "
-"to select another form of payment for the balance after you use this gift "
-"certificate."
-msgstr ""
-"Jeżeli całkowita kwota zamówienia nie zostanie pokryta, w dalszej części "
-"wybierzesz metodę płatności pozostałej kwoty."
+msgid "If there isn't enough remaining to pay for the whole order, you'll be able to select another form of payment for the balance after you use this gift certificate."
+msgstr "Jeżeli całkowita kwota zamówienia nie zostanie pokryta, w dalszej części wybierzesz metodę płatności pozostałej kwoty."
 
 #: templates/shop/checkout/giftcertificate/confirm.html:6
 msgid "Please Note:"
@@ -297,15 +279,12 @@ msgstr "Uwaga:"
 
 #: templates/shop/checkout/giftcertificate/confirm.html:19
 #, python-format
-msgid ""
-"About to use your gift certificate: %(giftcode)s, which has a balance of %"
-"(balance)s."
-msgstr ""
-"Używasz kuponu podarunkowego %(giftcode)s z dostępną kwotą %(balance)s."
+msgid "About to use your gift certificate: %(giftcode)s, which has a balance of %(balance)s."
+msgstr "Używasz kuponu podarunkowego %(giftcode)s z dostępną kwotą %(balance)s."
 
 #: templates/shop/checkout/giftcertificate/confirm.html:23
 msgid "About to use INVALID gift certificate"
-msgstr ""
+msgstr "Właśnie zamierzasz użyć NIEPRAWIDŁOWY kupon podarunkowy"
 
 #: templates/shop/checkout/giftcertificate/pay_ship.html:6
 msgid "Payment Information"
