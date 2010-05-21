@@ -3,7 +3,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # Christian Hoeppner <hoeppner@gmail.com>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo 0.5-pre\n"
@@ -21,9 +21,7 @@ msgid "Only authenticated users can check out"
 msgstr ""
 
 #: config.py:10
-msgid ""
-"Users will be required to authenticate (and create an account if neccessary) "
-"before checkout."
+msgid "Users will be required to authenticate (and create an account if neccessary) before checkout."
 msgstr ""
 
 #: config.py:18
@@ -31,11 +29,7 @@ msgid "Required billing data"
 msgstr ""
 
 #: config.py:20
-msgid ""
-"Users may be required to provide some set of billing address. Other fields "
-"are optional. You may shorten the checkout process here, but be careful, as "
-"this may leave you orders with almost no customer data! Some payment modules "
-"may override this setting."
+msgid "Users may be required to provide some set of billing address. Other fields are optional. You may shorten the checkout process here, but be careful, as this may leave you orders with almost no customer data! Some payment modules may override this setting."
 msgstr ""
 
 #: config.py:26 config.py:50 forms.py:25 models.py:144
@@ -45,7 +39,7 @@ msgstr "Correo"
 #: config.py:27 forms.py:26 models.py:137
 #, fuzzy
 msgid "Title"
-msgstr "Total"
+msgstr "Título"
 
 #: config.py:28 models.py:138 templates/contact/update_form.html:56
 #, fuzzy
@@ -64,7 +58,7 @@ msgstr "Teléfono"
 #: config.py:31 forms.py:30 forms.py:38 models.py:277
 #, fuzzy
 msgid "Addressee"
-msgstr "Libreta de Direcciones"
+msgstr "Destinatario"
 
 #: config.py:32 forms.py:31 models.py:93 models.py:142
 #: templates/contact/update_form.html:62
@@ -84,7 +78,7 @@ msgstr "Calle"
 
 #: config.py:34
 msgid "Street (second line)"
-msgstr ""
+msgstr "Calle"
 
 #: config.py:35 forms.py:34 forms.py:41 models.py:281
 #: templates/contact/login_signup_address.html:137
@@ -101,12 +95,13 @@ msgstr "Ciudad"
 #: templates/contact/update_form.html:95 templates/contact/update_form.html:98
 #: templates/contact/update_form.html:129
 #: templates/contact/update_form.html:132
+#, fuzzy
 msgid "State/Province"
-msgstr ""
+msgstr "Estado / Provincia"
 
 #: config.py:37
 msgid "Postal code/ZIP"
-msgstr ""
+msgstr "Código postal"
 
 #: config.py:38 forms.py:76 forms.py:77 models.py:283
 #: templates/contact/login_signup_address.html:153
@@ -118,21 +113,20 @@ msgstr "País"
 
 #: config.py:46
 msgid "Account Verification"
-msgstr ""
+msgstr "Verificación de cuenta"
 
 #: config.py:47
-msgid ""
-"Select the style of account verification.  'Immediate' means no verification "
-"needed."
-msgstr ""
+msgid "Select the style of account verification.  'Immediate' means no verification needed."
+msgstr "Seleccione el estilo de verificación de la cuenta. «Inmediata» significa que la verificación no es necesaria."
 
 #: config.py:49
 msgid "Immediate"
-msgstr ""
+msgstr "Inmediata"
 
 #: config.py:56
+#, fuzzy
 msgid "Days to verify account"
-msgstr ""
+msgstr "Días para verificar la cuenta"
 
 #: forms.py:27
 msgid "First Name"
@@ -148,25 +142,25 @@ msgstr "Estado"
 
 #: forms.py:36 forms.py:43
 msgid "ZIP code/Postcode"
-msgstr ""
+msgstr "Código postal"
 
 #: forms.py:37 templates/contact/login_signup_address.html:159
 #: templates/contact/update_form.html:112
-#, fuzzy
 msgid "Shipping same as billing?"
-msgstr "Descripción del Envío"
+msgstr "Dirección de envío misma que dirección de facturación?"
 
 #: forms.py:66
+#, fuzzy
 msgid "---Please Select---"
-msgstr ""
+msgstr "--- Seleccione ---"
 
 #: forms.py:96 forms.py:147 forms.py:174 forms.py:187 forms.py:201
 msgid "This field is required."
-msgstr ""
+msgstr "Este campo es requerido."
 
 #: forms.py:97
 msgid "State is required for your country."
-msgstr ""
+msgstr "El estado se requiere para su país."
 
 #: forms.py:102
 msgid "Invalid state or province."
@@ -617,8 +611,7 @@ msgid "Order History"
 msgstr ""
 
 #: templates/contact/view_profile.html:41
-msgid ""
-"Sorry, the user you've logged in as doesn't have any contact information."
+msgid "Sorry, the user you've logged in as doesn't have any contact information."
 msgstr ""
 
 #: templates/contact/view_profile.html:41
@@ -649,27 +642,17 @@ msgstr ""
 
 #: templates/registration/activate.html:21
 #, python-format
-msgid ""
-"Either your activation link was incorrect, or the activation key for your "
-"account has expired. Activation keys are only valid for %(expiration_days)s "
-"days after registration."
+msgid "Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for %(expiration_days)s days after registration."
 msgstr ""
 
 #: templates/registration/activation_email.txt:1
 #, python-format
-msgid ""
-"Someone, hopefully you, signed up for a new account at %(site)s using this "
-"email address. If it was you, and you'd like to activate and use your "
-"account, click the link below or copy and paste it into your web browser's "
-"address bar."
+msgid "Someone, hopefully you, signed up for a new account at %(site)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
 msgstr ""
 
 #: templates/registration/activation_email.txt:5
 #, python-format
-msgid ""
-"If you didn't request this, you don't need to do anything; you won't receive "
-"any more email from us, and the account will expire automatically in %"
-"(expiration_days)s days."
+msgid "If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days."
 msgstr ""
 
 #: templates/registration/login.html:19
@@ -713,9 +696,7 @@ msgid "Password Change"
 msgstr ""
 
 #: templates/registration/password_change_form.html:12
-msgid ""
-"For the sake of security, please enter your old password, and then enter "
-"your new password twice."
+msgid "For the sake of security, please enter your old password, and then enter your new password twice."
 msgstr ""
 
 #: templates/registration/password_change_form.html:19
@@ -765,9 +746,7 @@ msgid "Password reset successful"
 msgstr ""
 
 #: templates/registration/password_reset_done.html:12
-msgid ""
-"We've e-mailed a new password to the e-mail address you submitted. You "
-"should receive it shortly."
+msgid "We've e-mailed a new password to the e-mail address you submitted. You should receive it shortly."
 msgstr ""
 
 #: templates/registration/password_reset_form.html:10
@@ -775,9 +754,7 @@ msgid "Reset your password"
 msgstr ""
 
 #: templates/registration/password_reset_form.html:12
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send a "
-"new password to you."
+msgid "Forgotten your password? Enter your e-mail address below, and we'll send a new password to you."
 msgstr ""
 
 #: templates/registration/password_reset_form.html:19
@@ -803,9 +780,7 @@ msgid "Thank you for signing up."
 msgstr ""
 
 #: templates/registration/registration_complete.html:14
-msgid ""
-"An activation link has been sent to the email address you supplied, along "
-"with instructions for activating your account."
+msgid "An activation link has been sent to the email address you supplied, along with instructions for activating your account."
 msgstr ""
 
 #: templates/registration/registration_form.html:6
