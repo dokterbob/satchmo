@@ -321,7 +321,8 @@ class Cart(models.Model):
         carts even if they have no items. This is ok because the most likely
         scenario is moving data from one db to the next. See ticket #1015 for
         discussion.
-        Use cart.is_empty if you want to know if qty >= 1
+
+        Use len(cart) if you want to know if there are items in the cart.
         """
         return True
 
