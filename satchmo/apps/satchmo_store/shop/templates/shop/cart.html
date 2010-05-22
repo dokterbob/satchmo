@@ -17,7 +17,7 @@
 {% if error_message %}
 <div class="error">{{ error_message }}</div>
 {% endif %}
-{% if cart.is_empty %}
+{% if not cart|length %}
     <h4>{% trans "Your cart is empty." %}</h4>
 {% else %}
     <h4>{% trans "Your Cart" %}</h4>
