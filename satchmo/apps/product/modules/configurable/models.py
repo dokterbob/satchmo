@@ -211,9 +211,21 @@ class ConfigurableProduct(models.Model):
         from product.utils import productvariation_details, serialize_options
 
         selected_options = self._unique_ids_from_options(selected_options)
-        context['options'] = serialize_options(self, selected_options)
-        context['details'] = productvariation_details(self.product, default_view_tax,
-            request.user)
+
+        options = serialize_options(self, selected_options)
+        if not 'options' in context:
+            context['options'] = options
+        else:
+            curr = list(context['options'])
+            curr.extend(list(options))
+            context['options'] = curr
+
+        details = productvariation_details(self.product, default_view_tax,
+                                           request.user)
+        if context['details']:
+            context['details'].update(details)
+        else:
+            context['details'] = details
 
         return context
 
