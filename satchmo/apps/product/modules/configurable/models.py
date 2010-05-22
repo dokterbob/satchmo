@@ -222,7 +222,7 @@ class ConfigurableProduct(models.Model):
 
         details = productvariation_details(self.product, default_view_tax,
                                            request.user)
-        if context['details']:
+        if 'details' in context:
             context['details'].update(details)
         else:
             context['details'] = details
