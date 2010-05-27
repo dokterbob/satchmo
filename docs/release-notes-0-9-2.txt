@@ -1,0 +1,16 @@
+Satchmo Development Branch
+==========================
+
+These are the notes for the latest development version.
+
+
+New Features
+------------
+
+
+Translations
+------------
+
+
+Bug Fixes
+---------
