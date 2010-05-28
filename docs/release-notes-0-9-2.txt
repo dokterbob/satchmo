@@ -2,6 +2,7 @@ Satchmo Development Branch
 ==========================
 
 These are the notes for the latest development version.
+The full list of closed tickets can be viewed `here <http://www.bitbucket.org/chris1610/satchmo/issues?status=resolved&milestone=0.9.2>`_
 
 
 New Features
@@ -14,3 +15,4 @@ Translations
 
 Bug Fixes
 ---------
+- Fix issue if Unicode characters in options
