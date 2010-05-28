@@ -2,6 +2,7 @@ from decimal import Decimal
 from django import forms
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_str
 from product.models import Option, Product, ProductPriceLookup, OptionGroup, Price ,make_option_unique_id
 from product.prices import get_product_quantity_price, get_product_quantity_adjustments
 from satchmo_utils import cross_list
@@ -322,7 +323,7 @@ class ProductVariation(models.Model):
 
     def _optionkey(self):
         #todo: verify ordering
-        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
+        optkeys = [smart_str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
         return "::".join(optkeys)
     optionkey = property(fget=_optionkey)
 
