@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.contrib.sites.models import Site
+from django.db.models import Q
 from livesettings import config_value
 from l10n.utils import moneyfmt
 from product.models import Option, ProductPriceLookup, OptionGroup, Discount, Product, split_option_unique_id
@@ -27,7 +28,7 @@ def find_auto_discounts(product):
         product = (product,)
     today = datetime.date.today()
     discs = Discount.objects.filter(automatic=True, active=True, startDate__lte=today, endDate__gt=today)
-    return discs.filter(valid_products__in=product).order_by('-percentage')
+    return discs.filter(Q(valid_products__in=product) | Q(allValid=True)).order_by('-percentage')
 
 def find_best_auto_discount(product):
     discs = find_auto_discounts(product)

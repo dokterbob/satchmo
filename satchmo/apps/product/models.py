@@ -598,6 +598,8 @@ class Discount(models.Model):
         """Tests if discount is valid for a single product"""
         if not product.is_discountable:
             return False
+        elif self.allValid:
+            return True
         p = self.valid_products.filter(id__exact = product.id)
         return p.count() > 0 or \
             (product.slug in self._valid_products_in_categories())
