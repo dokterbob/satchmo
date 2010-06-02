@@ -840,11 +840,10 @@ class DiscountAmountTest(TestCase):
         products = [i.product for i in self.order.orderitem_set.all()]
         discounts = find_auto_discounts(products)
 
-        # FIXME
-        self.assertNotEqual(
+        self.assertEqual(
             set([d.code for d in discounts]),
             set(['test20-auto', 'test20-auto-all']))
-        self.assertNotEqual(
+        self.assertEqual(
             [d.percentage for d in discounts],
             [Decimal('20.0'), Decimal('20.0')])
 
