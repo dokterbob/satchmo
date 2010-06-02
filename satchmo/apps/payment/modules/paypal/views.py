@@ -1,4 +1,5 @@
 from decimal import Decimal
+from django.conf import settings
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -153,9 +154,12 @@ def ipn(request):
                 order.save()
                 log.debug("Saved order notes from Paypal")
 
-            for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=True, completed=False):
-                item.completed = True
-                item.save()
+            # Run only if subscription products are installed
+            if 'product.modules.subscription' in settings.INSTALLED_APPS:
+                for item in order.orderitem_set.filter(product__subscriptionproduct__recurring=True, completed=False):
+                    item.completed = True
+                    item.save()
+
             for cart in Cart.objects.filter(customer=order.contact):
                 cart.empty()
 
