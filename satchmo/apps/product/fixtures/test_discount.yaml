@@ -165,6 +165,42 @@
     allValid: false
   model: product.discount
   pk: 7
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    automatic: true
+    code: test20-auto
+    description: Test Percent 20 (Auto)
+    endDate: 5000-01-01
+    shipping: 'NONE'
+    minOrder: null
+    numUses: null
+    percentage: '20'
+    startDate: 2007-12-15
+    valid_products: [15]
+    site: 1
+    allValid: false
+  model: product.discount
+  pk: 8
+- fields:
+    active: true
+    allowedUses: null
+    amount: null
+    automatic: true
+    code: test20-auto-all
+    description: Test Percent 20 (Auto) (All)
+    endDate: 5000-01-01
+    shipping: 'NONE'
+    minOrder: null
+    numUses: null
+    percentage: '20'
+    startDate: 2007-12-15
+    valid_products: []
+    site: 1
+    allValid: true
+  model: product.discount
+  pk: 9
 - fields: {description: Books, meta: null, name: Books, ordering: 0, parent: null,
     slug: book, site: 1}
   model: product.category
