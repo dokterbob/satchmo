@@ -180,7 +180,7 @@ msgstr "Gebietskörperschaft"
 
 #: models.py:43
 msgid "Subject"
-msgstr "Bestreff"
+msgstr "Betreff"
 
 #: models.py:44
 msgid "Territory"

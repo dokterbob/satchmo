@@ -39,7 +39,7 @@ class RegistrationForm(forms.Form):
         max_length=30, required=True)
     last_name = forms.CharField(label=_('Last name'),
         max_length=30, required=True)
-    next = forms.CharField(max_length=100, required=False, widget=forms.HiddenInput())
+    next = forms.CharField(max_length=200, required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         contact = kwargs.get('contact', None)

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block extra-head %}
-{% include "contact/_ContactInfoForm.html" %}
+{% include "contact/_contact_info_form.html" %}
 {% endblock %}
 
 {% block navbar %}
@@ -14,7 +14,7 @@
 <h3>{% trans "Checkout" %}</h3>
 <div id="checkoutprogress">
 <ul>
-    <li class="first">{% trans "Ship/Bill" %}</li>
+    <li class="first active">{% trans "Ship/Bill" %}</li>
     <li>{% trans "Payment" %}</li>
     <li>{% trans "Confirmation" %}</li>
 </ul>
@@ -66,10 +66,10 @@
     <tr><td><label for="id_phone">{% trans "Phone number" %}{% if form.phone.field.required %}*{% endif %}</label></td><td> {{ form.phone }}</td></tr>
     {% if form.phone.errors %}<tr><td class="error" colspan="2">*** {{ form.phone.errors|join:", " }}</td></tr>{% endif %}
 
-    {% block billing-info %}{% include "contact/_ContactInfoForm_billing.html" %}{% endblock %}
+    {% block billing-info %}{% include "contact/_contact_info_form_billing.html" %}{% endblock %}
 
 {% if cart.is_shippable %}
-    {% block shipping-info %}{% include "contact/_ContactInfoForm_shipping.html" %}{% endblock %}
+    {% block shipping-info %}{% include "contact/_contact_info_form_shipping.html" %}{% endblock %}
 {% endif %}
 
 {% if form.discount.is_hidden %}

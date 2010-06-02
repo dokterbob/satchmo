@@ -1,0 +1,66 @@
+<script type="text/javascript">
+var satchmo = satchmo || {};{% comment %}
+#
+# Code that require shipping fields to be present.
+#
+# Presently, we assume that shipping fields are always present, unless the cart
+# is not shippable. This seems to hold true across both checkout and user
+# account use-cases.
+#
+{% endcomment %}{% if cart and cart.is_shippable %}
+
+satchmo.ship_form_toggler = function(state) {
+    var inputs = $('tr.shiprow input');
+    inputs.attr('disabled', state);
+    var selects = $('tr.shiprow select')
+    selects.attr('disabled', state);
+    var rows = $('tr.shiprow');
+    if (state) {
+        rows.addClass('disabled');
+        inputs.each(function() {
+            $(this)[0].value = "";
+        });
+        selects.each(function() {
+            $(this)[0].value = "";
+        });
+    } else {
+        rows.removeClass('disabled');
+    }
+};
+
+satchmo.update_ship_copy = function(elt) {
+    var state = $(elt)[0].checked;
+    satchmo.ship_form_toggler(state);
+}
+
+$(document).ready(function() {
+    satchmo.update_ship_copy('#id_copy_address');
+    $('#id_copy_address').click(function() {
+        satchmo.update_ship_copy(this);
+    });
+    $('#id_addressee').bind("change", function() {
+         $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
+    });
+});{% endif %}{% comment %}
+#
+# Code that don't require shipping fields.
+#
+{% endcomment %}
+
+satchmo.name_change = function() {
+    var first_name = $('#id_first_name').attr('value');
+    var last_name = $('#id_last_name').attr('value');
+    if (!first_name) { first_name = ''; }
+    if (!last_name) { last_name = ''; }
+    $('#id_addressee').attr('value',  jQuery.trim(first_name + ' ' + last_name));{% if cart and cart.is_shippable %}
+
+    $('#id_ship_addressee').attr('value', $('#id_addressee').attr('value'));
+{% endif %}
+};
+
+$(document).ready(function() {
+    satchmo.name_change();
+    $('#id_first_name').bind("change", {}, satchmo.name_change);
+    $('#id_last_name').bind("change", {}, satchmo.name_change);
+});
+</script>

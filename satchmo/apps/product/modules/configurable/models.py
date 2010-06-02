@@ -2,6 +2,7 @@ from decimal import Decimal
 from django import forms
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_str
 from product.models import Option, Product, ProductPriceLookup, OptionGroup, Price ,make_option_unique_id
 from product.prices import get_product_quantity_price, get_product_quantity_adjustments
 from satchmo_utils import cross_list
@@ -211,9 +212,21 @@ class ConfigurableProduct(models.Model):
         from product.utils import productvariation_details, serialize_options
 
         selected_options = self._unique_ids_from_options(selected_options)
-        context['options'] = serialize_options(self, selected_options)
-        context['details'] = productvariation_details(self.product, default_view_tax,
-            request.user)
+
+        options = serialize_options(self, selected_options)
+        if not 'options' in context:
+            context['options'] = options
+        else:
+            curr = list(context['options'])
+            curr.extend(list(options))
+            context['options'] = curr
+
+        details = productvariation_details(self.product, default_view_tax,
+                                           request.user)
+        if 'details' in context:
+            context['details'].update(details)
+        else:
+            context['details'] = details
 
         return context
 
@@ -310,7 +323,7 @@ class ProductVariation(models.Model):
 
     def _optionkey(self):
         #todo: verify ordering
-        optkeys = [str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
+        optkeys = [smart_str(x) for x in self.options.values_list('value', flat=True).order_by('option_group__id')]
         return "::".join(optkeys)
     optionkey = property(fget=_optionkey)
 

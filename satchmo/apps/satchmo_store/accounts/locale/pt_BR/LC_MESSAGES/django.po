@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
 # Terry Laundos Aguiar <terry@s1solucoes.com.br>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: forms.py:32
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: forms.py:33
 msgid "Email address"

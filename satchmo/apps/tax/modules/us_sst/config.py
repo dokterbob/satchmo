@@ -1,5 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
+
 from livesettings import *
+import tax.config
 
 TAX_MODULE = config_get('TAX', 'MODULE')
 TAX_MODULE.add_choice(('tax.modules.us_sst', _('USA: Streamlined Sales Tax')))

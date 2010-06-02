@@ -24,7 +24,7 @@
 {{ order.ship_city }}
 {{ order.ship_state }}
 {{ order.ship_postal_code }}
-{{ order.ship_country }}{% endblock order_details_shipping %}{% endif %}{% if shipping_method %}
+{{ order.ship_country }}{% endblock order_details_shipping %}
 
 {% block order_details_shipping_method %}{% trans "Shipping Method" %}
 ---------------

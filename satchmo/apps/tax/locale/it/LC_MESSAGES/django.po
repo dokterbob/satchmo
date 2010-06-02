@@ -4,19 +4,21 @@
 #
 # costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
 # Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
+# Andrea Innocenti <andyinno@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:56-0600\n"
-"PO-Revision-Date: 2008-09-30 13:13+0200\n"
-"Last-Translator: Alessandro Ronchi <alessandro.ronchi@soasi.com>\n"
-"Language-Team: Italiano <it@li.org>\n"
+"PO-Revision-Date: 2010-05-12 14:52+0200\n"
+"Last-Translator: Andrea Innocenti <andyinno@gmail.com>\n"
+"Language-Team: italiano <nn@nn.it>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=n > 1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # translated = "Ordine fornitore status"
 #: config.py:7
@@ -52,19 +54,23 @@ msgstr ""
 
 #: config.py:26
 msgid "New products are automatically made taxable"
-msgstr ""
+msgstr "I nuovi prodotti sono automaticamente impostati come tassabili"
 
 #: config.py:27
 msgid "Whether newly created products should be taxable by default."
-msgstr ""
+msgstr "Se un nuovo prodotto dovrebbe essere tassato di default."
 
 #: config.py:34
 msgid "Should tax be calculated based on shipping or billing address?"
 msgstr ""
+"Le tasse devono essere calcolate in base all'indirizzo del cliente o del "
+"venditore?"
 
 #: config.py:35
 msgid "This will only be used if tax is calculated based on an address."
 msgstr ""
+"Questo campo sarà utilizzato solo se le tasse vengono calcolate in base "
+"all'indirizzo."
 
 # translated = "% Di tasse per questo settore e del tipo"
 #: modules/area/admin.py:14
@@ -83,11 +89,11 @@ msgstr "Tasse Spedizione?"
 
 #: modules/area/config.py:21 modules/us_sst/config.py:21
 msgid "TaxClass for shipping"
-msgstr "Classe di Tassa per la consegna"
+msgstr "Classe di Tassa per la spedizione"
 
 #: modules/area/config.py:22 modules/us_sst/config.py:22
 msgid "Select a TaxClass that should be applied for shipments."
-msgstr "Seleziona una Classe di Tassa da applicare alle consegne."
+msgstr "Seleziona una Classe di Tassa da applicare alle spedizioni."
 
 #: modules/area/models.py:10 modules/us_sst/models.py:57
 msgid "Tax Class"
@@ -148,72 +154,69 @@ msgstr ""
 
 #: modules/us_sst/config.py:12
 msgid "Tax Shipping in ANY jurisdiction?"
-msgstr ""
+msgstr "Tasse di spedizione in OGNI giurisdizione?"
 
 # translated = "Devi scegliere una zona o di un paese &"
 #: modules/us_sst/models.py:62
-#, fuzzy
 msgid "Taxable?"
-msgstr "Aliquota di tasse"
+msgstr "Tassabile"
 
 #: modules/us_sst/models.py:63
 msgid "Use Intrastate rate instead of Interstate?"
-msgstr ""
+msgstr "Utilizzare tariffe Intrastato al posto delle Interstato?"
 
 #: modules/us_sst/models.py:65
 msgid "Use food/drug rate instead of general?"
-msgstr ""
+msgstr "Utilizzare aliquote per cibi/spezie al posto della generale?"
 
 #: modules/us_sst/models.py:86
-#, fuzzy
 msgid "Taxable Class"
-msgstr "Classe di Tassa"
+msgstr "Classe Tassabile"
 
 # translated = "Descrizione dei prodotti che potrebbero essere tassati."
 #: modules/us_sst/models.py:87
-#, fuzzy
 msgid "Taxable Classes"
-msgstr "Classi di tassa"
+msgstr "Classi Tassabili"
 
 #: modules/us_sst/models.py:138 modules/us_sst/models.py:235
 msgid "FIPS State Code"
-msgstr ""
+msgstr "Codice Stato FIPS"
 
 #: modules/us_sst/models.py:140
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: modules/us_sst/models.py:142
 msgid "FIPS Code"
-msgstr ""
+msgstr "Codice FIPS"
 
 #: modules/us_sst/models.py:144
 msgid "General Tax Rate - Intrastate"
-msgstr ""
+msgstr "Imposta Generale per le tasse - Intrastato"
 
 #: modules/us_sst/models.py:146
 msgid "General Tax Rate - Interstate"
-msgstr ""
+msgstr "Imposta Generale per le tasse - Interstato"
 
 #: modules/us_sst/models.py:148
 msgid "Food/Drug Tax Rate - Intrastate"
-msgstr ""
+msgstr "Imposta Cibi/Spezie per le tasse - Intrastato"
 
 #: modules/us_sst/models.py:150
 msgid "Food/Drug Tax Rate - Interstate"
-msgstr ""
+msgstr "Imposta Cibi/Spezie per le tasse - Interstato"
 
 #: modules/us_sst/models.py:151 modules/us_sst/models.py:195
 msgid "Effective Start Date"
-msgstr ""
+msgstr "Data di inizio effettiva"
 
 #: modules/us_sst/models.py:152 modules/us_sst/models.py:196
 msgid "Effective End Date"
-msgstr ""
+msgstr "Data di fine effettiva"
 
 #: modules/us_sst/models.py:194
 msgid "Boundry Type"
-msgstr ""
+msgstr "Tipo di confine"
 
 #: modules/us_sst/models.py:198
 msgid "Low Address Range"
@@ -233,11 +236,11 @@ msgstr ""
 
 #: modules/us_sst/models.py:206
 msgid "Street Name"
-msgstr ""
+msgstr "Nome della via"
 
 #: modules/us_sst/models.py:208
 msgid "Street Suffix Abbr."
-msgstr ""
+msgstr "Abbr. Suffisso della Via"
 
 #: modules/us_sst/models.py:210
 msgid "Street Post Directional"
@@ -261,11 +264,11 @@ msgstr ""
 
 #: modules/us_sst/models.py:220
 msgid "City Name"
-msgstr ""
+msgstr "Nome della Città"
 
 #: modules/us_sst/models.py:222
 msgid "Zip Code"
-msgstr ""
+msgstr "Codice Cap"
 
 #: modules/us_sst/models.py:224
 msgid "Zip Code - Plus 4"
@@ -468,14 +471,12 @@ msgid "FIPS Special 20 type"
 msgstr ""
 
 #: modules/us_sst/models.py:390
-#, fuzzy
 msgid "Tax Boundry"
-msgstr "Paese della Tassa"
+msgstr "Tipo di confine"
 
 #: modules/us_sst/models.py:391
-#, fuzzy
 msgid "Tax Boundries"
-msgstr "Zona della Tassa"
+msgstr "Tipo di confini"
 
 #~ msgid "Description"
 #~ msgstr "Descrizione"

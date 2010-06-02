@@ -1,14 +1,17 @@
+from django.conf import settings
 from django.core import urlresolvers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from product.modules.downloadable.models import DownloadLink
+from satchmo_store.shop.signals import sendfile_url_for_file
 import mimetypes
 
 import os
 import os.path
 import re
+from urlparse import urljoin
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
@@ -60,26 +63,6 @@ def send_file(request, download_key):
     After the appropriate session variable has been set, we commence the download.
     The key is maintained in the url but the session variable is used to control the
     download in order to maintain security.
-
-    For this to work, your server must support the X-Sendfile header
-    Lighttpd and Apache should both work with the headers used below.
-    For apache, will need mod_xsendfile
-    For lighttpd, allow-x-send-file must be enabled
-
-    Also, you must ensure that the directory where the file is stored is protected
-    from users.
-
-    In lighttpd.conf:
-    $HTTP["url"] =~ "^/static/protected/" {
-    url.access-deny = ("")
-    }
-
-    In Nginx:
-    location /protected/{
-             internal;
-             root /usr/local/www/website/static;
-        }
-
     """
     if not request.session.get('download_key', False):
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': download_key})
@@ -88,19 +71,36 @@ def send_file(request, download_key):
     if not valid:
         url = urlresolvers.reverse('satchmo_download_process', kwargs = {'download_key': request.session['download_key']})
         return HttpResponseRedirect(url)
-    file_name = os.path.split(dl_product.downloadable_product.file.path)[1]
+
+    # some temp vars
+    file = dl_product.downloadable_product.file
+    file_url = '/%s' % file.name # create an absolute/root url
+
+    # poll listeners
+    url_dict = {'url': file_url}
+    sendfile_url_for_file.send(
+        None, file=file,
+        product=dl_product.downloadable_product,
+        url_dict=url_dict,
+    )
+    # url may have changed; update it
+    file_url = url_dict['url']
+
+    # get file name from url
+    file_name = os.path.basename(file_url)
+
     dl_product.num_attempts += 1
     dl_product.save()
     del request.session['download_key']
     response = HttpResponse()
     # For Nginx
-    response['X-Accel-Redirect'] = dl_product.downloadable_product.file.path
-    # For Apache
-    response['X-Sendfile'] = dl_product.downloadable_product.file.path
-    # For Lighttpd
-    response['X-LIGHTTPD-send-file'] = dl_product.downloadable_product.file.path
+    response['X-Accel-Redirect'] = file_url
+    # For Apache and Lighttpd v1.5
+    response['X-Sendfile'] = file_url
+    # For Lighttpd v1.4
+    response['X-LIGHTTPD-send-file'] = file_url
     response['Content-Disposition'] = "attachment; filename=%s" % file_name
-    response['Content-length'] =  os.stat(dl_product.downloadable_product.file.path).st_size
+    response['Content-length'] =  file.size
     contenttype, encoding = mimetypes.guess_type(file_name)
     if contenttype:
         response['Content-type'] = contenttype

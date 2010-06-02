@@ -8,140 +8,155 @@ truly impatient, you may look at the :doc:`Quick Start <quickstart>` for the fas
 running.
 
 This guide assumes you are working on a unix variant and that you are installing it somewhere into a directory
-you have write access to. In the below example, we use /home/user/src. You are expected to modify the path to fit your needs.
+you have write access to. In the below example, we use :file:`/home/user/src`. You are expected to modify the path to fit your needs.
 
 .. warning::
-   You must have Django 1.1.x properly installed and all of the dependencies mentioned in the requirements_ section properly installed.
+   You must have Django 1.1.x properly installed.
 
-The easiest way to install satchmo requirements, is to use the python setuptools program to download egg and tar packages. The next section describes
-one simple method to install the dependencies. You may manually install them if you wish.
+A Quick Note About Installing Dependencies
+------------------------------------------
+
+Python allows you to install applications in multiple ways: you can use the
+commands :command:`easy_install` or :command:`pip`; you may also manually
+install them by:
+
+  - linking the packages into your site-packages directory, or
+  - use .pth files to add each to your python path.
+
+All of these will work fine with Satchmo, but in the interest of keeping this as
+straightforward as possible, we show how to install the packages with either:
+
+  - :command:`easy_install`, or
+  - :command:`python setup.py install` on a source code checkout (with mercurial)
+
+.. note::
+    The provided egg and tar files by the various dependencies may not be the
+    most current installation, so you should ensure that the version recommended
+    by satchmo (see :doc:`requirements`) is available via
+    :command:`easy_install` before proceeding.
 
 Installing Dependencies
 -----------------------
 
-1. Install setuputils by following the instructions on easy_install_ page. After installation, you should be able to run ``easy_install`` directly (assuming the install directory is in you $PATH).
+#. Install setuputils by following the instructions on the easy_install_ page.
+   After installation, you should be able to run :command:`easy_install`
+   directly (assuming the install directory is in you $PATH).
 
-2. Install required dependencies (this may vary based on your OS of choice)::
+#. Install required dependencies (this may vary based on your OS of choice)::
 
         easy_install pycrypto
-        easy_install http://code.enthought.com/enstaller/eggs/rhel/3/Reportlab-2.1.0001-py2.5.egg
         easy_install http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
         easy_install django-registration
         easy_install PyYAML
 
-.. note::
-    If you have Python 2.4 installed, you will need to install elementtree also::
+   .. note::
+      If you have Python 2.4 installed, you will need to install elementtree also::
 
         easy_install elementtree
 
-.. warning::
-    Not all dependencies are available via ``easy_install``.
+#. Install Python Imaging Library. There are multiple options for installing
+   this application; please use one of the options below:
 
-3. Install Python Imaging Library. There are multiple options for installing this application. Please use 1 of the options below::
+   - Download the binary from the `PIL site`_ and install.
 
-    - Download the binary from the PIL site and install.
+   - Use your distribution's package manager. For Ubuntu::
 
-    - Use your distributions package manager. For Ubuntu::
+       sudo apt-get install python-imaging
 
-        sudo apt-get install python-imaging
+#. Install Reportlab based on the description for your OS `here <http://www.reportlab.com/software/opensource/rl-toolkit/download/>`_
 
-    - Use easy_install::
+#. Install django-threaded-multihost:
 
-        easy_install --find-links=http://download.zope.org/distribution PILwoTk
+   - Check out from source::
 
-4. Install django-threaded-multihost::
+       hg clone http://bitbucket.org/bkroeze/django-threaded-multihost/
+       cd /path/to/django-threaded-multihost
+       python setup.py install
 
-   - Download from http://gosatchmo.com/apps/django-threaded-multihost/
+#. Install django-app-plugins:
 
-   - Unpack or check out and install::
-
-       sudo python setup.py install
-
-5. Install django-app-plugins:
-
-   - You may use the original, but we recommend using the slightly forked version which uses Satchmo's advanced caching system to speed up page loads.
-
-   - Check out the forked version::
+   - Check out the satchmo-enhanced version::
 
        hg clone http://bitbucket.org/bkroeze/django-caching-app-plugins/
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/django-caching-app-plugins/app_plugins .
+       cd /path/to/django-caching-app-plugins
+       python setup.py install
 
-6. Install sorl-thumbnail:
+#. Install sorl-thumbnail:
 
    - Check out from source::
 
        hg clone https://sorl-thumbnail.googlecode.com/hg/ sorl-thumbnail
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/sorl .
+       cd /path/to/sorl-thumbnail
+       python setup.py install
 
-7. Install signals-ahoy:
+#. Install signals-ahoy:
 
    - Check out from source::
 
        hg clone http://bitbucket.org/bkroeze/django-signals-ahoy/
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/django-signals-ahoy/signals_ahoy
+       cd /path/to/django-signals-ahoy
+       python setup.py install
 
-8. Install livesettings:
+#. Install livesettings:
 
    - Check out from source::
 
        hg clone http://bitbucket.org/bkroeze/django-livesettings/
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/django-livesettings/livesettings
+       cd /path/to/djang-livesettings
+       python setup.py install
 
+   .. versionadded:: 0.9.1
 
-9. Install keyedcache:
+#. Install keyedcache:
 
    - Check out from source::
 
        hg clone http://bitbucket.org/bkroeze/django-keyedcache/
-       cd /path/to/your/site-packages/dir
-       ln -s /path/to/django-keyedcache/keyedcache
+       cd /path/to/django-keyedcache
+       python setup.py install
 
-Satchmo has two types of documentation. Sphinx is used to generate this document.
-Docutils are useful for the auto-generated admin documentation. You may choose to
-install these dependencies.
+   .. versionadded:: 0.9.1
 
-10. Optional documentation dependencies::
+#. Satchmo has two types of documentation: Sphinx and docutils. Sphinx is used
+   to generate this document, while docutils are useful for the auto-generated
+   admin documentation.
+
+   You may choose to install these dependencies by running::
 
      easy_install Sphinx
      easy_install docutils
 
-.. note::
-    Please note that all dependencies can be installed manually. Please visit the requirements_ page for details. Also, provided egg and tar files may not be the most current installation, so you should ensure that the
-    recommended satchmo version is available via ``easy_install`` before proceeding.
+#. Satchmo also uses South for database migrations. You may also install it::
+
+     easy_install South
+
+   .. versionadded:: 0.9.1
 
 Installing Satchmo into your path
 ---------------------------------
 
-1. Use django to create your new store::
-
-        cd /home/user/src
-        django-admin.py startproject mystore
-
-2. Checkout the latest Satchmo release into (/home/user/src)::
+1. Checkout the latest Satchmo release into :file:`/home/user/src`::
 
         hg clone http://bitbucket.org/chris1610/satchmo/
 
-.. note::
-   If you are a bitbucket user, you may see a slightly different url than described above.
-   You may use the generic url or one that is specific to your username. For the purposes
-   of an install, either will work.
+   .. note::
+      If you are a bitbucket user, you may see a slightly different url than described above.
+      You may use the generic url or one that is specific to your username. For the purposes
+      of an install, either will work.
 
-3. Install satchmo into your site-packages directory::
+2. Install satchmo onto your system::
 
         cd /home/user/src/satchmo-trunk
         sudo python setup.py install
 
-.. note::
-   An alternative to running the install is ensuring that /path/to/satchmo/apps is on your python path.
-   You may do this by placing a symbolic link to the source, adding a .pth file that points to your /satchmo/apps
-   location or modifying your PYTHONPATH environment variable.
+   .. note::
+      An alternative to running the install is ensuring that :file:`/path/to/satchmo/apps` is on your python path.
+      You may do this by placing a symbolic link to the source, adding a .pth file that points to your :file:`/satchmo/apps`
+      location or modifying your PYTHONPATH environment variable.
 
+.. highlight:: pycon
 
-4. Once the above step is completed, you should be able to import both django and satchmo::
+3. Once the above step is completed, you should be able to import both django and satchmo::
 
         $ python
         Python 2.5.2 (r252:60911, Mar 12 2008, 13:39:09)
@@ -152,248 +167,76 @@ Installing Satchmo into your path
         >>> satchmo_store.get_version()
         '0.9-pre hg-YYYY:ZZZZZZZZZZ'
 
+.. highlight:: python
+
 .. warning::
    Do not attempt to progress any further on the install until the above imports work.
 
+.. _clonesatchmo:
 
-Customizing the settings
-------------------------
+Build Your Store With clonesatchmo
+----------------------------------
 
-Now that Satchmo is installed on your PYTHONPATH, you will need to create a new project or integrate Satchmo
-into an existing project. Before proceeding with the next steps, please familiarize yourself with the
-sample projects, :ref:`see here for more <satchmo_sample_projects>`.
+In order to quickly get you up and running, satchmo includes a helper script that will
+get a new sample store up and running quickly.
 
-Each of these projects show examples of how to configure Satchmo and integrate it with other Django applications.
-Once you are familiar with these examples, you can configure your project based on the notes below.
+1. Build a starter store using :command:`clonesatchmo`::
 
-Additionally, there is a streamlined satchmo directory structure in the skel directory. You may use this as the
-basis for your store.
+    python /home/user/src/satchmo-trunk/scripts/clonesatchmo.py
 
-You need to customize the settings.py file in mystore to include the relevant satchmo information. A sample file
-called settings.py is available in the projects/base directory to act as a template. You may
-use this file as a template for settings.py or use the notes below to configure your existing one.
+The clonesatchmo program will do everything described in :doc:`settings`. At a high level it:
 
-Please remember to ensure that your Django database connections and settings are working properly before trying
-to add any pieces of satchmo.
+    * Creates a directory for your store (defaults to simplestore)
+    * Also creates a localsite directory for your customizations (defaults to localsite)
+    * Copies a valid settings.py and local_settings.py file
+    * Copies your static directory in place
+    * Copies a valid urls.py file
+    * Synchs your database (using sqlite)
+    * Loads l10n data
+    * Loads a sample store
 
-5. Ensure that /home/user/src/mystore/settings.py has the following satchmo-specific configurations
-   (in addition to the defaults and your other app needs)::
-
-        import os
-        DIRNAME = os.path.abspath(os.path.dirname(__file__))
-        LOCAL_DEV = True
-
-        MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
-        MEDIA_URL = '/static/'
-
-        MIDDLEWARE_CLASSES = (
-        "django.middleware.common.CommonMiddleware",
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.locale.LocaleMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.middleware.doc.XViewMiddleware",
-        "threaded_multihost.middleware.ThreadLocalMiddleware",
-        "satchmo_store.shop.SSLMiddleware.SSLRedirect")
-
-        TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
-        TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo_store.shop.context_processors.settings',
-                                         'django.core.context_processors.auth',
-                                         )
-
-        INSTALLED_APPS = (
-                'django.contrib.sites',
-                'satchmo_store.shop',
-                'django.contrib.admin',
-                'django.contrib.auth',
-                'django.contrib.admindocs',
-                'django.contrib.contenttypes',
-                'django.contrib.comments',
-                'django.contrib.sessions',
-                'django.contrib.sitemaps',
-                'registration',
-                'keyedcache',
-                'livesettings',
-                'l10n',
-                'sorl.thumbnail',
-                'satchmo_store.contact',
-                'tax',
-                'tax.modules.no',
-                'tax.modules.area',
-                'tax.modules.percent',
-                'shipping',
-                'product',
-                'product.modules.configurable',
-                'payment',
-                'payment.modules.dummy',
-                'payment.modules.giftcertificate',
-                'satchmo_utils',
-                'app_plugins',
-                )
-
-        AUTHENTICATION_BACKENDS = (
-            'satchmo_store.accounts.email-auth.EmailBackend',
-            'django.contrib.auth.backends.ModelBackend'
-            )
-
-        #### Satchmo unique variables ####
-        #from django.conf.urls.defaults import patterns, include
-        SATCHMO_SETTINGS = {
-                            'SHOP_BASE' : '',
-                            'MULTISHOP' : False,
-                            'SSL'       : False,
-                            #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
-                            }
-
-        # Load the local settings
-        from local_settings import *
-
-.. note::
-    In order for the admin site to work properly, you must have satchmo_store.shop placed before django.contrib.admin
-
-6. Copy the local_settings file to mystore::
-
-        cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py /home/user/src/mystore/local_settings.py
-
-7. You will need to verify the values assigned to the following items in local_settings.py::
-
-        SITE_NAME
-        CACHE_BACKEND
-        CACHE_TIMEOUT
-        SITE_DOMAIN
-        LOGDIR
-        LOGFILE
-
-.. note::
-    Satchmo requires that your database be able to support utf-8 characters. This is
-    especially important for MySQL. If you are using MySQL, you may want to use the
-    following statement in your settings file to enforce utf-8 collation::
-
-        DATABASE_OPTIONS = {
-           'init_command' : 'SET NAMES "utf8"',
-           }
-
-.. note::
-    If you are using a Windows system, we recommend setting your MEDIA_ROOT using normalize_path as
-    shown below::
-
-        from satchmo_utils.thumbnail import normalize_path
-        MEDIA_ROOT = normalize_path(os.path.join(DIRNAME, 'static/'))
-
-
-Configure the rest of the required files
-----------------------------------------
-
-8. Next, you need to configure your urls.py file. The most simple urls.py file would look like this::
-
-        from django.conf.urls.defaults import *
-        from satchmo_store.urls import urlpatterns
-
-
-9. If you have additional urls you would like to add to your project, it would look like this::
-
-        from django.conf.urls.defaults import *
-        from satchmo_store.urls import urlpatterns
-
-        urlpatterns += patterns('',
-            (r'test/', include('simple.localsite.urls'))
-        )
-
-
-10. Copy over the static directory::
-
-        python manage.py satchmo_copy_static
-
-11. Ensure that you have a template directory setup. You only need to place templates in the directory if you are
-overriding existing templates.
-
-After you have installed everything, you should have a directory structure that looks similar to this::
-
-    mystore
-        |-- __init__.py
-        |-- local_settings.py
-        |-- manage.py
-        |-- satchmo.log
-        |-- settings.py
-        |-- simple.db
-        |-- static
-        |   |-- css
-        |   |   |-- blackbird.css
-        |   |   |-- jquery.autocomplete.css
-        |   |   `-- style.css
-        |   |-- images
-        |   |   |-- blackbird_icons.png
-        |   |   |-- blackbird_panel.png
-        |   |   |-- productimage-picture-default.jpg
-        |   |   |-- productimage-picture-default_jpg_85x85_q85.jpg
-        |   |   `-- sample-logo.bmp
-        |   `-- js
-        |       |-- blackbird.js
-        |       |-- jquery.ajaxQueue.js
-        |       |-- jquery.autocomplete.js
-        |       |-- jquery.bgiframe.js
-        |       |-- jquery.cookie.js
-        |       |-- jquery.form.js
-        |       |-- jquery.js
-        |       |-- satchmo_checkout.js
-        |       |-- satchmo_pay_ship.js
-        |       |-- satchmo_product.js
-        |       `-- satchmo_store.js
-        |-- templates
-        `-- urls.py
-
-Test and Install the Data
--------------------------
-
-12. Now, you should be ready to go. In order to test your Satchmo setup, execute the following command (from the mystore directory)::
-
-        python manage.py satchmo_check
-        Checking your satchmo configuration.
-        Your configuration has no errors.
-
-13. If any errors are identified, resolve them based on the error description.
-
-14. Sync the new satchmo tables::
-
-        python manage.py syncdb
-
-15. Load the country data stored in the l10n application::
-
-        python manage.py satchmo_load_l10n
-
-16. (Optional) Load the demo store data::
-
-        python manage.py satchmo_load_store
-
-17. (Optional) Load the US tax table::
-
-        python manage.py satchmo_load_us_tax
+Using this process is the recommended way to get your store up and running. Once you are comfortable with
+this store, you can dive into modifying your :doc:`settings` file or making other changes.
 
 View the Demo Store
 -------------------
 
-18.  Start up the sample webserver to see your store::
+After you have completed your initial install, you can check out your demo store
+using the commands below.
+
+1.  Start up the sample webserver to see your store::
 
         python manage.py runserver
 
-19.  In order to see your sample store, point your browser to::
+2.  In order to see your sample store, point your browser to::
 
         http://127.0.0.1:8000/shop or http://127.0.0.1/
 
-20.  If you want to see the admin interface, point your browser to::
+3.  If you want to see the admin interface, point your browser to::
 
         http://127.0.0.1:8000/admin
 
-21.  Many configuration and customization settings are accessed through the url::
+4.  Many configuration and customization settings are accessed through the url::
 
         http://127.0.0.1:8000/settings
 
-22.  Additional detailed documentation can be found here::
+5.  Additional detailed documentation can be found here::
 
         http://127.0.0.1:8000/admin/doc
 
 .. note::
     The above urls will be dependent on your Django setup.  If you're running the webserver on the
     same machine you're developing on, the above urls should work.  If not, use the appropriate url.
+
+Troubleshooting
+---------------
+
+If after following these steps, you have errors or can not get the store to work, satchmo includes a custom
+command to check your system's configuration. To check your system out::
+
+    python manage.py satchmo_check
+    Checking your satchmo configuration.
+    Your configuration has no errors.
 
 Additional Notes
 ----------------
@@ -410,4 +253,4 @@ Useful Links
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _`Django Comment Utils`: http://code.google.com/p/django-comment-utils/
 .. _easy_install : http://peak.telecommunity.com/DevCenter/EasyInstall#installation-instructions
-.. _requirements : requirements.html
+.. _`PIL site`: http://www.pythonware.com/products/pil/

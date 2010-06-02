@@ -46,6 +46,8 @@ Signal Descriptions
 
 .. autofunction:: cart_add_view(sender, request=None, method=None, **kwargs)
 
+.. autofunction:: sendfile_url_for_file(sender, file=None, product=None, url_dict={}, **kwargs)
+
 .. autofunction:: rendering_store_mail(sender, send_mail_args={}, context={}, **kwargs)
 
 .. autofunction:: sending_store_mail(sender, send_mail_args={}, context={}, **kwargs)

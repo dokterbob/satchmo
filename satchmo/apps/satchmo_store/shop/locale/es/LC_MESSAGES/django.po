@@ -3,7 +3,7 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # Christian Hoeppner <hoeppner@gmail.com>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo 0.5-pre\n"
@@ -17,14 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: admin.py:24
-#, fuzzy
 msgid "Store Contact"
 msgstr "Contacto"
 
 #: admin.py:28 models.py:92
-#, fuzzy
 msgid "Shipping Countries"
-msgstr "Carritos"
+msgstr "Países de envío"
 
 #: admin.py:75 models.py:607 templates/shop/_order_details.html:39
 #: templates/shop/_order_tracking_details.html:22
@@ -32,7 +30,7 @@ msgstr "Carritos"
 #: templates/shop/email/order_placed_notice.txt:36
 #, fuzzy
 msgid "Shipping Method"
-msgstr "Carrito"
+msgstr "Método de envío"
 
 #: admin.py:76 templates/shop/_order_details.html:30
 #: templates/shop/email/order_complete.txt:29
@@ -41,42 +39,41 @@ msgstr "Carrito"
 #: templates/shop/pdf/packing-slip.rml:25
 #, fuzzy
 msgid "Shipping Address"
-msgstr "Carritos"
+msgstr "Dirección de envío"
 
 #: admin.py:77 templates/shop/pdf/invoice.rml:24
 #: templates/shop/pdf/packing-slip.rml:24
 msgid "Billing Address"
-msgstr ""
+msgstr "Dirección de facturación"
 
 #: admin.py:78
+#, fuzzy
 msgid "Totals"
-msgstr ""
+msgstr "Totales"
 
 #: config.py:13
 msgid "Satchmo Shop Settings"
-msgstr ""
+msgstr "Configuración de Satchmo"
 
 #: config.py:28
 msgid "URI to the logo for the store"
-msgstr ""
+msgstr "URI del logotipo de la tienda"
 
 #: config.py:36
+#, fuzzy
 msgid "State required?"
-msgstr ""
+msgstr "Estado requerido?"
 
 #: config.py:37
-msgid ""
-"Require a state during registration/checkout for countries that have states?"
-msgstr ""
+msgid "Require a state during registration/checkout for countries that have states?"
+msgstr "Requerir un estado durante el registro/pago y envío para aquellos países que tienen estados?"
 
 #: config.py:43
 msgid "Show Site Field?"
 msgstr ""
 
 #: config.py:44
-msgid ""
-"Should the Site field be displayed in the admin lists? A server restart is "
-"required for this to take effect."
+msgid "Should the Site field be displayed in the admin lists? A server restart is required for this to take effect."
 msgstr ""
 
 #: config.py:50
@@ -84,19 +81,15 @@ msgid "Cart Quantity Rounding Factor"
 msgstr ""
 
 #: config.py:51
-msgid ""
-"What to round cart adds/deletes by, a '1' here means to round up to a whole "
-"number.  Must be -1 to 1."
+msgid "What to round cart adds/deletes by, a '1' here means to round up to a whole number.  Must be -1 to 1."
 msgstr ""
 
 #: config.py:58
 msgid "Cart Quantity Decimal Places"
-msgstr ""
+msgstr "Número de decimales a usar en carrito de compras"
 
 #: config.py:59
-msgid ""
-"How many places to assume for cart quantities, use 0 unless you are selling "
-"products in fractional quantities."
+msgid "How many places to assume for cart quantities, use 0 unless you are selling products in fractional quantities."
 msgstr ""
 
 #: config.py:66
@@ -104,27 +97,23 @@ msgid "Persistent Cart?"
 msgstr ""
 
 #: config.py:67
-msgid ""
-"When a user logs in, attempt to retrieve previous carts and merge with "
-"existing?"
+msgid "When a user logs in, attempt to retrieve previous carts and merge with existing?"
 msgstr ""
 
 #: config.py:73
 msgid "Google Settings"
-msgstr ""
+msgstr "Configuración de Google"
 
 #: config.py:78
 msgid "Enable Analytics"
-msgstr ""
+msgstr "Habilitar Analyticos"
 
 #: config.py:85
 msgid "Use Urchin?"
 msgstr ""
 
 #: config.py:86
-msgid ""
-"Use the old-style, urchin javascript?.  This is not needed unless your "
-"analytics account hasn't been updated yet."
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
 msgstr ""
 
 #: config.py:94
@@ -160,7 +149,7 @@ msgstr ""
 #: models.py:77 models.py:271 models.py:578
 #, fuzzy
 msgid "Site"
-msgstr "Estado"
+msgstr "Sitio"
 
 #: models.py:78
 msgid "Store Name"
@@ -194,13 +183,13 @@ msgid "Zip Code"
 msgstr "Código Postal"
 
 #: models.py:86 models.py:586 models.py:593
-#, fuzzy
 msgid "Country"
-msgstr "Paises"
+msgstr "País"
 
 #: models.py:87
+#, fuzzy
 msgid "Phone Number"
-msgstr ""
+msgstr "Número de teléfono"
 
 #: models.py:88
 msgid "Only sell to in-country customers?"
@@ -208,7 +197,7 @@ msgstr ""
 
 #: models.py:91
 msgid "Default country for customers"
-msgstr ""
+msgstr "País predeterminado para los clientes"
 
 #: models.py:153
 msgid "Store Configuration"
@@ -219,12 +208,14 @@ msgid "Store Configurations"
 msgstr "Configuraciones de la Tienda"
 
 #: models.py:273
+#, fuzzy
 msgid "Creation Date"
-msgstr ""
+msgstr "Fecha de creación"
 
 #: models.py:274
+#, fuzzy
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #: models.py:408
 msgid "Shopping Cart"
@@ -236,12 +227,11 @@ msgstr "Carritos"
 
 #: models.py:421 templates/base.html:80 templates/shop/cart.html:12
 msgid "Cart"
-msgstr ""
+msgstr "Carrito"
 
 #: models.py:422 models.py:1034
-#, fuzzy
 msgid "Product"
-msgstr "Productos Canónicos"
+msgstr "Productos"
 
 #: models.py:423 models.py:1035 templates/shop/cart.html:25
 #: templates/shop/pdf/invoice.rml:131 templates/shop/pdf/packing-slip.rml:125
@@ -941,9 +931,7 @@ msgid "will commence after clicking the link below:"
 msgstr ""
 
 #: templates/shop/download.html:15
-msgid ""
-"Once you click the link, the download will be counted.  If you have trouble "
-"with the download, please refresh your browser and try the download again"
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh your browser and try the download again"
 msgstr ""
 
 #: templates/shop/index.html:11
@@ -1087,9 +1075,7 @@ msgstr "Nuevos Pedidos"
 
 #: templates/shop/email/contact_us.txt:1
 #, python-format
-msgid ""
-"Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web "
-"contact form."
+msgid "Here's a %(request_type)s from %(name)s ( %(email)s ) sent via the web contact form."
 msgstr ""
 
 #: templates/shop/email/order_complete.txt:1
@@ -1111,9 +1097,7 @@ msgstr ""
 
 #: templates/shop/email/order_complete.txt:63
 #, python-format
-msgid ""
-"Your %(credit_card_type)s card ending in %(credit_card_number)s will be "
-"charged %(order_total)s."
+msgid "Your %(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
 msgstr ""
 
 #: templates/shop/email/order_complete.txt:69
@@ -1140,9 +1124,7 @@ msgstr ""
 
 #: templates/shop/email/order_placed_notice.txt:59
 #, python-format
-msgid ""
-"%(credit_card_type)s card ending in %(credit_card_number)s will be charged %"
-"(order_total)s."
+msgid "%(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
 msgstr ""
 
 #: templates/shop/email/order_placed_notice.txt:65
@@ -1205,9 +1187,7 @@ msgstr ""
 
 #: templates/shop/pdf/invoice.rml:212
 #, python-format
-msgid ""
-"%(order_total)s was charged to your %(credit_card_type)s card (x%"
-"(credit_card_number)s) on %(order_date)s."
+msgid "%(order_total)s was charged to your %(credit_card_type)s card (x%(credit_card_number)s) on %(order_date)s."
 msgstr ""
 
 #: templates/shop/pdf/invoice.rml:215
@@ -1333,8 +1313,7 @@ msgid "Invalid page number"
 msgstr ""
 
 #: views/orders.py:40
-msgid ""
-"The order you have requested doesn't exist, or you don't have access to it."
+msgid "The order you have requested doesn't exist, or you don't have access to it."
 msgstr ""
 
 #~ msgid "Tax Classes"

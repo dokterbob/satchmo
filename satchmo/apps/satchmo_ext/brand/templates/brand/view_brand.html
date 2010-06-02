@@ -54,7 +54,7 @@
       	    {% for cat in brand.active_categories %}{% with cat.translation as translatedcat %}
 			<div class="brandImage">
             {% thumbnail translatedcat.picture 85x85 as image %}
-            <a href="{{ cat.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /
+            <a href="{{ cat.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
 				<br/>
             	<a href="{{ cat.get_absolute_url }}">{{ translatedcat.name }}</a>
 			</div>

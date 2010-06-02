@@ -5,7 +5,8 @@ Satchmo is based on the Django framework, therefore you do need a fully function
 Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
-It is recommended that you use Django 1.1.
+It is recommended that you use Django 1.2.1. Some of the latest Django 1.2 features
+(such as CSRF) are not incorporated in this version but Satchmo will run with Django 1.2.x or 1.1.x.
 
 Satchmo requires Python 2.4 or later and a database supported by Django.
 
@@ -19,77 +20,84 @@ features in Satchmo.
 
 - Satchmo's thumbnail capability is very robust and utilizes the following packages:
 
-    - `Python Imaging Library`_
-    - `Sorl Thumbnails`_
+  - `Python Imaging Library`_
+  - `Sorl Thumbnails`_
 
 - In order to securely store sensitive information, you will need:
 
-    - `Python cryptography toolkit`_ (`Windows binary`_)
+  - `Python cryptography toolkit`_ (`Windows binary`_)
 
 - Satchmo creates PDF output for shipping and invoicing using:
 
-    - `ReportLab`_
-    - Tiny RML2PDF (`download link`_)
+  - `ReportLab`_
+  - Tiny RML2PDF (`download link`_)
 
 - In order to manage hierarchical data and use XML in shipping and payment modules, we use:
 
-    - `Elementtree`_ (included in Python 2.5+)
+  - `Elementtree`_ (included in Python 2.5+)
 
 There are also a number of other Django packages (mentioned below) that you will need to install.
 
-To support multi store configurations:
+- To support multi store configurations:
 
-    - `Django Threaded Multihost`_
+  - `Django Threaded Multihost`_
 
-For flexibility in defining template plugin points:
+- For flexibility in defining template plugin points:
 
-    - `Django App Plugins`_
+  - `Django App Plugins`_
 
-For admin-configurable settings:
+- For admin-configurable settings:
 
-    - `Django Livesettings`_
+  - `Django Livesettings`_
 
-For advanced caching settings:
+  .. versionadded:: 0.9.1
 
-    - `Django Keyedcache`_
+- For advanced caching settings:
 
-For the account registration process, you will need:
+  - `Django Keyedcache`_
 
-    - `Django Registration`_
+  .. versionadded:: 0.9.1
 
-.. warning::
+- For reusable, consistent signals:
+
+  - `Signals Ahoy`_
+
+- For the account registration process, you will need:
+
+  - `Django Registration`_
+
+  .. warning::
     You must use Django registration 0.7 with Satchmo. When 0.8 comes out, we will
     migrate to the new version.
 
 A valid Django cache backend (file, memcached or DB) is required for the config settings.
 
-The following package is required to load the initial data and run the unit tests:
+- The following package is required to load the initial data and run the unit tests:
 
-    - `PyYaml`_
+  - `PyYaml`_
 
-Docutils is used for auto generating the admin documentation but is not required:
+- Docutils is used for auto generating the admin documentation but is not required:
 
-    - `Docutils`_
+  - `Docutils`_
 
-Sphinx is useful for auto generating the user documentation but is not required:
+- Sphinx is useful for auto generating the user documentation but is not required:
 
-    - `Sphinx`_
+  - `Sphinx`_
 
-Satchmo uses South for migrating database schema changes. It is not required to run the store
-but is very useful for migrating versions.
+- Satchmo uses South for migrating database schema changes. It is not required
+  to run the store but is very useful for migrating versions.
 
-    - `South <http://south.aeracode.org/>`_
+  - `South <http://south.aeracode.org/>`_
 
-If you are using a version of python less than 2.6, you will have to install the backport of the
-new SSL module to support accessing SSL 2.0 sites often used by payment processors:
+  .. versionadded:: 0.9.1
 
-    - `SSL Backport`_
+- If you are using a version of python less than 2.6, you will have to install
+  the backport of the new SSL module to support accessing SSL 2.0 sites often
+  used by payment processors:
 
-For reusable, consistent signals:
+  - `SSL Backport`_
 
-    - `Signals Ahoy`_
-
-Detailed steps for installing these dependencies is included in the installation_ section.
+Detailed steps for installing these dependencies is included in the :doc:`new_installation` section.
 
 .. _Django installation guide: http://www.djangoproject.com/documentation/install/
 .. _Python Imaging Library: http://www.pythonware.com/products/pil/
@@ -103,7 +111,6 @@ Detailed steps for installing these dependencies is included in the installation
 .. _download link: http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
 .. _Django Registration: http://bitbucket.org/ubernostrum/django-registration/wiki/Home
 .. _snapshot: http://www.satchmoproject.com/snapshots/
-.. _installation : new_installation.html
 .. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
 .. _`Django App Plugins`: http://bitbucket.org/bkroeze/django-caching-app-plugins/
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/

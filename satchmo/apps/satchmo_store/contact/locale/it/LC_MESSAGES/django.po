@@ -1,7 +1,7 @@
 # translation of django.po to Italiano
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # costantino giuliodori <costantino.giuliodori@gmail.com>, 2007.
 # Alessandro Ronchi <alessandro.ronchi@soasi.com>, 2008.
 msgid ""
@@ -15,41 +15,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: config.py:9
 msgid "Only authenticated users can check out"
 msgstr "Solo gli utenti autenticati possono andare alla cassa"
 
 #: config.py:10
-msgid ""
-"Users will be required to authenticate (and create an account if neccessary) "
-"before checkout."
-msgstr ""
-"Sarà richiesto agli utenti di autenticarsi (e creare un account se "
-"necessario) prima di andare alla cassa."
+msgid "Users will be required to authenticate (and create an account if neccessary) before checkout."
+msgstr "Sarà richiesto agli utenti di autenticarsi (e creare un account se necessario) prima di andare alla cassa."
 
 #: config.py:18
 msgid "Required billing data"
-msgstr ""
+msgstr "Informazioni sul pagamento necessarie"
 
 #: config.py:20
-msgid ""
-"Users may be required to provide some set of billing address. Other fields "
-"are optional. You may shorten the checkout process here, but be careful, as "
-"this may leave you orders with almost no customer data! Some payment modules "
-"may override this setting."
-msgstr ""
+msgid "Users may be required to provide some set of billing address. Other fields are optional. You may shorten the checkout process here, but be careful, as this may leave you orders with almost no customer data! Some payment modules may override this setting."
+msgstr "Gli utenti "
 
 #: config.py:26 config.py:50 forms.py:25 models.py:144
 msgid "Email"
 msgstr "e-mail"
 
 #: config.py:27 forms.py:26 models.py:137
-#, fuzzy
 msgid "Title"
-msgstr "Totale"
+msgstr "Titolo"
 
 #: config.py:28 models.py:138 templates/contact/update_form.html:56
 msgid "First name"
@@ -85,7 +76,7 @@ msgstr "Via"
 
 #: config.py:34
 msgid "Street (second line)"
-msgstr ""
+msgstr "Via (seconda riga)"
 
 #: config.py:35 forms.py:34 forms.py:41 models.py:281
 #: templates/contact/login_signup_address.html:137
@@ -108,7 +99,7 @@ msgstr "Provincia"
 
 #: config.py:37
 msgid "Postal code/ZIP"
-msgstr ""
+msgstr "Codice postale/CAP"
 
 #: config.py:38 forms.py:76 forms.py:77 models.py:283
 #: templates/contact/login_signup_address.html:153
@@ -123,12 +114,8 @@ msgid "Account Verification"
 msgstr "Verifica dell'account"
 
 #: config.py:47
-msgid ""
-"Select the style of account verification.  'Immediate' means no verification "
-"needed."
-msgstr ""
-"Seleziona il tipo di verifica utente. 'Immediato' significa nessuna verifica "
-"necessaria."
+msgid "Select the style of account verification.  'Immediate' means no verification needed."
+msgstr "Seleziona il tipo di verifica utente. 'Immediato' significa nessuna verifica necessaria."
 
 #: config.py:49
 msgid "Immediate"
@@ -152,9 +139,8 @@ msgstr "Stato"
 
 # translated = "Stato / Provincia"
 #: forms.py:36 forms.py:43
-#, fuzzy
 msgid "ZIP code/Postcode"
-msgstr "CAP"
+msgstr "CAP/codice postale"
 
 # translated = "Codice postale / CAP"
 #: forms.py:37 templates/contact/login_signup_address.html:159
@@ -163,9 +149,8 @@ msgid "Shipping same as billing?"
 msgstr "L'indirizzo di consegna e' lo stesso di fatturazione"
 
 #: forms.py:66
-#, fuzzy
 msgid "---Please Select---"
-msgstr "Selezionare"
+msgstr "---Seleziona---"
 
 #: forms.py:96 forms.py:147 forms.py:174 forms.py:187 forms.py:201
 msgid "This field is required."
@@ -177,7 +162,7 @@ msgstr "E' necessario indicare lo Stato per il tuo paese."
 
 #: forms.py:102
 msgid "Invalid state or province."
-msgstr ""
+msgstr "Stato o provincia non validi."
 
 #: forms.py:117
 msgid "That email address is already in use."
@@ -193,7 +178,7 @@ msgstr "Newsletter"
 
 #: models.py:19 models.py:27 models.py:38 models.py:45
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 #: models.py:20 models.py:28 models.py:39 models.py:46 models.py:75
 msgid "Name"
@@ -201,7 +186,7 @@ msgstr "Nome"
 
 #: models.py:34
 msgid "Contact organization type"
-msgstr ""
+msgstr "Tipo di contatto dell'organizzazione"
 
 #: models.py:76 models.py:225
 msgid "Type"
@@ -433,24 +418,22 @@ msgstr "Non impostato"
 #: templates/contact/login_signup.html:13
 #: templates/contact/login_signup_address.html:40
 msgid "Login, or sign up to the store"
-msgstr ""
+msgstr "Accedi, o effettua l'iscrizione al negozio"
 
 #: templates/contact/login_signup.html:21
 #: templates/contact/login_signup_address.html:48
 msgid "Existing members login"
-msgstr ""
+msgstr "Accesso degli utenti già iscritti"
 
 #: templates/contact/login_signup.html:32
 #: templates/contact/login_signup_address.html:61
-#, fuzzy
 msgid "Email Address:"
-msgstr "Indirizzo email"
+msgstr "Indirizzo email:"
 
 #: templates/contact/login_signup.html:41
 #: templates/contact/login_signup_address.html:69
-#, fuzzy
 msgid "Password:"
-msgstr "Password"
+msgstr "Password:"
 
 #: templates/contact/login_signup.html:50
 #: templates/contact/login_signup_address.html:77
@@ -461,27 +444,25 @@ msgstr "Accedi"
 #: templates/contact/login_signup.html:63
 #: templates/contact/login_signup_address.html:90
 msgid "New Members, Create Your Account Below"
-msgstr ""
+msgstr "Per i nuovi utenti, Create il vostro account qui sotto"
 
 #: templates/contact/login_signup.html:69
 #: templates/contact/login_signup_address.html:96
-#, fuzzy
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Per piacere correggi questo errore:"
-msgstr[1] "Per piacere correggi questi errori:"
+msgstr[0] "Per piacere correggi questo errore."
+msgstr[1] "Per piacere correggi questi errori."
 
 #: templates/contact/login_signup.html:87
 #: templates/contact/login_signup_address.html:118
 msgid "Sign me up for Email Updates about new products and special offers!"
-msgstr ""
+msgstr "Iscrivimi per ricevere gli aggiornamenti tramite Email per i nuovi prodotti e le offerte speciali!"
 
 # translated = "Greggio elementi"
 #: templates/contact/login_signup.html:93
 #: templates/contact/login_signup_address.html:193
-#, fuzzy
 msgid "Create"
-msgstr "Data di creazione"
+msgstr "Creazione"
 
 # translated = "Informazioni di base"
 #: templates/contact/login_signup_address.html:114
@@ -544,7 +525,6 @@ msgid "Your Profile"
 msgstr "Il tuo Profilo"
 
 #: templates/contact/update_form.html:44
-#, fuzzy
 msgid "Please correct the following error:"
 msgstr "Per piacere correggi questo errore:"
 
@@ -595,9 +575,8 @@ msgid "Email:"
 msgstr "Email:"
 
 #: templates/contact/view_profile.html:21
-#, fuzzy
 msgid "Organization:"
-msgstr "Organizzazione"
+msgstr "Organizzazione:"
 
 # translated = "Email:"
 #: templates/contact/view_profile.html:23
@@ -652,11 +631,8 @@ msgstr "Storia dell'Ordine"
 
 # translated = "Cambiare la password"
 #: templates/contact/view_profile.html:41
-msgid ""
-"Sorry, the user you've logged in as doesn't have any contact information."
-msgstr ""
-"Spiacenti, l'utente con il quale hai effettuato l'accesso non ha nessuna "
-"informazione di contatto"
+msgid "Sorry, the user you've logged in as doesn't have any contact information."
+msgstr "Spiacenti, l'utente con il quale hai effettuato l'accesso non ha nessuna informazione di contatto"
 
 # translated = ""
 #: templates/contact/view_profile.html:41
@@ -686,50 +662,30 @@ msgstr "Grazie per esserti registrato! Ora sei autenticato."
 #: templates/registration/activate.html:17
 #, python-format
 msgid "In the future, you can log in using your email address (%(email)s)."
-msgstr ""
-"In futuro potrà fare il login utilizzando il suo indirizzo email (%(email)s)."
+msgstr "In futuro potrà fare il login utilizzando il suo indirizzo email (%(email)s)."
 
 # translated = ""
 #: templates/registration/activate.html:21
 #, python-format
-msgid ""
-"Either your activation link was incorrect, or the activation key for your "
-"account has expired. Activation keys are only valid for %(expiration_days)s "
-"days after registration."
-msgstr ""
-"Il link per l'attivazione del tuo account era invalido, oppure l'attivazione "
-"del tuo account e' scaduta. Le chiavi di attivazione sono valide solo per %"
-"(expiration_days)s giorni dopo la registrazione."
+msgid "Either your activation link was incorrect, or the activation key for your account has expired. Activation keys are only valid for %(expiration_days)s days after registration."
+msgstr "Il link per l'attivazione del tuo account era invalido, oppure l'attivazione del tuo account e' scaduta. Le chiavi di attivazione sono valide solo per %(expiration_days)s giorni dopo la registrazione."
 
 #: templates/registration/activation_email.txt:1
 #, python-format
-msgid ""
-"Someone, hopefully you, signed up for a new account at %(site)s using this "
-"email address. If it was you, and you'd like to activate and use your "
-"account, click the link below or copy and paste it into your web browser's "
-"address bar."
-msgstr ""
-"Qualcuno, presumibilmente tu, ha richiesto la registrazione di un nuovo "
-"account su %(site)s utilizzando questo indirizzo email. Se sei stato tu, e "
-"desideri attivare ed utilizzare il tuo account, clicca il link qui sotto o "
-"copialo ed incollalo nella barra degli indirizzi del tuo browser."
+msgid "Someone, hopefully you, signed up for a new account at %(site)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar."
+msgstr "Qualcuno, presumibilmente tu, ha richiesto la registrazione di un nuovo account su %(site)s utilizzando questo indirizzo email. Se sei stato tu, e desideri attivare ed utilizzare il tuo account, clicca il link qui sotto o copialo ed incollalo nella barra degli indirizzi del tuo browser."
 
 #: templates/registration/activation_email.txt:5
 #, python-format
-msgid ""
-"If you didn't request this, you don't need to do anything; you won't receive "
-"any more email from us, and the account will expire automatically in %"
-"(expiration_days)s days."
-msgstr ""
-"Se non lo hai richiesto, non devi fare nulla: non riceverai nessun'altra "
-"email da noi, e l'account scadrà automaticamente dopo %(expiration_days)s "
-"giorni."
+msgid "If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days."
+msgstr "Se non lo hai richiesto, non devi fare nulla: non riceverai nessun'altra email da noi, e l'account scadrà automaticamente dopo %(expiration_days)s giorni."
 
 #: templates/registration/login.html:19
 msgid "Password"
 msgstr "Password"
 
-# translated = "Il tuo indirizzo email e la password non corrisponde. Please try again."
+# translated = "Il tuo indirizzo email e la password non corrisponde. Please
+# try again."
 #: templates/registration/login.html:32
 msgid "If you do not have an account, please"
 msgstr "Se non hai ancora un account, "
@@ -775,12 +731,8 @@ msgstr "Modifica Password"
 
 # translated = ""
 #: templates/registration/password_change_form.html:12
-msgid ""
-"For the sake of security, please enter your old password, and then enter "
-"your new password twice."
-msgstr ""
-"Per ragioni di sicurezza, inserisci la tua vecchia password, poi inserisci "
-"la tua nuova password due volte."
+msgid "For the sake of security, please enter your old password, and then enter your new password twice."
+msgstr "Per ragioni di sicurezza, inserisci la tua vecchia password, poi inserisci la tua nuova password due volte."
 
 #: templates/registration/password_change_form.html:19
 msgid "Old password"
@@ -834,11 +786,8 @@ msgstr "Reset della password eseguito con successo."
 
 # translated = "La reimpostazione della password di successo"
 #: templates/registration/password_reset_done.html:12
-msgid ""
-"We've e-mailed a new password to the e-mail address you submitted. You "
-"should receive it shortly."
-msgstr ""
-"Riceverai la nuova password a breve via email all'indirizzo che hai inserito."
+msgid "We've e-mailed a new password to the e-mail address you submitted. You should receive it shortly."
+msgstr "Riceverai la nuova password a breve via email all'indirizzo che hai inserito."
 
 #: templates/registration/password_reset_form.html:10
 msgid "Reset your password"
@@ -846,12 +795,8 @@ msgstr "Resetta la tua password"
 
 # translated = "Reimpostare la password"
 #: templates/registration/password_reset_form.html:12
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send a "
-"new password to you."
-msgstr ""
-"Password dimenticata? Inserisci il tuo indirizzo email qui sotto, e "
-"riceverai una nuova password."
+msgid "Forgotten your password? Enter your e-mail address below, and we'll send a new password to you."
+msgstr "Password dimenticata? Inserisci il tuo indirizzo email qui sotto, e riceverai una nuova password."
 
 #: templates/registration/password_reset_form.html:19
 msgid "E-mail address"
@@ -860,11 +805,10 @@ msgstr "Indirizzo E-Mail"
 # translated = "Indirizzo e-mail"
 #: templates/registration/password_reset_form.html:20
 msgid "Be sure to enter the same e-mail address you used to register."
-msgstr ""
-"Assicurati di inserire lo stesso indirizzo email che hai utilizzato per "
-"registrarti"
+msgstr "Assicurati di inserire lo stesso indirizzo email che hai utilizzato per registrarti"
 
-# translated = "Accertarsi di inserire lo stesso indirizzo e-mail che hai usato per registrarti."
+# translated = "Accertarsi di inserire lo stesso indirizzo e-mail che hai
+# usato per registrarti."
 #: templates/registration/password_reset_form.html:21
 msgid "Reset password"
 msgstr "Resetta password"
@@ -882,12 +826,8 @@ msgstr "Grazie per esserti registrato."
 
 # translated = ""
 #: templates/registration/registration_complete.html:14
-msgid ""
-"An activation link has been sent to the email address you supplied, along "
-"with instructions for activating your account."
-msgstr ""
-"Un link di attivazione è stato spedito al tuo indirizzo email, assieme alle "
-"istruzioni per attivare l'account."
+msgid "An activation link has been sent to the email address you supplied, along with instructions for activating your account."
+msgstr "Un link di attivazione è stato spedito al tuo indirizzo email, assieme alle istruzioni per attivare l'account."
 
 #: templates/registration/registration_form.html:6
 msgid "Registration"
@@ -936,23 +876,11 @@ msgstr "Distinti Saluti"
 msgid "Store Management"
 msgstr "Gestione Magazzino"
 
-# translated = "Numero di telefono"
 #~ msgid "Billing data is optional"
 #~ msgstr "Le informazioni per la fatturazione sono opzionali"
 
-#~ msgid ""
-#~ "Users will not be required to provide billing address and phone number. "
-#~ "If authentication before checkout is required, this allows instant "
-#~ "purchase (all required contact data will have already been provided in "
-#~ "registration form). Otherwise be careful, as this may leave you orders "
-#~ "with almost no customer data!"
-#~ msgstr ""
-#~ "Gli utenti non dovranno inserire l'indirizzo di fatturazione ed il numero "
-#~ "di telefono. Se viene richiesta l'autenticazione prima del checkout, "
-#~ "questo permette l'acquisto istantaneo (tutti i dati di contatti richiesti "
-#~ "sono già stati forniti nel form di registrazione). Altrimenti stai "
-#~ "attento, dal momento che questa opzione può lasciare i tuoi ordini con "
-#~ "quasi nessun dato dei clienti!"
+#~ msgid "Users will not be required to provide billing address and phone number. If authentication before checkout is required, this allows instant purchase (all required contact data will have already been provided in registration form). Otherwise be careful, as this may leave you orders with almost no customer data!"
+#~ msgstr "Gli utenti non dovranno inserire l'indirizzo di fatturazione ed il numero di telefono. Se viene richiesta l'autenticazione prima del checkout, questo permette l'acquisto istantaneo (tutti i dati di contatti richiesti sono già stati forniti nel form di registrazione). Altrimenti stai attento, dal momento che questa opzione può lasciare i tuoi ordini con quasi nessun dato dei clienti!"
 
 #~ msgid "Customer"
 #~ msgstr "Cliente"

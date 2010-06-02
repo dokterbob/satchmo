@@ -1,8 +1,11 @@
-Satchmo Development Branch (0.9.1)
-==================================
+Satchmo Release 0.9.1
+=====================
 
-This is a working document to show all the updates taking place in the
-actively developed tip.
+Satchmo 0.9.1 includes many enhancements, updates, fixes and performance improvements
+over the prior release. All users starting new stores should use 0.9.1 as
+the basis for their stores.
+
+A summary of some of the most notable changes are included below.
 
 Changes
 ------- 
@@ -54,7 +57,6 @@ Changes
 - Refactor some of the templates to make more consistent
 - Change the behavior of applying discounts that don't evenly split among multiple products
 - Update the autocomplete admin js to the latest version. Also widened field and added missing image
-- Updated polish translation
 - Multiple documentation improvements on the shipping pages
 - Added initial `South <http://south.aeracode.org/>`_ migrations for the Product model - :doc:`migration`
 - Add optional support for sending HTML formatted emails
@@ -64,8 +66,16 @@ Changes
 - Expand product custom attributes to work with categories
 - Refactored cart views for consistency with ajax calls
 - Removed Keyedcache and Livesettings from Satchmo and gave them their own project
-- Updated Russian and added Hungarian translations
+- Updated Russian, Polish, Italian, Portuguese and Spanish translations
+- Added Hungarian translations
 - Fix a bug in clonesatchmo
 - Split out the product models to use a more modular layout and remove settings dependencies for loading
-- Move SSL config to a setting not a livesetting
+- Move SSL config to a setting, not a livesetting
 - Fix bugs in payment authorization
+- Improve error handling in Protx module
+- Refactor portions of the ImageWithThumbnailField to be more generic
+- Clarify an error page within the wishlist module
+- Improve contact form handling if Country has no states
+- Fix US SST tax module commands
+- Update Brazilian country information
+- Improved process for specifying file paths when using sendfile to deliver downloadable products

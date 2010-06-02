@@ -1,8 +1,10 @@
 from django import template
-from django.core import urlresolvers
+from django.core.urlresolvers import reverse
 from django.template import Context, Template
 from django.utils.translation import ugettext_lazy as _
 from product import active_product_types
+from product.models import Product
+from satchmo_utils.urlhelper import reverse_admin_url
 
 register = template.Library()
 
@@ -34,18 +36,18 @@ def edit_subtypes(product):
         is_config = "ConfigurableProduct" in subtypes
         app_label = app.split(".")[-1]
         if subtype in subtypes:
-            edit_url = urlresolvers.reverse('admin:%s_%s_change' %
-                                            (app_label, subtype.lower()),
-                                            args=(product.pk,))
+            edit_url = reverse('admin:%s_%s_change' %
+                               (app_label, subtype.lower()),
+                                args=(product.pk,))
             output += ('<li><a href="%s">' % edit_url +
                        _('Edit %(subtype)s') % {'subtype': subtype} +
                        '</a></li>')
             if is_config or subtype=="ProductVariation":
-                 output += '<li><a href="%s">Variation Manager</a></li>' % (urlresolvers.reverse("satchmo_admin_variation_manager", args = [product.id]))
+                 output += '<li><a href="%s">Variation Manager</a></li>' % (reverse("satchmo_admin_variation_manager", args = [product.id]))
         else:
             if not(is_config and subtype=="ProductVariation"):
-                add_url = urlresolvers.reverse('admin:%s_%s_add' %
-                                               (app_label, subtype.lower()))
+                add_url = reverse('admin:%s_%s_add' %
+                                  (app_label, subtype.lower()))
                 output += ('<li><a href="%s?product=%s">' % (add_url, product.id) +
                            _('Add %(subtype)s') % {'subtype': subtype} +
                            '</a></li>')
@@ -55,6 +57,8 @@ def edit_subtypes(product):
 register.simple_tag(edit_subtypes)
 
 def list_variations(configurableproduct):
+    from product.modules.configurable.models import ProductVariation
+
     opts = configurableproduct.get_all_options()
     output = "{% load admin_modify adminmedia %}"
     output += "<table>"
@@ -65,8 +69,8 @@ def list_variations(configurableproduct):
 
         product = configurableproduct.get_product_from_options(p_opt)
         if product:
-            p_url = '/admin/product/product/%s/' % product.pk
-            pv_url = '/admin/product/productvariation/%s/delete/' % product.pk
+            p_url = reverse_admin_url(Product, 'change', args=(product.pk,))
+            pv_url = reverse_admin_url(ProductVariation, 'delete', args=(product.pk,))
             output += """
             <tr>
             <td>%s</td>
@@ -80,10 +84,10 @@ def list_variations(configurableproduct):
             #opt_pks = ','.join(opt_pks)
             # TODO [NFA]: Blocked by Django ticket #7738.
             opt_pks = ''
-            add_url = ('/admin/product/productvariation/add/' +
+            add_url = reverse_admin_url(ProductVariation, 'add') + \
                 "?product=%s&parent=%s&options=%s" % (
                 configurableproduct.product.pk, configurableproduct.product.pk,
-                opt_pks))
+                opt_pks)
             output += """
             <tr>
             <td>%s</td>

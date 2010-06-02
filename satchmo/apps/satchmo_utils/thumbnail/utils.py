@@ -130,7 +130,7 @@ def make_thumbnail(photo_url, width=None, height=None, root=settings.MEDIA_ROOT,
 
     return th_url
 
-def _remove_thumbnails(file_name_path):
+def remove_file_thumbnails(file_name_path):
     if not file_name_path: return # empty path
     import fnmatch, os
     base, ext = os.path.splitext(os.path.basename(file_name_path))
@@ -143,16 +143,6 @@ def _remove_thumbnails(file_name_path):
             # no reason to crash due to bad paths.
             log.warn("Could not delete image thumbnail: %s", path)
         image_cache.delete(path) # delete from cache
-
-def remove_model_thumbnails(model):
-    """ remove all thumbnails for all ImageFields (and subclasses) in the model """
-
-    for obj in model._meta.fields:
-        if isinstance(obj, ImageField):
-            field_value = getattr(model, obj.name)
-            if field_value:
-                path = field_value.path
-                _remove_thumbnails(path)
 
 def make_admin_thumbnail(url):
     """ make thumbnails for admin interface """

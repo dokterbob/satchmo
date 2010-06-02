@@ -33,9 +33,7 @@
 {{ order.ship_state }}<br/>
 {{ order.ship_postal_code }}<br/>
 {{ order.ship_country }}<br/>
-{% endif %}
 
-{% if order.shipping_method %}
 <h4>{% trans "Shipping Method" %}</h4>
 {{ order.shipping_description }}<br/>
 {{ order.shipping_method }}<br/>
@@ -44,7 +42,7 @@
 {% else %}
 {{ order.shipping_sub_total|currency }}
 {% endif %}<br/>
-{% endif %}
+{% endif %}{# order.is_shippable #}
 
 <h4>{% trans "Total" %}</h4>
 {% trans "Subtotal" %} = {% if default_view_tax %}
@@ -64,7 +62,7 @@
 {% endif %}<br/>
 {% if order.tax %}
     {% if default_view_tax %}
-    {% trans "Tax included" %} 
+    {% trans "Tax included" %}
     {% else %}
     {% trans "Tax" %} + {% endif %}{{order.tax|currency}}<br/>
 {% endif %}
