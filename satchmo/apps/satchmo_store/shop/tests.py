@@ -12,7 +12,7 @@ from l10n.utils import moneyfmt
 from livesettings import config_get
 from payment import active_gateways
 from product.models import Product
-from product.utils import rebuild_pricing
+from product.utils import rebuild_pricing, find_auto_discounts
 from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import *
 from satchmo_store.shop import get_satchmo_setting, signals
@@ -835,6 +835,17 @@ class DiscountAmountTest(TestCase):
         self.assertEqual(shipcost, Decimal('6.00'))
         self.assertEqual(shiptotal, Decimal('6.00'))
         self.assertEqual(discount, Decimal('0.60'))
+
+    def testRetrieveAutoDiscounts(self):
+        products = [i.product for i in self.order.orderitem_set.all()]
+        discounts = find_auto_discounts(products)
+
+        self.assertEqual(
+            set([d.code for d in discounts]),
+            set(['test20-auto', 'test20-auto-all']))
+        self.assertEqual(
+            [d.percentage for d in discounts],
+            [Decimal('20.0'), Decimal('20.0')])
 
     def make_order_payment(order, paytype=None, amount=None):
         if not paytype:
