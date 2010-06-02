@@ -70,9 +70,14 @@ def confirm_info(request):
     default_view_tax = config_value('TAX', 'DEFAULT_VIEW_TAX')
 
     recurring = None
-    order_items = order.orderitem_set.all()
-    for item in order_items:
-        if item.product.is_subscription:
+
+    # Run only if subscription products are installed
+    if 'product.modules.subscription' in settings.INSTALLED_APPS:
+        order_items = order.orderitem_set.all()
+        for item in order_items:
+            if not item.product.is_subscription:
+                continue
+
             recurring = {'product':item.product, 'price':item.product.price_set.all()[0].price.quantize(Decimal('.01')),}
             trial0 = recurring['product'].subscriptionproduct.get_trial_terms(0)
             if len(order_items) > 1 or trial0 is not None or recurring['price'] < order.balance:
