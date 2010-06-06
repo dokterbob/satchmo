@@ -1,4 +1,4 @@
-{% load i18n satchmo_currency satchmo_discounts normalize_decimal %}
+{% load i18n satchmo_currency satchmo_discounts satchmo_order normalize_decimal %}
 <table style="margin-bottom:20px;">
 	<tr><th style="text-align:left;">Order #:</th><td>{{ order.id }}</td></tr>
 </table>
@@ -90,6 +90,13 @@
 		<td ></td>
 		<th style="text-align:right;border-top:2px dotted #ccc;">{% trans "Total:" %}</th>
 		<td style="text-align:right;border-top:2px dotted #ccc;font-weight:bold;" >{{order.total|currency}}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>Payment method(s):</td>
+		<td>{{ order|order_payment_methods|join:", " }}</td>
+		<td></td>
+		<td></td>
 	</tr>
 	<tr>
 		<td></td>
