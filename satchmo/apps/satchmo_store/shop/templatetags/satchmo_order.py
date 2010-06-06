@@ -35,7 +35,7 @@ def order_variable(order, args):
 
     return order.get_variable(args[0])
 
-register.filter(order_variable)    
+register.filter(order_variable)
 
 # def giftcertificate(order):
 #     """Get the giftcertificate from the order, if any"""
@@ -43,7 +43,7 @@ register.filter(order_variable)
 #         return GiftCertificate.objects.from_order(order)
 #     except GiftCertificate.DoesNotExist:
 #         pass
-#             
+#
 #     return None
 #
 # register.filter(giftcertificate)
