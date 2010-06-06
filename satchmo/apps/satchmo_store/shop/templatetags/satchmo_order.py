@@ -1,4 +1,6 @@
 from django import template
+
+from livesettings import config_get_group
 from satchmo_utils.templatetags import get_filter_args
 
 register = template.Library()
@@ -47,3 +49,16 @@ register.filter(order_variable)
 #     return None
 #
 # register.filter(giftcertificate)
+
+@register.filter
+def order_payment_methods(order):
+    """
+    Returns a list of payment method labels for an order.
+
+    Usage::
+
+      {{ order|order_payment_methods|join:", " }}
+
+    """
+    return (config_get_group('PAYMENT_%s' % p.payment).LABEL.value
+             for p in order.payments.all())
