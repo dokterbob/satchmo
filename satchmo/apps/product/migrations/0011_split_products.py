@@ -1,4 +1,5 @@
 # encoding: utf-8
+from south.logger import get_logger
 from south.v2 import SchemaMigration
 
 class Migration(SchemaMigration):
@@ -14,7 +15,10 @@ class Migration(SchemaMigration):
         pass
 
     def backwards(self, orm):
-        pass
+        get_logger().warning(
+            "Unable to effect a migration to 'zero' on the product modules;" \
+            "please do so manually."
+        )
 
     models = {
         'product.attributeoption': {
