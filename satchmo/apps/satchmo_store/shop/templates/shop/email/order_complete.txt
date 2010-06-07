@@ -1,4 +1,4 @@
-{% load i18n satchmo_currency %}
+{% load i18n satchmo_currency satchmo_order %}
 
 {% block salutation %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}{% endblock %}
 
@@ -11,7 +11,8 @@
     the next block.
 {% endcomment %}
 {% block order_details_payment %}{% trans "Payment" %}
--------{% with order.credit_card.credit_type as credit_card_type %}{% with order.credit_card.display_cc as credit_card_number %}{% with order.total|currency as order_total %}
+-------
+Method(s): {{ order|order_payment_methods|join:", " }}{% with order.credit_card.credit_type as credit_card_type %}{% with order.credit_card.display_cc as credit_card_number %}{% with order.total|currency as order_total %}
 {% block order_details_payment_body %}{% blocktrans %}Your {{ credit_card_type }} card ending in {{ credit_card_number }} will be charged {{ order_total }}.{% endblocktrans %}{% endblock order_details_payment_body %}{% endwith %}{% endwith %}{% endwith %}{% endblock order_details_payment %}
 
 {% if order.has_downloads %}
