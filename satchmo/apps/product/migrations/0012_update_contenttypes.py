@@ -1,22 +1,23 @@
 # encoding: utf-8
 from south.logger import get_logger
-from south.v2 import SchemaMigration
+from south.v2 import DataMigration
 
-class Migration(SchemaMigration):
+class Migration(DataMigration):
 
-    depends_on=(
-        ('configurable', '0001_split'),
-        ('custom', '0001_split'),
-        ('downloadable', '0001_split'),
-        ('subscription', '0001_split')
+    depends_on = (
+        ('configurable', '0002_update_contenttypes'),
+        ('custom', '0002_update_contenttypes'),
+        ('downloadable', '0002_update_contenttypes'),
+        ('subscription', '0002_update_contenttypes'),
     )
 
     def forwards(self, orm):
-        pass
+        "Write your forwards methods here."
+
 
     def backwards(self, orm):
         get_logger().warning(
-            "Unable to effect a migration to 'zero' on the product modules;" \
+            "Unable to effect a migration to '0001' on the product modules;" \
             "please do so manually."
         )
 
@@ -95,8 +96,8 @@ class Migration(SchemaMigration):
             'shipping': ('django.db.models.fields.CharField', [], {'default': "'NONE'", 'max_length': '10', 'null': 'True', 'blank': 'True'}),
             'site': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sites.Site']"}),
             'startDate': ('django.db.models.fields.DateField', [], {}),
-            'valid_categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Category']", 'null': 'True', 'blank': 'True'}),
-            'valid_products': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Product']", 'null': 'True', 'blank': 'True'})
+            'valid_categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Category']", 'symmetrical': 'False', 'null': 'True', 'blank': 'True'}),
+            'valid_products': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Product']", 'symmetrical': 'False', 'null': 'True', 'blank': 'True'})
         },
         'product.option': {
             'Meta': {'unique_together': "(('option_group', 'value'),)", 'object_name': 'Option'},
@@ -146,7 +147,7 @@ class Migration(SchemaMigration):
             'Meta': {'unique_together': "(('site', 'sku'), ('site', 'slug'))", 'object_name': 'Product'},
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'blank': 'True'}),
             'also_purchased': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'also_products'", 'blank': 'True', 'null': 'True', 'to': "orm['product.Product']"}),
-            'category': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Category']", 'blank': 'True'}),
+            'category': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['product.Category']", 'symmetrical': 'False', 'blank': 'True'}),
             'date_added': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'default': "''", 'blank': 'True'}),
             'featured': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
