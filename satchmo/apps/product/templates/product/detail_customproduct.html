@@ -26,7 +26,7 @@
 {% endif %}{% endwith %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form id="options" action="{% url satchmo_smart_add %}" method="post">
+<form id="options" action="{% url satchmo_smart_add %}" method="post">{% csrf_token %}
 
 {% for option_group in options %}
  {{ option_group.name}}

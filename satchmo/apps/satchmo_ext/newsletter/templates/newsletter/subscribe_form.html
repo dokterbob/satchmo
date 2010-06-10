@@ -14,7 +14,7 @@
 {% endif %}
 
 <table>
-<form method="post" action="{% url newsletter_subscribe %}">
+<form method="post" action="{% url newsletter_subscribe %}">{% csrf_token %}
 	<tr><td><label for="id_full_name">{% trans 'Your name' %}:</label></td><td>{{ form.full_name }}</td></tr>
 	{% if form.full_name.errors %}<tr><td>&nbsp;</td><td>*** {{ form.full_name.errors|join:", " }}</td></tr>{% endif %}
 	<tr><td><label for="id_email">{% trans 'Email address' %}:</label></td><td>{{ form.email }}</td></tr>

@@ -1,5 +1,5 @@
 {% load comments %}
-<form action="{% comment_form_target %}" method="POST">
+<form action="{% comment_form_target %}" method="POST">{% csrf_token %}
   <input type="hidden" name="next" value="{{ product.get_absolute_url }}" />
   <input type='hidden' name="name" value="{{ user.get_full_name|default:user.username }}" />
   <input type='hidden' name="name" value="{{ user.email }}" />

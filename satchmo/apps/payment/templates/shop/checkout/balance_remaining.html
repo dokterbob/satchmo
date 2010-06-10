@@ -11,7 +11,7 @@
 <div id="orderstatus">
 <h4>{% trans "Order Balance" %}</h4>
 
-<form method="post" action="{% url satchmo_balance_remaining %}">
+<form method="post" action="{% url satchmo_balance_remaining %}">{% csrf_token %}
 <table>
 	<tr><td colspan="2">{% with order.balance|currency as orderbalance %}
 		{% blocktrans %}To complete this order, you need to pay the {{ orderbalance }} balance remaining on this order.{% endblocktrans %}

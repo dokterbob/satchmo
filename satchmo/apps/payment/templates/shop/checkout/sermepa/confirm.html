@@ -17,7 +17,7 @@
     <input type="submit" value="{% trans "Purchase Items" %}" />
 </form>
 {% else %}
-<form action="{{ post_url }}" method="post">
+<form action="{{ post_url }}" method="post">{% csrf_token %}
 <input type="hidden" name="Ds_Merchant_Currency" value="{{MERCHANT_CURRENCY}}" />
 <input type="hidden" name="Ds_Merchant_Titular" value="{{MERCHANT_TITULAR}}" />
 <input type="hidden" name="Ds_Merchant_Terminal" value="{{terminal}}" />
