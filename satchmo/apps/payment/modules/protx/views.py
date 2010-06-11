@@ -25,7 +25,7 @@ def confirm_info(request, template='shop/checkout/protx/confirm.html', extra_con
     controller.confirm()
     return controller.response
             
-def confirm_secure3d(request, secure3d_template='shop/checkout/secure3d_form.html', 
+def confirm_secure3d(request, secure3d_template='shop/checkout/protx/secure3d_form.html', 
     confirm_template='shop/checkout/confirm.html', extra_context={}):
     """Handles confirming an order and processing the charges when secured by secure3d.
  

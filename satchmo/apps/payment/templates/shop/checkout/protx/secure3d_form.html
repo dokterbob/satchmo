@@ -1,0 +1,21 @@
+{% extends "base_satchmo.html" %}
+{% load i18n %}
+{% block extra-head %}
+<script type="text/javascript">
+$(function() {
+	$('#3dform')[0].submit()
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<form id="3dform" name="3dform" action="{{ bankURL }}" method="POST">
+	<input type="hidden" name="PaReq" value="{{ pareq }}" />
+	<input type="hidden" name="TermUrl" value="{{ TermUrl }}" />
+	<input type="hidden" name="MD" value="{{ md }}" />
+	<noscript>
+		<p>{% trans 'Please click the button below to authenticate your card.' %}</p>
+		<input type="submit" value="{% trans 'Authenticate' %}" />
+	</noscript>
+</form>
+{% endblock %}
