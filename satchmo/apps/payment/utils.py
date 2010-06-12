@@ -21,6 +21,7 @@ def get_or_create_order(request, working_cart, contact, data):
     the working_cart, contact and data"""
     shipping = data.get('shipping', None)
     discount = data.get('discount', None)
+    notes = data.get('notes', None)
 
     try:
         order = Order.objects.from_request(request)
@@ -42,7 +43,7 @@ def get_or_create_order(request, working_cart, contact, data):
         order = Order(contact=contact)
 
     pay_ship_save(order, working_cart, contact,
-        shipping=shipping, discount=discount, update=update)
+        shipping=shipping, discount=discount, notes=notes, update=update)
     request.session['orderID'] = order.id
     return order
 
@@ -62,7 +63,7 @@ def get_processor_by_key(key):
     processor_module = payment_module.MODULE.load_module('processor')
     return processor_module.PaymentProcessor(payment_module)
 
-def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
+def pay_ship_save(new_order, cart, contact, shipping, discount, notes, update=False):
     """
     Save the order details, first removing all items if this is an update.
     """
@@ -80,7 +81,8 @@ def pay_ship_save(new_order, cart, contact, shipping, discount, update=False):
         new_order.discount_code = discount
     else:
         new_order.discount_code = ""
-
+    if notes:
+        new_order.notes = notes
     update_orderitems(new_order, cart, update=update)
 
 def update_orderitem_details(new_order_item, item):
