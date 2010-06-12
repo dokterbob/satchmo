@@ -27,13 +27,13 @@
 		<td>
 		{{ order.full_bill_street }}<br />
 		{{ order.bill_city }}, {{ order.bill_state }} {{ order.bill_postal_code }}<br />
-		{{ order.bill_country }}
+		{{ order.bill_country_name|title }}
 		</td>
 		{% if order.is_shippable %}
 		<td>
 		{{ order.full_ship_street }}<br />
 		{{ order.ship_city }}, {{ order.ship_state }} {{ order.ship_postal_code }}<br />
-		{{ order.ship_country }}
+		{{ order.ship_country_name|title }}
 		</td>
 		{% endif %}
 	</tr>

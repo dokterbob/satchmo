@@ -8,6 +8,9 @@ The full list of closed tickets can be viewed `here <http://www.bitbucket.org/ch
 New Features
 ------------
 - Display payment methods in emails
+- Update the default templates to show quick orders and category indexes
+- Ensure notes fields can be saved if they are included in the checkout process
+- Display country names instead of abbreviations in templates
 
 Translations
 ------------

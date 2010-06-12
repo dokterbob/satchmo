@@ -10,7 +10,7 @@
 {{ order.ship_city }}
 {{ order.ship_state }}
 {{ order.ship_postal_code }}
-{{ order.ship_country }}
+{{ order.ship_country_name|title }}
 
 {% blocktrans %}This completes your order.{% endblocktrans %}
 

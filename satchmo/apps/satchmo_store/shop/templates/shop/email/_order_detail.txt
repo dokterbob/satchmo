@@ -15,7 +15,7 @@
 {{ order.bill_city }}
 {{ order.bill_state }}
 {{ order.bill_postal_code }}
-{{ order.bill_country }}{% endblock order_details_billing %}{% if order.is_shippable %}
+{{ order.bill_country_name|title }}{% endblock order_details_billing %}{% if order.is_shippable %}
 
 {% block order_details_shipping %}{% trans "Shipping Address" %}
 ----------------
@@ -24,7 +24,7 @@
 {{ order.ship_city }}
 {{ order.ship_state }}
 {{ order.ship_postal_code }}
-{{ order.ship_country }}{% endblock order_details_shipping %}
+{{ order.ship_country_name|title }}{% endblock order_details_shipping %}
 
 {% block order_details_shipping_method %}{% trans "Shipping Method" %}
 ---------------
