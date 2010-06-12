@@ -4,3 +4,7 @@
       caption: 'Photo Not Available'
   model: product.productimage
   pk: '1'
+- fields: {caption: '', picture: images/productimage-picture-default.jpg,
+    sort: 0}
+  model: product.categoryimage
+  pk: '1'

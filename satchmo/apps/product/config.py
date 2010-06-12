@@ -59,4 +59,11 @@ config_register_list(
         help_text=_("If no, then inventory will not be tracked for products sold."),
         default=True
     ),
+    
+    BooleanValue(PRODUCT_GROUP,
+        'SHOW_NO_PHOTO_IN_CATEGORY',
+        description=_("Display Photo Not Available Image in the category page?"),
+        help_text=_("If yes, then a Photo Not Available Image will be shown on the category page."),
+        default=False
+    ),
 )

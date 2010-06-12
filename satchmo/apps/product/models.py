@@ -140,14 +140,13 @@ class Category(models.Model):
             if self.parent_id and self.parent != self:
                 img = self.parent.main_image
 
-        if not img:
+        if not img and config_value('PRODUCT', 'SHOW_NO_PHOTO_IN_CATEGORY'):
             #This should be a "Image Not Found" placeholder image
             try:
                 img = CategoryImage.objects.filter(category__isnull=True).order_by('sort')[0]
             except IndexError:
                 import sys
                 print >>sys.stderr, 'Warning: default category image not found - try syncdb'
-
         return img
 
     main_image = property(_get_mainImage)
