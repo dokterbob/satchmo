@@ -19,6 +19,10 @@
 <div id="product_category">
 <h3>{{ category.translated_name }}</h3>
 {% if category.description %}<p class="product_category_description">{{ category.description }}</p>{% endif %}
+    {% if category.main_image %}
+            {% thumbnail category.main_image.picture 85x85 as image %}
+           <img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" />
+    {% endif %}
     {% for product in products %} 
         {% if forloop.first %} <ul>  {% endif %}
             <li>{% thumbnail product.main_image.picture 85x85 as image %}

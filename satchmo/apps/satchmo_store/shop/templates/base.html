@@ -61,7 +61,9 @@
 		{% url satchmo_product_recently_added as recenturl %}
 		{% if recenturl %}<a href="{{ recenturl }}">{% trans "Recently Added" %}</a>{% endif %}
 		{% url satchmo_product_best_selling as popularurl %}
-		{% if popularurl %}<br/><a href="{{ popularurl }}">{% trans "Best Sellers" %}</a>{% endif %}
+		{% if popularurl %}<br/><a href="{{ popularurl }}">{% trans "Best Sellers" %}</a><br/>{% endif %}
+        <a href="{% url satchmo_category_index %}">{% trans "Category Index" %}</a><br />
+        <a href="{% url satchmo_quick_order %}">{% trans "Quick Order" %}</a>
 		{% plugin_point "sidebar_links" %}
 
 	    <h3>{% trans "Account Information" %}</h3>
