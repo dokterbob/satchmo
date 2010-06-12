@@ -7,7 +7,7 @@ The full list of closed tickets can be viewed `here <http://www.bitbucket.org/ch
 
 New Features
 ------------
-
+- Display payment methods in emails
 
 Translations
 ------------
@@ -16,3 +16,7 @@ Translations
 Bug Fixes
 ---------
 - Fix issue if Unicode characters in options
+- Fix issues with migrations and content types
+- Resolve Paypal unneeded dependency on subscription product
+- Make sure "all valid" discounts are correctly applied
+- Fix Wishlish ajax add view
