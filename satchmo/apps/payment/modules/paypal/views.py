@@ -84,13 +84,13 @@ def confirm_info(request):
                 recurring['trial1'] = {'price': order.balance,}
                 if trial0 is not None:
                     recurring['trial1']['expire_length'] = trial0.expire_length
-                    recurring['trial1']['expire_unit'] = trial0.expire_unit[0]
+                    recurring['trial1']['expire_unit'] = trial0.subscription.expire_unit[0]
                 # else:
                 #     recurring['trial1']['expire_length'] = recurring['product'].subscriptionproduct.get_trial_terms(0).expire_length
                 trial1 = recurring['product'].subscriptionproduct.get_trial_terms(1)
                 if trial1 is not None:
                     recurring['trial2']['expire_length'] = trial1.expire_length
-                    recurring['trial2']['expire_unit'] = trial1.expire_unit[0]
+                    recurring['trial2']['expire_unit'] = trial1.subscription.expire_unit[0]
                     recurring['trial2']['price'] = trial1.price
 
     ctx = RequestContext(request, {'order': order,
