@@ -1,4 +1,5 @@
 from decimal import Decimal
+from django.contrib import messages
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -383,6 +384,6 @@ def _product_error(request, product, msg):
     if request.is_ajax():
         return _json_response({'errors': [msg,]}, error=True)
     else:
-        request.session['ERRORS'] = msg
+        messages.error(request, msg)
         return HttpResponseRedirect(product.get_absolute_url())
 
