@@ -378,7 +378,6 @@ def product_from_post(productslug, formdata):
     return product, details
 
 def _product_error(request, product, msg):
-    request.session['ERRORS'] = msg
     log.debug('Product Error: %s', msg)
 
     if request.is_ajax():
