@@ -273,8 +273,9 @@ def validate_attribute_value(attribute, value, obj):
     Helper function for forms that wish to validation a value for an
     AttributeOption.
     """
-    function_name = attribute.validation.split('.')[-1]
-    import_name = '.'.join(attribute.validation.split('.')[:-1])
+    i = attribute.validation.rindex('.')
+    function_name = attribute.validation[i+1:]
+    import_name = attribute.validation[:i]
 
     # The below __import__() call is from python docs, and is equivalent to:
     #
