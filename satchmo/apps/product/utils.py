@@ -268,14 +268,10 @@ def validation_decimal(value, obj=None):
     except:
         return False, value
 
-def validate_attribute_value(attribute, value, obj):
-    """
-    Helper function for forms that wish to validation a value for an
-    AttributeOption.
-    """
-    i = attribute.validation.rindex('.')
-    function_name = attribute.validation[i+1:]
-    import_name = attribute.validation[:i]
+def import_validator(validator):
+    i = validator.rindex('.')
+    function_name = validator[i+1:]
+    import_name = validator[:i]
 
     # The below __import__() call is from python docs, and is equivalent to:
     #
@@ -283,5 +279,11 @@ def validate_attribute_value(attribute, value, obj):
     #
     import_module = __import__(import_name, globals(), locals(), [function_name])
 
-    validation_function = getattr(import_module, function_name)
-    return validation_function(value, obj)
+    return getattr(import_module, function_name)
+
+def validate_attribute_value(attribute, value, obj):
+    """
+    Helper function for forms that wish to validation a value for an
+    AttributeOption.
+    """
+    return import_validator(attribute.validation)(value, obj)
