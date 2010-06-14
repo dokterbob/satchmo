@@ -9,7 +9,7 @@ from product.models import Category, CategoryTranslation, CategoryImage, Categor
                                    Price, ProductImage, ProductImageTranslation, default_weight_unit, \
                                    default_dimension_unit, ProductTranslation, Discount, TaxClass, AttributeOption, \
                                    CategoryAttribute
-from product.utils import validate_attribute_value
+from product.utils import import_validator, validate_attribute_value
 from satchmo_utils.thumbnail.field import ImageWithThumbnailField
 from satchmo_utils.thumbnail.widgets import AdminImageWithThumbnailWidget
 from django.http import HttpResponseRedirect
@@ -61,9 +61,9 @@ class AttributeOptionForm(models.ModelForm):
     def clean_validation(self):
         validation = self.cleaned_data['validation']
         try:
-            re.compile(validation)
-        except:
-            raise ValidationError(_("Invalid regular expression"))
+            import_validator(validation)
+        except ImportError:
+            raise ValidationError(_("Invalid validation function specifed!"))
         return validation
 
 
