@@ -15,6 +15,13 @@ if not SATCHMO_APPS in sys.path:
 if not DIRNAME in sys.path:
     sys.path.append(DIRNAME)
 
+try:
+    from pkg_resources import require
+except ImportError:
+    pass
+else:
+    require('django >=1.2, <=1.2.1')
+
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.

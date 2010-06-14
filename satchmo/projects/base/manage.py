@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+
+try:
+    from pkg_resources import require
+except ImportError:
+    pass
+else:
+    require('django >=1.2, <=1.2.1')
+
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.
