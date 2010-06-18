@@ -23,10 +23,6 @@ urlpatterns += patterns('satchmo_store.shop.views',
     (r'^quickorder/$', 'cart.add_multiple', {}, 'satchmo_quick_order'),
     (r'^tracking/(?P<order_id>\d+)/$', 'orders.order_tracking', {}, 'satchmo_order_tracking'),
     (r'^search/$', 'search.search_view', {}, 'satchmo_search'),
-
-    # Used for downloadable products.
-    (r'^download/process/(?P<download_key>\w+)/$', 'download.process', {}, 'satchmo_download_process'),
-    (r'^download/send/(?P<download_key>\w+)/$', 'download.send_file', {}, 'satchmo_download_send'),
 )
 
 # here we add product patterns directly into the root url

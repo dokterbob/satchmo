@@ -142,6 +142,13 @@ class DownloadableProductTest(TestCase):
         rmtree(self.dir)
         os.remove(os.path.join(self.protected_dir, self.file_name))
 
+    def test_download_urls(self):
+        """
+        Test that download urls remain unchanged after changeset
+        hg:4d23ed40f534/git:d06b4ec
+        """
+        self.assertEqual(self.pd_url, '/shop/download/send/%s/' % self.key)
+
     def test_download_link(self):
         """Test that we are able to download a product."""
 
