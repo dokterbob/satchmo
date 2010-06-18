@@ -1265,7 +1265,7 @@ class ProductPriceLookupManager(models.Manager):
         return objs
 
     def delete_for_product(self, product):
-        for obj in self.filter(productslug=product.slug):
+        for obj in self.filter(productslug=product.slug, siteid=product.site.id):
             obj.delete()
 
     def rebuild_all(self, site=None):
