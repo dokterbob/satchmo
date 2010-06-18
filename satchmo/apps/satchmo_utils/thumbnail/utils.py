@@ -245,11 +245,14 @@ def _rename(old_name, new_name):
 #         return field
 
 def rename_by_field(file_path, req_name, add_path=None):
+    clean_path = lambda p: os.path.normpath(os.path.normcase(p))
+
     if file_path.strip() == '': return '' # no file uploaded
 
-    old_name = os.path.normpath(os.path.normcase(os.path.basename(file_path)))
-    path = os.path.normpath(os.path.normcase(os.path.dirname(file_path)))
-    media_root = os.path.normcase(os.path.normpath(settings.MEDIA_ROOT))
+    file_path = clean_path(file_path)
+    old_name = os.path.basename(file_path)
+    path = os.path.dirname(file_path)
+    media_root = clean_path(settings.MEDIA_ROOT)
     if path[0] == '/' or path[0] == '\\':        #windows fix
         path = path[1:]
     name, ext = os.path.splitext(old_name)
@@ -263,7 +266,7 @@ def rename_by_field(file_path, req_name, add_path=None):
     if not os.path.isdir(os.path.join(media_root, dest_path)):
         os.makedirs(os.path.join(media_root, dest_path))
 
-    dest_path = os.path.join(dest_path, new_name)
+    dest_path = clean_path(os.path.join(dest_path, new_name))
 
     if file_path != dest_path:
         return _rename(file_path, dest_path).replace('\\', '/') # windows fix
