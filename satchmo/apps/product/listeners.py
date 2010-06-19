@@ -13,37 +13,34 @@ def default_product_search_listener(sender, request=None, category=None, keyword
     """
     log.debug('default product search listener')
     site = Site.objects.get_current()
-    products = Product.objects.all()
-    productkwargs = {
-        #'productvariation__parent__isnull' : True,
-        'active' : True,
-        'site' : site
-    }
+    productkwargs = {}
+    
+    if keywords:
+        products = Product.objects.active().filter(site=site)
+        categories = Category.objects.active().filter(site=site)
+    else:
+        products = None
+        categories = None
 
     if category:
         categories = Category.objects.active().filter(slug=category)
         if categories:
             categories = categories[0].get_active_children(include_self=True)
-        
         productkwargs['category__in'] = categories
-    else:
-        categories = Category.objects.active()
 
     for keyword in keywords:
         if not category:
             categories = categories.filter(
                 Q(name__icontains=keyword) |
                 Q(meta__icontains=keyword) |
-                Q(description__icontains=keyword),
-                site=site,)
+                Q(description__icontains=keyword))
                 
         products = products.filter(
             Q(name__icontains=keyword)
             | Q(short_description__icontains=keyword)
             | Q(description__icontains=keyword)
             | Q(meta__icontains=keyword)
-            | Q(sku__iexact=keyword),
-            **productkwargs)
+            | Q(sku__iexact=keyword) )
 
     results.update({
         'categories': categories, 
