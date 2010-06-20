@@ -8,7 +8,13 @@ from product.migrations import UpdateContentTypeMigration
 
 class Migration(UpdateContentTypeMigration):
 
-    _app_label = 'downloadable'
+    def forwards(self, orm):
+        self.migrate_contenttype('product', 'downloadable', ('downloadableproduct', ))
+        self.migrate_contenttype('shop', 'downloadable', ('downloadlink', ))
+
+    def backwards(self, orm):
+        self.migrate_contenttype('downloadable', 'product', ('downloadableproduct', ))
+        self.migrate_contenttype('downloadable', 'shop', ('downloadlink', ))
 
     models = {
         'auth.group': {
