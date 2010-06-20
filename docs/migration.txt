@@ -160,9 +160,10 @@ let django's ``syncdb`` do it's job.
       ( ) 0011_split_products
 
     $ python manage.py migrate product --fake
-    Running migrations for product:
-     - Migrating forwards to 0011_split_products
+     - Migrating forwards to 0012_update_contenttypes.
      > subscription:0001_split
+       (faked)
+     > subscription:0002_update_contenttypes
        (faked)
      > product:0001_initial
        (faked)
@@ -192,6 +193,14 @@ let django's ``syncdb`` do it's job.
        (faked)
      > product:0011_split_products
        (faked)
+     > downloadable:0002_update_contenttypes
+       (faked)
+     > custom:0002_update_contenttypes
+       (faked)
+     > configurable:0002_update_contenttypes
+       (faked)
+     > product:0012_update_contenttypes
+       (faked)
 
   .. Note::
      Users familiar with the codebase may wonder why we didn't tell South to
@@ -214,17 +223,22 @@ let django's ``syncdb`` do it's job.
          (*) 0009_add_categoryattributes
          (*) 0010_add_discountable_categories
          (*) 0011_split_products
+         (*) 0012_update_contenttypes
 
         configurable
          (*) 0001_split
+         (*) 0002_update_contenttypes
 
         custom
          (*) 0001_split
+         (*) 0002_update_contenttypes
 
         downloadable
          (*) 0001_split
+         (*) 0002_update_contenttypes
 
         subscription
          (*) 0001_split
+         (*) 0002_update_contenttypes
 
 .. highlight:: python
