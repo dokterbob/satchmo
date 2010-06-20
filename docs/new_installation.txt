@@ -130,6 +130,11 @@ Installing Dependencies
 
      easy_install South
 
+   .. seealso::
+
+      :doc:`migration` for more information on how migrations in Satchmo
+      should be applied.
+
    .. versionadded:: 0.9.1
 
 Installing Satchmo into your path
