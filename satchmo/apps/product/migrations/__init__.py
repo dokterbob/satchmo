@@ -36,8 +36,8 @@ class UpdateContentTypeMigration(DataMigration):
             ct.app_label = to_app
             ct.save()
 
-    def forwards(self, filter):
+    def forwards(self, orm):
         self.migrate_contenttype('product', self._app_label)
 
-    def backwards(self, filter):
+    def backwards(self, orm):
         self.migrate_contenttype(self._app_label, 'product')
