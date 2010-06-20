@@ -24,7 +24,9 @@ download it from here:
 
 .. Note::
    The initial product migration is based on the 0.9 code base. If you already
-   have an existing installation, please read `Upgrading from an existing 0.9 installation`_.
+   have an existing installation, please read `Upgrading from an existing 0.9 installation`_;
+   if you are planning to do a fresh installations of 0.9.1, please see
+   `Installing Satchmo 0.9.1 with South`_.
 
 Upgrading from an existing 0.9 installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -111,5 +113,118 @@ Upgrading from an existing 0.9 installation
 
     $ python manage.py migrate product --db-dry-run # db untouched
     $ python manage.py migrate product
+
+
+Installing Satchmo 0.9.1 with South
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As the migrations in the ``product`` app are based on v0.9, you don't have to
+apply migrations from ``0001_initial`` onwards for a fresh installation - simply
+let django's ``syncdb`` do it's job.
+
+.. Note::
+   We asume that you've already installed South, but have yet to take the leap
+   with Satchmo; see `<http://south.aeracode.org/docs/installation.html>`_ for
+   details.
+
+- Before installing Satchmo, ensure that your tables and migrations are
+  up-to-date, by running ``syncdb`` and ``migrate``.
+
+- With Satchmo still not installed, disable South by removing/commenting it out
+  from your ``INSTALLED_APPS``.
+
+- Install Satchmo by adding it to your path and ``INSTALLED_APPS``.
+
+- Create the database tables for Satchmo's models::
+
+    $ python manage.py syncdb
+
+- Enable South by adding/uncommenting it from your ``INSTALLED_APPS``.
+
+- Since the database tables for Satchmo are already up-to-date, you can safely
+  "fake" all the migrations in Satchmo::
+
+    $ python manage.py migrate product --list
+
+     product
+      ( ) 0001_initial
+      ( ) 0002_add_attributeoption
+      ( ) 0003_add_productattribute_option
+      ( ) 0004_remove_productattribute_name
+      ( ) 0005_fix_attributeoption_error_default_spelling
+      ( ) 0006_custom_textfield_add_constraint
+      ( ) 0007_add_discount_valid_products_field
+      ( ) 0008_remove_discount_validproducts_field
+      ( ) 0009_add_categoryattributes
+      ( ) 0010_add_discountable_categories
+      ( ) 0011_split_products
+
+    $ python manage.py migrate product --fake
+    Running migrations for product:
+     - Migrating forwards to 0011_split_products
+     > subscription:0001_split
+       (faked)
+     > product:0001_initial
+       (faked)
+     > product:0002_add_attributeoption
+       (faked)
+     > product:0003_add_productattribute_option
+       (faked)
+     > product:0004_remove_productattribute_name
+       (faked)
+     > product:0005_fix_attributeoption_error_default_spelling
+       (faked)
+     > product:0006_custom_textfield_add_constraint
+       (faked)
+     > product:0007_add_discount_valid_products_field
+       (faked)
+     > product:0008_remove_discount_validproducts_field
+       (faked)
+     > product:0009_add_categoryattributes
+       (faked)
+     > product:0010_add_discountable_categories
+       (faked)
+     > downloadable:0001_split
+       (faked)
+     > custom:0001_split
+       (faked)
+     > configurable:0001_split
+       (faked)
+     > product:0011_split_products
+       (faked)
+
+  .. Note::
+     Users familiar with the codebase may wonder why we didn't tell South to
+     apply migrations for the product modules, like ``configurable`` and
+     ``custom``, even though they are there; that's because they have already
+     been implicitly applied. You can verify this with an installation-wide
+     migration listing::
+
+       $ python manage.py migrate --list
+
+        product
+         (*) 0001_initial
+         (*) 0002_add_attributeoption
+         (*) 0003_add_productattribute_option
+         (*) 0004_remove_productattribute_name
+         (*) 0005_fix_attributeoption_error_default_spelling
+         (*) 0006_custom_textfield_add_constraint
+         (*) 0007_add_discount_valid_products_field
+         (*) 0008_remove_discount_validproducts_field
+         (*) 0009_add_categoryattributes
+         (*) 0010_add_discountable_categories
+         (*) 0011_split_products
+
+        configurable
+         (*) 0001_split
+
+        custom
+         (*) 0001_split
+
+        downloadable
+         (*) 0001_split
+
+        subscription
+         (*) 0001_split
 
 .. highlight:: python
