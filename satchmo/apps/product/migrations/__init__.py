@@ -35,6 +35,7 @@ class UpdateContentTypeMigration(DataMigration):
         for ct in q:
             ct.app_label = to_app
             ct.save()
+            get_logger().info("Updated content type for model %s (ID: %s)" % (ct.model, ct.id))
 
     def forwards(self, orm):
         self.migrate_contenttype('product', self._app_label)
