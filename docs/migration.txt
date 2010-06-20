@@ -15,15 +15,19 @@ Using South
 
 The very latest version of Satchmo includes migration files for
 `South <http://south.aeracode.org/>`_. So far, we only have migrations for the
-``product`` app, with the initial migration based on the 0.9 code base.
+``product`` app.
 
 The instructions below assume that you have installed South 0.7; you can
 download it from here:
 
   http://south.aeracode.org/docs/installation.html
 
-Upgrading from 0.9
-^^^^^^^^^^^^^^^^^^
+.. Note::
+   The initial product migration is based on the 0.9 code base. If you already
+   have an existing installation, please read `Upgrading from an existing 0.9 installation`_.
+
+Upgrading from an existing 0.9 installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. highlight:: console
 
