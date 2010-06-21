@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django import forms
+from django.contrib.sites.models import Site
 from livesettings import config_value
 from product.models import Product
 from satchmo_store.shop.signals import satchmo_cart_details_query, satchmo_cart_add_complete
@@ -41,26 +42,26 @@ class MultipleProductForm(forms.Form):
         self.full_clean()
         cartplaces = config_value('SHOP', 'CART_PRECISION')
         roundfactor = config_value('SHOP', 'CART_ROUNDING')
+        site = Site.objects.get_current()
 
         for name, value in self.cleaned_data.items():
             opt, key = name.split('__')
             log.debug('%s=%s', opt, key)
 
-            items = {}
             quantity = 0
             product = None
 
             if opt=='qty':
                 try:
                     quantity = round_decimal(value, places=cartplaces, roundfactor=roundfactor)
-                except RoundedDecimalError, P:
+                except RoundedDecimalError:
                     quantity = 0
 
             if not key in self.slugs:
                 log.debug('caught attempt to add product not in the form: %s', key)
             else:
                 try:
-                    product = Product.objects.get(slug=key)
+                    product = Product.objects.get(slug=key, site=site)
                 except Product.DoesNotExist:
                     log.debug('caught attempt to add an non-existent product, ignoring: %s', key)
 
