@@ -3,7 +3,7 @@
 <tr>
     <td>&nbsp;</td>
     <td colspan="2">
-        {% ifnotequal custom.discount 100 %}
+        {% ifnotequal custom.downpayment 100 %}
             {% trans 'Base Price: ' %}{{ custom.full_price|currency }}<br/>
             <i>{% trans 'price at right is your deposit, you will receive a bill for the remainder when your item is ready.' %}</i><br/>
         {% endifnotequal %}
