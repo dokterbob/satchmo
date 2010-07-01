@@ -271,9 +271,7 @@ def validation_decimal(value, obj=None):
 
 def import_validator(validator):
     try:
-        i = validator.rindex('.')
-        function_name = validator[i+1:]
-        import_name = validator[:i]
+        import_name, function_name = validator.rsplit('.', 1)
     except ValueError:
         # no dot; treat it as a global
         func = globals().get(validator, None)
