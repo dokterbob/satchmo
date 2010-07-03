@@ -112,7 +112,7 @@ def get_product(request, product_slug=None, selected_options=(),
     default_view_tax=None):
     """Basic product view"""
 
-    errors = list(m for m in get_messages(request) if m.level == constants.ERROR)
+    errors = [m for m in get_messages(request) if m.level == constants.ERROR]
 
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
@@ -143,7 +143,7 @@ def get_product(request, product_slug=None, selected_options=(),
         'current_product' : current_product,
         'default_view_tax': default_view_tax,
         'sale': best_discount,
-        'error_message' : errors[0] if len(errors) else None,
+        'error_message' : errors[0] if errors else None,
     }
 
     # Get the template context from the Product.
