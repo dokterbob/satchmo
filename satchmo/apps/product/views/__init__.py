@@ -112,7 +112,7 @@ def get_product(request, product_slug=None, selected_options=(),
     default_view_tax=None):
     """Basic product view"""
 
-    errors = (m for m in get_messages(request) if m.level == constants.ERROR)
+    errors = list(m for m in get_messages(request) if m.level == constants.ERROR)
 
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
