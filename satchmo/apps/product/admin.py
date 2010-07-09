@@ -114,8 +114,8 @@ class CategoryAttributeInline(admin.TabularInline):
 class CategoryAdminForm(models.ModelForm):
 
     def clean_parent(self):
-        parent = self.cleaned_data['parent']
-        slug = self.cleaned_data['slug']
+        parent = self.cleaned_data.get('parent', None)
+        slug = self.cleaned_data.get('slug', None)
         if parent and slug:
             if parent.slug == slug:
                 raise ValidationError(_("You must not save a category in itself!"))
