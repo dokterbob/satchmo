@@ -11,6 +11,8 @@ New Features
 - Update the default templates to show quick orders and category indexes
 - Ensure notes fields can be saved if they are included in the checkout process
 - Display country names instead of abbreviations in templates
+- Update google analytics code to use latest tracker js
+- Add an unlimited downloads option for downloadable products
 
 Translations
 ------------
