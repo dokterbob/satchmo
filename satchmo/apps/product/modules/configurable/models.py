@@ -392,8 +392,10 @@ class ProductVariation(models.Model):
     def _is_shippable(self):
         product = self.product
         parent = self.parent.product
-        return ((product.shipclass == "DEFAULT" and parent.shipclass == "DEFAULT")
-                or product.shipclass == 'YES')
+        return (product.shipclass == 'YES' or
+                (product.shipclass == "DEFAULT"
+                 and parent.shipclass in ("DEFAULT", "YES"))
+                )
 
     is_shippable = property(fget=_is_shippable)
 
