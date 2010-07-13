@@ -36,11 +36,11 @@ class DownloadableProduct(models.Model):
     file = FileField(_("File"), upload_to=_protected_dir)
     num_allowed_downloads = models.IntegerField(
         _("Num allowed downloads"),
-        help_text=_("Number of times link can be accessed."),
+        help_text=_("Number of times link can be accessed. Enter 0 for unlimited."),
         default=0)
     expire_minutes = models.IntegerField(
         _("Expire minutes"),
-        help_text=_("Number of minutes the link should remain active."),
+        help_text=_("Number of minutes the link should remain active. Enter 0 for unlimited."),
         default=0)
     active = models.BooleanField(_("Active"), help_text=_("Is this download currently active?"), default=True)
     is_shippable = False
@@ -85,10 +85,12 @@ class DownloadLink(models.Model):
         # Check num attempts and expire_minutes
         if not self.downloadable_product.active:
             return (False, _("This download is no longer active"))
-        if self.num_attempts >= self.downloadable_product.num_allowed_downloads:
+        maxattempts = self.downloadable_product.num_allowed_downloads
+        if maxattempts > 0 and self.num_attempts >= maxattempts:
             return (False, _("You have exceeded the number of allowed downloads."))
-        expire_time = datetime.timedelta(minutes=self.downloadable_product.expire_minutes) + self.time_stamp
-        if datetime.datetime.now() > expire_time:
+        expiremins = self.downloadable_product.expire_minutes
+        expire_time = datetime.timedelta(minutes=expiremins) + self.time_stamp
+        if expiremins > 0 and datetime.datetime.now() > expire_time:
             return (False, _("This download link has expired."))
         return (True, "")
 

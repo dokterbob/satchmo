@@ -1,6 +1,31 @@
 Deploying A Store
 =================
 
+.. index:: PCI-DSS
+
+PCI-DSS Compliance
+------------------
+Any website that collects credit card payment information is subject to the Payment Card Industry Data Security Standard (PCI-DSS).
+PCI compliance is a complicated topic; you need to understand it fully and know how to use Satchmo in a PCI-DSS compliant manner. 
+
+If you are deploying a store with Satchmo, it is your responsibility to make sure you understand all the rules and how to apply them to 
+your situation. The `Wikipedia article <http://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard>`_ on PCI provides a 
+good overview and links to additional information.
+
+According to the PCI-DSS: "PCI DSS requirements are applicable if a Primary Account Number (PAN) is stored, processed, or transmitted. 
+If a PAN is not stored, processed, or transmitted, PCI DSS requirements do not apply."
+
+Any payment module that collects credit card information will put your server under PCI scope, and require you to comply with PCI-DSS 
+requirements. The exception to this is a module like PayPal or Google Checkout, where the credit card information is actually entered 
+on PayPal's site. If the credit card information is posted to your server, you are under PCI scope. (It doesn't matter whether 
+you store the information or not. Simply transmitting it is enough.)
+
+.. warning::
+    It is your responsibility to make sure Satchmo is deployed in a PCI-DSS compliant manner.
+
+Additional Notes
+----------------
+
 Once your store has been successfully created in your testing environment, you will
 want to keep a few things in mind when deploying into production:
 
