@@ -30,7 +30,7 @@
 		{% endif %}
 		<ul>
 		{% for product in results.products %}
-	        {% ifchanged %}<li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product|discount_price:sale|currency}}</li>{% endifchanged %}
+	        <li><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a> {% trans "for" %} {{ product|discount_price:sale|currency}}</li>
 	    {% endfor %}
 		</ul>
 	{% else %}
