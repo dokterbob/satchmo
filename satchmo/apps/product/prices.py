@@ -9,14 +9,15 @@ def get_product_quantity_adjustments(product, qty=1, parent=None):
         expires__isnull=False,
         expires__lt=datetime.date.today()).filter(quantity__lte=qty)
 
-    adjustments = None
+    # Get the price with the quantity closest to the one specified without going over
+    adjustments = qty_discounts.order_by('price','-quantity', 'expires')[:1]
+    if adjustments:
+        adjustments = adjustments[0].adjustments(product)
+    else:
+        adjustments = None  
+        if parent:
+            adjustments = get_product_quantity_adjustments(parent, qty=qty)
 
-    if qty_discounts.count() > 0:
-        # Get the price with the quantity closest to the one specified without going over
-        adjustments = qty_discounts.order_by('price','-quantity', 'expires')[0].adjustments(product)
-
-    elif parent:
-        adjustments = get_product_quantity_adjustments(parent, qty=qty)
 
     if not adjustments:
         adjustments = PriceAdjustmentCalc(None)
