@@ -81,10 +81,10 @@
 		{% url satchmo_cart as carturl %}
 	    {% if carturl %}<a href="{{ carturl }}">{% trans "Cart" %}</a>{% endif %}
 
-	    {% if cart_count %}
-        ({{ cart_count|normalize_decimal }}{% if cart.total %} - {{ cart|discount_cart_total:sale|currency }}{% endif %})<br/>
-		{% url satchmo_checkout-step1 as checkouturl %}
-        {% if checkouturl %}<a href="{{ checkouturl }}">{% trans "Check out" %}</a>{% endif %}
+	    {% if not cart.is_empty %}
+            ({{ cart_count|normalize_decimal }} - {{ cart|discount_cart_total:sale|currency }})<br/>
+            {% url satchmo_checkout-step1 as checkouturl %}
+            {% if checkouturl %}<a href="{{ checkouturl }}">{% trans "Check out" %}</a>{% endif %}
 	    {% endif %}
 	
 		{% plugin_point "shop_sidebar_actions" %}
