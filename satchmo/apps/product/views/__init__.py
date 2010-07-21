@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django import http
+from django.contrib.messages import constants, get_messages
 from django.core.xheaders import populate_xheaders
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -111,9 +112,8 @@ def get_product(request, product_slug=None, selected_options=(),
     default_view_tax=None):
     """Basic product view"""
 
-    errors = request.session.get('ERRORS', None)
-    if errors is not None:
-        del(request.session['ERRORS'])
+    errors = [m for m in get_messages(request) if m.level == constants.ERROR]
+
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
     except Product.DoesNotExist:
@@ -143,7 +143,7 @@ def get_product(request, product_slug=None, selected_options=(),
         'current_product' : current_product,
         'default_view_tax': default_view_tax,
         'sale': best_discount,
-        'error_message' : errors,
+        'error_message' : errors[0] if errors else None,
     }
 
     # Get the template context from the Product.
