@@ -15,7 +15,7 @@
     <li>{% trans "Confirmation" %}</li> 
 </ul> 
 </div> 
-<form method="post" action="{% if is_secure %}{% url auth_secure_login %}{% else %}{{ login_url }}{% endif %}"> 
+<form method="post" action="{% if is_secure %}{% url auth_secure_login %}{% else %}{{ login_url }}{% endif %}">{% csrf_token %} 
 <input type="hidden" name="next" value="{% url satchmo_checkout-step1 %}" /> 
 <table> 
                 <tr> 

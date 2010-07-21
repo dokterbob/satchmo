@@ -10,7 +10,7 @@
 <h3>{% trans "Please Enter Your Account Information" %}</h3>
 
 <table>
-<form method="post" action=".">
+<form method="post" action=".">{% csrf_token %}
     {{ form.next }}
 
     <tr><td>{{ form.email.label_tag }}:</td><td>{{ form.email }}</td></tr>

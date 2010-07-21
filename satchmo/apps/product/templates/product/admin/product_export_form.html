@@ -61,7 +61,7 @@ tr.ConfigurableProduct {
     {% blocktrans count importform.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
 {% endif %}
 {% if importform.fields %}
-<form method="post" id="importform" action="{% url satchmo_admin_product_import %}" enctype="multipart/form-data">
+<form method="post" id="importform" action="{% url satchmo_admin_product_import %}" enctype="multipart/form-data">{% csrf_token %}
     <p>{% trans 'Import from fixture file:' %}{{ importform.upload }}</p>
     <input type="submit" value="{%trans 'Import' %}" class="Import" />
 </form>
@@ -73,7 +73,7 @@ tr.ConfigurableProduct {
     </p>
 {% endif %}
 {% if form.fields %}
-<form method="post" id="productform">
+<form method="post" id="productform">{% csrf_token %}
     <table>
         <tr>
             <th>{% trans 'Export?' %}</th>

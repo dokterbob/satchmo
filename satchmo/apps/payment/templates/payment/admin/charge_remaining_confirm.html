@@ -7,7 +7,7 @@
     {% blocktrans count form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
     </p>
 {% endif %}
-<form name="chargeform" id="chargeform" method="POST" action="{% url satchmo_charge_remaining_post %}">
+<form name="chargeform" id="chargeform" method="POST" action="{% url satchmo_charge_remaining_post %}">{% csrf_token %}
 {{ form.orderitem }}
 <p><label for="id_amount">{% trans 'New amount' %}</label> {{ form.amount }}</p>
 {% if form.amount.errors %}<p class="error">{{ form.amount.errors|join:", "}}</p>{% endif %}

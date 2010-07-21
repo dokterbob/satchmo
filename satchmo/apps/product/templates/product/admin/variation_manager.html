@@ -245,7 +245,7 @@
     </p>
     {% endblocktrans %}
 </div>
-<form name="variations" action="{% url satchmo_admin_variation_manager product.id %}" method="POST">
+<form name="variations" action="{% url satchmo_admin_variation_manager product.id %}" method="POST">{% csrf_token %}
 	{{ form.dirty }}
 <div style="float:left;">
     <table id="variation_options" style="border-right: 1px solid #999; margin-right: 3px;">

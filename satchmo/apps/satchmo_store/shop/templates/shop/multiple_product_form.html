@@ -13,7 +13,7 @@
 
 {% block content %}
 <h4>Quick Order Form</h4>
-<form name="quickorder" method="post" action="{% url satchmo_quick_order %}">
+<form name="quickorder" method="post" action="{% url satchmo_quick_order %}">{% csrf_token %}
 <table>
 	<table id="quickOrder" cellspacing="0">
 		<tr class="head">

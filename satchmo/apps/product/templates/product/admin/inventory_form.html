@@ -76,7 +76,7 @@ tr.ConfigurableProduct {
     </p>
 {% endif %}
 {% if form.fields %}
-<form method="post" id="inventoryform">
+<form method="post" id="inventoryform">{% csrf_token %}
     <table>
         <tr>
             <th>{% trans 'Slug' %}</th>
