@@ -13,6 +13,7 @@ New Features
 - Display country names instead of abbreviations in templates
 - Update google analytics code to use latest tracker js
 - Add an unlimited downloads option for downloadable products
+- Added support for Django's new CSRF support
 
 Translations
 ------------
@@ -25,3 +26,30 @@ Bug Fixes
 - Resolve Paypal unneeded dependency on subscription product
 - Make sure "all valid" discounts are correctly applied
 - Fix Wishlish ajax add view
+- Ensure that product variation properly inherits shipping from its parent
+- Made a couple of view and template changes to reduce the number of SQL queries per page.
+
+Migration Notes
+---------------
+
+CSRF
+++++
+As of `rev 1999 <http://bitbucket.org/chris1610/satchmo/changeset/a624c8018f52>`_, Satchmo supports the newest Django 1.2 Cross Site Request Forgery (CSRF)
+protection. You are encouraged to read more about it int the `Django docs <http://docs.djangoproject.com/en/dev/ref/contrib/csrf/>`_
+
+If you have an existing Satchmo store and need to support CSRF, you will need to do a couple of things:
+
+    1. Upgrade to Django 1.2.1 or greater
+    2. Ensure 'django.middleware.csrf.CsrfViewMiddleware' is in your MIDDLEWARE_CLASSES
+    3. Ensure that any forms in your custom templates, have {% csrf_token %} inside the <form> element
+    
+Messages
+++++++++
+As of `rev 1999 <http://bitbucket.org/chris1610/satchmo/changeset/a624c8018f52>`_, Satchmo incorporates some of the components of the new `messages framework <http://docs.djangoproject.com/en/dev/ref/contrib/messages/>`_.
+
+If you have an existing Satchmo store you will need to:
+
+    1. Add 'django.contrib.messages.middleware.MessageMiddleware' to your MIDDLEWARE_CLASSES
+    2. Add 'django.contrib.messages.context_processors.messages' to your TEMPLATE_CONTEXT_PROCESSORS
+    3. Add 'django.contrib.messages' to your INSTALLED_APPS setting
+    

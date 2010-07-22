@@ -37,21 +37,25 @@ to add any pieces of satchmo.
         MEDIA_URL = '/static/'
 
         MIDDLEWARE_CLASSES = (
-        "django.middleware.common.CommonMiddleware",
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.locale.LocaleMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.middleware.doc.XViewMiddleware",
-        "threaded_multihost.middleware.ThreadLocalMiddleware",
-        "satchmo_store.shop.SSLMiddleware.SSLRedirect")
+            "django.middleware.common.CommonMiddleware",
+            "django.contrib.sessions.middleware.SessionMiddleware",
+            "django.middleware.locale.LocaleMiddleware",
+            "django.contrib.auth.middleware.AuthenticationMiddleware",
+            "django.middleware.doc.XViewMiddleware",
+            "threaded_multihost.middleware.ThreadLocalMiddleware",
+            "satchmo_store.shop.SSLMiddleware.SSLRedirect",
+            "django.middleware.csrf.CsrfViewMiddleware",
+            "django.contrib.messages.middleware.MessageMiddleware")
 
         TEMPLATE_DIRS = (os.path.join(DIRNAME, "templates"))
         TEMPLATE_CONTEXT_PROCESSORS =     ('satchmo_store.shop.context_processors.settings',
                                          'django.core.context_processors.auth',
+                                         'django.contrib.messages.context_processors.messages',
                                          )
 
         INSTALLED_APPS = (
                 'django.contrib.sites',
+                'django.contrib.messages',
                 'satchmo_store.shop',
                 'django.contrib.admin',
                 'django.contrib.auth',
