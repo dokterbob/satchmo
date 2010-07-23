@@ -138,10 +138,10 @@ def get_product(request, product_slug=None, selected_options=(),
 
     best_discount = find_best_auto_discount(product)
 
-	if errors:
-		error_message = errors[0]
-	else:
-		error_message = None
+    if errors:
+        error_message = errors[0]
+    else:
+        error_message = None
 
     extra_context = {
         'product': product,
