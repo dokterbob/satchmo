@@ -138,12 +138,17 @@ def get_product(request, product_slug=None, selected_options=(),
 
     best_discount = find_best_auto_discount(product)
 
+	if errors:
+		error_message = errors[0]
+	else:
+		error_message = None
+
     extra_context = {
         'product': product,
         'current_product' : current_product,
         'default_view_tax': default_view_tax,
         'sale': best_discount,
-        'error_message' : errors[0] if errors else None,
+        'error_message' : error_message,
     }
 
     # Get the template context from the Product.
