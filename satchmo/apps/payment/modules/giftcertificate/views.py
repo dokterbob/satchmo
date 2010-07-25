@@ -12,10 +12,13 @@ from payment.views import confirm, payship
 from satchmo_utils.dynamic import lookup_url
 from django.contrib.sites.models import Site
 import logging
+from django.core.urlresolvers import reverse
+
 
 log = logging.getLogger("giftcertificate.views")
 
 gc = config_get_group('PAYMENT_GIFTCERTIFICATE')
+
     
 def giftcert_pay_ship_process_form(request, contact, working_cart, payment_module):
     if request.method == "POST":
@@ -29,11 +32,18 @@ def giftcert_pay_ship_process_form(request, contact, working_cart, payment_modul
             newOrder.add_variable(GIFTCODE_KEY, data['giftcode'])
             
             request.session['orderID'] = newOrder.id
-
+            
             url = None
-            if not url:
+            gift_certificate = GiftCertificate.objects.get(code=data['giftcode'], valid=True, 
+                    site=Site.objects.get_current())
+            # Check to see if the giftcertificate is not enough
+            # If it isn't, then process it and prompt for next payment method
+            if gift_certificate.balance < newOrder.balance:
+                controller = confirm.ConfirmController(request, gc)
+                controller.confirm()
+                url = reverse('satchmo_balance_remaining')
+            else:
                 url = lookup_url(payment_module, 'satchmo_checkout-step3')
-                
             return (True, http.HttpResponseRedirect(url))
     else:
         form = GiftCertPayShipForm(request, payment_module)
