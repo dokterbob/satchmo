@@ -27,7 +27,9 @@ Bug Fixes
 - Make sure "all valid" discounts are correctly applied
 - Fix Wishlish ajax add view
 - Ensure that product variation properly inherits shipping from its parent
-- Made a couple of view and template changes to reduce the number of SQL queries per page.
+- Made a couple of view and template changes to reduce the number of SQL queries per page
+- Handling of gift certificate plus other payments fixed
+- Bug in tax processor rendering fixed
 
 Migration Notes
 ---------------

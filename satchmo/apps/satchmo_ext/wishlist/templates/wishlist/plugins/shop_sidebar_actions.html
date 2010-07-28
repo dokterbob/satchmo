@@ -1,4 +1,5 @@
 {% load i18n %}
 {% if user.is_authenticated %}
-<p class="wishlist"><a href="{% url satchmo_wishlist_view %}" />{% trans 'Wishlist' %}</a></p>
+{% url satchmo_wishlist_view as wishlist_view %}
+{% if wishlist_view %}<p class="wishlist"><a href="{{ wishlist_view }}" />{% trans 'Wishlist' %}</a></p> {% endif %}
 {% endif %}
