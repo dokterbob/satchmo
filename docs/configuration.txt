@@ -50,7 +50,7 @@ number of places you might want to configure.
 
     :default: ``False``
 
-    A boolean used to enable to disable multi store capability.
+    A boolean used to enable or disable multi store capability.
 
   .. _satchmo_settings_custom_newsletter_modules:
 
