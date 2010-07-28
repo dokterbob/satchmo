@@ -20,7 +20,7 @@ Pricing fits into the picture this way:
 
  * You can set a default price on your Product.
  * You can set a price adjustment for an option.
- * You can set a price over-ride for a variation.
+ * You can set a price override for a variation.
 
 The price code looks through these backwards. If the variation has a price then that is used
 Otherwise the Product price is used +/- the adjustment for the chosen options (IE: XL shirts are +$1.00)
@@ -34,7 +34,7 @@ Product Variation Prices
 On the product variations, the price can have an expiration date and/or a quantity. 
 If either of these fields are set then that price is only effective for orders placed before that date, or >= that quantity. 
 The most specific of these gets highest priority (IE: the soonest expiration date, and the highest applicable quantity). 
-This useful for running temporary promotions that automatically expire.
+This is useful for running temporary promotions that automatically expire.
 
 Expiring Pricing
 ----------------
