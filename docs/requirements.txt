@@ -110,7 +110,7 @@ Detailed steps for installing these dependencies is included in the :doc:`new_in
 .. _download link: http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
 .. _Django Registration: http://bitbucket.org/ubernostrum/django-registration/wiki/Home
 .. _snapshot: http://www.satchmoproject.com/snapshots/
-.. _`Django Threaded Multihost`: http://gosatchmo.com/apps/django-threaded-multihost/
+.. _`Django Threaded Multihost`: http://bitbucket.org/bkroeze/django-threaded-multihost
 .. _`Django App Plugins`: http://bitbucket.org/bkroeze/django-caching-app-plugins/
 .. _`Sorl Thumbnails`: http://code.google.com/p/sorl-thumbnail/
 .. _`SSL Backport`: http://pypi.python.org/pypi/ssl/
