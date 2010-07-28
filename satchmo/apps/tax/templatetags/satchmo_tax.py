@@ -113,11 +113,7 @@ class TaxRateNode(template.Node):
         if self.digits == 0:
             q = Decimal('0')
         else:
-            if self.digits == 1:
-                s = "0.1"
-            else:
-                s = "0." + "0" * self.digits-1 + "1"
-            q = Decimal(s)
+            q = Decimal('0.1') ** self.digits
         return pcnt.quantize(q)
 
 def tax_rate(parser, token):
