@@ -161,22 +161,20 @@ class ShopTest(TestCase):
     def test_cart_adding_errors_invalid_qty(self):
         # You should not be able to add a product with a non-valid decimal quantity.
         response = self.client.post(prefix + '/cart/add/',
-            {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5a'})
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '1.5a'}, follow=True)
 
-        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-        self.assertEqual(err, "Invalid quantity.")
+        self.assertContains(response, "Invalid quantity.", count=1)
 
     def test_cart_adding_errors_less_zero(self):
         # You should not be able to add a product with a quantity less than zero.
         response = self.client.post(prefix + '/cart/add/',
-            {'productname': 'neat-book', '3': 'soft', 'quantity': '0'})
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '0'}, follow=True)
 
-        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-        self.assertEqual(err, "Please enter a positive number.")
+        self.assertContains(response, "Please enter a positive number.", count=1)
 
     def test_cart_adding_errors_out_of_stock(self):
         # If no_stock_checkout is False, you should not be able to order a
@@ -184,12 +182,11 @@ class ShopTest(TestCase):
         setting = config_get('PRODUCT','NO_STOCK_CHECKOUT')
         setting.update(False)
         response = self.client.post(prefix + '/cart/add/',
-            {'productname': 'neat-book', '3': 'soft', 'quantity': '1'})
+            {'productname': 'neat-book', '3': 'soft', 'quantity': '1'}, follow=True)
 
-        err = self.client.session.get('ERRORS')
         url = prefix + '/product/neat-book-soft/'
         self.assertRedirects(response, url, status_code=302, target_status_code=200)
-        self.assertEqual(err, "'A really neat book (Soft cover)' is out of stock.")
+        self.assertContains(response, "A really neat book (Soft cover)&#39; is out of stock.", count=1)
 
     def test_product(self):
         # Test for an easily missed reversion. When you lookup a productvariation product then
