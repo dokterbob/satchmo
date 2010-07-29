@@ -37,7 +37,7 @@ features in Satchmo.
 
 There are also a number of other Django packages (mentioned below) that you will need to install.
 
-- To support multi store configurations:
+- Satchmo uses django-threaded-multihost internally for quick access to thread local variables (the current request, current user, etc.). Satchmo also uses this app for an optimization when running mutliple sites and store configurations with a single settings file (see :doc:`configuration` for more details):
 
   - `Django Threaded Multihost`_
 
