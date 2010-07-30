@@ -72,33 +72,33 @@
     price_change: null, value: upgrade}
   model: product.option
   pk: '11'
-- fields: {site: 1, description: Women's Shirts, meta: null, name: Shirts, parent: null, slug: shirts}
+- fields: {site: 1, description: Women's Shirts, meta: null, name: Shirts, parent: null, slug: shirts, is_active: true}
   model: product.category
   pk: '1'
 - fields: {site: 1, description: Short sleeve shirts, meta: null, name: Short Sleeve, parent: !!python/long '1',
-    slug: shortsleeve}
+    slug: shortsleev, is_active: true }
   model: product.category
   pk: '2'
-- fields: {site: 1, description: Books, meta: null, name: Books, parent: null, slug: book}
+- fields: {site: 1, description: Books, meta: null, name: Books, parent: null, slug: book, is_active: true}
   model: product.category
   pk: '3'
 - fields: {site: 1, description: Fiction Books, meta: null, name: Fiction, parent: !!python/long '3',
-    slug: fiction}
+    slug: fiction, is_active: true}
   model: product.category
   pk: '4'
 - fields: {site: 1, description: Science Fiction, meta: null, name: Science Fiction, parent: !!python/long '4',
-    slug: scifi}
+    slug: scifi, is_active: true}
   model: product.category
   pk: '5'
 - fields: {site: 1, description: Non Fiction, meta: null, name: Non Fiction, parent: !!python/long '3',
-    slug: nonfiction}
+    slug: nonfiction, is_active: true}
   model: product.category
   pk: '6'
-- fields: {site: 1, description: '', meta: null, name: Software, parent: null, slug: software}
+- fields: {site: 1, description: '', meta: null, name: Software, parent: null, slug: software, is_active: true}
   model: product.category
   pk: '7'
 - fields: {site: 1, description: '', meta: You know what a computer is, name: Computer, ordering: 0,
-    parent: null, slug: computer}
+    parent: null, slug: computer, is_active: true}
   model: product.category
   pk: 8
 - fields:
