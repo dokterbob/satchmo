@@ -12,7 +12,7 @@ class Migration(SchemaMigration):
         # Adding model 'AttributeOption'
         db.create_table('product_attributeoption', (
             ('name', self.gf('django.db.models.fields.SlugField')(max_length=100, db_index=True)),
-            ('error_message', self.gf('django.db.models.fields.CharField')(default=u'Inavlid Entry', max_length=100)),
+            ('error_message', self.gf('django.db.models.fields.CharField')(default=u'Invalid Entry', max_length=100)),
             ('sort_order', self.gf('django.db.models.fields.IntegerField')(default=1)),
             ('validation', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -26,10 +26,11 @@ class Migration(SchemaMigration):
 
         if not db.dry_run:
             for attr in orm['product.productattribute'].objects.all():
-                orm['product.attributeoption'].objects.create(
-                    description='', name=attr.name,
-                    validation=default_validation,
-                )
+                if orm['product.attributeoption'].objects.filter(name__exact=attr.name).count() < 1:
+                    orm['product.attributeoption'].objects.create(
+                        description=attr.name, name=attr.name,
+                        validation=default_validation,
+                        )
 
         if db.backend_name=='sqlite3':
             get_logger().debug("dropping and re-creating table for ProductAttribute")

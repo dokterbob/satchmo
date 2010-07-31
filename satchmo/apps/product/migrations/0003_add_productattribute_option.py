@@ -18,7 +18,7 @@ class Migration(SchemaMigration):
 
         if not db.dry_run:
             for attr in orm['product.ProductAttribute'].objects.all():
-                attr.option = orm['product.AttributeOption'].get(name__exact=attr.name)
+                attr.option = orm['product.AttributeOption'].objects.get(name__exact=attr.name)
                 attr.save()
 
 
