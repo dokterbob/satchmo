@@ -3,14 +3,14 @@
 # Copyright (C) 2008 Satchmo Project
 # This file is distributed under the same license as the Satchmo package.
 # Christian Hoeppner <hoeppner@gmail.com>, 2007.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Satchmo 0.5-pre\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:55-0600\n"
-"PO-Revision-Date: 2007-08-06 00:00+0000\n"
-"Last-Translator: Christian Hoeppner <hoeppner@gmail.com>\n"
+"PO-Revision-Date: 2010-08-02 21:06+0100\n"
+"Last-Translator: Ruben Moran <rtmoran@gmail.com>\n"
 "Language-Team: Spanish <satchmo-users@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,14 @@ msgstr ""
 msgid "Store Contact"
 msgstr "Contacto"
 
-#: admin.py:28 models.py:92
+#: admin.py:28
+#: models.py:92
 msgid "Shipping Countries"
 msgstr "Países de envío"
 
-#: admin.py:75 models.py:607 templates/shop/_order_details.html:39
+#: admin.py:75
+#: models.py:607
+#: templates/shop/_order_details.html:39
 #: templates/shop/_order_tracking_details.html:22
 #: templates/shop/email/order_complete.txt:40
 #: templates/shop/email/order_placed_notice.txt:36
@@ -32,16 +35,19 @@ msgstr "Países de envío"
 msgid "Shipping Method"
 msgstr "Método de envío"
 
-#: admin.py:76 templates/shop/_order_details.html:30
+#: admin.py:76
+#: templates/shop/_order_details.html:30
 #: templates/shop/email/order_complete.txt:29
 #: templates/shop/email/order_placed_notice.txt:26
-#: templates/shop/email/order_shipped.txt:7 templates/shop/pdf/invoice.rml:25
+#: templates/shop/email/order_shipped.txt:7
+#: templates/shop/pdf/invoice.rml:25
 #: templates/shop/pdf/packing-slip.rml:25
 #, fuzzy
 msgid "Shipping Address"
 msgstr "Dirección de envío"
 
-#: admin.py:77 templates/shop/pdf/invoice.rml:24
+#: admin.py:77
+#: templates/shop/pdf/invoice.rml:24
 #: templates/shop/pdf/packing-slip.rml:24
 msgid "Billing Address"
 msgstr "Dirección de facturación"
@@ -146,7 +152,9 @@ msgstr ""
 msgid "Test Store"
 msgstr ""
 
-#: models.py:77 models.py:271 models.py:578
+#: models.py:77
+#: models.py:271
+#: models.py:578
 #, fuzzy
 msgid "Site"
 msgstr "Sitio"
@@ -155,34 +163,50 @@ msgstr "Sitio"
 msgid "Store Name"
 msgstr "Nombre de la Tienda"
 
-#: models.py:79 models.py:272 models.py:1354
-#: templates/shop/pdf/invoice.rml:130 templates/shop/pdf/packing-slip.rml:124
+#: models.py:79
+#: models.py:272
+#: models.py:1354
+#: templates/shop/pdf/invoice.rml:130
+#: templates/shop/pdf/packing-slip.rml:124
 msgid "Description"
 msgstr "Descripción"
 
-#: models.py:80 templates/shop/pdf/invoice.rml:112
+#: models.py:80
+#: templates/shop/pdf/invoice.rml:112
 #: templates/shop/pdf/packing-slip.rml:102
 msgid "Email"
 msgstr "Correo"
 
-#: models.py:81 models.py:82 models.py:581 models.py:582 models.py:588
+#: models.py:81
+#: models.py:82
+#: models.py:581
+#: models.py:582
+#: models.py:588
 #: models.py:589
 msgid "Street"
 msgstr "Calle"
 
-#: models.py:83 models.py:583 models.py:590
+#: models.py:83
+#: models.py:583
+#: models.py:590
 msgid "City"
 msgstr "Ciudad"
 
-#: models.py:84 models.py:584 models.py:591
+#: models.py:84
+#: models.py:584
+#: models.py:591
 msgid "State"
 msgstr "Estado"
 
-#: models.py:85 models.py:585 models.py:592
+#: models.py:85
+#: models.py:585
+#: models.py:592
 msgid "Zip Code"
 msgstr "Código Postal"
 
-#: models.py:86 models.py:586 models.py:593
+#: models.py:86
+#: models.py:586
+#: models.py:593
 msgid "Country"
 msgstr "País"
 
@@ -225,16 +249,22 @@ msgstr "Carrito"
 msgid "Shopping Carts"
 msgstr "Carritos"
 
-#: models.py:421 templates/base.html:80 templates/shop/cart.html:12
+#: models.py:421
+#: templates/base.html:80
+#: templates/shop/cart.html:12
 msgid "Cart"
 msgstr "Carrito"
 
-#: models.py:422 models.py:1034
+#: models.py:422
+#: models.py:1034
 msgid "Product"
 msgstr "Productos"
 
-#: models.py:423 models.py:1035 templates/shop/cart.html:25
-#: templates/shop/pdf/invoice.rml:131 templates/shop/pdf/packing-slip.rml:125
+#: models.py:423
+#: models.py:1035
+#: templates/shop/cart.html:25
+#: templates/shop/pdf/invoice.rml:131
+#: templates/shop/pdf/packing-slip.rml:125
 msgid "Quantity"
 msgstr "Cantidad"
 
@@ -258,12 +288,14 @@ msgstr ""
 msgid "Item Detail Price Change"
 msgstr ""
 
-#: models.py:511 models.py:1124
+#: models.py:511
+#: models.py:1124
 #, fuzzy
 msgid "Sort Order"
 msgstr "Nuevos Pedidos"
 
-#: models.py:512 models.py:1125
+#: models.py:512
+#: models.py:1125
 msgid "The display order for this group."
 msgstr ""
 
@@ -314,7 +346,8 @@ msgstr ""
 msgid "Shipped"
 msgstr ""
 
-#: models.py:533 models.py:1245
+#: models.py:533
+#: models.py:1245
 msgid "Complete"
 msgstr ""
 
@@ -326,29 +359,35 @@ msgstr ""
 msgid "Contact"
 msgstr "Contacto"
 
-#: models.py:580 models.py:587
+#: models.py:580
+#: models.py:587
 msgid "Addressee"
 msgstr ""
 
-#: models.py:594 models.py:1192
+#: models.py:594
+#: models.py:1192
 msgid "Notes"
 msgstr ""
 
-#: models.py:595 templates/shop/_order_details.html:50
+#: models.py:595
+#: templates/shop/_order_details.html:50
 #: templates/shop/pdf/invoice.rml:154
 msgid "Subtotal"
 msgstr ""
 
-#: models.py:597 templates/shop/_order_details.html:49
+#: models.py:597
+#: templates/shop/_order_details.html:49
 #: templates/shop/_order_details.html:71
 #: templates/shop/_order_tracking_details.html:28
-#: templates/shop/_order_tracking_details.html:36 templates/shop/cart.html:33
+#: templates/shop/_order_tracking_details.html:36
+#: templates/shop/cart.html:33
 #: templates/shop/order_history.html:23
 #: templates/shop/email/order_complete.txt:47
 #: templates/shop/email/order_complete.txt:56
 #: templates/shop/email/order_placed_notice.txt:43
 #: templates/shop/email/order_placed_notice.txt:52
-#: templates/shop/pdf/invoice.rml:134 templates/shop/pdf/invoice.rml.py:177
+#: templates/shop/pdf/invoice.rml:134
+#: templates/shop/pdf/invoice.rml.py:177
 msgid "Total"
 msgstr ""
 
@@ -386,13 +425,16 @@ msgstr "Carritos"
 msgid "Shipping Cost"
 msgstr "Carrito"
 
-#: models.py:613 templates/shop/_order_details.html:60
+#: models.py:613
+#: templates/shop/_order_details.html:60
 #: templates/shop/pdf/invoice.rml:169
 #, fuzzy
 msgid "Shipping Discount"
 msgstr "Promoción"
 
-#: models.py:615 models.py:1355 templates/shop/_order_details.html:69
+#: models.py:615
+#: models.py:1355
+#: templates/shop/_order_details.html:69
 #: templates/shop/_order_tracking_details.html:34
 #: templates/shop/email/order_complete.txt:54
 #: templates/shop/email/order_placed_notice.txt:50
@@ -401,12 +443,15 @@ msgstr "Promoción"
 msgid "Tax"
 msgstr "Impuestos"
 
-#: models.py:617 models.py:1193
+#: models.py:617
+#: models.py:1193
 #: templates/shop/admin/_orderpayment_list.html:11
 msgid "Timestamp"
 msgstr ""
 
-#: models.py:618 models.py:1190 templates/shop/_order_tracking_details.html:9
+#: models.py:618
+#: models.py:1190
+#: templates/shop/_order_tracking_details.html:9
 #: templates/shop/order_history.html:20
 #, fuzzy
 msgid "Status"
@@ -416,15 +461,19 @@ msgstr "Estado"
 msgid "This is set automatically."
 msgstr ""
 
-#: models.py:804 models.py:814 models.py:921
+#: models.py:804
+#: models.py:814
+#: models.py:921
 msgid "View"
 msgstr ""
 
-#: models.py:873 templates/shop/_order_details.html:56
+#: models.py:873
+#: templates/shop/_order_details.html:56
 #: templates/shop/_order_tracking_details.html:30
 #: templates/shop/email/order_complete.txt:50
 #: templates/shop/email/order_placed_notice.txt:46
-#: templates/shop/pdf/invoice.rml:133 templates/shop/pdf/invoice.rml.py:159
+#: templates/shop/pdf/invoice.rml:133
+#: templates/shop/pdf/invoice.rml.py:159
 msgid "Discount"
 msgstr "Promoción"
 
@@ -438,7 +487,9 @@ msgstr "Categorías de Productos"
 msgid "Product Orders"
 msgstr "Opciones de Producto"
 
-#: models.py:1033 models.py:1137 models.py:1189
+#: models.py:1033
+#: models.py:1137
+#: models.py:1189
 #, fuzzy
 msgid "Order"
 msgstr "Nuevos Pedidos"
@@ -490,7 +541,8 @@ msgstr "Pedidos en Proceso"
 msgid "Order Item"
 msgstr ""
 
-#: models.py:1121 views/contact.py:28
+#: models.py:1121
+#: views/contact.py:28
 msgid "Name"
 msgstr ""
 
@@ -573,7 +625,8 @@ msgstr ""
 msgid "timestamp"
 msgstr ""
 
-#: models.py:1216 templates/shop/admin/_orderpayment_list.html:12
+#: models.py:1216
+#: templates/shop/admin/_orderpayment_list.html:12
 msgid "Transaction ID"
 msgstr ""
 
@@ -598,7 +651,8 @@ msgstr ""
 msgid "Order Payment"
 msgstr ""
 
-#: models.py:1305 templates/shop/admin/_orderpayment_list.html:3
+#: models.py:1305
+#: templates/shop/admin/_orderpayment_list.html:3
 msgid "Order Payments"
 msgstr ""
 
@@ -655,17 +709,26 @@ msgstr ""
 msgid "Your order from %(shop_name)s has shipped"
 msgstr ""
 
-#: templates/404.html:5 templates/500.html:5 templates/shop/404.html:5
-#: templates/shop/cart.html:11 templates/shop/contact_form.html:5
-#: templates/shop/contact_thanks.html:5 templates/shop/download.html:5
-#: templates/shop/index.html:7 templates/shop/multiple_product_form.html:10
-#: templates/shop/order_history.html:7 templates/shop/order_tracking.html:6
+#: templates/404.html:5
+#: templates/500.html:5
+#: templates/shop/404.html:5
+#: templates/shop/cart.html:11
+#: templates/shop/contact_form.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/download.html:5
+#: templates/shop/index.html:7
+#: templates/shop/multiple_product_form.html:10
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
 #: templates/shop/search.html:6
 msgid "Home"
 msgstr ""
 
-#: templates/404.html:10 templates/500.html:10 templates/shop/404.html:10
-#: views/cart.py:266 views/cart.py:270
+#: templates/404.html:10
+#: templates/500.html:10
+#: templates/shop/404.html:10
+#: views/cart.py:266
+#: views/cart.py:270
 msgid "Error"
 msgstr ""
 
@@ -692,7 +755,7 @@ msgstr ""
 
 #: templates/base.html:64
 msgid "Best Sellers"
-msgstr ""
+msgstr "Mejor vendidos"
 
 #: templates/base.html:67
 #, fuzzy
@@ -716,11 +779,13 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:85 templates/shop/cart.html:65
+#: templates/base.html:85
+#: templates/shop/cart.html:65
 msgid "Check out"
 msgstr ""
 
-#: templates/base.html:91 templates/shop/contact_form.html:6
+#: templates/base.html:91
+#: templates/shop/contact_form.html:6
 #: templates/shop/contact_thanks.html:6
 #, fuzzy
 msgid "Contact Us"
@@ -730,7 +795,8 @@ msgstr "Contactos"
 msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
 msgstr ""
 
-#: templates/admin/base_site.html:35 templates/admin/base_site.html.py:38
+#: templates/admin/base_site.html:35
+#: templates/admin/base_site.html.py:38
 msgid "Site Administration"
 msgstr "Administración del Sitio"
 
@@ -774,7 +840,7 @@ msgstr ""
 
 #: templates/admin/index.html:107
 msgid "None available"
-msgstr ""
+msgstr "Ninguno disponible"
 
 #: templates/admin/index.html:120
 msgid "Admin Tools"
@@ -809,7 +875,8 @@ msgstr ""
 msgid "Items Ordered"
 msgstr "Nuevos Pedidos"
 
-#: templates/shop/_order_details.html:17 templates/shop/contact_form.html:10
+#: templates/shop/_order_details.html:17
+#: templates/shop/contact_form.html:10
 #: templates/shop/contact_thanks.html:10
 #: templates/shop/email/order_complete.txt:13
 #: templates/shop/email/order_placed_notice.txt:11
@@ -854,7 +921,8 @@ msgstr ""
 msgid "Shipping To"
 msgstr "Carrito"
 
-#: templates/shop/_search.html:2 templates/shop/_search.html.py:13
+#: templates/shop/_search.html:2
+#: templates/shop/_search.html.py:13
 msgid "Search"
 msgstr ""
 
@@ -865,15 +933,15 @@ msgstr "Productos Canónicos"
 
 #: templates/shop/cart.html:21
 msgid "Your cart is empty."
-msgstr ""
+msgstr "Tu carro está vacío"
 
 #: templates/shop/cart.html:23
 msgid "Your Cart"
-msgstr ""
+msgstr "Tu carro"
 
 #: templates/shop/cart.html:26
 msgid "Item"
-msgstr ""
+msgstr "Artículo"
 
 #: templates/shop/cart.html:28
 msgid "Regular Price"
@@ -897,7 +965,7 @@ msgstr ""
 
 #: templates/shop/cart.html:47
 msgid "update amount"
-msgstr ""
+msgstr "actualizar cantidad"
 
 #: templates/shop/cart.html:58
 msgid "Cart Total"
@@ -905,9 +973,10 @@ msgstr ""
 
 #: templates/shop/contact_form.html:13
 msgid "Please correct the following error:"
-msgid_plural "Please correct the following errors:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Por favor corriga el siguiente error:"
+
+msgid "Please correct the following errors:"
+msgstr "Por favor corriga los siguientes errores:"
 
 #: templates/shop/contact_form.html:19
 #, fuzzy
@@ -916,11 +985,11 @@ msgstr "Correo"
 
 #: templates/shop/contact_thanks.html:12
 msgid "Thank you for contacting us."
-msgstr ""
+msgstr "Gracias por contactar con nosotros."
 
 #: templates/shop/contact_thanks.html:14
 msgid "We will attempt to get back to you within 48 hours."
-msgstr ""
+msgstr "Intentaremos contactar con usted durante las próximas 48 horas."
 
 #: templates/shop/download.html:13
 msgid "Downloading of"
@@ -940,35 +1009,41 @@ msgstr ""
 
 #: templates/shop/index.html:14
 msgid "Featured Items"
-msgstr ""
+msgstr "Productos destacados"
 
-#: templates/shop/index.html:32 templates/shop/index.html.py:34
+#: templates/shop/index.html:32
+#: templates/shop/index.html.py:34
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
-#: templates/shop/index.html:44 templates/shop/index.html.py:46
+#: templates/shop/index.html:44
+#: templates/shop/index.html.py:46
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: templates/shop/multiple_product_form.html:11
 msgid "Quick Order Form"
-msgstr ""
+msgstr "Formulario  de pedido rápido"
 
 #: templates/shop/multiple_product_form.html:52
 msgid "Add to Cart"
-msgstr ""
+msgstr "Añadir al carro"
 
-#: templates/shop/order_history.html:8 templates/shop/order_tracking.html:7
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
 #, fuzzy
 msgid "Account"
 msgstr "Promoción"
 
-#: templates/shop/order_history.html:9 templates/shop/order_history.html:14
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
 msgid "Order History"
-msgstr ""
+msgstr "Historial de pedidos"
 
-#: templates/shop/order_history.html:21 templates/shop/pdf/invoice.rml:15
-#: templates/shop/pdf/invoice.rml.py:57 templates/shop/pdf/packing-slip.rml:15
+#: templates/shop/order_history.html:21
+#: templates/shop/pdf/invoice.rml:15
+#: templates/shop/pdf/invoice.rml.py:57
+#: templates/shop/pdf/packing-slip.rml:15
 #: templates/shop/pdf/packing-slip.rml:57
 #, fuzzy
 msgid "Date"
@@ -976,19 +1051,21 @@ msgstr "Estado"
 
 #: templates/shop/order_history.html:22
 msgid "Items"
-msgstr ""
+msgstr "Artículos"
 
 #: templates/shop/order_history.html:52
 msgid "You haven't made any orders yet."
-msgstr ""
+msgstr "Aún no has realizado ningún pedido."
 
-#: templates/shop/order_tracking.html:8 templates/shop/order_tracking.html:13
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
 msgid "Order Tracking"
-msgstr ""
+msgstr "Seguimiento de pedidos"
 
-#: templates/shop/search.html:12 templates/shop/search.html.py:38
+#: templates/shop/search.html:12
+#: templates/shop/search.html.py:38
 msgid "Nothing found"
-msgstr ""
+msgstr "Sin resultados"
 
 #: templates/shop/search.html:15
 #, python-format
@@ -1007,7 +1084,7 @@ msgstr "Productos Canónicos"
 
 #: templates/shop/search.html:33
 msgid "for"
-msgstr ""
+msgstr "para"
 
 #: templates/shop/admin/_customorder_management.html:3
 msgid "Custom Order Management"
@@ -1034,15 +1111,15 @@ msgstr ""
 #: templates/shop/email/order_complete.txt:58
 #: templates/shop/email/order_placed_notice.txt:54
 msgid "Payment"
-msgstr ""
+msgstr "Pago"
 
 #: templates/shop/admin/_orderpayment_list.html:9
 msgid "Amount"
-msgstr ""
+msgstr "Cantidad"
 
 #: templates/shop/admin/_orderpayment_list.html:10
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 #: templates/shop/admin/_orderpayment_list.html:35
 msgid "No payments."
@@ -1083,17 +1160,17 @@ msgstr ""
 #: templates/shop/email/order_shipped.txt:1
 #, python-format
 msgid "Dear %(first_name)s %(last_name)s,"
-msgstr ""
+msgstr "Estimado %(first_name)s %(last_name)s,"
 
 #: templates/shop/email/order_complete.txt:3
 #: templates/shop/email/order_shipped.txt:3
 #, python-format
 msgid "Thank you for ordering with %(shop_name)s."
-msgstr ""
+msgstr "Gracis por realizar tu pedido a %(shop_name)s."
 
 #: templates/shop/email/order_complete.txt:5
 msgid "Your order is summarized below:"
-msgstr ""
+msgstr "Tu pedido está resumido a continuación:"
 
 #: templates/shop/email/order_complete.txt:63
 #, python-format
@@ -1102,15 +1179,15 @@ msgstr ""
 
 #: templates/shop/email/order_complete.txt:69
 msgid "Your order contains products that can be downloaded"
-msgstr ""
+msgstr "Tu pedido contiene productos que pueden ser descargados"
 
 #: templates/shop/email/order_complete.txt:70
 msgid "Please click the link to begin the download"
-msgstr ""
+msgstr "Por favor pulsa en el enlace para comenzar la descarga"
 
 #: templates/shop/email/order_complete.txt:76
 msgid "Regards"
-msgstr ""
+msgstr "Saludos"
 
 #: templates/shop/email/order_complete.txt:78
 #, fuzzy
@@ -1138,39 +1215,43 @@ msgstr ""
 
 #: templates/shop/email/order_shipped.txt:15
 msgid "This completes your order."
-msgstr ""
+msgstr "Esto completa tu pedido."
 
 #: templates/shop/pdf/invoice.rml:5
 #, fuzzy
 msgid "Store Invoice"
 msgstr "Nombre de la Tienda"
 
-#: templates/shop/pdf/invoice.rml:14 templates/shop/pdf/invoice.rml.py:56
+#: templates/shop/pdf/invoice.rml:14
+#: templates/shop/pdf/invoice.rml.py:56
 #: templates/shop/pdf/packing-slip.rml:14
 #: templates/shop/pdf/packing-slip.rml:56
 msgid "Invoice #"
-msgstr ""
+msgstr "Factura #"
 
-#: templates/shop/pdf/invoice.rml:21 templates/shop/pdf/invoice.rml.py:63
+#: templates/shop/pdf/invoice.rml:21
+#: templates/shop/pdf/invoice.rml.py:63
 msgid "INVOICE"
-msgstr ""
+msgstr "INVOICE"
 
-#: templates/shop/pdf/invoice.rml:63 templates/shop/pdf/packing-slip.rml:63
+#: templates/shop/pdf/invoice.rml:63
+#: templates/shop/pdf/packing-slip.rml:63
 #, fuzzy
 msgid "Page"
 msgstr "Modificar"
 
-#: templates/shop/pdf/invoice.rml:111 templates/shop/pdf/packing-slip.rml:101
+#: templates/shop/pdf/invoice.rml:111
+#: templates/shop/pdf/packing-slip.rml:101
 msgid "Phone"
 msgstr ""
 
 #: templates/shop/pdf/invoice.rml:132
 msgid "Unit Price"
-msgstr ""
+msgstr "Precio por unidades"
 
 #: templates/shop/pdf/invoice.rml:181
 msgid "Payments Made"
-msgstr ""
+msgstr "Pagos realizados"
 
 #: templates/shop/pdf/invoice.rml:185
 msgid "Balance Due"
@@ -1207,7 +1288,8 @@ msgstr ""
 msgid "No cart to update."
 msgstr ""
 
-#: views/cart.py:62 views/cart.py:71
+#: views/cart.py:62
+#: views/cart.py:71
 #, fuzzy
 msgid "Bad quantity."
 msgstr "Cantidad"
@@ -1225,51 +1307,56 @@ msgstr ""
 msgid "Not enough items of '%s' in stock."
 msgstr ""
 
-#: views/cart.py:146 views/cart.py:216
+#: views/cart.py:146
+#: views/cart.py:216
 msgid "That product is not available at the moment."
-msgstr ""
+msgstr "El producto no se encuentra disponible en este momento."
 
-#: views/cart.py:152 views/cart.py:212
+#: views/cart.py:152
+#: views/cart.py:212
 msgid "The product you have requested does not exist."
-msgstr ""
+msgstr "El producto solicitado no existe."
 
 #: views/cart.py:156
 msgid "Please enter a smaller number."
-msgstr ""
+msgstr "Por favor introduce un número menor."
 
-#: views/cart.py:163 views/cart.py:237
+#: views/cart.py:163
+#: views/cart.py:237
 msgid "Invalid quantity."
-msgstr ""
+msgstr "Cantidad inválida."
 
 #: views/cart.py:167
 msgid "Please enter a positive number."
-msgstr ""
+msgstr "Por favor introuduce un número positivo"
 
 #: views/cart.py:200
 msgid "No product requested"
-msgstr ""
+msgstr "Ningun producto solicitado"
 
 #: views/cart.py:229
 msgid "Choose a smaller quantity"
-msgstr ""
+msgstr "Elige una cantidad menor"
 
 #: views/cart.py:234
 msgid "Choose a quantity."
-msgstr ""
+msgstr "Elige una cantidad."
 
 #: views/cart.py:254
 msgid "Success"
-msgstr ""
+msgstr "Éxito"
 
 #: views/cart.py:305
 msgid "You must accept the terms and conditions."
-msgstr ""
+msgstr "Debes aceptar los términos y condiciones."
 
-#: views/cart.py:321 views/cart.py:358
+#: views/cart.py:321
+#: views/cart.py:358
 msgid "Internal error: please submit as a POST"
 msgstr ""
 
-#: views/comments.py:20 views/comments.py:31
+#: views/comments.py:20
+#: views/comments.py:31
 msgid "One or more of the required fields wasn't submitted"
 msgstr ""
 
@@ -1280,7 +1367,7 @@ msgstr ""
 
 #: views/contact.py:23
 msgid "General question"
-msgstr ""
+msgstr "Pregunta general"
 
 #: views/contact.py:24
 #, fuzzy
@@ -1289,11 +1376,11 @@ msgstr "Pedidos en Proceso"
 
 #: views/contact.py:29
 msgid "Email address"
-msgstr ""
+msgstr "Dirección de correo"
 
 #: views/contact.py:30
 msgid "Subject"
-msgstr ""
+msgstr "Asunto"
 
 #: views/contact.py:31
 msgid "Inquiry"
@@ -1304,53 +1391,42 @@ msgstr ""
 msgid "Contents"
 msgstr "Contactos"
 
-#: views/download.py:23 views/download.py:28
+#: views/download.py:23
+#: views/download.py:28
 msgid "The download key is invalid."
 msgstr ""
 
 #: views/home.py:29
 msgid "Invalid page number"
-msgstr ""
+msgstr "Número de página inválido"
 
 #: views/orders.py:40
 msgid "The order you have requested doesn't exist, or you don't have access to it."
-msgstr ""
+msgstr "El pedido que has solicitado no existe, o no tienes acceso a él."
 
 #~ msgid "Tax Classes"
 #~ msgstr "Tipos de impuestos"
-
 #~ msgid "Tax Rates"
 #~ msgstr "Impuestos"
-
 #~ msgid "Purchase item not in stock?"
 #~ msgstr "¿Permitir la compra de artículos fuera de stock?"
-
 #~ msgid "Select a valid choice."
 #~ msgstr "Seleccione una opción válida."
-
 #~ msgid "Please enter one and only one of those fields."
 #~ msgstr "Por favor, introduzca uno y sólo uno de los siguientes campos."
-
 #~ msgid "Organizations"
 #~ msgstr "Organizaciones"
-
 #~ msgid "Individual Products"
 #~ msgstr "Productos Físicos"
-
 #~ msgid "Satchmo Site Administration"
 #~ msgstr "Administración del Sitio de Satchmo"
-
 #~ msgid "Switch to Legacy View"
 #~ msgstr "Ir a vista clásica"
-
 #~ msgid "Store Web Site"
 #~ msgstr "Sitio de la Tienda"
-
 #~ msgid "Discounts"
 #~ msgstr "Promociones"
-
 #~ msgid "International Information"
 #~ msgstr "Información Internacional"
-
 #~ msgid "Areas"
 #~ msgstr "Zonas"

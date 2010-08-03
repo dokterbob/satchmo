@@ -30,6 +30,14 @@ Bug Fixes
 - Made a couple of view and template changes to reduce the number of SQL queries per page
 - Handling of gift certificate plus other payments fixed
 - Bug in tax processor rendering fixed
+- Bug in autosuccess payment module fixed
+- Rebuild pricing was deleting prices if multiple sites were being used
+
+
+Performance Improvements
+------------------------
+- Tweaks to price queries to reduce unneeded queries
+
 
 Migration Notes
 ---------------
