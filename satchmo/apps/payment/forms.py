@@ -231,8 +231,8 @@ class PaymentContactInfoForm(PaymentMethodForm, ContactInfoForm):
             form_init.send(PaymentContactInfoForm, form=self)
 
         def save(self, request, *args, **kwargs):
-            contactid = super(PaymentContactInfoForm, self).save(*args, **kwargs)
             form_presave.send(PaymentContactInfoForm, form=self)
+            contactid = super(PaymentContactInfoForm, self).save(*args, **kwargs)
             contact = Contact.objects.get(pk=contactid)
             cart = kwargs.get('cart', None)
             if not cart:
