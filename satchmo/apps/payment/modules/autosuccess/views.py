@@ -32,7 +32,7 @@ def one_step(request):
     # Create a new order
     newOrder = Order(contact=contact)
     pay_ship_save(newOrder, tempCart, contact,
-        shipping="", discount="")
+        shipping="", discount="", notes="")
         
     request.session['orderID'] = newOrder.id
     
