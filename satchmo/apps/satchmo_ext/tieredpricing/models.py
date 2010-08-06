@@ -55,13 +55,20 @@ class PricingTier(models.Model):
 class TieredPriceManager(models.Manager):
 
     def by_product_qty(self, tier, product, qty=Decimal('1')):
-        """Get the tiered price for the specified product and quantity."""
+        """Get the tiered price for the specified product and quantity. If it's a product variation, we check the parent too"""
 
         qty_discounts = product.tieredprices.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty, pricingtier=tier)
 
         if qty_discounts.count() > 0:
             # Get the price with the quantity closest to the one specified without going over
             return qty_discounts.order_by('-quantity')[0]
+        # If we haven't found a price, see if the parent product has a price tier
+        if 'ProductVariation' in product.get_subtypes():
+            parent_product = product.productvariation.parent.product
+            qty_discounts = parent_product.tieredprices.exclude(expires__isnull=False, expires__lt=datetime.date.today()).filter(quantity__lte=qty, pricingtier=tier)
+            if qty_discounts.count() > 0:
+                # Get the price with the quantity closest to the one specified without going over
+                return qty_discounts.order_by('-quantity')[0]
         raise TieredPrice.DoesNotExist
 
 class TieredPrice(models.Model):
