@@ -134,6 +134,6 @@ def moneyfmt(val, currency_code=None, wrapcents=''):
         pos = formatted.rfind(sep)
         if pos>-1:
             pos +=1
-            formatted = u"%s<%s>%s</%s>" % formatted[:pos], wrapcents, formatted[pos:], wrapcents
+            formatted = u"%s<%s>%s</%s>" % (formatted[:pos], wrapcents, formatted[pos:], wrapcents)
 
     return formatted
