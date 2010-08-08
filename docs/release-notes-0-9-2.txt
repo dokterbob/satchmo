@@ -32,6 +32,7 @@ Bug Fixes
 - Bug in tax processor rendering fixed
 - Bug in autosuccess payment module fixed
 - Rebuild pricing was deleting prices if multiple sites were being used
+- Currency template tags handles decimal places parameter correctly
 
 
 Performance Improvements

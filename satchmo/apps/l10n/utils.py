@@ -7,6 +7,10 @@ from l10n.l10n_settings import get_l10n_setting
 import logging
 import re
 
+# Create a regex to strip out the decimal places with currency formatting
+# Example string = u"$%(val)0.2f" so this regex should let us get the .2 portion
+decimal_fmt = re.compile(r'(\.\df)')
+
 log = logging.getLogger('l10n.utils')
 
 # Defined outside the function, so won't be recompiled each time
@@ -90,7 +94,7 @@ def lookup_translation(obj, attr, language_code=None, version=-1):
 
 
 
-def moneyfmt(val, currency_code=None, wrapcents=''):
+def moneyfmt(val, currency_code=None, wrapcents='', places=None):
     """Formats val according to the currency settings for the desired currency, as set in L10N_SETTINGS"""
     if val is None or val == '':
        val = Decimal('0')
@@ -113,7 +117,7 @@ def moneyfmt(val, currency_code=None, wrapcents=''):
         if currency_code == default_currency_code:
             raise ImproperlyConfigured("Default currency code '%s' not found in currency_formats in L10N_SETTINGS", currency_code)
 
-        return moneyfmt(val, currency_code=default_currency_code, wrapcents=wrapcents)
+        return moneyfmt(val, currency_code=default_currency_code, wrapcents=wrapcents, places=places)
 
     # here we are assured we have a currency format
 
@@ -122,8 +126,17 @@ def moneyfmt(val, currency_code=None, wrapcents=''):
     else:
         val = abs(val)
         key = 'negative'
-
-    fmt = currency[key]
+    
+    # If we've been passed places, modify the format to use the new value
+    if places is None or places == '':
+        fmt = currency[key]
+    else:
+        start_fmt = currency[key]
+        fmt_parts = re.split(decimal_fmt, start_fmt)
+        new_decimal = u".%sf" % places
+        # We need to keep track of all 3 parts because we might want to use
+        # () to denote a negative value and don't want to lose the trailing )
+        fmt = u''.join([fmt_parts[0], new_decimal, fmt_parts[2]])
     formatted = fmt % { 'val' : val }
 
     sep = currency.get('decimal', '.')
