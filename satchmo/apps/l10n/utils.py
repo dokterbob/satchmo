@@ -8,8 +8,8 @@ import logging
 import re
 
 # Create a regex to strip out the decimal places with currency formatting
-# Example string = u"$%(val)0.2f" so this regex should let us get the .2 portion
-decimal_fmt = re.compile(r'(\.\df)')
+# Example string = u"$%(val)0.2f" so this regex should let us get the 0.2f portion
+decimal_fmt = re.compile(r'(\.\d+f)')
 
 log = logging.getLogger('l10n.utils')
 
