@@ -1,0 +1,1177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-28 22:22+0200\n"
+"PO-Revision-Date: 2010-08-06 04:17+0100\n"
+"Last-Translator: Wai Yi Leung <tweakboy@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:23
+msgid "Store Contact"
+msgstr "Winkel Contact"
+
+#: admin.py:27
+#: models.py:97
+msgid "Shipping Countries"
+msgstr "Verzend naar landen"
+
+#: admin.py:74
+#: models.py:645
+#: templates/shop/_order_details.html:37
+#: templates/shop/_order_tracking_details.html:22
+msgid "Shipping Method"
+msgstr "Verzendwijze"
+
+#: admin.py:75
+#: templates/shop/_order_details.html:30
+#: templates/shop/email/_order_detail_table.html:24
+msgid "Shipping Address"
+msgstr "Verzendadres"
+
+#: admin.py:76
+msgid "Billing Address"
+msgstr "Factuuradres"
+
+#: admin.py:77
+msgid "Totals"
+msgstr "Totalen"
+
+#: config.py:13
+msgid "Satchmo Shop Settings"
+msgstr "Satchmo winkel Instellingen"
+
+#: config.py:28
+msgid "URI to the logo for the store"
+msgstr "URI naar de logo van de winkel"
+
+#: config.py:36
+msgid "State required?"
+msgstr "Staat verplicht?"
+
+#: config.py:37
+msgid "Require a state during registration/checkout for countries that have states?"
+msgstr "Vereis een staat tijdens de registratie / checkout voor landen die staten hebben?"
+
+#: config.py:43
+msgid "Show Site Field?"
+msgstr "Toon Site Veld?"
+
+#: config.py:44
+msgid "Should the Site field be displayed in the admin lists? A server restart is required for this to take effect."
+msgstr "Site tonen in adminlijst? Een restart is nodig."
+
+#: config.py:50
+msgid "Cart Quantity Rounding Factor"
+msgstr "Winkelwagen item aantal afrondingsfactor"
+
+#: config.py:51
+msgid "What to round cart adds/deletes by, a '1' here means to round up to a whole number.  Must be -1 to 1."
+msgstr "Afrondingsfactor voor de winkelwagen, een '1' rondt af naar een geheel nummer. Geef een getal tussen -1 en 1."
+
+#: config.py:58
+msgid "Cart Quantity Decimal Places"
+msgstr "Decimale aantalen in winkelwagen"
+
+#: config.py:59
+msgid "How many places to assume for cart quantities, use 0 unless you are selling products in fractional quantities."
+msgstr "Aantal decimalen voor items in de winkelwagen, gebruik 0 indien u gehele producten wilt laten afrekenen."
+
+#: config.py:66
+msgid "Persistent Cart?"
+msgstr "Persistente winkelwagen?"
+
+#: config.py:67
+msgid "When a user logs in, attempt to retrieve previous carts and merge with existing?"
+msgstr "Wanneer een gebruiker inlogt, vorige winkelswagens ophalen en samenvoegen tot nieuwe?"
+
+#: config.py:74
+msgid "Send HTML Email?"
+msgstr "Stuur HTML e-mail?"
+
+#: config.py:75
+msgid "Should HTML emails be used when sending notifications?"
+msgstr "Moet HTML e-mails worden gebruikt bij het versturen van meldingen?"
+
+#: config.py:82
+msgid "Use Cart Price Breaks?"
+msgstr "Gebruik winkelmandje voor kortingsberekening?"
+
+#: config.py:83
+msgid "Use the total number or cart or order items to determine quantities for discount pricing."
+msgstr "Gebruik totaal van of winkelmandje of orderregels om korting te berekenen."
+
+#: config.py:90
+msgid "Google Settings"
+msgstr "Google-instellingen"
+
+#: config.py:95
+msgid "Enable Analytics"
+msgstr "Analytics inschakelen"
+
+#: config.py:102
+msgid "Use Urchin?"
+msgstr "Gebruik Urchin?"
+
+#: config.py:103
+msgid "Use the old-style, urchin javascript?.  This is not needed unless your analytics account hasn't been updated yet."
+msgstr "Gebruik oude urchin javascript?"
+
+#: config.py:111
+msgid "Analytics Code"
+msgstr "Analytics-code"
+
+#: config.py:119
+msgid "Enable Conversion Tracking"
+msgstr "Schakel het bijhouden van conversies"
+
+#: config.py:126
+msgid "Adwords ID (ex: UA-abcd-1)"
+msgstr "Adwords ID (vb: UA-ABCD-1)"
+
+#: exceptions.py:22
+#, python-format
+msgid "'%s' is out of stock."
+msgstr "'%s' is niet op voorraad."
+
+#: exceptions.py:24
+#, python-format
+msgid "Only %(amount)i of '%(product)s' in stock."
+msgstr "%(amount)i van ' %(product)s ' op voorraad."
+
+#: models.py:37
+msgid "Test Store"
+msgstr "Test-winkel"
+
+#: models.py:76
+#: models.py:277
+#: models.py:615
+msgid "Site"
+msgstr "Site"
+
+#: models.py:77
+msgid "Store Name"
+msgstr "Naam winkel"
+
+#: models.py:78
+#: models.py:278
+#: models.py:1362
+msgid "Description"
+msgstr "Beschrijving"
+
+#: models.py:79
+msgid "Email"
+msgstr "E-mail"
+
+#: models.py:80
+#: models.py:81
+#: models.py:618
+#: models.py:619
+#: models.py:625
+#: models.py:626
+msgid "Street"
+msgstr "Straat"
+
+#: models.py:82
+#: models.py:620
+#: models.py:627
+msgid "City"
+msgstr "Plaats"
+
+#: models.py:83
+#: models.py:621
+#: models.py:628
+msgid "State"
+msgstr "Staat"
+
+#: models.py:84
+#: models.py:622
+#: models.py:629
+msgid "Zip Code"
+msgstr "Postcode"
+
+#: models.py:85
+#: models.py:623
+#: models.py:630
+msgid "Country"
+msgstr "Land"
+
+#: models.py:86
+msgid "Phone Number"
+msgstr "Telefoonnummer"
+
+#: models.py:88
+msgid "Only sell to in-country customers?"
+msgstr "Alleen aan binnenlandse klanten verkopen?"
+
+#: models.py:93
+msgid "Default country for customers"
+msgstr "Standaard land voor klanten"
+
+#: models.py:159
+msgid "Store Configuration"
+msgstr "Winkel configuratie"
+
+#: models.py:160
+msgid "Store Configurations"
+msgstr "Winkel configuraties"
+
+#: models.py:279
+msgid "Creation Date"
+msgstr "Aanmaakdatum"
+
+#: models.py:280
+msgid "Customer"
+msgstr "Klant"
+
+#: models.py:433
+msgid "Shopping Cart"
+msgstr "Winkelwagen"
+
+#: models.py:434
+msgid "Shopping Carts"
+msgstr "Winkelwagens"
+
+#: models.py:446
+#: templates/base.html:84
+#: templates/shop/cart.html:12
+msgid "Cart"
+msgstr "Winkelwagen"
+
+#: models.py:447
+#: models.py:1092
+msgid "Product"
+msgstr "Product"
+
+#: models.py:448
+#: models.py:1093
+#: templates/shop/cart.html:25
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+#: models.py:535
+msgid "Cart Item"
+msgstr "Winkelwagen item"
+
+#: models.py:536
+msgid "Cart Items"
+msgstr "Winkelwagen Items"
+
+#: models.py:544
+msgid "detail"
+msgstr "detail"
+
+#: models.py:545
+msgid "name"
+msgstr "naam"
+
+#: models.py:546
+msgid "Item Detail Price Change"
+msgstr "Item Detail Prijswijziging"
+
+#: models.py:548
+#: models.py:1182
+msgid "Sort Order"
+msgstr "Sorteervolgorde"
+
+#: models.py:549
+#: models.py:1183
+msgid "The display order for this group."
+msgstr "Volgorde voor weergaven van deze groep."
+
+#: models.py:553
+msgid "Cart Item Detail"
+msgstr "Winkelwagen Item Detail"
+
+#: models.py:554
+msgid "Cart Item Details"
+msgstr "Winkelwagen Item Details"
+
+#: models.py:558
+msgid "Online"
+msgstr "Online"
+
+#: models.py:559
+msgid "In Person"
+msgstr "In Persoon"
+
+#: models.py:560
+msgid "Show"
+msgstr "Tonen"
+
+#: models.py:564
+msgid "Temp"
+msgstr "Tijdelijk"
+
+#: models.py:565
+msgid "New"
+msgstr "Nieuw"
+
+#: models.py:566
+msgid "Blocked"
+msgstr "Geblokkeerd"
+
+#: models.py:567
+msgid "In Process"
+msgstr "In Process"
+
+#: models.py:568
+msgid "Billed"
+msgstr "Gefactureerd"
+
+#: models.py:569
+msgid "Shipped"
+msgstr "Verzonden"
+
+#: models.py:570
+#: models.py:1253
+msgid "Complete"
+msgstr "Compleet"
+
+#: models.py:571
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#: models.py:616
+msgid "Contact"
+msgstr "Contact"
+
+#: models.py:617
+#: models.py:624
+msgid "Addressee"
+msgstr "Geadresseerde"
+
+#: models.py:631
+#: models.py:1200
+msgid "Notes"
+msgstr "Opmerkingen"
+
+#: models.py:632
+#: templates/shop/_order_details.html:48
+msgid "Subtotal"
+msgstr "Subtotaal"
+
+#: models.py:634
+#: templates/shop/_order_details.html:47
+#: templates/shop/_order_details.html:69
+#: templates/shop/_order_tracking_details.html:28
+#: templates/shop/_order_tracking_details.html:36
+#: templates/shop/cart.html:33
+#: templates/shop/order_history.html:23
+msgid "Total"
+msgstr "Totaal"
+
+#: models.py:637
+msgid "Discount Code"
+msgstr "Kortingscode"
+
+#: models.py:638
+msgid "Coupon Code"
+msgstr "Vouchercode"
+
+#: models.py:639
+msgid "Discount amount"
+msgstr "Korting bedrag"
+
+#: models.py:641
+msgid "Order method"
+msgstr "Bestelmethode"
+
+#: models.py:643
+msgid "Shipping Description"
+msgstr "Beschrijving van verzending"
+
+#: models.py:647
+msgid "Shipping Models"
+msgstr "Verzending modellen"
+
+#: models.py:649
+msgid "Shipping Cost"
+msgstr "Verzendkosten"
+
+#: models.py:651
+#: templates/shop/_order_details.html:58
+msgid "Shipping Discount"
+msgstr "Korting op de verzendkosten"
+
+#: models.py:653
+#: models.py:1363
+#: templates/shop/_order_details.html:67
+#: templates/shop/_order_tracking_details.html:34
+msgid "Tax"
+msgstr "Belasting"
+
+#: models.py:655
+#: models.py:1201
+#: templates/shop/admin/_orderpayment_list.html:11
+msgid "Timestamp"
+msgstr "Tijdstempel"
+
+#: models.py:656
+#: models.py:1198
+#: templates/shop/_order_tracking_details.html:9
+#: templates/shop/order_history.html:20
+msgid "Status"
+msgstr "Status"
+
+#: models.py:657
+msgid "This is set automatically."
+msgstr "Dit wordt automatisch ingesteld."
+
+#: models.py:850
+#: models.py:860
+#: models.py:978
+msgid "View"
+msgstr "Bekijk"
+
+#: models.py:930
+#: templates/shop/_order_details.html:54
+#: templates/shop/_order_tracking_details.html:30
+msgid "Discount"
+msgstr "Korting"
+
+#: models.py:1084
+msgid "Product Order"
+msgstr "Product bestelling"
+
+#: models.py:1085
+msgid "Product Orders"
+msgstr "Product bestellingen"
+
+#: models.py:1091
+#: models.py:1197
+msgid "Order"
+msgstr "Bestelling"
+
+#: models.py:1094
+msgid "Unit price"
+msgstr "Prijs per unit"
+
+#: models.py:1096
+msgid "Unit tax"
+msgstr "BTW per eenheid"
+
+#: models.py:1098
+msgid "Line item price"
+msgstr "Prijs orderregel"
+
+#: models.py:1100
+msgid "Line item tax"
+msgstr "Belasting orderregel"
+
+#: models.py:1102
+msgid "Subscription End"
+msgstr "Abonnement afloop"
+
+#: models.py:1102
+msgid "Subscription expiration date."
+msgstr "Einddatum abonnement."
+
+#: models.py:1103
+msgid "Completed"
+msgstr "Voltooid"
+
+#: models.py:1104
+msgid "Line item discount"
+msgstr "Korting orderregel"
+
+#: models.py:1170
+msgid "Order Line Item"
+msgstr "Orderregel item"
+
+#: models.py:1171
+msgid "Order Line Items"
+msgstr "Orderregel Items"
+
+#: models.py:1178
+msgid "Order Item"
+msgstr "Bestel item"
+
+#: models.py:1179
+#: views/contact.py:20
+msgid "Name"
+msgstr "Naam"
+
+#: models.py:1180
+msgid "Value"
+msgstr "Waarde"
+
+#: models.py:1181
+msgid "Price Change"
+msgstr "Prijswijziging"
+
+#: models.py:1189
+msgid "Order Item Detail"
+msgstr "Itemdetail"
+
+#: models.py:1190
+msgid "Order Item Details"
+msgstr "Itemdetails"
+
+#: models.py:1213
+msgid "Order Status"
+msgstr "Order Status"
+
+#: models.py:1214
+msgid "Order Statuses"
+msgstr "Order statussen"
+
+#: models.py:1219
+msgid "Payment Method"
+msgstr "Betaalwijze"
+
+#: models.py:1221
+msgid "amount"
+msgstr "bedrag"
+
+#: models.py:1223
+msgid "timestamp"
+msgstr "timestamp"
+
+#: models.py:1224
+#: templates/shop/admin/_orderpayment_list.html:12
+msgid "Transaction ID"
+msgstr "Transactie-id"
+
+#: models.py:1225
+msgid "Details"
+msgstr "Details"
+
+#: models.py:1226
+msgid "Reason Code"
+msgstr "Reden Code"
+
+#: models.py:1285
+msgid "Order Payment Authorization"
+msgstr "Betalingsautorisatie"
+
+#: models.py:1286
+msgid "Order Payment Authorizations"
+msgstr "Betalingsautorisaties"
+
+#: models.py:1312
+msgid "Order Payment"
+msgstr "Bestelling Betaling"
+
+#: models.py:1313
+#: templates/shop/admin/_orderpayment_list.html:3
+msgid "Order Payments"
+msgstr "Bestelling Betalingen"
+
+#: models.py:1335
+msgid "Order Pending Payment"
+msgstr "Betalingswachtrij"
+
+#: models.py:1336
+msgid "Order Pending Payments"
+msgstr "Wachtrij betalingen"
+
+#: models.py:1343
+msgid "key"
+msgstr "key"
+
+#: models.py:1344
+msgid "value"
+msgstr "waarde"
+
+#: models.py:1348
+msgid "Order variable"
+msgstr "Bestellingsvariabele"
+
+#: models.py:1349
+msgid "Order variables"
+msgstr "Bestellingsvariabelen"
+
+#: models.py:1361
+msgid "Model"
+msgstr "Model"
+
+#: models.py:1373
+msgid "Order tax detail"
+msgstr "Belastingdetail van bestelling"
+
+#: models.py:1374
+msgid "Order tax details"
+msgstr "Belastingdetails van bestelling"
+
+#: notification.py:34
+#, python-format
+msgid "Thank you for your order from %(shop_name)s"
+msgstr "Bedankt  voor uw bestelling bij %(shop_name)s "
+
+#: notification.py:52
+#, python-format
+msgid "New order on %(shop_name)s"
+msgstr "Nieuwe order op %(shop_name)s "
+
+#: notification.py:76
+#, python-format
+msgid "Your order from %(shop_name)s has shipped"
+msgstr "Uw bestelling van %(shop_name)s is verzonden"
+
+#: templates/404.html:5
+#: templates/500.html:5
+#: templates/shop/404.html:5
+#: templates/shop/cart.html:11
+#: templates/shop/contact_form.html:5
+#: templates/shop/contact_thanks.html:5
+#: templates/shop/download.html:5
+#: templates/shop/index.html:7
+#: templates/shop/multiple_product_form.html:10
+#: templates/shop/order_history.html:7
+#: templates/shop/order_tracking.html:6
+#: templates/shop/search.html:6
+msgid "Home"
+msgstr "Hoofdpagina"
+
+#: templates/404.html:10
+#: templates/500.html:10
+#: templates/shop/404.html:10
+#: views/cart.py:255
+#: views/cart.py:292
+msgid "Error"
+msgstr "Fout"
+
+#: templates/404.html:11
+msgid "Could not find the page you were looking for."
+msgstr "We konden de opgevraagde pagina niet vinden."
+
+#: templates/500.html:11
+msgid "There was an error with the store.  The admin has been notified."
+msgstr "Er was een fout met de winkel. De admin is ingelicht."
+
+#: templates/base.html:35
+msgid "Shop Categories"
+msgstr "Shop Categorieën"
+
+#: templates/base.html:60
+msgid "Quick Links"
+msgstr "Quick Links"
+
+#: templates/base.html:62
+msgid "Recently Added"
+msgstr "Recent toegevoegd"
+
+#: templates/base.html:64
+msgid "Best Sellers"
+msgstr "Best Sellers"
+
+#: templates/base.html:66
+msgid "Category Index"
+msgstr "Categorie Index"
+
+#: templates/base.html:68
+msgid "Quick Order"
+msgstr "Snel Bestellen"
+
+#: templates/base.html:71
+msgid "Account Information"
+msgstr "Account Informatie"
+
+#: templates/base.html:73
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/base.html:77
+msgid "Account Details"
+msgstr "Account Details"
+
+#: templates/base.html:78
+msgid "Log out"
+msgstr "Log uit"
+
+#: templates/base.html:80
+msgid "Log in"
+msgstr "Log in"
+
+#: templates/base.html:89
+#: templates/shop/cart.html:65
+msgid "Check out"
+msgstr "Uitchecken"
+
+#: templates/base.html:95
+#: templates/shop/contact_form.html:6
+#: templates/shop/contact_thanks.html:6
+msgid "Contact Us"
+msgstr "Neem contact met ons op"
+
+#: templates/base.html:111
+msgid "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+msgstr "Powered by <a href=\"http://www.satchmoproject.com\">Satchmo</a>."
+
+#: templates/admin/base_site.html:35
+#: templates/admin/base_site.html.py:38
+msgid "Site Administration"
+msgstr "Sitebeheer"
+
+#: templates/admin/index.html:20
+msgid "(show)"
+msgstr "(Toon)"
+
+#: templates/admin/index.html:21
+msgid "(hide)"
+msgstr "(Verberg)"
+
+#: templates/admin/index.html:66
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "Modellen beschikbaar in de %(name)s applicatie."
+
+#: templates/admin/index.html:67
+#, python-format
+msgid "%(name)s"
+msgstr " %(name)s "
+
+#: templates/admin/index.html:77
+msgid "Add"
+msgstr "Toevoegen"
+
+#: templates/admin/index.html:83
+msgid "Change"
+msgstr "Verander"
+
+#: templates/admin/index.html:93
+msgid "You don't have permission to edit anything."
+msgstr "Je hebt geen toestemming om iets te bewerken."
+
+#: templates/admin/index.html:101
+msgid "Recent Actions"
+msgstr "Recente acties"
+
+#: templates/admin/index.html:103
+msgid "My Actions"
+msgstr "Mijn Acties"
+
+#: templates/admin/index.html:107
+msgid "None available"
+msgstr "Geen beschikbaar"
+
+#: templates/admin/index.html:120
+msgid "Admin Tools"
+msgstr "Admin Tools"
+
+#: templates/admin/index.html:124
+msgid "Edit Site Settings"
+msgstr "Bewerk site instellingen"
+
+#: templates/admin/index.html:127
+msgid "Edit Inventory"
+msgstr "Bewerk voorraad"
+
+#: templates/admin/index.html:130
+msgid "Export Product Defs"
+msgstr "Exporteer product defenities"
+
+#: templates/admin/index.html:133
+msgid "Product Variation Manager"
+msgstr "Product variatie manager"
+
+#: templates/admin/index.html:136
+msgid "Cache Status"
+msgstr "Cache Status"
+
+#: templates/shop/_order_details.html:8
+#: templates/shop/_order_tracking_details.html:16
+msgid "Items Ordered"
+msgstr "Items besteld"
+
+#: templates/shop/_order_details.html:17
+#: templates/shop/contact_form.html:10
+#: templates/shop/contact_thanks.html:10
+#: templates/shop/email/_order_detail_table.html:8
+msgid "Contact Information"
+msgstr "Contact informatie"
+
+#: templates/shop/_order_details.html:22
+#: templates/shop/email/_order_detail_table.html:23
+msgid "Billing Information"
+msgstr "Facturatie informatie"
+
+#: templates/shop/_order_details.html:57
+msgid "Base Shipping"
+msgstr "Basis verzendkosten"
+
+#: templates/shop/_order_details.html:59
+msgid "Shipping (incl. Tax)"
+msgstr "Verzending (incl. btw)"
+
+#: templates/shop/_order_details.html:61
+#: templates/shop/_order_tracking_details.html:32
+msgid "Shipping"
+msgstr "Verzending"
+
+#: templates/shop/_order_details.html:65
+msgid "Tax included"
+msgstr "Inclusief BTW"
+
+#: templates/shop/_order_tracking_details.html:8
+#: templates/shop/order_history.html:19
+msgid "Order #"
+msgstr "Bestelling #"
+
+#: templates/shop/_order_tracking_details.html:41
+msgid "Shipping To"
+msgstr "Verzending naar"
+
+#: templates/shop/_search.html:2
+#: templates/shop/_search.html.py:13
+msgid "Search"
+msgstr "Zoek"
+
+#: templates/shop/_search.html:6
+msgid "All Products"
+msgstr "Alle producten"
+
+#: templates/shop/cart.html:21
+msgid "Your cart is empty."
+msgstr "Uw winkelwagen is nog leeg."
+
+#: templates/shop/cart.html:23
+msgid "Your Cart"
+msgstr "Uw winkelwagen"
+
+#: templates/shop/cart.html:26
+msgid "Item"
+msgstr "Item"
+
+#: templates/shop/cart.html:28
+msgid "Regular Price"
+msgstr "Normale prijs"
+
+#: templates/shop/cart.html:29
+msgid "Sale Price"
+msgstr "Verkoopprijs"
+
+#: templates/shop/cart.html:31
+msgid "Price"
+msgstr "Prijs"
+
+#: templates/shop/cart.html:33
+msgid "Total<br/>(incl.&nbsp;tax)"
+msgstr "Totaal <br/> (Incl. btw)"
+
+#: templates/shop/cart.html:40
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: templates/shop/cart.html:47
+msgid "update amount"
+msgstr "aantal bijwerken"
+
+#: templates/shop/cart.html:58
+msgid "Cart Total"
+msgstr "Totaal"
+
+#: templates/shop/contact_form.html:13
+msgid "Please correct the following error:"
+msgid_plural "Please correct the following errors:"
+msgstr[0] "Corrigeer a.u.b. de volgende fout:"
+msgstr[1] "Corrigeer a.u.b. de volgende fouten:"
+
+#: templates/shop/contact_form.html:19
+msgid "Send Email"
+msgstr "E-mail verzenden"
+
+#: templates/shop/contact_thanks.html:12
+msgid "Thank you for contacting us."
+msgstr "Bedankt voor het contact opnemen met ons."
+
+#: templates/shop/contact_thanks.html:14
+msgid "We will attempt to get back to you within 48 hours."
+msgstr "We zullen proberen om binnen 48 uur contact met u op te nemen."
+
+#: templates/shop/download.html:13
+msgid "Downloading of"
+msgstr "Downloaden van"
+
+#: templates/shop/download.html:13
+msgid "will commence after clicking the link below:"
+msgstr "zal starten na het klikken van de volgende link:"
+
+#: templates/shop/download.html:15
+msgid "Once you click the link, the download will be counted.  If you have trouble with the download, please refresh your browser and try the download again"
+msgstr "Wanneer u op de link klikt zal dit bijgehouden worden. Indien u problemen heeft met het downloaden, raden wij u aan om deze pagina te herladen en het opnieuw te proberen."
+
+#: templates/shop/index.html:11
+msgid "Welcome to the shop."
+msgstr "Welkom bij de winkel."
+
+#: templates/shop/index.html:14
+msgid "Featured Items"
+msgstr "Aanbevolen"
+
+#: templates/shop/index.html:32
+#: templates/shop/index.html.py:34
+msgid "Previous"
+msgstr "Vorig"
+
+#: templates/shop/index.html:44
+#: templates/shop/index.html.py:46
+msgid "Next"
+msgstr "Volgende"
+
+#: templates/shop/multiple_product_form.html:11
+msgid "Quick Order Form"
+msgstr "Snel bestellen"
+
+#: templates/shop/multiple_product_form.html:52
+msgid "Add to Cart"
+msgstr "Toevoegen aan winkelwagen"
+
+#: templates/shop/order_history.html:8
+#: templates/shop/order_tracking.html:7
+msgid "Account"
+msgstr "Account"
+
+#: templates/shop/order_history.html:9
+#: templates/shop/order_history.html:14
+msgid "Order History"
+msgstr "Bestelgeschiedenis"
+
+#: templates/shop/order_history.html:21
+msgid "Date"
+msgstr "Datum"
+
+#: templates/shop/order_history.html:22
+msgid "Items"
+msgstr "Items"
+
+#: templates/shop/order_history.html:52
+msgid "You haven't made any orders yet."
+msgstr "U heeft nog geen bestellingen gedaan."
+
+#: templates/shop/order_tracking.html:8
+#: templates/shop/order_tracking.html:13
+msgid "Order Tracking"
+msgstr "Bestelling volgen"
+
+#: templates/shop/search.html:12
+#: templates/shop/search.html.py:38
+msgid "Nothing found"
+msgstr "Niets gevonden"
+
+#: templates/shop/search.html:15
+#, python-format
+msgid "Search results for %(category_name)s products"
+msgstr "Zoekresultaten voor %(category_name)s producten"
+
+#: templates/shop/search.html:19
+msgid "Categories"
+msgstr "Categorieën"
+
+#: templates/shop/search.html:29
+msgid "Products"
+msgstr "Producten"
+
+#: templates/shop/search.html:33
+msgid "for"
+msgstr "voor"
+
+#: templates/shop/admin/_customorder_management.html:3
+msgid "Custom Order Management"
+msgstr "Custom Order Management"
+
+#: templates/shop/admin/_customorder_management.html:8
+msgid "Fully charged"
+msgstr "Volledig geincaseerd"
+
+#: templates/shop/admin/_customorder_management.html:10
+msgid "Charge remaining amount"
+msgstr "incasseer resterend bedrag"
+
+#: templates/shop/admin/_customorder_management.html:13
+msgid "Product Details"
+msgstr "Product Details"
+
+#: templates/shop/admin/_ordercount_list.html:7
+msgid "on"
+msgstr "op"
+
+#: templates/shop/admin/_orderpayment_list.html:8
+msgid "Payment"
+msgstr "Betaling"
+
+#: templates/shop/admin/_orderpayment_list.html:9
+msgid "Amount"
+msgstr "Bedrag"
+
+#: templates/shop/admin/_orderpayment_list.html:10
+msgid "Method"
+msgstr "Methode"
+
+#: templates/shop/admin/_orderpayment_list.html:35
+msgid "No payments."
+msgstr "Geen betalingen."
+
+#: templates/shop/admin/_orderpayment_list.html:40
+msgid "Paid in full"
+msgstr "Volledig betaald"
+
+#: templates/shop/admin/_orderpayment_list.html:42
+msgid "Balance on order:"
+msgstr "Saldo op bestelling:"
+
+#: templates/shop/admin/order_sidebar.html:4
+msgid "Satchmo Orders"
+msgstr "Satchmo Bestellingen"
+
+#: templates/shop/admin/order_sidebar.html:6
+msgid "New Orders"
+msgstr "Nieuwe bestellingen"
+
+#: templates/shop/admin/order_sidebar.html:8
+msgid "Orders in Process"
+msgstr "Bestellingen in uitvoering"
+
+#: templates/shop/admin/order_sidebar.html:10
+msgid "View all Orders"
+msgstr "Bekijk alle bestellingen"
+
+#: templates/shop/email/_order_detail_table.html:65
+msgid "Discount:"
+msgstr "Korting:"
+
+#: templates/shop/email/_order_detail_table.html:74
+msgid "Shipping:"
+msgstr "Verzending:"
+
+#: templates/shop/email/_order_detail_table.html:83
+msgid "Tax:"
+msgstr "Belasting:"
+
+#: templates/shop/email/_order_detail_table.html:91
+msgid "Total:"
+msgstr "Totaal:"
+
+#: templates/shop/email/_order_detail_table.html:104
+msgid "Payment: "
+msgstr "Betaling:"
+
+#: templates/shop/email/_order_detail_table.html:108
+#, python-format
+msgid "%(credit_card_type)s card ending in %(credit_card_number)s will be charged %(order_total)s."
+msgstr "Uw %(credit_card_type)s eindigent met  %(credit_card_number)s zal met %(order_total)s in rekening worden gebracht."
+
+#: templates/shop/email/_order_detail_table.html:120
+msgid "This is a downloadable product"
+msgstr "Dit is een downloadbaar product"
+
+#: templates/shop/email/order_complete.html:7
+#, python-format
+msgid "Thank you for ordering with %(shop_name)s."
+msgstr "Bedankt voor het bestellen bij %(shop_name)s ."
+
+#: templates/shop/email/order_complete.html:8
+msgid "Your order is summarized below:"
+msgstr "Samenvatting van uw bestelling:"
+
+#: templates/shop/email/order_complete.html:12
+msgid "Regards"
+msgstr "Groeten"
+
+#: templates/shop/email/order_complete.html:13
+msgid "Store Management"
+msgstr "Winkel management"
+
+#: views/cart.py:62
+msgid "No cart to update."
+msgstr "Geen winkelwagens om bij te werken"
+
+#: views/cart.py:67
+#: views/cart.py:76
+msgid "Bad quantity."
+msgstr "Ongeldige hoeveelheid."
+
+#: views/cart.py:84
+msgid "Bad item number."
+msgstr "Verkeerd itemnr."
+
+#: views/cart.py:89
+msgid "No such item in your cart."
+msgstr "Item niet gevonden in uw winkelwagen."
+
+#: views/cart.py:101
+#, python-format
+msgid "Not enough items of '%s' in stock."
+msgstr "Niet genoeg van '%s' in voorraad."
+
+#: views/cart.py:151
+msgid "That product is not available at the moment."
+msgstr "Dit product is niet beschikbaar op dit moment."
+
+#: views/cart.py:157
+msgid "The product you have requested does not exist."
+msgstr "Het product dat u heeft opgevraagd bestaat niet."
+
+#: views/cart.py:161
+msgid "Please enter a smaller number."
+msgstr "Vul een kleiner aantal in."
+
+#: views/cart.py:168
+msgid "Invalid quantity."
+msgstr "Ongeldig hoeveelheid."
+
+#: views/cart.py:172
+msgid "Please enter a positive number."
+msgstr "Voer een positief getal in."
+
+#: views/cart.py:201
+msgid "Success"
+msgstr "Succes"
+
+#: views/cart.py:243
+msgid "You must accept the terms and conditions."
+msgstr "U moet akkoord gaan met de algemene voorwaarden."
+
+#: views/comments.py:20
+#: views/comments.py:31
+msgid "One or more of the required fields wasn't submitted"
+msgstr "Een of meer van de vereiste velden is niet ingevuld"
+
+#: views/comments.py:38
+#, python-format
+msgid "Bad ContentType: %s"
+msgstr "Bad ContentType: %s"
+
+#: views/contact.py:15
+msgid "General question"
+msgstr "Algemene vraag"
+
+#: views/contact.py:16
+msgid "Order problem"
+msgstr "Probleem met bestelling"
+
+#: views/contact.py:21
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: views/contact.py:22
+msgid "Subject"
+msgstr "Onderwerp"
+
+#: views/contact.py:23
+msgid "Inquiry"
+msgstr "Offerte"
+
+#: views/contact.py:24
+msgid "Contents"
+msgstr "Inhoud"
+
+#: views/home.py:29
+msgid "Invalid page number"
+msgstr "Ongeldig paginanummer"
+
+#: views/orders.py:40
+msgid "The order you have requested doesn't exist, or you don't have access to it."
+msgstr "De bestelling bestaat niet, of u hebt geen toegang tot de bestelling."
+

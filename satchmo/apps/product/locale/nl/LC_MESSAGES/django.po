@@ -1,0 +1,1526 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-28 22:24+0200\n"
+"PO-Revision-Date: 2010-08-05 10:42\n"
+"Last-Translator: Wai Yi Leung <tweakboy@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:66
+msgid "Invalid validation function specifed!"
+msgstr "Ongeldige validatiefunctie de opgegeven!"
+
+#: admin.py:121 admin.py:125 models.py:232 models.py:236
+msgid "You must not save a category in itself!"
+msgstr "Je kan geen catagorie in eigen catagorie opslaan!"
+
+#: admin.py:179 admin.py:189 admin.py:199 admin.py:209
+msgid "1 product was"
+msgstr "Er is 1 product"
+
+#: admin.py:181 admin.py:191 admin.py:201 admin.py:211
+#, python-format
+msgid "%s products were"
+msgstr "%s producten zijn"
+
+#: admin.py:182
+#, python-format
+msgid "%s successfully marked as active"
+msgstr "%s succesvol gemarkeerd als actief"
+
+#: admin.py:184
+msgid "Mark selected products as active"
+msgstr "Markeer geselecteerde producten als actief"
+
+#: admin.py:192
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr "%s succesvol gemarkeerd als inactief"
+
+#: admin.py:194
+msgid "Mark selected products as inactive"
+msgstr "Markeer geselecteerde producten als inactief"
+
+#: admin.py:202
+#, python-format
+msgid "%s successfully marked as featured"
+msgstr "%s succesvol gemarkeerd als aanbevolen"
+
+#: admin.py:204
+msgid "Mark selected products as featured"
+msgstr "Markeer geselecteerde producten als aanbevolen"
+
+#: admin.py:212
+#, python-format
+msgid "%s successfully marked as not featured"
+msgstr "%s succesvol van 'Aanbevolen'-status ontdaan."
+
+#: admin.py:214
+msgid "Mark selected products as not featured"
+msgstr "Verwijder 'Aanbevolen'-status van gemarkeerde producten"
+
+#: admin.py:227
+msgid "Meta Data"
+msgstr "Meta Data"
+
+#: admin.py:228
+msgid "Item Dimensions"
+msgstr "Afmetingen Item"
+
+#: admin.py:229
+msgid "Tax"
+msgstr "Belasting"
+
+#: admin.py:230
+msgid "Related Products"
+msgstr "Gerelateerde Producten"
+
+#: config.py:6 modules/downloadable/config.py:6
+msgid "Product Settings"
+msgstr "Product Instellingen"
+
+#: config.py:11
+msgid "Upload Image Dir"
+msgstr "Upload Image Dir"
+
+#: config.py:12
+msgid ""
+"Directory name for storing uploaded images.\n"
+"    This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
+"    We can handle it any which way."
+msgstr ""
+"Directory voor het opslaan van geüploade foto's.\n"
+"Deze waarde wordt toegevoegd aan MEDIA_ROOT. Maak u geen zorgen over de slashes."
+
+#: config.py:21
+msgid "Total featured"
+msgstr "Totaal Aanbevolen"
+
+#: config.py:22
+msgid "Total number of featured items to display"
+msgstr "Totaal aantal aanbevolen items weer te geven"
+
+#: config.py:28
+msgid "Number featured"
+msgstr "Aantal aanbevolen"
+
+#: config.py:29
+msgid "Number of featured items to display on each page"
+msgstr "Aantal speciale items weer te geven op elke pagina"
+
+#: config.py:35
+msgid "Measurement System"
+msgstr "Meeteenheid"
+
+#: config.py:36
+msgid "Default measurement system to use for products."
+msgstr "Standaard meeteenheid te gebruiken voor producten."
+
+#: config.py:37
+msgid "Metric"
+msgstr "Metrisch"
+
+#: config.py:38
+msgid "Imperial"
+msgstr "Imperiaal"
+
+#: config.py:44
+msgid "Allow checkout with 0 inventory?"
+msgstr "Uitchecken mogelijk met 0 voorraad?"
+
+#: config.py:45
+msgid "If yes, then customers can buy even if your inventory is 0 for a product."
+msgstr "Zo ja, dan kunnen de klanten het product kopen ondanks een 0 voorraad."
+
+#: config.py:51
+msgid "Random Display"
+msgstr "Random weergave"
+
+#: config.py:52
+msgid "Enable random display of featured products on home page"
+msgstr "Activeer willekeurige weergave van aanbevolen producten op de home page"
+
+#: config.py:58
+msgid "Track inventory levels?"
+msgstr "Hou voorraadniveau bij?"
+
+#: config.py:59
+msgid "If no, then inventory will not be tracked for products sold."
+msgstr "Zo nee, zal dan er geen voorraadniveau bij gehouden."
+
+#: config.py:65
+msgid "Display Photo Not Available Image in the category page?"
+msgstr "\"Afbeelding niet beschikbaar\" weergeven in de categorie-pagina?"
+
+#: config.py:66
+msgid "If yes, then a Photo Not Available Image will be shown on the category page."
+msgstr "Indien ja, dan zal er een \"Afbeelding niet beschikbaar\" getoond worden op de categorie-pagina."
+
+#: forms.py:140
+msgid "export format"
+msgstr "exportformaat"
+
+#: forms.py:141
+msgid "Include Images"
+msgstr "Afbeelding opnemen"
+
+#: forms.py:142
+msgid "Include Categories"
+msgstr "Catagorien opnemen"
+
+#: forms.py:274
+msgid "File to import"
+msgstr "Bestand importeren"
+
+#: forms.py:292 forms.py:335
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "Kon niet omgaan met bestandsnaam: %s"
+
+#: forms.py:310
+msgid "Bad VARS file in import zipfile."
+msgstr "Foute variablen in te importeren in zipfile."
+
+#: forms.py:340
+msgid "Missing VARS in import zipfile."
+msgstr "Mist variablen in te importeren zipfile."
+
+#: forms.py:346
+#, python-format
+msgid "Unknown file format: %s"
+msgstr "Onbekend bestandsformaat: %s"
+
+#: forms.py:373
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr "Toegevoegd %(count)i objecten uit %(filename)s "
+
+#: forms.py:378
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr "Probleem met installeren van fixture ' %(filename)s ': %(error_msg)s \n"
+
+#: models.py:39
+msgid "None"
+msgstr "Geen"
+
+#: models.py:40
+msgid "Free Shipping"
+msgstr "Gratis geleverd"
+
+#: models.py:41
+msgid "Cheapest shipping option is free"
+msgstr "Goedkoopste optie is gratis verzending"
+
+#: models.py:42
+msgid "Apply the discount above to shipping"
+msgstr "Pas de korting toe op verzendkosten"
+
+#: models.py:46
+msgid "Default"
+msgstr "Standaard"
+
+#: models.py:47
+msgid "Shippable"
+msgstr "Verzendbaar"
+
+#: models.py:48
+msgid "Not Shippable"
+msgstr "Niet verzendbaar"
+
+#: models.py:120 models.py:675 models.py:825
+msgid "Site"
+msgstr "Site"
+
+#: models.py:121 templates/product/admin/inventory_form.html:83
+#: templates/product/admin/product_export_form.html:81
+#: templates/product/admin/variation_manager.html:317
+msgid "Name"
+msgstr "Naam"
+
+#: models.py:122 modules/custom/models.py:124
+#: templates/product/admin/inventory_form.html:82
+#: templates/product/admin/product_export_form.html:80
+#: templates/product/admin/variation_manager.html:319
+msgid "Slug"
+msgstr "Slug"
+
+#: models.py:122 models.py:829
+msgid "Used for URLs, auto-generated from name if blank"
+msgstr "Gebruikt voor URL's, auto-gegenereerd uit de naam indien leeggelaten"
+
+#: models.py:125 models.py:836
+msgid "Meta Description"
+msgstr "Metabeschrijving"
+
+#: models.py:126
+msgid "Meta description for this category"
+msgstr "Meta beschrijving voor deze categorie"
+
+#: models.py:127 models.py:436 models.py:1351 models.py:1539
+msgid "Description"
+msgstr "Beschrijving"
+
+#: models.py:129 models.py:840
+msgid "Ordering"
+msgstr "Positionering"
+
+#: models.py:129 models.py:840
+msgid "Override alphabetical order in category display"
+msgstr "Overschrijf de alfabetische sortering in categorie overzicht."
+
+#: models.py:130 models.py:439 models.py:838 modules/downloadable/models.py:45
+#: modules/downloadable/models.py:78
+#: templates/product/admin/inventory_form.html:86
+msgid "Active"
+msgstr "Actief"
+
+#: models.py:132
+msgid "Related Categories"
+msgstr "Gerelateerde categorieën"
+
+#: models.py:282 models.py:834
+msgid "Category"
+msgstr "Categorie"
+
+#: models.py:283 templates/product/category_index.html:12
+msgid "Categories"
+msgstr "Categorieën"
+
+#: models.py:291 models.py:350 models.py:708 models.py:768 models.py:1181
+#: models.py:1372 models.py:1396 models.py:1517 modules/custom/models.py:150
+msgid "language"
+msgstr "taal"
+
+#: models.py:292
+msgid "Translated Category Name"
+msgstr "Vertaalde Categorie Naam"
+
+#: models.py:293
+msgid "Description of category"
+msgstr "Beschrijving van de categorie"
+
+#: models.py:294 models.py:352 models.py:711 models.py:770 models.py:1185
+#: models.py:1519 modules/custom/models.py:152
+msgid "version"
+msgstr "versie"
+
+#: models.py:295 models.py:353 models.py:712 models.py:771 models.py:1186
+#: models.py:1520 modules/custom/models.py:153
+msgid "active"
+msgstr "actief"
+
+#: models.py:298
+msgid "Category Translation"
+msgstr "Categorie Vertaling"
+
+#: models.py:299
+msgid "Category Translations"
+msgstr "Categorie Vertalingen"
+
+#: models.py:313 models.py:1481
+msgid "Picture"
+msgstr "Afbeelding"
+
+#: models.py:317 models.py:1485
+msgid "Optional caption"
+msgstr "Optioneel bijschrift"
+
+#: models.py:319 models.py:681 models.py:742 models.py:1354 models.py:1487
+#: modules/custom/models.py:128
+msgid "Sort Order"
+msgstr "Sorteervolgorde"
+
+#: models.py:342
+msgid "Category Image"
+msgstr "Categorie Afbeelding"
+
+#: models.py:343
+msgid "Category Images"
+msgstr "Categorie Afbeeldingen"
+
+#: models.py:351 models.py:1518
+msgid "Translated Caption"
+msgstr "Vertaald Bijschrift"
+
+#: models.py:356
+msgid "Category Image Translation"
+msgstr "Categorie Afbeelding Vertaling"
+
+#: models.py:357
+msgid "Category Image Translations"
+msgstr "Categorie Afbeelding Vertalingen"
+
+#: models.py:377
+msgid "No Discount"
+msgstr "Geen korting"
+
+#: models.py:435
+msgid "site"
+msgstr "site"
+
+#: models.py:437
+msgid "Discount Code"
+msgstr "Korting Code"
+
+#: models.py:438
+msgid "Coupon Code"
+msgstr "Couponcode"
+
+#: models.py:440
+msgid "Discount Amount"
+msgstr "Kortingsbedrag"
+
+#: models.py:442
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Voer absolute kortingsbedrag of percentage."
+
+#: models.py:443
+msgid "Discount Percentage"
+msgstr "Kortingspercentage"
+
+#: models.py:445
+msgid "Enter absolute discount amount OR percentage.  Percents are given in whole numbers, and can be up to 100%."
+msgstr "Voer absolute kortingbedrag of percentage. Percentages worden gegeven in gehele getallen, en kan oplopen tot 100%."
+
+#: models.py:446
+msgid "Is this an automatic discount?"
+msgstr "Is dit een automatische korting?"
+
+#: models.py:447
+msgid "Use this field to advertise the discount on all products to which it applies.  Generally this is used for site-wide sales."
+msgstr "Gebruik dit veld om reclame te maken voor de korting op  producten van toepassing. Over het algemeen is dit gebruikt voor algehele acties."
+
+#: models.py:448
+msgid "Number of allowed uses"
+msgstr "Aantal toegestane gebruik"
+
+#: models.py:449
+msgid "Set this to a number greater than 0 to have the discount expire after that many uses."
+msgstr "Een getal hoger dan 0 om het aantal keer gebruik te limiteren."
+
+#: models.py:450
+msgid "Number of times already used"
+msgstr "Aantal keren dat reeds gebruikt"
+
+#: models.py:452
+msgid "Minimum order value"
+msgstr "Minimum orderwaarde"
+
+#: models.py:454
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: models.py:455
+msgid "End Date"
+msgstr "Einddatum"
+
+#: models.py:456 models.py:854
+msgid "Shipping"
+msgstr "Verzending"
+
+#: models.py:458
+msgid "All products?"
+msgstr "Alle producten?"
+
+#: models.py:459
+msgid "Apply this discount to all discountable products? If this is false you must select products below in the \"Valid Products\" section."
+msgstr "Pas deze korting toe op alle producten waarvoor deze korting geldt?"
+
+#: models.py:460
+msgid "Valid Products"
+msgstr "Geldig Producten"
+
+#: models.py:462
+msgid "Valid Categories"
+msgstr "Geldig Categorieën"
+
+#: models.py:481
+msgid "This coupon is disabled."
+msgstr "Deze coupon is uitgeschakeld."
+
+#: models.py:483
+msgid "This coupon is not active yet."
+msgstr "Deze coupon is nog niet actief."
+
+#: models.py:485
+msgid "This coupon has expired."
+msgstr "Deze coupon is verlopen."
+
+#: models.py:487
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Deze korting is meer gebruikt dan toegestaan."
+
+#: models.py:492
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Deze korting geldt alleen voor bestellingen van ten minste %s."
+
+#: models.py:495
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "De korting kan niet worden toegepast op de producten in uw winkelwagen."
+
+#: models.py:498
+msgid "Valid."
+msgstr "Geldig."
+
+#: models.py:607
+msgid "Discount"
+msgstr "Korting"
+
+#: models.py:608
+msgid "Discounts"
+msgstr "Korting"
+
+#: models.py:676
+msgid "Name of Option Group"
+msgstr "Naam van de Option Groep"
+
+#: models.py:677
+msgid "This will be the text displayed on the product page."
+msgstr "Dit is de tekst weergegeven op de product pagina."
+
+#: models.py:678
+msgid "Detailed Description"
+msgstr "Gedetailleerde beschrijving"
+
+#: models.py:680
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "Uitgebreide beschrijving van deze groep."
+
+#: models.py:682 modules/custom/models.py:129
+msgid "The display order for this group."
+msgstr "Volgorde voor weergave van deze groep."
+
+#: models.py:700 modules/configurable/models.py:57 modules/custom/models.py:27
+msgid "Option Group"
+msgstr "Optie Groep"
+
+#: models.py:701
+msgid "Option Groups"
+msgstr "Optie groepen"
+
+#: models.py:709
+msgid "Translated OptionGroup Name"
+msgstr "Vertaalde naam voor optiegroep"
+
+#: models.py:710
+msgid "Description of OptionGroup"
+msgstr "Beschrijving voor optiegroep"
+
+#: models.py:715
+msgid "Option Group Translation"
+msgstr "Vertaling voor optiegroep"
+
+#: models.py:716
+msgid "Option Groups Translations"
+msgstr "Vertaling voor optiegroepen"
+
+#: models.py:737
+msgid "Display value"
+msgstr "Display waarde"
+
+#: models.py:738
+msgid "Stored value"
+msgstr "Opgeslagen waarde"
+
+#: models.py:739 modules/custom/models.py:130
+msgid "Price Change"
+msgstr "Prijswijziging"
+
+#: models.py:741
+msgid "This is the price differential for this option."
+msgstr "Dit is het prijsverschil voor deze optie."
+
+#: models.py:750
+msgid "Option Item"
+msgstr "Optie Item"
+
+#: models.py:751
+msgid "Option Items"
+msgstr "Optie Items"
+
+#: models.py:769
+msgid "Translated Option Name"
+msgstr "Vertaalde Optie naam"
+
+#: models.py:774
+msgid "Option Translation"
+msgstr "Optie Vertaling"
+
+#: models.py:775
+msgid "Option Translations"
+msgstr "Optie Vertalinen"
+
+#: models.py:826 models.py:1182
+msgid "Full Name"
+msgstr "Volledige naam"
+
+#: models.py:827
+msgid "This is what the product will be called in the default site language.  To add non-default translations, use the Product Translation section below."
+msgstr "Dit is de productnaam dat getoond wordt met de standaard taal instellingen. Voeg vertalingen toe via de Productnaamvertalingen hieronder."
+
+#: models.py:828
+msgid "Slug Name"
+msgstr "Slug Naam"
+
+#: models.py:830 templates/product/admin/variation_manager.html:318
+msgid "SKU"
+msgstr "SKU"
+
+#: models.py:831
+msgid "Defaults to slug if left blank"
+msgstr "Indien leeggelaten zal Slug overgenomen worden"
+
+#: models.py:832 models.py:1184
+msgid "Short description of product"
+msgstr "Korte beschrijving van het product"
+
+#: models.py:832
+msgid "This should be a 1 or 2 line description in the default site language for use in product listing screens"
+msgstr "Een beschrijving voor de product overzicht pagina's in de standaard taal voor de shop."
+
+#: models.py:833 models.py:1183
+msgid "Description of product"
+msgstr "Beschrijving van het product"
+
+#: models.py:833
+msgid "This field can contain HTML and should be a few paragraphs in the default site language explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "Een beschrijving van het product in de standaard taal van de shop. Dit veld mag HTML bevatten."
+
+#: models.py:835
+msgid "Number in stock"
+msgstr "Aantal op voorraad"
+
+#: models.py:836
+msgid "Meta description for this product"
+msgstr "Meta beschrijving voor dit product"
+
+#: models.py:837
+msgid "Date added"
+msgstr "Datum toegevoegd"
+
+#: models.py:838
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Deze zal bepalen of dit product zal verschijnen op de site"
+
+#: models.py:839 templates/product/admin/inventory_form.html:87
+msgid "Featured"
+msgstr "Aanbevolen"
+
+#: models.py:839
+msgid "Featured items will show on the front page"
+msgstr "Aanbevolen items wordt weergegeven op de voorpagina"
+
+#: models.py:841
+msgid "Weight"
+msgstr "Gewicht"
+
+#: models.py:842
+msgid "Weight units"
+msgstr "Gewicht eenheden"
+
+#: models.py:843
+msgid "Length"
+msgstr "Lengte"
+
+#: models.py:844
+msgid "Length units"
+msgstr "Lengte-eenheden"
+
+#: models.py:845
+msgid "Width"
+msgstr "Breedte"
+
+#: models.py:846
+msgid "Width units"
+msgstr "Breedte eenheden"
+
+#: models.py:847
+msgid "Height"
+msgstr "Hoogte"
+
+#: models.py:848
+msgid "Height units"
+msgstr "Hoogte-eenheden"
+
+#: models.py:849
+msgid "Related Items"
+msgstr "Gerelateerde producten"
+
+#: models.py:850
+msgid "Previously Purchased"
+msgstr "Eerder aangekocht"
+
+#: models.py:851
+msgid "Total sold"
+msgstr "Totaal verkocht"
+
+#: models.py:852
+msgid "Taxable"
+msgstr "Belastbaar"
+
+#: models.py:853 models.py:1546
+msgid "Tax Class"
+msgstr "Fiscale klasse"
+
+#: models.py:853
+msgid "If it is taxable, what kind of tax?"
+msgstr "Als het belastbaar is, wat voor soort belasting?"
+
+#: models.py:855
+msgid "If this is 'Default', then we'll use the product type to determine if it is shippable."
+msgstr "Als dit 'Standaard', dan zullen wij gebruik van het producttype om te bepalen of het verzendbaar is."
+
+#: models.py:1002 modules/configurable/models.py:56
+#: modules/configurable/models.py:278 modules/custom/models.py:20
+#: modules/downloadable/models.py:35 modules/subscription/models.py:18
+msgid "Product"
+msgstr "Product"
+
+#: models.py:1003
+msgid "Products"
+msgstr "Producten"
+
+#: models.py:1040 templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Product Subtypes"
+
+#: models.py:1183
+msgid "This field can contain HTML and should be a few paragraphs explaining the background of the product, and anything that would help the potential customer make their purchase."
+msgstr "Een beschrijving van het product. Dit veld mag HTML bevatten."
+
+#: models.py:1184
+msgid "This should be a 1 or 2 line description for use in product listing screens"
+msgstr "Een beschrijving voor de product overzicht pagina's."
+
+#: models.py:1189
+msgid "Product Translation"
+msgstr "Product Vertaling"
+
+#: models.py:1190
+msgid "Product Translations"
+msgstr "Product Vertalingen"
+
+#: models.py:1333
+msgid "One or more characters"
+msgstr "Een of meer tekens"
+
+#: models.py:1334
+msgid "Integer number"
+msgstr "Geheel aantal"
+
+#: models.py:1335
+msgid "Yes or No"
+msgstr "Ja of Nee"
+
+#: models.py:1336
+msgid "Decimal number"
+msgstr "Decimaal getal"
+
+#: models.py:1352
+msgid "Attribute name"
+msgstr "Naam van het kenmerk"
+
+#: models.py:1353
+msgid "Field Validations"
+msgstr "Veld Validaties"
+
+#: models.py:1355
+msgid "Error Message"
+msgstr "Foutbericht"
+
+#: models.py:1355
+msgid "Invalid Entry"
+msgstr "Ongeldige invoer"
+
+#: models.py:1374 models.py:1398
+msgid "Value"
+msgstr "Waarde"
+
+#: models.py:1385
+msgid "Product Attribute"
+msgstr "Product Attribuut"
+
+#: models.py:1386
+msgid "Product Attributes"
+msgstr "Product attributen"
+
+#: models.py:1409
+msgid "Category Attribute"
+msgstr "Categorie Attribuut"
+
+#: models.py:1410
+msgid "Category Attributes"
+msgstr "Categorie attributen"
+
+#: models.py:1424 models.py:1471 modules/subscription/models.py:129
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/detail_customproduct.html:14
+#: templates/product/product.html:34
+msgid "Price"
+msgstr "Prijs"
+
+#: models.py:1425
+msgid "Discount Quantity"
+msgstr "Korting Hoeveelheid"
+
+#: models.py:1427
+msgid "Use this price only for this quantity or higher"
+msgstr "Gebruik deze prijs alleen voor deze hoeveelheid of hoger"
+
+#: models.py:1428
+msgid "Expires"
+msgstr "Verloopt"
+
+#: models.py:1472
+msgid "Prices"
+msgstr "Prijzen"
+
+#: models.py:1509
+msgid "Product Image"
+msgstr "Productafbeelding"
+
+#: models.py:1510
+msgid "Product Images"
+msgstr "Productafbeeldingen"
+
+#: models.py:1523
+msgid "Product Image Translation"
+msgstr "Productafbeelding vertaling"
+
+#: models.py:1524
+msgid "Product Image Translations"
+msgstr "Productafbeelding vertalingen"
+
+#: models.py:1537
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:1538
+msgid "Displayed title of this tax."
+msgstr "Weergegeven titel van deze belasting."
+
+#: models.py:1540
+msgid "Description of products that would be taxed."
+msgstr "Beschrijving van de producten die zouden worden belast."
+
+#: models.py:1547
+msgid "Tax Classes"
+msgstr "Fiscale klassen"
+
+#: prices.py:89
+msgid "Price Adjustment"
+msgstr "Prijsaanpassing"
+
+#: modules/configurable/models.py:58
+msgid "Create Variations"
+msgstr "Varianten aanmaken"
+
+#: modules/configurable/models.py:58
+msgid "Create ProductVariations for all this product's options.  To use this, you must first add an option, save, then return to this page and select this option."
+msgstr ""
+
+#: modules/configurable/models.py:259
+msgid "Configurable Product"
+msgstr "Configureerbaar product"
+
+#: modules/configurable/models.py:260
+msgid "Configurable Products"
+msgstr "Configureerbare producten"
+
+#: modules/configurable/models.py:279
+#: templates/product/admin/variation_manager.html:253
+msgid "Options"
+msgstr "Opties"
+
+#: modules/configurable/models.py:280
+msgid "Parent"
+msgstr "Hoofdtak"
+
+#: modules/configurable/models.py:403
+msgid "Two options from the same option group cannot be applied to an item."
+msgstr "2 opties uit dezelfde groep mag niet toegevoegd worden aan 1 item."
+
+#: modules/configurable/models.py:463
+msgid "Product variation"
+msgstr "Product variatie"
+
+#: modules/configurable/models.py:464
+msgid "Product variations"
+msgstr "Product varianten"
+
+#: modules/custom/models.py:21
+msgid "Percent Downpayment"
+msgstr "Procent voorschot"
+
+#: modules/custom/models.py:22
+msgid "Deferred Shipping"
+msgstr "Vertraagde verzending"
+
+#: modules/custom/models.py:23
+msgid "Do not charge shipping at checkout for this item."
+msgstr "Vrij van verzendkosten"
+
+#: modules/custom/models.py:114
+msgid "Custom Product"
+msgstr "Product op maat"
+
+#: modules/custom/models.py:115
+msgid "Custom Products"
+msgstr "Producten op maat"
+
+#: modules/custom/models.py:123
+msgid "Custom field name"
+msgstr "Attribuut veldnaam"
+
+#: modules/custom/models.py:124
+msgid "Auto-generated from name if blank"
+msgstr "Automatisch gegenereerd van de naam indien leeg"
+
+#: modules/custom/models.py:126
+msgid "Custom Fields"
+msgstr "Attribuut velden"
+
+#: modules/custom/models.py:151
+msgid "Translated Custom Text Field Name"
+msgstr "Vertaalde eigen attribuut veld"
+
+#: modules/custom/models.py:156
+msgid "CustomTextField Translation"
+msgstr "Attribuut tekstveld vertaling"
+
+#: modules/custom/models.py:157
+msgid "CustomTextField Translations"
+msgstr "Attribuut tekstveld vertalingen"
+
+#: modules/downloadable/config.py:11
+msgid "Protected dir"
+msgstr "Beschermde dir"
+
+#: modules/downloadable/config.py:12
+msgid ""
+"This is only used if you use Downloadable Products.\n"
+"This value will be appended to MEDIA_ROOT/MEDIA_URL.  Do not worry about slashes.\n"
+"We can handle it any which way."
+msgstr "Alleen gebruikt bij Downloadbare producten. Deze waarde wordt aan MEDIA_ROOT/MEDIA_URL gekoppeld. Slashes zijn toegestaan."
+
+#: modules/downloadable/listeners.py:43
+msgid "Order immediately available for download"
+msgstr "Download is per direct beschikbaar"
+
+#: modules/downloadable/models.py:36
+msgid "File"
+msgstr "Bestand"
+
+#: modules/downloadable/models.py:38
+msgid "Num allowed downloads"
+msgstr "Num toegestaan downloads"
+
+#: modules/downloadable/models.py:39
+msgid "Number of times link can be accessed. Enter 0 for unlimited."
+msgstr "Aantal keren dat de link opgevraagd kan worden. Vul 0 in voor onbeperkt."
+
+#: modules/downloadable/models.py:42
+msgid "Expire minutes"
+msgstr "Geldigheid in minuten"
+
+#: modules/downloadable/models.py:43
+msgid "Number of minutes the link should remain active. Enter 0 for unlimited."
+msgstr "Aantal minuten dat de link actief blijft. Vul 0 in voor onbeperkt."
+
+#: modules/downloadable/models.py:45
+msgid "Is this download currently active?"
+msgstr "Is deze download nu actief?"
+
+#: modules/downloadable/models.py:64
+msgid "Downloadable Product"
+msgstr "Downloadbare Product"
+
+#: modules/downloadable/models.py:65
+msgid "Downloadable Products"
+msgstr "Downloadbare Producten"
+
+#: modules/downloadable/models.py:73
+msgid "Downloadable product"
+msgstr "Downloadbare product"
+
+#: modules/downloadable/models.py:74
+msgid "Order"
+msgstr "Bestelling"
+
+#: modules/downloadable/models.py:75
+msgid "Key"
+msgstr "Sleutel"
+
+#: modules/downloadable/models.py:76
+msgid "Number of attempts"
+msgstr "Aantal pogingen"
+
+#: modules/downloadable/models.py:77
+msgid "Time stamp"
+msgstr "Tijd stempel"
+
+#: modules/downloadable/models.py:87
+msgid "This download is no longer active"
+msgstr "Deze download is niet meer actief"
+
+#: modules/downloadable/models.py:90
+msgid "You have exceeded the number of allowed downloads."
+msgstr "Je hebt het limiet dan het aantal toegestane downloads bereikt."
+
+#: modules/downloadable/models.py:94
+msgid "This download link has expired."
+msgstr "Deze download link is verlopen."
+
+#: modules/downloadable/models.py:121
+msgid "Download Link"
+msgstr "Download Link"
+
+#: modules/downloadable/models.py:122
+msgid "Download Links"
+msgstr "Download Links"
+
+#: modules/downloadable/views.py:26 modules/downloadable/views.py:31
+msgid "The download key is invalid."
+msgstr "De download is ongeldig."
+
+#: modules/subscription/models.py:19
+msgid "Recurring Billing"
+msgstr "Terugkerende facturering"
+
+#: modules/subscription/models.py:19
+msgid "Customer will be charged the regular product price on a periodic basis."
+msgstr "De klant zal periodiek een bedrag in rekening worden gebracht."
+
+#: modules/subscription/models.py:20
+msgid "Recurring Times"
+msgstr "Aantal herhalingen"
+
+#: modules/subscription/models.py:20
+msgid "Number of payments which will occur at the regular rate.  (optional)"
+msgstr ""
+
+#: modules/subscription/models.py:21
+msgid "Duration"
+msgstr "Duur"
+
+#: modules/subscription/models.py:21
+msgid "Length of each billing cycle"
+msgstr "Lengte van elke factureringscyclus"
+
+#: modules/subscription/models.py:23
+msgid "Days"
+msgstr "Dagen"
+
+#: modules/subscription/models.py:24
+msgid "Months"
+msgstr "Maanden"
+
+#: modules/subscription/models.py:26
+msgid "Expire Unit"
+msgstr "Geldigheid eenheid."
+
+#: modules/subscription/models.py:28
+msgid "No Shipping Charges"
+msgstr "Geen verzendkosten"
+
+#: modules/subscription/models.py:29
+msgid "Pay Shipping Once"
+msgstr "Betaal verzending eenmalig"
+
+#: modules/subscription/models.py:30
+msgid "Pay Shipping Each Billing Cycle"
+msgstr "Betaal verzendkosten bij elke run"
+
+#: modules/subscription/models.py:32
+msgid "Shippable?"
+msgstr "Verzendbaar?"
+
+#: modules/subscription/models.py:32
+msgid "Is this product shippable?"
+msgstr "Is dit product verzendbaar?"
+
+#: modules/subscription/models.py:115
+msgid "Subscription Product"
+msgstr "Product met abonnement"
+
+#: modules/subscription/models.py:116
+msgid "Subscription Products"
+msgstr "Producten met abonnement"
+
+#: modules/subscription/models.py:129
+msgid "Set to 0 for a free trial.  Leave empty if product does not have a trial."
+msgstr "Vul 0 in voor een probeerversie. Leeglaten indien dit product geen probeerversie heeft."
+
+#: modules/subscription/models.py:130
+msgid "Trial Duration"
+msgstr "Geldigheidsduur van probeerversie"
+
+#: modules/subscription/models.py:130
+msgid "Length of trial billing cycle.  Leave empty if product does not have a trial."
+msgstr ""
+
+#: modules/subscription/models.py:154 modules/subscription/models.py:155
+msgid "Trial Terms"
+msgstr "Voorwaarden voor probeerversies"
+
+#: templates/admin/configurable/configurableproduct/change_form.html:17
+#: templates/admin/configurable/productvariation/change_form.html:65
+#: templates/product/admin/inventory_form.html:113
+#: templates/product/admin/product_export_form.html:110
+msgid "Helpers"
+msgstr "Helpers"
+
+#: templates/admin/configurable/configurableproduct/change_form.html:18
+#: templates/admin/configurable/productvariation/change_form.html:66
+msgid "Variation Manager"
+msgstr "Variatie Manager"
+
+#: templates/admin/configurable/configurableproduct/change_form.html:21
+#: templates/product/admin/variation_manager.html:237
+msgid "Variations"
+msgstr "Variaties"
+
+#: templates/product/best_ratings.html:8 templates/product/best_sellers.html:7
+#: templates/product/category.html:13 templates/product/category_index.html:7
+#: templates/product/minimum_order.html:5 templates/product/product.html:23
+#: templates/product/recently_added.html:7
+#: templates/product/admin/inventory_form.html:67
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/admin/variation_manager.html:6
+#: templates/product/admin/variation_manager_list.html:6
+msgid "Home"
+msgstr "Voorpagina"
+
+#: templates/product/best_ratings.html:9
+msgid "Most Popular"
+msgstr "Meest populair"
+
+#: templates/product/best_ratings.html:13
+msgid "Best Rated Products"
+msgstr "Beest gewaardeerde producten"
+
+#: templates/product/best_ratings.html:25
+#, python-format
+msgid "Rating %(rating)s"
+msgstr "Beoordeling %(rating)s "
+
+#: templates/product/best_sellers.html:8
+msgid "Best Sellers"
+msgstr "Top producten"
+
+#: templates/product/best_sellers.html:13
+msgid "Best Selling Products"
+msgstr "Best verkopende producten"
+
+#: templates/product/cart_detail_customproduct.html:7
+msgid "Base Price: "
+msgstr "Basisprijs:"
+
+#: templates/product/cart_detail_customproduct.html:8
+msgid "price at right is your deposit, you will receive a bill for the remainder when your item is ready."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:8
+#, python-format
+msgid "This is the trial price to be charged today, see <a href=\"%(url)s\">the product description</a> for full pricing details."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:10
+#, python-format
+msgid "Free trial, see <a href=\"%(url)s\">the product description</a> for full pricing details."
+msgstr "Gratis uitproberen, lees <a href=\"%(url)s\">de productomschrijving</a> voor alle prijsopties."
+
+#: templates/product/cart_detail_subscriptionproduct.html:13
+#, python-format
+msgid "For full pricing details, see <a href=\"%(url)s\">the product description</a>."
+msgstr ""
+
+#: templates/product/category_index.html:8
+msgid "Category Index"
+msgstr "Categorie Index"
+
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/product.html:34
+msgid "(incl. tax)"
+msgstr "(Incl. btw)"
+
+#: templates/product/detail_configurableproduct.html:54
+msgid "Please choose your options"
+msgstr "Kies uw opties"
+
+#: templates/product/detail_configurableproduct.html:69
+#: templates/product/detail_customproduct.html:50
+#: templates/product/detail_subscriptionproduct.html:49
+#: templates/product/product.html:54
+msgid "Quantity"
+msgstr "Hoeveelheid"
+
+#: templates/product/detail_configurableproduct.html:71
+#: templates/product/detail_customproduct.html:52
+#: templates/product/detail_subscriptionproduct.html:51
+#: templates/product/product.html:56
+msgid "Add to cart"
+msgstr "Voeg toe aan winkelwagen"
+
+#: templates/product/detail_customproduct.html:12
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr "Aangepaste bestelling voor %(name)s "
+
+#: templates/product/detail_customproduct.html:46
+msgid "more"
+msgstr "meer"
+
+#: templates/product/detail_subscriptionproduct.html:10
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr "Abonnement product %(name)s "
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "Only "
+msgstr "Alleen"
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "easy payments of:"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "This product has trial subscription pricing "
+msgstr "Dit product heeft proefabonnement prijs"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "Free"
+msgstr "Gratis"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "for trial period of "
+msgstr "voor een periode van"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "days"
+msgstr "dagen"
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "months"
+msgstr "maanden"
+
+#: templates/product/minimum_order.html:6
+msgid "Cart"
+msgstr "Winkelwagen"
+
+#: templates/product/minimum_order.html:7
+msgid "Notice"
+msgstr "Opgelet"
+
+#: templates/product/minimum_order.html:14
+#, python-format
+msgid "This store requires a minimum order of %(value)s before you can check out."
+msgstr "Deze winkel vereist een bestelling van minimaal %(value)s."
+
+#: templates/product/product_discount_eligible.html:4
+#, python-format
+msgid "<p>This item is eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr "<p>Dit product komt in aanmerking voor een korting van %(pct)s  wanneer u de code \"%(code)s\" invoert tijdens onze %(desc)s die eindigt op %(enddate)s . </p>\n"
+
+#: templates/product/recently_added.html:8
+#: templates/product/recently_added.html:12
+msgid "Recently Added"
+msgstr "Recent toegevoegd"
+
+#: templates/product/recently_added.html:31
+#: templates/product/recently_added.html:33
+msgid "Previous"
+msgstr "Vorig"
+
+#: templates/product/recently_added.html:36
+#: templates/product/recently_added.html:38
+msgid "Next"
+msgstr "Volgende"
+
+#: templates/product/recently_added.html:45
+msgid "Bad Page"
+msgstr "Bad Page"
+
+#: templates/product/sale_details.html:5
+#, python-format
+msgid "<p>Products in your cart are eligible to receive a discount of %(pct)s when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr "<p>Producten in uw winkelwagen komen in aanmerking voor een korting van %(pct)s  wanneer u de code \"%(code)s\" invoert tijdens onze %(desc)s die eindigt op %(enddate)s . </p>\n"
+
+#: templates/product/some_discount_eligible.html:4
+#, python-format
+msgid "<p>Products on this page are eligible to receive a discount of %(pct)s during checkout when you enter the code \"%(code)s\" during our %(desc)s which ends on %(enddate)s.</p>\n"
+msgstr ""
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "Wijzigen wachtwoord"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "Log uit"
+
+#: templates/product/admin/inventory_form.html:68
+#: templates/product/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "Voorraadbeheer"
+
+#: templates/product/admin/inventory_form.html:75
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#: templates/product/admin/variation_manager.html:233
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Corrigeer de fout hieronder."
+msgstr[1] "Corrigeer de fouten hieronder."
+
+#: templates/product/admin/inventory_form.html:84
+msgid "Inventory"
+msgstr "Inventaris"
+
+#: templates/product/admin/inventory_form.html:85
+msgid "Unit Price"
+msgstr "Eenheidsprijs"
+
+#: templates/product/admin/inventory_form.html:114
+msgid "Mark all featured"
+msgstr "Markeer alles als aanbevolen"
+
+#: templates/product/admin/inventory_form.html:115
+msgid "Clear all featured"
+msgstr "Wis alle aanbevolen"
+
+#: templates/product/admin/inventory_form.html:116
+msgid "Disable all Products with 0 quantity."
+msgstr "Inactiveer alle producten zonder voorraad."
+
+#: templates/product/admin/inventory_form.html:117
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Inactiveer productvariaties zonder voorraad."
+
+#: templates/product/admin/inventory_form.html:121
+msgid "No inventory items."
+msgstr "Geen voorraadartikelen."
+
+#: templates/product/admin/product_export_form.html:57
+msgid "WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr "WAARSCHUWING: Deze functie is nog steeds experimenteel. NIET GEBRUIKEN IN PRODUCTIE."
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr "Importeer"
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr "Importeren vanuit fixture bestand:"
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:108
+msgid "Export"
+msgstr "Exporteer"
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr "Exporteer?"
+
+#: templates/product/admin/product_export_form.html:105
+msgid "Include images?"
+msgstr "Inclusief afbeeldingen?"
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include categories?"
+msgstr "Inclusief categorien?"
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Format?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:109
+msgid "Reset"
+msgstr "Reset"
+
+#: templates/product/admin/product_export_form.html:111
+msgid "Check all"
+msgstr "Alles aanvinken"
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Uncheck all"
+msgstr "Alles uitvinken"
+
+#: templates/product/admin/product_export_form.html:115
+msgid "No products."
+msgstr "Geen producten."
+
+#: templates/product/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr "Product import / export"
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr "Resultaten"
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr "Importeer Resultaten"
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr "Fouten"
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr "resultaten"
+
+#: templates/product/admin/variation_manager.html:7
+#: templates/product/admin/variation_manager_list.html:7
+msgid "Product Variation Manager"
+msgstr "Productvariatie Manager"
+
+#: templates/product/admin/variation_manager.html:230
+#, python-format
+msgid "Variation Manager for %(product_name)s"
+msgstr "Variatie Manager voor %(product_name)s "
+
+#: templates/product/admin/variation_manager.html:239
+msgid ""
+"\n"
+"    <p>The Variation Manager helps create the exact set of variations you need for your Configurable Product</p>\n"
+"    <p>Make choices from the Option Groups below, and then click one of the helper links \n"
+"    below them to select or deselect variations which have those options.</p>\n"
+"    <p>Fine tune the active variations by putting a checkmark next to those that you want to keep or \n"
+"    create, then then click <b>Update Variations</b>.\n"
+"    </p>\n"
+"    "
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:273
+msgid "Helper Links"
+msgstr "Helper Links"
+
+#: templates/product/admin/variation_manager.html:280
+msgid "Select These Options"
+msgstr "Selecteer deze opties"
+
+#: templates/product/admin/variation_manager.html:283
+msgid "Select Only These Options"
+msgstr "Selecteer de volgende opties"
+
+#: templates/product/admin/variation_manager.html:286
+msgid "Select All"
+msgstr "Alles selecteren"
+
+#: templates/product/admin/variation_manager.html:289
+msgid "Deselect These Options"
+msgstr "Deselecteer deze opties"
+
+#: templates/product/admin/variation_manager.html:292
+msgid "Deselect All"
+msgstr "Alles deselecteren"
+
+#: templates/product/admin/variation_manager.html:295
+msgid "Show All"
+msgstr "Alles tonen"
+
+#: templates/product/admin/variation_manager.html:298
+msgid "Hide Inactive Rows"
+msgstr "Inactieve rijen verbergen"
+
+#: templates/product/admin/variation_manager.html:305
+msgid "Update Variations"
+msgstr "Variaties bijwerken"
+
+#: templates/product/admin/variation_manager.html:306
+msgid "Reset Form"
+msgstr "Reset formulier"
+
+#: templates/product/admin/variation_manager.html:314
+msgid "Variation"
+msgstr "Variatie"
+
+#: templates/product/admin/variation_manager.html:315
+msgid "Exists"
+msgstr "Bestaat"
+
+#: templates/product/admin/variation_manager.html:316
+msgid "Create/Keep"
+msgstr "Aanmaken / houden"
+
+#: templates/product/admin/variation_manager.html:332
+msgid "yes"
+msgstr "ja"
+
+#: templates/product/admin/variation_manager.html:332
+msgid "no"
+msgstr "nee"
+
+#: templates/product/admin/variation_manager_list.html:12
+msgid "Select the Configurable Product to manage."
+msgstr "Selecteer het configureerbaar product om te beheren."
+
+#: templatetags/satchmo_product_admin.py:43
+#, python-format
+msgid "Edit %(subtype)s"
+msgstr "Bewerk %(subtype)s "
+
+#: templatetags/satchmo_product_admin.py:52
+#, python-format
+msgid "Add %(subtype)s"
+msgstr "Toevoegen %(subtype)s "
+
+#: templatetags/satchmo_product_admin.py:81
+msgid "Delete ProductVariation"
+msgstr "Verwijderen Productvariatie"
+
+#: views/__init__.py:69
+msgid "The category you have requested does not exist."
+msgstr "De categorie die u heeft opgevraagd bestaat niet."
+
+#: views/__init__.py:120 views/adminviews.py:124
+msgid "The product you have requested does not exist."
+msgstr "Het product dat u heeft opgevraagd bestaat niet."
+
+#: views/__init__.py:173 views/__init__.py:190 views/__init__.py:197
+#: views/__init__.py:206
+msgid "not available"
+msgstr "niet beschikbaar"
+
+#: views/adminviews.py:28
+msgid "Inventory Editor"
+msgstr "Inventaris Editor"
+
+#: views/adminviews.py:50
+msgid "Product Import/Export"
+msgstr "Product Import / Export"
+
+#: views/adminviews.py:74
+msgid "No upload file found"
+msgstr "Geen upload bestand gevonden"
+
+#: views/adminviews.py:121
+msgid "The product you have requested is not a Configurable Product."
+msgstr "Het product dat u hebt opgevraagd is niet een configureerbaar product."

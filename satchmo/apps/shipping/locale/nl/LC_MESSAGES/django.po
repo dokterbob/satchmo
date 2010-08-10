@@ -1,0 +1,593 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-28 22:24+0200\n"
+"PO-Revision-Date: 2010-08-05 12:12\n"
+"Last-Translator: Wai Yi Leung <tweakboy@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: config.py:7
+msgid "Shipping Settings"
+msgstr "Verzend Instellingen"
+
+#: config.py:11
+msgid "Active shipping modules"
+msgstr "Actieve verzendkosten modules"
+
+#: config.py:12
+msgid "Select the active shipping modules, save and reload to set any module-specific shipping settings."
+msgstr ""
+"Selecteer de actieve verzendkosten modules.\n"
+"Sla eerst op om daarna de specifieke instellingen te bewerken."
+
+#: config.py:14
+msgid "Per piece"
+msgstr "Per stuk"
+
+#: config.py:21
+msgid "Hide if one?"
+msgstr "Verberg bij 1 verzendoptie."
+
+#: config.py:22
+msgid "Hide shipping form fields if there is only one choice available?"
+msgstr "Verberg verzendkosten formuliervelden als er maar een verzendoptie beschikbaar is?"
+
+#: config.py:26
+msgid "No"
+msgstr "Nee"
+
+#: config.py:27
+msgid "Yes"
+msgstr "Ja"
+
+#: config.py:28
+msgid "Show description only"
+msgstr "Weergeef alleen beschrijving"
+
+#: config.py:34
+msgid "Select least expensive by default?"
+msgstr "Selecteer automatisch goedkoopste?"
+
+#: modules/canadapost/config.py:12
+msgid "Canada Post Shipping Settings"
+msgstr ""
+
+#: modules/canadapost/config.py:22
+msgid "Canada Post Merchant ID"
+msgstr ""
+
+#: modules/canadapost/config.py:23
+msgid "The merchant ID assigned by Canada Post"
+msgstr ""
+
+#: modules/canadapost/config.py:29
+msgid "Canada Post shipping choices available to customers."
+msgstr ""
+
+#: modules/canadapost/config.py:54 modules/ups/config.py:53
+#: modules/usps/config.py:68
+msgid "Type of container used to ship product."
+msgstr ""
+
+#: modules/canadapost/config.py:64
+msgid "Access production Canada Post server"
+msgstr ""
+
+#: modules/canadapost/config.py:65 modules/fedex/config.py:71
+#: modules/ups/config.py:75 modules/usps/config.py:82
+msgid "Use this when your store is in production."
+msgstr ""
+
+#: modules/canadapost/config.py:70 modules/fedex/config.py:76
+#: modules/ups/config.py:80 modules/usps/config.py:87
+msgid "Submit to URL"
+msgstr "Stuur naar URL"
+
+#: modules/canadapost/config.py:71
+msgid "Canada Post Sell Online server to submit live transactions."
+msgstr ""
+
+#: modules/canadapost/config.py:76 modules/fedex/config.py:82
+#: modules/ups/config.py:86
+msgid "Submit to TestURL"
+msgstr "Stuur naar TestURL"
+
+#: modules/canadapost/config.py:77
+msgid "Canada Post Sell Online server to submit test transactions."
+msgstr ""
+
+#: modules/canadapost/config.py:82
+msgid "Turn around time"
+msgstr ""
+
+#: modules/canadapost/config.py:83
+msgid "Turn around time in hours. If declared here, this parameter                     will overwrite the one defined in the merchant's profile"
+msgstr ""
+
+#: modules/canadapost/config.py:89 modules/fedex/config.py:94
+#: modules/ups/config.py:92 modules/usps/config.py:99
+msgid "Verbose logs"
+msgstr ""
+
+#: modules/canadapost/config.py:90
+msgid "Send the entire request and response to the log - for debugging help when setting up Canada Post."
+msgstr ""
+
+#: modules/canadapost/shipper.py:62
+#, python-format
+msgid "Canada Post - %s"
+msgstr ""
+
+#: modules/canadapost/shipper.py:78
+msgid "Canada Post"
+msgstr ""
+
+#: modules/canadapost/shipper.py:87 modules/fedex/shipper.py:95
+#: modules/ups/shipper.py:78
+#, python-format
+msgid "%s business days"
+msgstr ""
+
+#: modules/canadapost/shipper.py:89 modules/fedex/shipper.py:97
+#: modules/ups/shipper.py:80
+#, python-format
+msgid "%s business day"
+msgstr ""
+
+#: modules/canadapost/shipper.py:124 modules/fedex/shipper.py:151
+#: modules/ups/shipper.py:110
+msgid "3 - 4"
+msgstr ""
+
+#: modules/dummy/shipper.py:28
+msgid "Dummy Flat Rate Shipping"
+msgstr ""
+
+#: modules/dummy/shipper.py:41
+msgid "US Mail"
+msgstr ""
+
+#: modules/dummy/shipper.py:47
+msgid "3 - 4 business days"
+msgstr ""
+
+#: modules/fedex/config.py:10
+msgid "FedEx Shipping Settings"
+msgstr ""
+
+#: modules/fedex/config.py:20
+msgid "FedEx Meter Number"
+msgstr ""
+
+#: modules/fedex/config.py:21
+msgid "Meter Number provided by FedEx."
+msgstr ""
+
+#: modules/fedex/config.py:26
+msgid "FedEx Account Number"
+msgstr ""
+
+#: modules/fedex/config.py:27
+msgid "FedEx Account Number."
+msgstr ""
+
+#: modules/fedex/config.py:32
+msgid "FedEx Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/fedex/config.py:56
+msgid "Type of container/package used to ship product."
+msgstr ""
+
+#: modules/fedex/config.py:70
+msgid "Access production FedEx server"
+msgstr ""
+
+#: modules/fedex/config.py:77 modules/ups/config.py:81
+#: modules/usps/config.py:88
+msgid "Address to submit live transactions."
+msgstr ""
+
+#: modules/fedex/config.py:83 modules/ups/config.py:87
+#: modules/usps/config.py:94
+msgid "Address to submit test transactions."
+msgstr ""
+
+#: modules/fedex/config.py:88
+msgid "Single Box?"
+msgstr ""
+
+#: modules/fedex/config.py:89
+msgid "Use just one box and ship by weight?  If no then every item will be sent in its own box."
+msgstr ""
+
+#: modules/fedex/config.py:95
+msgid "Send the entire request and response to the log - for debugging help when setting up FedEx."
+msgstr ""
+
+#: modules/fedex/shipper.py:70
+#, python-format
+msgid "FedEx - %s"
+msgstr ""
+
+#: modules/fedex/shipper.py:86
+msgid "FedEx"
+msgstr ""
+
+#: modules/flat/config.py:5
+msgid "Flat rate"
+msgstr "Vast tarief"
+
+#: modules/flat/config.py:12
+msgid "Flat shipping"
+msgstr "Vast verzending"
+
+#: modules/flat/config.py:19
+msgid "Flat Shipping Service"
+msgstr "Vast tarief bezorging"
+
+#: modules/flat/config.py:20
+msgid "Shipping service used with Flat rate shipping"
+msgstr ""
+
+#: modules/flat/config.py:27
+msgid "Flat Delivery Days"
+msgstr ""
+
+#: modules/flat/shipper.py:23
+msgid "Flat Rate Shipping"
+msgstr ""
+
+#: modules/no/shipper.py:22 modules/no/shipper.py:34
+msgid "No Shipping"
+msgstr "Geen verzending"
+
+#: modules/no/shipper.py:40
+msgid "immediately"
+msgstr "direct"
+
+#: modules/per/config.py:15
+msgid "Per item price"
+msgstr "Per item prijs"
+
+#: modules/per/config.py:22
+msgid "Per Item Shipping Service"
+msgstr "Per item verzendservice"
+
+#: modules/per/config.py:23
+msgid "Shipping service used with per item shipping"
+msgstr ""
+
+#: modules/per/config.py:30
+msgid "Per Item Delivery Days"
+msgstr ""
+
+#: modules/per/shipper.py:23
+msgid "Per Item shipping"
+msgstr "Per item verzending"
+
+#: modules/productshipping/config.py:7
+msgid "Shipping By Product"
+msgstr "Verzending per product"
+
+#: modules/productshipping/models.py:89 modules/tiered/models.py:91
+#: modules/tieredquantity/models.py:85
+msgid "Key"
+msgstr ""
+
+#: modules/productshipping/models.py:90 modules/tiered/models.py:92
+#: modules/tieredquantity/models.py:86 modules/tieredweight/models.py:114
+msgid "Ordering"
+msgstr "Sortering"
+
+#: modules/productshipping/models.py:91 modules/tiered/models.py:93
+#: modules/tieredquantity/models.py:87 modules/tieredweight/models.py:115
+msgid "Active"
+msgstr "Actief"
+
+#: modules/productshipping/models.py:194 modules/tiered/models.py:202
+#: modules/tieredquantity/models.py:199 modules/tieredweight/models.py:245
+msgid "language"
+msgstr "taal"
+
+#: modules/productshipping/models.py:195 modules/tiered/models.py:203
+#: modules/tieredquantity/models.py:200
+msgid "Carrier"
+msgstr "Vervoerder"
+
+#: modules/productshipping/models.py:196 modules/tiered/models.py:204
+#: modules/tieredquantity/models.py:201
+msgid "Description"
+msgstr "Beschrijving"
+
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
+msgid "Method"
+msgstr ""
+
+#: modules/productshipping/models.py:197 modules/tiered/models.py:205
+#: modules/tieredquantity/models.py:202
+msgid "i.e. US Mail"
+msgstr ""
+
+#: modules/productshipping/models.py:198 modules/tiered/models.py:206
+#: modules/tieredquantity/models.py:203
+msgid "Delivery Days"
+msgstr ""
+
+#: modules/productshipping/models.py:206 modules/tiered/models.py:216
+msgid "Shipping Price"
+msgstr ""
+
+#: modules/tiered/config.py:7
+msgid "Tiered Shipping"
+msgstr ""
+
+#: modules/tiered/models.py:213
+msgid "Min Price"
+msgstr ""
+
+#: modules/tiered/models.py:214
+msgid "The minumum price for this tier to apply"
+msgstr ""
+
+#: modules/tiered/models.py:217 modules/tieredquantity/models.py:213
+msgid "Expires"
+msgstr ""
+
+#: modules/tieredquantity/config.py:4
+msgid "Tiered Quantity"
+msgstr ""
+
+#: modules/tieredquantity/models.py:207
+msgid "Min Quantity"
+msgstr ""
+
+#: modules/tieredquantity/models.py:208
+msgid "Minimum qty in order for this to apply?"
+msgstr ""
+
+#: modules/tieredquantity/models.py:209
+msgid "Handling Price"
+msgstr ""
+
+#: modules/tieredquantity/models.py:211
+msgid "Shipping Per Item"
+msgstr ""
+
+#: modules/tieredweight/config.py:10
+msgid "Tiered Weight Shipping"
+msgstr ""
+
+#: modules/tieredweight/models.py:113 modules/tieredweight/models.py:126
+#: modules/tieredweight/models.py:139
+msgid "carrier"
+msgstr ""
+
+#: modules/tieredweight/models.py:116
+msgid "default_zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:127
+msgid "carriers"
+msgstr ""
+
+#: modules/tieredweight/models.py:140
+msgid "name"
+msgstr ""
+
+#: modules/tieredweight/models.py:141
+msgid "countries"
+msgstr ""
+
+#: modules/tieredweight/models.py:142
+msgid "handling"
+msgstr ""
+
+#: modules/tieredweight/models.py:153 modules/tieredweight/models.py:244
+#: modules/tieredweight/models.py:262
+msgid "zone"
+msgstr ""
+
+#: modules/tieredweight/models.py:154
+msgid "zones"
+msgstr ""
+
+#: modules/tieredweight/models.py:246
+msgid "description"
+msgstr ""
+
+#: modules/tieredweight/models.py:247
+msgid "method"
+msgstr ""
+
+#: modules/tieredweight/models.py:247
+msgid "i.e. Air, Land, Sea"
+msgstr ""
+
+#: modules/tieredweight/models.py:248
+msgid "delivery"
+msgstr ""
+
+#: modules/tieredweight/models.py:257
+msgid "zone translation"
+msgstr ""
+
+#: modules/tieredweight/models.py:258
+msgid "zone translations"
+msgstr ""
+
+#: modules/tieredweight/models.py:263
+msgid "min weight"
+msgstr ""
+
+#: modules/tieredweight/models.py:264
+msgid "handling ajustment"
+msgstr ""
+
+#: modules/tieredweight/models.py:266
+msgid "shipping price"
+msgstr ""
+
+#: modules/tieredweight/models.py:267
+msgid "expires"
+msgstr ""
+
+#: modules/tieredweight/models.py:277
+msgid "weight tier"
+msgstr ""
+
+#: modules/tieredweight/models.py:278
+msgid "weight tiers"
+msgstr ""
+
+#: modules/ups/config.py:8
+msgid "UPS Shipping Settings"
+msgstr ""
+
+#: modules/ups/config.py:16
+msgid "UPS XML Access Key"
+msgstr ""
+
+#: modules/ups/config.py:17
+msgid "XML Access Key Provided by UPS"
+msgstr ""
+
+#: modules/ups/config.py:22
+msgid "UPS User ID"
+msgstr ""
+
+#: modules/ups/config.py:23
+msgid "User ID provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:28
+msgid "UPS Account Number"
+msgstr ""
+
+#: modules/ups/config.py:29
+msgid "UPS Account Number."
+msgstr ""
+
+#: modules/ups/config.py:34
+msgid "UPS User Password"
+msgstr ""
+
+#: modules/ups/config.py:35
+msgid "User password provided by UPS site."
+msgstr ""
+
+#: modules/ups/config.py:40
+msgid "UPS Shipping Choices Available to customers."
+msgstr ""
+
+#: modules/ups/config.py:63
+msgid "UPS Pickup option."
+msgstr ""
+
+#: modules/ups/config.py:74
+msgid "Access production UPS server"
+msgstr ""
+
+#: modules/ups/config.py:93
+msgid "Send the entire request and response to the log - for debugging help when setting up UPS."
+msgstr ""
+
+#: modules/ups/shipper.py:58
+#, python-format
+msgid "UPS - %s"
+msgstr "UPS - %s"
+
+#: modules/ups/shipper.py:71
+msgid "UPS"
+msgstr "UPS"
+
+#: modules/usps/config.py:9
+msgid "U.S.P.S. Shipping Settings"
+msgstr "USPS Shipping Instellingen"
+
+#: modules/usps/config.py:17
+msgid "USPS  Username"
+msgstr "USPS Gebruikersnaam"
+
+#: modules/usps/config.py:18
+msgid "User ID provided by USPS site."
+msgstr "Gebruikers-ID voor USPS site."
+
+#: modules/usps/config.py:23
+msgid "USPS Password"
+msgstr "USPS Wachtwoord"
+
+#: modules/usps/config.py:24
+msgid "User password provided by USPS site."
+msgstr "Gebruiker wachtwoord verstrekt door USPS website."
+
+#: modules/usps/config.py:29
+msgid "Handling Fee"
+msgstr "Leges"
+
+#: modules/usps/config.py:30
+msgid "The cost of packaging and taking order to post office"
+msgstr "Kosten voor verpakking en afhandeling"
+
+#: modules/usps/config.py:35
+msgid "USPS Shipping Choices Available to customers."
+msgstr "USPS Shipping keuze mogelijkheid beschikbaar voor klanten."
+
+#: modules/usps/config.py:81
+msgid "Access production USPS server"
+msgstr "Toegang tot de productie USPS server"
+
+#: modules/usps/config.py:93
+msgid "Submit to Test URL"
+msgstr "Stuur naar Test-URL"
+
+#: modules/usps/config.py:100
+msgid "Send the entire request and response to the log - for debugging help when setting up USPS."
+msgstr "Stuur het gehele verzoek en de reactie op de log - voor het debuggen van hulp bij het opzetten van USPS."
+
+#: modules/usps/shipper.py:129
+#, python-format
+msgid "USPS - %s"
+msgstr "USPS - %s"
+
+#: modules/usps/shipper.py:145
+msgid "USPS"
+msgstr "USPS"
+
+#: modules/usps/shipper.py:153
+#, python-format
+msgid "in %s"
+msgstr "in %s"
+
+#: modules/usps/shipper.py:154
+#, python-format
+msgid "by %s"
+msgstr "door %s"
+
+#: modules/usps/shipper.py:156
+#, python-format
+msgid "in %s business days"
+msgstr "in %s werkdagen"
+
+#: modules/usps/shipper.py:158
+#, python-format
+msgid "in %s business day"
+msgstr "in %s werkdag"
+
+#: templates/shipping/options.html:6
+#, python-format
+msgid "Sent via %(method)s arrives approximately %(expected_delivery)s."
+msgstr "Verzonden via %(method)s. Verwachte bezorging op  %(expected_delivery)s."

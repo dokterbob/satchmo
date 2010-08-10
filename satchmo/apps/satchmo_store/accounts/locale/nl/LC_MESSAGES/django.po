@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-28 22:23+0200\n"
+"PO-Revision-Date: 2010-08-06 04:20+0100\n"
+"Last-Translator: Wai Yi Leung <tweakboy@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: forms.py:31
+msgid "Title"
+msgstr "Titel"
+
+#: forms.py:32
+msgid "Email address"
+msgstr "Emailadres"
+
+#: forms.py:34
+msgid "Password (again)"
+msgstr "Wachtwoord (opnieuw)"
+
+#: forms.py:36
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: forms.py:38
+msgid "First name"
+msgstr "Voornaam"
+
+#: forms.py:40
+msgid "Last name"
+msgstr "Achternaam"
+
+#: forms.py:59
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+#: forms.py:68
+msgid "The two passwords do not match."
+msgstr "Wachtwoorden komen niet overeen"
+
+#: forms.py:79
+msgid "That email address is already in use."
+msgstr "Dit emailadres is al in gebruik"
+
+#: mail.py:17
+#, python-format
+msgid "Welcome to %(shop_name)s"
+msgstr "Welkom op %(shop_name)s"
+
+#: views.py:24
+msgid "Yes"
+msgstr "Ja"
+
+#: views.py:25
+msgid "No"
+msgstr "Nee"
+
+#: views.py:341
+msgid "Registration Form"
+msgstr "Registratie formulier"
+
