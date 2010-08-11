@@ -17,7 +17,7 @@ New Features
 
 Translations
 ------------
-
+- Added Dutch translation
 
 Bug Fixes
 ---------
