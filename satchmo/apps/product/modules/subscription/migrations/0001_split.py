@@ -4,6 +4,10 @@ from south.v2 import SchemaMigration
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ('product', '0010_add_discountable_categories'),
+    )
+
     def forwards(self, orm):
         db.rename_table('product_subscriptionproduct', 'subscription_subscriptionproduct')
         db.rename_table('product_trial', 'subscription_trial')
