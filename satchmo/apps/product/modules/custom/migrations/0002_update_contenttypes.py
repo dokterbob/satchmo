@@ -10,6 +10,10 @@ class Migration(UpdateContentTypeMigration):
 
     _app_label = 'custom'
 
+    depends_on = (
+        ('product', '0011_split_products'),
+    )
+
     models = {
         'custom.customproduct': {
             'Meta': {'object_name': 'CustomProduct'},

@@ -8,6 +8,10 @@ from product.migrations import UpdateContentTypeMigration
 
 class Migration(UpdateContentTypeMigration):
 
+    depends_on = (
+        ('product', '0011_split_products'),
+    )
+
     def forwards(self, orm):
         self.migrate_contenttype('product', 'downloadable', ('downloadableproduct', ))
         self.migrate_contenttype('shop', 'downloadable', ('downloadlink', ))
