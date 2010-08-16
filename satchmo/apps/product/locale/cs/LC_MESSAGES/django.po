@@ -1,0 +1,1615 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# , 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-09 19:07+0200\n"
+"PO-Revision-Date: 2010-08-10 21:31+0200\n"
+"Last-Translator: \n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Language: cs_CZ\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:66
+msgid "Invalid validation function specifed!"
+msgstr "Zadána nesprávná validační funkce!"
+
+#: admin.py:121 admin.py:125 models.py:232 models.py:236
+msgid "You must not save a category in itself!"
+msgstr "Nesmíte uložit kategorii v sobě samé!"
+
+#: admin.py:179 admin.py:189 admin.py:199 admin.py:209
+msgid "1 product was"
+msgstr "jeden produkt byl"
+
+#: admin.py:181 admin.py:191 admin.py:201 admin.py:211
+#, python-format
+msgid "%s products were"
+msgstr "%s produkty byly"
+
+#: admin.py:182
+#, python-format
+msgid "%s successfully marked as active"
+msgstr "%s úspěšně označeny jako aktivní"
+
+#: admin.py:184
+msgid "Mark selected products as active"
+msgstr "Označ vybrané produkty jako aktivní"
+
+#: admin.py:192
+#, python-format
+msgid "%s successfully marked as inactive"
+msgstr "%s úspěšně označeny jako neaktivní"
+
+#: admin.py:194
+msgid "Mark selected products as inactive"
+msgstr "Označ vybrané produkty jako neaktivní"
+
+#: admin.py:202
+#, python-format
+msgid "%s successfully marked as featured"
+msgstr "%s úspěšně označeny jako akční"
+
+#: admin.py:204
+msgid "Mark selected products as featured"
+msgstr "Označ vybrané produkty jako akční"
+
+#: admin.py:212
+#, python-format
+msgid "%s successfully marked as not featured"
+msgstr "%s úspěšně označeny jako neakční"
+
+#: admin.py:214
+msgid "Mark selected products as not featured"
+msgstr "Označ vybrané produkty jako neakční"
+
+#: admin.py:227
+msgid "Meta Data"
+msgstr "Meta Data"
+
+#: admin.py:228
+msgid "Item Dimensions"
+msgstr "Rozměry produktu"
+
+#: admin.py:229
+msgid "Tax"
+msgstr "Daň"
+
+#: admin.py:230
+msgid "Related Products"
+msgstr "Podobné produkty"
+
+#: config.py:6 modules/downloadable/config.py:6
+msgid "Product Settings"
+msgstr "Nastavení produktů"
+
+#: config.py:11
+msgid "Upload Image Dir"
+msgstr "Adresář pro nahrání obrázků"
+
+#: config.py:12
+msgid ""
+"Directory name for storing uploaded images.\n"
+"    This value will be appended to MEDIA_ROOT.  Do not worry about slashes.\n"
+"    We can handle it any which way."
+msgstr ""
+"Adresář pro ukládání nahraných obrázků.\n"
+"    Tato hodnota bude připojena za MEDIA_ROOT.  Nelamte si hlavu s lomítky.\n"
+"    Je jedno jak je zadáte."
+
+#: config.py:21
+msgid "Total featured"
+msgstr "Celkem akčních"
+
+#: config.py:22
+msgid "Total number of featured items to display"
+msgstr "Počet akčních produktů k zobrazení"
+
+#: config.py:28
+msgid "Number featured"
+msgstr "Celkem akčních"
+
+#: config.py:29
+msgid "Number of featured items to display on each page"
+msgstr "Počet akčních produktů k zobrazení na každé straně"
+
+#: config.py:35
+msgid "Measurement System"
+msgstr "Systém měr"
+
+#: config.py:36
+msgid "Default measurement system to use for products."
+msgstr "Základní systém měr pro použití s produkty."
+
+#: config.py:37
+msgid "Metric"
+msgstr "Metrický"
+
+#: config.py:38
+msgid "Imperial"
+msgstr "Imperiální"
+
+#: config.py:44
+msgid "Allow checkout with 0 inventory?"
+msgstr "Povolit objednávky když na skladě není produkt?"
+
+#: config.py:45
+msgid ""
+"If yes, then customers can buy even if your inventory is 0 for a product."
+msgstr ""
+"Jestliže ano, pak zákazník může nakupovat i když nemáte produkt na skladě."
+
+#: config.py:51
+msgid "Random Display"
+msgstr "Náhodné zobrazení"
+
+#: config.py:52
+msgid "Enable random display of featured products on home page"
+msgstr "Povolit náhodné zobrazení akčních produktů na domovské stránce"
+
+#: config.py:58
+msgid "Track inventory levels?"
+msgstr "Sledovat stav na skladě?"
+
+#: config.py:59
+msgid "If no, then inventory will not be tracked for products sold."
+msgstr ""
+"Jestliže ne, pak skladové zásoby nebudou sledovány pro prodané produkty."
+
+#: config.py:65
+msgid "Display Photo Not Available Image in the category page?"
+msgstr "Zobrazit obrázek 'Obrázek není k dispozici' na stránce kategorií?"
+
+#: config.py:66
+msgid ""
+"If yes, then a Photo Not Available Image will be shown on the category page."
+msgstr ""
+"Jestliže ano, pak obrázek 'Obrázek není k dispozici' bude zobrazen na "
+"stránce kategorií."
+
+#: forms.py:140
+msgid "export format"
+msgstr "formát exportu"
+
+#: forms.py:141
+msgid "Include Images"
+msgstr "Včetně obrázků"
+
+#: forms.py:142
+msgid "Include Categories"
+msgstr "Včetně kategorií"
+
+#: forms.py:274
+msgid "File to import"
+msgstr "Soubor k importu"
+
+#: forms.py:292 forms.py:335
+#, python-format
+msgid "Could not parse format from filename: %s"
+msgstr "Nemohu načíst formát ze souboru: %s"
+
+#: forms.py:310
+msgid "Bad VARS file in import zipfile."
+msgstr ""
+
+#: forms.py:340
+msgid "Missing VARS in import zipfile."
+msgstr ""
+
+#: forms.py:346
+#, python-format
+msgid "Unknown file format: %s"
+msgstr ""
+
+#: forms.py:373
+#, python-format
+msgid "Added %(count)i objects from %(filename)s"
+msgstr ""
+
+#: forms.py:378
+#, python-format
+msgid "Problem installing fixture '%(filename)s': %(error_msg)s\n"
+msgstr ""
+
+#: models.py:39
+msgid "None"
+msgstr "None"
+
+#: models.py:40
+msgid "Free Shipping"
+msgstr "Poštovné zdarma"
+
+#: models.py:41
+msgid "Cheapest shipping option is free"
+msgstr "Nejlevnější poštovné je zdarma"
+
+#: models.py:42
+msgid "Apply the discount above to shipping"
+msgstr "Aplikuj slevu i na poštovné"
+
+#: models.py:46
+msgid "Default"
+msgstr "Default"
+
+#: models.py:47
+msgid "Shippable"
+msgstr "Možno odeslat"
+
+#: models.py:48
+msgid "Not Shippable"
+msgstr "Není možno odeslat"
+
+#: models.py:120 models.py:675 models.py:825
+msgid "Site"
+msgstr "Site"
+
+#: models.py:121 templates/product/admin/inventory_form.html:83
+#: templates/product/admin/product_export_form.html:81
+#: templates/product/admin/variation_manager.html:317
+msgid "Name"
+msgstr "Jméno"
+
+#: models.py:122 modules/custom/models.py:124
+#: templates/product/admin/inventory_form.html:82
+#: templates/product/admin/product_export_form.html:80
+#: templates/product/admin/variation_manager.html:319
+msgid "Slug"
+msgstr "Slug"
+
+#: models.py:122 models.py:829
+msgid "Used for URLs, auto-generated from name if blank"
+msgstr ""
+"Používá se pro URL adresy, bude automaticky vygenerován pokud necháte prázdné"
+
+#: models.py:125 models.py:836
+msgid "Meta Description"
+msgstr "Meta Description"
+
+#: models.py:126
+msgid "Meta description for this category"
+msgstr "Meta description pro tuto kategorii"
+
+#: models.py:127 models.py:436 models.py:1351 models.py:1539
+msgid "Description"
+msgstr "Popis"
+
+#: models.py:129 models.py:840
+msgid "Ordering"
+msgstr "Řazení"
+
+#: models.py:129 models.py:840
+msgid "Override alphabetical order in category display"
+msgstr "Potlačí abecední řazení při zobrazení kategorie"
+
+#: models.py:130 models.py:439 models.py:838 modules/downloadable/models.py:45
+#: modules/downloadable/models.py:78
+#: templates/product/admin/inventory_form.html:86
+msgid "Active"
+msgstr "Aktivní"
+
+#: models.py:132
+msgid "Related Categories"
+msgstr "Podobné kategorie"
+
+#: models.py:282 models.py:834
+msgid "Category"
+msgstr "Kategorie"
+
+#: models.py:283 templates/product/category_index.html:12
+msgid "Categories"
+msgstr "Kategorie"
+
+#: models.py:291 models.py:350 models.py:708 models.py:768 models.py:1181
+#: models.py:1372 models.py:1396 models.py:1517 modules/custom/models.py:150
+msgid "language"
+msgstr "jazyk"
+
+#: models.py:292
+msgid "Translated Category Name"
+msgstr "Přeložené jméno kategorie"
+
+#: models.py:293
+msgid "Description of category"
+msgstr "Popis kategorie"
+
+#: models.py:294 models.py:352 models.py:711 models.py:770 models.py:1185
+#: models.py:1519 modules/custom/models.py:152
+msgid "version"
+msgstr "verze"
+
+#: models.py:295 models.py:353 models.py:712 models.py:771 models.py:1186
+#: models.py:1520 modules/custom/models.py:153
+msgid "active"
+msgstr "aktivní"
+
+#: models.py:298
+msgid "Category Translation"
+msgstr "Překlad kategorie"
+
+#: models.py:299
+msgid "Category Translations"
+msgstr "Překlady kategorie"
+
+#: models.py:313 models.py:1481
+msgid "Picture"
+msgstr "Obrázek"
+
+#: models.py:317 models.py:1485
+msgid "Optional caption"
+msgstr "Nepovinný popisek"
+
+#: models.py:319 models.py:681 models.py:742 models.py:1354 models.py:1487
+#: modules/custom/models.py:128
+msgid "Sort Order"
+msgstr "Pořadí řazení"
+
+#: models.py:342
+msgid "Category Image"
+msgstr "Obrázek kategorie"
+
+#: models.py:343
+msgid "Category Images"
+msgstr "Obrázky kategorie"
+
+#: models.py:351 models.py:1518
+msgid "Translated Caption"
+msgstr "Přeložený popisek"
+
+#: models.py:356
+msgid "Category Image Translation"
+msgstr "Překlad obrázku kategorie"
+
+#: models.py:357
+msgid "Category Image Translations"
+msgstr "Překlady obrázků kategorie"
+
+#: models.py:377
+msgid "No Discount"
+msgstr "Žádná sleva"
+
+#: models.py:435
+msgid "site"
+msgstr "site"
+
+#: models.py:437
+msgid "Discount Code"
+msgstr "Slevový kód"
+
+#: models.py:438
+msgid "Coupon Code"
+msgstr "Kód kupónu"
+
+#: models.py:440
+msgid "Discount Amount"
+msgstr "Sleva"
+
+#: models.py:442
+msgid "Enter absolute discount amount OR percentage."
+msgstr "Zadejte absolutní slevu nebo procenta slevy."
+
+#: models.py:443
+msgid "Discount Percentage"
+msgstr "Procenta slevy"
+
+#: models.py:445
+msgid ""
+"Enter absolute discount amount OR percentage.  Percents are given in whole "
+"numbers, and can be up to 100%."
+msgstr ""
+"Zadejte absolutní slevu nebo procenta slevy. Procenta se zadávají v celých  "
+"číslech a mohou být až do 100%."
+
+#: models.py:446
+msgid "Is this an automatic discount?"
+msgstr "Je toto automatická sleva?"
+
+#: models.py:447
+msgid ""
+"Use this field to advertise the discount on all products to which it "
+"applies.  Generally this is used for site-wide sales."
+msgstr ""
+"Použijte toto pole k oznámení slevy na všechny produkty na které se to "
+"vztahuje. "
+"Obvykle se používá pro globální slevy ."
+
+#: models.py:448
+msgid "Number of allowed uses"
+msgstr "Počet povolených použití"
+
+#: models.py:449
+msgid ""
+"Set this to a number greater than 0 to have the discount expire after that "
+"many uses."
+msgstr ""
+"Nastavte na takové číslo větší než 0, aby sleva vypršela po jeho počtu "
+"použití."
+
+#: models.py:450
+msgid "Number of times already used"
+msgstr "Kolikrát již bylo použito"
+
+#: models.py:452
+msgid "Minimum order value"
+msgstr "Minimální hodnota objednávky"
+
+#: models.py:454
+msgid "Start Date"
+msgstr "Počáteční čas"
+
+#: models.py:455
+msgid "End Date"
+msgstr "Konečný čas"
+
+#: models.py:456 models.py:854
+msgid "Shipping"
+msgstr "Poštovné"
+
+#: models.py:458
+msgid "All products?"
+msgstr "Všechny produkty?"
+
+#: models.py:459
+msgid ""
+"Apply this discount to all discountable products? If this is false you must "
+"select products below in the \"Valid Products\" section."
+msgstr ""
+"Aplikuj tuto slevu na všechny slevu akceptující produkty. Je-li nastaveno na "
+"ne "
+"pak musíte vybrat produkty níže v sekci \"Validní produkty\"."
+
+#: models.py:460
+msgid "Valid Products"
+msgstr "Validní produkty"
+
+#: models.py:462
+msgid "Valid Categories"
+msgstr "Validní kategorie"
+
+#: models.py:481
+msgid "This coupon is disabled."
+msgstr "Kupón je vyžazen."
+
+#: models.py:483
+msgid "This coupon is not active yet."
+msgstr "Tento kupón ještě není aktivní."
+
+#: models.py:485
+msgid "This coupon has expired."
+msgstr "Tento kupón vypršel."
+
+#: models.py:487
+msgid "This discount has exceeded the number of allowed uses."
+msgstr "Sleva překročila počet povolených použití."
+
+#: models.py:492
+#, python-format
+msgid "This discount only applies to orders of at least %s."
+msgstr "Tato sleva platí pouze pro objednávky na alespoň %s."
+
+#: models.py:495
+msgid "This discount cannot be applied to the products in your cart."
+msgstr "Tato sleva nelze uplatnit na produkty ve vašem košíku."
+
+#: models.py:498
+msgid "Valid."
+msgstr "Správný."
+
+#: models.py:607
+msgid "Discount"
+msgstr "Sleva"
+
+#: models.py:608
+msgid "Discounts"
+msgstr "Slevy"
+
+#: models.py:676
+msgid "Name of Option Group"
+msgstr "Jméno Skupiny nastavení"
+
+#: models.py:677
+msgid "This will be the text displayed on the product page."
+msgstr "Tento text bude zobrazen na stránce s produktem."
+
+#: models.py:678
+msgid "Detailed Description"
+msgstr "Detailní popis"
+
+#: models.py:680
+msgid "Further description of this group (i.e. shirt size vs shoe size)."
+msgstr "Další popis této skupiny (např. velikost trička nebo velikost bot)"
+
+#: models.py:682 modules/custom/models.py:129
+msgid "The display order for this group."
+msgstr "Pořadí řazení pro tuto skupinu."
+
+#: models.py:700 modules/configurable/models.py:57 modules/custom/models.py:27
+msgid "Option Group"
+msgstr "Skupina nastavení"
+
+#: models.py:701
+msgid "Option Groups"
+msgstr "Skupiny nastavení"
+
+#: models.py:709
+msgid "Translated OptionGroup Name"
+msgstr "Přeložené jméno Skupiny nastavení"
+
+#: models.py:710
+msgid "Description of OptionGroup"
+msgstr "Popis Skupiny nastavení"
+
+#: models.py:715
+msgid "Option Group Translation"
+msgstr "Překlad Skupiny nastavení"
+
+#: models.py:716
+msgid "Option Groups Translations"
+msgstr "Překlad Skupin nastavení"
+
+#: models.py:737
+msgid "Display value"
+msgstr "Zobrazená hodnota"
+
+#: models.py:738
+msgid "Stored value"
+msgstr "Uložená hodnota"
+
+#: models.py:739 modules/custom/models.py:130
+msgid "Price Change"
+msgstr "Změna ceny"
+
+#: models.py:741
+msgid "This is the price differential for this option."
+msgstr "Toto je změna ceny platná pro toto nastavení."
+
+#: models.py:750
+msgid "Option Item"
+msgstr "Položka nastavení"
+
+#: models.py:751
+msgid "Option Items"
+msgstr "Položky nastavení"
+
+#: models.py:769
+msgid "Translated Option Name"
+msgstr "Přeložené jméno Nastavení"
+
+#: models.py:774
+msgid "Option Translation"
+msgstr "Překlad Nastavení"
+
+#: models.py:775
+msgid "Option Translations"
+msgstr "Překlady Nastavení"
+
+#: models.py:826 models.py:1182
+msgid "Full Name"
+msgstr "Celé jméno"
+
+#: models.py:827
+msgid ""
+"This is what the product will be called in the default site language.  To "
+"add non-default translations, use the Product Translation section below."
+msgstr ""
+"Takto se bude produkt jmenovat ve výchozím jazyce stránek. K "
+"přidání dalších překladů prosim použijte sekci překladu  produktu níže."
+
+#: models.py:828
+msgid "Slug Name"
+msgstr "Slug jméno"
+
+#: models.py:830 templates/product/admin/variation_manager.html:318
+msgid "SKU"
+msgstr "SKU (unikátní skladové číslo)"
+
+#: models.py:831
+msgid "Defaults to slug if left blank"
+msgstr "Není-li vyplněné nastaví se stejně jako slug"
+
+#: models.py:832 models.py:1184
+msgid "Short description of product"
+msgstr "Krátký popis produktu"
+
+#: models.py:832
+msgid ""
+"This should be a 1 or 2 line description in the default site language for "
+"use in product listing screens"
+msgstr ""
+"Jeden či dvouřádkový popis ve výchozím jazyce stránek. Použit pro zobrazení "
+"v seznamech produktů."
+
+#: models.py:833 models.py:1183
+msgid "Description of product"
+msgstr "Popis produktu"
+
+#: models.py:833
+msgid ""
+"This field can contain HTML and should be a few paragraphs in the default "
+"site language explaining the background of the product, and anything that "
+"would help the potential customer make their purchase."
+msgstr "Zde může být HTML text ve výchozím jazyce popisující podrobně produkt."
+
+#: models.py:835
+msgid "Number in stock"
+msgstr "Počet na skladě"
+
+#: models.py:836
+msgid "Meta description for this product"
+msgstr "Meta description pro tento produkt"
+
+#: models.py:837
+msgid "Date added"
+msgstr "Datum přidání"
+
+#: models.py:838
+msgid "This will determine whether or not this product will appear on the site"
+msgstr "Zda se produkt zobrazí či ne na stránkách"
+
+#: models.py:839 templates/product/admin/inventory_form.html:87
+msgid "Featured"
+msgstr "Akční"
+
+#: models.py:839
+msgid "Featured items will show on the front page"
+msgstr "Akční položky budou zobrazeny na hlavní stránce"
+
+#: models.py:841
+msgid "Weight"
+msgstr "Váha"
+
+#: models.py:842
+msgid "Weight units"
+msgstr "Váhová jednotka"
+
+#: models.py:843
+msgid "Length"
+msgstr "Délka"
+
+#: models.py:844
+msgid "Length units"
+msgstr "Délková jednotka"
+
+#: models.py:845
+msgid "Width"
+msgstr "Šířka"
+
+#: models.py:846
+msgid "Width units"
+msgstr "Šířková jednotka"
+
+#: models.py:847
+msgid "Height"
+msgstr "Výška"
+
+#: models.py:848
+msgid "Height units"
+msgstr "Výšková jednotka"
+
+#: models.py:849
+msgid "Related Items"
+msgstr "Příbuzné produkty"
+
+#: models.py:850
+msgid "Previously Purchased"
+msgstr "Dříve zakoupené"
+
+#: models.py:851
+msgid "Total sold"
+msgstr "Celkem prodáno"
+
+#: models.py:852
+msgid "Taxable"
+msgstr "Zdanitelný"
+
+#: models.py:853 models.py:1546
+msgid "Tax Class"
+msgstr "Daňová třída"
+
+#: models.py:853
+msgid "If it is taxable, what kind of tax?"
+msgstr "Je-li zdanitelný, jaká třída?"
+
+#: models.py:855
+msgid ""
+"If this is 'Default', then we'll use the product type to determine if it is "
+"shippable."
+msgstr ""
+"Je-li toto 'Default', pak se použije typ produktu k určení zda je prodejný."
+
+#: models.py:1002 modules/configurable/models.py:56
+#: modules/configurable/models.py:278 modules/custom/models.py:20
+#: modules/downloadable/models.py:35 modules/subscription/models.py:18
+msgid "Product"
+msgstr "Produkt"
+
+#: models.py:1003
+msgid "Products"
+msgstr "Produkty"
+
+#: models.py:1040 templates/admin/product/product/change_form.html:8
+msgid "Product Subtypes"
+msgstr "Podtypy produktu"
+
+#: models.py:1183
+msgid ""
+"This field can contain HTML and should be a few paragraphs explaining the "
+"background of the product, and anything that would help the potential "
+"customer make their purchase."
+msgstr "Zde může být HTML text ve výchozím jazyce popisující podrobně produkt."
+
+#: models.py:1184
+msgid ""
+"This should be a 1 or 2 line description for use in product listing screens"
+msgstr ""
+"Jeden či dvouřádkový popis ve výchozím jazyce stránek. Použit pro zobrazení "
+"v seznamech produktů."
+
+#: models.py:1189
+msgid "Product Translation"
+msgstr "Překlad produktu"
+
+#: models.py:1190
+msgid "Product Translations"
+msgstr "Překlady produktu"
+
+#: models.py:1333
+msgid "One or more characters"
+msgstr "Jeden či více znaků"
+
+#: models.py:1334
+msgid "Integer number"
+msgstr "Celé číslo"
+
+#: models.py:1335
+msgid "Yes or No"
+msgstr "Ano nebo ne"
+
+#: models.py:1336
+msgid "Decimal number"
+msgstr "Desetinné číslo"
+
+#: models.py:1352
+msgid "Attribute name"
+msgstr "Jméno atributu"
+
+#: models.py:1353
+msgid "Field Validations"
+msgstr "Kontroly pole"
+
+#: models.py:1355
+msgid "Error Message"
+msgstr "Chybová zpráva"
+
+#: models.py:1355
+msgid "Invalid Entry"
+msgstr "Neplatné zadání"
+
+#: models.py:1374 models.py:1398
+msgid "Value"
+msgstr "Hodnota"
+
+#: models.py:1385
+msgid "Product Attribute"
+msgstr "Atribut produktu"
+
+#: models.py:1386
+msgid "Product Attributes"
+msgstr "Atributy produktu"
+
+#: models.py:1409
+msgid "Category Attribute"
+msgstr "Atribut kategorie"
+
+#: models.py:1410
+msgid "Category Attributes"
+msgstr "Atributy kategorie"
+
+#: models.py:1424 models.py:1471 modules/subscription/models.py:129
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/detail_customproduct.html:14
+#: templates/product/product.html:34
+msgid "Price"
+msgstr "Cena"
+
+#: models.py:1425
+msgid "Discount Quantity"
+msgstr "Potřebné množství pro tuto cenu"
+
+#: models.py:1427
+msgid "Use this price only for this quantity or higher"
+msgstr "Použij tuto cenu pouze pro toto množství a větší."
+
+#: models.py:1428
+msgid "Expires"
+msgstr "Vyprší"
+
+#: models.py:1472
+msgid "Prices"
+msgstr "Ceny"
+
+#: models.py:1509
+msgid "Product Image"
+msgstr "Obrázek produktu"
+
+#: models.py:1510
+msgid "Product Images"
+msgstr "Obrázky produktu"
+
+#: models.py:1523
+msgid "Product Image Translation"
+msgstr "Překlad obrázku produktu"
+
+#: models.py:1524
+msgid "Product Image Translations"
+msgstr "Překlad obrázků produktu"
+
+#: models.py:1537
+msgid "Title"
+msgstr "Název"
+
+#: models.py:1538
+msgid "Displayed title of this tax."
+msgstr "Zobrazený název daně."
+
+#: models.py:1540
+msgid "Description of products that would be taxed."
+msgstr "Popis produktů které budou daněny."
+
+#: models.py:1547
+msgid "Tax Classes"
+msgstr "Daňové třídy"
+
+#: prices.py:89
+msgid "Price Adjustment"
+msgstr "Změna ceny"
+
+#: modules/configurable/models.py:58
+msgid "Create Variations"
+msgstr "Vytvoř variace"
+
+#: modules/configurable/models.py:58
+msgid ""
+"Create ProductVariations for all this product's options.  To use this, you "
+"must first add an option, save, then return to this page and select this "
+"option."
+msgstr ""
+"Vytvoř 'Variace produktu' pro všechny tyto varianty produktu. Nejdřive "
+"musíte "
+"přidat druh varianty."
+
+#: modules/configurable/models.py:259
+msgid "Configurable Product"
+msgstr "Konfigurovatelný produkt"
+
+#: modules/configurable/models.py:260
+msgid "Configurable Products"
+msgstr "Konfigurovatelné produkty"
+
+#: modules/configurable/models.py:279
+#: templates/product/admin/variation_manager.html:253
+msgid "Options"
+msgstr "Varianty"
+
+#: modules/configurable/models.py:280
+msgid "Parent"
+msgstr "Rodič"
+
+#: modules/configurable/models.py:403
+msgid "Two options from the same option group cannot be applied to an item."
+msgstr ""
+"Dvě varianty ze stejné skupiny variant nemohou být aplikovány na položku."
+
+#: modules/configurable/models.py:463
+msgid "Product variation"
+msgstr "Varianta produktu"
+
+#: modules/configurable/models.py:464
+msgid "Product variations"
+msgstr "Varianty produktu"
+
+#: modules/custom/models.py:21
+msgid "Percent Downpayment"
+msgstr ""
+
+#: modules/custom/models.py:22
+msgid "Deferred Shipping"
+msgstr "Odložené poštovné"
+
+#: modules/custom/models.py:23
+msgid "Do not charge shipping at checkout for this item."
+msgstr "Neúčtuj poštovné na tuto položku během prodeje."
+
+#: modules/custom/models.py:114
+msgid "Custom Product"
+msgstr "Uživatelský produkt"
+
+#: modules/custom/models.py:115
+msgid "Custom Products"
+msgstr "Uživatelské produkty"
+
+#: modules/custom/models.py:123
+msgid "Custom field name"
+msgstr "Uživatelské jméno pole"
+
+#: modules/custom/models.py:124
+msgid "Auto-generated from name if blank"
+msgstr "Automaticky generované ze jména pokud je necháno prázdné"
+
+#: modules/custom/models.py:126
+msgid "Custom Fields"
+msgstr "Uživatelská jména polí"
+
+#: modules/custom/models.py:151
+msgid "Translated Custom Text Field Name"
+msgstr "Přeložené jméno uživatelského textového pole"
+
+#: modules/custom/models.py:156
+msgid "CustomTextField Translation"
+msgstr "Překlad uživatelského textového pole"
+
+#: modules/custom/models.py:157
+msgid "CustomTextField Translations"
+msgstr "Překlad uživatelských textových polí"
+
+#: modules/downloadable/config.py:11
+msgid "Protected dir"
+msgstr ""
+
+#: modules/downloadable/config.py:12
+msgid ""
+"This is only used if you use Downloadable Products.\n"
+"This value will be appended to MEDIA_ROOT/MEDIA_URL.  Do not worry about "
+"slashes.\n"
+"We can handle it any which way."
+msgstr ""
+
+#: modules/downloadable/listeners.py:43
+msgid "Order immediately available for download"
+msgstr ""
+
+#: modules/downloadable/models.py:36
+msgid "File"
+msgstr "Soubor"
+
+#: modules/downloadable/models.py:38
+msgid "Num allowed downloads"
+msgstr "Počet povolených stáhnutí"
+
+#: modules/downloadable/models.py:39
+msgid "Number of times link can be accessed. Enter 0 for unlimited."
+msgstr ""
+
+#: modules/downloadable/models.py:42
+msgid "Expire minutes"
+msgstr "Vyprší za minut"
+
+#: modules/downloadable/models.py:43
+msgid "Number of minutes the link should remain active. Enter 0 for unlimited."
+msgstr ""
+
+#: modules/downloadable/models.py:45
+msgid "Is this download currently active?"
+msgstr ""
+
+#: modules/downloadable/models.py:64
+msgid "Downloadable Product"
+msgstr ""
+
+#: modules/downloadable/models.py:65
+msgid "Downloadable Products"
+msgstr ""
+
+#: modules/downloadable/models.py:73
+msgid "Downloadable product"
+msgstr ""
+
+#: modules/downloadable/models.py:74
+msgid "Order"
+msgstr ""
+
+#: modules/downloadable/models.py:75
+msgid "Key"
+msgstr ""
+
+#: modules/downloadable/models.py:76
+msgid "Number of attempts"
+msgstr ""
+
+#: modules/downloadable/models.py:77
+msgid "Time stamp"
+msgstr ""
+
+#: modules/downloadable/models.py:87
+msgid "This download is no longer active"
+msgstr ""
+
+#: modules/downloadable/models.py:90
+msgid "You have exceeded the number of allowed downloads."
+msgstr ""
+
+#: modules/downloadable/models.py:94
+msgid "This download link has expired."
+msgstr ""
+
+#: modules/downloadable/models.py:121
+msgid "Download Link"
+msgstr ""
+
+#: modules/downloadable/models.py:122
+msgid "Download Links"
+msgstr ""
+
+#: modules/downloadable/views.py:26 modules/downloadable/views.py:31
+msgid "The download key is invalid."
+msgstr ""
+
+#: modules/subscription/models.py:19
+msgid "Recurring Billing"
+msgstr ""
+
+#: modules/subscription/models.py:19
+msgid "Customer will be charged the regular product price on a periodic basis."
+msgstr ""
+
+#: modules/subscription/models.py:20
+msgid "Recurring Times"
+msgstr ""
+
+#: modules/subscription/models.py:20
+msgid "Number of payments which will occur at the regular rate.  (optional)"
+msgstr ""
+
+#: modules/subscription/models.py:21
+msgid "Duration"
+msgstr ""
+
+#: modules/subscription/models.py:21
+msgid "Length of each billing cycle"
+msgstr ""
+
+#: modules/subscription/models.py:23
+msgid "Days"
+msgstr ""
+
+#: modules/subscription/models.py:24
+msgid "Months"
+msgstr ""
+
+#: modules/subscription/models.py:26
+msgid "Expire Unit"
+msgstr ""
+
+#: modules/subscription/models.py:28
+msgid "No Shipping Charges"
+msgstr ""
+
+#: modules/subscription/models.py:29
+msgid "Pay Shipping Once"
+msgstr ""
+
+#: modules/subscription/models.py:30
+msgid "Pay Shipping Each Billing Cycle"
+msgstr ""
+
+#: modules/subscription/models.py:32
+msgid "Shippable?"
+msgstr ""
+
+#: modules/subscription/models.py:32
+msgid "Is this product shippable?"
+msgstr ""
+
+#: modules/subscription/models.py:115
+msgid "Subscription Product"
+msgstr ""
+
+#: modules/subscription/models.py:116
+msgid "Subscription Products"
+msgstr ""
+
+#: modules/subscription/models.py:129
+msgid ""
+"Set to 0 for a free trial.  Leave empty if product does not have a trial."
+msgstr ""
+
+#: modules/subscription/models.py:130
+msgid "Trial Duration"
+msgstr ""
+
+#: modules/subscription/models.py:130
+msgid ""
+"Length of trial billing cycle.  Leave empty if product does not have a trial."
+msgstr ""
+
+#: modules/subscription/models.py:154 modules/subscription/models.py:155
+msgid "Trial Terms"
+msgstr ""
+
+#: templates/admin/configurable/configurableproduct/change_form.html:17
+#: templates/admin/configurable/productvariation/change_form.html:65
+#: templates/product/admin/inventory_form.html:113
+#: templates/product/admin/product_export_form.html:110
+msgid "Helpers"
+msgstr "Pomocníci"
+
+#: templates/admin/configurable/configurableproduct/change_form.html:18
+#: templates/admin/configurable/productvariation/change_form.html:66
+msgid "Variation Manager"
+msgstr "Manažer variant"
+
+#: templates/admin/configurable/configurableproduct/change_form.html:21
+#: templates/product/admin/variation_manager.html:237
+msgid "Variations"
+msgstr "Varianty"
+
+#: templates/product/best_ratings.html:8 templates/product/best_sellers.html:7
+#: templates/product/category.html:13 templates/product/category_index.html:7
+#: templates/product/minimum_order.html:5 templates/product/product.html:23
+#: templates/product/recently_added.html:7
+#: templates/product/admin/inventory_form.html:67
+#: templates/product/admin/product_export_form.html:51
+#: templates/product/admin/product_import_result.html:11
+#: templates/product/admin/variation_manager.html:6
+#: templates/product/admin/variation_manager_list.html:6
+msgid "Home"
+msgstr "Domů"
+
+#: templates/product/best_ratings.html:9
+msgid "Most Popular"
+msgstr "Nejpopulárnější"
+
+#: templates/product/best_ratings.html:13
+msgid "Best Rated Products"
+msgstr "Nejlépe hodnocené"
+
+#: templates/product/best_ratings.html:25
+#, python-format
+msgid "Rating %(rating)s"
+msgstr "Hodnocení %(rating)s"
+
+#: templates/product/best_sellers.html:8
+msgid "Best Sellers"
+msgstr "Nejprodávanější"
+
+#: templates/product/best_sellers.html:13
+msgid "Best Selling Products"
+msgstr "Nejprodávanější produkty"
+
+#: templates/product/cart_detail_customproduct.html:7
+msgid "Base Price: "
+msgstr "Základní cena: "
+
+#: templates/product/cart_detail_customproduct.html:8
+msgid ""
+"price at right is your deposit, you will receive a bill for the remainder "
+"when your item is ready."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:8
+#, python-format
+msgid ""
+"This is the trial price to be charged today, see <a href=\"%(url)s\">the "
+"product description</a> for full pricing details."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:10
+#, python-format
+msgid ""
+"Free trial, see <a href=\"%(url)s\">the product description</a> for full "
+"pricing details."
+msgstr ""
+
+#: templates/product/cart_detail_subscriptionproduct.html:13
+#, python-format
+msgid ""
+"For full pricing details, see <a href=\"%(url)s\">the product "
+"description</a>."
+msgstr ""
+
+#: templates/product/category_index.html:8
+msgid "Category Index"
+msgstr "Seznam kategorií"
+
+#: templates/product/detail_configurableproduct.html:33
+#: templates/product/product.html:34
+msgid "(incl. tax)"
+msgstr "(vč. daně)"
+
+#: templates/product/detail_configurableproduct.html:54
+msgid "Please choose your options"
+msgstr "Vyberte si prosím variantu"
+
+#: templates/product/detail_configurableproduct.html:69
+#: templates/product/detail_customproduct.html:50
+#: templates/product/detail_subscriptionproduct.html:49
+#: templates/product/product.html:54
+msgid "Quantity"
+msgstr "Množství"
+
+#: templates/product/detail_configurableproduct.html:71
+#: templates/product/detail_customproduct.html:52
+#: templates/product/detail_subscriptionproduct.html:51
+#: templates/product/product.html:56
+msgid "Add to cart"
+msgstr "Přidat do košíku"
+
+#: templates/product/detail_customproduct.html:12
+#, python-format
+msgid "Custom order for %(name)s"
+msgstr ""
+
+#: templates/product/detail_customproduct.html:46
+msgid "more"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:10
+#, python-format
+msgid "Subscription product %(name)s"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "Only "
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:12
+msgid "easy payments of:"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:20
+msgid "This product has trial subscription pricing "
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "Free"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "for trial period of "
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "days"
+msgstr ""
+
+#: templates/product/detail_subscriptionproduct.html:21
+msgid "months"
+msgstr ""
+
+#: templates/product/minimum_order.html:6
+msgid "Cart"
+msgstr "Košík"
+
+#: templates/product/minimum_order.html:7
+msgid "Notice"
+msgstr "Poznámka"
+
+#: templates/product/minimum_order.html:14
+#, python-format
+msgid ""
+"This store requires a minimum order of %(value)s before you can check out."
+msgstr ""
+"Aby bylo možno dokončit objednávku, obchod požaduje minimální objednávku ve "
+"výši %(value)s ."
+
+#: templates/product/product_discount_eligible.html:4
+#, python-format
+msgid ""
+"<p>This item is eligible to receive a discount of %(pct)s during checkout "
+"when you enter the code \"%(code)s\" during our %(desc)s which ends on "
+"%(enddate)s.</p>\n"
+msgstr ""
+"<p>Na tuto položku se může vztahovat sleva  %(pct)s,  zadejte během "
+"objednávky tento  kód: \"%(code)s\". Náš %(desc)s končí %(enddate)s.</p>\n"
+
+#: templates/product/recently_added.html:8
+#: templates/product/recently_added.html:12
+msgid "Recently Added"
+msgstr "Nedávno přidané"
+
+#: templates/product/recently_added.html:31
+#: templates/product/recently_added.html:33
+msgid "Previous"
+msgstr "Předchozí"
+
+#: templates/product/recently_added.html:36
+#: templates/product/recently_added.html:38
+msgid "Next"
+msgstr "Další"
+
+#: templates/product/recently_added.html:45
+msgid "Bad Page"
+msgstr "Špatná strana"
+
+#: templates/product/sale_details.html:5
+#, python-format
+msgid ""
+"<p>Products in your cart are eligible to receive a discount of %(pct)s when "
+"you enter the code \"%(code)s\" during our %(desc)s which ends on "
+"%(enddate)s.</p>\n"
+msgstr ""
+"<p>Na tuto položku se může vztahovat sleva  %(pct)s,  zadejte během "
+"objednávky tento  kód: \"%(code)s\". Náš %(desc)s končí %(enddate)s.</p>\n"
+
+#: templates/product/some_discount_eligible.html:4
+#, python-format
+msgid ""
+"<p>Products on this page are eligible to receive a discount of %(pct)s "
+"during checkout when you enter the code \"%(code)s\" during our %(desc)s "
+"which ends on %(enddate)s.</p>\n"
+msgstr ""
+"<p>Na tuto položku se může vztahovat sleva  %(pct)s,  zadejte během "
+"objednávky tento  kód: \"%(code)s\". Náš %(desc)s končí %(enddate)s.</p>\n"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Documentation"
+msgstr "Dokumentace"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Change password"
+msgstr "Změna hesla"
+
+#: templates/product/admin/inventory_form.html:64
+#: templates/product/admin/product_export_form.html:48
+#: templates/product/admin/product_import_result.html:8
+msgid "Log out"
+msgstr "Odhlásit"
+
+#: templates/product/admin/inventory_form.html:68
+#: templates/product/admin/product_export_form.html:52
+msgid "Inventory Management"
+msgstr "Správa skladových zásob"
+
+#: templates/product/admin/inventory_form.html:75
+#: templates/product/admin/product_export_form.html:61
+#: templates/product/admin/product_export_form.html:72
+#: templates/product/admin/variation_manager.html:233
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Opravte prosím chybu níže."
+msgstr[1] "Opravte prosím chyby níže."
+
+#: templates/product/admin/inventory_form.html:84
+msgid "Inventory"
+msgstr "Sklad"
+
+#: templates/product/admin/inventory_form.html:85
+msgid "Unit Price"
+msgstr "Jednotková cena"
+
+#: templates/product/admin/inventory_form.html:114
+msgid "Mark all featured"
+msgstr "Označ všechny jako akční"
+
+#: templates/product/admin/inventory_form.html:115
+msgid "Clear all featured"
+msgstr "Odznač všechny akční"
+
+#: templates/product/admin/inventory_form.html:116
+msgid "Disable all Products with 0 quantity."
+msgstr "Deaktivuj všechny produkty s množstvím 0."
+
+#: templates/product/admin/inventory_form.html:117
+msgid "Disable ProductVariations with 0 quantity."
+msgstr "Deaktivuj všechny varianty produktu s množstvím 0."
+
+#: templates/product/admin/inventory_form.html:121
+msgid "No inventory items."
+msgstr "Žádné položky na skladě."
+
+#: templates/product/admin/product_export_form.html:57
+msgid ""
+"WARNING: THIS FUNCTION IS STILL EXPERIMENTAL.  DO NOT USE IN PRODUCTION."
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:58
+#: templates/product/admin/product_export_form.html:66
+msgid "Import"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:65
+msgid "Import from fixture file:"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:69
+#: templates/product/admin/product_export_form.html:108
+msgid "Export"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:79
+msgid "Export?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:105
+msgid "Include images?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:106
+msgid "Include categories?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:107
+msgid "Format?"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:109
+msgid "Reset"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:111
+msgid "Check all"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:112
+msgid "Uncheck all"
+msgstr ""
+
+#: templates/product/admin/product_export_form.html:115
+msgid "No products."
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:12
+msgid "Product import/export"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:13
+msgid "Results"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:18
+msgid "Import Results"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:20
+msgid "Errors"
+msgstr ""
+
+#: templates/product/admin/product_import_result.html:27
+msgid "results"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:7
+#: templates/product/admin/variation_manager_list.html:7
+msgid "Product Variation Manager"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:230
+#, python-format
+msgid "Variation Manager for %(product_name)s"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:239
+msgid ""
+"\n"
+"    <p>The Variation Manager helps create the exact set of variations you "
+"need for your Configurable Product</p>\n"
+"    <p>Make choices from the Option Groups below, and then click one of the "
+"helper links \n"
+"    below them to select or deselect variations which have those "
+"options.</p>\n"
+"    <p>Fine tune the active variations by putting a checkmark next to those "
+"that you want to keep or \n"
+"    create, then then click <b>Update Variations</b>.\n"
+"    </p>\n"
+"    "
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:273
+msgid "Helper Links"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:280
+msgid "Select These Options"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:283
+msgid "Select Only These Options"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:286
+msgid "Select All"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:289
+msgid "Deselect These Options"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:292
+msgid "Deselect All"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:295
+msgid "Show All"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:298
+msgid "Hide Inactive Rows"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:305
+msgid "Update Variations"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:306
+msgid "Reset Form"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:314
+msgid "Variation"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:315
+msgid "Exists"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:316
+msgid "Create/Keep"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:332
+msgid "yes"
+msgstr ""
+
+#: templates/product/admin/variation_manager.html:332
+msgid "no"
+msgstr ""
+
+#: templates/product/admin/variation_manager_list.html:12
+msgid "Select the Configurable Product to manage."
+msgstr ""
+
+#: templatetags/satchmo_product_admin.py:43
+#, python-format
+msgid "Edit %(subtype)s"
+msgstr "Uprav %(subtype)s"
+
+#: templatetags/satchmo_product_admin.py:52
+#, python-format
+msgid "Add %(subtype)s"
+msgstr "Přidej %(subtype)s"
+
+#: templatetags/satchmo_product_admin.py:81
+msgid "Delete ProductVariation"
+msgstr "Smaž Produktovou variantu"
+
+#: views/__init__.py:69
+msgid "The category you have requested does not exist."
+msgstr "Požadovaná kategorie neexistuje."
+
+#: views/__init__.py:120 views/adminviews.py:124
+msgid "The product you have requested does not exist."
+msgstr "Požadovaný produkt neexistuje."
+
+#: views/__init__.py:173 views/__init__.py:190 views/__init__.py:197
+#: views/__init__.py:206
+msgid "not available"
+msgstr "není k dispozici"
+
+#: views/adminviews.py:28
+msgid "Inventory Editor"
+msgstr "Editor skladu"
+
+#: views/adminviews.py:50
+msgid "Product Import/Export"
+msgstr "Import/Export produktů"
+
+#: views/adminviews.py:74
+msgid "No upload file found"
+msgstr "Žádný nahraný soubor nebyl nalezen"
+
+#: views/adminviews.py:121
+msgid "The product you have requested is not a Configurable Product."
+msgstr "Požadovaný produkt není Konfigurovatelný produkt."
+
+
