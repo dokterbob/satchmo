@@ -176,6 +176,9 @@ class Carrier(models.Model):
     
     def price(self, total):
         """Get a price for this total."""
+        if total == 0:
+            total = Decimal('0.00')# total was "0E-8", which breaks mysql
+
         # first check for special discounts
         prices = self.tiers.filter(expires__isnull=False, min_total__lte=total).exclude(expires__lt=datetime.date.today())
 
