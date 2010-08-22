@@ -18,6 +18,8 @@ from sys import exc_info
 from traceback import format_exception
 import logging
 import urllib2
+from django.views.decorators.csrf import csrf_exempt
+
 
 log = logging.getLogger()
 
@@ -107,6 +109,7 @@ def confirm_info(request):
     return render_to_response(template, context_instance=ctx)
 confirm_info = never_cache(confirm_info)
 
+@csrf_exempt
 def ipn(request):
     """PayPal IPN (Instant Payment Notification)
     Cornfirms that payment has been completed and marks invoice as paid.
