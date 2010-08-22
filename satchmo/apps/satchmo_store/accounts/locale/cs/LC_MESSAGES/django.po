@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-09 14:47+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:31
+msgid "Title"
+msgstr "Titul"
+
+#: forms.py:32
+msgid "Email address"
+msgstr "E-mailová adresa"
+
+#: forms.py:34
+msgid "Password (again)"
+msgstr "Heslo (znovu)"
+
+#: forms.py:36
+msgid "Password"
+msgstr "Heslo"
+
+#: forms.py:38
+msgid "First name"
+msgstr "Jméno"
+
+#: forms.py:40
+msgid "Last name"
+msgstr "Příjmení"
+
+#: forms.py:59
+msgid "Newsletter"
+msgstr "Novinky mailem"
+
+#: forms.py:68
+msgid "The two passwords do not match."
+msgstr "Zadaná hesla se neshodují"
+
+#: forms.py:79
+msgid "That email address is already in use."
+msgstr "Tento email je již zaregistrován."
+
+#: mail.py:17
+#, python-format
+msgid "Welcome to %(shop_name)s"
+msgstr "Vítejte v %(shop_name)s"
+
+#: views.py:24
+msgid "Yes"
+msgstr "Ano"
+
+#: views.py:25
+msgid "No"
+msgstr "Ne"
+
+#: views.py:341
+msgid "Registration Form"
+msgstr "Registrační formulář"
