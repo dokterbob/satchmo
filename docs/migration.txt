@@ -128,13 +128,19 @@ Installing Satchmo 0.9.1 with South
 
 - Install Satchmo by adding it to your path and ``INSTALLED_APPS``.
 
-- Create the database tables for Satchmo's non-migration models::
+- You have two options:
 
-    $ python manage.py syncdb
+  - Create the database tables for Satchmo's non-migration models, then create
+    the ``product`` app tables and run the migrations::
 
-- Create the ``product`` app tables::
+      $ python manage.py syncdb
+      $ python manage.py migrate product
 
-    $ python manage.py migrate product
+  - Alternatively, you can create the tables directly and skip running the
+    migrations::
+
+      $ python manage.py syncdb --all
+      $ python manage.py migrate product --fake
 
   .. Note::
      Users familiar with the codebase may wonder why we didn't tell South to
