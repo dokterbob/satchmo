@@ -10,6 +10,10 @@ class Migration(UpdateContentTypeMigration):
 
     _app_label = 'subscription'
 
+    depends_on = (
+        ('product', '0011_split_products'),
+    )
+
     models = {
         'product.category': {
             'Meta': {'unique_together': "(('site', 'slug'),)", 'object_name': 'Category'},

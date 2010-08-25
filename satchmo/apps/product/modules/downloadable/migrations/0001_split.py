@@ -4,9 +4,38 @@ from south.v2 import SchemaMigration
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ('product', '0010_add_discountable_categories'),
+    )
+
     def forwards(self, orm):
         db.rename_table('product_downloadableproduct', 'downloadable_downloadableproduct')
-        db.rename_table('shop_downloadlink', 'downloadable_downloadlink')
+
+        # check if the table exists; might be a fresh, post 0.9 installation
+        try:
+            from django.db import connection
+            cursor = connection.cursor()
+            if not cursor:
+                raise Exception
+            table_names = connection.introspection.get_table_list(cursor)
+        except:
+            raise Exception("unable to determine if the table 'shop_downloadlink' exists")
+        else:
+            if not 'shop_downloadlink' in table_names:
+                # create the table
+                # create commands were obtained from a fresh --initial migration
+                db.create_table('downloadable_downloadlink', (
+                    ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+                    ('downloadable_product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['downloadable.DownloadableProduct'])),
+                    ('order', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['shop.Order'])),
+                    ('key', self.gf('django.db.models.fields.CharField')(max_length=40)),
+                    ('num_attempts', self.gf('django.db.models.fields.IntegerField')()),
+                    ('time_stamp', self.gf('django.db.models.fields.DateTimeField')()),
+                    ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
+                ))
+                db.send_create_signal('downloadable', ['DownloadLink'])
+            else:
+                db.rename_table('shop_downloadlink', 'downloadable_downloadlink')
 
     def backwards(self, orm):
         db.rename_table('downloadable_downloadableproduct', 'product_downloadableproduct')

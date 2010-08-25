@@ -118,10 +118,6 @@ Upgrading from an existing 0.9 installation
 Installing Satchmo 0.9.1 with South
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the migrations in the ``product`` app are based on v0.9, you don't have to
-apply migrations from ``0001_initial`` onwards for a fresh installation - simply
-let django's ``syncdb`` do it's job.
-
 .. Note::
    We asume that you've already installed South, but have yet to take the leap
    with Satchmo; see `<http://south.aeracode.org/docs/installation.html>`_ for
@@ -130,77 +126,21 @@ let django's ``syncdb`` do it's job.
 - Before installing Satchmo, ensure that your tables and migrations are
   up-to-date, by running ``syncdb`` and ``migrate``.
 
-- With Satchmo still not installed, disable South by removing/commenting it out
-  from your ``INSTALLED_APPS``.
-
 - Install Satchmo by adding it to your path and ``INSTALLED_APPS``.
 
-- Create the database tables for Satchmo's models::
+- You have two options:
 
-    $ python manage.py syncdb
+  - Create the database tables for Satchmo's non-migration models, then create
+    the ``product`` app tables and run the migrations::
 
-- Enable South by adding/uncommenting it from your ``INSTALLED_APPS``.
+      $ python manage.py syncdb
+      $ python manage.py migrate product
 
-- Since the database tables for Satchmo are already up-to-date, you can safely
-  "fake" all the migrations in Satchmo::
+  - Alternatively, you can create the tables directly and skip running the
+    migrations::
 
-    $ python manage.py migrate product --list
-
-     product
-      ( ) 0001_initial
-      ( ) 0002_add_attributeoption
-      ( ) 0003_add_productattribute_option
-      ( ) 0004_remove_productattribute_name
-      ( ) 0005_fix_attributeoption_error_default_spelling
-      ( ) 0006_custom_textfield_add_constraint
-      ( ) 0007_add_discount_valid_products_field
-      ( ) 0008_remove_discount_validproducts_field
-      ( ) 0009_add_categoryattributes
-      ( ) 0010_add_discountable_categories
-      ( ) 0011_split_products
-
-    $ python manage.py migrate product --fake
-     - Migrating forwards to 0012_update_contenttypes.
-     > subscription:0001_split
-       (faked)
-     > subscription:0002_update_contenttypes
-       (faked)
-     > product:0001_initial
-       (faked)
-     > product:0002_add_attributeoption
-       (faked)
-     > product:0003_add_productattribute_option
-       (faked)
-     > product:0004_remove_productattribute_name
-       (faked)
-     > product:0005_fix_attributeoption_error_default_spelling
-       (faked)
-     > product:0006_custom_textfield_add_constraint
-       (faked)
-     > product:0007_add_discount_valid_products_field
-       (faked)
-     > product:0008_remove_discount_validproducts_field
-       (faked)
-     > product:0009_add_categoryattributes
-       (faked)
-     > product:0010_add_discountable_categories
-       (faked)
-     > downloadable:0001_split
-       (faked)
-     > custom:0001_split
-       (faked)
-     > configurable:0001_split
-       (faked)
-     > product:0011_split_products
-       (faked)
-     > downloadable:0002_update_contenttypes
-       (faked)
-     > custom:0002_update_contenttypes
-       (faked)
-     > configurable:0002_update_contenttypes
-       (faked)
-     > product:0012_update_contenttypes
-       (faked)
+      $ python manage.py syncdb --all
+      $ python manage.py migrate product --fake
 
   .. Note::
      Users familiar with the codebase may wonder why we didn't tell South to

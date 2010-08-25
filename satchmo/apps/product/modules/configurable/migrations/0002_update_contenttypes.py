@@ -10,6 +10,10 @@ class Migration(UpdateContentTypeMigration):
 
     _app_label = 'configurable'
 
+    depends_on = (
+        ('product', '0011_split_products'),
+    )
+
     models = {
         'configurable.configurableproduct': {
             'Meta': {'object_name': 'ConfigurableProduct'},
