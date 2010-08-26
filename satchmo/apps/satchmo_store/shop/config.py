@@ -63,8 +63,16 @@ config_register(PositiveIntegerValue(
 PERSISTENT_CART = config_register(
     BooleanValue(SHOP_GROUP,
     'PERSISTENT_CART',
-    description = _('Persistent Cart?'),
-    help_text = _("When a user logs in, attempt to retrieve previous carts and merge with existing?"),
+    description = _('Persistent Cart: Check for old cart?'),
+    help_text = _("When a user logs in, attempt to retrieve previous cart?"),
+    default = False
+    ))
+
+PERSISTENT_CART_MERGE = config_register(
+    BooleanValue(SHOP_GROUP,
+    'PERSISTENT_CART_MERGE',
+    description = _('Persistent Cart: Overrides Current Cart?'),
+    help_text = _("If you have a persistent cart: Should you merge the carts even if the user has created a new one?"),
     default = False
     ))
 
