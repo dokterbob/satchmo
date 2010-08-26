@@ -41,14 +41,15 @@ A short tutorial
 Here is a quick step by step overview for adding and using the upsell application.
 
 	- In your site's ``settings.py`` file, edit the ``INSTALLED_APP`` list to include ``satchmo_ext.upsell``. Run a syncdb on your site to ensure that the necessary database tables are created.
-	- Log into the your site's admin interface, and add a new product. You will want to add the target product (remember that an upselling item can be a standalone product, as well as a variation of an existing product) and an upsell product. You can read the Products_ page for details on how to do this.
+	- Log into the your site's admin interface, and add a new product. You will want to add the target product (remember that an upselling item can be a standalone product, as well as a variation of an existing product) and an upsell product. You can read the :doc:`Satchmo products <product>` page for details on how to do this.
 	- From your site's admin main page, navigate to the Upsells section to add/change an upsell.
 
 Useful links
 ----------------
 
-	- `Upsell template tag`_.
-	- Satchmo Products_ application.
+    - :doc:`Upsell template tag <template-filters-tags>`
+    - :doc:`Satchmo products <product>`
+
 
 References
 ---------------
@@ -56,5 +57,4 @@ References
 .. [#] Wikipedia article on Up-selling_
 
 .. _Up-selling: http://en.wikipedia.org/wiki/Up-selling
-.. _Products: product.html
-.. _`Upsell template tag`: templates.html
+

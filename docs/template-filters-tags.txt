@@ -75,7 +75,7 @@ Returns the product unit price with the best auto discount applied.
 		{% load satchmo_discounts %}
 		{{ product|sale_price }}
 		
-This filter goes through all applicable `auto discounts`_, finds and then sorts them by percentage. The return value would represent the greatest discount available for a product.
+This filter finds all applicable :ref:`auto-discounts`, then sorts them by percentage. The return value would represent the greatest discount available for a product.
 
 Tag Reference
 -------------
