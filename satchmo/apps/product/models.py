@@ -1526,7 +1526,7 @@ class ProductImageTranslation(models.Model):
         unique_together = ('productimage', 'languagecode', 'version')
 
     def __unicode__(self):
-        return u"ProductImageTranslation: [%s] (ver #%i) %s Name: %s" % (self.languagecode, self.version, self.productimage, self.name)
+        return u"ProductImageTranslation: [%s] (ver #%i) %s" % (self.languagecode, self.version, self.productimage)
 
 class TaxClass(models.Model):
     """

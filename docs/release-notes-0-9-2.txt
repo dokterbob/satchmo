@@ -18,6 +18,7 @@ New Features
 Translations
 ------------
 - Added Dutch translation
+- Added Czech translation
 
 Bug Fixes
 ---------
@@ -33,7 +34,7 @@ Bug Fixes
 - Bug in autosuccess payment module fixed
 - Rebuild pricing was deleting prices if multiple sites were being used
 - Currency template tags handles decimal places parameter correctly
-
+- Improve robustness of South migrations
 
 Performance Improvements
 ------------------------
