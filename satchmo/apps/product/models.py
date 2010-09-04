@@ -1384,6 +1384,8 @@ class ProductAttribute(models.Model):
     class Meta:
         verbose_name = _("Product Attribute")
         verbose_name_plural = _("Product Attributes")
+        ordering = ('option__sort_order',)
+
 
     def __unicode__(self):
         return self.option.name
@@ -1408,6 +1410,7 @@ class CategoryAttribute(models.Model):
     class Meta:
         verbose_name = _("Category Attribute")
         verbose_name_plural = _("Category Attributes")
+        ordering = ('option__sort_order',)
 
     def __unicode__(self):
         return self.option.name
