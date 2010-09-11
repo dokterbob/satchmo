@@ -35,6 +35,9 @@ Bug Fixes
 - Rebuild pricing was deleting prices if multiple sites were being used
 - Currency template tags handles decimal places parameter correctly
 - Improve robustness of South migrations
+- Fix obscure issue where some users were able to edit the wrong information
+- Add a new config for the persistent cart to provide more options for how it handles returning users
+- Remove custom read only widget use and use Django's newer read only field
 
 Performance Improvements
 ------------------------
