@@ -63,7 +63,6 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
     - success
     - redirect (success) or form (on failure)
     """
-
     if request.method == 'POST':
         form = auth_form(data=request.POST)
         if form.is_valid():
@@ -71,6 +70,8 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
             if not redirect_to or '//' in redirect_to or ' ' in redirect_to:
                 redirect_to = settings.LOGIN_REDIRECT_URL
             login(request, form.get_user())
+            # Now that we've logged in, assign this cart to our user
+            _assign_cart(request)
             if config_value('SHOP','PERSISTENT_CART'):
                 _get_prev_cart(request)
             return (True, HttpResponseRedirect(redirect_to))
@@ -81,19 +82,37 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
 
     return (False, form)
 
+def _assign_cart(request):
+    """
+    If there is a current cart and it is unassigned, assign it to this user.
+    """
+    try:
+        if 'cart' in request.session:
+            existing_cart = Cart.objects.from_request(request, create=False)
+            contact = Contact.objects.from_request(request)
+            if existing_cart.customer == None:
+                # No currently assigned contact: Up for grabs!
+                log.debug("Assigning Cart (id: %r) to %r (id: %r)" % (existing_cart.id, contact.full_name, contact.id))
+                existing_cart.customer = contact
+                existing_cart.save()
+        else:
+            log.debug("The user has no cart in the current session.")
+    except:
+        log.debug("Unable to assign cart user during login")
+    
 def _get_prev_cart(request):
     try:
         contact = Contact.objects.from_request(request)
         saved_cart = contact.cart_set.latest('date_time_created')
         # If the latest cart has len == 0, cart is unusable.
         if len(saved_cart) and 'cart' in request.session:
-            # Merge the two carts together
             existing_cart = Cart.objects.from_request(request, create=False)
-            saved_cart.merge_carts(existing_cart)
-        request.session['cart'] = saved_cart.id
+            if ( (len(existing_cart) == 0) or config_value('SHOP','PERSISTENT_CART_MERGE') ):
+                # Merge the two carts together
+                saved_cart.merge_carts(existing_cart)
+                request.session['cart'] = saved_cart.id
     except Exception, e:
         pass
-
 
 def register_handle_address_form(request, redirect=None):
     """

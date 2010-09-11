@@ -1,5 +1,6 @@
 syntax: glob
 build
+.DS_Store
 .build
 .project
 .pydevproject

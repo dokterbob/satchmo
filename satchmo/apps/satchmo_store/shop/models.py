@@ -393,6 +393,7 @@ class Cart(models.Model):
         for item in src_cart.cartitem_set.all():
             self.add_item(item.product, item.quantity, item.details.all())
             item.delete()
+        self.save()
 
     def empty(self):
         for item in self.cartitem_set.all():
