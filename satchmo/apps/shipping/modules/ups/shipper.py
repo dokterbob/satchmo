@@ -62,6 +62,10 @@ class Shipper(BaseShipper):
         Complex calculations can be done here as long as the return value is a decimal figure
         """
         assert(self._calculated)
+        settings =  config_get_group('shipping.modules.ups')
+        if settings.HANDLING_FEE and Decimal(str(settings.HANDLING_FEE)) > Decimal(0):
+            self.charges = Decimal(self.charges) + Decimal(str(settings.HANDLING_FEE))
+
         return(Decimal(self.charges))
 
     def method(self):
@@ -109,24 +113,53 @@ class Shipper(BaseShipper):
         settings =  config_get_group('shipping.modules.ups')
         self.delivery_days = _("3 - 4") #Default setting for ground delivery
         shop_details = Config.objects.get_current()
+        # Get the code and description for the packaging
+        container = settings.SHIPPING_CONTAINER.value
+        container_description = settings.SHIPPING_CONTAINER.choices[int(container)][1]
         configuration = {
             'xml_key': settings.XML_KEY.value,
             'account': settings.ACCOUNT.value,
             'userid': settings.USER_ID.value,
             'password': settings.USER_PASSWORD.value,
-            'container': settings.SHIPPING_CONTAINER.value,
+            'container': container,
+            'container_description': container_description,
             'pickup': settings.PICKUP_TYPE.value,
             'ship_type': self.service_type_code,
             'shop_details':shop_details,
         }
+        
         shippingdata = {
-                'config': configuration,
-                'cart': cart,
-                'contact': contact,
-                'shipping_address' : shop_details,
-                'shipping_phone' : shop_details.phone,
-                'shipping_country_code' : shop_details.country.iso2_code
-        }
+            'single_box': False,
+            'config': configuration,
+            'contact': contact,
+            'cart': cart,
+            'shipping_address' : shop_details,
+            'shipping_phone' : shop_details.phone,
+            'shipping_country_code' : shop_details.country.iso2_code
+            }
+            
+        if settings.SINGLE_BOX.value:
+            log.debug("Using single-box method for ups calculations.")
+
+            box_weight = Decimal("0.00")
+            for product in cart.get_shipment_list():
+                if product.smart_attr('weight') is None:
+                    log.warn("No weight on product (skipping for ship calculations): %s", product)
+                else:
+                    box_weight += product.smart_attr('weight')
+                if product.smart_attr('weight_units') and product.smart_attr('weight_units') != "":
+                    box_weight_units = product.smart_attr('weight_units')
+                else:
+                    log.warn("No weight units for product")
+
+            if box_weight < Decimal("0.1"):
+                log.debug("Total box weight too small, defaulting to 0.1")
+                box_weight = Decimal("0.1")
+
+            shippingdata['single_box'] = True
+            shippingdata['box_weight'] = '%.1f' % box_weight
+            shippingdata['box_weight_units'] = box_weight_units.upper()
+
         signals.shipping_data_query.send(Shipper, shipper=self, cart=cart, shippingdata=shippingdata)
         c = Context(shippingdata)
         t = loader.get_template('shipping/ups/request.xml')

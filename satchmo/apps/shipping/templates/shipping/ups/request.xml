@@ -65,32 +65,50 @@
         		</BillShipper>
       		</Prepaid>
   	</PaymentInformation>
-    {% for product in cart.get_shipment_list %}
+    {% if single_box %}
 	<Package>
       		<PackagingType>
 	        	<Code>{{config.container}}</Code>
-        		<Description>Customer Supplied</Description>
+        		<Description>{{config.container_description}}</Description>
       		</PackagingType>
       		<Description>{{product.name }}</Description>
-            {% if product.has_full_dimensions %}
-            <Dimensions>
-                <UnitOfMeasurement>
-                      <Code>{{product|smart_attr:"length_units"|upper}}</Code>
-                </UnitOfMeasurement>
-                <Length>{{product|smart_attr:"length"}}</Length>
-                <Width>{{product|smart_attr:"width"}}</Width>
-                <Height>{{product|smart_attr:"height"}}</Height>
-            </Dimensions>
-            {% endif %}
-            {% if product.has_full_weight %}
+            {% if box_weight %}
                 <PackageWeight>
                     <UnitOfMeasurement>
-                      <Code>{{product|smart_attr:"weight_units"|upper}}S</Code>
+                      <Code>{{box_weight_units|upper}}S</Code>
                     </UnitOfMeasurement>
-                    <Weight>{{product|smart_attr:"weight"}}</Weight>
+                    <Weight>{{box_weight}}</Weight>
                 </PackageWeight>   
             {% endif %}
    	</Package>
-    {% endfor %}
+    {% else %}
+        {% for product in cart.get_shipment_list %}
+        <Package>
+                <PackagingType>
+                    <Code>{{config.container}}</Code>
+                    <Description>{{config.container_description}}</Description>
+                </PackagingType>
+                <Description>{{product.name }}</Description>
+                {% if product.has_full_dimensions %}
+                <Dimensions>
+                    <UnitOfMeasurement>
+                          <Code>{{product|smart_attr:"length_units"|upper}}</Code>
+                    </UnitOfMeasurement>
+                    <Length>{{product|smart_attr:"length"}}</Length>
+                    <Width>{{product|smart_attr:"width"}}</Width>
+                    <Height>{{product|smart_attr:"height"}}</Height>
+                </Dimensions>
+                {% endif %}
+                {% if product.has_full_weight %}
+                    <PackageWeight>
+                        <UnitOfMeasurement>
+                          <Code>{{product|smart_attr:"weight_units"|upper}}S</Code>
+                        </UnitOfMeasurement>
+                        <Weight>{{product|smart_attr:"weight"}}</Weight>
+                    </PackageWeight>   
+                {% endif %}
+        </Package>
+        {% endfor %}
+    {% endif %}
   </Shipment>
 </RatingServiceSelectionRequest>

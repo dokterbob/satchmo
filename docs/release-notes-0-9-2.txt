@@ -14,6 +14,7 @@ New Features
 - Update google analytics code to use latest tracker js
 - Add an unlimited downloads option for downloadable products
 - Added support for Django's new CSRF support
+- UPS Shipping module now allows you to box products together into 1 container
 
 Translations
 ------------
