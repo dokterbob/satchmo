@@ -1087,7 +1087,7 @@ msgid ""
 "charged %(order_total)s."
 msgstr ""
 "Votre carte de crédit %(credit_card_type)s dont le numéro se termine par %"
-"(credit_card_number)s sera débitée de %(order_total)s €."
+"(credit_card_number)s sera débitée de %(order_total)s."
 
 #: templates/shop/email/order_complete.txt:69
 msgid "Your order contains products that can be downloaded"
