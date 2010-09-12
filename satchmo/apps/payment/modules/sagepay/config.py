@@ -3,13 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 
 # this is so that the translation utility will pick up the string
 gettext = lambda s: s
-_strings = (gettext('CreditCard'), gettext('Credit Card'), gettext('Prot/X Secure Payments'))
+_strings = (gettext('CreditCard'), gettext('Credit Card'), gettext('Sage Pay Secure Payments'))
 
 # These cards require the issue number and start date fields filled in.
 REQUIRES_ISSUE_NUMBER = ('MAESTRO', 'SOLO')
 
-PAYMENT_GROUP = ConfigurationGroup('PAYMENT_PROTX',
-    _('Prot/X Payment Settings'),
+PAYMENT_GROUP = ConfigurationGroup('PAYMENT_SAGEPAY',
+    _('Sage Pay Payment Settings'),
     ordering=101)
 
 config_register_list(
@@ -29,13 +29,13 @@ config_register_list(
     BooleanValue(PAYMENT_GROUP,
         'SKIP_POST',
         description=_("Skip post?"),
-        help_text=_("For testing only, this will skip actually posting to Prot/x servers.  This is because their servers restrict IPs of posting servers, even for tests.  If you are developing on a desktop, you'll have to enable this."),
+        help_text=_("For testing only, this will skip actually posting to Sage Pay servers.  This is because their servers restrict IPs of posting servers, even for tests.  If you are developing on a desktop, you'll have to enable this."),
         default=False),
 
     StringValue(PAYMENT_GROUP,
         'CAPTURE',
         description=_('Payment Capture'),
-        help_text=_('This can be "Payment" which captures immediately, or "Deferred".  Note that you can only use the latter if you set option on your Prot/X account first.'),
+        help_text=_('This can be "Payment" which captures immediately, or "Deferred".  Note that you can only use the latter if you set option on your Sage pay account first.'),
         choices = (
             (('PAYMENT', 'Payment')),
             (('DEFERRED', 'Deferred')),
@@ -47,18 +47,18 @@ config_register_list(
         'MODULE',
         description=_('Implementation module'),
         hidden=True,
-        default = 'payment.modules.protx'),
+        default = 'payment.modules.sagepay'),
 
     StringValue(PAYMENT_GROUP,
         'KEY',
         description=_("Module key"),
         hidden=True,
-        default = 'PROTX'),
+        default = 'SAGEPAY'),
 
     StringValue(PAYMENT_GROUP,
         'LABEL',
         description=_('English name for this group on the checkout screens'),
-        default = 'Prot/X Secure Payments',
+        default = 'Sage Pay Secure Payments',
         help_text = _('This will be passed to the translation utility')),
 
     MultipleStringValue(PAYMENT_GROUP,
@@ -92,13 +92,13 @@ config_register_list(
     StringValue(PAYMENT_GROUP,
         'CURRENCY_CODE',
         description=_('Currency Code'),
-        help_text=_('Currency code for Prot/X transactions.'),
+        help_text=_('Currency code for Sage Pay transactions.'),
         default = 'GBP'),
 
     StringValue(PAYMENT_GROUP,
         'URL_BASE',
         description=_('The url base used for constructing urlpatterns which will use this module'),
-        default = r'^protx/'),
+        default = r'^sagepay/'),
 
     BooleanValue(PAYMENT_GROUP,
         'EXTRA_LOGGING',

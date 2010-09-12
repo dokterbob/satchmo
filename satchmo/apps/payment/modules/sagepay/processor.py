@@ -1,9 +1,9 @@
-"""Prot/X Payment Gateway.
+"""Sage Pay Payment Gateway.
 
 To use this module, enable it in your shop configuration, usually at http:yourshop/settings/
 
-To override the connection urls specified below in `PROTX_DEFAULT_URLS, add a dictionary in
-your settings.py file called "PROTX_URLS", mapping the keys below to the urls you need for
+To override the connection urls specified below in `SAGEPAY_DEFAULT_URLS, add a dictionary in
+your settings.py file called "SAGEPAY_URLS", mapping the keys below to the urls you need for
 your store.  You only need to override the specific urls that have changed, the processor
 will fall back to the defaults for any not specified in your dictionary.
 """
@@ -17,7 +17,7 @@ import urllib2
 
 PROTOCOL = "2.22"
 
-PROTX_DEFAULT_URLS = {
+SAGEPAY_DEFAULT_URLS = {
     'LIVE_CONNECTION' : 'https://live.sagepay.com/gateway/service/vspdirect-register.vsp',
     'LIVE_CALLBACK' : 'https://live.sagepay.com/gateway/service/direct3dcallback.vsp',
     'TEST_CONNECTION' : 'https://test.sagepay.com/gateway/service/vspdirect-register.vsp',
@@ -26,22 +26,22 @@ PROTX_DEFAULT_URLS = {
     'SIMULATOR_CALLBACK' : 'https://test.sagepay.com/simulator/VSPDirectCallback.asp'
 }
 
-FORM = forms.ProtxPayShipForm
+FORM = forms.SagePayShipForm
 
 class PaymentProcessor(BasePaymentProcessor):
     packet = {}
     response = {}
 
     def __init__(self, settings):
-        super(PaymentProcessor, self).__init__('Protx', settings)
+        super(PaymentProcessor, self).__init__('Sagepay', settings)
 
         vendor = settings.VENDOR.value
         if vendor == "":
-            self.log.warn('Prot/X Vendor is not set, please configure in your site configuration.')
+            self.log.warn('Sage Pay Vendor is not set, please configure in your site configuration.')
         if settings.SIMULATOR.value:
             vendor = settings.VENDOR_SIMULATOR.value
             if not vendor:
-                self.log.warn("You are trying to use the Prot/X VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
+                self.log.warn("You are trying to use the Sage Pay VSP Simulator, but you don't have a vendor name in settings for the simulator.  I'm going to use the live vendor name, but that probably won't work.")
                 vendor = settings.VENDOR.value
 
         self.packet = {
@@ -53,9 +53,9 @@ class PaymentProcessor(BasePaymentProcessor):
         self.valid = False
 
     def _url(self, key):
-        urls = PROTX_DEFAULT_URLS
-        if hasattr(settings, 'PROTX_URLS'):
-            urls.update(settings.PROTX_URLS)
+        urls = SAGEPAY_DEFAULT_URLS
+        if hasattr(settings, 'SAGEPAY_URLS'):
+            urls.update(settings.SAGEPAY_URLS)
 
         if self.settings.SIMULATOR.value:
             key = "SIMULATOR_" + key
@@ -128,7 +128,7 @@ class PaymentProcessor(BasePaymentProcessor):
         self.valid = True
 
     def capture_payment(self, testing=False, order=None, amount=None):
-        """Execute the post to protx VSP DIRECT"""
+        """Execute the post to Sage Pay VSP DIRECT"""
         if not order:
             order = self.order
 
@@ -162,7 +162,7 @@ class PaymentProcessor(BasePaymentProcessor):
 
                 except urllib2.URLError, ue:
                     self.log.error("error opening %s\n%s", self.url, ue)
-                    return ProcessorResult(self.key, False, 'Could not talk to Protx gateway')
+                    return ProcessorResult(self.key, False, 'Could not talk to Sage Pay gateway')
 
                 try:
                     self.response = dict([row.split('=', 1) for row in result.splitlines()])

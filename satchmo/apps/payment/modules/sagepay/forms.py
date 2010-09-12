@@ -1,16 +1,16 @@
-"""Protx Form"""
+"""Sage Pay Form"""
 from django import forms
 from django.utils.translation import ugettext as _
 from livesettings import config_value
 from payment.forms import CreditPayShipForm, MONTHS
-from payment.modules.protx.config import REQUIRES_ISSUE_NUMBER
+from payment.modules.sagepay.config import REQUIRES_ISSUE_NUMBER
 import datetime
 import logging
 
-log = logging.getLogger('payment.protx.forms')
+log = logging.getLogger('payment.sagepay.forms')
 
-class ProtxPayShipForm(CreditPayShipForm):
-    """Adds fields required by Prot/X to the Credit form."""
+class SagePayShipForm(CreditPayShipForm):
+    """Adds fields required by Sage Pay to the Credit form."""
     
     card_holder = forms.CharField(max_length=75, required=False)
     month_start = forms.ChoiceField(choices=[(1, '--')]+MONTHS, required=False)
@@ -18,7 +18,7 @@ class ProtxPayShipForm(CreditPayShipForm):
     issue_num = forms.CharField(max_length=2, required=False)
     
     def __init__(self, request, paymentmodule, *args, **kwargs):
-        super(ProtxPayShipForm, self).__init__(request, paymentmodule, *args, **kwargs)
+        super(SagePayShipForm, self).__init__(request, paymentmodule, *args, **kwargs)
         cf = self.fields['card_holder']
         if (not cf.initial) or cf.initial == "":
             user = request.user
@@ -31,7 +31,7 @@ class ProtxPayShipForm(CreditPayShipForm):
 
     def save(self, request, cart, contact, payment_module, data=None):
         """Save the order and the credit card details."""
-        super(ProtxPayShipForm, self).save(request, cart, contact, payment_module)
+        super(SagePayShipForm, self).save(request, cart, contact, payment_module)
         if data is None:
             data = self.cleaned_data 
         log.debug("data: %s", data)                       

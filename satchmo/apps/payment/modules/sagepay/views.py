@@ -1,4 +1,4 @@
-"""Protx checkout custom views"""
+"""Sage Pay checkout custom views"""
 
 from django import http
 from django.shortcuts import render_to_response
@@ -9,15 +9,15 @@ from payment.views import payship, confirm
 import logging
 from satchmo_utils.dynamic import lookup_template
 
-log = logging.getLogger('protx.views')
+log = logging.getLogger('sagepay.views')
     
 def pay_ship_info(request):
     return payship.credit_pay_ship_info(request, 
-            config_get_group('PAYMENT_PROTX'),
-            template="shop/checkout/protx/pay_ship.html")
+            config_get_group('PAYMENT_SAGEPAY'),
+            template="shop/checkout/sagepay/pay_ship.html")
     
-def confirm_info(request, template='shop/checkout/protx/confirm.html', extra_context={}):
-    payment_module = config_get_group('PAYMENT_PROTX')
+def confirm_info(request, template='shop/checkout/sagepay/confirm.html', extra_context={}):
+    payment_module = config_get_group('PAYMENT_SAGEPAY')
     controller = confirm.ConfirmController(request, payment_module)
     controller.templates['CONFIRM'] = template
     controller.extra_context = extra_context
@@ -25,12 +25,12 @@ def confirm_info(request, template='shop/checkout/protx/confirm.html', extra_con
     controller.confirm()
     return controller.response
             
-def confirm_secure3d(request, secure3d_template='shop/checkout/protx/secure3d_form.html', 
+def confirm_secure3d(request, secure3d_template='shop/checkout/sagepay/secure3d_form.html', 
     confirm_template='shop/checkout/confirm.html', extra_context={}):
     """Handles confirming an order and processing the charges when secured by secure3d.
  
     """
-    payment_module = config_get_group('PAYMENT_PROTX')
+    payment_module = config_get_group('PAYMENT_SAGEPAY')
     controller = confirm.ConfirmController(request, payment_module, extra_context=extra_context)
     controller.template['CONFIRM'] = confirm_template
     if not controller.sanity_check():
@@ -66,7 +66,7 @@ def confirm_secure3d(request, secure3d_template='shop/checkout/protx/secure3d_fo
     return secure3d_form_handler(controller)
 
 def secure3d_form_handler(controller):
-    """At the confirmation step, protx may ask for a secure3d authentication.  This method
+    """At the confirmation step, sage pay may ask for a secure3d authentication.  This method
     catches that, and if so, sends to that step, otherwise the form as normal"""
     
     if controller.processorReasonCode == '3DAUTH':
