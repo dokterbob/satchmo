@@ -69,3 +69,7 @@ If you have an existing Satchmo store you will need to:
     2. Add 'django.contrib.messages.context_processors.messages' to your TEMPLATE_CONTEXT_PROCESSORS
     3. Add 'django.contrib.messages' to your INSTALLED_APPS setting
     
+Protx Payment Module Renamed
+++++++++++++++++++++++++++++
+As of `rev 2051 <http://bitbucket.org/chris1610/satchmo/changeset/04f821df32ec>`_, the Protx module has been renamed to Sage Pay. You will need to manually copy over your former Protx credentials to
+the new Sage Pay module. No further changes should be necessary.

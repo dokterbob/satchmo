@@ -13,6 +13,7 @@ from payment.utils import get_processor_by_key
 from payment.views import payship
 from satchmo_store.shop.models import Cart
 from satchmo_store.shop.models import Order, OrderPayment
+from satchmo_store.contact.models import Contact
 from satchmo_utils.dynamic import lookup_url, lookup_template
 from sys import exc_info
 from traceback import format_exception
@@ -65,6 +66,19 @@ def confirm_info(request):
             payment_module.RETURN_ADDRESS.value, include_server=True)
     except urlresolvers.NoReverseMatch:
         address = payment_module.RETURN_ADDRESS.value
+
+    try:
+        cart = Cart.objects.from_request(request)
+    except:
+        cart = None
+    try:
+        contact = Contact.objects.from_request(request)
+    except:
+        contact = None
+    if cart and contact:
+        cart.customer = contact
+        log.debug(':::Updating Cart %s for %s' % (cart, contact))
+        cart.save()
 
     processor_module = payment_module.MODULE.load_module('processor')
     processor = processor_module.PaymentProcessor(payment_module)

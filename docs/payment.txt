@@ -105,8 +105,8 @@ It is recommended that you review the `Google checkout documentation
 <http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#create_checkout_cart>`_
 in order to understand how the process works.
 
-.. index:: Protx
+.. index:: Protx, Sage Pay
 
-Protx
------
+Sage Pay (Formerly Protx)
+-------------------------
 This processor is included in the default Satchmo store.
