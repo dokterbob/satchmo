@@ -18,12 +18,12 @@ import urllib2
 PROTOCOL = "2.22"
 
 PROTX_DEFAULT_URLS = {
-    'LIVE_CONNECTION' : 'https://ukvps.protx.com/vspgateway/service/vspdirect-register.vsp',
-    'LIVE_CALLBACK' : 'https://ukvps.protx.com/vspgateway/service/direct3dcallback.vsp',
-    'TEST_CONNECTION' : 'https://ukvpstest.protx.com/vspgateway/service/vspdirect-register.vsp',
-    'TEST_CALLBACK' : 'https://ukvpstest.protx.com/vspgateway/service/direct3dcallback.vsp',
-    'SIMULATOR_CONNECTION' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectGateway.asp',
-    'SIMULATOR_CALLBACK' : 'https://ukvpstest.protx.com/VSPSimulator/VSPDirectCallback.asp'
+    'LIVE_CONNECTION' : 'https://live.sagepay.com/gateway/service/vspdirect-register.vsp',
+    'LIVE_CALLBACK' : 'https://live.sagepay.com/gateway/service/direct3dcallback.vsp',
+    'TEST_CONNECTION' : 'https://test.sagepay.com/gateway/service/vspdirect-register.vsp',
+    'TEST_CALLBACK' : 'https://test.sagepay.com/gateway/service/direct3dcallback.vsp',
+    'SIMULATOR_CONNECTION' : 'https://test.sagepay.com/simulator/VSPDirectGateway.asp',
+    'SIMULATOR_CALLBACK' : 'https://test.sagepay.com/simulator/VSPDirectCallback.asp'
 }
 
 FORM = forms.ProtxPayShipForm
