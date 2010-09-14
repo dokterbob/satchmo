@@ -56,7 +56,7 @@ protection. You are encouraged to read more about it int the `Django docs <http:
 
 If you have an existing Satchmo store and need to support CSRF, you will need to do a couple of things:
 
-    1. Upgrade to Django 1.2.1 or greater
+    1. Upgrade to Django 1.2.3 or greater
     2. Ensure 'django.middleware.csrf.CsrfViewMiddleware' is in your MIDDLEWARE_CLASSES
     3. Ensure that any forms in your custom templates, have {% csrf_token %} inside the <form> element
     

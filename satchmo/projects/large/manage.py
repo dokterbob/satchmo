@@ -20,7 +20,7 @@ try:
 except ImportError:
     pass
 else:
-    require('django >=1.2, <=1.2.1')
+    require('django >=1.2.3')
 
 from django.core.management import execute_manager
 try:

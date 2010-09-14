@@ -5,7 +5,7 @@ Satchmo is based on the Django framework, therefore you do need a fully function
 Django instance to use Satchmo.  The `Django installation guide`_ will step you
 through the process.
 
-You must use Django 1.2.1 or greater in order to use the latest CSRF features.
+You must use Django 1.2.3 or greater in order to use the latest CSRF features.
 
 Satchmo requires Python 2.4 or later and a database supported by Django.
 
