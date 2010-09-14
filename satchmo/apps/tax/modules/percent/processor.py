@@ -34,7 +34,7 @@ class Processor(object):
         return Decimal(config_value('TAX','PERCENT'))
     
     def get_rate(self, *args, **kwargs):
-        return self.get_rate_percent/100
+        return self.get_percent/100
         
     def shipping(self, subtotal=None):
         if subtotal is None and self.order:
