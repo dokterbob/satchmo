@@ -87,16 +87,3 @@ class StrippedDecimalWidget(forms.TextInput):
         return super(StrippedDecimalWidget, self).render(name, value, attrs)
 
 
-class ReadOnlyWidget(forms.Widget):
-    def render(self, name, value, attrs):
-        final_attrs = self.build_attrs(attrs, name=name)
-        if hasattr(self, 'initial'):
-            value = self.initial
-        if value:
-            return mark_safe("<p>%s</p>" % escape(value))
-        else:
-            return ''
-
-    def _has_changed(self, initial, data):
-        return False
-
