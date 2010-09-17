@@ -11,7 +11,7 @@ This guide assumes you are working on a unix variant and that you are installing
 you have write access to. In the below example, we use :file:`/home/user/src`. You are expected to modify the path to fit your needs.
 
 .. warning::
-   You must have Django 1.1.x properly installed.
+   You must have Django >= 1.2.3 properly installed.
 
 A Quick Note About Installing Dependencies
 ------------------------------------------

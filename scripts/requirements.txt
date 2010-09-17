@@ -1,4 +1,4 @@
-django>=1.2
+django>=1.2.3
 pycrypto
 http://www.satchmoproject.com/snapshots/trml2pdf-1.2.tar.gz
 django-registration
