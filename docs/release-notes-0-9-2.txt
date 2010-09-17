@@ -29,7 +29,6 @@ Bug Fixes
 - Make sure "all valid" discounts are correctly applied
 - Fix Wishlish ajax add view
 - Ensure that product variation properly inherits shipping from its parent
-- Made a couple of view and template changes to reduce the number of SQL queries per page
 - Handling of gift certificate plus other payments fixed
 - Bug in tax processor rendering fixed
 - Bug in autosuccess payment module fixed
@@ -40,10 +39,12 @@ Bug Fixes
 - Add a new config for the persistent cart to provide more options for how it handles returning users
 - Remove custom read only widget use and use Django's newer read only field
 - Paypal was not saving contact information correctly in certain cases
+- Newsletter subscription status could be lost when checking out
 
 Performance Improvements
 ------------------------
 - Tweaks to price queries to reduce unneeded queries
+- Made a couple of view and template changes to reduce the number of SQL queries per page
 
 
 Migration Notes
