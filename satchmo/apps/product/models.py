@@ -1494,7 +1494,12 @@ class ProductImage(models.Model):
 
     def _get_filename(self):
         if self.product:
-            return '%s-%s' % (self.product.slug, self.id)
+            # In some cases the name could be too long to fit into the field
+            # Truncate it if this is the case
+            pic_field_max_length = self._meta.get_field('picture').max_length
+            max_slug_length = pic_field_max_length -len('images/productimage-picture-.jpg') - len(str(self.id))
+            slug = self.product.slug[:max_slug_length]
+            return '%s-%s' % (slug, self.id)
         else:
             return 'default'
     _filename = property(_get_filename)
