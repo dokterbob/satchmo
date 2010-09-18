@@ -15,6 +15,7 @@ New Features
 - Add an unlimited downloads option for downloadable products
 - Added support for Django's new CSRF support
 - UPS Shipping module now allows you to box products together into 1 container
+- Add a new config for the persistent cart to provide more options for how it handles returning users
 
 Translations
 ------------
@@ -36,10 +37,11 @@ Bug Fixes
 - Currency template tags handles decimal places parameter correctly
 - Improve robustness of South migrations
 - Fix obscure issue where some users were able to edit the wrong information
-- Add a new config for the persistent cart to provide more options for how it handles returning users
 - Remove custom read only widget use and use Django's newer read only field
 - Paypal was not saving contact information correctly in certain cases
 - Newsletter subscription status could be lost when checking out
+- Use smart_attr for tiered weight shipping module
+- Make sure that the product image file name doesn't exceed the length of the file field
 
 Performance Improvements
 ------------------------
