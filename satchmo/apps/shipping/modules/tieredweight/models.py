@@ -26,8 +26,8 @@ class TieredWeightException(Exception):
 def _get_cart_weight(cart):
     weight = Decimal('0.0')
     for item in cart.cartitem_set.all():
-        if item.is_shippable and item.product.weight:
-            weight = weight + (item.product.weight * item.quantity)
+        if item.is_shippable and item.product.smart_attr('weight'):
+            weight = weight + (item.product.smart_attr('weight') * item.quantity)
     return weight
 
 
@@ -103,6 +103,7 @@ class Shipper(BaseShipper):
         # I think its reasonable to assume this shipping method should
         # not be used on an order that doesn't weigh anything.
         if not self._weight or self._weight == Decimal('0.0'):
+            log.debug("Tiered weight not valid for weight = %s" % (self._weight))
             return False
 
         if self._zone and self._cost:
@@ -229,10 +230,8 @@ class Zone(models.Model):
         """
         tiers_tmp = self.tiers.filter(min_weight__gte=weight).order_by('min_weight')
         tiers = tiers_tmp.filter(expires__gte=date.today())[:1]
-
         if tiers.count() is 0:
             tiers = tiers_tmp.filter(expires__isnull=True)[:1]
-
         if tiers.count() is not 0:
             return tiers[0].cost
         else:
