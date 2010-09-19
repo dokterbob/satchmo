@@ -120,15 +120,10 @@ may wish to include in your site.
 Satchmo Projects
 ----------------
 
-This directory contains 3 example projects that illustrate how to layout Satchmo and integrate it with other
+This directory contains an example project that illustrate how to layout Satchmo and integrate it with other
 Django applications. The installation process will discuss how to setup your individual application based on
-these samples. The simple and large projects include a sample database and can be run directly to provide
+this sample. The simple project includes a sample database and can be run directly to provide
 a quick example of a Satchmo store.
-
-Base
-^^^^
-
-This project contains the basic building blocks of a Satchmo store.
 
 Simple
 ^^^^^^
@@ -141,20 +136,6 @@ Admin is:
 
 Username: admin
 Password: simple
-
-
-Large
-^^^^^
-
-This is a very basic example of a "large" Satchmo store.  Basically it has all the satchmo apps loaded, plus
-flatpages (built-in to Django) and Testimonials (from http://gosatchmo.com/apps/django-testimonials/)
-
-It should work right from checkout.  Start it with "./manage.py runserver" and browse to http://localhost:8000/
-
-Admin is:
-
-Username: admin
-Password: large
 
 Skeleton
 ^^^^^^^^
