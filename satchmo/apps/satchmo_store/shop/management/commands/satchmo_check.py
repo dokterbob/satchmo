@@ -4,6 +4,7 @@ import sys
 import django
 from decimal import Decimal
 import types
+from distutils.version import LooseVersion
 
 class Command(NoArgsCommand):
     help = "Check the system to see if the Satchmo components are installed correctly."
@@ -18,7 +19,11 @@ class Command(NoArgsCommand):
             errors.append("Satchmo is not installed correctly. Please verify satchmo is on your sys path.")
         print "Using Django version %s" % django.get_version()
         print "Using Satchmo version %s" % satchmo_store.get_version()
-        
+        #Check the Django version
+        #Make sure we only get the X.Y.Z version info and not any other alpha or beta designations
+        version_check = LooseVersion(".".join([str(s) for s in django.VERSION][:3]))
+        if version_check < LooseVersion("1.2.3"):
+            errors.append("Django version must be >= 1.2.3")
         # Try importing all our dependencies
         try:
             import Crypto.Cipher
