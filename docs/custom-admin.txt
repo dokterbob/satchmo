@@ -47,3 +47,101 @@ This code does a couple of things:
 .. Note::
     These changes must be included in an application that is listed after 
     all the other Satchmo Apps in ``INSTALLED_APPS``
+
+Using Mix-ins to customize the admin
+------------------------------------
+
+Mix-ins are a very powerful feature available in python that allow for
+advanced customization of Satchmo.  With mix-ins you can add arbitrary
+elements (functions, model attributes, etc...) to any class/model.
+The full uses of mix-ins are outside the scope of this document but
+let’s start with an example.
+
+Suppose you want to show product SKUs of all the products in an order
+on the Product Orders page. The screenshot below shows you what the current
+order screen looks like:
+
+.. image:: /images/order-screen2.png
+
+We will modify it to show all the skus in an order like this:
+
+.. image:: /images/order-screen1.png
+
+
+Here is a chunk of code that would create a list of skus for a given order::
+
+        def order_sku(self):
+            allsku = ''
+            for item in self.orderitem_set.all():
+                allsku += "%s<br />" % item.product.sku
+            return allsku
+        order_sku.allow_tags = True
+        order_sku.short_description = "Order SKUs"
+
+
+You could then add ‘order_sku’ to the list display of Order.  The
+problem is, where do you put the chunk of code listed above?  You
+could add it to the Order models but that would be forking Satchmo and
+later when it was time to upgrade to the next version of Satchmo
+things could be much more difficult.  The solution is mix-ins.
+
+Mix-ins allow you to dynamically change the inheritance of a class.
+We will change Orders from looking like this::
+
+    class Order(models.Model):
+
+to this::
+    
+    class Order(models.Model, ourNewClass):
+    
+In order to accomplish this without actually modifying existing Satchmo done, you
+can put order_sku in a class::
+
+    class OrderExtend:
+        def order_sku(self):
+            allsku = ''
+            for item in self.orderitem_set.all():
+                allsku += "%s<br />" % item.product.sku
+            return allsku
+        order_sku.allow_tags = True
+        order_sku.short_description = "Order SKUs"
+
+and adding::
+
+    Order.__bases__ += (OrderExtend,)
+    
+The last bit takes the __bases__ of Order (which are its base
+inheritance classes) and adds OrderExtend to it.  Because Order now
+inherits from OrderExtend we can use order_sku.  To make skus show up
+in the admin we create ``localsite/admin.py`` and put all of our code in
+it so it looks like this::
+
+    from django.contrib import admin
+    from django.db import models
+    from satchmo_store.shop.models import Order, OrderItem
+    from satchmo_store.shop.admin import OrderOptions
+
+    class OrderExtend:
+        def order_sku(self):
+            allsku = ''
+            for item in self.orderitem_set.all():
+                allsku += "%s<br />" % item.product.sku
+            return allsku
+        order_sku.allow_tags = True
+        order_sku.short_description = "Order SKUs"
+
+    Order.__bases__ += (OrderExtend,)
+
+    admin.site.unregister(Order)
+
+    class CustomOrderAdmin(OrderOptions):
+        list_display = ('id', 'order_sku', 'contact', 'time_stamp',
+                        'order_total', 'balance_forward', 'status', 
+                        'invoice', 'packingslip','shippinglabel')
+
+    admin.site.register(Order, CustomOrderAdmin)
+
+Obviously you could do a lot more with mix-ins. You can add arbitray functions
+and attributes to any model and any class.  A much longer
+explaination that is not django specific but has more examples (and the document used as a reference
+for writing this up) can be found `here <http://www.linuxjournal.com/node/4540/print>`_
