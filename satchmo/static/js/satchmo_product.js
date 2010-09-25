@@ -76,6 +76,8 @@ satchmo.show_error = function(msg) {
         section.text(msg);
         if (msg == "") {
             section.hide();
+        } else {
+            section.show();
         }
     }
     var disabled = (msg != "");
@@ -114,7 +116,7 @@ satchmo.update_price = function() {
         satchmo.set_price(sale_price);
 
         if (qty && qty > detail['QTY']) {
-            if (detail['QTY'] == -1) {
+            if (detail['QTY'] <= 0) {
                 msg = "Sorry, we are out of stock on that combination.";
              }
              else {
