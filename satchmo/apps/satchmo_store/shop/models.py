@@ -805,6 +805,20 @@ class Order(models.Model):
         return Country.objects.get(iso2_code=self.bill_country).name
     bill_country_name = property(_bill_country_name)
 
+    def _ship_first_name(self):
+        """Given the addressee name, try to return a first name"""
+        return self.ship_addressee.split()[0]
+    ship_first_name = property(_ship_first_name)
+        
+    def _ship_last_name(self):
+        """Given the addressee name, try to return a last name"""
+        name_parts = self.ship_addressee.split()
+        if len(name_parts) > 1:
+            return ''.join(name_parts[1:])
+        else:
+            return ''
+    ship_last_name = property(_ship_last_name)
+
     def _discounted_sub_total(self):
         return self.sub_total - self.item_discount
 

@@ -343,8 +343,8 @@ class PaymentProcessor(BasePaymentProcessor):
             }
 
         trans['custShipData'] = {
-            'x_ship_to_first_name' : order.contact.first_name,
-            'x_ship_to_last_name' : order.contact.last_name,
+            'x_ship_to_first_name' : order.ship_first_name,
+            'x_ship_to_last_name' : order.ship_last_name,
             'x_ship_to_address' : order.full_ship_street,
             'x_ship_to_city' : order.ship_city,
             'x_ship_to_state' : order.ship_state,
@@ -353,7 +353,6 @@ class PaymentProcessor(BasePaymentProcessor):
         }
 
         self.log_extra('standard charges configuration: %s', trans['custBillData'])
-
         invoice = "%s" % order.id
         failct = order.paymentfailures.count()
         if failct > 0:
