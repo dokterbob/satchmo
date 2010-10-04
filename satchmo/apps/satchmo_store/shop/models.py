@@ -807,16 +807,12 @@ class Order(models.Model):
 
     def _ship_first_name(self):
         """Given the addressee name, try to return a first name"""
-        return self.ship_addressee.split()[0]
+        return ' '.join(self.ship_addressee.split()[0:-1]) or ''
     ship_first_name = property(_ship_first_name)
         
     def _ship_last_name(self):
         """Given the addressee name, try to return a last name"""
-        name_parts = self.ship_addressee.split()
-        if len(name_parts) > 1:
-            return ''.join(name_parts[1:])
-        else:
-            return ''
+        return ' '.join(self.ship_addressee.split()[-1:]) or ''
     ship_last_name = property(_ship_last_name)
 
     def _discounted_sub_total(self):
