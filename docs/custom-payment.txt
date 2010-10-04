@@ -197,9 +197,12 @@ For most processors, a simple file would look like this::
     config = config_get_group('PAYMENT_MYNEWPROCESSOR')
 
     urlpatterns = patterns('satchmo',
-         (r'^$', 'payment.modules.myprocessor.views.pay_ship_info', {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-step2'),
-         (r'^confirm/$', 'payment.modules.trustcommerce.views.confirm_info', {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-step3'),
-         (r'^success/$', 'payment.common.views.checkout.success', {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-success'),
+         (r'^$', 'payment.modules.myprocessor.views.pay_ship_info',
+                        {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-step2'),
+         (r'^confirm/$', 'payment.modules.trustcommerce.views.confirm_info',
+                        {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-step3'),
+         (r'^success/$', 'payment.common.views.checkout.success',
+                        {'SSL':config.SSL.value}, 'MYNEWPROCESSOR_satchmo_checkout-success'),
     )
 
 

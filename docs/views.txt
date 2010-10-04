@@ -435,8 +435,9 @@ Forms
 
 .. class:: payment.forms.PaymentContactInfoForm
 
-   Subclasses :class:`payment.forms.PaymentMethodForm` and
-   :class:`satchmo_store.contact.forms.ContactInfoForm`.
+   Subclasses :class:`payment.forms.PaymentMethodForm`
+
+   and :class:`satchmo_store.contact.forms.ContactInfoForm`.
 
 .. class:: payment.forms.PaymentMethodForm
 

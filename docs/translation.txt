@@ -25,7 +25,8 @@ Template Translations
 1. Change to the directory where your Satchmo source is stored (somewhere on your PYTHONPATH). You can run the following
 find command to compile all of the langauge files for the satchmo apps::
 
-    find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-trunk/django/bin/django-admin.py makemessages -l de -e html,txt,rml' {} \;
+    find . -name locale -exec sh -c 'cd $0 && cd ../ &&
+            /path/to/django-trunk/django/bin/django-admin.py makemessages -l de -e html,txt,rml' {} \;
 
 In the example above, replace "de" with the language code for the message file you want to create.
 The language code, in this case, is in locale format. For example, it’s pt_BR for Brazilian
@@ -50,7 +51,8 @@ add new strings if any are discovered.
 
 4. Compile the file using the compilemessages command (run from your satchmo source directory)::
 
-    find . -name locale -exec sh -c 'cd $0 && cd ../ && /path/to/django-admin.py compilemessages' {} \;
+    find . -name locale -exec sh -c 'cd $0 && cd ../ &&
+                                     /path/to/django-admin.py compilemessages' {} \;
 
 5. (Optional but encouraged) Submit a ticket with your translation.
 

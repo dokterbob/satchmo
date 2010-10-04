@@ -106,7 +106,8 @@ to add any pieces of satchmo.
 
 2. Copy the :file:`local_settings` file to mystore::
 
-        cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py /home/user/src/mystore/local_settings.py
+        cp /home/user/src/satchmo-trunk/satchmo/projects/base/local_settings.py \
+            /home/user/src/mystore/local_settings.py
 
 3. You will need to verify the values assigned to the following items in :file:`local_settings.py`::
 
