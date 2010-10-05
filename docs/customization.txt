@@ -156,3 +156,58 @@ or filter. The general process for using the tag or filter would be:
     1. Create the new tag in your application's templatetags directory
     2. Selectively override the Satchmo templates that use the tag
     3. Import the new tag at the top of each template and use it in the template
+
+Example tags
+++++++++++++
+
+Here is a quick example showing how you can create an `inclusion tag <http://docs.djangoproject.com/en/dev/howto/custom-template-tags/#inclusion-tags>`_
+to display a list of new arrivals or featured items.
+
+First, make sure you have a :file:`templatetags` directory in your :file:`localsite` directory (this assumes you 
+are using the default satchmo setup). In this directory, create a file called :file:`local_tags.py`
+
+Your :file:`local_tags.py` should look like this::
+
+    from django import template
+    from product.models import Product
+    register = template.Library()
+
+    @register.inclusion_tag('localsite/new_arrivals.html') 
+    def show_new_arrivals(number): 
+        new_arrivals = Product.objects.all().order_by('date_added')[:number] 
+        return {'new_arrivals': new_arrivals}
+
+    @register.inclusion_tag('localsite/featured_items.html') 
+    def show_featured_items(number): 
+        featured_items = Product.objects.filter(featured=True)[:number] 
+        return {'featured_items': featured_items}
+
+Each of these tags also will need a custom html template that will be used to render
+the items. Inside your template directory, create the following files :file:`/localsite/new_arrivals.html`::
+
+    {% for product in new_arrivals %}
+        <ul><a href="{{ product.get_absolute_url }}">{{product.translated_name}}</a></ul>
+    {% endfor %}
+
+As well as this file :file:`/localsite/featured_items.html`::
+
+    {% for product in featured_items %}
+        <ul><a href="{{ product.get_absolute_url }}">{{product.translated_name}}</a></ul>
+    {% endfor %}
+
+In order to use these tags, add them to your templates::
+
+    {% extends "shop/base.html" %}
+    {% load local_tags %}
+
+    <h1>New Arrivals</h1>
+        <ul>
+        {% show_new_arrivals 5 %}
+        </ul>
+    <h1>Featured Items</h1>
+        <ul>
+        {% show_featured_items 5 %}
+        </ul>
+
+This feature is a very powerful and simple way to add custom information into
+your custom satchmo site.
