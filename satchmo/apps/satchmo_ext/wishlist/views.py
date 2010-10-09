@@ -113,8 +113,8 @@ def wishlist_move_to_cart(request):
             cart.add_item(wish.product, number_added=1, details=wish.details)
         except CartAddProhibited, cap:
             msg = _("Wishlist product '%(product)s' could't be added to the cart. %(details)s") % {
-                'product' : wish.product.translated_name, 
-                'detail' : cap.message
+                'product' : wish.product.translated_name(), 
+                'details' : cap.message
                 }
             return wishlist_view(request, message=msg)
             
