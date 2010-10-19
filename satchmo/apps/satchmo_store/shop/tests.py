@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse as url
 from django.test import TestCase
 from django.test.client import Client
 from django.utils.encoding import smart_str
+from django.utils.translation import get_language
 from django.core.cache import cache
 from keyedcache import cache_delete
 from l10n.models import Country
@@ -68,7 +69,7 @@ class ShopTest(TestCase):
         self.US = Country.objects.get(iso2_code__iexact = "US")
         rebuild_pricing()
         current_site = Site.objects.get_current()
-        cache_key = "cat-%s" % current_site.id
+        cache_key = "cat-%s-%s" % (current_site.id, get_language())
         cache.delete(cache_key)
 
     def tearDown(self):

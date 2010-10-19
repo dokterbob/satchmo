@@ -4,6 +4,7 @@ from django.template import Library, Node, Variable
 from django.template import TemplateSyntaxError, VariableDoesNotExist
 from product.models import Category
 from satchmo_utils.templatetags import get_filter_args
+from django.utils.translation import get_language
 
 import logging
 import re
@@ -62,8 +63,9 @@ def category_tree(id=None):
             active_cat = None
     # We call the category on every page so we will cache
     # The actual structure to save db hits
+    lang = get_language()
     current_site = Site.objects.get_current()
-    cache_key = "cat-%s" % current_site.id
+    cache_key = "cat-%s-%s" % (current_site.id, lang)
     existing_tree = cache.get(cache_key, None)
     if existing_tree is None:
         root = Element("ul")
