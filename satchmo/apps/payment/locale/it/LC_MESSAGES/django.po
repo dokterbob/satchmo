@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 19:55-0600\n"
-"PO-Revision-Date: 2010-05-13 14:02+0200\n"
+"PO-Revision-Date: 2010-10-10 21:05+0200\n"
 "Last-Translator: Andrea Innocenti <andyinno@gmail.com>\n"
 "Language-Team: italiano <nn@nn.it>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: config.py:26
 msgid "Allow URL Access to Cron for subscription rebills"
-msgstr "Permetti l'accesso URL a Cron per fatturazioni in abbonamento"
+msgstr "Permetti l'accesso URL a Cron per fatturazioni in abbonamento."
 
 #: config.py:27
 msgid "Do you want to allow remote url calls for subscription billing?"
@@ -78,8 +78,8 @@ msgid ""
 "Put all email addresses you want to email in addition to the owner when an "
 "order is placed."
 msgstr ""
-"Inserisci tutti gli indirizzi email ai quali vuoi spedire un messaggio in "
-"aggiunta al proprietario quando viene effettuato un ordine."
+"Inserisci tutti gli indirizzi email ai quali vuoi spedire un messaggio oltre "
+"a quello del proprietario quando viene effettuato un ordine."
 
 #: config.py:60 modules/dummy/config.py:64
 msgid "Early AUTH"
@@ -251,7 +251,7 @@ msgstr "Il nome della classe definita in payment.py"
 
 #: models.py:35
 msgid "Sort Order"
-msgstr "Ordinamento"
+msgstr "Scelta dell'ordine"
 
 #: models.py:38
 msgid "Payment Option"
@@ -314,7 +314,7 @@ msgstr "Non Implementato"
 #: modules/dummy/processor.py:85 modules/giftcertificate/processor.py:52
 #: modules/purchaseorder/processor.py:31 views/confirm.py:254
 msgid "Success"
-msgstr "Successo"
+msgstr "Riuscito"
 
 #: modules/base.py:384
 msgid "Failure"
@@ -1400,7 +1400,7 @@ msgstr "Accesso"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "If you do not have an account, please"
-msgstr "Ne non hai un account, per piacere"
+msgstr "Se non hai un account, per favore"
 
 #: templates/shop/checkout/authentication_required.html:33
 msgid "click here"
@@ -1442,7 +1442,7 @@ msgid ""
 "The following error was returned while trying to process your payment. "
 "Please correct and resubmit."
 msgstr ""
-"l'errore sottostante è stato creato durante il processo di pagamento. Per "
+"l'errore sottostante si è verificato durante il processo di pagamento. Per "
 "favore correggilo e reinvia."
 
 #: templates/shop/checkout/base_confirm.html:25
@@ -1481,7 +1481,7 @@ msgstr "Informazioni sulla spedizione"
 
 #: templates/shop/checkout/base_pay_ship.html:44
 msgid "The following shipping method will be used"
-msgstr "Il seguente metodo di spedizione verrà utilizzato"
+msgstr "Verrà utilizzato Il seguente metodo di spedizione."
 
 #: templates/shop/checkout/base_pay_ship.html:46
 msgid "Please choose your preferred shipping method"
@@ -1533,7 +1533,7 @@ msgstr "Siamo spiacenti ma il processo di pagamento è terminato con un errore."
 
 #: templates/shop/checkout/failure.html:13
 msgid "You may"
-msgstr "Dovresto"
+msgstr "Dovrebbe"
 
 #: templates/shop/checkout/failure.html:13
 msgid "proceed to the cart"
@@ -1666,7 +1666,8 @@ msgid ""
 "Please print out this page as a receipt.  You will also receive an email "
 "with this information."
 msgstr ""
-"Per favore stampa questa pagina, riceverai un email con queste informazioni,"
+"Per favore stampa questa pagina, riceverai inoltre un'email con queste "
+"informazioni,"
 
 #: templates/shop/checkout/cod/confirm.html:17
 #, python-format
