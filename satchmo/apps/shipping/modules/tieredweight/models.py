@@ -43,8 +43,11 @@ class Shipper(BaseShipper):
         Perform shipping calculations
         """
         self._cost, self._weight = None, None
-        self._zone = self._carrier.get_zone(contact._shipping_address().country)
-
+        
+        country = contact._shipping_address().country
+        self._zone = self._carrier.get_zone(country)
+        
+        logging.debug('Found zone %s for country %s', self._zone, country)
         if self._zone:
             try:
                 self._weight = _get_cart_weight(cart)
@@ -100,11 +103,14 @@ class Shipper(BaseShipper):
         to default zone if set
         """
         assert(self._calculated)
-        # I think its reasonable to assume this shipping method should
-        # not be used on an order that doesn't weigh anything.
-        if not self._weight or self._weight == Decimal('0.0'):
-            log.debug("Tiered weight not valid for weight = %s" % (self._weight))
-            return False
+        
+        # No, this is not a fair assumption.
+
+        # # I think its reasonable to assume this shipping method should
+        # # not be used on an order that doesn't weigh anything.
+        # if not self._weight or self._weight == Decimal('0.0'):
+        #     log.debug("Tiered weight not valid for weight = %s" % (self._weight))
+        #     return False
 
         if self._zone and self._cost:
             return True
