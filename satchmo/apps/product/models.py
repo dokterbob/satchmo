@@ -846,7 +846,7 @@ class Product(models.Model):
     width_units = models.CharField(_("Width units"), max_length=3, null=True, blank=True)
     height = models.DecimalField(_("Height"), max_digits=6, decimal_places=2, null=True, blank=True)
     height_units = models.CharField(_("Height units"), max_length=3, null=True, blank=True)
-    related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products')
+    related_items = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Related Items'), related_name='related_products', symmetrical=False)
     also_purchased = models.ManyToManyField('self', blank=True, null=True, verbose_name=_('Previously Purchased'), related_name='also_products')
     total_sold = models.DecimalField(_("Total sold"),  max_digits=18, decimal_places=6, default='0')
     taxable = models.BooleanField(_("Taxable"), default=lambda: config_value('TAX', 'PRODUCTS_TAXABLE_BY_DEFAULT'))
