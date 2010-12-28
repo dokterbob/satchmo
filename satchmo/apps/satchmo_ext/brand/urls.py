@@ -20,7 +20,12 @@ brandpatterns = patterns('',
     (brandbase, include('satchmo_ext.brand.urls'))
 )
 
-def add_brand_urls(sender, patterns=(), section="", **kwargs):
-    if section=="__init__":
+def add_brand_urls(sender=None, patterns=None, section=None, **kwargs):
+    # override top-level one, so that we don't get the PRODUCT_SLUG prefix for
+    # backward-compatibility.
+    if not section == '__init__':
+        return
+
+    if patterns:
         log.debug('adding brand urls at %s', brandbase)
         patterns += brandpatterns
