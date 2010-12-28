@@ -17,7 +17,7 @@ brandbase = r'^' + get_satchmo_setting('BRAND_SLUG') + '/'
 
 prodbase = r'^' + get_satchmo_setting('PRODUCT_SLUG') + '/'
 brandpatterns = patterns('',
-    (brandbase, include('satchmo_ext.brand.urls'))
+    (brandbase, include('brand.urls'))
 )
 
 def add_brand_urls(sender, patterns=(), section="", **kwargs):
