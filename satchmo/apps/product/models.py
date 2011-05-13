@@ -856,6 +856,11 @@ class Product(models.Model):
 
     objects = ProductManager()
 
+    def get_related_items(self):
+        """ Get (active) related items. """
+
+        return self.related_items.filter(active=True)
+
     def _get_mainCategory(self):
         """Return the first category for the product"""
 
