@@ -356,10 +356,23 @@ class SimplePayShipForm(forms.Form):
             self.shipping_hidden = True
         else:
             self.fields['shipping'].choices = shipping_choices
+            self.shipping_hidden = False
+
             if config_value('SHIPPING','SELECT_CHEAPEST'):
                 if cheapshipping is not None:
-                    self.fields['shipping'].initial = cheapshipping
-            self.shipping_hidden = False
+                    if config_value('SHIPPING','SELECT_CHEAPEST_HIDE'):
+                        # Hide the selection of shipping costs, allways select
+                        # the cheapest one
+                        self.fields['shipping'] = \
+                            forms.CharField(max_length=30, initial=cheapshipping,
+                            widget=forms.HiddenInput(attrs={'value' : cheapshipping}))
+                        self.shipping_hidden = True
+
+                        # This part is tricky
+                        self.shipping_description = shipping_dict[cheapshipping]
+                        
+                    else:
+                        self.fields['shipping'].initial = cheapshipping
                 
         self.shipping_dict = shipping_dict
         form_init.send(SimplePayShipForm, form=self)

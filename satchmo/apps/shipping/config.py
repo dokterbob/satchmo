@@ -36,6 +36,14 @@ config_register(
         ordering=15
         ))
 
+config_register(
+    BooleanValue(SHIPPING_GROUP,
+        'SELECT_CHEAPEST_HIDE',
+        description = _("Hide shipping form fields if a cheapest shipping method has been selected?"),
+        default=False,
+        ordering=20
+        ))
+
 
 # --- Load default shipping modules.  Ignore import errors, user may have deleted them. ---
 # DO NOT ADD 'tiered' or 'no' to this list.  
