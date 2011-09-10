@@ -16,6 +16,7 @@ from satchmo_utils.json import json_encode
 from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
 import logging
+import django.conf
 
 log = logging.getLogger('product.views')
 
@@ -62,7 +63,11 @@ def category_view(request, slug, parent_slugs='', template='product/category.htm
     """
     try:
         category =  Category.objects.get_by_site(slug=slug)
-        products = list(category.active_products())
+        # Add special case for categories that should be sorted by date
+        if category.slug in django.conf.settings.CATEGORY_SORTBY_DATE:
+            products = list(category.active_products().order_by("-date_added"))
+        else:
+            products = list(category.active_products())
         sale = find_best_auto_discount(products)
 
     except Category.DoesNotExist:
