@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 from l10n.utils import moneyfmt
 from livesettings import config_value
 from product.models import Category, Product
-from product.modules.configurable.models import ConfigurableProduct, sorted_tuple
+from product.modules.configurable.models import ConfigurableProduct, sorted_tuple, ProductVariation
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
 from satchmo_utils.json import json_encode
@@ -121,6 +121,15 @@ def get_product(request, product_slug=None, selected_options=(),
 
     try:
         product = Product.objects.get_by_site(active=True, slug=product_slug)
+
+        # Check whether the parent product is active
+        try:
+            if not product.productvariation.parent.product.active:
+                raise Product.DoesNotExist
+
+        except ProductVariation.DoesNotExist:
+            pass
+
     except Product.DoesNotExist:
         return bad_or_missing(request, _('The product you have requested does not exist.'))
 
